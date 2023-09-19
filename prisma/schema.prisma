@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int           @id @default(autoincrement())
+  email       String        @unique
+  password    String
+  name        String
+  slug        String        @unique
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime
+  image_url   String        @default("")
+  Mod         Mod[]
+  ModFavorite ModFavorite[]
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  Mod         Mod[]
+}
+
+model KelvinGPTMessages {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  chatId    String
+  message   String
+  role      String
+  who       String
+}
+
+model Mod {
+  id               Int           @id @default(autoincrement())
+  name             String
+  slug             String        @unique
+  description      String
+  isNSFW           Boolean
+  isApproved       Boolean
+  isFeatured       Boolean
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime
+  userId           Int?
+  categoryId       Int?
+  shortDescription String        @default("")
+  Category         Category?     @relation(fields: [categoryId], references: [id])
+  User             User?         @relation(fields: [userId], references: [id])
+  ModFavorite      ModFavorite[]
+  ModImage         ModImage[]
+  ModVersion       ModVersion[]
+  Tag              Tag[]
+}
+
+model ModDownload {
+  id           Int         @id @default(autoincrement())
+  ip           String
+  userAgent    String
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime
+  modVersionId Int?
+  ModVersion   ModVersion? @relation(fields: [modVersionId], references: [id])
+}
+
+model ModFavorite {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  userId    Int?
+  modId     Int?
+  Mod       Mod?     @relation(fields: [modId], references: [id])
+  User      User?    @relation(fields: [userId], references: [id])
+}
+
+model ModImage {
+  id          Int      @id @default(autoincrement())
+  url         String
+  isPrimary   Boolean
+  isThumbnail Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  modId       Int?
+  preview_url String?
+  Mod         Mod?     @relation(fields: [modId], references: [id])
+}
+
+model ModVersion {
+  id          Int           @id @default(autoincrement())
+  version     String
+  changelog   String
+  downloadUrl String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime
+  modId       Int?
+  isLatest    Boolean
+  extension   String?
+  filename    String?
+  ModDownload ModDownload[]
+  Mod         Mod?          @relation(fields: [modId], references: [id])
+}
+
+model Tag {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String   @unique
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime
+  Mod         Mod[]
+}
