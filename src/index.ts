@@ -8,7 +8,7 @@ const app = new Elysia()
         let count = await prisma.category.count();
         return count + "c";
     })
-    .listen(3000)
+    .listen(Bun.env.PORT ?? 3000)
 
 console.log(
     `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`

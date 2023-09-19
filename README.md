@@ -3,6 +3,7 @@
 ## Setup
 First create a .env (you can clone .env.example) and fill the variables
 ```env
+PORT=
 DATABASE_URL=
 ```
 
