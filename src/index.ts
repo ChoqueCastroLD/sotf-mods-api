@@ -1,13 +1,12 @@
 import { Elysia } from 'elysia'
-import { PrismaClient } from '@prisma/client'
 
-const prisma = new PrismaClient();
+import { router } from './router'
+import { errorHandler } from './handlers/error.handler'
+
 
 const app = new Elysia()
-    .get('/', async () => {
-        let count = await prisma.category.count();
-        return count + "c";
-    })
+    .use(errorHandler)
+    .use(router)
     .listen(Bun.env.PORT ?? 3000)
 
 console.log(

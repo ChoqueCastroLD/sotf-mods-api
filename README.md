@@ -4,7 +4,11 @@
 First create a .env (you can clone .env.example) and fill the variables
 ```env
 PORT=
+BASE_URL=
 DATABASE_URL=
+JWT_SECRET=
+KELVINGPT_API=
+KELVINGPT_API_AUTHORITY=
 ```
 
 To setup the project run:
