@@ -76,6 +76,12 @@ export const router = new Elysia()
 
             const downloads = [...new Set(downloads_arr)].length;
 
+            const versions = mod.versions?.map(version => ({
+                version: version.version,
+                changelog: version.changelog,
+                downloads: version.downloads.length,
+            }));
+
             const favorites = mod._count.favorites;
 
             const total_downloads = downloads_arr.length;
@@ -104,6 +110,7 @@ export const router = new Elysia()
                 downloads,
                 favorites,
                 total_downloads,
+                versions,
                 time_ago,
             }
         }
