@@ -65,10 +65,10 @@ export const router = new Elysia()
               slug,
               shortDescription,
               description,
-              isNSFW: isNSFW ?? false,
+              isNSFW: isNSFW === "true",
               isApproved: false,
               isFeatured: false,
-              categoryId: category_id ?? 1,
+              categoryId: parseInt(category_id),
               userId: user?.id,
             }
           })
@@ -133,8 +133,8 @@ export const router = new Elysia()
                 shortDescription: t.String(),
                 description: t.String(),
                 version: t.String(),
-                isNSFW: t.Optional(t.Boolean()),
-                category_id: t.Optional(t.Number()),
+                isNSFW: t.String(),
+                category_id: t.String(),
                 modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
                 modThumbnail: t.File({ type: 'image/png', minSize: 1, maxSize: 8 * 1024 * 1024 }),
             }),
