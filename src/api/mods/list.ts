@@ -7,7 +7,7 @@ import { timeAgo } from '../../shared/time-ago';
 export const router = new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw }, set }) => {
+        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby }, set }) => {
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -15,7 +15,8 @@ export const router = new Elysia()
                 user_slug,
                 nsfw: nsfw === "true" ? nsfw : false,
             }
-            let where: any = {};
+            const where: any = {};
+
             if (search) {
                 where.OR = [
                     {
@@ -59,6 +60,23 @@ export const router = new Elysia()
                 where.isApproved = true;
             }
 
+            const orderBy: any = {}
+            switch (orderby) {
+                case "popular":
+                    orderBy["favorites"] = { _count: 'desc' }
+                    break;
+                case "unpopular":
+                    orderBy["favorites"] = { _count: 'asc' }
+                    break;
+                case "oldest":
+                    orderBy["updatedAt"] = "asc"
+                    break;
+                case "newest":
+                default:
+                    orderBy["updatedAt"] = "desc"
+                    break;
+            }
+
             const mods = await prisma.mod.findMany({
                 where: where,
                 include: {
@@ -100,9 +118,7 @@ export const router = new Elysia()
                         }
                     }
                 },
-                orderBy: {
-                    updatedAt: "desc",
-                },
+                orderBy,
                 take: meta.limit,
                 skip: (meta.page - 1) * meta.limit,
             })
@@ -174,6 +190,7 @@ export const router = new Elysia()
                 favorites_of_user_slug: t.Optional(t.String()),
                 nsfw: t.Optional(t.String()),
                 approved: t.Optional(t.String()),
+                orderby: t.Optional(t.String()),
             }),
         }
     )
