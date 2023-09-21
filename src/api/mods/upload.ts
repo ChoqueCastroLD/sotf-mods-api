@@ -46,7 +46,7 @@ export const router = new Elysia()
             throw new ValidationError("Validation error", [{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
           }
 
-          const slug = slugify(name);
+          const slug = slugify(name, { lower: true });
           const existingMod = await prisma.mod.findFirst({
             where: {
               OR: [
