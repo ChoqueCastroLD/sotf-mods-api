@@ -14,13 +14,13 @@ export const router = new Elysia()
             });
 
             if (!user) {
-                throw new ValidationError("Validation error", [{ field: 'email', message: "User with this email does not exist" }]);
+                throw new ValidationError([{ field: 'email', message: "User with this email does not exist" }]);
             }
 
             const passwordMatch = await Bun.password.verify(password, user.password);
 
             if (!passwordMatch) {
-                throw new ValidationError("Validation error", [{ field: 'password', message: "Password is incorrect" }]);
+                throw new ValidationError([{ field: 'password', message: "Password is incorrect" }]);
             }
 
             const expiresAt = new Date(Date.now() + 1000 * 60 * 60 * 24 * 2); // 2 days

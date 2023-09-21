@@ -31,19 +31,19 @@ export const router = new Elysia()
           }
 
           if (errors.length > 0) {
-            throw new ValidationError("Validation error", errors)
+            throw new ValidationError(errors)
           }
 
           const image = await sharp(await modThumbnail.arrayBuffer()).metadata()
 
           if (!ALLOWED_RESOLUTIONS.find((res) => res.width === image.width && res.height === image.height)) {
-            throw new ValidationError("Validation error", [{ field: 'modThumbnail', message: "Invalid thumbnail resolution" }])
+            throw new ValidationError([{ field: 'modThumbnail', message: "Invalid thumbnail resolution" }])
           }
           
           const file = await modFile.arrayBuffer()
 
           if ((file.byteLength / 1024) > MOD_FILE_SIZE_LIMIT) {
-            throw new ValidationError("Validation error", [{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
+            throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
           }
 
           const slug = slugify(name, { lower: true });
@@ -56,7 +56,7 @@ export const router = new Elysia()
             }
           });
           if (existingMod) {
-            throw new ValidationError("Validation error", [{ field: 'name', message: "Mod already exists." }])
+            throw new ValidationError([{ field: 'name', message: "Mod already exists." }])
           }
 
           const mod = await prisma.mod.create({
@@ -80,7 +80,7 @@ export const router = new Elysia()
             if (!thumbnailFilename) throw thumbnailFilename;
           } catch (error) {
             console.error("Error uploading thumbnail:", error)
-            throw new ValidationError("Validation error", [{ field: 'modThumbnail', message: "An error occurred during thumbnail upload." }])
+            throw new ValidationError([{ field: 'modThumbnail', message: "An error occurred during thumbnail upload." }])
           }
 
           await prisma.modImage.create({
@@ -98,7 +98,7 @@ export const router = new Elysia()
 
           const ext = modFile.name.split('.').pop()
           if (ext !== 'zip' && ext !== 'dll') {
-            throw new ValidationError("Validation error", [{ field: 'modFile', message: "Mod file must be a zip or dll file." }])
+            throw new ValidationError([{ field: 'modFile', message: "Mod file must be a zip or dll file." }])
           }
 
           let filename;
@@ -107,7 +107,7 @@ export const router = new Elysia()
             if (!filename) throw filename;
           } catch (error) {
             console.error("Error uploading file:", error)
-            throw new ValidationError("Validation error", [{ field: 'modFile', message: "An error occurred during file upload." }])
+            throw new ValidationError([{ field: 'modFile', message: "An error occurred during file upload." }])
           }
 
           await prisma.modVersion.create({

@@ -31,7 +31,7 @@ export const router = new Elysia()
             throw new NotFoundError();
           }
           if (mod.userId !== user?.id) {
-            throw new ValidationError("Validation error", [{ field: 'user', message: "You are not the owner of this mod." }])
+            throw new ValidationError([{ field: 'user', message: "You are not the owner of this mod." }])
           }
 
           const errors = []
@@ -41,7 +41,7 @@ export const router = new Elysia()
           if (shortDescription) errors.push(...validateModShortDescription(shortDescription));
 
           if (errors.length > 0) {
-            throw new ValidationError("Validation error", errors)
+            throw new ValidationError(errors)
           }
 
           await prisma.mod.update({

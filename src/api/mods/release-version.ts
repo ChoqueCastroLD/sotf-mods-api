@@ -26,10 +26,10 @@ export const router = new Elysia()
             throw new NotFoundError();
           }
           if (mod.userId !== user?.id) {
-            throw new ValidationError("Validation error", [{ field: 'user', message: "You are not the owner of this mod." }])
+            throw new ValidationError([{ field: 'user', message: "You are not the owner of this mod." }])
           }
           if (!semver.valid(version)) {
-            throw new ValidationError("Validation error", [{ field: 'version', message: "Invalid mod version provided." }])
+            throw new ValidationError([{ field: 'version', message: "Invalid mod version provided." }])
           }
 
           const existingVersion = await prisma.modVersion.findFirst({
@@ -39,7 +39,7 @@ export const router = new Elysia()
             }
           });
           if (existingVersion) {
-            throw new ValidationError("Validation error", [{ field: 'version', message: "Version already exists." }])
+            throw new ValidationError([{ field: 'version', message: "Version already exists." }])
           }
       
           const latestVersion = await prisma.modVersion.findFirst({
@@ -49,12 +49,12 @@ export const router = new Elysia()
             }
           });
             if (latestVersion && !semver.gt(version, latestVersion.version)) {
-              throw new ValidationError("Validation error", [{ field: 'version', message: "Version must be greater than latest version." }])
+              throw new ValidationError([{ field: 'version', message: "Version must be greater than latest version." }])
             }
 
             const ext = modFile.name.split('.').pop();
             if (ext !== 'zip' && ext !== 'dll') {
-              throw new ValidationError("Validation error", [{ field: 'modFile', message: "Mod file must be a zip or dll file." }])
+              throw new ValidationError([{ field: 'modFile', message: "Mod file must be a zip or dll file." }])
             }
 
             let filename = "";

@@ -17,27 +17,27 @@ export const router = new Elysia()
             errors.push(...validatePassword(password, confirm_password));
 
             if (errors.length > 0) {
-                throw new ValidationError("Validation error", errors); 
+                throw new ValidationError(errors); 
             }
 
             const existingUser = await prisma.user.findUnique({
                 where: { email },
             });
             if (existingUser) {
-                throw new ValidationError("Validation error", [{ field: 'email', message: "User with this email already exists" }]);
+                throw new ValidationError([{ field: 'email', message: "User with this email already exists" }]);
             }
 
             const existingUserName = await prisma.user.findFirst({
                 where: { name: username },
             });
             if (existingUserName) {
-                throw new ValidationError("Validation error", [{ field: 'username', message: "User with this name already exists" }]);
+                throw new ValidationError([{ field: 'username', message: "User with this name already exists" }]);
             }
 
             const slug = slugify(username, { lower: true }).trim();
             const existingUserSlug = await prisma.user.findFirst({ where: { slug } });
             if (existingUserSlug) {
-                throw new ValidationError("Validation error", [{ field: 'username', message: "User with this name/slug already exists" }]);
+                throw new ValidationError([{ field: 'username', message: "User with this name/slug already exists" }]);
             }
 
             const hashedPassword = await Bun.password.hash(password);
