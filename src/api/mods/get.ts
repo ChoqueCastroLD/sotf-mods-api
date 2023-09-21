@@ -38,7 +38,7 @@ export const router = new Elysia()
                     },
                     versions: {
                         orderBy: {
-                            version: "asc",
+                            version: "desc",
                         },
                         include: {
                             downloads: {
