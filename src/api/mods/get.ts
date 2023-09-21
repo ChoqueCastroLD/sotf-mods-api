@@ -94,6 +94,7 @@ export const router = new Elysia()
             return {
                 name: mod.name,
                 slug: mod.slug,
+                description: mod.description,
                 short_description: mod.shortDescription,
                 isNSFW: mod.isNSFW,
                 isApproved: mod.isApproved,
