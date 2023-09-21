@@ -1,4 +1,4 @@
-# Elysia with Bun runtime
+# sotf-mods.com API
 
 ## Setup
 First create a .env (you can clone .env.example) and fill the variables
