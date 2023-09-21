@@ -7,7 +7,7 @@ import { timeAgo } from '../../shared/time-ago';
 export const router = new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw } }) => {
+        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw }, set }) => {
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -106,6 +106,17 @@ export const router = new Elysia()
                 take: meta.limit,
                 skip: (meta.page - 1) * meta.limit,
             })
+
+            const total_count = await prisma.mod.count({ where });
+            const number_of_pages = Math.ceil(total_count / meta.limit);
+            const next_page = (meta.page + 1 <= number_of_pages ? meta.page + 1 : number_of_pages);
+            const prev_page = (meta.page - 1 > 0 ? meta.page - 1 : 1);
+            set.headers['X-Total-Count'] = total_count.toString();
+            set.headers['X-Page'] = meta.page.toString();
+            set.headers['X-Limit'] = meta.limit.toString();
+            set.headers['X-Pages'] = number_of_pages.toString();
+            set.headers['X-Next-Page'] = next_page.toString();
+            set.headers['X-Prev-Page'] = prev_page.toString();
 
             return mods.map(mod => {
                 const thumbnail_url = mod?.images
