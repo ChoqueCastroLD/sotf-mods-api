@@ -7,7 +7,7 @@ import { timeAgo } from '../../shared/time-ago';
 export const router = new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, nsfw } }) => {
+        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw } }) => {
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -55,11 +55,12 @@ export const router = new Elysia()
                 }
             }
 
+            if (approved !== "false") {
+                where.isApproved = true;
+            }
+
             const mods = await prisma.mod.findMany({
-                where: {
-                    isApproved: true,
-                    ...where,
-                },
+                where: where,
                 include: {
                     images: {
                         select: {
@@ -161,6 +162,7 @@ export const router = new Elysia()
                 user_slug: t.Optional(t.String()),
                 favorites_of_user_slug: t.Optional(t.String()),
                 nsfw: t.Optional(t.String()),
+                approved: t.Optional(t.String()),
             }),
         }
     )
