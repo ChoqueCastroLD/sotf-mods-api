@@ -65,12 +65,18 @@ export const router = new Elysia()
               errors.push({ field: 'modThumbnail', message: "Invalid thumbnail resolution" })
             }
 
-            const timestamp = new Date().getTime();
-            const thumbnailName = await uploadFile(await modThumbnail.arrayBuffer(), `${timestamp}_${mod.slug}_thumbnail.${ext}`);
-            if (thumbnailName) {
+            const thumbnailFilename = await uploadFile(await modThumbnail.arrayBuffer(), `${mod.slug}_thumbnail.${ext}`);
+
+            if (thumbnailFilename) {
+              await prisma.modImage.deleteMany({
+                where: {
+                  modId: mod.id,
+                  isThumbnail: true,
+                }
+              })
               await prisma.modImage.create({
                 data: {
-                  url: `${Bun.env.BASE_URL}/images/${thumbnailName}`,
+                  url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${thumbnailFilename}`,
                   isPrimary: false,
                   isThumbnail: true,
                   mod: {

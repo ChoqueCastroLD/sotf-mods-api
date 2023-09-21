@@ -34,4 +34,11 @@ To start the development server run:
 bun run dev
 ```
 
+## Caveats
+If you are running on linux and issue an error with sharp you might solve it by running:
+```bash
+cd node_modules/sharp
+bun install
+```
+
 Open http://localhost:3000/ with your browser to see the result.

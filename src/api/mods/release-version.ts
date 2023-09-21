@@ -1,10 +1,8 @@
 import { Elysia, NotFoundError, t } from 'elysia'
 import semver from 'semver';
-import sharp from "sharp";
 
 import { prisma } from '../../services/prisma';
 import { authMiddleware } from '../../middlewares/auth.middleware'
-import { validateModDescription, validateModName, validateModShortDescription } from '../../shared/validation';
 import { ValidationError } from '../../errors/validation';
 import { uploadFile } from '../../services/files';
 
@@ -59,11 +57,12 @@ export const router = new Elysia()
               throw new ValidationError("Validation error", [{ field: 'modFile', message: "Mod file must be a zip or dll file." }])
             }
 
-            let fileName = "";
+            let filename = "";
             try {
-              fileName = await uploadFile(await modFile.arrayBuffer(), `${mod.slug}_${version}.${ext}`);
-              if (!fileName) throw fileName;
+              filename = await uploadFile(await modFile.arrayBuffer(), `${mod.slug}_${version}.${ext}`);
+              if (!filename) throw filename;
             } catch (error) {
+              console.error(error);
               throw new Error("An error occurred during file upload.");
             }
 
@@ -80,9 +79,10 @@ export const router = new Elysia()
               data: {
                 version,
                 changelog,
-                downloadUrl: `${Bun.env.BASE_URL}/mods/${user?.slug}/${mod.slug}/download/${version}`,
+                downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
                 isLatest: true,
-                filename: fileName,
+                filename,
+                extension: ext,
                 mod: {
                   connect: {
                     id: mod.id,

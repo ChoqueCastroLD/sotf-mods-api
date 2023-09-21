@@ -73,11 +73,11 @@ export const router = new Elysia()
             }
           })
 
-          let thumbnailName;
+          let thumbnailFilename;
           try {
             const ext = modThumbnail.name.split('.').pop()
-            thumbnailName = await uploadFile(await modThumbnail.arrayBuffer(), `${slug}_thumbnail.${ext}`)
-            if (!thumbnailName) throw thumbnailName;
+            thumbnailFilename = await uploadFile(await modThumbnail.arrayBuffer(), `${slug}_thumbnail.${ext}`)
+            if (!thumbnailFilename) throw thumbnailFilename;
           } catch (error) {
             console.error("Error uploading thumbnail:", error)
             throw new ValidationError("Validation error", [{ field: 'modThumbnail', message: "An error occurred during thumbnail upload." }])
@@ -85,7 +85,7 @@ export const router = new Elysia()
 
           await prisma.modImage.create({
             data: {
-              url: `${Bun.env.BASE_URL}/images/${thumbnailName}`,
+              url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${thumbnailFilename}`,
               isPrimary: false,
               isThumbnail: true,
               mod: {
@@ -114,9 +114,10 @@ export const router = new Elysia()
             data: {
               version,
               changelog: "First release",
-              downloadUrl: `${Bun.env.BASE_URL}/mods/${user?.slug}/${slug}/download/${version}`,
+              downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
               isLatest: true,
               filename,
+              extension: ext,
               mod: {
                 connect: {
                   id: mod.id,
