@@ -10,7 +10,7 @@ import { ValidationError } from '../../errors/validation';
 import { uploadFile } from '../../services/files';
 
 
-const MOD_FILE_SIZE_LIMIT = 10 * 1024 * 1024; // 10MB
+const MOD_FILE_SIZE_LIMIT = 80 * 1024 * 1024; // 80MB
 const ALLOWED_RESOLUTIONS = [
   { width: 2560, height: 1440 },
   { width: 1080, height: 608 }
