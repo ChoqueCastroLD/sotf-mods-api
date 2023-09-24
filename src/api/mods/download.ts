@@ -6,7 +6,7 @@ import { prisma } from '../../services/prisma';
 export const router = new Elysia()
     .get(
         '/api/mods/:user_slug/:mod_slug/download/:version',
-        async ({ request, params: { user_slug, mod_slug, version }, set }) => {
+        async ({ request, params: { user_slug, mod_slug, version }, query: { ip, agent }, set }) => {
             const mod = await prisma.mod.findFirst({
                 where: {
                     slug: mod_slug,
@@ -46,8 +46,8 @@ export const router = new Elysia()
 
             prisma.modDownload.create({
                 data: {
-                    ip: "" + request.headers.get("x-forwarded-for"),
-                    userAgent: "" + request.headers.get("user-agent"),
+                    ip: (ip + "") || ("" + request.headers.get("x-forwarded-for")),
+                    userAgent: (agent + "") || ("" + request.headers.get("user-agent")),
                     modVersionId: modVersion.id,
                 }
             }).catch(err => console.error(err));
