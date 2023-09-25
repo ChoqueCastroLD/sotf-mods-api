@@ -127,15 +127,17 @@ export const router = new Elysia()
             const number_of_pages = Math.ceil(total_count / meta.limit);
             const next_page = (meta.page + 1 <= number_of_pages ? meta.page + 1 : number_of_pages);
             const prev_page = (meta.page - 1 > 0 ? meta.page - 1 : 1);
-            set.headers['X-Total-Count'] = total_count.toString();
-            set.headers['X-Page'] = meta.page.toString();
-            set.headers['X-Limit'] = meta.limit.toString();
-            set.headers['X-Pages'] = number_of_pages.toString();
-            set.headers['X-Next-Page'] = next_page.toString();
-            set.headers['X-Prev-Page'] = prev_page.toString();
-            set.headers['Access-Control-Expose-Headers'] = "Authorization";
 
-            return mods.map(mod => {
+            const returnMeta = {
+                total: total_count,
+                page: meta.page,
+                limit: meta.limit,
+                pages: number_of_pages,
+                next_page: next_page,
+                prev_page: prev_page,
+            }
+
+            const returnMods = mods.map(mod => {
                 const thumbnail_url = mod?.images
                     ?.find((image) => image.isThumbnail)?.url
                     ?? mod.images?.[0]?.url
@@ -182,6 +184,8 @@ export const router = new Elysia()
                     time_ago,
                 }
             })
+
+            return { mods: returnMods, meta: returnMeta }
         }, {
             query: t.Object({
                 page: t.Optional(t.String()),
