@@ -133,6 +133,7 @@ export const router = new Elysia()
             set.headers['X-Pages'] = number_of_pages.toString();
             set.headers['X-Next-Page'] = next_page.toString();
             set.headers['X-Prev-Page'] = prev_page.toString();
+            set.headers['Access-Control-Expose-Headers'] = "Authorization";
 
             return mods.map(mod => {
                 const thumbnail_url = mod?.images
