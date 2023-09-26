@@ -8,7 +8,7 @@ import { generateToken } from '../../shared/token';
 export const router = new Elysia()
     .post(
         '/api/auth/login',
-        async ({ body: { email, password } }) => {
+        async ({ body: { email, password }, set }) => {
             const user = await prisma.user.findUnique({
                 where: { email },
             });
@@ -42,6 +42,8 @@ export const router = new Elysia()
                     userId: user.id,
                 }
             });
+
+            set.headers['Set-Cookie'] = `token=${token}; expires=${expiresAt.toUTCString()}; path=/; HttpOnly; SameSite=Strict`;
 
             return { token, slug: user.slug, name: user.name, image_url: user.image_url, canApprove: user.canApprove };
         }, {
