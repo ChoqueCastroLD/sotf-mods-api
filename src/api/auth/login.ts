@@ -43,7 +43,7 @@ export const router = new Elysia()
                 }
             });
 
-            return { token, slug: user.slug, name: user.name, image_url: user.image_url };
+            return { token, slug: user.slug, name: user.name, image_url: user.image_url, canApprove: user.canApprove };
         }, {
             body: t.Object({
                 email: t.String(),

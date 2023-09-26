@@ -22,6 +22,7 @@ export const router = new Elysia()
                     slug: true,
                     email: true,
                     image_url: true,
+                    canApprove: true,
                 }
             });
 
