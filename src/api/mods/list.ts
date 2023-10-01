@@ -7,13 +7,10 @@ import { timeAgo } from '../../shared/time-ago';
 export const router = new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby }, set }) => {
+        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category } }) => {
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
-                search,
-                user_slug,
-                nsfw: nsfw === "true" ? nsfw : false,
             }
             const where: any = {};
 
@@ -58,6 +55,16 @@ export const router = new Elysia()
 
             if (approved !== "false") {
                 where.isApproved = true;
+            }
+
+            if (category) {
+                where.category = {
+                    slug: category,
+                }
+            }
+
+            if (nsfw !== "false") {
+                where.isNSFW = false;
             }
 
             const orderBy: any = {}
@@ -196,6 +203,7 @@ export const router = new Elysia()
                 nsfw: t.Optional(t.String()),
                 approved: t.Optional(t.String()),
                 orderby: t.Optional(t.String()),
+                category: t.Optional(t.String()),
             }),
         }
     )
