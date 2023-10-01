@@ -11,9 +11,11 @@
     "@elysiajs/swagger": "^0.6.2",
     "@grotto/logysia": "^0.0.2",
     "@prisma/client": "5.3.1",
+    "@types/adm-zip": "^0.5.2",
     "@types/jsonwebtoken": "^9.0.3",
     "@types/sanitize-html": "^2.9.0",
     "@types/semver": "^7.5.2",
+    "adm-zip": "^0.5.10",
     "elysia": "latest",
     "fastest-levenshtein": "^1.0.16",
     "jose": "^4.14.6",
@@ -21,7 +23,9 @@
     "sanitize-html": "^2.11.0",
     "semver": "^7.5.4",
     "sharp": "^0.32.6",
-    "slugify": "^1.6.6"
+    "slugify": "^1.6.6",
+    "unzip": "^0.1.11",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "bun-types": "latest",
