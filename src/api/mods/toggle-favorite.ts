@@ -1,5 +1,4 @@
 import { Elysia, NotFoundError, t } from 'elysia'
-import semver from 'semver';
 
 import { prisma } from '../../services/prisma';
 import { authMiddleware } from '../../middlewares/auth.middleware'

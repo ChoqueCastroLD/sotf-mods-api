@@ -45,7 +45,7 @@ export const router = new Elysia()
             }
           });
           if (existingVersion) {
-            throw new ValidationError([{ field: 'version', message: "Version already exists." }])
+            throw new ValidationError([{ field: 'version', message: `Version ${version} already exists.` }])
           }
       
           const latestVersion = await prisma.modVersion.findFirst({
@@ -55,7 +55,7 @@ export const router = new Elysia()
             }
           });
           if (latestVersion && !semver.gt(version, latestVersion.version)) {
-            throw new ValidationError([{ field: 'version', message: "Version must be greater than latest version." }])
+            throw new ValidationError([{ field: 'version', message: `Version ${version} must be greater than latest version.` }])
           }
 
           const ext = modFile.name.split('.').pop();
