@@ -5,19 +5,12 @@ type gptMessage = {
 }
 
 export async function chat(prompt: string, message: string, messages: gptMessage[], chat_id: string): Promise<string> {
+    console.log(messages[1]);
+    
     const raw = JSON.stringify({
         "env": "chatbot",
-        "session": "N/A",
         "prompt": prompt,
         "context": prompt,
-        "messages": messages.map((msg, i) => ({
-            "id": `${i+1}`,
-            "role": msg.role,
-            "content": msg.message,
-            "who": msg.who,
-            "html": ""
-        })),
-        "newMessage": message,
         "userName": "",
         "aiName": "",
         "model": "gpt-3.5-turbo",
@@ -28,7 +21,21 @@ export async function chat(prompt: string, message: string, messages: gptMessage
         "service": "openai",
         "embeddingsIndex": "",
         "stop": "",
-        "clientId": chat_id,
+
+        "botId": "default",
+        "contextId": 25,
+        "chatId": chat_id,
+        "customId": chat_id,
+        "messages": messages.map((msg, i) => ({
+            "id": `${i+1}`,
+            "role": msg.role,
+            "content": msg.message,
+            "who": msg.who,
+            "html": ""
+        })),
+        "newMessage": message,
+        "session": "N/A",
+        "stream": false,
     });
 
     const r = await fetch(Bun.env.KELVINGPT_API + "", {
@@ -41,6 +48,8 @@ export async function chat(prompt: string, message: string, messages: gptMessage
         body: raw,
         redirect: "follow",
     });
-    const { answer } = await r.json();
-    return answer;
+    const result = await r.json();
+    
+    const { reply } = result;
+    return reply;
 }
