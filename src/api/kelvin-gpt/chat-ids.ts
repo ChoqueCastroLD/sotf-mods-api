@@ -17,9 +17,6 @@ export const router = new Elysia()
             })
             return chatIds.map(chat => chat.chatId)
         }, {
-            query: t.Object({
-                chat_id: t.String(),
-            }),
             response: t.Array(t.String())
         }
     )
