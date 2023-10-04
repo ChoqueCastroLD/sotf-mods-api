@@ -18,7 +18,7 @@ export const router = new Elysia()
                     chatId: chat_id
                 },
                 orderBy: {
-                    createdAt: 'desc'
+                    createdAt: 'asc'
                 }
             })
             return chats.map(chat => chat.message)
