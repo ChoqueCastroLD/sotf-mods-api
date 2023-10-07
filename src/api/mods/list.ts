@@ -53,7 +53,7 @@ export const router = new Elysia()
                 }
             }
 
-            if (approved !== "false") {
+            if (approved === "true") {
                 where.isApproved = true;
             }
 
@@ -63,8 +63,8 @@ export const router = new Elysia()
                 }
             }
 
-            if (nsfw !== "false") {
-                where.isNSFW = false;
+            if (nsfw === "true") {
+                where.isNSFW = true;
             }
 
             const orderBy: any = {}
