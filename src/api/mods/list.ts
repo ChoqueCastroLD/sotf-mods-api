@@ -53,9 +53,7 @@ export const router = new Elysia()
                 }
             }
 
-            if (approved === "true") {
-                where.isApproved = true;
-            }
+            where.isApproved = approved && (approved === "true");
 
             if (category) {
                 where.category = {
@@ -63,9 +61,7 @@ export const router = new Elysia()
                 }
             }
 
-            if (nsfw === "true") {
-                where.isNSFW = true;
-            }
+            where.isNSFW = nsfw && (nsfw === "true");
 
             const orderBy: any = {}
             switch (orderby) {
