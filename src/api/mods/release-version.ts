@@ -103,6 +103,7 @@ export const router = new Elysia()
             },
             data: {
               updatedAt: new Date(),
+              lastReleasedAt: new Date(),
             }
           })
 

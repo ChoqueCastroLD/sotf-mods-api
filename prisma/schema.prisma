@@ -58,6 +58,7 @@ model Mod {
   isApproved       Boolean
   isFeatured       Boolean
 
+  lastReleasedAt DateTime @default(now())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

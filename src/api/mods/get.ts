@@ -86,10 +86,7 @@ export const router = new Elysia()
 
             const total_downloads = downloads_arr.length;
 
-            let time_ago = timeAgo(mod.updatedAt);
-            if (latest_version && (new Date(latest_version.createdAt)).getTime() > (new Date(mod.updatedAt)).getTime()) {
-                time_ago = timeAgo(latest_version.createdAt);
-            }
+            const time_ago = timeAgo(mod.lastReleasedAt);
 
             return {
                 name: mod.name,
