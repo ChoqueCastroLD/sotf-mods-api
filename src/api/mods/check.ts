@@ -6,15 +6,12 @@ import { prisma } from '../../services/prisma';
 
 export const router = new Elysia()
     .get(
-        '/api/mods/:user_slug/:mod_slug/check',
-        async ({ params: { user_slug, mod_slug }, query: { version } }) => {
+        '/api/mods/:mod_id/check',
+        async ({ params: { mod_id }, query: { version } }) => {
             const latestVersion = await prisma.modVersion.findFirst({
               where: {
                 mod: {
-                  slug: mod_slug,
-                  user: {
-                    slug: user_slug,
-                  }
+                  mod_id
                 },
                 isLatest: true,
               },

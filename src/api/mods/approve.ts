@@ -7,17 +7,14 @@ import { authMiddleware } from '../../middlewares/auth.middleware'
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
     .get(
-        '/api/mods/:user_slug/:mod_slug/approve',
-        async ({ params: { user_slug, mod_slug }, user }) => {
+        '/api/mods/:mod_id/approve',
+        async ({ params: { mod_id }, user }) => {
             if (user?.canApprove !== true) {
               throw new NotFoundError();
             }
             const mod = await prisma.mod.findFirst({
               where: {
-                slug: mod_slug,
-                user: {
-                  slug: user_slug,
-                }
+                mod_id
               }
             });
             if (!mod) {

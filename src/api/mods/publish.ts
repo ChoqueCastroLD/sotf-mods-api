@@ -49,9 +49,7 @@ export const router = new Elysia()
             throw new ValidationError([{ field: 'modFile', message: "Mod file must be a zip file." }])
           }
 
-          const manifest = readManifest(file);
-
-          const version = manifest.version;
+          const { id: mod_id, version } = readManifest(file);
 
           if (!semver.valid(version)) {
             throw new ValidationError([{ field: 'modFile', message: "Invalid mod version provided in manifest.json" }])
@@ -63,15 +61,17 @@ export const router = new Elysia()
               OR: [
                 { name },
                 { slug },
+                { mod_id },
               ]
             }
           });
           if (existingMod) {
-            throw new ValidationError([{ field: 'name', message: "Mod already exists." }])
+            throw new ValidationError([{ field: 'name', message: "Mod already exists. Try a different mod name or manifest.json" }])
           }
 
           const mod = await prisma.mod.create({
             data: {
+              mod_id,
               name,
               slug,
               shortDescription,

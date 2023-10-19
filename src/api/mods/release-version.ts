@@ -13,14 +13,11 @@ const MOD_FILE_SIZE_LIMIT = 80 * 1024 * 1024; // 80MB
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
     .post(
-        '/api/mods/:user_slug/:mod_slug/release',
-        async ({ params: { user_slug, mod_slug }, body: { changelog, modFile }, user }) => {
+        '/api/mods/:mod_id/release',
+        async ({ params: { mod_id }, body: { changelog, modFile }, user }) => {
           const mod = await prisma.mod.findFirst({
             where: {
-              slug: mod_slug,
-              user: {
-                slug: user_slug,
-              }
+              mod_id
             }
           });
           if (!mod) {

@@ -5,14 +5,11 @@ import { prisma } from '../../services/prisma';
 
 export const router = new Elysia()
     .get(
-        '/api/mods/:user_slug/:mod_slug/download/:version',
-        async ({ request, params: { user_slug, mod_slug, version }, query: { ip, agent }, set }) => {
+        '/api/mods/:mod_id/download/:version',
+        async ({ request, params: { mod_id, version }, query: { ip, agent }, set }) => {
             const mod = await prisma.mod.findFirst({
                 where: {
-                    slug: mod_slug,
-                    user: {
-                        slug: user_slug
-                    },
+                    mod_id,
                     versions: {
                         some: {
                             version,

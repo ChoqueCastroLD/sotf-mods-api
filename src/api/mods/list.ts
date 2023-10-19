@@ -164,6 +164,7 @@ export const router = new Elysia()
                 const time_ago = timeAgo(mod.lastReleasedAt);
 
                 return {
+                    mod_id: mod.mod_id,
                     name: mod.name,
                     slug: mod.slug,
                     short_description: mod.shortDescription,

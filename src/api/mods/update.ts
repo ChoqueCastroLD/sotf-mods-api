@@ -17,14 +17,11 @@ const ALLOWED_RESOLUTIONS = [
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
     .patch(
-        '/api/mods/:user_slug/:mod_slug/details',
-        async ({ params: { user_slug, mod_slug }, body: { name, description, shortDescription, isNSFW, modThumbnail }, user }) => {
+        '/api/mods/:mod_id/details',
+        async ({ params: { mod_id }, body: { name, description, shortDescription, isNSFW, modThumbnail }, user }) => {
           const mod = await prisma.mod.findFirst({
             where: {
-              slug: mod_slug,
-              user: {
-                slug: user_slug,
-              }
+              mod_id
             }
           });
           if (!mod) {

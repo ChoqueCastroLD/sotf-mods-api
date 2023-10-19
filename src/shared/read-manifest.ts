@@ -19,7 +19,7 @@ export function readManifest(file: ArrayBuffer) {
     }
 
     return {
-      name: manifest?.id,
+      id: manifest?.id,
       version: manifest?.version,
       description: manifest?.description,
     }
