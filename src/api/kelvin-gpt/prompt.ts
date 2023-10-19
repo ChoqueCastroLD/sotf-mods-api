@@ -44,7 +44,12 @@ export const router = new Elysia()
                 updatedAt: new Date(),
             })
 
-            const answer = await chat(prompt, text, messages, chat_id)
+            let answer;
+            try {
+              answer = await chat(prompt, text, messages, chat_id)
+            } catch (error) {
+              answer = "|Sorry, I'm having trouble understanding you. (GPT API is down, try again tomorrow)"
+            }
             console.log({ answer })
 
             let command = ""
