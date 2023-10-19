@@ -28,8 +28,11 @@ export const router = new Elysia()
           }
           const file = await modFile.arrayBuffer()
 
-          const manifest = readManifest(file)
-          const version = manifest.version
+          const { id: manifest_id, version } = readManifest(file)
+
+          if (manifest_id !== mod_id) {
+            throw new ValidationError([{ field: 'modFile', message: "Mod file manifest.json id does not match mod id. (Should be '" + mod_id + "')" }])
+          }
 
           if (!semver.valid(version)) {
             throw new ValidationError([{ field: 'version', message: "Invalid mod version provided in manifest.json." }])
