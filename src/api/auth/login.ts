@@ -56,6 +56,7 @@ export const router = new Elysia()
                 slug: t.String(),
                 name: t.String(),
                 image_url: t.String(),
+                canApprove: t.Boolean(),
             })
         }
     )
