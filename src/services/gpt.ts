@@ -49,6 +49,8 @@ export async function chat(prompt: string, message: string, messages: gptMessage
         redirect: "follow",
     });
     const result = await r.json();
+    console.log(result);
+    
     
     const { reply } = result;
     return reply;
