@@ -61,7 +61,7 @@ export const router = new Elysia()
                 }
             }
 
-            where.isNSFW = nsfw && (nsfw === "true");
+            where.isNSFW = nsfw === "true";
 
             const orderBy: any = {}
             switch (orderby) {
