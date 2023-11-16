@@ -56,6 +56,7 @@ model Mod {
   mod_id           String  @unique
   shortDescription String  @default("")
   description      String
+  dependencies     String  @default("")
   isNSFW           Boolean
   isApproved       Boolean
   isFeatured       Boolean

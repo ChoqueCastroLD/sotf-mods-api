@@ -34,6 +34,7 @@ export const router = new Elysia()
             name: manifest?.id ?? "",
             version: manifest.version,
             description: manifest?.description ?? "",
+            dependencies: manifest.dependencies,
           }
         }, {
             body: t.Object({

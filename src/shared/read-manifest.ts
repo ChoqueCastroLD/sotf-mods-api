@@ -22,5 +22,6 @@ export function readManifest(file: ArrayBuffer) {
       id: manifest?.id,
       version: manifest?.version,
       description: manifest?.description,
+      dependencies: manifest?.dependencies?.join(","),
     }
 }

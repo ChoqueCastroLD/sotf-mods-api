@@ -28,7 +28,7 @@ export const router = new Elysia()
           }
           const file = await modFile.arrayBuffer()
 
-          const { id: manifest_id, version } = readManifest(file)
+          const { id: manifest_id, version, dependencies } = readManifest(file)
 
           if (manifest_id !== mod_id) {
             throw new ValidationError([{ field: 'modFile', message: "Mod file manifest.json id does not match mod id. (Should be '" + mod_id + "')" }])
@@ -102,6 +102,7 @@ export const router = new Elysia()
               id: mod.id,
             },
             data: {
+              dependencies,
               updatedAt: new Date(),
               lastReleasedAt: new Date(),
             }

@@ -49,7 +49,7 @@ export const router = new Elysia()
             throw new ValidationError([{ field: 'modFile', message: "Mod file must be a zip file." }])
           }
 
-          const { id: mod_id, version } = readManifest(file);
+          const { id: mod_id, version, dependencies } = readManifest(file);
 
           if (!semver.valid(version)) {
             throw new ValidationError([{ field: 'modFile', message: "Invalid mod version provided in manifest.json" }])
@@ -76,6 +76,7 @@ export const router = new Elysia()
               slug,
               shortDescription,
               description,
+              dependencies,
               isNSFW: isNSFW === "true",
               isApproved: false,
               isFeatured: false,

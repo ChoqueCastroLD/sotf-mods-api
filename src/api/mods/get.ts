@@ -101,6 +101,7 @@ export const router = new Elysia()
                 user_image_url: mod?.user?.image_url,
                 thumbnail_url,
                 primary_image_url,
+                dependencies: mod?.dependencies,
                 latest_version: latest_version?.version,
                 downloads,
                 favorites,
