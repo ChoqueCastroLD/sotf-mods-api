@@ -30,11 +30,16 @@ export const router = new Elysia()
             throw new ValidationError([{ field: 'modFile', message: "Invalid mod version provided." }])
           }
 
+          if (manifest.type !== "Mod" && manifest.type !== "Library") {
+            throw new ValidationError([{ field: 'modFile', message: "Invalid mod type provided in manifest.json, must be Mod or Library" }])
+          }
+
           return {
             name: manifest?.id ?? "",
             version: manifest.version,
             description: manifest?.description ?? "",
-            dependencies: manifest.dependencies.split(","),
+            dependencies: manifest.dependencies?.split(","),
+            type: manifest?.type,
           }
         }, {
             body: t.Object({

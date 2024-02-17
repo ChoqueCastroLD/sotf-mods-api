@@ -23,5 +23,6 @@ export function readManifest(file: ArrayBuffer) {
       version: manifest?.version,
       description: manifest?.description,
       dependencies: manifest?.dependencies?.join(","),
+      type: manifest?.type,
     }
 }

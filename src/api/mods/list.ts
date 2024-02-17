@@ -2,12 +2,14 @@ import { Elysia, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
 import { timeAgo } from '../../shared/time-ago';
+import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
 export const router = new Elysia()
+    .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category } }) => {
+        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category }, user }) => {
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -162,6 +164,8 @@ export const router = new Elysia()
                 const total_downloads = downloads_arr.length;
 
                 const time_ago = timeAgo(mod.lastReleasedAt);
+                
+                const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
                 return {
                     mod_id: mod.mod_id,
@@ -171,6 +175,7 @@ export const router = new Elysia()
                     isNSFW: mod.isNSFW,
                     isApproved: mod.isApproved,
                     isFeatured: mod.isFeatured,
+                    isFavorite,
                     category_slug: mod?.category?.slug,
                     category_name: mod?.category?.name,
                     user_name: mod?.user?.name,
@@ -179,6 +184,7 @@ export const router = new Elysia()
                     thumbnail_url,
                     primary_image_url,
                     dependencies: mod?.dependencies?.split(","),
+                    type: mod?.type ?? "Mod",
                     latest_version: latest_version?.version,
                     downloads,
                     favorites,

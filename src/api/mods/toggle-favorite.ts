@@ -18,6 +18,12 @@ export const router = new Elysia()
               throw new NotFoundError();
             }
             
+            const count = await prisma.modFavorite.count({
+              where: {
+                modId: mod.id,
+              }
+            });
+
             const favorite = await prisma.modFavorite.findFirst({
               where: {
                 modId: mod.id,
@@ -30,7 +36,7 @@ export const router = new Elysia()
                   id: favorite.id,
                 }
               });
-              return { favorite: false, message: 'Mod removed from favorites.' };
+              return { favorite: false, count: count - 1, message: 'Mod removed from favorites.' };
             }
             await prisma.modFavorite.create({
               data: {
@@ -38,10 +44,11 @@ export const router = new Elysia()
                 userId: user?.id,
               }
             });
-            return { favorite: true, message: 'Mod added to favorites.' };
+            return { favorite: true, count: count + 1, message: 'Mod added to favorites.' };
         }, {
             response: t.Object({
               favorite: t.Boolean(),
+              count: t.Number(),
               message: t.String(),
             }),
         }

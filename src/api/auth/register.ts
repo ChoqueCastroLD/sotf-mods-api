@@ -20,8 +20,13 @@ export const router = new Elysia()
                 throw new ValidationError(errors); 
             }
 
-            const existingUser = await prisma.user.findUnique({
-                where: { email },
+            const existingUser = await prisma.user.findFirst({
+                where: {
+                    email: {
+                        equals: email,
+                        mode: 'insensitive',
+                    }
+                },
             });
             if (existingUser) {
                 throw new ValidationError([{ field: 'email', message: "User with this email already exists" }]);

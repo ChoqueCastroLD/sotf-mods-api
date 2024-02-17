@@ -9,8 +9,13 @@ export const router = new Elysia()
     .post(
         '/api/auth/login',
         async ({ body: { email, password }, set }) => {
-            const user = await prisma.user.findUnique({
-                where: { email },
+            const user = await prisma.user.findFirst({
+                where: {
+                    email: {
+                        equals: email,
+                        mode: 'insensitive',
+                    }
+                },
             });
 
             if (!user) {

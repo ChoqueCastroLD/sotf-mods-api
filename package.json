@@ -10,12 +10,13 @@
     "@elysiajs/cors": "^0.7.0",
     "@elysiajs/swagger": "^0.7.3",
     "@grotto/logysia": "^0.0.2",
-    "@prisma/client": "5.6.0",
+    "@prisma/client": "^5.6.0",
     "@types/adm-zip": "^0.5.2",
     "@types/jsonwebtoken": "^9.0.3",
     "@types/sanitize-html": "^2.9.0",
     "@types/semver": "^7.5.2",
     "adm-zip": "^0.5.10",
+    "chatgpt": "^5.2.5",
     "dice-similarity-coeff": "^1.1.1",
     "elysia": "latest",
     "fastest-levenshtein": "^1.0.16",
@@ -29,8 +30,7 @@
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "bun-types": "latest",
-    "prisma": "^5.6.0"
+    "bun-types": "latest"
   },
   "module": "src/index.js"
 }

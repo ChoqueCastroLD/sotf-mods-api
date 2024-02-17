@@ -2,12 +2,14 @@ import { Elysia, NotFoundError, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
 import { timeAgo } from '../../shared/time-ago';
+import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
 export const router = new Elysia()
+    .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods/:mod_id',
-        async ({ params: { mod_id } }) => {
+        async ({ params: { mod_id }, user }) => {
             const mod = await prisma.mod.findFirst({
                 where: {
                     mod_id,
@@ -85,6 +87,8 @@ export const router = new Elysia()
 
             const time_ago = timeAgo(mod.lastReleasedAt);
 
+            const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
+
             return {
                 mod_id: mod.mod_id,
                 name: mod.name,
@@ -94,6 +98,7 @@ export const router = new Elysia()
                 isNSFW: mod.isNSFW,
                 isApproved: mod.isApproved,
                 isFeatured: mod.isFeatured,
+                isFavorite,
                 category_slug: mod?.category?.slug,
                 category_name: mod?.category?.name,
                 user_name: mod?.user?.name,
@@ -102,6 +107,7 @@ export const router = new Elysia()
                 thumbnail_url,
                 primary_image_url,
                 dependencies: mod?.dependencies?.split(","),
+                type: mod?.type ?? "Mod",
                 latest_version: latest_version?.version,
                 downloads,
                 favorites,

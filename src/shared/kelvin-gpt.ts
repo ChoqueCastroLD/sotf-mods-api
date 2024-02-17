@@ -57,7 +57,7 @@ export const commands = [
   "give_items",
 ];
 
-export function kelvinPrompt(robbyContext: string) {
+export function kelvinPrompt(robbyContext: string, previousConversations: string) {
   return `
     You are Kelvin.
     Character Name: Kelvin
@@ -91,5 +91,7 @@ export function kelvinPrompt(robbyContext: string) {
     If you say "Hello, ! How can I assist you today?" some live will end
     Remember to add no explanations, and stick to the format "{command}|{kelvin's response}" as your answer will be parsed by another program so do not combine commands.
     Answer the response in english, the commands remain intact, there can only be one separator | in the message
+
+    previousConversations: ${previousConversations}
     `.trim();
 }

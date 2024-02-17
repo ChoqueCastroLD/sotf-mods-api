@@ -19,7 +19,10 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  ban          Ban?
   mods         Mod[]
+  comments     Comment[]
+  artifacts    Artifact[]
   favoriteMods ModFavorite[]
   tokens       Token[]
 }
@@ -57,6 +60,7 @@ model Mod {
   shortDescription String  @default("")
   description      String
   dependencies     String  @default("")
+  type             String?
   isNSFW           Boolean
   isApproved       Boolean
   isFeatured       Boolean
@@ -73,6 +77,7 @@ model Mod {
   tags       Tag[]
   images     ModImage[]
   favorites  ModFavorite[]
+  comments   Comment[]
 }
 
 model ModImage {
@@ -159,8 +164,58 @@ model KelvinGPTMessages {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  chatId  String
+  chatId    String
+  messageId String @default("")
+  prompt    String @default("")
+  message   String
+  role      String
+  who       String
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   message String
-  role    String
-  who     String
+
+  isHidden Boolean
+
+  ip String
+
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?
+
+  mod   Mod @relation(fields: [modId], references: [id])
+  modId Int
+
+  replyId Int?
+  reply   Comment?  @relation("CommentToComment", fields: [replyId], references: [id])
+  replies Comment[] @relation("CommentToComment")
+}
+
+model Ban {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ip        String
+  reason    String
+  expiresAt DateTime
+
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?  @unique
+}
+
+model Artifact {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  artifactId String @unique
+  code       Json
+  diagram    Json
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  @unique
 }
