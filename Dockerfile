@@ -13,6 +13,7 @@ COPY tsconfig.json .
 # COPY public public
 
 ENV NODE_ENV production
+RUN bunx prisma generate
 CMD ["bun", "src/index.ts"]
 
 EXPOSE 3001
