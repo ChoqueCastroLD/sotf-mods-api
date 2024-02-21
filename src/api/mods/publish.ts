@@ -22,6 +22,21 @@ export const router = new Elysia()
     .post(
         '/api/mods/publish',
         async ({ body: { name, shortDescription, description, isNSFW, category_id, modFile, modThumbnail }, user }) => {
+          console.log('api mods publish called');
+          console.log('getting coincidences by name ', {name});
+          const le = await prisma.mod.findFirst({
+            where: {
+              name: {
+                equals: name
+              },
+            }
+          });
+          console.log({le});
+          if (le) {
+            console.log('throwing error');
+            
+            return le;
+          }
           // return await prisma.$transaction(async (tx) => {
             const errors = []
             console.log("0");
@@ -75,14 +90,8 @@ export const router = new Elysia()
             console.log("6");
             
             const slug = slugify(name, { lower: true });
-            console.log("-xxxx -- 7");
+            console.log("-xxxx --7");
             console.log("xxxxx name", name);
-            const le = await prisma.mod.findFirst({
-              where: {
-                name: name,
-              }
-            });
-            console.log({le});
             console.log("slug", slug);
             console.log("mod_id", mod_id);
             console.log("OR", [
