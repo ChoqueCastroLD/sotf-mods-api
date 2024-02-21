@@ -23,20 +23,6 @@ export const router = new Elysia()
         '/api/mods/publish',
         async ({ body: { name, shortDescription, description, isNSFW, category_id, modFile, modThumbnail }, user }) => {
           console.log('api mods publish called');
-          console.log('getting coincidences by name ', {name});
-          const le = await prisma.mod.findFirst({
-            where: {
-              name: {
-                equals: name
-              },
-            }
-          });
-          console.log({le});
-          if (le) {
-            console.log('throwing error');
-            
-            return le;
-          }
           // return await prisma.$transaction(async (tx) => {
             const errors = []
             console.log("0");
@@ -110,19 +96,23 @@ export const router = new Elysia()
                   ]
                 }
               });
-              const existingMods = await prisma.mod.findFirst({
-                where: {
-                  OR: [
-                    { name },
-                    { slug },
-                    { mod_id },
-                  ]
-                }
-              });
-              console.log("7.b");
-              if (existingMods) {
-                console.log("7.c");
-                throw new ValidationError([{ field: 'name', message: "Mod already exists. Try a different mod name or manifest.json" }])
+              const existingName = await prisma.mod.findFirst({ select: { id: true }, where: { name } });
+              console.log({existingName});
+              
+              if (existingName) {
+                throw new ValidationError([{ field: 'name', message: "Mod already exists. Try a different mod name and manifest.json" }]);
+              }
+
+              const existingSlug = await prisma.mod.findFirst({ select: { id: true }, where: { slug } });
+              console.log({existingSlug});
+              if (existingSlug) {
+                throw new ValidationError([{ field: 'name', message: "Similar mod already exists. Try a different mod name and manifest.json" }]);
+              }
+
+              const existingModId = await prisma.mod.findFirst({ select: { id: true }, where: { mod_id } });
+              console.log({existingModId});
+              if (existingModId) {
+                throw new ValidationError([{ field: 'name', message: "Mod already exists. Try a different mod name and manifest.json" }]);
               }
               console.log("7.d");
             } catch (error) {
