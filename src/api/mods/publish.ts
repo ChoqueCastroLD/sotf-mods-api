@@ -24,14 +24,18 @@ export const router = new Elysia()
     async ({ body: { name, shortDescription, description, isNSFW, category_id, modFile, modThumbnail }, user }) => {
       console.log('api mods publish called');
 
+      console.log("a");
+      
+      const modThumbnailBuffer = await modThumbnail.arrayBuffer();
+      console.log("b");
+      const modFileBuffer = await modFile.arrayBuffer();
+      console.log("c");
+
       console.log('\n!!!!!!!!!!!!! 1 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
 
       // return await prisma.$transaction(async (tx) => {
       const errors = []
       console.log("0");
-      console.log("a");
-      console.log("b");
-      console.log("c");
 
 
       errors.push(...validateModName(name))
@@ -47,7 +51,6 @@ export const router = new Elysia()
       console.log("1");
 
       console.log('\n!!!!!!!!!!!!! 3.A PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
-      const modThumbnailBuffer = await modThumbnail.arrayBuffer();
       console.log('\n!!!!!!!!!!!!! 3.A.1 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       const dimensions = sizeOf(new Uint8Array(modThumbnailBuffer));
       console.log('\n!!!!!!!!!!!!! 3.A.2 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
@@ -61,10 +64,8 @@ export const router = new Elysia()
       console.log('\n!!!!!!!!!!!!! 3.C PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       console.log("3");
 
-      const file = await modFile.arrayBuffer();
-
       console.log('\n!!!!!!!!!!!!! 4 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
-      if ((file.byteLength / 1024) > MOD_FILE_SIZE_LIMIT) {
+      if ((modFileBuffer.byteLength / 1024) > MOD_FILE_SIZE_LIMIT) {
         throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
       }
       console.log("4");
@@ -76,7 +77,7 @@ export const router = new Elysia()
 
       console.log('\n!!!!!!!!!!!!! 5 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       console.log("5");
-      const { id: mod_id, version, dependencies, type } = readManifest(file);
+      const { id: mod_id, version, dependencies, type } = readManifest(modFileBuffer);
       console.log("5");
 
       console.log('\n!!!!!!!!!!!!! 6 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
@@ -161,7 +162,7 @@ export const router = new Elysia()
       let thumbnailFilename;
       try {
         const ext = modThumbnail.name.split('.').pop()
-        thumbnailFilename = await uploadFile(await modThumbnail.arrayBuffer(), `${slug}_thumbnail.${ext}`)
+        thumbnailFilename = await uploadFile(modThumbnailBuffer, `${slug}_thumbnail.${ext}`)
         if (!thumbnailFilename) throw thumbnailFilename;
       } catch (error) {
         console.error("Error uploading thumbnail:", error)
@@ -179,7 +180,7 @@ export const router = new Elysia()
 
       let filename;
       try {
-        filename = await uploadFile(await modFile.arrayBuffer(), `${slug}_${version}.${ext}`)
+        filename = await uploadFile(modFileBuffer, `${slug}_${version}.${ext}`)
         if (!filename) throw filename;
       } catch (error) {
         console.error("Error uploading file:", error)
