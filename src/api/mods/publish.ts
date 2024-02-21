@@ -75,8 +75,14 @@ export const router = new Elysia()
             console.log("6");
             
             const slug = slugify(name, { lower: true });
-            console.log("-aaaaaaaaaeeee--7");
-            console.log("name", name);
+            console.log("-xxxx -- 7");
+            console.log("xxxxx name", name);
+            const le = await prisma.mod.findFirst({
+              where: {
+                name: name,
+              }
+            });
+            console.log({le});
             console.log("slug", slug);
             console.log("mod_id", mod_id);
             console.log("OR", [
