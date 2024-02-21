@@ -95,7 +95,7 @@ export const router = new Elysia()
                   ]
                 }
               });
-              const existingMods = await prisma.mod.count({
+              const existingMods = await prisma.mod.findMany({
                 where: {
                   OR: [
                     { name },
@@ -105,7 +105,7 @@ export const router = new Elysia()
                 }
               });
               console.log("7.b");
-              if (existingMods > 0) {
+              if (existingMods.length > 0) {
                 console.log("7.c");
                 throw new ValidationError([{ field: 'name', message: "Mod already exists. Try a different mod name or manifest.json" }])
               }
