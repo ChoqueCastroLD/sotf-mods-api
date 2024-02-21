@@ -1,4 +1,4 @@
-FROM oven/bun:slim as base
+FROM oven/bun:latest as base
 WORKDIR /usr/src/app
 
 FROM base AS install
