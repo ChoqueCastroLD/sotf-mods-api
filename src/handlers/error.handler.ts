@@ -5,10 +5,8 @@ import { UnauthorizedError } from '../errors/auth';
 
 
 export const errorHandler = new Elysia()
-    .addError({
-        VALIDATION_ERROR: ValidationError,
-        UNAUTHORIZED_ERROR: UnauthorizedError,
-    })
+    .error('VALIDATION_ERROR', ValidationError)
+    .error('UNAUTHORIZED_ERROR', UnauthorizedError)
     .onError(({ code, error, set }) => {
         console.error(error);
         let error_message = error.message;
