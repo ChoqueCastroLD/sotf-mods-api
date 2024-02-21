@@ -23,6 +23,9 @@ export const router = new Elysia()
         '/api/mods/publish',
         async ({ body: { name, shortDescription, description, isNSFW, category_id, modFile, modThumbnail }, user }) => {
           console.log('api mods publish called');
+
+          console.log('\n!!!!!!!!!!!!! 1 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
+          
           // return await prisma.$transaction(async (tx) => {
             const errors = []
             console.log("0");
@@ -35,10 +38,12 @@ export const router = new Elysia()
             errors.push(...validateModDescription(description))
             errors.push(...validateModShortDescription(shortDescription))
             
+          console.log('\n!!!!!!!!!!!!! 2 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             if (errors.length > 0) {
               throw new ValidationError(errors)
             }
             
+          console.log('\n!!!!!!!!!!!!! 3 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             console.log("1");
             
             const image = await sharp(await modThumbnail.arrayBuffer()).metadata()
@@ -51,6 +56,7 @@ export const router = new Elysia()
             
             const file = await modFile.arrayBuffer()
             
+          console.log('\n!!!!!!!!!!!!! 4 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             if ((file.byteLength / 1024) > MOD_FILE_SIZE_LIMIT) {
               throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
             }
@@ -61,10 +67,12 @@ export const router = new Elysia()
               throw new ValidationError([{ field: 'modFile', message: "Mod file must be a zip file." }])
             }
             
+          console.log('\n!!!!!!!!!!!!! 5 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             console.log("5");
             const { id: mod_id, version, dependencies, type } = readManifest(file);
             console.log("5");
 
+            console.log('\n!!!!!!!!!!!!! 6 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             if (type !== "Mod" && type !== "Library") {
               throw new ValidationError([{ field: 'modFile', message: "Invalid mod type provided in manifest.json, must be Mod or Library" }])
             }
@@ -75,7 +83,9 @@ export const router = new Elysia()
 
             console.log("6");
             
+          console.log('\n!!!!!!!!!!!!! 7 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             const slug = slugify(name, { lower: true });
+            console.log('\n!!!!!!!!!!!!! 8 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
             console.log("-xxxx --7");
             console.log("xxxxx name", name);
             console.log("slug", slug);
