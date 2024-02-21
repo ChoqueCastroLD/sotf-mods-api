@@ -75,7 +75,7 @@ export const router = new Elysia()
             console.log("6");
             
             const slug = slugify(name, { lower: true });
-            console.log("-2222222222222--7");
+            console.log("-aaaaaaaaaeeee--7");
             console.log("name", name);
             console.log("slug", slug);
             console.log("mod_id", mod_id);
@@ -95,7 +95,7 @@ export const router = new Elysia()
                   ]
                 }
               });
-              const existingMods = await prisma.mod.findMany({
+              const existingMods = await prisma.mod.findFirst({
                 where: {
                   OR: [
                     { name },
@@ -105,7 +105,7 @@ export const router = new Elysia()
                 }
               });
               console.log("7.b");
-              if (existingMods.length > 0) {
+              if (existingMods) {
                 console.log("7.c");
                 throw new ValidationError([{ field: 'name', message: "Mod already exists. Try a different mod name or manifest.json" }])
               }
