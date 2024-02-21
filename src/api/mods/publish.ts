@@ -75,7 +75,7 @@ export const router = new Elysia()
             console.log("6");
             
             const slug = slugify(name, { lower: true });
-            console.log("---7");
+            console.log("-2222222222222--7");
             console.log("name", name);
             console.log("slug", slug);
             console.log("mod_id", mod_id);
