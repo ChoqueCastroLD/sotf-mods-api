@@ -52,6 +52,7 @@ export const router = new Elysia()
       const modThumnnailSharp = sharp(modThumbnailBuffer);
       console.log('\n!!!!!!!!!!!!! 3.A.2 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       const image = await modThumnnailSharp.metadata();
+      console.log('metadata found', { image });
       console.log('\n!!!!!!!!!!!!! 3.B PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       console.log("2");
 
