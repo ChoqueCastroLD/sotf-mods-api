@@ -1,7 +1,7 @@
 import { Elysia, t } from 'elysia'
 import slugify from "slugify";
 import semver from 'semver';
-import sharp from "sharp";
+import sizeOf from "image-size";
 
 import { prisma } from '../../services/prisma';
 import { authMiddleware } from '../../middlewares/auth.middleware'
@@ -49,14 +49,13 @@ export const router = new Elysia()
       console.log('\n!!!!!!!!!!!!! 3.A PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       const modThumbnailBuffer = await modThumbnail.arrayBuffer();
       console.log('\n!!!!!!!!!!!!! 3.A.1 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
-      const modThumnnailSharp = sharp(modThumbnailBuffer);
+      const dimensions = sizeOf(new Uint8Array(modThumbnailBuffer));
       console.log('\n!!!!!!!!!!!!! 3.A.2 PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
-      const image = await modThumnnailSharp.metadata();
-      console.log('metadata found', { image });
+      console.log('metadata found', { dimensions });
       console.log('\n!!!!!!!!!!!!! 3.B PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');
       console.log("2");
 
-      if (!ALLOWED_RESOLUTIONS.find((res) => res.width === image.width && res.height === image.height)) {
+      if (!ALLOWED_RESOLUTIONS.find((res) => res.width === dimensions.width && res.height === dimensions.height)) {
         throw new ValidationError([{ field: 'modThumbnail', message: "Invalid thumbnail resolution" }])
       }
       console.log('\n!!!!!!!!!!!!! 3.C PRISMA NAME ', await prisma.mod.findFirst({ select: { id: true }, where: { name } }), ' !!!!!!!!!!!!!\n\n');

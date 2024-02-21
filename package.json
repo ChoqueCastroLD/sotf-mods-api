@@ -23,6 +23,7 @@
     "dice-similarity-coeff": "^1.1.1",
     "elysia": "^0.8.17",
     "fastest-levenshtein": "^1.0.16",
+    "image-size": "^1.1.1",
     "jose": "^5.2.2",
     "jsonwebtoken": "^9.0.2",
     "sanitize-html": "^2.11.0",
