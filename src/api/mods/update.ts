@@ -1,9 +1,8 @@
-import { Elysia, NotFoundError, t } from 'elysia'
-import semver from 'semver';
-import sharp from "sharp";
+import { Elysia, NotFoundError, t } from 'elysia';
+import sizeOf from "image-size";
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { authMiddleware } from '../../middlewares/auth.middleware';
 import { validateModDescription, validateModName, validateModShortDescription } from '../../shared/validation';
 import { ValidationError } from '../../errors/validation';
 import { uploadFile } from '../../services/files';
@@ -57,13 +56,15 @@ export const router = new Elysia()
             if (modThumbnail) {
               const ext = modThumbnail.name.split('.').pop()
               
-              const image = await sharp(await modThumbnail.arrayBuffer()).metadata()
+              const modThumbnailBuffer = await modThumbnail.arrayBuffer();
+
+              const dimensions = sizeOf(new Uint8Array(modThumbnailBuffer));
     
-              if (!ALLOWED_RESOLUTIONS.find((res) => res.width === image.width && res.height === image.height)) {
+              if (!ALLOWED_RESOLUTIONS.find((res) => res.width === dimensions.width && res.height === dimensions.height)) {
                 errors.push({ field: 'modThumbnail', message: "Invalid thumbnail resolution" })
               }
 
-              const thumbnailFilename = await uploadFile(await modThumbnail.arrayBuffer(), `${mod.slug}_thumbnail.${ext}`);
+              const thumbnailFilename = await uploadFile(modThumbnailBuffer, `${mod.slug}_thumbnail.${ext}`);
 
               if (thumbnailFilename) {
                 await tx.modImage.deleteMany({
