@@ -53,6 +53,10 @@ export const router = new Elysia()
 
         const { id: mod_id, version, dependencies, type } = readManifest(modFileBuffer);
 
+        if (mod_id.includes(" ")) {
+          throw new ValidationError([{ field: 'modFile', message: "Mod id cannot contain spaces in manifest.json" }])
+        }
+
         if (type !== "Mod" && type !== "Library") {
           throw new ValidationError([{ field: 'modFile', message: "Invalid mod type provided in manifest.json, must be Mod or Library" }])
         }
