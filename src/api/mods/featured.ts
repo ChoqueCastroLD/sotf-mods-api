@@ -125,7 +125,7 @@ export const router = new Elysia()
                 }
             })
 
-            const result = allMods.sort((a, b) => b.last_week_downloads - a.last_week_downloads).slice(0, 3);
+            const result = allMods.sort((a, b) => b.last_week_downloads - a.last_week_downloads).slice(0, 5);
 
             featuredModsCache[query_stringified] = {
                 expires_at: Date.now() + 1000 * 60 * 5, // 5 minutes
