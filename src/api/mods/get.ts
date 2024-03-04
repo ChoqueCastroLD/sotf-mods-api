@@ -5,11 +5,19 @@ import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
+const getModCache: any = {};
+
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods/:mod_id',
         async ({ params: { mod_id }, user }) => {
+            if (!mod_id) {
+                throw new NotFoundError();
+            }
+            if (getModCache[mod_id] && getModCache[mod_id].expires_at > Date.now()) {
+                return getModCache[mod_id].data;
+            }
             const mod = await prisma.mod.findFirst({
                 where: {
                     mod_id,
@@ -89,7 +97,7 @@ export const router = new Elysia()
 
             const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
-            return {
+            const modDetails = {
                 mod_id: mod.mod_id,
                 name: mod.name,
                 slug: mod.slug,
@@ -114,6 +122,13 @@ export const router = new Elysia()
                 total_downloads,
                 versions,
                 time_ago,
-            }
+            };
+
+            getModCache[mod_id] = {
+                expires_at: Date.now() + 1000 * 60 * 5, // 5 minutes
+                data: modDetails,
+            };
+
+            return modDetails;
         }
     )
