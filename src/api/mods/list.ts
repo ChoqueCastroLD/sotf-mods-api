@@ -119,6 +119,7 @@ export const router = new Elysia()
                             downloads: {
                                 select: {
                                     ip: true,
+                                    createdAt: true,
                                 },
                             },
                         },
@@ -173,6 +174,12 @@ export const router = new Elysia()
                 
                 const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
+                const last_week_downloads = [...new Set(mod.versions?.flatMap(version => {
+                    return version.downloads
+                        .filter(download => download.createdAt > new Date(Date.now() - 1000 * 60 * 60 * 24 * 7)) // 7 days
+                        .map(download => download.ip)
+                }) ?? [])].length;
+
                 return {
                     mod_id: mod.mod_id,
                     name: mod.name,
@@ -195,6 +202,7 @@ export const router = new Elysia()
                     downloads,
                     favorites,
                     total_downloads,
+                    last_week_downloads,
                     time_ago,
                 }
             })
