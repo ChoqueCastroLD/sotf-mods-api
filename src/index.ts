@@ -8,7 +8,7 @@ import { loggerPlugin } from "./plugins/logger.plugin"
 
 
 const app = new Elysia()
-    .use(swagger())
+    .use(swagger({ path: '/api/docs' }))
     .use(cors())
     .use(loggerPlugin)
     .use(errorHandler)
