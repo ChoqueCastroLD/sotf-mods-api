@@ -5,17 +5,12 @@ import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
-const listModsCache: any = {};
-
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods',
         async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category }, user }) => {
             const query_stringified = JSON.stringify({ page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category, user });
-            if (listModsCache[query_stringified] && listModsCache[query_stringified].expires_at > Date.now()) {
-                return listModsCache[query_stringified].data;
-            }
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -208,11 +203,6 @@ export const router = new Elysia()
             })
 
             const result = { mods: returnMods, meta: returnMeta };
-
-            listModsCache[query_stringified] = {
-                expires_at: Date.now() + 1000 * 60 * 5, // 5 minutes
-                data: result
-            }
 
             return result;
         }, {

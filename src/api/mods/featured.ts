@@ -5,17 +5,12 @@ import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
-const featuredModsCache: any = {};
-
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods/featured',
         async ({ user }) => {
             const query_stringified = JSON.stringify({ user });
-            if (featuredModsCache[query_stringified] && featuredModsCache[query_stringified].expires_at > Date.now()) {
-                return featuredModsCache[query_stringified].data;
-            }
             const mods = await prisma.mod.findMany({
                 where: {
                     isNSFW: false,
@@ -126,11 +121,6 @@ export const router = new Elysia()
             })
 
             const result = allMods.sort((a, b) => b.last_week_downloads - a.last_week_downloads).slice(0, 4);
-
-            featuredModsCache[query_stringified] = {
-                expires_at: Date.now() + 1000 * 60 * 5, // 5 minutes
-                data: result
-            }
 
             return result;
         }
