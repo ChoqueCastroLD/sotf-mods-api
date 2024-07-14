@@ -13,7 +13,7 @@ RUN curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n \
 # COPY ./package.json ./bun.lockb ./
 COPY ./src ./src
 COPY ./prisma ./prisma
-RUN bun install --production
+RUN bun install
 RUN bunx prisma generate
 
 FROM base AS release
