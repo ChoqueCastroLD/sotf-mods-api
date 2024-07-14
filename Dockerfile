@@ -10,10 +10,10 @@ RUN curl -L https://raw.githubusercontent.com/tj/n/master/bin/n -o n \
     && rm n \
     && npm install -g n
 
-# COPY ./package.json ./bun.lockb ./
+COPY ./package.json ./bun.lockb ./
 COPY ./src ./src
 COPY ./prisma ./prisma
-RUN bun install
+RUN bun install --production
 RUN bunx prisma generate
 
 FROM base AS release
