@@ -30,6 +30,6 @@ export const loggerPlugin = new Elysia()
         const url = new URL(request.url)
         console.log(`📩 <-- ${request.method} ${url.pathname}`)
     })
-    .onResponse(({ path, request, set }) => {
+    .onAfterResponse(({ path, request, set }) => {
         console.log(`${typeof set.status === 'number' ? emojiStatus.get(set.status) ?? "" : ""} --> ${request.method} ${path} ${set.status}`)
     })

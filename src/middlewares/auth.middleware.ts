@@ -29,5 +29,5 @@ export const authMiddleware = (opts: { loggedOnly: boolean }) => new Elysia()
         })
         if (token && user) return { token, user };
         else if (opts.loggedOnly) throw new UnauthorizedError("Unauthorized, login required");
-        else return {};
+        else return { token: null, user: null };
     })
