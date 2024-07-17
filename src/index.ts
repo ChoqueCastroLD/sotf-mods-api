@@ -10,7 +10,7 @@ import { loggerPlugin } from "./plugins/logger.plugin"
 const app = new Elysia()
     .use(swagger())
     .use(cors({
-        origin: 'https://sotf-mods.com',
+        origin: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
         allowedHeaders: '*',
         credentials: true
