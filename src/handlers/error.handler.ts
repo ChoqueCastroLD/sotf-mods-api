@@ -7,7 +7,7 @@ import { UnauthorizedError } from '../errors/auth';
 export const errorHandler = new Elysia()
     .error('VALIDATION_ERROR', ValidationError)
     .error('UNAUTHORIZED_ERROR', UnauthorizedError)
-    .onError(({ code, error, set }) => {
+    .onError({ as: "global" }, ({ code, error, set }) => {
         console.error(error);
         let error_message = error.message;
         let full_error = error.message;
