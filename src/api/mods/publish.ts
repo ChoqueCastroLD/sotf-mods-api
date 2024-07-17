@@ -11,7 +11,7 @@ import { uploadFile } from '../../services/files';
 import { readManifest } from '../../shared/read-manifest';
 
 
-const MOD_FILE_SIZE_LIMIT = 80 * 1024 * 1024; // 80MB
+const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
 const ALLOWED_RESOLUTIONS = [
   { width: 2560, height: 1440 },
   { width: 1080, height: 608 }
@@ -43,7 +43,7 @@ export const router = new Elysia()
         }
 
         if ((modFileBuffer.byteLength / 1024) > MOD_FILE_SIZE_LIMIT) {
-          throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
+          throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 200MB." }])
         }
 
         const ext = modFile.name.split('.').pop()

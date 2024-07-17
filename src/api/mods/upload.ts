@@ -6,7 +6,7 @@ import { ValidationError } from '../../errors/validation'
 import { readManifest } from '../../shared/read-manifest';
 
 
-const MOD_FILE_SIZE_LIMIT = 80 * 1024 * 1024; // 80MB
+const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
 
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
@@ -16,7 +16,7 @@ export const router = new Elysia()
           const file = await modFile.arrayBuffer()
 
           if ((file.byteLength / 1024) > MOD_FILE_SIZE_LIMIT) {
-            throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 10MB." }])
+            throw new ValidationError([{ field: 'modFile', message: "Mod file size exceeds the limit of 200MB." }])
           }
 
           const ext = modFile.name.split('.').pop()

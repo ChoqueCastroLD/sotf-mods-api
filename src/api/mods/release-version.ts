@@ -8,7 +8,7 @@ import { uploadFile } from '../../services/files';
 import { readManifest } from '../../shared/read-manifest';
 
 
-const MOD_FILE_SIZE_LIMIT = 80 * 1024 * 1024; // 80MB
+const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
 
 export const router = new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
