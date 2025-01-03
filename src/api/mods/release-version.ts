@@ -10,7 +10,7 @@ import { readManifest } from '../../shared/read-manifest';
 
 const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
     .post(
         '/api/mods/:mod_id/release',

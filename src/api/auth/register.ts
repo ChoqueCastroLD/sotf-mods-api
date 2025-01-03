@@ -6,7 +6,7 @@ import { ValidationError } from '../../errors/validation';
 import { prisma } from "../../services/prisma";
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .post(
         '/api/auth/register',
         async ({ body: { email, username, password, confirm_password } }) => {

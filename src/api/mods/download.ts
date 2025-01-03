@@ -3,7 +3,7 @@ import { Elysia, NotFoundError } from 'elysia'
 import { prisma } from '../../services/prisma';
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .get(
         '/api/mods/:mod_id/download/:version',
         async ({ request, params: { mod_id, version }, query: { ip, agent }, set }) => {

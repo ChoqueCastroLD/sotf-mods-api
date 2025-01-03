@@ -122,7 +122,7 @@ async function getFeaturedMods(user: any) {
 
 let cachedFeatured = await getFeaturedMods(null);
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods/featured',

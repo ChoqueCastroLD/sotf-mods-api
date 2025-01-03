@@ -1,25 +1,78 @@
 import { Elysia } from 'elysia'
 import { cors } from '@elysiajs/cors'
-import { swagger } from '@elysiajs/swagger'
 
-import { router } from './router'
 import { errorHandler } from './handlers/error.handler'
-import { loggerPlugin } from "./plugins/logger.plugin"
+import { logger } from "./plugins/logger.plugin"
+
+// auth
+import { router as authCheckTokenRouter } from "./api/auth/check-token";
+import { router as authLoginRouter } from "./api/auth/login";
+import { router as authLogoutRouter } from "./api/auth/logout";
+import { router as authRegisterRouter } from "./api/auth/register";
+
+// categories
+import { router as categoriesRouter } from "./api/categories/categories";
+
+// general
+import { router as statsRouter } from "./api/general/stats";
+
+// mods
+import { router as modsApproveRouter } from "./api/mods/approve";
+import { router as modsCheckRouter } from "./api/mods/check";
+import { router as modsCommentRouter } from "./api/mods/comment";
+import { router as modsCommentsRouter } from "./api/mods/comments";
+import { router as modsDownloadRouter } from "./api/mods/download";
+import { router as modsFeaturedRouter } from "./api/mods/featured";
+import { router as modsGetRouter } from "./api/mods/get";
+import { router as modsListRouter } from "./api/mods/list";
+import { router as modsModIdRouter } from "./api/mods/mod-id";
+import { router as modsPublishRouter } from "./api/mods/publish";
+import { router as modsReleaseVersionRouter } from "./api/mods/release-version";
+import { router as modsToggleFavoriteRouter } from "./api/mods/toggle-favorite";
+import { router as modsUnapproveRouter } from "./api/mods/unapprove";
+import { router as modsUpdateRouter } from "./api/mods/update";
+import { router as modsUploadRouter } from "./api/mods/upload";
+
+// users
+import { router as usersGetRouter } from "./api/users/get";
 
 
-const app = new Elysia()
-    .use(swagger())
+new Elysia()
     .use(cors({
         origin: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
         allowedHeaders: '*',
         credentials: true
     }))
-    .use(loggerPlugin)
-    .use(errorHandler)
-    .use(router)
-    .listen(Bun.env.PORT ?? 3000)
-
-console.log(
-    `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
-)
+    .use(logger({ logIP: true }))
+	.use(errorHandler())
+    // auth
+    .group('', (app) => app.use(authCheckTokenRouter()))
+    .group('', (app) => app.use(authLoginRouter()))
+    .group('', (app) => app.use(authLogoutRouter()))
+    .group('', (app) => app.use(authRegisterRouter()))
+    // categories
+    .group('', (app) => app.use(categoriesRouter()))
+    // general
+    .group('', (app) => app.use(statsRouter()))
+    // mods
+    .group('', (app) => app.use(modsApproveRouter()))
+    .group('', (app) => app.use(modsCheckRouter()))
+    .group('', (app) => app.use(modsCommentRouter()))
+    .group('', (app) => app.use(modsCommentsRouter()))
+    .group('', (app) => app.use(modsDownloadRouter()))
+    .group('', (app) => app.use(modsFeaturedRouter()))
+    .group('', (app) => app.use(modsGetRouter()))
+    .group('', (app) => app.use(modsListRouter()))
+    .group('', (app) => app.use(modsModIdRouter()))
+    .group('', (app) => app.use(modsPublishRouter()))
+    .group('', (app) => app.use(modsReleaseVersionRouter()))
+    .group('', (app) => app.use(modsToggleFavoriteRouter()))
+    .group('', (app) => app.use(modsUnapproveRouter()))
+    .group('', (app) => app.use(modsUpdateRouter()))
+    .group('', (app) => app.use(modsUploadRouter()))
+    // users
+    .group('', (app) => app.use(usersGetRouter()))
+    .listen(Bun.env.PORT ?? 3000, (server) => {
+        console.log(`🦊 Elysia is running at ${server?.hostname}:${server?.port}`);
+    });

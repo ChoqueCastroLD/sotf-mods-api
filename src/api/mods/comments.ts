@@ -5,7 +5,7 @@ import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/comments',

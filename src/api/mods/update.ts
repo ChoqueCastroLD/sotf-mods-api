@@ -13,7 +13,7 @@ const ALLOWED_RESOLUTIONS = [
   { width: 1080, height: 608 }
 ];
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .use(authMiddleware({ loggedOnly: true }))
     .patch(
         '/api/mods/:mod_id/details',

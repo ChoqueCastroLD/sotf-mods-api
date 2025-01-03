@@ -7,7 +7,7 @@ import { sanitizeInput } from '../../shared/sanitize';
 import { timeAgo } from '../../shared/time-ago';
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .use(authMiddleware({ loggedOnly: false }))
     .post(
         '/api/comment',

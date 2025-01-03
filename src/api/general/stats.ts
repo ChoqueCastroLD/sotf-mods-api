@@ -3,7 +3,7 @@ import { Elysia, t } from 'elysia'
 import { prisma } from '../../services/prisma';
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .get(
         '/api/stats',
         async () => {

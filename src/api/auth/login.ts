@@ -5,7 +5,7 @@ import { prisma } from "../../services/prisma";
 import { generateToken } from '../../shared/token';
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .post(
         '/api/auth/login',
         async ({ body: { email, password }, set }) => {

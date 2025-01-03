@@ -3,13 +3,13 @@ import { Elysia, NotFoundError, t } from 'elysia'
 import { prisma } from '../../services/prisma'
 
 
-export const router = new Elysia()
+export const router = () => new Elysia()
     .get(
-        '/api/users/:user_slug',
-        async ({ params: { user_slug } }) => {
+        '/api/users/:userSlug',
+        async ({ params }) => {
             const user = await prisma.user.findFirst({
                 where: {
-                    slug: user_slug,
+                    slug: params?.userSlug,
                 },
                 select: {
                     name: true,
