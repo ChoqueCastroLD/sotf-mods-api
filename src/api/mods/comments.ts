@@ -1,7 +1,6 @@
 import { Elysia, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
@@ -52,7 +51,6 @@ export const router = () => new Elysia()
                 },
             })
 
-            // const time_ago = timeAgo(mod.lastReleasedAt);
             return []
         }, {
             query: t.Object({

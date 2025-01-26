@@ -19,11 +19,11 @@ import { router as statsRouter } from "./api/general/stats";
 // mods
 import { router as modsApproveRouter } from "./api/mods/approve";
 import { router as modsCheckRouter } from "./api/mods/check";
-import { router as modsCommentRouter } from "./api/mods/comment";
-import { router as modsCommentsRouter } from "./api/mods/comments";
 import { router as modsDownloadRouter } from "./api/mods/download";
+import { router as modsDownloadBySlugRouter } from "./api/mods/download_by_slug";
 import { router as modsFeaturedRouter } from "./api/mods/featured";
 import { router as modsGetRouter } from "./api/mods/get";
+import { router as modsGetBySlugRouter } from "./api/mods/get_by_slug";
 import { router as modsListRouter } from "./api/mods/list";
 import { router as modsModIdRouter } from "./api/mods/mod-id";
 import { router as modsPublishRouter } from "./api/mods/publish";
@@ -58,11 +58,11 @@ new Elysia()
     // mods
     .group('', (app) => app.use(modsApproveRouter()))
     .group('', (app) => app.use(modsCheckRouter()))
-    .group('', (app) => app.use(modsCommentRouter()))
-    .group('', (app) => app.use(modsCommentsRouter()))
     .group('', (app) => app.use(modsDownloadRouter()))
+    .group('', (app) => app.use(modsDownloadBySlugRouter()))
     .group('', (app) => app.use(modsFeaturedRouter()))
     .group('', (app) => app.use(modsGetRouter()))
+    .group('', (app) => app.use(modsGetBySlugRouter()))
     .group('', (app) => app.use(modsListRouter()))
     .group('', (app) => app.use(modsModIdRouter()))
     .group('', (app) => app.use(modsPublishRouter()))

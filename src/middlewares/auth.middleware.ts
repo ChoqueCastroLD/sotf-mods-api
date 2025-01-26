@@ -6,7 +6,8 @@ import { UnauthorizedError } from '../errors/auth';
 
 export const authMiddleware = (opts: { loggedOnly: boolean }) => new Elysia()
     .derive({ as: 'global' }, async ({ request: { headers } }) => {
-        const token = headers.get('Authorization')?.split('Bearer ')[1]
+        const token = headers.get('Authorization')?.split('Bearer ')[1];
+        if (!token) return { token: null, user: null };
         const user = await prisma.user.findFirst({
             include: {
                 favoriteMods: {

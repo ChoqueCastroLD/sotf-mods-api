@@ -1,7 +1,6 @@
 import { Elysia, NotFoundError, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
@@ -88,8 +87,6 @@ export const router = () => new Elysia()
 
             const total_downloads = downloads_arr.length;
 
-            const time_ago = timeAgo(mod.lastReleasedAt);
-
             const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
             const modDetails = {
@@ -116,7 +113,7 @@ export const router = () => new Elysia()
                 favorites,
                 total_downloads,
                 versions,
-                time_ago,
+                lastReleasedAt: mod.lastReleasedAt,
             };
 
             return modDetails;

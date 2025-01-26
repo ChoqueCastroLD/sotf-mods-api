@@ -1,7 +1,6 @@
 import { Elysia, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
@@ -84,8 +83,6 @@ async function getFeaturedMods(user: any) {
 
         const total_downloads = downloads_arr.length;
 
-        const time_ago = timeAgo(mod.lastReleasedAt);
-
         const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
         return {
@@ -111,7 +108,7 @@ async function getFeaturedMods(user: any) {
             last_week_downloads,
             favorites,
             total_downloads,
-            time_ago,
+            lastReleasedAt: mod.lastReleasedAt,
         }
     })
 

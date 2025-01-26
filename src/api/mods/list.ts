@@ -1,7 +1,6 @@
 import { Elysia, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { timeAgo } from '../../shared/time-ago';
 import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
@@ -11,6 +10,8 @@ export const router = () => new Elysia()
         '/api/mods',
         async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category }, user }) => {
             const query_stringified = JSON.stringify({ page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category, user });
+            console.log(query_stringified);
+            
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -83,54 +84,56 @@ export const router = () => new Elysia()
                     break;
             }
 
-            const mods = await prisma.mod.findMany({
-                where: where,
-                include: {
-                    images: {
-                        select: {
-                            isPrimary: true,
-                            isThumbnail: true,
-                            url: true,
-                        }
-                    },
-                    user: {
-                        select: {
-                            name: true,
-                            slug: true,
-                            image_url: true,
-                        }
-                    },
-                    category: {
-                        select: {
-                            name: true,
-                            slug: true,
-                        }
-                    },
-                    versions: {
-                        orderBy: {
-                            version: "asc",
+            const [mods, total_count] = await Promise.all([
+                prisma.mod.findMany({
+                    where: where,
+                    include: {
+                        images: {
+                            select: {
+                                isPrimary: true,
+                                isThumbnail: true,
+                                url: true,
+                            }
                         },
-                        include: {
-                            downloads: {
-                                select: {
-                                    ip: true,
-                                    createdAt: true,
+                        user: {
+                            select: {
+                                name: true,
+                                slug: true,
+                                image_url: true,
+                            }
+                        },
+                        category: {
+                            select: {
+                                name: true,
+                                slug: true,
+                            }
+                        },
+                        versions: {
+                            orderBy: {
+                                version: "asc",
+                            },
+                            include: {
+                                downloads: {
+                                    select: {
+                                        ip: true,
+                                        createdAt: true,
+                                    },
                                 },
                             },
                         },
-                    },
-                    _count: {
-                        select: {
-                            favorites: true,
+                        _count: {
+                            select: {
+                                favorites: true,
+                            }
                         }
-                    }
-                },
-                orderBy,
-                take: meta.limit,
-                skip: (meta.page - 1) * meta.limit,
-            })
+                    },
+                    orderBy,
+                    take: meta.limit,
+                    skip: (meta.page - 1) * meta.limit,
+                }),
+                prisma.mod.count({ where }),
+            ]);
 
-            const total_count = await prisma.mod.count({ where });
             const number_of_pages = Math.ceil(total_count / meta.limit);
             const next_page = (meta.page + 1 <= number_of_pages ? meta.page + 1 : number_of_pages);
             const prev_page = (meta.page - 1 > 0 ? meta.page - 1 : 1);
@@ -164,8 +167,6 @@ export const router = () => new Elysia()
                 const favorites = mod._count.favorites;
 
                 const total_downloads = downloads_arr.length;
-
-                const time_ago = timeAgo(mod.lastReleasedAt);
                 
                 const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
@@ -198,7 +199,7 @@ export const router = () => new Elysia()
                     favorites,
                     total_downloads,
                     last_week_downloads,
-                    time_ago,
+                    lastReleasedAt: mod.lastReleasedAt,
                 }
             })
 

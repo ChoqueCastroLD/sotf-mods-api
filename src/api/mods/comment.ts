@@ -4,7 +4,6 @@ import { prisma } from '../../services/prisma';
 import { authMiddleware } from '../../middlewares/auth.middleware'
 import { ValidationError } from '../../errors/validation';
 import { sanitizeInput } from '../../shared/sanitize';
-import { timeAgo } from '../../shared/time-ago';
 
 
 export const router = () => new Elysia()
@@ -45,7 +44,6 @@ export const router = () => new Elysia()
             return { 
                 id: comment.id,
                 message: comment.message,
-                createdAgo: timeAgo(comment.createdAt),
                 createdAt: comment.createdAt.toISOString(),
                 isHidden: comment.isHidden
             };
