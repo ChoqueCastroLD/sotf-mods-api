@@ -32,6 +32,7 @@ import { router as modsToggleFavoriteRouter } from "./api/mods/toggle-favorite";
 import { router as modsUnapproveRouter } from "./api/mods/unapprove";
 import { router as modsUpdateRouter } from "./api/mods/update";
 import { router as modsUploadRouter } from "./api/mods/upload";
+import { router as modsCronRouter } from "./api/mods/cron";
 
 // users
 import { router as usersGetRouter } from "./api/users/get";
@@ -71,6 +72,7 @@ new Elysia()
     .group('', (app) => app.use(modsUnapproveRouter()))
     .group('', (app) => app.use(modsUpdateRouter()))
     .group('', (app) => app.use(modsUploadRouter()))
+    .group('', (app) => app.use(modsCronRouter()))
     // users
     .group('', (app) => app.use(usersGetRouter()))
     .listen(Bun.env.PORT ?? 3000, (server) => {
