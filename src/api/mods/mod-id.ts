@@ -23,7 +23,7 @@ export const router = () => new Elysia()
                 throw new NotFoundError();
             }
 
-            return mod;
+            return { status: true, data: mod };
         },
         {
             query: t.Object({

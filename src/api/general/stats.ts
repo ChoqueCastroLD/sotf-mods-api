@@ -7,24 +7,29 @@ export const router = () => new Elysia()
     .get(
         '/api/stats',
         async () => {
-            const users = await prisma.user.count()
-            const mods = await prisma.mod.count()
-            const downloads = await prisma.modDownload.count()
-            const developers = await prisma.user.count({
-                where: {
-                    mods: {
-                        some: {
-                            isApproved: true,
+            const [users, mods, downloads, developers] = await Promise.all([
+                prisma.user.count(),
+                prisma.mod.count(),
+                prisma.modDownload.count(),
+                prisma.user.count({
+                    where: {
+                        mods: {
+                            some: {
+                                isApproved: true,
+                            }
                         }
                     }
-                }
-            })
+                })
+            ]);
             
             return {
-                users,
-                mods,
-                downloads,
-                developers,
+                status: true,
+                data: {
+                    users,
+                    mods,
+                    downloads,
+                    developers,
+                }
             }
         },
     )

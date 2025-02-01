@@ -1,11 +1,11 @@
 import { Elysia, NotFoundError, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: true }))
+    .use(loggedOnly())
     .get(
         '/api/mods/:mod_id/approve',
         async ({ params: { mod_id }, user }) => {
@@ -28,10 +28,10 @@ export const router = () => new Elysia()
                 isApproved: true,
               },
             });
-            return { approved: true, message: 'Mod approved.' };
+            return { status: true, message: 'Mod approved.' };
         }, {
             response: t.Object({
-              approved: t.Boolean(),
+              status: t.Boolean(),
               message: t.String(),
             }),
         }

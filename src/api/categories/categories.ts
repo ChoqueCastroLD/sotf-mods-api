@@ -17,6 +17,6 @@ export const router = () => new Elysia()
                     slug: true,
                 }
             })
-            return categories
+            return { status: true, data: categories }
         },
     )

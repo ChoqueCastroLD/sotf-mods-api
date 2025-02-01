@@ -19,7 +19,6 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  ban          Ban?
   mods         Mod[]
   comments     Comment[]
   favoriteMods ModFavorite[]
@@ -63,20 +62,33 @@ model Mod {
   isNSFW           Boolean
   isApproved       Boolean
   isFeatured       Boolean
+  lastWeekDownloads Int     @default(0)
+  downloads        Int     @default(0)
 
   lastReleasedAt DateTime @default(now())
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 
-  user       User?         @relation(fields: [userId], references: [id])
+  user       User?     @relation(fields: [userId], references: [id])
   userId     Int?
-  category   Category?     @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
   categoryId Int?
-  versions   ModVersion[]
-  tags       Tag[]
-  images     ModImage[]
-  favorites  ModFavorite[]
-  comments   Comment[]
+
+  versions  ModVersion[]
+  tags      Tag[]
+  images    ModImage[]
+  favorites ModFavorite[]
+  comments  Comment[]
+
+  @@unique([slug, userId])
+  // ✅ Indexes
+  @@index([isNSFW])
+  @@index([isApproved])
+  @@index([isFeatured])
+  @@index([lastReleasedAt])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([categoryId])
 }
 
 model ModImage {
@@ -91,6 +103,12 @@ model ModImage {
 
   mod   Mod? @relation(fields: [modId], references: [id])
   modId Int?
+
+  // ✅ Indexes
+  @@index([isPrimary])
+  @@index([isThumbnail])
+  @@index([createdAt])
+  @@index([modId])
 }
 
 model ModVersion {
@@ -108,6 +126,11 @@ model ModVersion {
   mod       Mod?          @relation(fields: [modId], references: [id])
   modId     Int?
   downloads ModDownload[]
+
+  // ✅ Indexes
+  @@index([isLatest])
+  @@index([createdAt])
+  @@index([modId])
 }
 
 model Tag {
@@ -132,6 +155,9 @@ model Category {
   updatedAt DateTime @updatedAt
 
   mods Mod[]
+
+  // ✅ Indexes
+  @@index([slug])
 }
 
 model ModDownload {
@@ -144,6 +170,11 @@ model ModDownload {
 
   version      ModVersion? @relation(fields: [modVersionId], references: [id])
   modVersionId Int?
+
+  // ✅ Indexes
+  @@index([ip])
+  @@index([createdAt])
+  @@index([modVersionId])
 }
 
 model ModFavorite {
@@ -191,17 +222,4 @@ model Comment {
   replyId Int?
   reply   Comment?  @relation("CommentToComment", fields: [replyId], references: [id])
   replies Comment[] @relation("CommentToComment")
-}
-
-model Ban {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  ip        String
-  reason    String
-  expiresAt DateTime
-
-  user   User? @relation(fields: [userId], references: [id])
-  userId Int?  @unique
 }

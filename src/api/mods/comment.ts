@@ -1,19 +1,16 @@
 import { Elysia, NotFoundError, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 import { ValidationError } from '../../errors/validation';
 import { sanitizeInput } from '../../shared/sanitize';
 
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: false }))
+    .use(loggedOnly())
     .post(
         '/api/comment',
         async ({ request, body: { mod_id, message }, query: { ip }, user }) => {
-            if (user?.canApprove !== true) {
-              throw new NotFoundError();
-            }
             const mod = await prisma.mod.findFirst({
               where: {
                 mod_id
@@ -42,10 +39,8 @@ export const router = () => new Elysia()
               },
             });
             return { 
-                id: comment.id,
-                message: comment.message,
-                createdAt: comment.createdAt.toISOString(),
-                isHidden: comment.isHidden
+                status: true,
+                data: comment,
             };
         }, {
             body: t.Object({
@@ -53,11 +48,8 @@ export const router = () => new Elysia()
                 message: t.String()
             }),
             response: t.Object({
-                id: t.Number(),
-                message: t.String(),
-                createdAgo: t.String(),
-                createdAt: t.String(),
-                isHidden: t.Boolean()
+                status: t.Boolean(),
+                data: t.Any()
             }),
         }
     )

@@ -1,11 +1,11 @@
 import { Elysia, NotFoundError, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: true }))
+    .use(loggedOnly())
     .get(
         '/api/mods/:mod_id/favorite',
         async ({ params: { mod_id }, user }) => {
@@ -36,7 +36,7 @@ export const router = () => new Elysia()
                   id: favorite.id,
                 }
               });
-              return { favorite: false, count: count - 1, message: 'Mod removed from favorites.' };
+              return { status: true, data: { favorite: false, count: count - 1, message: 'Mod removed from favorites.' } };
             }
             await prisma.modFavorite.create({
               data: {
@@ -44,12 +44,6 @@ export const router = () => new Elysia()
                 userId: user?.id,
               }
             });
-            return { favorite: true, count: count + 1, message: 'Mod added to favorites.' };
-        }, {
-            response: t.Object({
-              favorite: t.Boolean(),
-              count: t.Number(),
-              message: t.String(),
-            }),
+            return { status: true, data: { favorite: true, count: count + 1, message: 'Mod added to favorites.' } };
         }
     )

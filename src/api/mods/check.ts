@@ -26,6 +26,7 @@ export const router = () => new Elysia()
             if (version) {
               if (semver.gt(latestVersion.version, version)) {
                 return {
+                  status: true,
                   newVersionAvailable: true,
                   message: 'New version available',
                   version: latestVersion.version,
@@ -33,6 +34,7 @@ export const router = () => new Elysia()
                 };
               } else {
                 return {
+                  status: true,
                   newVersionAvailable: false,
                   message: 'No new version available',
                   version: latestVersion.version,
@@ -41,6 +43,7 @@ export const router = () => new Elysia()
               }
             }
             return {
+              status: true,
               newVersionAvailable: false,
               message: 'Latest version',
               version: latestVersion.version,
@@ -51,6 +54,7 @@ export const router = () => new Elysia()
                 version: t.Optional(t.String()),
             }),
             response: t.Object({
+                status: t.Boolean(),
                 newVersionAvailable: t.Boolean(),
                 message: t.String(),
                 version: t.String(),

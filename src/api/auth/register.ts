@@ -56,7 +56,7 @@ export const router = () => new Elysia()
                 }
             });
 
-            return { registered: true };
+            return { status: true };
         }, {
             body: t.Object({
                 email: t.String(),
@@ -65,7 +65,7 @@ export const router = () => new Elysia()
                 confirm_password: t.String(),
             }),
             response: t.Object({
-                registered: t.Boolean(),
+                status: t.Boolean(),
             })
         }
     )

@@ -2,7 +2,7 @@ import { Elysia, NotFoundError, t } from 'elysia';
 import sizeOf from "image-size";
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware';
+import { loggedOnly } from '../../middlewares/auth.middleware';
 import { validateModDescription, validateModName, validateModShortDescription } from '../../shared/validation';
 import { ValidationError } from '../../errors/validation';
 import { uploadFile } from '../../services/files';
@@ -14,7 +14,7 @@ const ALLOWED_RESOLUTIONS = [
 ];
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: true }))
+    .use(loggedOnly())
     .patch(
         '/api/mods/:mod_id/details',
         async ({ params: { mod_id }, body: { name, description, shortDescription, isNSFW, modThumbnail }, user }) => {
@@ -84,7 +84,8 @@ export const router = () => new Elysia()
               }
             }
 
-            return await tx.mod.findFirst({ where: { id: mod.id } })
+            const updatedMod = await tx.mod.findFirst({ where: { id: mod.id } })
+            return { status: true, data: updatedMod }
           })
         }, {
             body: t.Object({

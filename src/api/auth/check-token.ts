@@ -1,31 +1,23 @@
 import { Elysia, t } from 'elysia'
 
 import { prisma } from "../../services/prisma";
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: true }))
+    .use(loggedOnly())
     .get(
         '/api/auth/check',
-        async ({ token }) => {
-            const user = await prisma.user.findFirst({
-                where: {
-                    tokens: {
-                        some: {
-                            token
-                        }
-                    }
-                },
-                select: {
-                    name: true,
-                    slug: true,
-                    email: true,
-                    image_url: true,
-                    canApprove: true,
+        async ({ user }) => {
+            return {
+                status: true,
+                data: {
+                    name: user.name,
+                    slug: user.slug,
+                    email: user.email,
+                    image_url: user.image_url,
+                    canApprove: user.canApprove,
                 }
-            });
-
-            return user;
+            };
         }
     )

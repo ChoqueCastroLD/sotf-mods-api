@@ -2,7 +2,7 @@ import { Elysia, NotFoundError, t } from 'elysia'
 import semver from 'semver';
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 import { ValidationError } from '../../errors/validation';
 import { uploadFile } from '../../services/files';
 import { readManifest } from '../../shared/read-manifest';
@@ -11,7 +11,7 @@ import { readManifest } from '../../shared/read-manifest';
 const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: true }))
+    .use(loggedOnly())
     .post(
         '/api/mods/:mod_id/release',
         async ({ params: { mod_id }, body: { changelog, modFile }, user }) => {
@@ -101,7 +101,7 @@ export const router = () => new Elysia()
             }
           })
       
-          await prisma.mod.update({
+          const updatedMod = await prisma.mod.update({
             where: {
               id: mod.id,
             },
@@ -113,14 +113,11 @@ export const router = () => new Elysia()
             }
           })
 
-          return { released : true }
+          return { status: true, data: updatedMod }
         }, {
             body: t.Object({
               changelog: t.String({ minLength: 1, maxLength: 200 }),
               modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
             }),
-            response: t.Object({
-              released: t.Boolean(),
-            })
         }
     )

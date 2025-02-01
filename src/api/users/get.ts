@@ -22,6 +22,6 @@ export const router = () => new Elysia()
                 throw new NotFoundError()
             }
 
-            return user
+            return { status: true, data: user }
         }
     )

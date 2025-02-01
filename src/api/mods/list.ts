@@ -1,15 +1,12 @@
 import { Elysia, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware';
-
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category }, user }) => {
-            const query_stringified = JSON.stringify({ page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category, user });
+        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category } }) => {
+            const query_stringified = JSON.stringify({ page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category });
             console.log(query_stringified);
             
             const meta = {
@@ -109,17 +106,14 @@ export const router = () => new Elysia()
                             }
                         },
                         versions: {
+                            select: {
+                                version: true,
+                                isLatest: true,
+                            },
                             orderBy: {
                                 version: "asc",
                             },
-                            include: {
-                                downloads: {
-                                    select: {
-                                        ip: true,
-                                        createdAt: true,
-                                    },
-                                },
-                            },
+                            take: 1,
                         },
                         _count: {
                             select: {
@@ -160,21 +154,7 @@ export const router = () => new Elysia()
 
                 const latest_version = mod.versions?.find((version) => version.isLatest);
 
-                const downloads_arr = mod.versions?.flatMap(version => version.downloads.map(download => download.ip)) ?? [];
-
-                const downloads = [...new Set(downloads_arr)].length;
-
                 const favorites = mod._count.favorites;
-
-                const total_downloads = downloads_arr.length;
-                
-                const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
-
-                const last_week_downloads = [...new Set(mod.versions?.flatMap(version => {
-                    return version.downloads
-                        .filter(download => download.createdAt > new Date(Date.now() - 1000 * 60 * 60 * 24 * 7)) // 7 days
-                        .map(download => download.ip)
-                }) ?? [])].length;
 
                 return {
                     mod_id: mod.mod_id,
@@ -184,7 +164,6 @@ export const router = () => new Elysia()
                     isNSFW: mod.isNSFW,
                     isApproved: mod.isApproved,
                     isFeatured: mod.isFeatured,
-                    isFavorite,
                     category_slug: mod?.category?.slug,
                     category_name: mod?.category?.name,
                     user_name: mod?.user?.name,
@@ -195,15 +174,14 @@ export const router = () => new Elysia()
                     dependencies: mod?.dependencies?.split(","),
                     type: mod?.type ?? "Mod",
                     latest_version: latest_version?.version,
-                    downloads,
                     favorites,
-                    total_downloads,
-                    last_week_downloads,
+                    downloads: mod.downloads,
+                    lastWeekDownloads: mod.lastWeekDownloads,
                     lastReleasedAt: mod.lastReleasedAt,
                 }
             })
 
-            const result = { mods: returnMods, meta: returnMeta };
+            const result = { status: true, data: returnMods, meta: returnMeta };
 
             return result;
         }, {

@@ -4,7 +4,7 @@ import semver from 'semver';
 import sizeOf from "image-size";
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 import { validateModDescription, validateModName, validateModShortDescription } from '../../shared/validation';
 import { ValidationError } from '../../errors/validation';
 import { uploadFile } from '../../services/files';
@@ -18,7 +18,7 @@ const ALLOWED_RESOLUTIONS = [
 ]
 
 export const router = () => new Elysia()
-  .use(authMiddleware({ loggedOnly: true }))
+  .use(loggedOnly())
   .post(
     '/api/mods/publish',
     async ({ body: { name, shortDescription, description, isNSFW, category_id, modFile, modThumbnail }, user }) => {
@@ -135,7 +135,7 @@ export const router = () => new Elysia()
           }
         })
 
-        return mod;
+        return { status: true, data: mod };
       })
     }, {
     body: t.Object({

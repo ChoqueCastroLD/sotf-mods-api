@@ -1,14 +1,12 @@
 import { Elysia, NotFoundError, t } from 'elysia'
 
 import { prisma } from '../../services/prisma';
-import { authMiddleware } from '../../middlewares/auth.middleware';
 
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: false }))
     .get(
         '/api/mods/slug/:user_slug/:mod_slug',
-        async ({ params: { user_slug, mod_slug }, user }) => {
+        async ({ params: { user_slug, mod_slug } }) => {
             if (!mod_slug) {
                 throw new NotFoundError();
             }
@@ -76,10 +74,6 @@ export const router = () => new Elysia()
 
             const latest_version = mod.versions?.find((version) => version.isLatest);
 
-            const downloads_arr = mod.versions?.flatMap(version => version.downloads.map(download => download.ip)) ?? [];
-
-            const downloads = [...new Set(downloads_arr)].length;
-
             const versions = mod.versions?.map(version => ({
                 version: version.version,
                 changelog: version.changelog,
@@ -87,10 +81,6 @@ export const router = () => new Elysia()
             }));
 
             const favorites = mod._count.favorites;
-
-            const total_downloads = downloads_arr.length;
-
-            const isFavorite = user?.favoriteMods?.some((favorite) => favorite?.mod?.mod_id === mod.mod_id);
 
             const modDetails = {
                 mod_id: mod.mod_id,
@@ -101,7 +91,6 @@ export const router = () => new Elysia()
                 isNSFW: mod.isNSFW,
                 isApproved: mod.isApproved,
                 isFeatured: mod.isFeatured,
-                isFavorite,
                 category_slug: mod?.category?.slug,
                 category_name: mod?.category?.name,
                 user_name: mod?.user?.name,
@@ -112,13 +101,13 @@ export const router = () => new Elysia()
                 dependencies: mod?.dependencies?.split(","),
                 type: mod?.type ?? "Mod",
                 latest_version: latest_version?.version,
-                downloads,
+                downloads: mod.downloads,
+                lastWeekDownloads: mod.lastWeekDownloads,
                 favorites,
-                total_downloads,
                 versions,
                 lastReleasedAt: mod.lastReleasedAt,
             };
 
-            return modDetails;
+            return { status: true, data: modDetails };
         }
     )

@@ -1,11 +1,11 @@
 import { Elysia, t } from 'elysia'
 
 import { prisma } from "../../services/prisma";
-import { authMiddleware } from '../../middlewares/auth.middleware'
+import { loggedOnly } from '../../middlewares/auth.middleware'
 
 
 export const router = () => new Elysia()
-    .use(authMiddleware({ loggedOnly: true }))
+    .use(loggedOnly())
     .post(
         '/api/auth/logout',
         async ({ token }) => {
@@ -24,10 +24,10 @@ export const router = () => new Elysia()
                 }
             });
 
-            return { logged_out: true };
+            return { status: true };
         }, {
             response: t.Object({
-                logged_out: t.Boolean(),
+                status: t.Boolean(),
             })
         }
     )

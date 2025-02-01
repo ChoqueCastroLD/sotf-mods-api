@@ -15,6 +15,7 @@
   "dependencies": {
     "@bogeychan/elysia-logger": "^0.0.17",
     "@elysiajs/cors": "^1.2.0",
+    "@elysiajs/cron": "^1.2.0",
     "@elysiajs/swagger": "^0.8.5",
     "@grotto/logysia": "^0.1.6",
     "@prisma/client": "^5.22.0",
