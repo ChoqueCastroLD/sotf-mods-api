@@ -72,13 +72,12 @@ export const router = () => new Elysia()
                 ?? mod.images?.[0]?.url
                 ?? "https://via.placeholder.com/1080x608/222/222";
 
-            const latest_version = mod.versions?.find((version) => version.isLatest);
-
             const versions = mod.versions?.map(version => ({
                 version: version.version,
+                isLatest: version.isLatest,
                 changelog: version.changelog,
                 downloads: version.downloads.length,
-            }));
+            })).sort((a, b) => Bun.semver.order(b.version, a.version));
 
             const favorites = mod._count.favorites;
 
@@ -100,7 +99,7 @@ export const router = () => new Elysia()
                 primary_image_url,
                 dependencies: mod?.dependencies?.split(","),
                 type: mod?.type ?? "Mod",
-                latest_version: latest_version?.version,
+                latest_version: mod?.latestVersion,
                 downloads: mod.downloads,
                 lastWeekDownloads: mod.lastWeekDownloads,
                 favorites,
