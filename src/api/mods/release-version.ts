@@ -89,29 +89,31 @@ export const router = () => new Elysia()
             }
           })
       
-          await prisma.modVersion.create({
-            data: {
-              version,
-              changelog,
-              downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
-              isLatest: true,
-              filename,
-              extension: ext,
-              modId: mod.id
-            }
-          })
-      
-          const updatedMod = await prisma.mod.update({
-            where: {
-              id: mod.id,
-            },
-            data: {
-              dependencies,
-              type,
-              updatedAt: new Date(),
-              lastReleasedAt: new Date(),
-            }
-          })
+          const [updatedMod, _] = await Promise.all([
+            prisma.mod.update({
+              where: {
+                id: mod.id,
+              },
+              data: {
+                dependencies,
+                type,
+                latestVersion: version,
+                updatedAt: new Date(),
+                lastReleasedAt: new Date(),
+              }
+            }),
+            prisma.modVersion.create({
+              data: {
+                version,
+                changelog,
+                downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
+                isLatest: true,
+                filename,
+                extension: ext,
+                modId: mod.id
+              }
+            })
+          ]);
 
           return { status: true, data: updatedMod }
         }, {

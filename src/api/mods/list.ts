@@ -173,7 +173,7 @@ export const router = () => new Elysia()
                     primary_image_url,
                     dependencies: mod?.dependencies?.split(","),
                     type: mod?.type ?? "Mod",
-                    latest_version: latest_version?.version,
+                    latest_version: mod?.latestVersion,
                     favorites,
                     downloads: mod.downloads,
                     lastWeekDownloads: mod.lastWeekDownloads,

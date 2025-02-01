@@ -25,6 +25,9 @@ export const router = () => new Elysia()
                 lastReleasedAt: true,
                 type: true,
                 dependencies: true,
+                lastWeekDownloads: true,
+                downloads: true,
+                latestVersion: true,
                 category: {
                     select: {
                         name: true,
@@ -77,6 +80,7 @@ export const router = () => new Elysia()
                 primary_image_url,
                 dependencies: mod?.dependencies?.split(",") ?? [],
                 type: mod?.type ?? "Mod",
+                latest_version: mod?.latestVersion,
                 lastWeekDownloads: mod.lastWeekDownloads,
                 downloads: mod.downloads,
                 favorites: mod._count.favorites,

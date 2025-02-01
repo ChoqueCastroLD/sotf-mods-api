@@ -52,18 +52,19 @@ model LoginAttempt {
 model Mod {
   id Int @id @default(autoincrement())
 
-  name             String
-  slug             String
-  mod_id           String  @unique
-  shortDescription String  @default("")
-  description      String
-  dependencies     String  @default("")
-  type             String?
-  isNSFW           Boolean
-  isApproved       Boolean
-  isFeatured       Boolean
+  name              String
+  slug              String
+  mod_id            String  @unique
+  shortDescription  String  @default("")
+  description       String
+  dependencies      String  @default("")
+  type              String?
+  isNSFW            Boolean
+  isApproved        Boolean
+  isFeatured        Boolean
   lastWeekDownloads Int     @default(0)
-  downloads        Int     @default(0)
+  downloads         Int     @default(0)
+  latestVersion     String? @default("")
 
   lastReleasedAt DateTime @default(now())
   createdAt      DateTime @default(now())
