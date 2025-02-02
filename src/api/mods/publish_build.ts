@@ -33,6 +33,12 @@ export const router = () =>
 
       const contents = JSON.parse(new TextDecoder().decode(buildFileBuffer));
 
+      if (!contents.Guid || !contents.Name || !contents.Description) {
+        throw new ValidationError([
+          { field: "buildFile", message: "Build file is invalid." },
+        ]);
+      }
+
       const errors = [];
 
       errors.push(...validateModName(contents.Name));
