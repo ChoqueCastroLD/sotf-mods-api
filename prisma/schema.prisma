@@ -65,6 +65,11 @@ model Mod {
   lastWeekDownloads Int     @default(0)
   downloads         Int     @default(0)
   latestVersion     String? @default("")
+  imageUrl          String?
+
+  buildGuid         String?
+  buildShareVersion String?
+  numberOfElements  Int?
 
   lastReleasedAt DateTime @default(now())
   createdAt      DateTime @default(now())
@@ -147,10 +152,11 @@ model Tag {
 }
 
 model Category {
-  id          Int    @id @default(autoincrement())
+  id          Int     @id @default(autoincrement())
   name        String
-  slug        String @unique
+  slug        String  @unique
   description String
+  type        String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

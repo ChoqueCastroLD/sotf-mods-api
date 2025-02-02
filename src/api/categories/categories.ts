@@ -6,8 +6,11 @@ import { prisma } from '../../services/prisma';
 export const router = () => new Elysia()
     .get(
         '/api/categories',
-        async () => {
+        async ({ query: { type } }) => {
             const categories = await prisma.category.findMany({
+                where: {
+                    type: type || "Mod",
+                },
                 orderBy: {
                     name: 'asc',
                 },

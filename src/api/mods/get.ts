@@ -18,8 +18,6 @@ export const router = () => new Elysia()
                 include: {
                     images: {
                         select: {
-                            isPrimary: true,
-                            isThumbnail: true,
                             url: true,
                         }
                     },
@@ -60,16 +58,6 @@ export const router = () => new Elysia()
                 throw new NotFoundError();
             }
 
-            const thumbnail_url = mod?.images
-                ?.find((image) => image.isThumbnail)?.url
-                ?? mod.images?.[0]?.url
-                ?? "https://via.placeholder.com/1080x608/222/222";
-
-            const primary_image_url = mod?.images
-                ?.find((image) => image.isPrimary)?.url
-                ?? mod.images?.[0]?.url
-                ?? "https://via.placeholder.com/1080x608/222/222";
-
             const versions = mod.versions?.map(version => ({
                 version: version.version,
                 isLatest: version.isLatest,
@@ -93,8 +81,7 @@ export const router = () => new Elysia()
                 user_name: mod?.user?.name,
                 user_slug: mod?.user?.slug,
                 user_image_url: mod?.user?.image_url,
-                thumbnail_url,
-                primary_image_url,
+                imageUrl: mod?.imageUrl,
                 dependencies: mod?.dependencies?.split(","),
                 type: mod?.type ?? "Mod",
                 latest_version: mod?.latestVersion,
@@ -103,6 +90,7 @@ export const router = () => new Elysia()
                 favorites,
                 versions,
                 lastReleasedAt: mod.lastReleasedAt,
+                images: mod?.images,
             };
 
             return { status: true, data: modDetails };

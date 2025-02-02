@@ -5,8 +5,8 @@ import { prisma } from '../../services/prisma';
 export const router = () => new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category } }) => {
-            const query_stringified = JSON.stringify({ page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category });
+        async ({ query: { type, page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category } }) => {
+            const query_stringified = JSON.stringify({ type, page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category });
             console.log(query_stringified);
             
             const meta = {
@@ -64,7 +64,10 @@ export const router = () => new Elysia()
 
             where.isNSFW = nsfw === "true";
 
+            where.type = type || "Mod";
+
             const orderBy: any = {}
+
             switch (orderby) {
                 case "popular":
                     orderBy["favorites"] = { _count: 'desc' }
@@ -142,18 +145,6 @@ export const router = () => new Elysia()
             }
 
             const returnMods = mods.map(mod => {
-                const thumbnail_url = mod?.images
-                    ?.find((image) => image.isThumbnail)?.url
-                    ?? mod.images?.[0]?.url
-                    ?? "https://via.placeholder.com/1080x608/222/222";
-            
-                const primary_image_url = mod?.images
-                    ?.find((image) => image.isPrimary)?.url
-                    ?? mod.images?.[0]?.url
-                    ?? "https://via.placeholder.com/1080x608/222/222";
-
-                const latest_version = mod.versions?.find((version) => version.isLatest);
-
                 const favorites = mod._count.favorites;
 
                 return {
@@ -169,8 +160,7 @@ export const router = () => new Elysia()
                     user_name: mod?.user?.name,
                     user_slug: mod?.user?.slug,
                     user_image_url: mod?.user?.image_url,
-                    thumbnail_url,
-                    primary_image_url,
+                    imageUrl: mod?.imageUrl,
                     dependencies: mod?.dependencies?.split(","),
                     type: mod?.type ?? "Mod",
                     latest_version: mod?.latestVersion,
@@ -188,6 +178,7 @@ export const router = () => new Elysia()
             query: t.Object({
                 page: t.Optional(t.String()),
                 limit: t.Optional(t.String()),
+                type: t.Optional(t.String()),
                 search: t.Optional(t.String()),
                 user_slug: t.Optional(t.String()),
                 favorites_of_user_slug: t.Optional(t.String()),
