@@ -233,14 +233,14 @@ export const router = () =>
         category_id: t.String(),
         modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
         thumbnail: t.File({
-          type: ["image/png", "image/jpeg", "image/jpg", "image/gif"],
+          type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
           minSize: 1,
           maxSize: 8 * 1024 * 1024,
         }),
         images: t.Optional(
           t.Array(
             t.File({
-              type: ["image/png", "image/jpeg", "image/jpg", "image/gif"],
+              type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
               minSize: 1,
               maxSize: 8 * 1024 * 1024,
             }),

@@ -135,7 +135,7 @@ export const router = () =>
         isNSFW: t.Optional(t.String()),
         thumbnail: t.Optional(
           t.File({
-            type: ["image/png", "image/jpeg", "image/jpg", "image/gif"],
+            type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
             minSize: 1,
             maxSize: 8 * 1024 * 1024,
           })
@@ -144,7 +144,7 @@ export const router = () =>
         images: t.Optional(
           t.Array(
             t.File({
-              type: ["image/png", "image/jpeg", "image/jpg", "image/gif"],
+              type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
               minSize: 1,
               maxSize: 8 * 1024 * 1024,
             }),
