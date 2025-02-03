@@ -1,11 +1,9 @@
 import { Elysia, t } from "elysia";
-import semver from "semver";
 
 import { loggedOnly } from "../../middlewares/auth.middleware";
 import { ValidationError } from "../../errors/validation";
-import { readManifest } from "../../shared/read-manifest";
 
-const BUILDS_FILE_SIZE_LIMIT = 2 * 1024 * 1024; // 2MB
+const BUILDS_FILE_SIZE_LIMIT = 100 * 1024 * 1024; // 100MB
 
 export const router = () =>
   new Elysia().use(loggedOnly()).post(
@@ -17,8 +15,7 @@ export const router = () =>
         throw new ValidationError([
           {
             field: "buildFile",
-
-            message: "Build file size exceeds the limit of 2MB.",
+            message: "Build file size exceeds the limit of 100MB.",
           },
         ]);
       }
