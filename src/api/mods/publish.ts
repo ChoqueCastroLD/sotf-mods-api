@@ -1,7 +1,6 @@
 import { Elysia, t } from "elysia";
 import slugify from "slugify";
 import semver from "semver";
-import sizeOf from "image-size";
 
 import { prisma } from "../../services/prisma";
 import { loggedOnly } from "../../middlewares/auth.middleware";
@@ -15,10 +14,6 @@ import { uploadFile } from "../../services/files";
 import { readManifest } from "../../shared/read-manifest";
 
 const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
-const ALLOWED_RESOLUTIONS = [
-  { width: 2560, height: 1440 },
-  { width: 1080, height: 608 },
-];
 
 export const router = () =>
   new Elysia().use(loggedOnly()).post(
@@ -47,19 +42,6 @@ export const router = () =>
 
       if (errors.length > 0) {
         throw new ValidationError(errors);
-      }
-
-      const dimensions = sizeOf(new Uint8Array(modThumbnailBuffer));
-
-      if (
-        !ALLOWED_RESOLUTIONS.find(
-          (res) =>
-            res.width === dimensions.width && res.height === dimensions.height
-        )
-      ) {
-        throw new ValidationError([
-          { field: "modThumbnail", message: "Invalid thumbnail resolution" },
-        ]);
       }
 
       if (modFileBuffer.byteLength / 1024 > MOD_FILE_SIZE_LIMIT) {

@@ -1,5 +1,4 @@
 import { Elysia, NotFoundError, t } from "elysia";
-import sizeOf from "image-size";
 
 import { prisma } from "../../services/prisma";
 import { loggedOnly } from "../../middlewares/auth.middleware";
@@ -10,11 +9,6 @@ import {
 } from "../../shared/validation";
 import { ValidationError } from "../../errors/validation";
 import { uploadFile } from "../../services/files";
-
-const ALLOWED_RESOLUTIONS = [
-  { width: 2560, height: 1440 },
-  { width: 1080, height: 608 },
-];
 
 export const router = () =>
   new Elysia().use(loggedOnly()).patch(
@@ -65,20 +59,6 @@ export const router = () =>
         const ext = thumbnail.name.split(".").pop();
 
         const modThumbnailBuffer = await thumbnail.arrayBuffer();
-
-        const dimensions = sizeOf(new Uint8Array(modThumbnailBuffer));
-
-        if (
-          !ALLOWED_RESOLUTIONS.find(
-            (res) =>
-              res.width === dimensions.width && res.height === dimensions.height
-          )
-        ) {
-          errors.push({
-            field: "modThumbnail",
-            message: "Invalid thumbnail resolution",
-          });
-        }
 
         const thumbnailFilename = await uploadFile(
           modThumbnailBuffer,
