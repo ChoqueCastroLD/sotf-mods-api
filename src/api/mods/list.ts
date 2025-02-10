@@ -5,8 +5,8 @@ import { prisma } from '../../services/prisma';
 export const router = () => new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { type, page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category } }) => {
-            const query_stringified = JSON.stringify({ type, page, limit, search, user_slug, favorites_of_user_slug, approved, nsfw, orderby, category });
+        async ({ query: { type, page, limit, search, userSlug, userSlugFavorites, approved, nsfw, orderby, category } }) => {
+            const query_stringified = JSON.stringify({ type, page, limit, search, userSlug, userSlugFavorites, approved, nsfw, orderby, category });
             console.log(query_stringified);
             
             const meta = {
@@ -39,16 +39,16 @@ export const router = () => new Elysia()
                     }
                 ]
             }
-            if (user_slug) {
+            if (userSlug) {
                 where.user = {
-                    slug: user_slug,
+                    slug: userSlug,
                 }
             }
-            if (favorites_of_user_slug) {
+            if (userSlugFavorites) {
                 where.favorites = {
                     some: {
                         user: {
-                            slug: favorites_of_user_slug,
+                            slug: userSlugFavorites,
                         }
                     }
                 }
@@ -99,7 +99,7 @@ export const router = () => new Elysia()
                             select: {
                                 name: true,
                                 slug: true,
-                                image_url: true,
+                                imageUrl: true,
                             }
                         },
                         category: {
@@ -144,34 +144,7 @@ export const router = () => new Elysia()
                 prev_page: prev_page,
             }
 
-            const returnMods = mods.map(mod => {
-                const favorites = mod._count.favorites;
-
-                return {
-                    mod_id: mod.mod_id,
-                    name: mod.name,
-                    slug: mod.slug,
-                    short_description: mod.shortDescription,
-                    isNSFW: mod.isNSFW,
-                    isApproved: mod.isApproved,
-                    isFeatured: mod.isFeatured,
-                    category_slug: mod?.category?.slug,
-                    category_name: mod?.category?.name,
-                    user_name: mod?.user?.name,
-                    user_slug: mod?.user?.slug,
-                    user_image_url: mod?.user?.image_url,
-                    imageUrl: mod?.imageUrl,
-                    dependencies: mod?.dependencies?.split(","),
-                    type: mod?.type ?? "Mod",
-                    latest_version: mod?.latestVersion,
-                    favorites,
-                    downloads: mod.downloads,
-                    lastWeekDownloads: mod.lastWeekDownloads,
-                    lastReleasedAt: mod.lastReleasedAt,
-                }
-            })
-
-            const result = { status: true, data: returnMods, meta: returnMeta };
+            const result = { status: true, data: mods, meta: returnMeta };
 
             return result;
         }, {
@@ -180,8 +153,8 @@ export const router = () => new Elysia()
                 limit: t.Optional(t.String()),
                 type: t.Optional(t.String()),
                 search: t.Optional(t.String()),
-                user_slug: t.Optional(t.String()),
-                favorites_of_user_slug: t.Optional(t.String()),
+                userSlug: t.Optional(t.String()),
+                userSlugFavorites: t.Optional(t.String()),
                 nsfw: t.Optional(t.String()),
                 approved: t.Optional(t.String()),
                 orderby: t.Optional(t.String()),

@@ -61,7 +61,7 @@ export const router = () =>
           token,
           slug: user.slug,
           name: user.name,
-          image_url: user.image_url,
+          imageUrl: user.imageUrl,
           canApprove: user.canApprove,
         },
       };

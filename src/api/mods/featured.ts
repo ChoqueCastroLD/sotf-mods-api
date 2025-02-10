@@ -40,7 +40,7 @@ export const router = () =>
             select: {
               name: true,
               slug: true,
-              image_url: true,
+              imageUrl: true,
             },
           },
           images: {
@@ -56,32 +56,7 @@ export const router = () =>
         },
       });
 
-      const result = mods.map((mod) => {
-        return {
-          mod_id: mod.mod_id,
-          name: mod.name,
-          slug: mod.slug,
-          short_description: mod.shortDescription,
-          isNSFW: mod.isNSFW,
-          isApproved: mod.isApproved,
-          isFeatured: mod.isFeatured,
-          category_slug: mod?.category?.slug,
-          category_name: mod?.category?.name,
-          user_name: mod?.user?.name,
-          user_slug: mod?.user?.slug,
-          user_image_url: mod?.user?.image_url,
-          imageUrl: mod?.imageUrl,
-          dependencies: mod?.dependencies?.split(",") ?? [],
-          type: mod?.type ?? "Mod",
-          latest_version: mod?.latestVersion,
-          lastWeekDownloads: mod.lastWeekDownloads,
-          downloads: mod.downloads,
-          favorites: mod._count.favorites,
-          lastReleasedAt: mod.lastReleasedAt,
-        };
-      });
-
-      return { status: true, data: result };
+      return { status: true, data: mods };
     })
     .get("/api/builds/featured", async () => {
       const mods = await prisma.mod.findMany({
@@ -121,7 +96,7 @@ export const router = () =>
             select: {
               name: true,
               slug: true,
-              image_url: true,
+              imageUrl: true,
             },
           },
           images: {
@@ -137,30 +112,5 @@ export const router = () =>
         },
       });
 
-      const result = mods.map((mod) => {
-        return {
-          mod_id: mod.mod_id,
-          name: mod.name,
-          slug: mod.slug,
-          short_description: mod.shortDescription,
-          isNSFW: mod.isNSFW,
-          isApproved: mod.isApproved,
-          isFeatured: mod.isFeatured,
-          category_slug: mod?.category?.slug,
-          category_name: mod?.category?.name,
-          user_name: mod?.user?.name,
-          user_slug: mod?.user?.slug,
-          user_image_url: mod?.user?.image_url,
-          imageUrl: mod?.imageUrl,
-          dependencies: mod?.dependencies?.split(",") ?? [],
-          type: mod?.type ?? "Mod",
-          latest_version: mod?.latestVersion,
-          lastWeekDownloads: mod.lastWeekDownloads,
-          downloads: mod.downloads,
-          favorites: mod._count.favorites,
-          lastReleasedAt: mod.lastReleasedAt,
-        };
-      });
-
-      return { status: true, data: result };
+      return { status: true, data: mods };
     });

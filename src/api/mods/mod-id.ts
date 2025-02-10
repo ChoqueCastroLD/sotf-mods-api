@@ -6,12 +6,12 @@ import { prisma } from '../../services/prisma';
 export const router = () => new Elysia()
     .get(
         '/api/mods/find',
-        async ({ query: { user_slug, mod_slug } }) => {
+        async ({ query: { userSlug, mod_slug } }) => {
             const mod = await prisma.mod.findFirst({
                 where: {
                     slug: mod_slug,
                     user: {
-                        slug: user_slug,
+                        slug: userSlug,
                     }
                 },
                 select: {
@@ -27,7 +27,7 @@ export const router = () => new Elysia()
         },
         {
             query: t.Object({
-                user_slug: t.String(),
+                userSlug: t.String(),
                 mod_slug: t.String(),
             })
         }

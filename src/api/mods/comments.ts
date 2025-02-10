@@ -19,7 +19,7 @@ export const router = () =>
             select: {
               name: true,
               slug: true,
-              image_url: true,
+              imageUrl: true,
             },
           },
           replies: {
@@ -32,7 +32,7 @@ export const router = () =>
                 select: {
                   name: true,
                   slug: true,
-                  image_url: true,
+                  imageUrl: true,
                 },
               },
               _count: {

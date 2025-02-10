@@ -25,7 +25,7 @@ export const router = () => new Elysia()
                         select: {
                             name: true,
                             slug: true,
-                            image_url: true,
+                            imageUrl: true,
                         }
                     },
                     category: {
@@ -38,13 +38,22 @@ export const router = () => new Elysia()
                         orderBy: {
                             version: "desc",
                         },
-                        include: {
-                            downloads: {
+                        select: {
+                            id: true,
+                            version: true,
+                            isLatest: true,
+                            changelog: true,
+                            downloadUrl: true,
+                            extension: true,
+                            filename: true,
+                            createdAt: true,
+                            updatedAt: true,
+                            _count: {
                                 select: {
-                                    ip: true,
-                                },
-                            },
-                        },
+                                    downloads: true,
+                                }
+                            }
+                        }
                     },
                     _count: {
                         select: {
@@ -58,41 +67,6 @@ export const router = () => new Elysia()
                 throw new NotFoundError();
             }
 
-            const versions = mod.versions?.map(version => ({
-                version: version.version,
-                isLatest: version.isLatest,
-                changelog: version.changelog,
-                downloads: version.downloads.length,
-            })).sort((a, b) => Bun.semver.order(b.version, a.version));
-
-            const favorites = mod._count.favorites;
-
-            const modDetails = {
-                mod_id: mod.mod_id,
-                name: mod.name,
-                slug: mod.slug,
-                description: mod.description,
-                short_description: mod.shortDescription,
-                isNSFW: mod.isNSFW,
-                isApproved: mod.isApproved,
-                isFeatured: mod.isFeatured,
-                category_slug: mod?.category?.slug,
-                category_name: mod?.category?.name,
-                user_name: mod?.user?.name,
-                user_slug: mod?.user?.slug,
-                user_image_url: mod?.user?.image_url,
-                imageUrl: mod?.imageUrl,
-                dependencies: mod?.dependencies?.split(","),
-                type: mod?.type ?? "Mod",
-                latest_version: mod?.latestVersion,
-                downloads: mod.downloads,
-                lastWeekDownloads: mod.lastWeekDownloads,
-                favorites,
-                versions,
-                lastReleasedAt: mod.lastReleasedAt,
-                images: mod?.images,
-            };
-
-            return { status: true, data: modDetails };
+            return { status: true, data: mod };
         }
     )

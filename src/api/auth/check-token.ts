@@ -15,7 +15,7 @@ export const router = () => new Elysia()
                     name: user.name,
                     slug: user.slug,
                     email: user.email,
-                    image_url: user.image_url,
+                    imageUrl: user.imageUrl,
                     canApprove: user.canApprove,
                 }
             };

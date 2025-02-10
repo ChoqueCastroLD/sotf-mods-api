@@ -14,7 +14,7 @@ export const router = () => new Elysia()
                 select: {
                     name: true,
                     slug: true,
-                    image_url: true,
+                    imageUrl: true,
                 }
             })
 
