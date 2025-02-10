@@ -5,10 +5,10 @@ import { prisma } from '../../services/prisma';
 export const router = () => new Elysia()
     .get(
         '/api/mods',
-        async ({ query: { type, page, limit, search, userSlug, userSlugFavorites, approved, nsfw, orderby, category } }) => {
-            const query_stringified = JSON.stringify({ type, page, limit, search, userSlug, userSlugFavorites, approved, nsfw, orderby, category });
+        async ({ query: { type, page, limit, search, userSlug, userSlugFavorites, approved, nsfw, orderby, category, modIds } }) => {
+            const query_stringified = JSON.stringify({ type, page, limit, search, userSlug, userSlugFavorites, approved, nsfw, orderby, category, modIds });
             console.log(query_stringified);
-            
+
             const meta = {
                 page: page ? parseInt(page) : 1,
                 limit: limit ? parseInt(limit) : 10,
@@ -51,6 +51,12 @@ export const router = () => new Elysia()
                             slug: userSlugFavorites,
                         }
                     }
+                }
+            }
+
+            if (modIds) {
+                where.mod_id = {
+                    in: modIds.split(",").map(id => id.trim()),
                 }
             }
 
@@ -155,6 +161,7 @@ export const router = () => new Elysia()
                 search: t.Optional(t.String()),
                 userSlug: t.Optional(t.String()),
                 userSlugFavorites: t.Optional(t.String()),
+                modIds: t.Optional(t.String()),
                 nsfw: t.Optional(t.String()),
                 approved: t.Optional(t.String()),
                 orderby: t.Optional(t.String()),
