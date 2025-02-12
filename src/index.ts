@@ -36,6 +36,10 @@ import { router as modsCronRouter } from "./api/mods/cron";
 import { router as modsPublishBuildRouter } from "./api/mods/publish_build";
 import { router as modsUploadBuildRouter } from "./api/mods/upload_build";
 
+// kelvinseek
+import { router as kelvinseekPromptRouter } from "./api/kelvinseek/prompt";
+import { router as kelvinseekClearRouter } from "./api/kelvinseek/clear";
+
 // users
 import { router as usersGetRouter } from "./api/users/get";
 
@@ -77,6 +81,9 @@ new Elysia()
     .group('', (app) => app.use(modsCronRouter()))
     .group('', (app) => app.use(modsPublishBuildRouter()))
     .group('', (app) => app.use(modsUploadBuildRouter()))
+    // kelvinseek
+    .group('', (app) => app.use(kelvinseekPromptRouter()))
+    .group('', (app) => app.use(kelvinseekClearRouter()))
     // users
     .group('', (app) => app.use(usersGetRouter()))
     .listen(Bun.env.PORT ?? 3000, (server) => {
