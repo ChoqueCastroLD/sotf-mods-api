@@ -118,7 +118,7 @@ export const router = () => new Elysia()
           return { status: true, data: updatedMod }
         }, {
             body: t.Object({
-              changelog: t.String({ minLength: 1, maxLength: 200 }),
+              changelog: t.String({ minLength: 1, maxLength: 2000 }),
               modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
             }),
         }
