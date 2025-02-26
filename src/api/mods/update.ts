@@ -18,6 +18,9 @@ export const router = () =>
       body: { name, description, shortDescription, isNSFW, thumbnail, images },
       user,
     }) => {
+      if (!Array.isArray(images) && images) {
+        images = [images];
+      }
       const mod = await prisma.mod.findFirst({
         where: {
           mod_id,
@@ -120,19 +123,25 @@ export const router = () =>
             maxSize: 8 * 1024 * 1024,
           })
         ),
-
         images: t.Optional(
-          t.Array(
+          t.Union([
+            t.Array(
+              t.File({
+                type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
+                minSize: 1,
+                maxSize: 8 * 1024 * 1024,
+              }),
+              {
+                minItems: 1,
+                maxItems: 5,
+              }
+            ),
             t.File({
               type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
               minSize: 1,
               maxSize: 8 * 1024 * 1024,
-            }),
-            {
-              minItems: 1,
-              maxItems: 5,
-            }
-          )
+            })
+          ])
         ),
       }),
     }
