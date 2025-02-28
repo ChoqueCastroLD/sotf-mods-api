@@ -43,6 +43,9 @@ import { router as kelvinseekClearRouter } from "./api/kelvinseek/clear";
 // users
 import { router as usersGetRouter } from "./api/users/get";
 
+// favorites
+import { router as favoritesGetRouter } from "./api/favorites/get";
+import { router as favoritesToggleRouter } from "./api/favorites/toggle";
 
 new Elysia()
     .use(cors({
@@ -86,6 +89,9 @@ new Elysia()
     .group('', (app) => app.use(kelvinseekClearRouter()))
     // users
     .group('', (app) => app.use(usersGetRouter()))
+    // favorites
+    .group('', (app) => app.use(favoritesGetRouter()))
+    .group('', (app) => app.use(favoritesToggleRouter()))
     .listen(Bun.env.PORT ?? 3000, (server) => {
         console.log(`🦊 Elysia is running at ${server?.hostname}:${server?.port}`);
     });

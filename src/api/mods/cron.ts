@@ -5,9 +5,10 @@ import { prisma } from "../../services/prisma";
 
 export const router = () =>
   new Elysia()
+    // Count downloads for the last week
     .use(
       cron({
-        name: "heartbeat",
+        name: "last week downloads",
         pattern: "*/30 * * * *",
         async run() {
           const mods = await prisma.mod.findMany({
@@ -46,9 +47,10 @@ export const router = () =>
         },
       })
     )
+    // Count downloads
     .use(
       cron({
-        name: "heartbeat",
+        name: "count downloads",
         pattern: "*/30 * * * *",
         async run() {
           const mods = await prisma.mod.findMany({
@@ -75,6 +77,28 @@ export const router = () =>
                   (acc, version) => acc + version._count.downloads,
                   0
                 ),
+              },
+            });
+          }
+        },
+      })
+    )
+    // Count favorites
+    .use(
+      cron({
+        name: "count favorites",
+        pattern: "*/30 * * * *",
+        async run() {
+          const mods = await prisma.mod.findMany({
+            include: {
+              favorites: true,
+            },
+          });
+          for (const mod of mods) {
+            await prisma.mod.update({
+              where: { id: mod.id },
+              data: {
+                favoritesCount: mod.favorites.length,
               },
             });
           }

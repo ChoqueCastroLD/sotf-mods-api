@@ -20,6 +20,7 @@ export const router = () => new Elysia()
                     }
                 },
                 select: {
+                    id: true,
                     name: true,
                     versions: {
                         where: {
@@ -44,13 +45,23 @@ export const router = () => new Elysia()
             const f = await fetch(modVersion.downloadUrl);
             const blob = await f.blob();
 
-            prisma.modDownload.create({
-                data: {
-                    ip: (ip + "") || ("" + request.headers.get("x-forwarded-for")),
-                    userAgent: (agent + "") || ("" + request.headers.get("user-agent")),
-                    modVersionId: modVersion.id,
-                }
-            }).catch(err => console.error(err));
+            await Promise.all([
+                prisma.modDownload.create({
+                    data: {
+                        ip: (ip + "") || ("" + request.headers.get("x-forwarded-for")),
+                        userAgent: (agent + "") || ("" + request.headers.get("user-agent")),
+                        modVersionId: modVersion.id,
+                    }
+                }),
+                prisma.mod.update({
+                    where: {
+                        id: mod.id,
+                    },
+                    data: {
+                        downloads: { increment: 1 }
+                    }
+                })
+            ]);
 
             set.headers['Content-Type'] = "" + f.headers.get('Content-Type');
             set.headers['Content-Length'] = "" + f.headers.get('Content-Length');

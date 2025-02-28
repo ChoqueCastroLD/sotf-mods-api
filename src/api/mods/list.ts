@@ -70,16 +70,36 @@ export const router = () => new Elysia()
 
             where.isNSFW = nsfw === "true";
 
-            where.type = type || "Mod";
+            if (type !== "Both") {
+                where.type = type || "Mod";
+            }
 
             const orderBy: any = {}
 
             switch (orderby) {
-                case "popular":
-                    orderBy["favorites"] = { _count: 'desc' }
+                case "most_downloaded":
+                    orderBy["downloads"] = 'desc'
                     break;
-                case "unpopular":
-                    orderBy["favorites"] = { _count: 'asc' }
+                case "least_downloaded":
+                    orderBy["downloads"] = 'asc'
+                    break;
+                case "most_downloaded_week":
+                    orderBy["lastWeekDownloads"] = 'desc'
+                    break;
+                case "least_downloaded_week":
+                    orderBy["lastWeekDownloads"] = 'asc'
+                    break;
+                case "most_followed":
+                    orderBy["favoritesCount"] = 'desc'
+                    break;
+                case "least_followed":
+                    orderBy["favoritesCount"] = 'asc'
+                    break;
+                case "highest_rating":
+                    orderBy["averageRating"] = 'desc'
+                    break;
+                case "lowest_rating":
+                    orderBy["averageRating"] = 'asc'
                     break;
                 case "oldest":
                     orderBy["lastReleasedAt"] = "asc"

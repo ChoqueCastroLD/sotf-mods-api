@@ -23,6 +23,7 @@ model User {
   comments     Comment[]
   favoriteMods ModFavorite[]
   tokens       Token[]
+  reviews      ModReview[]
 }
 
 model Token {
@@ -90,6 +91,7 @@ model Mod {
   images    ModImage[]
   favorites ModFavorite[]
   comments  Comment[]
+  reviews   ModReview[]
 
   @@unique([slug, userId])
   // ✅ Indexes
@@ -200,6 +202,26 @@ model ModFavorite {
   modId Int?
 }
 
+model ModReview {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  title String
+  message String
+  rating Int
+  isHidden Boolean @default(true)
+
+  modVersionString String?
+
+  user   User? @relation(fields: [userId], references: [id])
+  userId Int?
+
+  mod   Mod? @relation(fields: [modId], references: [id])
+  modId Int?
+
+  @@unique([userId, modId])
+}
 model KelvinGPTMessages {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
