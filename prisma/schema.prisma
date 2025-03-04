@@ -53,25 +53,26 @@ model LoginAttempt {
 model Mod {
   id Int @id @default(autoincrement())
 
-  name              String
-  slug              String
-  mod_id            String  @unique
-  shortDescription  String  @default("")
-  description       String
-  dependencies      String  @default("")
-  type              String?
-  isNSFW            Boolean
-  isApproved        Boolean
-  isFeatured        Boolean
-  lastWeekDownloads Int     @default(0)
-  downloads         Int     @default(0)
-  latestVersion     String? @default("")
-  latestVersionSize String? @default("")
-  averageRating     Float?  @default(0)
-  reviewsCount      Int?    @default(0)
-  favoritesCount    Int     @default(0)
-  sourceUrl         String?
-  imageUrl          String?
+  name                    String
+  slug                    String
+  mod_id                  String  @unique
+  shortDescription        String  @default("")
+  description             String
+  dependencies            String  @default("")
+  type                    String?
+  isNSFW                  Boolean
+  isApproved              Boolean
+  isFeatured              Boolean
+  isMultiplayerCompatible Boolean @default(false)
+  lastWeekDownloads       Int     @default(0)
+  downloads               Int     @default(0)
+  latestVersion           String? @default("")
+  latestVersionSize       String? @default("")
+  averageRating           Float?  @default(0)
+  reviewsCount            Int?    @default(0)
+  favoritesCount          Int     @default(0)
+  sourceUrl               String?
+  imageUrl                String?
 
   buildGuid         String?
   buildShareVersion String?
@@ -207,9 +208,9 @@ model ModReview {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  title String
-  message String
-  rating Int
+  title    String
+  message  String
+  rating   Int
   isHidden Boolean @default(true)
 
   modVersionString String?
@@ -222,6 +223,7 @@ model ModReview {
 
   @@unique([userId, modId])
 }
+
 model KelvinGPTMessages {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())

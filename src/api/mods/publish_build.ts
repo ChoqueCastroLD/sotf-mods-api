@@ -17,7 +17,7 @@ export const router = () =>
   new Elysia().use(loggedOnly()).post(
     "/api/builds/publish",
     async ({
-      body: { description, category_id, buildFile, thumbnail, images },
+      body: { name, shortDescription, description, category_id, buildFile, thumbnail, images },
       user,
     }) => {
       if (!Array.isArray(images) && images) {
@@ -43,9 +43,9 @@ export const router = () =>
 
       const errors = [];
 
-      errors.push(...validateModName(contents.Name));
+      errors.push(...validateModName(name));
+      errors.push(...validateModShortDescription(shortDescription));
       errors.push(...validateModDescription(description));
-      errors.push(...validateModShortDescription(contents.Description));
 
       if (errors.length > 0) {
         throw new ValidationError(errors);
@@ -188,6 +188,8 @@ export const router = () =>
 
     {
       body: t.Object({
+        name: t.String(),
+        shortDescription: t.String(),
         description: t.String(),
         category_id: t.String(),
         buildFile: t.File({ minSize: 1, maxSize: BUILDS_FILE_SIZE_LIMIT }),
