@@ -9,11 +9,11 @@ import { sanitizeInput } from '../../shared/sanitize';
 export const router = () => new Elysia()
     .use(loggedOnly())
     .post(
-        '/api/comment',
+        '/api/comments',
         async ({ request, body: { mod_id, message }, query: { ip }, user }) => {
             const mod = await prisma.mod.findFirst({
               where: {
-                mod_id
+                id: mod_id
               }
             });
             if (!mod) {
@@ -44,7 +44,7 @@ export const router = () => new Elysia()
             };
         }, {
             body: t.Object({
-                mod_id: t.String(),
+                mod_id: t.Number(),
                 message: t.String()
             }),
             response: t.Object({

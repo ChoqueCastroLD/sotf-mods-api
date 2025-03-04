@@ -1,12 +1,11 @@
 import { Elysia, t } from "elysia";
 
 import { prisma } from "../../services/prisma";
-import { authMiddleware } from "../../middlewares/auth.middleware";
 
 export const router = () =>
   new Elysia().get(
     "/api/comments",
-    async ({ query: { mod_id, comment_id } }) => {
+    async ({ query: { mod_id } }) => {
       const comments = await prisma.comment.findMany({
         where: {
           modId: mod_id,
@@ -44,7 +43,9 @@ export const router = () =>
             take: 1,
           },
         },
-        orderBy: {},
+        orderBy: {
+          createdAt: "desc",
+        },
       });
 
       return { status: true, data: comments };

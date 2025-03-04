@@ -47,6 +47,10 @@ import { router as usersGetRouter } from "./api/users/get";
 import { router as favoritesGetRouter } from "./api/favorites/get";
 import { router as favoritesToggleRouter } from "./api/favorites/toggle";
 
+// comments
+import { router as commentsRouter } from "./api/mods/comments";
+import { router as commentRouter } from "./api/mods/comment";
+
 new Elysia()
     .use(cors({
         origin: true,
@@ -92,6 +96,9 @@ new Elysia()
     // favorites
     .group('', (app) => app.use(favoritesGetRouter()))
     .group('', (app) => app.use(favoritesToggleRouter()))
+    // comments
+    .group('', (app) => app.use(commentsRouter()))
+    .group('', (app) => app.use(commentRouter()))
     .listen(Bun.env.PORT ?? 3000, (server) => {
         console.log(`🦊 Elysia is running at ${server?.hostname}:${server?.port}`);
     });
