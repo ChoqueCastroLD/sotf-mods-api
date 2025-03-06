@@ -42,6 +42,7 @@ import { router as kelvinseekClearRouter } from "./api/kelvinseek/clear";
 
 // users
 import { router as usersGetRouter } from "./api/users/get";
+import { router as usersAvatarRouter } from "./api/users/avatar";
 
 // favorites
 import { router as favoritesGetRouter } from "./api/favorites/get";
@@ -93,6 +94,7 @@ new Elysia()
     .group('', (app) => app.use(kelvinseekClearRouter()))
     // users
     .group('', (app) => app.use(usersGetRouter()))
+    .group('', (app) => app.use(usersAvatarRouter()))
     // favorites
     .group('', (app) => app.use(favoritesGetRouter()))
     .group('', (app) => app.use(favoritesToggleRouter()))
