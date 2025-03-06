@@ -104,4 +104,26 @@ export const router = () =>
           }
         },
       })
+    )
+    // Count comments
+    .use(
+      cron({
+        name: "count comments",
+        pattern: "*/30 * * * *",
+        async run() {
+          const mods = await prisma.mod.findMany({
+            include: {
+              comments: true,
+            },
+          });
+          for (const mod of mods) {
+            await prisma.mod.update({
+              where: { id: mod.id },
+              data: {
+                commentsCount: mod.comments.length,
+              },
+            });
+          }
+        },
+      })
     );

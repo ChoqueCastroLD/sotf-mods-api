@@ -104,6 +104,12 @@ export const router = () => new Elysia()
                 case "oldest":
                     orderBy["lastReleasedAt"] = "asc"
                     break;
+                case "least_comments":
+                    orderBy["commentsCount"] = "asc"
+                    break;
+                case "most_comments":
+                    orderBy["commentsCount"] = "desc"
+                    break;
                 case "newest":
                 default:
                     orderBy["lastReleasedAt"] = "desc"

@@ -38,6 +38,14 @@ export const router = () => new Elysia()
                 isHidden: false,
               },
             });
+            await prisma.mod.update({
+              where: {
+                id: mod.id
+              },
+              data: {
+                commentsCount: { increment: 1 }
+              }
+            });
             return { 
                 status: true,
                 data: comment,
