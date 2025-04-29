@@ -176,7 +176,10 @@ export const router = () => new Elysia()
                 prev_page: prev_page,
             }
 
-            const result = { status: true, data: mods, meta: returnMeta };
+            const result = { status: true, data: mods.map(mod => {
+                mod.dependencies = mod.dependencies.split(",").map(dep => dep.trim()).filter(Boolean);
+                return mod;
+            }), meta: returnMeta };
 
             return result;
         }, {
