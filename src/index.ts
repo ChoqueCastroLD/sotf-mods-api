@@ -40,6 +40,9 @@ import { router as modsUploadBuildRouter } from "./api/mods/upload_build";
 import { router as kelvinseekPromptRouter } from "./api/kelvinseek/prompt";
 import { router as kelvinseekClearRouter } from "./api/kelvinseek/clear";
 
+// files
+import { router as filesPresignedUrlRouter } from "./api/files/presigned-url";
+
 // users
 import { router as usersGetRouter } from "./api/users/get";
 import { router as usersAvatarRouter } from "./api/users/avatar";
@@ -92,6 +95,8 @@ new Elysia()
     // kelvinseek
     .group('', (app) => app.use(kelvinseekPromptRouter()))
     .group('', (app) => app.use(kelvinseekClearRouter()))
+    // files
+    .group('', (app) => app.use(filesPresignedUrlRouter()))
     // users
     .group('', (app) => app.use(usersGetRouter()))
     .group('', (app) => app.use(usersAvatarRouter()))

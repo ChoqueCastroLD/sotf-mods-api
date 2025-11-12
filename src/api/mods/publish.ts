@@ -10,7 +10,7 @@ import {
   validateModShortDescription,
 } from "../../shared/validation";
 import { ValidationError } from "../../errors/validation";
-import { uploadFile } from "../../services/files";
+import { downloadFile } from "../../services/files";
 import { readManifest } from "../../shared/read-manifest";
 
 const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
@@ -25,18 +25,15 @@ export const router = () =>
         description,
         isNSFW,
         category_id,
-        modFile,
-        thumbnail,
-        images,
+        modFileKey,
+        thumbnailKey,
+        imageKeys,
       },
       user,
     }) => {
-      if (!Array.isArray(images) && images) {
-        images = [images];
+      if (!Array.isArray(imageKeys) && imageKeys) {
+        imageKeys = [imageKeys];
       }
-      
-      const modThumbnailBuffer = await thumbnail.arrayBuffer();
-      const modFileBuffer = await modFile.arrayBuffer();
 
       const errors = [];
 
@@ -48,6 +45,31 @@ export const router = () =>
         throw new ValidationError(errors);
       }
 
+      if (!modFileKey) {
+        throw new ValidationError([
+          { field: "modFileKey", message: "Mod file key is required." },
+        ]);
+      }
+
+      if (!thumbnailKey) {
+        throw new ValidationError([
+          { field: "thumbnailKey", message: "Thumbnail key is required." },
+        ]);
+      }
+
+      // Download mod file from R2 to validate
+      let modFileBuffer: ArrayBuffer;
+      try {
+        modFileBuffer = await downloadFile(modFileKey);
+      } catch (error) {
+        throw new ValidationError([
+          {
+            field: "modFileKey",
+            message: "Failed to download mod file from R2.",
+          },
+        ]);
+      }
+
       if (modFileBuffer.byteLength / 1024 > MOD_FILE_SIZE_LIMIT) {
         throw new ValidationError([
           {
@@ -57,7 +79,8 @@ export const router = () =>
         ]);
       }
 
-      const ext = modFile.name.split(".").pop();
+      // Extract extension from file key
+      const ext = modFileKey.split(".").pop();
       if (ext !== "zip") {
         throw new ValidationError([
           { field: "modFile", message: "Mod file must be a zip file." },
@@ -117,45 +140,15 @@ export const router = () =>
         ]);
       }
 
-      let thumbnailFilename;
-      try {
-        const ext = thumbnail.name.split(".").pop();
-        thumbnailFilename = await uploadFile(
-          modThumbnailBuffer,
-          `${slug}_thumbnail.${ext}`
-        );
-        if (!thumbnailFilename) throw thumbnailFilename;
-      } catch (error) {
-        console.error("Error uploading thumbnail:", error);
-        throw new ValidationError([
-          {
-            field: "thumbnail",
-            message: "An error occurred during thumbnail upload.",
-          },
-        ]);
-      }
+      // Use the provided thumbnail key directly
+      const thumbnailFilename = thumbnailKey;
 
-      const uploadedImages = await Promise.all(
-        images?.map(async (image) => {
-          try {
-            const ext = image.name.split(".").pop();
-            const filename = await uploadFile(
-              await image.arrayBuffer(),
-              `${slug}_${ext}`
-            );
-
-            if (!filename) throw filename;
-            return {
-              url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
-              isPrimary: false,
-              isThumbnail: false,
-            };
-          } catch (error) {
-            console.log("Error uploading image:", error);
-            return undefined;
-          }
-        }) || []
-      );
+      // Use the provided image keys directly
+      const uploadedImages = (imageKeys || []).map((imageKey: string) => ({
+        url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${imageKey}`,
+        isPrimary: false,
+        isThumbnail: false,
+      }));
 
       const mod = await prisma.mod.create({
         data: {
@@ -181,19 +174,8 @@ export const router = () =>
         },
       });
 
-      let filename;
-      try {
-        filename = await uploadFile(modFileBuffer, `${slug}_${version}.${ext}`);
-        if (!filename) throw filename;
-      } catch (error) {
-        console.error("Error uploading file:", error);
-        throw new ValidationError([
-          {
-            field: "modFile",
-            message: "An error occurred during file upload.",
-          },
-        ]);
-      }
+      // Use the provided mod file key directly
+      const filename = modFileKey;
 
       await prisma.modVersion.create({
         data: {
@@ -217,30 +199,15 @@ export const router = () =>
         description: t.String(),
         isNSFW: t.String(),
         category_id: t.String(),
-        modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
-        thumbnail: t.File({
-          type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
-          minSize: 1,
-          maxSize: 8 * 1024 * 1024,
-        }),
-        images: t.Optional(
+        modFileKey: t.String(),
+        thumbnailKey: t.String(),
+        imageKeys: t.Optional(
           t.Union([
-            t.Array(
-              t.File({
-                type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
-                minSize: 1,
-                maxSize: 8 * 1024 * 1024,
-              }),
-              {
-                minItems: 1,
-                maxItems: 5,
-              }
-            ),
-            t.File({
-              type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
-              minSize: 1,
-              maxSize: 8 * 1024 * 1024,
-            })
+            t.Array(t.String(), {
+              minItems: 1,
+              maxItems: 5,
+            }),
+            t.String(),
           ])
         ),
       }),

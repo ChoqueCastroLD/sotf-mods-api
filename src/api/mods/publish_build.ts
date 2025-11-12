@@ -9,7 +9,7 @@ import {
   validateModShortDescription,
 } from "../../shared/validation";
 import { ValidationError } from "../../errors/validation";
-import { uploadFile } from "../../services/files";
+import { downloadFile } from "../../services/files";
 
 const BUILDS_FILE_SIZE_LIMIT = 100 * 1024 * 1024; // 100MB
 
@@ -17,19 +17,51 @@ export const router = () =>
   new Elysia().use(loggedOnly()).post(
     "/api/builds/publish",
     async ({
-      body: { name, shortDescription, description, category_id, buildFile, thumbnail, images },
+      body: { name, shortDescription, description, category_id, buildFileKey, thumbnailKey, imageKeys },
       user,
     }) => {
-      if (!Array.isArray(images) && images) {
-        images = [images];
+      if (!Array.isArray(imageKeys) && imageKeys) {
+        imageKeys = [imageKeys];
       }
-      const thumbnailBuffer = await thumbnail.arrayBuffer();
-      const buildFileBuffer = await buildFile.arrayBuffer();
 
-      const ext = buildFile.name.split(".").pop();
+      if (!buildFileKey) {
+        throw new ValidationError([
+          { field: "buildFileKey", message: "Build file key is required." },
+        ]);
+      }
+
+      if (!thumbnailKey) {
+        throw new ValidationError([
+          { field: "thumbnailKey", message: "Thumbnail key is required." },
+        ]);
+      }
+
+      // Download build file from R2 to validate
+      let buildFileBuffer: ArrayBuffer;
+      try {
+        buildFileBuffer = await downloadFile(buildFileKey);
+      } catch (error) {
+        throw new ValidationError([
+          {
+            field: "buildFileKey",
+            message: "Failed to download build file from R2.",
+          },
+        ]);
+      }
+
+      const ext = buildFileKey.split(".").pop();
       if (ext !== "json") {
         throw new ValidationError([
-          { field: "modFile", message: "Mod file must be a json file." },
+          { field: "buildFile", message: "Build file must be a json file." },
+        ]);
+      }
+
+      if (buildFileBuffer.byteLength / 1024 > BUILDS_FILE_SIZE_LIMIT) {
+        throw new ValidationError([
+          {
+            field: "buildFile",
+            message: "Build file size exceeds the limit of 100MB.",
+          },
         ]);
       }
 
@@ -84,45 +116,15 @@ export const router = () =>
         ]);
       }
 
-      let thumbnailFilename;
-      try {
-        const ext = thumbnail.name.split(".").pop();
-        thumbnailFilename = await uploadFile(
-          thumbnailBuffer,
-          `${slug}_thumbnail.${ext}`
-        );
-        if (!thumbnailFilename) throw thumbnailFilename;
-      } catch (error) {
-        console.error("Error uploading thumbnail:", error);
-        throw new ValidationError([
-          {
-            field: "thumbnail",
-            message: "An error occurred during thumbnail upload.",
-          },
-        ]);
-      }
+      // Use the provided thumbnail key directly
+      const thumbnailFilename = thumbnailKey;
 
-      const uploadedImages = await Promise.all(
-        images?.map(async (image) => {
-          try {
-            const ext = image.name.split(".").pop();
-            const filename = await uploadFile(
-              await image.arrayBuffer(),
-              `${slug}_${ext}`
-            );
-
-            if (!filename) throw filename;
-            return {
-              url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
-              isPrimary: false,
-              isThumbnail: false,
-            };
-          } catch (error) {
-            console.log("Error uploading image:", error);
-            return undefined;
-          }
-        }) || []
-      );
+      // Use the provided image keys directly
+      const uploadedImages = (imageKeys || []).map((imageKey: string) => ({
+        url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${imageKey}`,
+        isPrimary: false,
+        isThumbnail: false,
+      }));
 
       const version = Bun.randomUUIDv7();
 
@@ -153,22 +155,8 @@ export const router = () =>
         },
       });
 
-      let filename;
-      try {
-        filename = await uploadFile(
-          buildFileBuffer,
-          `${slug}_${version}.${ext}`
-        );
-        if (!filename) throw filename;
-      } catch (error) {
-        console.error("Error uploading file:", error);
-        throw new ValidationError([
-          {
-            field: "buildFile",
-            message: "An error occurred during file upload.",
-          },
-        ]);
-      }
+      // Use the provided build file key directly
+      const filename = buildFileKey;
 
       await prisma.modVersion.create({
         data: {
@@ -192,30 +180,15 @@ export const router = () =>
         shortDescription: t.String(),
         description: t.String(),
         category_id: t.String(),
-        buildFile: t.File({ minSize: 1, maxSize: BUILDS_FILE_SIZE_LIMIT }),
-        thumbnail: t.File({
-          type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
-          minSize: 1,
-          maxSize: 8 * 1024 * 1024,
-        }),
-        images: t.Optional(
+        buildFileKey: t.String(),
+        thumbnailKey: t.String(),
+        imageKeys: t.Optional(
           t.Union([
-            t.Array(
-              t.File({
-                type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
-                minSize: 1,
-                maxSize: 8 * 1024 * 1024,
-              }),
-              {
-                minItems: 1,
-                maxItems: 5,
-              }
-            ),
-            t.File({
-              type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
-              minSize: 1,
-              maxSize: 8 * 1024 * 1024,
-            })
+            t.Array(t.String(), {
+              minItems: 1,
+              maxItems: 5,
+            }),
+            t.String(),
           ])
         ),
       }),
