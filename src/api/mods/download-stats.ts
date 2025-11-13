@@ -3,18 +3,18 @@ import { prisma } from "../../services/prisma";
 
 export const router = () =>
   new Elysia().get(
-    "/api/mods/:modId/download-stats",
-    async ({ params: { modId }, query: { period } }) => {
-      // Validate mod exists - modId can be either numeric ID or mod_id string
+    "/api/mods/:mod_id/download-stats",
+    async ({ params: { mod_id }, query: { period } }) => {
+      // Validate mod exists - mod_id can be either numeric ID or mod_id string
       let mod;
-      if (!isNaN(parseInt(modId))) {
+      if (!isNaN(parseInt(mod_id))) {
         mod = await prisma.mod.findUnique({
-          where: { id: parseInt(modId) },
+          where: { id: parseInt(mod_id) },
           select: { id: true },
         });
       } else {
         mod = await prisma.mod.findUnique({
-          where: { mod_id: modId },
+          where: { mod_id: mod_id },
           select: { id: true },
         });
       }
@@ -117,7 +117,7 @@ export const router = () =>
     },
     {
       params: t.Object({
-        modId: t.String(),
+        mod_id: t.String(),
       }),
       query: t.Object({
         period: t.Optional(

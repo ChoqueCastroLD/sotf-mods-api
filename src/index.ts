@@ -1,9 +1,9 @@
-import { Elysia } from 'elysia'
-import { cors } from '@elysiajs/cors'
-import { cookie } from '@elysiajs/cookie'
+import { Elysia } from "elysia";
+import { cors } from "@elysiajs/cors";
+import { cookie } from "@elysiajs/cookie";
 
-import { errorHandler } from './handlers/error.handler'
-import { logger } from "./plugins/logger.plugin"
+import { errorHandler } from "./handlers/error.handler";
+import { logger } from "./plugins/logger.plugin";
 
 // auth
 import { router as authCheckTokenRouter } from "./api/auth/check-token";
@@ -58,62 +58,53 @@ import { router as commentsRouter } from "./api/mods/comments";
 import { router as commentRouter } from "./api/mods/comment";
 
 new Elysia()
-    // CORS must be first to handle preflight requests
-    // Using origin: true allows all origins and sets the Access-Control-Allow-Origin header correctly
-    .use(cors({
-        origin: true, // Allow all origins - Elysia will set the specific origin in the response
-        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
-        exposeHeaders: ['Set-Cookie'],
-        credentials: true,
-        maxAge: 86400, // 24 hours
-    }))
-    .use(cookie())
-    .use(logger({ logIP: true }))
-	.use(errorHandler())
-    // auth
-    .group('', (app) => app.use(authCheckTokenRouter()))
-    .group('', (app) => app.use(authLoginRouter()))
-    .group('', (app) => app.use(authLogoutRouter()))
-    .group('', (app) => app.use(authRegisterRouter()))
-    // categories
-    .group('', (app) => app.use(categoriesRouter()))
-    // general
-    .group('', (app) => app.use(statsRouter()))
-    // mods
-    .group('', (app) => app.use(modsApproveRouter()))
-    .group('', (app) => app.use(modsCheckRouter()))
-    .group('', (app) => app.use(modsDownloadRouter()))
-    .group('', (app) => app.use(modsDownloadBySlugRouter()))
-    .group('', (app) => app.use(modsDownloadStatsRouter()))
-    .group('', (app) => app.use(modsFeaturedRouter()))
-    .group('', (app) => app.use(modsGetRouter()))
-    .group('', (app) => app.use(modsGetBySlugRouter()))
-    .group('', (app) => app.use(modsListRouter()))
-    .group('', (app) => app.use(modsModIdRouter()))
-    .group('', (app) => app.use(modsPublishRouter()))
-    .group('', (app) => app.use(modsReleaseVersionRouter()))
-    .group('', (app) => app.use(modsToggleFavoriteRouter()))
-    .group('', (app) => app.use(modsUnapproveRouter()))
-    .group('', (app) => app.use(modsUpdateRouter()))
-    .group('', (app) => app.use(modsUploadRouter()))
-    .group('', (app) => app.use(modsCronRouter()))
-    .group('', (app) => app.use(modsPublishBuildRouter()))
-    .group('', (app) => app.use(modsUploadBuildRouter()))
-    // kelvinseek
-    .group('', (app) => app.use(kelvinseekPromptRouter()))
-    .group('', (app) => app.use(kelvinseekClearRouter()))
-    // files
-    .group('', (app) => app.use(filesPresignedUrlRouter()))
-    // users
-    .group('', (app) => app.use(usersGetRouter()))
-    .group('', (app) => app.use(usersAvatarRouter()))
-    // favorites
-    .group('', (app) => app.use(favoritesGetRouter()))
-    .group('', (app) => app.use(favoritesToggleRouter()))
-    // comments
-    .group('', (app) => app.use(commentsRouter()))
-    .group('', (app) => app.use(commentRouter()))
-    .listen(Bun.env.PORT ?? 3000, (server) => {
-        console.log(`🦊 Elysia is running at ${server?.hostname}:${server?.port}`);
-    });
+  .use(cors())
+  .use(cookie())
+  .use(logger({ logIP: true }))
+  .use(errorHandler())
+  // auth
+  .group("", (app) => app.use(authCheckTokenRouter()))
+  .group("", (app) => app.use(authLoginRouter()))
+  .group("", (app) => app.use(authLogoutRouter()))
+  .group("", (app) => app.use(authRegisterRouter()))
+  // categories
+  .group("", (app) => app.use(categoriesRouter()))
+  // general
+  .group("", (app) => app.use(statsRouter()))
+  // mods
+  .group("", (app) => app.use(modsApproveRouter()))
+  .group("", (app) => app.use(modsCheckRouter()))
+  .group("", (app) => app.use(modsDownloadRouter()))
+  .group("", (app) => app.use(modsDownloadBySlugRouter()))
+  .group("", (app) => app.use(modsDownloadStatsRouter()))
+  .group("", (app) => app.use(modsFeaturedRouter()))
+  .group("", (app) => app.use(modsGetRouter()))
+  .group("", (app) => app.use(modsGetBySlugRouter()))
+  .group("", (app) => app.use(modsListRouter()))
+  .group("", (app) => app.use(modsModIdRouter()))
+  .group("", (app) => app.use(modsPublishRouter()))
+  .group("", (app) => app.use(modsReleaseVersionRouter()))
+  .group("", (app) => app.use(modsToggleFavoriteRouter()))
+  .group("", (app) => app.use(modsUnapproveRouter()))
+  .group("", (app) => app.use(modsUpdateRouter()))
+  .group("", (app) => app.use(modsUploadRouter()))
+  .group("", (app) => app.use(modsCronRouter()))
+  .group("", (app) => app.use(modsPublishBuildRouter()))
+  .group("", (app) => app.use(modsUploadBuildRouter()))
+  // kelvinseek
+  .group("", (app) => app.use(kelvinseekPromptRouter()))
+  .group("", (app) => app.use(kelvinseekClearRouter()))
+  // files
+  .group("", (app) => app.use(filesPresignedUrlRouter()))
+  // users
+  .group("", (app) => app.use(usersGetRouter()))
+  .group("", (app) => app.use(usersAvatarRouter()))
+  // favorites
+  .group("", (app) => app.use(favoritesGetRouter()))
+  .group("", (app) => app.use(favoritesToggleRouter()))
+  // comments
+  .group("", (app) => app.use(commentsRouter()))
+  .group("", (app) => app.use(commentRouter()))
+  .listen(Bun.env.PORT ?? 3000, (server) => {
+    console.log(`🦊 Elysia is running at ${server?.hostname}:${server?.port}`);
+  });
