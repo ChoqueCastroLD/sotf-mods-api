@@ -11,6 +11,7 @@ const MOD_FILE_SIZE_LIMIT_APPROVER = 500 * 1024 * 1024; // 500MB for approvers
 
 // Get file size limit based on user permissions
 function getModFileSizeLimit(user: any): number {
+  console.log('getModFileSizeLimit', user);
   return user?.isTrusted ? MOD_FILE_SIZE_LIMIT_APPROVER : MOD_FILE_SIZE_LIMIT;
 }
 
