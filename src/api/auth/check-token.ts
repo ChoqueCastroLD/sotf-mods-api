@@ -23,7 +23,7 @@ export const router = () => new Elysia()
                     slug: user.slug,
                     email: user.email,
                     imageUrl: user.imageUrl,
-                    canApprove: user.canApprove,
+                    isTrusted: user.isTrusted,
                 }
             };
         }

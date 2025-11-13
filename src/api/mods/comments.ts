@@ -19,6 +19,7 @@ export const router = () =>
               name: true,
               slug: true,
               imageUrl: true,
+              isTrusted: true,
             },
           },
           replies: {
@@ -32,6 +33,7 @@ export const router = () =>
                   name: true,
                   slug: true,
                   imageUrl: true,
+                  isTrusted: true,
                 },
               },
               _count: {

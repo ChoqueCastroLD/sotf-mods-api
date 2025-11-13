@@ -15,7 +15,7 @@ model User {
   name       String
   imageUrl   String  @default("")
   slug       String  @unique
-  canApprove Boolean @default(false)
+  isTrusted  Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

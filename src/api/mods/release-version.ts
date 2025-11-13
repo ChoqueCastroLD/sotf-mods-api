@@ -8,7 +8,13 @@ import { uploadFile } from '../../services/files';
 import { readManifest } from '../../shared/read-manifest';
 
 
-const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
+const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB default
+const MOD_FILE_SIZE_LIMIT_APPROVER = 500 * 1024 * 1024; // 500MB for approvers
+
+// Get file size limit based on user permissions
+function getModFileSizeLimit(user: any): number {
+  return user?.isTrusted ? MOD_FILE_SIZE_LIMIT_APPROVER : MOD_FILE_SIZE_LIMIT;
+}
 
 export const router = () => new Elysia()
     .use(loggedOnly())
@@ -71,6 +77,19 @@ export const router = () => new Elysia()
             throw new ValidationError([{ field: 'modFile', message: "Mod file must be a zip file." }])
           }
 
+          // Check file size limit based on user permissions
+          const fileSizeLimit = getModFileSizeLimit(user);
+          const fileSizeLimitMB = fileSizeLimit / (1024 * 1024);
+          
+          if (file.byteLength > fileSizeLimit) {
+            throw new ValidationError([
+              {
+                field: "modFile",
+                message: `Mod file size exceeds the limit of ${fileSizeLimitMB}MB.`,
+              },
+            ]);
+          }
+
           let filename = "";
           try {
             filename = await uploadFile(file, `${mod.slug}_${version}.${ext}`);
@@ -119,7 +138,7 @@ export const router = () => new Elysia()
         }, {
             body: t.Object({
               changelog: t.String({ minLength: 1, maxLength: 2000 }),
-              modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
+              modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT_APPROVER }), // Use max limit, validation happens in handler
             }),
         }
     )

@@ -60,7 +60,7 @@ export const router = () =>
           slug: user.slug,
           name: user.name,
           imageUrl: user.imageUrl,
-          canApprove: user.canApprove,
+          isTrusted: user.isTrusted,
         },
       };
     },

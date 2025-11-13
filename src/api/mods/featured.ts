@@ -13,7 +13,7 @@ export const router = () =>
         orderBy: {
           lastWeekDownloads: "desc",
         },
-        take: 4,
+        take: 12,
         select: {
           id: true,
           name: true,
@@ -41,6 +41,7 @@ export const router = () =>
               name: true,
               slug: true,
               imageUrl: true,
+              isTrusted: true,
             },
           },
           images: {
@@ -97,6 +98,7 @@ export const router = () =>
               name: true,
               slug: true,
               imageUrl: true,
+              isTrusted: true,
             },
           },
           images: {

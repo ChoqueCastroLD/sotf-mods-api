@@ -15,6 +15,7 @@ export const router = () => new Elysia()
                     name: true,
                     slug: true,
                     imageUrl: true,
+                    isTrusted: true,
                 }
             })
 

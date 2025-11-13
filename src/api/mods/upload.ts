@@ -6,12 +6,18 @@ import { ValidationError } from "../../errors/validation";
 import { readManifest } from "../../shared/read-manifest";
 import { downloadFile } from "../../services/files";
 
-const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
+const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB default
+const MOD_FILE_SIZE_LIMIT_APPROVER = 500 * 1024 * 1024; // 500MB for approvers
+
+// Get file size limit based on user permissions
+function getModFileSizeLimit(user: any): number {
+  return user?.isTrusted ? MOD_FILE_SIZE_LIMIT_APPROVER : MOD_FILE_SIZE_LIMIT;
+}
 
 export const router = () =>
   new Elysia().use(loggedOnly()).post(
     "/api/mods/upload",
-    async ({ body: { modFileKey } }) => {
+    async ({ body: { modFileKey }, user }) => {
       if (!modFileKey) {
         throw new ValidationError([
           { field: "modFileKey", message: "Mod file key is required." },
@@ -31,11 +37,14 @@ export const router = () =>
         ]);
       }
 
-      if (file.byteLength / 1024 > MOD_FILE_SIZE_LIMIT) {
+      const fileSizeLimit = getModFileSizeLimit(user);
+      const fileSizeLimitMB = fileSizeLimit / (1024 * 1024);
+      
+      if (file.byteLength > fileSizeLimit) {
         throw new ValidationError([
           {
             field: "modFile",
-            message: "Mod file size exceeds the limit of 200MB.",
+            message: `Mod file size exceeds the limit of ${fileSizeLimitMB}MB.`,
           },
         ]);
       }

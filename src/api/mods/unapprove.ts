@@ -9,7 +9,7 @@ export const router = () => new Elysia()
     .get(
         '/api/mods/:mod_id/unapprove',
         async ({ params: { mod_id }, user }) => {
-            if (user?.canApprove !== true) {
+            if (user?.isTrusted !== true) {
               throw new NotFoundError();
             }
             const mod = await prisma.mod.findFirst({
