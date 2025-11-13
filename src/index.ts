@@ -1,5 +1,6 @@
 import { Elysia } from 'elysia'
 import { cors } from '@elysiajs/cors'
+import { cookie } from '@elysiajs/cookie'
 
 import { errorHandler } from './handlers/error.handler'
 import { logger } from "./plugins/logger.plugin"
@@ -21,6 +22,7 @@ import { router as modsApproveRouter } from "./api/mods/approve";
 import { router as modsCheckRouter } from "./api/mods/check";
 import { router as modsDownloadRouter } from "./api/mods/download";
 import { router as modsDownloadBySlugRouter } from "./api/mods/download_by_slug";
+import { router as modsDownloadStatsRouter } from "./api/mods/download-stats";
 import { router as modsFeaturedRouter } from "./api/mods/featured";
 import { router as modsGetRouter } from "./api/mods/get";
 import { router as modsGetBySlugRouter } from "./api/mods/get_by_slug";
@@ -59,9 +61,10 @@ new Elysia()
     .use(cors({
         origin: true,
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-        allowedHeaders: '*',
+        allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true
     }))
+    .use(cookie())
     .use(logger({ logIP: true }))
 	.use(errorHandler())
     // auth
@@ -78,6 +81,7 @@ new Elysia()
     .group('', (app) => app.use(modsCheckRouter()))
     .group('', (app) => app.use(modsDownloadRouter()))
     .group('', (app) => app.use(modsDownloadBySlugRouter()))
+    .group('', (app) => app.use(modsDownloadStatsRouter()))
     .group('', (app) => app.use(modsFeaturedRouter()))
     .group('', (app) => app.use(modsGetRouter()))
     .group('', (app) => app.use(modsGetBySlugRouter()))

@@ -8,7 +8,7 @@ export const router = () => new Elysia()
     .use(loggedOnly())
     .post(
         '/api/auth/logout',
-        async ({ token }) => {
+        async ({ token, cookie }) => {
             await prisma.token.deleteMany({
                 where: {
                     OR: [
@@ -23,6 +23,8 @@ export const router = () => new Elysia()
                     ]
                 }
             });
+
+            cookie.token.remove();
 
             return { status: true };
         }, {

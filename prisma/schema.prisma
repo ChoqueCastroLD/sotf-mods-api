@@ -61,10 +61,12 @@ model Mod {
   description             String
   dependencies            String  @default("")
   type                    String?
+  modSide                 String? // "client", "server", "both"
   isNSFW                  Boolean
   isApproved              Boolean
   isFeatured              Boolean
   isMultiplayerCompatible Boolean @default(false)
+  requiresAllPlayers      Boolean @default(false) // true = all players need it, false = only host needs it
   lastWeekDownloads       Int     @default(0)
   downloads               Int     @default(0)
   latestVersion           String? @default("")

@@ -4,14 +4,32 @@ import semver from "semver";
 import { loggedOnly } from "../../middlewares/auth.middleware";
 import { ValidationError } from "../../errors/validation";
 import { readManifest } from "../../shared/read-manifest";
+import { downloadFile } from "../../services/files";
 
 const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB
 
 export const router = () =>
   new Elysia().use(loggedOnly()).post(
     "/api/mods/upload",
-    async ({ body: { modFile } }) => {
-      const file = await modFile.arrayBuffer();
+    async ({ body: { modFileKey } }) => {
+      if (!modFileKey) {
+        throw new ValidationError([
+          { field: "modFileKey", message: "Mod file key is required." },
+        ]);
+      }
+
+      // Download file from R2
+      let file: ArrayBuffer;
+      try {
+        file = await downloadFile(modFileKey);
+      } catch (error) {
+        throw new ValidationError([
+          {
+            field: "modFileKey",
+            message: "Failed to download mod file from R2.",
+          },
+        ]);
+      }
 
       if (file.byteLength / 1024 > MOD_FILE_SIZE_LIMIT) {
         throw new ValidationError([
@@ -22,7 +40,7 @@ export const router = () =>
         ]);
       }
 
-      const ext = modFile.name.split(".").pop();
+      const ext = modFileKey.split(".").pop();
       if (ext !== "zip") {
         throw new ValidationError([
           { field: "modFile", message: "Mod file must be a zip file." },
@@ -60,7 +78,7 @@ export const router = () =>
     },
     {
       body: t.Object({
-        modFile: t.File({ minSize: 1, maxSize: MOD_FILE_SIZE_LIMIT }),
+        modFileKey: t.String(),
       }),
     }
   );

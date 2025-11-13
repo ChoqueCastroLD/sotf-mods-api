@@ -9,6 +9,13 @@ export const router = () => new Elysia()
     .get(
         '/api/auth/check',
         async ({ user }) => {
+            if (!user) {
+                return {
+                    status: false,
+                    message: 'User not found'
+                };
+            }
+            
             return {
                 status: true,
                 data: {

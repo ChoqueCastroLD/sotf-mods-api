@@ -28,6 +28,9 @@ export const router = () =>
         modFileKey,
         thumbnailKey,
         imageKeys,
+        modSide,
+        isMultiplayerCompatible,
+        requiresAllPlayers,
       },
       user,
     }) => {
@@ -159,9 +162,12 @@ export const router = () =>
           description,
           dependencies,
           type,
+          modSide: modSide || null,
           isNSFW: isNSFW === "true",
           isApproved: false,
           isFeatured: false,
+          isMultiplayerCompatible: isMultiplayerCompatible === "true" || isMultiplayerCompatible === true,
+          requiresAllPlayers: requiresAllPlayers === "true" || requiresAllPlayers === true,
           categoryId: parseInt(category_id),
           userId: user?.id,
           latestVersion: version,
@@ -201,6 +207,9 @@ export const router = () =>
         category_id: t.String(),
         modFileKey: t.String(),
         thumbnailKey: t.String(),
+        modSide: t.Optional(t.Union([t.Literal("client"), t.Literal("server"), t.Literal("both")])),
+        isMultiplayerCompatible: t.Optional(t.Union([t.Boolean(), t.String()])),
+        requiresAllPlayers: t.Optional(t.Union([t.Boolean(), t.String()])),
         imageKeys: t.Optional(
           t.Union([
             t.Array(t.String(), {

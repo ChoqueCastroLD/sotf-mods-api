@@ -17,7 +17,7 @@ export const router = () =>
   new Elysia().use(loggedOnly()).post(
     "/api/builds/publish",
     async ({
-      body: { name, shortDescription, description, category_id, buildFileKey, thumbnailKey, imageKeys },
+      body: { name, shortDescription, description, category_id, buildFileKey, thumbnailKey, imageKeys, modSide, isMultiplayerCompatible, requiresAllPlayers },
       user,
     }) => {
       if (!Array.isArray(imageKeys) && imageKeys) {
@@ -137,9 +137,12 @@ export const router = () =>
           description,
           dependencies: "",
           type: "Build",
+          modSide: modSide || null,
           isNSFW: false,
           isApproved: true,
           isFeatured: false,
+          isMultiplayerCompatible: isMultiplayerCompatible === "true" || isMultiplayerCompatible === true,
+          requiresAllPlayers: requiresAllPlayers === "true" || requiresAllPlayers === true,
           categoryId: parseInt(category_id),
           userId: user?.id,
           buildGuid: contents.Guid.toString(),
@@ -182,6 +185,9 @@ export const router = () =>
         category_id: t.String(),
         buildFileKey: t.String(),
         thumbnailKey: t.String(),
+        modSide: t.Optional(t.Union([t.Literal("client"), t.Literal("server"), t.Literal("both")])),
+        isMultiplayerCompatible: t.Optional(t.Union([t.Boolean(), t.String()])),
+        requiresAllPlayers: t.Optional(t.Union([t.Boolean(), t.String()])),
         imageKeys: t.Optional(
           t.Union([
             t.Array(t.String(), {

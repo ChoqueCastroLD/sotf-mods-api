@@ -15,7 +15,7 @@ export const router = () =>
     "/api/mods/:mod_id/details",
     async ({
       params: { mod_id },
-      body: { name, description, shortDescription, isNSFW, thumbnail, images },
+      body: { name, description, shortDescription, isNSFW, thumbnail, images, modSide, isMultiplayerCompatible, requiresAllPlayers },
       user,
     }) => {
       if (!Array.isArray(images) && images) {
@@ -55,6 +55,9 @@ export const router = () =>
           description,
           shortDescription,
           isNSFW: isNSFW ? isNSFW === "true" : undefined,
+          modSide: modSide !== undefined ? (modSide === "" ? null : modSide) : undefined,
+          isMultiplayerCompatible: isMultiplayerCompatible !== undefined ? (isMultiplayerCompatible === "true" || isMultiplayerCompatible === true) : undefined,
+          requiresAllPlayers: requiresAllPlayers !== undefined ? (requiresAllPlayers === "true" || requiresAllPlayers === true) : undefined,
         },
       });
 
@@ -116,6 +119,9 @@ export const router = () =>
         description: t.Optional(t.String()),
         shortDescription: t.Optional(t.String()),
         isNSFW: t.Optional(t.String()),
+        modSide: t.Optional(t.Union([t.Literal("client"), t.Literal("server"), t.Literal("both"), t.Literal("")])),
+        isMultiplayerCompatible: t.Optional(t.Union([t.Boolean(), t.String()])),
+        requiresAllPlayers: t.Optional(t.Union([t.Boolean(), t.String()])),
         thumbnail: t.Optional(
           t.File({
             type: ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"],
