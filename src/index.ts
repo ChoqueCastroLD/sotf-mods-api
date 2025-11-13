@@ -58,8 +58,10 @@ import { router as commentsRouter } from "./api/mods/comments";
 import { router as commentRouter } from "./api/mods/comment";
 
 new Elysia()
+    // CORS must be first to handle preflight requests
+    // Using origin: true allows all origins and sets the Access-Control-Allow-Origin header correctly
     .use(cors({
-        origin: true, // Allow all origins since API is public
+        origin: true, // Allow all origins - Elysia will set the specific origin in the response
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
         exposeHeaders: ['Set-Cookie'],
