@@ -4,7 +4,8 @@
   "scripts": {
     "start": "bun src/index.ts",
     "dev": "bun run --watch src/index.ts",
-    "delete-unapproved-mods": "bun src/scripts/delete-unapproved-mods.ts"
+    "delete-unapproved-mods": "bun src/scripts/delete-unapproved-mods.ts",
+    "delete-all-tokens": "bun src/scripts/delete-all-tokens.ts"
   },
   "devDependencies": {
     "bun-types": "^1.3.2",

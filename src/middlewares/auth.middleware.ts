@@ -69,7 +69,7 @@ export const loggedOnly = () =>
       where: {
         tokens: {
           some: {
-            token,
+            token: token
           },
         },
       },

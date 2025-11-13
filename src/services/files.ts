@@ -2,13 +2,20 @@ import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 // Initialize S3 client for Cloudflare R2
+// Use custom domain if available, otherwise use default R2 endpoint
+const r2Endpoint = Bun.env.R2_CUSTOM_DOMAIN 
+    ? `https://${Bun.env.R2_CUSTOM_DOMAIN}`
+    : `https://${Bun.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`;
+
+// For custom domains, we may need path-style, but let's try virtual-hosted first
 const s3Client = new S3Client({
     region: "auto",
-    endpoint: `https://${Bun.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+    endpoint: r2Endpoint,
     credentials: {
         accessKeyId: Bun.env.R2_ACCESS_KEY_ID || "",
         secretAccessKey: Bun.env.R2_SECRET_ACCESS_KEY || "",
     },
+    forcePathStyle: Bun.env.R2_CUSTOM_DOMAIN ? true : false, // Path-style for custom domain
 });
 
 const bucket = Bun.env.R2_BUCKET_NAME || "";
@@ -43,6 +50,10 @@ export async function generatePresignedUploadUrl(
     });
 
     const uploadUrl = await getSignedUrl(s3Client, command, { expiresIn });
+
+    // The presigned URL should already use the custom domain if endpoint is set correctly
+    // Note: If custom domain doesn't work with S3 API, you may need to keep using
+    // the original R2 endpoint for presigned URLs and only use custom domain for public access
 
     return {
         uploadUrl,
