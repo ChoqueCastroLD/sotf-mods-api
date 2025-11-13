@@ -156,7 +156,8 @@ export const router = () =>
       const thumbnailFilename = thumbnailKey;
 
       // Use the provided image keys directly
-      const uploadedImages = (imageKeys || []).map((imageKey: string) => ({
+      const imageKeysArray = Array.isArray(imageKeys) ? imageKeys : (imageKeys ? [imageKeys] : []);
+      const uploadedImages = imageKeysArray.map((imageKey: string) => ({
         url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${imageKey}`,
         isPrimary: false,
         isThumbnail: false,
@@ -172,18 +173,18 @@ export const router = () =>
           dependencies,
           type,
           modSide: modSide || null,
-          isNSFW: isNSFW === "true",
+          isNSFW: isNSFW === "true" || isNSFW === true,
           isApproved: false,
           isFeatured: false,
           isMultiplayerCompatible: isMultiplayerCompatible === "true" || isMultiplayerCompatible === true,
           requiresAllPlayers: requiresAllPlayers === "true" || requiresAllPlayers === true,
-          categoryId: parseInt(category_id),
+          categoryId: typeof category_id === 'number' ? category_id : parseInt(category_id),
           userId: user?.id,
           latestVersion: version,
           imageUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${thumbnailFilename}`,
           images: {
             createMany: {
-              data: uploadedImages.filter((image) => !!image),
+              data: uploadedImages.filter((image: any) => !!image),
             },
           },
         },
@@ -212,8 +213,8 @@ export const router = () =>
         name: t.String(),
         shortDescription: t.String(),
         description: t.String(),
-        isNSFW: t.String(),
-        category_id: t.String(),
+        isNSFW: t.Union([t.Boolean(), t.String()]),
+        category_id: t.Union([t.Number(), t.String()]),
         modFileKey: t.String(),
         thumbnailKey: t.String(),
         modSide: t.Optional(t.Union([t.Literal("client"), t.Literal("server"), t.Literal("both")])),
