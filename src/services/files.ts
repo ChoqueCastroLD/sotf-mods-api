@@ -2,12 +2,13 @@ import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 // Initialize S3 client for Cloudflare R2
-// Use custom domain if available, otherwise use default R2 endpoint
-const r2Endpoint = Bun.env.R2_CUSTOM_DOMAIN 
-    ? `https://${Bun.env.R2_CUSTOM_DOMAIN}`
-    : `https://${Bun.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`;
+// IMPORTANT: Presigned URLs MUST use the original R2 endpoint, not custom domain
+// Custom domains don't work with presigned URLs because the signature is tied to the endpoint
+// Custom domain should only be used for public GET access via FILE_DOWNLOAD_ENDPOINT
+const r2Endpoint = `https://${Bun.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`;
 
-// For custom domains, we may need path-style, but let's try virtual-hosted first
+// S3 client for API operations (uploads, downloads, presigned URLs)
+// Always use the original R2 endpoint for S3 API operations
 const s3Client = new S3Client({
     region: "auto",
     endpoint: r2Endpoint,
@@ -15,7 +16,7 @@ const s3Client = new S3Client({
         accessKeyId: Bun.env.R2_ACCESS_KEY_ID || "",
         secretAccessKey: Bun.env.R2_SECRET_ACCESS_KEY || "",
     },
-    forcePathStyle: Bun.env.R2_CUSTOM_DOMAIN ? true : false, // Path-style for custom domain
+    forcePathStyle: false, // Use virtual-hosted-style (bucket.domain.com)
 });
 
 const bucket = Bun.env.R2_BUCKET_NAME || "";
@@ -51,9 +52,9 @@ export async function generatePresignedUploadUrl(
 
     const uploadUrl = await getSignedUrl(s3Client, command, { expiresIn });
 
-    // The presigned URL should already use the custom domain if endpoint is set correctly
-    // Note: If custom domain doesn't work with S3 API, you may need to keep using
-    // the original R2 endpoint for presigned URLs and only use custom domain for public access
+    // Presigned URLs use the original R2 endpoint (required for CORS to work)
+    // The URL will be: https://<bucket>.<account-id>.r2.cloudflarestorage.com/<key>?signature
+    // CORS must be configured on the R2 bucket to allow PUT requests from your frontend origins
 
     return {
         uploadUrl,

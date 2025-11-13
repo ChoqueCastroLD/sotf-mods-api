@@ -5,7 +5,8 @@
     "start": "bun src/index.ts",
     "dev": "bun run --watch src/index.ts",
     "delete-unapproved-mods": "bun src/scripts/delete-unapproved-mods.ts",
-    "delete-all-tokens": "bun src/scripts/delete-all-tokens.ts"
+    "delete-all-tokens": "bun src/scripts/delete-all-tokens.ts",
+    "configure-r2-cors": "bun src/scripts/configure-r2-cors.ts"
   },
   "devDependencies": {
     "bun-types": "^1.3.2",
