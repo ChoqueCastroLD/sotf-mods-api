@@ -7,7 +7,7 @@ import { generateToken } from "../../shared/token";
 export const router = () =>
   new Elysia().post(
     "/api/auth/login",
-    async ({ body: { email, password }, cookie }) => {
+    async ({ body: { email, password } }) => {
       const user = await prisma.user.findFirst({
         where: {
           email: {
@@ -51,16 +51,8 @@ export const router = () =>
         },
       });
 
-      cookie.token.set({
-        value: token,
-        expires: expiresAt,
-        path: '/',
-        httpOnly: true,
-        sameSite: 'none', // Required for cross-origin cookies (sotf-mods.com -> api.sotf-mods.com)
-        secure: true, // Required when sameSite is 'none', must be true in production
-        // Don't set domain - let browser handle it automatically
-      });
-
+      // Return token in response - frontend will set it in its own cookie
+      // Frontend will read from cookie/localStorage and send in Authorization header to API
       return {
         status: true,
         data: {

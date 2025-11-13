@@ -1,6 +1,5 @@
 import { Elysia } from 'elysia'
 import { cors } from '@elysiajs/cors'
-import { cookie } from '@elysiajs/cookie'
 
 import { errorHandler } from './handlers/error.handler'
 import { logger } from "./plugins/logger.plugin"
@@ -62,15 +61,9 @@ new Elysia()
     .use(cors({
         origin: true, // Allow all origins since API is public
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
-        exposeHeaders: ['Set-Cookie'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
         credentials: true,
         maxAge: 86400, // 24 hours
-    }))
-    .use(cookie({
-        httpOnly: true,
-        sameSite: 'none',
-        secure: true,
     }))
     .use(logger({ logIP: true }))
 	.use(errorHandler())

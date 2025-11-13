@@ -4,9 +4,9 @@ import { prisma } from "../services/prisma";
 import { UnauthorizedError } from "../errors/auth";
 
 export const authMiddleware = (opts: { loggedOnly: boolean }) =>
-  new Elysia().derive({ as: "global" }, async ({ request: { headers }, cookie: { token: cookieToken } }) => {
-    const headerToken = headers.get("Authorization")?.split("Bearer ")[1];
-    const token = headerToken || cookieToken?.value;
+  new Elysia().derive({ as: "global" }, async ({ request: { headers } }) => {
+    // API only accepts tokens via Authorization header, not cookies
+    const token = headers.get("Authorization")?.split("Bearer ")[1];
     if (!token) return { token: null, user: null };
     const user = await prisma.user.findFirst({
       include: {
@@ -35,11 +35,11 @@ export const authMiddleware = (opts: { loggedOnly: boolean }) =>
   });
 
 export const loggedOnly = () =>
-  new Elysia().derive({ as: "global" }, async ({ request, cookie: { token: cookieToken } }) => {
+  new Elysia().derive({ as: "global" }, async ({ request }) => {
+    // API only accepts tokens via Authorization header, not cookies
     const headers = request.headers;
-    const headerToken = headers.get("Authorization")?.split("Bearer ")[1];
-    const token = headerToken || cookieToken?.value as string;
-    
+    const token = headers.get("Authorization")?.split("Bearer ")[1];
+
     if (!token) {
       throw new UnauthorizedError("Unauthorized, login required");
     }
