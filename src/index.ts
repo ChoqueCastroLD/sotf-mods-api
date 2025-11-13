@@ -58,13 +58,14 @@ import { router as commentsRouter } from "./api/mods/comments";
 import { router as commentRouter } from "./api/mods/comment";
 
 new Elysia()
-    // .use(cors({
-    //     origin: true,
-    //     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    //     allowedHeaders: ['Content-Type', 'Authorization'],
-    //     credentials: true
-    // }))
-    .use(cors())
+    .use(cors({
+        origin: true, // Allow all origins since API is public
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'Cookie', 'X-Requested-With'],
+        exposeHeaders: ['Set-Cookie'],
+        credentials: true,
+        maxAge: 86400, // 24 hours
+    }))
     .use(cookie())
     .use(logger({ logIP: true }))
 	.use(errorHandler())
