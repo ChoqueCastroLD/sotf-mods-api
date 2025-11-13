@@ -67,7 +67,11 @@ new Elysia()
         credentials: true,
         maxAge: 86400, // 24 hours
     }))
-    .use(cookie())
+    .use(cookie({
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+    }))
     .use(logger({ logIP: true }))
 	.use(errorHandler())
     // auth

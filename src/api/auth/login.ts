@@ -56,8 +56,9 @@ export const router = () =>
         expires: expiresAt,
         path: '/',
         httpOnly: true,
-        sameSite: 'lax',
-        secure: process.env.NODE_ENV === 'production'
+        sameSite: 'none', // Required for cross-origin cookies (sotf-mods.com -> api.sotf-mods.com)
+        secure: true, // Required when sameSite is 'none', must be true in production
+        // Don't set domain - let browser handle it automatically
       });
 
       return {
