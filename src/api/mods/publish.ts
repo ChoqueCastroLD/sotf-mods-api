@@ -223,7 +223,7 @@ export const router = () =>
         imageKeys: t.Optional(
           t.Union([
             t.Array(t.String(), {
-              minItems: 1,
+              minItems: 0,
               maxItems: 5,
             }),
             t.String(),
