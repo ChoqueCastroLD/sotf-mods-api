@@ -20,11 +20,14 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  mods         Mod[]
-  comments     Comment[]
-  favoriteMods ModFavorite[]
-  tokens       Token[]
-  reviews      ModReview[]
+  mods                Mod[]
+  comments            Comment[]
+  favoriteMods        ModFavorite[]
+  tokens              Token[]
+  reviews             ModReview[]
+  passwordResetTokens PasswordResetToken[]
+  mentionsReceived    PendingMention[]     @relation("MentionTarget")
+  mentionsSent        PendingMention[]     @relation("MentionFrom")
 }
 
 model Token {
@@ -34,6 +37,18 @@ model Token {
 
   user   User? @relation(fields: [userId], references: [id])
   userId Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordResetToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  expiresAt DateTime
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -95,8 +110,9 @@ model Mod {
   tags      Tag[]
   images    ModImage[]
   favorites ModFavorite[]
-  comments  Comment[]
-  reviews   ModReview[]
+  comments        Comment[]
+  reviews         ModReview[]
+  pendingMentions PendingMention[]
 
   @@unique([slug, userId])
   // ✅ Indexes
@@ -246,7 +262,8 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  message String
+  message  String
+  imageUrl String?
 
   isHidden Boolean
 
@@ -261,4 +278,24 @@ model Comment {
   replyId Int?
   reply   Comment?  @relation("CommentToComment", fields: [replyId], references: [id])
   replies Comment[] @relation("CommentToComment")
+}
+
+model PendingMention {
+  id Int @id @default(autoincrement())
+
+  targetUser   User @relation("MentionTarget", fields: [targetUserId], references: [id])
+  targetUserId Int
+
+  fromUser   User @relation("MentionFrom", fields: [fromUserId], references: [id])
+  fromUserId Int
+
+  mod   Mod @relation(fields: [modId], references: [id])
+  modId Int
+
+  commentMessage String
+  type           String // "mention" | "comment" | "reply"
+
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
 }

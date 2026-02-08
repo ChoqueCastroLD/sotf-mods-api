@@ -9,6 +9,8 @@ import { router as authCheckTokenRouter } from "./api/auth/check-token";
 import { router as authLoginRouter } from "./api/auth/login";
 import { router as authLogoutRouter } from "./api/auth/logout";
 import { router as authRegisterRouter } from "./api/auth/register";
+import { router as authForgotPasswordRouter } from "./api/auth/forgot-password";
+import { router as authResetPasswordRouter } from "./api/auth/reset-password";
 
 // categories
 import { router as categoriesRouter } from "./api/categories/categories";
@@ -47,6 +49,7 @@ import { router as filesPresignedUrlRouter } from "./api/files/presigned-url";
 // users
 import { router as usersGetRouter } from "./api/users/get";
 import { router as usersAvatarRouter } from "./api/users/avatar";
+import { router as usersStatsRouter } from "./api/users/stats";
 
 // favorites
 import { router as favoritesGetRouter } from "./api/favorites/get";
@@ -72,6 +75,8 @@ new Elysia()
     .group('', (app) => app.use(authLoginRouter()))
     .group('', (app) => app.use(authLogoutRouter()))
     .group('', (app) => app.use(authRegisterRouter()))
+    .group('', (app) => app.use(authForgotPasswordRouter()))
+    .group('', (app) => app.use(authResetPasswordRouter()))
     // categories
     .group('', (app) => app.use(categoriesRouter()))
     // general
@@ -104,6 +109,7 @@ new Elysia()
     // users
     .group('', (app) => app.use(usersGetRouter()))
     .group('', (app) => app.use(usersAvatarRouter()))
+    .group('', (app) => app.use(usersStatsRouter()))
     // favorites
     .group('', (app) => app.use(favoritesGetRouter()))
     .group('', (app) => app.use(favoritesToggleRouter()))

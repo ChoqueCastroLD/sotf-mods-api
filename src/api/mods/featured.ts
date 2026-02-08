@@ -29,6 +29,7 @@ export const router = () =>
           lastWeekDownloads: true,
           imageUrl: true,
           downloads: true,
+          favoritesCount: true,
           latestVersion: true,
           category: {
             select: {
@@ -50,9 +51,6 @@ export const router = () =>
               isThumbnail: true,
               url: true,
             },
-          },
-          _count: {
-            select: { favorites: true },
           },
         },
       });

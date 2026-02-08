@@ -9,9 +9,12 @@ export const router = () =>
       const comments = await prisma.comment.findMany({
         where: {
           modId: mod_id,
+          replyId: null,
         },
         select: {
+          id: true,
           message: true,
+          imageUrl: true,
           createdAt: true,
           isHidden: true,
           user: {
@@ -26,6 +29,7 @@ export const router = () =>
             select: {
               id: true,
               message: true,
+              imageUrl: true,
               createdAt: true,
               isHidden: true,
               user: {
@@ -36,13 +40,10 @@ export const router = () =>
                   isTrusted: true,
                 },
               },
-              _count: {
-                select: {
-                  replies: true,
-                },
-              },
             },
-            take: 1,
+            orderBy: {
+              createdAt: "asc",
+            },
           },
         },
         orderBy: {
