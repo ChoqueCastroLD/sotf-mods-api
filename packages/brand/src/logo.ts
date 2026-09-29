@@ -15,8 +15,10 @@ export type LockupLayout = 'horizontal' | 'stacked' | 'wordmark';
 
 /**
  * `night` / `day` bake the colours of PLAN §3.2. `adaptive` draws «SOTF» with
- * `currentColor` and the Flare parts with `#FF7335` plus the class `brand-flare`, so a page
- * can recolour them per theme (e.g. `.brand-flare { fill: #E75803 }` in Day).
+ * `currentColor` and the Flare parts with the Day flare `#E75803` plus the class
+ * `brand-flare`. The Day flare keeps ≥ 3:1 on every surface of both themes, so the logo
+ * degrades safely wherever no theme CSS is loaded; a page may brighten it in Night
+ * (e.g. `[data-theme="dark"] .brand-flare { fill: #FF7335 }`).
  */
 export type LockupTheme = BrandTheme | 'adaptive';
 
@@ -114,7 +116,7 @@ function transform({ x, y, scale }: Placement): string {
 
 function colours(theme: LockupTheme): { fg: string; flare: string; flareClass: string | undefined } {
   if (theme === 'adaptive') {
-    return { fg: 'currentColor', flare: logoColors.night.flare, flareClass: 'brand-flare' };
+    return { fg: 'currentColor', flare: logoColors.day.flare, flareClass: 'brand-flare' };
   }
   return { fg: logoColors[theme].foreground, flare: logoColors[theme].flare, flareClass: undefined };
 }

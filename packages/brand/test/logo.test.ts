@@ -32,6 +32,13 @@ describe('lockups (PLAN §3.2)', () => {
     const svg = lockupSvg({ theme: 'adaptive' });
     expect(svg).toContain('fill="currentColor"');
     expect(svg.match(/class="brand-flare"/g)).toHaveLength(2);
+    // Safe default without theme CSS: the Day flare passes 3:1 in both themes.
+    const flareParts = svg.match(/<path [^>]*class="brand-flare"[^>]*>/g) ?? [];
+    expect(flareParts).toHaveLength(2);
+    for (const part of flareParts) {
+      expect(part).toContain('fill="#E75803"');
+    }
+    expect(svg).not.toContain('#FF7335');
   });
 
   it('apply +1 u tracking and align caps with the pin head in the horizontal lockup', () => {

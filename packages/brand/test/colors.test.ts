@@ -42,6 +42,12 @@ describe('logo colours (PLAN §3.2)', () => {
       }
     });
   }
+
+  it('keep the adaptive logo flare (Day flare) ≥ 3:1 on every surface of both themes', () => {
+    for (const surface of [...themeSurfaces.night, ...themeSurfaces.day, '#FFFFFF']) {
+      expect(contrastRatio(logoColors.day.flare, surface), surface).toBeGreaterThanOrEqual(3);
+    }
+  });
 });
 
 describe('colour utilities', () => {
