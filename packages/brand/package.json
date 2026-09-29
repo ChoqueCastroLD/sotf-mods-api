@@ -18,13 +18,14 @@
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "@fontsource/big-shoulders": "5.3.0",
-    "@fontsource/big-shoulders-stencil": "5.3.0",
-    "@fontsource/martian-mono": "5.3.0",
-    "@types/node": "24.19.0",
-    "opentype.js": "2.0.0",
-    "sharp": "0.35.5",
-    "typescript": "7.0.2",
-    "vitest": "5.0.2"
+    "@fontsource/big-shoulders": "catalog:",
+    "@fontsource/big-shoulders-stencil": "catalog:",
+    "@fontsource/martian-mono": "catalog:",
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "opentype.js": "catalog:",
+    "sharp": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
   }
 }
