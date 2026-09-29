@@ -202,13 +202,20 @@ function inspect(root: HTMLElement, problems: string[]): void {
       let leaves = false;
       try {
         const url = new URL(el.getAttribute('href') as string, BASE);
-        leaves = url.protocol === 'mailto:' || !INTERNAL_HOSTS.has(url.hostname.replace(/\.$/, ''));
+        // `host` includes a non-default port: another port is another origin.
+        leaves = url.protocol === 'mailto:' || !INTERNAL_HOSTS.has(url.host.replace(/\.(?=:|$)/, ''));
       } catch {
         leaves = false;
       }
       if (leaves && el.getAttribute('rel') !== 'ugc nofollow noopener') {
         problems.push(`external link without rel: ${el.getAttribute('href')}`);
       }
+    }
+    // Nested interactive content: two focus targets and conflicting activation for one click.
+    const container = el.parentElement?.closest('a, summary, [role="button"]');
+    if (name === 'a' && container && container.localName !== 'summary') problems.push('link inside a link or button');
+    if ((name === 'input' || el.getAttribute('role') === 'button') && container) {
+      problems.push(`interactive <${name}> inside <${container.localName}>`);
     }
     const id = el.getAttribute('id');
     if (id !== null && !/^md-/.test(id) && !/^[a-z][a-z0-9-]*-/.test(id)) problems.push(`unprefixed id ${id}`);

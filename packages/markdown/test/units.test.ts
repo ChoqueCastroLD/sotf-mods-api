@@ -1,6 +1,7 @@
 import type { Root } from 'hast';
 import { describe, expect, it } from 'vitest';
 import { findAutolinks } from '../src/autolink.ts';
+import { enhance } from '../src/enhance.ts';
 import { defuse, MAX_INDENT, MAX_LINE_CONTAINERS } from '../src/guard.ts';
 import {
   DEFAULT_LABELS,
@@ -114,6 +115,25 @@ describe('isExternal and isTrustedTarget', () => {
       expect(isExternal(href, hosts), href).toBe(true);
     }
     expect(isExternal('https://evil.com', ['EVIL.com.'])).toBe(false);
+  });
+
+  it('compares the port too: another port is another origin', () => {
+    for (const href of [
+      'https://sotf-mods.com:8443/',
+      'http://sotf-mods.com:443/x',
+      '//www.sotf-mods.com:8080/x',
+      'https://sotf-mods.com.:8443/',
+    ]) {
+      expect(isExternal(href, hosts), href).toBe(true);
+    }
+    // Default ports are dropped by the URL parser: still the same origin.
+    expect(isExternal('https://sotf-mods.com:443/x', hosts)).toBe(false);
+    expect(isExternal('http://sotf-mods.com:80/x', hosts)).toBe(false);
+    expect(isExternal('http://localhost:3000/x', ['localhost:3000'])).toBe(false);
+    expect(isExternal('http://localhost:3001/x', ['localhost:3000'])).toBe(true);
+    expect(isExternal('http://localhost/x', ['localhost:3000'])).toBe(true);
+    const { links } = renderMarkdown('[x](https://sotf-mods.com:8443/)');
+    expect(links).toEqual([{ href: 'https://sotf-mods.com:8443/', text: 'x', external: true, kind: 'link' }]);
   });
 
   it('only trusts site paths and https URLs', () => {
@@ -234,10 +254,79 @@ describe('verifyTree (last line of defence)', () => {
     expect(() => verifyTree(tree(node), 'full')).toThrow(MarkdownSafetyError);
   });
 
+  // `el` with children, for the content-model checks.
+  const node = (tagName: string, children: unknown[] = [], properties: Record<string, unknown> = {}) =>
+    ({ type: 'element', tagName, properties, children }) as unknown as Root['children'][number];
+  const txt = (value: string) => ({ type: 'text', value });
+  const spoiler = (children: unknown[] = [txt('x')]) =>
+    node('span', children, { className: ['md-spoiler'], role: 'button', tabIndex: 0 });
+
+  it.each([
+    ['a link inside a link', node('p', [node('a', [node('a', [txt('x')], { href: '/y' })], { href: '/x' })])],
+    ['a link inside formatting inside a link', node('a', [node('b', [node('a', [], { href: '/y' })])], { href: '/x' })],
+    ['a heading inside a paragraph', node('p', [node('h3', [txt('x')])])],
+    ['a paragraph inside a heading', node('h3', [node('p', [txt('x')])])],
+    ['a heading inside a heading', node('h2', [node('h3', [txt('x')])])],
+    ['a heading inside a link', node('a', [node('h3', [txt('x')])], { href: '/x' })],
+    ['a list inside bold', node('b', [node('ul', [node('li')])])],
+    ['a table inside a paragraph', node('p', [node('table', [node('tbody')])])],
+    ['a list item directly inside a list item', node('ul', [node('li', [node('li')])])],
+    ['a definition directly inside a term', node('dl', [node('dt', [node('dd')])])],
+    ['a row directly inside a table', node('table', [node('tr', [node('td')])])],
+    ['text directly inside a table', node('table', [txt('x'), node('tbody')])],
+    ['a paragraph directly inside a row', node('table', [node('tbody', [node('tr', [node('p')])])])],
+    ['a cell outside a table', node('td')],
+    ['a spoiler button inside a summary', node('details', [node('summary', [spoiler()])])],
+    ['a spoiler button inside a link', node('a', [spoiler()], { href: '/x' })],
+    ['a link inside a spoiler button', node('p', [spoiler([node('a', [txt('x')], { href: '/x' })])])],
+    [
+      'a checkbox inside a summary',
+      node('details', [node('summary', [node('input', [], { type: 'checkbox', disabled: true })])]),
+    ],
+  ])('rejects %s (the parser would restructure it, or nest interactive content)', (_name, bad) => {
+    expect(() => verifyTree(tree(bad), 'legacyHtml')).toThrow(MarkdownSafetyError);
+  });
+
+  it('accepts valid nestings', () => {
+    for (const good of [
+      node('h3', [node('a', [txt('x')], { href: '/x' }), node('a', [txt('#')], { href: '#x' })], { id: 'md-x' }),
+      node('details', [
+        node('summary', [
+          node('a', [txt('x')], { href: '/x' }),
+          node('span', [txt('s')], { className: ['md-spoiler'] }),
+        ]),
+      ]),
+      node('p', [node('span', [node('a', [txt('x')], { href: '/x' })], { className: ['md-spoiler'] })]),
+      node('table', [txt('\n'), node('tbody', [node('tr', [node('td', [node('p', [txt('x')])])])])]),
+      node('ul', [node('li', [node('p', [txt('x')]), node('ul', [node('li')])])]),
+      node('blockquote', [node('h3', [txt('x')], { id: 'md-x' }), node('pre', [node('code', [txt('x')])])]),
+    ]) {
+      expect(() => verifyTree(tree(good), 'legacyHtml')).not.toThrow();
+    }
+  });
+
   it('rejects elements outside the profile', () => {
     expect(() => verifyTree(tree(el('img', { src: '/a.png' })), 'lite')).toThrow(MarkdownSafetyError);
     expect(() => verifyTree(tree(el('details')), 'full')).toThrow(MarkdownSafetyError);
     expect(() => verifyTree(tree(el('details')), 'legacyHtml')).not.toThrow();
+  });
+});
+
+describe('enhance: heading anchors', () => {
+  it('adds no hover anchor to a heading inside a link (a link inside a link is split by parsers)', () => {
+    const heading = { type: 'element', tagName: 'h2', properties: {}, children: [{ type: 'text', value: 'T' }] };
+    const root = {
+      type: 'root',
+      children: [{ type: 'element', tagName: 'a', properties: { href: '/x' }, children: [heading] }],
+    } as unknown as Root;
+    const result = enhance(root, { profile: 'legacyHtml', idPrefix: 'md-', headingOffset: 1, internalHosts: [] });
+    expect(heading).toEqual({
+      type: 'element',
+      tagName: 'h3',
+      properties: { id: 'md-t' },
+      children: [{ type: 'text', value: 'T' }],
+    });
+    expect(result.headings).toEqual([{ level: 3, id: 'md-t', text: 'T' }]);
   });
 });
 

@@ -26,6 +26,11 @@ describe('safety checker (self-test)', () => {
     ['<img src="data:image/png;base64,AAAA">', 'data:'],
     ['<input type="text">', 'interactive input'],
     ['<p id="x">x</p>', 'unprefixed id'],
+    [
+      '<details><summary><span class="md-spoiler" role="button" tabindex="0">x</span></summary></details>',
+      'inside <summary>',
+    ],
+    ['<span class="md-spoiler" role="button" tabindex="0"><a href="/x">x</a></span>', 'link inside a link or button'],
   ])('flags %s', (html, problem) => {
     expect(findViolations(html).join('\n')).toContain(problem);
   });
