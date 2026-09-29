@@ -8,8 +8,11 @@
  * - new legacy-table columns that are NOT NULL without DEFAULT, carry inline constraints or have a
  *   volatile default; CHECK/FOREIGN KEY on legacy tables without NOT VALID; UNIQUE/PRIMARY KEY
  *   constraints on legacy tables (use CREATE UNIQUE INDEX CONCURRENTLY);
- * - UPDATE of legacy columns and DELETE on legacy tables (down files may DELETE with
+ * - UPDATE of legacy columns, DELETE and MERGE on legacy tables (down files may DELETE with
  *   `-- sotf:allow-legacy-delete: <reason>`);
+ * - statements that hide other statements from these rules: DO blocks and rules (CREATE RULE)
+ *   are rejected outright; function/procedure bodies must be dollar-quoted, may not run DDL or
+ *   dynamic SQL (EXECUTE) and are linted with the same DML rules as top-level statements;
  * - CREATE INDEX on an existing table without CONCURRENTLY, CONCURRENTLY inside a transaction,
  *   no-transaction files with more than one statement, CASCADE, transaction control, GRANT/REVOKE
  *   and other operations that do not belong in a migration;
@@ -90,6 +93,14 @@ const FORBIDDEN_STATEMENTS: ReadonlyArray<readonly [RegExp, string]> = [
     'not allowed in a migration',
   ],
   [/^(VACUUM|CLUSTER|LOCK|COPY|LISTEN|NOTIFY|DISCARD)\b/i, 'not allowed in a migration'],
+  [
+    /^DO\b/i,
+    'DO blocks hide their statements from the linter: write plain SQL, use -- sotf:precondition for conditions or split the migration',
+  ],
+  [
+    /^CREATE\s+(?:OR\s+REPLACE\s+)?RULE\b/i,
+    'rules silently rewrite queries (legacy ones included): use a trigger function instead',
+  ],
   [
     /^REINDEX\b(?!.*\bCONCURRENTLY\b)/i,
     'REINDEX blocks writes: use REINDEX … CONCURRENTLY in a -- sotf:no-transaction file',
@@ -191,6 +202,8 @@ function lintStatement(ctx: Context, stmt: SqlStatement): void {
   lintTruncate(ctx, stmt);
   lintDeletes(ctx, stmt);
   lintUpdates(ctx, stmt);
+  lintMerge(ctx, stmt);
+  lintRoutineBodies(ctx, stmt);
   lintAlterTable(ctx, stmt);
   lintIndexes(ctx, stmt);
   lintTriggersAndSequences(ctx, stmt);
@@ -245,6 +258,71 @@ function lintDeletes(ctx: Context, stmt: SqlStatement): void {
         : `DELETE on legacy table "${table}" is forbidden in migrations (PLAN §14.5)`,
     );
   }
+}
+
+function lintMerge(ctx: Context, stmt: SqlStatement): void {
+  const re = new RegExp(`\\bMERGE\\s+INTO\\s+(?:ONLY\\s+)?(${ID})`, 'gi');
+  for (const m of stmt.masked.matchAll(re)) {
+    const table = objectName(m[1] as string);
+    if (!ctx.legacy.tables.has(table)) continue;
+    report(
+      ctx,
+      stmt,
+      'legacy-dml',
+      `MERGE into legacy table "${table}" is forbidden: use INSERT … ON CONFLICT or UPDATE of v2 columns`,
+    );
+  }
+}
+
+const CREATE_ROUTINE = /^CREATE\s+(?:OR\s+REPLACE\s+)?(?:FUNCTION|PROCEDURE)\b/i;
+const ROUTINE_DDL = /\b(DROP|ALTER|TRUNCATE|CREATE|GRANT|REVOKE|RENAME|COMMIT|ROLLBACK|COPY|LOCK)\b/i;
+
+/**
+ * Function and procedure bodies run later (triggers, CALL, SELECT f()), so whatever they contain
+ * must pass the same rules. Bodies are lexed again; string literals inside them stay masked.
+ */
+function lintRoutineBodies(ctx: Context, stmt: SqlStatement): void {
+  if (!CREATE_ROUTINE.test(stmt.masked)) return;
+  if (/\bAS\s+''/i.test(stmt.masked)) {
+    report(
+      ctx,
+      stmt,
+      'routine-body',
+      'function/procedure bodies must be dollar-quoted ($$…$$) or SQL-standard so the linter can read them',
+    );
+  }
+  // A DELETE inside a body is never covered by -- sotf:allow-legacy-delete.
+  const bodyCtx: Context = { ...ctx, kind: 'up' };
+  const visit = (bodies: readonly string[]) => {
+    for (const body of bodies) {
+      for (const inner of splitStatements(body)) {
+        const at: SqlStatement = { ...inner, line: stmt.line };
+        if (/\bEXECUTE\b/i.test(inner.masked)) {
+          report(
+            ctx,
+            at,
+            'routine-dynamic-sql',
+            `dynamic SQL (EXECUTE) is not allowed in a routine body: ${preview(inner.masked)}`,
+          );
+        }
+        const ddl = ROUTINE_DDL.exec(inner.masked);
+        if (ddl) {
+          report(
+            ctx,
+            at,
+            'routine-ddl',
+            `${(ddl[1] as string).toUpperCase()} is not allowed in a routine body: ${preview(inner.masked)}`,
+          );
+        }
+        lintTruncate(bodyCtx, at);
+        lintDeletes(bodyCtx, at);
+        lintUpdates(bodyCtx, at);
+        lintMerge(bodyCtx, at);
+        visit(inner.bodies);
+      }
+    }
+  };
+  visit(stmt.bodies);
 }
 
 /** Extracts the assignment list that follows `SET` until a top-level terminator. */

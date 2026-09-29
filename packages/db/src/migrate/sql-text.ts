@@ -13,6 +13,11 @@ export interface SqlStatement {
    * `$$…$$` and whitespace collapsed: safe to match with regular expressions.
    */
   masked: string;
+  /**
+   * Inner text of every dollar-quoted body of the statement (function bodies, DO blocks), in
+   * order. The lint rules lex them again so that DML/DDL hidden in a body is not invisible.
+   */
+  bodies: string[];
   /** 1-based line of the first character of the statement in the file. */
   line: number;
 }
@@ -24,6 +29,7 @@ export function splitStatements(sql: string): SqlStatement[] {
   const statements: SqlStatement[] = [];
   let text = '';
   let masked = '';
+  let bodies: string[] = [];
   let startLine = 0;
   let line = 1;
   let i = 0;
@@ -31,10 +37,16 @@ export function splitStatements(sql: string): SqlStatement[] {
   const flush = () => {
     const trimmed = text.trim();
     if (trimmed.length > 0) {
-      statements.push({ text: trimmed, masked: masked.replace(/\s+/g, ' ').trim(), line: startLine || line });
+      statements.push({
+        text: trimmed,
+        masked: masked.replace(/\s+/g, ' ').trim(),
+        bodies,
+        line: startLine || line,
+      });
     }
     text = '';
     masked = '';
+    bodies = [];
     startLine = 0;
   };
   const markStart = () => {
@@ -139,6 +151,7 @@ export function splitStatements(sql: string): SqlStatement[] {
         advance(body);
         text += body;
         masked += '$$…$$';
+        bodies.push(close === -1 ? sql.slice(i + open.length) : sql.slice(i + open.length, close));
         i = end;
         continue;
       }

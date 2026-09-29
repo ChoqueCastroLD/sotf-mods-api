@@ -74,9 +74,12 @@ in another file, so a new column on an existing table also needs a line in its t
   `0038` (unique follows, after B5), `0039` (unique versions, Q-P6), `0040` (one latest version),
   `0045` (unique `emailNormalized`, after B6 with 0 collisions).
 - Forbidden on legacy objects: `DROP`, `RENAME`, type changes, `SET/DROP NOT NULL`, dropping or
-  changing an existing default, `UPDATE` of legacy columns, `DELETE`/`TRUNCATE` (a down file may
-  delete rows it created with `-- sotf:allow-legacy-delete: <reason>`). Also forbidden anywhere:
-  `CASCADE`, transaction control, `GRANT`/`REVOKE` (see `ops/sql/roles.sql`).
+  changing an existing default, `UPDATE` of legacy columns, `DELETE`/`TRUNCATE`/`MERGE` (a down
+  file may delete rows it created with `-- sotf:allow-legacy-delete: <reason>`). Also forbidden
+  anywhere: `CASCADE`, transaction control, `GRANT`/`REVOKE` (see `ops/sql/roles.sql`), `DO`
+  blocks and `CREATE RULE` (they hide statements from the linter; use a precondition or a separate
+  file). Function/procedure bodies must be dollar-quoted (or SQL-standard), may not contain DDL or
+  `EXECUTE`, and go through the same DML rules.
 - New foreign keys that point at legacy rows are `ON DELETE CASCADE` (NOT NULL) or `SET NULL`
   (nullable): v2 data must never block a legacy delete path.
 - Every migration has a `.down.sql`; the integration tests roll everything back to the baseline,

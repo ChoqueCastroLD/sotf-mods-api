@@ -69,6 +69,62 @@ describe('lint rejects anything that could break or lose legacy data', () => {
     ['privileges', 'GRANT SELECT ON "Mod" TO public;', 'forbidden-statement'],
     ['legacy sequence', 'ALTER SEQUENCE "Mod_id_seq" RESTART WITH 1;', 'legacy-sequence'],
     ['creating a legacy table', 'CREATE TABLE "Mod" (id int);', 'legacy-table-create'],
+    ['DO block with dynamic DROP', `DO $$ BEGIN EXECUTE 'DROP TABLE "User"'; END $$;`, 'forbidden-statement'],
+    ['DO block with DELETE', 'DO $$ BEGIN DELETE FROM "Mod"; END $$;', 'forbidden-statement'],
+    ['tagged DO block', 'DO LANGUAGE plpgsql $body$ BEGIN NULL; END $body$;', 'forbidden-statement'],
+    ['rule on a legacy table', 'CREATE RULE r AS ON INSERT TO "Mod" DO INSTEAD NOTHING;', 'forbidden-statement'],
+    [
+      'rule on a v2 table that writes a legacy one',
+      'CREATE OR REPLACE RULE r AS ON INSERT TO "Session" DO ALSO DELETE FROM "Mod";',
+      'forbidden-statement',
+    ],
+    [
+      'MERGE into a legacy table',
+      'MERGE INTO "Mod" m USING "X" x ON m.id = x.id WHEN MATCHED THEN DELETE;',
+      'legacy-dml',
+    ],
+    [
+      'DELETE in a function body',
+      'CREATE FUNCTION f() RETURNS void LANGUAGE plpgsql AS $$ BEGIN DELETE FROM "Mod"; END $$;',
+      'legacy-dml',
+    ],
+    [
+      'UPDATE of a legacy column in a function body',
+      `CREATE OR REPLACE FUNCTION f() RETURNS trigger LANGUAGE plpgsql AS $fn$
+DECLARE n int;
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    UPDATE "Mod" SET "isApproved" = false WHERE id = NEW.id;
+  END IF;
+  RETURN NEW;
+END $fn$;`,
+      'legacy-dml',
+    ],
+    [
+      'dynamic SQL in a function body',
+      `CREATE FUNCTION f() RETURNS void LANGUAGE plpgsql AS $$ BEGIN EXECUTE 'DROP TABLE "User"'; END $$;`,
+      'routine-dynamic-sql',
+    ],
+    [
+      'DDL in a procedure body',
+      'CREATE PROCEDURE p() LANGUAGE plpgsql AS $$ BEGIN DROP TABLE "User"; END $$;',
+      'routine-ddl',
+    ],
+    [
+      'TRUNCATE in a function body',
+      'CREATE FUNCTION f() RETURNS void LANGUAGE plpgsql AS $$ BEGIN TRUNCATE "ModDownload"; END $$;',
+      'routine-ddl',
+    ],
+    [
+      'single-quoted function body',
+      `CREATE FUNCTION f() RETURNS void LANGUAGE sql AS 'DELETE FROM "Mod"';`,
+      'routine-body',
+    ],
+    [
+      'DML in a SQL-standard body',
+      'CREATE FUNCTION f() RETURNS void LANGUAGE sql BEGIN ATOMIC DELETE FROM "Mod"; END;',
+      'legacy-dml',
+    ],
   ])('%s', (_name, sql, rule) => {
     expect(rulesOf(sql)).toContain(rule);
   });
@@ -125,6 +181,22 @@ describe('lint allows the additive patterns of PLAN §6.1', () => {
     ],
     ['dropping v2 objects', 'DROP TABLE IF EXISTS "Session";\nALTER TABLE "Mod" DROP COLUMN IF EXISTS "status";'],
     ['strings that merely mention forbidden SQL', `COMMENT ON TABLE "Session" IS 'never DROP TABLE "Mod"';`],
+    [
+      'trigger function that only fills NEW',
+      `CREATE FUNCTION f() RETURNS trigger LANGUAGE plpgsql AS $$
+BEGIN
+  NEW."status" := CASE WHEN NEW."isApproved" THEN 'published' ELSE 'pending' END;
+  RETURN NEW;
+END;
+$$;`,
+    ],
+    [
+      'function that writes v2 tables and v2 columns',
+      `CREATE FUNCTION f() RETURNS void LANGUAGE plpgsql AS $$ BEGIN
+  DELETE FROM "Session" WHERE "expiresAt" < now();
+  UPDATE "Mod" SET "status" = 'x' WHERE id = 1;
+END $$;`,
+    ],
   ])('%s', (_name, sql) => {
     expect(rulesOf(sql)).toEqual([]);
   });
