@@ -47,8 +47,24 @@ describe('numbers', () => {
     expect(plain(formatBytes('ru', 1_288_490))).toBe('1,2 МБ');
     expect(formatBytes('en', 512 * 1024)).toBe('512 kB');
     expect(formatBytes('en', 3 * 1024 ** 3)).toBe('3 GB');
+    expect(formatBytes('en', 1023)).toBe('1,023 bytes');
+    expect(formatBytes('en', 1024)).toBe('1 kB');
     expect(() => formatBytes('en', -1)).toThrow(RangeError);
     expect(() => formatBytes('en', Number.NaN)).toThrow(RangeError);
+  });
+
+  it('moves to the next unit when rounding reaches 1024', () => {
+    expect(formatBytes('en', 1023.4)).toBe('1,023 bytes');
+    expect(formatBytes('en', 1023.9)).toBe('1 kB');
+    expect(formatBytes('en', 1_048_575)).toBe('1 MB');
+    expect(formatBytes('en', 1_048_000)).toBe('1,023 kB');
+    expect(formatBytes('en', 1024 ** 3 - 1)).toBe('1 GB');
+    expect(formatBytes('en', 1024 ** 4 - 1)).toBe('1 TB');
+    // The largest unit never rolls over.
+    expect(formatBytes('en', 2048 * 1024 ** 4)).toBe('2,048 TB');
+    // Values that round up inside a unit keep it: 99.96 kB → 100 kB.
+    expect(formatBytes('en', 99.96 * 1024)).toBe('100 kB');
+    expect(formatBytes('en', 1.04 * 1024)).toBe('1 kB');
   });
 
   it('formats units', () => {

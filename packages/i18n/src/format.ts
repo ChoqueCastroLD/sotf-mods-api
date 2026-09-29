@@ -68,17 +68,30 @@ export function formatBytes(locale: Locale, bytes: number): string {
   if (!Number.isFinite(bytes) || bytes < 0) throw new RangeError(`Invalid byte count: ${bytes}`);
   let value = bytes;
   let unit = 0;
-  while (value >= 1024 && unit < BYTE_UNITS.length - 1) {
+  let digits = byteFractionDigits(unit, value);
+  // Pick the unit from the *rounded* value, so 1023.9 bytes reads "1 kB" and not "1,024 bytes".
+  while (roundTo(value, digits) >= 1024 && unit < BYTE_UNITS.length - 1) {
     value /= 1024;
     unit += 1;
+    digits = byteFractionDigits(unit, value);
   }
-  return formatNumber(locale, value, {
+  return formatNumber(locale, roundTo(value, digits), {
     style: 'unit',
     unit: BYTE_UNITS[unit],
     // "512 bytes" reads better than the short form "512 byte"; larger units use the short form.
     unitDisplay: unit === 0 ? 'long' : 'short',
-    maximumFractionDigits: unit === 0 || value >= 100 ? 0 : 1,
+    maximumFractionDigits: digits,
   });
+}
+
+/** Whole bytes and values of 100 or more have no decimals; smaller multiples keep one. */
+function byteFractionDigits(unit: number, value: number): number {
+  return unit === 0 || value >= 100 ? 0 : 1;
+}
+
+function roundTo(value: number, digits: number): number {
+  const factor = 10 ** digits;
+  return Math.round(value * factor) / factor;
 }
 
 export type UnitName = 'second' | 'minute' | 'hour' | 'day' | 'week' | 'month' | 'year';
