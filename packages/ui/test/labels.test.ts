@@ -10,9 +10,14 @@ import {
   UI_MESSAGE_KEYS,
 } from '../src/labels.ts';
 
-const MESSAGES_DIR = fileURLToPath(new URL('../messages', import.meta.url));
-/** PLAN §4.1: the 13 locales (BCP-47 file names). */
-const LOCALES = ['de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt-BR', 'ru', 'sv', 'tr', 'zh-Hans'];
+/**
+ * The translations of the `ui` namespace live with every other namespace in @sotf/i18n
+ * (`packages/i18n/messages/ui/<locale>.json`, checked by `pnpm i18n:check` and compiled by
+ * Paraglide); `packages/ui/messages/en.json` is the bundled English fallback and must mirror it.
+ */
+const MESSAGES_DIR = fileURLToPath(new URL('../../i18n/messages/ui', import.meta.url));
+/** PLAN §4.1: the 13 locales (URL codes, as used by @sotf/i18n file names). */
+const LOCALES = ['de', 'en', 'es', 'fr', 'it', 'ja', 'nl', 'pl', 'pt', 'ru', 'sv', 'tr', 'zh'];
 
 function load(locale: string): Record<string, string> {
   return JSON.parse(readFileSync(`${MESSAGES_DIR}/${locale}.json`, 'utf8')) as Record<string, string>;
@@ -41,6 +46,11 @@ describe('ui messages', () => {
       expect(message.trim().length, `${locale}.${key}`).toBeGreaterThan(0);
       expect(placeholders(message), `${locale}.${key}`).toEqual(placeholders(en[key]));
     }
+  });
+
+  it('the bundled English fallback mirrors @sotf/i18n', () => {
+    const { $schema: _schema, ...fallback } = en;
+    expect(fallback).toEqual(load('en'));
   });
 
   it('keys use the ui_ prefix in snake_case (PLAN §7.11)', () => {

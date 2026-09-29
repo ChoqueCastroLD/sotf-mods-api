@@ -45,7 +45,7 @@ enhance();
 | `@sotf/ui/dismissals` | Persistent banner dismissals + `BANNER_INIT_SCRIPT` (no React) |
 | `@sotf/ui/labels` | `UiTranslate`, `configureUiTranslate`, `UiTranslateProvider` |
 | `@sotf/ui/font-preloads` | Hashed URLs of the two preloaded fonts (Vite `?url`) |
-| `@sotf/ui/messages/<locale>.json` | The `ui` message namespace (13 locales) |
+| `@sotf/ui/messages/en.json` | English fallback of the `ui` namespace (translations: `packages/i18n/messages/ui/`) |
 | `@sotf/ui/<module>` | Any component module, e.g. `@sotf/ui/button` |
 
 ## Primitives (PLAN §3.9)
@@ -99,7 +99,8 @@ in a cookie, so cached HTML stays identical for everyone.
 ## Text and i18n
 
 Components contain no hard-coded copy. They ask a `UiTranslate` for keys of the `ui` namespace
-(`messages/<locale>.json`, 13 locales, English source). Resolution: `UiTranslateProvider` →
+(`packages/i18n/messages/ui/<locale>.json`, 13 locales, compiled by Paraglide with the rest of the
+messages; `messages/en.json` here is the bundled English copy, kept equal by a unit test). Resolution: `UiTranslateProvider` →
 `configureUiTranslate()` (set once at start-up with a request-locale-aware function, e.g.
 Paraglide) → English. Every other string (titles, labels, descriptions) comes in through props.
 

@@ -1,7 +1,8 @@
 /**
  * UI strings of the primitives (close, pagination, theme names, …). Components never hard-code
  * text: they ask a `UiTranslate` function for a message of the `ui` namespace
- * (`packages/ui/messages/<locale>.json`, 13 locales, English is the source).
+ * (`packages/i18n/messages/ui/<locale>.json`, 13 locales, compiled by Paraglide with the rest of
+ * the messages; `packages/ui/messages/en.json` is the bundled English copy, kept equal by a test).
  *
  * Resolution order inside a component:
  *   1. `<UiTranslateProvider value={t}>` (React context: the console, islands);
@@ -36,7 +37,7 @@ export function interpolate(template: string, params?: UiMessageParams): string 
   });
 }
 
-/** Builds a translator from a flat message catalogue (any locale's `messages/<locale>.json`). */
+/** Builds a translator from a flat message catalogue (any locale's `ui/<locale>.json`). */
 export function createUiTranslate(messages: Readonly<Partial<Record<UiMessageKey, string>>>): UiTranslate {
   return (key, params) => interpolate(messages[key] ?? en[key], params);
 }

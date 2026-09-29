@@ -9,6 +9,8 @@ messages/<namespace>/<locale>.json      en es de fr it nl pl pt ru sv tr zh ja
 Each work package writes only its own namespaces (PLAN §12.1). `common`, `errors` and `meta`
 belong to WP-13 and cover the site chrome (header, footer, consent, language and theme pickers,
 pagination, 404/500, API problem codes and generic SEO metadata): reuse them before adding keys.
+`ui` belongs to WP-12 (labels of the `@sotf/ui` primitives); `packages/ui/messages/en.json` is its
+bundled English copy and a `@sotf/ui` unit test keeps both equal, so edit the two together.
 
 ## Rules (enforced by `pnpm i18n:check`)
 

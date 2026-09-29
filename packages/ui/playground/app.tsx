@@ -17,7 +17,8 @@ import { Gallery } from './gallery.tsx';
 
 type Catalog = Partial<Record<UiMessageKey, string>>;
 
-const catalogs = import.meta.glob<Catalog>('../messages/*.json', { eager: true, import: 'default' });
+/** The `ui` namespace lives in @sotf/i18n (`packages/i18n/messages/ui/<locale>.json`). */
+const catalogs = import.meta.glob<Catalog>('../../i18n/messages/ui/*.json', { eager: true, import: 'default' });
 const LOCALES = Object.keys(catalogs)
   .map((path) => path.replace(/^.*\/(.+)\.json$/, '$1'))
   .sort();
@@ -35,7 +36,7 @@ function frameUrl(theme: string, locale: string): string {
 }
 
 function Frame({ locale }: { locale: string }) {
-  const translate = useMemo(() => createUiTranslate(catalogs[`../messages/${locale}.json`] ?? {}), [locale]);
+  const translate = useMemo(() => createUiTranslate(catalogs[`../../i18n/messages/ui/${locale}.json`] ?? {}), [locale]);
   const demos = Object.entries(domainDemos).map(([path, module]) => ({
     title: module.title ?? path.replace(/^.*\/(.+)\.demo\.tsx$/, '$1'),
     Component: module.default,
