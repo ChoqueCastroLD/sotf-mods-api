@@ -2,20 +2,32 @@
   "name": "@sotf/i18n",
   "version": "0.0.0",
   "private": true,
-  "description": "Paraglide JS 2 messages for the 13 locales, locale utilities and hreflang helpers.",
+  "description": "Paraglide JS 2 messages for the 13 locales, locale utilities, hreflang helpers and Intl formatters.",
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
     "./*": "./src/*.ts"
   },
   "scripts": {
+    "gen": "node tools/cli/gen.ts",
+    "gen:check": "node tools/cli/gen.ts --check",
+    "i18n:check": "node tools/cli/check.ts",
+    "i18n:pseudo": "node tools/cli/pseudo.ts",
+    "i18n:glossary": "node tools/cli/glossary.ts",
+    "i18n:import-legacy": "node tools/cli/import-legacy.ts",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test": "vitest run",
     "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
   },
   "devDependencies": {
+    "@inlang/paraglide-js": "catalog:",
+    "@inlang/plugin-message-format": "4.4.4",
+    "@inlang/sdk": "3.0.6",
     "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "jsdom": "catalog:",
     "typescript": "catalog:",
+    "vite": "catalog:",
     "vitest": "catalog:"
   }
 }

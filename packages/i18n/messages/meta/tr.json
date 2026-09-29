@@ -1,0 +1,16 @@
+{
+  "meta_site_name": "SOTF Mods",
+  "meta_title_template": "{title} | SOTF Mods",
+  "meta_title_paged": "{title} — sayfa {page, number}",
+  "meta_home_title": "SOTF Mods — Sons of the Forest modları, yapıları ve kitleri",
+  "meta_home_description": "RedLoader için {modCount, plural, one {{mods} Sons of the Forest modunu} other {{mods} Sons of the Forest modunu}}, yapısını ve kitini indir: ücretsiz, doğrudan ve topluluk tarafından test edilmiş. {date} itibarıyla {downloadCount, plural, one {{downloads} indirme} other {{downloads} indirme}}.",
+  "meta_default_description": "Sons of the Forest modlamanın evi: RedLoader için her yamada test edilen modlar, yapılar ve kitler. Ücretsiz, doğrudan indirme.",
+  "meta_og_default_alt": "SOTF Mods: Sons of the Forest modları, yapıları ve kitleri",
+  "meta_not_found_title": "Sayfa bulunamadı",
+  "meta_gone_title": "Sayfa kaldırıldı",
+  "meta_server_error_title": "Sunucu hatası",
+  "meta_search_title": "“{query}” için arama sonuçları",
+  "meta_search_title_empty": "Ara",
+  "meta_feed_title": "SOTF Mods: yeni ve güncellenen modlar",
+  "meta_feed_description": "SOTF Mods’ta yayınlanan en yeni Sons of the Forest modları ve güncellemeleri."
+}

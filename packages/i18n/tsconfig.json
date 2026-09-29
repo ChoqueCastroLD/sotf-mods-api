@@ -1,4 +1,7 @@
 {
   "extends": "@sotf/config/tsconfig/library.json",
-  "include": ["src", "test", "*.ts"]
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["src", "test", "tools", "*.ts"]
 }

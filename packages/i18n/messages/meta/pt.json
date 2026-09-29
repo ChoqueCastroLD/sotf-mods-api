@@ -1,0 +1,16 @@
+{
+  "meta_site_name": "SOTF Mods",
+  "meta_title_template": "{title} | SOTF Mods",
+  "meta_title_paged": "{title} — página {page, number}",
+  "meta_home_title": "SOTF Mods — mods, builds e kits de Sons of the Forest",
+  "meta_home_description": "Baixe {modCount, plural, one {{mods} mod} other {{mods} mods}}, builds e kits de Sons of the Forest para o RedLoader: grátis, diretos e testados pela comunidade. {downloadCount, plural, one {{downloads} download} other {{downloads} downloads}} em {date}.",
+  "meta_default_description": "A casa do modding de Sons of the Forest: mods, builds e kits para o RedLoader, testados a cada patch. Downloads grátis e diretos.",
+  "meta_og_default_alt": "SOTF Mods: mods, builds e kits de Sons of the Forest",
+  "meta_not_found_title": "Página não encontrada",
+  "meta_gone_title": "Página removida",
+  "meta_server_error_title": "Erro no servidor",
+  "meta_search_title": "Resultados da pesquisa por “{query}”",
+  "meta_search_title_empty": "Pesquisar",
+  "meta_feed_title": "SOTF Mods: mods novos e atualizados",
+  "meta_feed_description": "Os mods e atualizações mais recentes de Sons of the Forest publicados no SOTF Mods."
+}
