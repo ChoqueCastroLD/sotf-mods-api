@@ -13,41 +13,55 @@ export const DISPLAY_FONT_STACK =
 /** Big Shoulders cap height / em (1600 / 2000). */
 const CAP_RATIO = 0.8;
 
-const LETTER_OR_NUMBER = /[\p{L}\p{N}]/u;
+/** A grapheme that starts with a letter or a number (combining marks may follow). */
+const LETTER_OR_NUMBER = /^[\p{L}\p{N}]/u;
 const WORD_SEPARATOR = /[\s._\-/|:+]+/u;
+const GRAPHEMES = new Intl.Segmenter('und', { granularity: 'grapheme' });
+
+/**
+ * User-perceived characters of `text` after NFC normalisation, so a decomposed «É» (E + U+0301)
+ * counts as one character and is never split from its accent.
+ */
+export function graphemes(text: string): string[] {
+  return Array.from(GRAPHEMES.segment(text.normalize('NFC')), (part) => part.segment);
+}
+
+/**
+ * Upper-cases one initial without changing how many characters it takes: when the upper case
+ * expands (German «ß» → «SS», ligatures such as «ﬁ» → «FI») the original character is kept.
+ */
+export function upperInitial(grapheme: string): string {
+  const upper = grapheme.toUpperCase();
+  return graphemes(upper).length === 1 ? upper : grapheme;
+}
 
 /**
  * Up to `max` initials from a display name or handle: first letters of the first words
  * («Toni M.» → «TM», «shoko_cc» → «SC»), camel-case humps («RedLoader» → «RL») or the
  * first letters of a single word («kelvin» → «KE»). Returns `?` when nothing usable.
+ * The result never has more than `max` user-perceived characters.
  */
 export function initialsFrom(name: string, max = 2): string {
   const limit = Math.max(1, Math.floor(max));
   const words = name
     .normalize('NFC')
     .split(WORD_SEPARATOR)
-    .map((word) =>
-      Array.from(word)
-        .filter((char) => LETTER_OR_NUMBER.test(char))
-        .join(''),
-    )
-    .filter((word) => word.length > 0);
+    .map((word) => graphemes(word).filter((char) => LETTER_OR_NUMBER.test(char)))
+    .filter((chars) => chars.length > 0);
   if (words.length === 0) {
     return '?';
   }
   let picked: string[];
   if (words.length > 1) {
-    picked = words.slice(0, limit).map((word) => Array.from(word)[0] as string);
+    picked = words.map((chars) => chars[0] as string);
   } else {
-    const word = words[0] as string;
-    const chars = Array.from(word);
+    const chars = words[0] as string[];
     const humps = chars.filter(
       (char, index) => index > 0 && char !== char.toLowerCase() && char === char.toUpperCase(),
     );
     picked = humps.length > 0 ? [chars[0] as string, ...humps] : chars;
-    picked = picked.slice(0, limit);
   }
-  return picked.join('').toUpperCase();
+  return picked.slice(0, limit).map(upperInitial).join('');
 }
 
 export interface InitialsOptions {

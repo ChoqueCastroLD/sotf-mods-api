@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { hasOutlines, initialsElement, initialsFrom } from '../src/initials.ts';
+import { graphemes, hasOutlines, initialsElement, initialsFrom, upperInitial } from '../src/initials.ts';
 
 describe('initialsFrom', () => {
   it.each([
@@ -22,6 +22,38 @@ describe('initialsFrom', () => {
   it('honours the maximum', () => {
     expect(initialsFrom('Alpha Beta Gamma', 3)).toBe('ABG');
     expect(initialsFrom('Alpha Beta', 1)).toBe('A');
+  });
+
+  it('never returns more characters than requested', () => {
+    expect(initialsFrom('ßa b')).toBe('ßB');
+    expect(initialsFrom('ßa')).toBe('ßA');
+    expect(initialsFrom('ﬁsh tank')).toBe('ﬁT');
+    for (const name of ['ßa b', 'ﬁsh', 'ŉa', 'ǆ z', 'E\u0301lodie Dupont']) {
+      for (const max of [1, 2, 3]) {
+        expect(graphemes(initialsFrom(name, max)).length, `${name} / ${max}`).toBeLessThanOrEqual(max);
+      }
+    }
+  });
+
+  it('treats decomposed and composed input alike', () => {
+    expect(initialsFrom('e\u0301lodie dupont')).toBe('\u00C9D');
+    expect(initialsFrom('q\u0303uux')).toBe('Q\u0303U');
+  });
+});
+
+describe('graphemes and upperInitial', () => {
+  it('segments user-perceived characters after NFC', () => {
+    expect(graphemes('E\u0301X')).toEqual(['\u00C9', 'X']);
+    expect(graphemes('q\u0303a')).toEqual(['q\u0303', 'a']);
+    expect(graphemes('')).toEqual([]);
+  });
+
+  it('upper-cases without expanding', () => {
+    expect(upperInitial('a')).toBe('A');
+    expect(upperInitial('é')).toBe('É');
+    expect(upperInitial('ß')).toBe('ß');
+    expect(upperInitial('ﬁ')).toBe('ﬁ');
+    expect(upperInitial('ǆ')).toBe('Ǆ');
   });
 });
 

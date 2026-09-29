@@ -44,7 +44,15 @@ export {
   faviconSvg,
   manifestIcons,
 } from './icons.ts';
-export { DISPLAY_FONT_STACK, hasOutlines, type InitialsOptions, initialsElement, initialsFrom } from './initials.ts';
+export {
+  DISPLAY_FONT_STACK,
+  graphemes,
+  hasOutlines,
+  type InitialsOptions,
+  initialsElement,
+  initialsFrom,
+  upperInitial,
+} from './initials.ts';
 export {
   type LockupGeometry,
   type LockupLayout,
