@@ -7,9 +7,14 @@
 --     [-v readonly_password="$SOTF_READONLY_PASSWORD"] \
 --     -f ops/sql/roles.sql
 --
--- Run it AFTER `pnpm db:migrate` (so the v2 tables and the pgboss schema exist); default
--- privileges cover the tables that later migrations create. Passwords are passed as psql
--- variables, never written to a file.
+-- When: cutover step B2 (PLAN §6.13), BEFORE the migration job of B3, so that the legacy API
+-- already runs as sotf_legacy_app (no DDL) when the v2 tables appear. At that point only the
+-- legacy tables exist: the v2-specific steps (insert-only "AuditLog", migration ledger, pgboss)
+-- are skipped with a notice. Run it AGAIN after B3 (and after any `db:migrate` that adds an
+-- insert-only table), before sotf_v2_app is used: default privileges grant sotf_v2_app full DML
+-- on every table the migrations create, and only this script takes UPDATE/DELETE on "AuditLog"
+-- back. The script prints `roles.sql: complete` only when every step applied.
+-- Passwords are passed as psql variables, never written to a file.
 --
 -- Roles:
 --   sotf_v2_app      api + worker: DML on public and pgboss, no DDL; "AuditLog" is insert-only;
@@ -57,9 +62,20 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO sotf_v2_a
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA public TO sotf_v2_app;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO sotf_v2_app;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT USAGE, SELECT ON SEQUENCES TO sotf_v2_app;
--- The audit trail is insert-only, and only the migration job writes the migration ledger.
-REVOKE UPDATE, DELETE, TRUNCATE ON "AuditLog" FROM sotf_v2_app;
-REVOKE INSERT, UPDATE, DELETE, TRUNCATE ON "_v2_migrations" FROM sotf_v2_app;
+-- The audit trail is insert-only, and only the migration job writes the migration ledger. Both
+-- tables are created by `pnpm db:migrate` (B3): before that there is nothing to revoke yet.
+SELECT to_regclass('public."AuditLog"') IS NOT NULL AS has_audit_log,
+       to_regclass('public."_v2_migrations"') IS NOT NULL AS has_ledger \gset
+\if :has_audit_log
+  REVOKE UPDATE, DELETE, TRUNCATE ON "AuditLog" FROM sotf_v2_app;
+\else
+  \echo 'roles.sql: table "AuditLog" not found (migrations not applied yet): re-run this script after `pnpm db:migrate`'
+\endif
+\if :has_ledger
+  REVOKE INSERT, UPDATE, DELETE, TRUNCATE ON "_v2_migrations" FROM sotf_v2_app;
+\else
+  \echo 'roles.sql: table "_v2_migrations" not found (migrations not applied yet): re-run this script after `pnpm db:migrate`'
+\endif
 
 -- pg-boss (installed by `pnpm db:migrate` with the owner credentials). Queues created with
 -- `partition: true` run DDL: create them from the migration job, not from the app.
@@ -73,7 +89,7 @@ SELECT EXISTS (SELECT 1 FROM pg_namespace WHERE nspname = 'pgboss') AS has_pgbos
   ALTER DEFAULT PRIVILEGES IN SCHEMA pgboss GRANT USAGE, SELECT ON SEQUENCES TO sotf_v2_app;
   ALTER DEFAULT PRIVILEGES IN SCHEMA pgboss GRANT EXECUTE ON FUNCTIONS TO sotf_v2_app;
 \else
-  \echo 'roles.sql: schema pgboss not found; run `pnpm db:migrate` first and re-run this script'
+  \echo 'roles.sql: schema pgboss not found (migrations not applied yet): re-run this script after `pnpm db:migrate`'
 \endif
 
 -- 4. Legacy application: DML on the 16 legacy tables and their sequences only.
@@ -114,4 +130,9 @@ $$;
 
 COMMIT;
 
-\echo 'roles.sql: sotf_v2_app and sotf_legacy_app are ready'
+SELECT :'has_audit_log'::boolean AND :'has_ledger'::boolean AND :'has_pgboss'::boolean AS roles_complete \gset
+\if :roles_complete
+  \echo 'roles.sql: complete (sotf_v2_app, sotf_legacy_app and the v2 grants are in place)'
+\else
+  \echo 'roles.sql: PARTIAL: sotf_legacy_app is ready; re-run after `pnpm db:migrate` before sotf_v2_app is used'
+\endif

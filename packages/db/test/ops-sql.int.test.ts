@@ -3,7 +3,9 @@ import { readFileSync } from 'node:fs';
 import pg from 'pg';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { introspectCatalog } from '../src/guard/catalog.ts';
+import { markBaselineApplied, migrateUp } from '../src/migrate/runner.ts';
 import { createFactories, startTestDb, startTestServer, stopTestServer, type TestDb } from '../src/testing.ts';
+import { createLegacySchema, scratchDatabase } from './_helpers.ts';
 
 const opsSql = (name: string) => readFileSync(new URL(`../../../ops/sql/${name}`, import.meta.url), 'utf8');
 const LEGACY_HOST = 'files.sotf-mods.com'; // check-forbidden-allow: legacy-files-host the audit test seeds the legacy host on purpose
@@ -112,6 +114,43 @@ describe('ops/sql/roles.sql (PLAN §6.7)', () => {
     });
     const { rows } = await t.pool.query(`SELECT "status" FROM "Mod" WHERE "slug" = 'legacy-role'`);
     expect(rows[0]).toEqual({ status: 'published' });
+  });
+
+  it('follows the cutover order: B2 on the legacy-only database, B3 migrations, then a second run', async () => {
+    const db = await scratchDatabase();
+    try {
+      await createLegacySchema(db.client);
+      const vars = { v2_password: v2, legacy_password: legacy };
+
+      // B2: only the legacy tables exist yet.
+      const b2 = await psql(db.url, opsSql('roles.sql'), vars);
+      expect(b2.code, b2.output).toBe(0);
+      expect(b2.output).toMatch(/PARTIAL/);
+      await asRole(urlFor(db.url, 'sotf_legacy_app', legacy), async (c) => {
+        await c.query(`UPDATE "Mod" SET "isApproved" = "isApproved" WHERE false`);
+        await expect(c.query(`CREATE TABLE "Ban" (id int)`)).rejects.toThrow(/permission denied/);
+      });
+
+      // B3: the migration job (owner) creates the v2 tables.
+      await markBaselineApplied(db.client);
+      await migrateUp(db.client, { pgBoss: { connectionString: db.url } });
+      await asRole(urlFor(db.url, 'sotf_legacy_app', legacy), async (c) => {
+        await expect(c.query(`SELECT 1 FROM "AuditLog" LIMIT 1`)).rejects.toThrow(/permission denied/);
+      });
+
+      // Second run: the audit trail becomes insert-only for the v2 application.
+      const after = await psql(db.url, opsSql('roles.sql'), vars);
+      expect(after.code, after.output).toBe(0);
+      expect(after.output).toMatch(/roles\.sql: complete/);
+      await asRole(urlFor(db.url, 'sotf_v2_app', v2), async (c) => {
+        await c.query(`INSERT INTO "AuditLog" ("action", "reason") VALUES ('test.action', 'cutover order')`);
+        await expect(c.query(`UPDATE "AuditLog" SET "reason" = 'tampered'`)).rejects.toThrow(/permission denied/);
+        await expect(c.query(`DELETE FROM "_v2_migrations"`)).rejects.toThrow(/permission denied/);
+        await c.query(`SELECT count(*) FROM pgboss.job`);
+      });
+    } finally {
+      await db.close();
+    }
   });
 
   it('sotf_readonly: SELECT only', async () => {
