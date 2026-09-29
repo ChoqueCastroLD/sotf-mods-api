@@ -112,6 +112,18 @@ export const RULES: readonly ForbiddenRule[] = [
     allow: LEGACY_ENV_ALLOW,
   },
   {
+    id: 'legacy-env-urls',
+    description:
+      'BASE_URL, PUBLIC_BASE_URL, API_URL, PUBLIC_API_URL, GPT_API_KEY, R2_CUSTOM_DOMAIN and R2_BUCKET_NAME ' +
+      'are legacy variables; v2 uses PUBLIC_SITE_URL, INTERNAL_API_URL, ' +
+      'R2_PUBLIC_BASE_URL and R2_BUCKET (PLAN §2.8 point 5, §11.4)',
+    // Whole identifiers only (R2_PUBLIC_BASE_URL and INTERNAL_API_URL do not match: `_` is a word
+    // character). Vite/Astro's built-in `import.meta.env.BASE_URL` is not a deployment variable.
+    pattern:
+      /(?<!meta\.env\.)\b(?:PUBLIC_)?BASE_URL\b|\b(?:PUBLIC_)?API_URL\b|\bGPT_API_KEY\b|\bR2_CUSTOM_DOMAIN\b|\bR2_BUCKET_NAME\b/,
+    allow: LEGACY_ENV_ALLOW,
+  },
+  {
     id: 'legacy-preview-suffix',
     description:
       'the legacy "<image url>/preview" suffix is gone; media variants live in R2 (PLAN §2.8). ' +

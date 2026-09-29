@@ -84,6 +84,32 @@ describe('rules', () => {
     }
   });
 
+  it('flags the legacy URL and storage variables of PLAN §2.8 point 5 but not their v2 successors', () => {
+    for (const name of [
+      'BASE_URL',
+      'PUBLIC_BASE_URL',
+      'API_URL',
+      'PUBLIC_API_URL',
+      'GPT_API_KEY',
+      'R2_CUSTOM_DOMAIN',
+      'R2_BUCKET_NAME',
+    ]) {
+      expect(rulesHit('src/env.ts', `const v = process.env.${name};`), name).toEqual(['legacy-env-urls']);
+      expect(rulesHit('.env.example', `${name}=`), name).toEqual(['legacy-env-urls']);
+    }
+    for (const line of [
+      'R2_PUBLIC_BASE_URL=',
+      'INTERNAL_API_URL=http://api:3000',
+      'R2_BUCKET=sotf-mods',
+      'const base = import.meta.env.BASE_URL;',
+      'const API_URL_PREFIX = "/api";',
+      'const MY_BASE_URL_TEMPLATE = x;',
+      'OPENAI_GPT_API_KEYS=',
+    ]) {
+      expect(rulesHit('src/env.ts', line), line).toEqual([]);
+    }
+  });
+
   it('flags the legacy "/preview" suffix but not v2 preview routes', () => {
     expect(rulesHit('a.js', "img.src = imageUrl + '/preview';")).toEqual(['legacy-preview-suffix']);
     // biome-ignore lint/suspicious/noTemplateCurlyInString: the literal placeholder is the input under test
