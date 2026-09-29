@@ -75,7 +75,16 @@ Never edit it by hand.
 
 **Reproducibility.** Vector assets depend only on this package. PNGs are encoded by the pinned
 sharp/libvips build without metadata; hashes are stable for a given platform (linux-x64 in CI and
-Docker). If `check:assets` flags PNG-only differences on another OS, rebuild on linux-x64.
+Docker). `check:assets` is always strict. The unit tests compare SVG/JSON byte for byte everywhere,
+but compare rasters byte for byte only on linux-x64 or when `CI=true` (or
+`SOTF_BRAND_STRICT_ASSETS=1`); elsewhere they decode the PNGs and allow a small pixel tolerance, so
+`pnpm verify` on macOS or arm64 is not red for platform noise. If `check:assets` flags PNG-only
+differences on another OS, rebuild on linux-x64.
+
+**Shared config.** `tsconfig.json` extends `../config/tsconfig/node.json` by relative path, not
+through `node_modules/@sotf/config`: Vite/oxc resolves the preset's own `extends` from the
+symlinked location and would miss the root `tsconfig.base.json`. Vitest uses the shared
+`defineUnitConfig` preset from `@sotf/config/vitest`.
 
 ## Design notes
 
@@ -89,8 +98,12 @@ Docker). If `check:assets` flags PNG-only differences on another OS, rebuild on 
   sub-millisecond. Public HTML is edge-cached, so this is paid once per page render.
 - **Font-independent initials.** Latin capitals and digits are drawn from embedded outlines;
   other scripts fall back to `<text>` with the display font stack (one character for CJK).
+  Initials are NFC-normalised and counted in user-perceived characters (graphemes); an upper
+  case that would expand («ß» → «SS») keeps the original character, so the limit always holds.
 - **Theming.** `lockupSvg({ theme: 'adaptive' })` paints «SOTF» with `currentColor` and the Flare
-  parts with `#FF7335` plus the class `brand-flare`; in Day, style `.brand-flare { fill: #E75803 }`.
+  parts with the Day flare `#E75803` plus the class `brand-flare`. That default keeps ≥ 3:1 on
+  every surface of both themes, so the logo degrades safely without theme CSS; in Night a page may
+  brighten it with `[data-theme="dark"] .brand-flare { fill: #FF7335 }`.
 - **Accessibility.** Untitled SVGs get `aria-hidden="true"`; pass `title` when the graphic is the
   only carrier of meaning. The pin keeps ≥ 3:1 contrast on every surface of both themes (tested).
 
