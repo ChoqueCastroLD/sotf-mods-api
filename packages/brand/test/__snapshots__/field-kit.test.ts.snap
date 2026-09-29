@@ -1,0 +1,3 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Field kit icons > are deterministic (snapshot) 1`] = `"a8e33159e2d5467b0546e49da4113ed56c5c55214825332c26d4bc1fdfe98851"`;
