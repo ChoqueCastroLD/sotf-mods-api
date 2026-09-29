@@ -1,0 +1,283 @@
+From fff58edee3d75bf31a1d9baa4753da27c799cb92 Mon Sep 17 00:00:00 2001
+From: Luis Choque <luis.choque.castro@outlook.com>
+Date: Tue, 29 Sep 2026 14:07:26 +0200
+Subject: [PATCH 2/3] refactor(config): read R2_PUBLIC_BASE_URL and drop unused
+ variables
+
+New file URLs are built by publicFileUrl() from R2_PUBLIC_BASE_URL
+(FILE_DOWNLOAD_ENDPOINT is still honoured as a fallback, so deploying
+needs no env change). The stored format is unchanged: raw URL on the R2
+domain.
+
+.env.example and README no longer list variables that no code reads:
+KELVINGPT_API, KELVINGPT_API_AUTHORITY, FILE_UPLOAD_ENDPOINT,
+FILE_UPLOAD_TOKEN and FILE_PREVIEW_ENDPOINT. GPT_API_KEY and the R2
+variables, which the code does read, are now documented.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ .env.example                        | 14 ++++++++------
+ README.md                           | 19 +++++++++++++++----
+ src/api/mods/comment.ts             |  3 ++-
+ src/api/mods/publish.ts             |  7 ++++---
+ src/api/mods/publish_build.ts       |  7 ++++---
+ src/api/mods/release-version.ts     |  3 ++-
+ src/api/mods/update.ts              |  5 +++--
+ src/api/users/avatar.ts             |  3 ++-
+ src/scripts/migrate-images-to-r2.ts |  6 +++---
+ 9 files changed, 43 insertions(+), 24 deletions(-)
+
+diff --git a/.env.example b/.env.example
+index 6cd35c9..0c7c5a1 100644
+--- a/.env.example
++++ b/.env.example
+@@ -2,11 +2,13 @@ PORT=
+ BASE_URL=
+ DATABASE_URL=
+ JWT_SECRET=
+-KELVINGPT_API=
+-KELVINGPT_API_AUTHORITY=
+-FILE_UPLOAD_ENDPOINT=
+-FILE_UPLOAD_TOKEN=
+-FILE_DOWNLOAD_ENDPOINT=
+-FILE_PREVIEW_ENDPOINT=
++GPT_API_KEY=
++R2_ACCOUNT_ID=
++R2_ACCESS_KEY_ID=
++R2_SECRET_ACCESS_KEY=
++R2_BUCKET_NAME=
++# Public base URL of the R2 bucket (custom domain), e.g. https://r2.sotf-mods.com
++# Downloads answer with a 302 to this domain. FILE_DOWNLOAD_ENDPOINT is still read as a fallback.
++R2_PUBLIC_BASE_URL=
+ RESEND_API_KEY=
+ EMAIL_FROM=
+\ No newline at end of file
+diff --git a/README.md b/README.md
+index 9f4fb3d..0a03b87 100644
+--- a/README.md
++++ b/README.md
+@@ -7,8 +7,8 @@ PORT=
+ BASE_URL=
+ DATABASE_URL=
+ JWT_SECRET=
+-KELVINGPT_API=
+-KELVINGPT_API_AUTHORITY=
++# OpenAI key used by KelvinSeek
++GPT_API_KEY=
+ # Cloudflare R2 Configuration
+ # Account ID can be found in your R2 bucket settings
+ # Example: f2c7d00256306a6f5eb502e7460ce5cd
+@@ -29,10 +29,21 @@ R2_BUCKET_NAME=
+ # Public URL for accessing files - use your custom domain or R2 public URL
+ # Example with custom domain: https://r2.sotf-mods.com
+ # Example with R2 public URL: https://pub-<account-id>.r2.dev
+-FILE_DOWNLOAD_ENDPOINT=
+-FILE_PREVIEW_ENDPOINT=
++# Downloads answer with a 302 redirect to this domain (files never pass through the API).
++# The legacy name FILE_DOWNLOAD_ENDPOINT is still honoured as a fallback.
++R2_PUBLIC_BASE_URL=
++
++RESEND_API_KEY=
++EMAIL_FROM=
+ ```
+ 
++### Downloads
++`GET /api/mods/:mod_id/download/:version` and `GET /api/mods/slug/:userSlug/:mod_slug/download/:version`
++record the download (`ModDownload` with the client IP from `?ip=`, `CF-Connecting-IP` or the first
++`X-Forwarded-For` hop) and answer `302 Found` with `Location: <R2_PUBLIC_BASE_URL>/<key>`, where each
++`/`-separated segment of the key is encoded with `encodeURIComponent`. Unknown versions answer `404`;
++files whose stored URL is not on the R2 domain answer `410 Gone`.
++
+ To setup the project run:
+ 
+ ```bash
+diff --git a/src/api/mods/comment.ts b/src/api/mods/comment.ts
+index ae5b8d8..cca3ed5 100644
+--- a/src/api/mods/comment.ts
++++ b/src/api/mods/comment.ts
+@@ -5,6 +5,7 @@ import { loggedOnly } from '../../middlewares/auth.middleware'
+ import { ValidationError } from '../../errors/validation';
+ import { sanitizeInput } from '../../shared/sanitize';
+ import { uploadFile } from '../../services/files';
++import { publicFileUrl } from '../../shared/public-files';
+ 
+ 
+ export const router = () => new Elysia()
+@@ -73,7 +74,7 @@ export const router = () => new Elysia()
+                     const ext = image.name.split(".").pop();
+                     const imageBuffer = await image.arrayBuffer();
+                     const imageKey = await uploadFile(imageBuffer, `comment_${comment.id}.${ext}`);
+-                    imageUrl = `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${imageKey}`;
++                    imageUrl = publicFileUrl(imageKey);
+                     await prisma.comment.update({
+                         where: { id: comment.id },
+                         data: { imageUrl },
+diff --git a/src/api/mods/publish.ts b/src/api/mods/publish.ts
+index eb6f988..b527c7e 100644
+--- a/src/api/mods/publish.ts
++++ b/src/api/mods/publish.ts
+@@ -11,6 +11,7 @@ import {
+ } from "../../shared/validation";
+ import { ValidationError } from "../../errors/validation";
+ import { downloadFile } from "../../services/files";
++import { publicFileUrl } from "../../shared/public-files";
+ import { readManifest } from "../../shared/read-manifest";
+ 
+ const MOD_FILE_SIZE_LIMIT = 200 * 1024 * 1024; // 200MB default
+@@ -158,7 +159,7 @@ export const router = () =>
+       // Use the provided image keys directly
+       const imageKeysArray = Array.isArray(imageKeys) ? imageKeys : (imageKeys ? [imageKeys] : []);
+       const uploadedImages = imageKeysArray.map((imageKey: string) => ({
+-        url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${imageKey}`,
++        url: publicFileUrl(imageKey),
+         isPrimary: false,
+         isThumbnail: false,
+       }));
+@@ -181,7 +182,7 @@ export const router = () =>
+           categoryId: typeof category_id === 'number' ? category_id : parseInt(category_id),
+           userId: user?.id,
+           latestVersion: version,
+-          imageUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${thumbnailFilename}`,
++          imageUrl: publicFileUrl(thumbnailFilename),
+           images: {
+             createMany: {
+               data: uploadedImages.filter((image: any) => !!image),
+@@ -197,7 +198,7 @@ export const router = () =>
+         data: {
+           version,
+           changelog: "First release",
+-          downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
++          downloadUrl: publicFileUrl(filename),
+           isLatest: true,
+           filename,
+ 
+diff --git a/src/api/mods/publish_build.ts b/src/api/mods/publish_build.ts
+index 1ce1d46..2e8ff8b 100644
+--- a/src/api/mods/publish_build.ts
++++ b/src/api/mods/publish_build.ts
+@@ -10,6 +10,7 @@ import {
+ } from "../../shared/validation";
+ import { ValidationError } from "../../errors/validation";
+ import { downloadFile } from "../../services/files";
++import { publicFileUrl } from "../../shared/public-files";
+ 
+ const BUILDS_FILE_SIZE_LIMIT = 100 * 1024 * 1024; // 100MB
+ 
+@@ -121,7 +122,7 @@ export const router = () =>
+ 
+       // Use the provided image keys directly
+       const uploadedImages = (imageKeys || []).map((imageKey: string) => ({
+-        url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${imageKey}`,
++        url: publicFileUrl(imageKey),
+         isPrimary: false,
+         isThumbnail: false,
+       }));
+@@ -149,7 +150,7 @@ export const router = () =>
+           buildShareVersion: JSON.parse(contents.Data).Version.toString(),
+           numberOfElements: contents.NumberOfElements,
+           latestVersion: version,
+-          imageUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${thumbnailFilename}`,
++          imageUrl: publicFileUrl(thumbnailFilename),
+           images: {
+             createMany: {
+               data: uploadedImages.filter((image) => !!image),
+@@ -165,7 +166,7 @@ export const router = () =>
+         data: {
+           version,
+           changelog: "First release",
+-          downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
++          downloadUrl: publicFileUrl(filename),
+           isLatest: true,
+           filename,
+ 
+diff --git a/src/api/mods/release-version.ts b/src/api/mods/release-version.ts
+index 299f6b1..229b635 100644
+--- a/src/api/mods/release-version.ts
++++ b/src/api/mods/release-version.ts
+@@ -5,6 +5,7 @@ import { prisma } from '../../services/prisma';
+ import { loggedOnly } from '../../middlewares/auth.middleware'
+ import { ValidationError } from '../../errors/validation';
+ import { uploadFile } from '../../services/files';
++import { publicFileUrl } from '../../shared/public-files';
+ import { readManifest } from '../../shared/read-manifest';
+ 
+ 
+@@ -125,7 +126,7 @@ export const router = () => new Elysia()
+               data: {
+                 version,
+                 changelog,
+-                downloadUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
++                downloadUrl: publicFileUrl(filename),
+                 isLatest: true,
+                 filename,
+                 extension: ext,
+diff --git a/src/api/mods/update.ts b/src/api/mods/update.ts
+index 8e4a774..946a6ad 100644
+--- a/src/api/mods/update.ts
++++ b/src/api/mods/update.ts
+@@ -9,6 +9,7 @@ import {
+ } from "../../shared/validation";
+ import { ValidationError } from "../../errors/validation";
+ import { uploadFile } from "../../services/files";
++import { publicFileUrl } from "../../shared/public-files";
+ 
+ export const router = () =>
+   new Elysia().use(loggedOnly()).patch(
+@@ -77,7 +78,7 @@ export const router = () =>
+               id: mod.id,
+             },
+             data: {
+-              imageUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${thumbnailFilename}`,
++              imageUrl: publicFileUrl(thumbnailFilename),
+             },
+           });
+         }
+@@ -98,7 +99,7 @@ export const router = () =>
+             );
+             if (!filename) throw filename;
+             return {
+-              url: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${filename}`,
++              url: publicFileUrl(filename),
+               isPrimary: false,
+               isThumbnail: false,
+               modId: mod.id,
+diff --git a/src/api/users/avatar.ts b/src/api/users/avatar.ts
+index 41d072f..7d98bf7 100644
+--- a/src/api/users/avatar.ts
++++ b/src/api/users/avatar.ts
+@@ -3,6 +3,7 @@ import { Elysia, t } from 'elysia'
+ import { prisma } from "../../services/prisma";
+ import { loggedOnly } from '../../middlewares/auth.middleware'
+ import { uploadFile } from '../../services/files';
++import { publicFileUrl } from '../../shared/public-files';
+ import { ValidationError } from "../../errors/validation";
+ 
+ 
+@@ -34,7 +35,7 @@ export const router = () => new Elysia()
+                     id: user.id,
+                 },
+                 data: {
+-                    imageUrl: `${Bun.env.FILE_DOWNLOAD_ENDPOINT}/${avatarFilename}`,
++                    imageUrl: publicFileUrl(avatarFilename),
+                 }
+             });
+             return { status: true, data: { imageUrl: updatedUser.imageUrl } };
+diff --git a/src/scripts/migrate-images-to-r2.ts b/src/scripts/migrate-images-to-r2.ts
+index d794f13..9e91b0c 100644
+--- a/src/scripts/migrate-images-to-r2.ts
++++ b/src/scripts/migrate-images-to-r2.ts
+@@ -44,11 +44,11 @@ for (let i = 0; i < args.length; i++) {
+   }
+ }
+ 
+-// R2 custom domain (from env, fallback to FILE_DOWNLOAD_ENDPOINT)
+-const R2_CUSTOM_DOMAIN = Bun.env.R2_CUSTOM_DOMAIN || Bun.env.FILE_DOWNLOAD_ENDPOINT || "";
++// Public R2 domain (R2_PUBLIC_BASE_URL; FILE_DOWNLOAD_ENDPOINT kept as a legacy fallback)
++const R2_CUSTOM_DOMAIN = Bun.env.R2_PUBLIC_BASE_URL || Bun.env.FILE_DOWNLOAD_ENDPOINT || "";
+ 
+ if (!R2_CUSTOM_DOMAIN) {
+-  console.error("❌ Error: R2_CUSTOM_DOMAIN or FILE_DOWNLOAD_ENDPOINT environment variable is required");
++  console.error("❌ Error: R2_PUBLIC_BASE_URL (or legacy FILE_DOWNLOAD_ENDPOINT) environment variable is required");
+   process.exit(1);
+ }
+ 

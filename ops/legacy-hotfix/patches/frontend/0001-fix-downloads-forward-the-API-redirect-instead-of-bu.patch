@@ -1,0 +1,252 @@
+From 740c9603a17cca34a13dcc0392886b331234994b Mon Sep 17 00:00:00 2001
+From: Luis Choque <luis.choque.castro@outlook.com>
+Date: Tue, 29 Sep 2026 14:07:35 +0200
+Subject: [PATCH 1/3] fix(downloads): forward the API redirect instead of
+ buffering files
+
+The download proxy fetched the whole file from the API, buffered it and
+re-sent it. It now calls the API with redirect: "manual" (through the
+internal API_URL when set, else PUBLIC_API_URL) and returns the API's
+302 to R2 unchanged, with Cache-Control: no-store.
+
+- Path segments are encoded, so slugs with apostrophes or spaces work.
+- The client IP comes from CF-Connecting-IP, else the first
+  X-Forwarded-For hop, and is only sent when known (no more "null").
+- HEAD is forwarded as HEAD, so link checks are not counted.
+- 404 and 410 keep their status code instead of becoming a 200 with a
+  JSON body that clients saved as a zip. Non-redirect bodies are
+  streamed, never buffered.
+- Browsers (Accept: text/html) that follow a dead download link get a
+  small HTML page with the same status and a link back to the mod page;
+  tools keep receiving the JSON envelope.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ README.md                 |   8 ++
+ src/router.ts             |  15 +---
+ src/util/download.util.ts | 162 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 172 insertions(+), 13 deletions(-)
+ create mode 100644 src/util/download.util.ts
+
+diff --git a/README.md b/README.md
+index 0ffd3fa..4efa809 100644
+--- a/README.md
++++ b/README.md
+@@ -5,8 +5,16 @@ First create a .env and fill the variables
+ ```env
+ PORT=4000
+ PUBLIC_API_URL=https://api.sotf-mods.com
++# Optional: internal address of the API (e.g. http://sotf-mods-api:3001), used by the download proxy
++API_URL=
+ ```
+ 
++### Downloads
++`/mods/:userSlug/:modSlug/download/:version` asks the API (via `API_URL`, or `PUBLIC_API_URL`) with
++`redirect: "manual"`, forwarding the client IP (`CF-Connecting-IP`, else the first `X-Forwarded-For` hop)
++and user agent, and returns the API's `302` to the file on R2 unchanged. File bytes never pass through
++the frontend; `404` and `410` errors keep their status code.
++
+ To setup the project run:
+ 
+ ```bash
+diff --git a/src/router.ts b/src/router.ts
+index bebb77e..b9442e9 100644
+--- a/src/router.ts
++++ b/src/router.ts
+@@ -3,6 +3,7 @@ import { cookie } from "@elysiajs/cookie";
+ 
+ import { render } from "./middlewares/render.middleware";
+ import { authMiddleware } from "./middlewares/auth.middleware";
++import { proxyDownload } from "./util/download.util";
+ 
+ const loggedOnly = async ({ user, set }: any) => {
+   if (!user) {
+@@ -203,19 +204,7 @@ export const router = new Elysia()
+   })
+   .get(
+     "/mods/:userSlug/:mod_slug/download/:version",
+-    async ({ params: { userSlug, mod_slug, version }, request, set }) => {
+-      const ip = "" + request.headers.get("x-forwarded-for");
+-      const agent = "" + request.headers.get("user-agent");
+-      const f = await fetch(
+-        `${Bun.env.PUBLIC_API_URL}/api/mods/slug/${userSlug}/${mod_slug}/download/${version}?ip=${ip}&agent=${agent}`
+-      );
+-      const blob = await f.blob();
+-      set.headers["Content-Type"] = "" + f.headers.get("Content-Type");
+-      set.headers["Content-Length"] = "" + f.headers.get("Content-Length");
+-      set.headers["Content-Disposition"] =
+-        "" + f.headers.get("Content-Disposition");
+-      return blob;
+-    }
++    ({ params, request }) => proxyDownload(params, request)
+   )
+   .get("/loader", render("loader"))
+   .get("/privacy", render("privacy"))
+diff --git a/src/util/download.util.ts b/src/util/download.util.ts
+new file mode 100644
+index 0000000..8840fb0
+--- /dev/null
++++ b/src/util/download.util.ts
+@@ -0,0 +1,162 @@
++/**
++ * Download proxy: `/mods/:userSlug/:modSlug/download/:version`.
++ *
++ * The API records the download and answers with a 302 to the public R2 object.
++ * This route forwards that redirect as-is (`redirect: "manual"`), so file bytes
++ * never pass through the frontend. Errors (404 unknown version, 410 file gone)
++ * are forwarded with their real status code: as JSON for tools (RedManager,
++ * curl) and as a small HTML page for browsers (`Accept: text/html`).
++ *
++ * API base: `API_URL` (internal network address, optional) or `PUBLIC_API_URL`.
++ */
++
++const NO_STORE_HEADERS = {
++    "Cache-Control": "no-store, private",
++    "X-Robots-Tag": "noindex, nofollow",
++    "Referrer-Policy": "no-referrer",
++};
++
++// Content-Length is not forwarded: fetch may have decoded a compressed body.
++const PASSTHROUGH_HEADERS = ["content-type", "content-disposition"];
++
++const MISSING_VALUES = new Set(["", "undefined", "null"]);
++
++function present(value: string | null | undefined): string | null {
++    const trimmed = (value ?? "").trim();
++    return MISSING_VALUES.has(trimmed.toLowerCase()) ? null : trimmed;
++}
++
++function apiBaseUrl(): string {
++    return (Bun.env.API_URL || Bun.env.PUBLIC_API_URL || "").trim().replace(/\/+$/, "");
++}
++
++/** Real client IP: `CF-Connecting-IP`, then the first `X-Forwarded-For` hop. */
++function clientIp(headers: Headers): string | null {
++    return (
++        present(headers.get("cf-connecting-ip")) ??
++        present(headers.get("x-forwarded-for")?.split(",")[0]) ??
++        null
++    );
++}
++
++function jsonError(status: number, error: string, message: string): Response {
++    return new Response(JSON.stringify({ status: false, error, message }), {
++        status,
++        headers: { ...NO_STORE_HEADERS, "Content-Type": "application/json" },
++    });
++}
++
++function wantsHtml(request: Request): boolean {
++    return (request.headers.get("accept") ?? "").toLowerCase().includes("text/html");
++}
++
++function escapeHtml(text: string): string {
++    return text
++        .replaceAll("&", "&amp;")
++        .replaceAll("<", "&lt;")
++        .replaceAll(">", "&gt;")
++        .replaceAll('"', "&quot;")
++        .replaceAll("'", "&#39;");
++}
++
++const HTML_ERROR_MESSAGES: Record<number, { title: string; message: string }> = {
++    404: { title: "Version not found", message: "This version of the mod does not exist." },
++    410: { title: "File no longer available", message: "This file is no longer available for download." },
++};
++const HTML_ERROR_FALLBACK = {
++    title: "Download unavailable",
++    message: "Downloads are temporarily unavailable. Please try again later.",
++};
++
++/** Error page for browsers that follow a dead download link (never raw JSON). */
++function htmlError(status: number, request: Request, modPath: string): Response {
++    const { title, message } = HTML_ERROR_MESSAGES[status] ?? HTML_ERROR_FALLBACK;
++    const body = `<!doctype html>
++<html lang="en">
++<head>
++<meta charset="utf-8">
++<meta name="viewport" content="width=device-width, initial-scale=1">
++<meta name="robots" content="noindex, nofollow">
++<title>${escapeHtml(title)} | SOTF Mods</title>
++<style>body{font-family:system-ui,sans-serif;background:#1d232a;color:#a6adbb;display:grid;place-items:center;min-height:100vh;margin:0}main{max-width:32rem;padding:2rem;text-align:center}h1{color:#fff}a{color:#1fb2a6}</style>
++</head>
++<body>
++<main>
++<h1>${escapeHtml(title)}</h1>
++<p>${escapeHtml(message)}</p>
++<p><a href="${escapeHtml(modPath)}">Back to the mod page</a> &middot; <a href="/mods">Browse mods</a></p>
++</main>
++</body>
++</html>
++`;
++    return new Response(request.method === "HEAD" ? null : body, {
++        status,
++        headers: { ...NO_STORE_HEADERS, "Content-Type": "text/html; charset=utf-8" },
++    });
++}
++
++export async function proxyDownload(
++    params: { userSlug: string; mod_slug: string; version: string },
++    request: Request,
++): Promise<Response> {
++    const modPath = `/mods/${encodeURIComponent(params.userSlug)}/${encodeURIComponent(params.mod_slug)}`;
++    const fail = (status: number, error: string, message: string) =>
++        wantsHtml(request) ? htmlError(status, request, modPath) : jsonError(status, error, message);
++
++    const apiBase = apiBaseUrl();
++    if (!apiBase) {
++        console.error("[Download] Neither API_URL nor PUBLIC_API_URL is set");
++        return fail(503, "UNAVAILABLE", "Downloads are temporarily unavailable.");
++    }
++
++    const path = ["api", "mods", "slug", params.userSlug, params.mod_slug, "download", params.version]
++        .map(encodeURIComponent)
++        .join("/");
++    const query = new URLSearchParams();
++    const ip = clientIp(request.headers);
++    if (ip) query.set("ip", ip);
++    const agent = present(request.headers.get("user-agent"));
++    if (agent) query.set("agent", agent);
++
++    const forwardedHeaders: Record<string, string> = {};
++    const range = request.headers.get("range");
++    if (range) forwardedHeaders["Range"] = range;
++
++    let response: Response;
++    try {
++        response = await fetch(`${apiBase}/${path}${query.size > 0 ? `?${query}` : ""}`, {
++            // HEAD is forwarded as HEAD so the API does not count it.
++            method: request.method === "HEAD" ? "HEAD" : "GET",
++            redirect: "manual",
++            headers: forwardedHeaders,
++        });
++    } catch (error) {
++        console.error("[Download] API request failed", error);
++        return fail(502, "UNAVAILABLE", "Downloads are temporarily unavailable.");
++    }
++
++    const location = response.headers.get("location");
++    if (response.status >= 300 && response.status < 400 && location) {
++        await response.body?.cancel();
++        return new Response(null, {
++            status: 302,
++            headers: { ...NO_STORE_HEADERS, Location: location },
++        });
++    }
++
++    // Browsers following a dead link get an HTML page with the same status.
++    if (response.status >= 400 && wantsHtml(request)) {
++        await response.body?.cancel();
++        return htmlError(response.status, request, modPath);
++    }
++
++    // Errors (404/410/5xx) keep their status. The body is streamed, never
++    // buffered; this also keeps an unpatched API (200 + file body) working
++    // during a rolling deploy.
++    const headers: Record<string, string> = { ...NO_STORE_HEADERS };
++    for (const name of PASSTHROUGH_HEADERS) {
++        const value = response.headers.get(name);
++        if (value) headers[name] = value;
++    }
++    return new Response(response.body, { status: response.status, headers });
++}

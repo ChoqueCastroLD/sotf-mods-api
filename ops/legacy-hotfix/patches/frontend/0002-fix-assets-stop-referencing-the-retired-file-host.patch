@@ -1,0 +1,119 @@
+From 3a818da58a457cf81c404b592c55bd174b29d797 Mon Sep 17 00:00:00 2001
+From: Luis Choque <luis.choque.castro@outlook.com>
+Date: Tue, 29 Sep 2026 14:07:44 +0200
+Subject: [PATCH 2/3] fix(assets): stop referencing the retired file host
+
+- Default og:image and twitter:image point to
+  https://sotf-mods.com/static/images/hd_thumbnail.png (2560x1440,
+  served by this app) instead of an object on the dead file server.
+- The build upload preview uses /static/images/thumbnail.png as its
+  placeholder.
+- lazyLoadImages no longer requests "<url>/preview" (a route of the old
+  file server that 404s on R2) nor re-downloads every image as a blob:
+  it assigns the R2 URL with loading="lazy".
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ src/static/scripts/shared.js       | 25 +++++++------------------
+ src/static/scripts/upload-build.js |  2 +-
+ src/templates/build.njk            |  2 +-
+ src/templates/layout.njk           |  4 ++--
+ src/templates/mod.njk              |  2 +-
+ 5 files changed, 12 insertions(+), 23 deletions(-)
+
+diff --git a/src/static/scripts/shared.js b/src/static/scripts/shared.js
+index 2609086..90ab16e 100644
+--- a/src/static/scripts/shared.js
++++ b/src/static/scripts/shared.js
+@@ -174,26 +174,15 @@ if (window.showdown) {
+     }
+ }
+ 
+-const blobCache = {};
+-async function lazyLoadImages(elements) {
++// Images are served directly by R2; the browser loads and caches them.
++function lazyLoadImages(elements) {
+     for (const img of elements) {
+         const imageUrl = img.dataset.lazySrc;
+-        if(blobCache[imageUrl]) {
+-            img.src = blobCache[imageUrl];
+-            continue;
+-        }
+-        try {
+-            img.removeAttribute('data-lazy-src');
+-            img.src = imageUrl + '/preview';
+-            const f = await fetch(imageUrl);
+-            const blob = await f.blob();
+-            const image = URL.createObjectURL(blob);
+-            blobCache[imageUrl] = image;
+-            img.src = image;
+-        } catch (error) {
+-            // we just ignore the error and let the browser handle it
+-            img.src = imageUrl;
+-        }
++        img.removeAttribute('data-lazy-src');
++        if (!imageUrl) continue;
++        img.loading = 'lazy';
++        img.decoding = 'async';
++        img.src = imageUrl;
+     }
+ }
+ 
+diff --git a/src/static/scripts/upload-build.js b/src/static/scripts/upload-build.js
+index 74e9046..e6f340f 100644
+--- a/src/static/scripts/upload-build.js
++++ b/src/static/scripts/upload-build.js
+@@ -21,7 +21,7 @@ function getModTemplate(mod) {
+   if (!mod.shortDescription)
+     mod.shortDescription = _("This is a description of the mod.");
+   return `<figure class="skeleton w-100 h-[216px]"><img data-lazy-src="${
+-    mod.imageUrl || "https://files.sotf-mods.com/download/thumbnail.png"
++    mod.imageUrl || "/static/images/thumbnail.png"
+   }" class="${mod.isNSFW && !user ? "blur-md hover:blur-none" : ""}" alt="${
+     mod.name || _("Mod Name")
+   }"/></figure>
+diff --git a/src/templates/build.njk b/src/templates/build.njk
+index 075f213..61a7e9a 100644
+--- a/src/templates/build.njk
++++ b/src/templates/build.njk
+@@ -7,7 +7,7 @@
+ {% block meta %}
+   <meta content="{{ mod.name }}" property="og:title">
+   <meta content="{{ mod.shortDescription }}" property="og:description">
+-  <meta content="{{ mod.imageUrl or 'https://files.sotf-mods.com/download/1722086199054_lowergraphicstool222_thumbnail.png' }}" property="og:image">
++  <meta content="{{ mod.imageUrl or 'https://sotf-mods.com/static/images/hd_thumbnail.png' }}" property="og:image">
+   <link type="application/json+oembed" href="https://sotf-mods.com/mods/{{ mod.user.slug }}/{{ mod.slug }}.json">
+   <link rel="stylesheet" href="/static/css/mod.css">
+   <link rel="stylesheet" href="/static/css/description.css">
+diff --git a/src/templates/layout.njk b/src/templates/layout.njk
+index d1f5329..c868680 100644
+--- a/src/templates/layout.njk
++++ b/src/templates/layout.njk
+@@ -25,12 +25,12 @@
+             <meta name="author" content="SOTF-Mods.com">
+             <meta property="og:title" content="SOTF-Mods.com - Sons of The Forest Mods">
+             <meta property="og:description" content="The best Sons of The Forest mods at SOTF-Mods.com">
+-            <meta property="og:image" content="https://files.sotf-mods.com/download/1722086199054_lowergraphicstool222_thumbnail.png">
++            <meta property="og:image" content="https://sotf-mods.com/static/images/hd_thumbnail.png">
+             <meta property="og:url" content="https://sotf-mods.com">
+             <meta property="og:type" content="website">
+             <meta property="twitter:title" content="SOTF-Mods.com - The Best Mods for Sons of The Forest">
+             <meta property="twitter:description" content="The best Sons of The Forest Mods at SOTF-Mods.com">
+-            <meta property="twitter:image" content="https://files.sotf-mods.com/download/1722086199054_lowergraphicstool222_thumbnail.png">
++            <meta property="twitter:image" content="https://sotf-mods.com/static/images/hd_thumbnail.png">
+             <meta property="twitter:url" content="https://sotf-mods.com">
+         {% endblock %}
+ 
+diff --git a/src/templates/mod.njk b/src/templates/mod.njk
+index 896196f..ab413d8 100644
+--- a/src/templates/mod.njk
++++ b/src/templates/mod.njk
+@@ -13,7 +13,7 @@
+ {% block meta %}
+   <meta content="{{ mod.name }}" property="og:title">
+   <meta content="{{ mod.shortDescription }}" property="og:description">
+-  <meta content="{{ mod.imageUrl or 'https://files.sotf-mods.com/download/1722086199054_lowergraphicstool222_thumbnail.png' }}" property="og:image">
++  <meta content="{{ mod.imageUrl or 'https://sotf-mods.com/static/images/hd_thumbnail.png' }}" property="og:image">
+   <link type="application/json+oembed" href="https://sotf-mods.com/mods/{{ mod.user.slug }}/{{ mod.slug }}.json">
+ {% endblock %}
+ 
