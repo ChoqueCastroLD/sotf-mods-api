@@ -21,7 +21,9 @@ describe('loadDbEnv', () => {
   });
 
   it('uses the owner URL for migrations and the app URL for read-only tools', () => {
-    expect(loadDbEnv({ DATABASE_URL: 'postgres://app@h/db', MIGRATIONS_DATABASE_URL: 'postgres://owner@h/db' })).toMatchObject({
+    expect(
+      loadDbEnv({ DATABASE_URL: 'postgres://app@h/db', MIGRATIONS_DATABASE_URL: 'postgres://owner@h/db' }),
+    ).toMatchObject({
       migrationsUrl: 'postgres://owner@h/db',
       readUrl: 'postgres://app@h/db',
     });
