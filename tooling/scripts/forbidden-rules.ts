@@ -35,6 +35,7 @@ const LEGACY_DATA_ALLOW = [
   { glob: 'tooling/migration/legacy/**', reason: 'copy of the legacy Prisma schema' },
   { glob: 'ops/sql/audit-files-host.sql', reason: 'audit that searches the data for the legacy host' },
   { glob: 'ops/legacy-hotfix/**', reason: 'patches that remove the legacy references from the old repos' },
+  { glob: 'docs/backlog/**', reason: 'backlog items describe the legacy references they deal with' },
 ];
 
 /** Legacy environment variables that v2 must never define or read (PLAN §2.8 point 5). */
@@ -42,6 +43,7 @@ const LEGACY_ENV_ALLOW = [
   { glob: 'ops/legacy-hotfix/**', reason: 'patches remove these reads from the legacy repos' },
   { glob: 'ops/runbooks/**', reason: 'runbooks tell the operator which legacy variables to delete' },
   { glob: 'ops/coolify/**', reason: 'Coolify runbooks list the legacy variables to delete' },
+  { glob: 'docs/backlog/**', reason: 'backlog items name the legacy variables they deal with' },
 ];
 
 const PLACEHOLDER_PASSWORDS = new Set([
@@ -116,7 +118,10 @@ export const RULES: readonly ForbiddenRule[] = [
       'Routes such as /api/v2/markdown/preview are fine because they are not a bare suffix.',
     // A string literal that is exactly "/preview", or a template/concatenation ending in "}/preview".
     pattern: /(?:['"`]\/preview\b|\}\/preview\b)/,
-    allow: [{ glob: 'ops/legacy-hotfix/**', reason: 'patches remove the suffix from the legacy frontend' }],
+    allow: [
+      { glob: 'ops/legacy-hotfix/**', reason: 'patches remove the suffix from the legacy frontend' },
+      { glob: 'docs/backlog/**', reason: 'backlog items describe the legacy suffix they deal with' },
+    ],
   },
   {
     id: 'secret-openai-key',
