@@ -15,11 +15,20 @@
   },
   "dependencies": {
     "@sotf/contracts": "workspace:*",
-    "@sotf/db": "workspace:*"
+    "@sotf/db": "workspace:*",
+    "drizzle-orm": "catalog:",
+    "lru-cache": "catalog:",
+    "pg": "catalog:",
+    "pg-boss": "catalog:",
+    "pino": "catalog:",
+    "uuidv7": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sotf/config": "workspace:*",
+    "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
+    "@types/pg": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

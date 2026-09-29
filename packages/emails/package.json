@@ -14,10 +14,16 @@
     "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
   },
   "dependencies": {
-    "@sotf/i18n": "workspace:*"
+    "@react-email/components": "catalog:",
+    "@sotf/brand": "workspace:*",
+    "@sotf/i18n": "workspace:*",
+    "react": "catalog:",
+    "react-dom": "catalog:"
   },
   "devDependencies": {
     "@sotf/config": "workspace:*",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
