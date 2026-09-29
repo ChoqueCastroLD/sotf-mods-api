@@ -12,7 +12,9 @@ Presets de herramientas compartidos por todo el workspace (PLAN §2.4 y §2.6). 
 | `vitest/index.ts` | `defineUnitConfig()` y `defineIntConfig()` para un `vitest.config.ts` propio |
 | `vitest/unit.ts` · `vitest/int.ts` | Configuraciones listas para usar desde los scripts del paquete |
 
-Todos los tsconfig extienden `tsconfig.base.json` de la raíz (`strict`,
+Todos los tsconfig extienden `tsconfig/base.json` de este paquete (el `tsconfig.base.json` de la raíz
+solo lo re-exporta). Así los presets no salen del paquete y Vitest (Vite/oxc) los resuelve también
+a través del enlace `node_modules/@sotf/config` (`strict`,
 `noUncheckedIndexedAccess`, `erasableSyntaxOnly`, `verbatimModuleSyntax`, `module: nodenext`,
 imports `.ts` con `noEmit`).
 

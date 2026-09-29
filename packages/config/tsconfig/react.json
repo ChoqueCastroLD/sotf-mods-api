@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "React packages rendered on the server and in the browser (ui, emails, web islands)",
-  "extends": "../../../tsconfig.base.json",
+  "extends": "./base.json",
   "compilerOptions": {
     "lib": ["es2024", "dom", "dom.iterable"],
     "jsx": "react-jsx",

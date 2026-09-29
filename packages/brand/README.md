@@ -81,9 +81,8 @@ but compare rasters byte for byte only on linux-x64 or when `CI=true` (or
 `pnpm verify` on macOS or arm64 is not red for platform noise. If `check:assets` flags PNG-only
 differences on another OS, rebuild on linux-x64.
 
-**Shared config.** `tsconfig.json` extends `../config/tsconfig/node.json` by relative path, not
-through `node_modules/@sotf/config`: Vite/oxc resolves the preset's own `extends` from the
-symlinked location and would miss the root `tsconfig.base.json`. Vitest uses the shared
+**Shared config.** `tsconfig.json` extends `@sotf/config/tsconfig/node.json` (the presets are
+self-contained, so Vite/oxc can resolve them through `node_modules`). Vitest uses the shared
 `defineUnitConfig` preset from `@sotf/config/vitest`.
 
 ## Design notes
