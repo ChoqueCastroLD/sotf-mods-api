@@ -1,0 +1,5 @@
+# .NET build output of the UpdatesChecker checker (built inside Docker; never committed)
+dotnet/bin/
+dotnet/obj/
+# Responses captured by `contract:legacy --save <dir>` when pointed inside the package
+.captures/
