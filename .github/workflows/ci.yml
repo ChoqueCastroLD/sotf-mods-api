@@ -1,0 +1,202 @@
+# CI for pull requests and pushes (PLAN §10.2). `pnpm ci:local` runs the same stages locally.
+#
+# Stages owned by work packages that have not landed yet are skipped with a notice
+# (SOTF_OPTIONAL_TASKS=1 is the `--if-present` of PLAN §10.2); files that do not exist yet
+# (ops/compose/e2e.yml, ops/docker/*.Dockerfile) gate their steps with hashFiles().
+# release.yml and deploy.yml are delivered by WP-90.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  TZ: UTC
+  CI: '1'
+  FORCE_COLOR: '1'
+  TURBO_TELEMETRY_DISABLED: '1'
+  TURBO_CACHE_DIR: .turbo/cache
+  SOTF_OPTIONAL_TASKS: '1'
+
+jobs:
+  verify:
+    name: verify (lint, checks, typecheck, tests, build)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Enable pnpm (corepack, version from package.json#packageManager)
+        run: corepack enable pnpm && pnpm --version
+
+      - name: Locate pnpm store
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-store-${{ runner.os }}-
+
+      - name: Cache turbo
+        uses: actions/cache@v4
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: 1 · biome ci
+        run: pnpm exec biome ci .
+
+      - name: 2 · check:forbidden
+        run: pnpm check:forbidden
+
+      - name: 2b · generated files are committed and fresh
+        run: |
+          pnpm gen
+          git diff --exit-code -- . ':(exclude)pnpm-lock.yaml' || {
+            echo "::error::Generated files are stale. Run 'pnpm gen' and commit the result."
+            exit 1
+          }
+          node tooling/scripts/gen-ownership.ts --check
+
+      - name: 2c · check:ownership (wp/* pull requests)
+        if: github.event_name == 'pull_request'
+        env:
+          SOTF_BASE_REF: origin/${{ github.base_ref }}
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          wp="$(printf '%s' "$HEAD_REF" | grep -oE 'WP-[0-9A-Z]{2}$' || true)"
+          node tooling/scripts/check-ownership.ts --optional ${wp:+"$wp"}
+
+      - name: 3 · i18n:check
+        run: pnpm i18n:check
+
+      - name: 4 · typecheck
+        run: pnpm exec turbo run typecheck
+
+      - name: 5 · unit tests
+        run: pnpm exec turbo run test
+
+      - name: 6 · integration tests (Testcontainers)
+        run: pnpm exec turbo run test:int
+
+      - name: 7 · db:guard
+        run: pnpm db:guard
+
+      - name: 8 · contract:legacy
+        run: pnpm contract:legacy
+
+      - name: 9 · build
+        run: pnpm exec turbo run build
+
+  e2e:
+    name: e2e + axe + visual, LHCI
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Enable pnpm
+        run: corepack enable pnpm
+
+      - name: Locate pnpm store
+        id: pnpm-store
+        run: echo "path=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.path }}
+          key: pnpm-store-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+          restore-keys: pnpm-store-${{ runner.os }}-
+
+      - name: Cache turbo
+        uses: actions/cache@v4
+        with:
+          path: .turbo/cache
+          key: turbo-${{ runner.os }}-${{ github.sha }}
+          restore-keys: turbo-${{ runner.os }}-
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm exec turbo run build
+
+      - name: 10 · start e2e services (pg + seaweedfs + mailpit)
+        if: hashFiles('ops/compose/e2e.yml') != ''
+        run: docker compose -p sotfv2-e2e -f ops/compose/e2e.yml up --detach --wait --wait-timeout 180
+
+      - name: 10 · install Playwright browsers
+        if: hashFiles('e2e/package.json') != ''
+        run: pnpm --dir e2e exec playwright install --with-deps
+
+      - name: 10 · e2e + axe + visual
+        if: hashFiles('ops/compose/e2e.yml') != ''
+        run: pnpm e2e
+
+      - name: 10 · stop e2e services
+        if: always() && hashFiles('ops/compose/e2e.yml') != ''
+        run: docker compose -p sotfv2-e2e -f ops/compose/e2e.yml down --volumes --remove-orphans
+
+      - name: 11 · LHCI budgets
+        run: pnpm lhci
+
+      - name: Upload Playwright report
+        if: failure() && hashFiles('e2e/playwright-report/**') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: e2e/playwright-report
+          retention-days: 14
+
+  images:
+    name: docker images (build only, no push)
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: 12 · skip notice
+        if: hashFiles('ops/docker/*.Dockerfile') == ''
+        run: echo "::notice::ops/docker/*.Dockerfile not delivered yet (WP-90); skipping image builds."
+
+      - name: 12 · build node image (api + worker)
+        if: hashFiles('ops/docker/node.Dockerfile') != ''
+        run: docker build --file ops/docker/node.Dockerfile --tag sotf-node:ci .
+
+      - name: 12 · build web image
+        if: hashFiles('ops/docker/web.Dockerfile') != ''
+        run: docker build --file ops/docker/web.Dockerfile --tag sotf-web:ci .
