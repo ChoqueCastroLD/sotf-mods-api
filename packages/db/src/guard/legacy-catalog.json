@@ -1,0 +1,1476 @@
+{
+  "$comment": "Frozen catalog of the 16 legacy tables, taken from migrations/0000_legacy_baseline.sql on an empty PostgreSQL 16. Regenerate with `pnpm --filter @sotf/db db:catalog:snapshot` only when the baseline changes. The guard (pnpm db:guard) requires every object here to exist unchanged.",
+  "source": "0000_legacy_baseline.sql",
+  "sourceChecksum": "dcc56a5f3e6e2749ae8d19d726bcc8a9b11c68a4562087238c9d7dfae7595264",
+  "postgres": "16.15",
+  "tables": {
+    "Category": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"Category_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "name": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "slug": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "description": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "type": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "Category_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "Category_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"Category_pkey\" ON public.\"Category\" USING btree (id)",
+          "valid": true
+        },
+        "Category_slug_idx": {
+          "definition": "CREATE INDEX \"Category_slug_idx\" ON public.\"Category\" USING btree (slug)",
+          "valid": true
+        },
+        "Category_slug_key": {
+          "definition": "CREATE UNIQUE INDEX \"Category_slug_key\" ON public.\"Category\" USING btree (slug)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "Comment": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"Comment_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "message": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "imageUrl": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isHidden": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "ip": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modId": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "replyId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "Comment_modId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modId\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE RESTRICT",
+          "validated": true
+        },
+        "Comment_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "Comment_replyId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"replyId\") REFERENCES \"Comment\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "Comment_userId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"userId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "Comment_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"Comment_pkey\" ON public.\"Comment\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "KelvinGPTMessages": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"KelvinGPTMessages_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "chatId": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "messageId": {
+          "type": "text",
+          "nullable": false,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "prompt": {
+          "type": "text",
+          "nullable": false,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "message": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "role": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "who": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "KelvinGPTMessages_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "KelvinGPTMessages_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"KelvinGPTMessages_pkey\" ON public.\"KelvinGPTMessages\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "LoginAttempt": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"LoginAttempt_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "ip": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userAgent": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "email": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "success": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "LoginAttempt_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "LoginAttempt_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"LoginAttempt_pkey\" ON public.\"LoginAttempt\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "Mod": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"Mod_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "name": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "slug": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "mod_id": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "shortDescription": {
+          "type": "text",
+          "nullable": false,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "description": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "dependencies": {
+          "type": "text",
+          "nullable": false,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "type": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modSide": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isNSFW": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isApproved": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isFeatured": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isMultiplayerCompatible": {
+          "type": "boolean",
+          "nullable": false,
+          "default": "false",
+          "generated": "",
+          "identity": ""
+        },
+        "requiresAllPlayers": {
+          "type": "boolean",
+          "nullable": false,
+          "default": "false",
+          "generated": "",
+          "identity": ""
+        },
+        "lastWeekDownloads": {
+          "type": "integer",
+          "nullable": false,
+          "default": "0",
+          "generated": "",
+          "identity": ""
+        },
+        "downloads": {
+          "type": "integer",
+          "nullable": false,
+          "default": "0",
+          "generated": "",
+          "identity": ""
+        },
+        "latestVersion": {
+          "type": "text",
+          "nullable": true,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "latestVersionSize": {
+          "type": "text",
+          "nullable": true,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "averageRating": {
+          "type": "double precision",
+          "nullable": true,
+          "default": "0",
+          "generated": "",
+          "identity": ""
+        },
+        "reviewsCount": {
+          "type": "integer",
+          "nullable": true,
+          "default": "0",
+          "generated": "",
+          "identity": ""
+        },
+        "favoritesCount": {
+          "type": "integer",
+          "nullable": false,
+          "default": "0",
+          "generated": "",
+          "identity": ""
+        },
+        "commentsCount": {
+          "type": "integer",
+          "nullable": false,
+          "default": "0",
+          "generated": "",
+          "identity": ""
+        },
+        "sourceUrl": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "imageUrl": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "buildGuid": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "buildShareVersion": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "numberOfElements": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "lastReleasedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "categoryId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "Mod_categoryId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"categoryId\") REFERENCES \"Category\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "Mod_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "Mod_userId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"userId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "Mod_categoryId_idx": {
+          "definition": "CREATE INDEX \"Mod_categoryId_idx\" ON public.\"Mod\" USING btree (\"categoryId\")",
+          "valid": true
+        },
+        "Mod_createdAt_idx": {
+          "definition": "CREATE INDEX \"Mod_createdAt_idx\" ON public.\"Mod\" USING btree (\"createdAt\")",
+          "valid": true
+        },
+        "Mod_isApproved_idx": {
+          "definition": "CREATE INDEX \"Mod_isApproved_idx\" ON public.\"Mod\" USING btree (\"isApproved\")",
+          "valid": true
+        },
+        "Mod_isFeatured_idx": {
+          "definition": "CREATE INDEX \"Mod_isFeatured_idx\" ON public.\"Mod\" USING btree (\"isFeatured\")",
+          "valid": true
+        },
+        "Mod_isNSFW_idx": {
+          "definition": "CREATE INDEX \"Mod_isNSFW_idx\" ON public.\"Mod\" USING btree (\"isNSFW\")",
+          "valid": true
+        },
+        "Mod_lastReleasedAt_idx": {
+          "definition": "CREATE INDEX \"Mod_lastReleasedAt_idx\" ON public.\"Mod\" USING btree (\"lastReleasedAt\")",
+          "valid": true
+        },
+        "Mod_mod_id_key": {
+          "definition": "CREATE UNIQUE INDEX \"Mod_mod_id_key\" ON public.\"Mod\" USING btree (mod_id)",
+          "valid": true
+        },
+        "Mod_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"Mod_pkey\" ON public.\"Mod\" USING btree (id)",
+          "valid": true
+        },
+        "Mod_slug_userId_key": {
+          "definition": "CREATE UNIQUE INDEX \"Mod_slug_userId_key\" ON public.\"Mod\" USING btree (slug, \"userId\")",
+          "valid": true
+        },
+        "Mod_userId_idx": {
+          "definition": "CREATE INDEX \"Mod_userId_idx\" ON public.\"Mod\" USING btree (\"userId\")",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "ModDownload": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"ModDownload_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "ip": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userAgent": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modVersionId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "ModDownload_modVersionId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modVersionId\") REFERENCES \"ModVersion\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "ModDownload_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "ModDownload_createdAt_idx": {
+          "definition": "CREATE INDEX \"ModDownload_createdAt_idx\" ON public.\"ModDownload\" USING btree (\"createdAt\")",
+          "valid": true
+        },
+        "ModDownload_ip_idx": {
+          "definition": "CREATE INDEX \"ModDownload_ip_idx\" ON public.\"ModDownload\" USING btree (ip)",
+          "valid": true
+        },
+        "ModDownload_modVersionId_idx": {
+          "definition": "CREATE INDEX \"ModDownload_modVersionId_idx\" ON public.\"ModDownload\" USING btree (\"modVersionId\")",
+          "valid": true
+        },
+        "ModDownload_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"ModDownload_pkey\" ON public.\"ModDownload\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "ModFavorite": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"ModFavorite_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "ModFavorite_modId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modId\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "ModFavorite_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "ModFavorite_userId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"userId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "ModFavorite_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"ModFavorite_pkey\" ON public.\"ModFavorite\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "ModImage": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"ModImage_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "url": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isPrimary": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isThumbnail": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "ModImage_modId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modId\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "ModImage_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "ModImage_createdAt_idx": {
+          "definition": "CREATE INDEX \"ModImage_createdAt_idx\" ON public.\"ModImage\" USING btree (\"createdAt\")",
+          "valid": true
+        },
+        "ModImage_isPrimary_idx": {
+          "definition": "CREATE INDEX \"ModImage_isPrimary_idx\" ON public.\"ModImage\" USING btree (\"isPrimary\")",
+          "valid": true
+        },
+        "ModImage_isThumbnail_idx": {
+          "definition": "CREATE INDEX \"ModImage_isThumbnail_idx\" ON public.\"ModImage\" USING btree (\"isThumbnail\")",
+          "valid": true
+        },
+        "ModImage_modId_idx": {
+          "definition": "CREATE INDEX \"ModImage_modId_idx\" ON public.\"ModImage\" USING btree (\"modId\")",
+          "valid": true
+        },
+        "ModImage_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"ModImage_pkey\" ON public.\"ModImage\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "ModReview": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"ModReview_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "title": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "message": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "rating": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isHidden": {
+          "type": "boolean",
+          "nullable": false,
+          "default": "true",
+          "generated": "",
+          "identity": ""
+        },
+        "modVersionString": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "ModReview_modId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modId\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "ModReview_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "ModReview_userId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"userId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "ModReview_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"ModReview_pkey\" ON public.\"ModReview\" USING btree (id)",
+          "valid": true
+        },
+        "ModReview_userId_modId_key": {
+          "definition": "CREATE UNIQUE INDEX \"ModReview_userId_modId_key\" ON public.\"ModReview\" USING btree (\"userId\", \"modId\")",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "ModVersion": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"ModVersion_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "version": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isLatest": {
+          "type": "boolean",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "changelog": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "downloadUrl": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "extension": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "filename": {
+          "type": "text",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "ModVersion_modId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modId\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        },
+        "ModVersion_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "ModVersion_createdAt_idx": {
+          "definition": "CREATE INDEX \"ModVersion_createdAt_idx\" ON public.\"ModVersion\" USING btree (\"createdAt\")",
+          "valid": true
+        },
+        "ModVersion_isLatest_idx": {
+          "definition": "CREATE INDEX \"ModVersion_isLatest_idx\" ON public.\"ModVersion\" USING btree (\"isLatest\")",
+          "valid": true
+        },
+        "ModVersion_modId_idx": {
+          "definition": "CREATE INDEX \"ModVersion_modId_idx\" ON public.\"ModVersion\" USING btree (\"modId\")",
+          "valid": true
+        },
+        "ModVersion_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"ModVersion_pkey\" ON public.\"ModVersion\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "PasswordResetToken": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"PasswordResetToken_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "token": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "expiresAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userId": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "PasswordResetToken_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "PasswordResetToken_userId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"userId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE RESTRICT",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "PasswordResetToken_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"PasswordResetToken_pkey\" ON public.\"PasswordResetToken\" USING btree (id)",
+          "valid": true
+        },
+        "PasswordResetToken_token_key": {
+          "definition": "CREATE UNIQUE INDEX \"PasswordResetToken_token_key\" ON public.\"PasswordResetToken\" USING btree (token)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "PendingMention": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"PendingMention_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "targetUserId": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "fromUserId": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "modId": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "commentMessage": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "type": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "PendingMention_fromUserId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"fromUserId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE RESTRICT",
+          "validated": true
+        },
+        "PendingMention_modId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"modId\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE RESTRICT",
+          "validated": true
+        },
+        "PendingMention_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "PendingMention_targetUserId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"targetUserId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE RESTRICT",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "PendingMention_createdAt_idx": {
+          "definition": "CREATE INDEX \"PendingMention_createdAt_idx\" ON public.\"PendingMention\" USING btree (\"createdAt\")",
+          "valid": true
+        },
+        "PendingMention_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"PendingMention_pkey\" ON public.\"PendingMention\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "Tag": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"Tag_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "name": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "slug": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "description": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "Tag_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "Tag_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"Tag_pkey\" ON public.\"Tag\" USING btree (id)",
+          "valid": true
+        },
+        "Tag_slug_key": {
+          "definition": "CREATE UNIQUE INDEX \"Tag_slug_key\" ON public.\"Tag\" USING btree (slug)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "Token": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"Token_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "token": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "expiresAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "userId": {
+          "type": "integer",
+          "nullable": true,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "Token_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        },
+        "Token_userId_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"userId\") REFERENCES \"User\"(id) ON UPDATE CASCADE ON DELETE SET NULL",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "Token_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"Token_pkey\" ON public.\"Token\" USING btree (id)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "User": {
+      "columns": {
+        "id": {
+          "type": "integer",
+          "nullable": false,
+          "default": "nextval('\"User_id_seq\"'::regclass)",
+          "generated": "",
+          "identity": ""
+        },
+        "email": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "password": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "name": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "imageUrl": {
+          "type": "text",
+          "nullable": false,
+          "default": "''::text",
+          "generated": "",
+          "identity": ""
+        },
+        "slug": {
+          "type": "text",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "isTrusted": {
+          "type": "boolean",
+          "nullable": false,
+          "default": "false",
+          "generated": "",
+          "identity": ""
+        },
+        "createdAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": "CURRENT_TIMESTAMP",
+          "generated": "",
+          "identity": ""
+        },
+        "updatedAt": {
+          "type": "timestamp(3) without time zone",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "User_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (id)",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "User_email_key": {
+          "definition": "CREATE UNIQUE INDEX \"User_email_key\" ON public.\"User\" USING btree (email)",
+          "valid": true
+        },
+        "User_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"User_pkey\" ON public.\"User\" USING btree (id)",
+          "valid": true
+        },
+        "User_slug_key": {
+          "definition": "CREATE UNIQUE INDEX \"User_slug_key\" ON public.\"User\" USING btree (slug)",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    },
+    "_ModToTag": {
+      "columns": {
+        "A": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        },
+        "B": {
+          "type": "integer",
+          "nullable": false,
+          "default": null,
+          "generated": "",
+          "identity": ""
+        }
+      },
+      "constraints": {
+        "_ModToTag_AB_pkey": {
+          "type": "p",
+          "definition": "PRIMARY KEY (\"A\", \"B\")",
+          "validated": true
+        },
+        "_ModToTag_A_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"A\") REFERENCES \"Mod\"(id) ON UPDATE CASCADE ON DELETE CASCADE",
+          "validated": true
+        },
+        "_ModToTag_B_fkey": {
+          "type": "f",
+          "definition": "FOREIGN KEY (\"B\") REFERENCES \"Tag\"(id) ON UPDATE CASCADE ON DELETE CASCADE",
+          "validated": true
+        }
+      },
+      "indexes": {
+        "_ModToTag_AB_pkey": {
+          "definition": "CREATE UNIQUE INDEX \"_ModToTag_AB_pkey\" ON public.\"_ModToTag\" USING btree (\"A\", \"B\")",
+          "valid": true
+        },
+        "_ModToTag_B_index": {
+          "definition": "CREATE INDEX \"_ModToTag_B_index\" ON public.\"_ModToTag\" USING btree (\"B\")",
+          "valid": true
+        }
+      },
+      "triggers": {}
+    }
+  }
+}

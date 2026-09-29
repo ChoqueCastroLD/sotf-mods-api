@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS "SearchQueryDaily";
+DROP TABLE IF EXISTS "AnalyticsEvent";
+DROP TABLE IF EXISTS "UserActivityDaily";
+DROP TABLE IF EXISTS "UserStats";
+DROP TABLE IF EXISTS "SiteStat";
+DROP TABLE IF EXISTS "ModStats";
+DROP TABLE IF EXISTS "ModStatsDaily";
+DROP TABLE IF EXISTS "DownloadUnique";
+DROP TABLE IF EXISTS "SiteDownloadDaily";
+DROP TABLE IF EXISTS "ModVersionDownloadDaily";

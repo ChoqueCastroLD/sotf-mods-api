@@ -1,0 +1,31 @@
+-- "updatedAt" gets a database default (PLAN §6.3): Prisma fills it client-side, so the legacy
+-- schema has none and any raw INSERT (v2, SQL, backfills) would otherwise have to set it.
+-- Adding a default is additive: the legacy client keeps sending its own value.
+
+ALTER TABLE "User" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "Token" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "PasswordResetToken" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "LoginAttempt" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "Mod" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "ModImage" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "ModVersion" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "Tag" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "Category" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "ModDownload" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "ModFavorite" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "ModReview" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "KelvinGPTMessages" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE "Comment" ALTER COLUMN "updatedAt" SET DEFAULT CURRENT_TIMESTAMP;

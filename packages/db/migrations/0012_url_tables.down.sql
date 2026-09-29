@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS "Redirect";
+DROP TABLE IF EXISTS "Tombstone";
+DROP TABLE IF EXISTS "UserSlugHistory";
+DROP TABLE IF EXISTS "ModSlugHistory";

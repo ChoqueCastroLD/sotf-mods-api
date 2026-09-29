@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS "ModVersionCompat";
+DROP TABLE IF EXISTS "CompatReport";
+DROP TABLE IF EXISTS "EcosystemStatus";
+DROP TABLE IF EXISTS "LoaderRelease";
+DROP TABLE IF EXISTS "GameBuild";

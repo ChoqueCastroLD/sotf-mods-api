@@ -1,0 +1,30 @@
+ALTER TABLE "ModVersion"
+  DROP CONSTRAINT IF EXISTS "ModVersion_status_check",
+  DROP CONSTRAINT IF EXISTS "ModVersion_channel_check",
+  DROP CONSTRAINT IF EXISTS "ModVersion_checksStatus_check",
+  DROP CONSTRAINT IF EXISTS "ModVersion_publishedById_fkey";
+
+ALTER TABLE "ModVersion"
+  DROP COLUMN IF EXISTS "storageKey",
+  DROP COLUMN IF EXISTS "fileSize",
+  DROP COLUMN IF EXISTS "sha256",
+  DROP COLUMN IF EXISTS "contentType",
+  DROP COLUMN IF EXISTS "status",
+  DROP COLUMN IF EXISTS "statusReason",
+  DROP COLUMN IF EXISTS "channel",
+  DROP COLUMN IF EXISTS "changelogMd",
+  DROP COLUMN IF EXISTS "changelogHtml",
+  DROP COLUMN IF EXISTS "semverMajor",
+  DROP COLUMN IF EXISTS "semverMinor",
+  DROP COLUMN IF EXISTS "semverPatch",
+  DROP COLUMN IF EXISTS "semverPre",
+  DROP COLUMN IF EXISTS "manifest",
+  DROP COLUMN IF EXISTS "gameVersionDeclared",
+  DROP COLUMN IF EXISTS "loaderVersionDeclared",
+  DROP COLUMN IF EXISTS "platformDeclared",
+  DROP COLUMN IF EXISTS "buildMeta",
+  DROP COLUMN IF EXISTS "checksStatus",
+  DROP COLUMN IF EXISTS "publishedById",
+  DROP COLUMN IF EXISTS "publishedAt",
+  DROP COLUMN IF EXISTS "downloadsCount",
+  DROP COLUMN IF EXISTS "uniqueDownloadsCount";
