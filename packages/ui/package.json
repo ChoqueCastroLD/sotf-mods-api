@@ -4,18 +4,68 @@
   "private": true,
   "description": "Locator design system: Tailwind 4 tokens, fonts, accessible primitives and domain components.",
   "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
   "exports": {
     ".": "./src/index.ts",
-    "./*": "./src/*.ts"
+    "./tokens.css": "./src/tokens.css",
+    "./fonts.css": "./src/fonts.css",
+    "./theme": "./src/theme.ts",
+    "./enhance": "./src/enhance.ts",
+    "./dismissals": "./src/dismissals.ts",
+    "./labels": "./src/labels.ts",
+    "./cn": "./src/cn.ts",
+    "./font-preloads": "./src/font-preloads.ts",
+    "./password-strength": "./src/password-strength.ts",
+    "./pagination-range": "./src/pagination-range.ts",
+    "./domain": "./src/domain/index.ts",
+    "./messages/*": "./messages/*",
+    "./*": "./src/*.tsx"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "gen": "node scripts/gen-font-fallbacks.ts",
+    "build": "node scripts/build-css.ts",
+    "build:css": "node scripts/build-css.ts",
+    "playground": "vite --config playground/vite.config.ts",
+    "playground:build": "vite build --config playground/vite.config.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.tools.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "dependencies": {
+    "@base-ui/react": "catalog:",
+    "@fontsource-variable/big-shoulders": "catalog:",
+    "@fontsource-variable/martian-mono": "catalog:",
+    "@fontsource-variable/onest": "catalog:",
+    "@fontsource-variable/sofia-sans-extra-condensed": "catalog:",
+    "@sotf/brand": "workspace:*",
+    "@tailwindcss/typography": "catalog:",
+    "lucide-react": "catalog:",
+    "sonner": "catalog:",
+    "tailwindcss": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "@sotf/config": "workspace:*",
+    "@tailwindcss/vite": "catalog:",
+    "@testing-library/dom": "catalog:",
+    "@testing-library/react": "catalog:",
+    "@testing-library/user-event": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "fontaine": "catalog:",
+    "jsdom": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "typescript": "catalog:",
+    "vite": "catalog:",
     "vitest": "catalog:"
   }
 }
