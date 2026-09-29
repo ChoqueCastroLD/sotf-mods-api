@@ -3,10 +3,12 @@
 
 import accountsJobs from './accounts/index.ts';
 import emailJobs from './email/index.ts';
+import kelvinseekJobs from './kelvinseek/index.ts';
 import platformJobs from './platform/index.ts';
 
 export const jobGroups = [
   accountsJobs,
   emailJobs,
+  kelvinseekJobs,
   platformJobs,
 ] as const;
