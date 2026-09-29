@@ -1,0 +1,424 @@
+From c7b7209791c649e0fc1c1a7985d38f37b98471a1 Mon Sep 17 00:00:00 2001
+From: Luis Choque <luis.choque.castro@outlook.com>
+Date: Tue, 29 Sep 2026 14:07:26 +0200
+Subject: [PATCH 1/3] fix(downloads): redirect to R2 instead of proxying file
+ bytes
+
+The download routes fetched every file from R2 into memory and sent it
+back as a blob. They now record the download and answer 302 to the
+public R2 object:
+
+- Location: R2_PUBLIC_BASE_URL (fallback FILE_DOWNLOAD_ENDPOINT) + the
+  object key encoded per path segment (spaces -> %20, never "+").
+- Cache-Control: no-store, private; X-Robots-Tag: noindex, nofollow.
+- ModDownload stores the real client IP (?ip=, then CF-Connecting-IP,
+  then the first X-Forwarded-For hop) and user agent, never the string
+  "undefined". Mod.downloads is incremented in the same transaction.
+  Only GET counts: HEAD and Range requests resuming past byte 0 are
+  redirected without being counted. A failed insert never blocks the
+  download.
+- Unknown version: 404 (unchanged envelope).
+- Stored URL outside the R2 domain (retired file server): 410 Gone.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ src/api/mods/download.ts         |  45 +++--------
+ src/api/mods/download_by_slug.ts |  45 +++--------
+ src/shared/download.ts           | 126 +++++++++++++++++++++++++++++++
+ src/shared/public-files.ts       |  92 ++++++++++++++++++++++
+ 4 files changed, 238 insertions(+), 70 deletions(-)
+ create mode 100644 src/shared/download.ts
+ create mode 100644 src/shared/public-files.ts
+
+diff --git a/src/api/mods/download.ts b/src/api/mods/download.ts
+index ea95983..b726f20 100644
+--- a/src/api/mods/download.ts
++++ b/src/api/mods/download.ts
+@@ -1,12 +1,13 @@
+ import { Elysia, NotFoundError } from 'elysia'
+ 
+ import { prisma } from '../../services/prisma';
++import { redirectToDownload } from '../../shared/download';
+ 
+ 
+ export const router = () => new Elysia()
+     .get(
+         '/api/mods/:mod_id/download/:version',
+-        async ({ request, params: { mod_id, version }, query: { ip, agent }, set }) => {
++        async ({ request, params: { mod_id, version }, query, set }) => {
+             const mod = await prisma.mod.findFirst({
+                 where: {
+                     mod_id,
+@@ -18,52 +19,26 @@ export const router = () => new Elysia()
+                 },
+                 select: {
+                     id: true,
+-                    name: true,
+                     versions: {
+                         where: {
+                             version,
+                         },
+                         select: {
+                             id: true,
+-                            version: true,
+-                            extension: true,
+                             downloadUrl: true,
+                         }
+                     }
+                 }
+             });
+-            if (!mod) {
+-              throw new NotFoundError();
+-            }
+             const modVersion = mod?.versions[0];
+-            if (!modVersion) {
++            if (!mod || !modVersion) {
+               throw new NotFoundError();
+             }
+-            const f = await fetch(modVersion.downloadUrl);
+-            const blob = await f.blob();
+-
+-            await Promise.all([
+-                prisma.modDownload.create({
+-                    data: {
+-                        ip: (ip + "") || ("" + request.headers.get("x-forwarded-for")),
+-                        userAgent: (agent + "") || ("" + request.headers.get("user-agent")),
+-                        modVersionId: modVersion.id,
+-                    }
+-                }),
+-                prisma.mod.update({
+-                    where: {
+-                        id: mod.id,
+-                    },
+-                    data: {
+-                        downloads: { increment: 1 }
+-                    }
+-                })
+-            ]);
+-
+-            set.headers['Content-Type'] = "" + f.headers.get('Content-Type');
+-            set.headers['Content-Length'] = "" + f.headers.get('Content-Length');
+-            set.headers['Content-Disposition'] = `attachment; filename="${mod.name} ${modVersion.version}.${modVersion.extension}"`;
+-
+-            return blob;
++            return redirectToDownload(
++                { modId: mod.id, versionId: modVersion.id, downloadUrl: modVersion.downloadUrl },
++                request,
++                query,
++                set,
++            );
+         }
+-    )
+\ No newline at end of file
++    )
+diff --git a/src/api/mods/download_by_slug.ts b/src/api/mods/download_by_slug.ts
+index b4263f3..5781800 100644
+--- a/src/api/mods/download_by_slug.ts
++++ b/src/api/mods/download_by_slug.ts
+@@ -1,12 +1,13 @@
+ import { Elysia, NotFoundError } from 'elysia'
+ 
+ import { prisma } from '../../services/prisma';
++import { redirectToDownload } from '../../shared/download';
+ 
+ 
+ export const router = () => new Elysia()
+     .get(
+         '/api/mods/slug/:userSlug/:mod_slug/download/:version',
+-        async ({ request, params: { userSlug, mod_slug, version }, query: { ip, agent }, set }) => {
++        async ({ request, params: { userSlug, mod_slug, version }, query, set }) => {
+             const mod = await prisma.mod.findFirst({
+                 where: {
+                     user: {
+@@ -21,52 +22,26 @@ export const router = () => new Elysia()
+                 },
+                 select: {
+                     id: true,
+-                    name: true,
+                     versions: {
+                         where: {
+                             version,
+                         },
+                         select: {
+                             id: true,
+-                            version: true,
+-                            extension: true,
+                             downloadUrl: true,
+                         }
+                     }
+                 }
+             });
+-            if (!mod) {
+-              throw new NotFoundError();
+-            }
+             const modVersion = mod?.versions[0];
+-            if (!modVersion) {
++            if (!mod || !modVersion) {
+               throw new NotFoundError();
+             }
+-            const f = await fetch(modVersion.downloadUrl);
+-            const blob = await f.blob();
+-
+-            await Promise.all([
+-                prisma.modDownload.create({
+-                    data: {
+-                        ip: (ip + "") || ("" + request.headers.get("x-forwarded-for")),
+-                        userAgent: (agent + "") || ("" + request.headers.get("user-agent")),
+-                        modVersionId: modVersion.id,
+-                    }
+-                }),
+-                prisma.mod.update({
+-                    where: {
+-                        id: mod.id,
+-                    },
+-                    data: {
+-                        downloads: { increment: 1 }
+-                    }
+-                })
+-            ]);
+-
+-            set.headers['Content-Type'] = "" + f.headers.get('Content-Type');
+-            set.headers['Content-Length'] = "" + f.headers.get('Content-Length');
+-            set.headers['Content-Disposition'] = `attachment; filename="${mod.name} ${modVersion.version}.${modVersion.extension}"`;
+-
+-            return blob;
++            return redirectToDownload(
++                { modId: mod.id, versionId: modVersion.id, downloadUrl: modVersion.downloadUrl },
++                request,
++                query,
++                set,
++            );
+         }
+-    )
+\ No newline at end of file
++    )
+diff --git a/src/shared/download.ts b/src/shared/download.ts
+new file mode 100644
+index 0000000..a8e246b
+--- /dev/null
++++ b/src/shared/download.ts
+@@ -0,0 +1,126 @@
++import { isIP } from "node:net";
++
++import { prisma } from "../services/prisma";
++import { publicObjectLocation, resolveStoredFile } from "./public-files";
++
++const MAX_USER_AGENT_LENGTH = 512;
++const MISSING_VALUES = new Set(["", "undefined", "null"]);
++
++type Query = Record<string, string | undefined>;
++
++function present(value: string | null | undefined): string | null {
++    const trimmed = (value ?? "").trim();
++    return MISSING_VALUES.has(trimmed.toLowerCase()) ? null : trimmed;
++}
++
++function validIp(value: string | null | undefined): string | null {
++    const candidate = present(value);
++    return candidate && isIP(candidate) !== 0 ? candidate : null;
++}
++
++/**
++ * Client IP of a download, in order of trust:
++ *   1. `?ip=` sent by the frontend proxy (it sees the real client; first entry
++ *      if it is a list),
++ *   2. `CF-Connecting-IP` set by Cloudflare,
++ *   3. the first hop of `X-Forwarded-For`.
++ * Only syntactically valid IPs are accepted; the result is "" when unknown,
++ * never the string "undefined".
++ */
++export function downloadClientIp(query: Query, headers: Headers): string {
++    // The unpatched frontend sends its raw X-Forwarded-For list as `?ip=`.
++    const fromQuery = query.ip?.split(",")[0];
++    const forwardedFor = headers.get("x-forwarded-for")?.split(",")[0];
++    return (
++        validIp(fromQuery) ??
++        validIp(headers.get("cf-connecting-ip")) ??
++        validIp(forwardedFor) ??
++        ""
++    );
++}
++
++/** User agent of a download: `?agent=` from the frontend proxy, then the header. */
++export function downloadUserAgent(query: Query, headers: Headers): string {
++    const agent = present(query.agent) ?? present(headers.get("user-agent")) ?? "";
++    return agent.slice(0, MAX_USER_AGENT_LENGTH);
++}
++
++/**
++ * Only GET requests count. HEAD requests (link checkers, `curl -I`) and partial
++ * requests that do not start at byte 0 (resumptions of a download that was
++ * already counted) still get the redirect.
++ */
++function isCountable(request: Request): boolean {
++    if (request.method !== "GET") return false;
++    const range = request.headers.get("range");
++    return !range || /^bytes=0-/i.test(range.trim());
++}
++
++const NO_STORE_HEADERS = {
++    "Cache-Control": "no-store, private",
++    "X-Robots-Tag": "noindex, nofollow",
++    "Referrer-Policy": "no-referrer",
++};
++
++type ResponseSet = {
++    status?: number | string;
++    headers: Record<string, string | number | undefined>;
++};
++
++type ModVersionToDownload = {
++    modId: number;
++    versionId: number;
++    downloadUrl: string;
++};
++
++/**
++ * Answers a download request: records the download and redirects (302) to the
++ * public R2 object. File bytes never pass through the API.
++ *
++ * - 302 `Location: <R2 base>/<key encoded per segment>`, `Cache-Control: no-store`.
++ * - 410 when the stored file lives on a retired host (the object is gone).
++ * Counting never blocks the download: a failed insert is logged and the client
++ * is still redirected.
++ */
++export async function redirectToDownload(
++    target: ModVersionToDownload,
++    request: Request,
++    query: Query,
++    set: ResponseSet,
++) {
++    Object.assign(set.headers, NO_STORE_HEADERS);
++
++    const file = resolveStoredFile(target.downloadUrl);
++    if (!file.available) {
++        set.status = 410;
++        return {
++            status: false,
++            error: "GONE",
++            message: "This file is no longer available.",
++        };
++    }
++
++    if (isCountable(request)) {
++        try {
++            await prisma.$transaction([
++                prisma.modDownload.create({
++                    data: {
++                        ip: downloadClientIp(query, request.headers),
++                        userAgent: downloadUserAgent(query, request.headers),
++                        modVersionId: target.versionId,
++                    },
++                }),
++                prisma.mod.update({
++                    where: { id: target.modId },
++                    data: { downloads: { increment: 1 } },
++                }),
++            ]);
++        } catch (error) {
++            console.error("Failed to record download", { versionId: target.versionId, error });
++        }
++    }
++
++    set.status = 302;
++    set.headers["Location"] = publicObjectLocation(file.key);
++    return "";
++}
+diff --git a/src/shared/public-files.ts b/src/shared/public-files.ts
+new file mode 100644
+index 0000000..3f50034
+--- /dev/null
++++ b/src/shared/public-files.ts
+@@ -0,0 +1,92 @@
++/**
++ * Public file URLs (Cloudflare R2 custom domain).
++ *
++ * Every object is served by R2 through its public custom domain. The API never
++ * proxies file bytes: downloads answer with a 302 to the object URL.
++ *
++ * Configuration (first non-empty wins):
++ *   R2_PUBLIC_BASE_URL      preferred, e.g. https://r2.sotf-mods.com
++ *   FILE_DOWNLOAD_ENDPOINT  legacy name, still honoured so a deploy needs no env change
++ */
++
++export const DEFAULT_PUBLIC_FILES_BASE_URL = "https://r2.sotf-mods.com";
++
++// Hosts that front the public R2 bucket. A stored URL on any other host points
++// to a retired file server whose objects no longer exist.
++const R2_DEV_HOST_SUFFIX = ".r2.dev";
++
++function stripTrailingSlashes(value: string): string {
++    return value.replace(/\/+$/, "");
++}
++
++/** Base URL of the public R2 domain, without a trailing slash. */
++export function publicFilesBaseUrl(): string {
++    const configured = (Bun.env.R2_PUBLIC_BASE_URL || Bun.env.FILE_DOWNLOAD_ENDPOINT || "").trim();
++    return stripTrailingSlashes(configured || DEFAULT_PUBLIC_FILES_BASE_URL);
++}
++
++/**
++ * URL stored in the database for a freshly uploaded object. The key is kept raw
++ * (unencoded) on purpose: the public `/api/mods/:mod_id` contract exposes
++ * `downloadUrl` exactly like this and external clients depend on it.
++ */
++export function publicFileUrl(key: string): string {
++    return `${publicFilesBaseUrl()}/${key}`;
++}
++
++/**
++ * Encodes an object key for use in a URL path: each `/`-separated segment goes
++ * through `encodeURIComponent`, so spaces become `%20` (never `+`) and `+`
++ * becomes `%2B`. R2 decodes the path back to the exact key.
++ */
++export function encodeObjectKey(key: string): string {
++    return key.split("/").map(encodeURIComponent).join("/");
++}
++
++/** Public URL a client must be redirected to in order to fetch `key`. */
++export function publicObjectLocation(key: string): string {
++    return `${publicFilesBaseUrl()}/${encodeObjectKey(key)}`;
++}
++
++export type StoredFile =
++    | { available: true; key: string }
++    | { available: false; reason: "retired_host" | "invalid_url" };
++
++const ABSOLUTE_URL = /^(https?):\/\/([^/?#]+)\/(.+)$/i;
++const URL_HOST = /^https?:\/\/([^/?#]+)/i;
++
++function hostOf(url: string): string | null {
++    return URL_HOST.exec(url)?.[1]?.toLowerCase() ?? null;
++}
++
++function isR2Host(host: string): boolean {
++    const configuredHost = hostOf(publicFilesBaseUrl());
++    const defaultHost = hostOf(DEFAULT_PUBLIC_FILES_BASE_URL);
++    return host === configuredHost || host === defaultHost || host.endsWith(R2_DEV_HOST_SUFFIX);
++}
++
++/**
++ * Resolves the object key behind a stored `downloadUrl`.
++ *
++ * Stored URLs are raw: `https://r2.sotf-mods.com/<key>` where `<key>` may contain
++ * spaces, apostrophes, `+` or parentheses. The key is everything after the host,
++ * taken verbatim. URLs pointing to any host that does not serve the R2 bucket
++ * are reported as unavailable (the old self-hosted file server is gone).
++ */
++export function resolveStoredFile(downloadUrl: string | null | undefined): StoredFile {
++    const url = (downloadUrl ?? "").trim();
++    const base = publicFilesBaseUrl();
++    if (url.startsWith(`${base}/`) && url.length > base.length + 1) {
++        return { available: true, key: url.slice(base.length + 1) };
++    }
++    const match = ABSOLUTE_URL.exec(url);
++    const host = match?.[2]?.toLowerCase();
++    const key = match?.[3];
++    if (!host || !key) {
++        return { available: false, reason: "invalid_url" };
++    }
++    if (!isR2Host(host)) {
++        return { available: false, reason: "retired_host" };
++    }
++    return { available: true, key };
++}

@@ -1,0 +1,326 @@
+From 623b7125e72b1bdf5b1007ae7780be01ed21be27 Mon Sep 17 00:00:00 2001
+From: Luis Choque <luis.choque.castro@outlook.com>
+Date: Tue, 29 Sep 2026 14:07:44 +0200
+Subject: [PATCH 3/3] fix(security): close stored XSS in markdown, changelogs
+ and comments
+
+- markdownToHTML() now returns HTML sanitized with DOMPurify (already
+  loaded by the layout); <style>, form controls and style attributes are
+  also dropped. Every markdown innerHTML (mod and build descriptions,
+  upload and edit previews) goes through it. Without DOMPurify it fails
+  closed and shows the markdown as escaped text.
+- Build changelogs are rendered with | escape instead of | safe.
+- Comments are built with DOM nodes (comments.js): message, user names
+  and URLs are set through textContent or validated attributes, never
+  concatenated into HTML; inline onclick handlers are gone.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ src/static/scripts/comments.js | 135 +++++++++++++++++++++++++++++++++
+ src/static/scripts/mod.js      |  79 ++-----------------
+ src/static/scripts/shared.js   |  32 +++++++-
+ src/templates/build.njk        |   2 +-
+ 4 files changed, 172 insertions(+), 76 deletions(-)
+ create mode 100644 src/static/scripts/comments.js
+
+diff --git a/src/static/scripts/comments.js b/src/static/scripts/comments.js
+new file mode 100644
+index 0000000..59656db
+--- /dev/null
++++ b/src/static/scripts/comments.js
+@@ -0,0 +1,135 @@
++// Comment rendering with DOM nodes only: user content (message, names, URLs)
++// is always assigned through textContent or validated attributes, never HTML.
++
++const MENTION_PATTERN = /@(\w+)/g;
++
++function el(tag, className, text) {
++  const node = document.createElement(tag);
++  if (className) node.className = className;
++  if (text !== undefined) node.textContent = text;
++  return node;
++}
++
++/** Only absolute http(s) or same-origin relative URLs are rendered. */
++export function safeUrl(value) {
++  if (typeof value !== "string" || value.trim() === "") return null;
++  try {
++    const url = new URL(value, window.location.origin);
++    return url.protocol === "https:" || url.protocol === "http:" ? url.href : null;
++  } catch {
++    return null;
++  }
++}
++
++/** Appends `message` to `parent`: line breaks become <br>, @mentions are highlighted. */
++export function appendMessage(parent, message) {
++  const lines = String(message ?? "").split("\n");
++  lines.forEach((line, index) => {
++    if (index > 0) parent.appendChild(document.createElement("br"));
++    let last = 0;
++    for (const match of line.matchAll(MENTION_PATTERN)) {
++      if (match.index > last) parent.appendChild(document.createTextNode(line.slice(last, match.index)));
++      const mention = el("span", "", match[0]);
++      mention.style.fontWeight = "bold";
++      mention.style.color = "oklch(var(--a))";
++      parent.appendChild(mention);
++      last = match.index + match[0].length;
++    }
++    if (last < line.length) parent.appendChild(document.createTextNode(line.slice(last)));
++  });
++}
++
++function avatar(user, size) {
++  const imageUrl = safeUrl(user?.imageUrl);
++  if (imageUrl) {
++    const img = el("img", `w-${size} rounded-full`);
++    img.src = imageUrl;
++    img.alt = `${user?.name ?? ""}'s avatar`;
++    return img;
++  }
++  const svgNs = "http://www.w3.org/2000/svg";
++  const svg = document.createElementNS(svgNs, "svg");
++  svg.setAttribute("class", `w-${size} h-${size} text-[#02cdb3]`);
++  svg.setAttribute("fill", "currentColor");
++  svg.setAttribute("viewBox", "0 0 24 24");
++  const path = document.createElementNS(svgNs, "path");
++  path.setAttribute("fill-rule", "evenodd");
++  path.setAttribute("clip-rule", "evenodd");
++  path.setAttribute(
++    "d",
++    "M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z",
++  );
++  svg.appendChild(path);
++  return svg;
++}
++
++function commentImage(imageUrl, onOpenImage) {
++  const url = safeUrl(imageUrl);
++  if (!url) return null;
++  const wrapper = el("div", "mt-2");
++  const img = el("img", "rounded-lg cursor-pointer object-contain");
++  img.src = url;
++  img.alt = "Comment image";
++  img.style.maxHeight = "100px";
++  img.style.maxWidth = "200px";
++  img.addEventListener("click", () => onOpenImage?.(url));
++  wrapper.appendChild(img);
++  return wrapper;
++}
++
++function chat(comment, { isReply, canReply, onReply, onOpenImage }) {
++  const { id, message, imageUrl, createdAt, user } = comment;
++  const size = isReply ? 8 : 10;
++  const root = el("div", isReply ? "chat chat-start ml-12" : "chat chat-start");
++
++  const avatarWrapper = el("div", "chat-image avatar");
++  const avatarFrame = el("div", `w-${size} rounded-full`);
++  avatarFrame.appendChild(avatar(user, size));
++  avatarWrapper.appendChild(avatarFrame);
++  root.appendChild(avatarWrapper);
++
++  const header = el("div", "chat-header");
++  const profile = el("a", `${isReply ? "text-xs" : "text-sm"} font-bold hover:underline`, user?.name ?? "");
++  profile.href = `/profile/${encodeURIComponent(user?.slug ?? "")}`;
++  header.appendChild(profile);
++  if (user?.isTrusted) {
++    header.appendChild(document.createTextNode(" "));
++    header.appendChild(el("span", `badge badge-primary ${isReply ? "badge-xs" : "badge-sm"} ml-1`, "Trusted"));
++  }
++  header.appendChild(document.createTextNode(" "));
++  header.appendChild(el("time", "text-xs opacity-50", ` • ${new Date(createdAt).toLocaleString()}`));
++  root.appendChild(header);
++
++  const bubble = el("div", isReply ? "chat-bubble chat-bubble-secondary text-sm" : "chat-bubble");
++  appendMessage(bubble, message);
++  const image = commentImage(imageUrl, onOpenImage);
++  if (image) bubble.appendChild(image);
++  root.appendChild(bubble);
++
++  if (!isReply) {
++    const footer = el("div", "chat-footer");
++    if (canReply) {
++      const button = el("button", "btn btn-ghost btn-xs mt-1", "Reply");
++      button.type = "button";
++      button.addEventListener("click", () => onReply?.(id, user?.name ?? ""));
++      footer.appendChild(button);
++    }
++    root.appendChild(footer);
++  }
++  return root;
++}
++
++/**
++ * Replaces the content of `container` with the given comments (top-level
++ * comments with their `replies`).
++ */
++export function renderComments(container, comments, options = {}) {
++  const fragment = document.createDocumentFragment();
++  for (const comment of comments ?? []) {
++    fragment.appendChild(chat(comment, { ...options, isReply: false }));
++    for (const reply of comment.replies ?? []) {
++      fragment.appendChild(chat(reply, { ...options, isReply: true }));
++    }
++  }
++  container.replaceChildren(fragment);
++}
+diff --git a/src/static/scripts/mod.js b/src/static/scripts/mod.js
+index d79a1fe..e76cab7 100644
+--- a/src/static/scripts/mod.js
++++ b/src/static/scripts/mod.js
+@@ -1,3 +1,5 @@
++import { renderComments } from "./comments.js";
++
+ const mod = JSON.parse(document.querySelector("#sotf-mods-m").dataset.m);
+ 
+ const updateModBtn = document.getElementById("updateModBtn");
+@@ -404,84 +406,17 @@ const getComments = async () => {
+       return;
+     }
+ 
+-    commentsContainer.innerHTML = data.map(renderComment).join("");
++    renderComments(commentsContainer, data, {
++      canReply: !!token,
++      onReply: setReply,
++      onOpenImage: window.openCommentImage,
++    });
+   } catch (error) {
+     console.error("Error fetching comments:", error);
+     showError(_("Could not load comments."));
+   }
+ };
+ 
+-function formatMessageWithMentions(msg) {
+-  return msg
+-    .replace(/\n/g, '<br />')
+-    .replace(/@(\w+)/g, '<span style="font-weight:bold;color:oklch(var(--a));">@$1</span>');
+-}
+-
+-function renderCommentImage(imageUrl) {
+-  if (!imageUrl) return '';
+-  return `<div class="mt-2"><img src="${imageUrl}" alt="Comment image" class="rounded-lg cursor-pointer object-contain" style="max-height:100px;max-width:200px;" onclick="openCommentImage('${imageUrl}')" /></div>`;
+-}
+-
+-const renderReply = (reply) => {
+-  const { message, imageUrl, createdAt, user } = reply;
+-  const formattedDate = new Date(createdAt).toLocaleString();
+-  const profileUrl = `/profile/${user.slug}`;
+-  const avatarImg = user.imageUrl
+-    ? `<img class="w-8 rounded-full" src="${user.imageUrl}" alt="${user.name}'s avatar" />`
+-    : `<svg class="w-8 h-8 text-[#02cdb3]" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+-        <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+-      </svg>`;
+-  const trustedBadge = user.isTrusted ? `<span class="badge badge-primary badge-xs ml-1">Trusted</span>` : '';
+-
+-  return `
+-    <div class="chat chat-start ml-12">
+-      <div class="chat-image avatar">
+-        <div class="w-8 rounded-full">${avatarImg}</div>
+-      </div>
+-      <div class="chat-header">
+-        <a href="${profileUrl}" class="text-xs font-bold hover:underline">${user.name}</a>
+-        ${trustedBadge}
+-        <time class="text-xs opacity-50"> • ${formattedDate}</time>
+-      </div>
+-      <div class="chat-bubble chat-bubble-secondary text-sm">${formatMessageWithMentions(message)}${renderCommentImage(imageUrl)}</div>
+-    </div>
+-  `;
+-};
+-
+-const renderComment = (comment) => {
+-  const { id, message, imageUrl, createdAt, user, replies } = comment;
+-  const formattedDate = new Date(createdAt).toLocaleString();
+-  const profileUrl = `/profile/${user.slug}`;
+-  const avatarImg = user.imageUrl
+-    ? `<img class="w-10 rounded-full" src="${user.imageUrl}" alt="${user.name}'s avatar" />`
+-    : `<svg class="w-10 h-10 text-[#02cdb3]" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+-        <path fill-rule="evenodd" d="M12 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-2 9a4 4 0 0 0-4 4v1a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1a4 4 0 0 0-4-4h-4Z" clip-rule="evenodd"/>
+-      </svg>`;
+-  const trustedBadge = user.isTrusted ? `<span class="badge badge-primary badge-sm ml-1">Trusted</span>` : '';
+-
+-  const repliesHtml = (replies && replies.length > 0) ? replies.map(renderReply).join("") : "";
+-
+-  const replyButton = token
+-    ? `<button class="btn btn-ghost btn-xs mt-1" onclick="setReply(${id}, '${user.name.replace(/'/g, "\\'")}')">Reply</button>`
+-    : '';
+-
+-  return `
+-    <div class="chat chat-start">
+-      <div class="chat-image avatar">
+-        <div class="w-10 rounded-full">${avatarImg}</div>
+-      </div>
+-      <div class="chat-header">
+-        <a href="${profileUrl}" class="text-sm font-bold hover:underline">${user.name}</a>
+-        ${trustedBadge}
+-        <time class="text-xs opacity-50"> • ${formattedDate}</time>
+-      </div>
+-      <div class="chat-bubble">${formatMessageWithMentions(message)}${renderCommentImage(imageUrl)}</div>
+-      <div class="chat-footer">${replyButton}</div>
+-    </div>
+-    ${repliesHtml}
+-  `;
+-};
+-
+ window.setReply = setReply;
+ 
+ getComments();
+diff --git a/src/static/scripts/shared.js b/src/static/scripts/shared.js
+index 90ab16e..c87cfee 100644
+--- a/src/static/scripts/shared.js
++++ b/src/static/scripts/shared.js
+@@ -167,13 +167,39 @@ if (window.showdown) {
+     
+     window.markdownToHTML = text => {
+         const lineBreakToken = Date.now();
+-        text = text.split('\n').map(v => v.trim() == '' ? lineBreakToken : '\n' + v ).join('');
+-        const html = converter.makeHtml(text);
++        const source = String(text ?? '');
++        const markdown = source.split('\n').map(v => v.trim() == '' ? lineBreakToken : '\n' + v ).join('');
++        const html = converter.makeHtml(markdown);
+         const h = html.replaceAll('\n', '').replaceAll(lineBreakToken, '<br>');
+-        return h;
++        return sanitizeMarkdownHTML(h, source);
+     }
+ }
+ 
++// Markdown is user content: its HTML must be sanitized before any innerHTML.
++const MARKDOWN_PURIFY_CONFIG = {
++    USE_PROFILES: { html: true },
++    FORBID_TAGS: ['style', 'form', 'input', 'button', 'textarea', 'select', 'option'],
++    FORBID_ATTR: ['style'],
++};
++
++function escapeHTML(text) {
++    return String(text ?? '')
++        .replaceAll('&', '&amp;')
++        .replaceAll('<', '&lt;')
++        .replaceAll('>', '&gt;')
++        .replaceAll('"', '&quot;')
++        .replaceAll("'", '&#39;');
++}
++
++function sanitizeMarkdownHTML(html, source) {
++    if (window.DOMPurify && typeof window.DOMPurify.sanitize === 'function') {
++        return window.DOMPurify.sanitize(html, MARKDOWN_PURIFY_CONFIG);
++    }
++    // Fail closed: without DOMPurify the markdown is shown as plain text.
++    return escapeHTML(source).replaceAll('\n', '<br>');
++}
++window.sanitizeMarkdownHTML = sanitizeMarkdownHTML;
++
+ // Images are served directly by R2; the browser loads and caches them.
+ function lazyLoadImages(elements) {
+     for (const img of elements) {
+diff --git a/src/templates/build.njk b/src/templates/build.njk
+index 61a7e9a..4965220 100644
+--- a/src/templates/build.njk
++++ b/src/templates/build.njk
+@@ -96,7 +96,7 @@
+               <tr class="{{ 'bg-base-100' if loop.index == 1 else '' }}">
+                 <td>{{ version.version }}</td>
+                 <td>
+-                  <pre>{{ version.changelog | safe}}</pre>
++                  <pre>{{ version.changelog | escape }}</pre>
+                 </td>
+                 <td>{{ version._count.downloads }}</td>
+               </tr>

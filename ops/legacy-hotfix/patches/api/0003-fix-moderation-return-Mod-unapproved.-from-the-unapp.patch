@@ -1,0 +1,24 @@
+From 7a10a9d546f57f1d6978a34d77869a5376588549 Mon Sep 17 00:00:00 2001
+From: Luis Choque <luis.choque.castro@outlook.com>
+Date: Tue, 29 Sep 2026 14:07:26 +0200
+Subject: [PATCH 3/3] fix(moderation): return "Mod unapproved." from the
+ unapprove route
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+---
+ src/api/mods/unapprove.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/api/mods/unapprove.ts b/src/api/mods/unapprove.ts
+index f8981d9..c54b88a 100644
+--- a/src/api/mods/unapprove.ts
++++ b/src/api/mods/unapprove.ts
+@@ -28,6 +28,6 @@ export const router = () => new Elysia()
+                 isApproved: false,
+               },
+             });
+-            return { status: true, message: 'Mod approved.' };
++            return { status: true, message: 'Mod unapproved.' };
+         }
+     )
+\ No newline at end of file
