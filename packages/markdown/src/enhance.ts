@@ -31,7 +31,7 @@ import type {
   RenderedImage,
   RenderedLink,
 } from './types.ts';
-import { isExternal, isTrustedTarget } from './url.ts';
+import { isExternal, isTrustedTarget, LINK_PROTOCOLS, MEDIA_PROTOCOLS, safeUrl } from './url.ts';
 import { YOUTUBE_THUMBNAIL_SIZE, youtubeFromUrl } from './youtube.ts';
 
 export interface EnhanceContext {
@@ -222,7 +222,15 @@ function youtube(tree: Root): void {
 }
 
 // ---------------------------------------------------------------------------------------------
-// Spoilers: `||hidden||` within one inline container.
+// Spoilers: `||hidden||` within one inline container (never inside a link).
+//
+// A spoiler is a toggle button: `<span class="md-spoiler" role="button" tabindex="0"
+// aria-expanded="false" aria-label="Spoiler" data-md-label="spoiler">`. Buttons have presentational
+// children, so assistive technology announces "Spoiler, button, collapsed" instead of the hidden
+// text; the reveal script flips `aria-expanded` and drops the role and label. The label is the
+// English default, localised per request by `localizeHtml`. A spoiler that contains a link cannot
+// be a button (nested interactive content): it stays a plain `span.md-spoiler`, revealed by CSS on
+// `:hover`/`:focus-within` when its link receives focus.
 
 /** Wraps `||…||` runs of an inline container; returns the spoiler spans created. */
 function spoilers(parent: Parent): Element[] {
@@ -247,7 +255,7 @@ function wrapSpoilers(children: ElementContent[]): ElementContent[] {
     for (let i = 0; i < parts.length; i++) {
       if (i > 0) {
         if (open === undefined) {
-          open = element('span', { className: ['md-spoiler'], tabIndex: 0 });
+          open = element('span', { className: ['md-spoiler'] });
           out.push(open);
         } else {
           if (open.children.every((node) => isWhitespaceText(node))) {
@@ -269,6 +277,23 @@ function wrapSpoilers(children: ElementContent[]): ElementContent[] {
   return mergeText(out);
 }
 
+/** Makes a finished spoiler a toggle button, unless it holds interactive content (a link). */
+function spoilerSemantics(spoiler: Element): void {
+  let interactive = false;
+  visitElements({ type: 'root', children: spoiler.children }, (node) => {
+    if (node.tagName === 'a') interactive = true;
+    return interactive ? 'skip' : undefined;
+  });
+  if (interactive) return;
+  Object.assign(spoiler.properties, {
+    role: 'button',
+    tabIndex: 0,
+    ariaExpanded: 'false',
+    ariaLabel: DEFAULT_LABELS.spoiler,
+    dataMdLabel: 'spoiler',
+  });
+}
+
 function mergeText(nodes: ElementContent[]): ElementContent[] {
   const out: ElementContent[] = [];
   for (const node of nodes) {
@@ -282,22 +307,41 @@ function mergeText(nodes: ElementContent[]): ElementContent[] {
 // ---------------------------------------------------------------------------------------------
 // Text-level passes, in one walk: spoilers, autolinks, mentions; anchors without a (safe) href and
 // images without a (safe) source are unwrapped.
+//
+// Text anywhere inside a link (also under `<strong>`, `<b>`… within it) is left alone: an autolink
+// or mention there would nest `<a>` in `<a>`, which HTML parsers split apart, so the browser would
+// build a different tree from the verified one. Mentions inside link text are not collected either.
 
 type MentionResolver = (handle: string) => MentionTarget | null;
 
 function inlineText(tree: Root, ctx: EnhanceContext, result: EnhanceResult): void {
   const resolve = mentionResolver(ctx);
   const seen = new Set<string>();
-  const literal = (node: Element) => isElement(node, LITERAL);
-  for (const parent of collectParents(tree, literal)) {
+  // Iterative pre-order walk (depth is author-controlled) carrying "inside a link".
+  const stack: Array<{ parent: Parent; inLink: boolean }> = [{ parent: tree, inLink: false }];
+  const allSpoilers: Element[] = [];
+  while (stack.length > 0) {
+    const { parent, inLink } = stack.pop() as { parent: Parent; inLink: boolean };
     unwrapDeadEnds(parent);
-    if (parent.type === 'element' && parent.tagName === 'a') continue;
-    const containers: Parent[] = [parent, ...(parent.type === 'root' ? [] : spoilers(parent))];
-    for (const container of containers) {
+    // The elements to visit next are the parent's own (after unwrapping, before new spoilers and
+    // links are added), so every original element is visited exactly once.
+    const children = parent.children as ElementContent[];
+    for (let i = children.length - 1; i >= 0; i--) {
+      const child = children[i] as ElementContent;
+      if (child.type === 'element' && !(LITERAL as readonly string[]).includes(child.tagName)) {
+        stack.push({ parent: child, inLink: inLink || child.tagName === 'a' });
+      }
+    }
+    if (inLink) continue;
+    const created = parent.type === 'root' ? [] : spoilers(parent);
+    for (const container of [parent, ...created]) {
       if (!(container.children as ElementContent[]).some((child) => isText(child))) continue;
       container.children = linkText(container.children as ElementContent[], resolve, seen, result);
     }
+    allSpoilers.push(...created);
   }
+  // Only now are all autolinks and mentions inside the spoilers known.
+  for (const spoiler of allSpoilers) spoilerSemantics(spoiler);
 }
 
 function mentionResolver(ctx: EnhanceContext): MentionResolver {
@@ -306,7 +350,8 @@ function mentionResolver(ctx: EnhanceContext): MentionResolver {
     if (!ctx.resolveMention) return null;
     if (!cache.has(handle)) {
       const target = ctx.resolveMention(handle);
-      cache.set(handle, target && isTrustedTarget(target.href) ? target : null);
+      const href = target && isTrustedTarget(target.href) ? safeUrl(target.href, LINK_PROTOCOLS) : null;
+      cache.set(handle, target && href !== null ? { ...target, href } : null);
     }
     return cache.get(handle) ?? null;
   };
@@ -360,8 +405,11 @@ function linkText(
     }
     let last = 0;
     for (const link of findAutolinks(child.value)) {
+      // Normalised like author links; a candidate a browser could not parse stays text.
+      const href = safeUrl(link.href, LINK_PROTOCOLS);
+      if (href === null) continue;
       if (link.index > last) out.push(...mentionize(child.value.slice(last, link.index), resolve, seen, result));
-      out.push(element('a', { href: link.href }, [text(link.text)]));
+      out.push(element('a', { href }, [text(link.text)]));
       last = link.index + link.text.length;
     }
     out.push(...mentionize(last === 0 ? child.value : child.value.slice(last), resolve, seen, result));
@@ -444,8 +492,9 @@ function image(node: Element, ctx: EnhanceContext, result: EnhanceResult): void 
   const alt = typeof node.properties.alt === 'string' ? node.properties.alt : '';
   let rendered = src;
   const target = ctx.resolveImage?.(src);
-  if (target && isTrustedTarget(target.src)) {
-    rendered = target.src;
+  const replacement = target && isTrustedTarget(target.src) ? safeUrl(target.src, MEDIA_PROTOCOLS) : null;
+  if (target && replacement !== null) {
+    rendered = replacement;
     node.properties.src = rendered;
     const width = dimension(target.width);
     const height = dimension(target.height);

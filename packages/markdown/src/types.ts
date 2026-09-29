@@ -116,6 +116,8 @@ export interface MarkdownLabels {
   'alert-important': string;
   'alert-warning': string;
   'alert-caution': string;
+  /** Accessible name of a hidden spoiler (`aria-label` of `span.md-spoiler`). */
+  spoiler: string;
 }
 
 export type MarkdownLabelKey = keyof MarkdownLabels;

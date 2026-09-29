@@ -19,7 +19,9 @@ const VOID = new Set(['br', 'hr', 'img', 'input']);
 const ATTRIBUTES: Readonly<Record<string, string>> = {
   align: 'align',
   alt: 'alt',
+  ariaExpanded: 'aria-expanded',
   ariaHidden: 'aria-hidden',
+  ariaLabel: 'aria-label',
   checked: 'checked',
   className: 'class',
   dataMdLabel: 'data-md-label',

@@ -4,6 +4,7 @@
  * the trusted enhancers, so a bug there fails loudly instead of shipping unsafe HTML.
  */
 import type { Nodes, Root } from 'hast';
+import { DEFAULT_LABELS } from './labels.ts';
 import { SANITIZE_SCHEMAS } from './schema.ts';
 import type { MarkdownProfile } from './types.ts';
 import { LINK_PROTOCOLS, MEDIA_PROTOCOLS, safeUrl } from './url.ts';
@@ -47,8 +48,11 @@ const PROPERTIES: Readonly<Record<string, Readonly<Record<string, Rule>>>> = {
   p: { className: ['md-alert-title'] },
   span: {
     className: ['md-spoiler'],
+    role: ['button'],
     tabIndex: ['0'],
-    dataMdLabel: /^alert-(?:note|tip|important|warning|caution)$/,
+    ariaExpanded: ['false'],
+    ariaLabel: [DEFAULT_LABELS.spoiler],
+    dataMdLabel: /^(?:alert-(?:note|tip|important|warning|caution)|spoiler)$/,
   },
   td: { align: ['left', 'center', 'right'] },
   th: { align: ['left', 'center', 'right'] },

@@ -19,17 +19,25 @@ describe('safeUrl', () => {
   const links = ['http', 'https', 'mailto'];
   it.each([
     ['https://example.com/a?b#c', 'https://example.com/a?b#c'],
-    ['HTTPS://EXAMPLE.com', 'https://EXAMPLE.com'],
+    ['HTTPS://EXAMPLE.com', 'https://example.com/'],
     ['mailto:a@b.co', 'mailto:a@b.co'],
+    ['MAILTO:a@b.co', 'mailto:a@b.co'],
     ['/install', '/install'],
     ['#section', '#section'],
     ['?q=1', '?q=1'],
     ['relative/path', 'relative/path'],
-    ['//cdn.example/x', '//cdn.example/x'],
-    ['\\\\evil.example', '//evil.example'],
-    ['/\\evil.example', '//evil.example'],
-    ['  https://x.com  ', 'https://x.com'],
     ['/a:b', '/a:b'],
+    ['  https://x.com  ', 'https://x.com/'],
+    // Everything that names a host is resolved like a browser does and serialised back.
+    ['//cdn.example/x', 'https://cdn.example/x'],
+    ['\\\\evil.example', 'https://evil.example/'],
+    ['/\\evil.example', 'https://evil.example/'],
+    ['http:evil.com', 'http://evil.com/'],
+    ['https:\\\\evil.com', 'https://evil.com/'],
+    ['https:/\\evil.com', 'https://evil.com/'],
+    ['https://evil.com\\@sotf-mods.com/x', 'https://evil.com/@sotf-mods.com/x'],
+    ['https://user:pw@Sotf-Mods.com:443/x', 'https://user:pw@sotf-mods.com/x'],
+    ['https://bücher.example/ä', 'https://xn--bcher-kva.example/%C3%A4'],
   ])('accepts %j', (input, expected) => {
     expect(safeUrl(input, links)).toBe(expected);
   });
@@ -47,6 +55,10 @@ describe('safeUrl', () => {
     'feed:javascript:x',
     '1:x',
     ':x',
+    'https://',
+    'http:',
+    'https://[::1',
+    '//',
   ])('rejects %j', (input) => {
     expect(safeUrl(input, links)).toBeNull();
   });
@@ -57,7 +69,14 @@ describe('safeUrl', () => {
   });
 
   it('is idempotent', () => {
-    for (const value of ['HTTPS://x.com', '\\\\evil', ' /a ', 'mailto:x@y.z']) {
+    for (const value of [
+      'HTTPS://x.com',
+      '\\\\evil',
+      ' /a ',
+      'mailto:x@y.z',
+      'http:evil.com',
+      'https://bücher.example/ä',
+    ]) {
       const once = safeUrl(value, links);
       expect(safeUrl(once, links)).toBe(once);
     }
@@ -74,6 +93,27 @@ describe('isExternal and isTrustedTarget', () => {
     expect(isExternal('//evil.example/x', hosts)).toBe(true);
     expect(isExternal('/install', hosts)).toBe(false);
     expect(isExternal('mailto:a@b.co', hosts)).toBe(true);
+    expect(isExternal('https://sotf-mods.com./x', hosts)).toBe(false);
+    expect(isExternal('#top', hosts)).toBe(false);
+    expect(isExternal('?page=2', hosts)).toBe(false);
+  });
+
+  it('resolves hosts with the WHATWG parser, not a pattern', () => {
+    for (const href of [
+      'http:evil.com',
+      'https:\\\\evil.com',
+      'https:/\\evil.com',
+      'https://evil.com\\@sotf-mods.com',
+      'https://evil.com\\@sotf-mods.com/x',
+      '/\\evil.com',
+      '\\\\evil.com',
+      ' //evil.com',
+      '/\t/evil.com',
+      'https://sotf-mods.com@evil.com/',
+    ]) {
+      expect(isExternal(href, hosts), href).toBe(true);
+    }
+    expect(isExternal('https://evil.com', ['EVIL.com.'])).toBe(false);
   });
 
   it('only trusts site paths and https URLs', () => {
@@ -157,6 +197,15 @@ describe('localizeHtml', () => {
     expect(localized).toContain('<span data-md-label="alert-warning">Achtung &lt;&amp;&gt;</span>');
     expect(localizeHtml(html, {})).toBe(html);
     expect(localizeHtml('<p>no labels</p>', { 'alert-note': 'x' })).toBe('<p>no labels</p>');
+  });
+
+  it('swaps the spoiler accessible name, escaped, without touching author text', () => {
+    const source = 'aria-label="x" data-md-label="spoiler"> ||hidden||';
+    const { html } = renderMarkdown(source, { profile: 'lite' });
+    const localized = localizeHtml(html, { spoiler: 'Spoiler "<&>"' });
+    expect(localized).toContain('aria-label="Spoiler &quot;&lt;&amp;&gt;&quot;" data-md-label="spoiler">hidden</span>');
+    expect(localized.startsWith('<p>aria-label="x" data-md-label="spoiler"&gt; ')).toBe(true);
+    expect(localizeHtml(html, {})).toBe(html);
   });
 
   it('has a default for every key', () => {

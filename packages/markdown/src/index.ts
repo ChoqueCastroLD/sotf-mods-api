@@ -1,7 +1,8 @@
 /**
  * @sotf/markdown: safe Markdown (PLAN §9.1). One sanitised pipeline (markdown-it → hast →
- * rehype-sanitize → trusted enhancers → rehype-stringify) used by the API, the worker and the
- * editor preview, so stored XSS cannot come back. See README.md.
+ * rehype-raw (legacyHtml only) / rehype-sanitize → trusted enhancers → verifyTree → closed-set
+ * serialiser) used by the API, the worker and the editor preview, so stored XSS cannot come back.
+ * See README.md.
  */
 
 export { EXTERNAL_REL, MENTION_PATTERN, slugify } from './enhance.ts';

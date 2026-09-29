@@ -30,6 +30,19 @@ describe('safety checker (self-test)', () => {
     expect(findViolations(html).join('\n')).toContain(problem);
   });
 
+  it.each([
+    '<a href="https://evil.example/">x</a>',
+    '<a href="http:evil.example">x</a>',
+    '<a href="https:\\\\evil.example">x</a>',
+    '<a href="mailto:a@b.co">x</a>',
+  ])('flags an external link without rel: %s', (html) => {
+    expect(findViolations(html).join('\n')).toContain('external link without rel');
+  });
+
+  it('accepts internal links without rel', () => {
+    expect(findViolations('<a href="/x">x</a><a href="https://sotf-mods.com./y">y</a><a href="#z">z</a>')).toEqual([]);
+  });
+
   it('flags a tree that the browser would mutate', () => {
     const { tree } = renderMarkdownTree('[a](https://a.example)');
     const link = tree.children.find((node) => node.type === 'element');
@@ -57,6 +70,22 @@ describe('XSS and mXSS corpus', () => {
         // The plain-text projection never carries markup that could be injected elsewhere unescaped
         // by mistake: it is text, so only its escaping by the caller matters; check it is a string.
         expect(typeof renderMarkdown(input, { profile }).text).toBe('string');
+      });
+    });
+  }
+
+  // Resolvers that accept every handle and image, so the mention and image-replacement paths of
+  // the enhancers run on every vector too.
+  const benignResolvers = {
+    resolveMention: (handle: string) => ({ href: `/profile/${handle}` }),
+    resolveImage: () => ({ src: 'https://r2.sotf-mods.com/media/x.webp', width: 640, height: 360 }),
+  };
+
+  for (const profile of PROFILES) {
+    describe(`profile ${profile} with resolvers`, () => {
+      it.each(XSS_VECTORS.map((vector) => [vector.name, vector.input] as const))('%s', (_name, input) => {
+        const { tree } = renderMarkdownTree(input, { profile, ...benignResolvers });
+        expect(findViolations(toSafeHtml(tree), tree)).toEqual([]);
       });
     });
   }

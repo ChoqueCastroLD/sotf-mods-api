@@ -3,12 +3,15 @@ import {
   EXTERNAL_REL,
   extractMentions,
   hasRawHtml,
+  localizeHtml,
   MAX_MARKDOWN_LENGTH,
   MarkdownInputError,
   PROFILES,
   RENDER_VERSION,
   renderMarkdown,
 } from '../src/index.ts';
+import { renderMarkdownTree } from '../src/render.ts';
+import { toSafeHtml } from '../src/serialize.ts';
 import { findViolations, parseHtml } from './helpers/safety.ts';
 
 const REL = EXTERNAL_REL.join(' ');
@@ -186,7 +189,54 @@ describe('links', () => {
 
   it('does not autolink inside code or existing links, nor invalid domains', () => {
     const { links } = renderMarkdown('`https://a.com` [https://b.com](https://c.com) https://localhost www.x_y.com');
-    expect(links.map((link) => link.href)).toEqual(['https://c.com']);
+    expect(links.map((link) => link.href)).toEqual(['https://c.com/']);
+  });
+
+  it.each(PROFILES)('never nests links: text anywhere inside a link is left alone (%s)', (profile) => {
+    const resolveMention = (handle: string) => ({ href: `/profile/${handle}` });
+    const inputs =
+      profile === 'legacyHtml'
+        ? [
+            '[**https://x.com**](https://y.com)',
+            '[*@bob*](https://y.com)',
+            '<a href="https://y.com"><b>@bob www.x.com</b></a>',
+            '<a href="https://y.com"><i><b>ana@example.com</b></i></a>',
+          ]
+        : ['[**https://x.com**](https://y.com)', '[*@bob*](https://y.com)', '[_x ||www.x.com||_](https://y.com)'];
+    for (const input of inputs) {
+      const { tree } = renderMarkdownTree(input, { profile, resolveMention });
+      const html = toSafeHtml(tree);
+      expect(findViolations(html, tree)).toEqual([]);
+      const result = renderMarkdown(input, { profile, resolveMention });
+      expect(parseHtml(result.html).querySelectorAll('a')).toHaveLength(1);
+      expect(result.links.map((link) => link.href)).toEqual(['https://y.com/']);
+      expect(result.mentions).toEqual([]);
+    }
+  });
+
+  it.each(PROFILES)('classifies links the way a browser resolves them (%s)', (profile) => {
+    const cases: Array<[string, string]> = [
+      ['http:evil.com', 'http://evil.com/'],
+      ['HTTPS://EVIL.com', 'https://evil.com/'],
+      ['https://sotf-mods.com./x', 'https://sotf-mods.com./x'],
+    ];
+    if (profile === 'legacyHtml') {
+      cases.push(
+        ['https:\\\\evil.com', 'https://evil.com/'],
+        ['https:/\\evil.com', 'https://evil.com/'],
+        ['https://evil.com\\@sotf-mods.com/x', 'https://evil.com/@sotf-mods.com/x'],
+        ['/\\evil.com/x', 'https://evil.com/x'],
+      );
+    }
+    for (const [href, expected] of cases) {
+      const input = profile === 'legacyHtml' ? `<a href="${href}">x</a>` : `[x](${href})`;
+      const { html, links } = renderMarkdown(input, { profile });
+      const anchor = parseHtml(html).querySelector('a');
+      expect(anchor?.getAttribute('href')).toBe(expected);
+      const leaves = !expected.startsWith('https://sotf-mods.com');
+      expect(anchor?.getAttribute('rel')).toBe(leaves ? REL : null);
+      expect(links).toEqual([{ href: expected, text: 'x', external: leaves, kind: 'link' }]);
+    }
   });
 
   it('keeps unsafe link syntax as visible text', () => {
@@ -251,7 +301,7 @@ describe('images', () => {
       `<p><a href="https://example.com/a.png" rel="${REL}">shot</a></p>\n`,
     );
     expect(renderMarkdown('[![shot](https://example.com/a.png)](https://example.com)', { profile: 'lite' }).html).toBe(
-      `<p><a href="https://example.com" rel="${REL}">shot</a></p>\n`,
+      `<p><a href="https://example.com/" rel="${REL}">shot</a></p>\n`,
     );
   });
 
@@ -336,11 +386,15 @@ describe('YouTube facades', () => {
 });
 
 describe('spoilers', () => {
-  it('wraps ||text|| in a focusable span, in every profile', () => {
+  it('wraps ||text|| in a collapsed toggle button, in every profile', () => {
     for (const profile of PROFILES) {
       const { html, text } = renderMarkdown('The end: ||Kelvin **survives**|| ok', { profile });
       const spoiler = parseHtml(html).querySelector('span.md-spoiler');
+      expect(spoiler?.getAttribute('role')).toBe('button');
       expect(spoiler?.getAttribute('tabindex')).toBe('0');
+      expect(spoiler?.getAttribute('aria-expanded')).toBe('false');
+      expect(spoiler?.getAttribute('aria-label')).toBe('Spoiler');
+      expect(spoiler?.getAttribute('data-md-label')).toBe('spoiler');
       expect(spoiler?.querySelector('strong')?.textContent).toBe('survives');
       expect(text).toBe('The end: ok');
     }
@@ -350,6 +404,25 @@ describe('spoilers', () => {
     expect(renderMarkdown('a || b').html).toBe('<p>a || b</p>\n');
     expect(renderMarkdown('a |||| b').html).toBe('<p>a |||| b</p>\n');
     expect(renderMarkdown('`a || b || c`').html).toBe('<p><code>a || b || c</code></p>\n');
+  });
+
+  it('keeps spoilers that hold a link out of the button role (no nested interactive content)', () => {
+    for (const input of ['||see [docs](/docs)||', '||see https://x.com/y||', '||**www.x.com**||']) {
+      const spoiler = parseHtml(renderMarkdown(input).html).querySelector('span.md-spoiler');
+      expect(spoiler?.querySelector('a')).not.toBeNull();
+      expect([...(spoiler?.attributes ?? [])].map((attr) => attr.name)).toEqual(['class']);
+    }
+  });
+
+  it('does not create spoilers inside links', () => {
+    expect(renderMarkdown('[||x||](https://y.com)').html).toBe(
+      `<p><a href="https://y.com/" rel="${REL}">||x||</a></p>\n`,
+    );
+  });
+
+  it('localises the accessible name', () => {
+    const html = localizeHtml(renderMarkdown('||x||').html, { spoiler: 'Спойлер "<>"' });
+    expect(parseHtml(html).querySelector('.md-spoiler')?.getAttribute('aria-label')).toBe('Спойлер "<>"');
   });
 
   it('supports several spoilers per paragraph', () => {

@@ -3,8 +3,9 @@
  *
  * markdown-it tokenises CommonMark + GFM tables and strikethrough in linear time with a
  * nesting cap, about 20× faster than micromark on real descriptions (see README, "Why
- * markdown-it"). This module turns its token stream into a hast tree for the unified/rehype part
- * of the pipeline (rehype-raw, rehype-sanitize, rehype-stringify).
+ * markdown-it"). This module turns its token stream into a hast tree for the rest of the pipeline:
+ * rehype-raw (legacyHtml only) / rehype-sanitize → trusted enhancers → verifyTree → closed-set
+ * serialiser (serialize.ts).
  *
  * Profile rules applied here:
  * - raw HTML is only tokenised in `legacyHtml` (as hast `raw` nodes for rehype-raw); elsewhere

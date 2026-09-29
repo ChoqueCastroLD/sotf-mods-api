@@ -38,7 +38,7 @@ const ALLOWED: Readonly<Record<string, readonly string[]>> = {
   pre: [],
   s: [],
   samp: [],
-  span: ['class', 'tabindex', 'data-md-label'],
+  span: ['class', 'role', 'tabindex', 'aria-expanded', 'aria-label', 'data-md-label'],
   strong: [],
   sub: [],
   summary: [],
@@ -54,6 +54,7 @@ const ALLOWED: Readonly<Record<string, readonly string[]>> = {
 };
 
 const SAFE_PROTOCOLS = new Set(['http:', 'https:', 'mailto:']);
+const INTERNAL_HOSTS = new Set(['sotf-mods.com', 'www.sotf-mods.com']);
 const BASE = 'https://sotf-mods.com/mods/author/some-mod';
 
 let fired = false;
@@ -195,6 +196,19 @@ function inspect(root: HTMLElement, problems: string[]): void {
     }
     if (name === 'a' && el.getAttribute('rel') !== null && el.getAttribute('rel') !== 'ugc nofollow noopener') {
       problems.push(`unexpected rel ${el.getAttribute('rel')}`);
+    }
+    if (name === 'a' && el.getAttribute('href') !== null) {
+      // Anti-spam and tab-nabbing: every link the browser resolves off-site carries the external rel.
+      let leaves = false;
+      try {
+        const url = new URL(el.getAttribute('href') as string, BASE);
+        leaves = url.protocol === 'mailto:' || !INTERNAL_HOSTS.has(url.hostname.replace(/\.$/, ''));
+      } catch {
+        leaves = false;
+      }
+      if (leaves && el.getAttribute('rel') !== 'ugc nofollow noopener') {
+        problems.push(`external link without rel: ${el.getAttribute('href')}`);
+      }
     }
     const id = el.getAttribute('id');
     if (id !== null && !/^md-/.test(id) && !/^[a-z][a-z0-9-]*-/.test(id)) problems.push(`unprefixed id ${id}`);
