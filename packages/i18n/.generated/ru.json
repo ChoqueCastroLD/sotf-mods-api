@@ -1,0 +1,484 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common_account_menu": "Меню аккаунта",
+  "common_account_profile": "Ваш профиль",
+  "common_account_settings": "Настройки",
+  "common_account_sign_in": "Войти",
+  "common_account_sign_out": "Выйти",
+  "common_account_sign_up": "Создать аккаунт",
+  "common_action_apply": "Применить",
+  "common_action_back": "Назад",
+  "common_action_cancel": "Отмена",
+  "common_action_clear": "Очистить",
+  "common_action_close": "Закрыть",
+  "common_action_confirm": "Подтвердить",
+  "common_action_continue": "Продолжить",
+  "common_action_copied": "Скопировано",
+  "common_action_copy": "Копировать",
+  "common_action_copy_link": "Копировать ссылку",
+  "common_action_delete": "Удалить",
+  "common_action_dismiss": "Скрыть",
+  "common_action_download": "Скачать",
+  "common_action_edit": "Изменить",
+  "common_action_follow": "Отслеживать",
+  "common_action_following": "Отслеживается",
+  "common_action_load_more": "Загрузить ещё",
+  "common_action_retry": "Повторить",
+  "common_action_save": "Сохранить",
+  "common_action_share": "Поделиться",
+  "common_action_show_less": "Показать меньше",
+  "common_action_show_more": "Показать больше",
+  "common_action_undo": "Отменить",
+  "common_action_unfollow": "Не отслеживать",
+  "common_action_view_all": "Смотреть все",
+  "common_ad_label": "Реклама",
+  "common_ads_notice": "Реклама помогает сохранять скачивание бесплатным. Войдите, чтобы скрыть её.",
+  "common_badge_unlocked": "Получен значок: {badge}",
+  "common_breadcrumbs_label": "Навигационная цепочка",
+  "common_builds_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} постройка",
+        "count__plural=few": "{count__number} постройки",
+        "count__plural=many": "{count__number} построек",
+        "count__plural=*": "{count__number} постройки"
+      }
+    }
+  ],
+  "common_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} комментарий",
+        "count__plural=few": "{count__number} комментария",
+        "count__plural=many": "{count__number} комментариев",
+        "count__plural=*": "{count__number} комментария"
+      }
+    }
+  ],
+  "common_compat_broken": "Сообщают, что не работает на {build}. Автор уже в курсе.",
+  "common_compat_unverified": "На последнем патче ещё не проверено. Пробовали? Расскажите нам.",
+  "common_compat_works": [
+    {
+      "declarations": [
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Работает на {build}: подтвердил {count__number} выживший",
+        "count__plural=few": "Работает на {build}: подтвердили {count__number} выживших",
+        "count__plural=many": "Работает на {build}: подтвердили {count__number} выживших",
+        "count__plural=*": "Работает на {build}: подтвердили {count__number} выжившего"
+      }
+    }
+  ],
+  "common_consent_accept": "Принять",
+  "common_consent_preferences": "Настроить",
+  "common_consent_reject": "Отклонить",
+  "common_consent_text": "Мы используем файлы cookie для рекламы и анонимной статистики. Скачивание работает в любом случае.",
+  "common_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "День {day__number} на острове"
+      }
+    }
+  ],
+  "common_delete_mod_confirm": "Введите название мода, чтобы удалить его навсегда. История скачиваний сохранится для статистики.",
+  "common_disclaimer": "SOTF Mods — неофициальное фан-сообщество. Не связано с Endnight Games Ltd. и не одобрено ею. «Sons of the Forest» — товарный знак его владельца.",
+  "common_download_done": "Скачано. Положите файл в папку Mods игры и запустите её.",
+  "common_download_version": "Скачать v{version} · {size}",
+  "common_download_version_short": "Скачать v{version}",
+  "common_downloads_compact": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} скачивание",
+        "count__plural=few": "{display} скачивания",
+        "count__plural=many": "{display} скачиваний",
+        "count__plural=*": "{display} скачивания"
+      }
+    }
+  ],
+  "common_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} скачивание",
+        "count__plural=few": "{count__number} скачивания",
+        "count__plural=many": "{count__number} скачиваний",
+        "count__plural=*": "{count__number} скачивания"
+      }
+    }
+  ],
+  "common_empty_backpack": "Ваш рюкзак пуст. Нажмите ♥ у мода, чтобы положить его сюда.",
+  "common_empty_kit": "Разложите первый предмет: добавьте мод в этот набор.",
+  "common_empty_signals": "В лесу всё спокойно.",
+  "common_env_development": "Версия для разработки",
+  "common_env_preflight": "Предрелиз: реальные данные, пока не публично.",
+  "common_env_staging": "Бета: изменения могут быть потеряны.",
+  "common_followers_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} подписчик",
+        "count__plural=few": "{count__number} подписчика",
+        "count__plural=many": "{count__number} подписчиков",
+        "count__plural=*": "{count__number} подписчика"
+      }
+    }
+  ],
+  "common_footer_about": "О проекте",
+  "common_footer_api_docs": "Документация API",
+  "common_footer_brand": "Бренд",
+  "common_footer_community": "Сообщество",
+  "common_footer_content_policy": "Правила контента",
+  "common_footer_cookies": "Файлы cookie",
+  "common_footer_developers": "Разработчикам",
+  "common_footer_dmca": "DMCA",
+  "common_footer_explore": "Обзор",
+  "common_footer_legal": "Правовая информация",
+  "common_footer_privacy": "Конфиденциальность",
+  "common_footer_resources": "Ресурсы",
+  "common_footer_since": "Проверяем моды в полевых условиях с 2023 года",
+  "common_footer_terms": "Условия",
+  "common_kits_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} набор",
+        "count__plural=few": "{count__number} набора",
+        "count__plural=many": "{count__number} наборов",
+        "count__plural=*": "{count__number} набора"
+      }
+    }
+  ],
+  "common_language_label": "Язык",
+  "common_language_suggest": "Открыть эту страницу на языке: {language}?",
+  "common_language_suggest_accept": "Переключить",
+  "common_language_suggest_decline": "Нет, спасибо",
+  "common_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод",
+        "count__plural=few": "{count__number} мода",
+        "count__plural=many": "{count__number} модов",
+        "count__plural=*": "{count__number} мода"
+      }
+    }
+  ],
+  "common_moon_first_quarter": "Первая четверть",
+  "common_moon_full": "Полнолуние",
+  "common_moon_label": "Этой ночью: {phase}",
+  "common_moon_last_quarter": "Последняя четверть",
+  "common_moon_new": "Новолуние",
+  "common_moon_waning_crescent": "Убывающий серп",
+  "common_moon_waning_gibbous": "Убывающая луна",
+  "common_moon_waxing_crescent": "Растущий серп",
+  "common_moon_waxing_gibbous": "Растущая луна",
+  "common_multiplayer_everyone": "Нужен всем",
+  "common_multiplayer_host_only": "Только хосту",
+  "common_multiplayer_solo_only": "Только одиночная игра",
+  "common_nav_achievements": "Достижения",
+  "common_nav_close_menu": "Закрыть меню",
+  "common_nav_creators": "Авторы",
+  "common_nav_explore": "Обзор",
+  "common_nav_home": "Главная",
+  "common_nav_install": "Установка",
+  "common_nav_label": "Главное меню",
+  "common_nav_news": "Новости",
+  "common_nav_open_menu": "Открыть меню",
+  "common_nav_upload": "Загрузить",
+  "common_nav_you": "Вы",
+  "common_new_tab": "(откроется в новой вкладке)",
+  "common_pagination_label": "Страницы",
+  "common_pagination_next": "Следующая страница",
+  "common_pagination_page": [
+    {
+      "declarations": [
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Страница {page__number}"
+      }
+    }
+  ],
+  "common_pagination_page_of": [
+    {
+      "declarations": [
+        "input page",
+        "input total",
+        "local page__number = page: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Страница {page__number} из {total__number}"
+      }
+    }
+  ],
+  "common_pagination_previous": "Предыдущая страница",
+  "common_published_on": "Опубликовано {date}",
+  "common_relogin_banner": "Мы полностью обновили SOTF Mods. Войдите снова — пароль остался прежним.",
+  "common_review_approved": "Одобрено. Ваш мод уже на острове.",
+  "common_review_changes_requested": "Рейнджер просит внести изменения: {reason}",
+  "common_review_sent": "Отправлено на пост рейнджеров. Обычно проверка занимает меньше 48 ч.",
+  "common_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} отзыв",
+        "count__plural=few": "{count__number} отзыва",
+        "count__plural=many": "{count__number} отзывов",
+        "count__plural=*": "{count__number} отзыва"
+      }
+    }
+  ],
+  "common_safe_to_remove": "Можно удалить посреди прохождения",
+  "common_search_label": "Поиск",
+  "common_search_no_results": "На карте нет ничего по запросу «{query}». Попробуйте меньше слов.",
+  "common_search_placeholder": "Ищите моды, постройки, авторов…",
+  "common_search_shortcut": "Нажмите {shortcut} для поиска",
+  "common_site_name": "SOTF Mods",
+  "common_skip_to_content": "Перейти к содержимому",
+  "common_snow_toggle": "Снег",
+  "common_state_loading": "Сверяемся с картой…",
+  "common_state_new_version": "Вышла новая версия сайта. Перезагружаем…",
+  "common_state_offline": "Вы офлайн. Показанные данные могут быть устаревшими.",
+  "common_state_saved": "Сохранено",
+  "common_state_saving": "Сохранение…",
+  "common_tagline": "Моды для острова. Проверено в полевых условиях.",
+  "common_term_backpack": "Рюкзак",
+  "common_term_basecamp": "Лагерь",
+  "common_term_basecamp_hint": "Панель автора",
+  "common_term_blueprints": "Чертежи",
+  "common_term_builds": "Постройки",
+  "common_term_field_notes": "Полевые заметки",
+  "common_term_field_reports": "Полевые отчёты",
+  "common_term_kits": "Наборы",
+  "common_term_libraries": "Библиотеки",
+  "common_term_mods": "Моды",
+  "common_term_notifications": "Уведомления",
+  "common_term_patch_radar": "Радар патчей",
+  "common_term_ranger_station": "Пост рейнджеров",
+  "common_term_signals": "Сигналы",
+  "common_theme_day": "День",
+  "common_theme_label": "Тема",
+  "common_theme_night": "Ночь",
+  "common_theme_system": "Системная",
+  "common_updated_ago": "Обновлено {when}",
+  "common_welcome": "День 1 на острове. Добро пожаловать, выживший.",
+  "errors_boundary_detail": "Остальная страница работает. Попробуйте загрузить этот раздел ещё раз.",
+  "errors_boundary_title": "Эта часть страницы не загрузилась",
+  "errors_code_conflict_detail": "Пока вы работали, данные изменились. Перезагрузите страницу, чтобы увидеть последнюю версию, и попробуйте снова.",
+  "errors_code_conflict_title": "Кто-то успел раньше",
+  "errors_code_email_not_verified_detail": "Откройте ссылку из нашего письма, чтобы подтвердить адрес, и попробуйте снова. Новую ссылку можно запросить в настройках.",
+  "errors_code_email_not_verified_title": "Сначала подтвердите e-mail",
+  "errors_code_forbidden_detail": "У вашего аккаунта нет прав на это действие. Если считаете, что они должны быть, свяжитесь с рейнджером.",
+  "errors_code_forbidden_title": "Здесь это сделать нельзя",
+  "errors_code_gone_detail": "Это удалили, и оно не вернётся.",
+  "errors_code_gone_title": "Удалено навсегда",
+  "errors_code_internal_detail": "Дело не в вас, а в нас. Мы уже чиним; попробуйте снова через несколько минут.",
+  "errors_code_internal_title": "В лагере что-то сломалось",
+  "errors_code_not_found_detail": "Мы не нашли то, что вы ищете. Возможно, это перенесли или удалили.",
+  "errors_code_not_found_title": "Этого нет на карте",
+  "errors_code_payload_too_large_detail": "Файл превышает допустимый размер. Сожмите его или загрузите файл поменьше.",
+  "errors_code_payload_too_large_title": "Файл слишком большой",
+  "errors_code_rate_limited_detail": "Кельвину нужен перерыв. Попробуйте чуть позже.",
+  "errors_code_rate_limited_retry": [
+    {
+      "declarations": [
+        "input seconds",
+        "local seconds__number = seconds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Кельвину нужен перерыв. Попробуйте снова через {seconds__number} с."
+      }
+    }
+  ],
+  "errors_code_rate_limited_title": "Не так быстро",
+  "errors_code_suspended_detail": "Ваш аккаунт временно заблокирован, поэтому действие недоступно. Подробности — в письме, или свяжитесь с рейнджером.",
+  "errors_code_suspended_title": "Аккаунт заблокирован",
+  "errors_code_turnstile_required_detail": "Пройдите проверку безопасности, чтобы доказать, что вы выживший, а не бот, и попробуйте снова.",
+  "errors_code_turnstile_required_title": "Быстрая проверка",
+  "errors_code_unauthenticated_detail": "Сессия истекла или вы ещё не вошли. Войдите, и мы вернём вас сюда.",
+  "errors_code_unauthenticated_title": "Войдите, чтобы продолжить",
+  "errors_code_unavailable_detail": "Сайт на обслуживании или перегружен. Попробуйте снова через несколько минут.",
+  "errors_code_unavailable_title": "Лагерь ненадолго закрыт",
+  "errors_code_unknown_detail": "Запрос не выполнен по непредвиденной причине. Попробуйте снова; если ошибка повторяется, сообщите нам номер ниже.",
+  "errors_code_unknown_title": "Что-то пошло не так",
+  "errors_code_unsupported_media_type_detail": "Мы не можем принять файл такого типа. Проверьте допустимые форматы и попробуйте снова.",
+  "errors_code_unsupported_media_type_title": "Тип файла не поддерживается",
+  "errors_code_validation_failed_detail": "Часть введённых данных не подходит. Исправьте отмеченные ниже поля и попробуйте снова.",
+  "errors_code_validation_failed_title": "Проверьте отмеченные поля",
+  "errors_copy_reference": "Копировать номер",
+  "errors_field_file_too_large": "Файл больше {limit}.",
+  "errors_field_invalid_email": "Введите корректный e-mail, например name@example.com.",
+  "errors_field_invalid_url": "Введите полную ссылку, начинающуюся с https://.",
+  "errors_field_required": "Обязательное поле.",
+  "errors_field_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__plural = max: plural",
+        "local max__number = max: number"
+      ],
+      "selectors": [
+        "max__plural"
+      ],
+      "match": {
+        "max__plural=one": "Введите не более {max__number} символа.",
+        "max__plural=few": "Введите не более {max__number} символов.",
+        "max__plural=many": "Введите не более {max__number} символов.",
+        "max__plural=*": "Введите не более {max__number} символа."
+      }
+    }
+  ],
+  "errors_field_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "Введите не менее {min__number} символа.",
+        "min__plural=few": "Введите не менее {min__number} символов.",
+        "min__plural=many": "Введите не менее {min__number} символов.",
+        "min__plural=*": "Введите не менее {min__number} символа."
+      }
+    }
+  ],
+  "errors_gone_text": "То, что было здесь, удалено навсегда. Загляните в другие моды.",
+  "errors_gone_title": "Эта тропа закрыта.",
+  "errors_login_mismatch": "E-mail и пароль не совпадают. Попробуйте снова или сбросьте пароль.",
+  "errors_network_detail": "Не удаётся связаться с SOTF Mods. Проверьте подключение и попробуйте снова.",
+  "errors_network_retrying": "Нет сигнала. Пробуем снова…",
+  "errors_network_title": "Нет сигнала",
+  "errors_not_found_home": "Вернуться на тропу",
+  "errors_not_found_popular": "Популярные моды",
+  "errors_not_found_text": "Этой страницы нет на нашей карте. Кто-то наблюдает за вами из-за деревьев — давайте вернёмся.",
+  "errors_not_found_title": "Вы сошли с тропы.",
+  "errors_permission_detail": "Чтобы открыть эту страницу, нужна другая роль. Вернитесь назад или войдите в другой аккаунт.",
+  "errors_permission_title": "Только для рейнджеров",
+  "errors_reference": "Номер: {id}",
+  "errors_server_text": "Мы уже чиним. Обновите страницу через минуту или вернитесь на главную.",
+  "errors_server_title": "В лагере что-то сломалось.",
+  "errors_validation_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Исправьте {count__number} поле, чтобы продолжить.",
+        "count__plural=few": "Исправьте {count__number} поля, чтобы продолжить.",
+        "count__plural=many": "Исправьте {count__number} полей, чтобы продолжить.",
+        "count__plural=*": "Исправьте {count__number} поля, чтобы продолжить."
+      }
+    }
+  ],
+  "meta_default_description": "Дом моддинга Sons of the Forest: моды, постройки и наборы для RedLoader, проверенные на каждом патче. Бесплатные прямые загрузки.",
+  "meta_feed_description": "Свежие моды и обновления для Sons of the Forest на SOTF Mods.",
+  "meta_feed_title": "SOTF Mods: новые и обновлённые моды",
+  "meta_gone_title": "Страница удалена",
+  "meta_home_description": "Скачивайте {mods} модов, построек и наборов для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+  "meta_home_title": "SOTF Mods — моды, постройки и наборы для Sons of the Forest",
+  "meta_not_found_title": "Страница не найдена",
+  "meta_og_default_alt": "SOTF Mods: моды, постройки и наборы для Sons of the Forest",
+  "meta_search_title": "Результаты поиска по запросу «{query}»",
+  "meta_search_title_empty": "Поиск",
+  "meta_server_error_title": "Ошибка сервера",
+  "meta_site_name": "SOTF Mods",
+  "meta_title_paged": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — страница {page__number}"
+      }
+    }
+  ],
+  "meta_title_template": "{title} | SOTF Mods"
+}

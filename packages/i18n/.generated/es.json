@@ -1,0 +1,460 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common_account_menu": "Menú de la cuenta",
+  "common_account_profile": "Tu perfil",
+  "common_account_settings": "Ajustes",
+  "common_account_sign_in": "Iniciar sesión",
+  "common_account_sign_out": "Cerrar sesión",
+  "common_account_sign_up": "Crear cuenta",
+  "common_action_apply": "Aplicar",
+  "common_action_back": "Volver",
+  "common_action_cancel": "Cancelar",
+  "common_action_clear": "Borrar",
+  "common_action_close": "Cerrar",
+  "common_action_confirm": "Confirmar",
+  "common_action_continue": "Continuar",
+  "common_action_copied": "Copiado",
+  "common_action_copy": "Copiar",
+  "common_action_copy_link": "Copiar enlace",
+  "common_action_delete": "Eliminar",
+  "common_action_dismiss": "Descartar",
+  "common_action_download": "Descargar",
+  "common_action_edit": "Editar",
+  "common_action_follow": "Seguir",
+  "common_action_following": "Siguiendo",
+  "common_action_load_more": "Cargar más",
+  "common_action_retry": "Reintentar",
+  "common_action_save": "Guardar",
+  "common_action_share": "Compartir",
+  "common_action_show_less": "Ver menos",
+  "common_action_show_more": "Ver más",
+  "common_action_undo": "Deshacer",
+  "common_action_unfollow": "Dejar de seguir",
+  "common_action_view_all": "Ver todo",
+  "common_ad_label": "Publicidad",
+  "common_ads_notice": "Los anuncios mantienen gratis las descargas. Inicia sesión para ocultarlos.",
+  "common_badge_unlocked": "Insignia desbloqueada: {badge}",
+  "common_breadcrumbs_label": "Ruta de navegación",
+  "common_builds_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} build",
+        "count__plural=*": "{count__number} builds"
+      }
+    }
+  ],
+  "common_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} comentario",
+        "count__plural=*": "{count__number} comentarios"
+      }
+    }
+  ],
+  "common_compat_broken": "Reportado roto en {build}. Hemos avisado al creador.",
+  "common_compat_unverified": "Aún sin verificar en el último parche. ¿Lo probaste? Cuéntanos.",
+  "common_compat_works": [
+    {
+      "declarations": [
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Funciona en {build}: confirmado por {count__number} superviviente",
+        "count__plural=*": "Funciona en {build}: confirmado por {count__number} supervivientes"
+      }
+    }
+  ],
+  "common_consent_accept": "Aceptar",
+  "common_consent_preferences": "Preferencias",
+  "common_consent_reject": "Rechazar",
+  "common_consent_text": "Usamos cookies para anuncios y estadísticas anónimas. Las descargas funcionan igual.",
+  "common_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Día {day__number} en la isla"
+      }
+    }
+  ],
+  "common_delete_mod_confirm": "Escribe el nombre del mod para borrarlo para siempre. El historial de descargas se conserva para estadísticas.",
+  "common_disclaimer": "SOTF Mods es una comunidad de fans no oficial. Sin afiliación ni respaldo de Endnight Games Ltd. «Sons of the Forest» es una marca registrada de su propietario.",
+  "common_download_done": "Descargado. Suéltalo en la carpeta Mods del juego y ábrelo.",
+  "common_download_version": "Descargar v{version} · {size}",
+  "common_download_version_short": "Descargar v{version}",
+  "common_downloads_compact": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} descarga",
+        "count__plural=*": "{display} descargas"
+      }
+    }
+  ],
+  "common_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} descarga",
+        "count__plural=*": "{count__number} descargas"
+      }
+    }
+  ],
+  "common_empty_backpack": "Tu mochila está vacía. Pulsa ♥ en un mod para guardarlo aquí.",
+  "common_empty_kit": "Coloca tu primer objeto: añade un mod a este kit.",
+  "common_empty_signals": "Todo tranquilo en el bosque.",
+  "common_env_development": "Versión de desarrollo",
+  "common_env_preflight": "Preflight: datos reales, aún no es público.",
+  "common_env_staging": "Beta: los cambios pueden perderse.",
+  "common_followers_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} seguidor",
+        "count__plural=*": "{count__number} seguidores"
+      }
+    }
+  ],
+  "common_footer_about": "Acerca de",
+  "common_footer_api_docs": "Documentación de la API",
+  "common_footer_brand": "Marca",
+  "common_footer_community": "Comunidad",
+  "common_footer_content_policy": "Política de contenido",
+  "common_footer_cookies": "Cookies",
+  "common_footer_developers": "Desarrolladores",
+  "common_footer_dmca": "DMCA",
+  "common_footer_explore": "Explorar",
+  "common_footer_legal": "Legal",
+  "common_footer_privacy": "Privacidad",
+  "common_footer_resources": "Recursos",
+  "common_footer_since": "Probando mods en el terreno desde 2023",
+  "common_footer_terms": "Términos",
+  "common_kits_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kit",
+        "count__plural=*": "{count__number} kits"
+      }
+    }
+  ],
+  "common_language_label": "Idioma",
+  "common_language_suggest": "¿Ver esta página en {language}?",
+  "common_language_suggest_accept": "Cambiar",
+  "common_language_suggest_decline": "No, gracias",
+  "common_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "common_moon_first_quarter": "Cuarto creciente",
+  "common_moon_full": "Luna llena",
+  "common_moon_label": "Esta noche: {phase}",
+  "common_moon_last_quarter": "Cuarto menguante",
+  "common_moon_new": "Luna nueva",
+  "common_moon_waning_crescent": "Luna menguante",
+  "common_moon_waning_gibbous": "Gibosa menguante",
+  "common_moon_waxing_crescent": "Luna creciente",
+  "common_moon_waxing_gibbous": "Gibosa creciente",
+  "common_multiplayer_everyone": "Todos lo necesitan",
+  "common_multiplayer_host_only": "Solo el host",
+  "common_multiplayer_solo_only": "Solo un jugador",
+  "common_nav_achievements": "Logros",
+  "common_nav_close_menu": "Cerrar el menú",
+  "common_nav_creators": "Creadores",
+  "common_nav_explore": "Explorar",
+  "common_nav_home": "Inicio",
+  "common_nav_install": "Instalar",
+  "common_nav_label": "Principal",
+  "common_nav_news": "Novedades",
+  "common_nav_open_menu": "Abrir el menú",
+  "common_nav_upload": "Subir",
+  "common_nav_you": "Tú",
+  "common_new_tab": "(se abre en una pestaña nueva)",
+  "common_pagination_label": "Paginación",
+  "common_pagination_next": "Página siguiente",
+  "common_pagination_page": [
+    {
+      "declarations": [
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Página {page__number}"
+      }
+    }
+  ],
+  "common_pagination_page_of": [
+    {
+      "declarations": [
+        "input page",
+        "input total",
+        "local page__number = page: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Página {page__number} de {total__number}"
+      }
+    }
+  ],
+  "common_pagination_previous": "Página anterior",
+  "common_published_on": "Publicado el {date}",
+  "common_relogin_banner": "Hemos renovado SOTF Mods. Inicia sesión de nuevo: tu contraseña es la misma.",
+  "common_review_approved": "Aprobado. Tu mod ya está en la isla.",
+  "common_review_changes_requested": "Un guardabosques pidió cambios: {reason}",
+  "common_review_sent": "Enviado al puesto de guardabosques. La mayoría de revisiones tardan menos de 48 h.",
+  "common_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} reseña",
+        "count__plural=*": "{count__number} reseñas"
+      }
+    }
+  ],
+  "common_safe_to_remove": "Se puede quitar sin romper la partida",
+  "common_search_label": "Buscar",
+  "common_search_no_results": "Nada en el mapa para «{query}». Prueba con menos palabras.",
+  "common_search_placeholder": "Busca mods, builds, creadores…",
+  "common_search_shortcut": "Pulsa {shortcut} para buscar",
+  "common_site_name": "SOTF Mods",
+  "common_skip_to_content": "Saltar al contenido",
+  "common_snow_toggle": "Nieve",
+  "common_state_loading": "Revisando el mapa…",
+  "common_state_new_version": "Hay una versión nueva del sitio. Recargando…",
+  "common_state_offline": "Estás sin conexión. Lo que ves puede estar desactualizado.",
+  "common_state_saved": "Guardado",
+  "common_state_saving": "Guardando…",
+  "common_tagline": "Mods para la isla. Probados en el terreno.",
+  "common_term_backpack": "Mochila",
+  "common_term_basecamp": "Campamento",
+  "common_term_basecamp_hint": "Panel del creador",
+  "common_term_blueprints": "Planos",
+  "common_term_builds": "Builds",
+  "common_term_field_notes": "Notas de campo",
+  "common_term_field_reports": "Reportes de campo",
+  "common_term_kits": "Kits",
+  "common_term_libraries": "Librerías",
+  "common_term_mods": "Mods",
+  "common_term_notifications": "Notificaciones",
+  "common_term_patch_radar": "Radar de parches",
+  "common_term_ranger_station": "Puesto de guardabosques",
+  "common_term_signals": "Señales",
+  "common_theme_day": "Día",
+  "common_theme_label": "Tema",
+  "common_theme_night": "Noche",
+  "common_theme_system": "Sistema",
+  "common_updated_ago": "Actualizado {when}",
+  "common_welcome": "Día 1 en la isla. Bienvenido, superviviente.",
+  "errors_boundary_detail": "El resto de la página sigue funcionando. Intenta cargar esta sección de nuevo.",
+  "errors_boundary_title": "Esta parte de la página no cargó",
+  "errors_code_conflict_detail": "Esto cambió mientras trabajabas en ello. Recarga para ver la versión más reciente y vuelve a intentarlo.",
+  "errors_code_conflict_title": "Alguien llegó antes",
+  "errors_code_email_not_verified_detail": "Abre el enlace que te enviamos por email para verificar tu dirección y vuelve a intentarlo. Puedes pedir un enlace nuevo en Ajustes.",
+  "errors_code_email_not_verified_title": "Verifica tu email primero",
+  "errors_code_forbidden_detail": "Tu cuenta no tiene permiso para esta acción. Si crees que debería tenerlo, contacta con un guardabosques.",
+  "errors_code_forbidden_title": "No puedes hacer eso aquí",
+  "errors_code_gone_detail": "Se eliminó y no va a volver.",
+  "errors_code_gone_title": "Ya no existe",
+  "errors_code_internal_detail": "No es culpa tuya, es nuestra. Ya estamos en ello; vuelve a intentarlo en unos minutos.",
+  "errors_code_internal_title": "Algo se rompió en el campamento",
+  "errors_code_not_found_detail": "No encontramos lo que buscabas. Puede que se haya movido o eliminado.",
+  "errors_code_not_found_title": "No está en el mapa",
+  "errors_code_payload_too_large_detail": "Ese archivo supera el límite de tamaño. Comprímelo o sube uno más pequeño.",
+  "errors_code_payload_too_large_title": "Archivo demasiado grande",
+  "errors_code_rate_limited_detail": "Kelvin necesita un descanso. Vuelve a intentarlo en un momento.",
+  "errors_code_rate_limited_retry": [
+    {
+      "declarations": [
+        "input seconds",
+        "local seconds__number = seconds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Kelvin necesita un descanso. Vuelve a intentarlo en {seconds__number} s."
+      }
+    }
+  ],
+  "errors_code_rate_limited_title": "Ve un poco más despacio",
+  "errors_code_suspended_detail": "Tu cuenta está suspendida, así que esta acción está bloqueada. Revisa tu email para ver los detalles o contacta con un guardabosques.",
+  "errors_code_suspended_title": "Cuenta suspendida",
+  "errors_code_turnstile_required_detail": "Completa la verificación de seguridad para demostrar que eres un superviviente y no un bot, y vuelve a intentarlo.",
+  "errors_code_turnstile_required_title": "Comprobación rápida",
+  "errors_code_unauthenticated_detail": "Tu sesión terminó o aún no has iniciado sesión. Inicia sesión y te traemos de vuelta aquí.",
+  "errors_code_unauthenticated_title": "Inicia sesión para continuar",
+  "errors_code_unavailable_detail": "El sitio está en mantenimiento o sobrecargado. Vuelve a intentarlo en unos minutos.",
+  "errors_code_unavailable_title": "El campamento está parado un momento",
+  "errors_code_unknown_detail": "La petición falló por un motivo inesperado. Vuelve a intentarlo; si sigue pasando, envíanos la referencia de abajo.",
+  "errors_code_unknown_title": "Algo salió mal",
+  "errors_code_unsupported_media_type_detail": "No podemos aceptar este tipo de archivo. Revisa los formatos permitidos e inténtalo de nuevo.",
+  "errors_code_unsupported_media_type_title": "Tipo de archivo no admitido",
+  "errors_code_validation_failed_detail": "Parte de lo que escribiste no es válido. Corrige los campos marcados abajo e inténtalo de nuevo.",
+  "errors_code_validation_failed_title": "Revisa los campos marcados",
+  "errors_copy_reference": "Copiar referencia",
+  "errors_field_file_too_large": "El archivo pesa más de {limit}.",
+  "errors_field_invalid_email": "Escribe un email válido, como nombre@ejemplo.com.",
+  "errors_field_invalid_url": "Escribe un enlace completo que empiece por https://.",
+  "errors_field_required": "Este campo es obligatorio.",
+  "errors_field_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__plural = max: plural",
+        "local max__number = max: number"
+      ],
+      "selectors": [
+        "max__plural"
+      ],
+      "match": {
+        "max__plural=one": "Usa como máximo {max__number} carácter.",
+        "max__plural=*": "Usa como máximo {max__number} caracteres."
+      }
+    }
+  ],
+  "errors_field_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "Usa al menos {min__number} carácter.",
+        "min__plural=*": "Usa al menos {min__number} caracteres."
+      }
+    }
+  ],
+  "errors_gone_text": "Lo que había aquí se eliminó para siempre. Prueba a explorar otros mods.",
+  "errors_gone_title": "Este sendero está cerrado.",
+  "errors_login_mismatch": "El email y la contraseña no coinciden. Inténtalo de nuevo o restablece tu contraseña.",
+  "errors_network_detail": "No podemos conectar con SOTF Mods. Revisa tu conexión e inténtalo de nuevo.",
+  "errors_network_retrying": "Sin señal. Reintentando…",
+  "errors_network_title": "Sin señal",
+  "errors_not_found_home": "Volver al sendero",
+  "errors_not_found_popular": "Mods populares",
+  "errors_not_found_text": "Esta página no está en nuestro mapa. Algo te observa entre los árboles; volvamos al camino.",
+  "errors_not_found_title": "Te saliste del sendero.",
+  "errors_permission_detail": "Necesitas otro rol para abrir esta página. Vuelve atrás o inicia sesión con otra cuenta.",
+  "errors_permission_title": "Solo para guardabosques",
+  "errors_reference": "Ref.: {id}",
+  "errors_server_text": "Ya estamos en ello. Recarga la página en un minuto o vuelve al inicio.",
+  "errors_server_title": "Algo se rompió en el campamento.",
+  "errors_validation_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Corrige {count__number} campo para continuar.",
+        "count__plural=*": "Corrige {count__number} campos para continuar."
+      }
+    }
+  ],
+  "meta_default_description": "El hogar del modding de Sons of the Forest: mods, builds y kits para RedLoader, probados en cada parche. Descargas gratis y directas.",
+  "meta_feed_description": "Los últimos mods y actualizaciones de Sons of the Forest publicados en SOTF Mods.",
+  "meta_feed_title": "SOTF Mods: mods nuevos y actualizados",
+  "meta_gone_title": "Página eliminada",
+  "meta_home_description": "Descarga {mods} mods, builds y kits de Sons of the Forest para RedLoader: gratis, directos y probados por la comunidad. {downloads} descargas a {date}.",
+  "meta_home_title": "SOTF Mods — mods, builds y kits de Sons of the Forest",
+  "meta_not_found_title": "Página no encontrada",
+  "meta_og_default_alt": "SOTF Mods: mods, builds y kits de Sons of the Forest",
+  "meta_search_title": "Resultados de búsqueda para «{query}»",
+  "meta_search_title_empty": "Buscar",
+  "meta_server_error_title": "Error del servidor",
+  "meta_site_name": "SOTF Mods",
+  "meta_title_paged": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — página {page__number}"
+      }
+    }
+  ],
+  "meta_title_template": "{title} | SOTF Mods"
+}

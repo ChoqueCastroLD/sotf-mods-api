@@ -1,0 +1,16 @@
+{
+  "meta_site_name": "SOTF Mods",
+  "meta_title_template": "{title} | SOTF Mods",
+  "meta_title_paged": "{title} — pagina {page, number}",
+  "meta_home_title": "SOTF Mods — mods, builds en kits voor Sons of the Forest",
+  "meta_home_description": "Download {mods} mods, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} downloads op {date}.",
+  "meta_default_description": "Het thuis van Sons of the Forest-modding: mods, builds en kits voor RedLoader, getest op elke patch. Gratis, directe downloads.",
+  "meta_og_default_alt": "SOTF Mods: mods, builds en kits voor Sons of the Forest",
+  "meta_not_found_title": "Pagina niet gevonden",
+  "meta_gone_title": "Pagina verwijderd",
+  "meta_server_error_title": "Serverfout",
+  "meta_search_title": "Zoekresultaten voor ‘{query}’",
+  "meta_search_title_empty": "Zoeken",
+  "meta_feed_title": "SOTF Mods: nieuwe en bijgewerkte mods",
+  "meta_feed_description": "De nieuwste mods en updates voor Sons of the Forest op SOTF Mods."
+}

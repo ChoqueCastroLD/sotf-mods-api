@@ -1,0 +1,460 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common_account_menu": "Hesap menüsü",
+  "common_account_profile": "Profilin",
+  "common_account_settings": "Ayarlar",
+  "common_account_sign_in": "Giriş yap",
+  "common_account_sign_out": "Çıkış yap",
+  "common_account_sign_up": "Hesap oluştur",
+  "common_action_apply": "Uygula",
+  "common_action_back": "Geri",
+  "common_action_cancel": "İptal",
+  "common_action_clear": "Temizle",
+  "common_action_close": "Kapat",
+  "common_action_confirm": "Onayla",
+  "common_action_continue": "Devam et",
+  "common_action_copied": "Kopyalandı",
+  "common_action_copy": "Kopyala",
+  "common_action_copy_link": "Bağlantıyı kopyala",
+  "common_action_delete": "Sil",
+  "common_action_dismiss": "Kapat",
+  "common_action_download": "İndir",
+  "common_action_edit": "Düzenle",
+  "common_action_follow": "Takip et",
+  "common_action_following": "Takip ediliyor",
+  "common_action_load_more": "Daha fazla yükle",
+  "common_action_retry": "Tekrar dene",
+  "common_action_save": "Kaydet",
+  "common_action_share": "Paylaş",
+  "common_action_show_less": "Daha az göster",
+  "common_action_show_more": "Daha fazla göster",
+  "common_action_undo": "Geri al",
+  "common_action_unfollow": "Takibi bırak",
+  "common_action_view_all": "Tümünü gör",
+  "common_ad_label": "Reklam",
+  "common_ads_notice": "Reklamlar indirmeleri ücretsiz tutar. Gizlemek için giriş yap.",
+  "common_badge_unlocked": "Rozet açıldı: {badge}",
+  "common_breadcrumbs_label": "Gezinti yolu",
+  "common_builds_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yapı",
+        "count__plural=*": "{count__number} yapı"
+      }
+    }
+  ],
+  "common_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yorum",
+        "count__plural=*": "{count__number} yorum"
+      }
+    }
+  ],
+  "common_compat_broken": "{build} sürümünde bozuk olarak bildirildi. Üreticiye haber verildi.",
+  "common_compat_unverified": "Son yamada henüz doğrulanmadı. Denedin mi? Bize haber ver.",
+  "common_compat_works": [
+    {
+      "declarations": [
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{build} sürümünde çalışıyor: {count__number} hayatta kalan onayladı",
+        "count__plural=*": "{build} sürümünde çalışıyor: {count__number} hayatta kalan onayladı"
+      }
+    }
+  ],
+  "common_consent_accept": "Kabul et",
+  "common_consent_preferences": "Tercihler",
+  "common_consent_reject": "Reddet",
+  "common_consent_text": "Reklamlar ve anonim istatistikler için çerez kullanıyoruz. İndirmeler her durumda çalışır.",
+  "common_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Adada {day__number}. gün"
+      }
+    }
+  ],
+  "common_delete_mod_confirm": "Modu kalıcı olarak silmek için adını yaz. İndirme geçmişi istatistikler için saklanır.",
+  "common_disclaimer": "SOTF Mods resmî olmayan bir hayran topluluğudur. Endnight Games Ltd. ile bağlantılı değildir ve onun tarafından desteklenmez. “Sons of the Forest” sahibinin ticari markasıdır.",
+  "common_download_done": "İndirildi. Oyunun Mods klasörüne bırak ve oyunu başlat.",
+  "common_download_version": "v{version} indir · {size}",
+  "common_download_version_short": "v{version} indir",
+  "common_downloads_compact": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} indirme",
+        "count__plural=*": "{display} indirme"
+      }
+    }
+  ],
+  "common_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} indirme",
+        "count__plural=*": "{count__number} indirme"
+      }
+    }
+  ],
+  "common_empty_backpack": "Sırt çantan boş. Bir modu buraya koymak için ♥ simgesine dokun.",
+  "common_empty_kit": "İlk eşyanı yerleştir: bu kite bir mod ekle.",
+  "common_empty_signals": "Ormanda her şey sakin.",
+  "common_env_development": "Geliştirme sürümü",
+  "common_env_preflight": "Ön yayın: gerçek veriler, henüz herkese açık değil.",
+  "common_env_staging": "Beta: değişiklikler kaybolabilir.",
+  "common_followers_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} takipçi",
+        "count__plural=*": "{count__number} takipçi"
+      }
+    }
+  ],
+  "common_footer_about": "Hakkında",
+  "common_footer_api_docs": "API belgeleri",
+  "common_footer_brand": "Marka",
+  "common_footer_community": "Topluluk",
+  "common_footer_content_policy": "İçerik politikası",
+  "common_footer_cookies": "Çerezler",
+  "common_footer_developers": "Geliştiriciler",
+  "common_footer_dmca": "DMCA",
+  "common_footer_explore": "Keşfet",
+  "common_footer_legal": "Yasal",
+  "common_footer_privacy": "Gizlilik",
+  "common_footer_resources": "Kaynaklar",
+  "common_footer_since": "2023’ten beri modları sahada test ediyoruz",
+  "common_footer_terms": "Koşullar",
+  "common_kits_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kit",
+        "count__plural=*": "{count__number} kit"
+      }
+    }
+  ],
+  "common_language_label": "Dil",
+  "common_language_suggest": "Bu sayfayı {language} dilinde görmek ister misin?",
+  "common_language_suggest_accept": "Değiştir",
+  "common_language_suggest_decline": "Hayır, teşekkürler",
+  "common_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "common_moon_first_quarter": "İlk dördün",
+  "common_moon_full": "Dolunay",
+  "common_moon_label": "Bu gece: {phase}",
+  "common_moon_last_quarter": "Son dördün",
+  "common_moon_new": "Yeni ay",
+  "common_moon_waning_crescent": "Küçülen hilal",
+  "common_moon_waning_gibbous": "Küçülen şişkin ay",
+  "common_moon_waxing_crescent": "Büyüyen hilal",
+  "common_moon_waxing_gibbous": "Büyüyen şişkin ay",
+  "common_multiplayer_everyone": "Herkeste olmalı",
+  "common_multiplayer_host_only": "Yalnızca sunucu sahibi",
+  "common_multiplayer_solo_only": "Yalnızca tek oyunculu",
+  "common_nav_achievements": "Başarımlar",
+  "common_nav_close_menu": "Menüyü kapat",
+  "common_nav_creators": "Üreticiler",
+  "common_nav_explore": "Keşfet",
+  "common_nav_home": "Ana sayfa",
+  "common_nav_install": "Kurulum",
+  "common_nav_label": "Ana menü",
+  "common_nav_news": "Haberler",
+  "common_nav_open_menu": "Menüyü aç",
+  "common_nav_upload": "Yükle",
+  "common_nav_you": "Sen",
+  "common_new_tab": "(yeni sekmede açılır)",
+  "common_pagination_label": "Sayfalama",
+  "common_pagination_next": "Sonraki sayfa",
+  "common_pagination_page": [
+    {
+      "declarations": [
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sayfa {page__number}"
+      }
+    }
+  ],
+  "common_pagination_page_of": [
+    {
+      "declarations": [
+        "input page",
+        "input total",
+        "local page__number = page: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sayfa {page__number} / {total__number}"
+      }
+    }
+  ],
+  "common_pagination_previous": "Önceki sayfa",
+  "common_published_on": "Yayınlanma: {date}",
+  "common_relogin_banner": "SOTF Mods’u yeniden inşa ettik. Tekrar giriş yap; şifren aynı.",
+  "common_review_approved": "Onaylandı. Modun artık adada.",
+  "common_review_changes_requested": "Bir korucu değişiklik istedi: {reason}",
+  "common_review_sent": "Korucu İstasyonu’na gönderildi. İncelemelerin çoğu 48 saatten kısa sürer.",
+  "common_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} inceleme",
+        "count__plural=*": "{count__number} inceleme"
+      }
+    }
+  ],
+  "common_safe_to_remove": "Kayıt ortasında güvenle kaldırılabilir",
+  "common_search_label": "Ara",
+  "common_search_no_results": "Haritada “{query}” için bir şey yok. Daha az kelimeyle dene.",
+  "common_search_placeholder": "Mod, yapı, üretici ara…",
+  "common_search_shortcut": "Aramak için {shortcut} tuşlarına bas",
+  "common_site_name": "SOTF Mods",
+  "common_skip_to_content": "İçeriğe geç",
+  "common_snow_toggle": "Kar",
+  "common_state_loading": "Harita kontrol ediliyor…",
+  "common_state_new_version": "Sitenin yeni bir sürümü çıktı. Yeniden yükleniyor…",
+  "common_state_offline": "Çevrimdışısın. Gördüklerin güncel olmayabilir.",
+  "common_state_saved": "Kaydedildi",
+  "common_state_saving": "Kaydediliyor…",
+  "common_tagline": "Ada için modlar. Sahada test edildi.",
+  "common_term_backpack": "Sırt Çantası",
+  "common_term_basecamp": "Ana Kamp",
+  "common_term_basecamp_hint": "İçerik üretici paneli",
+  "common_term_blueprints": "Planlar",
+  "common_term_builds": "Yapılar",
+  "common_term_field_notes": "Saha Notları",
+  "common_term_field_reports": "Saha Raporları",
+  "common_term_kits": "Kitler",
+  "common_term_libraries": "Kütüphaneler",
+  "common_term_mods": "Modlar",
+  "common_term_notifications": "Bildirimler",
+  "common_term_patch_radar": "Yama Radarı",
+  "common_term_ranger_station": "Korucu İstasyonu",
+  "common_term_signals": "Sinyaller",
+  "common_theme_day": "Gündüz",
+  "common_theme_label": "Tema",
+  "common_theme_night": "Gece",
+  "common_theme_system": "Sistem",
+  "common_updated_ago": "Güncellendi: {when}",
+  "common_welcome": "Adada 1. gün. Hoş geldin, hayatta kalan.",
+  "errors_boundary_detail": "Sayfanın geri kalanı çalışıyor. Bu bölümü yeniden yüklemeyi dene.",
+  "errors_boundary_title": "Sayfanın bu bölümü yüklenemedi",
+  "errors_code_conflict_detail": "Sen üzerinde çalışırken bu değişti. En son sürümü görmek için sayfayı yenile ve tekrar dene.",
+  "errors_code_conflict_title": "Biri senden önce davrandı",
+  "errors_code_email_not_verified_detail": "Adresini doğrulamak için e-postayla gönderdiğimiz bağlantıyı aç, sonra tekrar dene. Ayarlar’dan yeni bir bağlantı isteyebilirsin.",
+  "errors_code_email_not_verified_title": "Önce e-postanı doğrula",
+  "errors_code_forbidden_detail": "Hesabının bu işlem için izni yok. İzni olması gerektiğini düşünüyorsan bir korucuyla iletişime geç.",
+  "errors_code_forbidden_title": "Bunu burada yapamazsın",
+  "errors_code_gone_detail": "Bu kaldırıldı ve geri gelmeyecek.",
+  "errors_code_gone_title": "Tamamen kaldırıldı",
+  "errors_code_internal_detail": "Senden değil, bizden kaynaklı. Üzerinde çalışıyoruz; birkaç dakika sonra tekrar dene.",
+  "errors_code_internal_title": "Ana kampta bir şey bozuldu",
+  "errors_code_not_found_detail": "Aradığın şeyi bulamadık. Taşınmış ya da silinmiş olabilir.",
+  "errors_code_not_found_title": "Haritada yok",
+  "errors_code_payload_too_large_detail": "Bu dosya boyut sınırını aşıyor. Sıkıştır ya da daha küçük bir dosya yükle.",
+  "errors_code_payload_too_large_title": "Dosya çok büyük",
+  "errors_code_rate_limited_detail": "Kelvin’in biraz molaya ihtiyacı var. Birazdan tekrar dene.",
+  "errors_code_rate_limited_retry": [
+    {
+      "declarations": [
+        "input seconds",
+        "local seconds__number = seconds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Kelvin’in biraz molaya ihtiyacı var. {seconds__number} sn sonra tekrar dene."
+      }
+    }
+  ],
+  "errors_code_rate_limited_title": "Biraz yavaşla",
+  "errors_code_suspended_detail": "Hesabın askıya alındığı için bu işlem engellendi. Ayrıntılar için e-postanı kontrol et ya da bir korucuyla iletişime geç.",
+  "errors_code_suspended_title": "Hesap askıya alındı",
+  "errors_code_turnstile_required_detail": "Bot değil, hayatta kalan olduğunu kanıtlamak için güvenlik kontrolünü tamamla ve tekrar dene.",
+  "errors_code_turnstile_required_title": "Kısa bir kontrol",
+  "errors_code_unauthenticated_detail": "Oturumun sona erdi ya da henüz giriş yapmadın. Giriş yap, seni buraya geri getirelim.",
+  "errors_code_unauthenticated_title": "Devam etmek için giriş yap",
+  "errors_code_unavailable_detail": "Site bakımda ya da aşırı yüklü. Birkaç dakika sonra tekrar dene.",
+  "errors_code_unavailable_title": "Ana kamp kısa süreliğine kapalı",
+  "errors_code_unknown_detail": "İstek beklenmedik bir nedenle başarısız oldu. Tekrar dene; sorun sürerse aşağıdaki referansı bize ilet.",
+  "errors_code_unknown_title": "Bir şeyler ters gitti",
+  "errors_code_unsupported_media_type_detail": "Bu tür bir dosyayı kabul edemiyoruz. İzin verilen biçimleri kontrol edip tekrar dene.",
+  "errors_code_unsupported_media_type_title": "Dosya türü desteklenmiyor",
+  "errors_code_validation_failed_detail": "Girdiğin bilgilerin bir kısmı geçerli değil. Aşağıda işaretli alanları düzeltip tekrar dene.",
+  "errors_code_validation_failed_title": "İşaretli alanları kontrol et",
+  "errors_copy_reference": "Referansı kopyala",
+  "errors_field_file_too_large": "Dosya {limit} boyutundan büyük.",
+  "errors_field_invalid_email": "Geçerli bir e-posta adresi gir, örneğin ad@ornek.com.",
+  "errors_field_invalid_url": "https:// ile başlayan tam bir bağlantı gir.",
+  "errors_field_required": "Bu alan zorunlu.",
+  "errors_field_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__plural = max: plural",
+        "local max__number = max: number"
+      ],
+      "selectors": [
+        "max__plural"
+      ],
+      "match": {
+        "max__plural=one": "En fazla {max__number} karakter kullan.",
+        "max__plural=*": "En fazla {max__number} karakter kullan."
+      }
+    }
+  ],
+  "errors_field_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "En az {min__number} karakter kullan.",
+        "min__plural=*": "En az {min__number} karakter kullan."
+      }
+    }
+  ],
+  "errors_gone_text": "Burada olan şey kalıcı olarak kaldırıldı. Başka modları keşfetmeyi dene.",
+  "errors_gone_title": "Bu patika kapalı.",
+  "errors_login_mismatch": "E-posta ve şifre eşleşmiyor. Tekrar dene ya da şifreni sıfırla.",
+  "errors_network_detail": "SOTF Mods’a ulaşamıyoruz. Bağlantını kontrol edip tekrar dene.",
+  "errors_network_retrying": "Sinyal yok. Yeniden deneniyor…",
+  "errors_network_title": "Sinyal yok",
+  "errors_not_found_home": "Patikaya dön",
+  "errors_not_found_popular": "Popüler modlar",
+  "errors_not_found_text": "Bu sayfa haritamızda yok. Ağaçların arasından bir şey seni izliyor; hadi geri dönelim.",
+  "errors_not_found_title": "Patikadan saptın.",
+  "errors_permission_detail": "Bu sayfayı açmak için farklı bir role ihtiyacın var. Geri dön ya da başka bir hesapla giriş yap.",
+  "errors_permission_title": "Yalnızca korucular için",
+  "errors_reference": "Ref.: {id}",
+  "errors_server_text": "Üzerinde çalışıyoruz. Bir dakika sonra sayfayı yenile ya da ana sayfaya dön.",
+  "errors_server_title": "Ana kampta bir şey bozuldu.",
+  "errors_validation_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Devam etmek için {count__number} alanı düzelt.",
+        "count__plural=*": "Devam etmek için {count__number} alanı düzelt."
+      }
+    }
+  ],
+  "meta_default_description": "Sons of the Forest modlamanın evi: RedLoader için her yamada test edilen modlar, yapılar ve kitler. Ücretsiz, doğrudan indirme.",
+  "meta_feed_description": "SOTF Mods’ta yayınlanan en yeni Sons of the Forest modları ve güncellemeleri.",
+  "meta_feed_title": "SOTF Mods: yeni ve güncellenen modlar",
+  "meta_gone_title": "Sayfa kaldırıldı",
+  "meta_home_description": "RedLoader için {mods} Sons of the Forest modunu, yapısını ve kitini indir: ücretsiz, doğrudan ve topluluk tarafından test edilmiş. {date} itibarıyla {downloads} indirme.",
+  "meta_home_title": "SOTF Mods — Sons of the Forest modları, yapıları ve kitleri",
+  "meta_not_found_title": "Sayfa bulunamadı",
+  "meta_og_default_alt": "SOTF Mods: Sons of the Forest modları, yapıları ve kitleri",
+  "meta_search_title": "“{query}” için arama sonuçları",
+  "meta_search_title_empty": "Ara",
+  "meta_server_error_title": "Sunucu hatası",
+  "meta_site_name": "SOTF Mods",
+  "meta_title_paged": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — sayfa {page__number}"
+      }
+    }
+  ],
+  "meta_title_template": "{title} | SOTF Mods"
+}

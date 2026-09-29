@@ -1,0 +1,484 @@
+{
+  "$schema": "https://inlang.com/schema/inlang-message-format",
+  "common_account_menu": "Menu konta",
+  "common_account_profile": "Twój profil",
+  "common_account_settings": "Ustawienia",
+  "common_account_sign_in": "Zaloguj się",
+  "common_account_sign_out": "Wyloguj się",
+  "common_account_sign_up": "Załóż konto",
+  "common_action_apply": "Zastosuj",
+  "common_action_back": "Wstecz",
+  "common_action_cancel": "Anuluj",
+  "common_action_clear": "Wyczyść",
+  "common_action_close": "Zamknij",
+  "common_action_confirm": "Potwierdź",
+  "common_action_continue": "Dalej",
+  "common_action_copied": "Skopiowano",
+  "common_action_copy": "Kopiuj",
+  "common_action_copy_link": "Kopiuj link",
+  "common_action_delete": "Usuń",
+  "common_action_dismiss": "Odrzuć",
+  "common_action_download": "Pobierz",
+  "common_action_edit": "Edytuj",
+  "common_action_follow": "Obserwuj",
+  "common_action_following": "Obserwujesz",
+  "common_action_load_more": "Wczytaj więcej",
+  "common_action_retry": "Spróbuj ponownie",
+  "common_action_save": "Zapisz",
+  "common_action_share": "Udostępnij",
+  "common_action_show_less": "Pokaż mniej",
+  "common_action_show_more": "Pokaż więcej",
+  "common_action_undo": "Cofnij",
+  "common_action_unfollow": "Przestań obserwować",
+  "common_action_view_all": "Zobacz wszystko",
+  "common_ad_label": "Reklama",
+  "common_ads_notice": "Reklamy utrzymują darmowe pobieranie. Zaloguj się, aby je ukryć.",
+  "common_badge_unlocked": "Odblokowano odznakę: {badge}",
+  "common_breadcrumbs_label": "Ścieżka nawigacji",
+  "common_builds_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} build",
+        "count__plural=few": "{count__number} buildy",
+        "count__plural=many": "{count__number} buildów",
+        "count__plural=*": "{count__number} builda"
+      }
+    }
+  ],
+  "common_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} komentarz",
+        "count__plural=few": "{count__number} komentarze",
+        "count__plural=many": "{count__number} komentarzy",
+        "count__plural=*": "{count__number} komentarza"
+      }
+    }
+  ],
+  "common_compat_broken": "Zgłoszony jako niedziałający na {build}. Twórca został powiadomiony.",
+  "common_compat_unverified": "Jeszcze niesprawdzony na najnowszym patchu. Testowałeś? Daj znać.",
+  "common_compat_works": [
+    {
+      "declarations": [
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Działa na {build}: potwierdził {count__number} ocalały",
+        "count__plural=few": "Działa na {build}: potwierdziło {count__number} ocalałych",
+        "count__plural=many": "Działa na {build}: potwierdziło {count__number} ocalałych",
+        "count__plural=*": "Działa na {build}: potwierdziło {count__number} ocalałego"
+      }
+    }
+  ],
+  "common_consent_accept": "Akceptuj",
+  "common_consent_preferences": "Preferencje",
+  "common_consent_reject": "Odrzuć",
+  "common_consent_text": "Używamy plików cookie do reklam i anonimowych statystyk. Pobieranie działa tak czy inaczej.",
+  "common_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Dzień {day__number} na wyspie"
+      }
+    }
+  ],
+  "common_delete_mod_confirm": "Wpisz nazwę moda, aby usunąć go na zawsze. Historia pobrań zostaje zachowana na potrzeby statystyk.",
+  "common_disclaimer": "SOTF Mods to nieoficjalna społeczność fanów. Nie jest powiązana z Endnight Games Ltd. ani przez nią wspierana. „Sons of the Forest” jest znakiem towarowym swojego właściciela.",
+  "common_download_done": "Pobrano. Wrzuć plik do folderu Mods w katalogu gry i uruchom grę.",
+  "common_download_version": "Pobierz v{version} · {size}",
+  "common_download_version_short": "Pobierz v{version}",
+  "common_downloads_compact": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} pobranie",
+        "count__plural=few": "{display} pobrania",
+        "count__plural=many": "{display} pobrań",
+        "count__plural=*": "{display} pobrania"
+      }
+    }
+  ],
+  "common_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} pobranie",
+        "count__plural=few": "{count__number} pobrania",
+        "count__plural=many": "{count__number} pobrań",
+        "count__plural=*": "{count__number} pobrania"
+      }
+    }
+  ],
+  "common_empty_backpack": "Twój plecak jest pusty. Kliknij ♥ przy modzie, aby go tu schować.",
+  "common_empty_kit": "Rozłóż pierwszy przedmiot: dodaj mod do tego zestawu.",
+  "common_empty_signals": "W lesie panuje cisza.",
+  "common_env_development": "Wersja deweloperska",
+  "common_env_preflight": "Preflight: prawdziwe dane, jeszcze niepubliczne.",
+  "common_env_staging": "Beta: zmiany mogą zostać utracone.",
+  "common_followers_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} obserwujący",
+        "count__plural=few": "{count__number} obserwujących",
+        "count__plural=many": "{count__number} obserwujących",
+        "count__plural=*": "{count__number} obserwującego"
+      }
+    }
+  ],
+  "common_footer_about": "O nas",
+  "common_footer_api_docs": "Dokumentacja API",
+  "common_footer_brand": "Marka",
+  "common_footer_community": "Społeczność",
+  "common_footer_content_policy": "Zasady treści",
+  "common_footer_cookies": "Pliki cookie",
+  "common_footer_developers": "Deweloperzy",
+  "common_footer_dmca": "DMCA",
+  "common_footer_explore": "Przeglądaj",
+  "common_footer_legal": "Informacje prawne",
+  "common_footer_privacy": "Prywatność",
+  "common_footer_resources": "Zasoby",
+  "common_footer_since": "Testujemy mody w terenie od 2023 roku",
+  "common_footer_terms": "Regulamin",
+  "common_kits_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} zestaw",
+        "count__plural=few": "{count__number} zestawy",
+        "count__plural=many": "{count__number} zestawów",
+        "count__plural=*": "{count__number} zestawu"
+      }
+    }
+  ],
+  "common_language_label": "Język",
+  "common_language_suggest": "Wyświetlić tę stronę w języku: {language}?",
+  "common_language_suggest_accept": "Zmień",
+  "common_language_suggest_decline": "Nie, dziękuję",
+  "common_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=few": "{count__number} mody",
+        "count__plural=many": "{count__number} modów",
+        "count__plural=*": "{count__number} moda"
+      }
+    }
+  ],
+  "common_moon_first_quarter": "Pierwsza kwadra",
+  "common_moon_full": "Pełnia",
+  "common_moon_label": "Dziś w nocy: {phase}",
+  "common_moon_last_quarter": "Ostatnia kwadra",
+  "common_moon_new": "Nów",
+  "common_moon_waning_crescent": "Ubywający sierp",
+  "common_moon_waning_gibbous": "Ubywający garb",
+  "common_moon_waxing_crescent": "Przybywający sierp",
+  "common_moon_waxing_gibbous": "Przybywający garb",
+  "common_multiplayer_everyone": "Potrzebny wszystkim",
+  "common_multiplayer_host_only": "Tylko host",
+  "common_multiplayer_solo_only": "Tylko gra solo",
+  "common_nav_achievements": "Osiągnięcia",
+  "common_nav_close_menu": "Zamknij menu",
+  "common_nav_creators": "Twórcy",
+  "common_nav_explore": "Przeglądaj",
+  "common_nav_home": "Strona główna",
+  "common_nav_install": "Instalacja",
+  "common_nav_label": "Główna",
+  "common_nav_news": "Aktualności",
+  "common_nav_open_menu": "Otwórz menu",
+  "common_nav_upload": "Prześlij",
+  "common_nav_you": "Ty",
+  "common_new_tab": "(otwiera się w nowej karcie)",
+  "common_pagination_label": "Paginacja",
+  "common_pagination_next": "Następna strona",
+  "common_pagination_page": [
+    {
+      "declarations": [
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Strona {page__number}"
+      }
+    }
+  ],
+  "common_pagination_page_of": [
+    {
+      "declarations": [
+        "input page",
+        "input total",
+        "local page__number = page: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Strona {page__number} z {total__number}"
+      }
+    }
+  ],
+  "common_pagination_previous": "Poprzednia strona",
+  "common_published_on": "Opublikowano {date}",
+  "common_relogin_banner": "Przebudowaliśmy SOTF Mods. Zaloguj się ponownie — hasło się nie zmieniło.",
+  "common_review_approved": "Zatwierdzono. Twój mod jest już na wyspie.",
+  "common_review_changes_requested": "Strażnik prosi o zmiany: {reason}",
+  "common_review_sent": "Wysłano do posterunku strażników. Większość weryfikacji trwa krócej niż 48 godz.",
+  "common_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} recenzja",
+        "count__plural=few": "{count__number} recenzje",
+        "count__plural=many": "{count__number} recenzji",
+        "count__plural=*": "{count__number} recenzji"
+      }
+    }
+  ],
+  "common_safe_to_remove": "Można usunąć w trakcie rozgrywki",
+  "common_search_label": "Szukaj",
+  "common_search_no_results": "Nic na mapie dla „{query}”. Spróbuj użyć mniej słów.",
+  "common_search_placeholder": "Szukaj modów, buildów, twórców…",
+  "common_search_shortcut": "Naciśnij {shortcut}, aby szukać",
+  "common_site_name": "SOTF Mods",
+  "common_skip_to_content": "Przejdź do treści",
+  "common_snow_toggle": "Śnieg",
+  "common_state_loading": "Sprawdzam mapę…",
+  "common_state_new_version": "Jest nowa wersja strony. Wczytuję ponownie…",
+  "common_state_offline": "Jesteś offline. To, co widzisz, może być nieaktualne.",
+  "common_state_saved": "Zapisano",
+  "common_state_saving": "Zapisywanie…",
+  "common_tagline": "Mody na wyspę. Sprawdzone w terenie.",
+  "common_term_backpack": "Plecak",
+  "common_term_basecamp": "Obóz",
+  "common_term_basecamp_hint": "Panel twórcy",
+  "common_term_blueprints": "Plany",
+  "common_term_builds": "Buildy",
+  "common_term_field_notes": "Notatki terenowe",
+  "common_term_field_reports": "Raporty terenowe",
+  "common_term_kits": "Zestawy",
+  "common_term_libraries": "Biblioteki",
+  "common_term_mods": "Mody",
+  "common_term_notifications": "Powiadomienia",
+  "common_term_patch_radar": "Radar patchy",
+  "common_term_ranger_station": "Posterunek strażników",
+  "common_term_signals": "Sygnały",
+  "common_theme_day": "Dzień",
+  "common_theme_label": "Motyw",
+  "common_theme_night": "Noc",
+  "common_theme_system": "Systemowy",
+  "common_updated_ago": "Zaktualizowano {when}",
+  "common_welcome": "Dzień 1 na wyspie. Witaj, ocalały.",
+  "errors_boundary_detail": "Reszta strony nadal działa. Spróbuj ponownie wczytać tę sekcję.",
+  "errors_boundary_title": "Ta część strony się nie wczytała",
+  "errors_code_conflict_detail": "To zmieniło się, gdy nad tym pracowałeś. Odśwież, aby zobaczyć najnowszą wersję, i spróbuj ponownie.",
+  "errors_code_conflict_title": "Ktoś był szybszy",
+  "errors_code_email_not_verified_detail": "Otwórz link, który wysłaliśmy e-mailem, aby potwierdzić adres, i spróbuj ponownie. Nowy link możesz zamówić w Ustawieniach.",
+  "errors_code_email_not_verified_title": "Najpierw potwierdź adres e-mail",
+  "errors_code_forbidden_detail": "Twoje konto nie ma uprawnień do tej akcji. Jeśli uważasz, że powinno je mieć, skontaktuj się ze strażnikiem.",
+  "errors_code_forbidden_title": "Tutaj nie możesz tego zrobić",
+  "errors_code_gone_detail": "To zostało usunięte i nie wróci.",
+  "errors_code_gone_title": "Zniknęło na dobre",
+  "errors_code_internal_detail": "To nie twoja wina, tylko nasza. Już się tym zajmujemy; spróbuj ponownie za kilka minut.",
+  "errors_code_internal_title": "Coś się zepsuło w obozie",
+  "errors_code_not_found_detail": "Nie znaleźliśmy tego, czego szukasz. Mogło zostać przeniesione lub usunięte.",
+  "errors_code_not_found_title": "Nie ma tego na mapie",
+  "errors_code_payload_too_large_detail": "Ten plik przekracza limit rozmiaru. Skompresuj go lub prześlij mniejszy.",
+  "errors_code_payload_too_large_title": "Plik jest za duży",
+  "errors_code_rate_limited_detail": "Kelvin potrzebuje przerwy. Spróbuj ponownie za chwilę.",
+  "errors_code_rate_limited_retry": [
+    {
+      "declarations": [
+        "input seconds",
+        "local seconds__number = seconds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Kelvin potrzebuje przerwy. Spróbuj ponownie za {seconds__number} s."
+      }
+    }
+  ],
+  "errors_code_rate_limited_title": "Trochę wolniej",
+  "errors_code_suspended_detail": "Twoje konto jest zawieszone, więc ta akcja jest zablokowana. Szczegóły znajdziesz w e-mailu lub u strażnika.",
+  "errors_code_suspended_title": "Konto zawieszone",
+  "errors_code_turnstile_required_detail": "Przejdź weryfikację bezpieczeństwa, aby udowodnić, że jesteś ocalałym, a nie botem, i spróbuj ponownie.",
+  "errors_code_turnstile_required_title": "Szybka weryfikacja",
+  "errors_code_unauthenticated_detail": "Twoja sesja wygasła albo nie jesteś jeszcze zalogowany. Zaloguj się, a wrócimy tutaj.",
+  "errors_code_unauthenticated_title": "Zaloguj się, aby kontynuować",
+  "errors_code_unavailable_detail": "Strona jest w trakcie konserwacji lub przeciążona. Spróbuj ponownie za kilka minut.",
+  "errors_code_unavailable_title": "Obóz jest chwilowo niedostępny",
+  "errors_code_unknown_detail": "Żądanie nie powiodło się z nieoczekiwanego powodu. Spróbuj ponownie; jeśli problem się powtarza, podaj nam poniższy identyfikator.",
+  "errors_code_unknown_title": "Coś poszło nie tak",
+  "errors_code_unsupported_media_type_detail": "Nie możemy przyjąć tego rodzaju pliku. Sprawdź dozwolone formaty i spróbuj ponownie.",
+  "errors_code_unsupported_media_type_title": "Nieobsługiwany typ pliku",
+  "errors_code_validation_failed_detail": "Część wprowadzonych danych jest nieprawidłowa. Popraw pola zaznaczone poniżej i spróbuj ponownie.",
+  "errors_code_validation_failed_title": "Sprawdź zaznaczone pola",
+  "errors_copy_reference": "Kopiuj identyfikator",
+  "errors_field_file_too_large": "Plik jest większy niż {limit}.",
+  "errors_field_invalid_email": "Podaj prawidłowy adres e-mail, np. nazwa@przyklad.pl.",
+  "errors_field_invalid_url": "Podaj pełny link zaczynający się od https://.",
+  "errors_field_required": "To pole jest wymagane.",
+  "errors_field_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__plural = max: plural",
+        "local max__number = max: number"
+      ],
+      "selectors": [
+        "max__plural"
+      ],
+      "match": {
+        "max__plural=one": "Użyj najwyżej {max__number} znaku.",
+        "max__plural=few": "Użyj najwyżej {max__number} znaków.",
+        "max__plural=many": "Użyj najwyżej {max__number} znaków.",
+        "max__plural=*": "Użyj najwyżej {max__number} znaku."
+      }
+    }
+  ],
+  "errors_field_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "Użyj co najmniej {min__number} znaku.",
+        "min__plural=few": "Użyj co najmniej {min__number} znaków.",
+        "min__plural=many": "Użyj co najmniej {min__number} znaków.",
+        "min__plural=*": "Użyj co najmniej {min__number} znaku."
+      }
+    }
+  ],
+  "errors_gone_text": "To, co tu było, zostało usunięte na zawsze. Przejrzyj inne mody.",
+  "errors_gone_title": "Ten szlak jest zamknięty.",
+  "errors_login_mismatch": "E-mail i hasło nie pasują do siebie. Spróbuj ponownie lub zresetuj hasło.",
+  "errors_network_detail": "Nie możemy połączyć się z SOTF Mods. Sprawdź połączenie i spróbuj ponownie.",
+  "errors_network_retrying": "Brak sygnału. Ponawiam…",
+  "errors_network_title": "Brak sygnału",
+  "errors_not_found_home": "Wróć na szlak",
+  "errors_not_found_popular": "Popularne mody",
+  "errors_not_found_text": "Tej strony nie ma na naszej mapie. Coś obserwuje cię spomiędzy drzew — wracajmy na szlak.",
+  "errors_not_found_title": "Zboczyłeś ze szlaku.",
+  "errors_permission_detail": "Aby otworzyć tę stronę, potrzebujesz innej roli. Wróć albo zaloguj się na inne konto.",
+  "errors_permission_title": "Tylko dla strażników",
+  "errors_reference": "Ref.: {id}",
+  "errors_server_text": "Już się tym zajmujemy. Odśwież stronę za minutę albo wróć na stronę główną.",
+  "errors_server_title": "Coś się zepsuło w obozie.",
+  "errors_validation_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Popraw {count__number} pole, aby kontynuować.",
+        "count__plural=few": "Popraw {count__number} pola, aby kontynuować.",
+        "count__plural=many": "Popraw {count__number} pól, aby kontynuować.",
+        "count__plural=*": "Popraw {count__number} pola, aby kontynuować."
+      }
+    }
+  ],
+  "meta_default_description": "Dom moddingu Sons of the Forest: mody, buildy i zestawy dla RedLoadera, testowane przy każdym patchu. Darmowe, bezpośrednie pobieranie.",
+  "meta_feed_description": "Najnowsze mody i aktualizacje do Sons of the Forest opublikowane na SOTF Mods.",
+  "meta_feed_title": "SOTF Mods: nowe i zaktualizowane mody",
+  "meta_gone_title": "Strona usunięta",
+  "meta_home_description": "Pobierz {mods} modów, buildów i zestawów do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+  "meta_home_title": "SOTF Mods — mody, buildy i zestawy do Sons of the Forest",
+  "meta_not_found_title": "Nie znaleziono strony",
+  "meta_og_default_alt": "SOTF Mods: mody, buildy i zestawy do Sons of the Forest",
+  "meta_search_title": "Wyniki wyszukiwania dla „{query}”",
+  "meta_search_title_empty": "Szukaj",
+  "meta_server_error_title": "Błąd serwera",
+  "meta_site_name": "SOTF Mods",
+  "meta_title_paged": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — strona {page__number}"
+      }
+    }
+  ],
+  "meta_title_template": "{title} | SOTF Mods"
+}

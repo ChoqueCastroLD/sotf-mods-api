@@ -1,0 +1,16 @@
+{
+  "meta_site_name": "SOTF Mods",
+  "meta_title_template": "{title} | SOTF Mods",
+  "meta_title_paged": "{title} – sida {page, number}",
+  "meta_home_title": "SOTF Mods – moddar, byggen och kit till Sons of the Forest",
+  "meta_home_description": "Ladda ner {mods} moddar, byggen och kit till Sons of the Forest för RedLoader: gratis, direkt och testat av communityn. {downloads} nedladdningar per {date}.",
+  "meta_default_description": "Hemmet för modding av Sons of the Forest: moddar, byggen och kit för RedLoader, testade på varje patch. Gratis, direkta nedladdningar.",
+  "meta_og_default_alt": "SOTF Mods: moddar, byggen och kit till Sons of the Forest",
+  "meta_not_found_title": "Sidan hittades inte",
+  "meta_gone_title": "Sidan har tagits bort",
+  "meta_server_error_title": "Serverfel",
+  "meta_search_title": "Sökresultat för ”{query}”",
+  "meta_search_title_empty": "Sök",
+  "meta_feed_title": "SOTF Mods: nya och uppdaterade moddar",
+  "meta_feed_description": "De senaste moddarna och uppdateringarna till Sons of the Forest på SOTF Mods."
+}
