@@ -1,0 +1,33 @@
+{
+  "name": "@sotf/legacy-contract",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Legacy /api/* contract harness: golden fixtures, normaliser and key-order comparator, RedManager/UpdatesChecker/KelvinSeek/download suites, .NET checker and shadow mode (PLAN \u00a75.5, WP-24).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "bin": {
+    "sotf-legacy-contract": "./src/cli.ts"
+  },
+  "scripts": {
+    "contract:legacy": "node src/cli.ts",
+    "mock": "node src/mock/main.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "dependencies": {
+    "@sotf/contracts": "workspace:*",
+    "semver": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/semver": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
