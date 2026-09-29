@@ -9,12 +9,19 @@
     "./*": "./src/*.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
-    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "test": "vitest run",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts",
+    "gen": "node scripts/gen-legacy.ts && node scripts/gen-routes.ts"
+  },
+  "dependencies": {
+    "zod": "catalog:"
   },
   "devDependencies": {
+    "@seriousme/openapi-schema-validator": "2.11.0",
     "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "ajv": "8.20.0",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
