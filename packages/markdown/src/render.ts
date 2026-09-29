@@ -9,7 +9,7 @@
  *   → URL normalisation → rehype-sanitize (strict allowlist per profile)
  *   → trusted enhancers (heading anchors, alerts, spoilers, autolinks, mentions, YouTube facades,
  *     `rel`, image attributes)
- *   → verifyTree (closed allowlist) → rehype-stringify, plain-text projection
+ *   → verifyTree (closed allowlist) → serialisation (serialize.ts), plain-text projection
  *
  * Pathological input (nesting beyond the caps, stack exhaustion) degrades to escaped paragraphs
  * of the original text instead of failing or dropping content.
@@ -17,7 +17,6 @@
 import type { Element, Root as HastRoot } from 'hast';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
-import rehypeStringify from 'rehype-stringify';
 import { type PluggableList, unified } from 'unified';
 import { enhance } from './enhance.ts';
 import { defuse } from './guard.ts';
@@ -25,6 +24,7 @@ import { maxDepth, visitElements } from './hast.ts';
 import { repairLegacyHtml } from './legacy.ts';
 import { containsRawHtml, parseMarkdown } from './parse.ts';
 import { SANITIZE_SCHEMAS } from './schema.ts';
+import { toSafeHtml } from './serialize.ts';
 import { toPlainText } from './text.ts';
 import type { MarkdownProfile, RenderOptions, RenderResult } from './types.ts';
 import { DEFAULT_INTERNAL_HOSTS, LINK_PROTOCOLS, MEDIA_PROTOCOLS, safeUrl } from './url.ts';
@@ -83,12 +83,7 @@ function legacyRepairs() {
  */
 function createProcessor(profile: MarkdownProfile, raw: boolean) {
   const legacy: PluggableList = raw ? [rehypeRaw, legacyRepairs] : [];
-  return unified()
-    .use(legacy)
-    .use(normaliseUrls)
-    .use(rehypeSanitize, SANITIZE_SCHEMAS[profile])
-    .use(rehypeStringify)
-    .freeze();
+  return unified().use(legacy).use(normaliseUrls).use(rehypeSanitize, SANITIZE_SCHEMAS[profile]).freeze();
 }
 
 type Processor = ReturnType<typeof createProcessor>;
@@ -183,9 +178,9 @@ function sanitisedTree(source: string, profile: MarkdownProfile): HastRoot | nul
  * or invalid options.
  */
 export function renderMarkdown(md: string, options: RenderOptions = {}): RenderResult {
-  const { tree, processor, collected } = renderMarkdownTree(md, options);
+  const { tree, collected } = renderMarkdownTree(md, options);
   return {
-    html: processor.stringify(tree),
+    html: toSafeHtml(tree),
     text: toPlainText(tree),
     ...collected,
     renderVersion: RENDER_VERSION,
@@ -202,7 +197,6 @@ export function renderMarkdownTree(md: string, options: RenderOptions = {}) {
     throw new MarkdownInputError('markdown_too_long', `Markdown input exceeds ${MAX_MARKDOWN_LENGTH} characters`);
   }
   const ctx = resolveOptions(options);
-  const processor = processorFor(ctx.profile);
   const normalized = normalizeInput(md);
 
   const tree =
@@ -211,7 +205,7 @@ export function renderMarkdownTree(md: string, options: RenderOptions = {}) {
 
   const collected = enhance(tree, ctx);
   verifyTree(tree, ctx.profile);
-  return { tree, processor, collected };
+  return { tree, collected };
 }
 
 /** Distinct lower-cased `@handles` of a text, to load the mentioned users in one query. */
