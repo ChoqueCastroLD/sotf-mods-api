@@ -1,0 +1,24 @@
+{
+  "name": "@sotf/emails",
+  "version": "0.0.0",
+  "private": true,
+  "description": "React Email templates in 13 locales (auth, notifications, digests, creator reports).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "dependencies": {
+    "@sotf/i18n": "workspace:*"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

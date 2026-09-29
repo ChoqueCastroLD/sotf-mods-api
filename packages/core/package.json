@@ -1,0 +1,26 @@
+{
+  "name": "@sotf/core",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Domain services shared by the API and the worker (the only home of business logic).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "dependencies": {
+    "@sotf/contracts": "workspace:*",
+    "@sotf/db": "workspace:*"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

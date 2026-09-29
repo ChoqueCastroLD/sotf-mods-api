@@ -1,0 +1,55 @@
+{
+  "$comment": "Hand-written corrections applied on top of the routes parsed from docs/plan/PLAN.md §12.3 by gen-ownership.ts. Every entry states why the prose of the plan needs a structured correction. Owned by WP-00 (and WP-90/WP-93 during hardening).",
+  "WP-00": {
+    "reason": "The plan lists the skeleton files in prose ('esqueletos (package.json, tsconfig.json y src/index.ts) de apps/{...} y packages/{...}'); expand them into exact paths.",
+    "include": [
+      "package.json",
+      "pnpm-workspace.yaml",
+      "turbo.json",
+      "biome.json",
+      "tsconfig.base.json",
+      ".gitignore",
+      ".editorconfig",
+      ".nvmrc",
+      ".npmrc",
+      "README.md",
+      ".env.example",
+      "packages/config/**",
+      "apps/{web,api,worker}/{package.json,tsconfig.json,src/index.ts}",
+      "packages/{contracts,db,core,ui,i18n,markdown,emails}/{package.json,tsconfig.json,src/index.ts}",
+      "tooling/scripts/**",
+      "ops/compose/**",
+      ".github/workflows/**",
+      "docs/adr/**",
+      "docs/backlog/.gitkeep"
+    ]
+  },
+  "WP-20": {
+    "reason": "'apps/api/** salvo src/modules/*/ de dominio' means: every module except the domain modules owned by other WPs (platform modules such as health or stream stay with WP-20). Same for worker jobs. apps/api/test/legacy belongs to WP-32. The WP-00 skeleton files of packages/core and packages/emails that no other route covers (tsconfig.json, emails src/index.ts) pass to WP-20, which implements those packages' platform.",
+    "dropExclude": ["apps/api/src/modules/*/**", "apps/worker/src/jobs/*/**"],
+    "excludeOwnedByOthers": ["apps/api/src/modules/", "apps/worker/src/jobs/", "apps/api/test/"],
+    "addInclude": ["packages/core/tsconfig.json", "packages/emails/{tsconfig.json,src/index.ts}"]
+  },
+  "WP-22": {
+    "reason": "The WP-00 skeleton entry apps/web/src/index.ts is not covered by WP-22's routes; it passes to WP-22, which turns apps/web into the Astro project (it may delete or repurpose it).",
+    "addInclude": ["apps/web/src/index.ts"]
+  },
+  "WP-34": {
+    "reason": "'apps/web/src/console/** (raíz, router, lib, layout, guard y hooks)': the console platform, not the routes/features owned by the area WPs. The bare word `lib` in the prose is not a path.",
+    "dropInclude": ["apps/web/src/console/lib"],
+    "excludeOwnedByOthers": ["apps/web/src/console/routes/", "apps/web/src/console/features/"]
+  },
+  "WP-80": {
+    "reason": "'(salvo new, drafts y new-version)' refers to the WP-74 routes, one of which is basecamp/mods/$modId/new-version.tsx; derive the exclusions from WP-74's patterns instead of the prose.",
+    "dropExclude": [
+      "apps/web/src/console/routes/basecamp/drafts/**",
+      "apps/web/src/console/routes/basecamp/new-version/**",
+      "apps/web/src/console/routes/basecamp/new/**"
+    ],
+    "excludeOwnedByOthers": ["apps/web/src/console/routes/basecamp/"]
+  },
+  "WP-91": {
+    "reason": "WP-91 (e2e/**) and WP-93 (e2e/security/**) run in the same wave W9; PLAN §12.1 requires disjoint paths within a wave, so the security suite stays with WP-93.",
+    "addExclude": ["e2e/security/**"]
+  }
+}

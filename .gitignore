@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output and caches
+dist/
+.astro/
+.turbo/
+coverage/
+*.tsbuildinfo
+.vite/
+.cache/
+
+# Test artefacts
+playwright-report/
+test-results/
+blob-report/
+.lighthouseci/
+tooling/migration/rehearsal/out/
+
+# Environment (only .env.example is committed; PLAN §9.4)
+.env
+.env.*
+!.env.example
+*.local
+
+# Database dumps and key material never enter the repository
+*.dump
+*.sql.gz
+*.backup
+*.pem
+*.key
+
+# Logs and OS noise
+*.log
+npm-debug.log*
+pnpm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Editors
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json

@@ -1,0 +1,4 @@
+{
+  "extends": "@sotf/config/tsconfig/react.json",
+  "include": ["src", "test", "*.ts"]
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Runtime-agnostic libraries (contracts, markdown, i18n): no Node or DOM globals",
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": []
+  }
+}

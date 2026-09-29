@@ -1,0 +1,24 @@
+{
+  "name": "@sotf/worker",
+  "version": "0.0.0",
+  "private": true,
+  "description": "pg-boss 12 worker: media, OG images, inspection, email, rollups, CDN purges and schedules.",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "dependencies": {
+    "@sotf/contracts": "workspace:*",
+    "@sotf/core": "workspace:*",
+    "@sotf/db": "workspace:*",
+    "@sotf/emails": "workspace:*"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

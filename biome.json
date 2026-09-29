@@ -1,0 +1,23 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "root": true,
+  "extends": ["./packages/config/biome.json"],
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true,
+    "defaultBranch": "main"
+  },
+  "files": {
+    "ignoreUnknown": true,
+    "includes": [
+      "**",
+      "!**/*.gen.ts",
+      "!**/.generated",
+      "!**/routeTree.gen.ts",
+      "!docs/plan",
+      "!pnpm-lock.yaml",
+      "!tooling/scripts/ownership.json"
+    ]
+  }
+}

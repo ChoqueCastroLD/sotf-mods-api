@@ -1,0 +1,22 @@
+{
+  "name": "@sotf/db",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Drizzle schema (legacy + v2), hand-written SQL migrations, migration runner and superset guard.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
