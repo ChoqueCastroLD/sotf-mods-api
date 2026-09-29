@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`seeded randomness > is stable forever (changing these values reshuffles every generated artwork) 1`] = `3115951650`;
+
+exports[`seeded randomness > is stable forever (changing these values reshuffles every generated artwork) 2`] = `
+[
+  "0.180075195152",
+  "0.946485520108",
+  "0.045710033271",
+]
+`;
+
+exports[`seeded randomness > is stable forever (changing these values reshuffles every generated artwork) 3`] = `0.9783680676482618`;
