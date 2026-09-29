@@ -24,6 +24,7 @@ interface WhatwgUrl {
   readonly href: string;
   readonly host: string;
   readonly hostname: string;
+  readonly port: string;
   readonly protocol: string;
 }
 
@@ -84,27 +85,35 @@ export function safeUrl(raw: unknown, protocols: readonly string[]): string | nu
   return scheme + value.slice(scheme.length);
 }
 
-/** Lower-cased host name without a trailing dot (`Sotf-Mods.com.` → `sotf-mods.com`). */
+/**
+ * Lower-cased host without a trailing dot on the name (`Sotf-Mods.com.` → `sotf-mods.com`,
+ * `Sotf-Mods.com.:8443` → `sotf-mods.com:8443`). A port, when present, is kept.
+ */
 export function normaliseHost(host: string): string {
-  return host.toLowerCase().replace(/\.$/, '');
+  const lower = host.toLowerCase();
+  const port = /^(.*?)(:\d+)?$/.exec(lower) as RegExpExecArray;
+  return `${(port[1] as string).replace(/\.$/, '')}${port[2] ?? ''}`;
 }
 
 /**
- * Host name a link navigates to, resolved with the WHATWG URL parser exactly as a browser does;
- * `null` for links that stay on the page's host (relative references), non-http(s) schemes and
- * unparseable values.
+ * Host a link navigates to (name and port; the WHATWG parser already drops the scheme's default
+ * port), resolved exactly as a browser does; `null` for links that stay on the page's host
+ * (relative references), non-http(s) schemes and unparseable values.
  */
 export function urlHost(href: string): string | null {
   const a = parse(href, PROBE_A);
   const b = parse(href, PROBE_B);
   if (a === null || b === null || a.host !== b.host) return null;
   if (a.protocol !== 'http:' && a.protocol !== 'https:') return null;
-  return a.hostname === '' ? null : normaliseHost(a.hostname);
+  if (a.hostname === '') return null;
+  return normaliseHost(a.port === '' ? a.hostname : `${a.hostname}:${a.port}`);
 }
 
 /**
  * True when the link leaves the site: `mailto:`, or an http(s) URL (absolute or scheme-relative)
- * whose host, as a browser resolves it, is not one of `internalHosts`.
+ * whose origin host, as a browser resolves it, is not one of `internalHosts`. The port is part of
+ * the comparison: `https://sotf-mods.com:8443/` is another origin, hence external, unless
+ * `sotf-mods.com:8443` itself is listed.
  */
 export function isExternal(href: string, internalHosts: readonly string[]): boolean {
   const value = href.replace(EDGE_CONTROL, '').replace(TAB_OR_NEWLINE, '');

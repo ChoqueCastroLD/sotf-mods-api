@@ -61,7 +61,9 @@ export interface RenderOptions {
    */
   headingOffset?: number;
   /**
-   * Hosts treated as internal: their links get no `rel="ugc nofollow noopener"`.
+   * Hosts treated as internal: their links get no `rel="ugc nofollow noopener"`. Compared with
+   * the port a link names (other than the scheme's default): list `localhost:3000` to treat a dev
+   * origin as internal; `https://sotf-mods.com:8443/` is external with the default list.
    * Default: `sotf-mods.com` and `www.sotf-mods.com`.
    */
   internalHosts?: readonly string[];
