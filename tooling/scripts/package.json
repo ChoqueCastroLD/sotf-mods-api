@@ -1,0 +1,17 @@
+{
+  "name": "@sotf/scripts",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Repository tooling: check-forbidden, ownership, registries, delegation, infra, verify (PLAN §12.1).",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
