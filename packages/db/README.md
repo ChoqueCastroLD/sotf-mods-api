@@ -19,7 +19,7 @@ API, extended only with **additive** migrations. It ships:
 | `pnpm db:migrate --to <name>` · `--strict` · `--no-pgboss` | Stop at a migration · exit 2 if something is deferred · skip pg-boss. |
 | `pnpm db:migrate status` | Applied / pending migrations. |
 | `pnpm db:migrate down --to <name> [--confirm <db>]` | Rolls back every migration after `<name>` (a non-local database needs `--confirm`). |
-| `pnpm db:guard [--json]` | Read-only superset check; exit 1 on drift. Safe against production. |
+| `pnpm db:guard [--json]` | Read-only superset check; exit 1 on drift. Safe against production. Without any database URL (CI) or with `--ephemeral` it migrates a disposable PostgreSQL 16 and checks that. |
 | `pnpm db:baseline --mark-applied` | On a database that already has the legacy schema: records `0000` without running it, after the guard passes. |
 | `pnpm --filter @sotf/db db:lint-sql` | Lints the migrations without a database. |
 | `pnpm --filter @sotf/db gen` | Regenerates `0025_seed_taxonomy` from `src/seed/taxonomy.ts` (part of `pnpm gen`). |

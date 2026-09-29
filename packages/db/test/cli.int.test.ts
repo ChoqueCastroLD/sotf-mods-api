@@ -66,22 +66,31 @@ describe('command-line tools', () => {
     }
   });
 
-  it('db:guard exits 1 on drift and needs DATABASE_URL', async () => {
+  it('db:guard exits 1 on drift, and without a database checks the migrations on a disposable one', async () => {
     const db = await scratchDatabase({ migrate: true });
     try {
       await db.client.query(`ALTER TABLE "Token" ALTER COLUMN "token" DROP NOT NULL`);
       const guard = run('src/cli/guard.ts', [], db.url);
       expect(guard.code).toBe(1);
       expect(guard.out).toMatch(/"Token" column "token": nullability changed/);
-      const missing = spawnSync('node', ['src/cli/guard.ts'], {
-        cwd,
-        encoding: 'utf8',
-        env: { PATH: process.env.PATH },
-      });
-      expect(missing.status).toBe(1);
-      expect(missing.stderr).toMatch(/DATABASE_URL is required/);
     } finally {
       await db.close();
     }
+    const env: NodeJS.ProcessEnv = { ...process.env, SOTF_NO_DOTENV: '1', NO_COLOR: '1' };
+    delete env.DATABASE_URL;
+    delete env.MIGRATIONS_DATABASE_URL;
+    const ephemeral = spawnSync('node', ['src/cli/guard.ts'], { cwd, encoding: 'utf8', env });
+    expect(ephemeral.status, `${ephemeral.stdout}${ephemeral.stderr}`).toBe(0);
+    expect(ephemeral.stdout).toMatch(/ephemeral mode[\s\S]*legacy ⊆ v2 guard: OK/);
+  }, 180_000);
+
+  it('db:migrate needs a database URL', () => {
+    const missing = spawnSync('node', ['src/cli/migrate.ts'], {
+      cwd,
+      encoding: 'utf8',
+      env: { PATH: process.env.PATH, SOTF_NO_DOTENV: '1' },
+    });
+    expect(missing.status).toBe(1);
+    expect(missing.stderr).toMatch(/DATABASE_URL is required/);
   });
 });

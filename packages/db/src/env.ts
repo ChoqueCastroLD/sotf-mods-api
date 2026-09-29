@@ -39,6 +39,11 @@ export interface DbEnv {
   pgBossSchema: string;
 }
 
+/** True when neither DATABASE_URL nor MIGRATIONS_DATABASE_URL is set. */
+export function databaseUrlMissing(source: NodeJS.ProcessEnv = process.env): boolean {
+  return !source.DATABASE_URL?.trim() && !source.MIGRATIONS_DATABASE_URL?.trim();
+}
+
 export function loadDbEnv(source: NodeJS.ProcessEnv = process.env): DbEnv {
   const parsed = schema.safeParse(source);
   if (!parsed.success) {
