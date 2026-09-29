@@ -1,0 +1,113 @@
+# Local development infrastructure (PLAN §11.2).
+#
+#   pnpm infra:up      start + wait until healthy + create the S3 buckets
+#   pnpm infra:down    stop and remove the containers (data volumes are kept)
+#   pnpm infra:reset   remove containers *and* volumes, then start again
+#
+# Compose project "sotfv2". Every port is bound to 127.0.0.1 only and was verified free on the
+# shared host; never use 80, 443, 3000, 3199, 3310, 4007, 5455, 6001, 6002, 6767, 8000, 8080,
+# 13000-13004 or 55432 (other projects of the owner).
+#
+# Credentials below are throwaway local-development values, not secrets. Real credentials live
+# only in Coolify (PLAN §9.4).
+name: sotfv2
+
+services:
+  postgres:
+    # Same major version and flavour as production (PLAN §2.2).
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sotf
+      POSTGRES_PASSWORD: sotf
+      POSTGRES_DB: sotf
+      TZ: UTC
+      PGTZ: UTC
+    command:
+      - postgres
+      - -c
+      - timezone=UTC
+      - -c
+      - log_timezone=UTC
+    ports:
+      - 127.0.0.1:47432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U sotf -d sotf -h 127.0.0.1]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 5s
+
+  seaweedfs:
+    # S3-compatible emulator for R2 (PLAN §2.2: MinIO no longer ships a community image).
+    image: chrislusf/seaweedfs:4.48
+    restart: unless-stopped
+    command:
+      - server
+      - -dir=/data
+      - -ip=127.0.0.1
+      - -ip.bind=0.0.0.0
+      - -master.volumeSizeLimitMB=256
+      - -volume.max=0
+      - -s3
+      - -s3.port=8333
+      - -s3.config=/etc/seaweedfs/s3.json
+    environment:
+      TZ: UTC
+    configs:
+      - source: s3_identities
+        target: /etc/seaweedfs/s3.json
+    ports:
+      - 127.0.0.1:47333:8333
+    volumes:
+      - s3data:/data
+    healthcheck:
+      test: [CMD-SHELL, wget -q -O /dev/null http://127.0.0.1:8333/healthz || exit 1]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 5s
+
+  mailpit:
+    # SMTP sink + web UI for the email flows (PLAN §2.2).
+    image: axllent/mailpit:v1.31.3
+    restart: unless-stopped
+    environment:
+      TZ: UTC
+      MP_SMTP_AUTH_ACCEPT_ANY: '1'
+      MP_SMTP_AUTH_ALLOW_INSECURE: '1'
+      MP_MAX_MESSAGES: '5000'
+    ports:
+      - 127.0.0.1:47025:1025
+      - 127.0.0.1:47080:8025
+    healthcheck:
+      test: [CMD, /mailpit, readyz]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 3s
+
+configs:
+  # S3 identities: the app key pair (matches .env.example) and anonymous read on the public bucket,
+  # mirroring r2.sotf-mods.com serving `sotf-mods` publicly.
+  s3_identities:
+    content: |
+      {
+        "identities": [
+          {
+            "name": "sotf-dev",
+            "credentials": [{ "accessKey": "sotf-dev-access-key", "secretKey": "sotf-dev-secret-key" }],
+            "actions": ["Admin", "Read", "List", "Tagging", "Write"]
+          },
+          {
+            "name": "anonymous",
+            "actions": ["Read:sotf-mods"]
+          }
+        ]
+      }
+
+volumes:
+  pgdata:
+  s3data:
