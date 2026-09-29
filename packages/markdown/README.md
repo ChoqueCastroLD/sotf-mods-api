@@ -83,9 +83,18 @@ violation throws `MarkdownSafetyError` instead of shipping HTML):
   - `div.md-alert.md-alert-{note|tip|important|warning|caution}[role=note] > p.md-alert-title > span[data-md-label]`;
   - `figure.md-youtube > a.md-youtube-link[data-youtube-id][data-youtube-start] > img.md-youtube-thumb`
     (a plain link to the video until a client script swaps in the `youtube-nocookie.com` iframe);
-  - `span.md-spoiler[tabindex=0]` (revealed by CSS on hover/focus or by a script);
+  - `span.md-spoiler[role=button][tabindex=0][aria-expanded=false][aria-label][data-md-label=spoiler]`:
+    a collapsed toggle whose accessible name is the localisable label "Spoiler" (buttons have
+    presentational children, so the hidden text is not announced); a reveal script sets
+    `aria-expanded="true"` and removes `role`/`aria-label`, CSS may also reveal on hover/focus. A
+    spoiler that contains a link is a plain `span.md-spoiler` (no nested interactive content),
+    revealed by CSS on `:hover`/`:focus-within`. Spoilers are never created inside links;
   - `a.md-mention` (resolved mentions);
-  - `rel="ugc nofollow noopener"` on links that leave `sotf-mods.com` (configurable `internalHosts`);
+  - `rel="ugc nofollow noopener"` on links that leave `sotf-mods.com` (configurable `internalHosts`),
+    decided on the host a browser resolves (WHATWG `URL`), so `http:evil.com`, `https:\\evil.com`
+    or `https://evil.com\@sotf-mods.com` are external; `links[].external` reports the same;
+  - autolinks and mentions never inside a link (also not under `<strong>`… within it): nested
+    anchors would be split by the browser. Mentions in link text are not collected;
   - `img[loading=lazy][decoding=async][referrerpolicy=no-referrer]`, plus `width`/`height` from
     `resolveImage`;
   - `ul.contains-task-list > li.task-list-item > input[type=checkbox][disabled]`, `code.language-*`.
@@ -98,9 +107,14 @@ previews): blocks separated by blank lines, no spoilers, images or UI labels.
 - `rehype-sanitize` allowlists are written from scratch per profile (`src/schema.ts`), URLs are
   normalised the way browsers read them before the scheme check (`src/url.ts`), and the enhancers
   that add classes and attributes run after sanitising on validated values only.
+- Every URL that names a host (`http:`/`https:` and scheme-less `//host`, `\\host`, `/\host`) is
+  parsed with the WHATWG `URL` parser and written back as `url.href` (scheme-less ones as
+  `https:`), so backslashes, missing slashes and userinfo tricks never reach the output as typed;
+  unparseable ones are dropped. Relative references (`/x`, `#x`, `?x`, `x`) are kept as written.
 - Tests parse every output with a real HTML parser (jsdom) and check the allowlist, URL schemes,
   that no script runs, that re-parsing is stable (mXSS) and that the browser builds exactly the
-  tree the pipeline verified: 252 XSS/mXSS vectors × 3 profiles, 0 escapes.
+  tree the pipeline verified, and that every link a browser resolves off-site carries the external
+  `rel`: 266 XSS/mXSS vectors × 3 profiles, without and with mention/image resolvers, 0 escapes.
 - Parsing is linear: markdown-it has a nesting cap, a guard escapes over-nested lines
   (`src/guard.ts`), raw HTML is interpreted only up to 1 000 tags, and too-deep trees fall back to
   escaped plain text.
@@ -134,7 +148,7 @@ pnpm --filter @sotf/markdown fixtures:legacy   # regenerate the legacy fixtures 
 
 | Suite | Checks |
 |---|---|
-| `xss.test.ts` | XSS/mXSS corpus (`test/fixtures/xss-vectors.ts`), hostile resolvers, checker self-test |
+| `xss.test.ts` | XSS/mXSS corpus (`test/fixtures/xss-vectors.ts`) with and without resolvers, hostile resolvers, checker self-test |
 | `legacy.test.ts` | the 25 legacy descriptions with raw HTML: safe, every structural element and every word the legacy renderer (showdown oracle, `test/helpers/legacy-renderer.ts`) showed, reviewed snapshots in `test/__snapshots__/legacy/` |
 | `render.test.ts` | every feature per profile, options, errors, pathological inputs |
 | `unicode.test.ts` | 13-locale scripts, emoji sequences, NFC |

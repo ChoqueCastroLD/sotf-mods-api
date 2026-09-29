@@ -2,7 +2,7 @@
   "name": "@sotf/markdown",
   "version": "0.0.0",
   "private": true,
-  "description": "Sanitised unified/remark/rehype Markdown pipeline shared by the server and the editor preview.",
+  "description": "Safe Markdown pipeline (markdown-it → hast → rehype-raw/rehype-sanitize → enhancers → verifyTree → closed-set serialiser) shared by the server and the editor preview.",
   "type": "module",
   "sideEffects": false,
   "exports": {
