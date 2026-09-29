@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Borta för gott",
   "errors_code_internal_detail": "Det är inte ditt fel, det är vårt. Vi jobbar på det; försök igen om några minuter.",
   "errors_code_internal_title": "Något gick sönder i baslägret",
+  "errors_code_invalid_credentials_detail": "E-postadressen, användarnamnet eller lösenordet matchar inget konto. Kontrollera dem och försök igen.",
+  "errors_code_invalid_credentials_title": "Fel inloggningsuppgifter",
   "errors_code_not_found_detail": "Vi hittade inte det du letade efter. Det kan ha flyttats eller tagits bort.",
   "errors_code_not_found_title": "Inte på kartan",
   "errors_code_payload_too_large_detail": "Filen överskrider storleksgränsen. Komprimera den eller ladda upp en mindre.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Ta det lite lugnare",
+  "errors_code_reauth_required_detail": "Den här åtgärden kräver en färsk inloggning. Logga in igen och gör om den.",
+  "errors_code_reauth_required_title": "Bekräfta att det är du",
   "errors_code_suspended_detail": "Ditt konto är avstängt, så den här åtgärden är blockerad. Se din e-post för detaljer eller kontakta en ranger.",
   "errors_code_suspended_title": "Kontot är avstängt",
   "errors_code_turnstile_required_detail": "Slutför säkerhetskontrollen för att visa att du är en överlevare och inte en bot, och försök igen.",

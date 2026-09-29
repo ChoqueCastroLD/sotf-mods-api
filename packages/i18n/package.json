@@ -24,6 +24,7 @@
     "@inlang/plugin-message-format": "catalog:",
     "@inlang/sdk": "catalog:",
     "@sotf/config": "workspace:*",
+    "@sotf/contracts": "workspace:*",
     "@types/node": "catalog:",
     "jsdom": "catalog:",
     "typescript": "catalog:",

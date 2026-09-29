@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Gone for good",
   "errors_code_internal_detail": "It’s not you, it’s us. We’re on it; try again in a few minutes.",
   "errors_code_internal_title": "Something broke at base camp",
+  "errors_code_invalid_credentials_detail": "That email, handle or password doesn’t match an account. Check them and try again.",
+  "errors_code_invalid_credentials_title": "Wrong sign-in details",
   "errors_code_not_found_detail": "We couldn’t find what you asked for. It may have been moved or deleted.",
   "errors_code_not_found_title": "Not on the map",
   "errors_code_payload_too_large_detail": "That file is over the size limit. Compress it or upload a smaller one.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Slow down a little",
+  "errors_code_reauth_required_detail": "This action needs a recent sign-in. Sign in again and then repeat it.",
+  "errors_code_reauth_required_title": "Confirm it’s you",
   "errors_code_suspended_detail": "Your account is suspended, so this action is blocked. Check your email for details or contact a ranger.",
   "errors_code_suspended_title": "Account suspended",
   "errors_code_turnstile_required_detail": "Complete the security check to prove you’re a survivor, not a bot, then try again.",

@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Sparito per sempre",
   "errors_code_internal_detail": "Non è colpa tua, è nostra. Ci stiamo lavorando; riprova tra qualche minuto.",
   "errors_code_internal_title": "Qualcosa si è rotto al campo base",
+  "errors_code_invalid_credentials_detail": "Questa email, questo handle o questa password non corrispondono a nessun account. Controllali e riprova.",
+  "errors_code_invalid_credentials_title": "Dati di accesso errati",
   "errors_code_not_found_detail": "Non abbiamo trovato quello che cercavi. Potrebbe essere stato spostato o eliminato.",
   "errors_code_not_found_title": "Non è sulla mappa",
   "errors_code_payload_too_large_detail": "Il file supera il limite di dimensione. Comprimilo o caricane uno più piccolo.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Rallenta un attimo",
+  "errors_code_reauth_required_detail": "Questa azione richiede un accesso recente. Accedi di nuovo e poi ripetila.",
+  "errors_code_reauth_required_title": "Conferma che sei tu",
   "errors_code_suspended_detail": "Il tuo account è sospeso, quindi questa azione è bloccata. Controlla la tua email per i dettagli o contatta un ranger.",
   "errors_code_suspended_title": "Account sospeso",
   "errors_code_turnstile_required_detail": "Completa la verifica di sicurezza per dimostrare che sei un sopravvissuto e non un bot, poi riprova.",

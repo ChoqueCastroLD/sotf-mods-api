@@ -349,6 +349,8 @@
   "errors_code_gone_title": "Удалено навсегда",
   "errors_code_internal_detail": "Дело не в вас, а в нас. Мы уже чиним; попробуйте снова через несколько минут.",
   "errors_code_internal_title": "В лагере что-то сломалось",
+  "errors_code_invalid_credentials_detail": "Эти email, имя пользователя или пароль не подходят ни к одному аккаунту. Проверьте их и попробуйте ещё раз.",
+  "errors_code_invalid_credentials_title": "Неверные данные для входа",
   "errors_code_not_found_detail": "Мы не нашли то, что вы ищете. Возможно, это перенесли или удалили.",
   "errors_code_not_found_title": "Этого нет на карте",
   "errors_code_payload_too_large_detail": "Файл превышает допустимый размер. Сожмите его или загрузите файл поменьше.",
@@ -367,6 +369,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Не так быстро",
+  "errors_code_reauth_required_detail": "Для этого действия нужен недавний вход. Войдите снова и повторите его.",
+  "errors_code_reauth_required_title": "Подтвердите, что это вы",
   "errors_code_suspended_detail": "Ваш аккаунт временно заблокирован, поэтому действие недоступно. Подробности — в письме, или свяжитесь с рейнджером.",
   "errors_code_suspended_title": "Аккаунт заблокирован",
   "errors_code_turnstile_required_detail": "Пройдите проверку безопасности, чтобы доказать, что вы выживший, а не бот, и попробуйте снова.",

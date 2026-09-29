@@ -585,6 +585,9 @@ importers:
       '@sotf/config':
         specifier: workspace:*
         version: link:../config
+      '@sotf/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       '@types/node':
         specifier: 'catalog:'
         version: 24.19.0

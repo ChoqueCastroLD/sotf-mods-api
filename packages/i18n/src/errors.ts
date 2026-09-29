@@ -20,6 +20,8 @@ import {
   errors_code_gone_title,
   errors_code_internal_detail,
   errors_code_internal_title,
+  errors_code_invalid_credentials_detail,
+  errors_code_invalid_credentials_title,
   errors_code_not_found_detail,
   errors_code_not_found_title,
   errors_code_payload_too_large_detail,
@@ -27,6 +29,8 @@ import {
   errors_code_rate_limited_detail,
   errors_code_rate_limited_retry,
   errors_code_rate_limited_title,
+  errors_code_reauth_required_detail,
+  errors_code_reauth_required_title,
   errors_code_suspended_detail,
   errors_code_suspended_title,
   errors_code_turnstile_required_detail,
@@ -47,6 +51,7 @@ import {
 export const PROBLEM_CODES = [
   'VALIDATION_FAILED',
   'UNAUTHENTICATED',
+  'INVALID_CREDENTIALS',
   'FORBIDDEN',
   'EMAIL_NOT_VERIFIED',
   'NOT_FOUND',
@@ -57,6 +62,7 @@ export const PROBLEM_CODES = [
   'RATE_LIMITED',
   'TURNSTILE_REQUIRED',
   'SUSPENDED',
+  'REAUTH_REQUIRED',
   'INTERNAL',
   'UNAVAILABLE',
 ] as const;
@@ -80,6 +86,7 @@ type MessageFn = (inputs?: Record<string, never>, options?: { locale?: Locale })
 const TEXT: Readonly<Record<ProblemCode, readonly [MessageFn, MessageFn]>> = {
   VALIDATION_FAILED: [errors_code_validation_failed_title, errors_code_validation_failed_detail],
   UNAUTHENTICATED: [errors_code_unauthenticated_title, errors_code_unauthenticated_detail],
+  INVALID_CREDENTIALS: [errors_code_invalid_credentials_title, errors_code_invalid_credentials_detail],
   FORBIDDEN: [errors_code_forbidden_title, errors_code_forbidden_detail],
   EMAIL_NOT_VERIFIED: [errors_code_email_not_verified_title, errors_code_email_not_verified_detail],
   NOT_FOUND: [errors_code_not_found_title, errors_code_not_found_detail],
@@ -90,6 +97,7 @@ const TEXT: Readonly<Record<ProblemCode, readonly [MessageFn, MessageFn]>> = {
   RATE_LIMITED: [errors_code_rate_limited_title, errors_code_rate_limited_detail],
   TURNSTILE_REQUIRED: [errors_code_turnstile_required_title, errors_code_turnstile_required_detail],
   SUSPENDED: [errors_code_suspended_title, errors_code_suspended_detail],
+  REAUTH_REQUIRED: [errors_code_reauth_required_title, errors_code_reauth_required_detail],
   INTERNAL: [errors_code_internal_title, errors_code_internal_detail],
   UNAVAILABLE: [errors_code_unavailable_title, errors_code_unavailable_detail],
 };

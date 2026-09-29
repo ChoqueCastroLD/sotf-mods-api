@@ -295,6 +295,8 @@
   "errors_code_gone_title": "已永久移除",
   "errors_code_internal_detail": "不是你的问题，是我们的。我们正在处理，请几分钟后重试。",
   "errors_code_internal_title": "营地出了点故障",
+  "errors_code_invalid_credentials_detail": "该邮箱、用户名或密码与任何账号都不匹配。请检查后重试。",
+  "errors_code_invalid_credentials_title": "登录信息有误",
   "errors_code_not_found_detail": "我们没有找到你要的内容，它可能已被移动或删除。",
   "errors_code_not_found_title": "地图上找不到",
   "errors_code_payload_too_large_detail": "该文件超出大小限制。请压缩后再传，或上传更小的文件。",
@@ -313,6 +315,8 @@
     }
   ],
   "errors_code_rate_limited_title": "慢一点",
+  "errors_code_reauth_required_detail": "此操作需要最近登录过。请重新登录后再试一次。",
+  "errors_code_reauth_required_title": "请确认是你本人",
   "errors_code_suspended_detail": "你的账号已被停用，因此该操作被阻止。请查看邮件了解详情，或联系护林员。",
   "errors_code_suspended_title": "账号已被停用",
   "errors_code_turnstile_required_detail": "请完成安全验证，证明你是幸存者而不是机器人，然后重试。",

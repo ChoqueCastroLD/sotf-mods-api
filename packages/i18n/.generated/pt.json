@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Sumiu de vez",
   "errors_code_internal_detail": "Não é você, somos nós. Já estamos resolvendo; tente de novo em alguns minutos.",
   "errors_code_internal_title": "Algo quebrou no acampamento",
+  "errors_code_invalid_credentials_detail": "Esse e-mail, nome de usuário ou senha não correspondem a nenhuma conta. Confira e tente de novo.",
+  "errors_code_invalid_credentials_title": "Dados de acesso incorretos",
   "errors_code_not_found_detail": "Não encontramos o que você procurava. Pode ter sido movido ou excluído.",
   "errors_code_not_found_title": "Não está no mapa",
   "errors_code_payload_too_large_detail": "Esse arquivo passa do limite de tamanho. Compacte-o ou envie um menor.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Vá com calma",
+  "errors_code_reauth_required_detail": "Esta ação exige um login recente. Entre de novo e repita a ação.",
+  "errors_code_reauth_required_title": "Confirme que é você",
   "errors_code_suspended_detail": "Sua conta está suspensa, então esta ação está bloqueada. Veja os detalhes no seu e-mail ou fale com um guarda.",
   "errors_code_suspended_title": "Conta suspensa",
   "errors_code_turnstile_required_detail": "Conclua a verificação de segurança para provar que você é um sobrevivente, não um bot, e tente de novo.",

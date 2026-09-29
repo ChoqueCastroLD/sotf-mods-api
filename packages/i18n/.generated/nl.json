@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Voorgoed weg",
   "errors_code_internal_detail": "Het ligt niet aan jou, maar aan ons. We zijn ermee bezig; probeer het over een paar minuten opnieuw.",
   "errors_code_internal_title": "Er ging iets kapot in het basiskamp",
+  "errors_code_invalid_credentials_detail": "Dit e-mailadres, deze handle of dit wachtwoord hoort bij geen enkel account. Controleer ze en probeer het opnieuw.",
+  "errors_code_invalid_credentials_title": "Onjuiste inloggegevens",
   "errors_code_not_found_detail": "We konden niet vinden wat je zocht. Misschien is het verplaatst of verwijderd.",
   "errors_code_not_found_title": "Niet op de kaart",
   "errors_code_payload_too_large_detail": "Dat bestand is groter dan toegestaan. Comprimeer het of upload een kleiner bestand.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Even rustig aan",
+  "errors_code_reauth_required_detail": "Voor deze actie moet je recent zijn ingelogd. Log opnieuw in en herhaal de actie.",
+  "errors_code_reauth_required_title": "Bevestig dat jij het bent",
   "errors_code_suspended_detail": "Je account is geschorst, daarom is deze actie geblokkeerd. Bekijk je e-mail voor details of neem contact op met een ranger.",
   "errors_code_suspended_title": "Account geschorst",
   "errors_code_turnstile_required_detail": "Voltooi de beveiligingscontrole om te bewijzen dat je een overlevende bent en geen bot, en probeer het opnieuw.",

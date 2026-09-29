@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Disparu pour de bon",
   "errors_code_internal_detail": "Ce n’est pas vous, c’est nous. Nous nous en occupons ; réessayez dans quelques minutes.",
   "errors_code_internal_title": "Quelque chose a cassé au camp de base",
+  "errors_code_invalid_credentials_detail": "Cet e-mail, cet identifiant ou ce mot de passe ne correspond à aucun compte. Vérifiez-les et réessayez.",
+  "errors_code_invalid_credentials_title": "Identifiants incorrects",
   "errors_code_not_found_detail": "Nous n’avons pas trouvé ce que vous cherchez. Il a peut-être été déplacé ou supprimé.",
   "errors_code_not_found_title": "Introuvable sur la carte",
   "errors_code_payload_too_large_detail": "Ce fichier dépasse la taille maximale. Compressez-le ou envoyez-en un plus petit.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Doucement",
+  "errors_code_reauth_required_detail": "Cette action demande une connexion récente. Reconnectez-vous puis recommencez.",
+  "errors_code_reauth_required_title": "Confirmez votre identité",
   "errors_code_suspended_detail": "Votre compte est suspendu, cette action est donc bloquée. Consultez vos e-mails pour en savoir plus ou contactez un ranger.",
   "errors_code_suspended_title": "Compte suspendu",
   "errors_code_turnstile_required_detail": "Terminez la vérification de sécurité pour prouver que vous êtes un survivant et pas un bot, puis réessayez.",

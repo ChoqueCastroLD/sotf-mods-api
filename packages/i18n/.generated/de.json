@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Endgültig weg",
   "errors_code_internal_detail": "Es liegt nicht an dir, sondern an uns. Wir kümmern uns darum; versuch es in ein paar Minuten erneut.",
   "errors_code_internal_title": "Im Basislager ist etwas kaputtgegangen",
+  "errors_code_invalid_credentials_detail": "Diese E-Mail, dieser Handle oder dieses Passwort passt zu keinem Konto. Prüf deine Eingaben und versuch es noch einmal.",
+  "errors_code_invalid_credentials_title": "Anmeldedaten falsch",
   "errors_code_not_found_detail": "Wir haben nicht gefunden, wonach du suchst. Es wurde vielleicht verschoben oder gelöscht.",
   "errors_code_not_found_title": "Nicht auf der Karte",
   "errors_code_payload_too_large_detail": "Die Datei überschreitet die Größengrenze. Komprimiere sie oder lade eine kleinere hoch.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Etwas langsamer, bitte",
+  "errors_code_reauth_required_detail": "Für diese Aktion brauchst du eine frische Anmeldung. Melde dich erneut an und wiederhole sie.",
+  "errors_code_reauth_required_title": "Bestätige, dass du es bist",
   "errors_code_suspended_detail": "Dein Konto ist gesperrt, deshalb ist diese Aktion blockiert. Details findest du in deinen E-Mails, oder wende dich an einen Ranger.",
   "errors_code_suspended_title": "Konto gesperrt",
   "errors_code_turnstile_required_detail": "Schließe die Sicherheitsprüfung ab, um zu zeigen, dass du ein Überlebender und kein Bot bist, und versuch es erneut.",

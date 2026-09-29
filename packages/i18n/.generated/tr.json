@@ -331,6 +331,8 @@
   "errors_code_gone_title": "Tamamen kaldırıldı",
   "errors_code_internal_detail": "Senden değil, bizden kaynaklı. Üzerinde çalışıyoruz; birkaç dakika sonra tekrar dene.",
   "errors_code_internal_title": "Ana kampta bir şey bozuldu",
+  "errors_code_invalid_credentials_detail": "Bu e-posta, kullanıcı adı veya şifre hiçbir hesapla eşleşmiyor. Kontrol edip tekrar dene.",
+  "errors_code_invalid_credentials_title": "Giriş bilgileri hatalı",
   "errors_code_not_found_detail": "Aradığın şeyi bulamadık. Taşınmış ya da silinmiş olabilir.",
   "errors_code_not_found_title": "Haritada yok",
   "errors_code_payload_too_large_detail": "Bu dosya boyut sınırını aşıyor. Sıkıştır ya da daha küçük bir dosya yükle.",
@@ -349,6 +351,8 @@
     }
   ],
   "errors_code_rate_limited_title": "Biraz yavaşla",
+  "errors_code_reauth_required_detail": "Bu işlem için yakın zamanda giriş yapmış olman gerekiyor. Tekrar giriş yap ve işlemi yinele.",
+  "errors_code_reauth_required_title": "Sen olduğunu doğrula",
   "errors_code_suspended_detail": "Hesabın askıya alındığı için bu işlem engellendi. Ayrıntılar için e-postanı kontrol et ya da bir korucuyla iletişime geç.",
   "errors_code_suspended_title": "Hesap askıya alındı",
   "errors_code_turnstile_required_detail": "Bot değil, hayatta kalan olduğunu kanıtlamak için güvenlik kontrolünü tamamla ve tekrar dene.",
