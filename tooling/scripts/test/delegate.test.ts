@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { resolveTask, TASKS } from '../delegate.ts';
+import { isSkippable, resolveTask, TASKS } from '../delegate.ts';
 import { devBuckets } from '../infra.ts';
 import { runScript, tempDir, writeFiles } from './helpers.ts';
 
@@ -35,15 +35,17 @@ describe('resolveTask', () => {
     expect(resolveTask('db:migrate', tmp.dir)).toEqual({
       ok: false,
       reason: 'packages/db/package.json does not exist yet (delivered by WP-10)',
+      missing: 'package',
     });
     writeFiles(tmp.dir, { 'packages/db/package.json': JSON.stringify({ scripts: { other: 'x' } }) });
     expect(resolveTask('db:migrate', tmp.dir)).toEqual({
       ok: false,
-      reason: 'packages/db/package.json has no "db:migrate" script yet (delivered by WP-10)',
+      reason: 'packages/db/package.json has no "db:migrate" script (delivered by WP-10)',
+      missing: 'script',
     });
     writeFiles(tmp.dir, { 'packages/db/package.json': JSON.stringify({ scripts: { 'db:migrate': 'x' } }) });
     expect(resolveTask('db:migrate', tmp.dir)).toEqual({ ok: true, dir: 'packages/db' });
-    expect(resolveTask('nope', tmp.dir)).toEqual({ ok: false, reason: 'unknown task "nope"' });
+    expect(resolveTask('nope', tmp.dir)).toEqual({ ok: false, reason: 'unknown task "nope"', missing: 'task' });
   });
 });
 
@@ -62,6 +64,21 @@ describe('delegate.ts CLI', () => {
 
   it('treats every task as optional when SOTF_OPTIONAL_TASKS=1', () => {
     expect(runScript('delegate.ts', ['lhci'], { env: { SOTF_OPTIONAL_TASKS: '1' } }).status).toBe(0);
+  });
+
+  it('never skips a task whose owner package landed without the script', () => {
+    const tmp = tempDir();
+    cleanup = tmp.cleanup;
+    expect(isSkippable(resolveTask('db:migrate', tmp.dir), true)).toBe(true);
+    writeFiles(tmp.dir, { 'packages/db/package.json': JSON.stringify({ scripts: { 'db:migrat': 'x' } }) });
+    expect(isSkippable(resolveTask('db:migrate', tmp.dir), true)).toBe(false);
+    expect(isSkippable(resolveTask('nope', tmp.dir), true)).toBe(false);
+  });
+
+  it('fails unknown tasks even when optional', () => {
+    const result = runScript('delegate.ts', ['--optional', 'unknown-task'], { env: { SOTF_OPTIONAL_TASKS: '1' } });
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain('unknown task "unknown-task"');
   });
 });
 

@@ -50,7 +50,7 @@ function main(): void {
         ...(baseRef ? ['--base', baseRef] : []),
       ],
     },
-    { name: 'i18n:check', command: 'node', args: ['tooling/scripts/delegate.ts', '--optional', 'i18n:check'] },
+    { name: 'i18n:check', command: 'node', args: ['tooling/scripts/delegate.ts', 'i18n:check'] },
     {
       name: `typecheck + test + build (${baseRef ? `affected vs ${baseRef}` : 'all'})`,
       command: 'pnpm',

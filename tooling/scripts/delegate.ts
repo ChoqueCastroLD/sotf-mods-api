@@ -7,9 +7,11 @@
  *
  *   node tooling/scripts/delegate.ts [--optional] <task> [args...]
  *
- * When the owning package or its script does not exist yet the task fails with a clear message,
- * unless it is optional: `--optional`, or $SOTF_OPTIONAL_TASKS=1 (set by CI and ci:local so the
- * pipeline keeps its full shape while the plan is being built).
+ * When the owning package or its script does not exist yet the task fails with a clear message.
+ * Optional tasks (`--optional`, or $SOTF_OPTIONAL_TASKS=1, set by CI and ci:local so the pipeline
+ * keeps its full shape while the plan is being built) are skipped only while the owning *package*
+ * does not exist: once its package.json has landed, a missing script (renamed or deleted) fails
+ * instead of turning the check into a silent skip.
  */
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -47,21 +49,40 @@ export const TASKS: Readonly<Record<string, DelegatedTask>> = {
   load: { dir: 'tooling/load', owner: 'WP-92', description: 'load tests (autocannon)' },
 };
 
-export type Resolution = { ok: true; dir: string } | { ok: false; reason: string };
+/**
+ * `missing` tells why a task cannot run: `package` (the owner has not landed yet; skippable when
+ * optional), `script` (the owner landed without the script; always an error) or `task` (unknown).
+ */
+export type Resolution =
+  | { ok: true; dir: string }
+  | { ok: false; reason: string; missing: 'task' | 'package' | 'script' };
 
 /** Checks that the owning package exists and defines the script. */
 export function resolveTask(task: string, root: string = REPO_ROOT): Resolution {
   const spec = TASKS[task];
-  if (!spec) return { ok: false, reason: `unknown task "${task}"` };
+  if (!spec) return { ok: false, reason: `unknown task "${task}"`, missing: 'task' };
   const manifest = join(root, spec.dir, 'package.json');
   if (!existsSync(manifest)) {
-    return { ok: false, reason: `${spec.dir}/package.json does not exist yet (delivered by ${spec.owner})` };
+    return {
+      ok: false,
+      reason: `${spec.dir}/package.json does not exist yet (delivered by ${spec.owner})`,
+      missing: 'package',
+    };
   }
   const pkg = JSON.parse(readFileSync(manifest, 'utf8')) as { scripts?: Record<string, string> };
   if (!pkg.scripts?.[task]) {
-    return { ok: false, reason: `${spec.dir}/package.json has no "${task}" script yet (delivered by ${spec.owner})` };
+    return {
+      ok: false,
+      reason: `${spec.dir}/package.json has no "${task}" script (delivered by ${spec.owner})`,
+      missing: 'script',
+    };
   }
   return { ok: true, dir: spec.dir };
+}
+
+/** Optional tasks are skipped only while their owning package has not landed. */
+export function isSkippable(resolution: Resolution, optional: boolean): boolean {
+  return optional && !resolution.ok && resolution.missing === 'package';
 }
 
 function main(): void {
@@ -75,7 +96,7 @@ function main(): void {
   if (!task) fail(`usage: delegate.ts [--optional] <task> [args...]\ntasks: ${Object.keys(TASKS).join(', ')}`);
   const resolution = resolveTask(task);
   if (!resolution.ok) {
-    if (optional && TASKS[task]) {
+    if (isSkippable(resolution, optional)) {
       process.stdout.write(`${color.yellow('skip')} ${task}: ${resolution.reason}\n`);
       return;
     }

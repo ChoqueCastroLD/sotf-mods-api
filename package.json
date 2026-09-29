@@ -21,7 +21,7 @@
     "ci:local": "bash tooling/scripts/ci-local.sh",
     "check:forbidden": "node tooling/scripts/check-forbidden.ts",
     "check:ownership": "node tooling/scripts/check-ownership.ts",
-    "i18n:check": "node tooling/scripts/delegate.ts --optional i18n:check",
+    "i18n:check": "node tooling/scripts/delegate.ts i18n:check",
     "i18n:pseudo": "node tooling/scripts/delegate.ts i18n:pseudo",
     "gen": "node tooling/scripts/gen.ts",
     "gen:ownership": "node tooling/scripts/gen-ownership.ts",
