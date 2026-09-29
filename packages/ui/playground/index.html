@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>@sotf/ui · playground</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Frames get their theme from the URL; the top-level page uses the stored preference.
+      {
+        const themes = ['dark', 'light', 'system'];
+        let theme = new URLSearchParams(location.search).get('theme');
+        if (!themes.includes(theme)) {
+          try {
+            theme = localStorage.getItem('sotf-theme');
+          } catch {
+            theme = null;
+          }
+        }
+        if (themes.includes(theme)) document.documentElement.dataset.theme = theme;
+      }
+    </script>
+  </head>
+  <body class="min-h-dvh bg-bg text-fg antialiased">
+    <div id="root"></div>
+    <script type="module" src="./main.tsx"></script>
+  </body>
+</html>
