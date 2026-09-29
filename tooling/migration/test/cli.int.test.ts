@@ -15,7 +15,7 @@ function run(script: string, args: string[], databaseUrl: string) {
   return { code: result.status, out: `${result.stdout}${result.stderr}` };
 }
 
-const REMOTE = 'postgres://someone:placeholder@db.example.invalid:5432/sotf';
+const REMOTE = 'postgres://someone:***@db.example.invalid:5432/sotf';
 
 afterAll(async () => {
   await stopTestServer();

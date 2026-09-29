@@ -59,7 +59,8 @@ describe('buildDataset (full)', () => {
 
   it('never creates an account after its first activity or a follow before its account', () => {
     const created = new Map(data.users.map((u) => [u.id, u.createdAt]));
-    for (const m of data.mods) if (m.userId !== null) expect((created.get(m.userId) ?? 'missing') <= m.createdAt).toBe(true);
+    for (const m of data.mods)
+      if (m.userId !== null) expect((created.get(m.userId) ?? 'missing') <= m.createdAt).toBe(true);
     for (const c of data.comments) expect((created.get(c.userId) ?? 'missing') <= c.createdAt).toBe(true);
     for (const f of data.favorites) expect((created.get(f.userId) ?? 'missing') <= f.createdAt).toBe(true);
   });
