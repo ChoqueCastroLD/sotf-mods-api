@@ -319,6 +319,91 @@
   "common_theme_system": "Sistem",
   "common_updated_ago": "Güncellendi: {when}",
   "common_welcome": "Adada 1. gün. Hoş geldin, hayatta kalan.",
+  "emails_auth_deleted_body": "Kişisel verilerin silindi. Yorumlar ve incelemeler “Silinmiş hayatta kalan” olarak kalır. Adanın bir parçası olduğun için teşekkürler.",
+  "emails_auth_deleted_heading": "Hesap silindi",
+  "emails_auth_deleted_preview": "Kişisel verilerin silindi.",
+  "emails_auth_deleted_subject": "SOTF Mods hesabın silindi",
+  "emails_auth_deletion_body": "Hesabın {when} (UTC) tarihinde silinecek. O zamana kadar ayarlardan iptal edebilirsin; her şey olduğu gibi kalır.",
+  "emails_auth_deletion_button": "Silmeyi iptal et",
+  "emails_auth_deletion_cancelled_body": "Kalmana sevindik. Silme işlemi {when} (UTC) tarihinde iptal edildi ve hesabın olduğu gibi kalıyor.",
+  "emails_auth_deletion_cancelled_heading": "Silme iptal edildi",
+  "emails_auth_deletion_cancelled_preview": "Planlanan silme iptal edildi.",
+  "emails_auth_deletion_cancelled_subject": "SOTF Mods hesabın silinmeyecek",
+  "emails_auth_deletion_heading": "Hesap silme planlandı",
+  "emails_auth_deletion_mode_archive": "Modların arşivlenecek.",
+  "emails_auth_deletion_mode_keep": "Modların adın olmadan yayında kalacak.",
+  "emails_auth_deletion_preview": "Hâlâ fikrini değiştirebilirsin.",
+  "emails_auth_deletion_subject": "SOTF Mods hesabın silinecek",
+  "emails_auth_email_change_body": "SOTF Mods hesabın için {email} adresini kullanmak istedin. Değişikliği tamamlamak için doğrula.",
+  "emails_auth_email_change_button": "Yeni e-postayı doğrula",
+  "emails_auth_email_change_heading": "Yeni e-postanı doğrula",
+  "emails_auth_email_change_preview": "Değişikliği tamamlamak için yeni adresi doğrula.",
+  "emails_auth_email_change_subject": "SOTF Mods için yeni e-postanı doğrula",
+  "emails_auth_email_notice_body": "{when} (UTC) tarihinde biri hesabının e-postasını {email} olarak değiştirmek istedi. Yeni adres doğrulanana kadar hiçbir şey değişmez.",
+  "emails_auth_email_notice_button": "Güvenliği gözden geçir",
+  "emails_auth_email_notice_heading": "E-posta değişikliği istendi",
+  "emails_auth_email_notice_not_you": "Sen değil miydin? Şifreni şimdi değiştir ve oturumlarını gözden geçir.",
+  "emails_auth_email_notice_preview": "Değişiklik yalnızca yeni adres doğrulandığında gerçekleşir.",
+  "emails_auth_email_notice_subject": "SOTF Mods hesabının e-postası değiştiriliyor",
+  "emails_auth_export_body": "Dışa aktarımın, hesabına bağlı tüm kayıtları JSON olarak içeren bir ZIP dosyasıdır.",
+  "emails_auth_export_button": "Verilerimi indir",
+  "emails_auth_export_expiry": "Bağlantı {when} (UTC) tarihinde sona erer. Sonrasında yeni bir dışa aktarım isteyebilirsin.",
+  "emails_auth_export_heading": "Verilerin hazır",
+  "emails_auth_export_preview": "Hesabına bağlı her şeyin bir kopyasını indir.",
+  "emails_auth_export_subject": "SOTF Mods veri dışa aktarımın hazır",
+  "emails_auth_greeting": "Merhaba {name},",
+  "emails_auth_ignore": "Bunu sen istemediysen bu e-postayı yok sayabilirsin.",
+  "emails_auth_link_expiry_hours": [
+    {
+      "declarations": [
+        "input hours",
+        "local hours__plural = hours: plural",
+        "local hours__number = hours: number"
+      ],
+      "selectors": [
+        "hours__plural"
+      ],
+      "match": {
+        "hours__plural=one": "Bu bağlantı yalnızca bir kez çalışır ve {hours__number} saat içinde sona erer.",
+        "hours__plural=*": "Bu bağlantı yalnızca bir kez çalışır ve {hours__number} saat içinde sona erer."
+      }
+    }
+  ],
+  "emails_auth_link_fallback": "Düğme çalışmazsa bu bağlantıyı tarayıcına kopyala:",
+  "emails_auth_password_changed_body": "Hesabının şifresi {when} (UTC) tarihinde değiştirildi.",
+  "emails_auth_password_changed_button": "Şifreyi sıfırla",
+  "emails_auth_password_changed_heading": "Şifre değiştirildi",
+  "emails_auth_password_changed_not_you": "Sen değil miydin? Şifreni hemen sıfırla ve etkin oturumlarını gözden geçir.",
+  "emails_auth_password_changed_preview": "Sen değilsen hemen harekete geç.",
+  "emails_auth_password_changed_subject": "SOTF Mods şifren değiştirildi",
+  "emails_auth_reason_account": "Bu e-postayı SOTF Mods hesabındaki bir etkinlik nedeniyle alıyorsun.",
+  "emails_auth_reset_body": "Birisi, umarız sen, hesabının şifresini sıfırlamak istedi.",
+  "emails_auth_reset_button": "Yeni şifre seç",
+  "emails_auth_reset_expiry": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "Bu bağlantı yalnızca bir kez çalışır ve {minutes__number} dakika içinde sona erer.",
+        "minutes__plural=*": "Bu bağlantı yalnızca bir kez çalışır ve {minutes__number} dakika içinde sona erer."
+      }
+    }
+  ],
+  "emails_auth_reset_heading": "Şifreni sıfırla",
+  "emails_auth_reset_preview": "Yeni bir şifre seçmek için bu bağlantıyı kullan.",
+  "emails_auth_reset_subject": "SOTF Mods şifreni sıfırla",
+  "emails_auth_review_sessions": "Oturumları gözden geçir",
+  "emails_auth_verify_body": "Adaya hoş geldin. Mod yayınlamak, yorum yapmak, inceleme yazmak ve uyumluluk bildirmek için bu adresi doğrula.",
+  "emails_auth_verify_button": "E-postayı doğrula",
+  "emails_auth_verify_heading": "E-postanı doğrula",
+  "emails_auth_verify_preview": "Tek tıkla yayınlayabilir, yorum yapabilir ve inceleme yazabilirsin.",
+  "emails_auth_verify_subject": "SOTF Mods için e-postanı doğrula",
   "errors_boundary_detail": "Sayfanın geri kalanı çalışıyor. Bu bölümü yeniden yüklemeyi dene.",
   "errors_boundary_title": "Sayfanın bu bölümü yüklenemedi",
   "errors_code_conflict_detail": "Sen üzerinde çalışırken bu değişti. En son sürümü görmek için sayfayı yenile ve tekrar dene.",
