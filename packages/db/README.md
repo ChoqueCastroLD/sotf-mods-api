@@ -26,7 +26,8 @@ API, extended only with **additive** migrations. It ships:
 | `pnpm --filter @sotf/db db:catalog:snapshot [--check]` | Re-freezes `src/guard/legacy-catalog.json` from `0000` (Docker). |
 | `pnpm --filter @sotf/db db:baseline:generate [--check]` | Regenerates `0000` with `prisma@6.19.0 migrate diff` (network). |
 
-Environment (validated by `src/env.ts`; a root `.env` is loaded when present):
+Environment (validated by `src/env.ts`; the CLIs load a root `.env` when present, without
+overriding variables already set):
 `MIGRATIONS_DATABASE_URL` (owner, migrate task; falls back to `DATABASE_URL` locally),
 `DATABASE_URL` (app role; used by `db:guard`), `MIGRATIONS_DIR`, `PGBOSS_SCHEMA` (default `pgboss`).
 

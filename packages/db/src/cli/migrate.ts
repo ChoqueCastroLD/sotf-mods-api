@@ -13,12 +13,13 @@
  * MIGRATIONS_DATABASE_URL (owner credentials of the migrate task) or, locally, DATABASE_URL.
  * MIGRATIONS_DIR overrides the directory.
  */
-import { loadDbEnv } from '../env.ts';
+import { loadDbEnv, loadRootDotEnv } from '../env.ts';
 import { migrateDown, migrateUp, migrationStatus } from '../migrate.ts';
 import { cliLogger, color, connect, describeTarget, flagString, parseArgs, runCli } from './_shared.ts';
 
 async function main(): Promise<number> {
   const args = parseArgs(process.argv.slice(2));
+  loadRootDotEnv();
   const env = loadDbEnv();
   const command = args.positional[0] ?? 'up';
   const target = describeTarget(env.migrationsUrl);

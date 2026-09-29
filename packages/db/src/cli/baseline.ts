@@ -5,7 +5,7 @@
  *
  *   pnpm db:baseline --mark-applied [--dry-run]
  */
-import { loadDbEnv } from '../env.ts';
+import { loadDbEnv, loadRootDotEnv } from '../env.ts';
 import { markBaselineApplied } from '../migrate.ts';
 import { cliLogger, color, connect, describeTarget, parseArgs, runCli } from './_shared.ts';
 
@@ -14,6 +14,7 @@ async function main(): Promise<number> {
   if (!args.flags.has('mark-applied')) {
     throw new Error('usage: pnpm db:baseline --mark-applied [--dry-run]   (records 0000 without executing it)');
   }
+  loadRootDotEnv();
   const env = loadDbEnv();
   const target = describeTarget(env.migrationsUrl);
   cliLogger.info(color.dim(`database ${target.database} on ${target.host}`));

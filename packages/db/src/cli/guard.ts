@@ -5,12 +5,13 @@
  *
  *   pnpm db:guard [--json]
  */
-import { loadDbEnv } from '../env.ts';
+import { loadDbEnv, loadRootDotEnv } from '../env.ts';
 import { formatGuardReport, runGuard } from '../guard.ts';
 import { cliLogger, color, connect, describeTarget, parseArgs, runCli } from './_shared.ts';
 
 async function main(): Promise<number> {
   const args = parseArgs(process.argv.slice(2));
+  loadRootDotEnv();
   const env = loadDbEnv();
   const target = describeTarget(env.readUrl);
   const client = await connect(env.readUrl, 'sotf-guard');

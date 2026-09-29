@@ -9,7 +9,13 @@ function run(script: string, args: string[], databaseUrl: string) {
   const result = spawnSync('node', [script, ...args], {
     cwd,
     encoding: 'utf8',
-    env: { ...process.env, DATABASE_URL: databaseUrl, NO_COLOR: '1' },
+    env: {
+      ...process.env,
+      DATABASE_URL: databaseUrl,
+      MIGRATIONS_DATABASE_URL: databaseUrl,
+      SOTF_NO_DOTENV: '1',
+      NO_COLOR: '1',
+    },
   });
   return { code: result.status, out: `${result.stdout}${result.stderr}` };
 }

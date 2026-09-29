@@ -1,8 +1,11 @@
 /**
  * Environment of the @sotf/db command-line tools (PLAN §2.6: `process.env` is only read here).
- * Libraries never read the environment: callers pass connection strings explicitly. The CLIs are
- * started with `--env-file-if-exists=../../.env`, so a local `.env` at the repository root works.
+ * Libraries never read the environment: callers pass connection strings explicitly. The CLIs call
+ * `loadRootDotEnv()` first, so a local `.env` at the repository root works (variables already set
+ * in the environment win).
  */
+import { existsSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 
 const MISSING_URL = 'DATABASE_URL is required (e.g. postgres://sotf:sotf@127.0.0.1:47432/sotf)';
@@ -60,4 +63,14 @@ export function loadDbEnv(source: NodeJS.ProcessEnv = process.env): DbEnv {
 export function testDatabaseAdminUrl(source: NodeJS.ProcessEnv = process.env): string | undefined {
   const value = source.SOTF_TEST_DATABASE_URL?.trim();
   return value ? value : undefined;
+}
+
+/**
+ * Loads `<repo>/.env` into process.env when it exists (never overrides variables already set).
+ * `SOTF_NO_DOTENV=1` disables it (tests that must control the whole environment).
+ */
+export function loadRootDotEnv(path: string = fileURLToPath(new URL('../../../.env', import.meta.url))): boolean {
+  if (process.env.SOTF_NO_DOTENV === '1' || !existsSync(path)) return false;
+  process.loadEnvFile(path);
+  return true;
 }
