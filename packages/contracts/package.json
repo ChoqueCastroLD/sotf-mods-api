@@ -18,10 +18,10 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@seriousme/openapi-schema-validator": "2.11.0",
+    "@seriousme/openapi-schema-validator": "catalog:",
     "@sotf/config": "workspace:*",
     "@types/node": "catalog:",
-    "ajv": "8.20.0",
+    "ajv": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

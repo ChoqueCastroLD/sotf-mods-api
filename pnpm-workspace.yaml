@@ -106,6 +106,9 @@ catalog:
   fontaine: 1.0.0
   # i18n
   '@inlang/paraglide-js': 2.25.4
+  # Build-time Paraglide compilation without CDN plugin downloads (WP-13)
+  '@inlang/sdk': 3.0.6
+  '@inlang/plugin-message-format': 4.4.4
   # API
   fastify: 5.12.5
   zod: 4.6.5
@@ -157,6 +160,14 @@ catalog:
   remark-rehype: 11.1.2
   rehype-sanitize: 6.0.0
   rehype-stringify: 10.0.1
+  # @sotf/markdown parses with markdown-it (WP-15; see docs/adr/0003); rehype-stringify and
+  # showdown (legacy renderer) are test oracles only.
+  markdown-it: 14.3.2
+  '@types/markdown-it': 14.2.0
+  '@types/hast': 3.0.5
+  rehype-raw: 7.0.0
+  showdown: 2.1.0
+  '@types/showdown': 2.0.6
   # Email
   resend: 6.30.0
   react-email: 6.11.0
@@ -180,9 +191,13 @@ catalog:
   '@testing-library/dom': 10.4.2
   '@testing-library/user-event': 14.6.7
   jsdom: 30.1.1
+  '@types/jsdom': 28.0.3
   '@lhci/cli': 0.15.1
   autocannon: 8.0.0
   '@types/autocannon': 7.12.7
+  # Contract validation (OpenAPI 3.1 and JSON Schema 2020-12; WP-11)
+  '@seriousme/openapi-schema-validator': 2.11.0
+  ajv: 8.20.0
 
 # apps/web pins TypeScript 6 for `astro check` (Volar still needs the TS 6 JS API; PLAN §2.2).
 catalogs:

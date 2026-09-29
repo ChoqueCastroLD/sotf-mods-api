@@ -16,21 +16,21 @@
     "fixtures:legacy": "node test/fixtures/extract-legacy-html.ts"
   },
   "dependencies": {
-    "@types/hast": "3.0.5",
-    "@types/markdown-it": "14.2.0",
-    "markdown-it": "14.3.2",
-    "rehype-raw": "7.0.0",
+    "@types/hast": "catalog:",
+    "@types/markdown-it": "catalog:",
+    "markdown-it": "catalog:",
+    "rehype-raw": "catalog:",
     "rehype-sanitize": "catalog:",
     "unified": "catalog:"
   },
   "devDependencies": {
     "@sotf/config": "workspace:*",
-    "@types/jsdom": "28.0.3",
+    "@types/jsdom": "catalog:",
     "@types/node": "catalog:",
-    "@types/showdown": "2.0.6",
+    "@types/showdown": "catalog:",
     "jsdom": "catalog:",
     "rehype-stringify": "catalog:",
-    "showdown": "2.1.0",
+    "showdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
