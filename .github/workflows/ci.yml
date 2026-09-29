@@ -9,7 +9,8 @@ name: ci
 on:
   pull_request:
   push:
-    branches: [main]
+    # `v2` is the pre-cutover branch of the published repository (PLAN §14.4); it becomes `main`.
+    branches: [main, v2]
   workflow_dispatch:
 
 concurrency:
