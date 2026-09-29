@@ -1,0 +1,18 @@
+HTTP/2 200 
+date: Tue, 29 Sep 2026 04:07:40 GMT
+content-type: application/json
+content-length: 84
+access-control-allow-credentials: true
+access-control-allow-headers: Content-Type, Authorization, X-Requested-With
+access-control-allow-methods: GET, POST, PUT, PATCH, DELETE, OPTIONS
+access-control-allow-origin: *
+access-control-expose-headers: host, user-agent, accept, accept-encoding, cdn-loop, cf-connecting-ip, cf-ipcountry, cf-ray, cf-visitor, x-forwarded-for, x-forwarded-host, x-forwarded-port, x-forwarded-proto, x-forwarded-server, x-real-ip
+alt-svc: h3=":443"; ma=86400
+vary: Accept-Encoding
+vary: *
+cf-cache-status: DYNAMIC
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=R0Lcma9PNq%2B2kjcTE6HrKhOFB9byD%2FEA0Qsph0%2FMLGuD3RlcruLZeaOnrDsCDP%2BjuDAN%2BKXUe1LIwZXF39M7TKrlljAYUQldYrT%2B7tpx2LNIr51NEgQGS3m6d4iYqaEwTWoXqFCfALwCV8DpyQr95g%3D%3D"}]}
+server: cloudflare
+cf-ray: a4281f4a186db541-MUC
+
