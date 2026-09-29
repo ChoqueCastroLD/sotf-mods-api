@@ -1,0 +1,5 @@
+ALTER TABLE "ModImage"
+  DROP COLUMN IF EXISTS "mediaId",
+  DROP COLUMN IF EXISTS "storageKey",
+  DROP COLUMN IF EXISTS "position",
+  DROP COLUMN IF EXISTS "alt";

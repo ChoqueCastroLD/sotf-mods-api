@@ -1,0 +1,28 @@
+ALTER TABLE "User" DROP CONSTRAINT IF EXISTS "User_role_check";
+
+ALTER TABLE "User"
+  DROP COLUMN IF EXISTS "emailNormalized",
+  DROP COLUMN IF EXISTS "role",
+  DROP COLUMN IF EXISTS "verifiedCreator",
+  DROP COLUMN IF EXISTS "legacyTrusted",
+  DROP COLUMN IF EXISTS "displayName",
+  DROP COLUMN IF EXISTS "bioMd",
+  DROP COLUMN IF EXISTS "links",
+  DROP COLUMN IF EXISTS "avatarMediaId",
+  DROP COLUMN IF EXISTS "bannerMediaId",
+  DROP COLUMN IF EXISTS "bannerSeed",
+  DROP COLUMN IF EXISTS "settings",
+  DROP COLUMN IF EXISTS "privacy",
+  DROP COLUMN IF EXISTS "onboarding",
+  DROP COLUMN IF EXISTS "pinnedModIds",
+  DROP COLUMN IF EXISTS "emailVerifiedAt",
+  DROP COLUMN IF EXISTS "passwordUpdatedAt",
+  DROP COLUMN IF EXISTS "lastLoginAt",
+  DROP COLUMN IF EXISTS "lastSeenAt",
+  DROP COLUMN IF EXISTS "suspendedUntil",
+  DROP COLUMN IF EXISTS "bannedAt",
+  DROP COLUMN IF EXISTS "deletedAt",
+  DROP COLUMN IF EXISTS "banReason",
+  DROP COLUMN IF EXISTS "trustLevel",
+  DROP COLUMN IF EXISTS "xp",
+  DROP COLUMN IF EXISTS "ogImageKey";

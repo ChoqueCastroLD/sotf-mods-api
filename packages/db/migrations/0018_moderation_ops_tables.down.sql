@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS "ModFavoriteArchive";
+DROP TABLE IF EXISTS "MigrationRun";
+DROP TABLE IF EXISTS "DataFixAudit";
+DROP TABLE IF EXISTS "AccountDeletion";
+DROP TABLE IF EXISTS "DataExport";
+DROP TABLE IF EXISTS "KelvinUsageDaily";
+DROP TABLE IF EXISTS "SiteSetting";
+DROP TABLE IF EXISTS "Announcement";
+DROP TABLE IF EXISTS "UserSanction";
+DROP TABLE IF EXISTS "AuditLog";
+DROP TABLE IF EXISTS "Report";

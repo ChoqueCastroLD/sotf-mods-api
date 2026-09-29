@@ -1,0 +1,6 @@
+DROP TABLE IF EXISTS "SecurityScan";
+DROP TABLE IF EXISTS "VersionInspection";
+DROP TABLE IF EXISTS "ModDependency";
+DROP TABLE IF EXISTS "ModDraft";
+DROP TABLE IF EXISTS "Upload";
+DROP TABLE IF EXISTS "Media";
