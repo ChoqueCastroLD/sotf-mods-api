@@ -387,7 +387,21 @@
   "meta_feed_description": "SOTF Mods で公開された Sons of the Forest の最新の MOD とアップデート。",
   "meta_feed_title": "SOTF Mods：新着・更新された MOD",
   "meta_gone_title": "ページは削除されました",
-  "meta_home_description": "RedLoader 対応の Sons of the Forest 向け MOD・建築・キット {mods} 件を無料で直接ダウンロード。コミュニティが実地でテスト済みです。{date} 時点で {downloads} ダウンロード。",
+  "meta_home_description": [
+    {
+      "declarations": [
+        "input modCount",
+        "input mods",
+        "input date",
+        "input downloadCount",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "RedLoader 対応の Sons of the Forest 向け MOD・建築・キット {mods} 件を無料で直接ダウンロード。コミュニティが実地でテスト済みです。{date} 時点で {downloads} ダウンロード。"
+      }
+    }
+  ],
   "meta_home_title": "SOTF Mods — Sons of the Forest の MOD・建築・キット",
   "meta_not_found_title": "ページが見つかりません",
   "meta_og_default_alt": "SOTF Mods：Sons of the Forest の MOD・建築・キット",

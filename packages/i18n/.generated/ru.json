@@ -459,7 +459,41 @@
   "meta_feed_description": "Свежие моды и обновления для Sons of the Forest на SOTF Mods.",
   "meta_feed_title": "SOTF Mods: новые и обновлённые моды",
   "meta_gone_title": "Страница удалена",
-  "meta_home_description": "Скачивайте {mods} модов, построек и наборов для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+  "meta_home_description": [
+    {
+      "declarations": [
+        "input modCount",
+        "input mods",
+        "input downloadCount",
+        "input downloads",
+        "input date",
+        "local modCount__plural = modCount: plural",
+        "local downloadCount__plural = downloadCount: plural"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "downloadCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, downloadCount__plural=one": "Скачивайте {mods} мод, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивание на {date}.",
+        "modCount__plural=one, downloadCount__plural=few": "Скачивайте {mods} мод, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=one, downloadCount__plural=many": "Скачивайте {mods} мод, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+        "modCount__plural=one, downloadCount__plural=*": "Скачивайте {mods} мод, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=few, downloadCount__plural=one": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивание на {date}.",
+        "modCount__plural=few, downloadCount__plural=few": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=few, downloadCount__plural=many": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+        "modCount__plural=few, downloadCount__plural=*": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=many, downloadCount__plural=one": "Скачивайте {mods} модов, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивание на {date}.",
+        "modCount__plural=many, downloadCount__plural=few": "Скачивайте {mods} модов, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=many, downloadCount__plural=many": "Скачивайте {mods} модов, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+        "modCount__plural=many, downloadCount__plural=*": "Скачивайте {mods} модов, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=*, downloadCount__plural=one": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивание на {date}.",
+        "modCount__plural=*, downloadCount__plural=few": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}.",
+        "modCount__plural=*, downloadCount__plural=many": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+        "modCount__plural=*, downloadCount__plural=*": "Скачивайте {mods} мода, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачивания на {date}."
+      }
+    }
+  ],
   "meta_home_title": "SOTF Mods — моды, постройки и наборы для Sons of the Forest",
   "meta_not_found_title": "Страница не найдена",
   "meta_og_default_alt": "SOTF Mods: моды, постройки и наборы для Sons of the Forest",

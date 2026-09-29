@@ -3,7 +3,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "meta_title_paged": "{title} — 第 {page, number} 页",
   "meta_home_title": "SOTF Mods — 森林之子模组、建筑与套装",
-  "meta_home_description": "下载 {mods} 个适用于 RedLoader 的《森林之子》模组、建筑与套装：免费、直接下载，并经社区实测。截至 {date} 共 {downloads} 次下载。",
+  "meta_home_description": "下载 {modCount, plural, other {{mods} 个}}适用于 RedLoader 的《森林之子》模组、建筑与套装：免费、直接下载，并经社区实测。截至 {date} 共 {downloadCount, plural, other {{downloads} 次}}下载。",
   "meta_default_description": "《森林之子》模组之家：适用于 RedLoader 的模组、建筑与套装，每个补丁都经过测试。免费直接下载。",
   "meta_og_default_alt": "SOTF Mods：《森林之子》模组、建筑与套装",
   "meta_not_found_title": "页面未找到",

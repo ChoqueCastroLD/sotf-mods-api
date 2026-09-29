@@ -459,7 +459,41 @@
   "meta_feed_description": "Najnowsze mody i aktualizacje do Sons of the Forest opublikowane na SOTF Mods.",
   "meta_feed_title": "SOTF Mods: nowe i zaktualizowane mody",
   "meta_gone_title": "Strona usunięta",
-  "meta_home_description": "Pobierz {mods} modów, buildów i zestawów do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+  "meta_home_description": [
+    {
+      "declarations": [
+        "input modCount",
+        "input mods",
+        "input downloadCount",
+        "input downloads",
+        "input date",
+        "local modCount__plural = modCount: plural",
+        "local downloadCount__plural = downloadCount: plural"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "downloadCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, downloadCount__plural=one": "Pobierz {mods} mod, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobranie na dzień {date}.",
+        "modCount__plural=one, downloadCount__plural=few": "Pobierz {mods} mod, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=one, downloadCount__plural=many": "Pobierz {mods} mod, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+        "modCount__plural=one, downloadCount__plural=*": "Pobierz {mods} mod, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=few, downloadCount__plural=one": "Pobierz {mods} mody, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobranie na dzień {date}.",
+        "modCount__plural=few, downloadCount__plural=few": "Pobierz {mods} mody, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=few, downloadCount__plural=many": "Pobierz {mods} mody, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+        "modCount__plural=few, downloadCount__plural=*": "Pobierz {mods} mody, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=many, downloadCount__plural=one": "Pobierz {mods} modów, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobranie na dzień {date}.",
+        "modCount__plural=many, downloadCount__plural=few": "Pobierz {mods} modów, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=many, downloadCount__plural=many": "Pobierz {mods} modów, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+        "modCount__plural=many, downloadCount__plural=*": "Pobierz {mods} modów, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=*, downloadCount__plural=one": "Pobierz {mods} moda, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobranie na dzień {date}.",
+        "modCount__plural=*, downloadCount__plural=few": "Pobierz {mods} moda, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}.",
+        "modCount__plural=*, downloadCount__plural=many": "Pobierz {mods} moda, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+        "modCount__plural=*, downloadCount__plural=*": "Pobierz {mods} moda, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrania na dzień {date}."
+      }
+    }
+  ],
   "meta_home_title": "SOTF Mods — mody, buildy i zestawy do Sons of the Forest",
   "meta_not_found_title": "Nie znaleziono strony",
   "meta_og_default_alt": "SOTF Mods: mody, buildy i zestawy do Sons of the Forest",

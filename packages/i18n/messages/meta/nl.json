@@ -3,7 +3,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "meta_title_paged": "{title} — pagina {page, number}",
   "meta_home_title": "SOTF Mods — mods, builds en kits voor Sons of the Forest",
-  "meta_home_description": "Download {mods} mods, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} downloads op {date}.",
+  "meta_home_description": "Download {modCount, plural, one {{mods} mod} other {{mods} mods}}, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloadCount, plural, one {{downloads} download} other {{downloads} downloads}} op {date}.",
   "meta_default_description": "Het thuis van Sons of the Forest-modding: mods, builds en kits voor RedLoader, getest op elke patch. Gratis, directe downloads.",
   "meta_og_default_alt": "SOTF Mods: mods, builds en kits voor Sons of the Forest",
   "meta_not_found_title": "Pagina niet gevonden",

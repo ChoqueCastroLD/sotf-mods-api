@@ -42,6 +42,9 @@ Plurals must list the categories each language needs for integers 0–1000 — a
 
 `#` is the locale-formatted number. For relative times, sizes and compact counts computed in code,
 pass a preformatted string argument (see `formatRelativeTime`, `formatBytes` in `@sotf/i18n`).
+When a noun follows such a preformatted number, also pass the raw number and select the noun with
+a plural on it, so ru/pl agree (`622 мода`, `625 модов`): see `common_downloads_compact`
+(`{count}` + `{display}`) and `meta_home_description` (`{modCount}` + `{mods}`).
 
 ## Workflow
 

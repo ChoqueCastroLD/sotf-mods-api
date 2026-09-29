@@ -435,7 +435,29 @@
   "meta_feed_description": "De nieuwste mods en updates voor Sons of the Forest op SOTF Mods.",
   "meta_feed_title": "SOTF Mods: nieuwe en bijgewerkte mods",
   "meta_gone_title": "Pagina verwijderd",
-  "meta_home_description": "Download {mods} mods, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} downloads op {date}.",
+  "meta_home_description": [
+    {
+      "declarations": [
+        "input modCount",
+        "input mods",
+        "input downloadCount",
+        "input downloads",
+        "input date",
+        "local modCount__plural = modCount: plural",
+        "local downloadCount__plural = downloadCount: plural"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "downloadCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, downloadCount__plural=one": "Download {mods} mod, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} download op {date}.",
+        "modCount__plural=one, downloadCount__plural=*": "Download {mods} mod, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} downloads op {date}.",
+        "modCount__plural=*, downloadCount__plural=one": "Download {mods} mods, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} download op {date}.",
+        "modCount__plural=*, downloadCount__plural=*": "Download {mods} mods, builds en kits voor Sons of the Forest met RedLoader: gratis, direct en getest door de community. {downloads} downloads op {date}."
+      }
+    }
+  ],
   "meta_home_title": "SOTF Mods — mods, builds en kits voor Sons of the Forest",
   "meta_not_found_title": "Pagina niet gevonden",
   "meta_og_default_alt": "SOTF Mods: mods, builds en kits voor Sons of the Forest",

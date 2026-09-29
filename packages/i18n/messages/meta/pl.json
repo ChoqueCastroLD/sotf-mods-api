@@ -3,7 +3,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "meta_title_paged": "{title} — strona {page, number}",
   "meta_home_title": "SOTF Mods — mody, buildy i zestawy do Sons of the Forest",
-  "meta_home_description": "Pobierz {mods} modów, buildów i zestawów do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloads} pobrań na dzień {date}.",
+  "meta_home_description": "Pobierz {modCount, plural, one {{mods} mod} few {{mods} mody} many {{mods} modów} other {{mods} moda}}, buildy i zestawy do Sons of the Forest dla RedLoadera: za darmo, bezpośrednio i sprawdzone przez społeczność. {downloadCount, plural, one {{downloads} pobranie} few {{downloads} pobrania} many {{downloads} pobrań} other {{downloads} pobrania}} na dzień {date}.",
   "meta_default_description": "Dom moddingu Sons of the Forest: mody, buildy i zestawy dla RedLoadera, testowane przy każdym patchu. Darmowe, bezpośrednie pobieranie.",
   "meta_og_default_alt": "SOTF Mods: mody, buildy i zestawy do Sons of the Forest",
   "meta_not_found_title": "Nie znaleziono strony",

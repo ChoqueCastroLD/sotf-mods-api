@@ -3,7 +3,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "meta_title_paged": "{title} — страница {page, number}",
   "meta_home_title": "SOTF Mods — моды, постройки и наборы для Sons of the Forest",
-  "meta_home_description": "Скачивайте {mods} модов, построек и наборов для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloads} скачиваний на {date}.",
+  "meta_home_description": "Скачивайте {modCount, plural, one {{mods} мод} few {{mods} мода} many {{mods} модов} other {{mods} мода}}, постройки и наборы для Sons of the Forest на RedLoader: бесплатно, напрямую и с проверкой сообщества. {downloadCount, plural, one {{downloads} скачивание} few {{downloads} скачивания} many {{downloads} скачиваний} other {{downloads} скачивания}} на {date}.",
   "meta_default_description": "Дом моддинга Sons of the Forest: моды, постройки и наборы для RedLoader, проверенные на каждом патче. Бесплатные прямые загрузки.",
   "meta_og_default_alt": "SOTF Mods: моды, постройки и наборы для Sons of the Forest",
   "meta_not_found_title": "Страница не найдена",

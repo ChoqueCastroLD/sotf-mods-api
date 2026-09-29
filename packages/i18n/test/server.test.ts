@@ -64,4 +64,19 @@ describe('withLocale', () => {
     const texts = withLocale('pl', () => [1, 2, 5, 22].map((count) => m.common_mods_count({ count })));
     expect(texts).toEqual(['1 mod', '2 mody', '5 modów', '22 mody']);
   });
+
+  it('agrees the nouns of the home description with preformatted counts', () => {
+    const home = (locale: 'ru' | 'pl' | 'en', modCount: number, downloadCount: number) =>
+      m.meta_home_description(
+        { modCount, mods: String(modCount), downloadCount, downloads: String(downloadCount), date: '29.09.2026' },
+        { locale },
+      );
+    expect(home('ru', 622, 1_980_000)).toMatch(/^Скачивайте 622 мода, .* 1980000 скачиваний на 29\.09\.2026\.$/);
+    expect(home('ru', 625, 21)).toMatch(/^Скачивайте 625 модов, .* 21 скачивание на /);
+    expect(home('ru', 21, 3)).toMatch(/^Скачивайте 21 мод, .* 3 скачивания на /);
+    expect(home('pl', 22, 1_980_000)).toMatch(/^Pobierz 22 mody, .* 1980000 pobrań na dzień /);
+    expect(home('pl', 1, 1)).toMatch(/^Pobierz 1 mod, .* 1 pobranie na dzień /);
+    expect(home('en', 1, 1)).toMatch(/^Download 1 Sons of the Forest mod, .* 1 download as of /);
+    expect(home('en', 622, 1_980_000)).toMatch(/^Download 622 Sons of the Forest mods, .* 1980000 downloads as of /);
+  });
 });

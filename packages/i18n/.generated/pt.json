@@ -435,7 +435,29 @@
   "meta_feed_description": "Os mods e atualizações mais recentes de Sons of the Forest publicados no SOTF Mods.",
   "meta_feed_title": "SOTF Mods: mods novos e atualizados",
   "meta_gone_title": "Página removida",
-  "meta_home_description": "Baixe {mods} mods, builds e kits de Sons of the Forest para o RedLoader: grátis, diretos e testados pela comunidade. {downloads} downloads em {date}.",
+  "meta_home_description": [
+    {
+      "declarations": [
+        "input modCount",
+        "input mods",
+        "input downloadCount",
+        "input downloads",
+        "input date",
+        "local modCount__plural = modCount: plural",
+        "local downloadCount__plural = downloadCount: plural"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "downloadCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, downloadCount__plural=one": "Baixe {mods} mod, builds e kits de Sons of the Forest para o RedLoader: grátis, diretos e testados pela comunidade. {downloads} download em {date}.",
+        "modCount__plural=one, downloadCount__plural=*": "Baixe {mods} mod, builds e kits de Sons of the Forest para o RedLoader: grátis, diretos e testados pela comunidade. {downloads} downloads em {date}.",
+        "modCount__plural=*, downloadCount__plural=one": "Baixe {mods} mods, builds e kits de Sons of the Forest para o RedLoader: grátis, diretos e testados pela comunidade. {downloads} download em {date}.",
+        "modCount__plural=*, downloadCount__plural=*": "Baixe {mods} mods, builds e kits de Sons of the Forest para o RedLoader: grátis, diretos e testados pela comunidade. {downloads} downloads em {date}."
+      }
+    }
+  ],
   "meta_home_title": "SOTF Mods — mods, builds e kits de Sons of the Forest",
   "meta_not_found_title": "Página não encontrada",
   "meta_og_default_alt": "SOTF Mods: mods, builds e kits de Sons of the Forest",
