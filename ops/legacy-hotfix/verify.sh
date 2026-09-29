@@ -3,7 +3,8 @@
 # original repositories or production.
 #
 #   1. Clones sotf-mods-api@e0606b6 and sotf-mods-frontend@e8ba2dc into a temp dir
-#      and applies the patches with `git am --keep-cr` (must apply cleanly).
+#      and applies the patches with apply.sh (`git am --keep-cr`, must apply
+#      cleanly).
 #   2. `bun build src/index.ts --target=bun` for both apps (bun 1.4 via npx).
 #   3. Static checks: no reference to the retired file host, no `| safe`,
 #      no "/preview", no unused legacy env vars.
@@ -11,8 +12,9 @@
 #   5. Starts a throwaway Postgres 16 (compose project "sotfv2-hotfix", port 47440),
 #      `prisma@6.19.0 db push`, seeds verify/seed.sql, runs the patched API
 #      (47441) and frontend (47442) and checks the 302 and its exact Location,
-#      counting (real IP, GET only), 404/410, the unapprove message, the
-#      escaped changelog and the default og:image.
+#      counting (real IP, GET only), 404/410 (JSON for tools, HTML for
+#      browsers), the unapprove message, the escaped changelog and the default
+#      og:image.
 #   6. Confirms the original repositories are untouched.
 #
 # Everything is cleaned up on exit (KEEP_WORKDIR=1 keeps the temp dir).
@@ -116,20 +118,21 @@ echo "  bun $(bun --version), node $(node --version), work dir $WORK"
 
 # ---------------------------------------------------------------------------
 log "1. Apply the patch series on fresh clones"
-apply_series() { # repo base patches-dir target
-  git clone -q "$1" "$4"
-  git -C "$4" checkout -q --detach "$2"
-  if git -C "$4" -c user.name=verify -c user.email=verify@localhost -c core.whitespace=cr-at-eol \
-      am -q --keep-cr "$3"/*.patch >"$LOGS/am-$(basename "$4").log" 2>&1; then
-    pass "git am applies cleanly on $(basename "$1")@$2 ($(ls "$3"/*.patch | wc -l) patches)"
+apply_series() { # target repo base
+  local dir="$WORK/$1"
+  git clone -q "$2" "$dir"
+  git -C "$dir" checkout -q --detach "$3"
+  if GIT_COMMITTER_NAME=verify GIT_COMMITTER_EMAIL=verify@localhost \
+      "$HERE/apply.sh" "$1" "$dir" >"$LOGS/am-$1.log" 2>&1; then
+    pass "apply.sh (git am --keep-cr) applies cleanly on $(basename "$2")@$3 ($(ls "$PATCHES/$1"/*.patch | wc -l) patches)"
   else
-    cat "$LOGS/am-$(basename "$4").log" >&2
-    fail "git am on $(basename "$1")@$2"
+    cat "$LOGS/am-$1.log" >&2
+    fail "git am on $(basename "$2")@$3"
     exit 1
   fi
 }
-apply_series "$LEGACY_API_REPO" "$API_BASE_COMMIT" "$PATCHES/api" "$WORK/api"
-apply_series "$LEGACY_FRONTEND_REPO" "$FRONTEND_BASE_COMMIT" "$PATCHES/frontend" "$WORK/frontend"
+apply_series api "$LEGACY_API_REPO" "$API_BASE_COMMIT"
+apply_series frontend "$LEGACY_FRONTEND_REPO" "$FRONTEND_BASE_COMMIT"
 
 # ---------------------------------------------------------------------------
 log "2. Install and build with bun ${BUN_VERSION}"
@@ -164,7 +167,7 @@ cp -R "$HERE/verify/xss" "$WORK/xss"
   || { cat "$LOGS/install-xss.log" >&2; die "bun install failed for xss checks"; }
 if (cd "$WORK/xss" && PATCHED_FRONTEND="$WORK/frontend" node --test --test-reporter=dot xss.test.ts \
     >"$LOGS/xss.log" 2>&1); then
-  pass "markdown sanitized with DOMPurify, comments rendered as text"
+  pass "markdown sanitized with DOMPurify; mod cards, alerts and comments rendered as text"
 else
   cat "$LOGS/xss.log" >&2
   fail "runtime XSS checks"
@@ -249,6 +252,21 @@ check_eq "frontend unknown version -> 404" "404" "$(status_of "$WEB/mods/regitox
 check_eq "frontend unknown mod -> 404" "404" "$(status_of "$WEB/mods/nobody/no-such-mod/download/1.0.0")"
 check_eq "API retired file host -> 410" "410" "$(status_of "$API/api/mods/CompanionWardrobe/download/0.0.3")"
 check_eq "frontend retired file host -> 410" "410" "$(status_of "$WEB/mods/regitoxic/virginia-wardrobe-18%2B/download/0.0.3")"
+check_eq "frontend 404 keeps the JSON envelope for tools" '{"status":false,"error":"NOT_FOUND","message":"No se encontró el recurso."}' \
+  "$(curl -sS "$WEB/mods/regitoxic/regi%27s-modding-library/download/9.9.9")"
+BROWSER_ACCEPT='Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+for spec in "404|regi%27s-modding-library/download/9.9.9|Version not found" \
+            "410|virginia-wardrobe-18%2B/download/0.0.3|File no longer available"; do
+  IFS='|' read -r code route title <<<"$spec"
+  h="$(curl -sS -D - -o "$WORK/error.html" -H "$BROWSER_ACCEPT" "$WEB/mods/regitoxic/$route" | tr -d '\r')"
+  check_eq "frontend $code for a browser: status" "$code" "$(head -n1 <<<"$h" | awk '{print $2}')"
+  check_eq "frontend $code for a browser: HTML page" "text/html; charset=utf-8" "$(header_value content-type <<<"$h")"
+  if grep -qF "<h1>$title</h1>" "$WORK/error.html" && grep -qF 'href="/mods/regitoxic/' "$WORK/error.html"; then
+    pass "frontend $code for a browser: message and link back to the mod"
+  else
+    fail "frontend $code for a browser: message and link back to the mod"
+  fi
+done
 check_eq "errors are not counted (mod 1)" "7" "$(downloads_of 1)"
 check_eq "errors are not counted (mod 2)" "0" "$(downloads_of 2)"
 check_eq "no ModDownload row stores \"undefined\" or \"null\"" "0" \
