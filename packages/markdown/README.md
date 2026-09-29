@@ -65,7 +65,12 @@ Every newline is a line break (as on the legacy site, Discord and GitHub comment
 `legacyHtml` reproduces how the legacy site rendered descriptions (showdown after joining blank
 lines into `<br>`, Markdown parsed inside HTML, `###Title`, `</FONT COLOR>`), then sanitises and
 repairs the markup (`<li>` without a list, `<dl>` used as a list, `<br>` spacers, empty
-paragraphs and headings, YouTube `<iframe>` → facade; `font`, `big`, `center`, `span`… unwrapped).
+paragraphs, headings and wrappers, YouTube `<iframe>` → facade; `font`, `big`, `span`… unwrapped;
+`div`, `center`, `section`… unwrapped with their inline content kept on its own line as a
+paragraph). Markup that the HTML parser accepts but that would break the content model once those
+wrappers are gone is repaired too (`src/content-model.ts`): a link or `<b>` around blocks is pushed
+into them (`<a href><h2>T</h2></a>` → `<h2><a href>T</a></h2>`), paragraphs and headings are split
+around blocks, nested links are unwrapped, a `<caption>` or stray block moves in front of its table.
 The profile is a property of the content: callers should keep rendering a legacy text with
 `legacyHtml` until its author rewrites it (see `docs/backlog/WP-15.md`).
 
@@ -73,7 +78,11 @@ The profile is a property of the content: callers should keep rendering a legacy
 
 Only these elements and attributes can appear (enforced three times: by `rehype-sanitize` with a
 from-scratch allowlist, by `verifyTree` right before serialising and by the serialiser itself; a
-violation throws `MarkdownSafetyError` instead of shipping HTML):
+violation throws `MarkdownSafetyError` instead of shipping HTML). `verifyTree` also checks the
+content model, so that a browser parsing the HTML builds exactly the verified tree: no block in a
+paragraph, heading or inline element, no link in a link, no `<li>` directly in `<li>` (`<dt>`/`<dd>`
+alike), only table parts in tables, and no checkbox or spoiler button inside a link, a
+`<summary>` or another spoiler button.
 
 - author content: the tags of the table above; `href`/`title` on links (`http`, `https`, `mailto`
   or relative), `src`/`alt`/`title` on images (`http`, `https` or relative); no `style`, `on*`,
@@ -87,12 +96,15 @@ violation throws `MarkdownSafetyError` instead of shipping HTML):
     a collapsed toggle whose accessible name is the localisable label "Spoiler" (buttons have
     presentational children, so the hidden text is not announced); a reveal script sets
     `aria-expanded="true"` and removes `role`/`aria-label`, CSS may also reveal on hover/focus. A
-    spoiler that contains a link is a plain `span.md-spoiler` (no nested interactive content),
-    revealed by CSS on `:hover`/`:focus-within`. Spoilers are never created inside links;
+    spoiler that contains a link, or sits inside a `<summary>` (legacyHtml), is a plain
+    `span.md-spoiler` (no nested interactive content), revealed by CSS on
+    `:hover`/`:focus-within`. Spoilers are never created inside links;
   - `a.md-mention` (resolved mentions);
   - `rel="ugc nofollow noopener"` on links that leave `sotf-mods.com` (configurable `internalHosts`),
     decided on the host a browser resolves (WHATWG `URL`), so `http:evil.com`, `https:\\evil.com`
-    or `https://evil.com\@sotf-mods.com` are external; `links[].external` reports the same;
+    or `https://evil.com\@sotf-mods.com` are external; the port counts (`https://sotf-mods.com:8443/`
+    is another origin, hence external, unless `sotf-mods.com:8443` is listed); `links[].external`
+    reports the same;
   - autolinks and mentions never inside a link (also not under `<strong>`… within it): nested
     anchors would be split by the browser. Mentions in link text are not collected;
   - `img[loading=lazy][decoding=async][referrerpolicy=no-referrer]`, plus `width`/`height` from
@@ -114,7 +126,9 @@ previews): blocks separated by blank lines, no spoilers, images or UI labels.
 - Tests parse every output with a real HTML parser (jsdom) and check the allowlist, URL schemes,
   that no script runs, that re-parsing is stable (mXSS) and that the browser builds exactly the
   tree the pipeline verified, and that every link a browser resolves off-site carries the external
-  `rel`: 266 XSS/mXSS vectors × 3 profiles, without and with mention/image resolvers, 0 escapes.
+  `rel`, and that no interactive content is nested: 296 XSS/mXSS vectors × 3 profiles, without
+  and with mention/image resolvers, 0 escapes; plus 2 600 seeded random tag soups
+  (`test/fuzz.test.ts`) through the same checks.
 - Parsing is linear: markdown-it has a nesting cap, a guard escapes over-nested lines
   (`src/guard.ts`), raw HTML is interpreted only up to 1 000 tags, and too-deep trees fall back to
   escaped plain text.
@@ -154,5 +168,7 @@ pnpm --filter @sotf/markdown fixtures:legacy   # regenerate the legacy fixtures 
 | `unicode.test.ts` | 13-locale scripts, emoji sequences, NFC |
 | `entities.test.ts` | `decodeEntities` / `escapeForLegacy` round trip |
 | `serialize.test.ts` | the serialiser builds the same DOM as rehype-stringify (≈ 850 trees), escaping, closed set |
-| `units.test.ts` | URL policy, YouTube parsing, autolinks, slugs, labels, `verifyTree`, guard |
+| `legacy.test.ts` (content model) | legacy markup the parser would restructure once wrappers are unwrapped: exact output, browser tree = verified tree |
+| `fuzz.test.ts` | seeded random tag soup per profile: browser tree = verified tree, no unsafe or nested interactive content |
+| `units.test.ts` | URL policy (hosts and ports), YouTube parsing, autolinks, slugs, labels, heading anchors, `verifyTree` (allowlist and content model), guard |
 | `bench.test.ts` | 20 KB rendered in < 15 ms per profile (best of 15 batches of 5 renders; ≈ 7–11 ms for `full` on the shared dev host) |
