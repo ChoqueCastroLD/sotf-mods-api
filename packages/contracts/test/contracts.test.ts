@@ -80,7 +80,8 @@ describe('endpoint contracts', () => {
     for (const code of endpoint.errors ?? []) expect(ERROR_CODES).toContain(code);
     if (endpoint.rateLimit) expect(Object.keys(RATE_LIMITS)).toContain(endpoint.rateLimit);
     if (endpoint.cache.kind === 'public') {
-      const tags = resolveCacheTags(endpoint.cache.tags, { id: 20, slug: 'quality-of-life', locale: 'es' });
+      const values = { id: 20, modId: 20, userId: 12, kitId: 5, slug: 'quality-of-life', locale: 'es' };
+      const tags = resolveCacheTags(endpoint.cache.tags, values);
       expect(tags.length).toBe(endpoint.cache.tags.length);
       for (const tag of tags) expect(isCacheTag(tag)).toBe(true);
     }

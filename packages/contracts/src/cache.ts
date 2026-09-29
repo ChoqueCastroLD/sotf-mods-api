@@ -26,15 +26,19 @@ export type CacheTag =
   | `tag:${string}`
   | `locale:${string}`;
 
-/** Tag template used in endpoint declarations: `{param}` is replaced with the path/entity value. */
+/**
+ * Tag template used in endpoint declarations: `{name}` is replaced by the value the handler supplies
+ * for the **entity** it served (e.g. `mod:{id}` → the mod id, even on `/users/:handle/…` routes the
+ * handler passes the user id for `user:{id}`). Templates whose value is missing are dropped.
+ */
 export type CacheTagTemplate =
   | CacheTag
-  | 'mod:{id}'
-  | 'user:{id}'
-  | 'kit:{id}'
-  | 'category:{slug}'
-  | 'tag:{slug}'
-  | 'locale:{locale}';
+  | `mod:{${string}}`
+  | `user:{${string}}`
+  | `kit:{${string}}`
+  | `category:{${string}}`
+  | `tag:{${string}}`
+  | `locale:{${string}}`;
 
 const STATIC_TAGS = new Set<string>([
   'html',
@@ -124,7 +128,7 @@ export const cache = {
 export function cacheHeaders(policy: CachePolicy, tags: readonly CacheTag[] = []): Record<string, string> {
   switch (policy.kind) {
     case 'public': {
-      const edge = [`public`, `max-age=${policy.edgeMaxAge}`, `stale-while-revalidate=${policy.staleWhileRevalidate}`];
+      const edge = ['public', `max-age=${policy.edgeMaxAge}`, `stale-while-revalidate=${policy.staleWhileRevalidate}`];
       if (policy.staleIfError !== undefined) edge.push(`stale-if-error=${policy.staleIfError}`);
       const headers: Record<string, string> = {
         'cache-control': `public, max-age=${policy.browserMaxAge}`,

@@ -162,7 +162,7 @@ export const seoEndpoints = {
     auth: 'public',
     query: z.object({ path: SitePath }),
     response: ResolveDTO,
-    cache: cache.publicApi(['mod:{id}', 'user:{id}', 'kit:{id}']),
+    cache: cache.publicApi(['mod:{modId}', 'user:{userId}', 'kit:{kitId}']),
     rateLimit: 'anonymousRead',
   }),
 } as const;
