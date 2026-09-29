@@ -36,6 +36,16 @@ describe('coverSvg', () => {
     expect(coverSvg('x', '#5EBB64', 'ABCDE')).toBe(coverSvg('x', '#5EBB64', 'ABC'));
     expect(coverSvg('x', '#5EBB64', '')).not.toMatch(/<text|scale\(\.9/);
   });
+
+  it('normalises initials to NFC and counts user-perceived characters', () => {
+    const decomposed = 'E\u0301XYZ';
+    expect(coverSvg('x', '#5EBB64', decomposed)).toBe(coverSvg('x', '#5EBB64', '\u00C9XY'));
+    expect(coverSvg('x', '#5EBB64', decomposed)).toContain('\u00C9XY</text>');
+    expect(coverSvg('x', '#5EBB64', 'ae\u0301cd')).toContain('A\u00C9C</text>');
+    expect(coverSvg('x', '#5EBB64', 'ab\u0301cd')).toContain('AB\u0301C</text>');
+    // An upper case that expands («ß» → «SS») keeps the original character and one slot.
+    expect(coverSvg('x', '#5EBB64', 'ßab')).toContain('ßAB</text>');
+  });
 });
 
 describe('bannerSvg', () => {

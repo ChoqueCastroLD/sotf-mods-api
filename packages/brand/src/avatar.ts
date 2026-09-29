@@ -4,7 +4,7 @@
  */
 
 import { type BrandTheme, chartSlots, palette } from './colors.ts';
-import { hasOutlines, initialsElement, initialsFrom } from './initials.ts';
+import { graphemes, hasOutlines, initialsElement, initialsFrom } from './initials.ts';
 import { hashSeed, type Seed } from './random.ts';
 import { svgRoot } from './svg.ts';
 
@@ -39,7 +39,7 @@ export function avatarSvg(name: string, id: Seed, options: AvatarOptions = {}): 
     // System-font fallback: wide scripts get one character, others a slightly smaller size.
     capHeight = 16;
     if (WIDE_SCRIPT.test(initials)) {
-      initials = Array.from(initials)[0] ?? initials;
+      initials = graphemes(initials)[0] ?? initials;
       capHeight = 20;
     }
   }

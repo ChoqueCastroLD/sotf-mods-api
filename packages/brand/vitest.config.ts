@@ -1,10 +1,8 @@
-import { defineConfig } from 'vitest/config';
+import { defineUnitConfig } from '@sotf/config/vitest';
 
-export default defineConfig({
+export default defineUnitConfig({
   test: {
     name: '@sotf/brand',
-    environment: 'node',
-    include: ['test/**/*.test.ts'],
     // The reproducibility test rasterises every asset with sharp.
     testTimeout: 30_000,
   },

@@ -4,7 +4,7 @@
  */
 
 import { type BrandTheme, mixHex, normalizeHex, palette } from './colors.ts';
-import { initialsElement } from './initials.ts';
+import { graphemes, initialsElement, upperInitial } from './initials.ts';
 import { fmt, svgRoot } from './svg.ts';
 import { topoGroup, topoLines } from './topo.ts';
 
@@ -25,7 +25,8 @@ const MAX_INITIALS = 3;
 
 /**
  * Cover SVG for a mod. `categoryColor` must be a hex colour (anything else falls back to
- * Flare, so untrusted input can never inject markup). `initials` is trimmed to 3 characters.
+ * Flare, so untrusted input can never inject markup). `initials` is trimmed, NFC-normalised
+ * and cut to 3 user-perceived characters.
  */
 export function coverSvg(slug: string, categoryColor: string, initials: string, options: CoverOptions = {}): string {
   const theme = options.theme ?? 'night';
@@ -46,7 +47,7 @@ export function coverSvg(slug: string, categoryColor: string, initials: string, 
     summitRegion: [0.42, 0.14, 0.9, 0.62],
   });
   const regular = mixHex(background, accent, theme === 'night' ? 0.42 : 0.5);
-  const text = Array.from(initials.trim().toUpperCase()).slice(0, MAX_INITIALS).join('');
+  const text = graphemes(initials.trim()).slice(0, MAX_INITIALS).map(upperInitial).join('');
   const unit = width / 640;
   const body =
     `<rect width="${fmt(width)}" height="${fmt(height)}" fill="${background}"/>` +

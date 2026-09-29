@@ -3,9 +3,11 @@ import { readFileSync } from 'node:fs';
 import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { buildAll } from '../scripts/build-assets.ts';
+import type { BuiltFile } from '../scripts/build-icons.ts';
 import { generateBrandDataSource } from '../scripts/lib/sources.ts';
 import { APP_ICONS, faviconSvg, manifestIcons } from '../src/icons.ts';
 import { ogDefaultSvg } from '../src/og.ts';
+import { icoImages, rasterDifference, strictRasterComparison } from './helpers.ts';
 
 /** The legacy file host (PLAN §2.8), spelled out indirectly so check:forbidden stays green. */
 const RETIRED_FILES_HOST = ['files', 'sotf-mods', 'com'].join('.');
@@ -125,11 +127,68 @@ describe('reproducibility (build:assets)', () => {
     expect(generateBrandDataSource()).toBe(committed);
   });
 
-  it('rebuilds every asset byte for byte', async () => {
-    const files = await buildAll();
+  // One in-memory build shared by the checks below (it rasterises every asset).
+  let built: Promise<BuiltFile[]> | undefined;
+  const rebuild = (): Promise<BuiltFile[]> => {
+    built ??= buildAll();
+    return built;
+  };
+
+  it.runIf(strictRasterComparison())('rebuilds every asset byte for byte (linux-x64 / CI)', async () => {
+    const files = await rebuild();
     expect(files.map((file) => file.path).sort()).toEqual(Object.keys(manifest.files).concat('manifest.json').sort());
     for (const file of files) {
       expect(file.bytes.equals(read(file.path)), file.path).toBe(true);
     }
+  });
+
+  it('rebuilds vectors byte for byte and rasters within pixel tolerance (any platform)', async () => {
+    const files = await rebuild();
+    expect(files.map((file) => file.path).sort()).toEqual(Object.keys(manifest.files).concat('manifest.json').sort());
+    const expectClose = async (actual: Buffer, committed: Buffer, label: string): Promise<void> => {
+      const diff = await rasterDifference(actual, committed);
+      expect(diff.shapeMismatch, label).toBeNull();
+      expect(diff.meanDelta, label).toBeLessThanOrEqual(1);
+      expect(diff.outlierRatio, label).toBeLessThanOrEqual(0.005);
+    };
+    for (const file of files) {
+      const committed = read(file.path);
+      if (file.path.endsWith('.png')) {
+        await expectClose(file.bytes, committed, file.path);
+      } else if (file.path.endsWith('.ico')) {
+        const [actual, expected] = [icoImages(file.bytes), icoImages(committed)];
+        expect(actual.length, file.path).toBe(expected.length);
+        for (const [index, png] of actual.entries()) {
+          await expectClose(png, expected[index] as Buffer, `${file.path}#${index}`);
+        }
+      } else if (file.path !== 'manifest.json') {
+        // SVG and JSON are pure text built by this package: identical on every platform.
+        expect(file.bytes.equals(committed), file.path).toBe(true);
+      }
+    }
+  });
+
+  it('measures raster drift instead of accepting any image', async () => {
+    const [a, b] = await Promise.all([
+      sharp({ create: { width: 8, height: 8, channels: 4, background: '#101311' } })
+        .png()
+        .toBuffer(),
+      sharp({ create: { width: 8, height: 8, channels: 4, background: '#FF7335' } })
+        .png()
+        .toBuffer(),
+    ]);
+    expect(await rasterDifference(a, a)).toEqual({ shapeMismatch: null, meanDelta: 0, outlierRatio: 0 });
+    expect((await rasterDifference(a, b)).outlierRatio).toBe(1);
+    const small = await sharp({ create: { width: 4, height: 8, channels: 4, background: '#101311' } })
+      .png()
+      .toBuffer();
+    expect((await rasterDifference(a, small)).shapeMismatch).toBe('8x8x4 ≠ 4x8x4');
+  });
+
+  it('only relaxes the raster check off linux-x64 and outside CI', () => {
+    expect(strictRasterComparison({ CI: 'true' })).toBe(true);
+    expect(strictRasterComparison({ SOTF_BRAND_STRICT_ASSETS: '1' })).toBe(true);
+    expect(strictRasterComparison({ CI: 'true', SOTF_BRAND_STRICT_ASSETS: '0' })).toBe(false);
+    expect(strictRasterComparison({})).toBe(process.platform === 'linux' && process.arch === 'x64');
   });
 });
