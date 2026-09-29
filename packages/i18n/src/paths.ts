@@ -30,7 +30,6 @@ export const UNLOCALIZED_SEGMENTS: ReadonlySet<string> = new Set([
   '_image',
   '_server-islands',
   '.well-known',
-  'brand',
   'fonts',
   'static',
   'sitemaps',

@@ -56,6 +56,7 @@ describe('localizePath', () => {
       '/_astro/app.1234.js',
       '/_internal/cache/invalidate',
       '/brand/logo.svg',
+      '/brand/sotf-mods-wordmark.png',
       '/.well-known/security.txt',
       '/mods/imaxel/axels-mod-menu/download/1.2.0',
       '/builds/bob/cabin/download/1.0.0',
@@ -84,9 +85,20 @@ describe('localizePath', () => {
       '/mods/a/b/versions/1.2.0',
       '/profile/imaxel',
       '/k/abc123',
+      '/brand',
     ]) {
       expect(isLocalizedPath(path), path).toBe(true);
     }
+  });
+
+  it('localizes the /brand page while its assets stay unprefixed', () => {
+    expect(localizePath('/brand', 'es')).toBe('/es/brand');
+    expect(localizePath('/fr/brand', 'en')).toBe('/brand');
+    expect(isLocalizedPath('/brand/logo.svg')).toBe(false);
+    expect(localizePath('/brand/logo.svg', 'es')).toBe('/brand/logo.svg');
+    const hrefs = hreflangAlternates('/brand', 'https://sotf-mods.com').map((a) => a.href);
+    expect(new Set(hrefs).size).toBe(LOCALES.length);
+    expect(hrefs).toContain('https://sotf-mods.com/ja/brand');
   });
 
   it('accepts a custom predicate', () => {
