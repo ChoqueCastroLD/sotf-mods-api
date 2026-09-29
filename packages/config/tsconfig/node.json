@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Node 24 packages and apps (api, worker, core, db, tooling)",
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  }
+}

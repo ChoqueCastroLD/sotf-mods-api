@@ -1,0 +1,21 @@
+{
+  "name": "@sotf/ui",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Locator design system: Tailwind 4 tokens, fonts, accessible primitives and domain components.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+  },
+  "devDependencies": {
+    "@sotf/config": "workspace:*",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
