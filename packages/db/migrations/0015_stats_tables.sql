@@ -128,6 +128,9 @@ CREATE TABLE "AnalyticsEvent" (
 
 CREATE INDEX "AnalyticsEvent_ts_brin" ON "AnalyticsEvent" USING brin ("ts");
 
+-- PLAN §6.4 lists this one as BRIN too; btree on purpose: it serves point lookups of one entity
+-- (entityType, entityId) over a time range, where a BRIN index on rows that are not physically
+-- ordered by entity would scan nearly every block range. ts alone stays BRIN (insert order).
 CREATE INDEX "AnalyticsEvent_entity_ts_idx" ON "AnalyticsEvent"("entityType", "entityId", "ts");
 
 CREATE TABLE "SearchQueryDaily" (
