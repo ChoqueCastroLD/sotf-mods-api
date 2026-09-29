@@ -11,11 +11,28 @@
   "scripts": {
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run --config ../../packages/config/vitest/unit.ts",
-    "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts",
+    "gen": "node scripts/gen-seed-sql.ts",
+    "db:migrate": "node --env-file-if-exists=../../.env src/cli/migrate.ts",
+    "db:guard": "node --env-file-if-exists=../../.env src/cli/guard.ts",
+    "db:baseline": "node --env-file-if-exists=../../.env src/cli/baseline.ts",
+    "db:catalog:snapshot": "node scripts/snapshot-legacy-catalog.ts",
+    "db:baseline:generate": "node scripts/generate-baseline.ts",
+    "db:lint-sql": "node src/cli/lint-sql.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "catalog:",
+    "pg": "catalog:",
+    "pg-boss": "catalog:",
+    "uuidv7": "catalog:",
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@sotf/config": "workspace:*",
+    "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
+    "@types/pg": "catalog:",
+    "testcontainers": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
