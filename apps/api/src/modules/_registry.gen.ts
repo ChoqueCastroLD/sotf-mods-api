@@ -3,12 +3,14 @@
 
 import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
+import legacyModule from './legacy/index.ts';
 import meModule from './me/index.ts';
 import platformModule from './platform/index.ts';
 
 export const modules = [
   accountModule,
   authModule,
+  legacyModule,
   meModule,
   platformModule,
 ] as const;
