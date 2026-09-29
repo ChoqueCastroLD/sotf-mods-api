@@ -1,0 +1,90 @@
+/* =====================================================================
+   @sotf/web · global stylesheet (PLAN §3). One immutable CSS file for every public page.
+   Tokens, Tailwind and the fonts come from @sotf/ui; this file only adds the page chrome that
+   cannot be expressed with utilities (state driven by <html> data attributes set before paint).
+   ===================================================================== */
+@import "@sotf/ui/tokens.css";
+
+/* Tailwind scans the app sources automatically (Vite root = apps/web); tokens.css adds @sotf/ui. */
+
+@layer base {
+  html {
+    scrollbar-gutter: stable;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Anchors land below the sticky header. */
+  :target {
+    scroll-margin-block-start: 5rem;
+  }
+}
+
+/* ---- Legacy session banner: revealed by the inline cleanup script (data-relogin). ---------- */
+[data-relogin-banner] {
+  display: none;
+}
+html[data-relogin] [data-relogin-banner] {
+  display: block;
+}
+
+/* ---- Header: compacts from 64 to 52 px while scrolling (transform only, no layout). -------- */
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-site-header] [data-header-bar] {
+      animation: header-compact linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 96px;
+    }
+  }
+}
+@keyframes header-compact {
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+/* ---- Mobile tab bar: hidden while scrolling down (data-scroll-dir set by the chrome script). - */
+[data-tab-bar] {
+  transition: transform var(--dur-base, 200ms) var(--ease-out, ease-out);
+}
+html[data-scroll-dir="down"] [data-tab-bar] {
+  transform: translateY(110%);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-tab-bar] {
+    transition: none;
+  }
+}
+
+/* ---- Snow (December): canvas painted by scripts/seasonal.ts. ------------------------------ */
+[data-snow-canvas] {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: var(--z-overlay, 40);
+}
+
+/* Cross-document view transitions: the opt-in and the reduced-motion fallback live in tokens.css. */
+
+/* ---- 404: the two eyes in the trees blink (`motion-safe:animate-blink` on each circle). ---- */
+[data-eyes] circle {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ---- Adaptive logo: the Day flare (#E75803) keeps ≥ 3:1 everywhere; brighten it at night. -- */
+:root[data-theme="dark"] .brand-flare {
+  fill: #ff7335;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"] .brand-flare {
+    fill: #ff7335;
+  }
+}

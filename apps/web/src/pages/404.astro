@@ -1,0 +1,134 @@
+---
+/**
+ * 404 «You wandered off the trail» (research/03 §5.10, §6.14) — also the 410 page for removed
+ * legacy content (`locals.errorKind = 'gone'`, set by the middleware). Real status codes (the
+ * legacy site answered 200), `noindex`, edge TTL 60 s with tag `html` so a freshly published mod is
+ * never hidden for long (PLAN §4.2). Popular mods come from the API with an 800 ms budget; the
+ * page renders without them when the API is slow or down.
+ */
+import { formatCompactNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, BookOpen, Download, Search } from 'lucide-react';
+import LostTrail from '../components/layout/LostTrail.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { optional, serverApi } from '../lib/api.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { href } from '../lib/i18n.ts';
+import { ensureLocals } from '../lib/request-context.ts';
+
+const locale = ensureLocals(Astro).locale;
+const gone = Astro.locals.errorKind === 'gone';
+setPageCache(Astro, pageCache.notFound());
+
+const popular = gone
+  ? null
+  : await optional((signal) =>
+      serverApi().catalog.listMods({ query: { sort: 'downloads', pageSize: 6, type: 'all' } }, { signal }),
+    );
+const mods = popular?.items.slice(0, 6) ?? [];
+const title = gone ? m.errors_gone_title() : m.errors_not_found_title();
+const text = gone ? m.errors_gone_text() : m.errors_not_found_text();
+const readout = `${gone ? 410 : 404} · ${gone ? m.meta_gone_title() : m.meta_not_found_title()}`;
+---
+
+<BaseLayout
+  template="not-found"
+  seo={{
+    title: gone ? m.meta_gone_title() : m.meta_not_found_title(),
+    description: text,
+    noindex: true,
+    canonical: false,
+  }}
+>
+  <section class="relative overflow-hidden">
+    <div class="texture-topo pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <div
+      class="relative mx-auto grid w-full max-w-(--container-content) items-center gap-10 px-4 py-12 md:grid-cols-[1.1fr_1fr] md:px-6 md:py-20"
+    >
+      <div class="order-2 grid gap-6 md:order-1">
+        <p class="readout text-signal">{readout}</p>
+        <p class="font-display-caps text-display-xl text-fg" aria-hidden="true">{gone ? '410' : '404'}</p>
+        <h1 class="font-display-caps text-display-sm text-fg">{title}</h1>
+        <p class="max-w-(--container-prose) text-lg text-fg-muted">{text}</p>
+
+        <search class="max-w-lg">
+          <form method="get" action={href('/search', locale)} class="flex gap-2">
+          <label for="lost-search" class="sr-only">{m.common_search_label()}</label>
+          <div class="relative flex-1">
+            <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
+              <Icon icon={Search} size={18} />
+            </span>
+            <input
+              id="lost-search"
+              name="q"
+              type="search"
+              maxlength="100"
+              enterkeyhint="search"
+              placeholder={m.common_search_placeholder()}
+              class="h-12 w-full rounded-md border border-border-strong bg-surface ps-10 pe-3 text-base text-fg placeholder:text-fg-subtle"
+            />
+          </div>
+          <button
+            type="submit"
+            class="inline-flex h-12 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow"
+          >
+            {m.common_search_label()}
+          </button>
+          </form>
+        </search>
+
+        <div class="flex flex-wrap gap-3">
+          <a
+            href={href('/', locale)}
+            class="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8"
+          >
+            {m.errors_not_found_home()}
+            <Icon icon={ArrowRight} size={18} className="rtl:rotate-180" />
+          </a>
+          <a
+            href={href('/install', locale)}
+            class="inline-flex h-11 items-center gap-2 rounded-md px-4 font-semibold text-fg-muted hover:bg-fg/8 hover:text-fg"
+          >
+            <Icon icon={BookOpen} size={18} />
+            {m.common_nav_install()}
+          </a>
+        </div>
+      </div>
+      <div class="order-1 flex justify-center md:order-2">
+        <LostTrail />
+      </div>
+    </div>
+  </section>
+
+  {
+    mods.length > 0 && (
+      <section class="mx-auto w-full max-w-(--container-content) px-4 pb-16 md:px-6" aria-labelledby="popular-title">
+        <h2 id="popular-title" class="font-display-caps mb-4 text-display-xs text-fg">
+          {m.errors_not_found_popular()}
+        </h2>
+        <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {mods.map((mod) => (
+            <li>
+              <a
+                href={href(mod.canonicalPath, locale)}
+                class="flex min-h-16 items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 hover:border-border-strong hover:bg-raised"
+              >
+                <span class="grid min-w-0 gap-0.5">
+                  <span class="truncate font-semibold text-fg">{mod.name}</span>
+                  <span class="truncate text-sm text-fg-muted">@{mod.userHandle}</span>
+                </span>
+                <span class="flex shrink-0 items-center gap-1 text-sm text-fg-muted tabular-nums">
+                  <Icon icon={Download} size={16} />
+                  <span class="sr-only">{m.common_downloads_count({ count: mod.downloads })}</span>
+                  <span aria-hidden="true">{formatCompactNumber(locale, mod.downloads)}</span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</BaseLayout>

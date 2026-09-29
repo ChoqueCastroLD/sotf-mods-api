@@ -1,0 +1,51 @@
+---
+/**
+ * ConsoleShell (PLAN §2.5, §4.3): the SSR document of the console SPA (`/basecamp`, `/ranger`,
+ * `/settings`, `/signals`, `/me`). It carries **no user data** (so it is cacheable: 1 day at the
+ * edge, purged on deploy), is `noindex`, has no locale prefix (the console picks its language from
+ * the user settings) and hosts `<ConsoleApp client:only="react" />` in its slot (WP-34).
+ */
+
+import { m } from '@sotf/i18n/messages';
+import { BANNER_INIT_SCRIPT } from '@sotf/ui/dismissals';
+import { FONT_PRELOADS } from '@sotf/ui/font-preloads';
+import { THEME_INIT_SCRIPT } from '@sotf/ui/theme';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { toHtmlLang } from '../lib/i18n.ts';
+import { LEGACY_CLEANUP_SCRIPT } from '../scripts/legacy-cleanup.ts';
+import './global.css';
+
+interface Props {
+  /** Document title before the SPA sets its own. */
+  title?: string;
+}
+
+const { title = m.meta_site_name() } = Astro.props;
+setPageCache(Astro, pageCache.static());
+---
+
+<!doctype html>
+<html lang={toHtmlLang(Astro.locals.locale)} dir="ltr" data-theme="dark" data-template="console">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline set:html={THEME_INIT_SCRIPT} />
+    <script is:inline set:html={BANNER_INIT_SCRIPT} />
+    <script is:inline set:html={LEGACY_CLEANUP_SCRIPT} />
+    {FONT_PRELOADS.map((font) => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />)}
+    <title>{title}</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <slot name="head" />
+  </head>
+  <body class="bg-bg text-fg">
+    <div id="console-root" class="flex min-h-dvh flex-col">
+      <slot />
+    </div>
+  </body>
+</html>

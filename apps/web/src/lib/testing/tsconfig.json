@@ -1,0 +1,6 @@
+{
+  "$comment": "Playwright and LHCI tooling, type-checked by tsc only: `astro check` forces `module: ESNext`, which cannot load @playwright/test's CommonJS types under NodeNext resolution.",
+  "extends": "@sotf/config/tsconfig/node.json",
+  "compilerOptions": { "lib": ["es2024", "dom", "dom.iterable"], "types": ["node"] },
+  "include": ["./**/*.ts"]
+}

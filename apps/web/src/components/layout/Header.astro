@@ -1,0 +1,101 @@
+---
+/**
+ * Site header (research/03 §5.4): logo · Explore · Builds · Kits · Install · Creators · search
+ * (visible field ≥ lg, icon below) · account slot. Sticky, compacts while scrolling (CSS scroll
+ * timeline, transform only). Works without JavaScript: the search is a real GET form to
+ * `/search`, the account slot starts with «Sign in» and is upgraded by `account-hint.ts`.
+ */
+import { lockupSvg } from '@sotf/brand/logo';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Kbd } from '@sotf/ui/kbd';
+import { Search } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import HeaderAccount from '../account/HeaderAccount.astro';
+
+const locale = Astro.locals.locale;
+const current = Astro.locals.pagePath.split('?', 1)[0] ?? '/';
+
+const NAV = [
+  { path: '/mods', label: m.common_nav_explore() },
+  { path: '/builds', label: m.common_term_builds() },
+  { path: '/kits', label: m.common_term_kits() },
+  { path: '/install', label: m.common_nav_install() },
+  { path: '/creators', label: m.common_nav_creators() },
+] as const;
+
+const isCurrent = (path: string) => current === path || current.startsWith(`${path}/`);
+const logo = lockupSvg({ layout: 'horizontal', theme: 'adaptive', height: 26, title: '' });
+const searchHref = href('/search', locale);
+---
+
+<header
+  data-site-header
+  class="sticky top-0 z-(--z-sticky) border-b border-border bg-bg/90 supports-[backdrop-filter]:bg-bg/75 supports-[backdrop-filter]:backdrop-blur-md"
+>
+  <div
+    data-header-bar
+    class="mx-auto flex h-16 w-full max-w-(--container-wide) items-center gap-3 px-4 md:gap-6 md:px-6"
+  >
+    <a
+      href={href('/', locale)}
+      class="flex min-h-11 shrink-0 items-center rounded-md text-fg"
+      aria-label={`${m.common_site_name()} · ${m.common_nav_home()}`}
+    >
+      <Fragment set:html={logo} />
+    </a>
+
+    <nav aria-label={m.common_nav_label()} class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                href={href(item.path, locale)}
+                aria-current={isCurrent(item.path) ? 'page' : undefined}
+                class="flex h-10 items-center rounded-md px-3 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg aria-[current=page]:text-fg aria-[current=page]:shadow-[inset_0_-2px_0_var(--color-primary)]"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <search class="ms-auto hidden w-full max-w-sm lg:block">
+      <form method="get" action={searchHref} class="flex items-center" data-header-search>
+      <label for="site-search" class="sr-only">{m.common_search_label()}</label>
+      <div class="relative w-full">
+        <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
+          <Icon icon={Search} size={18} />
+        </span>
+        <input
+          id="site-search"
+          name="q"
+          type="search"
+          enterkeyhint="search"
+          autocomplete="off"
+          maxlength="100"
+          placeholder={m.common_search_placeholder()}
+          data-cmdk-input
+          class="h-10 w-full rounded-md border border-border-strong bg-sunken ps-10 pe-12 text-sm text-fg placeholder:text-fg-subtle focus-visible:outline-2 focus-visible:outline-focus"
+        />
+        <span class="pointer-events-none absolute inset-y-0 end-2 flex items-center" aria-hidden="true">
+          <Kbd>/</Kbd>
+        </span>
+      </div>
+      </form>
+    </search>
+
+    <a
+      href={searchHref}
+      class="ms-auto flex size-11 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg lg:hidden"
+      aria-label={m.common_search_label()}
+    >
+      <Icon icon={Search} size={20} />
+    </a>
+
+    <HeaderAccount />
+  </div>
+</header>

@@ -1,0 +1,80 @@
+---
+/**
+ * Global banners under the header (PLAN §6.10, §11.4):
+ * - environment notice when `SITE_ENV` is not production (staging, preflight, development);
+ * - «sign in again» after the legacy-token cleanup (hidden until the inline script sets
+ *   `html[data-relogin]`);
+ * - the language suggestion, a floating notice filled by `scripts/lang-suggest.ts` in the
+ *   *suggested* locale (never a redirect, PLAN §4.1; out of the flow, so no layout shift).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { FlaskConical, KeyRound, Languages, X } from 'lucide-react';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+
+const env = loadEnv();
+const locale = Astro.locals.locale;
+const envNotice =
+  env.siteEnv === 'staging'
+    ? m.common_env_staging()
+    : env.siteEnv === 'preflight'
+      ? m.common_env_preflight()
+      : env.siteEnv === 'development'
+        ? m.common_env_development()
+        : null;
+const loginHref = href('/login', locale);
+---
+
+{
+  envNotice && (
+    <div class="border-b border-warning/40 bg-warning-soft text-fg" role="note">
+      <p class="mx-auto flex max-w-(--container-wide) items-center gap-2 px-4 py-1.5 text-xs md:px-6">
+        <Icon icon={FlaskConical} size={16} className="text-warning" />
+        {envNotice}
+      </p>
+    </div>
+  )
+}
+
+<div data-relogin-banner class="border-b border-signal/40 bg-signal-soft text-fg" role="status">
+  <div class="mx-auto flex max-w-(--container-wide) items-center gap-3 px-4 py-2 text-sm md:px-6">
+    <Icon icon={KeyRound} size={18} className="text-signal" />
+    <p class="flex-1">
+      <a href={loginHref} class="font-semibold underline underline-offset-4">{m.common_relogin_banner()}</a>
+    </p>
+    <button
+      type="button"
+      data-relogin-dismiss
+      class="flex size-11 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg"
+      aria-label={m.common_action_dismiss()}
+    >
+      <Icon icon={X} size={18} />
+    </button>
+  </div>
+</div>
+
+<!-- Floating (not in the flow): appearing after load must never shift the page (CLS 0). -->
+<div
+  data-lang-suggest
+  hidden
+  class="fixed inset-x-3 bottom-20 z-(--z-toast) mx-auto max-w-xl rounded-lg border border-border-strong bg-raised text-fg shadow-lg md:bottom-4"
+  aria-live="polite"
+>
+  <div class="flex flex-wrap items-center gap-3 px-4 py-2 text-sm">
+    <Icon icon={Languages} size={18} className="text-signal" />
+    <p class="flex-1" data-lang-suggest-text></p>
+    <a
+      data-lang-suggest-accept
+      href="/"
+      class="inline-flex h-10 items-center rounded-md bg-primary px-3 font-semibold text-primary-fg"
+      >{m.common_language_suggest_accept()}</a
+    >
+    <button
+      type="button"
+      data-lang-suggest-decline
+      class="inline-flex h-10 items-center rounded-md px-3 text-fg-muted hover:bg-fg/8 hover:text-fg"
+      >{m.common_language_suggest_decline()}</button
+    >
+  </div>
+</div>

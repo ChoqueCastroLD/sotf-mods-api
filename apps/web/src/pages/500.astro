@@ -1,0 +1,55 @@
+---
+/**
+ * 500 «Something broke at base camp» (research/03 §5.10, §6.14): cold campfire, what happened,
+ * «Try again», Discord for status and the reference id (`cf-ray` or a UUID) the user can quote.
+ * No API calls, no JavaScript needed; `no-store` (the middleware never caches ≥ 500).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { MessagesSquare, RotateCcw } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { href } from '../lib/i18n.ts';
+import { ensureLocals } from '../lib/request-context.ts';
+import { SOCIAL_LINKS } from '../lib/site.ts';
+
+interface Props {
+  error?: unknown;
+}
+
+const locals = ensureLocals(Astro);
+Astro.response.status = 500;
+const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
+---
+
+<BaseLayout
+  template="server-error"
+  seo={{ title: m.meta_server_error_title(), description: m.errors_server_text(), noindex: true, canonical: false, alternates: false }}
+>
+  <section class="mx-auto grid w-full max-w-(--container-prose) justify-items-center gap-6 px-4 py-16 text-center md:py-24">
+    <svg viewBox="0 0 120 80" class="w-40 text-fg-subtle" aria-hidden="true" focusable="false" fill="none">
+      <path d="M30 70h60M38 70l22-12 22 12M42 62l36-8M42 54l36 8" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+      <path d="M60 46c-6-6-4-14 0-20 1 6 7 8 6 15" stroke="currentColor" stroke-width="2" stroke-dasharray="3 4" opacity="0.6" />
+    </svg>
+    <p class="readout text-danger">500</p>
+    <h1 class="font-display-caps text-display-sm text-fg">{m.errors_server_title()}</h1>
+    <p class="text-lg text-fg-muted">{m.errors_server_text()}</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a
+        href={retryHref}
+        class="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg"
+      >
+        <Icon icon={RotateCcw} size={18} />
+        {m.common_action_retry()}
+      </a>
+      <a
+        href={SOCIAL_LINKS.discord}
+        rel="noopener"
+        class="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8"
+      >
+        <Icon icon={MessagesSquare} size={18} />
+        Discord
+      </a>
+    </div>
+    <p class="readout text-fg-subtle">{m.errors_reference({ id: locals.requestId })}</p>
+  </section>
+</BaseLayout>

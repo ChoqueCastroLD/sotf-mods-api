@@ -1,0 +1,63 @@
+---
+/**
+ * SeoHead (PLAN §4.5): title, description, canonical, the hreflang cluster (13 + x-default),
+ * Open Graph / Twitter, theme-color, robots and JSON-LD. Rendered inside `<head>` by
+ * `BaseLayout`; pages pass their data through the layout's `seo` and `jsonLd` props.
+ */
+import type { Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { loadEnv } from '../../lib/env.ts';
+import { type JsonLd, serializeJsonLd } from '../../lib/seo/jsonld.ts';
+import { buildSeoHead, type SeoInput } from '../../lib/seo/meta.ts';
+
+export type SeoProps = Omit<SeoInput, 'locale' | 'siteUrl' | 'titleTemplate' | 'path'> & {
+  /** Locale-less path + query of the canonical URL; defaults to the current page. */
+  path?: string;
+};
+
+interface Props {
+  seo: SeoProps;
+  jsonLd?: readonly JsonLd[];
+  /** Preload of the LCP image (`<link rel=preload as=image imagesrcset>`, PLAN §8.3). */
+  preloadImage?: { href: string; srcset?: string; sizes?: string; type?: string } | undefined;
+}
+
+const { seo, jsonLd = [], preloadImage } = Astro.props;
+const env = loadEnv();
+const locale: Locale = Astro.locals.locale;
+const head = buildSeoHead({
+  ...seo,
+  og: seo.og ?? { imageAlt: m.meta_og_default_alt() },
+  noindex: seo.noindex === true || !env.indexable,
+  locale,
+  siteUrl: env.siteUrl,
+  path: seo.path ?? Astro.locals.pagePath,
+  titleTemplate: (title) => m.meta_title_template({ title }),
+});
+---
+
+<title>{head.title}</title>
+{
+  head.metas.map((meta) =>
+    meta.property ? (
+      <meta property={meta.property} content={meta.content} />
+    ) : (
+      <meta name={meta.name} content={meta.content} media={meta.media} />
+    ),
+  )
+}
+{head.links.map((link) => <link rel={link.rel} href={link.href} hreflang={link.hreflang} />)}
+{
+  preloadImage && (
+    <link
+      rel="preload"
+      as="image"
+      href={preloadImage.href}
+      imagesrcset={preloadImage.srcset}
+      imagesizes={preloadImage.sizes}
+      type={preloadImage.type}
+      fetchpriority="high"
+    />
+  )
+}
+{jsonLd.length > 0 && <script is:inline type="application/ld+json" set:html={serializeJsonLd(jsonLd.length === 1 ? (jsonLd[0] as JsonLd) : jsonLd)} />}

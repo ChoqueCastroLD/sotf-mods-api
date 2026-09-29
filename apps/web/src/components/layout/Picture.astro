@@ -1,0 +1,68 @@
+---
+/**
+ * Picture (PLAN §8.3): `<picture>` with AVIF + WebP `srcset`, explicit `width`/`height` (no CLS),
+ * the dominant colour as background placeholder and `loading="lazy"` + `decoding="async"`, except
+ * for the LCP image (`priority`: eager + `fetchpriority="high"`; the page also passes
+ * `preloadImage` to the layout). `hero` decodes the ThumbHash into the placeholder.
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { type ImageDTO, pictureSources, safeHexColor, thumbhashDataUrl } from '../../lib/images.ts';
+
+interface Props extends Omit<HTMLAttributes<'img'>, 'src' | 'srcset' | 'width' | 'height' | 'alt'> {
+  image: ImageDTO;
+  /** `sizes` for the srcset, e.g. `(min-width: 64rem) 640px, 100vw`. */
+  sizes: string;
+  /** Alternative text; defaults to the image's own `alt` (empty = decorative). */
+  alt?: string;
+  /** LCP image: eager, high priority. */
+  priority?: boolean;
+  /** Decode the ThumbHash as placeholder (hero images). */
+  hero?: boolean;
+  /** Rendered size when the DTO has no dimensions (legacy originals). */
+  fallbackWidth?: number;
+  fallbackHeight?: number;
+}
+
+const {
+  image,
+  sizes,
+  alt,
+  priority = false,
+  hero = false,
+  fallbackWidth = 1280,
+  fallbackHeight = 720,
+  class: className,
+  style,
+  ...rest
+} = Astro.props;
+
+const sources = pictureSources(image.srcset);
+const width = image.width ?? fallbackWidth;
+const height = image.height ?? fallbackHeight;
+const color = safeHexColor(image.dominantColor);
+const placeholder = hero ? thumbhashDataUrl(image.thumbhash) : null;
+const background = [
+  color ? `background-color:${color}` : null,
+  placeholder ? `background-image:url(${placeholder});background-size:cover` : null,
+]
+  .filter(Boolean)
+  .join(';');
+const inlineStyle = [background, typeof style === 'string' ? style : null].filter(Boolean).join(';') || undefined;
+---
+
+<picture>
+  {sources.avif && <source type="image/avif" srcset={sources.avif} sizes={sizes} />}
+  {sources.webp && <source type="image/webp" srcset={sources.webp} sizes={sizes} />}
+  <img
+    src={image.url}
+    alt={alt ?? image.alt ?? ''}
+    width={width}
+    height={height}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class={className}
+    style={inlineStyle}
+    {...rest}
+  />
+</picture>

@@ -1,0 +1,36 @@
+---
+/**
+ * Account slot of the header — STUB created by WP-22, owned and completed by WP-44 (auth UI).
+ *
+ * The server always renders the guest state (public HTML is identical for everyone, PLAN §2.5):
+ * a «Sign in» link inside a slot with reserved width, so the upgrade causes no layout shift.
+ * `scripts/account-hint.ts` reads the `sotf_li` hint cookie and, only then, calls
+ * `/api/v2/me/summary` and swaps in the avatar link (and the Signals bell placeholder).
+ * WP-44 replaces this with the full menu (profile, Basecamp, settings, sign out).
+ */
+import { m } from '@sotf/i18n/messages';
+import { href } from '../../lib/i18n.ts';
+
+const locale = Astro.locals.locale;
+const next = Astro.locals.pagePath;
+const loginHref = `${href('/login', locale)}?next=${encodeURIComponent(next)}`;
+---
+
+<div data-account-slot class="flex min-w-24 shrink-0 items-center justify-end gap-1">
+  <a
+    data-account-guest
+    href={loginHref}
+    class="inline-flex h-10 items-center rounded-md border border-border-strong px-3 text-sm font-semibold text-fg hover:bg-fg/8"
+  >
+    {m.common_account_sign_in()}
+  </a>
+  <a
+    data-account-user
+    hidden
+    href={href('/basecamp', locale)}
+    class="inline-flex size-10 items-center justify-center overflow-hidden rounded-full border border-border-strong bg-raised text-sm font-semibold text-fg"
+  >
+    <span data-account-name class="sr-only">{m.common_account_menu()}</span>
+    <span data-account-initials aria-hidden="true"></span>
+  </a>
+</div>

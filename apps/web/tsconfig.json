@@ -1,4 +1,10 @@
 {
   "extends": "@sotf/config/tsconfig/react.json",
-  "include": ["src", "test", "*.ts"]
+  "compilerOptions": {
+    "types": ["node", "astro/client", "react", "react-dom"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "include": [".astro/types.d.ts", "src", "*.ts"],
+  "exclude": ["dist", "node_modules", "src/lib/testing"]
 }
