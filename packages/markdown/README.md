@@ -148,8 +148,8 @@ on the hast tree. unified, `rehype-raw` and `rehype-sanitize` are used as planne
 are serialised by `src/serialize.ts`, which only knows the closed set of elements and properties
 that `verifyTree` allows (and throws on anything else). `test/serialize.test.ts` checks that a
 browser parses its output and rehype-stringify's into the same DOM for every fixture and XSS
-vector in every profile. The integrator should record both choices as an ADR
-(`docs/backlog/WP-15.md`).
+vector in every profile. Both choices are recorded in
+[ADR-0003](../../docs/adr/0003-markdown-it-parser.md).
 
 ## Tests
 
