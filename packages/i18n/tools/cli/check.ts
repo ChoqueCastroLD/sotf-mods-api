@@ -16,7 +16,7 @@ main(async () => {
   const validated = loadValidated();
   const { diagnostics, identical, messages } = validated;
   printDiagnostics(diagnostics);
-  const errors = errorCount(diagnostics);
+  let errors = errorCount(diagnostics);
   const warnings = diagnostics.length - errors;
 
   let stale: string[] = [];
@@ -27,6 +27,8 @@ main(async () => {
       process.stderr.write(
         `${color.red('error')} .generated/ is stale or in pseudo-locale mode (${stale.length} file(s)); run pnpm gen\n`,
       );
+      // The stale output is one error of its own, so the summary never reads "0 error(s)" on failure.
+      errors += 1;
     }
   }
 
@@ -35,7 +37,7 @@ main(async () => {
     process.stdout.write(color.dim(`info  ${identical.length} translation(s) identical to English${detail}\n`));
   }
   const keys = messages.get('en')?.size ?? 0;
-  const failed = errors > 0 || stale.length > 0 || (values.strict && warnings > 0);
+  const failed = errors > 0 || (values.strict && warnings > 0);
   if (failed) {
     process.stderr.write(`${color.red('✘')} i18n:check failed: ${errors} error(s), ${warnings} warning(s)\n`);
     return 1;
