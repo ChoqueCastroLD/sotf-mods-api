@@ -1,0 +1,17 @@
+<h2 id="md-optionaldependapi">OptionalDependAPI<a class="md-anchor" href="#md-optionaldependapi" aria-hidden="true" tabindex="-1">#</a></h2>
+<blockquote>
+<p><em>"Screw dependencies, shoot a laser on them, make them optional!"</em></p></blockquote>
+<h3 id="md-overview">Overview<a class="md-anchor" href="#md-overview" aria-hidden="true" tabindex="-1">#</a></h3>
+<p>OptionalDependAPI is a lightweight library, allowing seamless integration with other mods without requiring hard dependencies. This solves the common problem where your mod could benefit from additional features provided by other mods, but you don't want to force users to install those other mods if they don't want or need those extra features.</p>
+<h3 id="md-the-problem">The Problem<a class="md-anchor" href="#md-the-problem" aria-hidden="true" tabindex="-1">#</a></h3>
+<p>Ever had a mod that would be great on its own but could have more features if it integrated with other mods? Without a proper solution:</p>
+<ul><li>You either force users to install mods they might not want (hard dependencies)</li><li>Or you miss out on potential integration features altogether</li></ul>
+<h3 id="md-my-solution">My Solution<a class="md-anchor" href="#md-my-solution" aria-hidden="true" tabindex="-1">#</a></h3>
+<p>OptionalDependAPI provides a clean, standardized way to handle optional mod dependencies:</p>
+<ol><li><strong>Register</strong> your mod's API with OptionalDependAPI</li><li><strong>Subscribe</strong> to other mods you want to integrate with</li><li><strong>Check</strong> if those mods are available at runtime</li><li><strong>Use</strong> their features only when available<br><br>
+No hard dependencies on other mods, no compatibility patches, just simple runtime checks and graceful feature enabling.</li></ol>
+<h4 id="md-limitation">Limitation<a class="md-anchor" href="#md-limitation" aria-hidden="true" tabindex="-1">#</a></h4>
+<p>One important caveat: mods that want to use this system will need to include OptionalDependAPI as a dependency. </p>
+<h3 id="md-changelog">Changelog<a class="md-anchor" href="#md-changelog" aria-hidden="true" tabindex="-1">#</a></h3>
+<ul><li><strong>v1.0.0</strong>: Initial release</li></ul>
+<h4 id="md-optionaldependapi-github"><a href="https://github.com/ThirtyTwelveNor/SOTFOptionalDependAPI" rel="ugc nofollow noopener">OptionalDependAPI Github</a><a class="md-anchor" href="#md-optionaldependapi-github" aria-hidden="true" tabindex="-1">#</a></h4>

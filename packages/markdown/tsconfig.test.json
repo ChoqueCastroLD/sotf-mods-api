@@ -1,0 +1,7 @@
+{
+  "extends": "@sotf/config/tsconfig/node.json",
+  "compilerOptions": {
+    "lib": ["es2024", "dom"]
+  },
+  "include": ["src", "test", "*.ts"]
+}

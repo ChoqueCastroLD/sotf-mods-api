@@ -1,0 +1,152 @@
+[
+  {
+    "id": 14,
+    "author": "imaxel",
+    "slug": "plane-mod",
+    "description": "### How to spawn?\r\nEnable game debug console (type \"cheatstick\" while playing and press F1) than do \"spawnplane\" command\r\n\r\n### Controls\r\nInteract button to enter, G to exit\r\nW & S for throttle\r\nA & D for yaw\r\nMouse for pitch & roll\r\nHold RMB to unlock camera movement\r\n\r\nInteract button to enter, circle to exit\r\nRight & Left triggers for throttle\r\nL1 & R1 for yaw\r\nLeft stick for pitch & roll\r\nRight stick to rotate camera\r\n\r\n### Settings\r\nAdditional settings for camera adjustment and pitch/roll direction in the Mods panel (Pause menu -> mods)\r\n\r\n### Note\r\nPlane position will be saved and shared globally between savegames\r\nYou can spawn a new one at any time\r\n<FONT COLOR=\"#ffff80\">Nicks Mod Menu and/or NoClip mods seems to break this mod causing the player to slide on the ground</FONT COLOR>"
+  },
+  {
+    "id": 20,
+    "author": "imaxel",
+    "slug": "axel's-mod-menu",
+    "description": "# <FONT COLOR=\"#ffff4d\">Warning</FONT COLOR>\r\nNeeds my `SonsAxLib v1.2.0+` library to work, download it here: https://sotf-mods.com/mods/imaxel/sonsaxlib\r\n\r\n### How to use\r\nDefault opening key is insert key. It can be changed from the mods settings.\r\n\r\nShowcase video: https://youtu.be/OIoCRpvJtUI"
+  },
+  {
+    "id": 25,
+    "author": "imaxel",
+    "slug": "restore-debug-commands",
+    "description": "## <FONT COLOR=\"#ffff66\">Restored commands</FONT>\r\n- aipause\r\n- aighostplayer\r\n- cavelight\r\n- spawnpickup\r\n\r\n\r\n#### Added command\r\n- cancelallghosts (removes all ghost structures in the world, probably even semi-built ones)\r\n- forcespawnitem (can spawn newer items which could not be spawned)"
+  },
+  {
+    "id": 38,
+    "author": "imaxel",
+    "slug": "lowergraphicstool",
+    "description": "# <FONT COLOR=\"#ffff4d\">Warning</FONT COLOR>\r\nNeeds my `SonsAxLib v1.2.0+` library to work, download it here: https://sotf-mods.com/mods/imaxel/sonsaxlib\r\n\r\n### How to use\r\nDefault opening key is insert F5. It can be changed from the mods settings.\r\n\r\n#### Video showcase of different settings\r\nhttps://youtu.be/5WO3YruTKa0"
+  },
+  {
+    "id": 44,
+    "author": "imaxel",
+    "slug": "hotkeygui",
+    "description": "# <FONT COLOR=\"#ffff4d\">Warning</FONT COLOR>\r\nNeeds my `SonsAxLib v1.2.0+` library to work, download it here: https://sotf-mods.com/mods/imaxel/sonsaxlib\r\n\r\n#### Description\r\nIf you ever felt like opening the inventory to equip an item is too slow, you now have a menu with up to 36 boxes to which you can assign an owned item and equip it with a click. You can only assign currently owned items, using the small red buttons and chosing an item from the list. If an item which you set isn't owned anymore, a red cross will appear on the box, meaning you can't equip it anymore.\r\n\r\n**Default opening key is LEFT ALT key. It can be changed from the mods settings.**\r\n\r\nShowcase video: https://youtu.be/RAWiyzl6OdE"
+  },
+  {
+    "id": 66,
+    "author": "tonimacaroni",
+    "slug": "illuminate",
+    "description": "# ILLUMINATE\r\n\r\n\r\n## FEATURES\r\n\r\n\r\n- Change the rendering distance of various lights (light bulbs, torches, spotlights).\r\n- Change the intensity of various lights (lighter, flashlight, lightbulbs, torches, spotlights)\r\n- Change the color of lights (lighter, flashlight, torches)\r\n- Change the color of each individual light bulb (gets saved into your save game)\r\n\r\n\r\n\r\n## LIGHT BULB COLOR\r\n\r\n\r\nTo change the color of the light bulbs go into the settings of the mod, scroll to the bottom and under `ColorSwatch` add the color strings of the colors you want to cycle through (You can use the google color picker for example to copy the strings <https://g.co/kgs/BfM2vm>). Then go up to a light bulb, switch it on and cycle through the colors using your **mouse wheel**."
+  },
+  {
+    "id": 116,
+    "author": "tempbito",
+    "slug": "armortweeker",
+    "description": "This mod allows you to control the balance between the different types of armor to your liking.  (multipliers: between 0.1 and 100)\r\n\r\n\r\nFeatures:\r\n- Apply one multiplier for all types of Armor.\r\n- Apply a custom multiplier specific to each Armor type (Leaf, Deer, Bone, Creepy, Tech, Solafite).\r\n- Enable/Disable updating Equipped Armor durability.\r\n- Enable/Disable updating Damaged Armor pieces.\r\n\r\n\r\n<i>Special thanks to <strong>Laughingcat</strong> for helping with the thumbnail.</i>"
+  },
+  {
+    "id": 119,
+    "author": "imaxel",
+    "slug": "tankmod",
+    "description": "### Spawning the tank\r\nOpen the game debug console and type \"spawntank\" then press enter\r\n\r\n### Controls\r\n**Enter the tank**: game interaction key (default E)\r\n**Exit the tank**: G key\r\n**Move**: WASD\r\n**Rotate turret**: Mouse X\r\n**Rotate muzzle**: Mouse Y\r\n**Shoot**: Left mouse button (1.5s delay between each shot)\r\n\r\n### Features\r\n-Removes trees along his path and those who are shot (only big ones)\r\n-Can kill enemies, animals etc. with the shot\r\n\r\nAdditional camera controls in the mod settings. If tank get stuck, spawn a new one -> the previous will get destroyed.\r\n<hr>\r\nMod was made for fun, no further updates/features are planned."
+  },
+  {
+    "id": 147,
+    "author": "ohmyjeeves",
+    "slug": "mod-hot-reloader",
+    "description": "<h1>Mod Hot Reloader User Guide</h1><br/>\r\n<p>The <strong>Mod Hot Reloader</strong> allows developers to hot reload mods without restarting the game. Follow this guide to configure and use the tool.</p>\r\n<br /><h2>Prerequisites</h2><br/>\r\n<ul>\r\n    <li><strong>Mod Not Installed:</strong> Add a <code>Directory.Build.props</code> file to prevent automatic installation.\r\n   </li>\r\n    <li><strong>Backend Code Only:</strong> The tool does not support UI components, allowing you to rebuild and debug backend code without reloading the game.</li>\r\n    <li><strong>Correct Settings:</strong> Configure settings, then use <code>InvokeMethodWithinHotLoadedMod</code> to trigger code within your mod. Check Unity Explorer Log for troubleshooting.</li>\r\n</ul>\r\n\r\n<h2>How To Use <code>ModHotReloader</code></h2>\r\n<ol>\r\n    <li>Create a new mod project via Red Mod Manager.</li>\r\n    <li>Add the <code>Directory.Build.props</code> file to your project:<br /><code>&lt;Project&gt;&lt;PropertyGroup&gt;&lt;DisableCopyToGame&gt;True&lt;/DisableCopyToGame&gt;&lt;/PropertyGroup&gt;&lt;/Project&gt;</code></li><br />\r\n    <li>Configure the settings to point to the new mod, ensuring the DLL name and path are correct.</li><br />\r\n    <li>Load up the game.</li><br />\r\n    <li>Verify the mod is loaded via Unity Explorer Log.</li><br />\r\n    <li>Add a method to your mod that prints to the log:<br />\r\n        <code>private void HelloWorld() {\r\n    RLog.Msg(\"Hello From Your Mod!\"); \r\n}</code></li><br />\r\n    <li>Rebuild the mod project while the game is running. The hot reloader will detect changes and reload the mod.</li><br />\r\n    <li>Check Unity Explorer Log to confirm the mod was reloaded.</li><br />\r\n    <li>Add a breakpoint to the method. Attach your debugger using Unity Explorer.</li><br />\r\n    <li>Invoke the method using <code>InvokeMethodWithinHotLoadedMod HelloWorld</code> and check the log for your message.</li>\r\n</ol>"
+  },
+  {
+    "id": 155,
+    "author": "ohmyjeeves",
+    "slug": "true-survival",
+    "description": "<h1>True Survival by OhMyJeeves</h1>\r\n\r\n<h2>Removed Modern Food, Drink & Medicine</h2>\r\n<br />\r\n<ul>\r\n    <li>Medicine</li>\r\n    <li>Drink Cans</li>\r\n    <li>Ramen</li>\r\n    <li>Energy Bars</li>\r\n    <li>MRE Packs</li>\r\n    <li>Cereal Boxes</li>\r\n    <li>Canned Food</li>\r\n</ul>\r\n\r\n<h2>Increased Inventory For Meat, Fish & Plant Mixes</h2>\r\n<br />\r\n<ul>\r\n    <li>Fish: Increased to 6 from 3</li>\r\n    <li>Meat: Increased to 10 from 7</li>\r\n    <li>Bacon, Steak & Brain Bites: Increased to 5 from 1</li>\r\n    <li>Health Mix (& +): Increased to 10 from 3</li>\r\n    <li>Energy Mix (& +): Increased to 10 from 3</li>\r\n</ul>\r\n\r\n<h2>Increase Flask Usages</h2>\r\n<br />\r\n<ul>\r\n    <li>Increased Flask Usage: 4 uses instead of 2 to balance removed drinks</li>\r\n</ul>\r\n\r\n<h2>Improved Spear For Hunting</h2>\r\n<br />\r\n<ul><li>Thrown Damage: Boosts damage to make it effective for hunting (e.g. one hit kills a deer)</li><li>Melee Damage: Increases melee damage a small amount to make it a more viable early game weapon</li>\r\n</ul>\r\n\r\n<h2>Rebalance Animal Traps & Hutches</h2>\r\n<br />\r\n<ul><li>Fish Traps: Hold 1 fish instead of 5 and slower spawn rate as default is OP</li><li>Small Rabbit Hutch: Hold 3 rabbits instead of 2 to allow for breeding (10% each sleep)</li><li>Rabbit Hutch: Increase breed rate to increase viability (50% each sleep)</li>\r\n</ul>\r\n\r\n<h2>Rebalance Drops From Animals</h2>\r\n<ul><li>Squirrels: Drop brain bites to reduce effectiveness of small animal trap and ease of getting meat</li><li>Raccoons: Drop 1 meat instead of 2 to balance small game hunting</li><li>Turtles: Drop 2 meat instead of 3 to increase viability of traps / hutches</li><li>Deer: Drop 2 meat instead of 3 to increase viability of traps / hutches</li><li>Moose: Drop 4 meat instead of 5 to increase viability of traps / hutches</li>\r\n</ul>\r\n\r\n<h2>Rebalance Planters</h2>\r\n<ul><li>Reduce time for plants to grow from 2 days to 1 day</li><li>Fix mushrooms so they produce a positive yield on harvest</li></ul>"
+  },
+  {
+    "id": 157,
+    "author": "thirtytwelve",
+    "slug": "golfcartteleport",
+    "description": "GolfcartTeleport is an innovative mod that lets players use a golf cart to teleport to their desired locations seamlessly. The user dont need to install anything! \r\n\r\n## How to use\r\n- Type command in chat\r\n- Get into the newly spawned \"ghost\" golfcart.\r\n- Leave the golfcart as normal.\r\n\r\n## Commands:\r\n- Access via inGame Chat:  \r\n - <details>\r\n  <summary>**user1**: /tpa user2</summary>\r\n  /tpr user2\r\n\r\n  Side note, the username does not need to be exact.\r\n </details>\r\n - <details>\r\n  <summary>**user2**: /tpaccept user1</summary>\r\n  /tpyes user1  \r\n\r\n  /tpy user1\r\n\r\n  Side note, the username does not need to be exact.\r\n</details>\r\n - <details>\r\n  <summary>/home number</summary>\r\n  \"number\" is required if more than 1\r\n\r\n  (Default MaxHome is 1; adjustable in config)\r\n</details>\r\n - <details>\r\n  <summary>/sethome number</summary>\r\n  \"number\" is required if more than 1\r\n\r\n  (Default MaxHome is 1; adjustable in config)\r\n</details>\r\n\r\n# \r\n<details>\r\n <summary>**Why Golfcart:**</summary>\r\n No golf cart is needed. It spawns a golf cart in front of you. Get in and out.\r\n\r\n Golfcart is for internal use, as this is a server-side mod.\r\n\r\n This was the simplest solution I found since player position can't directly be changed from the server.\r\n\r\n</details>\r\n\r\n<details><summary> <- clickable!</summary></details>\r\n\r\n## GolfcartTeleport works on:\r\n<dl>\r\n<li>Dedicated Server</li>\r\n<li>Multiplayer Hosts</li>\r\n<li>(Should Not Be Any Issues if you have it anyways)</li>\r\n\r\n</dl>Made by ThirtyTwelve"
+  },
+  {
+    "id": 159,
+    "author": "sknthelisper",
+    "slug": "less-useless-guns",
+    "description": "I was very dissapointed by the damage guns do in this game. It's so bad you're better off using almost anything else than them, there's no reason to use a shotgun over a fireaxe, for example (beyond energy cost), as it takes 2 swings to kill most mutants, and 4+ shots to kill them with a slug...<br><br><br>Thereby this mod. I've boosted the damage multiplier for shotgun\\pistol by x2.5, Revolver by x3.5 and rifle by x2 (it didn't need as much of a boost). You can also change these values in the settings if you want.<br><br><br>Shotgun:<br>Changed the default spread cone angle of the shotgun to 5 (vanilla is 20!) which makes the spread sligthly tigther than in real-life (somewhere between 6-7 is probably closer to reality).<br><br><br>With 5, at about 15 meters you'll (generally) be able to down a deer with a proper aimed shot (assuming it's standing sideways so you got a bigger target, otherwise, it'll take 3-4 shots to down it), at 10 meters it's pretty consistent to take it down (even if it's staring at you).<br><br><br>To compensate for the (massive) increase in accuracy of the buckshot (i.e; much lower spread), the buckshot deals less damage (configurable between 0.01 to 1, where 1 means all 8 pellets will deal the same damage as 1 slug)."
+  },
+  {
+    "id": 160,
+    "author": "sknthelisper",
+    "slug": "less-useless-flashlights",
+    "description": "Increased the light intensity (effectively the brightness) of the flashlight(s) to make them a bit more useful\\realistic.<br><br><br>Very minor issue: With the flashlight attachment (for weapons) I can only access the light after it's been initialized, which requires re-equpping the weapon to get the changed lightsource. Mod already does this for you automatically this first time (that it's required), which means you'll hear an \"unequipt\\equipt\" sound play (you're instantaniously equipping\\unequipping the weapon).<br><br><br>Sligthly annoying, but better than having an actually useless flashlight."
+  },
+  {
+    "id": 166,
+    "author": "tempbito",
+    "slug": "nomorepeskytotems",
+    "description": "Are you fed up with those pesky totems respawning even in your base each time you load a game?\r\n\r\nUsing this mod you can chose between:\r\n\r\n<li>Preventing destroyed totems from respawning.</li><li>Removing all totems.</li><li>Make an exception for totems in Cannibal Villages.</li>"
+  },
+  {
+    "id": 167,
+    "author": "tempbito",
+    "slug": "nomorepeskytheodolites",
+    "description": "You have a base near Theodolites and they keep respawning each time you load a game?\r\n\r\nUsing this mod you can chose between:\r\n\r\n<li>Removing all Theodolites.</li><li>Prevent pushed Theodolites from respawning.</li><li>Despawn pushed Theodolites after a time delay.</li>"
+  },
+  {
+    "id": 174,
+    "author": "tempbito",
+    "slug": "placestructureanywhere",
+    "description": "<strong><big>Features:</big></strong>\r\n<li>Hold <b>leftAlt</b> <i>(can be changed in the settings)</i> when placing a structure from the guide book to ignore restrictions.</li><li>This feature can also be used when you're trying to place objects on ground like Logs, BoneFires, Standing Sticks , Tarp, Solar Panels etc..</li><li>Press <b>CapsLock</b> <i>(can be changed in the settings)</i> when placing a structure to toggle Manual Placement Mode.</li><li>The Manual Placement Mode will give you more control over where you place your structures by disabling Auto snap to the ground and you can scroll the <b>Mouse Wheel</b> to adjust the placement distance from the player.</li><li>You can adjust the mouse wheel scrolling sensitivity in the settings to change how much scrolling it will affect the placement distance.</li><li>Press <b>Tab</b> <i>(can be changed in the settings)</i> to change the rotation axis in the manual placement mode (with the exception of platforms with foundations).</li><li>You can show/hide the rotation axes in the settings, and customize their size.</li>"
+  },
+  {
+    "id": 176,
+    "author": "tempbito",
+    "slug": "removemaxobjectcap",
+    "description": "With this mod you can customize the limit of objects in the world (Logs, Sticks, Rocks, Bones, Fish)  before they start despawning.\r\n\r\n<b>Warning:</b> \r\n<i>Very big values can cause performance issues!</i>"
+  },
+  {
+    "id": 181,
+    "author": "smokyace",
+    "slug": "warps",
+    "description": "Warps For Your World!\r\n\r\n\r\n## This Mod Requires:\r\n- **SimpleNetworkEvents** -> <https://sotf-mods.com/mods/smokyace/simplenetworkevents>\r\n\r\n\r\n###The Warps works on:\r\n- Dedicated Server\r\n- Multiplayer\r\n- Singleplayer\r\n\r\n\r\n######NOTE:\r\n- On Multiplayer All The Warps Sync With The Other Players\r\n\r\n\r\n### How To Create Warp\r\n- Open Console and type 'addwarp NAME'\r\n\r\n\r\n#### How To Use Warp:\r\n- Press KeyBind 'Numpad1' to open the custom warp menu\r\n- Press on the check mark to teleport to the warp point\r\n\r\n\r\n##### How To Remove Warp:\r\n- Open The warpmenu with 'Numpad1'\r\n- Press The Delete Button for the warp you want to delete\r\n\r\n\r\n##### Warp Menu HotKey Can Be Changed Under Mods Page Ingame\r\n\r\n\r\n##### Preview: https://github.com/move123456789/SOTF-Mods/tree/Warps/README.md\r\n- [YouTube Video](https://youtu.be/rW2p4iMnmKU)"
+  },
+  {
+    "id": 245,
+    "author": "thirtytwelve",
+    "slug": "optionaldependapi",
+    "description": "# OptionalDependAPI\r\n\r\n> *\"Screw dependencies, shoot a laser on them, make them optional!\"*\r\n</blockquote>\r\n## Overview\r\n\r\nOptionalDependAPI is a lightweight library, allowing seamless integration with other mods without requiring hard dependencies. This solves the common problem where your mod could benefit from additional features provided by other mods, but you don't want to force users to install those other mods if they don't want or need those extra features.\r\n\r\n## The Problem\r\n\r\nEver had a mod that would be great on its own but could have more features if it integrated with other mods? Without a proper solution:\r\n\r\n- You either force users to install mods they might not want (hard dependencies)\r\n- Or you miss out on potential integration features altogether\r\n\r\n## My Solution\r\n\r\nOptionalDependAPI provides a clean, standardized way to handle optional mod dependencies:\r\n\r\n1. **Register** your mod's API with OptionalDependAPI\r\n2. **Subscribe** to other mods you want to integrate with\r\n3. **Check** if those mods are available at runtime\r\n4. **Use** their features only when available\r\n\r\nNo hard dependencies on other mods, no compatibility patches, just simple runtime checks and graceful feature enabling.\r\n\r\n### Limitation\r\n\r\nOne important caveat: mods that want to use this system will need to include OptionalDependAPI as a dependency. \r\n\r\n## Changelog\r\n\r\n- **v1.0.0**: Initial release\r\n\r\n### [OptionalDependAPI Github](https://github.com/ThirtyTwelveNor/SOTFOptionalDependAPI)"
+  },
+  {
+    "id": 266,
+    "author": "clairenheit1367",
+    "slug": "tactical-vest-mod",
+    "description": "This mod adds lots of options related to cosmetic tactical gear, for both you and for co-op players. It's client-side meaning only you will see any changes on you or on others, but your friends can download the mod to see it too :)\r\n\r\nCheck the mod settings to configure it to your taste. Settings are applied in certain specific circumstances, so expect to reload/rejoin to fully notice changes.\r\n\r\nIt even works with the \r\ngame's outfits! (Helmet mileage may vary, expect it to clip with armor if unhidden)\r\n\r\n<b> Full options list: </b>\r\n\r\n- Tactical vest\r\n- Helmet (dead corpse “hemlet” model by default)\r\n- FAST/Cutscene helmet model swap (requires helmet to be enabled)\r\n- Name tags for other players (displays Steam usernames, works best if you disable visible world icons in SOTF’s settings)\r\n- Hide backpacks (for a cleaner look)\r\n- Gloves (for first-person and co-op players)\r\n- \"Old jacket\" option, like Kelvin and cutscene guys wear. This is the only clothing piece that was designed for the gloves.\r\n- Balaclavas and/or sunglasses (to look like the intro pilot)\r\n- Hide equipped armor pieces (such as creepy or bone armor)\r\n- Option to give Kelvin his helmet back \r\n\r\nThe binoculars break the first-person gloves, but changing outfits fixes them. \r\n\r\n\r\nYour PlayerLocation patch method worked, thank you GLaD0S, I love you <3\r\n\r\nhttps://github.com/clairenheit/ArmorMod"
+  },
+  {
+    "id": 296,
+    "author": "razorwings18",
+    "slug": "gps-tracker-disabled-or-compass",
+    "description": "<b>Description</b>\r\nDisables the GPS tracker either immediately or after a random amount of time. Once disabled, it can optionally turn into a compass. The maximum potential time that it will work, and whether it will turn into a compass are configurable options.\r\n\r\n<b>Highly Recommended Complementary Mods</b>\r\nThis mod is meant to be combined with my other mod:\r\n<b>Writable Paper Map</b>\r\n\r\n<b>Installation instructions</b>\r\n- Install RedLoader if you haven't already.\r\n- Unzip to your game's main folder (where SonsOfTheForest.exe is located) maintaining the ZIP's folder structure.\r\n(The .DLL will end up under the Mods folder, and the .json under the Mods/RW18_GPSdown folder.)\r\n<p></p><br>\r\n<b>Main features</b>\r\n<li/> Disables the GPS tracker, either immediately or after a random amount of time.\r\n<li/> Once disabled, it can turn into a compass or show a \"NO SIGNAL\" message depending on your settings.\r\n<li/> The maximum potential time that it will work is configurable. It will randomly stop working at some point before your set limit.\r\n<li/> Even in \"NO SIGNAL\" mode the tracker is not completely useless - it still emits beeps for nearby GPS tags.\r\nYou can actually get lost in the forest. Waking up in a random village without knowing where you are hits different now!\r\n\r\n<b>Requirements</b>\r\nMust have RedLoader installed."
+  },
+  {
+    "id": 297,
+    "author": "razorwings18",
+    "slug": "remove-knightvs-and-golf-carts",
+    "description": "<b>Description</b>\nRemoves all Knight Vs and drivable golf carts from the game.\n\n<b>Installation instructions</b>\n- Install RedLoader if you haven't already.\n- Unzip to your game's main folder (where SonsOfTheForest.exe is located) maintaining the ZIP's folder structure.\n(The .DLL will end up under the Mods folder, and the .json under the Mods/RW18_NoOPvehicles folder.)\n<p></p><br>\n<b>Main features</b>\nWhat it says in the tin. If installed, those vehicles will no longer appear in the game. You will no longer have an overpowered way of escaping danger, and you will hear and dread the sounds of the forest - an experience that is much closer to what made the original great. Use the glider to get around the huge island instead.\nDoes not remove broken down golf carts.\n\n<b>Requirements</b>\nMust have RedLoader installed.\n\n<b>Shout outs</b>\nNiklecx - For making the first attempt, albeit under BepInEx, which encouraged me to make a RedLoader version."
+  },
+  {
+    "id": 298,
+    "author": "razorwings18",
+    "slug": "writable-paper-map",
+    "description": "<b>WARNING</b>\nOnly works with keyboard & mouse\n\n<b>Description</b>\nIn-game paper map you can write on. Marks already-explored areas as you walk. Optionally hides your position. Toolbar to select different modes. Protractors help you triangulate your position. Has a few configurable options.\n\n<b>Highly Recommended Complementary Mods</b>\nI highly recommend you combine this mod with these other mods I made to bring back the original \"The Forest\" experience:\n<a href=\"https://sotf-mods.com/mods/razorwings18/gps-tracker-disabled-or-compass\"><b>GPS Tracker Disabled or Compass</b></a>\n<a href=\"https://sotf-mods.com/mods/razorwings18/remove-knightvs-and-golf-carts\"><b>Remove KnightVs and Golf Carts</b></a>\n\n<b>Installation instructions</b>\n- Install RedLoader if you haven't already.\n- Unzip to your game's main folder (where SonsOfTheForest.exe is located) maintaining the ZIP's folder structure.\n(The .DLL will end up under the Mods folder, and the .json under the Mods/RW18_PaperMap folder.)\n<p></p>\n\n<b>Use</b>\n<li/> Bring it up by pressing the \"N\" key.\n<li/> Zoom: Zoom in/out using the mouse wheel or the middle mouse button.\n<li/> Pan: Right-click and drag to pan the map.\n<li/> Toolbar at the top: Select between pan, write, erase, protractor 1 and protractor 2 modes. Instructions for each mode are shown on the bottom-left.\n<p></p>\n\n<b>Configurable Options</b>\n<li/> Enable player marker (WARNING!!!: To re-enable the marker, you'll be asked to click on your current position on the map. This is so that you're not tempted to re-enable it to peek your current position if you're lost)\n<li/> Reveal radius: How much is \"revealed\" as you walk.\n<li/> Must click current position to reveal map: Click on your position on the map to mark areas recently explored. This is so that if you're lost, you can't use recently-revealed areas to hint at your position.\n<li/> Reveal terrain while flying: Mark overflown areas as explored in the map."
+  },
+  {
+    "id": 299,
+    "author": "razorwings18",
+    "slug": "unstuck-kelvin",
+    "description": "<b>Description</b>\r\nKelvin keeps getting stuck. Press K to teleport him in front of you.\r\n\r\n<b>Installation instructions</b>\r\n- Install RedLoader if you haven't already.\r\n- Unzip to your game's main folder (where SonsOfTheForest.exe is located) maintaining the ZIP's folder structure.\r\n(The .DLL will end up under the Mods folder, and the .json under the Mods/RW18_unstuckKelvin folder.)\r\n<p></p>\r\n\r\n<b>Main features</b>\r\nPress K to teleport Kelvin in front of you when he gets stuck.\r\n<p></p>\r\n\r\n<b>Requirements</b>\r\nMust have RedLoader installed."
+  },
+  {
+    "id": 300,
+    "author": "razorwings18",
+    "slug": "radial-menu",
+    "description": "<b>Description</b>\nRadial Menu for quick access to items and consumables. Press ALT to bring up, navigate with the mouse and click to equip or consume items.\n\n<b>Installation instructions</b>\n- Install RedLoader if you haven't already.\n- Unzip to your game's main folder (where SonsOfTheForest.exe is located) maintaining the ZIP's folder structure.\n(The .DLL will end up under the Mods folder, and the .json under the Mods/RW18_RadialMenu folder.)\n<p></p>\n\n<b>Main features</b>\nA radial menu for quick access to your inventory items. Will equip or consume the selected items. Only items in your inventory are shown. You can still move (walk, run, strafe) while the menu is active.\n<p></p>\n\n<b>Use</b>\n<li/> Press and hold the LEFT ALT key\n<li/> Place the mouse over the category you want to unfold\n<li> Click on the item that you want to equip/consume or click on already equipped items to put them away.</li>\n<p></p>\n\n<b>Known Issues</b>\n<li/> Meat/Fish/Oyster: Will consume a random one from your inventory, so it may consume spoiled items.\n<li> Cooking pot: Clicking it when already equipped won't put it away.</li>\n<p></p>\n\n<b>Requirements</b>\nMust have Red Loader installed."
+  }
+]
