@@ -3173,3 +3173,23 @@ La secuencia de despliegue es la de CI del §10.2. El corte está detallado en e
 4. **¿Desplegar el hotfix legacy (WP-02)?** No bloquea. Por defecto: se recomienda desplegarlo en cuanto se entregue, porque cierra el XSS y el buffer de descargas.
 5. **Aprobación de la marca «Locator»** y del vocabulario (Kits, Basecamp, Ranger Station). No bloquea, pero conviene confirmarla antes de W1. Por defecto: aprobada.
 6. **Política de IA** en `robots.txt`: por defecto `ai-train=no` y búsqueda y recuperación permitidas. No bloquea.
+
+## 14. Decisiones del usuario (2026-09-29) — PREVALECEN sobre cualquier sección anterior
+
+1. **Mods sin aprobar**: se quedan como están, sin borrar, ocultar ni archivar. En v2 siguen en estado `pending` en la cola de moderación. Ningún script ni backfill los elimina ni los rechaza automáticamente.
+2. **Moderadores = los de ahora**: todo usuario con `isTrusted = true` recibe el rol **`moderator`** en v2 (backfill B7: `role='moderator'` si `isTrusted`, además de `legacyTrusted := isTrusted` y `verifiedCreator := isTrusted`). No se crean moderadores nuevos.
+3. **Cuenta admin**: `luis.choque.castro@outlook.com` (el dueño del sitio). Se concede con `pnpm admin:grant --email luis.choque.castro@outlook.com --role admin` durante el corte. Si ese email no existe en la BD, se crea la cuenta con el flujo normal de registro y verificación y luego se concede el rol. Remitente de emails: `SOTF Mods <noreply@sotf-mods.com>`.
+4. **Repositorios de GitHub = los existentes**. No se crean repos nuevos.
+   - El monorepo v2 se publicará como rama `v2` de `ChoqueCastroLD/sotf-mods-api`, que en el corte pasa a `main`.
+   - Las apps de Coolify (api, web y worker) apuntan a ese repo con su propio `dockerfile_location` / base directory.
+   - `ChoqueCastroLD/sotf-mods-frontend` queda como legacy congelado, para la marcha atrás.
+   - El push lo hace el orquestador solo cuando el usuario lo apruebe.
+5. **Sin backup ni dump de producción**: el usuario NO quiere backups. Consecuencias obligatorias:
+   - No hay ensayo con datos reales. Los ensayos (WP-A0, A3) usan el seed del API público + datos sintéticos que reproducen las rarezas conocidas (research/02): claves con espacios y apóstrofos, favoritos duplicados, IP `"undefined"`, huérfanas, texto con umlauts perdidos, hashes argon2id de Bun.
+   - Las migraciones sobre producción deben ser **estrictamente aditivas** (CREATE TABLE / ADD COLUMN NULL o con DEFAULT constante / CREATE INDEX CONCURRENTLY), cada una en su transacción y con un `down` probado.
+   - Los backfills **nunca sobrescriben ni borran** columnas o filas legacy: escriben solo en columnas o tablas nuevas y son idempotentes.
+   - Queda prohibido cualquier `UPDATE` o `DELETE` sobre tablas legacy fuera de los flujos normales de la aplicación.
+   - Antes de migrar, la guarda comprueba el catálogo real (introspección de solo lectura) y aborta si hay drift inesperado.
+   - Los pasos de §6 y §11 que dependen de «restaurar el backup» se sustituyen por: marcha atrás = volver a apuntar los dominios a las apps legacy, que siguen funcionando porque el esquema solo se amplió.
+   - Staging (`beta.sotf-mods.com`) usa el seed, no una copia de producción.
+   - Tampoco se programan backups automáticos. Si hace falta, se documenta como recomendación en el runbook, sin implementarlo.
