@@ -85,6 +85,8 @@ Docker). If `check:assets` flags PNG-only differences on another OS, rebuild on 
 - **Real topography.** Contours come from a height field traced with marching squares, so lines
   never cross. The field uses only correctly rounded IEEE-754 operations and integer hashing, so
   a seed renders the same terrain in every engine.
+- **Cost.** A cover takes ≈ 2 ms and a banner ≈ 4 ms to generate (warm Node 24); avatars are
+  sub-millisecond. Public HTML is edge-cached, so this is paid once per page render.
 - **Font-independent initials.** Latin capitals and digits are drawn from embedded outlines;
   other scripts fall back to `<text>` with the display font stack (one character for CJK).
 - **Theming.** `lockupSvg({ theme: 'adaptive' })` paints «SOTF» with `currentColor` and the Flare

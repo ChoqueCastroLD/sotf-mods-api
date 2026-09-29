@@ -170,7 +170,8 @@ export function topoLines(seed: Seed, options: TopoOptions = {}): TopoLines {
 
   // Levels blend an even height spacing with an equal-area spacing (quantiles of the
   // visible heights), so lines neither bunch up on steep peaks nor vanish on plains.
-  const visible: number[] = [];
+  const heights = new Float64Array(grid.values.length);
+  let visibleCount = 0;
   // The summit is searched away from the edges so a marker placed on it stays visible.
   let summit = { x: width / 2, y: height / 2 };
   let summitValue = Number.NEGATIVE_INFINITY;
@@ -184,7 +185,8 @@ export function topoLines(seed: Seed, options: TopoOptions = {}): TopoLines {
       const x = grid.originX + column * step;
       if (x >= 0 && x <= width) {
         const value = grid.values[row * grid.columns + column] as number;
-        visible.push(value);
+        heights[visibleCount] = value;
+        visibleCount += 1;
         const inset = x >= width * rx1 && x <= width * rx2 && y >= height * ry1 && y <= height * ry2;
         if (inset && value > summitValue) {
           summitValue = value;
@@ -193,7 +195,8 @@ export function topoLines(seed: Seed, options: TopoOptions = {}): TopoLines {
       }
     }
   }
-  visible.sort((a, b) => a - b);
+  // Typed-array sort is numeric and allocation-free.
+  const visible = heights.subarray(0, visibleCount).sort();
   const min = visible[0] as number;
   const max = visible[visible.length - 1] as number;
   const quantile = (q: number): number =>

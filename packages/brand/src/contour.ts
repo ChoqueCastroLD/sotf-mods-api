@@ -161,8 +161,10 @@ export function isoLines(grid: ScalarGrid, level: number): Polyline[] {
     }
   }
 
-  const visited = new Set<string>();
-  const edgeId = (a: number, b: number): string => (a < b ? `${a}:${b}` : `${b}:${a}`);
+  // Segment ids: both endpoint keys packed into one exact integer (keys < 2 · columns · rows).
+  const keySpace = 2 * columns * rows + 2;
+  const visited = new Set<number>();
+  const edgeId = (a: number, b: number): number => (a < b ? a * keySpace + b : b * keySpace + a);
   const polylines: Polyline[] = [];
 
   const walk = (start: number): Polyline => {
