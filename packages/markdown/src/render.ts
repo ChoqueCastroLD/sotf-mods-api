@@ -7,6 +7,7 @@
  *   → markdown-it tokens → hast (parse.ts; profile rules, task lists)
  *   → [legacyHtml with raw HTML: rehype-raw + legacy repairs]
  *   → URL normalisation → rehype-sanitize (strict allowlist per profile)
+ *   → [legacyHtml with raw HTML: content-model repair, empty paragraphs pruned]
  *   → trusted enhancers (heading anchors, alerts, spoilers, autolinks, mentions, YouTube facades,
  *     `rel`, image attributes)
  *   → verifyTree (closed allowlist) → serialisation (serialize.ts), plain-text projection
@@ -21,7 +22,7 @@ import { type PluggableList, unified } from 'unified';
 import { enhance } from './enhance.ts';
 import { defuse } from './guard.ts';
 import { maxDepth, visitElements } from './hast.ts';
-import { repairLegacyHtml } from './legacy.ts';
+import { cleanUpLegacyHtml, repairLegacyHtml } from './legacy.ts';
 import { containsRawHtml, parseMarkdown } from './parse.ts';
 import { SANITIZE_SCHEMAS } from './schema.ts';
 import { toSafeHtml } from './serialize.ts';
@@ -77,13 +78,20 @@ function legacyRepairs() {
   };
 }
 
+function legacyCleanUp() {
+  return (tree: HastRoot) => {
+    cleanUpLegacyHtml(tree);
+  };
+}
+
 /**
  * The rehype part of the pipeline. `raw` adds rehype-raw and the legacy repairs; it is only used
  * for `legacyHtml` documents that actually contain raw HTML (parse5 is the costliest step).
  */
 function createProcessor(profile: MarkdownProfile, raw: boolean) {
   const legacy: PluggableList = raw ? [rehypeRaw, legacyRepairs] : [];
-  return unified().use(legacy).use(normaliseUrls).use(rehypeSanitize, SANITIZE_SCHEMAS[profile]).freeze();
+  const cleanUp: PluggableList = raw ? [legacyCleanUp] : [];
+  return unified().use(legacy).use(normaliseUrls).use(rehypeSanitize, SANITIZE_SCHEMAS[profile]).use(cleanUp).freeze();
 }
 
 type Processor = ReturnType<typeof createProcessor>;

@@ -11,47 +11,30 @@
  * - empty `<p></p>` spacers and empty headings → dropped;
  * - a YouTube `<iframe>` → a link to the video (rendered later as a click-to-load facade).
  *
- * Presentational wrappers (`font`, `big`, `center`, `span`, `div`…) need no code here: the
- * sanitiser unwraps every element that is not on the allowlist and keeps its text.
+ * - presentational flow containers (`div`, `center`, `section`…) → unwrapped, their inline content
+ *   in paragraphs so that each stays on its own line;
+ * - nestings the HTML parser would restructure once the sanitiser unwraps the elements around
+ *   them (`<a href><h2>…</h2></a>`, `<b><p>…</p></b>`, a caption in a table…) → repaired by
+ *   `normaliseContentModel` (content-model.ts), before and again after sanitising.
+ *
+ * Presentational inline wrappers (`font`, `big`, `span`…) need no code here: the sanitiser unwraps
+ * every element that is not on the allowlist and keeps its text.
  */
 import type { Element, ElementContent, Root } from 'hast';
+import {
+  FLOW_CONTAINERS,
+  FLOW_ONLY,
+  HEADINGS,
+  isFlow,
+  isMeaningful,
+  normaliseContentModel,
+  PHRASING_HOLDERS,
+} from './content-model.ts';
 import { collectParents, element, isElement, isWhitespaceText, type Parent, text } from './hast.ts';
 import { youtubeFromUrl } from './youtube.ts';
 
-const BLOCK = new Set([
-  'address',
-  'article',
-  'aside',
-  'blockquote',
-  'details',
-  'div',
-  'dl',
-  'fieldset',
-  'figure',
-  'footer',
-  'h1',
-  'h2',
-  'h3',
-  'h4',
-  'h5',
-  'h6',
-  'header',
-  'hr',
-  'li',
-  'ol',
-  'p',
-  'pre',
-  'section',
-  'summary',
-  'table',
-  'ul',
-]);
+const isBlock = isFlow;
 
-function isBlock(node: ElementContent | undefined): boolean {
-  return node !== undefined && node.type === 'element' && BLOCK.has(node.tagName);
-}
-
-const HEADINGS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 /** Blocks whose leading and trailing `<br>` are spacing, not content. */
 const TRIMMED = new Set(['blockquote', 'dd', 'details', 'dt', 'li', 'p', 'summary', 'td', 'th', ...HEADINGS]);
 
@@ -81,7 +64,7 @@ function trimBreaks(node: Element): void {
 function wrapInlineRuns(parent: Parent): void {
   const children = parent.children as ElementContent[];
   const inline = (node: ElementContent) =>
-    node.type === 'text' || (node.type === 'element' && !BLOCK.has(node.tagName) && node.tagName !== 'iframe');
+    node.type === 'text' || (node.type === 'element' && !FLOW_ONLY.has(node.tagName) && node.tagName !== 'iframe');
   if (!children.some((node) => inline(node) && !isWhitespaceText(node) && !isElement(node, 'br'))) return;
   const out: ElementContent[] = [];
   let run: ElementContent[] = [];
@@ -181,11 +164,73 @@ function iframeToLink(node: Element, parent: Parent): ElementContent | null {
   const link = element('a', { href: video.watchUrl }, [text(video.watchUrl)]);
   const phrasing =
     parent.type === 'element' &&
-    (!BLOCK.has(parent.tagName) || parent.tagName === 'p' || HEADINGS.includes(parent.tagName));
+    (!FLOW_ONLY.has(parent.tagName) ||
+      parent.tagName === 'p' ||
+      (HEADINGS as readonly string[]).includes(parent.tagName));
   return phrasing ? link : element('p', {}, [link]);
 }
 
+/**
+ * Unwraps the presentational flow containers (`<div>`, `<center>`, `<section>`…), bottom-up. A
+ * container that is the only content of its parent is replaced by its content; otherwise its
+ * inline runs become paragraphs, so that `<div>a</div><div>b</div>` stays two lines as it was
+ * shown, instead of running together once the sanitiser drops the `<div>`s. The obsolete `<dir>`
+ * and `<listing>` become `<ul>` and `<pre>`.
+ */
+function unwrapFlowContainers(tree: Root): void {
+  const parents = collectParents(tree);
+  for (let i = parents.length - 1; i >= 0; i--) {
+    const parent = parents[i] as Parent;
+    const children = parent.children as ElementContent[];
+    const out: ElementContent[] = [];
+    let changed = false;
+    for (const child of children) {
+      if (isElement(child, 'dir')) child.tagName = 'ul';
+      if (isElement(child, 'listing')) child.tagName = 'pre';
+      // A `<summary>` outside `<details>` is only a line of text (the sanitiser would unwrap it).
+      const container =
+        child.type === 'element' &&
+        (FLOW_CONTAINERS.has(child.tagName) ||
+          (child.tagName === 'summary' && !isElement(parent as Element, 'details')));
+      if (!container) {
+        out.push(child);
+        continue;
+      }
+      changed = true;
+      if (child.type !== 'element') continue;
+      const alone = children.every((other) => other === child || !isMeaningful(other));
+      if (alone && !child.children.some(isFlow)) out.push(...child.children);
+      else out.push(...paragraphs(child.children));
+    }
+    if (changed) parent.children = out as typeof parent.children;
+  }
+}
+
+/** Blocks as they are, runs of inline content (other than whitespace) in paragraphs. */
+function paragraphs(children: ElementContent[]): ElementContent[] {
+  const out: ElementContent[] = [];
+  let run: ElementContent[] = [];
+  const flush = () => {
+    if (run.some(isMeaningful)) out.push(element('p', {}, run));
+    else out.push(...run);
+    run = [];
+  };
+  for (const child of children) {
+    if (isFlow(child)) {
+      flush();
+      out.push(child);
+    } else {
+      run.push(child);
+    }
+  }
+  flush();
+  return out;
+}
+
+/** Repairs applied to the raw tree before sanitising (see the module comment). */
 export function repairLegacyHtml(tree: Root): void {
+  unwrapFlowContainers(tree);
+  normaliseContentModel(tree);
   for (const parent of collectParents(tree, (node) => isElement(node, ['pre', 'code']))) {
     // `<dl>` used as a bullet list.
     if (isElement(parent as Element, 'dl')) {
@@ -247,4 +292,67 @@ function collapseWhitespace(children: ElementContent[]): ElementContent[] {
     out.push(child);
   }
   return out;
+}
+
+/**
+ * Clean-up after sanitising: unwrapping the elements that are not on the allowlist can recreate
+ * nestings the HTML parser would restructure (a heading in a heading, a block in a paragraph…),
+ * and removed content can leave empty paragraphs or wrappers behind.
+ */
+export function cleanUpLegacyHtml(tree: Root): void {
+  normaliseContentModel(tree);
+  pruneEmpty(tree);
+}
+
+/** Formatting wrappers that mean nothing without content. */
+const EMPTYABLE = new Set(['a', 'b', 'code', 'del', 'em', 'i', 'ins', 'kbd', 's', 'samp', 'strong', 'sub', 'sup']);
+
+/**
+ * Removes what the repairs and the sanitiser leave empty, bottom-up: formatting wrappers holding
+ * only whitespace and `<br>` are replaced by that content (`<b><br></b>` → `<br>`), `<br>` at the
+ * edges of a block is dropped also when it sits inside such wrappers (`<h2><a>T<br></a></h2>`),
+ * and paragraphs and headings left with only whitespace and `<br>` are removed (they were spacers
+ * on the legacy site; prose margins do that now).
+ */
+function pruneEmpty(tree: Root): void {
+  const parents = collectParents(tree, (node) => node.tagName === 'pre');
+  for (let i = parents.length - 1; i >= 0; i--) {
+    const node = parents[i] as Parent;
+    const out: ElementContent[] = [];
+    for (const child of node.children as ElementContent[]) {
+      if (child.type !== 'element') {
+        out.push(child);
+        continue;
+      }
+      if (EMPTYABLE.has(child.tagName) && child.children.every(isBreakOrSpace)) {
+        out.push(...child.children);
+        continue;
+      }
+      if (TRIMMED.has(child.tagName)) {
+        trimEdge(child, 1);
+        trimEdge(child, -1);
+      }
+      if (PHRASING_HOLDERS.has(child.tagName) && child.children.every(isBreakOrSpace)) continue;
+      out.push(child);
+    }
+    node.children = out as typeof node.children;
+  }
+}
+
+/** Drops `<br>` at one edge of a block, looking into the formatting wrappers at that edge. */
+function trimEdge(node: Element, step: 1 | -1): void {
+  let container = node;
+  for (;;) {
+    const children = container.children;
+    let index = step === 1 ? 0 : children.length - 1;
+    while (index >= 0 && index < children.length && isWhitespaceText(children[index])) index += step;
+    const edge = children[index];
+    if (edge?.type !== 'element') return;
+    if (edge.tagName === 'br') {
+      children.splice(index, 1);
+      continue;
+    }
+    if (!EMPTYABLE.has(edge.tagName)) return;
+    container = edge;
+  }
 }

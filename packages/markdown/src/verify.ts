@@ -2,8 +2,15 @@
  * Last line of defence: every tree is checked against a closed allowlist right before it is
  * serialised. The sanitiser already enforces the author-facing allowlist; this check also covers
  * the trusted enhancers, so a bug there fails loudly instead of shipping unsafe HTML.
+ *
+ * It also checks the content model (content-model.ts): the nestings that an HTML parser would
+ * restructure (a block in a paragraph or in inline content, a link in a link, a heading in a
+ * heading, `<li>` directly in `<li>`, anything but table parts in a table) and interactive
+ * content inside a link, a `<summary>` or a spoiler button. With those excluded, a browser parsing
+ * the serialised HTML builds exactly the tree verified here.
  */
-import type { Nodes, Root } from 'hast';
+import type { Element, Nodes, Root } from 'hast';
+import { FLOW_ONLY, PHRASING_HOLDERS, SELF_CLOSING_SIBLINGS, TABLE_CHILDREN } from './content-model.ts';
 import { DEFAULT_LABELS } from './labels.ts';
 import { SANITIZE_SCHEMAS } from './schema.ts';
 import type { MarkdownProfile } from './types.ts';
@@ -82,11 +89,70 @@ function fail(message: string): never {
   throw new MarkdownSafetyError(`Unsafe markdown output: ${message}`);
 }
 
+/** Where a node sits, for the content-model checks. */
+interface Context {
+  /** Inside phrasing content: `<p>`, a heading or an inline element. */
+  phrasing: boolean;
+  inLink: boolean;
+  inSummary: boolean;
+  inButton: boolean;
+}
+
+const ROOT_CONTEXT: Context = { phrasing: false, inLink: false, inSummary: false, inButton: false };
+
+/** Required parent of each table part (the parser inserts the missing ones). */
+const TABLE_PARENT: Readonly<Record<string, readonly string[]>> = {
+  thead: ['table'],
+  tbody: ['table'],
+  tfoot: ['table'],
+  tr: ['thead', 'tbody', 'tfoot'],
+  td: ['tr'],
+  th: ['tr'],
+};
+
+function isButton(node: Element): boolean {
+  return node.properties.role !== undefined || node.properties.tabIndex !== undefined;
+}
+
+function checkContentModel(node: Element, parent: Nodes, ctx: Context): Context {
+  const { tagName } = node;
+  const parentTag = parent.type === 'element' ? parent.tagName : null;
+  if (ctx.phrasing && FLOW_ONLY.has(tagName)) fail(`<${tagName}> inside phrasing content`);
+  if (tagName === 'a' && (ctx.inLink || ctx.inButton)) fail('<a> inside a link or a button');
+  if (tagName === 'input' && (ctx.inLink || ctx.inSummary || ctx.inButton)) fail('<input> inside interactive content');
+  const button = tagName === 'span' && isButton(node);
+  if (button && (ctx.inLink || ctx.inSummary || ctx.inButton)) fail('spoiler button inside interactive content');
+  const requiredParent = TABLE_PARENT[tagName];
+  if (requiredParent && (parentTag === null || !requiredParent.includes(parentTag))) {
+    fail(`<${tagName}> outside ${requiredParent.map((tag) => `<${tag}>`).join('/')}`);
+  }
+  const tableChildren = TABLE_CHILDREN[tagName];
+  const siblings = SELF_CLOSING_SIBLINGS[tagName];
+  for (const child of node.children) {
+    if (tableChildren) {
+      const whitespace = child.type === 'text' && /^[\t\n\f\r ]*$/.test(child.value);
+      if (!whitespace && !(child.type === 'element' && tableChildren.includes(child.tagName))) {
+        fail(`${child.type === 'element' ? `<${child.tagName}>` : 'text'} directly inside <${tagName}>`);
+      }
+    }
+    if (siblings && child.type === 'element' && siblings.includes(child.tagName)) {
+      fail(`<${child.tagName}> directly inside <${tagName}>`);
+    }
+  }
+  return {
+    phrasing: ctx.phrasing || PHRASING_HOLDERS.has(tagName) || !FLOW_ONLY.has(tagName),
+    inLink: ctx.inLink || tagName === 'a',
+    inSummary: ctx.inSummary || tagName === 'summary',
+    inButton: ctx.inButton || button,
+  };
+}
+
 export function verifyTree(tree: Root, profile: MarkdownProfile): void {
   const tags = ALLOWED_TAGS[profile];
-  const stack: Nodes[] = [tree];
+  const stack: Array<{ node: Nodes; parent: Nodes; ctx: Context }> = [{ node: tree, parent: tree, ctx: ROOT_CONTEXT }];
   while (stack.length > 0) {
-    const node = stack.pop() as Nodes;
+    const { node, parent, ctx } = stack.pop() as { node: Nodes; parent: Nodes; ctx: Context };
+    let childCtx = ctx;
     switch (node.type) {
       case 'root':
         break;
@@ -108,11 +174,14 @@ export function verifyTree(tree: Root, profile: MarkdownProfile): void {
           if (key === 'href' && safeUrl(value, LINK_PROTOCOLS) !== value) fail(`href ${JSON.stringify(value)}`);
           if (key === 'src' && safeUrl(value, MEDIA_PROTOCOLS) !== value) fail(`src ${JSON.stringify(value)}`);
         }
+        childCtx = checkContentModel(node, parent, ctx);
         break;
       }
       default:
         fail(`node of type ${node.type}`);
     }
-    for (let i = node.children.length - 1; i >= 0; i--) stack.push(node.children[i] as Nodes);
+    for (let i = node.children.length - 1; i >= 0; i--) {
+      stack.push({ node: node.children[i] as Nodes, parent: node, ctx: childCtx });
+    }
   }
 }

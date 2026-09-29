@@ -122,12 +122,29 @@ export function slugify(value: string): string {
   return Array.from(slug).slice(0, 64).join('').replace(/-$/, '');
 }
 
+/**
+ * A heading inside a link (legacy HTML that the repairs could not push the link into) gets its id
+ * but no hover anchor: an `<a>` inside an `<a>` is split apart by HTML parsers.
+ */
 function headings(tree: Root, ctx: EnhanceContext, result: EnhanceResult): void {
   const taken = new Set<string>();
   const counters = new Map<string, number>();
-  visitElements(tree, (node) => {
+  // Iterative pre-order walk (depth is author-controlled) carrying "inside a link".
+  const stack: Array<{ node: Element; inLink: boolean }> = [];
+  const push = (parent: Parent, inLink: boolean) => {
+    for (let i = parent.children.length - 1; i >= 0; i--) {
+      const child = parent.children[i] as ElementContent;
+      if (child.type === 'element') stack.push({ node: child, inLink: inLink || child.tagName === 'a' });
+    }
+  };
+  push(tree, false);
+  while (stack.length > 0) {
+    const { node, inLink } = stack.pop() as { node: Element; inLink: boolean };
     const match = HEADING.exec(node.tagName);
-    if (!match) return undefined;
+    if (!match) {
+      push(node, inLink);
+      continue;
+    }
     const level = Math.min(6, Number(match[1]) + ctx.headingOffset);
     node.tagName = `h${level}`;
     const label = textContent(node).replace(/\s+/g, ' ').trim();
@@ -144,12 +161,13 @@ function headings(tree: Root, ctx: EnhanceContext, result: EnhanceResult): void 
     taken.add(slug);
     const id = `${ctx.idPrefix}${slug}`;
     node.properties = { id };
-    node.children.push(
-      element('a', { className: ['md-anchor'], href: `#${id}`, ariaHidden: 'true', tabIndex: -1 }, [text('#')]),
-    );
+    if (!inLink) {
+      node.children.push(
+        element('a', { className: ['md-anchor'], href: `#${id}`, ariaHidden: 'true', tabIndex: -1 }, [text('#')]),
+      );
+    }
     result.headings.push({ level, id, text: label });
-    return 'skip';
-  });
+  }
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -230,7 +248,9 @@ function youtube(tree: Root): void {
 // text; the reveal script flips `aria-expanded` and drops the role and label. The label is the
 // English default, localised per request by `localizeHtml`. A spoiler that contains a link cannot
 // be a button (nested interactive content): it stays a plain `span.md-spoiler`, revealed by CSS on
-// `:hover`/`:focus-within` when its link receives focus.
+// `:hover`/`:focus-within` when its link receives focus. The same holds for a spoiler inside a
+// `<summary>` (legacy HTML): the summary is already the control, so a nested button would compete
+// with it for focus and activation.
 
 /** Wraps `||…||` runs of an inline container; returns the spoiler spans created. */
 function spoilers(parent: Parent): Element[] {
@@ -277,8 +297,12 @@ function wrapSpoilers(children: ElementContent[]): ElementContent[] {
   return mergeText(out);
 }
 
-/** Makes a finished spoiler a toggle button, unless it holds interactive content (a link). */
-function spoilerSemantics(spoiler: Element): void {
+/**
+ * Makes a finished spoiler a toggle button, unless it holds interactive content (a link) or sits
+ * inside interactive content (a `<summary>`).
+ */
+function spoilerSemantics(spoiler: Element, inSummary: boolean): void {
+  if (inSummary) return;
   let interactive = false;
   visitElements({ type: 'root', children: spoiler.children }, (node) => {
     if (node.tagName === 'a') interactive = true;
@@ -317,11 +341,13 @@ type MentionResolver = (handle: string) => MentionTarget | null;
 function inlineText(tree: Root, ctx: EnhanceContext, result: EnhanceResult): void {
   const resolve = mentionResolver(ctx);
   const seen = new Set<string>();
-  // Iterative pre-order walk (depth is author-controlled) carrying "inside a link".
-  const stack: Array<{ parent: Parent; inLink: boolean }> = [{ parent: tree, inLink: false }];
-  const allSpoilers: Element[] = [];
+  // Iterative pre-order walk (depth is author-controlled) carrying "inside a link" and "inside a
+  // summary".
+  type Frame = { parent: Parent; inLink: boolean; inSummary: boolean };
+  const stack: Frame[] = [{ parent: tree, inLink: false, inSummary: false }];
+  const allSpoilers: Array<{ spoiler: Element; inSummary: boolean }> = [];
   while (stack.length > 0) {
-    const { parent, inLink } = stack.pop() as { parent: Parent; inLink: boolean };
+    const { parent, inLink, inSummary } = stack.pop() as Frame;
     unwrapDeadEnds(parent);
     // The elements to visit next are the parent's own (after unwrapping, before new spoilers and
     // links are added), so every original element is visited exactly once.
@@ -329,7 +355,11 @@ function inlineText(tree: Root, ctx: EnhanceContext, result: EnhanceResult): voi
     for (let i = children.length - 1; i >= 0; i--) {
       const child = children[i] as ElementContent;
       if (child.type === 'element' && !(LITERAL as readonly string[]).includes(child.tagName)) {
-        stack.push({ parent: child, inLink: inLink || child.tagName === 'a' });
+        stack.push({
+          parent: child,
+          inLink: inLink || child.tagName === 'a',
+          inSummary: inSummary || child.tagName === 'summary',
+        });
       }
     }
     if (inLink) continue;
@@ -338,10 +368,10 @@ function inlineText(tree: Root, ctx: EnhanceContext, result: EnhanceResult): voi
       if (!(container.children as ElementContent[]).some((child) => isText(child))) continue;
       container.children = linkText(container.children as ElementContent[], resolve, seen, result);
     }
-    allSpoilers.push(...created);
+    for (const spoiler of created) allSpoilers.push({ spoiler, inSummary });
   }
   // Only now are all autolinks and mentions inside the spoilers known.
-  for (const spoiler of allSpoilers) spoilerSemantics(spoiler);
+  for (const { spoiler, inSummary } of allSpoilers) spoilerSemantics(spoiler, inSummary);
 }
 
 function mentionResolver(ctx: EnhanceContext): MentionResolver {
