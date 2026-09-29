@@ -319,6 +319,91 @@
   "common_theme_system": "Systeem",
   "common_updated_ago": "Bijgewerkt {when}",
   "common_welcome": "Dag 1 op het eiland. Welkom, overlevende.",
+  "emails_auth_deleted_body": "Je persoonsgegevens zijn gewist. Reacties en recensies blijven staan als ‘Verwijderde overlevende’. Bedankt dat je deel uitmaakte van het eiland.",
+  "emails_auth_deleted_heading": "Account verwijderd",
+  "emails_auth_deleted_preview": "Je persoonsgegevens zijn gewist.",
+  "emails_auth_deleted_subject": "Je SOTF Mods-account is verwijderd",
+  "emails_auth_deletion_body": "Je account wordt verwijderd op {when} (UTC). Tot die tijd kun je het annuleren in je instellingen en blijft alles zoals het is.",
+  "emails_auth_deletion_button": "Verwijdering annuleren",
+  "emails_auth_deletion_cancelled_body": "Fijn dat je blijft. De verwijdering is geannuleerd op {when} (UTC) en je account blijft zoals het is.",
+  "emails_auth_deletion_cancelled_heading": "Verwijdering geannuleerd",
+  "emails_auth_deletion_cancelled_preview": "De geplande verwijdering is geannuleerd.",
+  "emails_auth_deletion_cancelled_subject": "Je SOTF Mods-account wordt niet verwijderd",
+  "emails_auth_deletion_heading": "Verwijdering van account gepland",
+  "emails_auth_deletion_mode_archive": "Je mods worden gearchiveerd.",
+  "emails_auth_deletion_mode_keep": "Je mods blijven gepubliceerd zonder je naam.",
+  "emails_auth_deletion_preview": "Je kunt nog van gedachten veranderen.",
+  "emails_auth_deletion_subject": "Je SOTF Mods-account wordt verwijderd",
+  "emails_auth_email_change_body": "Je wilt {email} gebruiken voor je SOTF Mods-account. Bevestig het om de wijziging af te ronden.",
+  "emails_auth_email_change_button": "Nieuw e-mailadres bevestigen",
+  "emails_auth_email_change_heading": "Bevestig je nieuwe e-mailadres",
+  "emails_auth_email_change_preview": "Bevestig het nieuwe adres om de wijziging af te ronden.",
+  "emails_auth_email_change_subject": "Bevestig je nieuwe e-mailadres voor SOTF Mods",
+  "emails_auth_email_notice_body": "Op {when} (UTC) heeft iemand gevraagd het e-mailadres van je account te wijzigen in {email}. Er verandert niets tot het nieuwe adres is bevestigd.",
+  "emails_auth_email_notice_button": "Beveiliging controleren",
+  "emails_auth_email_notice_heading": "Wijziging van e-mailadres aangevraagd",
+  "emails_auth_email_notice_not_you": "Was jij dit niet? Wijzig nu je wachtwoord en controleer je sessies.",
+  "emails_auth_email_notice_preview": "De wijziging gaat pas in als het nieuwe adres is bevestigd.",
+  "emails_auth_email_notice_subject": "Het e-mailadres van je SOTF Mods-account wordt gewijzigd",
+  "emails_auth_export_body": "Je export is een ZIP-bestand met elk record dat aan je account is gekoppeld, in JSON.",
+  "emails_auth_export_button": "Mijn gegevens downloaden",
+  "emails_auth_export_expiry": "De link verloopt op {when} (UTC). Daarna kun je een nieuwe export aanvragen.",
+  "emails_auth_export_heading": "Je gegevens staan klaar",
+  "emails_auth_export_preview": "Download een kopie van alles wat aan je account is gekoppeld.",
+  "emails_auth_export_subject": "Je SOTF Mods-gegevensexport staat klaar",
+  "emails_auth_greeting": "Hoi {name},",
+  "emails_auth_ignore": "Heb je dit niet zelf aangevraagd? Dan kun je deze e-mail negeren.",
+  "emails_auth_link_expiry_hours": [
+    {
+      "declarations": [
+        "input hours",
+        "local hours__plural = hours: plural",
+        "local hours__number = hours: number"
+      ],
+      "selectors": [
+        "hours__plural"
+      ],
+      "match": {
+        "hours__plural=one": "Deze link werkt één keer en verloopt over {hours__number} uur.",
+        "hours__plural=*": "Deze link werkt één keer en verloopt over {hours__number} uur."
+      }
+    }
+  ],
+  "emails_auth_link_fallback": "Werkt de knop niet? Kopieer deze link naar je browser:",
+  "emails_auth_password_changed_body": "Het wachtwoord van je account is gewijzigd op {when} (UTC).",
+  "emails_auth_password_changed_button": "Wachtwoord opnieuw instellen",
+  "emails_auth_password_changed_heading": "Wachtwoord gewijzigd",
+  "emails_auth_password_changed_not_you": "Was jij dit niet? Stel je wachtwoord meteen opnieuw in en controleer je actieve sessies.",
+  "emails_auth_password_changed_preview": "Was jij dit niet? Onderneem nu actie.",
+  "emails_auth_password_changed_subject": "Je SOTF Mods-wachtwoord is gewijzigd",
+  "emails_auth_reason_account": "Je ontvangt deze e-mail vanwege activiteit op je SOTF Mods-account.",
+  "emails_auth_reset_body": "Iemand, hopelijk jij, heeft gevraagd het wachtwoord van je account opnieuw in te stellen.",
+  "emails_auth_reset_button": "Nieuw wachtwoord kiezen",
+  "emails_auth_reset_expiry": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "Deze link werkt één keer en verloopt over {minutes__number} minuut.",
+        "minutes__plural=*": "Deze link werkt één keer en verloopt over {minutes__number} minuten."
+      }
+    }
+  ],
+  "emails_auth_reset_heading": "Wachtwoord opnieuw instellen",
+  "emails_auth_reset_preview": "Gebruik deze link om een nieuw wachtwoord te kiezen.",
+  "emails_auth_reset_subject": "Stel je SOTF Mods-wachtwoord opnieuw in",
+  "emails_auth_review_sessions": "Sessies controleren",
+  "emails_auth_verify_body": "Welkom op het eiland. Bevestig dit adres om mods te publiceren, te reageren, recensies te schrijven en compatibiliteit te melden.",
+  "emails_auth_verify_button": "E-mailadres bevestigen",
+  "emails_auth_verify_heading": "Bevestig je e-mailadres",
+  "emails_auth_verify_preview": "Eén klik en je kunt publiceren, reageren en recenseren.",
+  "emails_auth_verify_subject": "Bevestig je e-mailadres voor SOTF Mods",
   "errors_boundary_detail": "De rest van de pagina werkt nog. Probeer dit onderdeel opnieuw te laden.",
   "errors_boundary_title": "Dit deel van de pagina is niet geladen",
   "errors_code_conflict_detail": "Dit is gewijzigd terwijl je eraan werkte. Laad opnieuw om de nieuwste versie te zien en probeer het nog eens.",

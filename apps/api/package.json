@@ -40,9 +40,12 @@
   },
   "devDependencies": {
     "@sotf/config": "workspace:*",
+    "@sotf/emails": "workspace:*",
     "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
     "@types/pg": "catalog:",
+    "fflate": "catalog:",
+    "testcontainers": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
