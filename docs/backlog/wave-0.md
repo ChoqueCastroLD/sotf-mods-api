@@ -1,0 +1,138 @@
+# Backlog de la ola 0 (integración I-0)
+
+Consolidado y deduplicado de `docs/backlog/WP-00.md`, `WP-01.md`, `WP-02.md` y de los problemas
+abiertos que dejaron las revisiones de W0. Formato: qué · dónde (dueño propuesto) · por qué.
+Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` antes de la etiqueta
+`wave-0`.
+
+## Resueltos durante la integración
+
+- **[hecho en I-0] Presets tsconfig autocontenidos** · `packages/config/tsconfig/base.json` (nuevo),
+  `tsconfig.base.json` (ahora solo lo extiende), `node.json`/`react.json`/`library.json` extienden
+  `./base.json` · antes extendían `../../../tsconfig.base.json` y Vitest (Vite/oxc), al resolverlo
+  desde el enlace `node_modules/@sotf/config`, abortaba todos los tests con `[TSCONFIG_ERROR]`.
+  Reproducido en `@sotf/markdown` antes del arreglo; `packages/brand` vuelve a extender
+  `@sotf/config/tsconfig/node.json`. `turbo.json` añade `packages/config/tsconfig/*.json` a
+  `globalDependencies`. (WP-01 backlog; problema abierto de WP-01.)
+- **[hecho en I-0] CI 2b detecta ficheros generados sin commitear** · `.github/workflows/ci.yml` ·
+  ejecuta `gen.ts --check` y falla si `git status --porcelain` no está vacío tras `pnpm gen`
+  (`git diff` ignoraba los ficheros sin seguimiento; `ci:local` ya usaba `--check`). (Problema
+  abierto de WP-00.)
+- **[hecho antes de I-0] `@sotf/brand` con el catálogo y los presets compartidos** · `typescript`,
+  `vitest`, `@types/node`, `sharp`, Fontsource estáticos y `opentype.js` pasan a `catalog:`;
+  preset `defineUnitConfig` (commits 7a1e249 y la pasada de arreglos de WP-01).
+- **[hecho antes de I-0] Exclusiones de `ops/legacy-hotfix/**`** · `tooling/scripts/forbidden-rules.ts`
+  (allowlists por regla) y `ownership.json` (WP-02 es dueño de `ops/legacy-hotfix/**` y de
+  `docs/backlog/WP-02.md`). Biome no procesa `*.patch`; `patches/.gitattributes` (`-text`) debe
+  seguir fuera de cualquier normalización. `ops/legacy-hotfix/verify/xss/` queda fuera del
+  workspace pnpm y del typecheck raíz.
+
+## Para W1 (WP-10 · WP-11 · WP-12 · WP-13 · WP-15)
+
+- **Contrato de los registros generados** · `packages/db/src/schema/{legacy,v2,ext}/*.ts` (WP-10) y,
+  en W2, `apps/api/src/modules/<name>/index.ts` y `apps/worker/src/jobs/<name>/index.ts` (WP-20) ·
+  `pnpm gen` espera un `export default` por módulo o grupo de jobs (genera `modules`/`jobGroups`) y
+  un barrel `export *` del esquema. Otra forma → cambiar `tooling/scripts/gen-registries.ts` vía
+  backlog.
+- **Scripts homónimos de las tareas raíz delegadas** · `packages/db` (WP-10: `db:migrate`,
+  `db:guard`, `db:baseline`), `packages/i18n` (WP-13: `i18n:check`, `i18n:pseudo`); en W2
+  `tooling/migration` (WP-14: `db:seed:dev`, `db:reset:dev`, `db:backfill`, `db:invariants`,
+  `db:verify-snapshot`, `db:revert-fix`, `admin:grant`) y `tooling/legacy-contract` (WP-24:
+  `contract:legacy`) · `tooling/scripts/delegate.ts` ejecuta en el paquete dueño el script con el
+  mismo nombre.
+- **Tareas opcionales que se vuelven silenciosas** · `tooling/scripts/{delegate,verify}.ts`,
+  `ci-local.sh`, `ci.yml` (fix WP al inicio de W2, o integrador en I-1) · `SOTF_OPTIONAL_TASKS=1` y
+  `i18n:check --optional` convierten en «skip» un script borrado o renombrado incluso después de que
+  su WP haya aterrizado. Hacer fallar la delegación cuando el `package.json` del dueño existe pero no
+  tiene el script, o mantener una lista versionada de tareas ya entregadas.
+- **Brillo opcional del logo adaptativo en Night** · `packages/ui/src/tokens.css` (WP-12) ·
+  `[data-theme="dark"] .brand-flare { fill: #FF7335 }` (y el equivalente `system` +
+  `prefers-color-scheme: dark`). `lockupSvg({ theme: 'adaptive' })` usa por defecto el flare Day
+  `#E75803`, que ya cumple 3:1 en todas las superficies.
+- **`check:forbidden` incompleto** · `tooling/scripts/forbidden-rules.ts` (WP-00 / fix WP) · solo
+  cubre la lista del §2.8 punto 1. Añadir, con límites de palabra y la misma `LEGACY_ENV_ALLOW`,
+  `BASE_URL`, `PUBLIC_BASE_URL`, `GPT_API_KEY`, `R2_CUSTOM_DOMAIN`, `R2_BUCKET_NAME`, `API_URL`,
+  `PUBLIC_API_URL` (§2.8 punto 5 y §11.4), sin atrapar `R2_PUBLIC_BASE_URL` ni `INTERNAL_API_URL`;
+  con tests de aciertos y casi-aciertos.
+- **Quitar `minimumReleaseAgeExclude`** · `pnpm-workspace.yaml` (integrador, I-1) · las excepciones
+  de `@aws-sdk/*` 3.1142.0, `@sentry/*` 11.1.0 y Testcontainers 12.2.0 sobran desde el
+  2026-09-30T20:00Z (ADR-0002).
+- **Decisiones `allowBuilds`** · `pnpm-workspace.yaml` (integrador) · pnpm 12 falla la instalación si
+  una dependencia tiene un script de build no aprobado; cada WP que añada una debe anotarlo en su
+  backlog.
+
+## Para W2 y siguientes
+
+- **Variable `R2_ENDPOINT`** · `apps/{api,worker}/src/env.ts` (WP-20) y cliente S3 (WP-31) ·
+  `.env.example` la propone para SeaweedFS en local/tests; §11.4 solo deriva el endpoint de
+  `R2_ACCOUNT_ID`. Adoptarla (opcional, vacía en producción) o renombrarla.
+- **Variable `SMTP_URL`** · transporte `mailpit` de `EmailOutbox` (WP-30) · `.env.example` propone
+  `smtp://127.0.0.1:47025`; §11.4 no fija cómo se configura.
+- **`e2e/package.json` antes de W9** · `e2e/**` es de WP-91, pero WP-22 (W2), WP-31, WP-34, WP-44,
+  WP-53 exigen `pnpm e2e --grep @…` · asignar a WP-22 la creación del proyecto Playwright (script
+  `e2e`) o adelantar esa parte de WP-91.
+- **`tooling/lhci` y `tooling/load` antes de W9** · son de WP-92, pero WP-22/WP-44/WP-53 piden
+  `pnpm lhci` y WP-31/WP-33 `pnpm load` · asignar su creación al primer WP que los necesite.
+- **Assets de marca en la web** · `apps/web/public/**` (WP-22) · copiar tal cual
+  `packages/brand/assets/public/**` (`/favicon.svg`, `/favicon.ico`, `/apple-touch-icon.png`,
+  `/brand/*`); `assets/manifest.json` lista cada fichero con su SHA-256.
+- **Redirecciones de logos legacy** · `apps/web/src/middleware/**` (WP-22) ·
+  `/static/images/logo*.png` → `/brand/logo-horizontal-night.png`, `favicon*` → `/favicon.svg`,
+  `/static/images/hd_thumbnail.png` → `/brand/og-default.png` (tabla del §4.6).
+- **`/manifest.webmanifest`** · `apps/web/src/pages/**` (WP-22/WP-61) · generarlo con
+  `manifestIcons()` y `themeColor` de `@sotf/brand`.
+- **Reutilizar los generativos de marca** · `apps/worker/src/jobs/og/**` (WP-61),
+  `packages/ui/src/domain/**` (WP-25) · `topoLines` + `topoGroup`, `markPath`/`lockupBody` y
+  `coverSvg`; semillas estables para siempre.
+- **Legacy: límites conocidos que resuelve v2** · el API legacy confía en `?ip=` y no limita
+  descargas (WP-31: `ipHash`, `X-Internal-Auth`, límite sin conteo); tras el 302 el navegador guarda
+  el fichero con la clave R2 con prefijo de timestamp (WP-84: `Content-Disposition` con `filename`,
+  B17); token en `localStorage` y sin CSP (sesión por cookie + CSP en v2).
+- **Solapamiento WP-91 / WP-93** · `e2e/**` frente a `e2e/security/**` · resuelto en
+  `tooling/scripts/ownership.overrides.json` (WP-91 excluye `e2e/security/**`); confirmar al
+  planificar W9.
+- **Job manual opcional del hotfix** · `.github/workflows/` (WP-90) · `workflow_dispatch` que
+  ejecute `ops/legacy-hotfix/verify.sh` mientras el legacy siga en producción (necesita Docker, red
+  y los repos legacy locales vía `LEGACY_API_REPO` / `LEGACY_FRONTEND_REPO`).
+- **`check:assets` como paso propio de CI (opcional)** · `.github/workflows/ci.yml` (WP-90) · los
+  tests unitarios ya reconstruyen y comparan cada asset; solo aporta un log más claro.
+- **Puertos del hotfix en rango efímero** · `ops/legacy-hotfix/verify.sh` (WP-02 si se reabre, o
+  WP-90) · 47440-47442 caen en `ip_local_port_range` (32768-60999); `verify.sh` falló una vez con
+  `EADDRINUSE`. Reintentar el arranque o mover los puertos. Aplica también a los puertos de
+  `ops/compose/dev.yml` (474xx) si se ven fallos similares.
+
+## Mejoras menores de calidad (sin dueño urgente)
+
+- **Hotfix: regla de conteo más estricta** · `ops/legacy-hotfix/patches/api` · contar solo sin
+  `Range` o con `Range: bytes=0-` exacto (hoy `/^bytes=0-/` cuenta `bytes=0-0`); añadir el caso a
+  `verify.sh`.
+- **Hotfix: truncar el User-Agent** · `download.util.ts` del parche frontend · limitar `?agent=` a
+  512 caracteres antes de reenviarlo, para no provocar 414/431 y bloquear una descarga.
+- **`@sotf/brand`: comprobar el manifest en modo tolerante** · `packages/brand/test/assets.test.ts`
+  (WP-01 si se reabre) · fuera de linux-x64/CI no se compara `manifest.json`; comparar al menos las
+  entradas no raster (sha256 y bytes).
+- **`@sotf/brand`: `passWithNoTests: false`** · `packages/brand/vitest.config.ts` · el preset
+  compartido pasa con cero tests; este paquete siempre tiene tests.
+- **Nota para PLAN §9.1** · `docs/plan/PLAN.md` · pnpm 12 llama `allowBuilds` a lo que el plan llama
+  `onlyBuiltDependencies` (ADR-0002, ajuste 1).
+
+## Acciones del usuario
+
+- **Desplegar el hotfix legacy** · `ops/legacy-hotfix/README.md` · paso 0 (obligatorio antes del
+  API): Transform Rule de Cloudflare en `r2.sotf-mods.com` que añade
+  `Content-Disposition: attachment` a `.json`/`.zip`. Después `ops/legacy-hotfix/apply.sh`
+  (`git am --keep-cr`; `git am` a secas falla por CRLF), desplegar API → frontend, añadir
+  `R2_PUBLIC_BASE_URL` y borrar las 5 variables sobrantes.
+- **Purgar la caché de Cloudflare tras el frontend** · `sotf-mods.com/static/scripts/*` · los
+  scripts nuevos llaman a `window.escapeHTML` del nuevo `shared.js`; mezclar versiones en caché
+  rompe las tarjetas con `ReferenceError`. (Opcional: guarda `window.escapeHTML ?? localEscape` en
+  los scripts del parche.)
+- **Incidente de proceso (revisar)** · el 2026-09-29T12:13:38Z un `pkill -f "src/index.ts"` de WP-02
+  mató el proceso principal de contenedores ajenos, que se reiniciaron solos (`unless-stopped`).
+  Confirmados: `udcnrdadiolty4pxwhmv96ln-044830250266` (lacharca api),
+  `mtsn8gzp6yvb1l6prmiiwk1t-043928571547` (hilos.rest api; arranca con
+  `prisma db push --accept-data-loss`) y `n27y8isimnmaq543cxntzx4j-231005539893` (qori-api).
+  Probables (mismo `StartedAt`): `capi-api` y `t14cx4nqhmrijs1aalc4murp-212140842978`. Los cinco
+  están en marcha; conviene comprobar su salud y sus datos. Regla para todo WP: nunca `pkill`/
+  `killall` por patrón; solo PIDs propios y proyectos `docker compose -p sotfv2-*` propios.
+- **Pedir en W0 (§12.2)** · backup y dump de la BD (A1) y repositorio + Coolify staging (A4).
