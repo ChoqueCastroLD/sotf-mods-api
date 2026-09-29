@@ -1,4 +1,4 @@
 {
   "extends": "@sotf/config/tsconfig/library.json",
-  "include": ["src", "test", "*.ts"]
+  "include": ["src"]
 }
