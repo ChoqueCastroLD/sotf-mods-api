@@ -1,0 +1,44 @@
+{
+  "name": "@sotf/migration-tools",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Development data (public API snapshot + deterministic synthetic data), backfills B1–B14, verification SQL and the db:* operator CLIs (PLAN §6.9–§6.14).",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run --config ../../packages/config/vitest/unit.ts",
+    "test:int": "vitest run --config ../../packages/config/vitest/int.ts",
+    "db:seed:dev": "node src/cli/seed-dev.ts",
+    "db:reset:dev": "node src/cli/reset-dev.ts",
+    "db:backfill": "node src/cli/backfill.ts",
+    "db:invariants": "node src/cli/invariants.ts",
+    "db:verify-snapshot": "node src/cli/verify-snapshot.ts",
+    "db:revert-fix": "node src/cli/revert-fix.ts",
+    "db:profile": "node src/cli/profile.ts",
+    "db:anonymize": "node src/cli/anonymize.ts",
+    "db:restore:prod-copy": "node src/cli/restore-prod-copy.ts",
+    "admin:grant": "node src/cli/admin-grant.ts",
+    "replay-delta": "node replay-delta.ts"
+  },
+  "dependencies": {
+    "@sotf/db": "workspace:*",
+    "@sotf/markdown": "workspace:*",
+    "pg": "catalog:",
+    "pg-copy-streams": "catalog:",
+    "uuidv7": "catalog:"
+  },
+  "devDependencies": {
+    "@node-rs/argon2": "catalog:",
+    "@node-rs/bcrypt": "catalog:",
+    "@sotf/config": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/pg": "catalog:",
+    "@types/pg-copy-streams": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
