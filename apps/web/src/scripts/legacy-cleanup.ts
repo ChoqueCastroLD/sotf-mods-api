@@ -1,6 +1,6 @@
 /**
  * Legacy session cleanup (PLAN §0.2 «Tokens legacy», §6.10): v2 does not migrate the legacy
- * tokens. On the first v2 page view an inline script (≤ 150 B, runs before paint) deletes
+ * tokens. On the first v2 page view an inline script (≈ 165 B; PLAN budget ≤ 150 B, runs before paint) deletes
  * `localStorage.token` and the `token` cookie (`Max-Age=0; Path=/`) and flags `<html>` with
  * `data-relogin`, which reveals the «sign in again» banner rendered (hidden) by the layout. The
  * banner therefore appears once, on the first v2 page view of a browser that had a legacy session.
