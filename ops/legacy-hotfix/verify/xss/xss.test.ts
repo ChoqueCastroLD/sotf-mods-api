@@ -83,6 +83,132 @@ describe("markdownToHTML (shared.js)", () => {
   });
 });
 
+// Mod cards: profile.js (lists the owner's unapproved mods too), featured.js
+// and the build upload preview (upload-build.js) interpolate user fields into
+// innerHTML templates. Every field must reach the DOM as text.
+const EVIL_MOD = {
+  id: 1,
+  name: '"><svg onload=alert(1)>',
+  slug: "evil",
+  shortDescription: "<img src=x onerror=alert(1)>",
+  latestVersion: "<b>1.0.0</b>",
+  imageUrl: 'x" onerror="alert(2)',
+  isNSFW: false,
+  downloads: 3,
+  lastReleasedAt: "2026-09-26T21:33:31.396Z",
+  category_slug: '"><script>alert(3)</script>',
+  category: { name: "<i>Tools</i>" },
+  user: { name: "<script>alert(4)</script>", slug: "mallory" },
+};
+
+function assertInert(root: Element, forbidden = "script, svg, b, i, iframe, img:not([data-lazy-src], [src])") {
+  assert.equal(root.querySelector(forbidden), null, root.innerHTML);
+  for (const node of root.querySelectorAll("*")) {
+    for (const attribute of node.getAttributeNames()) {
+      assert.equal(attribute.startsWith("on"), false, `${node.tagName} has ${attribute}`);
+    }
+  }
+}
+
+function assertCardText(card: Element) {
+  assertInert(card);
+  assert.equal(card.querySelector("img")?.getAttribute("alt"), EVIL_MOD.name);
+  assert.equal(card.querySelector("img")?.getAttribute("src") ?? card.querySelector("img")?.getAttribute("data-lazy-src"), EVIL_MOD.imageUrl);
+  assert.equal(card.querySelector(".text-wrap-anywhere")?.textContent, EVIL_MOD.shortDescription);
+  assert.equal(card.querySelector(".card-title")?.textContent, `${EVIL_MOD.name}${EVIL_MOD.latestVersion}`);
+}
+
+type Json = Record<string, unknown>;
+
+// Evaluates shared.js and then a page script, answering its API calls with `respond`.
+function pageWindow(body: string, respond: (url: string) => Json) {
+  // #sotf-mods-l carries the page translations; an empty dictionary means English.
+  const dom = new JSDOM(`<!doctype html><html><body><div id="sotf-mods-l" data-l="{}"></div>${body}</body></html>`, {
+    url: "https://sotf-mods.com/profile/mallory",
+    runScripts: "outside-only",
+  });
+  const { window } = dom;
+  window.eval(purifySource);
+  window.eval(sharedSource);
+  const w = window as unknown as Json;
+  w.PUBLIC_API_URL = "https://api.sotf-mods.com";
+  w.fetch = async (url: string) => ({ ok: true, json: async () => respond(String(url)) });
+  return window;
+}
+
+async function cardsIn(container: Element): Promise<Element[]> {
+  for (let i = 0; i < 100; i++) {
+    const cards = [...container.querySelectorAll(".card")];
+    if (cards.length > 0) return cards;
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  throw new Error(`no cards rendered: ${container.innerHTML}`);
+}
+
+describe("mod cards", () => {
+  test("profile.js escapes an unapproved mod's fields", async () => {
+    const window = pageWindow(
+      `<div id="sotf-mods-p" data-p='{"slug":"mallory"}'></div><div id="mods-discover-container"></div>`,
+      (url) => {
+        if (url.includes("/stats")) return { status: false };
+        return { status: true, data: url.includes("approved=false") ? [EVIL_MOD] : [] };
+      },
+    );
+    window.eval(readFileSync(join(scripts, "profile.js"), "utf8"));
+    const container = window.document.getElementById("mods-discover-container") as Element;
+    const cards = await cardsIn(container);
+    assert.equal(cards.length, 1);
+    assertCardText(cards[0]);
+    assert.equal(cards[0].querySelector(".badge-ghost")?.textContent, "<i>Tools</i>");
+    assert.equal(cards[0].querySelector('a[href^="/profile/"]')?.textContent, EVIL_MOD.user.name);
+    assert.equal(cards[0].querySelector(".mod-card-badges a")?.getAttribute("href"), `/mods?category=${EVIL_MOD.category_slug}`);
+    window.close();
+  });
+
+  test("featured.js escapes every field", async () => {
+    const window = pageWindow(`<div id="mods-featured-container"></div>`, () => ({ status: true, data: [EVIL_MOD] }));
+    window.eval(readFileSync(join(scripts, "featured.js"), "utf8"));
+    const cards = await cardsIn(window.document.getElementById("mods-featured-container") as Element);
+    assert.equal(cards.length, 1);
+    assertCardText(cards[0]);
+    window.close();
+  });
+
+  test("upload-build.js preview escapes the typed fields", () => {
+    const source = readFileSync(join(scripts, "upload-build.js"), "utf8");
+    const match = source.match(/\nfunction getModTemplate\(mod\) \{[\s\S]*?\n\}\n/);
+    assert.ok(match, "getModTemplate not found in upload-build.js");
+    const window = pageWindow(`<select id="c"><option value="0">x</option></select>`, () => ({}));
+    const w = window as unknown as Json;
+    w.user = { name: "<script>alert(5)</script>" };
+    w.modCategory = window.document.getElementById("c");
+    window.eval(`window.getModTemplate = ${match[0].trim().replace(/^function getModTemplate/, "function")}`);
+    const card = window.document.createElement("div");
+    card.className = "card";
+    card.innerHTML = (w.getModTemplate as (mod: Json) => string)({
+      ...EVIL_MOD,
+      latestVersion: { version: EVIL_MOD.latestVersion },
+    });
+    assertCardText(card);
+    assert.equal(card.querySelector("p.text-left a")?.textContent, "<script>alert(5)</script>");
+    window.close();
+  });
+
+  test("alerts show messages as text", () => {
+    const window = pageWindow(`<div id="alert-wrapper"><div id="alerts"></div></div>`, () => ({}));
+    const w = window as unknown as Json;
+    (w.showError as (e: unknown) => void)({ message: "<img src=x onerror=alert(1)>" });
+    const alerts = window.document.getElementById("alerts") as Element;
+    // The alert icon is a static inline <svg>; the message must add no element.
+    assertInert(alerts, "img, script");
+    assert.ok(alerts.textContent?.includes("<img src=x onerror=alert(1)>"));
+    (w.showSuccess as (m: string) => void)("<img src=x onerror=alert(2)>");
+    assertInert(alerts, "img, script");
+    assert.ok(alerts.textContent?.includes("<img src=x onerror=alert(2)>"));
+    window.close();
+  });
+});
+
 // comments.js is an ES module that uses the `window` and `document` globals.
 const commentsDom = new JSDOM("<!doctype html><html><body><div id=c></div></body></html>", {
   url: "https://sotf-mods.com/mods/regitoxic/example",

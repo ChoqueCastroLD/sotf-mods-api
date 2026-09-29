@@ -1,4 +1,4 @@
-From 86baddb4b39deffd7abd3742489467d88cd0678a Mon Sep 17 00:00:00 2001
+From 3a818da58a457cf81c404b592c55bd174b29d797 Mon Sep 17 00:00:00 2001
 From: Luis Choque <luis.choque.castro@outlook.com>
 Date: Tue, 29 Sep 2026 14:07:44 +0200
 Subject: [PATCH 2/3] fix(assets): stop referencing the retired file host

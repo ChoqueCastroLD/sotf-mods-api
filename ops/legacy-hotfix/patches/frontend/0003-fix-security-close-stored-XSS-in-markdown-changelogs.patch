@@ -1,4 +1,4 @@
-From 623b7125e72b1bdf5b1007ae7780be01ed21be27 Mon Sep 17 00:00:00 2001
+From f9aea34c86aec3c3e781d02574ece0654d35278b Mon Sep 17 00:00:00 2001
 From: Luis Choque <luis.choque.castro@outlook.com>
 Date: Tue, 29 Sep 2026 14:07:44 +0200
 Subject: [PATCH 3/3] fix(security): close stored XSS in markdown, changelogs
@@ -13,14 +13,24 @@ Subject: [PATCH 3/3] fix(security): close stored XSS in markdown, changelogs
 - Comments are built with DOM nodes (comments.js): message, user names
   and URLs are set through textContent or validated attributes, never
   concatenated into HTML; inline onclick handlers are gone.
+- Mod cards (profile, featured, build upload preview) escape every field
+  (name, short description, version, user, image URL) with the shared
+  escapeHTML helper. The profile lists unapproved mods, so an unreviewed
+  short description could run script for any visitor, moderators
+  included.
+- showError/showSuccess and the upload toasts escape their message.
 
 Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 ---
- src/static/scripts/comments.js | 135 +++++++++++++++++++++++++++++++++
- src/static/scripts/mod.js      |  79 ++-----------------
- src/static/scripts/shared.js   |  32 +++++++-
- src/templates/build.njk        |   2 +-
- 4 files changed, 172 insertions(+), 76 deletions(-)
+ src/static/scripts/comments.js     | 135 +++++++++++++++++++++++++++++
+ src/static/scripts/featured.js     |  20 +++--
+ src/static/scripts/mod.js          |  79 ++---------------
+ src/static/scripts/profile.js      |  21 +++--
+ src/static/scripts/shared.js       |  39 +++++++--
+ src/static/scripts/upload-build.js |  27 +++---
+ src/static/scripts/upload.js       |   2 +-
+ src/templates/build.njk            |   2 +-
+ 8 files changed, 216 insertions(+), 109 deletions(-)
  create mode 100644 src/static/scripts/comments.js
 
 diff --git a/src/static/scripts/comments.js b/src/static/scripts/comments.js
@@ -164,6 +174,46 @@ index 0000000..59656db
 +  }
 +  container.replaceChildren(fragment);
 +}
+diff --git a/src/static/scripts/featured.js b/src/static/scripts/featured.js
+index bd4b4d3..9ed917a 100644
+--- a/src/static/scripts/featured.js
++++ b/src/static/scripts/featured.js
+@@ -10,24 +10,26 @@ async function getMods() {
+     return data;
+ }
+ 
++// Every mod field is user content: escape each value before it reaches innerHTML.
+ function getModTemplate(mod) {
+-    return `<figure class="skeleton w-100 h-[216px]"><img data-lazy-src="${mod.imageUrl}" class="${mod.isNSFW && !user ? 'blur-md hover:blur-none' : ''}" alt="${mod.name}" loading="lazy"/></figure>
++    const e = escapeHTML;
++    return `<figure class="skeleton w-100 h-[216px]"><img data-lazy-src="${e(mod.imageUrl)}" class="${mod.isNSFW && !user ? 'blur-md hover:blur-none' : ''}" alt="${e(mod.name)}" loading="lazy"/></figure>
+     <div class="card-body">
+         <div class="mod-card-badges">
+-            <a href="/mods?category=${mod.category_slug}">
+-                <div class="badge badge-ghost">${mod.category.name}</div>
++            <a href="/mods?category=${e(mod.category_slug)}">
++                <div class="badge badge-ghost">${e(mod.category?.name)}</div>
+             </a>
+             ${mod.isNSFW ? `<div class="badge badge-secondary badge-outline">NSFW</div>` : ''}
+         </div>
+-        <h2 class="card-title w-full">${mod.name}<span class="card-title-version">${mod.latestVersion}</span></h2>
+-        <p>by <a class="hover-underline-animation" href="/profile/${mod.user.slug}">${mod.user.name}</a></p>
+-        <p class="text-justify text-wrap-anywhere">${mod.shortDescription}</p>
++        <h2 class="card-title w-full">${e(mod.name)}<span class="card-title-version">${e(mod.latestVersion)}</span></h2>
++        <p>by <a class="hover-underline-animation" href="/profile/${e(mod.user.slug)}">${e(mod.user.name)}</a></p>
++        <p class="text-justify text-wrap-anywhere">${e(mod.shortDescription)}</p>
+         <div class="card-actions justify-end">
+-            <a class="btn btn-outline ${mod.latestVersion ? "btn-accent" : ""} btn-sm" href="/mods/${mod.user.slug}/${mod.slug}">${_("See More")}</a>
++            <a class="btn btn-outline ${mod.latestVersion ? "btn-accent" : ""} btn-sm" href="/mods/${e(mod.user.slug)}/${e(mod.slug)}">${e(_("See More"))}</a>
+         </div>
+         <div class="card-actions justify-end">
+-            <span class="stat-desc text-accent">↗︎ ${mod.downloads} ${_("downloads")}</span>
+-            <span class="stat-desc ml-2">⏱ ${timeAgo(mod.lastReleasedAt)}</span>
++            <span class="stat-desc text-accent">↗︎ ${e(mod.downloads)} ${e(_("downloads"))}</span>
++            <span class="stat-desc ml-2">⏱ ${e(timeAgo(mod.lastReleasedAt))}</span>
+         </div>
+     </div>`;
+ }
 diff --git a/src/static/scripts/mod.js b/src/static/scripts/mod.js
 index d79a1fe..e76cab7 100644
 --- a/src/static/scripts/mod.js
@@ -264,11 +314,70 @@ index d79a1fe..e76cab7 100644
  window.setReply = setReply;
  
  getComments();
+diff --git a/src/static/scripts/profile.js b/src/static/scripts/profile.js
+index 30cb285..af105f0 100644
+--- a/src/static/scripts/profile.js
++++ b/src/static/scripts/profile.js
+@@ -41,24 +41,27 @@ async function getMods(approved) {
+     return { mods, meta };
+ }
+ 
++// Every mod field is user content (the list includes unapproved mods): escape
++// each value before it reaches innerHTML.
+ function getModTemplate(mod) {
+-    return `<figure class="skeleton h-[216px] overflow-hidden"><img data-lazy-src="${mod.imageUrl}" class="w-full h-full object-cover ${mod.isNSFW && !user ? 'blur-md hover:blur-none' : ''}" alt="${mod.name}"/></figure>
++    const e = escapeHTML;
++    return `<figure class="skeleton h-[216px] overflow-hidden"><img data-lazy-src="${e(mod.imageUrl)}" class="w-full h-full object-cover ${mod.isNSFW && !user ? 'blur-md hover:blur-none' : ''}" alt="${e(mod.name)}"/></figure>
+     <div class="card-body">
+         <div class="mod-card-badges">
+-            <a href="/mods?category=${mod.category_slug}">
+-                <div class="badge badge-ghost">${mod.category.name}</div>
++            <a href="/mods?category=${e(mod.category_slug)}">
++                <div class="badge badge-ghost">${e(mod.category?.name)}</div>
+             </a>
+             ${mod.isNSFW ? `<div class="badge badge-secondary badge-outline">NSFW</div>` : ''}
+         </div>
+-        <h2 class="card-title w-full">${mod.name}<span class="card-title-version">${mod.latestVersion}</span></h2>
+-        <p>by <a class="hover-underline-animation" href="/profile/${mod.user.slug}">${mod.user.name}</a></p>
+-        <p class="text-justify text-wrap-anywhere">${mod.shortDescription}</p>
++        <h2 class="card-title w-full">${e(mod.name)}<span class="card-title-version">${e(mod.latestVersion)}</span></h2>
++        <p>by <a class="hover-underline-animation" href="/profile/${e(mod.user.slug)}">${e(mod.user.name)}</a></p>
++        <p class="text-justify text-wrap-anywhere">${e(mod.shortDescription)}</p>
+         <div class="card-actions justify-end">
+-            <a class="btn btn-outline btn-accent btn-sm" href="/mods/${mod.user.slug}/${mod.slug}">${_("See More")}</a>
++            <a class="btn btn-outline btn-accent btn-sm" href="/mods/${e(mod.user.slug)}/${e(mod.slug)}">${e(_("See More"))}</a>
+         </div>
+         <div class="card-actions justify-end">
+-            <span class="stat-desc text-accent">${mod.downloads} ${_("downloads")}</span>
+-            <span class="stat-desc ml-2">${timeAgo(mod.lastReleasedAt)}</span>
++            <span class="stat-desc text-accent">${e(mod.downloads)} ${e(_("downloads"))}</span>
++            <span class="stat-desc ml-2">${e(timeAgo(mod.lastReleasedAt))}</span>
+         </div>
+     </div>`;
+ }
 diff --git a/src/static/scripts/shared.js b/src/static/scripts/shared.js
-index 90ab16e..c87cfee 100644
+index 90ab16e..707d81d 100644
 --- a/src/static/scripts/shared.js
 +++ b/src/static/scripts/shared.js
-@@ -167,13 +167,39 @@ if (window.showdown) {
+@@ -100,7 +100,7 @@ window.showError = error => {
+     document.querySelector('#alerts').innerHTML = `
+     <div class="alert alert-error">
+         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+-        <span>${_("Error!")} ${error?.message || error?.error || error || _("Something went wrong!")}</span>
++        <span>${escapeHTML(`${_("Error!")} ${error?.message || error?.error || error || _("Something went wrong!")}`)}</span>
+     </div>`;
+     clearTimeout(window.errorTimeout);
+     window.errorTimeout = setTimeout(() => {
+@@ -121,7 +121,7 @@ window.showSuccess = message => {
+     document.querySelector('#alerts').innerHTML = `
+     <div class="alert alert-success">
+         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+-        <span>${message}</span>
++        <span>${escapeHTML(message)}</span>
+     </div>`;
+     clearTimeout(window.successTimeout);
+     window.successTimeout = setTimeout(() => {
+@@ -167,13 +167,42 @@ if (window.showdown) {
      
      window.markdownToHTML = text => {
          const lineBreakToken = Date.now();
@@ -307,10 +416,84 @@ index 90ab16e..c87cfee 100644
 +    return escapeHTML(source).replaceAll('\n', '<br>');
 +}
 +window.sanitizeMarkdownHTML = sanitizeMarkdownHTML;
++// Plain user text (names, short descriptions, messages) interpolated into HTML
++// templates must go through escapeHTML.
++window.escapeHTML = escapeHTML;
 +
  // Images are served directly by R2; the browser loads and caches them.
  function lazyLoadImages(elements) {
      for (const img of elements) {
+diff --git a/src/static/scripts/upload-build.js b/src/static/scripts/upload-build.js
+index e6f340f..48bd266 100644
+--- a/src/static/scripts/upload-build.js
++++ b/src/static/scripts/upload-build.js
+@@ -17,22 +17,25 @@ const modImages = document.querySelector("#build-images");
+ // Store the build file key after initial upload
+ let buildFileKey = null;
+ 
++// Preview of the build card: every field is user input, so each value is
++// escaped before it reaches innerHTML.
+ function getModTemplate(mod) {
++  const e = escapeHTML;
+   if (!mod.shortDescription)
+     mod.shortDescription = _("This is a description of the mod.");
+-  return `<figure class="skeleton w-100 h-[216px]"><img data-lazy-src="${
++  return `<figure class="skeleton w-100 h-[216px]"><img data-lazy-src="${e(
+     mod.imageUrl || "/static/images/thumbnail.png"
+-  }" class="${mod.isNSFW && !user ? "blur-md hover:blur-none" : ""}" alt="${
++  )}" class="${mod.isNSFW && !user ? "blur-md hover:blur-none" : ""}" alt="${e(
+     mod.name || _("Mod Name")
+-  }"/></figure>
++  )}"/></figure>
+     <div class="card-body">
+         <div class="mod-card-badges">
+             <a href="#!">
+-                <div class="badge badge-ghost">${
++                <div class="badge badge-ghost">${e(
+                   parseInt(modCategory.value)
+                     ? modCategory.selectedOptions[0]?.innerText
+                     : _("Category")
+-                }</div>
++                )}</div>
+             </a>
+             ${
+               mod.isNSFW
+@@ -40,15 +43,15 @@ function getModTemplate(mod) {
+                 : ""
+             }
+         </div>
+-        <h2 class="card-title w-full">${
++        <h2 class="card-title w-full">${e(
+           mod.name || "Mod Name"
+-        }<span class="card-title-version">${
++        )}<span class="card-title-version">${e(
+     (mod.latestVersion && mod.latestVersion.version) || ""
+-  }</span></h2>
+-        <p class="text-left">by <a class="hover-underline-animation" href="#!">${
+-          user.name
+-        }</a></p>
+-        <p class="text-justify text-wrap-anywhere">${mod.shortDescription}</p>
++  )}</span></h2>
++        <p class="text-left">by <a class="hover-underline-animation" href="#!">${e(
++          user?.name
++        )}</a></p>
++        <p class="text-justify text-wrap-anywhere">${e(mod.shortDescription)}</p>
+         <div class="card-actions justify-end">
+             <a class="btn btn-outline btn-accent btn-sm" href="#!">${_(
+               "See More"
+diff --git a/src/static/scripts/upload.js b/src/static/scripts/upload.js
+index 5f239a4..ad15811 100644
+--- a/src/static/scripts/upload.js
++++ b/src/static/scripts/upload.js
+@@ -74,7 +74,7 @@ function showToast(message, type = 'info') {
+       ${type === 'success' ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>' : ''}
+       ${type === 'error' ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>' : ''}
+       ${type === 'info' ? '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>' : ''}
+-      <span>${message}</span>
++      <span>${escapeHTML(message)}</span>
+     </div>
+   `;
+   toastContainer.appendChild(toast);
 diff --git a/src/templates/build.njk b/src/templates/build.njk
 index 61a7e9a..4965220 100644
 --- a/src/templates/build.njk
