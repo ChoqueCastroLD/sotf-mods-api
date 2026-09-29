@@ -5,14 +5,14 @@
  *   check:ownership <WP> · i18n:check · turbo typecheck + test + build
  *
  * Turbo tasks run for the packages affected since the merge-base with `main` (or
- * $SOTF_BASE_REF / --base); `--all` runs them for the whole workspace. Every step runs even if an
+ * $SOTF_BASE_REF / --base); `--all`, or running on `main` itself, runs them for the whole workspace. Every step runs even if an
  * earlier one fails, and a summary is printed at the end.
  *
  *   node tooling/scripts/verify.ts [--all] [--base <ref>] [--wp <WP-ID>]
  */
 import { performance } from 'node:perf_hooks';
 import { color, flagString, parseArgs, run } from './lib/cli.ts';
-import { resolveBaseRef } from './lib/repo.ts';
+import { currentBranch, resolveBaseRef } from './lib/repo.ts';
 
 interface Step {
   name: string;
@@ -23,7 +23,8 @@ interface Step {
 
 function main(): void {
   const { flags } = parseArgs(process.argv.slice(2));
-  const all = flags.has('all');
+  // On the integration branch itself "affected vs main" would select nothing: run everything.
+  const all = flags.has('all') || currentBranch() === 'main';
   const baseRef = all ? null : resolveBaseRef(flagString(flags, 'base'));
   const wp = flagString(flags, 'wp');
 
