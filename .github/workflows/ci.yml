@@ -76,11 +76,13 @@ jobs:
 
       - name: 2b · generated files are committed and fresh
         run: |
+          node tooling/scripts/gen.ts --check
           pnpm gen
-          git diff --exit-code -- . ':(exclude)pnpm-lock.yaml' || {
-            echo "::error::Generated files are stale. Run 'pnpm gen' and commit the result."
+          if [ -n "$(git status --porcelain -- . ':(exclude)pnpm-lock.yaml')" ]; then
+            git status --porcelain -- . ':(exclude)pnpm-lock.yaml'
+            echo "::error::Generated files are stale or uncommitted. Run 'pnpm gen' and commit the result."
             exit 1
-          }
+          fi
           node tooling/scripts/gen-ownership.ts --check
 
       - name: 2c · check:ownership (wp/* pull requests)
