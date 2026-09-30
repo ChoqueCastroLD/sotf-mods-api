@@ -25,9 +25,11 @@ interface Props {
   breadcrumbs?: readonly Crumb[];
   /** Content width: `content` (80rem, default), `wide` (96rem) or `prose` (42rem). */
   width?: 'content' | 'wide' | 'prose';
+  /** Entity of the page for analytics (`page_view` with `entityType`/`entityId`). */
+  entity?: { type: 'mod' | 'build' | 'kit' | 'user' | 'category' | 'tag'; id: number };
 }
 
-const { seo, jsonLd = [], template, preloadImage, breadcrumbs = [], width = 'content' } = Astro.props;
+const { seo, jsonLd = [], template, preloadImage, breadcrumbs = [], width = 'content', entity } = Astro.props;
 const locale = Astro.locals.locale;
 const siteUrl = loadEnv().siteUrl;
 const items = breadcrumbs.map((crumb) => ({
@@ -53,7 +55,7 @@ const widthClass = {
 }[width];
 ---
 
-<BaseLayout seo={seo} jsonLd={graph} template={template} preloadImage={preloadImage}>
+<BaseLayout seo={seo} jsonLd={graph} template={template} preloadImage={preloadImage} entity={entity}>
   <slot name="head" slot="head" />
   <div class:list={['mx-auto w-full px-4 py-6 md:px-6 md:py-10', widthClass]}>
     {items.length > 1 && <Breadcrumbs items={items} className="mb-6" />}

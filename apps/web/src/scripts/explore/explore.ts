@@ -12,9 +12,15 @@
  * - loading skeletons only after 300 ms, `aria-busy`, a polite live region with the result
  *   count, offline and failure messages; focus returns to the control that triggered the change.
  *
+ * - members whose account has the 18+ opt-in (`settings.nsfwOptIn`, T0-30) get `?nsfw=1` applied
+ *   in place: the listing HTML is shared and anonymous, so the choice is made here (read once per
+ *   browser session from `GET /api/v2/me`; guests never pay for the request).
+ *
  * Any unexpected response falls back to a normal navigation, so the worst case is a reload.
  */
 import { track } from '../beacon.ts';
+import { apiCall } from '../mod/api.ts';
+import { whenSession } from '../mod/session.ts';
 
 const ROOT = '[data-explore-root]';
 const SKELETON_DELAY_MS = 300;
@@ -217,6 +223,8 @@ interface NavigateOptions {
   closeSheet?: boolean;
   /** Analytics: this navigation applied a filter. */
   filter?: boolean;
+  /** Background refresh (not asked by the visitor): focus stays put and nothing is announced. */
+  quiet?: boolean;
 }
 
 async function navigate(win: Window, target: URL, options: NavigateOptions): Promise<void> {
@@ -238,7 +246,7 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
   controller = own;
   const results = current.querySelector<HTMLElement>('#explore-results');
   results?.setAttribute('aria-busy', 'true');
-  announce(current, messages.loading);
+  if (!options.quiet) announce(current, messages.loading);
   const skeletonTimer = setTimeout(() => {
     const list = current.querySelector<HTMLElement>('[data-explore-list]');
     const template = current.querySelector<HTMLTemplateElement>('template[data-explore-skeleton]');
@@ -317,7 +325,7 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
   } else if (wasSheetOpen) {
     closeSheet(win, false);
   }
-  if (!typed) {
+  if (!typed && !options.quiet) {
     const focusTarget =
       (options.focusKey && !options.closeSheet ? findByFocusKey(next, options.focusKey) : null) ??
       (options.closeSheet || !options.focusKey ? next.querySelector<HTMLElement>('#explore-results') : null);
@@ -326,7 +334,7 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
   }
 
   const count = next.querySelector('[data-explore-count]')?.textContent?.trim() ?? '';
-  announce(next, count);
+  if (!options.quiet) announce(next, count);
   if (options.filter) {
     track('filter_apply', { props: { query: clip(finalUrl.search, 200), count: resultCount(next) } });
   }
@@ -566,6 +574,7 @@ export function initExplore(win: Window = window): void {
   });
 
   shownUrl = win.location.pathname + win.location.search;
+  void applyNsfwOptIn(win).catch(() => {});
   win.addEventListener('popstate', () => {
     if (!rootOf(doc)) return;
     if (win.location.pathname + win.location.search === shownUrl) {
@@ -575,4 +584,46 @@ export function initExplore(win: Window = window): void {
     const url = sameOriginUrl(win, win.location.href);
     if (url) void navigate(win, url, { push: false, focusKey: null });
   });
+}
+
+// ---------------------------------------------------------------------------------------------
+// 18+ opt-in of the account
+// ---------------------------------------------------------------------------------------------
+
+const NSFW_OPT_IN_KEY = 'sotf:nsfw-opt-in';
+
+function sessionStore(win: Window): Storage | null {
+  try {
+    return win.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+/** The account's `settings.nsfwOptIn`, remembered for the browser session; false for guests. */
+async function nsfwOptIn(win: Window): Promise<boolean> {
+  const summary = await whenSession(win);
+  if (!summary) return false;
+  const store = sessionStore(win);
+  const key = `${NSFW_OPT_IN_KEY}:${summary.id}`;
+  const known = store?.getItem(key);
+  if (known === '1' || known === '0') return known === '1';
+  const me = await apiCall<{ settings?: { nsfwOptIn?: boolean } }>('GET', '/api/v2/me');
+  if (!me.ok) return false;
+  const optedIn = me.data.settings?.nsfwOptIn === true;
+  store?.setItem(key, optedIn ? '1' : '0');
+  return optedIn;
+}
+
+/** Reloads the listing in place with `?nsfw=1` for opted-in members (the URL keeps the choice). */
+async function applyNsfwOptIn(win: Window): Promise<void> {
+  const start = win.location.pathname + win.location.search;
+  if (new URLSearchParams(win.location.search).get('nsfw') === '1') return;
+  if (!(await nsfwOptIn(win))) return;
+  // The visitor moved on meanwhile: the next listing they open is handled by its own page load.
+  if (win.location.pathname + win.location.search !== start || !rootOf(win.document)) return;
+  const url = sameOriginUrl(win, win.location.href);
+  if (!url) return;
+  url.searchParams.set('nsfw', '1');
+  await navigate(win, url, { push: false, focusKey: null, quiet: true });
 }

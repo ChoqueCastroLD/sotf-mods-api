@@ -10,6 +10,7 @@
 import { bannerSvg } from '@sotf/brand/banner';
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
 import { Avatar } from '@sotf/ui/avatar';
 import { buttonClasses } from '@sotf/ui/button';
 import { type DomainI18n, ProseLocator, SPOTLIGHT_TIERS } from '@sotf/ui/domain';
@@ -31,6 +32,7 @@ import {
 } from 'lucide-react';
 import Picture from '../layout/Picture.astro';
 import { dayOnIsland } from './activity.ts';
+import { markdownLabels } from '../mod/i18n.ts';
 import { IdentityStamps } from './Domain.tsx';
 import type { UserPublicDTO } from './data.ts';
 import { linkLabel } from './i18n.ts';
@@ -108,6 +110,7 @@ const statItems = [
       },
 ];
 const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
+
 ---
 
 <header class="grid gap-5">
@@ -234,7 +237,7 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
 
   {
     user.bioHtml && (
-      <ProseLocator html={user.bioHtml} className="max-w-(--container-prose) text-pretty" />
+      <ProseLocator html={localizeHtml(user.bioHtml, markdownLabels())} className="max-w-(--container-prose) text-pretty" />
     )
   }
 

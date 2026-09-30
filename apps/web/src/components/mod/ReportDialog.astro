@@ -1,8 +1,9 @@
 ---
 /**
- * Report the mod to the rangers (T0-08, PLAN §7.4): reason + optional details →
- * `POST /api/v2/reports { targetType: 'mod' }` (`scripts/mod/report.ts`). Guests see a sign-in
- * link instead of the form (reports need an account with a verified email).
+ * Report a mod or a build to the rangers (T0-08, T0-24, PLAN §7.4): reason + optional details →
+ * `POST /api/v2/reports { targetType: 'mod' }` (`scripts/mod/report.ts`, which reads the target id
+ * and its texts from the form). Guests see a sign-in link instead of the form (reports need an
+ * account with a verified email). Opened by `[data-dialog-open="report-dialog"]`.
  */
 import { REPORT_REASONS } from '@sotf/contracts/moderation';
 import { m } from '@sotf/i18n/messages';
@@ -25,6 +26,16 @@ const reasonLabel: Record<(typeof REPORT_REASONS)[number], string> = {
   illegal: m.mod_report_reason_illegal(),
   other: m.mod_report_reason_other(),
 };
+const messages = JSON.stringify({
+  chooseReason: m.mod_report_choose_reason(),
+  sent: m.mod_report_sent(),
+  duplicate: m.mod_report_duplicate(),
+  error: m.mod_toast_error(),
+  offline: m.common_state_offline(),
+  rateLimited: m.mod_toast_rate_limited(),
+  signInRequired: m.mod_toast_sign_in(),
+  verifyEmail: m.mod_toast_verify_email(),
+});
 ---
 
 <ModDialog id="report-dialog" title={m.mod_report_title({ name: mod.name })} description={m.mod_report_intro()}>
@@ -37,7 +48,7 @@ const reasonLabel: Record<(typeof REPORT_REASONS)[number], string> = {
       {m.common_account_sign_in()}
     </a>
   </div>
-  <form method="dialog" data-report-form data-mod-id={mod.id} class="grid gap-4" novalidate>
+  <form method="dialog" data-report-form data-mod-id={mod.id} data-report-messages={messages} class="grid gap-4" novalidate>
     <fieldset class="grid gap-2">
       <legend class="mb-1 text-sm font-semibold">{m.mod_report_reason_label()}</legend>
       {
@@ -73,5 +84,5 @@ const reasonLabel: Record<(typeof REPORT_REASONS)[number], string> = {
       </button>
     </div>
   </form>
-  <p data-report-done hidden role="status" class="rounded-md border border-border bg-raised p-3 text-sm"></p>
+  <p data-report-done hidden role="status" tabindex="-1" class="rounded-md border border-border bg-raised p-3 text-sm outline-none"></p>
 </ModDialog>

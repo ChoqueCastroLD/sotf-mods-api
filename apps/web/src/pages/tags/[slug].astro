@@ -76,6 +76,7 @@ const jsonLd = list
 <PageLayout
   template="tag"
   width="wide"
+  entity={tag ? { type: 'tag', id: tag.id } : undefined}
   seo={{ title, description, path: seo.path, noindex: seo.noindex }}
   jsonLd={jsonLd}
   breadcrumbs={[

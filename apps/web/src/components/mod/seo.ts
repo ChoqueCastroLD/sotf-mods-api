@@ -11,8 +11,9 @@ import { REVIEW_RULES } from '@sotf/contracts/reviews';
 import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, type Locale, toHreflang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import type { SoftwareApplication, VideoObject, WithContext } from 'schema-dts';
+import type { FAQPage, SoftwareApplication, VideoObject, WithContext } from 'schema-dts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
+import type { FaqEntry } from '../../pages/sitemaps/_lib/faq.ts';
 import type { ModDetailDTO } from './data.ts';
 import { licenseHref } from './i18n.ts';
 
@@ -163,4 +164,20 @@ export function modJsonLd({ mod, locale, siteUrl, pageUrl }: ModJsonLdInput): Js
     graph.push(video);
   }
   return graph;
+}
+
+/** `FAQPage` of the per-mod FAQ (`#faq`): the same questions and answers the page shows. */
+export function modFaqJsonLd(items: readonly FaqEntry[], pageUrl: string, locale: Locale): WithContext<FAQPage> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': `${pageUrl}#faq`,
+    url: pageUrl,
+    inLanguage: toHreflang(locale),
+    mainEntity: items.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
 }

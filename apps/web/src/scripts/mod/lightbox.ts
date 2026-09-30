@@ -4,8 +4,9 @@
  * swaps the trailer facade for the `youtube-nocookie` iframe on play (removed again on close, so
  * the video stops).
  */
-import { openDialog } from './dialogs.ts';
+
 import { fill } from './data.ts';
+import { openDialog } from './dialogs.ts';
 import { youtubeIframe } from './prose.ts';
 import type { ModPageData } from './types.ts';
 

@@ -7,6 +7,7 @@
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { CommentItem } from '@sotf/ui/domain';
+import { loadEnv } from '../../lib/env.ts';
 import type { CommentPage, ModDetailDTO } from './data.ts';
 import { markdownLabels } from './i18n.ts';
 import { SECTION_TITLE_CLASSES } from './styles.ts';
@@ -59,6 +60,7 @@ const items = (comments?.items ?? []).map((comment) => ({
     data-mod-author-id={mod.userId}
     data-next-cursor={comments?.nextCursor ?? undefined}
     data-total={mod.commentsCount}
+    data-turnstile-site-key={loadEnv().turnstileSiteKey}
     class="grid gap-2"
   >
     <p class="text-sm text-fg-muted" data-comment-guest-hint>

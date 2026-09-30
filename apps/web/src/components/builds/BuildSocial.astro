@@ -8,6 +8,7 @@
 import { toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
+import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 import { BuildCommentList, BuildReviewList } from './Domain.tsx';
 import type { CommentPage, ModDetailDTO, ReviewPage } from './data.ts';
@@ -60,6 +61,7 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
     data-island="reviews"
     data-mod-id={build.id}
     data-mod-author-id={build.userId}
+    data-mod-author-name={creatorName}
     data-next-cursor={reviews?.nextCursor ?? undefined}
     data-total={reviewCount}
     class="grid gap-2"
@@ -91,6 +93,7 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
     data-mod-author-id={build.userId}
     data-next-cursor={comments?.nextCursor ?? undefined}
     data-total={build.commentsCount}
+    data-turnstile-site-key={loadEnv().turnstileSiteKey}
     class="grid gap-2"
   >
     <p class="text-sm" data-comment-guest-hint>

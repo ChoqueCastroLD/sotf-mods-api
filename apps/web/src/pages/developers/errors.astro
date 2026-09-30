@@ -1,0 +1,16 @@
+---
+/**
+ * `/developers/errors` → 301 `/developers` (per locale). The RFC 9457 problem `type` URIs are
+ * `https://sotf-mods.com/developers/errors#<code>` (`@sotf/contracts/error-codes`); the anchors
+ * (`#not-found`…) live in the error-code table of `/developers`, and browsers keep the fragment
+ * across the redirect because the `Location` carries none.
+ */
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+setPageCache(Astro, pageCache.custom(EDGE_TTL.hour));
+return Astro.redirect(href('/developers', Astro.locals.locale), 301);
+---

@@ -78,5 +78,6 @@ const jsonLd = list
   jsonLd={jsonLd}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_term_builds() }]}
 >
+  <link slot="head" rel="alternate" type="application/rss+xml" href="/builds/feed.xml" title={m.builds_feed_title()} />
   <ExploreView data={data} heading={copy.heading} readout={m.explore_readout_explore()} intro={copy.description} />
 </PageLayout>

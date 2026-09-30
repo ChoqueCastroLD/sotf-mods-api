@@ -8,14 +8,14 @@
  * - Follow ♥ (Backpack): a toggle button enhanced by `build-page.ts` (optimistic with undo); it
  *   sits in a GET form to the sign-in page (`?next=`), so guests and no-JS visitors sign in first.
  * - Copy link and «How to import» (anchor to the steps).
- * - Mount point of the «Add to Kit» island (WP-71), hidden until that island takes it over.
+ * - «+ Kit»: a link to `/me/kits?add=<id>` (the console «Add to a kit» screen of WP-71).
  */
 import { profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { BadgeCheck, ChevronDown, Download, Heart, Link2, ListOrdered, Star } from 'lucide-react';
+import { BadgeCheck, ChevronDown, Download, Flag, Heart, Link2, ListOrdered, Plus, Star } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { BuildSpec, ModDetailDTO, VersionDTO } from './data.ts';
 import { blueprintAuthorDiffers } from './data.ts';
@@ -172,7 +172,7 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
                 <Icon icon={ChevronDown} size={18} />
                 <span class="sr-only">{m.builds_action_other_versions()}</span>
               </summary>
-              <div class="absolute end-0 top-full z-(--z-dropdown) mt-1 w-72 rounded-lg border border-border bg-overlay p-1 shadow-lg">
+              <div class="absolute end-0 top-full z-(--z-dropdown) mt-1 w-72 max-w-[calc(100vw-2rem)] rounded-lg border border-border bg-overlay p-1 shadow-lg">
                 <p class="readout px-2.5 pt-1.5 pb-1">{m.builds_action_other_versions()}</p>
                 <ul>
                   {others.map((version) => (
@@ -236,7 +236,24 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
         <Icon icon={ListOrdered} size={18} />
         {m.builds_action_how_to_import()}
       </a>
-      <div data-island="kit-add" data-mod-id={build.id} data-label={m.builds_action_add_to_kit()} hidden></div>
+      <a
+        href={`${href('/me/kits', locale)}?add=${build.id}`}
+        data-kit-add={build.id}
+        class={buttonClasses({ variant: 'secondary', size: 'md' })}
+      >
+        <Icon icon={Plus} size={18} />
+        {m.builds_action_add_to_kit()}
+      </a>
+      <button
+        type="button"
+        hidden
+        data-js-only
+        data-dialog-open="report-dialog"
+        class={buttonClasses({ variant: 'ghost', size: 'md', className: 'text-fg-muted' })}
+      >
+        <Icon icon={Flag} size={18} />
+        {m.mod_action_report()}
+      </button>
     </div>
 
     <div

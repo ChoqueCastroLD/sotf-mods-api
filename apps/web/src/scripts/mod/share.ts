@@ -33,7 +33,7 @@ async function copyText(text: string, doc: Document): Promise<boolean> {
 export function initShare(root: HTMLElement, data: ModPageData, doc: Document = document): void {
   const status = root.querySelector<HTMLElement>('[data-share-status]');
   const announce = (message: string) => {
-    if (status && status.closest('dialog')?.open) status.textContent = message;
+    if (status?.closest('dialog')?.open) status.textContent = message;
     else toast(message);
   };
 

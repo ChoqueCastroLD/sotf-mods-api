@@ -31,7 +31,8 @@ export async function bootComments(root: ParentNode, session: Promise<MeSummary 
     onTakeOver: () => {
       // The island now renders the list: drop the server-rendered copy (and its duplicate ids).
       for (const child of Array.from(section.children)) {
-        if (child !== mount && !child.matches('h2, h3')) child.remove();
+        // Keep the section title, alone or inside its header row (build pages: title + count).
+        if (child !== mount && !child.matches('h2, h3') && !child.querySelector(':scope > h2')) child.remove();
       }
     },
   });

@@ -10,8 +10,8 @@
  *   offered on this page during the next 24 h and linked to the field-report form.
  */
 import { pageEntity, track } from '../beacon.ts';
-import { closeDialog, openDialog } from './dialogs.ts';
 import { fill } from './data.ts';
+import { closeDialog, openDialog } from './dialogs.ts';
 import { toast } from './toast.ts';
 import type { ModPageData } from './types.ts';
 

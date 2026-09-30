@@ -30,13 +30,14 @@ import {
   resolveBuildPage,
 } from '../../../../components/builds/data.ts';
 import ImportSteps from '../../../../components/builds/ImportSteps.astro';
-import { markdownLabels } from '../../../../components/builds/i18n.ts';
+import { loginHrefFor, markdownLabels } from '../../../../components/builds/i18n.ts';
 import MobileDownloadBar from '../../../../components/builds/MobileDownloadBar.astro';
 import { respondUnresolved } from '../../../../components/builds/responses.ts';
 import SpecSheet from '../../../../components/builds/SpecSheet.astro';
 import StatusBanners from '../../../../components/builds/StatusBanners.astro';
 import { buildDescription, buildJsonLd, buildTitle } from '../../../../components/builds/seo.ts';
 import VersionsList from '../../../../components/builds/VersionsList.astro';
+import ReportDialog from '../../../../components/mod/ReportDialog.astro';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { setPageCache } from '../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../lib/cache/policy.ts';
@@ -203,6 +204,7 @@ const visibleCrumbs = trail.map((crumb) => ({
   </div>
 
   <MobileDownloadBar build={build} />
+  <ReportDialog mod={build} loginHref={loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale))} />
 </BaseLayout>
 
 <script>

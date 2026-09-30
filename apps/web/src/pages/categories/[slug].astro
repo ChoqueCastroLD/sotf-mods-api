@@ -49,6 +49,8 @@ if (direct.slug !== raw) {
 }
 
 const category = direct;
+const categoryId = taxonomy.category(category.slug)?.id;
+const categoryEntity = categoryId === undefined ? undefined : { type: 'category' as const, id: categoryId };
 const listTag = category.kind === 'build' ? 'list:builds' : 'list:mods';
 setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, [cacheTag.category(category.slug), listTag]));
 
@@ -91,6 +93,7 @@ const jsonLd = list
 <PageLayout
   template="category"
   width="wide"
+  entity={categoryEntity}
   seo={{ title, description: intro, path: seo.path, noindex: seo.noindex }}
   jsonLd={jsonLd}
   breadcrumbs={[
@@ -99,6 +102,13 @@ const jsonLd = list
     { label: name },
   ]}
 >
+  <link
+    slot="head"
+    rel="alternate"
+    type="application/rss+xml"
+    href={`/categories/${encodeURIComponent(category.slug)}/feed.xml`}
+    title={name}
+  />
   <ExploreView
     data={data}
     heading={name}

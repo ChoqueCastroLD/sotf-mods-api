@@ -1,0 +1,151 @@
+---
+/**
+ * `/unsubscribe?token=` — footer link of every notification email (PLAN §7.3, WP-43). Mail
+ * providers use the RFC 8058 one-click header straight against the API; people who click the
+ * footer link land here.
+ *
+ * Opening the link never unsubscribes: mail scanners and link previews fetch URLs from emails, so
+ * the page asks for a confirmation and the change happens on `POST` (a plain form, no JavaScript
+ * needed). The server calls `POST /api/v2/unsubscribe?token=` and renders the outcome:
+ * done (204), link that no longer works (404 invalid / 410 expired or account deleted) or a
+ * temporary failure with «Try again» and the reference. Every state links to
+ * `/settings/notifications`, where each kind of email can be changed.
+ *
+ * The URL carries a secret: never cached, no `Referer`, `noindex`, no ads.
+ */
+import { isApiError } from '@sotf/contracts/client';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { BellOff, CircleCheck, Link2Off, RotateCcw, Settings, TriangleAlert } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { serverApi } from '../lib/api.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { href } from '../lib/i18n.ts';
+import { ensureLocals } from '../lib/request-context.ts';
+
+export const prerender = false;
+
+type State = 'confirm' | 'done' | 'invalid' | 'rate-limited' | 'failed';
+
+setPageCache(Astro, false);
+Astro.response.headers.set('referrer-policy', 'no-referrer');
+Astro.response.headers.set('cache-control', 'private, no-store');
+const locals = ensureLocals(Astro);
+const locale = locals.locale;
+const request = Astro.request;
+
+if (request.method !== 'GET' && request.method !== 'HEAD' && request.method !== 'POST') {
+  return new Response(null, { status: 405, headers: { allow: 'GET, HEAD, POST' } });
+}
+
+/** Same bounds as the contract (`notificationsEndpoints.unsubscribe`: 16–1024 characters). */
+function validToken(value: unknown): value is string {
+  return typeof value === 'string' && value.length >= 16 && value.length <= 1024;
+}
+
+let token: unknown = Astro.url.searchParams.get('token');
+let state: State = validToken(token) ? 'confirm' : 'invalid';
+let reference: string = locals.requestId;
+
+if (request.method === 'POST') {
+  const form = await request.formData().catch(() => null);
+  const posted = form?.get('token');
+  if (typeof posted === 'string' && posted) token = posted;
+  if (!validToken(token)) {
+    state = 'invalid';
+  } else {
+    try {
+      await serverApi().notifications.unsubscribe({ query: { token } }, { signal: AbortSignal.timeout(8000) });
+      state = 'done';
+    } catch (error) {
+      if (isApiError(error) && (error.status === 404 || error.status === 410 || error.code === 'VALIDATION_FAILED')) {
+        state = 'invalid';
+      } else if (isApiError(error) && error.status === 429) {
+        state = 'rate-limited';
+      } else {
+        state = 'failed';
+        if (isApiError(error) && error.problem.requestId) reference = error.problem.requestId;
+      }
+    }
+  }
+}
+
+if (state === 'invalid') Astro.response.status = request.method === 'POST' ? 410 : 404;
+if (state === 'failed') Astro.response.status = 503;
+if (state === 'rate-limited') Astro.response.status = 429;
+
+const settingsHref = href('/settings/notifications', locale);
+const actionHref = href('/unsubscribe', locale);
+const heading = {
+  confirm: m.emails_notify_unsubscribe(),
+  done: m.settings_notif_saved(),
+  invalid: m.auth_reset_invalid_heading(),
+  'rate-limited': m.errors_code_rate_limited_title(),
+  failed: m.errors_code_unavailable_title(),
+}[state];
+const text = {
+  confirm: m.settings_notifications_hint(),
+  done: m.settings_notif_matrix_text(),
+  invalid: m.settings_notif_matrix_text(),
+  'rate-limited': m.errors_code_rate_limited_detail(),
+  failed: m.errors_code_unavailable_detail(),
+}[state];
+const icon = {
+  confirm: BellOff,
+  done: CircleCheck,
+  invalid: Link2Off,
+  'rate-limited': TriangleAlert,
+  failed: TriangleAlert,
+}[state];
+const tone = {
+  confirm: 'text-signal',
+  done: 'text-success',
+  invalid: 'text-fg-muted',
+  'rate-limited': 'text-warning',
+  failed: 'text-danger',
+}[state];
+const canSubmit = validToken(token) && (state === 'confirm' || state === 'failed' || state === 'rate-limited');
+const primaryClasses =
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-md bg-primary px-5 font-semibold text-primary-fg transition-[filter] hover:brightness-110 motion-reduce:transition-none';
+const secondaryClasses =
+  'inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-border-strong px-5 font-semibold text-fg hover:bg-fg/8';
+---
+
+<BaseLayout
+  template="unsubscribe"
+  seo={{ title: m.emails_notify_unsubscribe(), description: m.settings_notifications_hint(), noindex: true, canonical: false, alternates: false }}
+>
+  <section class="relative overflow-hidden">
+    <div class="texture-topo pointer-events-none absolute inset-0 opacity-50" aria-hidden="true"></div>
+    <div class="relative mx-auto grid w-full max-w-(--container-prose) px-4 py-12 md:py-20">
+      <div
+        class="grid gap-5 rounded-xl border border-border bg-surface p-6 shadow-lg md:p-8"
+        data-unsubscribe={state}
+      >
+        <span class:list={['flex size-12 items-center justify-center rounded-full border border-border bg-raised', tone]} aria-hidden="true">
+          <Icon icon={icon} size={24} />
+        </span>
+        <h1 class="font-display-caps text-display-xs text-balance text-fg md:text-display-sm">{heading}</h1>
+        <p class="text-pretty text-fg-muted">{text}</p>
+        <div class="flex flex-wrap gap-3">
+          {
+            canSubmit && (
+              <form method="post" action={actionHref} class="contents">
+                <input type="hidden" name="token" value={token as string} />
+                <button type="submit" class={primaryClasses}>
+                  <Icon icon={state === 'confirm' ? BellOff : RotateCcw} size={18} />
+                  {state === 'confirm' ? m.common_action_confirm() : m.errors_server_retry()}
+                </button>
+              </form>
+            )
+          }
+          <a href={settingsHref} class={canSubmit ? secondaryClasses : primaryClasses}>
+            <Icon icon={Settings} size={18} />
+            {m.settings_notifications_title()}
+          </a>
+        </div>
+        {state === 'failed' && <p class="readout text-fg-subtle">{m.errors_reference({ id: reference })}</p>}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

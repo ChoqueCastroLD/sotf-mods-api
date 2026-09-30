@@ -55,7 +55,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
     !compact && (
       <div class="grid min-w-0 gap-3">
         <div
-          data-vt-cover-target
+          data-vt-cover-target={String(mod.id)}
           class="relative aspect-video overflow-hidden rounded-lg border border-border bg-raised"
           style={hero?.dominantColor ? `background-color:${hero.dominantColor}` : undefined}
         >
