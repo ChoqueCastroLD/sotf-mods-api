@@ -310,11 +310,18 @@ export const StudioMediaDTO = dto(
   },
 );
 
+/** Rendering profile of a description: `legacy` keeps raw HTML (strict allowlist), `markdown` shows it as text. */
+export const DescriptionFormat = z.enum(['legacy', 'markdown']);
+export type DescriptionFormat = z.infer<typeof DescriptionFormat>;
+
 export const StudioModDTO = dto(
   'StudioModDTO',
   z.object({
     mod: ModDetailDTO,
     descriptionMd: z.string(),
+    descriptionFormat: DescriptionFormat.describe(
+      '`legacy`: a description written on the old site keeps its raw HTML layout until the author converts it',
+    ),
     statusReason: z.string().nullable(),
     qualityScore: z.number().int().min(0).max(100),
     preflight: z.array(PreflightItemDTO),
@@ -328,6 +335,7 @@ export const StudioModDTO = dto(
       {
         mod: exampleOf(ModDetailDTO),
         descriptionMd: '## Features\n\n- Noclip\n- God mode',
+        descriptionFormat: 'markdown',
         statusReason: null,
         qualityScore: 85,
         preflight: [exampleOf(PreflightItemDTO)],
@@ -359,6 +367,10 @@ export const UpdateStudioModBody = dto(
     dedicatedServer: ListingFields.dedicatedServer.optional(),
     safeToRemove: ListingFields.safeToRemove.optional(),
     originalAuthor: ListingFields.originalAuthor.optional(),
+    descriptionFormat: z
+      .literal('markdown')
+      .optional()
+      .describe('Convert a legacy description to Markdown (raw HTML then shows as text; there is no way back)'),
   }),
   {
     description: 'Edit the listing (no re-upload of images).',

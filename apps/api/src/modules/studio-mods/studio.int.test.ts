@@ -161,3 +161,47 @@ describe('uploads', () => {
     expect((await call('GET', `/api/v2/uploads/${uploadId}`, fan)).status).toBe(404);
   });
 });
+
+describe('description format', () => {
+  it('keeps the raw HTML of a legacy description until the author converts it to Markdown', async () => {
+    const before = await call('GET', `/api/v2/studio/mods/${SONS_AX_LIB}`, owner);
+    expect(before.status).toBe(200);
+    expect(before.body.descriptionFormat).toBe('legacy');
+
+    const md = '<p align="center"><b>Sons Ax Lib</b></p>\n\nShared helpers for **modders**.';
+    const edited = await call('PATCH', `/api/v2/studio/mods/${SONS_AX_LIB}`, owner, { descriptionMd: md });
+    expect(edited.status).toBe(200);
+    expect(edited.body.descriptionFormat).toBe('legacy');
+    let row = await exec(db, `SELECT "descriptionFormat", "descriptionHtml" FROM "Mod" WHERE "id" = $1`, [SONS_AX_LIB]);
+    expect(row.rows[0].descriptionFormat).toBe('legacy');
+    expect(row.rows[0].descriptionHtml).toContain('<b>Sons Ax Lib</b>');
+    expect(edited.body.preflight.some((p: any) => p.code === 'description_raw_html')).toBe(false);
+
+    const converted = await call('PATCH', `/api/v2/studio/mods/${SONS_AX_LIB}`, owner, {
+      descriptionFormat: 'markdown',
+    });
+    expect(converted.status).toBe(200);
+    expect(converted.body.descriptionFormat).toBe('markdown');
+    expect(converted.body.descriptionMd).toBe(md);
+    row = await exec(db, `SELECT "descriptionFormat", "descriptionHtml" FROM "Mod" WHERE "id" = $1`, [SONS_AX_LIB]);
+    expect(row.rows[0].descriptionFormat).toBe('markdown');
+    expect(row.rows[0].descriptionHtml).not.toContain('<b>');
+    expect(row.rows[0].descriptionHtml).toContain('&lt;b&gt;');
+    // Raw HTML in a Markdown description is shown as text: the editor warns about it.
+    expect(converted.body.preflight.some((p: any) => p.code === 'description_raw_html')).toBe(true);
+
+    // There is no way back to the legacy profile.
+    const back = await call('PATCH', `/api/v2/studio/mods/${SONS_AX_LIB}`, owner, { descriptionFormat: 'legacy' });
+    expect(back.status).toBe(422);
+  });
+
+  it('persists the inferred format on the first edit of any other field', async () => {
+    await exec(db, `UPDATE "Mod" SET "descriptionFormat" = NULL WHERE "id" = $1`, [AXEL_MOD_MENU]);
+    const res = await call('PATCH', `/api/v2/studio/mods/${AXEL_MOD_MENU}`, owner, {
+      shortDescription: 'In-game menu with noclip, god mode and spawners.',
+    });
+    expect(res.status).toBe(200);
+    const row = await exec(db, `SELECT "descriptionFormat" FROM "Mod" WHERE "id" = $1`, [AXEL_MOD_MENU]);
+    expect(row.rows[0].descriptionFormat).toBe(res.body.descriptionFormat);
+  });
+});

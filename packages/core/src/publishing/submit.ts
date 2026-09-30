@@ -38,12 +38,14 @@ import { preflightPasses, qualityScore } from './preflight.ts';
 import {
   actorOf,
   assertWriter,
+  descriptionFormatOf,
   existingVersions,
   type FileUpload,
   kindOfType,
   loadFileUpload,
   loadOwnedMod,
   lockOwnedMod,
+  persistDescriptionFormat,
   type ResolvedDependency,
   resolveDependencies,
   subjectOf,
@@ -454,12 +456,15 @@ export async function releaseVersion(
   if (decision.publishFile) size = (await publishVersionFile(ctx, storage, file.row.id, target)).size;
   const declared = input.declaredDependencies ?? (await carriedDependencies(ctx, current.id));
   const routing = await modRouting(ctx.db, current.id);
+  // Inferred before the first v2 version exists, so publishing one never flips an old layout.
+  const descriptionFormat = await descriptionFormatOf(ctx.db, current.id);
   const now = ctx.clock.now();
 
   try {
     await ctx.db.transaction(async (tx) => {
       const locked = await lockOwnedMod(ctx, tx, current.id);
       if (locked.status !== current.status) throw errors.conflict('The mod changed meanwhile; try again');
+      await persistDescriptionFormat(tx, locked.id, descriptionFormat);
       if (manifest) {
         const again = checkAgainstMod(manifest, {
           manifestId: locked.manifestId,

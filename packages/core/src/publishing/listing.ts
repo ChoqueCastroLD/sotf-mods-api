@@ -81,6 +81,7 @@ export async function resolveListing(
     columns.descriptionHtml = rendered.html;
     columns.renderVersion = rendered.renderVersion;
     columns.description = legacyText(input.descriptionMd);
+    columns.descriptionFormat = options.legacy ? 'legacy' : 'markdown';
   }
   if (input.categorySlug !== undefined) {
     const category = await findCategory(exec, input.categorySlug, options.kind);

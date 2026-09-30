@@ -18,8 +18,8 @@ describe('table policies (PLAN §9.2 «permisos por tabla»)', () => {
 
   it('reports unclassified tables, stale policies and unknown columns', () => {
     const review = reviewTablePolicies([{ name: 'Brand', columns: ['id'] }], {
-      Gone: { exposure: 'public', writers: ['admin'] },
-      Brand: { exposure: 'public', writers: ['admin'], privateColumns: ['missing'], secretColumns: ['id'] },
+      Gone: { exposure: 'public', writers: ['admin'], note: 'gone' },
+      Brand: { exposure: 'public', writers: ['admin'], privateColumns: ['missing'], secretColumns: ['id'], note: 'x' },
     });
     expect(review.unclassified).toEqual([]);
     expect(review.stale).toEqual(['Gone']);

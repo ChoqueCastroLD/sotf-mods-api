@@ -37,7 +37,15 @@ import { audit, evictLocal, modRouting, modTags, type PublishingDeps } from './c
 import { writeMediaSet } from './gallery.ts';
 import { rawHtmlWarning, resolveListing, setModTags, storedListingFacts } from './listing.ts';
 import { type PreflightFacts, preflight, qualityScore } from './preflight.ts';
-import { actorOf, assertWriter, isLegacyAuthored, kindOfType, loadOwnedMod, lockOwnedMod } from './queries.ts';
+import {
+  actorOf,
+  assertWriter,
+  descriptionFormatOf,
+  kindOfType,
+  loadOwnedMod,
+  lockOwnedMod,
+  persistDescriptionFormat,
+} from './queries.ts';
 import { releaseVersion } from './submit.ts';
 import { legacyText, renderChangelog } from './text.ts';
 import { ownerVersions, recomputeLatest } from './versions.ts';
@@ -164,13 +172,14 @@ export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number
   const row = await loadOwnedMod(ctx, modId);
   const { snapshot, entry } = await entryOf(ctx, deps, row.id);
   const kind = kindOfType(row.type);
-  const [detail, versions, facts, legacy, media] = await Promise.all([
+  const [detail, versions, facts, descriptionFormat, media] = await Promise.all([
     buildModDetail(ctx, deps.config, snapshot, entry),
     ownerVersions(ctx, snapshot, entry),
     storedListingFacts(ctx.db, row.id, kind === 'build' ? 'build' : 'mod'),
-    isLegacyAuthored(ctx.db, row.id),
+    descriptionFormatOf(ctx.db, row.id),
     studioMedia(ctx, deps, row.id),
   ]);
+  const legacy = descriptionFormat === 'legacy';
   const descriptionMd = row.descriptionMd ?? row.description;
   const listingPreflight: PreflightFacts = {
     mode: 'edit',
@@ -194,6 +203,7 @@ export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number
   return {
     mod: { ...detail, descriptionMd },
     descriptionMd,
+    descriptionFormat,
     statusReason: row.statusReason,
     qualityScore: qualityScore(facts),
     preflight: preflight(listingPreflight),
@@ -269,12 +279,21 @@ export async function updateStudioMod(
   const current = await loadOwnedMod(ctx, modId);
   if (current.status === 'removed') throw errors.forbidden('A removed mod cannot be edited');
   const kind = kindOfType(current.type);
-  const legacy = await isLegacyAuthored(ctx.db, current.id);
+  const format = await descriptionFormatOf(ctx.db, current.id);
+  // «Convert to Markdown»: the stored source is re-rendered with the `full` profile (no way back).
+  const convert = body.descriptionFormat === 'markdown' && format === 'legacy';
+  const legacy = format === 'legacy' && !convert;
+  const { descriptionFormat: _format, ...fields } = body;
+  const input =
+    convert && fields.descriptionMd === undefined
+      ? { ...fields, descriptionMd: current.descriptionMd ?? current.description }
+      : fields;
   const now = ctx.clock.now();
-  const listing = await resolveListing(ctx.db, body, { kind, legacy, now });
+  const listing = await resolveListing(ctx.db, input, { kind, legacy, now });
   if (listing.fields.length > 0) {
     await ctx.db.transaction(async (tx) => {
       await lockOwnedMod(ctx, tx, current.id);
+      await persistDescriptionFormat(tx, current.id, format);
       if (Object.keys(listing.columns).length > 0)
         await tx.update(mod).set(listing.columns).where(eq(mod.id, current.id));
       if (listing.tagIds) await setModTags(tx, current.id, listing.tagIds);
