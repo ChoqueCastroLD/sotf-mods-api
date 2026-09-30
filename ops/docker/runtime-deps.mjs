@@ -67,9 +67,12 @@ function merge(from, into) {
 }
 
 // ── import scanning ──────────────────────────────────────────────────────────────────────────
+// Static `import`/`export … from` statements start a line in the (unminified, one statement per
+// line) bundles; anchoring them keeps prose such as an error message saying `…; import "@sotf/x"`
+// inside a string from being read as an import.
 const STATIC_PATTERNS = [
-  /\bimport\s+(?:[\w*${}\s,]+?\s+from\s+)?["']([^"'\n]+)["']/g,
-  /\bexport\s+(?:\*(?:\s+as\s+\w+)?|\{[^}]*\})\s+from\s+["']([^"'\n]+)["']/g,
+  /^[ \t]*import\s+(?:[\w*${}\s,]+?\s+from\s+)?["']([^"'\n]+)["']/gm,
+  /^[ \t]*export\s+(?:\*(?:\s+as\s+\w+)?|\{[^}]*\})\s+from\s+["']([^"'\n]+)["']/gm,
   /\bimport\(\s*["']([^"'\n]+)["']\s*\)/g,
 ];
 const REQUIRE_PATTERN = /\brequire(?:\.resolve)?\(\s*["']([^"'\n]+)["']\s*\)/g;
@@ -87,7 +90,7 @@ function jsFiles(target, out = []) {
 }
 
 /** `import { a, b as c } from "x"` and `export { a } from "x"`: the bindings taken from `x`. */
-const NAMED_IMPORT_PATTERN = /\b(?:import\s+(?:[\w$]+\s*,\s*)?|export\s+)\{([^}]*)\}\s*from\s*["']([^"'\n]+)["']/g;
+const NAMED_IMPORT_PATTERN = /^[ \t]*(?:import\s+(?:[\w$]+\s*,\s*)?|export\s+)\{([^}]*)\}\s*from\s*["']([^"'\n]+)["']/gm;
 
 /** Named bindings imported from bare specifiers (spec -> names). */
 function namedImports(source) {

@@ -12,7 +12,8 @@
 # workspace sources removed, pruned to what dist/server imports) → runtime (Alpine + the node
 # binary + tini, USER node, TZ=UTC, NODE_ENV=production).
 #
-# No HEALTHCHECK on purpose: Coolify runs its own with wget (busybox) against /healthz.
+# The image carries a HEALTHCHECK (busybox wget on /healthz); a Coolify health check configured on
+# the app takes precedence over it.
 # Target size: ≤ 180 MB. The build context is the repository root; web.Dockerfile.dockerignore keeps
 # .env files, dumps, node_modules and build outputs out of it.
 
@@ -85,6 +86,8 @@ RUN set -eu; \
 FROM ${ALPINE_IMAGE} AS runtime
 ARG GIT_SHA=
 ARG BUILD_DATE=unknown
+# Coolify passes the commit it builds as SOURCE_COMMIT (read by the web for /healthz and the purge).
+ARG SOURCE_COMMIT=
 LABEL org.opencontainers.image.title="sotf-web" \
       org.opencontainers.image.description="SOTF Mods v2 web (Astro SSR, islands and console)" \
       org.opencontainers.image.source="https://github.com/ChoqueCastroLD/sotf-mods-api" \
@@ -100,11 +103,14 @@ COPY --from=base /usr/local/bin/node /usr/local/bin/node
 ENV NODE_ENV=production \
     TZ=UTC \
     RELEASE_SHA=${GIT_SHA} \
+    SOURCE_COMMIT=${SOURCE_COMMIT} \
     HOST=0.0.0.0 \
     PORT=4321
 WORKDIR /app
 COPY --from=deploy --chown=root:root /out/app/ ./
 USER node
 EXPOSE 4321
+HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=5 \
+  CMD wget -q -O /dev/null "http://127.0.0.1:${PORT}/healthz" || exit 1
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["node", "--enable-source-maps", "dist/server/entry.mjs"]

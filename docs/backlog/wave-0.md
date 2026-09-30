@@ -40,7 +40,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   `db:verify-snapshot`, `db:revert-fix`, `admin:grant`) y `tooling/legacy-contract` (WP-24:
   `contract:legacy`) · `tooling/scripts/delegate.ts` ejecuta en el paquete dueño el script con el
   mismo nombre. · **[x] resolved by wire-data**: verified: `packages/db`, `packages/i18n` and `tooling/migration` define the delegated scripts.
-- **Tareas opcionales que se vuelven silenciosas** · `tooling/scripts/{delegate,verify}.ts`,
+- [x] resolved by final-infra (`delegate.ts` only skips while the owner package.json does not exist; a missing script always fails (test in `tooling/scripts/test/delegate.test.ts`)) · **Tareas opcionales que se vuelven silenciosas** · `tooling/scripts/{delegate,verify}.ts`,
   `ci-local.sh`, `ci.yml` (fix WP al inicio de W2, o integrador en I-1) · `SOTF_OPTIONAL_TASKS=1` y
   `i18n:check --optional` convierten en «skip» un script borrado o renombrado incluso después de que
   su WP haya aterrizado. Hacer fallar la delegación cuando el `package.json` del dueño existe pero no
@@ -49,7 +49,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   `[data-theme="dark"] .brand-flare { fill: #FF7335 }` (y el equivalente `system` +
   `prefers-color-scheme: dark`). `lockupSvg({ theme: 'adaptive' })` usa por defecto el flare Day
   `#E75803`, que ya cumple 3:1 en todas las superficies. · **[x] resolved by wire-data**: verified: `packages/ui/src/tokens.css` `.brand-flare { fill: light-dark(#E75803, #FF7335) }`.
-- **`check:forbidden` incompleto** · `tooling/scripts/forbidden-rules.ts` (WP-00 / fix WP) · solo
+- [x] resolved by final-infra (`forbidden-rules.ts` has `legacy-env-urls` (BASE_URL, PUBLIC_BASE_URL, API_URL, GPT_API_KEY, R2_CUSTOM_DOMAIN, R2_BUCKET_NAME) with the shared allow list, now also `ops/deploy/**`) · **`check:forbidden` incompleto** · `tooling/scripts/forbidden-rules.ts` (WP-00 / fix WP) · solo
   cubre la lista del §2.8 punto 1. Añadir, con límites de palabra y la misma `LEGACY_ENV_ALLOW`,
   `BASE_URL`, `PUBLIC_BASE_URL`, `GPT_API_KEY`, `R2_CUSTOM_DOMAIN`, `R2_BUCKET_NAME`, `API_URL`,
   `PUBLIC_API_URL` (§2.8 punto 5 y §11.4), sin atrapar `R2_PUBLIC_BASE_URL` ni `INTERNAL_API_URL`;
@@ -57,7 +57,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
 - **Quitar `minimumReleaseAgeExclude`** · `pnpm-workspace.yaml` (integrador, I-1) · las excepciones
   de `@aws-sdk/*` 3.1142.0, `@sentry/*` 11.1.0 y Testcontainers 12.2.0 sobran desde el
   2026-09-30T20:00Z (ADR-0002).
-- **Decisiones `allowBuilds`** · `pnpm-workspace.yaml` (integrador) · pnpm 12 falla la instalación si
+- [x] resolved by final-infra (`pnpm-workspace.yaml` `allowBuilds` lists every build script (allowed: esbuild, sharp, @node-rs/*; denied: cpu-features, protobufjs, ssh2); the Docker builds install with it) · **Decisiones `allowBuilds`** · `pnpm-workspace.yaml` (integrador) · pnpm 12 falla la instalación si
   una dependencia tiene un script de build no aprobado; cada WP que añada una debe anotarlo en su
   backlog.
 

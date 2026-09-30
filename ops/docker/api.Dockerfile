@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1.7
+# GENERATED from node.Dockerfile by ops/docker/sync-dockerfiles.sh. Do not edit: change node.Dockerfile and re-run.
 #
 # Node image of SOTF Mods v2: `sotf-node` = @sotf/api + @sotf/worker (PLAN §11.1).
 #

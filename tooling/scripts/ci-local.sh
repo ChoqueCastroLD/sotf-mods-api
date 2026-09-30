@@ -165,6 +165,7 @@ if has_docker; then
 else
   skip "1b actionlint and shellcheck" "Docker is not available"
 fi
+stage "2 dockerfile variants in sync" ops/docker/sync-dockerfiles.sh --check
 stage "2 check:forbidden" pnpm check:forbidden
 stage "2 secrets-scan" node tooling/scripts/secrets-scan.ts
 stage "2b generated files and ownership map" bash -c 'node tooling/scripts/gen.ts --check && node tooling/scripts/gen-ownership.ts --check'

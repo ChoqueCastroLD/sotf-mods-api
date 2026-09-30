@@ -58,6 +58,17 @@ allowBuilds:
 overrides:
   'undici@<7.29.1': 7.29.1
   'fflate@<0.7.5': 0.7.5
+  # @lhci/cli (devDependency of apps/web, never shipped): tmp GHSA-52f5/ph9p, uuid < 11.1.1.
+  'tmp@<0.2.7': 0.2.7
+  'uuid@<11.1.1': 11.1.1
+
+# extract-zip <= 2.0.1 (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3) has no patched release. It is only
+# reachable through @lhci/cli > lighthouse > puppeteer-core (CI tooling that extracts browser
+# archives it downloads itself), is not in any production image and is absent from `--prod`.
+auditConfig:
+  ignoreGhsas:
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3
 
 # `pnpm add <dep>` reuses the catalog entry when present and otherwise pins an exact version.
 catalogMode: prefer

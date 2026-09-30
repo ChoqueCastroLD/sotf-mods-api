@@ -39,6 +39,11 @@ function main(): void {
     { name: 'lint (biome)', command: 'pnpm', args: ['exec', 'biome', 'check', '.'] },
     { name: 'check:forbidden', command: 'node', args: ['tooling/scripts/check-forbidden.ts'] },
     { name: 'generated registries fresh', command: 'node', args: ['tooling/scripts/gen.ts', '--check'] },
+    {
+      name: 'package generated files fresh (gen:check)',
+      command: 'pnpm',
+      args: ['--recursive', '--if-present', 'run', 'gen:check'],
+    },
     { name: 'ownership map in sync', command: 'node', args: ['tooling/scripts/gen-ownership.ts', '--check'] },
     {
       name: 'check:ownership',

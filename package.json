@@ -27,7 +27,7 @@
     "gen": "node tooling/scripts/gen.ts",
     "gen:ownership": "node tooling/scripts/gen-ownership.ts",
     "env:init": "node tooling/scripts/env-init.ts",
-    "dev": "turbo run dev",
+    "dev": "node tooling/scripts/dev.ts",
     "infra:up": "node tooling/scripts/infra.ts up",
     "infra:down": "node tooling/scripts/infra.ts down",
     "infra:reset": "node tooling/scripts/infra.ts reset",

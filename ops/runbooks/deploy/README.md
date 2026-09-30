@@ -4,7 +4,8 @@ Para el dueño del sitio. PLAN §10.2, §11 y §14. Orden recomendado la primera
 
 | # | Runbook | Cuándo |
 |---|---|---|
-| 1 | [`../../coolify/README.md`](../../coolify/README.md) | Crear el proyecto Coolify, apps, variables y entornos de GitHub |
+| 0 | [`../../deploy/COOLIFY.md`](../../deploy/COOLIFY.md) y [`ENV.md`](../../deploy/ENV.md) | Despliegue desde Git (Dockerfiles por app, dominios `beta`/producción, Cloudflare) y referencia de variables |
+| 1 | [`../../coolify/README.md`](../../coolify/README.md) | Alternativa: imágenes de GHCR, apps y entornos de GitHub para el despliegue por CI |
 | 2 | [`02-same-origin-api.md`](02-same-origin-api.md) | Validar `/api` en el mismo origen en staging (obligatorio) |
 | 3 | [`../../cloudflare/README.md`](../../cloudflare/README.md) | Ajustes y reglas de Cloudflare (C3; `r2-immutable` en D5) |
 | 4 | [`04-release-and-rollback.md`](04-release-and-rollback.md) | Cada release: staging automático, producción con etiqueta `v*` |

@@ -1,7 +1,7 @@
 # Marcha atrás
 
 PLAN §6.14 con las decisiones de §14.5 (sin backups) · ADR-0016 y ADR-0021. Runbook operativo del
-corte: `ops/runbooks/rollback/` (WP-A0); release y marcha atrás de código:
+corte: [`ops/runbooks/rollback/`](../../ops/runbooks/rollback/README.md); release y marcha atrás de código:
 [`ops/runbooks/deploy/04-release-and-rollback.md`](../../ops/runbooks/deploy/04-release-and-rollback.md).
 
 Principio: **el esquema solo se amplía**, así que cualquier versión anterior del código (v2 o

@@ -43,6 +43,7 @@ const LEGACY_ENV_ALLOW = [
   { glob: 'ops/legacy-hotfix/**', reason: 'patches remove these reads from the legacy repos' },
   { glob: 'ops/runbooks/**', reason: 'runbooks tell the operator which legacy variables to delete' },
   { glob: 'ops/coolify/**', reason: 'Coolify runbooks list the legacy variables to delete' },
+  { glob: 'ops/deploy/**', reason: 'the deploy guide lists the legacy variables that are not carried over' },
   { glob: 'docs/backlog/**', reason: 'backlog items name the legacy variables they deal with' },
 ];
 
