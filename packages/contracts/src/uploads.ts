@@ -153,6 +153,10 @@ export const UploadDTO = dto(
     completedAt: IsoDateTime.nullable(),
     inspection: UploadInspectionDTO.nullable(),
     mediaId: Uuid.nullable().describe('Set for image purposes once processed'),
+    previewUrl: z
+      .string()
+      .nullable()
+      .describe('Smallest processed variant of an image upload (`GET /uploads/:id`); null until processed'),
     error: z.string().nullable(),
   }),
   {
@@ -171,6 +175,7 @@ export const UploadDTO = dto(
         completedAt: '2026-09-29T10:00:40.000Z',
         inspection: exampleOf(UploadInspectionDTO),
         mediaId: null,
+        previewUrl: null,
         error: null,
       },
     ],

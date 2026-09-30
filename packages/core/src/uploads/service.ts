@@ -25,6 +25,7 @@ import { PRESIGN_TTL_SECONDS, type UploadDTO, UploadInspectionDTO } from '@sotf/
 import { type JsonObject, media, type Transaction, type Upload, upload } from '@sotf/db';
 import { and, eq, sql } from 'drizzle-orm';
 import type { z } from 'zod';
+import { type CatalogConfig, variantUrlOnly } from '../catalog/media.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { newId } from '../kernel/ids.ts';
@@ -51,8 +52,8 @@ function refOf(row: Pick<Upload, 'resultRef'>): UploadResultRef {
   return (row.resultRef ?? {}) as UploadResultRef;
 }
 
-/** Public DTO of an upload row. */
-export function toUploadDTO(row: Upload): UploadDTO {
+/** Public DTO of an upload row (`previewUrl` is resolved by `getUpload`). */
+export function toUploadDTO(row: Upload, previewUrl: string | null = null): UploadDTO {
   const ref = refOf(row);
   const inspection = ref.inspection === undefined ? null : UploadInspectionDTO.safeParse(ref.inspection);
   return {
@@ -68,6 +69,7 @@ export function toUploadDTO(row: Upload): UploadDTO {
     completedAt: row.completedAt ? row.completedAt.toISOString() : null,
     inspection: inspection?.success ? inspection.data : null,
     mediaId: ref.mediaId ?? null,
+    previewUrl,
     error: row.error,
   };
 }
@@ -213,8 +215,36 @@ async function loadOwn(ctx: Ctx, id: string): Promise<Upload> {
 }
 
 /** `GET /uploads/:id`. */
-export async function getUpload(ctx: Ctx, id: string): Promise<UploadDTO> {
-  return toUploadDTO(await loadOwn(ctx, id));
+/**
+ * `GET /uploads/:id`. With the catalog config, an image upload whose media is processed carries
+ * `previewUrl` (smallest variant, ≥ 320 px when available): the publishing wizard shows it when a
+ * draft is resumed on another device.
+ */
+export async function getUpload(ctx: Ctx, id: string, config?: CatalogConfig): Promise<UploadDTO> {
+  const row = await loadOwn(ctx, id);
+  const mediaId = refOf(row).mediaId;
+  if (!config || !mediaId) return toUploadDTO(row);
+  const [found] = await ctx.db
+    .select({ variants: media.variants, status: media.status })
+    .from(media)
+    .where(and(eq(media.id, mediaId), eq(media.ownerId, row.userId)));
+  const preview =
+    found && found.status === 'ready'
+      ? variantUrlOnly(
+          config,
+          {
+            width: null,
+            height: null,
+            thumbhash: null,
+            dominantColor: null,
+            variants: found.variants,
+            sourceBucket: null,
+            sourceKey: null,
+          },
+          320,
+        )
+      : null;
+  return toUploadDTO(row, preview);
 }
 
 async function reject(ctx: Ctx, storage: ObjectStorage, row: Upload, reason: string): Promise<void> {

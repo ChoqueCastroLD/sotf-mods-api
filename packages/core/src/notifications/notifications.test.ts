@@ -1,6 +1,6 @@
 import { NOTIFICATION_DEFAULTS, NOTIFICATION_TYPES } from '@sotf/contracts/notifications';
 import { describe, expect, it } from 'vitest';
-import { cadenceOfRun, localizedUrl } from './digest.ts';
+import { cadenceOfRun, localizedReason, localizedUrl } from './digest.ts';
 import { listUnsubscribeHeaders, NOTIFICATION_EMAIL_PAYLOADS } from './email.ts';
 import { deterministicUuid } from './ids.ts';
 import { forcedEmail, isNotificationType } from './preferences.ts';
@@ -131,5 +131,32 @@ describe('helpers', () => {
     expect(NOTIFICATION_EMAIL_PAYLOADS['notify.signals'].safeParse({ displayName: 'x', items: [] }).success).toBe(
       false,
     );
+  });
+});
+
+describe('localizedReason', () => {
+  const templates = [
+    {
+      key: 'missing_screenshots',
+      action: 'request_changes' as const,
+      messages: { en: 'Please add a screenshot.', es: 'Añade una captura.' },
+    },
+  ];
+
+  it('replaces the English template text and keeps the note', () => {
+    expect(localizedReason('Please add a screenshot.\n\nThe menu one.', 'missing_screenshots', 'es', templates)).toBe(
+      'Añade una captura.\n\nThe menu one.',
+    );
+    expect(localizedReason('Please add a screenshot.', 'missing_screenshots', 'es', templates)).toBe(
+      'Añade una captura.',
+    );
+  });
+
+  it('keeps the stored reason without a template, a wording or a known key', () => {
+    expect(localizedReason('Free note', null, 'es', templates)).toBe('Free note');
+    expect(localizedReason('Please add a screenshot.', 'missing_screenshots', 'de', templates)).toBe(
+      'Please add a screenshot.',
+    );
+    expect(localizedReason('Gone', 'deleted_template', 'es', templates)).toBe('Gone');
   });
 });

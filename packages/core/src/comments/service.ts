@@ -176,10 +176,15 @@ export async function createComment(
   const now = ctx.clock.now();
   assertCan(member.subject, 'comment.write', undefined, now);
   const mod = await loadThreadMod(ctx.db, modId);
+  if (mod.commentsLockedAt !== null && !isStaffRole(member.role)) {
+    throw errors.forbidden('This comment thread is locked');
+  }
   if (await isMuted(ctx.db, member.id, mod.id, now)) throw errors.forbidden('You cannot comment here right now');
 
   const newAccount = isNewAccount(member, now);
-  if (newAccount && !(await deps.verifyTurnstile(input.turnstileToken, ctx.ip))) {
+  // The creator answering on their own mod (Basecamp inbox, which has no widget) is not a bot risk.
+  const ownMod = mod.userId !== null && mod.userId === member.id;
+  if (newAccount && !ownMod && !(await deps.verifyTurnstile(input.turnstileToken, ctx.ip))) {
     throw new DomainError('TURNSTILE_REQUIRED', undefined, 'Complete the human check');
   }
 

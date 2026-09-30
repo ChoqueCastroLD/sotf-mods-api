@@ -15,16 +15,19 @@
  */
 
 import type { ModCardDTO } from '@sotf/contracts/catalog';
+import { MOD_LICENSES } from '@sotf/contracts/common';
 import { ONBOARDING_STEPS } from '@sotf/contracts/gamification';
 import type { KitCardDTO } from '@sotf/contracts/kits';
-import type {
-  MeDTO,
-  MeHomeDTO,
-  MeSummaryDTO,
-  UpdatePrivacyBody,
-  UpdateSettingsBody,
-  UserPrivacyDTO,
-  UserSettingsDTO,
+import {
+  type MeDTO,
+  type MeHomeDTO,
+  type MeSummaryDTO,
+  REPLY_TEMPLATE_LIMITS,
+  ReplyTemplate,
+  type UpdatePrivacyBody,
+  type UpdateSettingsBody,
+  type UserPrivacyDTO,
+  type UserSettingsDTO,
 } from '@sotf/contracts/me';
 import { type Executor, type User, type UserPrivacy, type UserSettings, user } from '@sotf/db';
 import { eq, sql } from 'drizzle-orm';
@@ -44,6 +47,8 @@ export const DEFAULT_SETTINGS: UserSettingsDTO = {
   compatPrompts: true,
   numberFormat: 'compact',
   keyboardShortcuts: true,
+  defaultLicense: null,
+  replyTemplates: [],
 };
 
 export const DEFAULT_PRIVACY: z.infer<typeof UserPrivacyDTO> = {
@@ -79,7 +84,21 @@ export function settingsOf(stored: UserSettings | null | undefined): UserSetting
     compatPrompts: bool(s.compatPrompts, true),
     numberFormat: pick(s.numberFormat, ['compact', 'full'] as const, DEFAULT_SETTINGS.numberFormat),
     keyboardShortcuts: bool(s.keyboardShortcuts, true),
+    defaultLicense: pick<(typeof MOD_LICENSES)[number] | null>(s.defaultLicense, MOD_LICENSES, null),
+    replyTemplates: replyTemplatesOf(s.replyTemplates),
   };
+}
+
+/** Stored canned replies, invalid entries dropped. */
+function replyTemplatesOf(value: unknown): UserSettingsDTO['replyTemplates'] {
+  if (!Array.isArray(value)) return [];
+  const out: UserSettingsDTO['replyTemplates'] = [];
+  for (const item of value) {
+    const parsed = ReplyTemplate.safeParse(item);
+    if (parsed.success) out.push(parsed.data);
+    if (out.length >= REPLY_TEMPLATE_LIMITS.max) break;
+  }
+  return out;
 }
 
 export function privacyOf(stored: UserPrivacy | null | undefined): z.infer<typeof UserPrivacyDTO> {
@@ -268,6 +287,7 @@ export async function updateSettings(
   if (next.locale === null) delete stored.locale;
   if (next.nsfwConfirmedAt === null) delete stored.nsfwConfirmedAt;
   if (next.reducedMotion === null) delete stored.reducedMotion;
+  if (next.defaultLicense === null) delete stored.defaultLicense;
   await db
     .update(user)
     .set({ settings: stored as UserSettings })

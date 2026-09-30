@@ -202,6 +202,8 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
   const unique = empty();
   const webDownloads = { n: 0 };
   const perVersion = new Map<number, { label: string; n: number }>();
+  /** `${bucket}\n${versionId}` → downloads. */
+  const perBucketVersion = new Map<string, number>();
   const byChannel: Analytics['byChannel'] = {};
   for (const r of dl) {
     const label = labelOf(r.day, g, from);
@@ -214,6 +216,8 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
     };
     version.n += n;
     perVersion.set(r.versionId, version);
+    const key = `${label}\n${r.versionId}`;
+    perBucketVersion.set(key, (perBucketVersion.get(key) ?? 0) + n);
     const channel = r.channel as keyof Analytics['byChannel'];
     byChannel[channel] = (byChannel[channel] ?? 0) + n;
     if (r.channel === 'web') webDownloads.n += n;
@@ -236,10 +240,27 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
     ratingCount.set(label, (ratingCount.get(label) ?? 0) + num(r.n));
   }
 
-  const versions = [...perVersion.values()].filter((v) => v.n > 0).sort((a, b) => b.n - a.n);
+  const versions = [...perVersion.entries()]
+    .map(([id, v]) => ({ id, ...v }))
+    .filter((v) => v.n > 0)
+    .sort((a, b) => b.n - a.n || a.id - b.id);
   const byVersion = versions.slice(0, MAX_VERSIONS).map((v) => ({ version: v.label, downloads: v.n }));
   const others = versions.slice(MAX_VERSIONS).reduce((sum, v) => sum + v.n, 0);
   if (others > 0) byVersion.push({ version: 'other', downloads: others });
+  // Stacked daily bars: the same top versions per bucket, the rest summed as "other".
+  const top = new Map(versions.slice(0, MAX_VERSIONS).map((v) => [v.id, v.label]));
+  const seriesByVersion: Analytics['seriesByVersion'] = [];
+  for (const day of labels) {
+    let other = 0;
+    for (const v of versions) {
+      const n = perBucketVersion.get(`${day}\n${v.id}`) ?? 0;
+      if (n === 0) continue;
+      const label = top.get(v.id);
+      if (label === undefined) other += n;
+      else seriesByVersion.push({ day, version: label, downloads: n });
+    }
+    if (other > 0) seriesByVersion.push({ day, version: 'other', downloads: other });
+  }
 
   const totalDownloads = [...downloads.values()].reduce((a, b) => a + b, 0);
   const totalUnique = [...unique.values()].reduce((a, b) => a + b, 0);
@@ -258,6 +279,7 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
       follows: followSeries.get(day) ?? 0,
     })),
     byVersion,
+    seriesByVersion,
     byChannel,
     referrers: topEntries(referrers, MAX_REFERRERS).map((r) => ({ domain: r.key, visits: r.n })),
     locales: topEntries(locales, MAX_LOCALES).map((r) => ({ locale: r.key, visits: r.n })),

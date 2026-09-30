@@ -45,8 +45,9 @@ import {
   VersionString,
 } from './common.ts';
 import { CompatSummaryDTO } from './compat.ts';
-import { dto, exampleOf, examplesOf, wireFlag, wireInt, wireList } from './dto.ts';
+import { dto, exampleOf, examplesOf, wireFlag, wireInt, wireList, wireOneOrMany } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
+import { BuildMetaDTO } from './manifest.ts';
 import { CursorQuery, cursorPageOf, PageQuery, pageOf } from './pagination.ts';
 import { ReviewDTO, ReviewsSummaryDTO } from './reviews.ts';
 import { DependencyDTO, VersionDTO } from './versions.ts';
@@ -54,6 +55,29 @@ import { DependencyDTO, VersionDTO } from './versions.ts';
 // -----------------------------------------------------------------------------------------------
 // Cards and details
 // -----------------------------------------------------------------------------------------------
+
+/** Generated share card (`og.render`, PLAN §8.6): `R2_PUBLIC_BASE_URL/<ogImageKey>`, 1200×630 PNG. */
+export const OgImageDTO = dto(
+  'OgImageDTO',
+  z.object({ url: HttpUrl, width: z.literal(1200), height: z.literal(630) }),
+  {
+    description: 'Open Graph image generated for the entity (null until the worker renders it).',
+    examples: [{ url: 'https://r2.sotf-mods.com/og/mod/20-3f9a1c.png', width: 1200, height: 630 }],
+  },
+);
+
+/** Blueprint facts shown on build cards (null for mods and libraries). */
+export const BuildCardFactsDTO = dto(
+  'BuildCardFactsDTO',
+  z.object({
+    pieces: Count.nullable().describe('Number of elements of the latest blueprint'),
+    buildShareVersion: z.string().nullable(),
+  }),
+  {
+    description: 'Pieces and BuildShare version of a build (latest version, legacy columns as fallback).',
+    examples: [{ pieces: 4125, buildShareVersion: '0.0.16' }],
+  },
+);
 
 export const ModCardDTO = dto(
   'ModCardDTO',
@@ -85,6 +109,7 @@ export const ModCardDTO = dto(
     lastReleasedAt: IsoDateTime,
     nsfw: z.boolean(),
     status: ModStatus,
+    build: BuildCardFactsDTO.nullable().describe('Builds only'),
   }),
   {
     description: 'Mod/build card used in listings, search and kits.',
@@ -122,6 +147,7 @@ export const ModCardDTO = dto(
         lastReleasedAt: '2026-09-26T21:33:31.396Z',
         nsfw: false,
         status: 'published',
+        build: null,
       },
     ],
   },
@@ -174,6 +200,8 @@ export const ModDetailDTO = dto(
     createdAt: IsoDateTime,
     publishedAt: IsoDateTime.nullable(),
     editedAt: IsoDateTime.nullable(),
+    buildMeta: BuildMetaDTO.nullable().describe('Blueprint facts of the latest build version (builds only)'),
+    ogImage: OgImageDTO.nullable(),
   }),
   {
     description: 'Mod/build detail page data.',
@@ -213,6 +241,8 @@ export const ModDetailDTO = dto(
         createdAt: '2023-10-01T12:00:00.000Z',
         publishedAt: '2023-10-01T12:00:00.000Z',
         editedAt: '2026-09-26T21:33:31.396Z',
+        buildMeta: null,
+        ogImage: exampleOf(OgImageDTO),
       },
     ],
   },
@@ -238,6 +268,9 @@ export const ModSort = z.enum(MOD_SORTS);
 export type ModSort = z.infer<typeof ModSort>;
 export const SortOrder = z.enum(['asc', 'desc']);
 
+export const MULTIPLAYER_FILTERS = ['client_side', 'host_only', 'all_players', 'singleplayer_only'] as const;
+export const MultiplayerFilter = z.enum(MULTIPLAYER_FILTERS);
+
 export const ModListQuery = PageQuery.extend({
   type: z.enum(MOD_LIST_TYPES).default('all'),
   category: wireList(CategorySlug, { max: 12, description: 'Include categories (OR)' }),
@@ -245,7 +278,10 @@ export const ModListQuery = PageQuery.extend({
   tag: wireList(z.string().max(60), { max: 10, description: 'Include tags (AND)' }),
   excludeTag: wireList(z.string().max(60), { max: 10, description: 'Exclude tags' }),
   compat: z.enum(['works', 'untested', 'any']).default('any'),
-  multiplayer: z.enum(['client_side', 'host_only', 'all_players', 'singleplayer_only']).optional(),
+  multiplayer: wireOneOrMany(MultiplayerFilter, {
+    max: MULTIPLAYER_FILTERS.length,
+    description: 'Multiplayer roles (OR): `?multiplayer=host_only&multiplayer=all_players`',
+  }),
   dedicated: z.literal('yes').optional(),
   platform: Platform.optional(),
   updatedWithin: z.enum(['30d', '90d', '1y']).optional(),
@@ -275,6 +311,8 @@ export const FacetsDTO = dto(
     platform: z.array(FacetBucketDTO),
     multiplayer: z.array(FacetBucketDTO),
     compat: z.array(FacetBucketDTO),
+    updatedWithin: z.array(FacetBucketDTO).describe('Items released within `30d`, `90d`, `1y`'),
+    minRating: z.array(FacetBucketDTO).describe('Items rated at least `1`…`5` stars'),
   }),
   {
     description: 'Facet counts of an Explore query.',
@@ -290,6 +328,15 @@ export const FacetsDTO = dto(
         platform: [{ value: 'Client', count: 150 }],
         multiplayer: [{ value: 'host_only', count: 40 }],
         compat: [{ value: 'works', count: 71 }],
+        updatedWithin: [
+          { value: '30d', count: 21 },
+          { value: '90d', count: 64 },
+          { value: '1y', count: 150 },
+        ],
+        minRating: [
+          { value: '4', count: 58 },
+          { value: '5', count: 9 },
+        ],
       },
     ],
   },
@@ -345,6 +392,7 @@ export const CategoryDTO = dto(
     sortOrder: z.number().int(),
     legacySlugs: z.array(z.string()),
     count: Count.describe('Published items'),
+    ogImage: OgImageDTO.nullable().describe('Share card of the category hub (null until rendered)'),
   }),
   {
     description: 'Category with its i18n names.',
@@ -360,6 +408,7 @@ export const CategoryDTO = dto(
         sortOrder: 1,
         legacySlugs: ['qol'],
         count: 48,
+        ogImage: null,
       },
     ],
   },
@@ -462,6 +511,7 @@ export const UserPublicDTO = dto(
     featuredBadgeKeys: z.array(z.string()),
     privacy: z.object({ hideActivity: z.boolean(), hideKits: z.boolean(), hideRank: z.boolean() }),
     hasPublicContent: z.boolean().describe('false → the profile page is noindex'),
+    ogImage: OgImageDTO.nullable(),
   }),
   {
     description: 'Public profile (respects the privacy settings).',
@@ -487,6 +537,7 @@ export const UserPublicDTO = dto(
         featuredBadgeKeys: ['original-survivor-2023', 'crash-landing'],
         privacy: { hideActivity: false, hideKits: false, hideRank: false },
         hasPublicContent: true,
+        ogImage: null,
       },
     ],
   },

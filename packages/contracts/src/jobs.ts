@@ -23,6 +23,10 @@ export const JOB_PAYLOADS = {
   'inspection.run': z.object({ uploadId: Uuid, purpose: UploadPurpose, modVersionId: EntityId.nullable() }),
   'security.scan': z.object({ modVersionId: EntityId, sha256: z.string().regex(/^[0-9a-f]{64}$/) }),
   'build.extract': z.object({ uploadId: Uuid, modVersionId: EntityId.nullable() }),
+  'security.rescan': z.object({}),
+  'markdown.rerender': z.object({
+    batchSize: z.number().int().min(1).max(1000).default(200).describe('Mods re-rendered per run'),
+  }),
   // Cache and indexing
   'cdn.purge': z.object({ tags: z.array(CacheTagSchema).min(1), reason: z.string().max(120) }),
   'indexnow.ping': z.object({ paths: z.array(SitePath).min(1).max(10_000) }),
@@ -43,6 +47,7 @@ export const JOB_PAYLOADS = {
   'stats.trending': z.object({}),
   'legacy.counters': z.object({}),
   'compat.aggregate': z.object({ modVersionId: EntityId, gameBuildId: EntityId.optional() }),
+  'compat.reconcile': z.object({}),
   // Gamification
   'gamification.evaluate': z.object({
     userId: EntityId.optional(),
@@ -61,6 +66,8 @@ export const JOB_PAYLOADS = {
   'cleanup.download-unique': z.object({}),
   'cleanup.analytics': z.object({}),
   'cleanup.kelvinseek': z.object({}),
+  // Operations (PLAN §10.3 «Alertas»)
+  'ops.alerts': z.object({}),
   // Migration (one-off, idempotent)
   'backfill.run': z.object({
     name: z.string().regex(/^B\d{1,2}$/),
@@ -103,6 +110,15 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'cleanup.download-unique', cron: '30 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.analytics', cron: '40 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.kelvinseek', cron: '50 4 * * *', key: 'daily', data: {} },
+  // Only after the cut-over (`POST_CUTOVER_QUEUES`): drains legacy mentions every 10 minutes.
+  { queue: 'legacy.mentions', cron: '*/10 * * * *', key: 'every-10m', data: {} },
+  // After `accounts.trust-level` (03:15): weights follow the reporters' new flags.
+  { queue: 'compat.reconcile', cron: '20 3 * * *', key: 'nightly', data: {} },
+  // Re-enqueues scans left `pending` for 6 h (a lost or dropped job).
+  { queue: 'security.rescan', cron: '35 * * * *', key: 'hourly', data: {} },
+  // Descriptions rendered with an older `RENDER_VERSION` (a pipeline bump) are re-rendered.
+  { queue: 'markdown.rerender', cron: '0 5 * * *', key: 'nightly', data: {} },
+  { queue: 'ops.alerts', cron: '*/5 * * * *', key: 'every-5m', data: {} },
 ];
 
 /** Queues that only run after the cut-over (`LEGACY_COEXIST=false`, PLAN §2.9). */
@@ -122,6 +138,8 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'inspection.run': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', purpose: 'mod_file', modVersionId: null },
   'security.scan': { modVersionId: 415, sha256: '9f2c0a4f1f0d6b1e2c3a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90' },
   'build.extract': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', modVersionId: 589 },
+  'security.rescan': {},
+  'markdown.rerender': { batchSize: 200 },
   'cdn.purge': { tags: ['mod:20', 'home'], reason: 'event:mod.updated' },
   'indexnow.ping': { paths: ["/mods/imaxel/axel's-mod-menu", "/es/mods/imaxel/axel's-mod-menu"] },
   'email.send': { outboxId: 1201 },
@@ -133,6 +151,7 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'stats.trending': {},
   'legacy.counters': {},
   'compat.aggregate': { modVersionId: 412, gameBuildId: 7 },
+  'compat.reconcile': {},
   'gamification.evaluate': { userId: 301 },
   'awards.mod-of-week': { weekStart: '2026-09-28' },
   'milestones.check': { modId: 20 },
@@ -144,5 +163,6 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'cleanup.download-unique': {},
   'cleanup.analytics': {},
   'cleanup.kelvinseek': {},
+  'ops.alerts': {},
   'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000 },
 };

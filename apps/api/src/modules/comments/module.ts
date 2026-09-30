@@ -1,7 +1,9 @@
 /**
  * `comments` module (WP-41, PLAN §5.2 "Comunidad", §7.6): the public Top/New list and permalink
  * thread (edge-cached, tag `mod:{id}`), and the member writes: comment or reply, edit, soft delete,
- * reactions, pin, solution and "bug resolved in vX".
+ * reactions, pin, solution and "bug resolved in vX". `GET /me/social-state?modId=` returns what the
+ * viewer did on a mod page (reactions, votes, own review and comments with their Markdown source,
+ * field reports), which the edge-cached lists cannot carry.
  *
  * Limits: the contract's `comments` bucket (5/min per user) plus 50 comments per user and day
  * (`comments-day`, PLAN §5.1); accounts younger than 24 h pass Turnstile (T0-22). Business rules
@@ -16,6 +18,7 @@ import {
   createComment,
   deleteComment,
   getCommentThread,
+  getSocialState,
   listComments,
   resolveBug,
   setPinned,
@@ -25,6 +28,7 @@ import {
 } from '@sotf/core/comments/index';
 import { type ApiModule, defineModule } from '../../lib/define-module.ts';
 import type { Platform } from '../../lib/types.ts';
+import { catalogConfigOf } from '../catalog/index.ts';
 
 const DAY_MS = 24 * 3600 * 1000;
 
@@ -61,6 +65,10 @@ export function createCommentsModule(options: CommentsModuleOptions = {}): ApiMo
           log: m.platform.log,
         });
       const deps = writeDeps(m.platform, config, turnstile);
+
+      m.implement(commentsEndpoints.socialState, async ({ query, ctx }) =>
+        getSocialState(ctx, { community: config, catalog: catalogConfigOf(env) }, query.modId),
+      );
 
       m.implement(commentsEndpoints.list, async ({ params, query, ctx, cache }) => {
         cache({ id: params.id });

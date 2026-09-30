@@ -4,15 +4,39 @@
  */
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { commonServerEnv, envFlag, envInt, envOptional, envUrl, formatEnvError } from '@sotf/core';
+import {
+  commonServerEnv,
+  envFlag,
+  envInt,
+  envOptional,
+  envUrl,
+  formatEnvError,
+  SERVER_PORTS,
+  withDefaultPort,
+} from '@sotf/core';
 import { z } from 'zod';
 
 export const apiEnvSchema = z.object({
   ...commonServerEnv,
-  PORT: envInt(3001, 1, 65_535),
+  /** Unset: 3001 with NODE_ENV=production (Coolify), 47301 otherwise (`pnpm dev`, PLAN §11.2). */
+  PORT: envInt(SERVER_PORTS.api.production, 1, 65_535),
   HOST: z.string().trim().min(1).default('0.0.0.0'),
   DB_POOL_MAX: envInt(10, 1, 100),
   LEGACY_SNAKE_ALIASES: envFlag(false),
+  /** `Sunset` date of the Tier 2 legacy routes (ISO date); default `LEGACY_SUNSET_DATE` (T0 + 12 months). */
+  LEGACY_SUNSET_AT: z
+    .string()
+    .trim()
+    .optional()
+    .transform((value, ctx) => {
+      if (!value) return undefined;
+      const date = new Date(/^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00.000Z` : value);
+      if (Number.isNaN(date.getTime())) {
+        ctx.addIssue({ code: 'custom', message: `invalid date "${value}"` });
+        return z.NEVER;
+      }
+      return date;
+    }),
   ARGON2_CONCURRENCY: envInt(2, 1, 16),
   /**
    * Extra origins allowed to make cookie-authenticated unsafe requests besides PUBLIC_SITE_URL
@@ -41,6 +65,8 @@ export const apiEnvSchema = z.object({
   R2_ACCOUNT_ID: envOptional,
   /** Local/test S3 emulator endpoint; empty in production (derived from R2_ACCOUNT_ID). */
   R2_ENDPOINT: envOptional,
+  /** Browser-reachable S3 endpoint used in presigned URLs (e2e/local stacks); empty in production. */
+  R2_PUBLIC_ENDPOINT: envOptional,
   R2_ACCESS_KEY_ID: envOptional,
   R2_SECRET_ACCESS_KEY: envOptional,
   R2_BUCKET: z.string().trim().min(1).default('sotf-mods'),
@@ -56,7 +82,7 @@ export type ApiEnv = z.output<typeof apiEnvSchema>;
 
 /** Parses an environment (defaults to `process.env`); throws with a readable message. */
 export function parseApiEnv(source: Record<string, string | undefined> = process.env): ApiEnv {
-  const parsed = apiEnvSchema.safeParse(source);
+  const parsed = apiEnvSchema.safeParse(withDefaultPort(source, 'api'));
   if (!parsed.success) throw new Error(formatEnvError('@sotf/api', parsed.error));
   return parsed.data;
 }

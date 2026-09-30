@@ -19,10 +19,24 @@ export function keyedHash(secret: string, purpose: string, value: string): strin
   return hmac(hmac(secret, `sotf:${purpose}`), value).toString('hex');
 }
 
+/**
+ * Recent daily salts (in memory only): every request hashes its IP, and the salt changes once a
+ * day, so recomputing its HMAC per request was pure overhead (backlog WP-33 «platform overhead»).
+ */
+const SALTS = new Map<string, Buffer>();
+const SALTS_MAX = 8;
+
 /** Salt of a UTC day, derived from the application secret (never stored). */
 export function dailySalt(secret: string, day: string): Buffer {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) throw new TypeError(`invalid day "${day}"`);
-  return hmac(secret, `sotf:ip-salt:${day}`);
+  const key = `${day}\n${secret}`;
+  let salt = SALTS.get(key);
+  if (!salt) {
+    salt = hmac(secret, `sotf:ip-salt:${day}`);
+    if (SALTS.size >= SALTS_MAX) SALTS.delete(SALTS.keys().next().value as string);
+    SALTS.set(key, salt);
+  }
+  return salt;
 }
 
 /** Canonical form of an IP: trimmed, lower-case, IPv4-mapped IPv6 unwrapped, zone id removed. */

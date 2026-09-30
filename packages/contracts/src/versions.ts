@@ -34,6 +34,7 @@ export type ScanVerdict = z.infer<typeof ScanVerdict>;
 export const ScanSummaryDTO = dto(
   'ScanSummaryDTO',
   z.object({
+    id: EntityId.nullable().describe('`SecurityScan` id (target of `POST /ranger/scans/:id/override`)'),
     verdict: ScanVerdict,
     engine: z.string(),
     positives: Count.nullable(),
@@ -45,6 +46,7 @@ export const ScanSummaryDTO = dto(
     description: 'Public security report of a version (VirusTotal by SHA-256).',
     examples: [
       {
+        id: 18,
         verdict: 'clean',
         engine: 'virustotal',
         positives: 0,

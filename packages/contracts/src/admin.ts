@@ -5,7 +5,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { CategoryDTO, CategoryListDTO, LocalizedNames, TagDTO, TagListDTO } from './catalog.ts';
+import { CategoryDTO, LocalizedNames, TagDTO } from './catalog.ts';
 import {
   AwardKind,
   CategorySlug,
@@ -153,6 +153,46 @@ export const TagInputBody = dto(
   },
 );
 
+export const AdminCategoryDTO = dto(
+  'AdminCategoryDTO',
+  CategoryDTO.omit({ ogImage: true }).extend({
+    retiredAt: IsoDateTime.nullable().describe('Set when the category was retired (soft delete)'),
+    hubIntro: LocalizedNames.describe('Stored editorial intro per locale (Markdown)'),
+  }),
+  {
+    description: 'A category as the admins edit it (retired state and hub intro included).',
+    examples: [
+      {
+        ...(({ ogImage: _og, ...rest }) => rest)(exampleOf(CategoryDTO)),
+        retiredAt: null,
+        hubIntro: { en: 'Small fixes that make every day easier.' },
+      },
+    ],
+  },
+);
+
+export const AdminCategoryListDTO = dto('AdminCategoryListDTO', z.object({ items: z.array(AdminCategoryDTO) }), {
+  description: 'Every category, retired ones last.',
+  examples: [{ items: [exampleOf(AdminCategoryDTO)] }],
+});
+
+export const AdminTagDTO = dto(
+  'AdminTagDTO',
+  TagDTO.extend({
+    description: z.string(),
+    sortOrder: z.number().int(),
+  }),
+  {
+    description: 'A tag as the admins edit it (description and sort order included).',
+    examples: [{ ...exampleOf(TagDTO), description: 'Inventory and storage tweaks', sortOrder: 2 }],
+  },
+);
+
+export const AdminTagListDTO = dto('AdminTagListDTO', z.object({ items: z.array(AdminTagDTO) }), {
+  description: 'Every tag (curated and free).',
+  examples: [{ items: [exampleOf(AdminTagDTO)] }],
+});
+
 export const RecategorizeBody = dto(
   'RecategorizeBody',
   z.strictObject({
@@ -182,6 +222,7 @@ export const RecategorizeResultDTO = dto(
       z.object({
         mod: ModRefDTO,
         currentCategory: z.string().nullable(),
+        currentTags: z.array(z.string()).describe('Current tag slugs (`tagSlugs` of a change replaces them)'),
         suggestedCategory: CategorySlug,
         suggestedTags: z.array(z.string()),
         confidence: z.number().min(0).max(1),
@@ -198,6 +239,7 @@ export const RecategorizeResultDTO = dto(
           {
             mod: exampleOf(ModRefDTO),
             currentCategory: 'qol',
+            currentTags: ['cheats'],
             suggestedCategory: 'menus-sandbox',
             suggestedTags: ['cheats'],
             confidence: 0.82,
@@ -207,6 +249,31 @@ export const RecategorizeResultDTO = dto(
         applied: 0,
       },
     ],
+  },
+);
+
+// -----------------------------------------------------------------------------------------------
+// Curation: kit staff picks and manual badges
+// -----------------------------------------------------------------------------------------------
+
+export const KitStaffPickBody = dto('KitStaffPickBody', z.strictObject({ isStaffPick: z.boolean() }), {
+  description: 'Feature a public kit (landing «Esenciales para empezar», `/install` starter kit) or stop featuring it.',
+  examples: [{ isStaffPick: true }],
+});
+
+export const KitStaffPickDTO = dto('KitStaffPickDTO', z.object({ kitId: EntityId, isStaffPick: z.boolean() }), {
+  description: 'Staff-pick state of a kit after the change.',
+  examples: [{ kitId: 5, isStaffPick: true }],
+});
+
+export const MANUAL_BADGE_KEYS = ['translator'] as const;
+
+export const ManualBadgeDTO = dto(
+  'ManualBadgeDTO',
+  z.object({ userId: EntityId, badgeKey: z.enum(MANUAL_BADGE_KEYS), granted: z.boolean() }),
+  {
+    description: 'A badge only admins grant (PLAN §7.2 `translator`) and whether the user holds it now.',
+    examples: [{ userId: 12, badgeKey: 'translator', granted: true }],
   },
 );
 
@@ -489,6 +556,84 @@ export const RumDTO = dto(
 );
 
 // -----------------------------------------------------------------------------------------------
+// Operations (PLAN §10.3 "Métricas operativas")
+// -----------------------------------------------------------------------------------------------
+
+export const OpsQueueDTO = dto(
+  'OpsQueueDTO',
+  z.object({
+    name: z.string(),
+    queued: Count.describe('Waiting to run (created + retry)'),
+    active: Count,
+    failed24h: Count,
+    completed1h: Count,
+    oldestQueuedAt: IsoDateTime.nullable(),
+  }),
+  {
+    description: 'Depth and recent outcome of one pg-boss queue.',
+    examples: [
+      {
+        name: 'cdn.purge',
+        queued: 2,
+        active: 0,
+        failed24h: 0,
+        completed1h: 41,
+        oldestQueuedAt: '2026-09-29T09:59:40.000Z',
+      },
+    ],
+  },
+);
+
+const HttpStatusCountsDTO = z.object({
+  total: Count,
+  s404: Count,
+  s410: Count,
+  s4xx: Count.describe('Every 4xx (404 and 410 included)'),
+  s5xx: Count,
+});
+
+export const OPS_ALERT_KEYS = ['dead_letter', 'http_5xx', 'invariants', 'kelvinseek_budget'] as const;
+
+export const OpsDTO = dto(
+  'OpsDTO',
+  z.object({
+    generatedAt: IsoDateTime,
+    queues: z.array(OpsQueueDTO).describe('Queues with any job in the last 24 h, busiest first'),
+    deadLetter: Count.describe('Jobs whose retries are exhausted and not handled yet (alert when > 0)'),
+    downloads: z.object({ lastHour: Count, last24h: Count }),
+    purge: z.object({
+      lastCompletedAt: IsoDateTime.nullable(),
+      queued: Count,
+      failed24h: Count,
+    }),
+    http: z
+      .object({ last5m: HttpStatusCountsDTO, lastHour: HttpStatusCountsDTO })
+      .describe('API responses by status (404, 410 and 5xx rates, PLAN §10.3)'),
+    alerts: z
+      .array(z.object({ key: z.enum(OPS_ALERT_KEYS), summary: z.string(), details: z.array(z.string()) }))
+      .describe('Alerts active now (the `ops.alerts` job emails them to the admins)'),
+  }),
+  {
+    description:
+      'Operational readout of Ranger Station › Admin: job queues, dead letters, downloads, CDN purges, response statuses and active alerts.',
+    examples: [
+      {
+        generatedAt: '2026-09-29T10:00:00.000Z',
+        queues: [exampleOf(OpsQueueDTO)],
+        deadLetter: 0,
+        downloads: { lastHour: 94, last24h: 1_720 },
+        purge: { lastCompletedAt: '2026-09-29T09:58:12.000Z', queued: 2, failed24h: 0 },
+        http: {
+          last5m: { total: 1_204, s404: 12, s410: 1, s4xx: 20, s5xx: 0 },
+          lastHour: { total: 14_880, s404: 160, s410: 9, s4xx: 240, s5xx: 2 },
+        },
+        alerts: [],
+      },
+    ],
+  },
+);
+
+// -----------------------------------------------------------------------------------------------
 // Endpoints
 // -----------------------------------------------------------------------------------------------
 
@@ -595,7 +740,7 @@ export const adminEndpoints = {
     method: 'GET',
     path: `${admin}/categories`,
     summary: 'All categories, retired included',
-    response: CategoryListDTO,
+    response: AdminCategoryListDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
   }),
   createCategory: defineEndpoint({
@@ -607,7 +752,7 @@ export const adminEndpoints = {
     summary: 'Create a category',
     body: CategoryInputBody,
     status: 201,
-    response: CategoryDTO,
+    response: AdminCategoryDTO,
     errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   updateCategory: defineEndpoint({
@@ -619,7 +764,7 @@ export const adminEndpoints = {
     summary: 'Replace a category',
     params: IdParams,
     body: CategoryInputBody,
-    response: CategoryDTO,
+    response: AdminCategoryDTO,
     errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   retireCategory: defineEndpoint({
@@ -640,7 +785,7 @@ export const adminEndpoints = {
     method: 'GET',
     path: `${admin}/tags`,
     summary: 'All tags',
-    response: TagListDTO,
+    response: AdminTagListDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
   }),
   createTag: defineEndpoint({
@@ -652,7 +797,7 @@ export const adminEndpoints = {
     summary: 'Create a tag',
     body: TagInputBody,
     status: 201,
-    response: TagDTO,
+    response: AdminTagDTO,
     errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   updateTag: defineEndpoint({
@@ -664,7 +809,7 @@ export const adminEndpoints = {
     summary: 'Replace a tag',
     params: IdParams,
     body: TagInputBody,
-    response: TagDTO,
+    response: AdminTagDTO,
     errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   deleteTag: defineEndpoint({
@@ -688,6 +833,40 @@ export const adminEndpoints = {
     body: RecategorizeBody,
     response: RecategorizeResultDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+  }),
+  setKitStaffPick: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.setKitStaffPick',
+    owner: 'WP-51',
+    method: 'PUT',
+    path: `${admin}/kits/:id/staff-pick`,
+    summary: 'Feature a kit as a staff pick (or stop featuring it)',
+    params: IdParams,
+    body: KitStaffPickBody,
+    response: KitStaffPickDTO,
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+  }),
+  grantManualBadge: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.grantManualBadge',
+    owner: 'WP-51',
+    method: 'PUT',
+    path: `${admin}/users/:id/badges/:badgeKey`,
+    summary: 'Grant a manual badge (translator)',
+    params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
+    response: ManualBadgeDTO,
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+  }),
+  revokeManualBadge: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.revokeManualBadge',
+    owner: 'WP-51',
+    method: 'DELETE',
+    path: `${admin}/users/:id/badges/:badgeKey`,
+    summary: 'Remove a manual badge (translator)',
+    params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
+    response: ManualBadgeDTO,
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
   }),
   listAwards: defineEndpoint({
     ...adminRead,
@@ -799,6 +978,16 @@ export const adminEndpoints = {
     summary: 'KelvinSeek usage and budget',
     query: z.object({ days: z.enum(['7', '30', '90']).default('30') }),
     response: KelvinUsageDTO,
+    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+  }),
+  operations: defineEndpoint({
+    ...adminRead,
+    id: 'admin.operations',
+    owner: 'WP-51',
+    method: 'GET',
+    path: `${admin}/ops`,
+    summary: 'Job queues, dead letters, downloads per hour and CDN purges',
+    response: OpsDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
   }),
   rum: defineEndpoint({

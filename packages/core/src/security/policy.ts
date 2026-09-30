@@ -68,7 +68,7 @@ export const TABLE_POLICIES = {
   Session: {
     exposure: 'owner',
     writers: ['system'],
-    privateColumns: ['ipHash', 'userAgent', 'deviceLabel', 'lastSeenAt'],
+    privateColumns: ['ipHash', 'userAgent', 'deviceLabel', 'lastSeenAt', 'country'],
     secretColumns: ['tokenHash', 'pwdFingerprint'],
     retention: 'until expiry + 30 days',
     note: 'The owner lists and revokes their sessions; the cookie value is never stored in clear.',
@@ -285,11 +285,17 @@ export const TABLE_POLICIES = {
     privateColumns: ['reporterId', 'details', 'resolution', 'assignedToId', 'resolvedById'],
     note: 'The reporter is never revealed to the reported user.',
   },
+  ModerationAssignment: {
+    exposure: 'staff',
+    writers: ['staff'],
+    privateColumns: ['assigneeId', 'escalatedById', 'escalationReason'],
+    note: 'Queue assignee and escalation per target (Ranger Station); every change is also audited.',
+  },
   AuditLog: {
     exposure: 'staff',
     writers: ['system'],
     privateColumns: ['before', 'after', 'reason', 'ipHash'],
-    note: 'Append-only (no UPDATE/DELETE); read with moderation.audit.',
+    note: 'Append-only (REVOKE for the app role plus the immutability trigger of migration 2005); read with moderation.audit.',
   },
   Announcement: { exposure: 'public', writers: ['admin'], privateColumns: ['createdById'], note: 'Site banner.' },
   Award: { exposure: 'public', writers: ['admin'], privateColumns: ['createdById'], note: 'Awards (admin.awards).' },

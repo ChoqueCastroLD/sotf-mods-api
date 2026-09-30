@@ -29,6 +29,7 @@ import type { VersionDTO } from '@sotf/contracts/versions';
 import type { SupportLink } from '@sotf/db';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
+import { buildMetaOf, ogImageOf } from './build-facts.ts';
 import { type CatalogConfig, imageDto, type MediaRow, safeHttpUrl } from './media.ts';
 import { type CatalogEntry, type CatalogSnapshot, getSnapshot, taxonomyKey } from './snapshot.ts';
 import { cached, num, row, rows } from './sql.ts';
@@ -162,6 +163,11 @@ interface DetailRow {
   createdAt: Date;
   publishedAt: Date | null;
   editedAt: Date | null;
+  ogImageKey: string | null;
+  buildMeta: unknown;
+  buildGuid: string | null;
+  buildShareVersion: string | null;
+  numberOfElements: number | null;
 }
 
 interface GalleryRow extends MediaRow {
@@ -232,7 +238,11 @@ export async function buildModDetail(
         ctx.db,
         `SELECT "description", "descriptionHtml", "videoUrl", "license", "sourceUrl", "supportLinks", "contentLang",
                 "dedicatedServer", "safeToRemove", "logColor", "originalAuthorName", "originalAuthorUrl",
-                "successorModId", "possiblyOutdated", "createdAt", "publishedAt", "editedAt"
+                "successorModId", "possiblyOutdated", "createdAt", "publishedAt", "editedAt", "ogImageKey",
+                "buildGuid", "buildShareVersion", "numberOfElements",
+                (SELECT v."buildMeta" FROM "ModVersion" v
+                  WHERE v."modId" = "Mod"."id" AND v."isLatest" AND v."status" <> 'rejected'
+                  ORDER BY v."id" DESC LIMIT 1) AS "buildMeta"
            FROM "Mod" WHERE "id" = $1`,
         [entry.id],
       ),
@@ -332,6 +342,8 @@ export async function buildModDetail(
     createdAt: detail.createdAt.toISOString(),
     publishedAt: detail.publishedAt ? detail.publishedAt.toISOString() : null,
     editedAt: detail.editedAt ? detail.editedAt.toISOString() : null,
+    buildMeta: buildMetaOf(entry.kind, detail.buildMeta, detail),
+    ogImage: ogImageOf(config, detail.ogImageKey),
   };
 }
 

@@ -19,6 +19,7 @@ function category(id: number, slug: string, extra: Partial<CategoryInfo> = {}): 
     sortOrder: id,
     legacySlugs: [],
     retired: false,
+    ogImageKey: null,
     effectiveId: id,
     ref: { slug, nameKey: `taxonomy_category_${slug}`, name: slug, icon: null },
     ...extra,
@@ -185,6 +186,10 @@ describe('Explore listing', () => {
     expect(ids(runListQuery(snapshot, query({ compat: 'works' }), NOW).items)).toEqual([1]);
     expect(ids(runListQuery(snapshot, query({ platform: 'Universal' }), NOW).items)).toEqual([2]);
     expect(ids(runListQuery(snapshot, query({ multiplayer: 'host_only' }), NOW).items)).toEqual([4]);
+    // Several roles are OR (the /best/multiplayer-mods hub in one read); unknown roles are a 422.
+    expect(ids(runListQuery(snapshot, query({ multiplayer: ['host_only', 'all_players'] }), NOW).items)).toEqual([4]);
+    expect(runListQuery(snapshot, query({ multiplayer: ['client_side', 'all_players'] }), NOW).total).toBe(0);
+    expect(ModListQuery.safeParse({ multiplayer: ['host_only', 'nope'] }).success).toBe(false);
     expect(runListQuery(snapshot, query({ minRating: '4' }), NOW).total).toBe(0);
     expect(runListQuery(snapshot, query({ updatedWithin: '30d' }), NOW).total).toBe(4);
   });
@@ -209,6 +214,43 @@ describe('Explore listing', () => {
     expect(all.facets?.compat).toEqual([
       { value: 'works', count: 1 },
       { value: 'untested', count: 3 },
+    ]);
+  });
+
+  it('counts freshness and rating facets ignoring their own filter', () => {
+    const rated = snapshotOf([
+      entry({ id: 21, ratingAvg: 4.6, ratingCount: 5, lastReleasedAt: day(5) }),
+      entry({ id: 22, ratingAvg: 3.2, ratingCount: 3, lastReleasedAt: day(60) }),
+      entry({ id: 23, ratingAvg: null, lastReleasedAt: day(200) }),
+      entry({ id: 24, ratingAvg: 5, ratingCount: 9, lastReleasedAt: day(800) }),
+    ]);
+    const r = runListQuery(rated, query({ type: 'mod', facets: '1', updatedWithin: '30d', minRating: '4' }), NOW);
+    expect(ids(r.items)).toEqual([21]);
+    // updatedWithin counts ignore the freshness filter but keep minRating ≥ 4 (ids 21, 24).
+    expect(r.facets?.updatedWithin).toEqual([
+      { value: '30d', count: 1 },
+      { value: '90d', count: 1 },
+      { value: '1y', count: 1 },
+    ]);
+    // minRating counts ignore the rating filter but keep the 30-day window (id 21 only).
+    expect(r.facets?.minRating).toEqual([
+      { value: '1', count: 1 },
+      { value: '2', count: 1 },
+      { value: '3', count: 1 },
+      { value: '4', count: 1 },
+    ]);
+    const all = runListQuery(rated, query({ type: 'mod', facets: '1' }), NOW);
+    expect(all.facets?.updatedWithin).toEqual([
+      { value: '30d', count: 1 },
+      { value: '90d', count: 2 },
+      { value: '1y', count: 3 },
+    ]);
+    expect(all.facets?.minRating).toEqual([
+      { value: '1', count: 3 },
+      { value: '2', count: 3 },
+      { value: '3', count: 3 },
+      { value: '4', count: 2 },
+      { value: '5', count: 1 },
     ]);
   });
 

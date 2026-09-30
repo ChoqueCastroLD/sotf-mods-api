@@ -217,6 +217,17 @@ export async function listReports(
   };
 }
 
+/**
+ * One report as a `ReportDTO` (null when it does not exist). No permission check: callers are
+ * staff services that already ran `assertStaff` (the queue item view).
+ */
+export async function getReport(ctx: Ctx, config: CatalogConfig, id: number): Promise<Report | null> {
+  const row = await queryOne<ReportRow>(ctx.db, sql`SELECT ${REPORT_COLUMNS} FROM "Report" r WHERE r."id" = ${id}`);
+  if (!row) return null;
+  const [dto] = await toDtos(ctx, config, [row]);
+  return dto ?? null;
+}
+
 /** `POST /ranger/reports/:id/resolve`. */
 export async function resolveReport(
   ctx: Ctx,

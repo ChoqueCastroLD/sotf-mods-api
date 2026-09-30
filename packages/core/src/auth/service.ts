@@ -241,6 +241,7 @@ export class AuthService {
           remember: true,
           ipHash: ctx.ipHash,
           userAgent: ctx.userAgent,
+          country: ctx.country,
           now,
         });
         await this.recordEvent(tx, ctx, 'register', true, created.id);
@@ -339,6 +340,7 @@ export class AuthService {
         remember: input.remember,
         ipHash: ctx.ipHash,
         userAgent: ctx.userAgent,
+        country: ctx.country,
         now,
       });
       await this.recordEvent(tx, ctx, 'login', true, found.id);

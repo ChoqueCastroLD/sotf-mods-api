@@ -8,6 +8,7 @@
 import type { CategoryDTO, TagDTO } from '@sotf/contracts/catalog';
 import type { z } from 'zod';
 import type { Ctx } from '../kernel/context.ts';
+import { ogImageOf } from './build-facts.ts';
 import type { CatalogConfig } from './media.ts';
 import { compareCategories, getSnapshot, isListable, taxonomyKey } from './snapshot.ts';
 
@@ -39,6 +40,7 @@ export async function listCategories(
       sortOrder: c.sortOrder,
       legacySlugs: c.legacySlugs,
       count: counts.get(c.id) ?? 0,
+      ogImage: ogImageOf(config, c.ogImageKey),
     }));
 }
 

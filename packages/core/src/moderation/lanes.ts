@@ -22,7 +22,7 @@ import { type SQL, sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { getSnapshot } from '../catalog/snapshot.ts';
 import { loadUserRefs } from '../compat/shared.ts';
-import { query, queryOne, toDate, toInt } from '../follows/sql.ts';
+import { intArray, query, queryOne, toDate, toInt } from '../follows/sql.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
 import { newId } from '../kernel/ids.ts';
@@ -126,6 +126,86 @@ export interface LaneRow {
   risk: Risk;
   flags: QueueItem['flags'];
   assigneeId: number | null;
+  /** Filled by `applyQueueMarks` (escalations live in `"ModerationAssignment"`). */
+  escalation?: QueueMark['escalation'];
+}
+
+/** Assignment and escalation of one queue target (`"ModerationAssignment"`). */
+export interface QueueMark {
+  assigneeId: number | null;
+  escalation: { byId: number | null; at: Date; note: string | null } | null;
+}
+
+/** Audit actions of the queue marks (`POST /ranger/items/:id/assign|escalate`). */
+export const QUEUE_MARK_ACTIONS = ['queue.assign', 'queue.unassign', 'queue.escalate', 'queue.deescalate'] as const;
+
+/**
+ * Assignment and escalation of queue targets. The state lives in `"ModerationAssignment"` (one row
+ * per target, migration 2004); every change is also audited (`queue.assign`/`queue.unassign`/
+ * `queue.escalate`/`queue.deescalate`). Marks set before `since` (the moment the target entered
+ * its lane) are ignored, so a resubmitted mod starts unassigned and not escalated. Reports keep
+ * their assignee in `Report.assignedToId` as well (the row value wins for them).
+ */
+export async function queueMarks(
+  exec: Executor,
+  targets: ReadonlyArray<{ targetType: string; targetId: number; since: Date }>,
+): Promise<Map<string, QueueMark>> {
+  const out = new Map<string, QueueMark>();
+  if (targets.length === 0) return out;
+  const types = [...new Set(targets.map((t) => t.targetType))];
+  const list = await query<{
+    targetType: string;
+    targetId: number;
+    assigneeId: number | null;
+    assignedAt: Date | string | null;
+    escalatedAt: Date | string | null;
+    escalatedById: number | null;
+    escalationReason: string | null;
+  }>(
+    exec,
+    sql`SELECT a."targetType", a."targetId", a."assigneeId", a."assignedAt",
+               a."escalatedAt", a."escalatedById", a."escalationReason"
+          FROM "ModerationAssignment" a
+         WHERE a."targetType" = ANY(${`{${types.join(',')}}`}::text[])
+           AND a."targetId" = ANY(${intArray(targets.map((t) => t.targetId))})`,
+  );
+  const since = new Map(targets.map((t) => [`${t.targetType}:${t.targetId}`, t.since.getTime()]));
+  for (const r of list) {
+    const key = `${r.targetType}:${r.targetId}`;
+    const from = since.get(key);
+    if (from === undefined) continue;
+    const assignedAt = toDate(r.assignedAt);
+    const escalatedAt = toDate(r.escalatedAt);
+    const mark: QueueMark = { assigneeId: null, escalation: null };
+    if (r.assigneeId !== null && assignedAt !== null && assignedAt.getTime() >= from) {
+      mark.assigneeId = Number(r.assigneeId);
+    }
+    if (escalatedAt !== null && escalatedAt.getTime() >= from) {
+      mark.escalation = {
+        byId: r.escalatedById === null ? null : Number(r.escalatedById),
+        at: escalatedAt,
+        note: r.escalationReason,
+      };
+    }
+    out.set(key, mark);
+  }
+  return out;
+}
+
+/** Applies `queueMarks` to lane rows: assignee (except reports), escalation, and high risk when escalated. */
+export async function applyQueueMarks(exec: Executor, rows: LaneRow[]): Promise<LaneRow[]> {
+  const marks = await queueMarks(
+    exec,
+    rows.map((r) => ({ targetType: r.targetType, targetId: r.targetId, since: r.submittedAt })),
+  );
+  for (const r of rows) {
+    const mark = marks.get(`${r.targetType}:${r.targetId}`);
+    if (!mark) continue;
+    if (r.targetType !== 'report') r.assigneeId = mark.assigneeId;
+    r.escalation = mark.escalation;
+    if (mark.escalation) r.risk = 'high';
+  }
+  return rows;
 }
 
 interface VersionLaneRow {
@@ -384,7 +464,9 @@ export async function toQueueItems(ctx: Ctx, deps: ModerationDeps, list: readonl
     loadUserRefs(
       ctx.db,
       deps.config,
-      list.flatMap((r) => [r.authorId, r.assigneeId]).filter((id): id is number => id !== null),
+      list
+        .flatMap((r) => [r.authorId, r.assigneeId, r.escalation?.byId ?? null])
+        .filter((id): id is number => id !== null),
     ),
   ]);
   return list.map((r) => {
@@ -402,6 +484,13 @@ export async function toQueueItems(ctx: Ctx, deps: ModerationDeps, list: readonl
       risk: r.risk,
       flags: flagsOf(r.flags),
       assignee: r.assigneeId === null ? null : (users.get(r.assigneeId) ?? null),
+      escalation: r.escalation
+        ? {
+            by: r.escalation.byId === null ? null : (users.get(r.escalation.byId) ?? null),
+            at: r.escalation.at.toISOString(),
+            note: r.escalation.note,
+          }
+        : null,
     };
   });
 }
@@ -413,7 +502,10 @@ export async function getQueue(
   input: { lane: ModerationLane; cursor?: string | undefined; limit: number },
 ): Promise<QueuePage> {
   await assertStaff(ctx, 'moderation.queue');
-  const [rows, counts] = await Promise.all([laneRows(ctx, input.lane), laneCounts(ctx.db, ctx.clock.now())]);
+  const [rows, counts] = await Promise.all([
+    laneRows(ctx, input.lane).then((list) => applyQueueMarks(ctx.db, list)),
+    laneCounts(ctx.db, ctx.clock.now()),
+  ]);
   let sorted = [...rows].sort(compareRows);
   if (input.cursor) sorted = sorted.filter(afterCursor(input.cursor));
   const page = sorted.slice(0, input.limit);

@@ -11,6 +11,7 @@ import { COMPAT_STATUSES, type ImageDTO, MULTIPLAYER_ROLES, PLATFORMS } from '@s
 import type { CompatSummaryDTO } from '@sotf/contracts/compat';
 import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
+import { buildCardFacts } from '../catalog/build-facts.ts';
 import { canonicalModPath } from '../resolve/paths.ts';
 import { publicObjectUrl } from '../storage/keys.ts';
 
@@ -103,7 +104,8 @@ export async function loadModCards(
     SELECT m."id", m."type", m."mod_id" AS "manifestId", m."name", m."slug", m."userId", m."shortDescription",
            m."latestVersion", m."downloads", m."lastWeekDownloads", m."favoritesCount", m."averageRating",
            m."reviewsCount", m."compatStatus", m."multiplayerRole", m."platform", m."isFeatured",
-           m."lastReleasedAt", m."isNSFW", m."status",
+           m."lastReleasedAt", m."isNSFW", m."status", m."buildGuid", m."buildShareVersion", m."numberOfElements",
+           lv."buildMeta",
            u."slug" AS "ownerSlug", coalesce(nullif(u."displayName", ''), u."name") AS "ownerName",
            u."verifiedCreator",
            coalesce(active."slug", c."slug") AS "categorySlug", coalesce(active."name", c."name") AS "categoryName",
@@ -132,7 +134,7 @@ export async function loadModCards(
       LEFT JOIN "Media" md ON md."id" = m."thumbnailMediaId" AND md."status" = 'ready'
       LEFT JOIN current_build cb ON true
       LEFT JOIN LATERAL (
-        SELECT v."id" FROM "ModVersion" v
+        SELECT v."id", v."buildMeta" FROM "ModVersion" v
          WHERE v."modId" = m."id" AND v."status" IN ('active', 'yanked')
          ORDER BY v."isLatest" DESC, v."createdAt" DESC, v."id" DESC LIMIT 1) lv ON true
       LEFT JOIN "ModVersionCompat" vc ON vc."modVersionId" = lv."id" AND vc."gameBuildId" = cb."id"
@@ -190,6 +192,12 @@ export async function loadModCards(
       lastReleasedAt: iso(row.lastReleasedAt),
       nsfw: row.isNSFW === true,
       status: row.status as ModCardDTO['status'],
+      build: buildCardFacts(kind, row.buildMeta, {
+        buildGuid: typeof row.buildGuid === 'string' ? row.buildGuid : null,
+        buildShareVersion: typeof row.buildShareVersion === 'string' ? row.buildShareVersion : null,
+        numberOfElements:
+          row.numberOfElements === null || row.numberOfElements === undefined ? null : Number(row.numberOfElements),
+      }),
     };
     const compat: CompatSummaryDTO = {
       status: oneOf(COMPAT_STATUSES, row.computedStatus) ?? modCompat,

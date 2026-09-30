@@ -60,6 +60,8 @@ export interface ReleaseInput {
   testedGameBuildIds: readonly number[];
   notifyFollowers: boolean;
   publishedById: number;
+  /** Minimum loader declared in the wizard; used when the manifest declares no `loaderVersion`. */
+  loaderMin?: string | null;
   /**
    * Emit `version.published` for an active version (default true). The first version of a new mod
    * is announced by `mod.published` instead.
@@ -130,7 +132,7 @@ export async function writeVersion(ctx: Ctx, tx: Transaction, input: ReleaseInpu
     changelogHtml: changelog.html,
     manifest: manifestJson(input.manifest),
     gameVersionDeclared: input.manifest?.gameVersion ?? null,
-    loaderVersionDeclared: input.manifest?.loaderVersion ?? null,
+    loaderVersionDeclared: input.manifest?.loaderVersion ?? (input.loaderMin?.trim() || null),
     platformDeclared: input.manifest?.platform ?? null,
     buildMeta: storedBuildMeta(input.inspection.buildMeta),
     checksStatus: input.inspection.status === 'pending' ? 'pending' : input.inspection.status,
@@ -154,7 +156,7 @@ export async function writeVersion(ctx: Ctx, tx: Transaction, input: ReleaseInpu
   if (builds.length > 0) {
     await tx.execute(sql`
       INSERT INTO "ModVersionCompat" ("modVersionId", "gameBuildId", "authorTested", "updatedAt")
-      SELECT ${input.versionId}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${builds}::int[])
+      SELECT ${input.versionId}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${sql.param(builds)}::int[])
       ON CONFLICT ("modVersionId", "gameBuildId") DO UPDATE SET "authorTested" = true`);
   }
 

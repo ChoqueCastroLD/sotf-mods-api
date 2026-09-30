@@ -3,7 +3,7 @@
  * dependency resolution (T0-09) and the uploads a publication consumes.
  */
 import { UploadInspectionDTO as UploadInspectionSchema } from '@sotf/contracts/uploads';
-import { type Executor, type Mod, mod, type Upload, upload } from '@sotf/db';
+import { type DescriptionFormat, type Executor, type Mod, mod, type Upload, upload } from '@sotf/db';
 import { eq, sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import type { Ctx } from '../kernel/context.ts';
@@ -70,12 +70,38 @@ export function kindOfType(type: string | null): 'mod' | 'library' | 'build' {
   return 'mod';
 }
 
-/** True when the mod was authored on the legacy site (never published through v2). */
-export async function isLegacyAuthored(exec: Executor, modId: number): Promise<boolean> {
-  const res = await exec.execute<{ v2: boolean }>(
-    sql`SELECT EXISTS (SELECT 1 FROM "ModVersion" WHERE "modId" = ${modId} AND "publishedById" IS NOT NULL) AS "v2"`,
+/**
+ * Rendering profile of a mod's description (`"Mod"."descriptionFormat"`, migration 2002): `legacy`
+ * keeps raw HTML working with the strict `legacyHtml` allowlist, `markdown` renders with `full`
+ * (raw HTML shows as text). A row without a stored format is inferred: `legacy` when the mod was
+ * authored on the legacy site (never published through v2), `markdown` otherwise. Writers persist
+ * the value ({@link persistDescriptionFormat}) so a first v2 version never flips an old layout.
+ */
+export async function descriptionFormatOf(exec: Executor, modId: number): Promise<DescriptionFormat> {
+  const res = await exec.execute<{ format: string | null; v2: boolean }>(
+    sql`SELECT m."descriptionFormat" AS "format",
+               EXISTS (SELECT 1 FROM "ModVersion" v WHERE v."modId" = m."id" AND v."publishedById" IS NOT NULL) AS "v2"
+          FROM "Mod" m WHERE m."id" = ${modId}`,
   );
-  return res.rows[0]?.v2 !== true;
+  const row = res.rows[0];
+  if (row?.format === 'legacy' || row?.format === 'markdown') return row.format;
+  return row?.v2 === true ? 'markdown' : 'legacy';
+}
+
+/** True when the description keeps the legacy (raw HTML) rendering profile. */
+export async function isLegacyAuthored(exec: Executor, modId: number): Promise<boolean> {
+  return (await descriptionFormatOf(exec, modId)) === 'legacy';
+}
+
+/** Stores the inferred format of a mod that has none yet (idempotent; never overwrites). */
+export async function persistDescriptionFormat(
+  exec: Executor,
+  modId: number,
+  format: DescriptionFormat,
+): Promise<void> {
+  await exec.execute(
+    sql`UPDATE "Mod" SET "descriptionFormat" = ${format} WHERE "id" = ${modId} AND "descriptionFormat" IS NULL`,
+  );
 }
 
 export interface CategoryMatch {
@@ -106,7 +132,7 @@ export async function findTags(
   const wanted = [...new Set(slugs.map((s) => s.trim().toLowerCase()).filter(Boolean))];
   if (wanted.length === 0) return { ids: [], unknown: [] };
   const res = await exec.execute<{ id: number; slug: string }>(
-    sql`SELECT "id", "slug" FROM "Tag" WHERE "slug" = ANY(${wanted}::text[])`,
+    sql`SELECT "id", "slug" FROM "Tag" WHERE "slug" = ANY(${sql.param(wanted)}::text[])`,
   );
   const found = new Map(res.rows.map((r) => [r.slug, r.id]));
   return {
@@ -172,7 +198,7 @@ export async function resolveDependencies(
   if (ids.length === 0) return [];
   const res = await exec.execute<{ id: number; manifestId: string }>(sql`
     SELECT "id", "mod_id" AS "manifestId" FROM "Mod"
-     WHERE "mod_id" = ANY(${ids}::text[]) AND "status" NOT IN ('rejected')`);
+     WHERE "mod_id" = ANY(${sql.param(ids)}::text[]) AND "status" NOT IN ('rejected')`);
   for (const r of res.rows) {
     const dep = merged.get(r.manifestId);
     if (dep) dep.depModId = r.id;
@@ -190,7 +216,7 @@ export async function dependencyCycles(
   if (direct.length === 0) return [];
   const res = await exec.execute<{ origin: string }>(sql`
     WITH RECURSIVE walk("origin", "manifest", "depth") AS (
-      SELECT o, o, 1 FROM unnest(${direct}::text[]) AS o
+      SELECT o, o, 1 FROM unnest(${sql.param(direct)}::text[]) AS o
       UNION
       SELECT w."origin", d."depManifestId", w."depth" + 1
         FROM walk w
@@ -265,7 +291,7 @@ export async function loadMedia(exec: Executor, ids: readonly string[]): Promise
   const unique = [...new Set(ids)];
   if (unique.length === 0) return new Map();
   const res = await exec.execute<Row>(sql`
-    SELECT "id", "status", "ownerId", "sourceBucket", "sourceKey" FROM "Media" WHERE "id" = ANY(${unique}::uuid[])`);
+    SELECT "id", "status", "ownerId", "sourceBucket", "sourceKey" FROM "Media" WHERE "id" = ANY(${sql.param(unique)}::uuid[])`);
   return new Map(
     res.rows.map((r) => [
       String(r.id),

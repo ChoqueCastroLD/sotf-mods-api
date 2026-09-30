@@ -95,3 +95,33 @@ export function deletionCompleted(p: DeletionCompletedPayload, c: TemplateContex
     }),
   };
 }
+
+export interface OpsAlertPayload {
+  key: 'dead_letter' | 'http_5xx' | 'invariants' | 'kelvinseek_budget';
+  summary: string;
+  details: string[];
+  checkedAt: string;
+  opsUrl: string;
+}
+
+/**
+ * Operator alert of PLAN §10.3 (`ops.alerts` job). Written in English on purpose: it goes only to
+ * the site admins and carries machine facts (queue names, counts), not user-facing copy.
+ */
+export function opsAlert(p: OpsAlertPayload, c: TemplateContext): TemplateOutput {
+  return {
+    subject: `[SOTF Mods ops] ${p.summary}`,
+    element: h(ActionEmail, {
+      ...c,
+      preview: p.summary,
+      name: 'admin',
+      heading: p.summary,
+      paragraphs: p.details.length > 0 ? p.details : ['No further details.'],
+      action: { label: 'Open the operations readout', url: p.opsUrl },
+      notes: [
+        `Checked at ${emailDateTime(c.locale, p.checkedAt)} (alert: ${p.key}). The same alert is sent again at most every 6 hours while it lasts.`,
+      ],
+      reason: 'You receive this email because you are an administrator of SOTF Mods.',
+    }),
+  };
+}

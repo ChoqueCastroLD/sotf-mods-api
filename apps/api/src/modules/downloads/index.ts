@@ -18,7 +18,12 @@
 import { SESSION_COOKIE } from '@sotf/contracts/auth';
 import { downloadsEndpoints } from '@sotf/contracts/downloads';
 import { resolveSession } from '@sotf/core/auth/index';
-import { clearDownloadHistory, getDownloadHistory, toResolveDTO } from '@sotf/core/downloads/index';
+import {
+  clearDownloadHistory,
+  getDownloadHistory,
+  removeDownloadFromHistory,
+  toResolveDTO,
+} from '@sotf/core/downloads/index';
 import { registerLegacyDownloads } from '../../legacy/downloads/index.ts';
 import { defineModule } from '../../lib/define-module.ts';
 import { downloadsRuntime, installDownloadHeaders, redirectOrThrow, requestHints } from './runtime.ts';
@@ -62,6 +67,11 @@ export default defineModule({
     m.implement(downloadsEndpoints.clearMyDownloads, async ({ ctx }) => {
       const detached = await clearDownloadHistory(ctx);
       ctx.log.info({ detached }, 'download history cleared');
+    });
+
+    m.implement(downloadsEndpoints.removeMyDownload, async ({ params, ctx }) => {
+      const detached = await removeDownloadFromHistory(ctx, params.modId);
+      ctx.log.info({ detached, modId: params.modId }, 'download history entry removed');
     });
 
     registerLegacyDownloads(m, service);

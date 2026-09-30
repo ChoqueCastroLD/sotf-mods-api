@@ -124,6 +124,7 @@ export async function latestScans(exec: Executor, versionIds: readonly number[])
 export function scanSummary(row: ScanRow | undefined | null): ScanSummary | null {
   if (!row || !SCAN_VERDICTS.has(row.verdict)) return null;
   return {
+    id: Number(row.id),
     verdict: row.verdict as ScanSummary['verdict'],
     engine: row.engine,
     positives: row.positives,

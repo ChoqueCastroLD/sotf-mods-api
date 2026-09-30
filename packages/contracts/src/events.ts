@@ -115,6 +115,8 @@ export const ANALYTICS_EVENT_KINDS = [
   'version_publish',
   'cmdk_open',
   'cmdk_select',
+  /** `window.onerror` / unhandled rejections of public pages (props: `message`, `source`, `line`). */
+  'client_error',
 ] as const;
 export const AnalyticsEventKind = z.enum(ANALYTICS_EVENT_KINDS);
 export type AnalyticsEventKind = z.infer<typeof AnalyticsEventKind>;

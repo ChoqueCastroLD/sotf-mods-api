@@ -155,7 +155,11 @@ export const BadgeKeySchema = z.enum(BADGE_KEYS);
 export const BadgeDTO = dto(
   'BadgeDTO',
   z.object({
-    key: z.string().describe('Badge key; name and criteria come from i18n (`badges_<key>_*`)'),
+    key: z
+      .string()
+      .describe(
+        'Badge key; name and hint come from i18n (`profile_badge_<snake_key>_name|hint` of the `profile` namespace; the `original-survivor-<year>` badges share `profile_badge_original_survivor_*` with `{year}`)',
+      ),
     group: BadgeGroup,
     tier: z.number().int().min(1),
     icon: z.string(),
@@ -234,6 +238,29 @@ export const UserBadgesDTO = dto(
     ],
   },
 );
+
+/** Badges shown on the profile header (PLAN §7.2). */
+export const FEATURED_BADGES_MAX = 6;
+
+export const FeaturedBadgesBody = dto(
+  'FeaturedBadgesBody',
+  z.strictObject({
+    keys: z
+      .array(z.string().min(1).max(60))
+      .max(FEATURED_BADGES_MAX)
+      .refine((keys) => new Set(keys).size === keys.length, 'duplicate badge')
+      .describe('Earned badge keys to feature (replaces the current choice; [] features none)'),
+  }),
+  {
+    description: 'Choose the badges featured on the profile.',
+    examples: [{ keys: ['original-survivor-2023', 'field-medic'] }],
+  },
+);
+
+export const FeaturedBadgesDTO = dto('FeaturedBadgesDTO', z.object({ featuredBadgeKeys: z.array(z.string()) }), {
+  description: 'Badges featured on the profile after the change.',
+  examples: [{ featuredBadgeKeys: ['original-survivor-2023', 'field-medic'] }],
+});
 
 // -----------------------------------------------------------------------------------------------
 // Awards
@@ -364,6 +391,19 @@ export const gamificationEndpoints = {
     errors: ['NOT_FOUND'],
     cache: cache.publicApi(['user:{id}']),
     rateLimit: 'anonymousRead',
+  }),
+  setFeaturedBadges: defineEndpoint({
+    id: 'gamification.setFeaturedBadges',
+    owner: 'WP-60',
+    method: 'PATCH',
+    path: `${API_V2_PREFIX}/me/badges/featured`,
+    summary: 'Choose the badges featured on my profile',
+    auth: 'session',
+    body: FeaturedBadgesBody,
+    response: FeaturedBadgesDTO,
+    errors: ['UNAUTHENTICATED'],
+    cache: cache.noStore,
+    rateLimit: 'userWrite',
   }),
   onboarding: defineEndpoint({
     id: 'gamification.onboarding',

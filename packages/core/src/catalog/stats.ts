@@ -9,6 +9,7 @@
  */
 import type { LivePulseDTO, ModLiveDTO, ModPublicStatsDTO, SiteStatsDTO } from '@sotf/contracts/stats';
 import type { z } from 'zod';
+import { countLiveVisitors } from '../analytics/live.ts';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { assertReachable } from './detail.ts';
@@ -70,7 +71,7 @@ export function getLivePulse(ctx: Ctx, config: CatalogConfig): Promise<LivePulse
     const now = ctx.clock.now();
     const midnight = new Date(`${utcDay(now)}T00:00:00.000Z`);
     const hourAgo = new Date(now.getTime() - 3_600_000);
-    const [snapshot, counts, recent, releases] = await Promise.all([
+    const [snapshot, counts, recent, releases, visitorsNow] = await Promise.all([
       getSnapshot(ctx, config),
       row<{ today: string; hour: string }>(
         ctx.db,
@@ -94,6 +95,7 @@ export function getLivePulse(ctx: Ctx, config: CatalogConfig): Promise<LivePulse
           WHERE m."status" = 'published' AND NOT m."isNSFW" AND v."status" = 'active'
           ORDER BY coalesce(v."publishedAt", v."createdAt") DESC, v."id" DESC LIMIT 10`,
       ),
+      countLiveVisitors(ctx),
     ]);
     const publicEntry = (modId: number) => {
       const entry = snapshot.byId.get(modId);
@@ -111,6 +113,7 @@ export function getLivePulse(ctx: Ctx, config: CatalogConfig): Promise<LivePulse
       value: {
         downloadsToday: num(counts?.today),
         downloadsLastHour: num(counts?.hour),
+        visitorsNow,
         recent: recentItems,
         latestRelease: latest?.entry
           ? { mod: latest.entry.ref, version: latest.r.version.slice(0, 64), at: latest.r.at.toISOString() }

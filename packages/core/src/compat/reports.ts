@@ -61,8 +61,7 @@ async function loadReport(db: Executor, id: number, forUpdate = false): Promise<
 
 const iso = (value: Date | string | null): string | null => toDate(value)?.toISOString() ?? null;
 
-async function reportDto(db: Executor, deps: CompatDeps, r: ReportRow): Promise<ReportDTO> {
-  const refs = await loadUserRefs(db, deps.config, [r.userId]);
+function toReportDto(r: ReportRow, refs: Map<number, NonNullable<ReportDTO['reporter']>>): ReportDTO {
   return {
     id: r.id,
     modVersionId: r.modVersionId,
@@ -77,6 +76,10 @@ async function reportDto(db: Executor, deps: CompatDeps, r: ReportRow): Promise<
     createdAt: iso(r.createdAt) ?? new Date(0).toISOString(),
     updatedAt: iso(r.updatedAt) ?? new Date(0).toISOString(),
   };
+}
+
+async function reportDto(db: Executor, deps: CompatDeps, r: ReportRow): Promise<ReportDTO> {
+  return toReportDto(r, await loadUserRefs(db, deps.config, [r.userId]));
 }
 
 /** Trimmed optional text: empty → null. */
@@ -256,4 +259,19 @@ export async function acknowledgeCompatReport(
     if (!row) throw errors.notFound('Report');
     return reportDto(tx, deps, row);
   });
+}
+
+/** The viewer's field reports on the versions of a mod, newest first (`GET /me/social-state`). */
+export async function userCompatReports(
+  db: Executor,
+  deps: CompatDeps,
+  modId: number,
+  userId: number,
+): Promise<ReportDTO[]> {
+  const list = await query<ReportRow>(
+    db,
+    sql`${REPORT_SELECT} WHERE v."modId" = ${modId} AND r."userId" = ${userId} ORDER BY r."updatedAt" DESC, r."id" DESC LIMIT 100`,
+  );
+  const refs = await loadUserRefs(db, deps.config, [userId]);
+  return list.map((r) => toReportDto(r, refs));
 }

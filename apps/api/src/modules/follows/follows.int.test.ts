@@ -206,6 +206,13 @@ describe('follow a mod (ModFavorite)', () => {
     expect(await favoriteRows(bob, SONS_AX_LIB)).toBe(0);
     expect((await modCounters(SONS_AX_LIB)).favoritesCount).toBe(before.favoritesCount - 2);
     expect(await events('follow.mod_deleted', 'userId', bob)).toBe(1);
+    // Both rows are archived (the "favorites preserved" invariant counts ModFavorite + archive).
+    const archived = await exec(
+      db,
+      `SELECT count(*)::int AS n FROM "ModFavoriteArchive" WHERE "userId" = $1 AND "modId" = $2 AND "reason" = 'unfollow'`,
+      [bob, SONS_AX_LIB],
+    );
+    expect(archived.rows[0].n).toBe(2);
   });
 
   it('refuses mods that are not reachable (unknown, pending without checks, removed); unfollow still works', async () => {

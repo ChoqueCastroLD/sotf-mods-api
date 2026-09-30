@@ -5,9 +5,11 @@
  *
  * - Taxonomy: categories (create, replace, retire) and tags (create, replace, delete) plus the
  *   bulk recategorisation with keyword-rule suggestions (`dryRun` by default).
- * - Awards (Mod of the Week overrides, staff picks, Build/Mod of the Month).
+ * - Awards (Mod of the Week overrides, staff picks, Build/Mod of the Month), kit staff picks and the
+ *   manual `translator` badge.
  * - Site settings (`GET|PUT /admin/settings/:key`, validated per key).
- * - KelvinSeek usage and budget, RUM p75 per template and country.
+ * - KelvinSeek usage and budget, RUM p75 per template and country, and the operations readout
+ *   (job queues, dead letters, downloads per hour, CDN purges).
  *
  * Every endpoint is 👑 with a session younger than 12 h (checked in core); writes are audited.
  */
@@ -20,11 +22,14 @@ import {
   deleteTag,
   getAdminRum,
   getKelvinSeekUsage,
+  getOperations,
   listAdminCategories,
   listAdminTags,
   listAwards,
   recategorize,
   retireCategory,
+  setKitStaffPick,
+  setManualBadge,
   updateCategory,
   updateTag,
 } from '@sotf/core/admin/index';
@@ -76,6 +81,17 @@ export default defineModule({
       bodyLimit: 512 * 1024,
     });
 
+    // Curation: kit staff picks and manual badges.
+    m.implement(adminEndpoints.setKitStaffPick, async ({ params, body, ctx }) =>
+      setKitStaffPick(ctx, params.id, body.isStaffPick),
+    );
+    m.implement(adminEndpoints.grantManualBadge, async ({ params, ctx }) =>
+      setManualBadge(ctx, params.id, params.badgeKey, true),
+    );
+    m.implement(adminEndpoints.revokeManualBadge, async ({ params, ctx }) =>
+      setManualBadge(ctx, params.id, params.badgeKey, false),
+    );
+
     // Awards.
     m.implement(adminEndpoints.listAwards, async ({ ctx }) => listAwards(ctx, config));
     m.implement(adminEndpoints.createAward, async ({ body, ctx }) => createAward(ctx, config, body));
@@ -94,5 +110,8 @@ export default defineModule({
       getKelvinSeekUsage(ctx, kelvinseek, Number(query.days) as 7 | 30 | 90),
     );
     m.implement(adminEndpoints.rum, async ({ query, ctx }) => getAdminRum(ctx, query.range));
+    m.implement(adminEndpoints.operations, async ({ ctx }) =>
+      getOperations(ctx, env.PGBOSS_SCHEMA, { kelvinSeek: kelvinseek, siteUrl: env.PUBLIC_SITE_URL }),
+    );
   },
 });

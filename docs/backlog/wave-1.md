@@ -87,15 +87,15 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 
 ### API y plataforma (WP-20, WP-24, WP-32, WP-90)
 
-- **Registrar rutas desde `apiContracts`** · `apps/api` (WP-20) · servir
+- [x] resolved by wire-api (already in place): **Registrar rutas desde `apiContracts`** · `apps/api` (WP-20) · servir
   `buildOpenApiDocument({ version })` en `/api/v2/openapi.json`; `endpoint.rateLimit` → buckets
   `RATE_LIMITS`; `cacheHeaders()` + `resolveCacheTags()` con ids de **entidad**; errores de `/api/*`
   con `errorFormat: 'legacy'`. (WP-11.)
-- **CSRF y cuerpos JSON** · `apps/api/src/plugins/**` (WP-20) · el cliente tipado siempre envía
+- [x] resolved by wire-api (already in place; csrfExempt added for the CSP collector): **CSRF y cuerpos JSON** · `apps/api/src/plugins/**` (WP-20) · el cliente tipado siempre envía
   JSON (`{}` sin cuerpo) en POST/PUT/PATCH/DELETE; Fastify debe aceptar `{}` en DELETE. Excepciones:
   `POST /api/v2/e`, `/api/v2/e/vitals` (`text/plain`) y `POST /api/v2/unsubscribe` (formulario
   RFC 8058). (WP-11.)
-- **Cola de eventos de dominio** · `packages/core/src/kernel/**`, `apps/worker` (WP-20) · adoptar
+- [x] resolved by wire-api (already in place (domain.event)): **Cola de eventos de dominio** · `packages/core/src/kernel/**`, `apps/worker` (WP-20) · adoptar
   `JOB_PAYLOADS['domain.event']` (fan-out único) o añadir colas por consumidor (cambio aditivo).
   (WP-11.) · **[x] resolved by wire-data**: verified: fan-out único `domain.event` adoptado (`apps/worker/src/runtime.ts`).
 - [x] resolved by wire-infra (verified: `ops/docker/node.Dockerfile` ships `dist/migrations/*.sql` and `dist/migrate.js` (WP-90)) · **Imagen de migración** · `ops/docker/node.Dockerfile`, bundle de `apps/api` (WP-20/WP-90) ·
@@ -108,7 +108,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `keyOrderIssues`, `orderKeys`, `LEGACY_VOLATILE_FIELDS`, `LEGACY_DEVIATIONS` y
   `UPDATES_CHECKER_VALUE_FIELDS`; al copiar fixtures, un `biome.json` anidado que excluya
   `fixtures/` y re-declare `!**/*.gen.ts`, como `packages/contracts/biome.json`. (WP-11.)
-- **`/api/categories` legacy en v2** · `apps/api/src/legacy/**` (WP-32) · decidir si lista solo
+- [x] resolved by wire-api (decided by WP-32): **`/api/categories` legacy en v2** · `apps/api/src/legacy/**` (WP-32) · decidir si lista solo
   categorías con mods (la fixture tiene 4) o todas. (WP-10.)
 
 ### Web pública (WP-22, WP-25, WP-62, WP-70)
@@ -148,37 +148,37 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 
 ### Dominio y consola (WP-31, WP-33, WP-34, WP-40, WP-41, WP-51, WP-54, WP-70, WP-81, WP-82)
 
-- **Límites de subida** · `packages/core/src/uploads` (WP-31) · `UPLOAD_LIMITS` (image 10 MB,
+- [x] resolved by wire-api (confirmed as delivered): **Límites de subida** · `packages/core/src/uploads` (WP-31) · `UPLOAD_LIMITS` (image 10 MB,
   avatar 5 MB, banner 10 MB, comment_image 5 MB; multipart > 100 MB en partes de 16 MB) es decisión
   de v2: confirmar o cambiar de forma aditiva. (WP-11.)
-- **Categorías retiradas** · `packages/core/src/catalog/**` (WP-33), Explore (WP-54) · resolver
+- [x] resolved by wire-api (core part in place (snapshot resolves legacySlugs)): **Categorías retiradas** · `packages/core/src/catalog/**` (WP-33), Explore (WP-54) · resolver
   vía `legacySlugs` (`qol` → `quality-of-life`). (WP-10.)
 - **Locale de la consola** · `apps/web/src/console/**` (WP-34/WP-81) · `User.settings.locale` →
   `localStorage` → `negotiateLocale`, `setLocale(locale, { reload: false })`. (WP-13.)
-- **Umbrales de tamaño de builds** · `packages/contracts/src/manifest.ts` (WP-40/WP-63) ·
+- [x] resolved by wire-api (confirmed as delivered): **Umbrales de tamaño de builds** · `packages/contracts/src/manifest.ts` (WP-40/WP-63) ·
   S < 500 ≤ M < 2 000 ≤ L < 8 000 ≤ XL no están en el plan; el blueprint legacy guarda `Data` como
   cadena JSON. (WP-11.)
-- **Perfil de render persistido** · `packages/db/migrations/**` + publicación (WP-40) ·
+- [x] resolved by wire-api (core: see WP-15): **Perfil de render persistido** · `packages/db/migrations/**` + publicación (WP-40) ·
   `"Mod"."descriptionFormat"` `'legacy' | 'markdown'` para que una descripción legacy editada siga
   con `legacyHtml`; aviso si Markdown nuevo contiene HTML (`hasRawHtml`). (WP-15.) · **[partial] wire-data**: migration 2002 adds `"Mod"."descriptionFormat"` (NULL = infer) and B9 fills `legacy`; remaining: `packages/core` publishing must read/write it and warn with `hasRawHtml` (wire-api).
 - **Imágenes dentro de descripciones** · `apps/worker/src/jobs/media/**` (WP-40, B15) · replicar a
   R2 con las reglas SSRF de §9.1 y re-renderizar con `resolveImage` (URL + `width`/`height`).
   (WP-15.) · **[x] resolved by wire-data**: verified: `description-images` subscriber of `apps/worker/src/jobs/media` (WP-40).
-- **Menciones** · `packages/core` comentarios/reseñas (WP-41) · `extractMentions` → una consulta →
+- [x] resolved by wire-api (already in place): **Menciones** · `packages/core` comentarios/reseñas (WP-41) · `extractMentions` → una consulta →
   `resolveMention` síncrono; notificar `mentions`. (WP-15.)
-- **Estado del visitante en listas cacheadas** · contratos de comentarios/reseñas (WP-41/WP-70) ·
+- [x] resolved by wire-api (GET /api/v2/me/social-state and GET /api/v2/me/follows/lookup): **Estado del visitante en listas cacheadas** · contratos de comentarios/reseñas (WP-41/WP-70) ·
   añadir consultas de sesión tipo `GET /api/v2/me/follows/lookup` si las islas las necesitan.
   (WP-11.)
-- **Endpoints y códigos más allá de §5.1/§5.2** · WP-41, WP-42, WP-51, WP-30 ·
+- [x] resolved by wire-api (verified present): **Endpoints y códigos más allá de §5.1/§5.2** · WP-41, WP-42, WP-51, WP-30 ·
   `GET /api/v2/me/kits`, `GET /api/v2/me/follows/lookup`, `GET|POST /api/v2/admin/loader-releases`,
   `DELETE /api/v2/comments/:id/solution`; `INVALID_CREDENTIALS` (401) y `REAUTH_REQUIRED` (403, sesión
   > 12 h). `ModCardDTO` usa `kind` (§6.8), no `type`. (WP-11.)
-- **Límites de longitud de producto** · `packages/contracts/src/**` · aplicar 20 000
+- [x] resolved by wire-api (verified in the contracts): **Límites de longitud de producto** · `packages/contracts/src/**` · aplicar 20 000
   (descripciones), 2 000 (comentarios/reseñas) y 500 (bio) antes del renderer;
   `MAX_MARKDOWN_LENGTH` (50 000) es solo el techo. (WP-15.)
-- **`POST /api/v2/markdown/preview`** · `apps/api/src/modules/markdown-preview/**` (WP-70) ·
+- [x] resolved by wire-api (implemented by WP-70, tested by wire-api): **`POST /api/v2/markdown/preview`** · `apps/api/src/modules/markdown-preview/**` (WP-70) ·
   `renderMarkdown(md, { profile })` con lite/full. (WP-15.)
-- **Enlaces resueltos como el navegador** · moderación y comprobación de enlaces (WP-41, WP-51,
+- [x] resolved by wire-api (already in place in comments (renderer externalLinks)): **Enlaces resueltos como el navegador** · moderación y comprobación de enlaces (WP-41, WP-51,
   WP-82) · usar `links[].external` y los `href` guardados; nunca re-derivar hosts con regex.
   (WP-15.)
 

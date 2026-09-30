@@ -199,3 +199,22 @@ export async function reviewsSummary(ctx: Ctx, modId: number): Promise<ReviewsSu
   const [aggregate, mean] = await Promise.all([ratingAggregate(ctx.db, modId), siteMean(ctx.db)]);
   return summaryOf(aggregate, mean);
 }
+
+/**
+ * The viewer's own review of a mod (any status but deleted) with its Markdown source, for the
+ * session lookup `GET /me/social-state` (public lists are read as a guest).
+ */
+export async function myReviewOf(
+  db: Executor,
+  config: CommunityConfig,
+  modId: number,
+  userId: number,
+): Promise<(ReviewDTO & { bodyMd: string | null }) | null> {
+  const [row] = await rows<ReviewRow>(
+    db,
+    sql`${BASE} WHERE r."modId" = ${modId} AND r."userId" = ${userId} AND r."status" <> 'deleted'
+         ORDER BY r."id" DESC LIMIT 1`,
+  );
+  if (!row) return null;
+  return { ...reviewDto(config, row), bodyMd: row.bodyMd ?? (row.message !== '' ? decodeEntities(row.message) : null) };
+}

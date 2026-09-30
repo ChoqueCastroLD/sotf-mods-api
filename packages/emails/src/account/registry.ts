@@ -14,7 +14,7 @@ import {
   verifyEmail,
 } from '../auth/templates.ts';
 import { renderEmail } from '../layout/render.ts';
-import { deletionCancelled, deletionCompleted, deletionScheduled, exportReady } from './templates.ts';
+import { deletionCancelled, deletionCompleted, deletionScheduled, exportReady, opsAlert } from './templates.ts';
 
 // biome-ignore lint/suspicious/noExplicitAny: payloads are validated by @sotf/core before rendering
 type TemplateFn = (payload: any, context: TemplateContext) => TemplateOutput;
@@ -29,6 +29,7 @@ export const ACCOUNT_EMAIL_TEMPLATES = {
   'account.deletion_scheduled': deletionScheduled,
   'account.deletion_cancelled': deletionCancelled,
   'account.deletion_completed': deletionCompleted,
+  'ops.alert': opsAlert,
 } as const satisfies Record<string, TemplateFn>;
 
 export type AccountEmailTemplate = keyof typeof ACCOUNT_EMAIL_TEMPLATES;

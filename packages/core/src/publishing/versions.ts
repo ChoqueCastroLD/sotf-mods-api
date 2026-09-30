@@ -10,8 +10,10 @@
  */
 import type { CompatAggregateDTO } from '@sotf/contracts/compat';
 import { downloadPath } from '@sotf/contracts/seo';
+import type { OwnerVersionDTO } from '@sotf/contracts/studio';
 import type { DependencyDTO, VersionDTO } from '@sotf/contracts/versions';
 import { type Executor, mod, modVersion } from '@sotf/db';
+import { decodeEntities } from '@sotf/markdown';
 import { and, eq, sql } from 'drizzle-orm';
 import { sortVersionsNewestFirst } from '../catalog/semver.ts';
 import { type CatalogEntry, type CatalogSnapshot, platformOf } from '../catalog/snapshot.ts';
@@ -28,6 +30,7 @@ interface OwnerVersionRow {
   statusReason: string | null;
   changelog: string;
   changelogHtml: string | null;
+  changelogMd: string | null;
   publishedAt: Date | null;
   createdAt: Date;
   filename: string | null;
@@ -48,6 +51,7 @@ interface DependencyRow {
 }
 
 interface ScanRow {
+  id: number | string;
   modVersionId: number;
   verdict: string;
   engine: string;
@@ -92,10 +96,10 @@ export async function ownerVersions(
   snapshot: CatalogSnapshot,
   entry: Pick<CatalogEntry, 'id' | 'kind' | 'userHandle' | 'slug'>,
   onlyId?: number,
-): Promise<VersionDTO[]> {
+): Promise<OwnerVersionDTO[]> {
   const versionRows = await rows<OwnerVersionRow>(
     ctx.db,
-    `SELECT "id", "version", "isLatest", "channel", "status", "statusReason", "changelog", "changelogHtml",
+    `SELECT "id", "version", "isLatest", "channel", "status", "statusReason", "changelog", "changelogHtml", "changelogMd",
             "publishedAt", "createdAt", "filename", "fileSize", "sha256", "gameVersionDeclared",
             "loaderVersionDeclared", "platformDeclared", "downloadsCount"
        FROM "ModVersion" WHERE "modId" = $1 AND ($2::int IS NULL OR "id" = $2)`,
@@ -121,7 +125,7 @@ export async function ownerVersions(
     ),
     rows<ScanRow>(
       ctx.db,
-      `SELECT DISTINCT ON ("modVersionId") "modVersionId", "verdict", "engine", "positives", "total", "permalink", "scannedAt"
+      `SELECT DISTINCT ON ("modVersionId") "id", "modVersionId", "verdict", "engine", "positives", "total", "permalink", "scannedAt"
          FROM "SecurityScan" WHERE "modVersionId" = ANY($1::int[])
         ORDER BY "modVersionId", "scannedAt" DESC NULLS LAST, "id" DESC`,
       [ids],
@@ -133,7 +137,7 @@ export async function ownerVersions(
   for (const c of compat) compatOf.set(c.modVersionId, [...(compatOf.get(c.modVersionId) ?? []), c]);
   const scanOf = new Map(scans.map((s) => [s.modVersionId, s]));
 
-  return sortVersionsNewestFirst(versionRows, entry.kind === 'build').map((v): VersionDTO => {
+  return sortVersionsNewestFirst(versionRows, entry.kind === 'build').map((v): OwnerVersionDTO => {
     const scan = scanOf.get(v.id);
     const compatRows = compatOf.get(v.id) ?? [];
     return {
@@ -160,6 +164,7 @@ export async function ownerVersions(
       scan:
         scan && SCAN_VERDICTS.has(scan.verdict)
           ? {
+              id: Number(scan.id),
               verdict: scan.verdict as NonNullable<VersionDTO['scan']>['verdict'],
               engine: scan.engine,
               positives: scan.positives,
@@ -170,6 +175,8 @@ export async function ownerVersions(
           : null,
       compat: compatRows.map((c): CompatAggregateDTO => compatAggregate(c)),
       downloadsCount: num(v.downloadsCount),
+      // Legacy rows (before B9) only have the entity-encoded text column.
+      changelogMd: v.changelogMd ?? (v.changelog?.trim() ? decodeEntities(v.changelog) : null),
     };
   });
 }

@@ -25,6 +25,7 @@ import { checkAgainstMod } from '../inspection/checks.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { newId } from '../kernel/ids.ts';
+import { publishLaneCounts } from '../moderation/lanes.ts';
 import { can } from '../permissions/can.ts';
 import { audit, evictLocal, modRouting, modTags, type PublishingDeps } from './context.ts';
 import { evaluateDraft, loadOwnDraft } from './drafts.ts';
@@ -37,18 +38,23 @@ import { preflightPasses, qualityScore } from './preflight.ts';
 import {
   actorOf,
   assertWriter,
+  descriptionFormatOf,
   existingVersions,
   type FileUpload,
   kindOfType,
   loadFileUpload,
   loadOwnedMod,
   lockOwnedMod,
+  persistDescriptionFormat,
   type ResolvedDependency,
   resolveDependencies,
   subjectOf,
   uploadRef,
 } from './queries.ts';
 import { BUILDSHARE_MANIFEST_ID, legacyType, reserveId, writeVersion } from './release.ts';
+
+/** Lanes a submission can enter (held for review, or published into the post-review lanes). */
+const REVIEW_LANES = ['new_mods', 'versions', 'post_review', 'builds'] as const;
 
 type UploadInspectionDTO = z.infer<typeof UploadInspectionSchema>;
 
@@ -174,6 +180,7 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
       notifyFollowers: data.version?.notifyFollowers ?? true,
       declaredDependencies: data.dependencies ?? null,
       draftId: draft.id,
+      loaderMin: data.loaderMin ?? null,
     });
     return result.submit;
   }
@@ -305,6 +312,7 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
         notifyFollowers: false,
         publishedById: actor.userId,
         emitVersionEvent: false,
+        loaderMin: data.loaderMin ?? null,
       });
       const facts = await storedListingFacts(tx, modId, kind === 'build' ? 'build' : 'mod');
       await tx
@@ -319,6 +327,8 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
           { actorId: actor.userId },
         );
       }
+      // The rangers see the new item (or the auto-published one in post-review) at once.
+      await publishLaneCounts(tx, ctx.clock.now(), REVIEW_LANES);
       await audit(ctx, tx, {
         action: 'mod.submit',
         targetType: 'mod',
@@ -358,6 +368,8 @@ export interface ReleaseVersionInput {
   }> | null;
   /** Draft deleted in the same transaction (new-version drafts). */
   draftId?: string;
+  /** Minimum loader of the wizard (`DraftData.loaderMin`), when the manifest declares none. */
+  loaderMin?: string | null;
 }
 
 /** Declared (non-required) dependencies of the current latest version, carried to the next one. */
@@ -444,12 +456,15 @@ export async function releaseVersion(
   if (decision.publishFile) size = (await publishVersionFile(ctx, storage, file.row.id, target)).size;
   const declared = input.declaredDependencies ?? (await carriedDependencies(ctx, current.id));
   const routing = await modRouting(ctx.db, current.id);
+  // Inferred before the first v2 version exists, so publishing one never flips an old layout.
+  const descriptionFormat = await descriptionFormatOf(ctx.db, current.id);
   const now = ctx.clock.now();
 
   try {
     await ctx.db.transaction(async (tx) => {
       const locked = await lockOwnedMod(ctx, tx, current.id);
       if (locked.status !== current.status) throw errors.conflict('The mod changed meanwhile; try again');
+      await persistDescriptionFormat(tx, locked.id, descriptionFormat);
       if (manifest) {
         const again = checkAgainstMod(manifest, {
           manifestId: locked.manifestId,
@@ -489,6 +504,7 @@ export async function releaseVersion(
         notifyFollowers: input.notifyFollowers,
         publishedById: actor.userId,
         emitVersionEvent: locked.status === 'published' || locked.status === 'unlisted' || locked.status === 'archived',
+        loaderMin: input.loaderMin ?? null,
       });
       if (decision.modStatus !== locked.status) {
         // A new version of a rejected mod is a resubmission (rejected → pending).
@@ -512,6 +528,7 @@ export async function releaseVersion(
           { actorId: actor.userId },
         );
       }
+      await publishLaneCounts(tx, ctx.clock.now(), REVIEW_LANES);
       await audit(ctx, tx, {
         action: 'version.submit',
         targetType: 'version',

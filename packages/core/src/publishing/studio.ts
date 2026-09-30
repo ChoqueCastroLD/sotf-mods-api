@@ -16,6 +16,7 @@
  */
 import type { ModStatus } from '@sotf/contracts/common';
 import type {
+  OwnerVersionDTO,
   PutModMediaBody,
   StudioModDTO,
   StudioModRowDTO,
@@ -24,10 +25,10 @@ import type {
   UpdateStudioModBody,
   UpdateVersionBody,
 } from '@sotf/contracts/studio';
-import type { VersionDTO } from '@sotf/contracts/versions';
 import { type Executor, type Mod, mod, modVersion, report } from '@sotf/db';
 import { and, eq, sql } from 'drizzle-orm';
 import { buildModDetail } from '../catalog/detail.ts';
+import { imageDto, type MediaRow } from '../catalog/media.ts';
 import { type CatalogEntry, type CatalogSnapshot, getSnapshot } from '../catalog/snapshot.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -36,7 +37,15 @@ import { audit, evictLocal, modRouting, modTags, type PublishingDeps } from './c
 import { writeMediaSet } from './gallery.ts';
 import { rawHtmlWarning, resolveListing, setModTags, storedListingFacts } from './listing.ts';
 import { type PreflightFacts, preflight, qualityScore } from './preflight.ts';
-import { actorOf, assertWriter, isLegacyAuthored, kindOfType, loadOwnedMod, lockOwnedMod } from './queries.ts';
+import {
+  actorOf,
+  assertWriter,
+  descriptionFormatOf,
+  kindOfType,
+  loadOwnedMod,
+  lockOwnedMod,
+  persistDescriptionFormat,
+} from './queries.ts';
 import { releaseVersion } from './submit.ts';
 import { legacyText, renderChangelog } from './text.ts';
 import { ownerVersions, recomputeLatest } from './versions.ts';
@@ -112,7 +121,7 @@ async function rowStats(exec: Executor, modIds: readonly number[]): Promise<Map<
                AND NOT EXISTS (SELECT 1 FROM "Comment" r WHERE r."replyId" = c."id" AND r."userId" = m."userId")) AS "comments",
            (SELECT count(*)::int FROM "ModReview" rv
              WHERE rv."modId" = m."id" AND rv."status" = 'visible' AND rv."authorRepliedAt" IS NULL) AS "reviews"
-      FROM "Mod" m WHERE m."id" = ANY(${[...modIds]}::int[])`);
+      FROM "Mod" m WHERE m."id" = ANY(${sql.param([...modIds])}::int[])`);
   for (const r of res.rows) {
     map.set(Number(r.modId), {
       modId: Number(r.modId),
@@ -163,12 +172,14 @@ export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number
   const row = await loadOwnedMod(ctx, modId);
   const { snapshot, entry } = await entryOf(ctx, deps, row.id);
   const kind = kindOfType(row.type);
-  const [detail, versions, facts, legacy] = await Promise.all([
+  const [detail, versions, facts, descriptionFormat, media] = await Promise.all([
     buildModDetail(ctx, deps.config, snapshot, entry),
     ownerVersions(ctx, snapshot, entry),
     storedListingFacts(ctx.db, row.id, kind === 'build' ? 'build' : 'mod'),
-    isLegacyAuthored(ctx.db, row.id),
+    descriptionFormatOf(ctx.db, row.id),
+    studioMedia(ctx, deps, row.id),
   ]);
+  const legacy = descriptionFormat === 'legacy';
   const descriptionMd = row.descriptionMd ?? row.description;
   const listingPreflight: PreflightFacts = {
     mode: 'edit',
@@ -192,12 +203,41 @@ export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number
   return {
     mod: { ...detail, descriptionMd },
     descriptionMd,
+    descriptionFormat,
     statusReason: row.statusReason,
     qualityScore: qualityScore(facts),
     preflight: preflight(listingPreflight),
     allowedTransitions: allowedTransitions(status),
     versions,
+    media,
   };
+}
+
+type GalleryRow = MediaRow & { mediaId: string | null; url: string; alt: string | null } & Record<string, unknown>;
+
+/**
+ * Media ids of the owner view: the cover (`Mod.thumbnailMediaId`) and the gallery in the order and
+ * with the URLs of `ModDetailDTO.gallery` (legacy rows not adopted by B15 have no media id).
+ */
+async function studioMedia(ctx: Ctx, deps: PublishingDeps, modId: number): Promise<StudioModDTO['media']> {
+  const [cover, gallery] = await Promise.all([
+    ctx.db.execute<{ thumbnailMediaId: string | null }>(
+      sql`SELECT "thumbnailMediaId" FROM "Mod" WHERE "id" = ${modId}`,
+    ),
+    ctx.db.execute<GalleryRow>(
+      sql`SELECT i."mediaId", i."url", i."alt", med."width", med."height", med."thumbhash", med."dominantColor",
+                 med."variants", med."sourceBucket", med."sourceKey"
+            FROM "ModImage" i LEFT JOIN "Media" med ON med."id" = i."mediaId"
+           WHERE i."modId" = ${modId} AND NOT i."isThumbnail"
+           ORDER BY i."position" NULLS LAST, i."isPrimary" DESC, i."id"`,
+    ),
+  ]);
+  const items: StudioModDTO['media']['gallery'] = [];
+  for (const g of gallery.rows) {
+    const image = imageDto(deps.config, g.sourceKey === null && g.variants === null ? null : g, g.url, g.alt);
+    if (image) items.push({ mediaId: g.mediaId, url: image.url });
+  }
+  return { thumbnailMediaId: cover.rows[0]?.thumbnailMediaId ?? null, gallery: items };
 }
 
 // -----------------------------------------------------------------------------------------------
@@ -239,12 +279,21 @@ export async function updateStudioMod(
   const current = await loadOwnedMod(ctx, modId);
   if (current.status === 'removed') throw errors.forbidden('A removed mod cannot be edited');
   const kind = kindOfType(current.type);
-  const legacy = await isLegacyAuthored(ctx.db, current.id);
+  const format = await descriptionFormatOf(ctx.db, current.id);
+  // «Convert to Markdown»: the stored source is re-rendered with the `full` profile (no way back).
+  const convert = body.descriptionFormat === 'markdown' && format === 'legacy';
+  const legacy = format === 'legacy' && !convert;
+  const { descriptionFormat: _format, ...fields } = body;
+  const input =
+    convert && fields.descriptionMd === undefined
+      ? { ...fields, descriptionMd: current.descriptionMd ?? current.description }
+      : fields;
   const now = ctx.clock.now();
-  const listing = await resolveListing(ctx.db, body, { kind, legacy, now });
+  const listing = await resolveListing(ctx.db, input, { kind, legacy, now });
   if (listing.fields.length > 0) {
     await ctx.db.transaction(async (tx) => {
       await lockOwnedMod(ctx, tx, current.id);
+      await persistDescriptionFormat(tx, current.id, format);
       if (Object.keys(listing.columns).length > 0)
         await tx.update(mod).set(listing.columns).where(eq(mod.id, current.id));
       if (listing.tagIds) await setModTags(tx, current.id, listing.tagIds);
@@ -295,7 +344,12 @@ export async function putStudioModMedia(
 // Versions
 // -----------------------------------------------------------------------------------------------
 
-async function ownerVersion(ctx: Ctx, deps: PublishingDeps, modId: number, versionId: number): Promise<VersionDTO> {
+async function ownerVersion(
+  ctx: Ctx,
+  deps: PublishingDeps,
+  modId: number,
+  versionId: number,
+): Promise<OwnerVersionDTO> {
   const { snapshot, entry } = await entryOf(ctx, deps, modId);
   const [version] = await ownerVersions(ctx, snapshot, entry, versionId);
   if (!version) throw errors.notFound('Version');
@@ -314,7 +368,7 @@ export async function createStudioVersion(
     testedGameBuildIds: readonly number[];
     notifyFollowers: boolean;
   },
-): Promise<VersionDTO> {
+): Promise<OwnerVersionDTO> {
   const result = await releaseVersion(ctx, deps, modId, body);
   return ownerVersion(ctx, deps, modId, result.versionId);
 }
@@ -326,7 +380,7 @@ export async function updateStudioVersion(
   modId: number,
   versionId: number,
   body: UpdateVersionBody,
-): Promise<VersionDTO> {
+): Promise<OwnerVersionDTO> {
   assertWriter(ctx);
   if (body.yank && body.unyank) {
     throw errors.validation('Yank or unyank, not both', [
@@ -367,11 +421,11 @@ export async function updateStudioVersion(
       const builds = [...new Set(body.testedGameBuildIds)];
       await tx.execute(sql`
         UPDATE "ModVersionCompat" SET "authorTested" = false
-         WHERE "modVersionId" = ${version.id} AND "authorTested" AND NOT ("gameBuildId" = ANY(${builds}::int[]))`);
+         WHERE "modVersionId" = ${version.id} AND "authorTested" AND NOT ("gameBuildId" = ANY(${sql.param(builds)}::int[]))`);
       if (builds.length > 0) {
         await tx.execute(sql`
           INSERT INTO "ModVersionCompat" ("modVersionId", "gameBuildId", "authorTested", "updatedAt")
-          SELECT ${version.id}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${builds}::int[])
+          SELECT ${version.id}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${sql.param(builds)}::int[])
           ON CONFLICT ("modVersionId", "gameBuildId") DO UPDATE SET "authorTested" = true`);
       }
       if (version.status === 'active') {

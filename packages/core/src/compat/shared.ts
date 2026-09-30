@@ -10,12 +10,13 @@ import type {
   LoaderReleaseDTO as LoaderReleaseSchema,
 } from '@sotf/contracts/compat';
 import type { Executor, MediaVariant, UserPrivacy } from '@sotf/db';
+import { renderMarkdown } from '@sotf/markdown';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
+import { recordAudit } from '../audit/audit.ts';
 import { sessionCreatedAt } from '../auth/sessions.ts';
 import { type CatalogConfig, mediaUrlForWidth } from '../catalog/media.ts';
 import { rankOf, roleOf, tierOf } from '../catalog/snapshot.ts';
-import { textToHtml } from '../catalog/versions.ts';
 import { intArray, query, toDate } from '../follows/sql.ts';
 import type { Actor, Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -55,13 +56,10 @@ export async function loadGameBuilds(db: Executor): Promise<GameBuildRow[]> {
   );
 }
 
-/**
- * Release notes are plain text with paragraphs (escaped, `<p>`/`<br>` only): the registry is
- * admin-only and short, and the rich Markdown pipeline is not a dependency of core yet (backlog).
- */
+/** Release and ecosystem notes: Markdown `lite` (links, emphasis, lists, code), rendered on read. */
 export function notesHtml(md: string | null): string | null {
   if (!md || md.trim() === '') return null;
-  const html = textToHtml(md);
+  const html = renderMarkdown(md, { profile: 'lite' }).html;
   return html === '' ? null : html;
 }
 
@@ -73,6 +71,7 @@ export function gameBuildDto(r: GameBuildRow): GameBuildDTO {
     releasedAt: r.releasedAt,
     isBreaking: r.isBreaking,
     isCurrent: r.isCurrent,
+    notesMd: r.notesMd?.trim() ? r.notesMd : null,
     notesHtml: notesHtml(r.notesMd),
   };
 }
@@ -138,6 +137,7 @@ export async function loadEcosystem(db: Executor, gameBuildId?: number): Promise
       url: r.lUrl,
     }),
     status: ECOSYSTEM_STATUSES.has(r.status) ? r.status : 'unknown',
+    noteMd: r.noteMd?.trim() ? r.noteMd : null,
     noteHtml: notesHtml(r.noteMd),
     updatedAt: (toDate(r.updatedAt) ?? new Date(0)).toISOString(),
   }));
@@ -255,8 +255,8 @@ export async function assertRegistryAdmin(ctx: Ctx): Promise<Actor> {
 type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
 
 /**
- * Appends an `AuditLog` row inside the write's transaction (the append-only trail of admin
- * actions; the shared audit utility of WP-51 writes the same shape).
+ * Appends an `AuditLog` row inside the write's transaction (the shared `recordAudit` of
+ * `@sotf/core/audit`).
  */
 export async function audit(
   tx: Executor,
@@ -270,11 +270,5 @@ export async function audit(
     reason?: string | null;
   },
 ): Promise<void> {
-  await tx.execute(
-    sql`INSERT INTO "AuditLog" ("actorId", "action", "targetType", "targetId", "before", "after", "reason", "ipHash")
-        VALUES (${ctx.actor?.userId ?? null}, ${entry.action}, ${entry.targetType}, ${entry.targetId},
-                ${entry.before ? JSON.stringify(entry.before) : null}::jsonb,
-                ${entry.after ? JSON.stringify(entry.after) : null}::jsonb,
-                ${entry.reason ?? null}, ${ctx.ipHash})`,
-  );
+  await recordAudit(tx, ctx, entry);
 }

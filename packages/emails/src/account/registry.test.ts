@@ -40,6 +40,13 @@ const PAYLOADS: Record<AccountEmailTemplate, Record<string, unknown>> = {
   },
   'account.deletion_cancelled': { displayName: 'Kelvin', cancelledAt: '2026-10-02T10:00:00.000Z' },
   'account.deletion_completed': { displayName: 'Kelvin' },
+  'ops.alert': {
+    key: 'kelvinseek_budget',
+    summary: "KelvinSeek used 85.0 % of today's budget",
+    details: ['KelvinSeek spent $4.25 of $5.00'],
+    checkedAt: '2026-10-01T10:05:00.000Z',
+    opsUrl: `${SITE}/ranger/admin`,
+  },
 };
 
 describe('account email registry', () => {
@@ -84,5 +91,26 @@ describe('account email registry', () => {
       SITE,
     );
     expect(out.subject).toBe(m.emails_auth_deleted_subject({}, { locale: 'en' }));
+  });
+});
+
+describe('operations alert', () => {
+  it('states the alert in the subject and links the operations readout', async () => {
+    const out = await renderAccountEmail(
+      'ops.alert',
+      'en',
+      {
+        key: 'dead_letter',
+        summary: '3 jobs in the dead-letter queue',
+        details: ['email.send: 2 failed in the last 24 h', 'og.render: 1 failed in the last 24 h'],
+        checkedAt: '2026-10-01T10:05:00.000Z',
+        opsUrl: `${SITE}/ranger/admin`,
+      },
+      SITE,
+    );
+    expect(out.subject).toBe('[SOTF Mods ops] 3 jobs in the dead-letter queue');
+    expect(out.html).toContain(`href="${SITE}/ranger/admin"`);
+    expect(out.text).toContain('email.send: 2 failed in the last 24 h');
+    expect(out.text).toContain('administrator of SOTF Mods');
   });
 });

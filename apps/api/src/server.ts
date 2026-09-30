@@ -7,13 +7,18 @@
 import closeWithGrace from 'close-with-grace';
 import { buildApp } from './app.ts';
 import { loadApiEnv } from './env.ts';
+import { createErrorReporter } from './lib/sentry.ts';
 
 const env = loadApiEnv();
-const app = await buildApp({ env });
+const errorReporter = createErrorReporter(env);
+const app = await buildApp({ env, errorReporter });
 
 closeWithGrace({ delay: 15_000, logger: app.log }, async ({ signal, err }) => {
-  if (err) app.log.error({ err }, 'fatal error, shutting down');
-  else app.log.info({ signal }, 'shutting down');
+  if (err) {
+    app.log.error({ err }, 'fatal error, shutting down');
+    errorReporter.captureFatal(err);
+  } else app.log.info({ signal }, 'shutting down');
+  // `onClose` flushes the reporter.
   await app.close();
 });
 
@@ -21,5 +26,7 @@ try {
   await app.listen({ port: env.PORT, host: env.HOST });
 } catch (error) {
   app.log.fatal({ err: error }, 'could not listen');
+  errorReporter.captureFatal(error);
+  await errorReporter.flush();
   process.exit(1);
 }

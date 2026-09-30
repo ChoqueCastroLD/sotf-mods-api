@@ -9,7 +9,8 @@
  *   onSend     cache headers + Cache-Tag + ETag (public), CORS pruning
  *   errors     RFC 9457 problem+json (v2) or the legacy envelope (`/api/*`)
  *
- * Also: helmet, cookies, under-pressure (503), SSE hub (`/api/v2/stream`), OpenAPI + Scalar
+ * Also: helmet, security hardening (plugins/security: HSTS, Permissions-Policy, private-data guard,
+ * CSP report collector), cookies, under-pressure (503), SSE hub (`/api/v2/stream`), OpenAPI + Scalar
  * (`/api/docs`), `/healthz`, `/readyz` and graceful shutdown of every owned resource.
  */
 import cookie from '@fastify/cookie';
@@ -28,6 +29,7 @@ import {
   PgListener,
   systemClock,
 } from '@sotf/core';
+import { HttpStatusRecorder } from '@sotf/core/ops/index';
 import { createDb, type Database, type DbHandle } from '@sotf/db';
 import Fastify, { type FastifyInstance, LogController } from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
@@ -35,6 +37,7 @@ import type { PgBoss } from 'pg-boss';
 import type { ApiEnv } from './env.ts';
 import { requestIdFrom } from './lib/client-ip.ts';
 import { type ApiModule, moduleContext } from './lib/define-module.ts';
+import { createErrorReporter, type ErrorReporter } from './lib/sentry.ts';
 import { surfaceOf } from './lib/surface.ts';
 import type { Platform, SessionResolver } from './lib/types.ts';
 import { modules as registeredModules } from './modules/_registry.gen.ts';
@@ -47,6 +50,7 @@ import { setupCsrf } from './plugins/csrf.ts';
 import { setupDocs } from './plugins/docs.ts';
 import { setupErrors } from './plugins/errors.ts';
 import { type RateLimitOverrides, setupRateLimit } from './plugins/rate-limit.ts';
+import { HSTS_MAX_AGE_SECONDS, setupSecurity } from './plugins/security/index.ts';
 import { SseHub, setupSse } from './plugins/sse.ts';
 
 export interface BuildAppOptions {
@@ -73,6 +77,18 @@ export interface BuildAppOptions {
   sse?: { pingMs?: number };
   /** How dependencies start: in the background with retries (server) or awaited (tests). */
   startDependencies?: 'background' | 'await' | 'manual';
+  /**
+   * `@fastify/under-pressure` (503 when the event loop is saturated). Default: on. Integration
+   * tests turn it off: on a loaded shared host it answers 503 to requests that would succeed.
+   */
+  underPressure?: boolean;
+  /** Error reporting of 5xx (default: Sentry from `SENTRY_DSN`, a no-op without it). */
+  errorReporter?: ErrorReporter;
+  /**
+   * Response status counters (`AnalyticsEvent` kind `http_status`, read by the `ops.alerts` job).
+   * `flushMs` default 60 s (0: only on close and on demand); `false` turns them off.
+   */
+  statusCounters?: { flushMs?: number } | false;
 }
 
 const anonymous: SessionResolver = async () => null;
@@ -170,7 +186,8 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   if (!options.sessionResolver && providers[0]?.sessionResolver)
     sessionResolver = providers[0].sessionResolver(platform);
 
-  setupErrors(app);
+  const errorReporter = options.errorReporter ?? createErrorReporter(env);
+  setupErrors(app, errorReporter);
   setupRequestBasics(app);
   await app.register(helmet, {
     // JSON API: nothing to render, nothing to frame. /api/docs overrides the CSP.
@@ -179,20 +196,22 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
       directives: { defaultSrc: ["'none'"], frameAncestors: ["'none'"], baseUri: ["'none'"], formAction: ["'none'"] },
     },
     crossOriginResourcePolicy: { policy: 'cross-origin' },
-    strictTransportSecurity: { maxAge: 31_536_000, includeSubDomains: true, preload: false },
+    // Same value as plugins/security (HSTS 6 months, PLAN §9.1), which sets the final header.
+    strictTransportSecurity: { maxAge: HSTS_MAX_AGE_SECONDS, includeSubDomains: true, preload: false },
     referrerPolicy: { policy: 'no-referrer' },
   });
   await app.register(cookie);
-  await app.register(underPressure, {
-    maxEventLoopDelay: 1000,
-    maxEventLoopUtilization: 0.98,
-    retryAfter: 10,
-    pressureHandler: (request) => {
-      const path = request.url.split('?', 1)[0];
-      if (path === '/healthz' || path === '/readyz') return undefined;
-      return Promise.reject(domainErrors.unavailable('The server is under pressure', 10));
-    },
-  });
+  if (options.underPressure !== false)
+    await app.register(underPressure, {
+      maxEventLoopDelay: 1000,
+      maxEventLoopUtilization: 0.98,
+      retryAfter: 10,
+      pressureHandler: (request) => {
+        const path = request.url.split('?', 1)[0];
+        if (path === '/healthz' || path === '/readyz') return undefined;
+        return Promise.reject(domainErrors.unavailable('The server is under pressure', 10));
+      },
+    });
   await setupCors(app);
   setupCsrf(app, { trustedOrigins: [new URL(env.PUBLIC_SITE_URL).origin, ...env.CSRF_TRUSTED_ORIGINS] });
   setupContext(app, {
@@ -202,6 +221,25 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   });
   platform.rateLimiter = await setupRateLimit(app, options.rateLimits);
   await setupCacheHeaders(app);
+  // After the cache headers: its onSend hooks demote cookie-setting/private responses.
+  await setupSecurity(app, { env });
+
+  if (options.statusCounters !== false) {
+    const recorder = new HttpStatusRecorder({ clock });
+    app.addHook('onResponse', async (request, reply) => {
+      const path = request.url.split('?', 1)[0];
+      if (path === '/healthz' || path === '/readyz') return;
+      recorder.record(reply.statusCode);
+    });
+    const every = options.statusCounters?.flushMs ?? 60_000;
+    const timer = every > 0 ? setInterval(() => void recorder.flush(db, log), every) : null;
+    timer?.unref();
+    app.decorate('statusCounters', recorder);
+    app.addHook('onClose', async () => {
+      if (timer) clearInterval(timer);
+      await recorder.flush(db, log);
+    });
+  }
 
   registerHealth(app);
   await setupDocs(app, { version: env.GIT_SHA, siteUrl: env.PUBLIC_SITE_URL });
@@ -231,6 +269,7 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
     hub.close();
   });
   app.addHook('onClose', async () => {
+    await errorReporter.flush();
     await deps.stop();
     if (ownedDb) await ownedDb.close();
   });

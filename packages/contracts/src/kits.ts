@@ -6,7 +6,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { ModCardDTO } from './catalog.ts';
+import { ModCardDTO, OgImageDTO } from './catalog.ts';
 import {
   Count,
   EntityId,
@@ -158,6 +158,7 @@ export const KitDTO = dto(
     ),
     noindex: z.boolean().describe(`true unless public with ≥ ${KIT_LIMITS.indexMinItems} items`),
     createdAt: IsoDateTime,
+    ogImage: OgImageDTO.nullable().describe('Generated knolling collage (null until rendered)'),
   }),
   {
     description: 'Kit detail with items and summaries.',
@@ -173,6 +174,7 @@ export const KitDTO = dto(
         recentRevisions: [{ revision: 7, summary: '+Cook Alert', createdAt: '2026-09-20T18:00:00.000Z' }],
         noindex: false,
         createdAt: '2026-06-01T12:00:00.000Z',
+        ogImage: { url: 'https://r2.sotf-mods.com/og/kit/5-81c2d0.png', width: 1200, height: 630 },
       },
     ],
   },
@@ -400,5 +402,30 @@ export const kitsEndpoints = {
     response: KitCardListDTO,
     errors: ['UNAUTHENTICATED'],
     cache: cache.private,
+  }),
+  getOwn: defineEndpoint({
+    id: 'kits.getOwn',
+    owner: 'WP-42',
+    method: 'GET',
+    path: `${API_V2_PREFIX}/me/kits/:id`,
+    summary: 'One of my kits, any visibility (owner view with `descriptionMd`)',
+    auth: 'session',
+    params: z.object({ id: IdParam }),
+    response: KitDTO,
+    errors: ['UNAUTHENTICATED', 'NOT_FOUND'],
+    cache: cache.private,
+  }),
+  modKits: defineEndpoint({
+    id: 'kits.modKits',
+    owner: 'WP-42',
+    method: 'GET',
+    path: `${API_V2_PREFIX}/mods/:id/kits`,
+    summary: 'Public kits that contain a mod (most followed first)',
+    auth: 'public',
+    params: z.object({ id: IdParam }),
+    query: z.object({ limit: z.coerce.number().int().min(1).max(24).default(4) }),
+    response: KitCardListDTO,
+    cache: cache.publicApi(['mod:{id}', 'list:kits']),
+    rateLimit: 'anonymousRead',
   }),
 } as const;
