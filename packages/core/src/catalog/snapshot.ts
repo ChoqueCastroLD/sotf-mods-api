@@ -55,6 +55,8 @@ export interface CategoryInfo {
   sortOrder: number;
   legacySlugs: string[];
   retired: boolean;
+  /** Share card rendered by `og.render` (`"Category"."ogImageKey"`), null until rendered. */
+  ogImageKey: string | null;
   /** Active category this one resolves to (itself unless retired). */
   effectiveId: number;
   ref: CategoryRefDTO;
@@ -254,6 +256,7 @@ interface CategoryRow {
   i18n: LocalizedNames | null;
   legacySlugs: string[] | null;
   retiredAt: Date | null;
+  ogImageKey: string | null;
 }
 
 interface TagRow {
@@ -334,7 +337,7 @@ interface ModRow {
 }
 
 const CATEGORIES_SQL = `
-SELECT "id", "slug", "name", "type", "icon", "sortOrder", "i18n", "legacySlugs", "retiredAt"
+SELECT "id", "slug", "name", "type", "icon", "sortOrder", "i18n", "legacySlugs", "retiredAt", "ogImageKey"
   FROM "Category" ORDER BY "sortOrder", "id"`;
 
 const TAGS_SQL = `
@@ -418,6 +421,7 @@ function buildCategories(list: CategoryRow[]): { byId: Map<number, CategoryInfo>
       sortOrder: c.sortOrder,
       legacySlugs: c.legacySlugs ?? [],
       retired: c.retiredAt !== null,
+      ogImageKey: c.ogImageKey ?? null,
       effectiveId: c.id,
       ref: { slug: c.slug, nameKey: taxonomyKey('category', c.slug), name, icon: iconName(c.icon) },
     });

@@ -7,14 +7,14 @@
  *   unchanged card is never rendered twice and a changed one never overwrites a cached object
  *   (r2.sotf-mods.com caches for a year). Previous objects are kept: cached HTML and social
  *   scrapers may still reference them.
- * - Entities with a column (`Mod`, `User`, `Kit`) store the key; categories, the Patch Radar and
- *   guides have none, so their object is only uploaded (the key is returned and logged).
+ * - Entities with a column (`Mod`, `User`, `Kit`, `Category` by slug) store the key; the Patch
+ *   Radar and guides have none, so their object is only uploaded (the key is returned and logged).
  * - A card that must not exist (missing, private, NSFW) clears the stored key.
  * - Collage images (kits) are read from the public bucket through the storage client, never
  *   fetched over HTTP: only URLs under `R2_PUBLIC_BASE_URL` are used.
  */
 import { cacheTag } from '@sotf/contracts/cache';
-import { kit, mod, user } from '@sotf/db';
+import { category, kit, mod, user } from '@sotf/db';
 import { eq, sql } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { purge } from '../kernel/cache-tags.ts';
@@ -86,25 +86,38 @@ export interface OgRenderResult {
   bytes?: number;
 }
 
-type StoredColumn = 'mod' | 'user' | 'kit';
+type StoredColumn = 'mod' | 'user' | 'kit' | 'category';
 
 function columnOf(type: OgEntityType): StoredColumn | null {
   if (type === 'mod' || type === 'build') return 'mod';
   if (type === 'user') return 'user';
   if (type === 'kit') return 'kit';
+  if (type === 'category') return 'category';
   return null;
 }
 
-async function readStoredKey(ctx: Ctx, column: StoredColumn, id: number): Promise<string | null | undefined> {
+/** Row id of the entity: numeric for mods, users and kits, the lower-case slug for categories. */
+type StoredId = number | string;
+
+async function readStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId): Promise<string | null | undefined> {
+  if (column === 'category') {
+    const [row] = await ctx.db
+      .select({ key: category.ogImageKey })
+      .from(category)
+      .where(eq(category.slug, String(id)))
+      .limit(1);
+    return row ? row.key : undefined;
+  }
+  const numericId = Number(id);
   if (column === 'mod') {
-    const [row] = await ctx.db.select({ key: mod.ogImageKey }).from(mod).where(eq(mod.id, id)).limit(1);
+    const [row] = await ctx.db.select({ key: mod.ogImageKey }).from(mod).where(eq(mod.id, numericId)).limit(1);
     return row ? row.key : undefined;
   }
   if (column === 'user') {
-    const [row] = await ctx.db.select({ key: user.ogImageKey }).from(user).where(eq(user.id, id)).limit(1);
+    const [row] = await ctx.db.select({ key: user.ogImageKey }).from(user).where(eq(user.id, numericId)).limit(1);
     return row ? row.key : undefined;
   }
-  const [row] = await ctx.db.select({ key: kit.ogImageKey }).from(kit).where(eq(kit.id, id)).limit(1);
+  const [row] = await ctx.db.select({ key: kit.ogImageKey }).from(kit).where(eq(kit.id, numericId)).limit(1);
   return row ? row.key : undefined;
 }
 
@@ -112,16 +125,19 @@ async function readStoredKey(ctx: Ctx, column: StoredColumn, id: number): Promis
  * Plain SQL on purpose: Drizzle's `$onUpdate` would bump `updatedAt`, which feeds «updated» sorts,
  * kit cards and sitemap `lastmod`; a regenerated image is not a content change.
  */
-async function writeStoredKey(ctx: Ctx, column: StoredColumn, id: number, key: string | null): Promise<void> {
-  if (column === 'mod') await ctx.db.execute(sql`UPDATE "Mod" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
+async function writeStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId, key: string | null): Promise<void> {
+  if (column === 'category') {
+    await ctx.db.execute(sql`UPDATE "Category" SET "ogImageKey" = ${key} WHERE "slug" = ${String(id)}`);
+  } else if (column === 'mod') await ctx.db.execute(sql`UPDATE "Mod" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
   else if (column === 'user') await ctx.db.execute(sql`UPDATE "User" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
   else await ctx.db.execute(sql`UPDATE "Kit" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
 }
 
-function tagOf(column: StoredColumn, id: number) {
-  if (column === 'mod') return cacheTag.mod(id);
-  if (column === 'user') return cacheTag.user(id);
-  return cacheTag.kit(id);
+function tagOf(column: StoredColumn, id: StoredId) {
+  if (column === 'category') return cacheTag.category(String(id));
+  if (column === 'mod') return cacheTag.mod(Number(id));
+  if (column === 'user') return cacheTag.user(Number(id));
+  return cacheTag.kit(Number(id));
 }
 
 export async function renderEntityOg(
@@ -130,23 +146,28 @@ export async function renderEntityOg(
   input: { entityType: OgEntityType; entityId: number | string },
 ): Promise<OgRenderResult> {
   const column = columnOf(input.entityType);
-  const numericId = typeof input.entityId === 'number' ? input.entityId : Number(input.entityId);
-  if (column && !Number.isSafeInteger(numericId)) return { status: 'skipped', key: null, url: null };
+  let storedId: StoredId;
+  if (column === 'category') {
+    storedId = String(input.entityId).toLowerCase();
+  } else {
+    storedId = typeof input.entityId === 'number' ? input.entityId : Number(input.entityId);
+    if (column && !Number.isSafeInteger(storedId)) return { status: 'skipped', key: null, url: null };
+  }
 
   const card = await loadOgCard(ctx, deps.config, input.entityType, input.entityId);
-  const stored = column ? await readStoredKey(ctx, column, numericId) : null;
+  const stored = column ? await readStoredKey(ctx, column, storedId) : null;
   if (column && stored === undefined) return { status: 'skipped', key: null, url: null };
 
   if (!card) {
     if (column && stored) {
-      await writeStoredKey(ctx, column, numericId, null);
-      await purge(ctx.jobs, [tagOf(column, numericId)], `og:${input.entityType}:${numericId}`);
+      await writeStoredKey(ctx, column, storedId, null);
+      await purge(ctx.jobs, [tagOf(column, storedId)], `og:${input.entityType}:${storedId}`);
       return { status: 'cleared', key: null, url: null };
     }
     return { status: 'skipped', key: null, url: null };
   }
 
-  const entityKey = column ? numericId : String(input.entityId).toLowerCase();
+  const entityKey = column && column !== 'category' ? Number(storedId) : String(input.entityId).toLowerCase();
   const key = ogImageKey(card.type, entityKey, ogCardHash(card));
   const bucket = deps.storage.config.publicBucket;
   const url = deps.storage.publicUrl(key);
@@ -169,8 +190,8 @@ export async function renderEntityOg(
     bytes = rendered.bytes;
   }
   if (column) {
-    await writeStoredKey(ctx, column, numericId, key);
-    await purge(ctx.jobs, [tagOf(column, numericId)], `og:${input.entityType}:${numericId}`);
+    await writeStoredKey(ctx, column, storedId, key);
+    await purge(ctx.jobs, [tagOf(column, storedId)], `og:${input.entityType}:${storedId}`);
   } else if (exists) {
     return { status: 'unchanged', key, url };
   }

@@ -155,14 +155,18 @@ export const TagInputBody = dto(
 
 export const AdminCategoryDTO = dto(
   'AdminCategoryDTO',
-  CategoryDTO.extend({
+  CategoryDTO.omit({ ogImage: true }).extend({
     retiredAt: IsoDateTime.nullable().describe('Set when the category was retired (soft delete)'),
     hubIntro: LocalizedNames.describe('Stored editorial intro per locale (Markdown)'),
   }),
   {
     description: 'A category as the admins edit it (retired state and hub intro included).',
     examples: [
-      { ...exampleOf(CategoryDTO), retiredAt: null, hubIntro: { en: 'Small fixes that make every day easier.' } },
+      {
+        ...(({ ogImage: _og, ...rest }) => rest)(exampleOf(CategoryDTO)),
+        retiredAt: null,
+        hubIntro: { en: 'Small fixes that make every day easier.' },
+      },
     ],
   },
 );

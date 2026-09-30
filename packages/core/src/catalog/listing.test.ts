@@ -19,6 +19,7 @@ function category(id: number, slug: string, extra: Partial<CategoryInfo> = {}): 
     sortOrder: id,
     legacySlugs: [],
     retired: false,
+    ogImageKey: null,
     effectiveId: id,
     ref: { slug, nameKey: `taxonomy_category_${slug}`, name: slug, icon: null },
     ...extra,

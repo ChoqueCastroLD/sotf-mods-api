@@ -386,6 +386,7 @@ export const CategoryDTO = dto(
     sortOrder: z.number().int(),
     legacySlugs: z.array(z.string()),
     count: Count.describe('Published items'),
+    ogImage: OgImageDTO.nullable().describe('Share card of the category hub (null until rendered)'),
   }),
   {
     description: 'Category with its i18n names.',
@@ -401,6 +402,7 @@ export const CategoryDTO = dto(
         sortOrder: 1,
         legacySlugs: ['qol'],
         count: 48,
+        ogImage: null,
       },
     ],
   },
