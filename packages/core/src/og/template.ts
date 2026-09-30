@@ -43,6 +43,56 @@ export interface OgCard {
   stats: OgStat[];
   /** Edge colour (`logColor` of the mod), `#RRGGBB`. */
   accent: string | null;
+  /**
+   * Public media URLs laid out as a knolling collage on the right (kits, PLAN §7.8: the custom
+   * cover alone, or up to {@link OG_COLLAGE_MAX} item thumbnails). Absent on other cards.
+   */
+  images?: string[];
+}
+
+/** Most tiles of a collage (the kit card's `previewThumbnails`). */
+export const OG_COLLAGE_MAX = 6;
+
+export interface OgRect {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+}
+
+/** Area of the collage: the right column, clear of the header and the footer readouts. */
+const COLLAGE_BOX: OgRect = { left: 652, top: 104, width: 460, height: 408 };
+const COLLAGE_GAP = 16;
+/** Tile frame (drawn over each image by the foreground). */
+export const OG_TILE_BORDER = 2;
+
+/**
+ * Knolling grid of `count` tiles (16:9, right angles, even gaps): one tile fills the box width;
+ * more go in two columns and up to three rows, vertically centred, an odd last tile centred.
+ */
+export function collageSlots(count: number): OgRect[] {
+  const n = Math.max(0, Math.min(OG_COLLAGE_MAX, Math.floor(count)));
+  if (n === 0) return [];
+  const cols = n === 1 ? 1 : 2;
+  const rows = Math.ceil(n / cols);
+  const width = Math.floor((COLLAGE_BOX.width - COLLAGE_GAP * (cols - 1)) / cols);
+  const height = Math.round((width * 9) / 16);
+  const gridHeight = rows * height + (rows - 1) * COLLAGE_GAP;
+  const top0 = COLLAGE_BOX.top + Math.max(0, Math.round((COLLAGE_BOX.height - gridHeight) / 2));
+  const slots: OgRect[] = [];
+  for (let index = 0; index < n; index++) {
+    const row = Math.floor(index / cols);
+    const inRow = Math.min(cols, n - row * cols);
+    const rowWidth = inRow * width + (inRow - 1) * COLLAGE_GAP;
+    const left0 = COLLAGE_BOX.left + Math.round((COLLAGE_BOX.width - rowWidth) / 2);
+    slots.push({
+      left: left0 + (index % cols) * (width + COLLAGE_GAP),
+      top: top0 + row * (height + COLLAGE_GAP),
+      width,
+      height,
+    });
+  }
+  return slots;
 }
 
 const NIGHT_BG = palette.night[975];
@@ -64,8 +114,11 @@ export function accentOf(card: OgCard): string {
   return normalizeHex(card.accent) ?? FLARE;
 }
 
-/** Background layer: Night, seeded terrain, waypoint on the summit and the accent edge. */
-export function backgroundSvg(card: OgCard): string {
+/**
+ * Background layer: Night, seeded terrain, waypoint on the summit and the accent edge. With a
+ * collage the waypoint (which sits in the right column) is left out: the tiles cover it.
+ */
+export function backgroundSvg(card: OgCard, options: { collage?: boolean } = {}): string {
   const lines = topoLines(`og:${card.seed}`, {
     width: OG_WIDTH,
     height: OG_HEIGHT,
@@ -82,9 +135,11 @@ export function backgroundSvg(card: OgCard): string {
     `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}">` +
     `<rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="${NIGHT_BG}"/>` +
     topoGroup(lines, { color: palette.night[800], strokeWidth: 1.5, indexStrokeWidth: 2.5 }) +
-    `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="40" fill="none" stroke="${accent}" stroke-width="2" opacity=".2"/>` +
-    `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="22" fill="none" stroke="${accent}" stroke-width="2.5" opacity=".45"/>` +
-    `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="${accent}"/>` +
+    (options.collage
+      ? ''
+      : `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="40" fill="none" stroke="${accent}" stroke-width="2" opacity=".2"/>` +
+        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="22" fill="none" stroke="${accent}" stroke-width="2.5" opacity=".45"/>` +
+        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="${accent}"/>`) +
     // Left-to-right shade so the text column stays readable over the terrain.
     `<defs><linearGradient id="shade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="${NIGHT_BG}" stop-opacity=".92"/><stop offset=".62" stop-color="${NIGHT_BG}" stop-opacity=".55"/><stop offset="1" stop-color="${NIGHT_BG}" stop-opacity="0"/></linearGradient></defs>` +
     `<rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#shade)"/>` +
@@ -179,7 +234,12 @@ export function clip(text: string, max: number): string {
   return `${(space > max * 0.6 ? cut.slice(0, space) : cut).trimEnd()}…`;
 }
 
-export function foregroundTree(card: OgCard): OgNode {
+/**
+ * @param tiles slots actually filled with an image (the renderer drops thumbnails it could not
+ *   load); each gets a frame so the collage reads as laid-out objects.
+ */
+export function foregroundTree(card: OgCard, tiles: readonly OgRect[] = []): OgNode {
+  const collage = tiles.length > 0;
   const drawn = drawableText(card.title);
   const title = clip(drawn.length >= 2 ? drawn : drawableText(card.fallbackTitle) || 'SOTF Mods', 80);
   const kicker = clip(drawableText(card.kicker).toUpperCase(), 48);
@@ -198,11 +258,26 @@ export function foregroundTree(card: OgCard): OgNode {
     stats.push(el('div', { display: 'flex', alignItems: 'center', color }, children));
   });
 
+  const baseTitleSize = titleSize(title) * (collage ? 0.72 : 1);
+  const frames: OgNode[] = tiles.map((tile) =>
+    el('div', {
+      position: 'absolute',
+      left: tile.left,
+      top: tile.top,
+      width: tile.width,
+      height: tile.height,
+      border: `${OG_TILE_BORDER}px solid ${palette.night[700]}`,
+      borderRadius: 6,
+      display: 'flex',
+    }),
+  );
+
   return el(
     'div',
     {
       width: OG_WIDTH,
       height: OG_HEIGHT,
+      position: 'relative',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
@@ -226,7 +301,7 @@ export function foregroundTree(card: OgCard): OgNode {
         el('div', { display: 'flex', fontSize: 22, fontWeight: 700, letterSpacing: 4, color: MUTED }, 'SOTF MODS'),
       ]),
       // Body: kicker, title, byline.
-      el('div', { display: 'flex', flexDirection: 'column', maxWidth: 940 }, [
+      el('div', { display: 'flex', flexDirection: 'column', maxWidth: collage ? 520 : 940 }, [
         el(
           'div',
           { display: 'flex', fontSize: 24, fontWeight: 700, letterSpacing: 3, color: accent, marginBottom: 14 },
@@ -238,7 +313,7 @@ export function foregroundTree(card: OgCard): OgNode {
             display: 'block',
             fontFamily: titleFont,
             fontWeight: titleFont === DISPLAY_FAMILY ? 800 : 700,
-            fontSize: titleFont === DISPLAY_FAMILY ? titleSize(title) : Math.round(titleSize(title) * 0.62),
+            fontSize: Math.round(titleFont === DISPLAY_FAMILY ? baseTitleSize : baseTitleSize * 0.62),
             lineHeight: titleFont === DISPLAY_FAMILY ? 0.95 : 1.15,
             color: INK,
             lineClamp: 2,
@@ -252,6 +327,7 @@ export function foregroundTree(card: OgCard): OgNode {
         el('div', { display: 'flex', alignItems: 'center', fontSize: 28, fontWeight: 700 }, stats),
         el('div', { display: 'flex', fontSize: 18, letterSpacing: 3, color: FAINT }, 'SOTF-MODS.COM'),
       ]),
+      ...frames,
     ],
   );
 }

@@ -10,17 +10,17 @@
  */
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { absoluteUrl, categoryPath, profilePath } from '@sotf/contracts/seo';
+import { BEST_TOPICS, type BestTopic } from '../../../content/best/hubs.ts';
 import { SOCIAL_LINKS } from '../../../lib/site.ts';
 import type { CategoryDTO } from './data.ts';
 import { isoDay, mdInline } from './markdown.ts';
-import { BEST_HUBS } from './sitemaps.ts';
 
 const numberFormat = new Intl.NumberFormat('en-US');
 
 const SUMMARY =
   'SOTF Mods (sotf-mods.com) is the community home of Sons of the Forest modding since 2023: free, direct downloads of mods, libraries, builds (BuildShare blueprints) and mod Kits for the RedLoader mod loader, with field-tested compatibility on every game patch, reviews and creator profiles.';
 
-const BEST_TITLES: Readonly<Record<string, string>> = {
+const BEST_TITLES: Readonly<Record<BestTopic, string>> = {
   mods: 'Best Sons of the Forest mods',
   'quality-of-life-mods': 'Best quality-of-life mods',
   'multiplayer-mods': 'Best multiplayer mods',
@@ -61,7 +61,7 @@ export function llmsTxt(input: {
     '',
     link('How to install Sons of the Forest mods', url('/install'), 'RedLoader and RedManager, step by step'),
     link('Patch Radar', url('/patch-radar'), 'which popular mods work on the current game patch'),
-    ...BEST_HUBS.map((hub) => link(BEST_TITLES[hub.topic] ?? hub.topic, url(`/best/${hub.topic}`))),
+    ...BEST_TOPICS.map((topic) => link(BEST_TITLES[topic], url(`/best/${topic}`))),
     link('Mod Kits', url('/kits'), 'curated collections of mods that work together'),
     link('Creators', url('/creators')),
     '',
