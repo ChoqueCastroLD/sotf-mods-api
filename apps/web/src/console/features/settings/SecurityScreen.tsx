@@ -18,6 +18,7 @@ import { redirectToLogin } from '../../lib/auth.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
 import { type Session, securityQuery, sessionsQuery, settingsApi, settingsKeys } from './api.ts';
+import { ConnectionsCard } from './ConnectionsCard.tsx';
 import { failureDescription } from './errors.ts';
 import { localDateTime, relativeTime } from './format.ts';
 import { SettingsCard, SettingsPage } from './layout.tsx';
@@ -141,6 +142,7 @@ export function SecurityScreen() {
           </Button>
         </div>
       </SettingsCard>
+      <ConnectionsCard />
       <SettingsCard id="security-tips" title={m.settings_security_tips_title()}>
         <ul className="grid list-disc gap-1 ps-5 text-sm text-fg-muted">
           <li>{m.settings_security_tip_password()}</li>

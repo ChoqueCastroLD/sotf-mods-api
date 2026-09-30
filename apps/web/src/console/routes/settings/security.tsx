@@ -3,7 +3,7 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
-import { securityQuery, sessionsQuery } from '../../features/settings/api.ts';
+import { connectionsQuery, securityQuery, sessionsQuery } from '../../features/settings/api.ts';
 import { SecurityScreen } from '../../features/settings/SecurityScreen.tsx';
 
 export const Route = createFileRoute('/settings/security')({
@@ -12,6 +12,7 @@ export const Route = createFileRoute('/settings/security')({
     Promise.all([
       context.queryClient.ensureQueryData(sessionsQuery),
       context.queryClient.ensureQueryData(securityQuery),
+      context.queryClient.ensureQueryData(connectionsQuery),
     ]),
   component: SecurityScreen,
 });

@@ -22,6 +22,8 @@ export type { EmailFrequency, NotificationType };
 export type Session = Awaited<ReturnType<typeof api.me.sessions>>['items'][number];
 export type SecurityOverview = Awaited<ReturnType<typeof api.security.overview>>;
 export type Passkey = SecurityOverview['passkeys'][number];
+export type AccessToken = Awaited<ReturnType<typeof api.tokens.list>>['items'][number];
+export type ConnectionList = Awaited<ReturnType<typeof api.oauth.connections>>;
 export type DataExport = Awaited<ReturnType<typeof api.me.getExport>>;
 export type PublicProfile = Awaited<ReturnType<typeof api.catalog.getUser>>;
 export type SelfProfile = Awaited<ReturnType<typeof api.me.updateProfile>>;
@@ -36,6 +38,8 @@ export const settingsKeys = {
   profileMods: (handle: string) => ['settings', 'profile-mods', handle] as const,
   sessions: ['settings', 'sessions'] as const,
   security: ['settings', 'security'] as const,
+  tokens: ['settings', 'tokens'] as const,
+  connections: ['settings', 'connections'] as const,
   preferences: ['settings', 'notification-preferences'] as const,
   export: (id: string) => ['settings', 'export', id] as const,
 } as const;
@@ -66,6 +70,18 @@ export const sessionsQuery = queryOptions({
 export const securityQuery = queryOptions({
   queryKey: settingsKeys.security,
   queryFn: ({ signal }) => api.security.overview({}, { signal }),
+  staleTime: 30_000,
+});
+
+export const tokensQuery = queryOptions({
+  queryKey: settingsKeys.tokens,
+  queryFn: ({ signal }) => api.tokens.list({}, { signal }),
+  staleTime: 15_000,
+});
+
+export const connectionsQuery = queryOptions({
+  queryKey: settingsKeys.connections,
+  queryFn: ({ signal }) => api.oauth.connections({}, { signal }),
   staleTime: 30_000,
 });
 
@@ -108,6 +124,10 @@ export const settingsApi = {
     api.security.registerPasskey({ body: { challengeId, response, ...(name ? { name } : {}) } }),
   renamePasskey: (id: string, name: string) => api.security.renamePasskey({ params: { id }, body: { name } }),
   removePasskey: (id: string, password: string) => api.security.removePasskey({ params: { id }, body: { password } }),
+  createToken: (body: BodyOf<typeof api.tokens.create>) => api.tokens.create({ body }),
+  revokeToken: (id: string) => api.tokens.revoke({ params: { id } }),
+  unlinkConnection: (provider: 'discord', password: string) =>
+    api.oauth.unlink({ params: { provider }, body: { password } }),
   requestExport: () => api.me.requestExport({}),
   requestDeletion: (password: string, mode: 'archive_mods' | 'keep_mods_anonymous') =>
     api.me.requestDeletion({ body: { password, mode } }),

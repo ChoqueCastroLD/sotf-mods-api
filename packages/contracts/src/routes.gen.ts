@@ -223,6 +223,14 @@ export const API_ROUTES = {
     updatePreferences: { id: 'notifications.updatePreferences', method: 'PUT', path: "/api/v2/notification-preferences", kind: 'json', bodyKind: 'json' },
     unsubscribe: { id: 'notifications.unsubscribe', method: 'POST', path: "/api/v2/unsubscribe", kind: 'empty', bodyKind: null },
   },
+  oauth: {
+    providers: { id: 'oauth.providers', method: 'GET', path: "/api/v2/auth/providers", kind: 'json', bodyKind: null },
+    start: { id: 'oauth.start', method: 'GET', path: "/api/v2/auth/oauth/:provider/start", kind: 'redirect', bodyKind: null },
+    callback: { id: 'oauth.callback', method: 'GET', path: "/api/v2/auth/oauth/:provider/callback", kind: 'redirect', bodyKind: null },
+    confirmLink: { id: 'oauth.confirmLink', method: 'POST', path: "/api/v2/auth/oauth/link/confirm", kind: 'json', bodyKind: 'json' },
+    connections: { id: 'oauth.connections', method: 'GET', path: "/api/v2/me/connections", kind: 'json', bodyKind: null },
+    unlink: { id: 'oauth.unlink', method: 'POST', path: "/api/v2/me/connections/:provider/unlink", kind: 'empty', bodyKind: 'json' },
+  },
   reviews: {
     list: { id: 'reviews.list', method: 'GET', path: "/api/v2/mods/:id/reviews", kind: 'json', bodyKind: null },
     summary: { id: 'reviews.summary', method: 'GET', path: "/api/v2/mods/:id/reviews/summary", kind: 'json', bodyKind: null },
@@ -283,6 +291,11 @@ export const API_ROUTES = {
     analytics: { id: 'studio.analytics', method: 'GET', path: "/api/v2/studio/analytics", kind: 'json', bodyKind: null },
     analyticsCsv: { id: 'studio.analyticsCsv', method: 'GET', path: "/api/v2/studio/analytics.csv", kind: 'csv', bodyKind: null },
     inbox: { id: 'studio.inbox', method: 'GET', path: "/api/v2/studio/inbox", kind: 'json', bodyKind: null },
+  },
+  tokens: {
+    list: { id: 'tokens.list', method: 'GET', path: "/api/v2/me/tokens", kind: 'json', bodyKind: null },
+    create: { id: 'tokens.create', method: 'POST', path: "/api/v2/me/tokens", kind: 'json', bodyKind: 'json' },
+    revoke: { id: 'tokens.revoke', method: 'DELETE', path: "/api/v2/me/tokens/:id", kind: 'empty', bodyKind: null },
   },
   uploads: {
     create: { id: 'uploads.create', method: 'POST', path: "/api/v2/uploads", kind: 'json', bodyKind: 'json' },

@@ -19,12 +19,14 @@ import { legacyEndpoints } from './legacy.ts';
 import { meEndpoints } from './me.ts';
 import { moderationEndpoints } from './moderation.ts';
 import { notificationsEndpoints } from './notifications.ts';
+import { oauthEndpoints } from './oauth.ts';
 import { reviewsEndpoints } from './reviews.ts';
 import { searchEndpoints } from './search.ts';
 import { securityEndpoints } from './security.ts';
 import { seoEndpoints } from './seo.ts';
 import { statsEndpoints } from './stats.ts';
 import { studioEndpoints } from './studio.ts';
+import { tokensEndpoints } from './tokens.ts';
 import { uploadsEndpoints } from './uploads.ts';
 import { versionsEndpoints } from './versions.ts';
 
@@ -44,12 +46,14 @@ export const apiContracts = {
   me: meEndpoints,
   moderation: moderationEndpoints,
   notifications: notificationsEndpoints,
+  oauth: oauthEndpoints,
   reviews: reviewsEndpoints,
   search: searchEndpoints,
   security: securityEndpoints,
   seo: seoEndpoints,
   stats: statsEndpoints,
   studio: studioEndpoints,
+  tokens: tokensEndpoints,
   uploads: uploadsEndpoints,
   versions: versionsEndpoints,
 } as const;

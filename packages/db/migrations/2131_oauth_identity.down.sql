@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS "OAuthLinkTicket";
+DROP TABLE IF EXISTS "OAuthIdentity";

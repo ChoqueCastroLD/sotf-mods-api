@@ -73,6 +73,9 @@ export const apiEnvSchema = z.object({
   R2_PRIVATE_BUCKET: z.string().trim().min(1).default('sotf-mods-private'),
   R2_PUBLIC_BASE_URL: envUrl.default('https://r2.sotf-mods.com'),
   TURNSTILE_SECRET_KEY: envOptional,
+  /** Discord OAuth app (T1-01). Login and linking stay hidden and inactive unless both are set. */
+  DISCORD_CLIENT_ID: envOptional,
+  DISCORD_CLIENT_SECRET: envOptional,
   OPENAI_API_KEY: envOptional,
   KELVINSEEK_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
   KELVINSEEK_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(3),

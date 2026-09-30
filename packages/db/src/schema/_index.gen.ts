@@ -21,3 +21,4 @@ export * from './v2/relations.ts';
 export * from './v2/stats.ts';
 export * from './v2/urls.ts';
 export * from './ext/security.ts';
+export * from './ext/auth-tokens-oauth.ts';

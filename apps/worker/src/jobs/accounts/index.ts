@@ -7,8 +7,8 @@
  *   anonymization (see @sotf/core accounts/deletion.ts).
  * - `accounts.trust-level`: nightly trust level recomputation, (the compatibility
  *   reconciliation follows as its own queue, `compat.reconcile`, at 03:20).
- * - `cleanup.sessions`: retention of sessions, one-time tokens, the security log, final outbox rows
- *   and expired exports.
+ * - `cleanup.sessions`: retention of sessions, one-time tokens, the security log, final outbox rows,
+ *   expired exports, OAuth link tickets and dead personal access tokens.
  */
 import { queueConfig } from '@sotf/core';
 import {
@@ -19,6 +19,7 @@ import {
   runExport,
   S3ExportStorage,
 } from '@sotf/core/accounts/index';
+import { purgeOAuthLinkTickets, purgePersonalAccessTokens } from '@sotf/core/auth/index';
 import { defineJob, defineJobGroup, type JobGroup } from '../../define-job.ts';
 import type { WorkerEnv } from '../../env.ts';
 import type { WorkerServices } from '../../services.ts';
@@ -82,8 +83,19 @@ export function createAccountJobs(options?: AccountJobOptions | (() => AccountJo
       }),
       defineJob({
         queue: 'cleanup.sessions',
-        handler: async (_data, { ctx, services }) =>
-          cleanupAccountData({ db: ctx.db, clock: ctx.clock, log: ctx.log, storage: get(services).storage }),
+        handler: async (_data, { ctx, services }) => {
+          const result = await cleanupAccountData({
+            db: ctx.db,
+            clock: ctx.clock,
+            log: ctx.log,
+            storage: get(services).storage,
+          });
+          // OAuth link tickets and dead personal access tokens (T1-01, T1-08).
+          const now = ctx.clock.now();
+          const linkTickets = await purgeOAuthLinkTickets(ctx.db, now);
+          const accessTokens = await purgePersonalAccessTokens(ctx.db, now);
+          return { ...result, linkTickets, accessTokens };
+        },
       }),
     ],
   });

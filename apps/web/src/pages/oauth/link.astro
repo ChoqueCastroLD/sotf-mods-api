@@ -1,0 +1,27 @@
+---
+/**
+ * `/oauth/link#ticket=` (T1-01): confirm linking Discord to the existing account with the same
+ * email. The ticket travels in the URL fragment, so the HTML is the same for everybody (edge
+ * cached like `/login`); the island reads it on the client. Never indexed.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import AuthShell from '../../components/account/AuthShell.astro';
+import { islandMessages } from '../../islands/auth/messages.server.ts';
+import OAuthLink from '../../islands/auth/OAuthLink.tsx';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+
+setPageCache(Astro, pageCache.static());
+Astro.response.headers.set('referrer-policy', 'no-referrer');
+const locale = Astro.locals.locale;
+---
+
+<AuthShell
+  template="oauth-link"
+  title={m.oauth_link_meta_title()}
+  description={m.oauth_link_meta_description()}
+  heading={m.oauth_link_heading()}
+>
+  <OAuthLink client:load locale={locale} lang={toHtmlLang(locale)} messages={islandMessages('OAuthLink', locale)} />
+</AuthShell>

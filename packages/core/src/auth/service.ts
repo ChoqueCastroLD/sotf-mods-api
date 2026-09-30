@@ -73,6 +73,12 @@ export const AUTH_EVENT_KINDS = [
   'recovery_codes_regenerate',
   'passkey_add',
   'passkey_remove',
+  'oauth_login',
+  'oauth_register',
+  'oauth_link',
+  'oauth_unlink',
+  'pat_create',
+  'pat_revoke',
 ] as const;
 export type AuthEventKind = (typeof AUTH_EVENT_KINDS)[number];
 

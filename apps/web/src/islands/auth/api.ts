@@ -124,6 +124,10 @@ async function request<T>(
   }
 }
 
+export interface AuthProviders {
+  discord: boolean;
+}
+
 export type MeSummary = z.output<typeof MeSummaryDTO>;
 export interface AuthResult {
   user: SelfUserDTO;
@@ -177,6 +181,10 @@ export const authApi = {
   verifyEmail: (input: { token: string }, options: RequestOptions = {}) =>
     request<void>('POST', '/auth/email/verify', input, options),
   resendVerification: (options: RequestOptions = {}) => request<void>('POST', '/auth/email/resend', {}, options),
+  /** Which external sign-in buttons exist on this server (none without credentials). */
+  providers: (options: RequestOptions = {}) => request<AuthProviders>('GET', '/auth/providers', undefined, options),
+  confirmOAuthLink: (input: { ticket: string; password: string }, options: RequestOptions = {}) =>
+    request<AuthResult>('POST', '/auth/oauth/link/confirm', input, options),
   summary: (options: RequestOptions = {}) => request<MeSummary>('GET', '/me/summary', undefined, options),
   updateSettings: (input: z.input<typeof UpdateSettingsBody>, options: RequestOptions = {}) =>
     request<unknown>('PATCH', '/me/settings', input, options),
