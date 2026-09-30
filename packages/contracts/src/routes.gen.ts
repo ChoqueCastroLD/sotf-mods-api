@@ -86,6 +86,7 @@ export const API_ROUTES = {
     markSolution: { id: 'comments.markSolution', method: 'POST', path: "/api/v2/comments/:id/solution", kind: 'json', bodyKind: null },
     unmarkSolution: { id: 'comments.unmarkSolution', method: 'DELETE', path: "/api/v2/comments/:id/solution", kind: 'json', bodyKind: null },
     resolveBug: { id: 'comments.resolveBug', method: 'POST', path: "/api/v2/comments/:id/resolve", kind: 'json', bodyKind: 'json' },
+    socialState: { id: 'comments.socialState', method: 'GET', path: "/api/v2/me/social-state", kind: 'json', bodyKind: null },
     previewMarkdown: { id: 'comments.previewMarkdown', method: 'POST', path: "/api/v2/markdown/preview", kind: 'json', bodyKind: 'json' },
   },
   compat: {
@@ -104,6 +105,7 @@ export const API_ROUTES = {
     resolve: { id: 'downloads.resolve', method: 'GET', path: "/internal/downloads/resolve", kind: 'json', bodyKind: null },
     myDownloads: { id: 'downloads.myDownloads', method: 'GET', path: "/api/v2/me/downloads", kind: 'json', bodyKind: null },
     clearMyDownloads: { id: 'downloads.clearMyDownloads', method: 'DELETE', path: "/api/v2/me/downloads", kind: 'empty', bodyKind: null },
+    removeMyDownload: { id: 'downloads.removeMyDownload', method: 'DELETE', path: "/api/v2/me/downloads/:modId", kind: 'empty', bodyKind: null },
   },
   events: {
     stream: { id: 'events.stream', method: 'GET', path: "/api/v2/stream", kind: 'event-stream', bodyKind: null },
@@ -122,6 +124,7 @@ export const API_ROUTES = {
     badges: { id: 'gamification.badges', method: 'GET', path: "/api/v2/badges", kind: 'json', bodyKind: null },
     currentAwards: { id: 'gamification.currentAwards', method: 'GET', path: "/api/v2/awards/current", kind: 'json', bodyKind: null },
     userBadges: { id: 'gamification.userBadges', method: 'GET', path: "/api/v2/users/:handle/badges", kind: 'json', bodyKind: null },
+    setFeaturedBadges: { id: 'gamification.setFeaturedBadges', method: 'PATCH', path: "/api/v2/me/badges/featured", kind: 'json', bodyKind: 'json' },
     onboarding: { id: 'gamification.onboarding', method: 'GET', path: "/api/v2/me/onboarding", kind: 'json', bodyKind: null },
     updateOnboarding: { id: 'gamification.updateOnboarding', method: 'PATCH', path: "/api/v2/me/onboarding", kind: 'json', bodyKind: 'json' },
   },
@@ -142,6 +145,8 @@ export const API_ROUTES = {
     fork: { id: 'kits.fork', method: 'POST', path: "/api/v2/kits/:id/fork", kind: 'json', bodyKind: 'json' },
     userKits: { id: 'kits.userKits', method: 'GET', path: "/api/v2/users/:handle/kits", kind: 'json', bodyKind: null },
     myKits: { id: 'kits.myKits', method: 'GET', path: "/api/v2/me/kits", kind: 'json', bodyKind: null },
+    getOwn: { id: 'kits.getOwn', method: 'GET', path: "/api/v2/me/kits/:id", kind: 'json', bodyKind: null },
+    modKits: { id: 'kits.modKits', method: 'GET', path: "/api/v2/mods/:id/kits", kind: 'json', bodyKind: null },
   },
   legacy: {
     listMods: { id: 'legacy.listMods', method: 'GET', path: "/api/mods", kind: 'json', bodyKind: null },
@@ -167,6 +172,7 @@ export const API_ROUTES = {
     get: { id: 'me.get', method: 'GET', path: "/api/v2/me", kind: 'json', bodyKind: null },
     summary: { id: 'me.summary', method: 'GET', path: "/api/v2/me/summary", kind: 'json', bodyKind: null },
     home: { id: 'me.home', method: 'GET', path: "/api/v2/me/home", kind: 'json', bodyKind: null },
+    getProfile: { id: 'me.getProfile', method: 'GET', path: "/api/v2/me/profile", kind: 'json', bodyKind: null },
     updateProfile: { id: 'me.updateProfile', method: 'PATCH', path: "/api/v2/me/profile", kind: 'json', bodyKind: 'json' },
     updateSettings: { id: 'me.updateSettings', method: 'PATCH', path: "/api/v2/me/settings", kind: 'json', bodyKind: 'json' },
     updatePrivacy: { id: 'me.updatePrivacy', method: 'PATCH', path: "/api/v2/me/privacy", kind: 'json', bodyKind: 'json' },

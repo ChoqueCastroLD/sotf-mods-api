@@ -10,6 +10,7 @@ import type { ActivityDayDTO, CreatorCardDTO, ModSort, UserPublicDTO, UserReview
 import { decodeCursor, encodeCursor, totalPages } from '@sotf/contracts/pagination';
 import { profilePath } from '@sotf/contracts/seo';
 import type { MediaVariant, UserLink, UserPrivacy } from '@sotf/db';
+import { renderMarkdown } from '@sotf/markdown';
 import type { z } from 'zod';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
@@ -28,6 +29,13 @@ import {
 } from './snapshot.ts';
 import { cached, num, numOrNull, row, rows } from './sql.ts';
 import { textToHtml } from './versions.ts';
+
+/** Profile bio (≤ 500 characters of Markdown `lite`), rendered on read; null when empty. */
+export function bioHtmlOf(bioMd: string | null | undefined): string | null {
+  if (!bioMd?.trim()) return null;
+  const html = renderMarkdown(bioMd, { profile: 'lite' }).html;
+  return html === '' ? null : html;
+}
 
 type ActivityDay = z.infer<typeof ActivityDayDTO>;
 type CreatorCard = z.infer<typeof CreatorCardDTO>;
@@ -192,7 +200,7 @@ export async function getUserProfile(ctx: Ctx, config: CatalogConfig, handle: st
         avatar: imageDto(config, media('a', user), user.imageUrl, null),
         banner: imageDto(config, media('b', user), null, null),
         bannerSeed: user.bannerSeed,
-        bioHtml: user.bioMd?.trim() ? textToHtml(user.bioMd) : null,
+        bioHtml: bioHtmlOf(user.bioMd),
         links: linksOf(user.links),
         role: roleOf(user.role),
         verifiedCreator: user.verifiedCreator,

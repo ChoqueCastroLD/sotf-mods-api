@@ -193,4 +193,17 @@ export const downloadsEndpoints = {
     errors: ['UNAUTHENTICATED'],
     cache: cache.noStore,
   }),
+  removeMyDownload: defineEndpoint({
+    id: 'downloads.removeMyDownload',
+    owner: 'WP-31',
+    method: 'DELETE',
+    path: `${API_V2_PREFIX}/me/downloads/:modId`,
+    summary: 'Remove one mod from my download history',
+    description: 'Detaches my downloads of every version of the mod; the downloads keep counting. Idempotent.',
+    auth: 'session',
+    params: z.object({ modId: IdParam }),
+    responseKind: 'empty',
+    errors: ['UNAUTHENTICATED'],
+    cache: cache.noStore,
+  }),
 } as const;

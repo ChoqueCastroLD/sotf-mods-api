@@ -1,6 +1,6 @@
 /**
  * `me` module (WP-30, PLAN §5.2): `GET /me`, `/me/summary`, `/me/home` (followed-mod updates with
- * the catalog cards and the «Day 1» checklist), profile, settings, privacy and the sessions page
+ * the catalog cards, the three most recently edited kits and the «Day 1» checklist), profile, settings, privacy and the sessions page
  * (list, revoke one, revoke the others). Every response is private.
  */
 
@@ -11,12 +11,14 @@ import {
   getMe,
   getMeHome,
   getMeSummary,
+  getOwnProfile,
   updatePrivacy,
   updateProfile,
   updateSettings,
 } from '@sotf/core/accounts/index';
 import { listActiveSessions, revokeSession, revokeUserSessions } from '@sotf/core/auth/index';
 import { type CatalogConfig, getSnapshot, isListable } from '@sotf/core/catalog/index';
+import { recentKitCards } from '@sotf/core/kits/index';
 import { type ApiModule, defineModule } from '../../lib/define-module.ts';
 import { clearSessionCookies } from '../auth/cookies.ts';
 import { type AccountServicesOptions, accountServices } from '../auth/services.ts';
@@ -58,8 +60,18 @@ export function createMeModule(options: AccountServicesOptions = {}): ApiModule 
       m.implement(meEndpoints.summary, async ({ ctx }) => getMeSummary(ctx.db, meServices(), actorOf(ctx).userId));
 
       m.implement(meEndpoints.home, async ({ ctx }) =>
-        getMeHome(ctx.db, { ...meServices(), modCards: modCardsOf(ctx, catalog) }, actorOf(ctx).userId),
+        getMeHome(
+          ctx.db,
+          {
+            ...meServices(),
+            modCards: modCardsOf(ctx, catalog),
+            recentKits: (_db, userId) => recentKitCards(ctx, { config: catalog }, userId, 3),
+          },
+          actorOf(ctx).userId,
+        ),
       );
+
+      m.implement(meEndpoints.getProfile, async ({ ctx }) => getOwnProfile(ctx, catalog, actorOf(ctx).userId));
 
       m.implement(meEndpoints.updateProfile, async ({ ctx, body }) =>
         updateProfile(ctx, catalog, actorOf(ctx).userId, body),

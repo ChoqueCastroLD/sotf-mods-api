@@ -264,6 +264,23 @@ export async function listMyKits(ctx: Ctx, deps: KitsDeps): Promise<KitCardDTO[]
   return recentKitCards(ctx, deps, actorOf(ctx).userId, MY_KITS_MAX);
 }
 
+/**
+ * `GET /mods/:id/kits`: public listed kits that contain the mod (explicit or automatic items),
+ * most followed first. Empty for mods the public cannot see.
+ */
+export async function kitsWithMod(ctx: Ctx, deps: KitsDeps, modId: number, limit = 4): Promise<KitCardDTO[]> {
+  const snapshot = await getSnapshot(ctx, deps.config);
+  const entry = snapshot.byId.get(modId);
+  if (!entry || snapshot.authors.get(entry.userId)?.hidden) return [];
+  const rows = await loadKitRows(
+    ctx.db,
+    sql`${LISTED} AND EXISTS (SELECT 1 FROM "KitItem" i WHERE i."kitId" = k."id" AND i."modId" = ${modId})`,
+    sql`k."isStaffPick" DESC, k."followersCount" DESC, k."updatedAt" DESC, k."id" DESC
+        LIMIT ${Math.max(1, Math.min(limit, 24))}`,
+  );
+  return buildKitCards(ctx.db, deps.config, snapshot, rows);
+}
+
 /** A user's kits (any visibility), newest edit first: `/me/kits` and the `/me/home` block. */
 export async function recentKitCards(ctx: Ctx, deps: KitsDeps, userId: number, limit = 3): Promise<KitCardDTO[]> {
   const rows = await loadKitRows(
