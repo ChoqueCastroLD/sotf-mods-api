@@ -14,3 +14,4 @@ export * from './stats.ts';
 export * from './taxonomy.ts';
 export * from './users.ts';
 export * from './versions.ts';
+export * from './badge.ts';

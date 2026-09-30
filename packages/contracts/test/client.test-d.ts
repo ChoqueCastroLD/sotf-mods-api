@@ -84,6 +84,6 @@ describe('typed client', () => {
   it('exposes request() and url() for any contract', () => {
     expectTypeOf(api.request).toBeFunction();
     expectTypeOf(api.url).returns.toEqualTypeOf<string>();
-    expectTypeOf<SseEvent['event']>().toEqualTypeOf<'notification' | 'mod.updated' | 'moderation.queue'>();
+    expectTypeOf<SseEvent['event']>().toEqualTypeOf<'notification' | 'mod.updated' | 'moderation.queue' | 'mod.live'>();
   });
 });

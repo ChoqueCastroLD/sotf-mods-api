@@ -5,6 +5,7 @@
  *
  * - `notification` on `user:{id}`: a signal was created or grouped (with the new unread count).
  * - `mod.updated` on `user:{ownerId}`: something the owner sees in Basecamp changed.
+ * - `mod.live` on `mod:{id}`: live download total of a mod (public stream of the mod page).
  * - `moderation.queue` on `moderation`: the size of a moderation lane changed.
  *
  * SSE ids must be unique per message so `Last-Event-ID` replays correctly: a grouped signal keeps
@@ -50,6 +51,19 @@ export async function publishModUpdated(
     event: 'mod.updated',
     id: notice.eventId,
     data: { modId: notice.modId },
+  });
+}
+
+/** `mod.live` → `mod:{id}` (anyone watching the mod page): the new lifetime download total. */
+export async function publishModLive(
+  exec: Executor,
+  notice: { modId: number; downloads: number; id: string },
+): Promise<void> {
+  await publishRealtime(exec, {
+    channel: sseChannel.mod(notice.modId),
+    event: 'mod.live',
+    id: notice.id,
+    data: { modId: notice.modId, downloads: notice.downloads },
   });
 }
 

@@ -4,8 +4,9 @@
  * aliases (`src/legacy/downloads`).
  */
 import { DOWNLOAD_REDIRECT_HEADERS } from '@sotf/contracts/downloads';
-import { errors } from '@sotf/core';
-import { DownloadCounter, type DownloadOutcome, DownloadsService } from '@sotf/core/downloads/index';
+import { errors, systemClock } from '@sotf/core';
+import { publishModLive } from '@sotf/core/realtime/index';
+import { createCompatPromptForLaterDownloaders, DownloadCounter, type DownloadOutcome, DownloadsService } from '@sotf/core/downloads/index';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import type { RedirectOutput } from '../../lib/define-module.ts';
 import type { Platform } from '../../lib/types.ts';
@@ -24,7 +25,27 @@ const runtimes = new WeakMap<Platform, DownloadsRuntime>();
 export function downloadsRuntime(app: FastifyInstance, platform: Platform): DownloadsRuntime {
   const existing = runtimes.get(platform);
   if (existing) return existing;
-  const counter = new DownloadCounter(platform.db, { log: platform.log.child({ component: 'downloads' }) });
+  const log = platform.log.child({ component: 'downloads' });
+  const promptLaterDownloaders = createCompatPromptForLaterDownloaders({
+    db: platform.db,
+    jobs: platform.jobs,
+    clock: systemClock,
+  });
+  const counter = new DownloadCounter(platform.db, {
+    log,
+    // After each committed flush: live totals to the mod pages that are open (`mod:{id}` SSE) and
+    // the compat prompt for signed-in people who downloaded under the current build.
+    onFlushed: async ({ mods, userIds }) => {
+      await Promise.all(
+        [...mods].map(([modId, downloads]) =>
+          publishModLive(platform.db, { modId, downloads, id: `${modId}.${downloads}` }).catch((err) =>
+            log.warn({ err, modId }, 'live download notice failed'),
+          ),
+        ),
+      );
+      await promptLaterDownloaders(userIds);
+    },
+  });
   const service = new DownloadsService({
     publicBaseUrl: platform.env.R2_PUBLIC_BASE_URL,
     publicOrigins: [LEGACY_PUBLIC_R2_ORIGIN],
