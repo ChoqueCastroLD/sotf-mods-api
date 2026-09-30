@@ -1805,6 +1805,516 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "Kit",
+  "mod_action_install": "Installa",
+  "mod_action_report": "Segnala",
+  "mod_banner_archived_action": "Vai alla successiva",
+  "mod_banner_archived_successor": "Il creatore non mantiene più questa mod e consiglia {name} al suo posto.",
+  "mod_banner_archived_text": "Il creatore non mantiene più questa mod. Potrebbe non funzionare con la patch attuale.",
+  "mod_banner_archived_title": "Archiviata.",
+  "mod_banner_broken_action": "Aggiungi il tuo rapporto sul campo",
+  "mod_banner_broken_text": "I sopravvissuti segnalano che questa mod non funziona con la versione attuale del gioco.",
+  "mod_banner_broken_title": "Non funziona con la patch attuale.",
+  "mod_banner_nsfw_text": "Questa mod contiene contenuti per adulti.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "L’hai provata? Faccelo sapere",
+  "mod_banner_outdated_text": "Non è stata aggiornata né confermata dall’ultima patch che ha rotto le mod.",
+  "mod_banner_outdated_title": "Forse obsoleta.",
+  "mod_banner_pending_text": "Un ranger sta controllando questa mod. Non è ancora nelle liste e può cambiare.",
+  "mod_banner_pending_title": "In revisione.",
+  "mod_banner_unlisted_text": "Solo chi ha il link può trovare questa mod.",
+  "mod_banner_unlisted_title": "Non in elenco.",
+  "mod_banners_label": "Stato della mod",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "Vedi tutto",
+  "mod_changelog_title": "Changelog",
+  "mod_comments_empty": "Ancora nessun commento. Domande, consigli e bug vanno qui.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Un’altra risposta",
+        "count__plural=*": "Altre {count__number} risposte"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Accedi per commentare",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Commenti",
+        "count__exact=*, count__plural=one": "{count__number} commento",
+        "count__exact=*, count__plural=*": "{count__number} commenti"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "Impossibile caricare i commenti. Ricarica la pagina per riprovare.",
+  "mod_compat_author_tested": "Testata dal creatore su {build}.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Rapporti contrastanti su {build}: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "La v{version} ha funzionato nella tua partita?",
+  "mod_compat_prompt_action": "Segnala",
+  "mod_compat_report": "Segnala",
+  "mod_copy_hash": "Copia SHA-256",
+  "mod_cover_alt": "Immagine di copertina di {name}",
+  "mod_creator_follow": "Segui il creatore",
+  "mod_creator_following": "Segui il creatore",
+  "mod_creator_title": "Creatore",
+  "mod_dependencies_title": "Dipendenze",
+  "mod_dependency_archived": "Archiviata dal creatore",
+  "mod_dependency_removed": "Rimossa dal sito",
+  "mod_dependency_unavailable": "Non disponibile sul sito",
+  "mod_deps_already_have": "Le ho già",
+  "mod_deps_download_all": "Scarica tutto",
+  "mod_deps_progress": "Download {current} di {total}…",
+  "mod_deps_sheet_text": "{name} non funziona senza queste mod. Scaricale anche tu, oppure continua se le hai già.",
+  "mod_deps_sheet_title": "Ti serve anche {names}",
+  "mod_description_empty": "Il creatore non ha ancora scritto una descrizione.",
+  "mod_download_done_label": "Scaricata ✓",
+  "mod_download_unavailable": "Al momento non c’è un file scaricabile.",
+  "mod_fact_game_version": "Versione del gioco dichiarata",
+  "mod_fact_license": "Licenza",
+  "mod_fact_loader_version": "RedLoader dichiarato",
+  "mod_fact_platform": "Piattaforma",
+  "mod_fact_published": "Pubblicata",
+  "mod_fact_size": "Dimensione file",
+  "mod_fact_source": "Codice sorgente",
+  "mod_fact_tested_builds": "Testata su",
+  "mod_fact_updated": "Aggiornata il {date}",
+  "mod_fact_updated_label": "Aggiornata",
+  "mod_fact_version": "Versione",
+  "mod_field_report_sign_in": "Accedi per aggiungere un rapporto sul campo",
+  "mod_field_report_text": "Un rapporto sul campo richiede dieci secondi e dice a tutti se questa mod funziona con la patch attuale.",
+  "mod_field_report_title": "Ha funzionato nella tua partita?",
+  "mod_file_name": "File",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input index",
+        "input name",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Screenshot {index__number} di {name}"
+      }
+    }
+  ],
+  "mod_gallery_label": "Galleria di {name}",
+  "mod_gallery_next": "Immagine successiva",
+  "mod_gallery_previous": "Immagine precedente",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} di {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "In breve",
+  "mod_in_kits_browse": "Sfoglia i kit",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "In {count__number} kit",
+        "count__plural=*": "In {count__number} kit"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Non usarla insieme a:",
+  "mod_install_full_guide": "Guida all’installazione completa",
+  "mod_install_intro": "Cinque minuti, senza gestore. Questi passaggi sono per {name}.",
+  "mod_install_manager_tip": "Preferisci un clic? RedManager installa e aggiorna le mod e le loro dipendenze per te.",
+  "mod_install_multiplayer": "Multigiocatore: {role}.",
+  "mod_install_redloader_not_bepinex": "Questa mod richiede RedLoader, non BepInEx. Le mod e le guide per BepInEx non valgono per Sons of the Forest.",
+  "mod_install_step_dependencies_title": "Installa prima le dipendenze",
+  "mod_install_step_download": "Scarica {name}",
+  "mod_install_step_download_version": "Scarica {name} v{version}",
+  "mod_install_step_extract_client": "Sul tuo PC, estrailo nella cartella Mods del gioco:",
+  "mod_install_step_extract_note": "Mantieni la struttura delle cartelle dello ZIP. Non mettere lo ZIP stesso nella cartella.",
+  "mod_install_step_extract_server": "Su un server dedicato, estrailo nella cartella Mods del server:",
+  "mod_install_step_extract_title": "Estrai lo ZIP nella cartella Mods",
+  "mod_install_step_launch_text": "RedLoader carica la mod all’avvio. Premi F1 nel menu principale per vedere l’elenco delle mod.",
+  "mod_install_step_launch_title": "Avvia il gioco",
+  "mod_install_step_loader_link": "Come installare RedLoader",
+  "mod_install_step_loader_text": "RedLoader è il caricatore di mod di Sons of the Forest. Si installa una volta e funzionano tutte le mod.",
+  "mod_install_step_loader_title": "Installa RedLoader",
+  "mod_install_step_loader_version": "Usa RedLoader {version} o successivo.",
+  "mod_install_title": "Come installare questa mod",
+  "mod_kind_library": "Libreria",
+  "mod_license_all_rights_reserved": "Tutti i diritti riservati",
+  "mod_license_other": "Licenza personalizzata",
+  "mod_license_reupload_with_credit": "Ricaricamento con credito",
+  "mod_link_website": "Sito web",
+  "mod_md_alert_caution": "Attenzione",
+  "mod_md_alert_important": "Importante",
+  "mod_md_alert_note": "Nota",
+  "mod_md_alert_tip": "Suggerimento",
+  "mod_md_alert_warning": "Avviso",
+  "mod_md_spoiler": "Spoiler",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name} è una libreria di Sons of the Forest creata da {author} per RedLoader. {downloads} download, gratis e diretti.",
+        "kind=library, count__plural=*": "{name} è una libreria di Sons of the Forest creata da {author} per RedLoader. {downloads} download, gratis e diretti.",
+        "kind=*, count__plural=one": "{name} è una mod di Sons of the Forest creata da {author} per RedLoader. {downloads} download, gratis e diretti.",
+        "kind=*, count__plural=*": "{name} è una mod di Sons of the Forest creata da {author} per RedLoader. {downloads} download, gratis e diretti."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — libreria di Sons of the Forest di {author}",
+        "kind=*": "{name} — mod di Sons of the Forest di {author}"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — libreria di Sons of the Forest",
+        "kind=*": "{name} — mod di Sons of the Forest"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Serve solo a te",
+  "mod_nsfw_confirm": "Ho almeno 18 anni, mostrala",
+  "mod_nsfw_leave": "Torna a Esplora",
+  "mod_nsfw_settings": "Mostra sempre i contenuti 18+ (impostazioni)",
+  "mod_nsfw_text": "Questa mod è segnata come 18+. Conferma di essere maggiorenne per vederla.",
+  "mod_nsfw_title": "Contenuti per adulti",
+  "mod_og_alt": "{name} su SOTF Mods",
+  "mod_original_author": "Autore originale: {name}",
+  "mod_other_versions": "Altre versioni",
+  "mod_platform_client": "Client",
+  "mod_platform_server": "Server dedicato",
+  "mod_platform_universal": "Client e server",
+  "mod_related_title": "Mod correlate",
+  "mod_report_choose_reason": "Scegli un motivo.",
+  "mod_report_details_hint": "Link, versioni o qualsiasi cosa aiuti i ranger. Fino a 2000 caratteri.",
+  "mod_report_details_label": "Dettagli (facoltativo)",
+  "mod_report_duplicate": "Hai già segnalato questa mod. I ranger ci stanno lavorando.",
+  "mod_report_intro": "Spiega ai ranger cosa non va. Le segnalazioni sono private.",
+  "mod_report_reason_broken": "Download rotto o falso",
+  "mod_report_reason_harassment": "Molestie o odio",
+  "mod_report_reason_illegal": "Contenuti illegali",
+  "mod_report_reason_label": "Motivo",
+  "mod_report_reason_malware": "Malware o file sospetto",
+  "mod_report_reason_nsfw_unmarked": "Contenuti per adulti non segnati 18+",
+  "mod_report_reason_other": "Altro",
+  "mod_report_reason_reupload": "Ricaricamento del lavoro di un altro",
+  "mod_report_reason_spam": "Spam o pubblicità",
+  "mod_report_sent": "Grazie. I ranger daranno un’occhiata.",
+  "mod_report_sign_in": "Accedi per segnalare una mod. Così le segnalazioni restano oneste.",
+  "mod_report_submit": "Invia segnalazione",
+  "mod_report_title": "Segnala {name}",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "E altre {count__number}"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Richiesta da {count__number} mod",
+        "count__plural=*": "Richiesta da {count__number} mod"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Leggi la recensione",
+        "count__plural=*": "Leggi tutte le {count__number} recensioni"
+      }
+    }
+  ],
+  "mod_reviews_empty": "Ancora nessuna recensione. L’hai scaricata? Racconta per primo com’è andata.",
+  "mod_reviews_end": "Non ci sono altre recensioni.",
+  "mod_reviews_first_page": "Torna alla prima pagina",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Recensioni dei giocatori su {name}, una mod di Sons of the Forest: {count__number} recensione con voti, download verificati e risposte del creatore.",
+        "count__plural=*": "Recensioni dei giocatori su {name}, una mod di Sons of the Forest: {count__number} recensioni con voti, download verificati e risposte del creatore."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "Altre recensioni",
+  "mod_reviews_rules": "Una recensione per sopravvissuto. Sii preciso: versione, cosa ha funzionato e cosa no.",
+  "mod_reviews_sort_critical": "Critiche",
+  "mod_reviews_sort_helpful": "Più utili",
+  "mod_reviews_sort_label": "Ordina le recensioni",
+  "mod_reviews_sort_new": "Più recenti",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Recensioni",
+        "count__exact=*, count__plural=one": "{count__number} recensione",
+        "count__exact=*, count__plural=*": "{count__number} recensioni"
+      }
+    }
+  ],
+  "mod_reviews_write": "Scrivi una recensione",
+  "mod_scan_clean": "Nessuna minaccia trovata",
+  "mod_scan_date": "Scansionato il {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input positives",
+        "input engine",
+        "input total",
+        "local positives__number = positives: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{positives__number} motori {engine} su {total__number} hanno segnalato il file."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Segnalato da alcuni motori, approvato da un ranger",
+  "mod_scan_malicious": "Dannoso: non installarlo",
+  "mod_scan_none": "Non c’è ancora un rapporto di sicurezza per questo file.",
+  "mod_scan_pending": "Scansione in corso",
+  "mod_scan_report": "Rapporto completo",
+  "mod_scan_suspicious": "Sospetto: un ranger lo sta esaminando",
+  "mod_scan_title": "Scansione di sicurezza",
+  "mod_scan_unknown": "Non ancora scansionato",
+  "mod_share_link_label": "Link",
+  "mod_share_markdown_label": "Markdown per Discord",
+  "mod_share_more": "Altro…",
+  "mod_share_on": "Condividi su {network}",
+  "mod_share_qr": "Codice QR",
+  "mod_share_qr_alt": "Codice QR del link a {name}",
+  "mod_share_qr_hint": "Scansionalo con il telefono per aprire la pagina.",
+  "mod_share_text": "{name} per Sons of the Forest",
+  "mod_share_title": "Condividi questa mod",
+  "mod_sidebar_label": "Informazioni su questa mod",
+  "mod_stat_downloads": "Download",
+  "mod_stat_downloads_total": "in totale",
+  "mod_stat_followers": "Follower",
+  "mod_stat_rating": "Valutazione",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} recensione)",
+        "count__plural=*": "{rating} ({count__number} recensioni)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Download questa settimana",
+  "mod_stat_this_week_value": "{display} questa settimana",
+  "mod_support_title": "Sostieni il creatore",
+  "mod_tab_comments": "Commenti",
+  "mod_tab_overview": "Panoramica",
+  "mod_tab_reviews": "Recensioni",
+  "mod_tab_versions": "Versioni",
+  "mod_tabs_label": "Sezioni della mod",
+  "mod_tags_label": "Tag",
+  "mod_toast_copy_failed": "Impossibile copiare. Seleziona il testo e copialo a mano.",
+  "mod_toast_error": "Non ha funzionato. Riprova tra un momento.",
+  "mod_toast_followed": "{name} è nel tuo zaino. Ti avviseremo degli aggiornamenti.",
+  "mod_toast_followed_creator": "Segui {name}.",
+  "mod_toast_rate_limited": "Troppi tentativi. Aspetta un minuto e riprova.",
+  "mod_toast_sign_in": "La sessione è scaduta. Accedi di nuovo.",
+  "mod_toast_unfollowed": "{name} non è più nel tuo zaino.",
+  "mod_toast_unfollowed_creator": "Non segui più {name}.",
+  "mod_toast_verify_email": "Prima verifica la tua email. Controlla la posta in arrivo.",
+  "mod_value_not_declared": "Non dichiarato",
+  "mod_version_beta": "Beta",
+  "mod_version_latest": "Ultima",
+  "mod_version_meta_description": "{name} v{version} per Sons of the Forest, pubblicata il {date}: changelog, dimensione, SHA-256, scansione di sicurezza e compatibilità.",
+  "mod_version_no_changelog": "Nessun changelog per questa versione.",
+  "mod_version_not_downloadable": "Questa versione non si può scaricare.",
+  "mod_version_yanked": "Ritirata",
+  "mod_version_yanked_reason": "Ritirata dal creatore: {reason}",
+  "mod_version_yanked_text": "Il creatore ha ritirato questa versione. Usane una più recente.",
+  "mod_versions_all": "Tutte le versioni",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "La {count__number} versione",
+        "count__plural=*": "Tutte le {count__number} versioni"
+      }
+    }
+  ],
+  "mod_versions_caption": "Versioni di {name}",
+  "mod_versions_empty": "Nessuna versione pubblicata finora.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "La {count__number} versione di {name} per Sons of the Forest, con changelog, dimensioni e compatibilità. Ultima: v{version}.",
+        "count__plural=*": "Tutte le {count__number} versioni di {name} per Sons of the Forest, con changelog, dimensioni e compatibilità. Ultima: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} versione",
+        "count__plural=*": "{count__number} versioni"
+      }
+    }
+  ],
+  "mod_video_embed_title": "Video di YouTube",
+  "mod_video_play": "Riproduci il trailer di {name}",
+  "mod_video_title": "Trailer di {name}",
+  "mod_whats_new_badge": "Novità per te",
+  "mod_whats_new_read": "Leggi le note sul campo",
+  "mod_whats_new_title": "Novità dal tuo ultimo download (v{version})",
+  "mod_whats_new_up_to_date": "Hai l’ultima versione (v{version}).",
   "ui_breadcrumbs": "Percorso di navigazione",
   "ui_cancel": "Annulla",
   "ui_choose": "Scegli…",

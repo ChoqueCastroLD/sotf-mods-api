@@ -1913,6 +1913,542 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "В набор",
+  "mod_action_install": "Установка",
+  "mod_action_report": "Пожаловаться",
+  "mod_banner_archived_action": "К преемнику",
+  "mod_banner_archived_successor": "Автор больше не поддерживает этот мод и советует вместо него {name}.",
+  "mod_banner_archived_text": "Автор больше не поддерживает этот мод. Он может не работать на текущем патче.",
+  "mod_banner_archived_title": "В архиве.",
+  "mod_banner_broken_action": "Добавить полевой отчёт",
+  "mod_banner_broken_text": "Выжившие сообщают, что мод не работает на текущей версии игры.",
+  "mod_banner_broken_title": "Не работает на текущем патче.",
+  "mod_banner_nsfw_text": "В этом моде есть контент для взрослых.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "Пробовали? Расскажите",
+  "mod_banner_outdated_text": "Мод не обновлялся и не подтверждался с последнего патча, который ломал моды.",
+  "mod_banner_outdated_title": "Возможно, устарел.",
+  "mod_banner_pending_text": "Рейнджер проверяет этот мод. Его ещё нет в списках, и он может измениться.",
+  "mod_banner_pending_title": "На проверке.",
+  "mod_banner_unlisted_text": "Найти этот мод можно только по ссылке.",
+  "mod_banner_unlisted_title": "Скрыт из списков.",
+  "mod_banners_label": "Статус мода",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "Показать всё",
+  "mod_changelog_title": "Список изменений",
+  "mod_comments_empty": "Комментариев пока нет. Вопросы, советы и баги — сюда.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ещё {count__number} ответ",
+        "count__plural=few": "Ещё {count__number} ответа",
+        "count__plural=many": "Ещё {count__number} ответов",
+        "count__plural=*": "Ещё {count__number} ответа"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Войдите, чтобы комментировать",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Комментарии",
+        "count__exact=*, count__plural=one": "{count__number} комментарий",
+        "count__exact=*, count__plural=few": "{count__number} комментария",
+        "count__exact=*, count__plural=many": "{count__number} комментариев",
+        "count__exact=*, count__plural=*": "{count__number} комментария"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "Не удалось загрузить комментарии. Обновите страницу, чтобы попробовать снова.",
+  "mod_compat_author_tested": "Автор проверил на {build}.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Разные отчёты на {build}: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "Сработала ли v{version} в вашей игре?",
+  "mod_compat_prompt_action": "Сообщить",
+  "mod_compat_report": "Сообщить",
+  "mod_copy_hash": "Скопировать SHA-256",
+  "mod_cover_alt": "Обложка {name}",
+  "mod_creator_follow": "Подписаться на автора",
+  "mod_creator_following": "Вы подписаны на автора",
+  "mod_creator_title": "Автор",
+  "mod_dependencies_title": "Зависимости",
+  "mod_dependency_archived": "Автор отправил в архив",
+  "mod_dependency_removed": "Удалено с сайта",
+  "mod_dependency_unavailable": "Нет на сайте",
+  "mod_deps_already_have": "Уже есть",
+  "mod_deps_download_all": "Скачать всё",
+  "mod_deps_progress": "Загрузка {current} из {total}…",
+  "mod_deps_sheet_text": "{name} не работает без этих модов. Скачайте и их или продолжайте, если они у вас уже есть.",
+  "mod_deps_sheet_title": "Также нужно: {names}",
+  "mod_description_empty": "Автор ещё не написал описание.",
+  "mod_download_done_label": "Скачано ✓",
+  "mod_download_unavailable": "Сейчас нет файла для загрузки.",
+  "mod_fact_game_version": "Заявленная версия игры",
+  "mod_fact_license": "Лицензия",
+  "mod_fact_loader_version": "Заявленный RedLoader",
+  "mod_fact_platform": "Платформа",
+  "mod_fact_published": "Опубликован",
+  "mod_fact_size": "Размер файла",
+  "mod_fact_source": "Исходный код",
+  "mod_fact_tested_builds": "Проверен на",
+  "mod_fact_updated": "Обновлён {date}",
+  "mod_fact_updated_label": "Обновлён",
+  "mod_fact_version": "Версия",
+  "mod_field_report_sign_in": "Войдите, чтобы добавить полевой отчёт",
+  "mod_field_report_text": "Полевой отчёт занимает десять секунд и показывает всем, работает ли мод на текущем патче.",
+  "mod_field_report_title": "Сработало в вашей игре?",
+  "mod_file_name": "Файл",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input index",
+        "input name",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Скриншот {index__number} — {name}"
+      }
+    }
+  ],
+  "mod_gallery_label": "Галерея {name}",
+  "mod_gallery_next": "Следующее изображение",
+  "mod_gallery_previous": "Предыдущее изображение",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} из {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "Кратко",
+  "mod_in_kits_browse": "Смотреть наборы",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "В {count__number} наборе",
+        "count__plural=few": "В {count__number} наборах",
+        "count__plural=many": "В {count__number} наборах",
+        "count__plural=*": "В {count__number} наборах"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Не используйте вместе с:",
+  "mod_install_full_guide": "Полное руководство по установке",
+  "mod_install_intro": "Пять минут, без менеджера. Эти шаги — для {name}.",
+  "mod_install_manager_tip": "Хотите в один клик? RedManager сам установит и обновит моды и их зависимости.",
+  "mod_install_multiplayer": "Мультиплеер: {role}.",
+  "mod_install_redloader_not_bepinex": "Этому моду нужен RedLoader, а не BepInEx. Моды и гайды для BepInEx к Sons of the Forest не подходят.",
+  "mod_install_step_dependencies_title": "Сначала установите зависимости",
+  "mod_install_step_download": "Скачайте {name}",
+  "mod_install_step_download_version": "Скачайте {name} v{version}",
+  "mod_install_step_extract_client": "На ПК распакуйте в папку Mods игры:",
+  "mod_install_step_extract_note": "Сохраните структуру папок из ZIP. Не кладите в папку сам ZIP.",
+  "mod_install_step_extract_server": "На выделенном сервере распакуйте в папку Mods сервера:",
+  "mod_install_step_extract_title": "Распакуйте ZIP в папку Mods",
+  "mod_install_step_launch_text": "RedLoader загружает мод при запуске. Нажмите F1 в главном меню, чтобы увидеть список модов.",
+  "mod_install_step_launch_title": "Запустите игру",
+  "mod_install_step_loader_link": "Как установить RedLoader",
+  "mod_install_step_loader_text": "RedLoader — загрузчик модов Sons of the Forest. Установите его один раз, и заработают все моды.",
+  "mod_install_step_loader_title": "Установите RedLoader",
+  "mod_install_step_loader_version": "Нужен RedLoader {version} или новее.",
+  "mod_install_title": "Как установить этот мод",
+  "mod_kind_library": "Библиотека",
+  "mod_license_all_rights_reserved": "Все права защищены",
+  "mod_license_other": "Своя лицензия",
+  "mod_license_reupload_with_credit": "Перезалив с указанием автора",
+  "mod_link_website": "Сайт",
+  "mod_md_alert_caution": "Осторожно",
+  "mod_md_alert_important": "Важно",
+  "mod_md_alert_note": "Примечание",
+  "mod_md_alert_tip": "Совет",
+  "mod_md_alert_warning": "Предупреждение",
+  "mod_md_spoiler": "Спойлер",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name} — библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузка, бесплатно и напрямую.",
+        "kind=library, count__plural=few": "{name} — библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузки, бесплатно и напрямую.",
+        "kind=library, count__plural=many": "{name} — библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузок, бесплатно и напрямую.",
+        "kind=library, count__plural=*": "{name} — библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузки, бесплатно и напрямую.",
+        "kind=*, count__plural=one": "{name} — мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузка, бесплатно и напрямую.",
+        "kind=*, count__plural=few": "{name} — мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузки, бесплатно и напрямую.",
+        "kind=*, count__plural=many": "{name} — мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузок, бесплатно и напрямую.",
+        "kind=*, count__plural=*": "{name} — мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузки, бесплатно и напрямую."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — библиотека для Sons of the Forest от {author}",
+        "kind=*": "{name} — мод для Sons of the Forest от {author}"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — библиотека для Sons of the Forest",
+        "kind=*": "{name} — мод для Sons of the Forest"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Нужен только вам",
+  "mod_nsfw_confirm": "Мне есть 18, показать",
+  "mod_nsfw_leave": "Назад к обзору",
+  "mod_nsfw_settings": "Всегда показывать контент 18+ (настройки)",
+  "mod_nsfw_text": "Этот мод помечен 18+. Подтвердите, что вам есть 18, чтобы его увидеть.",
+  "mod_nsfw_title": "Контент для взрослых",
+  "mod_og_alt": "{name} на SOTF Mods",
+  "mod_original_author": "Оригинальный автор: {name}",
+  "mod_other_versions": "Другие версии",
+  "mod_platform_client": "Клиент",
+  "mod_platform_server": "Выделенный сервер",
+  "mod_platform_universal": "Клиент и сервер",
+  "mod_related_title": "Похожие моды",
+  "mod_report_choose_reason": "Выберите причину.",
+  "mod_report_details_hint": "Ссылки, версии или всё, что поможет рейнджерам. До 2000 символов.",
+  "mod_report_details_label": "Подробности (необязательно)",
+  "mod_report_duplicate": "Вы уже жаловались на этот мод. Рейнджеры в курсе.",
+  "mod_report_intro": "Расскажите рейнджерам, что не так. Жалобы видят только рейнджеры.",
+  "mod_report_reason_broken": "Сломанная или фальшивая загрузка",
+  "mod_report_reason_harassment": "Травля или ненависть",
+  "mod_report_reason_illegal": "Незаконный контент",
+  "mod_report_reason_label": "Причина",
+  "mod_report_reason_malware": "Вредоносный или подозрительный файл",
+  "mod_report_reason_nsfw_unmarked": "Контент для взрослых без отметки 18+",
+  "mod_report_reason_other": "Другое",
+  "mod_report_reason_reupload": "Перезалив чужой работы",
+  "mod_report_reason_spam": "Спам или реклама",
+  "mod_report_sent": "Спасибо. Рейнджеры посмотрят.",
+  "mod_report_sign_in": "Войдите, чтобы пожаловаться на мод. Так жалобы остаются честными.",
+  "mod_report_submit": "Отправить жалобу",
+  "mod_report_title": "Жалоба на {name}",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "И ещё {count__number}"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Нужен для {count__number} мода",
+        "count__plural=few": "Нужен для {count__number} модов",
+        "count__plural=many": "Нужен для {count__number} модов",
+        "count__plural=*": "Нужен для {count__number} мода"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Читать отзыв",
+        "count__plural=few": "Читать все {count__number} отзыва",
+        "count__plural=many": "Читать все {count__number} отзывов",
+        "count__plural=*": "Читать все {count__number} отзыва"
+      }
+    }
+  ],
+  "mod_reviews_empty": "Отзывов пока нет. Скачали? Расскажите первым, как всё прошло.",
+  "mod_reviews_end": "Это все отзывы.",
+  "mod_reviews_first_page": "На первую страницу",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Отзывы игроков о {name}, моде для Sons of the Forest: {count__number} отзыв с оценками, подтверждёнными загрузками и ответами автора.",
+        "count__plural=few": "Отзывы игроков о {name}, моде для Sons of the Forest: {count__number} отзыва с оценками, подтверждёнными загрузками и ответами автора.",
+        "count__plural=many": "Отзывы игроков о {name}, моде для Sons of the Forest: {count__number} отзывов с оценками, подтверждёнными загрузками и ответами автора.",
+        "count__plural=*": "Отзывы игроков о {name}, моде для Sons of the Forest: {count__number} отзыва с оценками, подтверждёнными загрузками и ответами автора."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "Ещё отзывы",
+  "mod_reviews_rules": "Один отзыв на выжившего. Конкретно: версия, что работало, а что нет.",
+  "mod_reviews_sort_critical": "Критические",
+  "mod_reviews_sort_helpful": "Самые полезные",
+  "mod_reviews_sort_label": "Сортировка отзывов",
+  "mod_reviews_sort_new": "Новые",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Отзывы",
+        "count__exact=*, count__plural=one": "{count__number} отзыв",
+        "count__exact=*, count__plural=few": "{count__number} отзыва",
+        "count__exact=*, count__plural=many": "{count__number} отзывов",
+        "count__exact=*, count__plural=*": "{count__number} отзыва"
+      }
+    }
+  ],
+  "mod_reviews_write": "Написать отзыв",
+  "mod_scan_clean": "Угроз не найдено",
+  "mod_scan_date": "Проверен {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input positives",
+        "input total",
+        "input engine",
+        "local positives__number = positives: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Файл отметили {positives__number} из {total__number} антивирусов {engine}."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Отмечен некоторыми антивирусами, одобрен рейнджером",
+  "mod_scan_malicious": "Вредоносный: не устанавливайте",
+  "mod_scan_none": "Для этого файла ещё нет отчёта о безопасности.",
+  "mod_scan_pending": "Идёт проверка",
+  "mod_scan_report": "Полный отчёт",
+  "mod_scan_suspicious": "Подозрительный: рейнджер проверяет",
+  "mod_scan_title": "Проверка безопасности",
+  "mod_scan_unknown": "Ещё не проверен",
+  "mod_share_link_label": "Ссылка",
+  "mod_share_markdown_label": "Markdown для Discord",
+  "mod_share_more": "Ещё…",
+  "mod_share_on": "Поделиться в {network}",
+  "mod_share_qr": "QR-код",
+  "mod_share_qr_alt": "QR-код ссылки на {name}",
+  "mod_share_qr_hint": "Отсканируйте телефоном, чтобы открыть страницу.",
+  "mod_share_text": "{name} для Sons of the Forest",
+  "mod_share_title": "Поделиться модом",
+  "mod_sidebar_label": "Об этом моде",
+  "mod_stat_downloads": "Загрузки",
+  "mod_stat_downloads_total": "всего",
+  "mod_stat_followers": "Подписчики",
+  "mod_stat_rating": "Оценка",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} отзыв)",
+        "count__plural=few": "{rating} ({count__number} отзыва)",
+        "count__plural=many": "{rating} ({count__number} отзывов)",
+        "count__plural=*": "{rating} ({count__number} отзыва)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Загрузки за неделю",
+  "mod_stat_this_week_value": "{display} за неделю",
+  "mod_support_title": "Поддержать автора",
+  "mod_tab_comments": "Комментарии",
+  "mod_tab_overview": "Обзор",
+  "mod_tab_reviews": "Отзывы",
+  "mod_tab_versions": "Версии",
+  "mod_tabs_label": "Разделы мода",
+  "mod_tags_label": "Теги",
+  "mod_toast_copy_failed": "Не удалось скопировать. Выделите текст и скопируйте вручную.",
+  "mod_toast_error": "Не получилось. Попробуйте ещё раз чуть позже.",
+  "mod_toast_followed": "{name} в вашем рюкзаке. Вы узнаете об обновлениях.",
+  "mod_toast_followed_creator": "Вы подписаны на {name}.",
+  "mod_toast_rate_limited": "Слишком много попыток. Подождите минуту и попробуйте снова.",
+  "mod_toast_sign_in": "Сессия закончилась. Войдите снова.",
+  "mod_toast_unfollowed": "{name} больше нет в вашем рюкзаке.",
+  "mod_toast_unfollowed_creator": "Вы отписались от {name}.",
+  "mod_toast_verify_email": "Сначала подтвердите почту. Проверьте входящие.",
+  "mod_value_not_declared": "Не указано",
+  "mod_version_beta": "Бета",
+  "mod_version_latest": "Последняя",
+  "mod_version_meta_description": "{name} v{version} для Sons of the Forest, выпуск {date}: изменения, размер, SHA-256, проверка безопасности и совместимость.",
+  "mod_version_no_changelog": "У этой версии нет списка изменений.",
+  "mod_version_not_downloadable": "Эту версию нельзя скачать.",
+  "mod_version_yanked": "Отозвана",
+  "mod_version_yanked_reason": "Отозвана автором: {reason}",
+  "mod_version_yanked_text": "Автор отозвал эту версию. Используйте более новую.",
+  "mod_versions_all": "Все версии",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} версия",
+        "count__plural=few": "Все {count__number} версии",
+        "count__plural=many": "Все {count__number} версий",
+        "count__plural=*": "Все {count__number} версии"
+      }
+    }
+  ],
+  "mod_versions_caption": "Версии {name}",
+  "mod_versions_empty": "Версий пока нет.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} версия {name} для Sons of the Forest со списками изменений, размерами и совместимостью. Последняя: v{version}.",
+        "count__plural=few": "{count__number} версии {name} для Sons of the Forest со списками изменений, размерами и совместимостью. Последняя: v{version}.",
+        "count__plural=many": "{count__number} версий {name} для Sons of the Forest со списками изменений, размерами и совместимостью. Последняя: v{version}.",
+        "count__plural=*": "{count__number} версии {name} для Sons of the Forest со списками изменений, размерами и совместимостью. Последняя: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} версия",
+        "count__plural=few": "{count__number} версии",
+        "count__plural=many": "{count__number} версий",
+        "count__plural=*": "{count__number} версии"
+      }
+    }
+  ],
+  "mod_video_embed_title": "Видео YouTube",
+  "mod_video_play": "Смотреть трейлер {name}",
+  "mod_video_title": "Трейлер {name}",
+  "mod_whats_new_badge": "Новое для вас",
+  "mod_whats_new_read": "Читать полевые заметки",
+  "mod_whats_new_title": "Что нового с вашей последней загрузки (v{version})",
+  "mod_whats_new_up_to_date": "У вас последняя версия (v{version}).",
   "ui_breadcrumbs": "Навигационная цепочка",
   "ui_cancel": "Отмена",
   "ui_choose": "Выбери…",

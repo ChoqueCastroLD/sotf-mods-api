@@ -1,0 +1,110 @@
+---
+/**
+ * Gallery lightbox (T0-08, research/03 §5.8): a full-screen `<dialog>` with a scroll-snap strip
+ * (swipe on touch), previous/next buttons, ←/→/Home/End keys, a live «3 / 8» counter and the
+ * trailer as a YouTube facade (the `youtube-nocookie` iframe is only created on play).
+ * Opened by clicks on `a[data-gallery-index]` (`scripts/mod/gallery.ts`); without JavaScript the
+ * thumbnails are plain links to the images and the video.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { pictureSources } from '../../lib/images.ts';
+import type { ModDetailDTO } from './data.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+const total = mod.gallery.length + (mod.video ? 1 : 0);
+const navButton =
+  'absolute top-1/2 z-10 inline-flex size-12 -translate-y-1/2 items-center justify-center rounded-full bg-night-975/75 text-white hover:bg-night-975 max-md:hidden';
+---
+
+{
+  total > 0 && (
+    <ModDialog id="gallery-dialog" title={m.mod_gallery_label({ name: mod.name })} size="full">
+      <div class="relative" data-lightbox data-total={total}>
+        <ul
+          class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none]"
+          data-lightbox-track
+          tabindex="0"
+          aria-roledescription="carousel"
+          aria-label={m.mod_gallery_label({ name: mod.name })}
+        >
+          {mod.video && (
+            <li class="flex w-full shrink-0 snap-center items-center justify-center" data-lightbox-slide="0" aria-roledescription="slide" aria-label={m.mod_gallery_slide({ index: 1, total })}>
+              <div class="relative aspect-video w-full overflow-hidden rounded-md bg-night-975" data-youtube-facade data-youtube-id={mod.video.id}>
+                <img
+                  src={`https://i.ytimg.com/vi/${encodeURIComponent(mod.video.id)}/hqdefault.jpg`}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                  width="1280"
+                  height="720"
+                  class="size-full object-cover opacity-80"
+                />
+                <button
+                  type="button"
+                  data-youtube-play
+                  class="absolute inset-0 m-auto inline-flex size-20 items-center justify-center rounded-full bg-night-975/80 text-white hover:bg-primary hover:text-primary-fg"
+                >
+                  <Icon icon={Play} size={36} className="fill-current" />
+                  <span class="sr-only">{m.mod_video_play({ name: mod.name })}</span>
+                </button>
+              </div>
+            </li>
+          )}
+          {mod.gallery.map((image, index) => {
+            const position = index + (mod.video ? 1 : 0);
+            const sources = pictureSources(image.srcset);
+            return (
+              <li
+                class="flex w-full shrink-0 snap-center items-center justify-center"
+                data-lightbox-slide={position}
+                aria-roledescription="slide"
+                aria-label={m.mod_gallery_slide({ index: position + 1, total })}
+              >
+                <figure class="grid w-full justify-items-center gap-2">
+                  <picture>
+                    {sources.avif && <source type="image/avif" srcset={sources.avif} sizes="(min-width: 80rem) 1240px, 100vw" />}
+                    {sources.webp && <source type="image/webp" srcset={sources.webp} sizes="(min-width: 80rem) 1240px, 100vw" />}
+                    <img
+                      src={image.url}
+                      alt={image.alt ?? m.mod_gallery_image_alt({ name: mod.name, index: index + 1 })}
+                      width={image.width ?? 1280}
+                      height={image.height ?? 720}
+                      loading="lazy"
+                      decoding="async"
+                      class="max-h-[75dvh] w-auto max-w-full rounded-md object-contain"
+                      style={image.dominantColor ? `background-color:${image.dominantColor}` : undefined}
+                    />
+                  </picture>
+                  {image.alt && <figcaption class="text-sm text-fg-muted">{image.alt}</figcaption>}
+                </figure>
+              </li>
+            );
+          })}
+        </ul>
+        {total > 1 && (
+          <>
+            <button type="button" data-lightbox-prev class:list={[navButton, 'start-2']}>
+              <Icon icon={ChevronLeft} size={24} className="rtl:rotate-180" />
+              <span class="sr-only">{m.mod_gallery_previous()}</span>
+            </button>
+            <button type="button" data-lightbox-next class:list={[navButton, 'end-2']}>
+              <Icon icon={ChevronRight} size={24} className="rtl:rotate-180" />
+              <span class="sr-only">{m.mod_gallery_next()}</span>
+            </button>
+          </>
+        )}
+      </div>
+      <p class="text-center font-mono text-sm text-fg-muted" aria-live="polite" data-lightbox-counter>
+        {m.mod_gallery_counter({ index: 1, total })}
+      </p>
+    </ModDialog>
+  )
+}

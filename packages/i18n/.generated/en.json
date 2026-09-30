@@ -1805,6 +1805,516 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "Kit",
+  "mod_action_install": "Install",
+  "mod_action_report": "Report",
+  "mod_banner_archived_action": "Go to the successor",
+  "mod_banner_archived_successor": "The creator no longer maintains this mod and points to {name} instead.",
+  "mod_banner_archived_text": "The creator no longer maintains this mod. It may not work on the current patch.",
+  "mod_banner_archived_title": "Archived.",
+  "mod_banner_broken_action": "Add your field report",
+  "mod_banner_broken_text": "Survivors report that this mod doesn’t work on the current game build.",
+  "mod_banner_broken_title": "Broken on the current patch.",
+  "mod_banner_nsfw_text": "This mod contains adult content.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "Tried it? Report back",
+  "mod_banner_outdated_text": "It hasn’t been updated or confirmed since the last game patch that broke mods.",
+  "mod_banner_outdated_title": "Possibly outdated.",
+  "mod_banner_pending_text": "A ranger is checking this mod. It isn’t listed yet and may still change.",
+  "mod_banner_pending_title": "In review.",
+  "mod_banner_unlisted_text": "Only people with the link can find this mod.",
+  "mod_banner_unlisted_title": "Unlisted.",
+  "mod_banners_label": "Mod status",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "See all",
+  "mod_changelog_title": "Changelog",
+  "mod_comments_empty": "No comments yet. Questions, tips and bug reports go here.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} more reply",
+        "count__plural=*": "{count__number} more replies"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Sign in to comment",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Comments",
+        "count__exact=*, count__plural=one": "{count__number} comment",
+        "count__exact=*, count__plural=*": "{count__number} comments"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "Comments couldn’t load right now. Reload the page to try again.",
+  "mod_compat_author_tested": "Tested by the creator on {build}.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mixed reports on {build}: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "Did v{version} work in your game?",
+  "mod_compat_prompt_action": "Report",
+  "mod_compat_report": "Report",
+  "mod_copy_hash": "Copy SHA-256",
+  "mod_cover_alt": "Cover image of {name}",
+  "mod_creator_follow": "Follow creator",
+  "mod_creator_following": "Following creator",
+  "mod_creator_title": "Creator",
+  "mod_dependencies_title": "Dependencies",
+  "mod_dependency_archived": "Archived by its creator",
+  "mod_dependency_removed": "Removed from the site",
+  "mod_dependency_unavailable": "Not available on the site",
+  "mod_deps_already_have": "I already have them",
+  "mod_deps_download_all": "Download all",
+  "mod_deps_progress": "Downloading {current} of {total}…",
+  "mod_deps_sheet_text": "{name} doesn’t work without these mods. Download them too, or continue if you already have them.",
+  "mod_deps_sheet_title": "You also need {names}",
+  "mod_description_empty": "The creator hasn’t written a description yet.",
+  "mod_download_done_label": "Downloaded ✓",
+  "mod_download_unavailable": "No downloadable file right now.",
+  "mod_fact_game_version": "Game version declared",
+  "mod_fact_license": "License",
+  "mod_fact_loader_version": "RedLoader declared",
+  "mod_fact_platform": "Platform",
+  "mod_fact_published": "Published",
+  "mod_fact_size": "File size",
+  "mod_fact_source": "Source code",
+  "mod_fact_tested_builds": "Tested on",
+  "mod_fact_updated": "Updated {date}",
+  "mod_fact_updated_label": "Updated",
+  "mod_fact_version": "Version",
+  "mod_field_report_sign_in": "Sign in to add a field report",
+  "mod_field_report_text": "A field report takes ten seconds and tells everyone whether this mod works on the current patch.",
+  "mod_field_report_title": "Did it work in your game?",
+  "mod_file_name": "File",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input index",
+        "input name",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Screenshot {index__number} of {name}"
+      }
+    }
+  ],
+  "mod_gallery_label": "Gallery of {name}",
+  "mod_gallery_next": "Next image",
+  "mod_gallery_previous": "Previous image",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} of {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "At a glance",
+  "mod_in_kits_browse": "Browse kits",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "In {count__number} kit",
+        "count__plural=*": "In {count__number} kits"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Don’t use it together with:",
+  "mod_install_full_guide": "Full install guide",
+  "mod_install_intro": "Five minutes, no manager required. These steps are for {name}.",
+  "mod_install_manager_tip": "Prefer one click? RedManager installs and updates mods and their dependencies for you.",
+  "mod_install_multiplayer": "Multiplayer: {role}.",
+  "mod_install_redloader_not_bepinex": "This mod needs RedLoader, not BepInEx. BepInEx mods and guides don’t apply to Sons of the Forest.",
+  "mod_install_step_dependencies_title": "Install its dependencies first",
+  "mod_install_step_download": "Download {name}",
+  "mod_install_step_download_version": "Download {name} v{version}",
+  "mod_install_step_extract_client": "On your PC, extract it into the game’s Mods folder:",
+  "mod_install_step_extract_note": "Keep the folder structure of the ZIP. Don’t put the ZIP itself in the folder.",
+  "mod_install_step_extract_server": "On a dedicated server, extract it into the server’s Mods folder:",
+  "mod_install_step_extract_title": "Extract the ZIP into the Mods folder",
+  "mod_install_step_launch_text": "RedLoader loads the mod on start. Press F1 in the main menu to see the list of mods.",
+  "mod_install_step_launch_title": "Launch the game",
+  "mod_install_step_loader_link": "How to install RedLoader",
+  "mod_install_step_loader_text": "RedLoader is the mod loader of Sons of the Forest. Install it once and every mod works.",
+  "mod_install_step_loader_title": "Install RedLoader",
+  "mod_install_step_loader_version": "Use RedLoader {version} or newer.",
+  "mod_install_title": "How to install this mod",
+  "mod_kind_library": "Library",
+  "mod_license_all_rights_reserved": "All rights reserved",
+  "mod_license_other": "Custom license",
+  "mod_license_reupload_with_credit": "Re-upload with credit",
+  "mod_link_website": "Website",
+  "mod_md_alert_caution": "Caution",
+  "mod_md_alert_important": "Important",
+  "mod_md_alert_note": "Note",
+  "mod_md_alert_tip": "Tip",
+  "mod_md_alert_warning": "Warning",
+  "mod_md_spoiler": "Spoiler",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name} is a Sons of the Forest library by {author} for RedLoader. {downloads} download, free and direct.",
+        "kind=library, count__plural=*": "{name} is a Sons of the Forest library by {author} for RedLoader. {downloads} downloads, free and direct.",
+        "kind=*, count__plural=one": "{name} is a Sons of the Forest mod by {author} for RedLoader. {downloads} download, free and direct.",
+        "kind=*, count__plural=*": "{name} is a Sons of the Forest mod by {author} for RedLoader. {downloads} downloads, free and direct."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest library by {author}",
+        "kind=*": "{name} — Sons of the Forest mod by {author}"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest library",
+        "kind=*": "{name} — Sons of the Forest mod"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Only you need it",
+  "mod_nsfw_confirm": "I’m 18 or older, show it",
+  "mod_nsfw_leave": "Back to Explore",
+  "mod_nsfw_settings": "Always show 18+ content (settings)",
+  "mod_nsfw_text": "This mod is marked 18+. Confirm that you are an adult to see it.",
+  "mod_nsfw_title": "Adult content",
+  "mod_og_alt": "{name} on SOTF Mods",
+  "mod_original_author": "Original author: {name}",
+  "mod_other_versions": "Other versions",
+  "mod_platform_client": "Client",
+  "mod_platform_server": "Dedicated server",
+  "mod_platform_universal": "Client and server",
+  "mod_related_title": "Related mods",
+  "mod_report_choose_reason": "Choose a reason.",
+  "mod_report_details_hint": "Links, versions or anything that helps the rangers. Up to 2,000 characters.",
+  "mod_report_details_label": "Details (optional)",
+  "mod_report_duplicate": "You already reported this mod. The rangers have it.",
+  "mod_report_intro": "Tell the rangers what’s wrong. Reports are private.",
+  "mod_report_reason_broken": "Broken or fake download",
+  "mod_report_reason_harassment": "Harassment or hate",
+  "mod_report_reason_illegal": "Illegal content",
+  "mod_report_reason_label": "Reason",
+  "mod_report_reason_malware": "Malware or suspicious file",
+  "mod_report_reason_nsfw_unmarked": "Adult content not marked 18+",
+  "mod_report_reason_other": "Something else",
+  "mod_report_reason_reupload": "Re-upload of someone else’s work",
+  "mod_report_reason_spam": "Spam or advertising",
+  "mod_report_sent": "Thanks. The rangers will take a look.",
+  "mod_report_sign_in": "Sign in to report a mod. It keeps reports honest.",
+  "mod_report_submit": "Send report",
+  "mod_report_title": "Report {name}",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "And {count__number} more"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Required by {count__number} mod",
+        "count__plural=*": "Required by {count__number} mods"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Read the review",
+        "count__plural=*": "Read all {count__number} reviews"
+      }
+    }
+  ],
+  "mod_reviews_empty": "No reviews yet. Downloaded it? Be the first to tell others how it went.",
+  "mod_reviews_end": "That’s all the reviews.",
+  "mod_reviews_first_page": "Back to the first page",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Player reviews of {name}, a Sons of the Forest mod: {count__number} review with ratings, verified downloads and creator replies.",
+        "count__plural=*": "Player reviews of {name}, a Sons of the Forest mod: {count__number} reviews with ratings, verified downloads and creator replies."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "More reviews",
+  "mod_reviews_rules": "One review per survivor. Be specific: version, what worked, what didn’t.",
+  "mod_reviews_sort_critical": "Critical",
+  "mod_reviews_sort_helpful": "Most helpful",
+  "mod_reviews_sort_label": "Sort reviews",
+  "mod_reviews_sort_new": "Most recent",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Reviews",
+        "count__exact=*, count__plural=one": "{count__number} review",
+        "count__exact=*, count__plural=*": "{count__number} reviews"
+      }
+    }
+  ],
+  "mod_reviews_write": "Write a review",
+  "mod_scan_clean": "No threats found",
+  "mod_scan_date": "Scanned on {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input positives",
+        "input total",
+        "input engine",
+        "local positives__number = positives: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{positives__number} of {total__number} {engine} engines flagged the file."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Flagged by some engines, cleared by a ranger",
+  "mod_scan_malicious": "Malicious: do not install",
+  "mod_scan_none": "No security report for this file yet.",
+  "mod_scan_pending": "Scan in progress",
+  "mod_scan_report": "Full report",
+  "mod_scan_suspicious": "Suspicious: a ranger is reviewing it",
+  "mod_scan_title": "Security scan",
+  "mod_scan_unknown": "Not scanned yet",
+  "mod_share_link_label": "Link",
+  "mod_share_markdown_label": "Markdown for Discord",
+  "mod_share_more": "More…",
+  "mod_share_on": "Share on {network}",
+  "mod_share_qr": "QR code",
+  "mod_share_qr_alt": "QR code of the link to {name}",
+  "mod_share_qr_hint": "Scan it with your phone to open the page.",
+  "mod_share_text": "{name} for Sons of the Forest",
+  "mod_share_title": "Share this mod",
+  "mod_sidebar_label": "About this mod",
+  "mod_stat_downloads": "Downloads",
+  "mod_stat_downloads_total": "total",
+  "mod_stat_followers": "Followers",
+  "mod_stat_rating": "Rating",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} review)",
+        "count__plural=*": "{rating} ({count__number} reviews)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Downloads this week",
+  "mod_stat_this_week_value": "{display} this week",
+  "mod_support_title": "Support the creator",
+  "mod_tab_comments": "Comments",
+  "mod_tab_overview": "Overview",
+  "mod_tab_reviews": "Reviews",
+  "mod_tab_versions": "Versions",
+  "mod_tabs_label": "Mod sections",
+  "mod_tags_label": "Tags",
+  "mod_toast_copy_failed": "Couldn’t copy. Select the text and copy it by hand.",
+  "mod_toast_error": "That didn’t work. Try again in a moment.",
+  "mod_toast_followed": "{name} is in your backpack. You’ll hear about updates.",
+  "mod_toast_followed_creator": "You follow {name}.",
+  "mod_toast_rate_limited": "Too many tries. Wait a minute and try again.",
+  "mod_toast_sign_in": "Your session ended. Sign in again.",
+  "mod_toast_unfollowed": "{name} left your backpack.",
+  "mod_toast_unfollowed_creator": "You no longer follow {name}.",
+  "mod_toast_verify_email": "Verify your email first. Check your inbox.",
+  "mod_value_not_declared": "Not declared",
+  "mod_version_beta": "Beta",
+  "mod_version_latest": "Latest",
+  "mod_version_meta_description": "{name} v{version} for Sons of the Forest, released {date}: changelog, file size, SHA-256, security scan and compatibility.",
+  "mod_version_no_changelog": "No changelog for this version.",
+  "mod_version_not_downloadable": "This version can’t be downloaded.",
+  "mod_version_yanked": "Withdrawn",
+  "mod_version_yanked_reason": "Withdrawn by the creator: {reason}",
+  "mod_version_yanked_text": "The creator withdrew this version. Use a newer one.",
+  "mod_versions_all": "All versions",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "All {count__number} version",
+        "count__plural=*": "All {count__number} versions"
+      }
+    }
+  ],
+  "mod_versions_caption": "Versions of {name}",
+  "mod_versions_empty": "No versions published yet.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "All {count__number} version of {name} for Sons of the Forest, with changelogs, file sizes and compatibility. Latest: v{version}.",
+        "count__plural=*": "All {count__number} versions of {name} for Sons of the Forest, with changelogs, file sizes and compatibility. Latest: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} version",
+        "count__plural=*": "{count__number} versions"
+      }
+    }
+  ],
+  "mod_video_embed_title": "YouTube video",
+  "mod_video_play": "Play the trailer of {name}",
+  "mod_video_title": "Trailer of {name}",
+  "mod_whats_new_badge": "New for you",
+  "mod_whats_new_read": "Read the field notes",
+  "mod_whats_new_title": "What’s new since your last download (v{version})",
+  "mod_whats_new_up_to_date": "You have the latest version (v{version}).",
   "ui_breadcrumbs": "Breadcrumb",
   "ui_cancel": "Cancel",
   "ui_choose": "Choose…",

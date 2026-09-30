@@ -1,0 +1,95 @@
+---
+/**
+ * Action bar of the mod header (T0-08): split download button (latest version + other versions),
+ * «Install» (guide dialog), Follow ♥, «+ Kit», Share and Report.
+ *
+ * Without JavaScript: the download links work (302 to R2), «Install» opens `/install`, Follow and
+ * «+ Kit» lead to sign-in / the kit editor; Share and Report (dialogs) stay hidden until the
+ * page script enables them. Follow is upgraded to a toggle for signed-in visitors
+ * (`scripts/mod/follow.ts`, optimistic with undo).
+ */
+import { m } from '@sotf/i18n/messages';
+import { DownloadSplitButton, downloadOptionOf } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { BookOpen, Flag, Heart, Plus, Share2 } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO, VersionDTO } from './data.ts';
+import { otherVersions, versionsPagePath } from './format.ts';
+import { ACTION_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  versions: VersionDTO[] | null;
+  loginHref: string;
+}
+
+const { mod, versions, loginHref } = Astro.props;
+const locale = Astro.locals.locale;
+const latest = mod.latestVersion;
+const downloadable = latest !== null && latest.status === 'active';
+const others = otherVersions(versions, latest?.id ?? null).map(downloadOptionOf);
+const versionsHref = href(versionsPagePath(mod), locale);
+const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
+---
+
+<div class="grid gap-3" data-mod-actions>
+  {
+    downloadable && latest ? (
+      <div data-download-area>
+        <DownloadSplitButton
+          primary={downloadOptionOf(latest)}
+          others={others}
+          allVersionsHref={versionsHref}
+          glow
+          size="lg"
+        />
+      </div>
+    ) : (
+      <p class="rounded-md border border-border bg-raised px-3 py-2 text-sm text-fg-muted">
+        {m.mod_download_unavailable()}{' '}
+        <a href={versionsHref} class="font-semibold text-link underline underline-offset-3">{m.mod_tab_versions()}</a>
+      </p>
+    )
+  }
+
+  <div class="flex flex-wrap gap-2">
+    <a
+      href={href('/install', locale)}
+      data-dialog-open="install-dialog"
+      data-track="install_modal_open"
+      class={ACTION_CLASSES}
+    >
+      <Icon icon={BookOpen} size={18} />
+      <span>{m.mod_action_install()}</span>
+    </a>
+    <a
+      href={loginHref}
+      data-follow
+      data-mod-id={mod.id}
+      data-followers={mod.followers}
+      class={ACTION_CLASSES}
+    >
+      <Icon icon={Heart} size={18} className="[[aria-pressed=true]_&]:fill-current" />
+      <span data-follow-label>{m.common_action_follow()}</span>
+      <span class="sr-only" data-follow-name>{mod.name}</span>
+    </a>
+    <a href={kitHref} data-kit-add={mod.id} class={ACTION_CLASSES}>
+      <Icon icon={Plus} size={18} />
+      <span>{m.mod_action_add_to_kit()}</span>
+    </a>
+    <button type="button" hidden data-dialog-open="share-dialog" data-js-only class={ACTION_CLASSES}>
+      <Icon icon={Share2} size={18} />
+      <span>{m.common_action_share()}</span>
+    </button>
+    <button
+      type="button"
+      hidden
+      data-dialog-open="report-dialog"
+      data-js-only
+      class={`${ACTION_CLASSES} border-transparent bg-transparent text-fg-muted`}
+    >
+      <Icon icon={Flag} size={18} />
+      <span class="max-sm:sr-only">{m.mod_action_report()}</span>
+    </button>
+  </div>
+</div>
