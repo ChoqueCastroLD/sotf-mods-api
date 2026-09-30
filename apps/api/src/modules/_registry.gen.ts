@@ -5,6 +5,7 @@ import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
 import catalogModule from './catalog/index.ts';
 import downloadsModule from './downloads/index.ts';
+import eventsModule from './events/index.ts';
 import followsModule from './follows/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
@@ -14,6 +15,7 @@ import platformModule from './platform/index.ts';
 import resolveModule from './resolve/index.ts';
 import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
+import studioAnalyticsModule from './studio-analytics/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
 
@@ -22,6 +24,7 @@ export const modules = [
   authModule,
   catalogModule,
   downloadsModule,
+  eventsModule,
   followsModule,
   kitsModule,
   legacyModule,
@@ -31,6 +34,7 @@ export const modules = [
   resolveModule,
   searchModule,
   siteModule,
+  studioAnalyticsModule,
   unsubscribeModule,
   uploadsModule,
 ] as const;
