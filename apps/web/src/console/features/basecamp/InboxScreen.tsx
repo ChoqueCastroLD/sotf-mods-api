@@ -474,15 +474,18 @@ function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (t
 export function InboxScreen({
   type,
   state,
+  modId = null,
   onFilters,
 }: {
   type: InboxType | null;
   state: InboxState;
-  onFilters: (next: { type?: InboxType | null; state?: InboxState }) => void;
+  /** Only the items of one of my mods («Needs attention» links here). */
+  modId?: number | null;
+  onFilters: (next: { type?: InboxType | null; state?: InboxState; modId?: number | null }) => void;
 }) {
   useBasecampMessages();
   const types = type ? [type] : [];
-  const inbox = useInfiniteQuery(inboxQuery(types, state));
+  const inbox = useInfiniteQuery(inboxQuery(types, state, modId));
   const [now] = useState(() => Date.now());
   const items = inbox.data?.pages.flatMap((page) => page.items) ?? [];
 
@@ -495,7 +498,21 @@ export function InboxScreen({
           description={bt('basecamp_inbox_intro')}
         />
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <TypeFilter value={type} onChange={(next) => onFilters({ type: next })} />
+          <div className="flex flex-wrap items-center gap-3">
+            <TypeFilter value={type} onChange={(next) => onFilters({ type: next })} />
+            {modId !== null ? (
+              <span className="inline-flex h-9 items-center gap-2 rounded-full border border-primary bg-primary-soft px-3 text-sm text-fg">
+                {bt('basecamp_inbox_filter_mod', { mod: items[0]?.mod.name ?? `#${modId}` })}
+                <button
+                  type="button"
+                  onClick={() => onFilters({ modId: null })}
+                  className="text-xs font-semibold text-link hover:underline"
+                >
+                  {bt('basecamp_inbox_filter_mod_clear')}
+                </button>
+              </span>
+            ) : null}
+          </div>
           <Select<InboxState>
             label={bt('basecamp_inbox_filter_state')}
             options={[

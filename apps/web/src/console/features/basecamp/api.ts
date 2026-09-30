@@ -50,7 +50,8 @@ export type ModRow = z.output<typeof StudioModRowDTO>;
 export type ModList = z.output<typeof StudioModListDTO>;
 export type StudioMod = z.output<typeof StudioModDTO>;
 export type ModState = z.output<typeof StudioModStateDTO>;
-export type Version = z.output<typeof VersionDTO>;
+/** A version as its author sees it (`OwnerVersionDTO`: with the changelog source). */
+export type Version = StudioMod['versions'][number];
 export type Analytics = z.output<typeof AnalyticsDTO>;
 export type AnalyticsRange = (typeof ANALYTICS_RANGES)[number];
 export type DownloadChannel = (typeof DOWNLOAD_CHANNELS)[number];
@@ -121,7 +122,8 @@ export const basecampKeys = {
   mod: (modId: number) => queryKeys.studioMod(modId),
   compat: (modId: number) => [...queryKeys.studioMod(modId), 'compat'] as const,
   analytics: (modId: number | null, range: AnalyticsRange) => [...studio, 'analytics', modId ?? 'all', range] as const,
-  inbox: (types: readonly InboxType[], state: InboxState) => [...studio, 'inbox', types.join(','), state] as const,
+  inbox: (types: readonly InboxType[], state: InboxState, modId: number | null = null) =>
+    [...studio, 'inbox', types.join(','), state, modId ?? 'all'] as const,
   inboxAll: [...studio, 'inbox'] as const,
   live: (modId: number) => ['studio', 'live', modId] as const,
   badgeCatalog: ['gamification', 'badges'] as const,
@@ -175,9 +177,9 @@ export function analyticsQuery(modId: number | null, range: AnalyticsRange) {
 
 export const INBOX_PAGE_SIZE = 25;
 
-export function inboxQuery(types: readonly InboxType[], state: InboxState) {
+export function inboxQuery(types: readonly InboxType[], state: InboxState, modId: number | null = null) {
   return infiniteQueryOptions({
-    queryKey: basecampKeys.inbox(types, state),
+    queryKey: basecampKeys.inbox(types, state, modId),
     queryFn: ({ pageParam, signal }): Promise<InboxPage> =>
       api.studio.inbox(
         {
@@ -185,6 +187,7 @@ export function inboxQuery(types: readonly InboxType[], state: InboxState) {
             state,
             limit: INBOX_PAGE_SIZE,
             ...(types.length > 0 && types.length < INBOX_KINDS.length ? { type: [...types] } : {}),
+            ...(modId !== null ? { modId } : {}),
             ...(pageParam ? { cursor: pageParam } : {}),
           },
         },
@@ -314,6 +317,20 @@ export function storeVersion(queryClient: QueryClient, modId: number, version: V
  * legacy images not adopted yet (they cannot be referenced by `PUT /media`).
  */
 const MEDIA_URL = /\/media\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\//i;
+
+/** Cover media id of the owner view (`media.thumbnailMediaId`; parsed from the URL as a fallback). */
+export function coverMediaIdOf(studio: Pick<StudioMod, 'mod' | 'media'>): string | null {
+  return studio.media?.thumbnailMediaId ?? mediaIdOf(studio.mod.thumbnail?.url);
+}
+
+/** Media id of each gallery image (`media.gallery[i].mediaId`, null for legacy images not processed yet). */
+export function galleryMediaIds(studio: Pick<StudioMod, 'mod' | 'media'>): Array<string | null> {
+  return studio.mod.gallery.map((image, index) => {
+    const entry = studio.media?.gallery[index];
+    if (entry && entry.url === image.url) return entry.mediaId;
+    return mediaIdOf(image.url);
+  });
+}
 
 export function mediaIdOf(url: string | null | undefined): string | null {
   if (!url) return null;

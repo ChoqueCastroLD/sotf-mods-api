@@ -437,5 +437,14 @@
   "basecamp_badges_none_title": "No badges yet",
   "basecamp_badges_none_text": "Publishing, answering players and keeping mods working on new patches all earn badges.",
   "basecamp_inbox_template_insert": "Insert a saved reply",
-  "basecamp_inbox_template_manage": "Manage saved replies"
+  "basecamp_inbox_template_manage": "Manage saved replies",
+  "basecamp_versions_changelog_edit": "Edit changelog",
+  "basecamp_versions_changelog_title": "Changelog of v{version}",
+  "basecamp_versions_changelog_text": "Markdown works. Players see it on the mod page and in the update signal.",
+  "basecamp_versions_changelog_saved": "Changelog of v{version} saved.",
+  "basecamp_versions_changelog_failed": "Couldn’t save the changelog",
+  "basecamp_versions_changelog_save": "Save changelog",
+  "basecamp_analytics_versions_daily": "Downloads per version over time",
+  "basecamp_inbox_filter_mod": "Only {mod}",
+  "basecamp_inbox_filter_mod_clear": "Show every mod"
 }

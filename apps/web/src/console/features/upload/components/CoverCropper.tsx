@@ -22,7 +22,7 @@ import {
   generatedName,
 } from '../lib/image.ts';
 import { imageProblem, uploadImage } from '../lib/image-upload.ts';
-import { loadPreview } from '../lib/preview-cache.ts';
+import { previewFor } from '../lib/preview-cache.ts';
 import { UploadError } from '../lib/uploader.ts';
 import { Callout } from './Callout.tsx';
 import { Dropzone, ProgressBar } from './Dropzone.tsx';
@@ -48,18 +48,20 @@ interface Source {
 
 function useStoredPreview(value: CoverValue | undefined): string | null {
   const [url, setUrl] = useState<string | null>(null);
-  const key = value?.uploadId ?? value?.mediaId ?? null;
+  const uploadId = value?.uploadId ?? null;
+  const mediaId = value?.mediaId ?? null;
+  const key = uploadId ?? mediaId;
   useEffect(() => {
     let alive = true;
     setUrl(null);
     if (!key) return;
-    void loadPreview(key).then((found) => {
+    void previewFor({ uploadId, mediaId }).then((found) => {
       if (alive) setUrl(found);
     });
     return () => {
       alive = false;
     };
-  }, [key]);
+  }, [key, uploadId, mediaId]);
   return url;
 }
 

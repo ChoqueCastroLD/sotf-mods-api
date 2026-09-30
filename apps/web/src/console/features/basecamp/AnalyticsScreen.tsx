@@ -1,7 +1,7 @@
 /**
  * `/basecamp/analytics` — analytics of all my mods or one (PLAN §7.5 «Analíticas por mod»):
  * daily downloads (zero-filled) total and unique with release and patch markers, views and the
- * view → download conversion, downloads by version (≤ 8 + «Other») and by channel (web, RedManager,
+ * view → download conversion, downloads by version (≤ 8 + «Other»: stacked daily bars and totals) and by channel (web, RedManager,
  * client), referrers grouped (Google, Discord, YouTube, GitHub, AI assistants, internal, direct),
  * visitor language, followers gained, ratings over time, compatibility by build and CSV export.
  * The whole legacy history since 2023 is included in «All». Every chart has «View as table».
@@ -19,7 +19,7 @@ import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { activeLocale } from '../../lib/messages.ts';
 import { type Analytics, type AnalyticsRange, analyticsCsvHref, analyticsQuery, CHANNELS, modsQuery } from './api.ts';
 import { CompatReports } from './CompatReports.tsx';
-import { CategoryFigure, RatingsFigure, SeriesFigure } from './charts/figures.tsx';
+import { CategoryFigure, RatingsFigure, SeriesFigure, VersionSeriesFigure } from './charts/figures.tsx';
 import { prefetchCharts } from './charts/lazy.tsx';
 import { number, percent } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
@@ -261,12 +261,15 @@ export function AnalyticsScreen({
 
             <div className="grid gap-6 xl:grid-cols-2">
               <Panel title={bt('basecamp_analytics_versions_title')}>
-                <CategoryFigure
-                  title={bt('basecamp_analytics_versions_chart')}
-                  rowHeader={bt('basecamp_analytics_version')}
-                  valueLabel={bt('basecamp_series_downloads')}
-                  rows={versionRows(analytics.data)}
-                />
+                <div className="grid gap-6">
+                  <VersionSeriesFigure analytics={analytics.data} range={range} />
+                  <CategoryFigure
+                    title={bt('basecamp_analytics_versions_chart')}
+                    rowHeader={bt('basecamp_analytics_version')}
+                    valueLabel={bt('basecamp_series_downloads')}
+                    rows={versionRows(analytics.data)}
+                  />
+                </div>
               </Panel>
               <Panel title={bt('basecamp_analytics_channels_title')}>
                 <CategoryFigure

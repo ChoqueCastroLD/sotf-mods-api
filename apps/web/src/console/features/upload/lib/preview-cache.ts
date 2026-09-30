@@ -1,12 +1,13 @@
 /**
  * Previews of the images a creator uploaded from this browser, by upload id (IndexedDB).
  *
- * A draft stores only upload/media ids; the processed variants are not addressable from the
- * console. Keeping a small JPEG per upload lets a resumed draft show its cover and gallery; on
- * another device the tiles fall back to a neutral placeholder. Entries older than 30 days are
- * pruned (drafts' uploads expire long before that). Every failure is silent: previews are a
- * convenience.
+ * A draft stores only upload/media ids. Keeping a small JPEG per upload lets a resumed draft show
+ * its cover and gallery at once; on another device {@link previewFor} asks the API for the
+ * upload's smallest processed variant (`UploadDTO.previewUrl`) and falls back to a neutral
+ * placeholder. Entries older than 30 days are pruned (drafts' uploads expire long before that).
+ * Every failure is silent: previews are a convenience.
  */
+import { api } from '../../../lib/api.ts';
 
 const DB_NAME = 'sotf-upload-previews';
 const STORE = 'previews';
@@ -92,4 +93,28 @@ export async function loadPreview(id: string): Promise<string | null> {
       resolve(null);
     }
   });
+}
+
+/** Smallest processed variant of an image upload (`GET /uploads/:id`), or null. */
+async function remotePreview(uploadId: string): Promise<string | null> {
+  try {
+    return (await api.uploads.get({ params: { id: uploadId } })).previewUrl ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * The preview of an image of a draft: this browser's copy, else the processed variant the API
+ * serves for the upload (a draft resumed on another device). Media ids alone cannot be resolved.
+ */
+export async function previewFor(
+  ref: { uploadId?: string | null; mediaId?: string | null },
+  fetchRemote: (uploadId: string) => Promise<string | null> = remotePreview,
+): Promise<string | null> {
+  const id = ref.uploadId ?? ref.mediaId ?? null;
+  if (!id) return null;
+  const local = await loadPreview(id);
+  if (local) return local;
+  return ref.uploadId ? fetchRemote(ref.uploadId) : null;
 }

@@ -52,7 +52,7 @@ function ActionLink({ item }: { item: Attention }) {
   switch (item.kind) {
     case 'broken_on_current':
       return item.mod.kind === 'build' ? (
-        <Link to="/basecamp/inbox" search={{ type: 'compat' }} className={className}>
+        <Link to="/basecamp/inbox" search={{ type: 'compat', mod: item.mod.id }} className={className}>
           {content}
         </Link>
       ) : (
@@ -62,13 +62,13 @@ function ActionLink({ item }: { item: Attention }) {
       );
     case 'unanswered_questions':
       return (
-        <Link to="/basecamp/inbox" search={{ type: 'comment' }} className={className}>
+        <Link to="/basecamp/inbox" search={{ type: 'comment', mod: item.mod.id }} className={className}>
           {content}
         </Link>
       );
     case 'unanswered_reviews':
       return (
-        <Link to="/basecamp/inbox" search={{ type: 'review' }} className={className}>
+        <Link to="/basecamp/inbox" search={{ type: 'review', mod: item.mod.id }} className={className}>
           {content}
         </Link>
       );

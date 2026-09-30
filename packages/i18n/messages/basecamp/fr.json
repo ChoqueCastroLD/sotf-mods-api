@@ -437,5 +437,14 @@
   "basecamp_badges_none_title": "Pas encore de badges",
   "basecamp_badges_none_text": "Publier, répondre aux joueurs et garder vos mods fonctionnels après chaque patch rapporte des badges.",
   "basecamp_inbox_template_insert": "Insérer une réponse enregistrée",
-  "basecamp_inbox_template_manage": "Gérer les réponses enregistrées"
+  "basecamp_inbox_template_manage": "Gérer les réponses enregistrées",
+  "basecamp_versions_changelog_edit": "Modifier le journal des changements",
+  "basecamp_versions_changelog_title": "Changements de la v{version}",
+  "basecamp_versions_changelog_text": "Le Markdown fonctionne. Les joueurs le voient sur la page du mod et dans le signal de mise à jour.",
+  "basecamp_versions_changelog_saved": "Changements de la v{version} enregistrés.",
+  "basecamp_versions_changelog_failed": "Impossible d’enregistrer les changements",
+  "basecamp_versions_changelog_save": "Enregistrer",
+  "basecamp_analytics_versions_daily": "Téléchargements par version dans le temps",
+  "basecamp_inbox_filter_mod": "Seulement {mod}",
+  "basecamp_inbox_filter_mod_clear": "Afficher tous les mods"
 }

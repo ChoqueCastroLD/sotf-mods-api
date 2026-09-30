@@ -437,5 +437,14 @@
   "basecamp_badges_none_title": "まだバッジはありません",
   "basecamp_badges_none_text": "公開、プレイヤーへの返信、パッチごとの MOD の動作維持でバッジを獲得できます。",
   "basecamp_inbox_template_insert": "保存した返信を挿入",
-  "basecamp_inbox_template_manage": "保存した返信を管理"
+  "basecamp_inbox_template_manage": "保存した返信を管理",
+  "basecamp_versions_changelog_edit": "更新履歴を編集",
+  "basecamp_versions_changelog_title": "v{version} の更新履歴",
+  "basecamp_versions_changelog_text": "Markdown が使えます。MOD ページと更新シグナルに表示されます。",
+  "basecamp_versions_changelog_saved": "v{version} の更新履歴を保存しました。",
+  "basecamp_versions_changelog_failed": "更新履歴を保存できませんでした",
+  "basecamp_versions_changelog_save": "更新履歴を保存",
+  "basecamp_analytics_versions_daily": "バージョン別ダウンロードの推移",
+  "basecamp_inbox_filter_mod": "{mod} のみ",
+  "basecamp_inbox_filter_mod_clear": "すべての MOD を表示"
 }

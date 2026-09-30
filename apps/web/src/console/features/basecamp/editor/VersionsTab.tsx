@@ -1,8 +1,9 @@
 /**
  * «Versions» tab of the mod editor (PLAN §7.5 «retirar versiones», «ver el informe de seguridad y
  * el motivo de rechazo»): every version in any status with its channel, date, size, downloads,
- * security report (VirusTotal) and changelog; yank with a reason (the download URL keeps working
- * with a warning) and undo a yank. «New version» opens the wizard.
+ * security report (VirusTotal) and changelog; edit the changelog (its Markdown source comes with the
+ * owner view), yank with a reason (the download URL keeps working with a warning) and undo a yank.
+ * «New version» opens the wizard.
  */
 import { formatBytes } from '@sotf/i18n/format';
 import { Badge } from '@sotf/ui/badge';
@@ -14,7 +15,7 @@ import { Icon } from '@sotf/ui/icons';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { ExternalLink, Plus, ShieldCheck, Undo2, XCircle } from 'lucide-react';
+import { ExternalLink, Pencil, Plus, ShieldCheck, Undo2, XCircle } from 'lucide-react';
 import { useState } from 'react';
 import { activeLocale } from '../../../lib/messages.ts';
 import { notify } from '../../../lib/notify.ts';
@@ -96,6 +97,72 @@ function YankDialog({
   );
 }
 
+function ChangelogDialog({
+  version,
+  open,
+  onOpenChange,
+  onSave,
+}: {
+  version: Version;
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  onSave: (changelogMd: string) => Promise<void>;
+}) {
+  const [text, setText] = useState(version.changelogMd ?? '');
+  const [busy, setBusy] = useState(false);
+  const length = text.length;
+  return (
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        onOpenChange(next);
+        if (!next) setText(version.changelogMd ?? '');
+      }}
+      title={bt('basecamp_versions_changelog_title', { version: version.version })}
+      description={bt('basecamp_versions_changelog_text')}
+      size="lg"
+      footer={
+        <>
+          <Button variant="ghost" onClick={() => onOpenChange(false)}>
+            {bt('basecamp_cancel')}
+          </Button>
+          <Button
+            loading={busy}
+            disabled={length > LIMITS.changelogMax || text.trim() === (version.changelogMd ?? '').trim()}
+            onClick={async () => {
+              setBusy(true);
+              try {
+                await onSave(text.trim());
+                onOpenChange(false);
+              } catch {
+                // Reported by the caller; the text stays for another try.
+              } finally {
+                setBusy(false);
+              }
+            }}
+          >
+            {bt('basecamp_versions_changelog_save')}
+          </Button>
+        </>
+      }
+    >
+      <Field
+        label={bt('basecamp_versions_changelog')}
+        description={bt('basecamp_counter', { count: number(length), max: number(LIMITS.changelogMax) })}
+      >
+        <Textarea
+          value={text}
+          maxLength={LIMITS.changelogMax}
+          minRows={8}
+          maxRows={20}
+          className="font-mono text-sm"
+          onChange={(event) => setText(event.currentTarget.value)}
+        />
+      </Field>
+    </Dialog>
+  );
+}
+
 function ScanReport({ scan }: { scan: Version['scan'] }) {
   if (!scan) return <span className="text-xs text-fg-subtle">{bt('basecamp_versions_scan_none')}</span>;
   return (
@@ -127,6 +194,7 @@ function ScanReport({ scan }: { scan: Version['scan'] }) {
 function VersionCard({ modId, version, lang }: { modId: number; version: Version; lang: string | null }) {
   const queryClient = useQueryClient();
   const [yanking, setYanking] = useState(false);
+  const [editing, setEditing] = useState(false);
   const [busy, setBusy] = useState(false);
   const locale = activeLocale();
 
@@ -137,6 +205,17 @@ function VersionCard({ modId, version, lang }: { modId: number; version: Version
       notify.success(bt('basecamp_versions_yanked', { version: version.version }));
     } catch (error) {
       reportFailure(error, bt('basecamp_versions_yank_failed'));
+      throw error;
+    }
+  };
+
+  const saveChangelog = async (changelogMd: string) => {
+    try {
+      const updated = await basecampApi.editChangelog(modId, version.id, changelogMd);
+      storeVersion(queryClient, modId, updated);
+      notify.success(bt('basecamp_versions_changelog_saved', { version: version.version }));
+    } catch (error) {
+      reportFailure(error, bt('basecamp_versions_changelog_failed'));
       throw error;
     }
   };
@@ -183,6 +262,11 @@ function VersionCard({ modId, version, lang }: { modId: number; version: Version
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
+          {version.status !== 'rejected' && version.changelogMd !== undefined ? (
+            <Button variant="ghost" size="sm" icon={<Icon icon={Pencil} size={16} />} onClick={() => setEditing(true)}>
+              {bt('basecamp_versions_changelog_edit')}
+            </Button>
+          ) : null}
           {version.status === 'yanked' ? (
             <Button
               variant="secondary"
@@ -228,6 +312,7 @@ function VersionCard({ modId, version, lang }: { modId: number; version: Version
       ) : null}
 
       <YankDialog version={version} open={yanking} onOpenChange={setYanking} onYank={yank} />
+      {editing ? <ChangelogDialog version={version} open onOpenChange={setEditing} onSave={saveChangelog} /> : null}
     </li>
   );
 }

@@ -437,5 +437,14 @@
   "basecamp_badges_none_title": "Aún no hay insignias",
   "basecamp_badges_none_text": "Publicar, responder a los jugadores y mantener los mods funcionando tras cada parche dan insignias.",
   "basecamp_inbox_template_insert": "Insertar una respuesta guardada",
-  "basecamp_inbox_template_manage": "Gestionar respuestas guardadas"
+  "basecamp_inbox_template_manage": "Gestionar respuestas guardadas",
+  "basecamp_versions_changelog_edit": "Editar novedades",
+  "basecamp_versions_changelog_title": "Novedades de la v{version}",
+  "basecamp_versions_changelog_text": "Admite Markdown. Los jugadores lo ven en la página del mod y en la señal de actualización.",
+  "basecamp_versions_changelog_saved": "Novedades de la v{version} guardadas.",
+  "basecamp_versions_changelog_failed": "No se pudieron guardar las novedades",
+  "basecamp_versions_changelog_save": "Guardar novedades",
+  "basecamp_analytics_versions_daily": "Descargas por versión en el tiempo",
+  "basecamp_inbox_filter_mod": "Solo {mod}",
+  "basecamp_inbox_filter_mod_clear": "Mostrar todos los mods"
 }

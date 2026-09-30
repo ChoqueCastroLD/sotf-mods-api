@@ -14,7 +14,7 @@ import { ut } from '../i18n.ts';
 import { failureLabel } from '../labels.ts';
 import { bytes, number, percent } from '../lib/format.ts';
 import { imageProblem, uploadImage } from '../lib/image-upload.ts';
-import { loadPreview } from '../lib/preview-cache.ts';
+import { previewFor } from '../lib/preview-cache.ts';
 import { UploadError } from '../lib/uploader.ts';
 import type { GalleryRef } from '../types.ts';
 import { Dropzone, ProgressBar } from './Dropzone.tsx';
@@ -89,9 +89,8 @@ export function GalleryEditor({ id, value, onChange }: GalleryEditorProps) {
   // Previews of images uploaded earlier (resumed draft).
   useEffect(() => {
     for (const item of itemsRef.current) {
-      const cacheKey = item.uploadId ?? item.mediaId;
-      if (item.preview || !cacheKey) continue;
-      void loadPreview(cacheKey).then((url) => {
+      if (item.preview || !(item.uploadId ?? item.mediaId)) continue;
+      void previewFor({ uploadId: item.uploadId, mediaId: item.mediaId }).then((url) => {
         if (url) patchItem(item.key, { preview: url });
       });
     }
