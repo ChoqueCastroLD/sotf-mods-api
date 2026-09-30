@@ -58,5 +58,6 @@ sotf-v2-tools (parada; CLIs del operador)   sotf-mods-db (PostgreSQL 16 existent
 | ≥ T+60 | Fase *contract* (solo con aprobación explícita) | PLAN §6.13 F |
 | Anual | Renovar el token de GHCR de Coolify | [secret-rotation.md](secret-rotation.md) |
 
-El corte en sí (fases A–F de PLAN §6.13) tiene su runbook propio en `ops/runbooks/cutover/`
-(WP-A0), que este manual complementa.
+El corte en sí (fases A–F de PLAN §6.13) tiene su runbook propio en
+[`ops/runbooks/cutover/`](../../ops/runbooks/cutover/README.md) (hoy: las notas obligatorias por
+paso; WP-A0 añade el ensayo y `smoke-prod.sh`), que este manual complementa.

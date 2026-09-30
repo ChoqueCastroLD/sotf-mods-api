@@ -4,7 +4,8 @@
     "pnpm-lock.yaml",
     "**/*.gen.ts",
     "**/.generated/**",
-    "docs/backlog/{wp}.md"
+    "docs/backlog/{wp}.md",
+    "packages/db/src/schema/{legacy,v2}/*.ts"
   ],
   "wps": {
     "WP-00": {
