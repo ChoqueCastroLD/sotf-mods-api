@@ -18,7 +18,7 @@ const de_admin_kit_picks_text = /** @type {(inputs: Admin_Kit_Picks_TextInputs) 
 };
 
 const fr_admin_kit_picks_text = /** @type {(inputs: Admin_Kit_Picks_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les choix de l’équipe apparaissent dans «L’essentiel pour commencer» sur l’accueil et comme kit de départ du guide d’installation.`)
+	return /** @type {LocalizedString} */ (`Les choix de l’équipe apparaissent dans « L’essentiel pour commencer » sur l’accueil et comme kit de départ du guide d’installation.`)
 };
 
 const it_admin_kit_picks_text = /** @type {(inputs: Admin_Kit_Picks_TextInputs) => LocalizedString} */ () => {

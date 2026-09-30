@@ -8,7 +8,8 @@
  * - Awards (Mod of the Week overrides, staff picks, Build/Mod of the Month), kit staff picks and the
  *   manual `translator` badge.
  * - Site settings (`GET|PUT /admin/settings/:key`, validated per key).
- * - KelvinSeek usage and budget, RUM p75 per template and country.
+ * - KelvinSeek usage and budget, RUM p75 per template and country, and the operations readout
+ *   (job queues, dead letters, downloads per hour, CDN purges).
  *
  * Every endpoint is 👑 with a session younger than 12 h (checked in core); writes are audited.
  */
@@ -21,6 +22,7 @@ import {
   deleteTag,
   getAdminRum,
   getKelvinSeekUsage,
+  getOperations,
   listAdminCategories,
   listAdminTags,
   listAwards,
@@ -108,5 +110,6 @@ export default defineModule({
       getKelvinSeekUsage(ctx, kelvinseek, Number(query.days) as 7 | 30 | 90),
     );
     m.implement(adminEndpoints.rum, async ({ query, ctx }) => getAdminRum(ctx, query.range));
+    m.implement(adminEndpoints.operations, async ({ ctx }) => getOperations(ctx, env.PGBOSS_SCHEMA));
   },
 });

@@ -17,6 +17,7 @@ const context: JobContext = {
     { requestId: 'job-1' },
   ),
   job: { id: 'job-1', queue: 'domain.event', retryCount: 0, signal: new AbortController().signal },
+  services: { env: {} as never, storage: () => null },
 };
 
 const event = {

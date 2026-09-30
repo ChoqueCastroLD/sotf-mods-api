@@ -68,7 +68,7 @@ export const TABLE_POLICIES = {
   Session: {
     exposure: 'owner',
     writers: ['system'],
-    privateColumns: ['ipHash', 'userAgent', 'deviceLabel', 'lastSeenAt'],
+    privateColumns: ['ipHash', 'userAgent', 'deviceLabel', 'lastSeenAt', 'country'],
     secretColumns: ['tokenHash', 'pwdFingerprint'],
     retention: 'until expiry + 30 days',
     note: 'The owner lists and revokes their sessions; the cookie value is never stored in clear.',

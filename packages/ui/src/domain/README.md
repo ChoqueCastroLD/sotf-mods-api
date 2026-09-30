@@ -45,7 +45,10 @@ Components never hard-code copy. They read `ui_domain_*` messages through `useDo
 `DomainI18nProvider` (context) → `configureDomainI18n()` (set once per app, request-aware) →
 English (`messages/en.json`, interpreted by the small ICU formatter in `icu.ts`). `locale` is a
 BCP-47 tag used by every `Intl` formatter (`formatCompact`, `formatBytes`, `formatDate`…);
-`taxonomy(nameKey, fallback)` localises category names.
+`taxonomy(nameKey, fallback)` localises category names and `href(path)` localises the site paths
+the components build themselves (profile links of `ModCard`, `BuildCard`, `CreatorCard`,
+`ReviewCard` and `CommentItem`, through `useProfileHref()`); DTO paths such as `canonicalPath` are
+rendered as the caller passes them.
 
 ```ts
 // apps/web (WP-22) and the console (WP-34), with Paraglide:
@@ -53,6 +56,7 @@ configureDomainI18n({
   get locale() { return toHtmlLang(getLocale()); },
   t: (key, params) => m[key](params ?? {}),
   taxonomy: (nameKey, fallback) => (nameKey in m ? m[nameKey]() : fallback),
+  href: (path) => localizePath(path, getLocale()),
 });
 ```
 

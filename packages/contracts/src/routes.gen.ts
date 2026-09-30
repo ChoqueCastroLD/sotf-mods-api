@@ -45,6 +45,7 @@ export const API_ROUTES = {
     getSetting: { id: 'admin.getSetting', method: 'GET', path: "/api/v2/admin/settings/:key", kind: 'json', bodyKind: null },
     putSetting: { id: 'admin.putSetting', method: 'PUT', path: "/api/v2/admin/settings/:key", kind: 'json', bodyKind: 'json' },
     kelvinseekUsage: { id: 'admin.kelvinseekUsage', method: 'GET', path: "/api/v2/admin/kelvinseek/usage", kind: 'json', bodyKind: null },
+    operations: { id: 'admin.operations', method: 'GET', path: "/api/v2/admin/ops", kind: 'json', bodyKind: null },
     rum: { id: 'admin.rum', method: 'GET', path: "/api/v2/admin/rum", kind: 'json', bodyKind: null },
   },
   auth: {

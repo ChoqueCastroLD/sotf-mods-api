@@ -70,10 +70,10 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 - **Backfills sobre `@sotf/db`** · `tooling/migration/**` (WP-14) · usar `@sotf/db/testing` y
   `createDb`; los backfills solo escriben columnas v2 (el linter lo exige en migraciones, no en
   scripts). B6 rellena `"emailNormalized"` antes de `0045` (índice único); B5 archiva follows
-  duplicados antes de `0038`. (WP-10.)
+  duplicados antes de `0038`. (WP-10.) · **[x] resolved by wire-data**: verified: B1–B14 in `tooling/migration` (B5/B6 gate 0038/0045 through preconditions).
 - **B9: renderizar todo lo legacy con `profile: 'legacyHtml'`** · `tooling/migration/**` (WP-14) ·
   no solo las 24 descripciones con HTML; guardar `RENDER_VERSION` en `renderVersion`,
-  `decodeEntities` para `changelogMd`/`bodyMd` y `descriptionMd` literal. (WP-15.)
+  `decodeEntities` para `changelogMd`/`bodyMd` y `descriptionMd` literal. (WP-15.) · **[x] resolved by wire-data**: verified, and B9 now also writes `"Mod"."descriptionFormat" = 'legacy'`.
 - **Regenerar la baseline legacy desde un dump real si llega** · `packages/db` (WP-A0) ·
   `0000_legacy_baseline.sql` y `src/guard/legacy-catalog.json`; §14.5 dice que no habrá dump, así
   que el guard contra el catálogo vivo es la red de seguridad. (WP-10.)
@@ -87,15 +87,15 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 
 ### API y plataforma (WP-20, WP-24, WP-32, WP-90)
 
-- **Registrar rutas desde `apiContracts`** · `apps/api` (WP-20) · servir
+- [x] resolved by wire-api (already in place): **Registrar rutas desde `apiContracts`** · `apps/api` (WP-20) · servir
   `buildOpenApiDocument({ version })` en `/api/v2/openapi.json`; `endpoint.rateLimit` → buckets
   `RATE_LIMITS`; `cacheHeaders()` + `resolveCacheTags()` con ids de **entidad**; errores de `/api/*`
   con `errorFormat: 'legacy'`. (WP-11.)
-- **CSRF y cuerpos JSON** · `apps/api/src/plugins/**` (WP-20) · el cliente tipado siempre envía
+- [x] resolved by wire-api (already in place; csrfExempt added for the CSP collector): **CSRF y cuerpos JSON** · `apps/api/src/plugins/**` (WP-20) · el cliente tipado siempre envía
   JSON (`{}` sin cuerpo) en POST/PUT/PATCH/DELETE; Fastify debe aceptar `{}` en DELETE. Excepciones:
   `POST /api/v2/e`, `/api/v2/e/vitals` (`text/plain`) y `POST /api/v2/unsubscribe` (formulario
   RFC 8058). (WP-11.)
-- **Cola de eventos de dominio** · `packages/core/src/kernel/**`, `apps/worker` (WP-20) · adoptar
+- [x] resolved by wire-api (already in place (domain.event)): **Cola de eventos de dominio** · `packages/core/src/kernel/**`, `apps/worker` (WP-20) · adoptar
   `JOB_PAYLOADS['domain.event']` (fan-out único) o añadir colas por consumidor (cambio aditivo).
   (WP-11.)
 - [x] resolved by wire-infra (verified: `ops/docker/node.Dockerfile` ships `dist/migrations/*.sql` and `dist/migrate.js` (WP-90)) · **Imagen de migración** · `ops/docker/node.Dockerfile`, bundle de `apps/api` (WP-20/WP-90) ·
@@ -108,7 +108,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `keyOrderIssues`, `orderKeys`, `LEGACY_VOLATILE_FIELDS`, `LEGACY_DEVIATIONS` y
   `UPDATES_CHECKER_VALUE_FIELDS`; al copiar fixtures, un `biome.json` anidado que excluya
   `fixtures/` y re-declare `!**/*.gen.ts`, como `packages/contracts/biome.json`. (WP-11.)
-- **`/api/categories` legacy en v2** · `apps/api/src/legacy/**` (WP-32) · decidir si lista solo
+- [x] resolved by wire-api (decided by WP-32): **`/api/categories` legacy en v2** · `apps/api/src/legacy/**` (WP-32) · decidir si lista solo
   categorías con mods (la fixture tiene 4) o todas. (WP-10.)
 
 ### Web pública (WP-22, WP-25, WP-62, WP-70)
@@ -122,7 +122,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `configureUiTranslate((key, params) => m[key](params ?? {}))` una vez (y `UiTranslateProvider` en
   la consola, WP-34). (WP-12, WP-13.)
 - **`UNLOCALIZED_SEGMENTS`** · `packages/i18n/src/paths.ts` o la opción `isLocalized` (WP-22) ·
-  ampliar si aparecen rutas sin prefijo (`/embed`, `/k`, `/_actions`). (WP-13.)
+  ampliar si aparecen rutas sin prefijo (`/embed`, `/k`, `/_actions`). (WP-13.) · **[x] resolved by wire-data**: `healthz` added; `/embed` and `/k` are localized routes by design (they render/redirect per locale).
 - [x] resolved by WP-22 (verified by wire-web-public) (`scripts/lang-suggest.ts`) · **Sugerencia de idioma** · `apps/web/src/scripts/lang-suggest.ts` (WP-22) · renderizada en el
   locale sugerido, candidato de `negotiateLocale` o `fromLegacyLangCookie`; nunca redirección.
   (WP-13.)
@@ -133,59 +133,59 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `/brand/field-kit.svg` y el resto de `packages/brand/assets/public`. (WP-12; ya en wave-0.)
 - **Componentes de dominio** · `packages/ui/src/domain/index.ts` y
   `packages/ui/playground/domain/**/*.demo.tsx` (WP-25) · el export `@sotf/ui/domain` ya está
-  mapeado. (WP-12.)
+  mapeado. (WP-12.) · **[x] resolved by wire-data**: verified: `packages/ui/src/domain/index.ts` (WP-25).
 - **Estilos prose para los hooks de Markdown** · `packages/ui/src/**` `prose-locator` (WP-25) ·
   `.md-anchor`, `.md-alert*`, `.md-spoiler` (con foco visible y *reduced motion*), `.md-youtube`,
   `.md-mention`, listas de tareas y `details`/`summary`; contrato en
-  `packages/markdown/README.md`. (WP-15.)
+  `packages/markdown/README.md`. (WP-15.) · **[x] resolved by wire-data**: verified: `ProseLocator` (`packages/ui/src/domain/content.tsx`).
 - [x] resolved by wire-web-public (`scripts/mod/prose.ts` enlazado una vez por documento; el boot lo carga en cualquier página con spoilers/fachadas (builds, kits, perfiles, noticias)) · **Fachada de YouTube y revelado de spoilers** · `apps/web/src/scripts/**` (WP-62/WP-70) ·
   sustituir `a.md-youtube-link` por el iframe `youtube-nocookie`; spoilers accesibles (click, Enter,
   Espacio; `aria-expanded`, quitar `role`/`tabindex`/`aria-label`; CSS para spoilers con enlace o
   dentro de `<summary>`). (WP-15.)
 - **Etiquetas localizadas del HTML guardado** · `packages/i18n/messages/<ns>` (WP-94) y
   componentes (WP-62/WP-70) · mensajes `alert-*` y `spoiler`, y `localizeHtml(html, labels)` al
-  renderizar. (WP-15.)
+  renderizar. (WP-15.) · **[x] resolved by wire-data**: i18n part: `mod_md_alert_*`/`mod_md_spoiler` in 13 locales; the `localizeHtml` calls are web code.
 
 ### Dominio y consola (WP-31, WP-33, WP-34, WP-40, WP-41, WP-51, WP-54, WP-70, WP-81, WP-82)
 
-- **Límites de subida** · `packages/core/src/uploads` (WP-31) · `UPLOAD_LIMITS` (image 10 MB,
+- [x] resolved by wire-api (confirmed as delivered): **Límites de subida** · `packages/core/src/uploads` (WP-31) · `UPLOAD_LIMITS` (image 10 MB,
   avatar 5 MB, banner 10 MB, comment_image 5 MB; multipart > 100 MB en partes de 16 MB) es decisión
   de v2: confirmar o cambiar de forma aditiva. (WP-11.)
-- **Categorías retiradas** · `packages/core/src/catalog/**` (WP-33), Explore (WP-54) · resolver
+- [x] resolved by wire-api (core part in place (snapshot resolves legacySlugs)): **Categorías retiradas** · `packages/core/src/catalog/**` (WP-33), Explore (WP-54) · resolver
   vía `legacySlugs` (`qol` → `quality-of-life`). (WP-10.)
 - **Locale de la consola** · `apps/web/src/console/**` (WP-34/WP-81) · `User.settings.locale` →
   `localStorage` → `negotiateLocale`, `setLocale(locale, { reload: false })`. (WP-13.)
-- **Umbrales de tamaño de builds** · `packages/contracts/src/manifest.ts` (WP-40/WP-63) ·
+- [x] resolved by wire-api (confirmed as delivered): **Umbrales de tamaño de builds** · `packages/contracts/src/manifest.ts` (WP-40/WP-63) ·
   S < 500 ≤ M < 2 000 ≤ L < 8 000 ≤ XL no están en el plan; el blueprint legacy guarda `Data` como
   cadena JSON. (WP-11.)
 - **Perfil de render persistido** · `packages/db/migrations/**` + publicación (WP-40) ·
   `"Mod"."descriptionFormat"` `'legacy' | 'markdown'` para que una descripción legacy editada siga
-  con `legacyHtml`; aviso si Markdown nuevo contiene HTML (`hasRawHtml`). (WP-15.)
+  con `legacyHtml`; aviso si Markdown nuevo contiene HTML (`hasRawHtml`). (WP-15.) · **[partial] wire-data**: migration 2002 adds `"Mod"."descriptionFormat"` (NULL = infer) and B9 fills `legacy`; remaining: `packages/core` publishing must read/write it and warn with `hasRawHtml` (wire-api).
 - **Imágenes dentro de descripciones** · `apps/worker/src/jobs/media/**` (WP-40, B15) · replicar a
   R2 con las reglas SSRF de §9.1 y re-renderizar con `resolveImage` (URL + `width`/`height`).
-  (WP-15.)
-- **Menciones** · `packages/core` comentarios/reseñas (WP-41) · `extractMentions` → una consulta →
+  (WP-15.) · **[x] resolved by wire-data**: verified: `description-images` subscriber of `apps/worker/src/jobs/media` (WP-40).
+- [x] resolved by wire-api (already in place): **Menciones** · `packages/core` comentarios/reseñas (WP-41) · `extractMentions` → una consulta →
   `resolveMention` síncrono; notificar `mentions`. (WP-15.)
-- **Estado del visitante en listas cacheadas** · contratos de comentarios/reseñas (WP-41/WP-70) ·
+- [x] resolved by wire-api (GET /api/v2/me/social-state and GET /api/v2/me/follows/lookup): **Estado del visitante en listas cacheadas** · contratos de comentarios/reseñas (WP-41/WP-70) ·
   añadir consultas de sesión tipo `GET /api/v2/me/follows/lookup` si las islas las necesitan.
   (WP-11.)
-- **Endpoints y códigos más allá de §5.1/§5.2** · WP-41, WP-42, WP-51, WP-30 ·
+- [x] resolved by wire-api (verified present): **Endpoints y códigos más allá de §5.1/§5.2** · WP-41, WP-42, WP-51, WP-30 ·
   `GET /api/v2/me/kits`, `GET /api/v2/me/follows/lookup`, `GET|POST /api/v2/admin/loader-releases`,
   `DELETE /api/v2/comments/:id/solution`; `INVALID_CREDENTIALS` (401) y `REAUTH_REQUIRED` (403, sesión
   > 12 h). `ModCardDTO` usa `kind` (§6.8), no `type`. (WP-11.)
-- **Límites de longitud de producto** · `packages/contracts/src/**` · aplicar 20 000
+- [x] resolved by wire-api (verified in the contracts): **Límites de longitud de producto** · `packages/contracts/src/**` · aplicar 20 000
   (descripciones), 2 000 (comentarios/reseñas) y 500 (bio) antes del renderer;
   `MAX_MARKDOWN_LENGTH` (50 000) es solo el techo. (WP-15.)
-- **`POST /api/v2/markdown/preview`** · `apps/api/src/modules/markdown-preview/**` (WP-70) ·
+- [x] resolved by wire-api (implemented by WP-70, tested by wire-api): **`POST /api/v2/markdown/preview`** · `apps/api/src/modules/markdown-preview/**` (WP-70) ·
   `renderMarkdown(md, { profile })` con lite/full. (WP-15.)
-- **Enlaces resueltos como el navegador** · moderación y comprobación de enlaces (WP-41, WP-51,
+- [x] resolved by wire-api (already in place in comments (renderer externalLinks)): **Enlaces resueltos como el navegador** · moderación y comprobación de enlaces (WP-41, WP-51,
   WP-82) · usar `links[].external` y los `href` guardados; nunca re-derivar hosts con regex.
   (WP-15.)
 
 ### Contenido y calidad (WP-72, WP-73, WP-91, WP-94)
 
 - **Carpeta de instalación en `common_download_done`** · `packages/i18n/messages/common/*` (WP-73)
-  · el texto sigue genérico hasta que la guía `/install` fije la ruta. (WP-13.)
+  · el texto sigue genérico hasta que la guía `/install` fije la ruta. (WP-13.) · **[x] resolved by wire-data**: verified: «Drop it in your game’s Mods folder», aligned with `/install`.
 - **Scout en cmdk** · `packages/i18n/messages/cmdk/**` (WP-72/T1) · se omite «or ask Scout» y la
   línea de rachas. (WP-13.)
 - **Revisión nativa de las 12 traducciones** · `packages/i18n/messages/**` (WP-94) · `common`,

@@ -30,6 +30,8 @@ export const category = pgTable(
     /** Retired categories resolve to the active category listing their slug in legacySlugs. */
     retiredAt: ts3('retiredAt'),
     hubIntro: jsonb('hubIntro').$type<Partial<Record<string, string>>>().notNull().default({}),
+    /** Generated OG card of the category hub in the public bucket (`og/category/…`); null = og-default. */
+    ogImageKey: text('ogImageKey'),
   },
   (t) => [uniqueIndex('Category_slug_key').on(t.slug), index('Category_slug_idx').on(t.slug)],
 );

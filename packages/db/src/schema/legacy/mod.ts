@@ -35,6 +35,9 @@ export const DEDICATED_SERVER_SUPPORT = ['yes', 'no', 'partial', 'unknown'] as c
 export const SAFE_TO_REMOVE = ['yes', 'no', 'unknown'] as const;
 export const COMPAT_STATUSES = ['works', 'mixed', 'broken', 'untested'] as const;
 export type CompatStatus = (typeof COMPAT_STATUSES)[number];
+/** `"Mod"."descriptionFormat"`: `legacy` → `legacyHtml` profile, `markdown` → `full` profile. */
+export const DESCRIPTION_FORMATS = ['legacy', 'markdown'] as const;
+export type DescriptionFormat = (typeof DESCRIPTION_FORMATS)[number];
 
 /** Expression of the generated "searchVector" column (see 0004_mod_columns.sql). */
 export const MOD_SEARCH_VECTOR_SQL = sql`setweight(to_tsvector('simple'::regconfig, public.sotf_unaccent(coalesce("name", ''))), 'A') || setweight(to_tsvector('simple'::regconfig, public.sotf_unaccent(coalesce("mod_id", ''))), 'A') || setweight(to_tsvector('english'::regconfig, public.sotf_unaccent(coalesce("shortDescription", ''))), 'B') || setweight(to_tsvector('english'::regconfig, public.sotf_unaccent(left(coalesce("description", ''), 20000))), 'C')`;
@@ -118,6 +121,10 @@ export const mod = pgTable(
     dependentsCount: integer('dependentsCount').notNull().default(0),
     qualityScore: smallint('qualityScore'),
     ogImageKey: text('ogImageKey'),
+    /** A ranger locked the comment thread (PLAN §7.6): new comments and replies are refused. */
+    commentsLockedAt: ts3('commentsLockedAt'),
+    /** Rendering profile of `descriptionMd`; null = infer (legacy mods keep `legacyHtml`). */
+    descriptionFormat: text('descriptionFormat').$type<DescriptionFormat>(),
     /** Generated full-text document (read-only). */
     searchVector: tsvector('searchVector').generatedAlwaysAs(MOD_SEARCH_VECTOR_SQL),
   },

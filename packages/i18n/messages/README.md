@@ -127,8 +127,15 @@ Notes:
 
 ### Checking
 
+`pnpm i18n:check` warns about French typography (plain spaces before `: ; ? !` or inside `« »`).
+`--glossary` adds hints for translations of messages whose English uses a brand term of the table
+above without the locale's term (matched by stem, so inflected forms pass; «builds» is skipped
+because it also means game builds, and «SOTF Mods» is the brand). Hints never fail the check
+unless `--strict` is given.
+
 ```bash
 pnpm i18n:check                                 # completeness, ICU, plurals, arguments
+pnpm --filter @sotf/i18n i18n:check --glossary  # + glossary hints for reviewers
 pnpm --filter @sotf/i18n i18n:glossary backpack # one term in every locale (legacy + v2)
 pnpm i18n:pseudo                                # pseudo-locale: hard-coded text and overflow; pnpm gen restores
 ```

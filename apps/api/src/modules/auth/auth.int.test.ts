@@ -300,6 +300,8 @@ describe('sessions and revocation', () => {
     expect(items).toHaveLength(3);
     expect(items.filter((s) => s.current)).toHaveLength(1);
     expect(items[0]?.deviceLabel).toBe('Firefox on Windows');
+    // Sessions created without an edge country header carry none.
+    expect(items.every((s) => (s as { country: string | null }).country === null)).toBe(true);
     const current = items.find((s) => s.current)?.id as string;
     const others = items.filter((s) => !s.current).map((s) => s.id);
 
@@ -329,6 +331,29 @@ describe('sessions and revocation', () => {
     expect((await get('/api/v2/me', newIp(), a)).statusCode).toBe(401);
     const [row] = await t.db.db.select().from(session).where(eq(session.id, current));
     expect(row?.revokedAt).toBeInstanceOf(Date);
+  });
+
+  it('stores the edge country of the request that created the session and lists it to the owner', async () => {
+    const fixture = bunHash('argon2id-ascii');
+    const account = await userWithPassword(fixture.hash);
+    const withCountry = await t.app.inject({
+      method: 'POST',
+      url: '/api/v2/auth/login',
+      headers: { ...headers(newIp()), 'cf-ipcountry': 'es' },
+      payload: JSON.stringify({ identifier: account.email, password: fixture.password, remember: true }),
+    });
+    expect(withCountry.statusCode).toBe(200);
+    const unknown = await t.app.inject({
+      method: 'POST',
+      url: '/api/v2/auth/login',
+      headers: { ...headers(newIp()), 'cf-ipcountry': 'XX' },
+      payload: JSON.stringify({ identifier: account.email, password: fixture.password, remember: true }),
+    });
+    expect(unknown.statusCode).toBe(200);
+    const list = await get('/api/v2/me/sessions', newIp(), sessionCookieOf(withCountry));
+    const items = list.json().items as Array<{ current: boolean; country: string | null }>;
+    expect(items.find((s) => s.current)?.country).toBe('ES');
+    expect(items.find((s) => !s.current)?.country).toBeNull();
   });
 
   it('expired sessions do not resolve; short sessions last 24 h without renewal', async () => {

@@ -31,7 +31,7 @@ export function createDigestJobs(source?: NotificationOptionsSource): JobGroup {
       defineJob({
         queue: 'notifications.digest',
         handler: async (data, context) => {
-          const opts = options();
+          const opts = options(context.services);
           const mailer = mailerFor(opts, context);
           const cadence = cadenceOfRun(data.frequency);
           const result = await sendSignalEmails(mailer, cadence);
@@ -66,7 +66,11 @@ export function createDigestJobs(source?: NotificationOptionsSource): JobGroup {
             }
             return { fanOut: creators.length, weekStart };
           }
-          const outcome = await sendCreatorWeeklyReport(mailerFor(options(), context), data.userId, weekStart);
+          const outcome = await sendCreatorWeeklyReport(
+            mailerFor(options(context.services), context),
+            data.userId,
+            weekStart,
+          );
           if (outcome === 'retry') throw new Error(`creator report of ${data.userId} will be retried`);
           return { userId: data.userId, weekStart, outcome };
         },

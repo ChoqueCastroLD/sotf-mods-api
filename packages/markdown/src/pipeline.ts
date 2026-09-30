@@ -1,4 +1,9 @@
 /**
+ * The Markdown → safe HTML pipeline behind `renderMarkdown` (entry points: `render.ts` for the
+ * server and every profile, `lite.ts` for browsers without `legacyHtml`). `createPipeline(raw)`
+ * receives the raw-HTML support (rehype-raw + legacy repairs, which pull parse5) so the lite entry
+ * never imports it.
+ *
  * `renderMarkdown`: the single Markdown → safe HTML pipeline of SOTF Mods v2 (PLAN §9.1,
  * research/04 §4.13), shared by the API (render on write), the worker (re-render jobs, backfill
  * B9) and the editor preview.
@@ -14,22 +19,13 @@
  *
  * Pathological input (nesting beyond the caps, stack exhaustion) degrades to escaped paragraphs
  * of the original text instead of failing or dropping content.
- *
- * rehype-raw (parse5, the heaviest dependency) is injected by the entry point: `render.ts` passes
- * it (API, worker, public pages), `preview.ts` does not (the console editor preview, which only
- * renders `full`/`lite` and must stay small).
  */
-
-/** The rehype-raw plugin, or null for entry points that never render `legacyHtml`. */
-export type RawHtmlPlugin = Pluggable | null;
-
 import type { Element, Root as HastRoot } from 'hast';
 import rehypeSanitize from 'rehype-sanitize';
-import { type Pluggable, type PluggableList, unified } from 'unified';
+import { type PluggableList, unified } from 'unified';
 import { enhance } from './enhance.ts';
 import { defuse } from './guard.ts';
 import { maxDepth, visitElements } from './hast.ts';
-import { cleanUpLegacyHtml, repairLegacyHtml } from './legacy.ts';
 import { containsRawHtml, parseMarkdown } from './parse.ts';
 import { SANITIZE_SCHEMAS } from './schema.ts';
 import { toSafeHtml } from './serialize.ts';
@@ -79,41 +75,27 @@ function normaliseUrls() {
   };
 }
 
-function legacyRepairs() {
-  return (tree: HastRoot) => {
-    repairLegacyHtml(tree);
-  };
-}
-
-function legacyCleanUp() {
-  return (tree: HastRoot) => {
-    cleanUpLegacyHtml(tree);
-  };
-}
-
 /**
- * The rehype part of the pipeline. `raw` adds rehype-raw and the legacy repairs; it is only used
- * for `legacyHtml` documents that actually contain raw HTML (parse5 is the costliest step).
+ * Raw-HTML support of the `legacyHtml` profile: plugins run before sanitising (rehype-raw and the
+ * legacy repairs) and after it (content-model repair). Only used for `legacyHtml` documents that
+ * actually contain raw HTML (parse5 is the costliest step).
  */
-function createProcessor(profile: MarkdownProfile, rawPlugin: RawHtmlPlugin) {
-  const raw = rawPlugin !== null;
-  const legacy: PluggableList = rawPlugin ? [rawPlugin, legacyRepairs] : [];
-  const cleanUp: PluggableList = raw ? [legacyCleanUp] : [];
-  return unified().use(legacy).use(normaliseUrls).use(rehypeSanitize, SANITIZE_SCHEMAS[profile]).use(cleanUp).freeze();
+export interface RawHtmlSupport {
+  before: PluggableList;
+  after: PluggableList;
+}
+
+/** The rehype part of the pipeline. */
+function createProcessor(profile: MarkdownProfile, raw: RawHtmlSupport | null) {
+  return unified()
+    .use(raw?.before ?? [])
+    .use(normaliseUrls)
+    .use(rehypeSanitize, SANITIZE_SCHEMAS[profile])
+    .use(raw?.after ?? [])
+    .freeze();
 }
 
 type Processor = ReturnType<typeof createProcessor>;
-const processors = new Map<string, Processor>();
-
-function processorFor(profile: MarkdownProfile, rawPlugin: RawHtmlPlugin = null): Processor {
-  const key = `${profile}:${rawPlugin !== null}`;
-  let processor = processors.get(key);
-  if (!processor) {
-    processor = createProcessor(profile, rawPlugin);
-    processors.set(key, processor);
-  }
-  return processor;
-}
 
 /**
  * Normalises author input: removes a BOM, unifies line endings, composes Unicode (NFC; fixes
@@ -148,10 +130,16 @@ function plainTextTree(source: string): HastRoot {
   return { type: 'root', children };
 }
 
-function resolveOptions(options: RenderOptions) {
+function resolveOptions(options: RenderOptions, profiles: readonly MarkdownProfile[]) {
   const profile = options.profile ?? 'full';
   if (!PROFILES.includes(profile)) {
     throw new MarkdownInputError('markdown_invalid_option', `Unknown markdown profile: ${String(profile)}`);
+  }
+  if (!profiles.includes(profile)) {
+    throw new MarkdownInputError(
+      'markdown_invalid_option',
+      `The ${profile} profile is not available in this entry point; import "@sotf/markdown"`,
+    );
   }
   const idPrefix = options.idPrefix ?? 'md-';
   if (!ID_PREFIX.test(idPrefix)) {
@@ -172,61 +160,88 @@ function resolveOptions(options: RenderOptions) {
   };
 }
 
-/** Parses and sanitises; `null` when the input is too deeply nested to render faithfully. */
-function sanitisedTree(source: string, profile: MarkdownProfile, rawPlugin: RawHtmlPlugin): HastRoot | null {
-  try {
-    const { tree, truncated, hasRaw } = parseMarkdown(source, profile);
-    if (truncated) return null;
-    const raw = hasRaw && profile === 'legacyHtml' ? rawPlugin : null;
-    const sanitised = processorFor(profile, raw).runSync(tree) as HastRoot;
-    return maxDepth(sanitised) > MAX_NESTING_DEPTH ? null : sanitised;
-  } catch (error) {
-    // Stack exhaustion on adversarial nesting (thousands of raw `<div>`s…): degrade to text.
-    if (error instanceof RangeError) return null;
-    throw error;
-  }
+export interface Pipeline {
+  /**
+   * Renders Markdown to sanitised HTML plus the metadata the callers store or index.
+   *
+   * Deterministic: the same input, options and {@link RENDER_VERSION} always give the same output.
+   * Throws {@link MarkdownInputError} for non-string input, input over {@link MAX_MARKDOWN_LENGTH}
+   * or invalid options.
+   */
+  renderMarkdown(md: string, options?: RenderOptions): RenderResult;
+  /**
+   * The verified hast tree behind `renderMarkdown`. Internal (not exported by the package entry
+   * points): tests compare it with what a browser parses from the serialised HTML.
+   */
+  renderMarkdownTree(md: string, options?: RenderOptions): { tree: HastRoot; collected: ReturnType<typeof enhance> };
+  /** Distinct lower-cased `@handles` of a text, to load the mentioned users in one query. */
+  extractMentions(md: string, profile?: MarkdownProfile): string[];
 }
 
 /**
- * Renders Markdown to sanitised HTML plus the metadata the callers store or index (`rawPlugin`:
- * see {@link RawHtmlPlugin}).
- *
- * Deterministic: the same input, options and {@link RENDER_VERSION} always give the same output.
- * Throws {@link MarkdownInputError} for non-string input, input over {@link MAX_MARKDOWN_LENGTH}
- * or invalid options.
+ * Builds the pipeline. Without raw-HTML support the `legacyHtml` profile is refused (lite entry);
+ * with it, every profile renders.
  */
-export function renderMarkdownWith(rawPlugin: RawHtmlPlugin, md: string, options: RenderOptions = {}): RenderResult {
-  const { tree, collected } = renderMarkdownTreeWith(rawPlugin, md, options);
-  return {
-    html: toSafeHtml(tree),
-    text: toPlainText(tree),
-    ...collected,
-    renderVersion: RENDER_VERSION,
-  };
-}
+export function createPipeline(raw: RawHtmlSupport | null): Pipeline {
+  const profiles: readonly MarkdownProfile[] = raw ? PROFILES : ['full', 'lite'];
+  const processors = new Map<string, Processor>();
 
-/**
- * The verified hast tree behind {@link renderMarkdownWith}. Internal (not exported by the package
- * entry point): tests compare it with what a browser parses from the serialised HTML.
- */
-export function renderMarkdownTreeWith(rawPlugin: RawHtmlPlugin, md: string, options: RenderOptions = {}) {
-  if (typeof md !== 'string') throw new MarkdownInputError('markdown_not_string', 'Markdown input must be a string');
-  if (md.length > MAX_MARKDOWN_LENGTH) {
-    throw new MarkdownInputError('markdown_too_long', `Markdown input exceeds ${MAX_MARKDOWN_LENGTH} characters`);
+  function processorFor(profile: MarkdownProfile, withRaw = false): Processor {
+    const key = `${profile}:${withRaw}`;
+    let processor = processors.get(key);
+    if (!processor) {
+      processor = createProcessor(profile, withRaw ? raw : null);
+      processors.set(key, processor);
+    }
+    return processor;
   }
-  const ctx = resolveOptions(options);
-  if (ctx.profile === 'legacyHtml' && rawPlugin === null) {
-    throw new MarkdownInputError('markdown_invalid_option', 'The legacyHtml profile needs the full renderer');
+
+  /** Parses and sanitises; `null` when the input is too deeply nested to render faithfully. */
+  function sanitisedTree(source: string, profile: MarkdownProfile): HastRoot | null {
+    try {
+      const { tree, truncated, hasRaw } = parseMarkdown(source, profile);
+      if (truncated) return null;
+      const sanitised = processorFor(profile, hasRaw && profile === 'legacyHtml').runSync(tree) as HastRoot;
+      return maxDepth(sanitised) > MAX_NESTING_DEPTH ? null : sanitised;
+    } catch (error) {
+      // Stack exhaustion on adversarial nesting (thousands of raw `<div>`s…): degrade to text.
+      if (error instanceof RangeError) return null;
+      throw error;
+    }
   }
-  const normalized = normalizeInput(md);
 
-  const tree =
-    sanitisedTree(defuse(normalized), ctx.profile, rawPlugin) ??
-    (processorFor('lite').runSync(plainTextTree(normalized)) as HastRoot);
+  function renderMarkdownTree(md: string, options: RenderOptions = {}) {
+    if (typeof md !== 'string') throw new MarkdownInputError('markdown_not_string', 'Markdown input must be a string');
+    if (md.length > MAX_MARKDOWN_LENGTH) {
+      throw new MarkdownInputError('markdown_too_long', `Markdown input exceeds ${MAX_MARKDOWN_LENGTH} characters`);
+    }
+    const ctx = resolveOptions(options, profiles);
+    const normalized = normalizeInput(md);
 
-  const collected = enhance(tree, ctx);
-  verifyTree(tree, ctx.profile);
-  return { tree, collected };
+    const tree =
+      sanitisedTree(defuse(normalized), ctx.profile) ??
+      (processorFor('lite').runSync(plainTextTree(normalized)) as HastRoot);
+
+    const collected = enhance(tree, ctx);
+    verifyTree(tree, ctx.profile);
+    return { tree, collected };
+  }
+
+  function renderMarkdown(md: string, options: RenderOptions = {}): RenderResult {
+    const { tree, collected } = renderMarkdownTree(md, options);
+    return {
+      html: toSafeHtml(tree),
+      text: toPlainText(tree),
+      ...collected,
+      renderVersion: RENDER_VERSION,
+    };
+  }
+
+  function extractMentions(md: string, profile: MarkdownProfile = 'lite'): string[] {
+    return renderMarkdown(md, { profile }).mentions;
+  }
+
+  return { renderMarkdown, renderMarkdownTree, extractMentions };
 }
 
 /** True when the text contains raw HTML, i.e. it only renders as authored with `legacyHtml`. */

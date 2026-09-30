@@ -18,7 +18,7 @@ const de_admin_kit_picks_toggle = /** @type {(inputs: Admin_Kit_Picks_ToggleInpu
 };
 
 const fr_admin_kit_picks_toggle = /** @type {(inputs: Admin_Kit_Picks_ToggleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Choix de l’équipe : ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Choix de l’équipe : ${i?.name}`)
 };
 
 const it_admin_kit_picks_toggle = /** @type {(inputs: Admin_Kit_Picks_ToggleInputs) => LocalizedString} */ (i) => {

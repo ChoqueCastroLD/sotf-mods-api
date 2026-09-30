@@ -15,8 +15,6 @@ import type { JobPayload } from '@sotf/contracts/jobs';
 import type { Ctx } from '@sotf/core';
 import { renderEntityOg } from '@sotf/core/og/index';
 import { defineJob, defineJobGroup, onEvent } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
-import { workerStorage } from '../uploads/index.ts';
 
 type OgPayload = JobPayload<'og.render'>;
 
@@ -70,13 +68,13 @@ export default defineJobGroup({
     defineJob({
       queue: 'og.render',
       options: { localConcurrency: 1 },
-      handler: async ({ entityType, entityId }, { ctx }) => {
-        const storage = workerStorage();
+      handler: async ({ entityType, entityId }, { ctx, services }) => {
+        const storage = services.storage();
         if (!storage) {
           ctx.log.warn({ entityType, entityId }, 'og.render skipped: R2 is not configured');
           return { status: 'skipped', reason: 'no_storage' };
         }
-        const env = parseWorkerEnv();
+        const { env } = services;
         return renderEntityOg(
           ctx,
           { storage, config: { mediaBaseUrl: env.R2_PUBLIC_BASE_URL, publicBucket: env.R2_BUCKET } },

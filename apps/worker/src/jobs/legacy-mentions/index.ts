@@ -16,8 +16,8 @@ export function createLegacyMentionJobs(source?: NotificationOptionsSource): Job
     jobs: [
       defineJob({
         queue: 'legacy.mentions',
-        handler: async (_data, { ctx }) => {
-          if (options().legacyCoexist) {
+        handler: async (_data, { ctx, services }) => {
+          if (options(services).legacyCoexist) {
             ctx.log.warn('legacy.mentions skipped: LEGACY_COEXIST=true (the legacy cron owns PendingMention)');
             return { skipped: 'legacy_coexist' };
           }

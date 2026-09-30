@@ -4,7 +4,9 @@
  * - `"Mod"."descriptionMd"` = the legacy description **literally** (mod descriptions were never
  *   sanitised by the legacy site), `"descriptionHtml"` = `@sotf/markdown` with the `legacyHtml`
  *   profile (it reproduces the legacy renderer: raw HTML allowlist, showdown quirks) and
- *   `"renderVersion"` = `RENDER_VERSION`.
+ *   `"renderVersion"` = `RENDER_VERSION`, `"descriptionFormat"` = `'legacy'` (migration 2002: an
+ *   edited legacy description keeps rendering with `legacyHtml` until its author converts it).
+ *   Mods rendered by an earlier B9 run and never published through v2 get the same format.
  * - `"ModVersion"."changelogMd"` = changelog with one level of HTML entities decoded (the legacy
  *   client stored them encoded), `"changelogHtml"` rendered with `legacyHtml`.
  * - `"Comment"."bodyMd"` / `"ModReview"."bodyMd"` = message with entities decoded, `"bodyHtml"`
@@ -62,7 +64,7 @@ const TARGETS: readonly Target[] = [
     source: 'description',
     md: 'descriptionMd',
     html: 'descriptionHtml',
-    extra: `"renderVersion" = ${RENDER_VERSION}`,
+    extra: `"renderVersion" = ${RENDER_VERSION}, "descriptionFormat" = coalesce(x."descriptionFormat", 'legacy')`,
     profile: 'legacyHtml',
     decode: false,
     mentions: false,
@@ -140,6 +142,23 @@ async function renderTable(ctx: BackfillContext, target: Target, failures: strin
   return total;
 }
 
+/**
+ * `"descriptionFormat" = 'legacy'` for mods whose description was rendered by an earlier B9 run
+ * (before migration 2002) and that were never published through v2 (same rule as
+ * `isLegacyAuthored` of `@sotf/core/publishing`).
+ */
+async function markLegacyFormat(ctx: BackfillContext): Promise<number> {
+  const res = await ctx.batch(() =>
+    ctx.client.query(
+      `UPDATE "Mod" m SET "descriptionFormat" = 'legacy'
+        WHERE m."descriptionFormat" IS NULL AND m."descriptionMd" IS NOT NULL
+          AND NOT EXISTS (SELECT 1 FROM "ModVersion" v WHERE v."modId" = m."id" AND v."publishedById" IS NOT NULL)`,
+    ),
+  );
+  ctx.notes.descriptionFormat = res.rowCount ?? 0;
+  return res.rowCount ?? 0;
+}
+
 export const b09: Backfill = {
   id: 'B9',
   title: 'Markdown sources and rendered HTML',
@@ -150,6 +169,7 @@ export const b09: Backfill = {
     const failures: string[] = [];
     let total = 0;
     for (const target of TARGETS) total += await renderTable(ctx, target, failures);
+    total += await markLegacyFormat(ctx);
     ctx.notes.renderVersion = RENDER_VERSION;
     if (failures.length > 0) {
       ctx.notes.renderFailures = failures;

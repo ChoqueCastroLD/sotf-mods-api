@@ -62,15 +62,29 @@ Restore a dump instead of reseeding:
 | B5 | `ModFavorite` duplicates / NULL rows → `ModFavoriteArchive` | **Legacy rows moved**, audited (`columnName='*'`); count and watermark kept for invariant 3. |
 | B6 | `User.emailNormalized` | Collisions → `out/email-collisions.csv`; never merged. |
 | B7 | `legacyTrusted`, `verifiedCreator`, `role='moderator'` for trusted users (§14.2) | Never downgrades a role. |
-| B9 | `descriptionMd`/`Html` (`legacyHtml`, literal source), `changelogMd`/`Html` and `bodyMd`/`Html` (entities decoded; comments `lite` with mentions), `renderVersion` | Only rows whose `*Md` is NULL. |
+| B9 | `descriptionMd`/`Html` (`legacyHtml`, literal source), `changelogMd`/`Html` and `bodyMd`/`Html` (entities decoded; comments `lite` with mentions), `renderVersion`, `Mod.descriptionFormat = 'legacy'` | Only rows whose `*Md` is NULL; the format is also set on legacy mods rendered by an earlier run. |
 | B10 | `ModDependency` from the CSV on the latest version | |
 | B11 | `ModVersion.downloadsCount`, `ModStats`, `SiteStat`, `UserStats` | Writes only differing rows. |
 | B12 | `Mod.status` (approved → published; **unapproved stay pending**, §14.1), `publishedAt`, `approvedAt`, `ModVersion.checksStatus`, hidden comments/reviews | `isApproved` never changes. |
 | B13 | `Mod.platform`, `Mod.multiplayerRole` | |
 | B14 | `User.emailVerifiedAt` for authors and commenters | |
 
-B8 (manifest short descriptions) and B15–B18 belong to WP-84, WP-60 and WP-43. `--delta` runs B12,
-B14, B1 and B11 for the cut-over (PLAN §6.13 D4).
+B8 (manifest short descriptions) and B15–B18 belong to WP-84, WP-60 and WP-43; `pnpm db:backfill
+<id>` names the command that runs each of them (`ELSEWHERE` in `src/backfills/index.ts`):
+
+| Id | Where it runs |
+|---|---|
+| B15 (R2 pass), B16 (retroactive gamification) | Worker job `backfill.run`: `node dist/backfill.js B15\|B16 [--apply] [--wait]` from the API image. |
+| B8, B4M (manifest fixes, audited) | `pnpm --filter @sotf/migration-tools r2:manifest-fixes [--apply]`, after B15 (`backfills-r2/manifest-fixes.ts`, same runner and `DataFixAudit` rules as B4). |
+| B17 (R2 `Content-Disposition` rewrite) | `pnpm --filter @sotf/migration-tools r2:b17 [--apply]`. |
+| B18 (pending mentions) | Worker `legacy.mentions`, once `LEGACY_COEXIST=false`. |
+
+The R2 pass (`backfills-r2/`, typechecked with this package) is described in
+[`backfills-r2/README.md`](backfills-r2/README.md); operators follow
+[`ops/runbooks/migration/r2-pass.md`](../../ops/runbooks/migration/r2-pass.md) and, in production
+(the `sotf-tools` image), [`ops/runbooks/deploy/05-migrations-and-backfills.md`](../../ops/runbooks/deploy/05-migrations-and-backfills.md).
+
+`--delta` runs B12, B14, B1 and B11 for the cut-over (PLAN §6.13 D4).
 
 ## Verification
 

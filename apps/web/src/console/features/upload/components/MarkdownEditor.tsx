@@ -65,13 +65,13 @@ export default function MarkdownEditor({
 }: MarkdownEditorProps) {
   const deferred = useDeferredValue(value);
   // The rendering pipeline is its own chunk: the editor is usable before it arrives.
-  // `@sotf/markdown/preview` is the pipeline without rehype-raw/parse5 (never needed for `full`).
-  const [render, setRender] = useState<typeof import('@sotf/markdown/preview').renderPreview | null>(null);
+  // `@sotf/markdown/lite` is the pipeline without rehype-raw/parse5 (never needed for `full`).
+  const [render, setRender] = useState<typeof import('@sotf/markdown/lite').renderMarkdown | null>(null);
   useEffect(() => {
     let alive = true;
-    import('@sotf/markdown/preview').then(
+    import('@sotf/markdown/lite').then(
       (mod) => {
-        if (alive) setRender(() => mod.renderPreview);
+        if (alive) setRender(() => mod.renderMarkdown);
       },
       () => {},
     );

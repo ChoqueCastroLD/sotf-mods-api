@@ -639,6 +639,7 @@ describe('PendingMention drain (B18)', () => {
       const out = await guarded?.handler({} as never, {
         ctx: { db: coexistDb.db, jobs: coexist.jobs, clock: { now: () => new Date() }, log: silentLogger() } as never,
         job: { id: 'manual', queue: 'legacy.mentions', retryCount: 0, signal: new AbortController().signal },
+        services: {} as never,
       });
       expect(out).toEqual({ skipped: 'legacy_coexist' });
       expect(await coexistDb.db.select().from(pendingMention)).toHaveLength(1);
