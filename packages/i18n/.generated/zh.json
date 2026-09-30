@@ -364,6 +364,128 @@
   "builds_versions_latest": "最新",
   "builds_versions_title": "版本",
   "builds_versions_yanked": "已撤回",
+  "cmdk_action_backpack": "打开背包",
+  "cmdk_action_basecamp": "前往营地",
+  "cmdk_action_current": "当前",
+  "cmdk_action_language": "语言：{language}",
+  "cmdk_action_signals": "打开信号",
+  "cmdk_action_theme": "主题：{theme}",
+  "cmdk_action_upload": "上传模组",
+  "cmdk_action_upload_build": "分享建筑",
+  "cmdk_close": "关闭",
+  "cmdk_compat_broken": "失效",
+  "cmdk_compat_mixed": "反馈不一",
+  "cmdk_compat_untested": "未测试",
+  "cmdk_compat_works": "可用",
+  "cmdk_dialog_label": "搜索与命令",
+  "cmdk_download_started": "已开始下载：{title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 次下载"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "没有与“{query}”匹配的命令。",
+  "cmdk_empty_hint": "试试更少的关键词，或用 mods:、builds:、kits:、@创作者 或 >（命令）缩小范围。",
+  "cmdk_error_hint": "请检查网络连接后重试。操作和最近记录仍可使用。",
+  "cmdk_error_ref": "参考编号：{ref}",
+  "cmdk_error_title": "搜索索引加载失败。",
+  "cmdk_fact_compat": "兼容性",
+  "cmdk_fact_contents": "内容",
+  "cmdk_fact_downloads": "下载量",
+  "cmdk_fact_manifest_id": "模组 ID",
+  "cmdk_fact_published": "已发布",
+  "cmdk_group_actions": "操作",
+  "cmdk_group_categories": "分类",
+  "cmdk_group_pages": "页面",
+  "cmdk_group_recent": "最近打开",
+  "cmdk_group_server": "来自完整搜索",
+  "cmdk_group_trending": "本周热门",
+  "cmdk_hint_close": "关闭",
+  "cmdk_hint_download": "下载",
+  "cmdk_hint_move": "移动",
+  "cmdk_hint_new_tab": "新标签页",
+  "cmdk_hint_open": "打开",
+  "cmdk_hint_scope": "范围",
+  "cmdk_input_label": "搜索模组、建筑、套装、创作者和命令",
+  "cmdk_kind_build": "建筑",
+  "cmdk_kind_category": "分类",
+  "cmdk_kind_creator": "创作者",
+  "cmdk_kind_kit": "套装",
+  "cmdk_kind_library": "前置库",
+  "cmdk_kind_mod": "模组",
+  "cmdk_kind_page": "页面",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项"
+      }
+    }
+  ],
+  "cmdk_loading": "正在展开地图…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组"
+      }
+    }
+  ],
+  "cmdk_no_results": "地图上没有“{query}”的相关结果。试试更少的关键词。",
+  "cmdk_offline": "你已离线，看到的内容可能不是最新的。",
+  "cmdk_placeholder": "搜索模组、建筑、套装、创作者…",
+  "cmdk_placeholder_actions": "输入命令…",
+  "cmdk_preview_download": "下载最新版",
+  "cmdk_preview_empty": "在结果间移动即可在此预览。",
+  "cmdk_preview_hint": "按 Enter 打开。",
+  "cmdk_preview_label": "预览",
+  "cmdk_preview_open": "打开页面",
+  "cmdk_recent_clear": "清除最近记录",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有结果",
+        "count__exact=*": "{count__number} 个结果"
+      }
+    }
+  ],
+  "cmdk_retry": "重试",
+  "cmdk_scope_all": "全部",
+  "cmdk_scope_label": "搜索范围",
+  "cmdk_scope_remove": "重新搜索全部（移除“{scope}”）",
+  "cmdk_searching": "正在搜索整座岛…",
+  "cmdk_see_all": "查看“{query}”的全部结果",
+  "cmdk_start_hint": "从这里打开的页面会显示在此列表中。",
+  "cmdk_term_builds": "建筑",
+  "cmdk_term_creators": "创作者",
+  "cmdk_term_kits": "套装",
+  "cmdk_term_mods": "模组",
+  "cmdk_theme_day": "日间",
+  "cmdk_theme_night": "夜间",
+  "cmdk_theme_system": "跟随系统",
   "common_account_menu": "账号菜单",
   "common_account_profile": "你的主页",
   "common_account_settings": "设置",
@@ -2097,6 +2219,492 @@
   "explore_view_grid": "网格",
   "explore_view_label": "视图",
   "explore_view_list": "列表",
+  "kits_about_empty": "暂无说明。",
+  "kits_about_title": "关于这个套装",
+  "kits_action_create": "创建套装",
+  "kits_actions_for": "{name} 的操作",
+  "kits_add_already": "{name} 已在“{kit}”中。",
+  "kits_add_button": "添加",
+  "kits_add_description": "选择一个套装，或用这个模组新建一个。",
+  "kits_add_dismiss": "关闭",
+  "kits_add_done": "已将 {name} 添加到“{kit}”。",
+  "kits_add_failed": "无法添加 {name}。",
+  "kits_add_in_kit": "已在套装中",
+  "kits_add_mod_missing": "这个模组已不可用。",
+  "kits_add_new_kit": "用这个模组新建套装",
+  "kits_add_title": "将 {name} 添加到套装",
+  "kits_add_title_loading": "添加到套装",
+  "kits_add_to_named": "添加到 {kit}",
+  "kits_announce_added": "已将 {name} 添加到第 {position} 位。",
+  "kits_announce_cancelled": "已取消移动，{name} 回到第 {position} 位。",
+  "kits_announce_dropped": "{name} 已放在第 {position}/{total} 位。",
+  "kits_announce_grabbed": "已拿起 {name}，当前第 {position}/{total} 位。",
+  "kits_announce_moved": "{name} 已移到第 {position}/{total} 位。",
+  "kits_announce_removed": "已移除 {name}。",
+  "kits_announce_restored": "已恢复 {name}。",
+  "kits_autos_hint": "上方项目需要这些依赖。它们跟随列表变化：移除依赖它们的项目后，它们也会一并移除。",
+  "kits_autos_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "自动添加了 {count__number} 个依赖"
+      }
+    }
+  ],
+  "kits_autosave_hint": "更改会自动保存 · 第 {revision} 版",
+  "kits_back_to_first": "返回第 1 页",
+  "kits_back_to_list": "我的套装",
+  "kits_broken_text": "玩家反馈它们在当前版本无法使用。可以固定旧版本或寻找替代模组。",
+  "kits_broken_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组被报告失效"
+      }
+    }
+  ],
+  "kits_clear_filters": "清除筛选",
+  "kits_code_copied": "已复制代码 {code}",
+  "kits_code_lookup_label": "有套装代码？",
+  "kits_code_lookup_submit": "打开套装",
+  "kits_compat_broken": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个被报告失效"
+      }
+    }
+  ],
+  "kits_compat_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "检测到 {count__number} 处冲突"
+      }
+    }
+  ],
+  "kits_compat_no_conflicts": "未检测到冲突",
+  "kits_compat_untested": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个尚未验证"
+      }
+    }
+  ],
+  "kits_compat_works": "{works}/{total} 个适用于当前版本",
+  "kits_compat_works_on": "{works}/{total} 个适用于 {build}",
+  "kits_conflicts_text": "部分模组声明彼此不兼容。请查看它们的页面，每对只保留一个。",
+  "kits_conflicts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "此套装中有 {count__number} 处冲突"
+      }
+    }
+  ],
+  "kits_console_description": "你整理的模组合集：可公开、可凭链接分享，也可仅自己可见。",
+  "kits_console_empty_text": "创建一个套装，摆上你在用的模组，再用一个代码分享出去。",
+  "kits_console_empty_title": "你的工作台还是空的",
+  "kits_console_list_label": "我的套装",
+  "kits_console_readout": "你的搭配",
+  "kits_console_title": "我的套装",
+  "kits_copy_code": "复制套装代码",
+  "kits_copy_failed": "复制失败，请选中文本手动复制。",
+  "kits_cover_auto": "自动：把各项内容摆在工作台上。",
+  "kits_cover_custom": "自定义图片。",
+  "kits_cover_error_processing": "图片处理时间过长，请稍后再试。",
+  "kits_cover_error_rejected": "图片被拒绝。",
+  "kits_cover_error_size": "图片超过 {max} MB。",
+  "kits_cover_error_type": "不支持该文件类型。",
+  "kits_cover_error_upload": "上传失败，请检查网络连接。",
+  "kits_cover_failed": "封面更新失败。",
+  "kits_cover_hint": "PNG、JPEG、WebP、AVIF 或 GIF，不超过 {max} MB。最好使用 3:1 的宽图。",
+  "kits_cover_label": "封面",
+  "kits_cover_progress": "正在上传… {percent}%",
+  "kits_cover_remove": "使用自动封面",
+  "kits_cover_removed": "已恢复自动封面",
+  "kits_cover_replace": "更换图片",
+  "kits_cover_saved": "封面已更新",
+  "kits_cover_upload": "上传图片",
+  "kits_create_description": "先起个名字，模组稍后在编辑器里添加。",
+  "kits_create_submit": "创建套装",
+  "kits_create_title": "新建套装",
+  "kits_create_with_mod": "{name} 将成为第一项。",
+  "kits_created": "已创建“{name}”",
+  "kits_curated_by": "由 {curator} 整理",
+  "kits_delete": "删除套装",
+  "kits_delete_confirm": "删除套装",
+  "kits_delete_failed": "删除套装失败。",
+  "kits_delete_hint": "删除后地址会被释放，但代码永不复用。",
+  "kits_delete_text": "套装、代码和链接将对所有人失效，且无法撤销。",
+  "kits_delete_title": "删除“{name}”？",
+  "kits_deleted": "已删除“{name}”",
+  "kits_detail_empty_text": "作者还没有往这个套装里添加模组。",
+  "kits_detail_empty_title": "还是空的",
+  "kits_detail_readout": "套装",
+  "kits_details_discard": "放弃修改",
+  "kits_details_save": "保存详细信息",
+  "kits_details_saved": "详细信息已保存",
+  "kits_details_title": "详细信息",
+  "kits_download_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "下载全部 {count__number} 个文件"
+      }
+    }
+  ],
+  "kits_download_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个文件，逐个下载"
+      }
+    }
+  ],
+  "kits_download_all_description_size": [
+    {
+      "declarations": [
+        "input count",
+        "input size",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个文件 · 共 {size}"
+      }
+    }
+  ],
+  "kits_download_all_done": "文件已全部下载，可以开始安装了。",
+  "kits_download_all_hint": "按顺序下载文件，然后用 RedLoader 安装。依赖项已经在列表里了。",
+  "kits_download_all_title": "全部下载",
+  "kits_download_install_guide": "如何安装模组",
+  "kits_download_next": "下载下一个",
+  "kits_download_progress": "已下载 {done}/{total}",
+  "kits_download_progress_label": "下载进度",
+  "kits_drag_handle": "移动 {name}，第 {position}/{total} 位",
+  "kits_drag_instructions": "要调整顺序，请聚焦拖动手柄并按空格键，用方向键移动，再按空格键放下，或按 Esc 取消。",
+  "kits_duplicate": "创建副本",
+  "kits_duplicated": "已创建副本“{name}”",
+  "kits_edit": "编辑套装",
+  "kits_editor_empty_text": "在上方搜索模组，依赖项会自动加入。",
+  "kits_editor_empty_title": "摆上第一项",
+  "kits_editor_readout": "蓝图",
+  "kits_editor_static_title": "套装编辑器",
+  "kits_editor_title": "编辑 {name}",
+  "kits_empty_filtered_text": "暂时没有套装符合这些筛选条件。清除筛选即可查看全部套装。",
+  "kits_empty_filtered_title": "没有符合条件的套装",
+  "kits_empty_text": "来做第一个吧：挑选你喜欢的模组，给每个写条备注，再用一个代码分享出去。",
+  "kits_empty_title": "还没有套装",
+  "kits_error_email": "请先验证邮箱地址，才能创建和编辑套装。",
+  "kits_error_rate": "短时间内修改太频繁，请稍等一分钟。",
+  "kits_error_slug_taken": "你已有一个套装使用这个地址，请换一个。",
+  "kits_error_text": "我们这边出了点问题，请稍后重试。",
+  "kits_error_title": "套装加载失败",
+  "kits_error_validation": "套装中有内容无效，请检查后重试。",
+  "kits_field_description": "说明",
+  "kits_field_description_hint": "支持 Markdown。写写套装用途、加载顺序建议和设置。",
+  "kits_field_name": "名称",
+  "kits_field_name_placeholder": "硬核便利包",
+  "kits_field_slug": "地址",
+  "kits_field_slug_hint": "小写字母、数字和连字符，用于 /kits/你/地址。",
+  "kits_field_visibility": "谁可以查看",
+  "kits_filter_label": "筛选套装",
+  "kits_filter_off": "（未启用）",
+  "kits_filter_on": "（已启用）",
+  "kits_filter_staff_picks": "编辑精选",
+  "kits_filter_works": "适用于当前版本",
+  "kits_filter_works_on": "适用于 {build}",
+  "kits_followers": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 位关注者"
+      }
+    }
+  ],
+  "kits_fork": "复刻",
+  "kits_fork_email": "请先验证邮箱地址再创建套装。",
+  "kits_fork_failed": "复刻套装失败，请重试。",
+  "kits_fork_rate": "短时间内创建的套装太多，请稍等一分钟再试。",
+  "kits_fork_working": "正在复刻套装…",
+  "kits_forked_banner_text": "目前为私密状态。按需修改后，设为公开即可分享。",
+  "kits_forked_banner_title": "复刻完成。",
+  "kits_forked_from": "复刻自 @{handle} 的 {kit}",
+  "kits_item_auto_dependency": "依赖项，自动添加",
+  "kits_item_by": "作者：{creator}",
+  "kits_item_download_sr": "{name} v{version}",
+  "kits_item_kind_build": "建筑",
+  "kits_item_kind_library": "前置库",
+  "kits_item_latest": "始终最新",
+  "kits_item_note_label": "备注：",
+  "kits_item_options": "备注与版本",
+  "kits_item_pinned": "（已固定版本）",
+  "kits_item_position": "第 {position} 项：",
+  "kits_item_remove": "移除 {name}",
+  "kits_item_unavailable": "暂无可用文件",
+  "kits_items_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项"
+      }
+    }
+  ],
+  "kits_items_limit": "一个套装最多 {max} 项（含依赖）。",
+  "kits_items_title": "套装内容",
+  "kits_items_total": "项目：{count}/{max}",
+  "kits_items_with_auto": [
+    {
+      "declarations": [
+        "input count",
+        "input auto",
+        "local count__number = count: number",
+        "local auto__number = auto: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项 + {auto__number} 个依赖"
+      }
+    }
+  ],
+  "kits_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个套装"
+      }
+    }
+  ],
+  "kits_list_description": "精选的 Sons of the Forest 模组搭配：自带依赖、已检查兼容性，只需一个代码就能分享给朋友。",
+  "kits_list_heading": "套装",
+  "kits_list_readout": "精选模组搭配",
+  "kits_list_title": "Sons of the Forest 模组套装",
+  "kits_list_title_page": "{title} — 第 {page} 页",
+  "kits_manage_title": "管理",
+  "kits_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input curator",
+        "input count",
+        "input mods",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name}：{curator} 整理的 Sons of the Forest 模组套装，共 {count__number} 项（{mods}）。自带依赖，免费直链下载。"
+      }
+    }
+  ],
+  "kits_meta_title": "{name} — {curator} 的模组套装",
+  "kits_more_from": "{curator} 的更多套装",
+  "kits_mp_all_players": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "所有玩家都需要：{count__number} 个模组"
+      }
+    }
+  ],
+  "kits_mp_client_side": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "客户端：{count__number} 个模组"
+      }
+    }
+  ],
+  "kits_mp_host_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "仅房主需要：{count__number} 个模组"
+      }
+    }
+  ],
+  "kits_mp_none": "暂无多人游戏信息。",
+  "kits_mp_solo_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "仅限单人：{count__number} 个模组"
+      }
+    }
+  ],
+  "kits_mp_unknown": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "未注明：{count__number} 个模组"
+      }
+    }
+  ],
+  "kits_name_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "至少 {min__number} 个字符。"
+      }
+    }
+  ],
+  "kits_note_hint": "显示在套装页面的模组下方 · {count}/{max}",
+  "kits_note_label": "备注",
+  "kits_note_placeholder": "在配置中把半径设为 6",
+  "kits_offline": "你已离线，请重新连接后再试。",
+  "kits_og_alt": "{name}：SOTF Mods 上的 Sons of the Forest 模组套装",
+  "kits_past_end_text": "套装没有那么多，请返回第一页。",
+  "kits_past_end_title": "已超出最后一页",
+  "kits_picker_error": "搜索失败，继续输入即可重试。",
+  "kits_picker_in_kit": "已添加",
+  "kits_picker_label": "添加模组或建筑",
+  "kits_picker_none": "没有找到结果，试试清单 ID。",
+  "kits_picker_placeholder": "按名称或清单 ID 搜索…",
+  "kits_picker_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个结果"
+      }
+    }
+  ],
+  "kits_picker_results_label": "搜索结果",
+  "kits_picker_searching": "正在搜索…",
+  "kits_pin_error": "版本加载失败。",
+  "kits_pin_hint": "只有当新版本导致套装出问题时才固定版本。",
+  "kits_pin_label": "版本",
+  "kits_pin_latest": "始终最新",
+  "kits_pin_loading": "正在加载版本…",
+  "kits_qr_failed": "无法生成二维码。",
+  "kits_removed": "已从套装中移除 {name}",
+  "kits_revision": "第 {revision} 版",
+  "kits_revisions_title": "修订记录",
+  "kits_save_failed": "未保存。",
+  "kits_saved": "已保存 · 第 {revision} 版",
+  "kits_saving": "正在保存…",
+  "kits_share_code_label": "套装代码",
+  "kits_share_description": "把代码或短链接发给朋友，大家就能用同一套搭配。",
+  "kits_share_link_label": "完整链接",
+  "kits_share_markdown_label": "用于 Discord 的 Markdown",
+  "kits_share_markdown_suffix": [
+    {
+      "declarations": [
+        "input count",
+        "input code",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组 · 代码 {code}"
+      }
+    }
+  ],
+  "kits_share_more": "更多选项",
+  "kits_share_on": "分享到 {network}",
+  "kits_share_private": "这个套装是私密的，只有你能看到。设为公开或仅限链接后才能分享。",
+  "kits_share_qr": "二维码",
+  "kits_share_qr_alt": "{name} 短链接的二维码",
+  "kits_share_qr_hint": "用手机扫码即可打开套装。",
+  "kits_share_short_label": "短链接",
+  "kits_share_text": "{name} — Sons of the Forest 模组套装",
+  "kits_share_title": "分享这个套装",
+  "kits_sidebar_label": "关于这个套装",
+  "kits_slug_invalid": "请使用 2–80 个小写字母、数字和连字符，开头和结尾不能是连字符。",
+  "kits_sort_label": "套装排序",
+  "kits_sort_new": "最新",
+  "kits_sort_popular": "热门",
+  "kits_staff_pick": "编辑精选",
+  "kits_summary_compat": "兼容性",
+  "kits_summary_multiplayer": "多人游戏",
+  "kits_summary_size": "内容",
+  "kits_summary_title": "套装概览",
+  "kits_total_size": "下载总大小：{size}",
+  "kits_total_size_unknown": "总大小尚未统计",
+  "kits_undo_failed": "撤销失败。",
+  "kits_unlisted_text": "只有持有链接或代码的人才能打开这个套装。",
+  "kits_unlisted_title": "未公开列出。",
+  "kits_unsaved": "有未保存的更改",
+  "kits_updated_on": "更新于 {date}",
+  "kits_view_public": "查看公开页面",
+  "kits_visibility_private": "私密",
+  "kits_visibility_private_hint": "仅自己可见。",
+  "kits_visibility_public": "公开",
+  "kits_visibility_public_hint": "显示在套装列表和搜索结果中。",
+  "kits_visibility_unlisted": "仅限链接",
+  "kits_visibility_unlisted_hint": "仅持有链接或代码的人可见。",
   "landing_blueprints_all": "全部建筑",
   "landing_blueprints_hint": "来自社区的新鲜建筑",
   "landing_creators_all": "全部创作者",
@@ -2733,6 +3341,732 @@
   "mod_whats_new_read": "阅读实地笔记",
   "mod_whats_new_title": "自你上次下载（v{version}）以来的更新",
   "mod_whats_new_up_to_date": "你已有最新版本（v{version}）。",
+  "profile_achievements_badge_repeatable": "可重复获得",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{share} 的幸存者 · {count__number} 人拥有"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "徽章会填满每位幸存者的野外笔记。未解锁的徽章以虚线显示并附提示，让你随时知道下一步。",
+  "profile_achievements_badges_title": "徽章",
+  "profile_achievements_day_body": "每个个人主页都会显示账号创建至今的天数。纯粹的身份标识：不计分。",
+  "profile_achievements_day_title": "登岛第 N 天",
+  "profile_achievements_fair_play_downloads": "下载量永远不会带来 XP，刷量毫无意义。",
+  "profile_achievements_fair_play_new_accounts": "全新账号在评分和兼容性中仅计一半权重，直到建立信任。",
+  "profile_achievements_fair_play_reversible": "每一点 XP 都有记录，若来自滥用可被撤销。",
+  "profile_achievements_fair_play_same_network": "同一网络下的账号在 24 小时内的相互投票和报告不计入。",
+  "profile_achievements_fair_play_spikes": "下载量的异常激增会由巡林员审查。",
+  "profile_achievements_fair_play_title": "公平竞技",
+  "profile_achievements_intro": "小岛奖励的全部规则，公开透明。它们认可质量与互助，绝不只看数量。",
+  "profile_achievements_meta_description": "SOTF Mods 的幸存者等级、XP、创作者段位、徽章和模组里程碑如何运作。公开的规则奖励质量与互助，而非数量。",
+  "profile_achievements_meta_title": "徽章、等级与创作者段位",
+  "profile_achievements_milestones_intro": "每个模组都会庆祝自己的下载里程碑，从第一天开始计算。它们以时间线形式显示在模组页面上，最重要的会在 Discord 公布。",
+  "profile_achievements_milestones_title": "模组里程碑",
+  "profile_achievements_motw_body": "每周一，独立下载增长势头最强的模组胜出，前提是已发布、在当前版本上未损坏且评分良好。同一位创作者两周内不能连续获胜。",
+  "profile_achievements_motw_title": "本周模组",
+  "profile_achievements_principle_no_streaks": "没有每日连签，没有开箱，也没有让人难堪的排行榜。",
+  "profile_achievements_principle_privacy": "你可以在隐私设置中隐藏自己的等级和动态。",
+  "profile_achievements_principle_quality": "XP 来自帮助他人：有用的评价、准确的实地报告和解决的问题。下载量永远不会带来 XP。",
+  "profile_achievements_principle_retroactive": "一切均可追溯：自 2023 年起的账号都会保留已获得的成就。",
+  "profile_achievements_ranks_intro": "每位成员都有幸存者等级，会随着帮助社区获得的 XP 提升。等级无法购买，也不会因不活跃而丢失。",
+  "profile_achievements_ranks_title": "幸存者等级",
+  "profile_achievements_tier_perks": "段位印章和头像边框。",
+  "profile_achievements_tier_perks_spotlight": "段位印章、头像边框，并在首页焦点展示。",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{downloads} 次下载"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "创作者会根据其全部模组的累计下载量（含 v2 之前的历史）自动升段。每个段位都会在个人主页添加印章，并为头像加上边框。",
+  "profile_achievements_tiers_title": "创作者段位",
+  "profile_achievements_title": "成就",
+  "profile_achievements_toc": "本页内容",
+  "profile_achievements_xp_action": "行为",
+  "profile_achievements_xp_limit": "上限",
+  "profile_achievements_xp_needed": "所需 XP",
+  "profile_achievements_xp_note": "针对自己内容的操作不计入。XP 会被审核，若来自滥用可被撤销。",
+  "profile_achievements_xp_title": "如何获得 XP",
+  "profile_action_edit": "编辑个人资料",
+  "profile_activity_caption": "每日发布、评论、评价和实地报告（UTC）。",
+  "profile_activity_cell": "{date}：{detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条评论"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次发布"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 份实地报告"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条评价"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} 在过去 12 个月里没有发布、评论、评价或报告任何内容。",
+  "profile_activity_empty_title": "小径静悄悄",
+  "profile_activity_heatmap_label": "{name} 近 12 个月的贡献",
+  "profile_activity_kind_comments": "评论",
+  "profile_activity_kind_releases": "发布",
+  "profile_activity_kind_reports": "实地报告",
+  "profile_activity_kind_reviews": "评价",
+  "profile_activity_legend_less": "少",
+  "profile_activity_legend_more": "多",
+  "profile_activity_private": "{name} 未公开其动态。",
+  "profile_activity_recent_title": "最近的足迹",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input days",
+        "input count",
+        "local days__number = days: number",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "{from} 至 {to} 期间，在 {days__number} 天里共有零次贡献。",
+        "count__exact=*": "{from} 至 {to} 期间，在 {days__number} 天里共有 {count__number} 次贡献。"
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "活跃天数",
+  "profile_activity_table_caption": "{name} 每月的贡献",
+  "profile_activity_table_month": "月份",
+  "profile_activity_table_toggle": "以表格查看",
+  "profile_activity_table_total": "合计",
+  "profile_activity_title": "动态",
+  "profile_avatar_alt": "{name} 的头像",
+  "profile_badge_bug_hunter_hint": "有 5 份漏洞报告被创作者标记为已解决。",
+  "profile_badge_bug_hunter_name": "漏洞猎手",
+  "profile_badge_cartographer_hint": "创建一个关注者达到 10 人的公开合集。",
+  "profile_badge_cartographer_name": "制图师",
+  "profile_badge_crash_landing_hint": "发布你的第一个模组。",
+  "profile_badge_crash_landing_name": "迫降",
+  "profile_badge_earned_on": "获得于 {date}",
+  "profile_badge_featured": "精选",
+  "profile_badge_field_medic_hint": "提交 10 份与社区共识一致的兼容性报告。",
+  "profile_badge_field_medic_name": "战地医生",
+  "profile_badge_first_blueprint_hint": "发布你的第一个建筑。",
+  "profile_badge_first_blueprint_name": "第一张蓝图",
+  "profile_badge_first_field_report_hint": "提交你的第一份兼容性报告。",
+  "profile_badge_first_field_report_name": "首份实地报告",
+  "profile_badge_first_review_hint": "撰写你的第一条带文字的评价。",
+  "profile_badge_first_review_name": "首条评价",
+  "profile_badge_group_awards": "奖项",
+  "profile_badge_group_community": "社区",
+  "profile_badge_group_creator": "创作者",
+  "profile_badge_group_legacy": "元老幸存者",
+  "profile_badge_group_onboarding": "新手起步",
+  "profile_badge_group_roles": "身份",
+  "profile_badge_group_secret": "隐藏",
+  "profile_badge_helping_hand_hint": "有 5 条评论被创作者标记为解决方案或置顶。",
+  "profile_badge_helping_hand_name": "援手",
+  "profile_badge_island_favorite_hint": "拥有一个评分 4.5 以上且至少 20 条评价的模组。",
+  "profile_badge_island_favorite_name": "小岛最爱",
+  "profile_badge_locked": "未解锁",
+  "profile_badge_mod_of_the_week_hint": "你的模组被选为本周模组。可重复获得。",
+  "profile_badge_mod_of_the_week_name": "本周模组",
+  "profile_badge_night_owl_hint": "在当地时间午夜至凌晨 4 点之间做出 5 次贡献。",
+  "profile_badge_night_owl_name": "夜猫子",
+  "profile_badge_original_survivor_hint": "账号创建于 {year} 年，早于 SOTF Mods v2 上线。",
+  "profile_badge_original_survivor_name": "{year} 元老幸存者",
+  "profile_badge_patch_day_hero_hint": "在破坏模组的游戏更新后 7 天内发布兼容版本。",
+  "profile_badge_patch_day_hero_name": "补丁日英雄",
+  "profile_badge_pillar_of_the_island_hint": "制作一个被至少 3 个其他创作者的模组依赖的库。",
+  "profile_badge_pillar_of_the_island_name": "小岛支柱",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "守护小岛安全的版主。",
+  "profile_badge_ranger_name": "巡林员",
+  "profile_badge_secret_hint": "继续探索吧。岛上有些东西只在夜里才能找到。",
+  "profile_badge_secret_name": "隐藏徽章",
+  "profile_badge_staff_pick_hint": "你的模组被团队选中。可重复获得。",
+  "profile_badge_staff_pick_name": "团队精选",
+  "profile_badge_survived_day_one_hint": "完成“第 1 天”清单。",
+  "profile_badge_survived_day_one_name": "熬过第一天",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "帮助将 SOTF Mods 翻译成其他语言。",
+  "profile_badge_translator_name": "译者",
+  "profile_badge_verified_creator_hint": "经 SOTF Mods 团队认证的创作者。",
+  "profile_badge_verified_creator_name": "认证创作者",
+  "profile_badge_voice_of_the_island_hint": "你的评价累计获得 50 张“有帮助”票。",
+  "profile_badge_voice_of_the_island_name": "小岛之声",
+  "profile_badge_well_documented_hint": "让你的某个模组页面质量达到 100。",
+  "profile_badge_well_documented_name": "文档完善",
+  "profile_badges_empty_description": "发布作品、撰写评价、报告兼容性和帮助他人都能获得徽章。未解锁的徽章会以虚线轮廓显示在这里。",
+  "profile_badges_empty_title": "笔记本还是空的",
+  "profile_badges_featured_label": "精选徽章",
+  "profile_badges_rules_link": "徽章规则",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "尚未获得徽章。",
+        "count__exact=*": "已获得 {count__number} 枚徽章。"
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input count",
+        "input total",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "尚未获得徽章，共 {total} 枚。",
+        "count__exact=*": "已获得 {count__number} 枚，共 {total} 枚。"
+      }
+    }
+  ],
+  "profile_badges_title": "野外笔记",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "欢迎来到 v2：你获得了 {badgeCount__number} 枚徽章"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "暂无建筑",
+  "profile_builds_title": "{name} 的建筑",
+  "profile_cards_empty_action": "浏览模组",
+  "profile_cards_empty_description": "{name} 还没有在这里发布内容。去看看岛上其他人的作品吧。",
+  "profile_creator_top_mod": "代表作：{mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 位创作者"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "这里还没有人发布模组。第一位发布者将获得“迫降”徽章。",
+  "profile_creators_empty_title": "暂无创作者",
+  "profile_creators_error_title": "创作者列表未能加载",
+  "profile_creators_intro": "为小岛打造模组和建筑的幸存者们。关注他们，有新作发布时就会收到信号。",
+  "profile_creators_meta_description": "Sons of the Forest 模组和建筑背后的创作者：下载量、关注者、段位和代表作。关注创作者，第一时间获知新发布。",
+  "profile_creators_meta_title": "Sons of the Forest 模组创作者",
+  "profile_creators_meta_title_page": "Sons of the Forest 模组创作者 — 第 {page} 页",
+  "profile_creators_sort_downloads": "下载最多",
+  "profile_creators_sort_followers": "关注最多",
+  "profile_creators_sort_recent": "最近发布",
+  "profile_creators_sort_spotlight": "焦点",
+  "profile_creators_tiers_link": "创作者段位规则",
+  "profile_creators_title": "创作者",
+  "profile_day_on_island": "登岛第 {day} 天",
+  "profile_feed_title": "{name} 的新发布",
+  "profile_follow_error": "无法更新关注状态。请检查网络连接后重试。",
+  "profile_follow_name": "关注 {name}",
+  "profile_follow_own": "你不能关注自己。",
+  "profile_follow_verify_email": "请先验证你的电子邮箱，才能关注创作者。",
+  "profile_followed": "已关注。有新发布时你会收到信号。",
+  "profile_joined": "加入于 {date}",
+  "profile_kits_empty_action": "浏览合集",
+  "profile_kits_empty_description": "{name} 还没有分享合集。合集是精选的模组组合，任何人都可以一次性安装。",
+  "profile_kits_empty_title": "没有公开的合集",
+  "profile_kits_private": "{name} 未公开其合集。",
+  "profile_kits_title": "{name} 的合集",
+  "profile_link_copied": "已复制个人主页链接",
+  "profile_link_copy_failed": "无法复制链接，请从地址栏复制。",
+  "profile_link_website": "网站",
+  "profile_links_label": "链接",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__number = count: number",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} 为 Sons of the Forest 制作模组：{count__number} 个模组和建筑，{downloads} 次下载，{followers__number} 位关注者。在 SOTF Mods 免费下载。"
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__number = reviews: number",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} 在 SOTF Mods（Sons of the Forest 模组社区）：{reviews__number} 条评价，{reports__number} 份实地报告。"
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name}（@{handle}）— Sons of the Forest 模组创作者",
+  "profile_meta_title_member": "{name}（@{handle}）— Sons of the Forest 模组社区",
+  "profile_meta_title_tab": "{tab} · {name}（@{handle}）",
+  "profile_mods_empty_title": "暂无模组",
+  "profile_mods_title": "{name} 的模组",
+  "profile_pinned_title": "置顶",
+  "profile_private_title": "未公开",
+  "profile_rank_builder": "建造者",
+  "profile_rank_castaway": "遇难者",
+  "profile_rank_forager": "采集者",
+  "profile_rank_label": "幸存者等级",
+  "profile_rank_legend": "小岛传奇",
+  "profile_rank_pathfinder": "开拓者",
+  "profile_rank_progress": "{rank} · {xp} XP。距离{next}还差 {needed} XP。",
+  "profile_rank_scavenger": "拾荒者",
+  "profile_rank_top": "{rank} · {xp} XP。已登顶小岛。",
+  "profile_rank_trapper": "猎人",
+  "profile_rank_veteran": "老手",
+  "profile_review_of": "对 {mod} 的评价",
+  "profile_reviews_empty_description": "{name} 还没有评价过任何模组。",
+  "profile_reviews_empty_title": "暂无评价",
+  "profile_reviews_newest": "最新评价",
+  "profile_reviews_older": "更早的评价",
+  "profile_reviews_pagination": "更多评价",
+  "profile_reviews_title": "{name} 的评价",
+  "profile_sort_downloads": "下载最多",
+  "profile_sort_label": "排序",
+  "profile_sort_new": "最新",
+  "profile_sort_updated": "最近更新",
+  "profile_stat_downloads_label": "下载",
+  "profile_stat_followers_label": "关注者",
+  "profile_stat_helpful_label": "“有帮助”票",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "其评价获得 {count__number} 张“有帮助”票"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "模组",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__number = mods: number",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mods__number} 个模组和{builds__number} 个建筑"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "平均评分",
+  "profile_stat_rating_title": "平均 {rating} 分（满分 5 分）",
+  "profile_stats_label": "统计",
+  "profile_tab_activity": "动态",
+  "profile_tab_badges": "徽章",
+  "profile_tab_builds": "建筑",
+  "profile_tab_error_description": "服务器响应超时，请稍后重试。",
+  "profile_tab_error_title": "此板块未能加载",
+  "profile_tab_kits": "合集",
+  "profile_tab_mods": "模组",
+  "profile_tab_reviews": "评价",
+  "profile_tabs_label": "个人主页板块",
+  "profile_tier_cabin": "小屋",
+  "profile_tier_campfire": "篝火",
+  "profile_tier_fortress": "堡垒",
+  "profile_tier_label": "创作者段位",
+  "profile_tier_landmark": "地标",
+  "profile_tier_lean_to": "窝棚",
+  "profile_tier_treehouse": "树屋",
+  "profile_unfollowed": "已取消关注。",
+  "profile_verified_creator": "认证创作者",
+  "profile_xp_bug_report_resolved": "漏洞报告被创作者标记为已解决",
+  "profile_xp_comment_solution_or_pinned": "评论被创作者标记为解决方案或置顶",
+  "profile_xp_compat_report": "实地报告（在此版本上能用吗？）",
+  "profile_xp_compat_report_consensus": "奖励：72 小时后你的报告与共识一致",
+  "profile_xp_first_follow": "关注你的第一个模组或创作者",
+  "profile_xp_kit_followers_10": "你的合集每新增 10 位关注者",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "每天 {count__number} 次"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "无上限",
+  "profile_xp_limit_once": "一次",
+  "profile_xp_limit_per_build": "每个游戏版本一次",
+  "profile_xp_onboarding_completed": "完成“第 1 天”清单",
+  "profile_xp_patch_day_release": "创作者：在破坏模组的更新后 14 天内发布兼容版本",
+  "profile_xp_profile_completed": "完善个人资料",
+  "profile_xp_review_helpful_vote": "你的评价获得一张“有帮助”票",
+  "profile_xp_review_with_text": "撰写至少 80 个字符的评价",
+  "social_action_back": "返回",
+  "social_action_cancel": "取消",
+  "social_action_close": "关闭",
+  "social_action_continue": "继续",
+  "social_action_delete": "删除",
+  "social_action_edit": "编辑",
+  "social_action_load_more": "加载更多",
+  "social_action_retry": "重试",
+  "social_action_save": "保存",
+  "social_action_undo": "撤销",
+  "social_bug_resolve": "标记为已在某版本修复",
+  "social_bug_resolve_intro": "报告者会收到通知，评论会显示“已在 vX 修复”。",
+  "social_bug_resolve_submit": "标记为已修复",
+  "social_bug_resolve_title": "在哪个版本修复的？",
+  "social_bug_resolve_version": "版本",
+  "social_bug_resolved_done": "已标记为在 {version} 修复。",
+  "social_comment_bug_hint": "错误报告会进入作者的收件箱。请说明你做了什么、发生了什么以及预期结果。",
+  "social_comment_bug_label": "这是一个错误报告",
+  "social_comment_bug_version": "出现错误的版本",
+  "social_comment_deleted": "评论已删除。",
+  "social_comment_edit_label": "编辑你的评论",
+  "social_comment_edited": "评论已更新。",
+  "social_comment_empty": "请先写点内容。",
+  "social_comment_held": "已提交。新账号含外部链接的评论需等待巡林员快速审核。",
+  "social_comment_invalid": "无法保存这段文字，请检查后重试。",
+  "social_comment_label": "你的评论",
+  "social_comment_placeholder": "提问、分享技巧或报告问题…",
+  "social_comment_posted": "评论已发布。",
+  "social_comment_reply_label": "你的回复",
+  "social_comment_reply_submit": "回复",
+  "social_comment_reply_to": "回复 @{handle}",
+  "social_comment_sign_in": "登录后发表评论",
+  "social_comment_submit": "发表评论",
+  "social_comment_too_long": "最多 {max} 个字符。",
+  "social_comments_empty": "还没有评论。提问、技巧和 bug 反馈都可以写在这里。",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有更多评论了。",
+        "count__exact=*": "又加载了 {count__number} 条评论。"
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 条回复"
+      }
+    }
+  ],
+  "social_comments_sort": "评论排序",
+  "social_comments_sort_new": "最新",
+  "social_comments_sort_top": "热门",
+  "social_comments_sorted": "评论已排序。",
+  "social_compat_build": "游戏版本",
+  "social_compat_build_current": "{label}（当前）",
+  "social_compat_deleted": "实测报告已删除。",
+  "social_compat_heading": "在你的游戏里能用吗？",
+  "social_compat_intro": "告诉其他幸存者这个模组在你的环境下是否可用，只需 20 秒。",
+  "social_compat_missing_mode": "请选择你的游玩方式。",
+  "social_compat_missing_result": "请选择结果。",
+  "social_compat_missing_setup": "请选择模组版本和游戏版本。",
+  "social_compat_mode": "你怎么玩？",
+  "social_compat_mode_client": "多人客户端",
+  "social_compat_mode_client_hint": "你加入别人的游戏。",
+  "social_compat_mode_dedicated": "专用服务器",
+  "social_compat_mode_dedicated_hint": "安装在专用服务器上。",
+  "social_compat_mode_host": "多人主机",
+  "social_compat_mode_host_hint": "由你为朋友开主机。",
+  "social_compat_mode_singleplayer": "单人",
+  "social_compat_mode_singleplayer_hint": "独自游玩。",
+  "social_compat_note": "备注",
+  "social_compat_note_placeholder": "哪些可用、哪些不可用、错误信息…",
+  "social_compat_open": "报告兼容性",
+  "social_compat_other_mods": "已安装的其他模组",
+  "social_compat_other_mods_placeholder": "SonsAxLib、StackMod…",
+  "social_compat_prompt": "你下载了 v{version}。在 {build} 上能用吗？",
+  "social_compat_prompt_label": "能用吗？",
+  "social_compat_prompt_later": "以后再说",
+  "social_compat_report_another": "报告其他环境",
+  "social_compat_result": "能用吗？",
+  "social_compat_result_broken": "不可用",
+  "social_compat_result_broken_hint": "无法加载或会崩溃。",
+  "social_compat_result_partial": "部分可用",
+  "social_compat_result_partial_hint": "能加载，但有问题。",
+  "social_compat_result_works": "可用",
+  "social_compat_result_works_hint": "我试过的功能都正常。",
+  "social_compat_step_of": "第 {step} 步，共 {total} 步：{title}",
+  "social_compat_step_result": "结果",
+  "social_compat_step_setup": "你的环境",
+  "social_compat_steps": "步骤",
+  "social_compat_submit": "提交报告",
+  "social_compat_text": "实地报告只需十秒，就能让大家知道此模组在当前补丁下是否可用。",
+  "social_compat_thanks": "谢谢你，幸存者！你的报告会计入兼容性徽章。",
+  "social_compat_title": "实测报告",
+  "social_compat_version": "模组版本",
+  "social_compat_yours": "你在 {build} 上报告了“{result}”（{mode}，v{version}）。",
+  "social_deleted_user": "已注销的幸存者",
+  "social_editor_bold": "粗体",
+  "social_editor_code": "代码",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown：**粗体**、*斜体*、`代码`、[链接](url)、||剧透||、@提及 · {modifier}+Enter 发送",
+  "social_editor_italic": "斜体",
+  "social_editor_link": "链接",
+  "social_editor_link_text": "链接文字",
+  "social_editor_list": "列表",
+  "social_editor_mentions": "可提及的人",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有建议",
+        "count__exact=*": "{count__number} 条建议，使用方向键选择"
+      }
+    }
+  ],
+  "social_editor_mode": "编辑器视图",
+  "social_editor_preview": "预览",
+  "social_editor_preview_empty": "还没有可预览的内容。",
+  "social_editor_preview_loading": "正在生成预览…",
+  "social_editor_quote": "引用",
+  "social_editor_sample": "文本",
+  "social_editor_spoiler": "剧透",
+  "social_editor_toolbar": "格式",
+  "social_editor_write": "编写",
+  "social_image_add": "添加图片（{count}/{max}）",
+  "social_image_failed": "图片上传失败，请移除后重试。",
+  "social_image_failed_short": "失败",
+  "social_image_limit": "每条评论最多 {max} 张图片。",
+  "social_image_remove": "移除 {name}",
+  "social_image_size": "图片最大 5 MB。",
+  "social_image_type": "请使用 PNG、JPEG、WebP、AVIF 或 GIF 图片。",
+  "social_image_uploading": "上传中…",
+  "social_image_wait": "请等待图片上传完成。",
+  "social_loading": "加载中…",
+  "social_md_spoiler": "剧透",
+  "social_more_actions": "{name} 的帖子的更多操作",
+  "social_offline": "你已离线，看到的内容可能不是最新的。",
+  "social_optional": "（可选）",
+  "social_pin": "置顶",
+  "social_pin_limit": "最多只能置顶 3 条评论，请先取消一条。",
+  "social_pinned": "评论已置顶。",
+  "social_reaction_add": "添加表情",
+  "social_reaction_added": "已添加表情：{reaction}。",
+  "social_reaction_fire": "火",
+  "social_reaction_heart": "爱心",
+  "social_reaction_laugh": "大笑",
+  "social_reaction_party": "庆祝",
+  "social_reaction_pray": "感谢",
+  "social_reaction_removed": "已移除表情：{reaction}。",
+  "social_reaction_thumbs_up": "点赞",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{reaction}：{count__number} 人"
+      }
+    }
+  ],
+  "social_reactions": "表情回应",
+  "social_replies_failed": "无法加载回复，请重试。",
+  "social_reply": "回复",
+  "social_reply_to_label": "回复 {name}",
+  "social_report": "举报",
+  "social_report_choose_reason": "请选择一个原因。",
+  "social_report_comment_title": "举报这条评论",
+  "social_report_details_label": "详情（可选）",
+  "social_report_duplicate": "你已经举报过此模组，护林员正在处理。",
+  "social_report_field_report_title": "举报这份实测报告",
+  "social_report_intro": "巡林员会审核每一条举报。请说明问题所在。",
+  "social_report_reason_harassment": "骚扰或仇恨",
+  "social_report_reason_illegal": "违法内容",
+  "social_report_reason_label": "原因",
+  "social_report_reason_nsfw_unmarked": "成人内容未标记 18+",
+  "social_report_reason_other": "其他",
+  "social_report_reason_spam": "垃圾信息或广告",
+  "social_report_review_title": "举报这条评价",
+  "social_report_sent": "谢谢，护林员会查看。",
+  "social_report_submit": "提交举报",
+  "social_review_body_label": "你的评价",
+  "social_review_body_placeholder": "哪些好用、哪些不好用？适合谁？",
+  "social_review_conflict": "你已经评价过这个模组，请编辑原有评价。",
+  "social_review_deleted": "评价已删除。",
+  "social_review_edit": "编辑你的评价",
+  "social_review_forbidden": "你暂时不能评价这个模组：需要已验证的邮箱和注册满 24 小时的账号，且作者不能评价自己的模组。",
+  "social_review_own_mod": "这是你的模组：每条评价你都可以回复一次。",
+  "social_review_posted": "谢谢！你的评价已发布。",
+  "social_review_rating_label": "你的评分",
+  "social_review_rating_required": "请选择 1 到 5 星。",
+  "social_review_reply": "公开回复",
+  "social_review_reply_delete": "删除你的回复",
+  "social_review_reply_deleted": "回复已删除。",
+  "social_review_reply_edit": "编辑你的回复",
+  "social_review_reply_label": "你的公开回复",
+  "social_review_reply_saved": "回复已发布。",
+  "social_review_reply_submit": "发布回复",
+  "social_review_rules": "每位幸存者一条评价。请具体说明：版本、哪些能用、哪些不能用。",
+  "social_review_see_all": "查看全部评价",
+  "social_review_star_1": "对我无效",
+  "social_review_star_2": "有待改进",
+  "social_review_star_3": "还行",
+  "social_review_star_4": "很棒",
+  "social_review_star_5": "必备",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 星"
+      }
+    }
+  ],
+  "social_review_submit": "发布评价",
+  "social_review_title_label": "标题",
+  "social_review_title_too_long": "标题最多 {max} 个字符。",
+  "social_review_update": "更新评价",
+  "social_review_updated": "评价已更新。",
+  "social_review_version_auto": "我最后下载的版本",
+  "social_review_version_label": "你使用的版本",
+  "social_review_write": "写评价",
+  "social_review_yours": "你的评价",
+  "social_solution_mark": "标记为解决方案",
+  "social_solution_marked": "已标记为解决方案。",
+  "social_solution_unmark": "取消解决方案标记",
+  "social_solution_unmarked": "已取消解决方案标记。",
+  "social_unpin": "取消置顶",
+  "social_unpinned": "已取消置顶。",
+  "social_verify_action": "验证邮箱",
+  "social_verify_to_comment": "验证邮箱后即可评论。",
+  "social_verify_to_report": "验证邮箱后即可提交实测报告。",
+  "social_verify_to_review": "验证邮箱后即可写评价。",
+  "social_vote_label": "有帮助吗？",
+  "social_vote_no": "没有帮助",
+  "social_vote_removed": "已取消投票。",
+  "social_vote_saved": "投票已保存。",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "是，有帮助（{count__number} 票）"
+      }
+    }
+  ],
   "ui_breadcrumbs": "面包屑导航",
   "ui_cancel": "取消",
   "ui_choose": "请选择…",

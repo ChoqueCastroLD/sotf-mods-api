@@ -364,6 +364,128 @@
   "builds_versions_latest": "最新",
   "builds_versions_title": "バージョン",
   "builds_versions_yanked": "取り下げ",
+  "cmdk_action_backpack": "バックパックを開く",
+  "cmdk_action_basecamp": "ベースキャンプへ移動",
+  "cmdk_action_current": "現在",
+  "cmdk_action_language": "言語：{language}",
+  "cmdk_action_signals": "シグナルを開く",
+  "cmdk_action_theme": "テーマ：{theme}",
+  "cmdk_action_upload": "MODをアップロード",
+  "cmdk_action_upload_build": "建築を共有",
+  "cmdk_close": "閉じる",
+  "cmdk_compat_broken": "動作不可",
+  "cmdk_compat_mixed": "報告が割れています",
+  "cmdk_compat_untested": "未検証",
+  "cmdk_compat_works": "動作",
+  "cmdk_dialog_label": "検索とコマンド",
+  "cmdk_download_started": "ダウンロードを開始しました：{title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 回ダウンロード"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "「{query}」に一致するコマンドはありません。",
+  "cmdk_empty_hint": "キーワードを減らすか、mods:、builds:、kits:、@クリエイター、コマンドは > で絞り込んでください。",
+  "cmdk_error_hint": "接続を確認してもう一度お試しください。アクションと履歴は引き続き使えます。",
+  "cmdk_error_ref": "参照番号：{ref}",
+  "cmdk_error_title": "検索インデックスを読み込めませんでした。",
+  "cmdk_fact_compat": "互換性",
+  "cmdk_fact_contents": "内容",
+  "cmdk_fact_downloads": "ダウンロード数",
+  "cmdk_fact_manifest_id": "MOD ID",
+  "cmdk_fact_published": "公開数",
+  "cmdk_group_actions": "アクション",
+  "cmdk_group_categories": "カテゴリー",
+  "cmdk_group_pages": "ページ",
+  "cmdk_group_recent": "最近開いたもの",
+  "cmdk_group_server": "全文検索から",
+  "cmdk_group_trending": "今週のトレンド",
+  "cmdk_hint_close": "閉じる",
+  "cmdk_hint_download": "ダウンロード",
+  "cmdk_hint_move": "移動",
+  "cmdk_hint_new_tab": "新しいタブ",
+  "cmdk_hint_open": "開く",
+  "cmdk_hint_scope": "範囲",
+  "cmdk_input_label": "MOD、建築、キット、クリエイター、コマンドを検索",
+  "cmdk_kind_build": "建築",
+  "cmdk_kind_category": "カテゴリー",
+  "cmdk_kind_creator": "クリエイター",
+  "cmdk_kind_kit": "キット",
+  "cmdk_kind_library": "ライブラリ",
+  "cmdk_kind_mod": "MOD",
+  "cmdk_kind_page": "ページ",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のアイテム"
+      }
+    }
+  ],
+  "cmdk_loading": "地図を広げています…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件の MOD"
+      }
+    }
+  ],
+  "cmdk_no_results": "「{query}」は地図に見つかりませんでした。キーワードを減らしてみてください。",
+  "cmdk_offline": "オフラインです。表示中の内容は最新でない可能性があります。",
+  "cmdk_placeholder": "MOD、建築、キット、クリエイターを検索…",
+  "cmdk_placeholder_actions": "コマンドを入力…",
+  "cmdk_preview_download": "最新版をダウンロード",
+  "cmdk_preview_empty": "結果を移動すると、ここにプレビューが表示されます。",
+  "cmdk_preview_hint": "Enter で開きます。",
+  "cmdk_preview_label": "プレビュー",
+  "cmdk_preview_open": "ページを開く",
+  "cmdk_recent_clear": "履歴を消去",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "結果なし",
+        "count__exact=*": "{count__number} 件"
+      }
+    }
+  ],
+  "cmdk_retry": "再試行",
+  "cmdk_scope_all": "すべて",
+  "cmdk_scope_label": "検索対象",
+  "cmdk_scope_remove": "すべてを再検索（「{scope}」を解除）",
+  "cmdk_searching": "島じゅうを探しています…",
+  "cmdk_see_all": "「{query}」の結果をすべて表示",
+  "cmdk_start_hint": "ここから開いたページがこのリストに表示されます。",
+  "cmdk_term_builds": "建築",
+  "cmdk_term_creators": "クリエイター",
+  "cmdk_term_kits": "キット",
+  "cmdk_term_mods": "MOD",
+  "cmdk_theme_day": "昼",
+  "cmdk_theme_night": "夜",
+  "cmdk_theme_system": "システム",
   "common_account_menu": "アカウントメニュー",
   "common_account_profile": "プロフィール",
   "common_account_settings": "設定",
@@ -2097,6 +2219,492 @@
   "explore_view_grid": "グリッド",
   "explore_view_label": "表示",
   "explore_view_list": "リスト",
+  "kits_about_empty": "説明はまだありません。",
+  "kits_about_title": "このキットについて",
+  "kits_action_create": "キットを作成",
+  "kits_actions_for": "{name} の操作",
+  "kits_add_already": "{name} はすでに「{kit}」に入っています。",
+  "kits_add_button": "追加",
+  "kits_add_description": "キットを選ぶか、この MOD で新しいキットを作りましょう。",
+  "kits_add_dismiss": "閉じる",
+  "kits_add_done": "{name} を「{kit}」に追加しました。",
+  "kits_add_failed": "{name} を追加できませんでした。",
+  "kits_add_in_kit": "追加済み",
+  "kits_add_mod_missing": "この MOD はもう利用できません。",
+  "kits_add_new_kit": "この MOD で新しいキット",
+  "kits_add_title": "{name} をキットに追加",
+  "kits_add_title_loading": "キットに追加",
+  "kits_add_to_named": "{kit} に追加",
+  "kits_announce_added": "{name} を {position} 番目に追加しました。",
+  "kits_announce_cancelled": "移動を取り消しました。{name} は {position} 番目に戻りました。",
+  "kits_announce_dropped": "{name} を {total} 件中 {position} 番目に置きました。",
+  "kits_announce_grabbed": "{name} をつかみました。{total} 件中 {position} 番目です。",
+  "kits_announce_moved": "{name} を {total} 件中 {position} 番目に移動しました。",
+  "kits_announce_removed": "{name} を削除しました。",
+  "kits_announce_restored": "{name} を元に戻しました。",
+  "kits_autos_hint": "上のアイテムが必要とする MOD です。リストに連動し、必要とするアイテムを外すと一緒に外れます。",
+  "kits_autos_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "依存 MOD を {count__number} 件自動追加"
+      }
+    }
+  ],
+  "kits_autosave_hint": "変更は自動保存されます · rev. {revision}",
+  "kits_back_to_first": "1 ページ目に戻る",
+  "kits_back_to_list": "マイキット",
+  "kits_broken_text": "最新パッチで動作しないと報告されています。古いバージョンに固定するか、代わりの MOD を探してください。",
+  "kits_broken_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件の MOD が動作しないと報告"
+      }
+    }
+  ],
+  "kits_clear_filters": "絞り込みを解除",
+  "kits_code_copied": "コード {code} をコピーしました",
+  "kits_code_lookup_label": "キットコードをお持ちですか？",
+  "kits_code_lookup_submit": "キットを開く",
+  "kits_compat_broken": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件が動作しないと報告"
+      }
+    }
+  ],
+  "kits_compat_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "競合を {count__number} 件検出"
+      }
+    }
+  ],
+  "kits_compat_no_conflicts": "競合は検出されていません",
+  "kits_compat_untested": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件は未検証"
+      }
+    }
+  ],
+  "kits_compat_works": "{works}/{total} 件が最新パッチで動作",
+  "kits_compat_works_on": "{works}/{total} 件が {build} で動作",
+  "kits_conflicts_text": "一部の MOD は同時に使えないと宣言しています。各 MOD のページを確認し、組み合わせごとに一方だけ残してください。",
+  "kits_conflicts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "このキットに競合が {count__number} 件あります"
+      }
+    }
+  ],
+  "kits_console_description": "あなたがまとめた MOD コレクション。公開、リンク共有、自分専用から選べます。",
+  "kits_console_empty_text": "キットを作成し、遊んでいる MOD を並べて、コードひとつで共有しましょう。",
+  "kits_console_empty_title": "作業マットは空っぽです",
+  "kits_console_list_label": "マイキット",
+  "kits_console_readout": "あなたの構成",
+  "kits_console_title": "マイキット",
+  "kits_copy_code": "キットコードをコピー",
+  "kits_copy_failed": "コピーできませんでした。テキストを選択して手動でコピーしてください。",
+  "kits_cover_auto": "自動：アイテムをマットに並べた画像。",
+  "kits_cover_custom": "カスタム画像。",
+  "kits_cover_error_processing": "画像の処理に時間がかかりすぎています。後でもう一度お試しください。",
+  "kits_cover_error_rejected": "画像が拒否されました。",
+  "kits_cover_error_size": "画像が {max} MB を超えています。",
+  "kits_cover_error_type": "このファイル形式には対応していません。",
+  "kits_cover_error_upload": "アップロードに失敗しました。接続を確認してください。",
+  "kits_cover_failed": "カバーを更新できませんでした。",
+  "kits_cover_hint": "PNG・JPEG・WebP・AVIF・GIF、{max} MB まで。横長の 3:1 がおすすめです。",
+  "kits_cover_label": "カバー",
+  "kits_cover_progress": "アップロード中… {percent}%",
+  "kits_cover_remove": "自動カバーを使う",
+  "kits_cover_removed": "自動カバーに戻しました",
+  "kits_cover_replace": "画像を差し替え",
+  "kits_cover_saved": "カバーを更新しました",
+  "kits_cover_upload": "画像をアップロード",
+  "kits_create_description": "名前を付けましょう。MOD はエディターで追加します。",
+  "kits_create_submit": "キットを作成",
+  "kits_create_title": "新しいキット",
+  "kits_create_with_mod": "{name} が最初のアイテムになります。",
+  "kits_created": "「{name}」を作成しました",
+  "kits_curated_by": "{curator} さんのキット",
+  "kits_delete": "キットを削除",
+  "kits_delete_confirm": "キットを削除",
+  "kits_delete_failed": "キットを削除できませんでした。",
+  "kits_delete_hint": "削除するとアドレスは解放されますが、コードが再利用されることはありません。",
+  "kits_delete_text": "キットとそのコード、リンクはすべての人に対して無効になります。元に戻せません。",
+  "kits_delete_title": "「{name}」を削除しますか？",
+  "kits_deleted": "「{name}」を削除しました",
+  "kits_detail_empty_text": "作成者はまだこのキットに MOD を追加していません。",
+  "kits_detail_empty_title": "まだ空です",
+  "kits_detail_readout": "キット",
+  "kits_details_discard": "破棄",
+  "kits_details_save": "詳細を保存",
+  "kits_details_saved": "詳細を保存しました",
+  "kits_details_title": "詳細",
+  "kits_download_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のファイルをすべてダウンロード"
+      }
+    }
+  ],
+  "kits_download_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のファイルを 1 件ずつ"
+      }
+    }
+  ],
+  "kits_download_all_description_size": [
+    {
+      "declarations": [
+        "input count",
+        "input size",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のファイル · 合計 {size}"
+      }
+    }
+  ],
+  "kits_download_all_done": "すべてダウンロードしました。インストールしましょう。",
+  "kits_download_all_hint": "ファイルを順番にダウンロードし、RedLoader でインストールしてください。依存 MOD はリストに含まれています。",
+  "kits_download_all_title": "すべてダウンロード",
+  "kits_download_install_guide": "MOD のインストール方法",
+  "kits_download_next": "次をダウンロード",
+  "kits_download_progress": "ダウンロード済み {done}/{total}",
+  "kits_download_progress_label": "ダウンロードの進捗",
+  "kits_drag_handle": "{name} を移動（{total} 件中 {position} 番目）",
+  "kits_drag_instructions": "並べ替えるには、ハンドルにフォーカスして Space キーを押し、矢印キーで移動し、もう一度 Space で確定、Esc で取り消します。",
+  "kits_duplicate": "複製",
+  "kits_duplicated": "コピー「{name}」を作成しました",
+  "kits_edit": "キットを編集",
+  "kits_editor_empty_text": "上の検索欄から MOD を探してください。依存 MOD は自動で追加されます。",
+  "kits_editor_empty_title": "最初のアイテムを並べましょう",
+  "kits_editor_readout": "設計図",
+  "kits_editor_static_title": "キットエディター",
+  "kits_editor_title": "{name} を編集中",
+  "kits_empty_filtered_text": "この条件に合うキットはまだありません。絞り込みを解除するとすべて表示されます。",
+  "kits_empty_filtered_title": "該当するキットはありません",
+  "kits_empty_text": "最初のひとりになりましょう。お気に入りの MOD を選び、それぞれにメモを付けて、コードひとつで共有できます。",
+  "kits_empty_title": "まだキットはありません",
+  "kits_error_email": "キットの作成・編集にはメールアドレスの確認が必要です。",
+  "kits_error_rate": "短時間に変更が多すぎます。1 分ほどお待ちください。",
+  "kits_error_slug_taken": "このアドレスのキットはすでにあります。別のアドレスにしてください。",
+  "kits_error_text": "こちら側で問題が発生しました。少し時間をおいて再度お試しください。",
+  "kits_error_title": "キットを読み込めませんでした",
+  "kits_error_validation": "キットに無効な内容があります。入力内容を確認して再度お試しください。",
+  "kits_field_description": "説明",
+  "kits_field_description_hint": "Markdown 対応。キットの目的、読み込み順のコツ、設定など。",
+  "kits_field_name": "名前",
+  "kits_field_name_placeholder": "ハードコア快適化",
+  "kits_field_slug": "アドレス",
+  "kits_field_slug_hint": "小文字・数字・ハイフンのみ。/kits/あなた/アドレス に使われます。",
+  "kits_field_visibility": "公開範囲",
+  "kits_filter_label": "キットを絞り込む",
+  "kits_filter_off": "（オフ）",
+  "kits_filter_on": "（オン）",
+  "kits_filter_staff_picks": "スタッフのおすすめ",
+  "kits_filter_works": "最新パッチで動作",
+  "kits_filter_works_on": "{build} で動作",
+  "kits_followers": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "フォロワー {display} 人"
+      }
+    }
+  ],
+  "kits_fork": "フォーク",
+  "kits_fork_email": "キットを作成するにはメールアドレスを確認してください。",
+  "kits_fork_failed": "キットをフォークできませんでした。もう一度お試しください。",
+  "kits_fork_rate": "短時間にキットを作りすぎています。1 分ほど待ってから再度お試しください。",
+  "kits_fork_working": "キットをフォーク中…",
+  "kits_forked_banner_text": "いまは非公開です。自由に変更して、共有するときは公開にしてください。",
+  "kits_forked_banner_title": "フォークが完成しました。",
+  "kits_forked_from": "@{handle} さんの {kit} から派生",
+  "kits_item_auto_dependency": "依存 MOD（自動追加）",
+  "kits_item_by": "作者：{creator}",
+  "kits_item_download_sr": "{name} v{version}",
+  "kits_item_kind_build": "建築物",
+  "kits_item_kind_library": "ライブラリ",
+  "kits_item_latest": "常に最新",
+  "kits_item_note_label": "メモ：",
+  "kits_item_options": "メモとバージョン",
+  "kits_item_pinned": "（固定バージョン）",
+  "kits_item_position": "{position} 番目：",
+  "kits_item_remove": "{name} を外す",
+  "kits_item_unavailable": "ファイルがありません",
+  "kits_items_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件"
+      }
+    }
+  ],
+  "kits_items_limit": "キットに入れられるのは依存 MOD を含めて最大 {max} 件です。",
+  "kits_items_title": "このキットの中身",
+  "kits_items_total": "アイテム：{count}/{max}",
+  "kits_items_with_auto": [
+    {
+      "declarations": [
+        "input count",
+        "input auto",
+        "local count__number = count: number",
+        "local auto__number = auto: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件 + 依存 MOD {auto__number} 件"
+      }
+    }
+  ],
+  "kits_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のキット"
+      }
+    }
+  ],
+  "kits_list_description": "厳選された Sons of the Forest の MOD 構成。依存 MOD 込み、互換性チェック済みで、コードひとつで仲間と共有できます。",
+  "kits_list_heading": "キット",
+  "kits_list_readout": "厳選 MOD 構成",
+  "kits_list_title": "Sons of the Forest の MOD キット",
+  "kits_list_title_page": "{title} — {page} ページ目",
+  "kits_manage_title": "管理",
+  "kits_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input curator",
+        "input count",
+        "input mods",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name}：{curator} さんによる Sons of the Forest の MOD キット（{count__number} 件：{mods}）。依存 MOD 込み、無料で直接ダウンロード。"
+      }
+    }
+  ],
+  "kits_meta_title": "{name} — {curator} さんの MOD キット",
+  "kits_more_from": "{curator} さんの他のキット",
+  "kits_mp_all_players": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "全員に必要：{count__number} 件"
+      }
+    }
+  ],
+  "kits_mp_client_side": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "クライアント側：{count__number} 件"
+      }
+    }
+  ],
+  "kits_mp_host_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ホストのみ：{count__number} 件"
+      }
+    }
+  ],
+  "kits_mp_none": "マルチプレイの情報はまだありません。",
+  "kits_mp_solo_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ソロ専用：{count__number} 件"
+      }
+    }
+  ],
+  "kits_mp_unknown": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "未申告：{count__number} 件"
+      }
+    }
+  ],
+  "kits_name_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number} 文字以上で入力してください。"
+      }
+    }
+  ],
+  "kits_note_hint": "キットページの MOD の下に表示 · {count}/{max}",
+  "kits_note_label": "メモ",
+  "kits_note_placeholder": "設定で半径を 6 にする",
+  "kits_offline": "オフラインです。再接続してからもう一度お試しください。",
+  "kits_og_alt": "{name}：SOTF Mods の Sons of the Forest MOD キット",
+  "kits_past_end_text": "キットはそれほど多くありません。最初のページに戻ってください。",
+  "kits_past_end_title": "最後のページより先です",
+  "kits_picker_error": "検索に失敗しました。入力を続けると再試行します。",
+  "kits_picker_in_kit": "追加済み",
+  "kits_picker_label": "MOD または建築物を追加",
+  "kits_picker_none": "見つかりませんでした。マニフェスト ID で試してください。",
+  "kits_picker_placeholder": "名前またはマニフェスト ID で検索…",
+  "kits_picker_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件の結果"
+      }
+    }
+  ],
+  "kits_picker_results_label": "検索結果",
+  "kits_picker_searching": "検索中…",
+  "kits_pin_error": "バージョンを読み込めませんでした。",
+  "kits_pin_hint": "新しいバージョンで不具合が出るときだけ固定してください。",
+  "kits_pin_label": "バージョン",
+  "kits_pin_latest": "常に最新",
+  "kits_pin_loading": "バージョンを読み込み中…",
+  "kits_qr_failed": "QR コードを作成できませんでした。",
+  "kits_removed": "{name} をキットから外しました",
+  "kits_revision": "rev. {revision}",
+  "kits_revisions_title": "更新履歴",
+  "kits_save_failed": "保存されていません。",
+  "kits_saved": "保存済み · rev. {revision}",
+  "kits_saving": "保存中…",
+  "kits_share_code_label": "キットコード",
+  "kits_share_description": "コードか短縮リンクを渡せば、全員が同じ構成をそろえられます。",
+  "kits_share_link_label": "フルリンク",
+  "kits_share_markdown_label": "Discord 用 Markdown",
+  "kits_share_markdown_suffix": [
+    {
+      "declarations": [
+        "input count",
+        "input code",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "MOD {count__number} 件 · コード {code}"
+      }
+    }
+  ],
+  "kits_share_more": "その他のオプション",
+  "kits_share_on": "{network} で共有",
+  "kits_share_private": "このキットは非公開で、あなたにしか見えません。共有するには公開または限定公開にしてください。",
+  "kits_share_qr": "QR コード",
+  "kits_share_qr_alt": "{name} への短縮リンクの QR コード",
+  "kits_share_qr_hint": "スマートフォンで読み取るとキットが開きます。",
+  "kits_share_short_label": "短縮リンク",
+  "kits_share_text": "{name} — Sons of the Forest の MOD キット",
+  "kits_share_title": "このキットを共有",
+  "kits_sidebar_label": "このキットについて",
+  "kits_slug_invalid": "小文字・数字・ハイフンで 2〜80 文字（先頭と末尾にハイフン不可）。",
+  "kits_sort_label": "キットの並び順",
+  "kits_sort_new": "新着",
+  "kits_sort_popular": "人気",
+  "kits_staff_pick": "スタッフのおすすめ",
+  "kits_summary_compat": "互換性",
+  "kits_summary_multiplayer": "マルチプレイ",
+  "kits_summary_size": "内容",
+  "kits_summary_title": "キットの概要",
+  "kits_total_size": "合計ダウンロード：{size}",
+  "kits_total_size_unknown": "合計サイズはまだ計測されていません",
+  "kits_undo_failed": "元に戻せませんでした。",
+  "kits_unlisted_text": "このキットはリンクかコードを知っている人だけが開けます。",
+  "kits_unlisted_title": "限定公開。",
+  "kits_unsaved": "未保存の変更",
+  "kits_updated_on": "{date} 更新",
+  "kits_view_public": "公開ページを見る",
+  "kits_visibility_private": "非公開",
+  "kits_visibility_private_hint": "自分だけ。",
+  "kits_visibility_public": "公開",
+  "kits_visibility_public_hint": "キット一覧と検索に表示されます。",
+  "kits_visibility_unlisted": "限定公開",
+  "kits_visibility_unlisted_hint": "リンクかコードを知っている人だけ。",
   "landing_blueprints_all": "すべての建築",
   "landing_blueprints_hint": "コミュニティの最新の建築",
   "landing_creators_all": "すべてのクリエイター",
@@ -2733,6 +3341,732 @@
   "mod_whats_new_read": "フィールドノートを読む",
   "mod_whats_new_title": "前回のダウンロード（v{version}）以降の変更点",
   "mod_whats_new_up_to_date": "最新バージョン（v{version}）を持っています。",
+  "profile_achievements_badge_repeatable": "何度でも獲得可能",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "サバイバーの {share} · {count__number} 人が所持"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "バッジは各サバイバーのフィールドノートを埋めていきます。未獲得のバッジはヒント付きの点線で表示されるので、次の目標がいつでもわかります。",
+  "profile_achievements_badges_title": "バッジ",
+  "profile_achievements_day_body": "各プロフィールには、アカウント作成からの経過日数が表示されます。純粋なアイデンティティで、ポイントにはなりません。",
+  "profile_achievements_day_title": "島での N 日目",
+  "profile_achievements_fair_play_downloads": "ダウンロード数で XP は得られないので、水増ししても意味がありません。",
+  "profile_achievements_fair_play_new_accounts": "作成されたばかりのアカウントは、信頼を得るまで評価と互換性で半分の重みになります。",
+  "profile_achievements_fair_play_reversible": "XP はすべて記録され、不正によるものは取り消されることがあります。",
+  "profile_achievements_fair_play_same_network": "同じネットワークのアカウント間で 24 時間以内に行われた投票やレポートはカウントされません。",
+  "profile_achievements_fair_play_spikes": "急激なダウンロード増加はレンジャーが確認します。",
+  "profile_achievements_fair_play_title": "フェアプレー",
+  "profile_achievements_intro": "島の報酬のルールをすべて公開しています。評価するのは質と助け合いで、単なる量ではありません。",
+  "profile_achievements_meta_description": "SOTF Mods のサバイバーランク、XP、クリエイターティア、バッジ、MOD マイルストーンの仕組み。量ではなく質と助け合いを評価する公開ルールです。",
+  "profile_achievements_meta_title": "バッジ、ランク、クリエイターティア",
+  "profile_achievements_milestones_intro": "各 MOD は初日から数えたダウンロード数のマイルストーンを祝います。MOD ページのタイムラインに表示され、大きなものは Discord で告知されます。",
+  "profile_achievements_milestones_title": "MOD マイルストーン",
+  "profile_achievements_motw_body": "毎週月曜日、ユニークダウンロードの勢いが最も強い MOD が選ばれます。公開中で、現行ビルドで壊れておらず、評価が高いことが条件です。同じクリエイターが 2 週間以内に 2 回選ばれることはありません。",
+  "profile_achievements_motw_title": "今週の MOD",
+  "profile_achievements_principle_no_streaks": "連続ログインも、ルートボックスも、誰かを貶めるランキングもありません。",
+  "profile_achievements_principle_privacy": "ランクとアクティビティはプライバシー設定で非表示にできます。",
+  "profile_achievements_principle_quality": "XP はほかの人を助けることで得られます：役立つレビュー、正確なフィールドレポート、解決した問題。ダウンロード数で XP は得られません。",
+  "profile_achievements_principle_retroactive": "すべて遡って適用されます：2023 年以降のアカウントは、これまでの成果をそのまま保持します。",
+  "profile_achievements_ranks_intro": "メンバー全員に、コミュニティを助けて得た XP で上がるサバイバーランクがあります。購入はできず、活動しなくても下がりません。",
+  "profile_achievements_ranks_title": "サバイバーランク",
+  "profile_achievements_tier_perks": "ティアスタンプとアバター枠。",
+  "profile_achievements_tier_perks_spotlight": "ティアスタンプ、アバター枠、トップページでのスポットライト。",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{downloads} ダウンロード"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "クリエイターは、v2 以前の履歴も含めた全 MOD の累計ダウンロード数で自動的にティアが上がります。ティアごとにプロフィールのスタンプとアバターの枠が追加されます。",
+  "profile_achievements_tiers_title": "クリエイターティア",
+  "profile_achievements_title": "実績",
+  "profile_achievements_toc": "このページの内容",
+  "profile_achievements_xp_action": "行動",
+  "profile_achievements_xp_limit": "上限",
+  "profile_achievements_xp_needed": "必要 XP",
+  "profile_achievements_xp_note": "自分のコンテンツに対する行動はカウントされません。XP は監査され、不正によるものは取り消されることがあります。",
+  "profile_achievements_xp_title": "XP の獲得方法",
+  "profile_action_edit": "プロフィールを編集",
+  "profile_activity_caption": "1 日ごとのリリース、コメント、レビュー、フィールドレポート（UTC）。",
+  "profile_activity_cell": "{date}：{detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "コメント {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "リリース {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "フィールドレポート {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "レビュー {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} は過去 12 か月、リリース・コメント・レビュー・報告を行っていません。",
+  "profile_activity_empty_title": "静かな小道",
+  "profile_activity_heatmap_label": "{name} の過去 12 か月の貢献",
+  "profile_activity_kind_comments": "コメント",
+  "profile_activity_kind_releases": "リリース",
+  "profile_activity_kind_reports": "フィールドレポート",
+  "profile_activity_kind_reviews": "レビュー",
+  "profile_activity_legend_less": "少",
+  "profile_activity_legend_more": "多",
+  "profile_activity_private": "{name} はアクティビティを非公開にしています。",
+  "profile_activity_recent_title": "最近の足跡",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input days",
+        "input count",
+        "local days__number = days: number",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "{from}〜{to} の {days__number} 日間で貢献なし。",
+        "count__exact=*": "{from}〜{to} の {days__number} 日間で貢献 {count__number} 件。"
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "活動日数",
+  "profile_activity_table_caption": "{name} の月別の貢献",
+  "profile_activity_table_month": "月",
+  "profile_activity_table_toggle": "表で表示",
+  "profile_activity_table_total": "合計",
+  "profile_activity_title": "アクティビティ",
+  "profile_avatar_alt": "{name} のアバター",
+  "profile_badge_bug_hunter_hint": "バグ報告 5 件をクリエイターに解決済みにしてもらう。",
+  "profile_badge_bug_hunter_name": "バグハンター",
+  "profile_badge_cartographer_hint": "フォロワーが 10 人に達する公開キットを作る。",
+  "profile_badge_cartographer_name": "地図職人",
+  "profile_badge_crash_landing_hint": "最初の MOD を公開する。",
+  "profile_badge_crash_landing_name": "不時着",
+  "profile_badge_earned_on": "{date} に獲得",
+  "profile_badge_featured": "注目",
+  "profile_badge_field_medic_hint": "コミュニティの合意と一致する互換性レポートを 10 件送る。",
+  "profile_badge_field_medic_name": "フィールドメディック",
+  "profile_badge_first_blueprint_hint": "最初の建築を公開する。",
+  "profile_badge_first_blueprint_name": "最初の設計図",
+  "profile_badge_first_field_report_hint": "最初の互換性レポートを送る。",
+  "profile_badge_first_field_report_name": "最初のフィールドレポート",
+  "profile_badge_first_review_hint": "テキスト付きの最初のレビューを書く。",
+  "profile_badge_first_review_name": "最初のレビュー",
+  "profile_badge_group_awards": "アワード",
+  "profile_badge_group_community": "コミュニティ",
+  "profile_badge_group_creator": "クリエイター",
+  "profile_badge_group_legacy": "初期サバイバー",
+  "profile_badge_group_onboarding": "はじめの一歩",
+  "profile_badge_group_roles": "ロール",
+  "profile_badge_group_secret": "シークレット",
+  "profile_badge_helping_hand_hint": "コメント 5 件をクリエイターに解決策としてマーク、またはピン留めしてもらう。",
+  "profile_badge_helping_hand_name": "助けの手",
+  "profile_badge_island_favorite_hint": "評価 4.5 以上・レビュー 20 件以上の MOD を持つ。",
+  "profile_badge_island_favorite_name": "島のお気に入り",
+  "profile_badge_locked": "未獲得",
+  "profile_badge_mod_of_the_week_hint": "自分の MOD が今週の MOD に選ばれる。何度でも獲得可能。",
+  "profile_badge_mod_of_the_week_name": "今週の MOD",
+  "profile_badge_night_owl_hint": "現地時間の午前 0 時から 4 時の間に 5 回貢献する。",
+  "profile_badge_night_owl_name": "夜ふかし",
+  "profile_badge_original_survivor_hint": "SOTF Mods v2 の公開前、{year} 年に作成されたアカウント。",
+  "profile_badge_original_survivor_name": "初期サバイバー {year}",
+  "profile_badge_patch_day_hero_hint": "MOD を壊すゲームアップデートから 7 日以内に互換バージョンを公開する。",
+  "profile_badge_patch_day_hero_name": "パッチデーの英雄",
+  "profile_badge_pillar_of_the_island_hint": "ほかのクリエイターの MOD 3 件以上が依存するライブラリを作る。",
+  "profile_badge_pillar_of_the_island_name": "島の柱",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "島の安全を守るモデレーター。",
+  "profile_badge_ranger_name": "レンジャー",
+  "profile_badge_secret_hint": "探索を続けよう。島には夜にしか見つからないものもある。",
+  "profile_badge_secret_name": "シークレットバッジ",
+  "profile_badge_staff_pick_hint": "自分の MOD がスタッフに選ばれる。何度でも獲得可能。",
+  "profile_badge_staff_pick_name": "スタッフのおすすめ",
+  "profile_badge_survived_day_one_hint": "「1 日目」チェックリストを完了する。",
+  "profile_badge_survived_day_one_name": "1 日目を生き延びた",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "SOTF Mods の翻訳に協力した。",
+  "profile_badge_translator_name": "翻訳者",
+  "profile_badge_verified_creator_hint": "SOTF Mods チームが認証したクリエイター。",
+  "profile_badge_verified_creator_name": "認証済みクリエイター",
+  "profile_badge_voice_of_the_island_hint": "レビューで「役に立った」票を 50 件もらう。",
+  "profile_badge_voice_of_the_island_name": "島の声",
+  "profile_badge_well_documented_hint": "自分の MOD のページ品質を 100 にする。",
+  "profile_badge_well_documented_name": "ドキュメント充実",
+  "profile_badges_empty_description": "バッジは、公開・レビュー・互換性レポート・ほかの人の手助けで獲得できます。未獲得のバッジは点線で表示されます。",
+  "profile_badges_empty_title": "ノートはまだ白紙です",
+  "profile_badges_featured_label": "注目のバッジ",
+  "profile_badges_rules_link": "バッジの仕組み",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "まだバッジはありません。",
+        "count__exact=*": "バッジを {count__number} 個獲得。"
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input total",
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "{total} 個中 0 個。",
+        "count__exact=*": "{total} 個中 {count__number} 個。"
+      }
+    }
+  ],
+  "profile_badges_title": "フィールドノート",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "v2 へようこそ：バッジを {badgeCount__number} 個獲得しました"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "まだ建築はありません",
+  "profile_builds_title": "{name} の建築",
+  "profile_cards_empty_action": "MOD を探す",
+  "profile_cards_empty_description": "{name} はまだここに何も公開していません。島のほかの人たちの作品を見てみましょう。",
+  "profile_creator_top_mod": "代表作：{mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "クリエイター {display} 人"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "まだ誰も MOD を公開していません。最初の人には「不時着」バッジが贈られます。",
+  "profile_creators_empty_title": "まだクリエイターはいません",
+  "profile_creators_error_title": "クリエイターを読み込めませんでした",
+  "profile_creators_intro": "島の MOD と建築を作るサバイバーたち。フォローすると、新作の公開時にシグナルが届きます。",
+  "profile_creators_meta_description": "Sons of the Forest の MOD と建築を作る人たち：ダウンロード数、フォロワー、ティア、代表作。クリエイターをフォローして新作を見逃さないように。",
+  "profile_creators_meta_title": "Sons of the Forest の MOD クリエイター",
+  "profile_creators_meta_title_page": "Sons of the Forest の MOD クリエイター — {page} ページ目",
+  "profile_creators_sort_downloads": "ダウンロード数順",
+  "profile_creators_sort_followers": "フォロワー数順",
+  "profile_creators_sort_recent": "最近のリリース順",
+  "profile_creators_sort_spotlight": "スポットライト",
+  "profile_creators_tiers_link": "クリエイターティアの仕組み",
+  "profile_creators_title": "クリエイター",
+  "profile_day_on_island": "島での {day} 日目",
+  "profile_feed_title": "{name} の新着リリース",
+  "profile_follow_error": "フォローを更新できませんでした。接続を確認して、もう一度お試しください。",
+  "profile_follow_name": "{name} をフォロー",
+  "profile_follow_own": "自分自身はフォローできません。",
+  "profile_follow_verify_email": "クリエイターをフォローするには、メールアドレスを確認してください。",
+  "profile_followed": "フォローしました。新しいリリースがあるとシグナルが届きます。",
+  "profile_joined": "{date} に参加",
+  "profile_kits_empty_action": "キットを見る",
+  "profile_kits_empty_description": "{name} はまだキットを共有していません。キットは、誰でも一度にインストールできる MOD の厳選セットです。",
+  "profile_kits_empty_title": "公開キットはありません",
+  "profile_kits_private": "{name} はキットを非公開にしています。",
+  "profile_kits_title": "{name} のキット",
+  "profile_link_copied": "プロフィールのリンクをコピーしました",
+  "profile_link_copy_failed": "リンクをコピーできませんでした。アドレスバーからコピーしてください。",
+  "profile_link_website": "ウェブサイト",
+  "profile_links_label": "リンク",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__number = count: number",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} は Sons of the Forest の MOD を制作しています：MOD・建築 {count__number} 件、{downloads} ダウンロード、フォロワー {followers__number} 人。SOTF Mods で無料ダウンロード。"
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__number = reviews: number",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD コミュニティ SOTF Mods の {name}：レビュー {reviews__number} 件、フィールドレポート {reports__number} 件。"
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name}（@{handle}）— Sons of the Forest の MOD クリエイター",
+  "profile_meta_title_member": "{name}（@{handle}）— Sons of the Forest MOD コミュニティ",
+  "profile_meta_title_tab": "{tab} · {name}（@{handle}）",
+  "profile_mods_empty_title": "まだ MOD はありません",
+  "profile_mods_title": "{name} の MOD",
+  "profile_pinned_title": "ピン留め",
+  "profile_private_title": "非公開",
+  "profile_rank_builder": "建築家",
+  "profile_rank_castaway": "漂流者",
+  "profile_rank_forager": "採集者",
+  "profile_rank_label": "サバイバーランク",
+  "profile_rank_legend": "島の伝説",
+  "profile_rank_pathfinder": "開拓者",
+  "profile_rank_progress": "{rank} · {xp} XP。{next} まであと {needed} XP。",
+  "profile_rank_scavenger": "スカベンジャー",
+  "profile_rank_top": "{rank} · {xp} XP。島の頂点です。",
+  "profile_rank_trapper": "罠師",
+  "profile_rank_veteran": "ベテラン",
+  "profile_review_of": "{mod} のレビュー",
+  "profile_reviews_empty_description": "{name} はまだ MOD をレビューしていません。",
+  "profile_reviews_empty_title": "まだレビューはありません",
+  "profile_reviews_newest": "最新のレビュー",
+  "profile_reviews_older": "以前のレビュー",
+  "profile_reviews_pagination": "さらにレビューを表示",
+  "profile_reviews_title": "{name} のレビュー",
+  "profile_sort_downloads": "ダウンロード数順",
+  "profile_sort_label": "並べ替え",
+  "profile_sort_new": "新着順",
+  "profile_sort_updated": "最近の更新順",
+  "profile_stat_downloads_label": "ダウンロード",
+  "profile_stat_followers_label": "フォロワー",
+  "profile_stat_helpful_label": "「役に立った」票",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "レビューへの「役に立った」票 {count__number} 件"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "MOD",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__number = mods: number",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "MOD {mods__number} 件、建築 {builds__number} 件"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "平均評価",
+  "profile_stat_rating_title": "平均 {rating}（5 点満点）",
+  "profile_stats_label": "統計",
+  "profile_tab_activity": "アクティビティ",
+  "profile_tab_badges": "バッジ",
+  "profile_tab_builds": "建築",
+  "profile_tab_error_description": "サーバーの応答に時間がかかりすぎました。少し待ってからもう一度お試しください。",
+  "profile_tab_error_title": "このセクションを読み込めませんでした",
+  "profile_tab_kits": "キット",
+  "profile_tab_mods": "MOD",
+  "profile_tab_reviews": "レビュー",
+  "profile_tabs_label": "プロフィールのセクション",
+  "profile_tier_cabin": "キャビン",
+  "profile_tier_campfire": "焚き火",
+  "profile_tier_fortress": "要塞",
+  "profile_tier_label": "クリエイターティア",
+  "profile_tier_landmark": "ランドマーク",
+  "profile_tier_lean_to": "差しかけ小屋",
+  "profile_tier_treehouse": "ツリーハウス",
+  "profile_unfollowed": "フォローを解除しました。",
+  "profile_verified_creator": "認証済みクリエイター",
+  "profile_xp_bug_report_resolved": "バグ報告がクリエイターに解決済みにされる",
+  "profile_xp_comment_solution_or_pinned": "コメントがクリエイターに解決策としてマーク、またはピン留めされる",
+  "profile_xp_compat_report": "フィールドレポート（このビルドで動く？）",
+  "profile_xp_compat_report_consensus": "ボーナス：72 時間後にレポートが合意と一致",
+  "profile_xp_first_follow": "最初の MOD またはクリエイターをフォローする",
+  "profile_xp_kit_followers_10": "キットのフォロワーが 10 人増えるごと",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "1 日 {count__number} 回"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "上限なし",
+  "profile_xp_limit_once": "1 回のみ",
+  "profile_xp_limit_per_build": "ゲームビルドごとに 1 回",
+  "profile_xp_onboarding_completed": "「1 日目」チェックリストを完了する",
+  "profile_xp_patch_day_release": "クリエイター：MOD を壊すアップデートから 14 日以内に互換バージョンを公開",
+  "profile_xp_profile_completed": "プロフィールを完成させる",
+  "profile_xp_review_helpful_vote": "レビューへの「役に立った」票",
+  "profile_xp_review_with_text": "80 文字以上のテキスト付きレビュー",
+  "social_action_back": "戻る",
+  "social_action_cancel": "キャンセル",
+  "social_action_close": "閉じる",
+  "social_action_continue": "続ける",
+  "social_action_delete": "削除",
+  "social_action_edit": "編集",
+  "social_action_load_more": "さらに読み込む",
+  "social_action_retry": "再試行",
+  "social_action_save": "保存",
+  "social_action_undo": "元に戻す",
+  "social_bug_resolve": "バージョンで修正済みにする",
+  "social_bug_resolve_intro": "報告者に通知が届き、コメントに「vX で修正済み」と表示されます。",
+  "social_bug_resolve_submit": "修正済みにする",
+  "social_bug_resolve_title": "どのバージョンで修正しましたか？",
+  "social_bug_resolve_version": "バージョン",
+  "social_bug_resolved_done": "{version} で修正済みにしました。",
+  "social_comment_bug_hint": "バグ報告は作者の受信箱に届きます。何をしたか、何が起きたか、何を期待したかを書いてください。",
+  "social_comment_bug_label": "これはバグ報告です",
+  "social_comment_bug_version": "不具合のあるバージョン",
+  "social_comment_deleted": "コメントを削除しました。",
+  "social_comment_edit_label": "コメントを編集",
+  "social_comment_edited": "コメントを更新しました。",
+  "social_comment_empty": "まず何か書いてください。",
+  "social_comment_held": "送信しました。新しいアカウントの外部リンク付きコメントはレンジャーの確認待ちになります。",
+  "social_comment_invalid": "このテキストは保存できません。確認してもう一度お試しください。",
+  "social_comment_label": "あなたのコメント",
+  "social_comment_placeholder": "質問、ヒントの共有、問題の報告など…",
+  "social_comment_posted": "コメントを投稿しました。",
+  "social_comment_reply_label": "あなたの返信",
+  "social_comment_reply_submit": "返信",
+  "social_comment_reply_to": "@{handle} さんへの返信",
+  "social_comment_sign_in": "ログインしてコメントする",
+  "social_comment_submit": "コメントを投稿",
+  "social_comment_too_long": "{max} 文字以内にしてください。",
+  "social_comments_empty": "まだコメントはありません。質問、コツ、バグ報告はこちらへ。",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "これ以上コメントはありません。",
+        "count__exact=*": "コメントをさらに {count__number} 件読み込みました。"
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほか {count__number} 件の返信"
+      }
+    }
+  ],
+  "social_comments_sort": "コメントの並び順",
+  "social_comments_sort_new": "新着",
+  "social_comments_sort_top": "人気",
+  "social_comments_sorted": "コメントを並べ替えました。",
+  "social_compat_build": "ゲームのビルド",
+  "social_compat_build_current": "{label}（現行）",
+  "social_compat_deleted": "フィールドレポートを削除しました。",
+  "social_compat_heading": "ゲームで動きましたか？",
+  "social_compat_intro": "この MOD があなたの環境で動くか、ほかのサバイバーに教えてください。20 秒で終わります。",
+  "social_compat_missing_mode": "プレイ方法を選んでください。",
+  "social_compat_missing_result": "結果を選んでください。",
+  "social_compat_missing_setup": "バージョンとゲームのビルドを選んでください。",
+  "social_compat_mode": "プレイ方法は？",
+  "social_compat_mode_client": "マルチプレイの参加者",
+  "social_compat_mode_client_hint": "ほかの人のゲームに参加する。",
+  "social_compat_mode_dedicated": "専用サーバー",
+  "social_compat_mode_dedicated_hint": "専用サーバーにインストール。",
+  "social_compat_mode_host": "マルチプレイのホスト",
+  "social_compat_mode_host_hint": "友だちのためにホストする。",
+  "social_compat_mode_singleplayer": "シングルプレイ",
+  "social_compat_mode_singleplayer_hint": "ひとりで遊ぶ。",
+  "social_compat_note": "メモ",
+  "social_compat_note_placeholder": "動くこと、動かないこと、エラーメッセージなど…",
+  "social_compat_open": "互換性を報告",
+  "social_compat_other_mods": "ほかに入れている MOD",
+  "social_compat_other_mods_placeholder": "SonsAxLib、StackMod…",
+  "social_compat_prompt": "v{version} をダウンロードしました。{build} で動きましたか？",
+  "social_compat_prompt_label": "動きましたか？",
+  "social_compat_prompt_later": "今はしない",
+  "social_compat_report_another": "別の環境を報告",
+  "social_compat_result": "動きましたか？",
+  "social_compat_result_broken": "動かない",
+  "social_compat_result_broken_hint": "読み込めないかクラッシュする。",
+  "social_compat_result_partial": "一部動く",
+  "social_compat_result_partial_hint": "読み込めるが何かが壊れている。",
+  "social_compat_result_works": "動く",
+  "social_compat_result_works_hint": "試したものはすべて動く。",
+  "social_compat_step_of": "ステップ {step}/{total}：{title}",
+  "social_compat_step_result": "結果",
+  "social_compat_step_setup": "あなたの環境",
+  "social_compat_steps": "ステップ",
+  "social_compat_submit": "レポートを送信",
+  "social_compat_text": "フィールドレポートは 10 秒。この MOD が現在のパッチで動くかどうかをみんなに伝えられます。",
+  "social_compat_thanks": "ありがとう、サバイバー！あなたのレポートは互換性バッジに反映されます。",
+  "social_compat_title": "フィールドレポート",
+  "social_compat_version": "MOD のバージョン",
+  "social_compat_yours": "{build} で「{result}」と報告しました（{mode}、v{version}）。",
+  "social_deleted_user": "削除されたサバイバー",
+  "social_editor_bold": "太字",
+  "social_editor_code": "コード",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown：**太字**、*斜体*、`コード`、[リンク](url)、||ネタバレ||、@メンション · {modifier}+Enter で送信",
+  "social_editor_italic": "斜体",
+  "social_editor_link": "リンク",
+  "social_editor_link_text": "リンクテキスト",
+  "social_editor_list": "リスト",
+  "social_editor_mentions": "メンションする相手",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "候補はありません",
+        "count__exact=*": "候補 {count__number} 件、矢印キーで選択"
+      }
+    }
+  ],
+  "social_editor_mode": "エディターの表示",
+  "social_editor_preview": "プレビュー",
+  "social_editor_preview_empty": "プレビューする内容がまだありません。",
+  "social_editor_preview_loading": "プレビューを作成中…",
+  "social_editor_quote": "引用",
+  "social_editor_sample": "テキスト",
+  "social_editor_spoiler": "ネタバレ",
+  "social_editor_toolbar": "書式",
+  "social_editor_write": "編集",
+  "social_image_add": "画像を追加（{count}/{max}）",
+  "social_image_failed": "画像をアップロードできませんでした。削除してもう一度お試しください。",
+  "social_image_failed_short": "失敗",
+  "social_image_limit": "コメント 1 件につき画像は {max} 枚までです。",
+  "social_image_remove": "{name} を削除",
+  "social_image_size": "画像は 5 MB までです。",
+  "social_image_type": "PNG、JPEG、WebP、AVIF、GIF 画像を使ってください。",
+  "social_image_uploading": "アップロード中…",
+  "social_image_wait": "画像のアップロードが終わるまでお待ちください。",
+  "social_loading": "読み込み中…",
+  "social_md_spoiler": "ネタバレ",
+  "social_more_actions": "{name} さんの投稿のその他の操作",
+  "social_offline": "オフラインです。表示中の内容は最新でない可能性があります。",
+  "social_optional": "（任意）",
+  "social_pin": "ピン留め",
+  "social_pin_limit": "ピン留めは 3 件までです。先に 1 件解除してください。",
+  "social_pinned": "コメントをピン留めしました。",
+  "social_reaction_add": "リアクションを追加",
+  "social_reaction_added": "リアクションを追加しました：{reaction}。",
+  "social_reaction_fire": "炎",
+  "social_reaction_heart": "ハート",
+  "social_reaction_laugh": "笑い",
+  "social_reaction_party": "お祝い",
+  "social_reaction_pray": "ありがとう",
+  "social_reaction_removed": "リアクションを取り消しました：{reaction}。",
+  "social_reaction_thumbs_up": "いいね",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{reaction}：{count__number} 人"
+      }
+    }
+  ],
+  "social_reactions": "リアクション",
+  "social_replies_failed": "返信を読み込めませんでした。もう一度お試しください。",
+  "social_reply": "返信",
+  "social_reply_to_label": "{name} さんに返信",
+  "social_report": "通報",
+  "social_report_choose_reason": "理由を選んでください。",
+  "social_report_comment_title": "このコメントを通報",
+  "social_report_details_label": "詳細（任意）",
+  "social_report_duplicate": "この MOD はすでに通報済みです。レンジャーが対応中です。",
+  "social_report_field_report_title": "このフィールドレポートを通報",
+  "social_report_intro": "レンジャーがすべての通報を確認します。何が問題か教えてください。",
+  "social_report_reason_harassment": "嫌がらせやヘイト",
+  "social_report_reason_illegal": "違法なコンテンツ",
+  "social_report_reason_label": "理由",
+  "social_report_reason_nsfw_unmarked": "18 歳以上の表示がない成人向けコンテンツ",
+  "social_report_reason_other": "その他",
+  "social_report_reason_spam": "スパムまたは広告",
+  "social_report_review_title": "このレビューを通報",
+  "social_report_sent": "ありがとうございます。レンジャーが確認します。",
+  "social_report_submit": "通報を送信",
+  "social_review_body_label": "あなたのレビュー",
+  "social_review_body_placeholder": "良かった点、良くなかった点、どんな人向けか。",
+  "social_review_conflict": "この MOD はすでにレビュー済みです。レビューを編集してください。",
+  "social_review_deleted": "レビューを削除しました。",
+  "social_review_edit": "レビューを編集",
+  "social_review_forbidden": "まだこの MOD をレビューできません。確認済みのメールアドレスと作成から 24 時間以上たったアカウントが必要です。作者は自分の MOD をレビューできません。",
+  "social_review_own_mod": "あなたの MOD です。各レビューに 1 回ずつ返信できます。",
+  "social_review_posted": "ありがとうございます！レビューを公開しました。",
+  "social_review_rating_label": "あなたの評価",
+  "social_review_rating_required": "星を 1〜5 つ選んでください。",
+  "social_review_reply": "公開で返信",
+  "social_review_reply_delete": "返信を削除",
+  "social_review_reply_deleted": "返信を削除しました。",
+  "social_review_reply_edit": "返信を編集",
+  "social_review_reply_label": "あなたの公開返信",
+  "social_review_reply_saved": "返信を公開しました。",
+  "social_review_reply_submit": "返信を公開",
+  "social_review_rules": "レビューはサバイバー 1 人につき 1 件。バージョン、動いた点、動かなかった点を具体的に。",
+  "social_review_see_all": "すべてのレビューを見る",
+  "social_review_star_1": "動かない",
+  "social_review_star_2": "いまひとつ",
+  "social_review_star_3": "まあまあ",
+  "social_review_star_4": "とても良い",
+  "social_review_star_5": "必須",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "星 {count__number}"
+      }
+    }
+  ],
+  "social_review_submit": "レビューを公開",
+  "social_review_title_label": "タイトル",
+  "social_review_title_too_long": "タイトルは {max} 文字までです。",
+  "social_review_update": "レビューを更新",
+  "social_review_updated": "レビューを更新しました。",
+  "social_review_version_auto": "最後にダウンロードしたもの",
+  "social_review_version_label": "使ったバージョン",
+  "social_review_write": "レビューを書く",
+  "social_review_yours": "あなたのレビュー",
+  "social_solution_mark": "解決策としてマーク",
+  "social_solution_marked": "解決策としてマークしました。",
+  "social_solution_unmark": "解決策のマークを外す",
+  "social_solution_unmarked": "解決策のマークを外しました。",
+  "social_unpin": "ピン留めを解除",
+  "social_unpinned": "ピン留めを解除しました。",
+  "social_verify_action": "メールを確認",
+  "social_verify_to_comment": "コメントするにはメールアドレスを確認してください。",
+  "social_verify_to_report": "フィールドレポートを送るにはメールアドレスを確認してください。",
+  "social_verify_to_review": "レビューを書くにはメールアドレスを確認してください。",
+  "social_vote_label": "参考になった？",
+  "social_vote_no": "参考にならなかった",
+  "social_vote_removed": "投票を取り消しました。",
+  "social_vote_saved": "投票しました。",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "はい、参考になった（{count__number} 票）"
+      }
+    }
+  ],
   "ui_breadcrumbs": "パンくずリスト",
   "ui_cancel": "キャンセル",
   "ui_choose": "選択…",

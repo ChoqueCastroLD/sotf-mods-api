@@ -432,6 +432,151 @@
   "builds_versions_latest": "Najnowsza",
   "builds_versions_title": "Wersje",
   "builds_versions_yanked": "Wycofana",
+  "cmdk_action_backpack": "Otwórz swój plecak",
+  "cmdk_action_basecamp": "Przejdź do Obozu",
+  "cmdk_action_current": "Obecny",
+  "cmdk_action_language": "Język: {language}",
+  "cmdk_action_signals": "Otwórz Sygnały",
+  "cmdk_action_theme": "Motyw: {theme}",
+  "cmdk_action_upload": "Prześlij moda",
+  "cmdk_action_upload_build": "Udostępnij build",
+  "cmdk_close": "Zamknij",
+  "cmdk_compat_broken": "Nie działa",
+  "cmdk_compat_mixed": "Mieszane zgłoszenia",
+  "cmdk_compat_untested": "Nieprzetestowany",
+  "cmdk_compat_works": "Działa",
+  "cmdk_dialog_label": "Wyszukiwanie i polecenia",
+  "cmdk_download_started": "Rozpoczęto pobieranie: {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} pobranie",
+        "count__plural=few": "{display} pobrania",
+        "count__plural=many": "{display} pobrań",
+        "count__plural=*": "{display} pobrania"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "Żadne polecenie nie pasuje do „{query}”.",
+  "cmdk_empty_hint": "Spróbuj użyć mniej słów albo zawęź wyszukiwanie: mods:, builds:, kits:, @twórca lub > dla poleceń.",
+  "cmdk_error_hint": "Sprawdź połączenie i spróbuj ponownie. Akcje i ostatnie elementy nadal działają.",
+  "cmdk_error_ref": "Ref. {ref}",
+  "cmdk_error_title": "Nie udało się wczytać indeksu wyszukiwania.",
+  "cmdk_fact_compat": "Kompatybilność",
+  "cmdk_fact_contents": "Zawartość",
+  "cmdk_fact_downloads": "Pobrania",
+  "cmdk_fact_manifest_id": "ID moda",
+  "cmdk_fact_published": "Opublikowane",
+  "cmdk_group_actions": "Akcje",
+  "cmdk_group_categories": "Kategorie",
+  "cmdk_group_pages": "Strony",
+  "cmdk_group_recent": "Ostatnie",
+  "cmdk_group_server": "Z pełnego wyszukiwania",
+  "cmdk_group_trending": "Popularne w tym tygodniu",
+  "cmdk_hint_close": "Zamknij",
+  "cmdk_hint_download": "Pobierz",
+  "cmdk_hint_move": "Nawigacja",
+  "cmdk_hint_new_tab": "Nowa karta",
+  "cmdk_hint_open": "Otwórz",
+  "cmdk_hint_scope": "Zakres",
+  "cmdk_input_label": "Szukaj modów, buildów, zestawów, twórców i poleceń",
+  "cmdk_kind_build": "Build",
+  "cmdk_kind_category": "Kategoria",
+  "cmdk_kind_creator": "Twórca",
+  "cmdk_kind_kit": "Zestaw",
+  "cmdk_kind_library": "Biblioteka",
+  "cmdk_kind_mod": "Mod",
+  "cmdk_kind_page": "Strona",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} element",
+        "count__plural=few": "{count__number} elementy",
+        "count__plural=many": "{count__number} elementów",
+        "count__plural=*": "{count__number} elementu"
+      }
+    }
+  ],
+  "cmdk_loading": "Rozkładamy mapę…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=few": "{count__number} mody",
+        "count__plural=many": "{count__number} modów",
+        "count__plural=*": "{count__number} moda"
+      }
+    }
+  ],
+  "cmdk_no_results": "Nic na mapie dla „{query}”. Spróbuj użyć mniej słów.",
+  "cmdk_offline": "Jesteś offline. To, co widzisz, może być nieaktualne.",
+  "cmdk_placeholder": "Szukaj modów, buildów, zestawów, twórców…",
+  "cmdk_placeholder_actions": "Wpisz polecenie…",
+  "cmdk_preview_download": "Pobierz najnowszą",
+  "cmdk_preview_empty": "Przejdź po wynikach, aby zobaczyć tu ich podgląd.",
+  "cmdk_preview_hint": "Naciśnij Enter, aby otworzyć.",
+  "cmdk_preview_label": "Podgląd",
+  "cmdk_preview_open": "Otwórz stronę",
+  "cmdk_recent_clear": "Wyczyść ostatnie",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak wyników",
+        "count__exact=*, count__plural=one": "{count__number} wynik",
+        "count__exact=*, count__plural=few": "{count__number} wyniki",
+        "count__exact=*, count__plural=many": "{count__number} wyników",
+        "count__exact=*, count__plural=*": "{count__number} wyniku"
+      }
+    }
+  ],
+  "cmdk_retry": "Spróbuj ponownie",
+  "cmdk_scope_all": "Wszystko",
+  "cmdk_scope_label": "Szukaj w",
+  "cmdk_scope_remove": "Szukaj znowu wszędzie (usuń „{scope}”)",
+  "cmdk_searching": "Przeszukujemy całą wyspę…",
+  "cmdk_see_all": "Zobacz wszystkie wyniki dla „{query}”",
+  "cmdk_start_hint": "Strony otwarte stąd pojawią się na tej liście.",
+  "cmdk_term_builds": "Buildy",
+  "cmdk_term_creators": "Twórcy",
+  "cmdk_term_kits": "Zestawy",
+  "cmdk_term_mods": "Mody",
+  "cmdk_theme_day": "Dzień",
+  "cmdk_theme_night": "Noc",
+  "cmdk_theme_system": "Systemowy",
   "common_account_menu": "Menu konta",
   "common_account_profile": "Twój profil",
   "common_account_settings": "Ustawienia",
@@ -2429,6 +2574,638 @@
   "explore_view_grid": "Siatka",
   "explore_view_label": "Widok",
   "explore_view_list": "Lista",
+  "kits_about_empty": "Brak opisu.",
+  "kits_about_title": "O tym zestawie",
+  "kits_action_create": "Utwórz zestaw",
+  "kits_actions_for": "Działania dla {name}",
+  "kits_add_already": "{name} jest już w „{kit}”.",
+  "kits_add_button": "Dodaj",
+  "kits_add_description": "Wybierz zestaw albo zacznij nowy od tego moda.",
+  "kits_add_dismiss": "Zamknij",
+  "kits_add_done": "Dodano {name} do „{kit}”.",
+  "kits_add_failed": "Nie udało się dodać {name}.",
+  "kits_add_in_kit": "W zestawie",
+  "kits_add_mod_missing": "Ten mod nie jest już dostępny.",
+  "kits_add_new_kit": "Nowy zestaw z tym modem",
+  "kits_add_title": "Dodaj {name} do zestawu",
+  "kits_add_title_loading": "Dodaj do zestawu",
+  "kits_add_to_named": "Dodaj do {kit}",
+  "kits_announce_added": "Dodano {name} na pozycji {position}.",
+  "kits_announce_cancelled": "Anulowano przesuwanie. {name} wraca na pozycję {position}.",
+  "kits_announce_dropped": "Upuszczono {name} na pozycji {position} z {total}.",
+  "kits_announce_grabbed": "Podniesiono {name}. Pozycja {position} z {total}.",
+  "kits_announce_moved": "Przesunięto {name} na pozycję {position} z {total}.",
+  "kits_announce_removed": "Usunięto {name}.",
+  "kits_announce_restored": "Przywrócono {name}.",
+  "kits_autos_hint": "Wymagane przez elementy powyżej. Podążają za listą: usuń element, który ich wymaga, a znikną razem z nim.",
+  "kits_autos_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} zależność dodana automatycznie",
+        "count__plural=few": "{count__number} zależności dodane automatycznie",
+        "count__plural=many": "{count__number} zależności dodanych automatycznie",
+        "count__plural=*": "{count__number} zależności dodanej automatycznie"
+      }
+    }
+  ],
+  "kits_autosave_hint": "Zmiany zapisują się same · wer. {revision}",
+  "kits_back_to_first": "Wróć do strony 1",
+  "kits_back_to_list": "Moje zestawy",
+  "kits_broken_text": "Gracze zgłaszają, że nie działają na obecnej łatce. Przypnij starszą wersję lub poszukaj alternatywy.",
+  "kits_broken_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod zgłoszony jako zepsuty",
+        "count__plural=few": "{count__number} mody zgłoszone jako zepsute",
+        "count__plural=many": "{count__number} modów zgłoszonych jako zepsute",
+        "count__plural=*": "{count__number} moda zgłoszonego jako zepsuty"
+      }
+    }
+  ],
+  "kits_clear_filters": "Wyczyść filtry",
+  "kits_code_copied": "Skopiowano kod {code}",
+  "kits_code_lookup_label": "Masz kod zestawu?",
+  "kits_code_lookup_submit": "Otwórz zestaw",
+  "kits_compat_broken": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} zgłoszony jako zepsuty",
+        "count__plural=few": "{count__number} zgłoszone jako zepsute",
+        "count__plural=many": "{count__number} zgłoszonych jako zepsute",
+        "count__plural=*": "{count__number} zgłoszonego jako zepsuty"
+      }
+    }
+  ],
+  "kits_compat_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Wykryto {count__number} konflikt",
+        "count__plural=few": "Wykryto {count__number} konflikty",
+        "count__plural=many": "Wykryto {count__number} konfliktów",
+        "count__plural=*": "Wykryto {count__number} konfliktu"
+      }
+    }
+  ],
+  "kits_compat_no_conflicts": "Nie wykryto konfliktów",
+  "kits_compat_untested": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} niezweryfikowany",
+        "count__plural=few": "{count__number} niezweryfikowane",
+        "count__plural=many": "{count__number} niezweryfikowanych",
+        "count__plural=*": "{count__number} niezweryfikowanego"
+      }
+    }
+  ],
+  "kits_compat_works": "{works}/{total} działa na obecnej łatce",
+  "kits_compat_works_on": "{works}/{total} działa na {build}",
+  "kits_conflicts_text": "Niektóre mody deklarują, że nie działają razem. Sprawdź ich strony i zostaw po jednym z każdej pary.",
+  "kits_conflicts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} konflikt w tym zestawie",
+        "count__plural=few": "{count__number} konflikty w tym zestawie",
+        "count__plural=many": "{count__number} konfliktów w tym zestawie",
+        "count__plural=*": "{count__number} konfliktu w tym zestawie"
+      }
+    }
+  ],
+  "kits_console_description": "Kolekcje modów, które sam układasz: publiczne, udostępniane linkiem lub tylko dla ciebie.",
+  "kits_console_empty_text": "Utwórz zestaw, rozłóż mody, z którymi grasz, i udostępnij go jednym kodem.",
+  "kits_console_empty_title": "Twoja mata jest pusta",
+  "kits_console_list_label": "Moje zestawy",
+  "kits_console_readout": "Twoje zestawy",
+  "kits_console_title": "Moje zestawy",
+  "kits_copy_code": "Kopiuj kod zestawu",
+  "kits_copy_failed": "Nie udało się skopiować. Zaznacz tekst i skopiuj go ręcznie.",
+  "kits_cover_auto": "Automatyczna: elementy rozłożone na macie.",
+  "kits_cover_custom": "Własny obraz.",
+  "kits_cover_error_processing": "Przetwarzanie obrazu trwa zbyt długo. Spróbuj później.",
+  "kits_cover_error_rejected": "Obraz został odrzucony.",
+  "kits_cover_error_size": "Obraz jest większy niż {max} MB.",
+  "kits_cover_error_type": "Ten typ pliku nie jest obsługiwany.",
+  "kits_cover_error_upload": "Przesyłanie nie powiodło się. Sprawdź połączenie.",
+  "kits_cover_failed": "Nie udało się zaktualizować okładki.",
+  "kits_cover_hint": "PNG, JPEG, WebP, AVIF lub GIF, do {max} MB. Najlepiej szeroki obraz 3:1.",
+  "kits_cover_label": "Okładka",
+  "kits_cover_progress": "Przesyłanie… {percent}%",
+  "kits_cover_remove": "Użyj okładki automatycznej",
+  "kits_cover_removed": "Przywrócono okładkę automatyczną",
+  "kits_cover_replace": "Zmień obraz",
+  "kits_cover_saved": "Zaktualizowano okładkę",
+  "kits_cover_upload": "Prześlij obraz",
+  "kits_create_description": "Nazwij go teraz, mody dodasz w edytorze.",
+  "kits_create_submit": "Utwórz zestaw",
+  "kits_create_title": "Nowy zestaw",
+  "kits_create_with_mod": "{name} będzie pierwszym elementem.",
+  "kits_created": "Utworzono „{name}”",
+  "kits_curated_by": "Autor zestawu: {curator}",
+  "kits_delete": "Usuń zestaw",
+  "kits_delete_confirm": "Usuń zestaw",
+  "kits_delete_failed": "Nie udało się usunąć zestawu.",
+  "kits_delete_hint": "Usunięcie zwalnia adres; kod nigdy nie zostanie użyty ponownie.",
+  "kits_delete_text": "Zestaw, jego kod i linki przestaną działać dla wszystkich. Tego nie można cofnąć.",
+  "kits_delete_title": "Usunąć „{name}”?",
+  "kits_deleted": "Usunięto „{name}”",
+  "kits_detail_empty_text": "Autor nie dodał jeszcze żadnych modów do tego zestawu.",
+  "kits_detail_empty_title": "Jeszcze nic tu nie ma",
+  "kits_detail_readout": "Zestaw",
+  "kits_details_discard": "Odrzuć",
+  "kits_details_save": "Zapisz szczegóły",
+  "kits_details_saved": "Zapisano szczegóły",
+  "kits_details_title": "Szczegóły",
+  "kits_download_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Pobierz {count__number} plik",
+        "count__plural=few": "Pobierz {count__number} pliki",
+        "count__plural=many": "Pobierz {count__number} plików",
+        "count__plural=*": "Pobierz {count__number} pliku"
+      }
+    }
+  ],
+  "kits_download_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} plik, jeden po drugim",
+        "count__plural=few": "{count__number} pliki, jeden po drugim",
+        "count__plural=many": "{count__number} plików, jeden po drugim",
+        "count__plural=*": "{count__number} pliku, jeden po drugim"
+      }
+    }
+  ],
+  "kits_download_all_description_size": [
+    {
+      "declarations": [
+        "input count",
+        "input size",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} plik · łącznie {size}",
+        "count__plural=few": "{count__number} pliki · łącznie {size}",
+        "count__plural=many": "{count__number} plików · łącznie {size}",
+        "count__plural=*": "{count__number} pliku · łącznie {size}"
+      }
+    }
+  ],
+  "kits_download_all_done": "Wszystkie pliki pobrane. Czas na instalację.",
+  "kits_download_all_hint": "Pobierz pliki po kolei, a potem zainstaluj je przez RedLoader. Zależności są już na liście.",
+  "kits_download_all_title": "Pobierz wszystko",
+  "kits_download_install_guide": "Jak instalować mody",
+  "kits_download_next": "Pobierz następny",
+  "kits_download_progress": "Pobrano {done}/{total}",
+  "kits_download_progress_label": "Postęp pobierania",
+  "kits_drag_handle": "Przesuń {name}, pozycja {position} z {total}",
+  "kits_drag_instructions": "Aby zmienić kolejność, ustaw fokus na uchwycie i naciśnij Spację, przesuń strzałkami, a potem naciśnij Spację, aby upuścić, lub Escape, aby anulować.",
+  "kits_duplicate": "Duplikuj",
+  "kits_duplicated": "Utworzono kopię „{name}”",
+  "kits_edit": "Edytuj zestaw",
+  "kits_editor_empty_text": "Wyszukaj mod powyżej. Jego zależności dodadzą się same.",
+  "kits_editor_empty_title": "Rozłóż pierwszy element",
+  "kits_editor_readout": "Plan",
+  "kits_editor_static_title": "Edytor zestawu",
+  "kits_editor_title": "Edycja: {name}",
+  "kits_empty_filtered_text": "Żaden zestaw nie spełnia jeszcze tych filtrów. Wyczyść je, aby zobaczyć wszystkie.",
+  "kits_empty_filtered_title": "Brak pasujących zestawów",
+  "kits_empty_text": "Bądź pierwszy: wybierz ulubione mody, dodaj do każdego notatkę i udostępnij zestaw jednym kodem.",
+  "kits_empty_title": "Nie ma jeszcze zestawów",
+  "kits_error_email": "Potwierdź adres e-mail, aby tworzyć i edytować zestawy.",
+  "kits_error_rate": "Za dużo zmian w krótkim czasie. Odczekaj minutę.",
+  "kits_error_slug_taken": "Masz już zestaw pod tym adresem. Wybierz inny.",
+  "kits_error_text": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie za chwilę.",
+  "kits_error_title": "Nie udało się wczytać zestawów",
+  "kits_error_validation": "Coś w zestawie jest nieprawidłowe. Sprawdź pola i spróbuj ponownie.",
+  "kits_field_description": "Opis",
+  "kits_field_description_hint": "Markdown. Do czego służy zestaw, wskazówki co do kolejności ładowania, ustawienia.",
+  "kits_field_name": "Nazwa",
+  "kits_field_name_placeholder": "Hardkorowe QoL",
+  "kits_field_slug": "Adres",
+  "kits_field_slug_hint": "Małe litery, cyfry i łączniki, używane w /kits/ty/adres.",
+  "kits_field_visibility": "Kto może go zobaczyć",
+  "kits_filter_label": "Filtruj zestawy",
+  "kits_filter_off": "(wyłączony)",
+  "kits_filter_on": "(włączony)",
+  "kits_filter_staff_picks": "Wybór redakcji",
+  "kits_filter_works": "Działa na obecnej łatce",
+  "kits_filter_works_on": "Działa na {build}",
+  "kits_followers": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} obserwujący",
+        "count__plural=few": "{display} obserwujących",
+        "count__plural=many": "{display} obserwujących",
+        "count__plural=*": "{display} obserwującego"
+      }
+    }
+  ],
+  "kits_fork": "Skopiuj",
+  "kits_fork_email": "Potwierdź adres e-mail, aby tworzyć zestawy.",
+  "kits_fork_failed": "Nie udało się skopiować zestawu. Spróbuj ponownie.",
+  "kits_fork_rate": "Za dużo zestawów w krótkim czasie. Odczekaj minutę i spróbuj ponownie.",
+  "kits_fork_working": "Kopiowanie zestawu…",
+  "kits_forked_banner_text": "Na razie jest prywatna. Zmień, co chcesz, a potem ustaw ją jako publiczną, aby się nią podzielić.",
+  "kits_forked_banner_title": "Twoja kopia jest gotowa.",
+  "kits_forked_from": "Kopia zestawu {kit} od @{handle}",
+  "kits_item_auto_dependency": "Zależność dodana automatycznie",
+  "kits_item_by": "autor: {creator}",
+  "kits_item_download_sr": "{name} v{version}",
+  "kits_item_kind_build": "Budowla",
+  "kits_item_kind_library": "Biblioteka",
+  "kits_item_latest": "Zawsze najnowsza",
+  "kits_item_note_label": "Notatka:",
+  "kits_item_options": "Notatka i wersja",
+  "kits_item_pinned": "(przypięta wersja)",
+  "kits_item_position": "Pozycja {position}:",
+  "kits_item_remove": "Usuń {name}",
+  "kits_item_unavailable": "Brak dostępnego pliku",
+  "kits_items_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} element",
+        "count__plural=few": "{count__number} elementy",
+        "count__plural=many": "{count__number} elementów",
+        "count__plural=*": "{count__number} elementu"
+      }
+    }
+  ],
+  "kits_items_limit": "Zestaw mieści maksymalnie {max} elementów razem z zależnościami.",
+  "kits_items_title": "W tym zestawie",
+  "kits_items_total": "Elementy: {count}/{max}",
+  "kits_items_with_auto": [
+    {
+      "declarations": [
+        "input count",
+        "input auto",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local auto__plural = auto: plural",
+        "local auto__number = auto: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "auto__plural"
+      ],
+      "match": {
+        "count__plural=one, auto__plural=one": "{count__number} element + {auto__number} zależność",
+        "count__plural=one, auto__plural=few": "{count__number} element + {auto__number} zależności",
+        "count__plural=one, auto__plural=many": "{count__number} element + {auto__number} zależności",
+        "count__plural=one, auto__plural=*": "{count__number} element + {auto__number} zależności",
+        "count__plural=few, auto__plural=one": "{count__number} elementy + {auto__number} zależność",
+        "count__plural=few, auto__plural=few": "{count__number} elementy + {auto__number} zależności",
+        "count__plural=few, auto__plural=many": "{count__number} elementy + {auto__number} zależności",
+        "count__plural=few, auto__plural=*": "{count__number} elementy + {auto__number} zależności",
+        "count__plural=many, auto__plural=one": "{count__number} elementów + {auto__number} zależność",
+        "count__plural=many, auto__plural=few": "{count__number} elementów + {auto__number} zależności",
+        "count__plural=many, auto__plural=many": "{count__number} elementów + {auto__number} zależności",
+        "count__plural=many, auto__plural=*": "{count__number} elementów + {auto__number} zależności",
+        "count__plural=*, auto__plural=one": "{count__number} elementu + {auto__number} zależność",
+        "count__plural=*, auto__plural=few": "{count__number} elementu + {auto__number} zależności",
+        "count__plural=*, auto__plural=many": "{count__number} elementu + {auto__number} zależności",
+        "count__plural=*, auto__plural=*": "{count__number} elementu + {auto__number} zależności"
+      }
+    }
+  ],
+  "kits_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} zestaw",
+        "count__plural=few": "{count__number} zestawy",
+        "count__plural=many": "{count__number} zestawów",
+        "count__plural=*": "{count__number} zestawu"
+      }
+    }
+  ],
+  "kits_list_description": "Wyselekcjonowane zestawy modów do Sons of the Forest: z zależnościami, sprawdzoną zgodnością i jednym kodem dla znajomych.",
+  "kits_list_heading": "Zestawy",
+  "kits_list_readout": "Wyselekcjonowane zestawy modów",
+  "kits_list_title": "Zestawy modów do Sons of the Forest",
+  "kits_list_title_page": "{title} — strona {page}",
+  "kits_manage_title": "Zarządzaj",
+  "kits_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input curator",
+        "input count",
+        "input mods",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: zestaw modów do Sons of the Forest od {curator} – {count__number} element ({mods}). Z zależnościami, darmowe bezpośrednie pobieranie.",
+        "count__plural=few": "{name}: zestaw modów do Sons of the Forest od {curator} – {count__number} elementy ({mods}). Z zależnościami, darmowe bezpośrednie pobieranie.",
+        "count__plural=many": "{name}: zestaw modów do Sons of the Forest od {curator} – {count__number} elementów ({mods}). Z zależnościami, darmowe bezpośrednie pobieranie.",
+        "count__plural=*": "{name}: zestaw modów do Sons of the Forest od {curator} – {count__number} elementu ({mods}). Z zależnościami, darmowe bezpośrednie pobieranie."
+      }
+    }
+  ],
+  "kits_meta_title": "{name} — zestaw modów od {curator}",
+  "kits_more_from": "Więcej zestawów od {curator}",
+  "kits_mp_all_players": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Wszyscy gracze: {count__number} mod",
+        "count__plural=few": "Wszyscy gracze: {count__number} mody",
+        "count__plural=many": "Wszyscy gracze: {count__number} modów",
+        "count__plural=*": "Wszyscy gracze: {count__number} moda"
+      }
+    }
+  ],
+  "kits_mp_client_side": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Po stronie klienta: {count__number} mod",
+        "count__plural=few": "Po stronie klienta: {count__number} mody",
+        "count__plural=many": "Po stronie klienta: {count__number} modów",
+        "count__plural=*": "Po stronie klienta: {count__number} moda"
+      }
+    }
+  ],
+  "kits_mp_host_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Tylko host: {count__number} mod",
+        "count__plural=few": "Tylko host: {count__number} mody",
+        "count__plural=many": "Tylko host: {count__number} modów",
+        "count__plural=*": "Tylko host: {count__number} moda"
+      }
+    }
+  ],
+  "kits_mp_none": "Brak jeszcze informacji o trybie wieloosobowym.",
+  "kits_mp_solo_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Tylko dla jednego gracza: {count__number} mod",
+        "count__plural=few": "Tylko dla jednego gracza: {count__number} mody",
+        "count__plural=many": "Tylko dla jednego gracza: {count__number} modów",
+        "count__plural=*": "Tylko dla jednego gracza: {count__number} moda"
+      }
+    }
+  ],
+  "kits_mp_unknown": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nie podano: {count__number} mod",
+        "count__plural=few": "Nie podano: {count__number} mody",
+        "count__plural=many": "Nie podano: {count__number} modów",
+        "count__plural=*": "Nie podano: {count__number} moda"
+      }
+    }
+  ],
+  "kits_name_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "Użyj co najmniej {min__number} znaku.",
+        "min__plural=few": "Użyj co najmniej {min__number} znaków.",
+        "min__plural=many": "Użyj co najmniej {min__number} znaków.",
+        "min__plural=*": "Użyj co najmniej {min__number} znaku."
+      }
+    }
+  ],
+  "kits_note_hint": "Widoczna pod modem na stronie zestawu · {count}/{max}",
+  "kits_note_label": "Notatka",
+  "kits_note_placeholder": "Ustaw promień na 6 w konfiguracji",
+  "kits_offline": "Jesteś offline. Połącz się ponownie i spróbuj jeszcze raz.",
+  "kits_og_alt": "{name} – zestaw modów do Sons of the Forest na SOTF Mods",
+  "kits_past_end_text": "Nie ma aż tylu zestawów. Wróć na pierwszą stronę.",
+  "kits_past_end_title": "Poza ostatnią stroną",
+  "kits_picker_error": "Wyszukiwanie nie powiodło się. Pisz dalej, aby spróbować ponownie.",
+  "kits_picker_in_kit": "Dodano",
+  "kits_picker_label": "Dodaj mod lub budowlę",
+  "kits_picker_none": "Nic nie znaleziono. Spróbuj ID manifestu.",
+  "kits_picker_placeholder": "Szukaj po nazwie lub ID manifestu…",
+  "kits_picker_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} wynik",
+        "count__plural=few": "{count__number} wyniki",
+        "count__plural=many": "{count__number} wyników",
+        "count__plural=*": "{count__number} wyniku"
+      }
+    }
+  ],
+  "kits_picker_results_label": "Wyniki wyszukiwania",
+  "kits_picker_searching": "Wyszukiwanie…",
+  "kits_pin_error": "Nie udało się wczytać wersji.",
+  "kits_pin_hint": "Przypinaj wersję tylko wtedy, gdy nowsza psuje zestaw.",
+  "kits_pin_label": "Wersja",
+  "kits_pin_latest": "Zawsze najnowsza",
+  "kits_pin_loading": "Wczytywanie wersji…",
+  "kits_qr_failed": "Nie udało się wygenerować kodu QR.",
+  "kits_removed": "Usunięto {name} z zestawu",
+  "kits_revision": "wer. {revision}",
+  "kits_revisions_title": "Wersje",
+  "kits_save_failed": "Nie zapisano.",
+  "kits_saved": "Zapisano · wer. {revision}",
+  "kits_saving": "Zapisywanie…",
+  "kits_share_code_label": "Kod zestawu",
+  "kits_share_description": "Przekaż znajomym kod lub krótki link: wszyscy dostaną ten sam zestaw.",
+  "kits_share_link_label": "Pełny link",
+  "kits_share_markdown_label": "Markdown dla Discorda",
+  "kits_share_markdown_suffix": [
+    {
+      "declarations": [
+        "input count",
+        "input code",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod · kod {code}",
+        "count__plural=few": "{count__number} mody · kod {code}",
+        "count__plural=many": "{count__number} modów · kod {code}",
+        "count__plural=*": "{count__number} moda · kod {code}"
+      }
+    }
+  ],
+  "kits_share_more": "Więcej opcji",
+  "kits_share_on": "Udostępnij na {network}",
+  "kits_share_private": "Ten zestaw jest prywatny: widzisz go tylko ty. Ustaw go jako publiczny lub niepubliczny, aby go udostępnić.",
+  "kits_share_qr": "Kod QR",
+  "kits_share_qr_alt": "Kod QR krótkiego linku do {name}",
+  "kits_share_qr_hint": "Zeskanuj go telefonem, aby otworzyć zestaw.",
+  "kits_share_short_label": "Krótki link",
+  "kits_share_text": "{name} — zestaw modów do Sons of the Forest",
+  "kits_share_title": "Udostępnij zestaw",
+  "kits_sidebar_label": "O tym zestawie",
+  "kits_slug_invalid": "2–80 małych liter, cyfr i łączników, bez łącznika na początku i końcu.",
+  "kits_sort_label": "Sortuj zestawy",
+  "kits_sort_new": "Nowe",
+  "kits_sort_popular": "Popularne",
+  "kits_staff_pick": "Wybór redakcji",
+  "kits_summary_compat": "Zgodność",
+  "kits_summary_multiplayer": "Tryb wieloosobowy",
+  "kits_summary_size": "Zawartość",
+  "kits_summary_title": "Podsumowanie zestawu",
+  "kits_total_size": "Łącznie do pobrania: {size}",
+  "kits_total_size_unknown": "Łączny rozmiar nie został jeszcze zmierzony",
+  "kits_undo_failed": "Nie udało się cofnąć.",
+  "kits_unlisted_text": "Ten zestaw otworzą tylko osoby z linkiem lub kodem.",
+  "kits_unlisted_title": "Niepubliczny.",
+  "kits_unsaved": "Niezapisane zmiany",
+  "kits_updated_on": "zaktualizowano {date}",
+  "kits_view_public": "Zobacz stronę publiczną",
+  "kits_visibility_private": "Prywatny",
+  "kits_visibility_private_hint": "Tylko ty.",
+  "kits_visibility_public": "Publiczny",
+  "kits_visibility_public_hint": "Widoczny w Zestawach i w wyszukiwarce.",
+  "kits_visibility_unlisted": "Niepubliczny",
+  "kits_visibility_unlisted_hint": "Tylko osoby z linkiem lub kodem.",
   "landing_blueprints_all": "Wszystkie buildy",
   "landing_blueprints_hint": "Świeże buildy od społeczności",
   "landing_creators_all": "Wszyscy twórcy",
@@ -3183,6 +3960,962 @@
   "mod_whats_new_read": "Przeczytaj notatki z terenu",
   "mod_whats_new_title": "Co nowego od twojego ostatniego pobrania (v{version})",
   "mod_whats_new_up_to_date": "Masz najnowszą wersję (v{version}).",
+  "profile_achievements_badge_repeatable": "Można zdobyć wielokrotnie",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} ocalałych · ma ją {count__number} osoba",
+        "count__plural=few": "{share} ocalałych · mają ją {count__number} osoby",
+        "count__plural=many": "{share} ocalałych · ma ją {count__number} osób",
+        "count__plural=*": "{share} ocalałych · ma ją {count__number} osoby"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "Odznaki wypełniają dziennik terenowy każdego ocalałego. Zablokowane widać jako przerywany kontur z podpowiedzią, więc zawsze wiesz, co dalej.",
+  "profile_achievements_badges_title": "Odznaki",
+  "profile_achievements_day_body": "Każdy profil pokazuje, ile dni minęło od założenia konta. Czysta tożsamość: nie daje punktów.",
+  "profile_achievements_day_title": "Dzień N na wyspie",
+  "profile_achievements_fair_play_downloads": "Pobrania nigdy nie dają XP, więc nie ma sensu ich sztucznie pompować.",
+  "profile_achievements_fair_play_new_accounts": "Zupełnie nowe konta ważą połowę w ocenach i zgodności, dopóki nie zdobędą zaufania.",
+  "profile_achievements_fair_play_reversible": "Każdy punkt XP jest rejestrowany i może zostać cofnięty w razie nadużycia.",
+  "profile_achievements_fair_play_same_network": "Głosy i raporty między kontami z tej samej sieci w ciągu 24 godzin się nie liczą.",
+  "profile_achievements_fair_play_spikes": "Nagłe skoki pobrań sprawdzają Rangerzy.",
+  "profile_achievements_fair_play_title": "Fair play",
+  "profile_achievements_intro": "Wszystkie zasady nagród na wyspie, jawnie. Doceniają jakość i pomoc, nigdy samą ilość.",
+  "profile_achievements_meta_description": "Jak działają rangi ocalałych, XP, poziomy twórców, odznaki i kamienie milowe modów na SOTF Mods. Publiczne zasady, które nagradzają jakość i pomoc, a nie ilość.",
+  "profile_achievements_meta_title": "Odznaki, rangi i poziomy twórców",
+  "profile_achievements_milestones_intro": "Każdy mod świętuje swoje kamienie milowe pobrań, liczone od pierwszego dnia. Widać je na osi czasu na stronie moda, a największe są ogłaszane na Discordzie.",
+  "profile_achievements_milestones_title": "Kamienie milowe modów",
+  "profile_achievements_motw_body": "Co poniedziałek wygrywa mod z największym rozpędem unikalnych pobrań — o ile jest opublikowany, działa na aktualnej wersji gry i ma dobre oceny. Ten sam twórca nie może wygrać dwa razy w ciągu dwóch tygodni.",
+  "profile_achievements_motw_title": "Mod tygodnia",
+  "profile_achievements_principle_no_streaks": "Żadnych codziennych serii, lootboksów ani rankingów, które kogoś upokarzają.",
+  "profile_achievements_principle_privacy": "Rangę i aktywność możesz ukryć w ustawieniach prywatności.",
+  "profile_achievements_principle_quality": "XP zdobywa się, pomagając innym: przydatnymi recenzjami, trafnymi raportami terenowymi i rozwiązanymi problemami. Pobrania nigdy nie dają XP.",
+  "profile_achievements_principle_retroactive": "Wszystko działa wstecz: konta od 2023 roku zachowują to, co już zdobyły.",
+  "profile_achievements_ranks_intro": "Każdy członek ma rangę ocalałego, która rośnie wraz z XP zdobytym za pomoc społeczności. Nie da się jej kupić i nigdy nie przepada z powodu nieaktywności.",
+  "profile_achievements_ranks_title": "Rangi ocalałych",
+  "profile_achievements_tier_perks": "Pieczątka poziomu i ramka awatara.",
+  "profile_achievements_tier_perks_spotlight": "Pieczątka poziomu, ramka awatara i miejsce w centrum uwagi na stronie głównej.",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{downloads} pobranie",
+        "count__plural=few": "{downloads} pobrania",
+        "count__plural=many": "{downloads} pobrań",
+        "count__plural=*": "{downloads} pobrania"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "Twórcy awansują automatycznie dzięki łącznej liczbie pobrań wszystkich swoich modów, łącznie z historią sprzed v2. Każdy poziom dodaje pieczątkę do profilu i ramkę wokół awatara.",
+  "profile_achievements_tiers_title": "Poziomy twórców",
+  "profile_achievements_title": "Osiągnięcia",
+  "profile_achievements_toc": "Na tej stronie",
+  "profile_achievements_xp_action": "Działanie",
+  "profile_achievements_xp_limit": "Limit",
+  "profile_achievements_xp_needed": "Wymagane XP",
+  "profile_achievements_xp_note": "Działania na własnych treściach się nie liczą. XP jest weryfikowane i może zostać cofnięte w razie nadużycia.",
+  "profile_achievements_xp_title": "Jak zdobywać XP",
+  "profile_action_edit": "Edytuj profil",
+  "profile_activity_caption": "Wydania, komentarze, recenzje i raporty terenowe dziennie (UTC).",
+  "profile_activity_cell": "{date}: {detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} komentarz",
+        "count__plural=few": "{count__number} komentarze",
+        "count__plural=many": "{count__number} komentarzy",
+        "count__plural=*": "{count__number} komentarza"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} wydanie",
+        "count__plural=few": "{count__number} wydania",
+        "count__plural=many": "{count__number} wydań",
+        "count__plural=*": "{count__number} wydania"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} raport terenowy",
+        "count__plural=few": "{count__number} raporty terenowe",
+        "count__plural=many": "{count__number} raportów terenowych",
+        "count__plural=*": "{count__number} raportu terenowego"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} recenzja",
+        "count__plural=few": "{count__number} recenzje",
+        "count__plural=many": "{count__number} recenzji",
+        "count__plural=*": "{count__number} recenzji"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} przez ostatnie 12 miesięcy niczego nie wydał(a), nie skomentował(a), nie ocenił(a) ani nie zgłosił(a).",
+  "profile_activity_empty_title": "Cichy szlak",
+  "profile_activity_heatmap_label": "Wkład {name} w ostatnich 12 miesiącach",
+  "profile_activity_kind_comments": "Komentarze",
+  "profile_activity_kind_releases": "Wydania",
+  "profile_activity_kind_reports": "Raporty terenowe",
+  "profile_activity_kind_reviews": "Recenzje",
+  "profile_activity_legend_less": "Mniej",
+  "profile_activity_legend_more": "Więcej",
+  "profile_activity_private": "{name} ukrywa swoją aktywność.",
+  "profile_activity_recent_title": "Ostatnie dni na szlaku",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input days",
+        "input from",
+        "input to",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural",
+        "days__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*, days__plural=one": "Brak wkładów w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=0, count__plural=*, days__plural=few": "Brak wkładów w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=0, count__plural=*, days__plural=many": "Brak wkładów w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=0, count__plural=*, days__plural=*": "Brak wkładów w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=one, days__plural=one": "{count__number} wkład w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=one, days__plural=few": "{count__number} wkład w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=one, days__plural=many": "{count__number} wkład w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=one, days__plural=*": "{count__number} wkład w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=few, days__plural=one": "{count__number} wkłady w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=few, days__plural=few": "{count__number} wkłady w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=few, days__plural=many": "{count__number} wkłady w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=few, days__plural=*": "{count__number} wkłady w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=many, days__plural=one": "{count__number} wkładów w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=many, days__plural=few": "{count__number} wkładów w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=many, days__plural=many": "{count__number} wkładów w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=many, days__plural=*": "{count__number} wkładów w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=*, days__plural=one": "{count__number} wkładu w ciągu {days__number} dnia od {from} do {to}.",
+        "count__exact=*, count__plural=*, days__plural=few": "{count__number} wkładu w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=*, days__plural=many": "{count__number} wkładu w ciągu {days__number} dni od {from} do {to}.",
+        "count__exact=*, count__plural=*, days__plural=*": "{count__number} wkładu w ciągu {days__number} dnia od {from} do {to}."
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "Aktywne dni",
+  "profile_activity_table_caption": "Wkład {name} w poszczególnych miesiącach",
+  "profile_activity_table_month": "Miesiąc",
+  "profile_activity_table_toggle": "Pokaż jako tabelę",
+  "profile_activity_table_total": "Razem",
+  "profile_activity_title": "Aktywność",
+  "profile_avatar_alt": "Awatar {name}",
+  "profile_badge_bug_hunter_hint": "Niech twórcy oznaczą 5 twoich zgłoszeń błędów jako rozwiązane.",
+  "profile_badge_bug_hunter_name": "Łowca bugów",
+  "profile_badge_cartographer_hint": "Stwórz publiczny zestaw, który zdobędzie 10 obserwujących.",
+  "profile_badge_cartographer_name": "Kartograf",
+  "profile_badge_crash_landing_hint": "Opublikuj swój pierwszy mod.",
+  "profile_badge_crash_landing_name": "Awaryjne lądowanie",
+  "profile_badge_earned_on": "Zdobyta {date}",
+  "profile_badge_featured": "Wyróżniona",
+  "profile_badge_field_medic_hint": "Wyślij 10 raportów zgodności zgodnych z konsensusem społeczności.",
+  "profile_badge_field_medic_name": "Sanitariusz polowy",
+  "profile_badge_first_blueprint_hint": "Opublikuj swój pierwszy build.",
+  "profile_badge_first_blueprint_name": "Pierwszy plan",
+  "profile_badge_first_field_report_hint": "Wyślij swój pierwszy raport zgodności.",
+  "profile_badge_first_field_report_name": "Pierwszy raport terenowy",
+  "profile_badge_first_review_hint": "Napisz swoją pierwszą recenzję z tekstem.",
+  "profile_badge_first_review_name": "Pierwsza recenzja",
+  "profile_badge_group_awards": "Wyróżnienia",
+  "profile_badge_group_community": "Społeczność",
+  "profile_badge_group_creator": "Twórca",
+  "profile_badge_group_legacy": "Pierwsi ocaleni",
+  "profile_badge_group_onboarding": "Pierwsze kroki",
+  "profile_badge_group_roles": "Role",
+  "profile_badge_group_secret": "Sekretne",
+  "profile_badge_helping_hand_hint": "Niech twórca oznaczy 5 twoich komentarzy jako rozwiązanie lub je przypnie.",
+  "profile_badge_helping_hand_name": "Pomocna dłoń",
+  "profile_badge_island_favorite_hint": "Miej mod z oceną 4,5 lub wyższą i co najmniej 20 recenzjami.",
+  "profile_badge_island_favorite_name": "Ulubieniec wyspy",
+  "profile_badge_locked": "Zablokowana",
+  "profile_badge_mod_of_the_week_hint": "Jeden z twoich modów zostaje Modem tygodnia. Można zdobyć wielokrotnie.",
+  "profile_badge_mod_of_the_week_name": "Mod tygodnia",
+  "profile_badge_night_owl_hint": "Wnieś 5 wkładów między północą a 4 rano czasu lokalnego.",
+  "profile_badge_night_owl_name": "Nocny marek",
+  "profile_badge_original_survivor_hint": "Konto założone w {year} roku, przed startem SOTF Mods v2.",
+  "profile_badge_original_survivor_name": "Pierwszy ocalały {year}",
+  "profile_badge_patch_day_hero_hint": "Wydaj zgodną wersję w ciągu 7 dni od aktualizacji gry, która psuje mody.",
+  "profile_badge_patch_day_hero_name": "Bohater dnia łatki",
+  "profile_badge_pillar_of_the_island_hint": "Stwórz bibliotekę wymaganą przez co najmniej 3 mody innych twórców.",
+  "profile_badge_pillar_of_the_island_name": "Filar wyspy",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "Moderatorzy, którzy dbają o bezpieczeństwo wyspy.",
+  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_secret_hint": "Eksploruj dalej. Niektóre rzeczy na wyspie można znaleźć tylko nocą.",
+  "profile_badge_secret_name": "Sekretna odznaka",
+  "profile_badge_staff_pick_hint": "Zespół wybiera jeden z twoich modów. Można zdobyć wielokrotnie.",
+  "profile_badge_staff_pick_name": "Wybór zespołu",
+  "profile_badge_survived_day_one_hint": "Ukończ listę kontrolną Dnia 1.",
+  "profile_badge_survived_day_one_name": "Przetrwałeś dzień 1",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "Pomógł(a) przetłumaczyć SOTF Mods na inny język.",
+  "profile_badge_translator_name": "Tłumacz",
+  "profile_badge_verified_creator_hint": "Twórcy zweryfikowani przez zespół SOTF Mods.",
+  "profile_badge_verified_creator_name": "Zweryfikowany twórca",
+  "profile_badge_voice_of_the_island_hint": "Zdobądź 50 głosów „pomocne” przy swoich recenzjach.",
+  "profile_badge_voice_of_the_island_name": "Głos wyspy",
+  "profile_badge_well_documented_hint": "Osiągnij jakość karty 100 w jednym ze swoich modów.",
+  "profile_badge_well_documented_name": "Dobrze udokumentowany",
+  "profile_badges_empty_description": "Odznaki zdobywa się za publikowanie, recenzje, raporty zgodności i pomoc innym. Zablokowane widać tu jako przerywany kontur.",
+  "profile_badges_empty_title": "Dziennik jest pusty",
+  "profile_badges_featured_label": "Wyróżnione odznaki",
+  "profile_badges_rules_link": "Jak działają odznaki",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak odznak.",
+        "count__exact=*, count__plural=one": "Zdobyto {count__number} odznakę.",
+        "count__exact=*, count__plural=few": "Zdobyto {count__number} odznaki.",
+        "count__exact=*, count__plural=many": "Zdobyto {count__number} odznak.",
+        "count__exact=*, count__plural=*": "Zdobyto {count__number} odznaki."
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input count",
+        "input total",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak odznak z {total}.",
+        "count__exact=*, count__plural=one": "{count__number} odznaka z {total}.",
+        "count__exact=*, count__plural=few": "{count__number} odznaki z {total}.",
+        "count__exact=*, count__plural=many": "{count__number} odznak z {total}.",
+        "count__exact=*, count__plural=*": "{count__number} odznaki z {total}."
+      }
+    }
+  ],
+  "profile_badges_title": "Dziennik terenowy",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__plural = badgeCount: plural",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [
+        "badgeCount__plural"
+      ],
+      "match": {
+        "badgeCount__plural=one": "Witaj w v2: zdobyto {badgeCount__number} odznakę",
+        "badgeCount__plural=few": "Witaj w v2: zdobyto {badgeCount__number} odznaki",
+        "badgeCount__plural=many": "Witaj w v2: zdobyto {badgeCount__number} odznak",
+        "badgeCount__plural=*": "Witaj w v2: zdobyto {badgeCount__number} odznaki"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "Brak buildów",
+  "profile_builds_title": "Buildy: {name}",
+  "profile_cards_empty_action": "Przeglądaj mody",
+  "profile_cards_empty_description": "{name} nie opublikował(a) tu jeszcze niczego. Zobacz, co stworzyła reszta wyspy.",
+  "profile_creator_top_mod": "Najpopularniejszy mod: {mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} twórca",
+        "count__plural=few": "{display} twórców",
+        "count__plural=many": "{display} twórców",
+        "count__plural=*": "{display} twórcy"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "Nikt jeszcze nie opublikował tu moda. Pierwsza osoba dostanie odznakę Awaryjne lądowanie.",
+  "profile_creators_empty_title": "Brak twórców",
+  "profile_creators_error_title": "Nie udało się wczytać twórców",
+  "profile_creators_intro": "Ocaleni, którzy tworzą mody i buildy wyspy. Obserwuj ich, aby dostać sygnał, gdy wydadzą coś nowego.",
+  "profile_creators_meta_description": "Ludzie stojący za modami i buildami do Sons of the Forest: pobrania, obserwujący, poziomy i najbardziej znane prace. Obserwuj twórcę, by dowiadywać się o nowych wydaniach.",
+  "profile_creators_meta_title": "Twórcy modów do Sons of the Forest",
+  "profile_creators_meta_title_page": "Twórcy modów do Sons of the Forest — strona {page}",
+  "profile_creators_sort_downloads": "Najczęściej pobierani",
+  "profile_creators_sort_followers": "Najczęściej obserwowani",
+  "profile_creators_sort_recent": "Ostatnio wydający",
+  "profile_creators_sort_spotlight": "W centrum uwagi",
+  "profile_creators_tiers_link": "Jak działają poziomy twórców",
+  "profile_creators_title": "Twórcy",
+  "profile_day_on_island": "Dzień {day} na wyspie",
+  "profile_feed_title": "Nowe wydania: {name}",
+  "profile_follow_error": "Nie udało się zaktualizować obserwowania. Sprawdź połączenie i spróbuj ponownie.",
+  "profile_follow_name": "Obserwuj: {name}",
+  "profile_follow_own": "Nie możesz obserwować samego siebie.",
+  "profile_follow_verify_email": "Potwierdź adres e-mail, aby obserwować twórców.",
+  "profile_followed": "Obserwujesz. Dostaniesz sygnał, gdy pojawi się coś nowego.",
+  "profile_joined": "Dołączył(a) {date}",
+  "profile_kits_empty_action": "Przeglądaj zestawy",
+  "profile_kits_empty_description": "{name} nie udostępnił(a) jeszcze żadnego zestawu. Zestawy to wybrane paczki modów, które każdy zainstaluje za jednym razem.",
+  "profile_kits_empty_title": "Brak publicznych zestawów",
+  "profile_kits_private": "{name} ukrywa swoje zestawy.",
+  "profile_kits_title": "Zestawy: {name}",
+  "profile_link_copied": "Skopiowano link do profilu",
+  "profile_link_copy_failed": "Nie udało się skopiować linku. Skopiuj go z paska adresu.",
+  "profile_link_website": "Strona WWW",
+  "profile_links_label": "Linki",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local downloadsCount__plural = downloadsCount: plural",
+        "local followers__plural = followers: plural",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "downloadsCount__plural",
+        "followers__plural"
+      ],
+      "match": {
+        "count__plural=one, downloadsCount__plural=one, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobranie, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobranie, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrań, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrań, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mod lub build, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobranie, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobranie, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrań, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrań, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} mody i buildy, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobranie, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobranie, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrań, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrań, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modów i buildów, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobranie, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobranie, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobranie, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrań, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrań, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrań, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=one": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwujący. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=few": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=many": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwujących. Darmowe pobieranie na SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=*": "{name} tworzy mody do Sons of the Forest: {count__number} modu i buildu, {downloads} pobrania, {followers__number} obserwującego. Darmowe pobieranie na SOTF Mods."
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number",
+        "local reports__plural = reports: plural",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [
+        "reviews__plural",
+        "reports__plural"
+      ],
+      "match": {
+        "reviews__plural=one, reports__plural=one": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzja i {reports__number} raport terenowy.",
+        "reviews__plural=one, reports__plural=few": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzja i {reports__number} raporty terenowe.",
+        "reviews__plural=one, reports__plural=many": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzja i {reports__number} raportów terenowych.",
+        "reviews__plural=one, reports__plural=*": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzja i {reports__number} raportu terenowego.",
+        "reviews__plural=few, reports__plural=one": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzje i {reports__number} raport terenowy.",
+        "reviews__plural=few, reports__plural=few": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzje i {reports__number} raporty terenowe.",
+        "reviews__plural=few, reports__plural=many": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzje i {reports__number} raportów terenowych.",
+        "reviews__plural=few, reports__plural=*": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzje i {reports__number} raportu terenowego.",
+        "reviews__plural=many, reports__plural=one": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raport terenowy.",
+        "reviews__plural=many, reports__plural=few": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raporty terenowe.",
+        "reviews__plural=many, reports__plural=many": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raportów terenowych.",
+        "reviews__plural=many, reports__plural=*": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raportu terenowego.",
+        "reviews__plural=*, reports__plural=one": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raport terenowy.",
+        "reviews__plural=*, reports__plural=few": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raporty terenowe.",
+        "reviews__plural=*, reports__plural=many": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raportów terenowych.",
+        "reviews__plural=*, reports__plural=*": "{name} na SOTF Mods, w społeczności moderskiej Sons of the Forest: {reviews__number} recenzji i {reports__number} raportu terenowego."
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name} (@{handle}) — twórca modów do Sons of the Forest",
+  "profile_meta_title_member": "{name} (@{handle}) — społeczność moderska Sons of the Forest",
+  "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_mods_empty_title": "Brak modów",
+  "profile_mods_title": "Mody: {name}",
+  "profile_pinned_title": "Przypięte",
+  "profile_private_title": "Prywatne",
+  "profile_rank_builder": "Budowniczy",
+  "profile_rank_castaway": "Rozbitek",
+  "profile_rank_forager": "Zbieracz",
+  "profile_rank_label": "Ranga ocalałego",
+  "profile_rank_legend": "Legenda wyspy",
+  "profile_rank_pathfinder": "Tropiciel",
+  "profile_rank_progress": "{rank} · {xp} XP. Do rangi „{next}” brakuje {needed} XP.",
+  "profile_rank_scavenger": "Szabrownik",
+  "profile_rank_top": "{rank} · {xp} XP. Szczyt wyspy.",
+  "profile_rank_trapper": "Traper",
+  "profile_rank_veteran": "Weteran",
+  "profile_review_of": "Recenzja: {mod}",
+  "profile_reviews_empty_description": "{name} nie ocenił(a) jeszcze żadnego moda.",
+  "profile_reviews_empty_title": "Brak recenzji",
+  "profile_reviews_newest": "Najnowsze recenzje",
+  "profile_reviews_older": "Starsze recenzje",
+  "profile_reviews_pagination": "Więcej recenzji",
+  "profile_reviews_title": "Recenzje: {name}",
+  "profile_sort_downloads": "Najczęściej pobierane",
+  "profile_sort_label": "Sortuj",
+  "profile_sort_new": "Najnowsze",
+  "profile_sort_updated": "Ostatnio zaktualizowane",
+  "profile_stat_downloads_label": "Pobrania",
+  "profile_stat_followers_label": "Obserwujący",
+  "profile_stat_helpful_label": "Głosy „pomocne”",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} głos „pomocne” przy recenzjach",
+        "count__plural=few": "{count__number} głosy „pomocne” przy recenzjach",
+        "count__plural=many": "{count__number} głosów „pomocne” przy recenzjach",
+        "count__plural=*": "{count__number} głosu „pomocne” przy recenzjach"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "Mody",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__plural = mods: plural",
+        "local mods__number = mods: number",
+        "local builds__plural = builds: plural",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [
+        "mods__plural",
+        "builds__plural"
+      ],
+      "match": {
+        "mods__plural=one, builds__plural=one": "{mods__number} mod i {builds__number} build",
+        "mods__plural=one, builds__plural=few": "{mods__number} mod i {builds__number} buildy",
+        "mods__plural=one, builds__plural=many": "{mods__number} mod i {builds__number} buildów",
+        "mods__plural=one, builds__plural=*": "{mods__number} mod i {builds__number} buildu",
+        "mods__plural=few, builds__plural=one": "{mods__number} mody i {builds__number} build",
+        "mods__plural=few, builds__plural=few": "{mods__number} mody i {builds__number} buildy",
+        "mods__plural=few, builds__plural=many": "{mods__number} mody i {builds__number} buildów",
+        "mods__plural=few, builds__plural=*": "{mods__number} mody i {builds__number} buildu",
+        "mods__plural=many, builds__plural=one": "{mods__number} modów i {builds__number} build",
+        "mods__plural=many, builds__plural=few": "{mods__number} modów i {builds__number} buildy",
+        "mods__plural=many, builds__plural=many": "{mods__number} modów i {builds__number} buildów",
+        "mods__plural=many, builds__plural=*": "{mods__number} modów i {builds__number} buildu",
+        "mods__plural=*, builds__plural=one": "{mods__number} modu i {builds__number} build",
+        "mods__plural=*, builds__plural=few": "{mods__number} modu i {builds__number} buildy",
+        "mods__plural=*, builds__plural=many": "{mods__number} modu i {builds__number} buildów",
+        "mods__plural=*, builds__plural=*": "{mods__number} modu i {builds__number} buildu"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "Średnia ocena",
+  "profile_stat_rating_title": "Średnio {rating} na 5",
+  "profile_stats_label": "Statystyki",
+  "profile_tab_activity": "Aktywność",
+  "profile_tab_badges": "Odznaki",
+  "profile_tab_builds": "Buildy",
+  "profile_tab_error_description": "Serwer odpowiadał zbyt długo. Spróbuj ponownie za chwilę.",
+  "profile_tab_error_title": "Ta sekcja się nie wczytała",
+  "profile_tab_kits": "Zestawy",
+  "profile_tab_mods": "Mody",
+  "profile_tab_reviews": "Recenzje",
+  "profile_tabs_label": "Sekcje profilu",
+  "profile_tier_cabin": "Chata",
+  "profile_tier_campfire": "Ognisko",
+  "profile_tier_fortress": "Twierdza",
+  "profile_tier_label": "Poziom twórcy",
+  "profile_tier_landmark": "Punkt orientacyjny",
+  "profile_tier_lean_to": "Szałas",
+  "profile_tier_treehouse": "Domek na drzewie",
+  "profile_unfollowed": "Przestano obserwować.",
+  "profile_verified_creator": "Zweryfikowany twórca",
+  "profile_xp_bug_report_resolved": "Zgłoszenie błędu oznaczone przez twórcę jako rozwiązane",
+  "profile_xp_comment_solution_or_pinned": "Komentarz oznaczony przez twórcę jako rozwiązanie lub przypięty",
+  "profile_xp_compat_report": "Raport terenowy (czy działa na tej wersji?)",
+  "profile_xp_compat_report_consensus": "Bonus: twój raport pokrywa się z konsensusem po 72 h",
+  "profile_xp_first_follow": "Zaobserwuj pierwszy mod lub twórcę",
+  "profile_xp_kit_followers_10": "Twój zestaw zdobywa kolejne 10 obserwujących",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} dziennie"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "Bez limitu",
+  "profile_xp_limit_once": "Jednorazowo",
+  "profile_xp_limit_per_build": "Raz na wersję gry",
+  "profile_xp_onboarding_completed": "Ukończ listę kontrolną Dnia 1",
+  "profile_xp_patch_day_release": "Twórca: zgodna wersja w ciągu 14 dni od aktualizacji psującej mody",
+  "profile_xp_profile_completed": "Uzupełnij profil",
+  "profile_xp_review_helpful_vote": "Głos „pomocne” przy twojej recenzji",
+  "profile_xp_review_with_text": "Recenzja z co najmniej 80 znakami tekstu",
+  "social_action_back": "Wstecz",
+  "social_action_cancel": "Anuluj",
+  "social_action_close": "Zamknij",
+  "social_action_continue": "Dalej",
+  "social_action_delete": "Usuń",
+  "social_action_edit": "Edytuj",
+  "social_action_load_more": "Wczytaj więcej",
+  "social_action_retry": "Spróbuj ponownie",
+  "social_action_save": "Zapisz",
+  "social_action_undo": "Cofnij",
+  "social_bug_resolve": "Oznacz jako naprawione w wersji",
+  "social_bug_resolve_intro": "Zgłaszający dostanie powiadomienie, a komentarz pokaże «Naprawione w vX».",
+  "social_bug_resolve_submit": "Oznacz jako naprawione",
+  "social_bug_resolve_title": "Naprawione w której wersji?",
+  "social_bug_resolve_version": "Wersja",
+  "social_bug_resolved_done": "Oznaczono jako naprawione w {version}.",
+  "social_comment_bug_hint": "Zgłoszenia błędów trafiają do skrzynki twórcy. Napisz, co zrobiłeś, co się stało i czego oczekiwałeś.",
+  "social_comment_bug_label": "To zgłoszenie błędu",
+  "social_comment_bug_version": "Wersja z błędem",
+  "social_comment_deleted": "Komentarz usunięty.",
+  "social_comment_edit_label": "Edytuj komentarz",
+  "social_comment_edited": "Komentarz zaktualizowany.",
+  "social_comment_empty": "Najpierw coś napisz.",
+  "social_comment_held": "Wysłano. Komentarze nowych kont z linkami zewnętrznymi czekają na szybką kontrolę rangerów.",
+  "social_comment_invalid": "Nie można zapisać tego tekstu. Sprawdź go i spróbuj ponownie.",
+  "social_comment_label": "Twój komentarz",
+  "social_comment_placeholder": "Zadaj pytanie, podziel się wskazówką lub zgłoś problem…",
+  "social_comment_posted": "Komentarz opublikowany.",
+  "social_comment_reply_label": "Twoja odpowiedź",
+  "social_comment_reply_submit": "Odpowiedz",
+  "social_comment_reply_to": "Odpowiedź dla @{handle}",
+  "social_comment_sign_in": "Zaloguj się, aby skomentować",
+  "social_comment_submit": "Opublikuj komentarz",
+  "social_comment_too_long": "Maksymalnie {max} znaków.",
+  "social_comments_empty": "Brak komentarzy. Pytania, porady i błędy zgłaszaj tutaj.",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak kolejnych komentarzy.",
+        "count__exact=*, count__plural=one": "Wczytano {count__number} komentarz więcej.",
+        "count__exact=*, count__plural=few": "Wczytano {count__number} komentarze więcej.",
+        "count__exact=*, count__plural=many": "Wczytano {count__number} komentarzy więcej.",
+        "count__exact=*, count__plural=*": "Wczytano {count__number} komentarza więcej."
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Jeszcze {count__number} odpowiedź",
+        "count__plural=few": "Jeszcze {count__number} odpowiedzi",
+        "count__plural=many": "Jeszcze {count__number} odpowiedzi",
+        "count__plural=*": "Jeszcze {count__number} odpowiedzi"
+      }
+    }
+  ],
+  "social_comments_sort": "Sortuj komentarze",
+  "social_comments_sort_new": "Najnowsze",
+  "social_comments_sort_top": "Najlepsze",
+  "social_comments_sorted": "Komentarze posortowane.",
+  "social_compat_build": "Wersja gry",
+  "social_compat_build_current": "{label} (aktualna)",
+  "social_compat_deleted": "Raport z terenu usunięty.",
+  "social_compat_heading": "Czy działało w twojej grze?",
+  "social_compat_intro": "Powiedz innym ocalałym, czy ten mod działa u ciebie. To zajmie 20 sekund.",
+  "social_compat_missing_mode": "Wybierz, jak grasz.",
+  "social_compat_missing_result": "Wybierz wynik.",
+  "social_compat_missing_setup": "Wybierz wersję moda i wersję gry.",
+  "social_compat_mode": "Jak grasz?",
+  "social_compat_mode_client": "Klient w trybie wieloosobowym",
+  "social_compat_mode_client_hint": "Dołączasz do czyjejś gry.",
+  "social_compat_mode_dedicated": "Serwer dedykowany",
+  "social_compat_mode_dedicated_hint": "Zainstalowany na serwerze dedykowanym.",
+  "social_compat_mode_host": "Host w trybie wieloosobowym",
+  "social_compat_mode_host_hint": "Hostujesz grę dla znajomych.",
+  "social_compat_mode_singleplayer": "Gra jednoosobowa",
+  "social_compat_mode_singleplayer_hint": "Grasz sam.",
+  "social_compat_note": "Uwagi",
+  "social_compat_note_placeholder": "Co działa, co nie, komunikat błędu…",
+  "social_compat_open": "Zgłoś zgodność",
+  "social_compat_other_mods": "Inne zainstalowane mody",
+  "social_compat_other_mods_placeholder": "SonsAxLib, StackMod…",
+  "social_compat_prompt": "Pobrano v{version}. Czy działało na {build}?",
+  "social_compat_prompt_label": "Czy działało?",
+  "social_compat_prompt_later": "Nie teraz",
+  "social_compat_report_another": "Zgłoś inną konfigurację",
+  "social_compat_result": "Czy działało?",
+  "social_compat_result_broken": "Nie działa",
+  "social_compat_result_broken_hint": "Nie ładuje się albo się wysypuje.",
+  "social_compat_result_partial": "Częściowo",
+  "social_compat_result_partial_hint": "Ładuje się, ale coś nie działa.",
+  "social_compat_result_works": "Działa",
+  "social_compat_result_works_hint": "Wszystko, co sprawdziłem, działa.",
+  "social_compat_step_of": "Krok {step} z {total}: {title}",
+  "social_compat_step_result": "Wynik",
+  "social_compat_step_setup": "Twoja konfiguracja",
+  "social_compat_steps": "Kroki",
+  "social_compat_submit": "Wyślij raport",
+  "social_compat_text": "Raport z terenu zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.",
+  "social_compat_thanks": "Dzięki, ocalały! Twój raport liczy się do odznaki zgodności.",
+  "social_compat_title": "Raport z terenu",
+  "social_compat_version": "Wersja moda",
+  "social_compat_yours": "Zgłoszono «{result}» na {build} ({mode}, v{version}).",
+  "social_deleted_user": "Usunięty ocalały",
+  "social_editor_bold": "Pogrubienie",
+  "social_editor_code": "Kod",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown: **pogrubienie**, *kursywa*, `kod`, [link](url), ||spoiler||, @wzmianki · {modifier}+Enter, aby wysłać",
+  "social_editor_italic": "Kursywa",
+  "social_editor_link": "Link",
+  "social_editor_link_text": "tekst linku",
+  "social_editor_list": "Lista",
+  "social_editor_mentions": "Osoby do wspomnienia",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak podpowiedzi",
+        "count__exact=*, count__plural=one": "{count__number} podpowiedź, użyj strzałek",
+        "count__exact=*, count__plural=few": "{count__number} podpowiedzi, użyj strzałek",
+        "count__exact=*, count__plural=many": "{count__number} podpowiedzi, użyj strzałek",
+        "count__exact=*, count__plural=*": "{count__number} podpowiedzi, użyj strzałek"
+      }
+    }
+  ],
+  "social_editor_mode": "Widok edytora",
+  "social_editor_preview": "Podgląd",
+  "social_editor_preview_empty": "Na razie nie ma czego podglądać.",
+  "social_editor_preview_loading": "Tworzenie podglądu…",
+  "social_editor_quote": "Cytat",
+  "social_editor_sample": "tekst",
+  "social_editor_spoiler": "Spoiler",
+  "social_editor_toolbar": "Formatowanie",
+  "social_editor_write": "Pisz",
+  "social_image_add": "Dodaj obraz ({count}/{max})",
+  "social_image_failed": "Nie udało się przesłać obrazu. Usuń go i spróbuj ponownie.",
+  "social_image_failed_short": "Błąd",
+  "social_image_limit": "Maksymalnie {max} obrazy na komentarz.",
+  "social_image_remove": "Usuń {name}",
+  "social_image_size": "Obrazy mogą mieć maksymalnie 5 MB.",
+  "social_image_type": "Użyj obrazu PNG, JPEG, WebP, AVIF lub GIF.",
+  "social_image_uploading": "Przesyłanie…",
+  "social_image_wait": "Poczekaj, aż obrazy się prześlą.",
+  "social_loading": "Wczytywanie…",
+  "social_md_spoiler": "Spoiler",
+  "social_more_actions": "Więcej działań dla wpisu: {name}",
+  "social_offline": "Jesteś offline. To, co widzisz, może być nieaktualne.",
+  "social_optional": "(opcjonalnie)",
+  "social_pin": "Przypnij",
+  "social_pin_limit": "Możesz przypiąć maksymalnie 3 komentarze. Najpierw odepnij jeden.",
+  "social_pinned": "Komentarz przypięty.",
+  "social_reaction_add": "Dodaj reakcję",
+  "social_reaction_added": "Dodano reakcję: {reaction}.",
+  "social_reaction_fire": "Ogień",
+  "social_reaction_heart": "Serce",
+  "social_reaction_laugh": "Śmiech",
+  "social_reaction_party": "Świętowanie",
+  "social_reaction_pray": "Dzięki",
+  "social_reaction_removed": "Usunięto reakcję: {reaction}.",
+  "social_reaction_thumbs_up": "Kciuk w górę",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{reaction}: {count__number} osoba",
+        "count__plural=few": "{reaction}: {count__number} osoby",
+        "count__plural=many": "{reaction}: {count__number} osób",
+        "count__plural=*": "{reaction}: {count__number} osoby"
+      }
+    }
+  ],
+  "social_reactions": "Reakcje",
+  "social_replies_failed": "Nie udało się wczytać odpowiedzi. Spróbuj ponownie.",
+  "social_reply": "Odpowiedz",
+  "social_reply_to_label": "Odpowiedz: {name}",
+  "social_report": "Zgłoś",
+  "social_report_choose_reason": "Wybierz powód.",
+  "social_report_comment_title": "Zgłoś ten komentarz",
+  "social_report_details_label": "Szczegóły (opcjonalnie)",
+  "social_report_duplicate": "Ten mod został już przez ciebie zgłoszony. Rangerzy się tym zajmują.",
+  "social_report_field_report_title": "Zgłoś ten raport z terenu",
+  "social_report_intro": "Rangerzy sprawdzają każde zgłoszenie. Napisz, co jest nie tak.",
+  "social_report_reason_harassment": "Nękanie lub nienawiść",
+  "social_report_reason_illegal": "Nielegalne treści",
+  "social_report_reason_label": "Powód",
+  "social_report_reason_nsfw_unmarked": "Treści dla dorosłych bez oznaczenia 18+",
+  "social_report_reason_other": "Coś innego",
+  "social_report_reason_spam": "Spam lub reklama",
+  "social_report_review_title": "Zgłoś tę recenzję",
+  "social_report_sent": "Dzięki. Rangerzy to sprawdzą.",
+  "social_report_submit": "Wyślij zgłoszenie",
+  "social_review_body_label": "Twoja recenzja",
+  "social_review_body_placeholder": "Co działało, co nie i dla kogo to jest?",
+  "social_review_conflict": "Już zrecenzowałeś tego moda. Edytuj swoją recenzję.",
+  "social_review_deleted": "Recenzja usunięta.",
+  "social_review_edit": "Edytuj recenzję",
+  "social_review_forbidden": "Nie możesz jeszcze zrecenzować tego moda: potrzebny jest zweryfikowany e-mail i konto starsze niż 24 godziny, a twórcy nie mogą recenzować własnych modów.",
+  "social_review_own_mod": "To twój mod: możesz raz odpowiedzieć na każdą recenzję.",
+  "social_review_posted": "Dzięki! Twoja recenzja jest już widoczna.",
+  "social_review_rating_label": "Twoja ocena",
+  "social_review_rating_required": "Wybierz od 1 do 5 gwiazdek.",
+  "social_review_reply": "Odpowiedz publicznie",
+  "social_review_reply_delete": "Usuń odpowiedź",
+  "social_review_reply_deleted": "Odpowiedź usunięta.",
+  "social_review_reply_edit": "Edytuj odpowiedź",
+  "social_review_reply_label": "Twoja publiczna odpowiedź",
+  "social_review_reply_saved": "Odpowiedź opublikowana.",
+  "social_review_reply_submit": "Opublikuj odpowiedź",
+  "social_review_rules": "Jedna recenzja na ocalałego. Konkretnie: wersja, co działało, a co nie.",
+  "social_review_see_all": "Zobacz wszystkie recenzje",
+  "social_review_star_1": "U mnie nie działa",
+  "social_review_star_2": "Wymaga poprawek",
+  "social_review_star_3": "W porządku",
+  "social_review_star_4": "Świetny",
+  "social_review_star_5": "Niezbędny",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} gwiazdka",
+        "count__plural=few": "{count__number} gwiazdki",
+        "count__plural=many": "{count__number} gwiazdek",
+        "count__plural=*": "{count__number} gwiazdki"
+      }
+    }
+  ],
+  "social_review_submit": "Opublikuj recenzję",
+  "social_review_title_label": "Tytuł",
+  "social_review_title_too_long": "Tytuł może mieć maksymalnie {max} znaków.",
+  "social_review_update": "Zaktualizuj recenzję",
+  "social_review_updated": "Recenzja zaktualizowana.",
+  "social_review_version_auto": "Ostatnio pobrana",
+  "social_review_version_label": "Używana wersja",
+  "social_review_write": "Napisz recenzję",
+  "social_review_yours": "Twoja recenzja",
+  "social_solution_mark": "Oznacz jako rozwiązanie",
+  "social_solution_marked": "Oznaczono jako rozwiązanie.",
+  "social_solution_unmark": "Usuń oznaczenie rozwiązania",
+  "social_solution_unmarked": "Usunięto oznaczenie rozwiązania.",
+  "social_unpin": "Odepnij",
+  "social_unpinned": "Komentarz odpięty.",
+  "social_verify_action": "Zweryfikuj e-mail",
+  "social_verify_to_comment": "Zweryfikuj e-mail, aby komentować.",
+  "social_verify_to_report": "Zweryfikuj e-mail, aby wysyłać raporty z terenu.",
+  "social_verify_to_review": "Zweryfikuj e-mail, aby napisać recenzję.",
+  "social_vote_label": "Pomocna?",
+  "social_vote_no": "Niepomocna",
+  "social_vote_removed": "Głos usunięty.",
+  "social_vote_saved": "Głos zapisany.",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Tak, pomocna ({count__number} głos)",
+        "count__plural=few": "Tak, pomocna ({count__number} głosy)",
+        "count__plural=many": "Tak, pomocna ({count__number} głosów)",
+        "count__plural=*": "Tak, pomocna ({count__number} głosu)"
+      }
+    }
+  ],
   "ui_breadcrumbs": "Ścieżka nawigacji",
   "ui_cancel": "Anuluj",
   "ui_choose": "Wybierz…",

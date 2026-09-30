@@ -1,0 +1,51 @@
+---
+/**
+ * The JSON island read by the kit page script (`scripts/types.ts`). Serialised with `<`, `>`, `&`
+ * and the line separators escaped, so user text (the kit name) cannot close the element.
+ */
+import { kitShortPath } from '@sotf/contracts/kits';
+import { absoluteUrl } from '@sotf/contracts/seo';
+import { m } from '@sotf/i18n/messages';
+import type { KitDTO } from './data.ts';
+import { KIT_PAGE_DATA_ID, type KitPageData } from './scripts/types.ts';
+
+interface Props {
+  kit: KitDTO;
+  url: string;
+  siteUrl: string;
+  loginHref: string;
+}
+
+const { kit, url, siteUrl, loginHref } = Astro.props;
+const data: KitPageData = {
+  kitId: kit.id,
+  name: kit.name,
+  code: kit.code,
+  revision: kit.revision,
+  ownerId: kit.owner.id,
+  url,
+  shortUrl: absoluteUrl(kitShortPath(kit.code), siteUrl),
+  loginHref,
+  editHref: `/me/kits/${kit.id}`,
+  messages: {
+    copied: m.common_action_copied(),
+    copyFailed: m.kits_copy_failed(),
+    shareTitle: m.kits_share_text({ name: kit.name }),
+    progress: m.kits_download_progress({ done: '{done}', total: '{total}' }),
+    allDone: m.kits_download_all_done(),
+    forking: m.kits_fork_working(),
+    forkFailed: m.kits_fork_failed(),
+    forkEmail: m.kits_fork_email(),
+    forkRate: m.kits_fork_rate(),
+    offline: m.kits_offline(),
+  },
+};
+const json = JSON.stringify(data)
+  .replace(/</g, '\\u003c')
+  .replace(/>/g, '\\u003e')
+  .replace(/&/g, '\\u0026')
+  .replace(/\u2028/g, '\\u2028')
+  .replace(/\u2029/g, '\\u2029');
+---
+
+<script type="application/json" id={KIT_PAGE_DATA_ID} set:html={json} is:inline />

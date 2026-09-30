@@ -31,6 +31,7 @@
     "astro": "catalog:",
     "lru-cache": "catalog:",
     "lucide-react": "catalog:",
+    "minisearch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "tailwindcss": "catalog:",

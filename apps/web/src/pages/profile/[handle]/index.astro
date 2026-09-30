@@ -1,0 +1,458 @@
+---
+/**
+ * Public profile `/profile/:handle` (WP-64, T0-15, research/03 §6.4; `/@handle` → 301 here is
+ * done by the WP-22 middleware).
+ *
+ * - SSR, edge-cached 900 s with `user:{id}` (PLAN §4.2); the resolver answers 301 for renamed
+ *   handles or case differences, 404 for unknown or banned users and 410 for deleted accounts.
+ * - Header: generative banner, avatar, «Day N on the island», stamps (rank, tier, Ranger),
+ *   verified mark, bio, links, stats, follow (vanilla) and share.
+ * - Tabs as real URLs (`?tab=mods|builds|kits|badges|activity|reviews`, canonical to the profile):
+ *   pinned mods, cards with sort and pagination, the field notebook, the 12-month heatmap with its
+ *   table, and the reviews written. Privacy is respected (hidden rank, kits and activity).
+ * - JSON-LD `ProfilePage` → `Person` (+ `BreadcrumbList`); profiles without public content are
+ *   `noindex`. Markdown and RSS alternates in the head.
+ */
+
+import { cacheTag } from '@sotf/contracts/cache';
+import { BADGES, nextSurvivorRank } from '@sotf/contracts/gamification';
+import { formatDate, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
+import { Icon } from '@sotf/ui/icons';
+import { Pagination } from '@sotf/ui/pagination';
+import { ArrowRight, Blocks, EyeOff, Footprints, Map as MapIcon, MessageSquareQuote, Package } from 'lucide-react';
+import { loadTaxonomy } from '../../../components/explore/taxonomy.ts';
+import ActivityHeatmap from '../../../components/profile/ActivityHeatmap.astro';
+import {
+  BadgeNotebook,
+  FeaturedBadges,
+  KitGrid,
+  ModGrid,
+  notebookGroups,
+  PinnedMods,
+  WrittenReviews,
+} from '../../../components/profile/Domain.tsx';
+import {
+  defaultTab as defaultTabOf,
+  loadTab,
+  loadUserBadges,
+  PROFILE_SORTS,
+  type ProfileSort,
+  type ProfileTab,
+  parseProfileQuery,
+  resolveProfilePage,
+  type TabContent,
+  tabPath,
+  visibleTabs,
+} from '../../../components/profile/data.ts';
+import { badgeGroupName, badgeHint, badgeName, profileDomainI18n, rankName } from '../../../components/profile/i18n.ts';
+import ProfileHeader from '../../../components/profile/ProfileHeader.astro';
+import ProfileTabs from '../../../components/profile/ProfileTabs.astro';
+import { redirectClean, respondUnresolved } from '../../../components/profile/responses.ts';
+import { profileDescription, profileJsonLd, profileTitle } from '../../../components/profile/seo.ts';
+import TabState from '../../../components/profile/TabState.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { setPageCache } from '../../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../../lib/cache/policy.ts';
+import { loadEnv } from '../../../lib/env.ts';
+import { href } from '../../../lib/i18n.ts';
+import { ensureLocals } from '../../../lib/request-context.ts';
+import { breadcrumbJsonLd } from '../../../lib/seo/jsonld.ts';
+
+export const prerender = false;
+
+const locale = ensureLocals(Astro).locale;
+const resolved = await resolveProfilePage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+if (resolved.rest.length > 0) return respondUnresolved(Astro, { kind: 'not-found' });
+
+const { user } = resolved;
+const parsed = parseProfileQuery(Astro.url.searchParams, user);
+if (!parsed.ok) return redirectClean(Astro, href(user.canonicalPath, locale));
+const query = parsed.query;
+const defaultTab = defaultTabOf(user);
+
+// The notebook feeds the tab count and the Badges tab; the rest is the active tab only.
+const [badges, taxonomy] = await Promise.all([
+  loadUserBadges(user.handle, query.tab === 'badges' ? 2500 : 800),
+  query.tab === 'mods' || query.tab === 'builds' ? loadTaxonomy(locale) : Promise.resolve(null),
+]);
+const content: TabContent = await loadTab(user, query, badges);
+
+setPageCache(
+  Astro,
+  content.state === 'error'
+    ? pageCache.custom(EDGE_TTL.notFound, [cacheTag.user(user.id)])
+    : pageCache.profile(user.id),
+);
+
+const env = loadEnv();
+const i18n = profileDomainI18n(locale, taxonomy ? taxonomy.byNameKey : undefined);
+const name = user.displayName || user.handle;
+const pageUrl = `${env.siteUrl}${href(user.canonicalPath, locale)}`;
+const tabs = visibleTabs(user, query.tab);
+const earnedKeys = new Set(badges?.earned.map((badge) => badge.key) ?? []);
+const loginAction = href('/login', locale);
+const next = href(Astro.locals.pagePath, locale);
+
+const TAB_LABEL: Record<ProfileTab, () => string> = {
+  mods: () => m.profile_tab_mods(),
+  builds: () => m.profile_tab_builds(),
+  kits: () => m.profile_tab_kits(),
+  badges: () => m.profile_tab_badges(),
+  activity: () => m.profile_tab_activity(),
+  reviews: () => m.profile_tab_reviews(),
+};
+const SORT_LABEL: Record<ProfileSort, () => string> = {
+  downloads: () => m.profile_sort_downloads(),
+  updated: () => m.profile_sort_updated(),
+  new: () => m.profile_sort_new(),
+};
+
+const baseTitle = profileTitle(user);
+const title = query.explicitTab && query.tab !== defaultTab
+  ? m.profile_meta_title_tab({ tab: TAB_LABEL[query.tab](), name, handle: user.handle })
+  : baseTitle;
+const trail = [
+  { label: m.common_nav_home(), path: '/' },
+  { label: m.common_nav_creators(), path: '/creators' },
+  { label: name },
+];
+const jsonLd = [
+  profileJsonLd({ user, locale, siteUrl: env.siteUrl, pageUrl }),
+  breadcrumbJsonLd(
+    trail.map((crumb) => ({
+      name: crumb.label,
+      url: crumb.path === undefined ? undefined : `${env.siteUrl}${href(crumb.path, locale)}`,
+    })),
+  ),
+];
+const visibleCrumbs = trail.map((crumb) => ({
+  label: crumb.label,
+  href: crumb.path === undefined ? undefined : href(crumb.path, locale),
+}));
+
+const isDefault = (tab: ProfileTab) => tab === defaultTab;
+const tabHref = (tab: ProfileTab, options: { page?: number; sort?: ProfileSort | null; cursor?: string | null } = {}) =>
+  href(tabPath(user, tab, { ...options, isDefault: isDefault(tab) }), locale);
+const defaultSort: ProfileSort = query.tab === 'builds' ? 'new' : 'downloads';
+const sortParam = (sort: ProfileSort) => (sort === defaultSort ? null : sort);
+const sectionTitle = 'font-display-caps text-display-xs text-fg';
+const showPinned =
+  (query.tab === 'mods' || query.tab === 'builds') && query.page === 1 && user.pinnedMods.length > 0;
+
+// Badges tab: rank progress (unless hidden) and the notebook.
+const rankProgress =
+  user.xp !== null && user.survivorRank !== null
+    ? { xp: user.xp, rank: user.survivorRank, next: nextSurvivorRank(user.xp) }
+    : null;
+const notebook = content.tab === 'badges' && content.state === 'ok' ? content.data : null;
+const groups = notebook ? notebookGroups(notebook.badges, notebook.catalog) : [];
+const featured = notebook
+  ? user.featuredBadgeKeys
+      .filter((key) => earnedKeys.has(key))
+      .map((key) => ({
+        key,
+        icon:
+          notebook.catalog?.badges.find((badge) => badge.key === key)?.icon ??
+          BADGES.find((badge) => badge.key === key)?.icon ??
+          'award',
+      }))
+  : [];
+const catalogTotal = notebook?.catalog?.badges.filter((badge) => !badge.isSecret).length ?? null;
+---
+
+<BaseLayout
+  template="profile"
+  seo={{
+    title,
+    description: profileDescription(user, locale),
+    path: user.canonicalPath,
+    noindex: !user.hasPublicContent,
+    og: { imageAlt: m.meta_og_default_alt(), type: 'profile' },
+  }}
+  jsonLd={jsonLd}
+  entity={{ type: 'user', id: user.id }}
+>
+  <Fragment slot="head">
+    <link rel="alternate" type="text/markdown" href={`${user.canonicalPath}.md`} title={name} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href={`${user.canonicalPath}/feed.xml`}
+      title={m.profile_feed_title({ name })}
+    />
+  </Fragment>
+
+  <div
+    class="mx-auto grid w-full max-w-(--container-wide) gap-6 px-4 py-4 md:px-6 md:py-8"
+    data-profile-page
+    data-user-id={user.id}
+  >
+    <Breadcrumbs items={visibleCrumbs} className="max-md:hidden" />
+
+    <ProfileHeader user={user} i18n={i18n} loginAction={loginAction} next={next} editHref={href('/settings/profile', locale)} />
+
+    <ProfileTabs user={user} tabs={tabs} active={query.tab} defaultTab={defaultTab} badgeCount={badges ? earnedKeys.size : null} />
+
+    <div id="profile-tab" class="grid gap-8 pb-8">
+      {
+        showPinned && (
+          <section aria-labelledby="pinned-title" class="grid gap-4">
+            <h2 id="pinned-title" class={sectionTitle}>
+              {m.profile_pinned_title()}
+            </h2>
+            <PinnedMods i18n={i18n} locale={locale} label={m.profile_pinned_title()} mods={user.pinnedMods} />
+          </section>
+        )
+      }
+
+      {
+        (content.tab === 'mods' || content.tab === 'builds') && (
+          <section aria-labelledby="cards-title" class="grid gap-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-3">
+              <h2 id="cards-title" class={sectionTitle}>
+                {content.tab === 'mods' ? m.profile_mods_title({ name }) : m.profile_builds_title({ name })}
+              </h2>
+              {content.state === 'ok' && content.data.total > 1 && (
+                <nav aria-label={m.profile_sort_label()} class="flex flex-wrap items-center gap-1 text-sm">
+                  <span class="me-1 text-fg-muted">{m.profile_sort_label()}</span>
+                  {PROFILE_SORTS.map((sort) => (
+                    <a
+                      href={tabHref(content.tab, { sort: sortParam(sort) })}
+                      aria-current={query.sort === sort ? 'page' : undefined}
+                      class="inline-flex min-h-11 items-center rounded-md px-2.5 text-fg-muted hover:bg-fg/6 hover:text-fg aria-[current=page]:bg-fg/8 aria-[current=page]:font-semibold aria-[current=page]:text-fg md:min-h-8"
+                    >
+                      {SORT_LABEL[sort]()}
+                    </a>
+                  ))}
+                </nav>
+              )}
+            </div>
+            {content.state === 'ok' ? (
+              content.data.items.length > 0 ? (
+                <>
+                  <ModGrid
+                    i18n={i18n}
+                    locale={locale}
+                    label={content.tab === 'mods' ? m.profile_tab_mods() : m.profile_tab_builds()}
+                    items={content.data.items}
+                    priorityFirst={!showPinned && !user.banner}
+                  />
+                  <Pagination
+                    page={content.data.page}
+                    totalPages={content.data.totalPages}
+                    hrefFor={(page: number) => tabHref(content.tab, { page, sort: sortParam(query.sort) })}
+                  />
+                </>
+              ) : (
+                <TabState
+                  kind="empty"
+                  icon={content.tab === 'mods' ? Package : Blocks}
+                  title={content.tab === 'mods' ? m.profile_mods_empty_title() : m.profile_builds_empty_title()}
+                  description={m.profile_cards_empty_description({ name })}
+                  action={{ href: href(content.tab === 'mods' ? '/mods' : '/builds', locale), label: m.profile_cards_empty_action() }}
+                />
+              )
+            ) : (
+              <TabState kind="error" title={m.profile_tab_error_title()} description={m.profile_tab_error_description()} />
+            )}
+          </section>
+        )
+      }
+
+      {
+        content.tab === 'kits' && (
+          <section aria-labelledby="kits-title" class="grid gap-4">
+            <h2 id="kits-title" class={sectionTitle}>
+              {m.profile_kits_title({ name })}
+            </h2>
+            {content.state === 'ok' ? (
+              content.data.items.length > 0 ? (
+                <>
+                  <KitGrid i18n={i18n} locale={locale} label={m.profile_tab_kits()} items={content.data.items} />
+                  <Pagination
+                    page={content.data.page}
+                    totalPages={content.data.totalPages}
+                    hrefFor={(page: number) => tabHref('kits', { page })}
+                  />
+                </>
+              ) : (
+                <TabState
+                  kind="empty"
+                  icon={MapIcon}
+                  title={m.profile_kits_empty_title()}
+                  description={m.profile_kits_empty_description({ name })}
+                  action={{ href: href('/kits', locale), label: m.profile_kits_empty_action() }}
+                />
+              )
+            ) : content.state === 'hidden' ? (
+              <TabState kind="hidden" icon={EyeOff} title={m.profile_private_title()} description={m.profile_kits_private({ name })} />
+            ) : (
+              <TabState kind="error" title={m.profile_tab_error_title()} description={m.profile_tab_error_description()} />
+            )}
+          </section>
+        )
+      }
+
+      {
+        content.tab === 'badges' && (
+          <section aria-labelledby="badges-title" class="grid gap-6">
+            <div class="grid gap-3">
+              <div class="flex flex-wrap items-baseline justify-between gap-3">
+                <h2 id="badges-title" class={sectionTitle}>
+                  {m.profile_badges_title()}
+                </h2>
+                <a href={href('/achievements', locale)} class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link md:min-h-8">
+                  {m.profile_badges_rules_link()}
+                  <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+                </a>
+              </div>
+              {notebook && (
+                <p class="text-sm text-fg-muted">
+                  {catalogTotal !== null
+                    ? m.profile_badges_summary_of({ count: earnedKeys.size, total: catalogTotal })
+                    : m.profile_badges_summary({ count: earnedKeys.size })}
+                </p>
+              )}
+              {rankProgress && (
+                <p class="text-sm text-fg-muted">
+                  {rankProgress.next
+                    ? m.profile_rank_progress({
+                        xp: formatNumber(locale, rankProgress.xp),
+                        rank: rankName(rankProgress.rank),
+                        needed: formatNumber(locale, rankProgress.next.xpNeeded),
+                        next: rankName(rankProgress.next.key),
+                      })
+                    : m.profile_rank_top({ xp: formatNumber(locale, rankProgress.xp), rank: rankName(rankProgress.rank) })}
+                </p>
+              )}
+              {featured.length > 0 && (
+                <FeaturedBadges i18n={i18n} badges={featured} badgeName={badgeName} label={m.profile_badges_featured_label()} />
+              )}
+            </div>
+            {content.state === 'ok' ? (
+              groups.length > 0 ? (
+                <BadgeNotebook
+                  i18n={i18n}
+                  groups={groups}
+                  groupName={badgeGroupName}
+                  badgeName={badgeName}
+                  badgeHint={badgeHint}
+                  earnedOn={(iso: string) => m.profile_badge_earned_on({ date: formatDate(locale, iso, 'medium') })}
+                  featuredLabel={m.profile_badge_featured()}
+                />
+              ) : (
+                <TabState
+                  kind="empty"
+                  icon={Footprints}
+                  title={m.profile_badges_empty_title()}
+                  description={m.profile_badges_empty_description()}
+                  action={{ href: href('/achievements', locale), label: m.profile_badges_rules_link() }}
+                />
+              )
+            ) : (
+              <TabState kind="error" title={m.profile_tab_error_title()} description={m.profile_tab_error_description()} />
+            )}
+          </section>
+        )
+      }
+
+      {
+        content.tab === 'activity' &&
+          (content.state === 'ok' ? (
+            content.data.days.length > 0 ? (
+              <ActivityHeatmap activity={content.data} name={name} />
+            ) : (
+              <section aria-labelledby="activity-title" class="grid gap-4">
+                <h2 id="activity-title" class={sectionTitle}>
+                  {m.profile_activity_title()}
+                </h2>
+                <TabState
+                  kind="empty"
+                  icon={Footprints}
+                  title={m.profile_activity_empty_title()}
+                  description={m.profile_activity_empty_description({ name })}
+                />
+              </section>
+            )
+          ) : (
+            <section aria-labelledby="activity-title" class="grid gap-4">
+              <h2 id="activity-title" class={sectionTitle}>
+                {m.profile_activity_title()}
+              </h2>
+              {content.state === 'hidden' ? (
+                <TabState
+                  kind="hidden"
+                  icon={EyeOff}
+                  title={m.profile_private_title()}
+                  description={m.profile_activity_private({ name })}
+                />
+              ) : (
+                <TabState kind="error" title={m.profile_tab_error_title()} description={m.profile_tab_error_description()} />
+              )}
+            </section>
+          ))
+      }
+
+      {
+        content.tab === 'reviews' && (
+          <section aria-labelledby="reviews-title" class="grid gap-4">
+            <h2 id="reviews-title" class={sectionTitle}>
+              {m.profile_reviews_title({ name })}
+            </h2>
+            {content.state === 'ok' ? (
+              content.data.items.length > 0 ? (
+                <>
+                  <WrittenReviews
+                    i18n={i18n}
+                    locale={locale}
+                    reviews={content.data.items}
+                    reviewOf={(mod: string) => m.profile_review_of({ mod })}
+                  />
+                  {(query.cursor || content.data.nextCursor) && (
+                    <nav aria-label={m.profile_reviews_pagination()} class="flex flex-wrap justify-between gap-3">
+                      {query.cursor ? (
+                        <a href={tabHref('reviews')} class="inline-flex min-h-11 items-center font-semibold text-link">
+                          {m.profile_reviews_newest()}
+                        </a>
+                      ) : (
+                        <span />
+                      )}
+                      {content.data.nextCursor && (
+                        <a
+                          href={tabHref('reviews', { cursor: content.data.nextCursor })}
+                          rel="next"
+                          class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link"
+                        >
+                          {m.profile_reviews_older()}
+                          <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+                        </a>
+                      )}
+                    </nav>
+                  )}
+                </>
+              ) : (
+                <TabState
+                  kind="empty"
+                  icon={MessageSquareQuote}
+                  title={m.profile_reviews_empty_title()}
+                  description={m.profile_reviews_empty_description({ name })}
+                />
+              )
+            ) : (
+              <TabState kind="error" title={m.profile_tab_error_title()} description={m.profile_tab_error_description()} />
+            )}
+          </section>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initProfilePage } from '../../../components/profile/profile-page.ts';
+
+  initProfilePage();
+</script>
