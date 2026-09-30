@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { afterAll, describe, expect, it } from 'vitest';
 import { stopTestServer } from '../src/testing.ts';
@@ -40,9 +41,15 @@ describe('command-line tools', () => {
       expect(guard.out).toMatch(/legacy ⊆ v2 guard: OK/);
 
       const status = run('src/cli/migrate.ts', ['status'], db.url);
-      expect(status.out).not.toMatch(/pending/);
+      expect(status.out).not.toMatch(/^pending/m);
 
-      const down = run('src/cli/migrate.ts', ['down', '--to', '0090_validate_constraints', '--dry-run'], db.url);
+      // Roll back only the newest migration: `--to` the one before it.
+      const names = readdirSync(new URL('../migrations', import.meta.url))
+        .filter((file) => /^\d{4}_[a-z0-9_]+\.sql$/.test(file) && !file.endsWith('.down.sql'))
+        .map((file) => file.slice(0, -'.sql'.length))
+        .sort();
+      const previous = names.at(-2) as string;
+      const down = run('src/cli/migrate.ts', ['down', '--to', previous, '--dry-run'], db.url);
       expect(down.code, down.out).toBe(0);
       expect(down.out).toMatch(/would roll back 1 migration/);
     } finally {
