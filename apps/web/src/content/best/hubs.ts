@@ -48,12 +48,10 @@ export const HUBS: Readonly<Record<BestTopic, HubDefinition>> = {
     queries: [
       { type: 'all', category: ['multiplayer-servers'] },
       { type: 'all', tag: ['co-op'] },
-      { type: 'mod', multiplayer: 'all_players' },
-      { type: 'mod', multiplayer: 'host_only' },
-      { type: 'mod', multiplayer: 'client_side' },
+      { type: 'mod', multiplayer: ['all_players', 'host_only', 'client_side'] },
     ],
     limit: 24,
-    explore: '/mods?multiplayer=all_players',
+    explore: '/mods?multiplayer=all_players&multiplayer=host_only',
   },
   'dedicated-server-mods': {
     queries: [

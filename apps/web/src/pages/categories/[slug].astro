@@ -94,7 +94,15 @@ const jsonLd = list
   template="category"
   width="wide"
   entity={categoryEntity}
-  seo={{ title, description: intro, path: seo.path, noindex: seo.noindex }}
+  seo={{
+    title,
+    description: intro,
+    path: seo.path,
+    noindex: seo.noindex,
+    ...(category.ogImage
+      ? { og: { image: category.ogImage.url, imageAlt: name, imageWidth: category.ogImage.width, imageHeight: category.ogImage.height } }
+      : {}),
+  }}
   jsonLd={jsonLd}
   breadcrumbs={[
     { label: m.common_nav_home(), path: '/' },
