@@ -9,7 +9,7 @@ import { type CacheTag, cacheTag } from '@sotf/contracts/cache';
 import type { ModCardDTO, ModDetailDTO, UserPublicDTO } from '@sotf/contracts/catalog';
 import { absoluteUrl, versionsPath } from '@sotf/contracts/seo';
 import type { VersionDTO } from '@sotf/contracts/versions';
-import { LOGO_PATH } from '../../../lib/site.ts';
+import { LOGO_PATH } from '../site.ts';
 import { htmlToMarkdown } from './html-to-md.ts';
 import { type RssChannel, type RssItem, rss } from './xml.ts';
 

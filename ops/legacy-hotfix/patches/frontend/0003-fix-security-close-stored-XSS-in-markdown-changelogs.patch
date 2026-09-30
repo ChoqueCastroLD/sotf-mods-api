@@ -1,4 +1,4 @@
-From f9aea34c86aec3c3e781d02574ece0654d35278b Mon Sep 17 00:00:00 2001
+From 9bfcd4c43750f052330ced0308b31bcb2ea9e1f9 Mon Sep 17 00:00:00 2001
 From: Luis Choque <luis.choque.castro@outlook.com>
 Date: Tue, 29 Sep 2026 14:07:44 +0200
 Subject: [PATCH 3/3] fix(security): close stored XSS in markdown, changelogs

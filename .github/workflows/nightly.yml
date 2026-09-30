@@ -1,7 +1,8 @@
 # Nightly and weekly checks (PLAN §10.2 "nightly", §14.5).
 #
 #   daily   03:17 UTC  pnpm audit · Lighthouse CI against staging
-#   weekly  Sun 04:43  Unlighthouse over staging · the development dataset dump for the weekly
+#   weekly  Sun 04:43  secrets-scan over the whole git history · Unlighthouse over staging · the
+#                      development dataset dump for the weekly
 #                      staging reset (PLAN §14.5: staging runs on the seed, never on a production
 #                      copy, and there are no backups to restore; ops/runbooks/deploy/06-staging.md)
 #
@@ -50,6 +51,29 @@ jobs:
 
       - name: Audit (high and critical fail)
         run: pnpm audit --prod --audit-level high
+
+  secrets-history:
+    name: secrets-scan (whole git history, weekly)
+    if: github.event.schedule == '43 4 * * 0' || inputs.weekly
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout (every ref)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      # Findings are printed redacted; a hit means rotating the secret (PLAN §9.4), not only
+      # rewriting history.
+      - name: Scan every line ever added, on every ref
+        run: |
+          git fetch --no-tags --prune origin '+refs/heads/*:refs/remotes/origin/*'
+          node tooling/scripts/secrets-scan.ts --history
 
   lhci-staging:
     name: Lighthouse CI (staging)

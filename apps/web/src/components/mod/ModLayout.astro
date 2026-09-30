@@ -20,6 +20,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 import { breadcrumbJsonLd, type JsonLd } from '../../lib/seo/jsonld.ts';
+import AdUnit from '../ads/AdUnit.astro';
 import type { SeoProps } from '../layout/SeoHead.astro';
 import DependencySheet from './DependencySheet.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
@@ -107,6 +108,12 @@ const hasGlance = Astro.slots.has('glance');
       href={`${mod.canonicalPath}/feed.xml`}
       title={m.mod_feed_title({ name: mod.name })}
     />
+    <link
+      rel="alternate"
+      type="application/json+oembed"
+      href={`/oembed?url=${encodeURIComponent(`${env.siteUrl}${overviewHref}`)}&format=json`}
+      title={mod.name}
+    />
   </Fragment>
   <div
     data-mod-page
@@ -151,6 +158,7 @@ const hasGlance = Astro.slots.has('glance');
                 class="order-4 grid min-w-0 content-start gap-4 lg:order-none lg:col-start-2 lg:row-start-2"
               >
                 <slot name="sidebar" />
+                {!mod.nsfw && <AdUnit placement="modSidebar" format="sidebar" />}
               </aside>
             )
           }

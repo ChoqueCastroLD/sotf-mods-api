@@ -1,32 +1,10 @@
 /**
- * Unit tests of the worker platform pieces added in the integration pass: development port,
- * error reporting (Sentry envelope, no PII) and the final-attempt rule.
+ * Unit tests of the worker platform pieces added in the integration pass: error reporting
+ * (Sentry envelope, no PII) and the final-attempt rule.
  */
 import { describe, expect, it } from 'vitest';
-import { DEVELOPMENT_PORT, PRODUCTION_PORT, parseWorkerEnv } from '../src/env.ts';
 import { isFinalAttempt } from '../src/runtime.ts';
 import { createErrorReporter, noopReporter } from '../src/sentry.ts';
-
-const BASE = {
-  PUBLIC_SITE_URL: 'http://127.0.0.1:47321',
-  DATABASE_URL: 'postgres://sotf:sotf@127.0.0.1:47432/sotf',
-  APP_SECRET: 'a'.repeat(40),
-  INTERNAL_SECRET: 'b'.repeat(40),
-};
-
-describe('worker health port', () => {
-  it('defaults to 47302 outside production and 3002 in production', () => {
-    expect(parseWorkerEnv({ ...BASE }).PORT).toBe(DEVELOPMENT_PORT);
-    expect(parseWorkerEnv({ ...BASE, NODE_ENV: 'development' }).PORT).toBe(47302);
-    expect(parseWorkerEnv({ ...BASE, NODE_ENV: 'production' }).PORT).toBe(PRODUCTION_PORT);
-    expect(PRODUCTION_PORT).toBe(3002);
-  });
-
-  it('always honours an explicit PORT', () => {
-    expect(parseWorkerEnv({ ...BASE, PORT: '5000' }).PORT).toBe(5000);
-    expect(parseWorkerEnv({ ...BASE, NODE_ENV: 'production', PORT: '3002' }).PORT).toBe(3002);
-  });
-});
 
 describe('final attempt of a job', () => {
   it('follows the retry limit of the queue', () => {

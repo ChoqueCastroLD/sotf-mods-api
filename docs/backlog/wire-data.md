@@ -19,7 +19,6 @@ item: what · where · why.
 - **Localised profile links** · `configureDomainI18n` / `DomainI18nProvider` in `apps/web` and the console (web areas) · pass `href: (path) => localizePath(path, getLocale())` so the domain cards link to `/es/profile/…`.
 - **New copy to use** · web areas · `unsubscribe_*` in `pages/unsubscribe.astro`, `mod_faq_title` in `ModFaq.astro`, `signals_badge_name_<key>` in `islands/signals/describe.ts`, `console_nav_inbox`/`console_nav_drafts` in `console/lib/navigation.ts`.
 - **Sentry in the API** · `apps/api` (wire-api) · the worker reports with `@sentry/core` (`apps/worker/src/sentry.ts`); `@sentry/node` was avoided on purpose: it pulls OpenTelemetry, which makes pnpm resolve a second `drizzle-orm` instance (optional peer) and breaks the Drizzle types across packages.
-- **API dev port** · `apps/api/src/env.ts` (wire-api) · the worker defaults to 47302 without `PORT` unless `NODE_ENV=production`; the API should do the same with 47301 (README «puertos» note can then go).
 - **Catalog entry** · `pnpm-workspace.yaml` (integrator) · `@sentry/core: 11.1.0` was added next to the other `@sentry/*` pins (pnpm `catalogMode: prefer` writes it there); covered by the existing `minimumReleaseAgeExclude`.
 
 ## Still open in this area (needs a contract, a decision or a person)

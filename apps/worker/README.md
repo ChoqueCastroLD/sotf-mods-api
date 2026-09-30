@@ -6,9 +6,7 @@ the recurring schedules. Business logic lives in `@sotf/core`.
 ## Run
 
 - `pnpm --filter @sotf/worker dev` (source) · `node dist/worker.js` (bundle, `pnpm build`).
-- Health server on `PORT`: `/healthz`, `/readyz` (DB + pg-boss). Without `PORT` it listens on
-  47302 (`pnpm dev`, PLAN §11.2) unless `NODE_ENV=production`, where the default is 3002 (Coolify
-  sets `PORT` anyway).
+- Health server on `PORT` (3002): `/healthz`, `/readyz` (DB + pg-boss).
 - pg-boss runs with `migrate: false` (the schema comes from `db:migrate`), maintenance and cron on.
   Every queue of `JOB_PAYLOADS` exists with retries, exponential backoff and the shared
   `dead-letter` queue (`@sotf/core` `ensureQueues`).
@@ -17,6 +15,8 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   overriding set variables; `SOTF_NO_DOTENV=1` disables it). Locally, e-mails go to Mailpit
   (`EMAIL_TRANSPORT=mailpit`, UI `http://127.0.0.1:47080`) and the CDN purge is a no-op without
   `CF_ZONE_ID`/`CF_API_TOKEN`.
+- The `dev` script serves the health endpoint on `127.0.0.1:47302` (`PORT`/`HOST` exported in the
+  shell override it); outside it `PORT` defaults to 3002 (the Coolify port).
 - Errors: with `SENTRY_DSN` every failed job attempt is reported to Sentry (`src/sentry.ts`,
   `@sentry/core` without OpenTelemetry): tags `queue`/`final`, context `job` (id, retry count),
   level `warning` while pg-boss will retry and `error` on the last attempt; fatal errors of the

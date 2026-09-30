@@ -98,7 +98,7 @@ describe('coexistence and env', () => {
     };
     const env = parseWorkerEnv(base);
     expect(env).toMatchObject({
-      PORT: 47302, // development port without NODE_ENV=production (3002 in production)
+      PORT: 3002,
       DB_POOL_MAX: 5,
       LEGACY_COEXIST: true,
       PUBLIC_SITE_URL: 'https://sotf-mods.com',

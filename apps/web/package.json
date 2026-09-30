@@ -50,7 +50,7 @@
     "@lhci/cli": "catalog:",
     "@playwright/test": "catalog:",
     "@sotf/config": "workspace:*",
-    "@tanstack/router-generator": "1.167.39",
+    "@tanstack/router-generator": "catalog:",
     "@tanstack/router-plugin": "catalog:",
     "@types/jsdom": "catalog:",
     "@types/node": "catalog:",

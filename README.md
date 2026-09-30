@@ -26,7 +26,7 @@ Cinco comandos, desde la raíz del repositorio:
 
 ```bash
 pnpm install
-node -e "const fs=require('node:fs'),c=require('node:crypto');fs.writeFileSync('.env',fs.readFileSync('.env.example','utf8').replace(/^(APP_SECRET|INTERNAL_SECRET)=$/gm,(_,k)=>k+'='+c.randomBytes(48).toString('base64url')))"
+pnpm env:init
 pnpm infra:up
 pnpm db:seed:dev --small
 pnpm dev
@@ -34,26 +34,17 @@ pnpm dev
 
 1. Instala las dependencias (versiones exactas del catálogo).
 2. Crea `.env` a partir de `.env.example` con `APP_SECRET` e `INTERNAL_SECRET` locales aleatorios
-   (equivale a `cp .env.example .env` y rellenar ambos con `openssl rand -base64 48`; sobrescribe
-   un `.env` existente). La api, el worker y los scripts `db:*` cargan este `.env` solos.
+   (`tooling/scripts/env-init.ts`). Si `.env` ya existe solo rellena esos secretos cuando están
+   vacíos; `pnpm env:init --force` lo regenera desde cero. La api, el worker y los scripts `db:*`
+   cargan este `.env` solos.
 3. Levanta PostgreSQL 16, SeaweedFS (S3) y Mailpit (proyecto Compose `sotfv2`) y crea los buckets.
 4. Construye la base de desarrollo: snapshot público + datos sintéticos → migraciones → backfills
    → verificación. Todas las cuentas usan la contraseña `sotf-dev-2026!` (`<slug>@example.test`).
-5. Arranca web, api y worker en modo desarrollo.
+5. Arranca web (`127.0.0.1:47321`), api (`127.0.0.1:47301`) y worker (health `127.0.0.1:47302`)
+   en modo desarrollo; los scripts `dev` de cada app fijan su puerto (`PORT=… pnpm --filter
+   @sotf/api dev` lo cambia para una sola app).
 
 Abre **http://127.0.0.1:47321**. Los emails de desarrollo se ven en http://127.0.0.1:47080.
-
-> **Aviso (estado a 2026-09-30, ver [`docs/backlog/WP-A4.md`](docs/backlog/WP-A4.md))**: los
-> scripts `dev` de la api y el worker aún no fijan sus puertos de desarrollo, así que `pnpm dev`
-> los arranca en 3001 y 3002; la landing se sirve igual, pero sus secciones con datos muestran el
-> estado de error y las islas no encuentran `/api` (la web de desarrollo no hace de proxy). Hasta
-> que se corrija, para tener el stack completo arranca cada app en su terminal:
->
-> ```bash
-> PORT=47301 pnpm --filter @sotf/api dev
-> PORT=47302 pnpm --filter @sotf/worker dev
-> pnpm --filter @sotf/web dev
-> ```
 
 Más detalle, cuentas de admin locales y problemas frecuentes:
 [`docs/developers/local-environment.md`](docs/developers/local-environment.md).
@@ -91,7 +82,9 @@ Los paquetes internos no se compilan: exportan `./src/index.ts` y las apps los e
 | `pnpm gen` | Regenera los ficheros generados (`*.gen.ts`, `.generated/`, árbol de rutas de la consola); nunca se editan a mano |
 | `pnpm gen:ownership` | Regenera `tooling/scripts/ownership.json` desde PLAN §12.3 |
 | `pnpm infra:up` / `infra:down` / `infra:reset` / `infra:status` | Infraestructura local (proyecto Compose `sotfv2`) |
-| `pnpm dev` | Apps en modo desarrollo |
+| `pnpm env:init [--force]` | Crea o completa `.env` desde `.env.example` con secretos locales aleatorios |
+| `pnpm dev` | Apps en modo desarrollo (web 47321, api 47301, worker 47302) |
+| `pnpm secrets:scan [--history]` | Busca credenciales en el árbol de trabajo o en todo el historial git (PLAN §9.4) |
 | `pnpm db:migrate` · `db:guard` · `db:baseline` | Migraciones SQL, guarda de superconjunto y baseline legacy (`packages/db`) |
 | `pnpm db:seed:dev` · `db:reset:dev` | Base de desarrollo (`tooling/migration`) |
 | `pnpm db:backfill` · `db:invariants` · `db:verify-snapshot` · `db:revert-fix` · `admin:grant` | Backfills, verificaciones, reversión de fixes auditados y roles (`tooling/migration`) |

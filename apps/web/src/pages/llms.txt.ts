@@ -1,9 +1,9 @@
 /** `GET /llms.txt` (PLAN §8.7): the llmstxt.org map of the site. Cached 1 h (tags `sitemap`, `list:*`). */
 import type { APIRoute } from 'astro';
 import { loadEnv } from '../lib/env.ts';
-import { allCards, allCategories } from './sitemaps/_lib/data.ts';
-import { llmsTxt } from './sitemaps/_lib/llms.ts';
-import { CONTENT_TYPES, machineResponse, machineUnavailable } from './sitemaps/_lib/respond.ts';
+import { allCards, allCategories } from '../lib/seo/data.ts';
+import { llmsTxt } from '../lib/seo/llms.ts';
+import { CONTENT_TYPES, machineResponse, machineUnavailable } from '../lib/seo/respond.ts';
 
 export const prerender = false;
 

@@ -25,6 +25,14 @@ const origin = z
   .transform((value) => value.replace(/\/+$/, ''))
   .refine((value) => new URL(value).pathname === '/' || new URL(value).pathname === '', 'must be an origin (no path)');
 
+/** AdSense ad unit id (`data-ad-slot`, digits). */
+const adUnit = optionalString.pipe(
+  z
+    .string()
+    .regex(/^\d{6,20}$/, 'expected the numeric ad unit id')
+    .optional(),
+);
+
 const EnvSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
@@ -55,6 +63,24 @@ const EnvSchema = z
      */
     RELEASE_SHA: optionalString,
     SOURCE_COMMIT: optionalString,
+    /**
+     * CSP delivery (PLAN §9.1, WP-93): `report-only` or `enforce`. Unset: staging reports only,
+     * every other environment enforces (`cspModeFor`).
+     */
+    CSP_MODE: optionalString.pipe(z.enum(['enforce', 'report-only']).optional()),
+    /**
+     * S3 endpoint of the storage when it is not R2 (SeaweedFS/MinIO of development, e2e,
+     * staging emulators). Browsers `PUT` presigned uploads to it, so its origin joins
+     * `connect-src`. Empty in production (R2's S3 API is already allowed).
+     */
+    R2_ENDPOINT: optionalString.pipe(z.url({ protocol: /^https?$/ }).optional()),
+    /**
+     * AdSense ad units per placement (PLAN §8.5; research/03 §6.2–6.3). Each slot renders only
+     * with `PUBLIC_ADSENSE_CLIENT` and its unit id; guests only (`scripts/ads.ts`).
+     */
+    PUBLIC_ADSENSE_SLOT_HOME: adUnit,
+    PUBLIC_ADSENSE_SLOT_FEED: adUnit,
+    PUBLIC_ADSENSE_SLOT_MOD_SIDEBAR: adUnit,
   })
   .superRefine((env, ctx) => {
     if (env.SITE_ENV !== 'development' && !env.INTERNAL_SECRET) {
@@ -82,8 +108,23 @@ export interface WebEnv {
   indexNowKey: string | undefined;
   sentryDsn: string | undefined;
   release: string | undefined;
+  /** Forced CSP delivery (`CSP_MODE`); undefined = per environment. */
+  cspMode: 'enforce' | 'report-only' | undefined;
+  /** Origin of a non-R2 S3 endpoint browsers upload to (`R2_ENDPOINT`). */
+  storageUploadOrigin: string | undefined;
+  /** AdSense ad unit ids per placement (undefined: that slot is not rendered). */
+  adSlots: AdSlots;
   /** Whether pages may be indexed (`SITE_ENV=production` only). */
   indexable: boolean;
+}
+
+export interface AdSlots {
+  /** Landing, next to the creator spotlight. */
+  home: string | undefined;
+  /** In-feed card of Explore listings. */
+  feed: string | undefined;
+  /** Sidebar of the mod page. */
+  modSidebar: string | undefined;
 }
 
 export class EnvError extends Error {
@@ -111,6 +152,13 @@ export function parseEnv(source: Readonly<Record<string, string | undefined>>): 
     indexNowKey: env.INDEXNOW_KEY,
     sentryDsn: env.SENTRY_DSN,
     release: env.RELEASE_SHA ?? env.SOURCE_COMMIT,
+    cspMode: env.CSP_MODE,
+    storageUploadOrigin: env.R2_ENDPOINT ? new URL(env.R2_ENDPOINT).origin : undefined,
+    adSlots: {
+      home: env.PUBLIC_ADSENSE_SLOT_HOME,
+      feed: env.PUBLIC_ADSENSE_SLOT_FEED,
+      modSidebar: env.PUBLIC_ADSENSE_SLOT_MOD_SIDEBAR,
+    },
     indexable: env.SITE_ENV === 'production',
   };
 }

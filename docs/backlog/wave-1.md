@@ -47,16 +47,16 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 - **Quitar `minimumReleaseAgeExclude`** · `pnpm-workspace.yaml` (integrador I-2) · no se pudo en
   I-1: la integración corrió el 2026-09-29 a las 22:08Z, antes del límite 2026-09-30T20:00Z
   (ADR-0002).
-- **`remark-parse`, `remark-gfm`, `remark-rehype` y `vaul` sin uso** · catálogo (integrador) · se
+- [x] resolved by wire-infra (removed from the catalog (also the unused `cmdk` and `@tanstack/router-cli`); PLAN §2.2 notes why) · **`remark-parse`, `remark-gfm`, `remark-rehype` y `vaul` sin uso** · catálogo (integrador) · se
   dejan porque PLAN §2.2 los nombra; retirarlos cuando ningún WP los adopte. `@sotf/ui` usa el
   `Drawer` de Base UI en lugar de vaul. (WP-12, WP-15; ADR-0003.)
-- **Columnas Drizzle añadidas por WPs posteriores** · `tooling/scripts/ownership.overrides.json`
+- [x] resolved by wire-infra (`packages/db/src/schema/{legacy,v2}/*.ts` are shared paths (`SHARED_PATTERNS`, tested)) · **Columnas Drizzle añadidas por WPs posteriores** · `tooling/scripts/ownership.overrides.json`
   (WP-00/integrador) · Drizzle no puede añadir columnas a una tabla declarada en otro fichero, así
   que un WP que añada columnas a una tabla existente edita `packages/db/src/schema/{legacy,v2}/*.ts`:
   declararlos compartidos (como `*.gen.ts`) o canalizar esas ediciones por el integrador. (WP-10.)
-- **Documentar la carga del `.env` raíz por los scripts `db:*`** (`loadRootDotEnv`) · `README.md`
+- [x] resolved by wire-infra (verified: README «Scripts raíz» and `docs/developers/local-environment.md` §3 (WP-A4)) · **Documentar la carga del `.env` raíz por los scripts `db:*`** (`loadRootDotEnv`) · `README.md`
   (WP-00/WP-A4). (WP-10.)
-- **Nota de temas** · PLAN §3.3 · los temas son globales: Lightning CSS baja `light-dark()` a
+- [x] resolved by wire-infra (PLAN §3.3) · **Nota de temas** · PLAN §3.3 · los temas son globales: Lightning CSS baja `light-dark()` a
   propiedades en `:root`, así que un `[data-theme]` anidado no re-tematiza un subárbol; las vistas
   previas tematizadas usan un iframe. (WP-12.)
 - **Tamaño de `.generated/` de i18n** · ≈ 2,7 MB y 460 ficheros para 218 mensajes (≈ 12 KB por
@@ -77,10 +77,10 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 - **Regenerar la baseline legacy desde un dump real si llega** · `packages/db` (WP-A0) ·
   `0000_legacy_baseline.sql` y `src/guard/legacy-catalog.json`; §14.5 dice que no habrá dump, así
   que el guard contra el catálogo vivo es la red de seguridad. (WP-10.)
-- **Runbook de cutover** · `docs/runbooks/cutover.md` (WP-A0) · re-ejecutar `ops/sql/roles.sql`
+- [x] resolved by wire-infra (`ops/runbooks/cutover/README.md` («B2 · B3»)) · **Runbook de cutover** · `docs/runbooks/cutover.md` (WP-A0) · re-ejecutar `ops/sql/roles.sql`
   tras B3 (en B2 imprime `PARTIAL`); sin la segunda pasada `sotf_v2_app` conserva UPDATE/DELETE en
   `"AuditLog"`. (WP-10.)
-- **Aceptación del propietario de la semilla de taxonomía en convivencia** · PLAN §6.13 B3 (WP-A0)
+- [x] resolved by wire-infra (the runbook step is in `ops/runbooks/cutover/README.md` («B3»); the OK itself stays a user action before B3) · **Aceptación del propietario de la semilla de taxonomía en convivencia** · PLAN §6.13 B3 (WP-A0)
   · `0025_seed_taxonomy` inserta 8 categorías `type = 'Mod'` y 40 tags en las tablas legacy vivas:
   la web legacy mostrará dos «Quality of Life» y categorías vacías hasta el cutover. Si no se
   acepta, mover la inserción a una migración aplicada en D4. (WP-10.)
@@ -98,10 +98,10 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 - **Cola de eventos de dominio** · `packages/core/src/kernel/**`, `apps/worker` (WP-20) · adoptar
   `JOB_PAYLOADS['domain.event']` (fan-out único) o añadir colas por consumidor (cambio aditivo).
   (WP-11.)
-- **Imagen de migración** · `ops/docker/node.Dockerfile`, bundle de `apps/api` (WP-20/WP-90) ·
+- [x] resolved by wire-infra (verified: `ops/docker/node.Dockerfile` ships `dist/migrations/*.sql` and `dist/migrate.js` (WP-90)) · **Imagen de migración** · `ops/docker/node.Dockerfile`, bundle de `apps/api` (WP-20/WP-90) ·
   incluir `packages/db/migrations/` y ejecutar `cli/migrate.ts` con `MIGRATIONS_DATABASE_URL`
   (`MIGRATIONS_DIR` si se empaqueta). (WP-10.)
-- **CI con PostgreSQL** · `.github/workflows/ci.yml` (WP-90) · `test:int` de `@sotf/db` necesita
+- [x] resolved by wire-infra (verified: `ci.yml` stage 6 runs `test:int` with Testcontainers on the runner Docker and stage 7 `db:guard` in ephemeral mode) · **CI con PostgreSQL** · `.github/workflows/ci.yml` (WP-90) · `test:int` de `@sotf/db` necesita
   Docker (Testcontainers) o `SOTF_TEST_DATABASE_URL` con PostgreSQL 16 y `psql`; `db:guard` sin URL
   usa el modo efímero; para staging/preflight, `DATABASE_URL`. (WP-10.)
 - **Harness legacy** · `tooling/legacy-contract` (WP-24) · reutilizar `validateLegacy`,
@@ -113,23 +113,23 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 
 ### Web pública (WP-22, WP-25, WP-62, WP-70)
 
-- **Cabecera de página** · `apps/web/src/layouts/**` (WP-22) · `data-theme="dark"` en `<html>`,
+- [x] resolved by WP-22 (verified by wire-web-public) (`layouts/BaseLayout.astro`) · **Cabecera de página** · `apps/web/src/layouts/**` (WP-22) · `data-theme="dark"` en `<html>`,
   `THEME_INIT_SCRIPT` inline antes del CSS, `BANNER_INIT_SCRIPT` opcional, `FONT_PRELOADS`,
   `@import "@sotf/ui/tokens.css"` y `enhance()` de `@sotf/ui/enhance`. (WP-12.)
-- **Locale por petición** · `apps/web/src/middleware/**` (WP-22) · importar `@sotf/i18n/server`,
+- [x] resolved by WP-22 (verified by wire-web-public) (`middleware/index.ts` + `lib/i18n.ts`) · **Locale por petición** · `apps/web/src/middleware/**` (WP-22) · importar `@sotf/i18n/server`,
   envolver cada petición en `withLocale(stripLocale(path).locale, …)`,
   `<html lang={toHtmlLang(locale)}>` y `hreflangAlternates(path, origin)`; configurar
   `configureUiTranslate((key, params) => m[key](params ?? {}))` una vez (y `UiTranslateProvider` en
   la consola, WP-34). (WP-12, WP-13.)
 - **`UNLOCALIZED_SEGMENTS`** · `packages/i18n/src/paths.ts` o la opción `isLocalized` (WP-22) ·
   ampliar si aparecen rutas sin prefijo (`/embed`, `/k`, `/_actions`). (WP-13.) · **[x] resolved by wire-data**: `healthz` added; `/embed` and `/k` are localized routes by design (they render/redirect per locale).
-- **Sugerencia de idioma** · `apps/web/src/scripts/lang-suggest.ts` (WP-22) · renderizada en el
+- [x] resolved by WP-22 (verified by wire-web-public) (`scripts/lang-suggest.ts`) · **Sugerencia de idioma** · `apps/web/src/scripts/lang-suggest.ts` (WP-22) · renderizada en el
   locale sugerido, candidato de `negotiateLocale` o `fromLegacyLangCookie`; nunca redirección.
   (WP-13.)
-- **CSP** · `apps/web/src/lib/security/**` (WP-22, revisión WP-93) · hashes de
+- [x] resolved by WP-93 (verified by wire-web-public) (`lib/security/csp.ts`; `CSP_MODE` cableado por wire-web-public) · **CSP** · `apps/web/src/lib/security/**` (WP-22, revisión WP-93) · hashes de
   `THEME_INIT_SCRIPT`/`BANNER_INIT_SCRIPT` (`cspScriptHash`); sonner y Base UI/floating-ui necesitan
   `style-src 'unsafe-inline'` (o nonce) donde carguen `Toaster` o popups. (WP-12.)
-- **Assets de marca en la raíz web** · `apps/web/public/**` (WP-22) · `/brand/topo.svg`,
+- [x] resolved by WP-22 (verified by wire-web-public) · **Assets de marca en la raíz web** · `apps/web/public/**` (WP-22) · `/brand/topo.svg`,
   `/brand/field-kit.svg` y el resto de `packages/brand/assets/public`. (WP-12; ya en wave-0.)
 - **Componentes de dominio** · `packages/ui/src/domain/index.ts` y
   `packages/ui/playground/domain/**/*.demo.tsx` (WP-25) · el export `@sotf/ui/domain` ya está
@@ -138,7 +138,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `.md-anchor`, `.md-alert*`, `.md-spoiler` (con foco visible y *reduced motion*), `.md-youtube`,
   `.md-mention`, listas de tareas y `details`/`summary`; contrato en
   `packages/markdown/README.md`. (WP-15.) · **[x] resolved by wire-data**: verified: `ProseLocator` (`packages/ui/src/domain/content.tsx`).
-- **Fachada de YouTube y revelado de spoilers** · `apps/web/src/scripts/**` (WP-62/WP-70) ·
+- [x] resolved by wire-web-public (`scripts/mod/prose.ts` enlazado una vez por documento; el boot lo carga en cualquier página con spoilers/fachadas (builds, kits, perfiles, noticias)) · **Fachada de YouTube y revelado de spoilers** · `apps/web/src/scripts/**` (WP-62/WP-70) ·
   sustituir `a.md-youtube-link` por el iframe `youtube-nocookie`; spoilers accesibles (click, Enter,
   Espacio; `aria-expanded`, quitar `role`/`tabindex`/`aria-label`; CSS para spoilers con enlace o
   dentro de `<summary>`). (WP-15.)

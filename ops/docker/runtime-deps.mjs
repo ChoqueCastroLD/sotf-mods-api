@@ -16,10 +16,14 @@
 //        sibling links (dependencies, optional platform binaries, peers). Unreachable `.pnpm`
 //        entries (e.g. dependencies of the bundled workspace packages), dangling links, `.bin`,
 //        type declarations, TypeScript sources, source maps, docs and changelogs of dependencies
-//        and React's development builds (the images run with NODE_ENV=production) go.
-// check  Every static bare import resolves, no `@sotf/*` import is left (workspace packages are
-//        TypeScript sources and must be bundled), the `--load` modules load (native addons on
-//        musl), and the app directory ships no TypeScript sources, `.env` files, dumps or keys.
+//        go. React's development builds (the images run with NODE_ENV=production) are replaced by
+//        a one-line re-export of their production twin: Node's CommonJS named-export detection
+//        follows *both* `require()` branches of React's entry points, so a deleted file would
+//        turn `import { createElement } from "react"` into a SyntaxError at start-up.
+// check  Every static bare import resolves and provides the named bindings the bundles import,
+//        no `@sotf/*` import is left (workspace packages are TypeScript sources and must be
+//        bundled), the `--load` modules load (native addons on musl), and the app directory ships
+//        no TypeScript sources, `.env` files, dumps or keys.
 import {
   cpSync,
   existsSync,
@@ -30,6 +34,7 @@ import {
   rmSync,
   statSync,
   unlinkSync,
+  writeFileSync,
 } from 'node:fs';
 import { builtinModules } from 'node:module';
 import { basename, dirname, join, relative, resolve, sep } from 'node:path';
@@ -81,6 +86,29 @@ function jsFiles(target, out = []) {
   return out;
 }
 
+/** `import { a, b as c } from "x"` and `export { a } from "x"`: the bindings taken from `x`. */
+const NAMED_IMPORT_PATTERN = /\b(?:import\s+(?:[\w$]+\s*,\s*)?|export\s+)\{([^}]*)\}\s*from\s*["']([^"'\n]+)["']/g;
+
+/** Named bindings imported from bare specifiers (spec -> names). */
+function namedImports(source) {
+  const names = new Map();
+  for (const m of source.matchAll(NAMED_IMPORT_PATTERN)) {
+    const spec = m[2];
+    if (spec.startsWith('.') || spec.startsWith('/') || spec.includes(':') || BUILTINS.has(spec)) continue;
+    const set = names.get(spec) ?? new Set();
+    for (const part of m[1].split(',')) {
+      const name = part
+        .trim()
+        .replace(/^type\s+/, '')
+        .split(/\s+as\s+/)[0]
+        ?.trim();
+      if (name && name !== 'default' && /^[\w$]+$/.test(name)) set.add(name);
+    }
+    if (set.size > 0) names.set(spec, set);
+  }
+  return names;
+}
+
 /** Bare specifiers of the files: `static` (must resolve) and `optional` (require() calls). */
 function scan(targets) {
   const staticSpecs = new Set();
@@ -104,7 +132,8 @@ const packageOf = (spec) => (spec.startsWith('@') ? spec.split('/').slice(0, 2).
 
 /**
  * React's CommonJS entry points pick `cjs/*.production.js` when NODE_ENV=production, which the
- * images set; the development builds are never loaded.
+ * images set; the development builds are never loaded, but they must still exist for Node's
+ * named-export detection (see `stubDevelopmentBuild`).
  */
 const REACT_PACKAGES = new Set(['react', 'react-dom', 'scheduler', 'react-is', 'use-sync-external-store']);
 function isReactDevelopmentBuild(path, name) {
@@ -114,6 +143,17 @@ function isReactDevelopmentBuild(path, name) {
   if (cjs < 1) return false;
   const pkg = parts[cjs - 1];
   return REACT_PACKAGES.has(pkg) && parts[cjs - 2] === 'node_modules';
+}
+
+/**
+ * Replaces a React development build with a re-export of its production twin (a few bytes instead
+ * of hundreds of KB). Returns false (file kept as is) when there is no production twin.
+ */
+function stubDevelopmentBuild(path) {
+  const twin = basename(path).replace(/\.development\.js$/, '.production.js');
+  if (!existsSync(join(dirname(path), twin))) return false;
+  writeFileSync(path, `'use strict';\nmodule.exports = require('./${twin}');\n`);
+  return true;
 }
 
 // ── prune ────────────────────────────────────────────────────────────────────────────────────
@@ -176,9 +216,10 @@ function prune(targets) {
       } else if (stat.isDirectory()) {
         if (name === '.bin') rmSync(path, { recursive: true, force: true });
         else clean(path);
+      } else if (isReactDevelopmentBuild(path, name)) {
+        stubDevelopmentBuild(path);
       } else if (
         /\.(?:d\.[mc]?ts|[mc]?ts|tsx|map|flow|md|markdown)$/i.test(name) ||
-        isReactDevelopmentBuild(path, name) ||
         /^(?:CHANGELOG|HISTORY|CHANGES)(?:\.|$)/i.test(name) ||
         name === 'tsconfig.json' ||
         name === '.modules.yaml' ||
@@ -221,6 +262,30 @@ async function check(targets, toLoad) {
     } catch (error) {
       problems.push(`cannot load ${name}: ${error.message}`);
     }
+  }
+  // Named bindings: a CommonJS package whose exports Node cannot detect (or a pruned file) only
+  // fails when the bundle is linked, i.e. when the container starts.
+  const wanted = new Map();
+  for (const file of targets.flatMap((t) => jsFiles(t))) {
+    if (!/\.m?js$/.test(file)) continue;
+    const source = readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');
+    for (const [spec, names] of namedImports(source)) {
+      if (spec.startsWith('@sotf/') || !staticSpecs.has(spec)) continue;
+      const set = wanted.get(spec) ?? new Set();
+      for (const n of names) set.add(n);
+      wanted.set(spec, set);
+    }
+  }
+  for (const [spec, names] of [...wanted].sort(([a], [b]) => a.localeCompare(b))) {
+    let namespace;
+    try {
+      namespace = await import(import.meta.resolve(spec));
+    } catch (error) {
+      problems.push(`cannot load ${spec}: ${error.message}`);
+      continue;
+    }
+    const missing = [...names].filter((n) => !(n in namespace)).sort();
+    if (missing.length > 0) problems.push(`"${spec}" does not provide ${missing.map((n) => `"${n}"`).join(', ')}`);
   }
   const walk = (dir) => {
     for (const name of readdirSync(dir)) {

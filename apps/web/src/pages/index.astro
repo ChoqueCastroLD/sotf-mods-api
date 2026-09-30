@@ -16,6 +16,7 @@
  */
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
+import AdUnit from '../components/ads/AdUnit.astro';
 import BlueprintCards from '../components/landing/BlueprintCards.tsx';
 import CreatorCards from '../components/landing/CreatorCards.tsx';
 import { categoryNames, currentBuildLabel, currentLoader, loadLanding } from '../components/landing/data.ts';
@@ -211,6 +212,7 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6
           link={{ href: href('/creators', locale), label: m.landing_creators_all() }}
         />
         <CreatorCards scope={scope} creators={data.creators} />
+        <AdUnit placement="home" format="inline" class="mt-8" />
       </section>
     )
   }

@@ -7,15 +7,10 @@ import { fileURLToPath } from 'node:url';
 import { commonServerEnv, envFlag, envInt, envOptional, envUrl, formatEnvError } from '@sotf/core';
 import { z } from 'zod';
 
-/** Health port in production (PLAN §11.4; Coolify always sets `PORT`). */
-export const PRODUCTION_PORT = 3002;
-/** Health port of `pnpm dev` (PLAN §11.2: web 47321, api 47301, worker 47302). */
-export const DEVELOPMENT_PORT = 47302;
-
 export const workerEnvSchema = z.object({
   ...commonServerEnv,
-  /** Health server port: 3002 in production, 47302 otherwise (see {@link parseWorkerEnv}). */
-  PORT: envInt(PRODUCTION_PORT, 1, 65_535),
+  /** Health server port (PLAN §11.4: 3002; the `dev` script passes 47302). */
+  PORT: envInt(3002, 1, 65_535),
   HOST: z.string().trim().min(1).default('0.0.0.0'),
   DB_POOL_MAX: envInt(5, 1, 50),
   /** Web origin for `/_internal/cache/invalidate` (cdn.purge, WP-61). */

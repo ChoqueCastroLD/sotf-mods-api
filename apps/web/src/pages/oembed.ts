@@ -3,7 +3,7 @@
  * build pages; the legacy `/mods/:u/:s.json` 301s here.
  */
 import type { APIRoute } from 'astro';
-import { oembedRoute } from './sitemaps/_lib/oembed.ts';
+import { oembedRoute } from '../lib/seo/oembed.ts';
 
 export const prerender = false;
 
