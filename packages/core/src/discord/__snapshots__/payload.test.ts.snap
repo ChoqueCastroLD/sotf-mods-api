@@ -1,0 +1,155 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Discord payloads > new mod, Mod of the Week and milestone (snapshot) 1`] = `
+{
+  "allowed_mentions": {
+    "parse": [],
+  },
+  "content": "New mod on SOTF Mods: **Axel's Mod Menu** by ImAxel",
+  "embeds": [
+    {
+      "author": {
+        "name": "ImAxel",
+        "url": "https://sotf-mods.com/profile/imaxel",
+      },
+      "color": 16741173,
+      "description": "In-game menu with 40+ cheats and tools.",
+      "fields": [
+        {
+          "inline": true,
+          "name": "Category",
+          "value": "Quality of Life",
+        },
+      ],
+      "footer": {
+        "text": "SOTF Mods",
+      },
+      "image": {
+        "url": "https://r2.sotf-mods.com/mods/20/cover.png",
+      },
+      "timestamp": "2026-09-30T12:00:00.000Z",
+      "title": "Axel's Mod Menu",
+      "url": "https://sotf-mods.com/mods/imaxel/axel's-mod-menu",
+    },
+  ],
+  "username": "SOTF Mods",
+}
+`;
+
+exports[`Discord payloads > new mod, Mod of the Week and milestone (snapshot) 2`] = `
+{
+  "allowed_mentions": {
+    "parse": [],
+  },
+  "content": "Mod of the Week: **Axel's Mod Menu** by ImAxel",
+  "embeds": [
+    {
+      "author": {
+        "name": "ImAxel",
+        "url": "https://sotf-mods.com/profile/imaxel",
+      },
+      "color": 3800852,
+      "description": "In-game menu with 40+ cheats and tools.",
+      "fields": [
+        {
+          "inline": true,
+          "name": "Category",
+          "value": "Quality of Life",
+        },
+        {
+          "inline": true,
+          "name": "Week of",
+          "value": "2026-09-28",
+        },
+      ],
+      "footer": {
+        "text": "SOTF Mods",
+      },
+      "image": {
+        "url": "https://r2.sotf-mods.com/mods/20/cover.png",
+      },
+      "timestamp": "2026-09-30T12:00:00.000Z",
+      "title": "Axel's Mod Menu",
+      "url": "https://sotf-mods.com/mods/imaxel/axel's-mod-menu",
+    },
+  ],
+  "username": "SOTF Mods",
+}
+`;
+
+exports[`Discord payloads > new mod, Mod of the Week and milestone (snapshot) 3`] = `
+{
+  "allowed_mentions": {
+    "parse": [],
+  },
+  "content": "**Axel's Mod Menu** just passed 100K downloads",
+  "embeds": [
+    {
+      "color": 3800852,
+      "fields": [
+        {
+          "inline": true,
+          "name": "Category",
+          "value": "Quality of Life",
+        },
+        {
+          "inline": true,
+          "name": "Downloads",
+          "value": "100K+",
+        },
+      ],
+      "footer": {
+        "text": "SOTF Mods",
+      },
+      "image": {
+        "url": "https://r2.sotf-mods.com/mods/20/cover.png",
+      },
+      "timestamp": "2026-09-30T12:00:00.000Z",
+      "title": "Axel's Mod Menu",
+      "url": "https://sotf-mods.com/mods/imaxel/axel's-mod-menu",
+    },
+  ],
+  "username": "SOTF Mods",
+}
+`;
+
+exports[`Discord payloads > new version (snapshot) 1`] = `
+{
+  "allowed_mentions": {
+    "parse": [],
+  },
+  "content": "**Axel's Mod Menu** 1.3.9 is out",
+  "embeds": [
+    {
+      "author": {
+        "name": "ImAxel",
+        "url": "https://sotf-mods.com/profile/imaxel",
+      },
+      "color": 3800852,
+      "description": "Fixed the teleport menu on 1.0.4 and added a @everyone safe search.",
+      "fields": [
+        {
+          "inline": true,
+          "name": "Version",
+          "value": "1.3.9",
+        },
+        {
+          "inline": true,
+          "name": "Category",
+          "value": "Quality of Life",
+        },
+      ],
+      "footer": {
+        "text": "SOTF Mods",
+      },
+      "image": {
+        "url": "https://r2.sotf-mods.com/mods/20/cover.png",
+      },
+      "timestamp": "2026-09-30T12:00:00.000Z",
+      "title": "Axel's Mod Menu 1.3.9",
+      "url": "https://sotf-mods.com/mods/imaxel/axel's-mod-menu/versions/1.3.9",
+    },
+  ],
+  "username": "SOTF Mods",
+}
+`;

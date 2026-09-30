@@ -426,6 +426,411 @@
   "emails_auth_verify_heading": "Подтвердите почту",
   "emails_auth_verify_preview": "Один клик — и можно публиковать, комментировать и писать отзывы.",
   "emails_auth_verify_subject": "Подтвердите почту для SOTF Mods",
+  "emails_notify_creator_button": "Открыть статистику",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый комментарий",
+        "count__plural=few": "{count__number} новых комментария",
+        "count__plural=many": "{count__number} новых комментариев",
+        "count__plural=*": "{count__number} нового комментария"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} скачивание",
+        "count__plural=few": "{count__number} скачивания",
+        "count__plural=many": "{count__number} скачиваний",
+        "count__plural=*": "{count__number} скачивания"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый подписчик",
+        "count__plural=few": "{count__number} новых подписчика",
+        "count__plural=many": "{count__number} новых подписчиков",
+        "count__plural=*": "{count__number} нового подписчика"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "Ваша неделя в цифрах",
+  "emails_notify_creator_highlights_heading": "Главное",
+  "emails_notify_creator_intro": "Вот как ваши моды показали себя с {start} по {end}.",
+  "emails_notify_creator_preview": "Скачивания, подписчики, комментарии и отзывы с {start} по {end}.",
+  "emails_notify_creator_reason": "Вы получаете этот отчёт, потому что публикуете на SOTF Mods.",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый отзыв",
+        "count__plural=few": "{count__number} новых отзыва",
+        "count__plural=many": "{count__number} новых отзывов",
+        "count__plural=*": "{count__number} нового отзыва"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ваши моды за прошлую неделю: +{count__number} скачивание",
+        "count__plural=few": "Ваши моды за прошлую неделю: +{count__number} скачивания",
+        "count__plural=many": "Ваши моды за прошлую неделю: +{count__number} скачиваний",
+        "count__plural=*": "Ваши моды за прошлую неделю: +{count__number} скачивания"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "Ваши моды на этой неделе",
+  "emails_notify_creator_trend_down": "На {percent} меньше, чем неделей ранее",
+  "emails_notify_creator_trend_same": "Столько же, сколько неделей ранее",
+  "emails_notify_creator_trend_up": "На {percent} больше, чем неделей ранее",
+  "emails_notify_daily_heading": "Ваш день на острове",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ваша ежедневная сводка SOTF Mods: {count__number} сигнал",
+        "count__plural=few": "Ваша ежедневная сводка SOTF Mods: {count__number} сигнала",
+        "count__plural=many": "Ваша ежедневная сводка SOTF Mods: {count__number} сигналов",
+        "count__plural=*": "Ваша ежедневная сводка SOTF Mods: {count__number} сигнала"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "Всё, за чем вы следите, в одном письме.",
+  "emails_notify_greeting": "Привет, {name}!",
+  "emails_notify_instant_heading": "Новые сигналы",
+  "emails_notify_instant_intro": "Вот что произошло вокруг ваших модов и обсуждений.",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый сигнал на SOTF Mods",
+        "count__plural=few": "{count__number} новых сигнала на SOTF Mods",
+        "count__plural=many": "{count__number} новых сигналов на SOTF Mods",
+        "count__plural=*": "{count__number} нового сигнала на SOTF Mods"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "Новое объявление от SOTF Mods",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} — мод недели",
+        "kind=mod_of_month": "{mod} — мод месяца",
+        "kind=build_of_month": "{mod} — постройка месяца",
+        "kind=*": "{mod} — выбор команды"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "Вы получили новый значок",
+  "emails_notify_item_comment_mention": "{actor} упомянул(а) вас в комментарии к {mod}",
+  "emails_notify_item_comment_on_my_mod": "{actor} прокомментировал(а) {mod}",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый комментарий к {mod}",
+        "count__plural=few": "{count__number} новых комментария к {mod}",
+        "count__plural=many": "{count__number} новых комментариев к {mod}",
+        "count__plural=*": "{count__number} нового комментария к {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor} ответил(а) на ваш комментарий к {mod}",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый ответ на ваш комментарий к {mod}",
+        "count__plural=few": "{count__number} новых ответа на ваш комментарий к {mod}",
+        "count__plural=many": "{count__number} новых ответов на ваш комментарий к {mod}",
+        "count__plural=*": "{count__number} нового ответа на ваш комментарий к {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "Автор {mod} отметил проблему, о которой вы сообщили, как исправленную",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input mod",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "Игроки сообщают, что {mod} не работает на сборке игры {build}",
+        "status=*": "Игроки сообщают о противоречивых результатах {mod} на сборке игры {build}"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor} опубликовал(а) {mod}",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{actor} опубликовал(а) {count__number} новый мод, последний — {mod}",
+        "count__plural=few": "{actor} опубликовал(а) {count__number} новых мода, последний — {mod}",
+        "count__plural=many": "{actor} опубликовал(а) {count__number} новых модов, последний — {mod}",
+        "count__plural=*": "{actor} опубликовал(а) {count__number} нового мода, последний — {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} превысил {threshold__number} скачиваний"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "Сборка игры {build} может сломать моды: проверьте свои в Радаре патчей",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "Ваша жалоба рассмотрена, модераторы приняли меры",
+        "action=*": "Ваша жалоба рассмотрена: меры не потребовались"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor} оценил(а) {mod}: {rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый отзыв о {mod}",
+        "count__plural=few": "{count__number} новых отзыва о {mod}",
+        "count__plural=many": "{count__number} новых отзывов о {mod}",
+        "count__plural=*": "{count__number} нового отзыва о {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "Автор {mod} ответил на ваш отзыв",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} одобрен и опубликован",
+        "status=rejected": "{mod} не одобрен",
+        "status=pending": "{mod} нужно доработать перед одобрением",
+        "status=archived": "{mod} отправлен в архив",
+        "status=unlisted": "{mod} больше не показывается в списках",
+        "status=removed": "{mod} удалён с SOTF Mods",
+        "status=*": "Статус {mod} изменился"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "Причина: {reason}",
+  "emails_notify_item_version_published": "{mod} обновлён до {version}",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "У {mod} {count__number} новая версия, последняя — {version}",
+        "count__plural=few": "У {mod} {count__number} новые версии, последняя — {version}",
+        "count__plural=many": "У {mod} {count__number} новых версий, последняя — {version}",
+        "count__plural=*": "У {mod} {count__number} новой версии, последняя — {version}"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "И ещё {count__number} сигнал",
+        "count__plural=few": "И ещё {count__number} сигнала",
+        "count__plural=many": "И ещё {count__number} сигналов",
+        "count__plural=*": "И ещё {count__number} сигнала"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "Открыть сигналы",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый сигнал, первый: {first}",
+        "count__plural=few": "{count__number} новых сигнала, первый: {first}",
+        "count__plural=many": "{count__number} новых сигналов, первый: {first}",
+        "count__plural=*": "{count__number} нового сигнала, первый: {first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "Вы получаете это письмо, потому что выбрали ежедневную сводку для этих сигналов.",
+        "cadence=*": "Вы получаете это письмо, потому что выбрали еженедельную сводку для этих сигналов."
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "Вы получаете это письмо, потому что для этих сигналов включены мгновенные письма.",
+  "emails_notify_someone": "Кто-то",
+  "emails_notify_unsubscribe": "Отписаться от этих писем",
+  "emails_notify_view": "Открыть",
+  "emails_notify_weekly_heading": "Ваша неделя на острове",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ваша еженедельная сводка SOTF Mods: {count__number} сигнал",
+        "count__plural=few": "Ваша еженедельная сводка SOTF Mods: {count__number} сигнала",
+        "count__plural=many": "Ваша еженедельная сводка SOTF Mods: {count__number} сигналов",
+        "count__plural=*": "Ваша еженедельная сводка SOTF Mods: {count__number} сигнала"
+      }
+    }
+  ],
   "errors_boundary_detail": "Остальная страница работает. Попробуйте загрузить этот раздел ещё раз.",
   "errors_boundary_title": "Эта часть страницы не загрузилась",
   "errors_code_conflict_detail": "Пока вы работали, данные изменились. Перезагрузите страницу, чтобы увидеть последнюю версию, и попробуйте снова.",

@@ -404,6 +404,381 @@
   "emails_auth_verify_heading": "Confirmez votre adresse e-mail",
   "emails_auth_verify_preview": "Un clic et vous pourrez publier, commenter et donner votre avis.",
   "emails_auth_verify_subject": "Confirmez votre adresse e-mail pour SOTF Mods",
+  "emails_notify_creator_button": "Ouvrir vos statistiques",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouveau commentaire",
+        "count__plural=*": "{count__number} nouveaux commentaires"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} téléchargement",
+        "count__plural=*": "{count__number} téléchargements"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouvel abonné",
+        "count__plural=*": "{count__number} nouveaux abonnés"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "Votre semaine en chiffres",
+  "emails_notify_creator_highlights_heading": "Temps forts",
+  "emails_notify_creator_intro": "Voici les résultats de vos mods du {start} au {end}.",
+  "emails_notify_creator_preview": "Téléchargements, abonnés, commentaires et avis du {start} au {end}.",
+  "emails_notify_creator_reason": "Vous recevez ce rapport car vous publiez sur SOTF Mods.",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouvel avis",
+        "count__plural=*": "{count__number} nouveaux avis"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Vos mods la semaine dernière : +{count__number} téléchargement",
+        "count__plural=*": "Vos mods la semaine dernière : +{count__number} téléchargements"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "Vos mods cette semaine",
+  "emails_notify_creator_trend_down": "{percent} de moins que la semaine précédente",
+  "emails_notify_creator_trend_same": "Autant que la semaine précédente",
+  "emails_notify_creator_trend_up": "{percent} de plus que la semaine précédente",
+  "emails_notify_daily_heading": "Votre journée sur l’île",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Votre résumé quotidien SOTF Mods : {count__number} signal",
+        "count__plural=*": "Votre résumé quotidien SOTF Mods : {count__number} signaux"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "Tout ce que vous suivez, dans un seul e-mail.",
+  "emails_notify_greeting": "Bonjour {name},",
+  "emails_notify_instant_heading": "Nouveaux signaux",
+  "emails_notify_instant_intro": "Voici ce qui s’est passé autour de vos mods et de vos conversations.",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nouveau signal sur SOTF Mods",
+        "count__plural=*": "{count__number} nouveaux signaux sur SOTF Mods"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "Il y a une nouvelle annonce de SOTF Mods",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} est le mod de la semaine",
+        "kind=mod_of_month": "{mod} est le mod du mois",
+        "kind=build_of_month": "{mod} est la build du mois",
+        "kind=*": "{mod} est un coup de cœur de l’équipe"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "Vous avez obtenu un nouveau badge",
+  "emails_notify_item_comment_mention": "{actor} vous a mentionné dans un commentaire sur {mod}",
+  "emails_notify_item_comment_on_my_mod": "{actor} a commenté {mod}",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouveau commentaire sur {mod}",
+        "count__plural=*": "{count__number} nouveaux commentaires sur {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor} a répondu à votre commentaire sur {mod}",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouvelle réponse à votre commentaire sur {mod}",
+        "count__plural=*": "{count__number} nouvelles réponses à votre commentaire sur {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "L’auteur de {mod} a marqué le problème que vous avez signalé comme corrigé",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input mod",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "Des joueurs signalent que {mod} ne fonctionne pas sur la build {build} du jeu",
+        "status=*": "Des joueurs signalent des résultats mitigés pour {mod} sur la build {build} du jeu"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor} a publié {mod}",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{actor} a publié {count__number} nouveau mod, le dernier est {mod}",
+        "count__plural=*": "{actor} a publié {count__number} nouveaux mods, le dernier est {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} a dépassé {threshold__number} téléchargements"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "La build {build} du jeu peut casser des mods : vérifiez les vôtres dans le Radar des patchs",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "Votre signalement a été examiné et la modération a agi",
+        "action=*": "Votre signalement a été examiné : aucune action n’était nécessaire"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor} a donné son avis sur {mod} : {rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouvel avis sur {mod}",
+        "count__plural=*": "{count__number} nouveaux avis sur {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "L’auteur de {mod} a répondu à votre avis",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} a été approuvé et est en ligne",
+        "status=rejected": "{mod} n’a pas été approuvé",
+        "status=pending": "{mod} doit être modifié avant de pouvoir être approuvé",
+        "status=archived": "{mod} a été archivé",
+        "status=unlisted": "{mod} n’apparaît plus dans les listes",
+        "status=removed": "{mod} a été retiré de SOTF Mods",
+        "status=*": "Le statut de {mod} a changé"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "Motif : {reason}",
+  "emails_notify_item_version_published": "{mod} est passé en version {version}",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} a {count__number} nouvelle version, la dernière est {version}",
+        "count__plural=*": "{mod} a {count__number} nouvelles versions, la dernière est {version}"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Et {count__number} autre signal",
+        "count__plural=*": "Et {count__number} autres signaux"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "Ouvrir les signaux",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouveau signal, à commencer par : {first}",
+        "count__plural=*": "{count__number} nouveaux signaux, à commencer par : {first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "Vous recevez cet e-mail car vous avez choisi un résumé quotidien pour ces signaux.",
+        "cadence=*": "Vous recevez cet e-mail car vous avez choisi un résumé hebdomadaire pour ces signaux."
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "Vous recevez cet e-mail car les e-mails instantanés sont activés pour ces signaux.",
+  "emails_notify_someone": "Quelqu’un",
+  "emails_notify_unsubscribe": "Se désabonner de ces e-mails",
+  "emails_notify_view": "Voir",
+  "emails_notify_weekly_heading": "Votre semaine sur l’île",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Votre résumé hebdomadaire SOTF Mods : {count__number} signal",
+        "count__plural=*": "Votre résumé hebdomadaire SOTF Mods : {count__number} signaux"
+      }
+    }
+  ],
   "errors_boundary_detail": "Le reste de la page fonctionne toujours. Essayez de recharger cette section.",
   "errors_boundary_title": "Cette partie de la page ne s’est pas chargée",
   "errors_code_conflict_detail": "Ce contenu a changé pendant que vous travailliez dessus. Rechargez pour voir la dernière version, puis réessayez.",

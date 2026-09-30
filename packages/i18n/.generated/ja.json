@@ -360,6 +360,321 @@
   "emails_auth_verify_heading": "メールアドレスの確認",
   "emails_auth_verify_preview": "ワンクリックで、公開・コメント・レビューができるようになります。",
   "emails_auth_verify_subject": "SOTF Mods のメールアドレスを確認してください",
+  "emails_notify_creator_button": "アナリティクスを開く",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "新しいコメント {count__number} 件"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} ダウンロード"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "新しいフォロワー {count__number} 人"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "今週の数字",
+  "emails_notify_creator_highlights_heading": "ハイライト",
+  "emails_notify_creator_intro": "{start}〜{end} のあなたの MOD の成績です。",
+  "emails_notify_creator_preview": "{start}〜{end} のダウンロード、フォロワー、コメント、レビュー。",
+  "emails_notify_creator_reason": "SOTF Mods で公開しているため、このレポートをお送りしています。",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "新しいレビュー {count__number} 件"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "先週のあなたの MOD：+{count__number} ダウンロード"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "今週のあなたの MOD",
+  "emails_notify_creator_trend_down": "前週より {percent} 減少",
+  "emails_notify_creator_trend_same": "前週と同じ",
+  "emails_notify_creator_trend_up": "前週より {percent} 増加",
+  "emails_notify_daily_heading": "島での一日",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF Mods デイリーダイジェスト：{count__number} 件のシグナル"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "フォローしているすべてを 1 通のメールで。",
+  "emails_notify_greeting": "{name} さん、こんにちは。",
+  "emails_notify_instant_heading": "新しいシグナル",
+  "emails_notify_instant_intro": "あなたの MOD や会話で起きたことをお知らせします。",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF Mods で {count__number} 件の新しいシグナル"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "SOTF Mods から新しいお知らせがあります",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} が今週の MOD に選ばれました",
+        "kind=mod_of_month": "{mod} が今月の MOD に選ばれました",
+        "kind=build_of_month": "{mod} が今月の建築に選ばれました",
+        "kind=*": "{mod} がスタッフのおすすめに選ばれました"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "新しいバッジを獲得しました",
+  "emails_notify_item_comment_mention": "{actor} さんが {mod} のコメントであなたをメンションしました",
+  "emails_notify_item_comment_on_my_mod": "{actor} さんが {mod} にコメントしました",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} に {count__number} 件の新しいコメント"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor} さんが {mod} でのあなたのコメントに返信しました",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} でのあなたのコメントに {count__number} 件の新しい返信"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "{mod} の作者が、あなたの報告した問題を修正済みにしました",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input build",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "ゲームビルド {build} で {mod} が動かないという報告があります",
+        "status=*": "ゲームビルド {build} での {mod} の動作について報告が分かれています"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor} さんが {mod} を公開しました",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{actor} さんが {count__number} 件の新しい MOD を公開しました（最新は {mod}）"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} のダウンロード数が {threshold__number} を突破しました"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "ゲームビルド {build} で MOD が動かなくなる可能性があります。パッチレーダーで確認してください",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "あなたの通報は確認され、モデレーターが対応しました",
+        "action=*": "あなたの通報は確認されました：対応は不要でした"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor} さんが {mod} をレビューしました：{rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} に {count__number} 件の新しいレビュー"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "{mod} の作者があなたのレビューに返信しました",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} が承認され、公開されました",
+        "status=rejected": "{mod} は承認されませんでした",
+        "status=pending": "{mod} は承認前に修正が必要です",
+        "status=archived": "{mod} がアーカイブされました",
+        "status=unlisted": "{mod} は一覧に表示されなくなりました",
+        "status=removed": "{mod} は SOTF Mods から削除されました",
+        "status=*": "{mod} のステータスが変わりました"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "理由：{reason}",
+  "emails_notify_item_version_published": "{mod} が {version} に更新されました",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} に {count__number} 件の新バージョン（最新は {version}）"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほか {count__number} 件のシグナル"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "シグナルを開く",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件の新しいシグナル。最初は：{first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "これらのシグナルでデイリーダイジェストを選択しているため、このメールをお送りしています。",
+        "cadence=*": "これらのシグナルでウィークリーダイジェストを選択しているため、このメールをお送りしています。"
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "これらのシグナルで即時メールがオンになっているため、このメールをお送りしています。",
+  "emails_notify_someone": "誰か",
+  "emails_notify_unsubscribe": "このメールの配信を停止",
+  "emails_notify_view": "表示",
+  "emails_notify_weekly_heading": "島での一週間",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF Mods ウィークリーダイジェスト：{count__number} 件のシグナル"
+      }
+    }
+  ],
   "errors_boundary_detail": "ページのほかの部分は引き続き使えます。このセクションをもう一度読み込んでみてください。",
   "errors_boundary_title": "ページのこの部分を読み込めませんでした",
   "errors_code_conflict_detail": "作業中に内容が変更されました。再読み込みして最新の状態を確認し、もう一度お試しください。",

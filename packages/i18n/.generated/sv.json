@@ -404,6 +404,381 @@
   "emails_auth_verify_heading": "Bekräfta din e-postadress",
   "emails_auth_verify_preview": "Ett klick så kan du publicera, kommentera och recensera.",
   "emails_auth_verify_subject": "Bekräfta din e-postadress för SOTF Mods",
+  "emails_notify_creator_button": "Öppna din statistik",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny kommentar",
+        "count__plural=*": "{count__number} nya kommentarer"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nedladdning",
+        "count__plural=*": "{count__number} nedladdningar"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny följare",
+        "count__plural=*": "{count__number} nya följare"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "Din vecka i siffror",
+  "emails_notify_creator_highlights_heading": "Höjdpunkter",
+  "emails_notify_creator_intro": "Så här gick det för dina moddar från {start} till {end}.",
+  "emails_notify_creator_preview": "Nedladdningar, följare, kommentarer och recensioner från {start} till {end}.",
+  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods.",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny recension",
+        "count__plural=*": "{count__number} nya recensioner"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Dina moddar förra veckan: +{count__number} nedladdning",
+        "count__plural=*": "Dina moddar förra veckan: +{count__number} nedladdningar"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "Dina moddar den här veckan",
+  "emails_notify_creator_trend_down": "{percent} färre än veckan innan",
+  "emails_notify_creator_trend_same": "Lika många som veckan innan",
+  "emails_notify_creator_trend_up": "{percent} fler än veckan innan",
+  "emails_notify_daily_heading": "Din dag på ön",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Din dagliga SOTF Mods-sammanfattning: {count__number} signal",
+        "count__plural=*": "Din dagliga SOTF Mods-sammanfattning: {count__number} signaler"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "Allt du följer, i ett enda mejl.",
+  "emails_notify_greeting": "Hej {name},",
+  "emails_notify_instant_heading": "Nya signaler",
+  "emails_notify_instant_intro": "Det här har hänt kring dina moddar och samtal.",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ny signal på SOTF Mods",
+        "count__plural=*": "{count__number} nya signaler på SOTF Mods"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "Det finns ett nytt meddelande från SOTF Mods",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} är veckans modd",
+        "kind=mod_of_month": "{mod} är månadens modd",
+        "kind=build_of_month": "{mod} är månadens bygge",
+        "kind=*": "{mod} är ett val från teamet"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "Du har fått ett nytt märke",
+  "emails_notify_item_comment_mention": "{actor} nämnde dig i en kommentar om {mod}",
+  "emails_notify_item_comment_on_my_mod": "{actor} kommenterade {mod}",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny kommentar på {mod}",
+        "count__plural=*": "{count__number} nya kommentarer på {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor} svarade på din kommentar om {mod}",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nytt svar på din kommentar om {mod}",
+        "count__plural=*": "{count__number} nya svar på din kommentar om {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "Skaparen av {mod} markerade problemet du rapporterade som åtgärdat",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input mod",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "Spelare rapporterar att {mod} inte fungerar på spelbygget {build}",
+        "status=*": "Spelare rapporterar blandade resultat för {mod} på spelbygget {build}"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor} publicerade {mod}",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{actor} publicerade {count__number} ny modd, den senaste är {mod}",
+        "count__plural=*": "{actor} publicerade {count__number} nya moddar, den senaste är {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} har passerat {threshold__number} nedladdningar"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "Spelbygget {build} kan förstöra moddar: kolla dina i Patchradarn",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "Din anmälan har granskats och moderatorerna har vidtagit åtgärder",
+        "action=*": "Din anmälan har granskats: inga åtgärder behövdes"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor} recenserade {mod}: {rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny recension av {mod}",
+        "count__plural=*": "{count__number} nya recensioner av {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "Skaparen av {mod} svarade på din recension",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} har godkänts och är publicerad",
+        "status=rejected": "{mod} godkändes inte",
+        "status=pending": "{mod} behöver ändras innan den kan godkännas",
+        "status=archived": "{mod} har arkiverats",
+        "status=unlisted": "{mod} visas inte längre i listorna",
+        "status=removed": "{mod} har tagits bort från SOTF Mods",
+        "status=*": "Statusen för {mod} har ändrats"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "Anledning: {reason}",
+  "emails_notify_item_version_published": "{mod} har uppdaterats till {version}",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} har {count__number} ny version, den senaste är {version}",
+        "count__plural=*": "{mod} har {count__number} nya versioner, den senaste är {version}"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Och {count__number} signal till",
+        "count__plural=*": "Och {count__number} signaler till"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "Öppna Signaler",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny signal, först: {first}",
+        "count__plural=*": "{count__number} nya signaler, först: {first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "Du får det här mejlet eftersom du valde en daglig sammanfattning för de här signalerna.",
+        "cadence=*": "Du får det här mejlet eftersom du valde en veckovis sammanfattning för de här signalerna."
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "Du får det här mejlet eftersom direktmejl är på för de här signalerna.",
+  "emails_notify_someone": "Någon",
+  "emails_notify_unsubscribe": "Avsluta prenumerationen på de här mejlen",
+  "emails_notify_view": "Visa",
+  "emails_notify_weekly_heading": "Din vecka på ön",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Din veckosammanfattning från SOTF Mods: {count__number} signal",
+        "count__plural=*": "Din veckosammanfattning från SOTF Mods: {count__number} signaler"
+      }
+    }
+  ],
   "errors_boundary_detail": "Resten av sidan fungerar fortfarande. Försök ladda det här avsnittet igen.",
   "errors_boundary_title": "Den här delen av sidan laddades inte",
   "errors_code_conflict_detail": "Det här ändrades medan du arbetade med det. Ladda om för att se den senaste versionen och försök igen.",
