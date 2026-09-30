@@ -9,6 +9,7 @@ import compatModule from './compat/index.ts';
 import downloadsModule from './downloads/index.ts';
 import draftsModule from './drafts/index.ts';
 import ecosystemModule from './ecosystem/index.ts';
+import eventsModule from './events/index.ts';
 import followsModule from './follows/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
@@ -19,6 +20,7 @@ import resolveModule from './resolve/index.ts';
 import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
+import studioAnalyticsModule from './studio-analytics/index.ts';
 import studioModsModule from './studio-mods/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
@@ -32,6 +34,7 @@ export const modules = [
   downloadsModule,
   draftsModule,
   ecosystemModule,
+  eventsModule,
   followsModule,
   kitsModule,
   legacyModule,
@@ -42,6 +45,7 @@ export const modules = [
   reviewsModule,
   searchModule,
   siteModule,
+  studioAnalyticsModule,
   studioModsModule,
   unsubscribeModule,
   uploadsModule,
