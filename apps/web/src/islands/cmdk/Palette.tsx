@@ -3,18 +3,20 @@
  *
  * - Modal `role="dialog"` (640 px at 12 vh; 880 px with the preview pane at ≥ lg; full screen
  *   below md), focus kept inside, background `inert`, scroll locked, focus returned on close.
- * - cmdk listbox with `aria-activedescendant`; results come from the MiniSearch engine
- *   (`engine.ts`), grouped Recent · Trending · Mods · Builds · Kits · Creators · Categories ·
- *   Pages · Actions, best group first, «See all» → `/search`.
- * - Keys: ↑↓ move · Enter open · ⌘/Ctrl+Enter new tab · ⌘/Ctrl+D download · Tab / Shift+Tab
- *   scope · Backspace on an empty field drops the scope · Esc close.
+ * - ARIA combobox + listbox with `aria-activedescendant`; results come from the MiniSearch engine
+ *   (`engine.ts`), grouped Recent searches · Recent · Trending · Mods · Builds · Kits · Creators ·
+ *   Categories · Pages · Go to · Settings, best group first, «See all» → `/search`.
+ * - Operators (`by:` `cat:` `sort:` `type:` `mp:`) become chips and complete their values.
+ * - Keys: ↑↓ move · Enter open · ⌘/Ctrl+Enter new tab · Shift+Enter download · → actions menu
+ *   (letters inside it run an action) · Tab / Shift+Tab scope · Backspace on an empty field drops
+ *   the scope · Esc closes the menu, then the palette.
  * - States: index loading (skeleton after 300 ms), error (what happened, what to do, retry, ref),
  *   offline (recent items and actions keep working), empty (brand microcopy + hint).
  */
 import { type Locale, localizePath, matchLocale } from '@sotf/i18n';
 import { Kbd } from '@sotf/ui/kbd';
 import { onThemeChange } from '@sotf/ui/theme';
-import { Eraser, RotateCw, Search, Sparkles, WifiOff, X } from 'lucide-react';
+import { Ellipsis, Eraser, RotateCw, Search, Sparkles, WifiOff, X } from 'lucide-react';
 import {
   type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -29,7 +31,8 @@ import {
   useState,
 } from 'react';
 import { track } from '../../scripts/beacon.ts';
-import { buildActions, QUICK_ACTIONS } from './actions.ts';
+import { buildActions, quickActionIds } from './actions.ts';
+import { type Detail, loadDetail } from './detail.ts';
 import {
   ActionSearch,
   groupResults,
@@ -40,11 +43,40 @@ import {
   serverSearch,
 } from './engine.ts';
 import { t } from './i18n.ts';
-import { Glyph, latestDownloadPath, Preview, RowContent } from './present.tsx';
-import { clearRecents, readRecents, rememberRecent } from './recents.ts';
+import {
+  compareTarget,
+  copyText,
+  type ItemAction,
+  itemActionsFor,
+  latestDownloadPath,
+  lookupFollowing,
+  setFollowing,
+} from './itemActions.ts';
+import {
+  completeToken,
+  hasFilters,
+  OPERATORS,
+  type Operator,
+  type OperatorToken,
+  parseFilters,
+  removeToken,
+} from './operators.ts';
+import { leavePending } from './pending.ts';
+import { Glyph, ITEM_ACTION_ICONS, Preview, RowContent } from './present.tsx';
+import { clearRecents, clearSearches, readRecents, readSearches, rememberRecent, rememberSearch } from './recents.ts';
 import { cycleScope, parseQuery, SCOPES, type Scope } from './scope.ts';
 import { askScout, loadScoutAvailable, SCOUT_MAX_LENGTH, SCOUT_MIN_LENGTH, type ScoutResult } from './scout.ts';
-import type { EntryItem, GroupId, PaletteItem, ResultGroup, ResultItem } from './types.ts';
+import { hintedSession, loadSession, type Session } from './session.ts';
+import { buildSuggestions, operatorLabel } from './suggest.ts';
+import {
+  type ActionItem,
+  type EntryItem,
+  type GroupId,
+  isEntry,
+  type PaletteItem,
+  type ResultGroup,
+  type ResultItem,
+} from './types.ts';
 
 export type OpenSource = 'shortcut' | 'header' | 'tab-bar' | 'landing-hero' | 'link';
 
@@ -107,8 +139,14 @@ function scopeLabel(scope: Scope): string {
 
 function groupLabel(id: GroupId): string {
   switch (id) {
+    case 'searches':
+      return t('cmdk_group_searches');
     case 'recent':
       return t('cmdk_group_recent');
+    case 'suggest':
+      return t('cmdk_group_suggest');
+    case 'go':
+      return t('cmdk_group_go');
     case 'trending':
       return t('cmdk_group_trending');
     case 'mods':
@@ -124,7 +162,7 @@ function groupLabel(id: GroupId): string {
     case 'pages':
       return t('cmdk_group_pages');
     case 'actions':
-      return t('cmdk_group_actions');
+      return t('cmdk_group_settings');
     case 'scout':
       return t('cmdk_scout_group');
     default:
@@ -147,7 +185,7 @@ function entityOf(item: PaletteItem): {
   entityType?: 'mod' | 'build' | 'kit' | 'user' | 'category';
   entityId?: number;
 } {
-  if (item.type === 'action' || !ENTITY_TYPES.has(item.type) || typeof item.id !== 'number') return {};
+  if (!isEntry(item) || !ENTITY_TYPES.has(item.type) || typeof item.id !== 'number') return {};
   return { entityType: item.type as 'mod' | 'build' | 'kit' | 'user' | 'category', entityId: item.id };
 }
 
@@ -192,6 +230,11 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   const [attempt, setAttempt] = useState(0);
   const [online, setOnline] = useState(() => navigator.onLine !== false);
   const [recents, setRecents] = useState<EntryItem[]>(readRecents);
+  const [searches, setSearches] = useState<string[]>(readSearches);
+  const [session, setSession] = useState<Session>(hintedSession);
+  const [detail, setDetail] = useState<{ key: string; data: Detail | null; done: boolean } | null>(null);
+  const [follows, setFollows] = useState<Record<string, boolean | null>>({});
+  const [menu, setMenu] = useState<{ key: string; index: number } | null>(null);
   const [themeTick, setThemeTick] = useState(0);
   const [server, setServer] = useState<ServerState>(null);
   const [active, setActive] = useState('');
@@ -218,6 +261,17 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     return () => {
       alive = false;
       scoutRequest.current?.abort();
+    };
+  }, []);
+
+  // Commands depend on who is signed in (Basecamp, Signals, Ranger Station…).
+  useEffect(() => {
+    let alive = true;
+    loadSession().then((next) => {
+      if (alive) setSession(next);
+    });
+    return () => {
+      alive = false;
     };
   }, []);
 
@@ -267,32 +321,57 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     () =>
       buildActions({
         locale,
+        session,
         go: (path) => go(localizePath(path, locale)),
         goTo: go,
       }),
-    [locale, go, themeTick],
+    [locale, session, go, themeTick],
   );
   const actionSearch = useMemo(() => new ActionSearch(actions), [actions]);
   const index = indexState.status === 'ready' ? indexState.index : null;
-  const text = search.trim();
+  const parsed = useMemo(() => parseFilters(search), [search]);
+  const text = parsed.text;
+  const filters = parsed.filters;
+  const filtered = hasFilters(filters);
+  const suggestions = useMemo(() => buildSuggestions(parsed.pending, index), [parsed.pending, index]);
 
   // ---------------------------------------------------------------------------------------------
   // Results
   // ---------------------------------------------------------------------------------------------
   const local = useMemo((): { groups: ResultGroup[]; contentHits: number } => {
     const wrap = (items: readonly PaletteItem[]): ResultItem[] => items.map((item) => ({ item, terms: [] }));
-    if (text === '') {
-      const groups: ResultGroup[] = [];
-      if (scope === 'scout') return { groups, contentHits: 0 };
+    const suggestGroup: ResultGroup[] =
+      suggestions.length > 0 && scope !== 'actions' && scope !== 'scout'
+        ? [{ id: 'suggest', items: wrap(suggestions) }]
+        : [];
+    if (text === '' && !filtered) {
+      const groups: ResultGroup[] = [...suggestGroup];
+      if (scope === 'scout') return { groups: [], contentHits: 0 };
       if (scope === 'all') {
-        if (recents.length > 0) groups.push({ id: 'recent', items: wrap(recents.slice(0, 5)) });
-        if (index && index.trending.length > 0)
-          groups.push({ id: 'trending', items: wrap(index.trending.slice(0, 6)) });
+        if (searches.length > 0 && suggestGroup.length === 0) {
+          groups.push({
+            id: 'searches',
+            items: wrap(
+              searches.slice(0, 4).map((query) => ({ key: `search:${query}`, type: 'search' as const, title: query })),
+            ),
+          });
+        }
+        if (recents.length > 0 && suggestGroup.length === 0)
+          groups.push({ id: 'recent', items: wrap(recents.slice(0, 4)) });
+        if (index && index.trending.length > 0 && suggestGroup.length === 0)
+          groups.push({ id: 'trending', items: wrap(index.trending.slice(0, 5)) });
+        const quickIds = quickActionIds(session);
+        const quick = quickIds
+          .map((id) => actions.find((action) => action.id === id))
+          .filter((action): action is ActionItem => action !== undefined);
         const themeAction = actions.find((action) => action.id.startsWith('theme-') && !action.current);
-        const quick = actions.filter((action) => QUICK_ACTIONS.includes(action.id));
-        groups.push({ id: 'actions', items: wrap(themeAction ? [...quick, themeAction] : quick) });
+        if (suggestGroup.length === 0) {
+          groups.push({ id: 'go', items: wrap(quick) });
+          if (themeAction) groups.push({ id: 'actions', items: wrap([themeAction]) });
+        }
       } else if (scope === 'actions') {
-        groups.push({ id: 'actions', items: wrap(actions) });
+        groups.push({ id: 'go', items: wrap(actions.filter((action) => action.section === 'go')) });
+        groups.push({ id: 'actions', items: wrap(actions.filter((action) => action.section === 'settings')) });
       } else if (index) {
         const type = scope === 'mods' ? 'mod' : scope === 'builds' ? 'build' : scope === 'kits' ? 'kit' : 'user';
         const id: GroupId = scope;
@@ -302,15 +381,20 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       return { groups, contentHits: 0 };
     }
     if (scope === 'scout') return { groups: [], contentHits: 0 };
-    const scored = index && scope !== 'actions' ? index.query(text, scope) : [];
-    const actionHits = scope === 'all' || scope === 'actions' ? actionSearch.query(text) : [];
-    return { groups: groupResults(scored, actionHits, scope), contentHits: scored.length };
-  }, [text, scope, index, recents, actions, actionSearch]);
+    const scored = index && scope !== 'actions' ? index.query(text, scope, filters) : [];
+    const actionHits =
+      !filtered && text !== '' && (scope === 'all' || scope === 'actions') ? actionSearch.query(text) : [];
+    return {
+      groups: [...suggestGroup, ...groupResults(scored, actionHits, scope, filtered)],
+      contentHits: scored.length,
+    };
+  }, [text, scope, index, recents, searches, actions, actionSearch, filters, filtered, suggestions, session]);
 
   // Server search when the local index has nothing (or failed): wider matching + query log.
   const serverKey = `${scope}\u0000${text}`;
   const wantsServer =
     text.length >= 2 &&
+    !filtered &&
     scope !== 'actions' &&
     scope !== 'scout' &&
     online &&
@@ -354,19 +438,23 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   }, [groups]);
 
   const resultCount = groups.reduce((sum, group) => sum + group.items.length, 0);
-  const showSeeAll = text !== '' && scope !== 'actions' && scope !== 'scout';
+  const showSeeAll = text !== '' && !filtered && scope !== 'actions' && scope !== 'scout';
   const indexLoading =
     indexState.status === 'loading' && scope !== 'actions' && scope !== 'scout' && (text !== '' || scope !== 'all');
   const busy = indexLoading || serverLoading || scoutView?.status === 'loading';
-  const isEmpty = text !== '' && scope !== 'scout' && resultCount === 0 && !busy;
+  const isEmpty = (text !== '' || filtered) && scope !== 'scout' && resultCount === 0 && !busy;
 
   // Every selectable row, in visual order (arrow keys, `aria-activedescendant`).
   const options = useMemo(() => {
     const list: string[] = [];
-    for (const group of groups) {
+    let lastHistory = -1;
+    groups.forEach((group, position) => {
+      if (group.id === 'searches' || group.id === 'recent') lastHistory = position;
+    });
+    groups.forEach((group, position) => {
       for (const { item } of group.items) list.push(item.key);
-      if (group.id === 'recent') list.push(CLEAR_RECENT);
-    }
+      if (position === lastHistory) list.push(CLEAR_RECENT);
+    });
     if (showSeeAll) list.push(SEE_ALL);
     return list;
   }, [groups, showSeeAll]);
@@ -382,7 +470,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   // Scroll back to the top when the query or scope changes.
   useEffect(() => {
     listRef.current?.scrollTo({ top: 0 });
-  }, [text, scope]);
+  }, [search, scope]);
 
   const status = useMemo(() => {
     if (announcement) return announcement;
@@ -393,9 +481,9 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     if (scope === 'scout') return '';
     if (indexLoading) return t('cmdk_loading');
     if (serverLoading && resultCount === 0) return t('cmdk_searching');
-    if (text === '') return '';
+    if (text === '' && !filtered) return '';
     return t('cmdk_results_count', { count: resultCount });
-  }, [announcement, scoutView, scope, indexLoading, serverLoading, resultCount, text]);
+  }, [announcement, scoutView, scope, indexLoading, serverLoading, resultCount, text, filtered]);
 
   // ---------------------------------------------------------------------------------------------
   // Commands
@@ -419,12 +507,15 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     (value: string, newTab: boolean) => {
       if (value === CLEAR_RECENT) {
         clearRecents();
+        clearSearches();
         setRecents([]);
+        setSearches([]);
         inputRef.current?.focus();
         return;
       }
       if (value === SEE_ALL) {
         track('cmdk_select', { props: { group: 'see_all', scope, newTab } });
+        setSearches(rememberSearch(search));
         const url = seeAllUrl();
         if (newTab) openInNewTab(url);
         else {
@@ -435,6 +526,18 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       }
       const item = lookup.get(value);
       if (!item) return;
+      if (item.type === 'search') {
+        setSearch(item.title);
+        setActive('');
+        inputRef.current?.focus();
+        return;
+      }
+      if (item.type === 'suggestion') {
+        if (parsed.pending) setSearch(completeToken(search, parsed.pending, item.value));
+        setAnnouncement(t('cmdk_filter_applied', { filter: `${item.operator}:${item.value}` }));
+        inputRef.current?.focus();
+        return;
+      }
       track('cmdk_select', {
         ...entityOf(item),
         props: { group: groupOf(value) ?? 'none', type: item.type, scope, newTab, queryLength: text.length },
@@ -449,6 +552,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         return;
       }
       setRecents(rememberRecent(item));
+      setSearches(rememberSearch(search));
       const url = hrefOf(item.path);
       if (newTab) openInNewTab(url);
       else {
@@ -456,7 +560,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         go(url);
       }
     },
-    [lookup, scope, text, seeAllUrl, groupOf, hrefOf, go, openInNewTab, close],
+    [lookup, scope, text, search, parsed.pending, seeAllUrl, groupOf, hrefOf, go, openInNewTab, close],
   );
 
   const ask = useCallback(() => {
@@ -504,11 +608,192 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   }, [announcement]);
 
   const activeItem = lookup.get(active) ?? null;
+  const activeEntry = activeItem && isEntry(activeItem) ? activeItem : null;
+
+  // Details for the preview pane (≥ lg only; nothing is fetched on phones) after a short pause,
+  // so scrubbing through the list with the arrows does not fire a request per row.
+  useEffect(() => {
+    if (!activeEntry || !window.matchMedia('(min-width: 64rem)').matches) {
+      setDetail(null);
+      return;
+    }
+    let alive = true;
+    setDetail((current) =>
+      current?.key === activeEntry.key ? current : { key: activeEntry.key, data: null, done: false },
+    );
+    const timer = window.setTimeout(() => {
+      loadDetail(activeEntry).then((data) => {
+        if (alive) setDetail({ key: activeEntry.key, data, done: true });
+      });
+    }, 120);
+    return () => {
+      alive = false;
+      window.clearTimeout(timer);
+    };
+  }, [activeEntry]);
+
+  // Whether the viewer follows the highlighted mod / creator (for the Follow ↔ Unfollow label).
+  const followKey = activeEntry?.key;
+  useEffect(() => {
+    if (!activeEntry || !session.signedIn || follows[activeEntry.key] !== undefined) return;
+    let alive = true;
+    const timer = window.setTimeout(() => {
+      lookupFollowing(activeEntry).then((state) => {
+        if (alive && state !== null) setFollows((current) => ({ ...current, [activeEntry.key]: state }));
+      });
+    }, 200);
+    return () => {
+      alive = false;
+      window.clearTimeout(timer);
+    };
+  }, [followKey, session.signedIn]);
+
+  const actionsOf = useCallback(
+    (item: PaletteItem | null): ItemAction[] =>
+      item ? itemActionsFor(item, { session, following: follows[item.key] ?? null }) : [],
+    [session, follows],
+  );
+  const activeActions = useMemo(() => actionsOf(activeItem), [actionsOf, activeItem]);
+  const menuItem = menu ? (lookup.get(menu.key) ?? null) : null;
+  const menuActions = useMemo(() => actionsOf(menuItem), [actionsOf, menuItem]);
+
+  // A menu whose row disappeared (the list changed under it) closes.
+  useEffect(() => {
+    if (menu && (!menuItem || menuActions.length === 0)) setMenu(null);
+  }, [menu, menuItem, menuActions.length]);
+
+  const notify = useCallback((message: string) => setAnnouncement(message), []);
+
+  const runItemAction = useCallback(
+    async (id: ItemAction['id'], item: PaletteItem) => {
+      if (!isEntry(item)) return;
+      setMenu(null);
+      switch (id) {
+        case 'open':
+          select(item.key, false);
+          return;
+        case 'new-tab':
+          select(item.key, true);
+          return;
+        case 'download':
+          download(item);
+          return;
+        case 'kit':
+          track('cmdk_select', { ...entityOf(item), props: { group: 'action', action: 'kit' } });
+          close(false);
+          go(hrefOf(`/me/kits?add=${item.id}`));
+          return;
+        case 'compare': {
+          const target = compareTarget(item);
+          if (!target) return;
+          close(false);
+          go(hrefOf(target));
+          return;
+        }
+        case 'versions':
+          close(false);
+          go(hrefOf(`${item.path}/versions`));
+          return;
+        case 'report': {
+          setRecents(rememberRecent(item));
+          close(false);
+          const here = decodeURIComponent(window.location.pathname).replace(/\/$/, '');
+          if (here.endsWith(decodeURIComponent(item.path))) {
+            document.querySelector<HTMLElement>('[data-dialog-open="report-dialog"]')?.click();
+          } else {
+            leavePending('report', item.path);
+            go(hrefOf(item.path));
+          }
+          return;
+        }
+        case 'copy-link': {
+          const ok = await copyText(new URL(hrefOf(item.path), window.location.origin).href);
+          notify(ok ? t('cmdk_act_link_copied') : t('cmdk_act_failed'));
+          inputRef.current?.focus();
+          return;
+        }
+        case 'copy-id': {
+          const ok = item.manifestId ? await copyText(item.manifestId) : false;
+          notify(ok ? t('cmdk_act_id_copied', { id: item.manifestId ?? '' }) : t('cmdk_act_failed'));
+          inputRef.current?.focus();
+          return;
+        }
+        case 'follow': {
+          if (!session.signedIn) {
+            notify(t('cmdk_act_signin'));
+            return;
+          }
+          const next = !(follows[item.key] ?? false);
+          setFollows((current) => ({ ...current, [item.key]: next }));
+          const result = await setFollowing(item, next);
+          if (!result.ok) {
+            setFollows((current) => ({ ...current, [item.key]: !next }));
+            notify(result.reason === 'unauthenticated' ? t('cmdk_act_signin') : t('cmdk_act_failed'));
+          } else {
+            notify(t(next ? 'cmdk_act_followed' : 'cmdk_act_unfollowed', { title: item.title }));
+          }
+          inputRef.current?.focus();
+          return;
+        }
+      }
+    },
+    [select, download, close, go, hrefOf, notify, session.signedIn, follows],
+  );
+
+  const openMenu = useCallback(
+    (key: string) => {
+      const item = lookup.get(key);
+      if (!item || actionsOf(item).length === 0) return;
+      setActive(key);
+      setMenu({ key, index: 0 });
+      inputRef.current?.focus();
+    },
+    [lookup, actionsOf],
+  );
 
   const onKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
     if (event.nativeEvent.isComposing) return;
     const mod = event.metaKey || event.ctrlKey;
     const inInput = event.target === inputRef.current;
+
+    // The actions menu owns the keys while it is open.
+    if (menu && menuItem) {
+      const key = event.key;
+      if (key === 'Escape' || key === 'ArrowLeft') {
+        event.preventDefault();
+        event.stopPropagation();
+        setMenu(null);
+        inputRef.current?.focus();
+        return;
+      }
+      if (key === 'ArrowDown' || key === 'ArrowUp') {
+        event.preventDefault();
+        const step = key === 'ArrowDown' ? 1 : -1;
+        setMenu({ key: menu.key, index: (menu.index + step + menuActions.length) % menuActions.length });
+        return;
+      }
+      if (key === 'Enter') {
+        event.preventDefault();
+        const chosen = menuActions[menu.index];
+        if (chosen) void runItemAction(chosen.id, menuItem);
+        return;
+      }
+      if (key === 'Tab') {
+        event.preventDefault();
+        return;
+      }
+      if (key.length === 1 && !mod && !event.altKey) {
+        const chosen = menuActions.find((entry) => entry.mnemonic === key.toUpperCase());
+        if (chosen) {
+          event.preventDefault();
+          void runItemAction(chosen.id, menuItem);
+        }
+        // Any other letter is swallowed: the field is not edited while the menu is open.
+        else event.preventDefault();
+        return;
+      }
+    }
+
     switch (event.key) {
       case 'Escape':
         event.preventDefault();
@@ -531,6 +816,17 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         if (!inInput) inputRef.current?.focus();
         return;
       }
+      case 'ArrowRight': {
+        const field = inputRef.current;
+        if (!inInput || !field || mod || event.shiftKey || event.altKey) return;
+        // Only at the end of the text: elsewhere the arrow just moves the caret.
+        if (field.selectionStart !== field.value.length || field.selectionEnd !== field.value.length) return;
+        if (activeItem && isEntry(activeItem) && activeActions.length > 2) {
+          event.preventDefault();
+          openMenu(activeItem.key);
+        }
+        return;
+      }
       case 'PageDown':
       case 'PageUp': {
         if (options.length === 0) return;
@@ -541,7 +837,9 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       case 'Enter':
         if (!inInput) return;
         event.preventDefault();
-        if (active) select(active, mod);
+        if (event.shiftKey && !mod && activeItem && isEntry(activeItem) && latestDownloadPath(activeItem)) {
+          download(activeItem);
+        } else if (active) select(active, mod);
         else if (scope === 'scout') ask();
         return;
       case 'Backspace':
@@ -550,23 +848,43 @@ export function Palette({ request, host, onClose }: PaletteProps) {
           setScope('all');
         }
         return;
-      default:
-        if (mod && !event.altKey && event.key.toLowerCase() === 'd') {
-          event.preventDefault();
-          if (activeItem && activeItem.type !== 'action') download(activeItem);
-        }
     }
   };
 
   const onInput = (raw: string) => {
-    const parsed = parseQuery(raw);
-    if (parsed.scope && (parsed.scope !== 'scout' || scoutAvailable)) {
-      setScope(parsed.scope);
-      setSearch(parsed.text);
+    const prefix = parseQuery(raw);
+    if (prefix.scope && (prefix.scope !== 'scout' || scoutAvailable)) {
+      setScope(prefix.scope);
+      setSearch(prefix.text);
     } else {
       setSearch(raw);
     }
-    if (scope === 'scout' || parsed.scope === 'scout') setActive('');
+    if (scope === 'scout' || prefix.scope === 'scout') setActive('');
+    setMenu(null);
+  };
+
+  /** Writes `op:value` into the field (replacing any earlier value of that operator), or removes it. */
+  const setOperator = (op: Operator, value: string | null) => {
+    let next = search;
+    for (const token of [...parsed.tokens].reverse()) {
+      if (token.op === op) next = removeToken(next, token);
+    }
+    if (value !== null) next = `${next.trimEnd()}${next.trim() === '' ? '' : ' '}${op}:${value} `;
+    setSearch(next);
+    inputRef.current?.focus();
+  };
+
+  const removeChip = (token: OperatorToken) => {
+    setSearch(removeToken(search, token));
+    setAnnouncement(t('cmdk_filter_removed', { filter: `${token.op}:${token.value}` }));
+    inputRef.current?.focus();
+  };
+
+  /** An operator name typed for the visitor (`cat:`), so its values are suggested right away. */
+  const startOperator = (op: Operator) => {
+    const base = search.trimEnd();
+    setSearch(`${base}${base === '' ? '' : ' '}${op}:`);
+    inputRef.current?.focus();
   };
 
   const pickScope = (next: Scope) => {
@@ -643,7 +961,15 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         : t('cmdk_placeholder');
   const activeIndex = optionIndex.get(active);
   const listId = `${ids}-list`;
+  const menuId = `${ids}-menu`;
   const hasList = options.length > 0;
+  const menuOpen = menu !== null && menuItem !== null && menuActions.length > 0;
+  const showCategories = (scope === 'mods' || scope === 'builds') && index !== null;
+  const categoryChoices = showCategories ? index.categoryList() : [];
+  const activeCategory = filters.cat ? filters.cat.toLowerCase() : null;
+  const detailFor = activeEntry && detail?.key === activeEntry.key ? detail : null;
+  const CHIP =
+    'inline-flex min-h-9 shrink-0 items-center gap-1 rounded-full border border-border px-3 text-xs font-medium text-fg-muted hover:text-fg aria-pressed:border-primary aria-pressed:bg-primary-soft aria-pressed:text-fg max-md:min-h-10 md:min-h-7';
 
   return (
     <div className="fixed inset-0 z-(--z-modal)">
@@ -689,9 +1015,15 @@ export function Palette({ request, host, onClose }: PaletteProps) {
             type="text"
             role="combobox"
             aria-expanded={hasList}
-            aria-controls={listId}
+            aria-controls={menuOpen ? menuId : listId}
             aria-autocomplete="list"
-            aria-activedescendant={activeIndex === undefined ? undefined : `${ids}-o${activeIndex}`}
+            aria-activedescendant={
+              menuOpen
+                ? `${ids}-m${menu?.index ?? 0}`
+                : activeIndex === undefined
+                  ? undefined
+                  : `${ids}-o${activeIndex}`
+            }
             aria-label={t('cmdk_input_label')}
             aria-describedby={`${ids}-status`}
             value={search}
@@ -733,12 +1065,84 @@ export function Palette({ request, host, onClose }: PaletteProps) {
               aria-pressed={scope === value}
               onMouseDown={(event) => event.preventDefault()}
               onClick={() => pickScope(value)}
-              className="inline-flex min-h-9 shrink-0 items-center rounded-full border border-border px-3 text-xs font-medium text-fg-muted hover:text-fg aria-pressed:border-primary aria-pressed:bg-primary-soft aria-pressed:text-fg md:min-h-7"
+              className={CHIP}
             >
               {scopeLabel(value)}
             </button>
           ))}
         </fieldset>
+
+        {scope !== 'actions' &&
+        scope !== 'scout' &&
+        (parsed.tokens.some((token) => token.value !== '') || search === '') ? (
+          <fieldset className="flex min-w-0 shrink-0 items-center gap-1 overflow-x-auto border-b border-border px-3 py-1.5 md:px-4">
+            <legend className="sr-only">{t('cmdk_filters_label')}</legend>
+            {parsed.tokens.filter((token) => token.value !== '').length > 0 ? (
+              parsed.tokens
+                .filter((token) => token.value !== '')
+                .map((token) => (
+                  <button
+                    key={`${token.op}:${token.start}`}
+                    type="button"
+                    tabIndex={-1}
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => removeChip(token)}
+                    aria-label={t('cmdk_filter_remove', { filter: `${token.op}:${token.value}` })}
+                    className="inline-flex min-h-9 shrink-0 items-center gap-1 rounded-sm bg-primary-soft px-2 font-mono text-xs text-primary max-md:min-h-10 md:min-h-7"
+                  >
+                    {token.op}:{token.value}
+                    <Glyph icon={X} size={12} />
+                  </button>
+                ))
+            ) : (
+              <>
+                <span className="shrink-0 pe-1 text-2xs text-fg-subtle">{t('cmdk_filters_label')}</span>
+                {OPERATORS.map((op) => (
+                  <button
+                    key={op}
+                    type="button"
+                    tabIndex={-1}
+                    onMouseDown={(event) => event.preventDefault()}
+                    onClick={() => startOperator(op)}
+                    title={operatorLabel(op)}
+                    className="inline-flex min-h-9 shrink-0 items-center rounded-sm border border-border px-2 font-mono text-xs text-fg-muted hover:border-border-strong hover:text-fg max-md:min-h-10 md:min-h-7"
+                  >
+                    {op}:
+                  </button>
+                ))}
+              </>
+            )}
+          </fieldset>
+        ) : null}
+
+        {showCategories && categoryChoices.length > 0 ? (
+          <fieldset className="flex min-w-0 shrink-0 gap-1 overflow-x-auto border-b border-border px-3 py-2 md:px-4">
+            <legend className="sr-only">{t('cmdk_categories_label')}</legend>
+            <button
+              type="button"
+              tabIndex={-1}
+              aria-pressed={activeCategory === null}
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => setOperator('cat', null)}
+              className={CHIP}
+            >
+              {t('cmdk_category_all')}
+            </button>
+            {categoryChoices.map(([slug, name]) => (
+              <button
+                key={slug}
+                type="button"
+                tabIndex={-1}
+                aria-pressed={activeCategory === slug.toLowerCase()}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => setOperator('cat', activeCategory === slug.toLowerCase() ? null : slug)}
+                className={CHIP}
+              >
+                {name}
+              </button>
+            ))}
+          </fieldset>
+        ) : null}
 
         <div className="flex min-h-0 flex-1">
           <div ref={listRef} className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto overscroll-contain">
@@ -793,8 +1197,12 @@ export function Palette({ request, host, onClose }: PaletteProps) {
               </div>
             ) : null}
 
-            {text === '' && scope === 'all' && recents.length === 0 && indexState.status === 'ready' ? (
-              <p className="px-4 pt-3 text-xs text-fg-subtle">{t('cmdk_start_hint')}</p>
+            {text === '' &&
+            !filtered &&
+            scope === 'all' &&
+            indexState.status === 'ready' &&
+            suggestions.length === 0 ? (
+              <p className="px-4 pt-3 text-xs text-fg-subtle">{t('cmdk_filter_tip')}</p>
             ) : null}
 
             <div id={listId} role="listbox" aria-label={t('cmdk_dialog_label')} className={hasList ? 'p-2' : 'hidden'}>
@@ -809,8 +1217,23 @@ export function Palette({ request, host, onClose }: PaletteProps) {
                     {groupLabel(group.id)}
                   </div>
                   {group.items.map((result) => (
-                    <div key={result.item.key} {...optionProps(result.item.key, 'text-sm text-fg')}>
+                    <div key={result.item.key} {...optionProps(result.item.key, 'group/row text-sm text-fg')}>
                       <RowContent result={result} locale={locale} />
+                      {isEntry(result.item) && actionsOf(result.item).length > 2 ? (
+                        <button
+                          type="button"
+                          tabIndex={-1}
+                          aria-hidden="true"
+                          onMouseDown={(event) => event.preventDefault()}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            openMenu(result.item.key);
+                          }}
+                          className="flex size-9 shrink-0 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg max-md:size-11 md:hidden md:group-data-selected/row:flex"
+                        >
+                          <Glyph icon={Ellipsis} size={18} />
+                        </button>
+                      ) : null}
                     </div>
                   ))}
                   {group.id === 'recent' ? (
@@ -840,26 +1263,122 @@ export function Palette({ request, host, onClose }: PaletteProps) {
           >
             <Preview
               item={activeItem}
+              detail={detailFor?.data ?? null}
+              loading={activeEntry !== null && !(detailFor?.done ?? false)}
               locale={locale}
               categoryName={(slug) => index?.categoryNames.get(slug) ?? null}
               hrefOf={hrefOf}
-              onOpen={(item) => select(item.key, false)}
-              onDownload={download}
-              modKey={modKey}
+              actions={activeActions}
+              onAction={(id) => {
+                if (activeItem) void runItemAction(id, activeItem);
+              }}
+              onMenu={() => {
+                if (activeItem) openMenu(activeItem.key);
+              }}
             />
           </aside>
         </div>
+
+        {announcement ? (
+          <p
+            aria-hidden="true"
+            className="shrink-0 border-t border-border bg-primary-soft px-4 py-2 text-xs text-fg motion-safe:animate-rise"
+          >
+            {announcement}
+          </p>
+        ) : null}
+
+        {menuOpen && menu && menuItem ? (
+          <>
+            <div aria-hidden="true" className="absolute inset-0 z-10" onMouseDown={() => setMenu(null)} />
+            <div
+              id={menuId}
+              role="menu"
+              aria-label={t('cmdk_act_menu_label', { title: isEntry(menuItem) ? menuItem.title : '' })}
+              className="absolute inset-x-0 bottom-0 z-20 flex max-h-[70%] flex-col gap-0.5 overflow-y-auto rounded-t-xl border border-border-strong bg-overlay p-2 pb-4 shadow-lg motion-safe:animate-rise md:inset-x-auto md:end-3 md:bottom-12 md:w-72 md:rounded-xl md:pb-2"
+            >
+              <p
+                aria-hidden="true"
+                className="truncate px-3 pt-1 pb-1.5 font-mono text-2xs tracking-wide text-fg-subtle uppercase"
+              >
+                {isEntry(menuItem) ? menuItem.title : ''}
+              </p>
+              {menuActions.map((entry, position) => (
+                // biome-ignore lint/a11y/useKeyWithClickEvents: keys are handled by the combobox input (aria-activedescendant); the item is never focused
+                <div
+                  key={entry.id}
+                  id={`${ids}-m${position}`}
+                  role="menuitem"
+                  tabIndex={-1}
+                  aria-keyshortcuts={entry.mnemonic}
+                  data-selected={menu.index === position || undefined}
+                  onPointerMove={() => {
+                    if (menu.index !== position) setMenu({ key: menu.key, index: position });
+                  }}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => void runItemAction(entry.id, menuItem)}
+                  className="flex min-h-12 cursor-pointer items-center gap-3 rounded-md px-3 py-1.5 text-sm text-fg select-none data-selected:bg-fg/8 data-selected:shadow-[inset_2px_0_0_var(--color-primary)] md:min-h-9"
+                >
+                  <span className="flex size-6 shrink-0 items-center justify-center text-fg-muted">
+                    <Glyph icon={ITEM_ACTION_ICONS[entry.id]} size={16} />
+                  </span>
+                  <span className="min-w-0 flex-1 truncate">{entry.label}</span>
+                  <span aria-hidden="true" className="hidden items-center gap-1 md:inline-flex">
+                    {entry.shortcut === 'enter' ? <Kbd>↵</Kbd> : null}
+                    {entry.shortcut === 'mod-enter' ? (
+                      <>
+                        <Kbd>{modKey}</Kbd>
+                        <Kbd>↵</Kbd>
+                      </>
+                    ) : null}
+                    {entry.shortcut === 'shift-enter' ? (
+                      <>
+                        <Kbd>⇧</Kbd>
+                        <Kbd>↵</Kbd>
+                      </>
+                    ) : null}
+                    {entry.shortcut === null ? <Kbd>{entry.mnemonic}</Kbd> : null}
+                  </span>
+                </div>
+              ))}
+              <button
+                type="button"
+                tabIndex={-1}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => setMenu(null)}
+                className="mt-1 inline-flex min-h-12 items-center justify-center rounded-md border border-border text-sm font-medium text-fg-muted md:hidden"
+              >
+                {t('cmdk_close')}
+              </button>
+            </div>
+          </>
+        ) : null}
 
         <div
           aria-hidden="true"
           className="hidden shrink-0 flex-wrap items-center gap-x-4 gap-y-1 border-t border-border px-4 py-2 text-2xs text-fg-subtle md:flex"
         >
           <Hint keys={['↑', '↓']} label={t('cmdk_hint_move')} />
-          <Hint keys={['↵']} label={scope === 'scout' && !active ? t('cmdk_scout_hint_ask') : t('cmdk_hint_open')} />
-          <Hint keys={[modKey, '↵']} label={t('cmdk_hint_new_tab')} />
-          <Hint keys={[modKey, 'D']} label={t('cmdk_hint_download')} />
-          <Hint keys={['Tab']} label={t('cmdk_hint_scope')} />
-          <Hint keys={['Esc']} label={t('cmdk_hint_close')} />
+          {menuOpen ? (
+            <>
+              <Hint keys={['↵']} label={t('cmdk_hint_run')} />
+              <Hint keys={['←']} label={t('cmdk_hint_back')} />
+            </>
+          ) : (
+            <>
+              <Hint
+                keys={['↵']}
+                label={scope === 'scout' && !active ? t('cmdk_scout_hint_ask') : t('cmdk_hint_open')}
+              />
+              <Hint keys={[modKey, '↵']} label={t('cmdk_hint_new_tab')} />
+              {activeEntry && latestDownloadPath(activeEntry) ? (
+                <Hint keys={['⇧', '↵']} label={t('cmdk_hint_download')} />
+              ) : null}
+              {activeActions.length > 2 ? <Hint keys={['→']} label={t('cmdk_hint_actions')} /> : null}
+              <Hint keys={['Tab']} label={t('cmdk_hint_scope')} />
+            </>
+          )}
+          <Hint keys={['Esc']} label={menuOpen ? t('cmdk_hint_back') : t('cmdk_hint_close')} />
         </div>
       </div>
     </div>

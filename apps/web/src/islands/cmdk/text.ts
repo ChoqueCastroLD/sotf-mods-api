@@ -71,13 +71,27 @@ export function highlight(text: string, terms: readonly string[]): TextSegment[]
   origin.push(text.length);
 
   const marked = new Uint8Array(text.length);
+  let any = false;
   for (const term of wanted) {
     let from = folded.indexOf(term);
     while (from !== -1) {
       const start = origin[from] ?? text.length;
       const end = origin[from + term.length] ?? text.length;
       for (let i = start; i < end; i += 1) marked[i] = 1;
+      any = true;
       from = folded.indexOf(term, from + term.length);
+    }
+  }
+  // Typo-tolerant hits (`stak` → StackMod) have no literal occurrence: mark the letters of the
+  // longest term as an in-order subsequence of the title so the row still shows why it matched.
+  if (!any) {
+    const positions = subsequence(folded, wanted[0] ?? '');
+    if (positions) {
+      for (const at of positions) {
+        const start = origin[at] ?? text.length;
+        const end = origin[at + 1] ?? text.length;
+        for (let i = start; i < end; i += 1) marked[i] = 1;
+      }
     }
   }
 
@@ -90,6 +104,44 @@ export function highlight(text: string, terms: readonly string[]): TextSegment[]
     }
   }
   return segments;
+}
+
+/**
+ * Indices in `haystack` of the characters of `needle` taken in order (greedy, preferring the
+ * start of words), or null when `needle` is not a subsequence. Both must already be folded.
+ */
+export function subsequence(haystack: string, needle: string): number[] | null {
+  if (needle === '') return null;
+  const out: number[] = [];
+  let from = 0;
+  for (const char of needle) {
+    let at = haystack.indexOf(char, from);
+    if (at === -1) return null;
+    // Prefer an occurrence at a word start within a short lookahead.
+    for (let probe = at; probe !== -1 && probe < at + 6; probe = haystack.indexOf(char, probe + 1)) {
+      if (probe === 0 || !/[\p{L}\p{N}]/u.test(haystack[probe - 1] ?? '')) {
+        at = probe;
+        break;
+      }
+    }
+    out.push(at);
+    from = at + 1;
+  }
+  return out;
+}
+
+/**
+ * Fuzzy score of `needle` inside `haystack` (folded): 0 when it is not a subsequence, higher
+ * for compact, early, word-start matches. Used when the index finds nothing («kelvnseek»).
+ */
+export function subsequenceScore(haystack: string, needle: string): number {
+  const positions = subsequence(haystack, needle);
+  if (!positions) return 0;
+  const first = positions[0] ?? 0;
+  const last = positions[positions.length - 1] ?? 0;
+  const span = last - first + 1;
+  const compact = needle.length / span;
+  return compact * 0.7 + (first === 0 ? 0.3 : 1 / (2 + first));
 }
 
 /** Segments of a server highlight (`«Stack»Mod: bigger stacks`). */

@@ -18,7 +18,7 @@ let t: TestApp;
 
 const STACKMOD = 78;
 const KELVIN_MODS = [95, 235, 54, 64, 299, 311]; // Restless Kelvin, KelvinSeek, Kelvin-GPT, Nick's Kelvin GPT, Unstuck Kelvin, CollieMod
-const INDEX_BUDGET_BYTES = 15 * 1024;
+const INDEX_BUDGET_BYTES = 18 * 1024;
 
 async function get(url: string) {
   const res = await injectCalm(t.app, { url });
@@ -147,7 +147,8 @@ describe('GET /search/index', () => {
     const listed = await get('/api/v2/mods?type=all&pageSize=1');
     expect(index.mods).toHaveLength(listed.body.total);
     const stack = index.mods.find((m: any[]) => m[0] === STACKMOD);
-    expect(stack).toEqual([
+    expect(stack).toHaveLength(15);
+    expect(stack.slice(0, 9)).toEqual([
       STACKMOD,
       'mod',
       'StackMod',
@@ -157,20 +158,28 @@ describe('GET /search/index', () => {
       'StackMod',
       expect.any(Number),
       'untested',
-      null,
-      expect.stringMatching(/\/stackmod$/),
     ]);
+    expect(stack[10]).toMatch(/\/stackmod$/);
+    // releasedDay, createdDay (days since the epoch), ratingTenths (or null), multiplayer code.
+    expect([typeof stack[11], typeof stack[12], typeof stack[14]]).toEqual(['number', 'number', 'number']);
+    expect(['number', 'object']).toContain(typeof stack[13]);
     expect(index.categories).toContainEqual(['quality-of-life', 'Calidad de vida', '/categories/quality-of-life']);
     expect(index.pages).toContainEqual(['install', 'Cómo instalar mods', '/install']);
-    expect(index.kits).toEqual([
-      [expect.any(Number), 'Kelvin essentials', 'imaxel', 3, '/kits/imaxel/kelvin-essentials'],
+    expect(index.kits).toHaveLength(1);
+    expect(index.kits[0].slice(0, 5)).toEqual([
+      expect.any(Number),
+      'Kelvin essentials',
+      'imaxel',
+      3,
+      '/kits/imaxel/kelvin-essentials',
     ]);
+    expect(index.kits[0]).toHaveLength(6);
     expect(index.users.length).toBeGreaterThan(20);
     expect(index.trending).toHaveLength(10);
     expect((await get('/api/v2/search/index?locale=xx')).status).toBe(422);
   });
 
-  it('weighs ≤ 15 KB brotli in every locale, even with a processed thumbnail per mod', async () => {
+  it('weighs ≤ 18 KB brotli in every locale, even with a processed thumbnail per mod', async () => {
     const sizes: Record<string, number> = {};
     const measure = async (label: string) => {
       for (const locale of LOCALES) {

@@ -13,6 +13,8 @@
  * the real `/search` GET form and links.
  */
 
+import { resumePending } from './pending.ts';
+
 export const SEARCH_INPUT_SELECTOR = '[data-cmdk-input]';
 export const CMDK_OPEN_EVENT = 'sotf:cmdk-open';
 
@@ -118,6 +120,7 @@ export function bindCmdkTrigger(doc: Document = document): () => void {
   const win = doc.defaultView;
   if (!win) return () => {};
   const headerInput = () => doc.querySelector<HTMLInputElement>(SEARCH_INPUT_SELECTOR);
+  resumePending(doc);
 
   const onKey = (event: KeyboardEvent) => {
     if (event.defaultPrevented || event.isComposing || !isPaletteShortcut(event)) return;

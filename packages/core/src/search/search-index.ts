@@ -5,7 +5,7 @@
  * 64 px variants are shipped as thumbnails (never a legacy original). Paths are unprefixed; the
  * client adds the locale prefix.
  */
-import type { Locale } from '@sotf/contracts/common';
+import { type Locale, MULTIPLAYER_ROLES } from '@sotf/contracts/common';
 import { SEARCH_INDEX_VERSION, type SearchIndexDTO } from '@sotf/contracts/search';
 import { categoryPath, kitPath, profilePath } from '@sotf/contracts/seo';
 import { runListQuery } from '../catalog/listing.ts';
@@ -17,6 +17,7 @@ import { SITE_PAGES } from './pages.ts';
 
 export const SEARCH_INDEX_TTL_MS = 60_000;
 const TRENDING = 10;
+const DAY_MS = 86_400_000;
 
 interface KitRow {
   id: number;
@@ -24,6 +25,8 @@ interface KitRow {
   slug: string;
   ownerHandle: string;
   itemsCount: number;
+  /** Mod of the first item (its image stands for the kit). */
+  firstModId: number | null;
 }
 
 /** Builds the index of a locale (cached 60 s per locale, tag `search-index`). */
@@ -37,7 +40,9 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
         getSnapshot(ctx, config),
         rows<KitRow>(
           ctx.db,
-          `SELECT k."id", k."name", k."slug", u."slug" AS "ownerHandle", k."itemsCount"
+          `SELECT k."id", k."name", k."slug", u."slug" AS "ownerHandle", k."itemsCount",
+                 (SELECT ki."modId" FROM "KitItem" ki WHERE ki."kitId" = k."id"
+                   ORDER BY ki."position", ki."modId" LIMIT 1) AS "firstModId"
            FROM "Kit" k JOIN "User" u ON u."id" = k."ownerId"
           WHERE k."visibility" = 'public' AND k."deletedAt" IS NULL AND k."itemsCount" > 0
             AND u."deletedAt" IS NULL AND u."bannedAt" IS NULL
@@ -58,8 +63,12 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
         e.manifestId,
         e.downloads,
         e.compatStatus,
-        e.thumb64Url,
+        e.thumb64Url ?? e.thumbnail?.url ?? null,
         e.canonicalPath,
+        Math.floor(e.lastReleasedAt.getTime() / DAY_MS),
+        Math.floor(e.createdAt.getTime() / DAY_MS),
+        e.ratingAvg === null ? null : Math.round(e.ratingAvg * 10),
+        Math.max(0, MULTIPLAYER_ROLES.indexOf(e.multiplayerRole ?? 'unknown')),
       ]);
 
       const creators = new Map<number, number>();
@@ -74,6 +83,7 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
           author.ref.displayName,
           count,
           profilePath(author.ref.handle),
+          author.ref.avatarUrl,
         ]);
 
       const categoryCounts = new Map<number, number>();
@@ -103,7 +113,17 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
           locale,
           generatedAt: ctx.clock.now().toISOString(),
           mods,
-          kits: kits.map((k) => [k.id, k.name, k.ownerHandle, k.itemsCount, kitPath(k.ownerHandle, k.slug)]),
+          kits: kits.map((k) => {
+            const first = k.firstModId === null ? undefined : snapshot.byId.get(k.firstModId);
+            return [
+              k.id,
+              k.name,
+              k.ownerHandle,
+              k.itemsCount,
+              kitPath(k.ownerHandle, k.slug),
+              first ? (first.thumb64Url ?? first.thumbnail?.url ?? null) : null,
+            ];
+          }),
           users,
           categories,
           pages: SITE_PAGES.map((p) => [p.key, p.titles[locale], p.path]),

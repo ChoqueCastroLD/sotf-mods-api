@@ -52,3 +52,12 @@ links take over.
 (`@sotf/ui/domain`). The few shared terms it shows (Mods, Builds, theme names…) are mirrored as
 `cmdk_term_*`/`cmdk_theme_*`/… keys with the same text as `common`, because the compiled Paraglide
 messages (13 locales each) or the whole `common/<locale>.json` would exceed the budget.
+
+## Overhaul (feat/cmdk)
+
+- Images: every mod/build/kit row shows its thumbnail (index tuple field 9, kits and creators carry an
+  image/avatar too), the preview a 16:9 hero plus up to four gallery shots (`detail.ts`, loaded on
+  highlight from `/api/v2/mods/:id`, `/users/:handle`, `/kits/:id`).
+- Operators `by: cat: sort: type: mp:` (`operators.ts`, chips, completion in `suggest.ts`), per-item
+  actions menu (`itemActions.ts`), recents for searches and opened items, navigation commands.
+- Size: the `mount` chunk is about 29 KB gzip / 26 KB brotli (React excluded), loaded on intent only.
