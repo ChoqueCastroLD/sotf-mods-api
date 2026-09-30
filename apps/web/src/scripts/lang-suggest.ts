@@ -88,6 +88,8 @@ export function initLangSuggest(doc: Document = document): Locale | null {
   for (const element of [text, accept, decline]) element.lang = tag;
   accept.href = target.pathname + target.search + target.hash;
   accept.hreflang = tag;
+  // Choosing it saves the language (`scripts/locale-pref.ts`).
+  accept.dataset.locale = locale;
   decline.addEventListener(
     'click',
     () => {

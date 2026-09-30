@@ -1,0 +1,9 @@
+{
+  "langprompt_title": "This page is in {language}",
+  "langprompt_hint": "Your saved language is {language}.",
+  "langprompt_stay": "Stay in {language}",
+  "langprompt_switch": "Switch to {language}",
+  "langprompt_original": "View original ({language})",
+  "langprompt_remember": "Remember my choice",
+  "langprompt_remember_hint": "Don't ask again and apply it automatically next time."
+}

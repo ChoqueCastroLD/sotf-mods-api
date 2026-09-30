@@ -122,6 +122,7 @@ const visibleCrumbs = trail.map((crumb) => ({
   entity={{ type: 'build', id: build.id }}
 >
   <Fragment slot="head">
+    <meta name="sotf:content-lang" content={build.contentLang ?? 'en'} />
     <link rel="alternate" type="text/markdown" href={`${build.canonicalPath}.md`} title={build.name} />
     <link rel="alternate" type="application/rss+xml" href="/builds/feed.xml" title={m.builds_feed_title()} />
     <link rel="alternate" type="application/json+oembed" href={oembedHref} title={build.name} />

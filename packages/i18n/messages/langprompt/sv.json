@@ -1,0 +1,9 @@
+{
+  "langprompt_title": "Den här sidan är på {language}",
+  "langprompt_hint": "Ditt sparade språk är {language}.",
+  "langprompt_stay": "Stanna kvar på {language}",
+  "langprompt_switch": "Byt till {language}",
+  "langprompt_original": "Visa originalet ({language})",
+  "langprompt_remember": "Kom ihåg mitt val",
+  "langprompt_remember_hint": "Fråga inte igen och tillämpa det automatiskt nästa gång."
+}

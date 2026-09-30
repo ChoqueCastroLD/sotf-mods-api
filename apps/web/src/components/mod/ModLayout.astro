@@ -101,6 +101,7 @@ const hasGlance = Astro.slots.has('glance');
   preloadImage={gated ? undefined : preloadImage}
 >
   <Fragment slot="head">
+    <meta name="sotf:content-lang" content={mod.contentLang ?? 'en'} />
     <link rel="alternate" type="text/markdown" href={`${mod.canonicalPath}.md`} title={mod.name} />
     <link
       rel="alternate"

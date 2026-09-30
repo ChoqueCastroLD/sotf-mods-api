@@ -1,0 +1,9 @@
+{
+  "langprompt_title": "Эта страница на языке: {language}",
+  "langprompt_hint": "Ваш сохранённый язык: {language}.",
+  "langprompt_stay": "Остаться: {language}",
+  "langprompt_switch": "Переключиться: {language}",
+  "langprompt_original": "Смотреть оригинал ({language})",
+  "langprompt_remember": "Запомнить мой выбор",
+  "langprompt_remember_hint": "Больше не спрашивать и применять автоматически в следующий раз."
+}
