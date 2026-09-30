@@ -8297,7 +8297,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "Tokens i bruk: {count} av {max}",
   "tokens_create_action": "Ny token",
   "tokens_create_submit": "Skapa token",
@@ -8354,7 +8353,6 @@
   "tokens_secret_text": "Den visas bara den här gången. Förvara den säkert och dela den aldrig.",
   "tokens_secret_title": "Kopiera din token nu",
   "tokens_title": "Åtkomsttokens",
-=======
   "translations_badge_author": "Översatt av skaparen",
   "translations_badge_machine": "Automatiskt översatt",
   "translations_cancel": "Avbryt",
@@ -8381,7 +8379,6 @@
   "translations_status_pending": "Översättning väntar",
   "translations_title": "Översättningar",
   "translations_write": "Skriv",
->>>>>>> s/translations
   "ui_breadcrumbs": "Brödsmulor",
   "ui_cancel": "Avbryt",
   "ui_choose": "Välj…",

@@ -8297,7 +8297,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "Tokens in use: {count} of {max}",
   "tokens_create_action": "New token",
   "tokens_create_submit": "Create token",
@@ -8354,7 +8353,6 @@
   "tokens_secret_text": "This is the only time it is shown. Store it somewhere safe and never share it.",
   "tokens_secret_title": "Copy your token now",
   "tokens_title": "Access tokens",
-=======
   "translations_badge_author": "Translated by the creator",
   "translations_badge_machine": "Translated automatically",
   "translations_cancel": "Cancel",
@@ -8381,7 +8379,6 @@
   "translations_status_pending": "Translation pending",
   "translations_title": "Translations",
   "translations_write": "Write",
->>>>>>> s/translations
   "ui_breadcrumbs": "Breadcrumb",
   "ui_cancel": "Cancel",
   "ui_choose": "Choose…",

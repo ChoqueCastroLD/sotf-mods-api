@@ -275,6 +275,7 @@ export const API_ROUTES = {
     confirmLink: { id: 'oauth.confirmLink', method: 'POST', path: "/api/v2/auth/oauth/link/confirm", kind: 'json', bodyKind: 'json' },
     connections: { id: 'oauth.connections', method: 'GET', path: "/api/v2/me/connections", kind: 'json', bodyKind: null },
     unlink: { id: 'oauth.unlink', method: 'POST', path: "/api/v2/me/connections/:provider/unlink", kind: 'empty', bodyKind: 'json' },
+  },
   requests: {
     list: { id: 'requests.list', method: 'GET', path: "/api/v2/requests", kind: 'json', bodyKind: null },
     get: { id: 'requests.get', method: 'GET', path: "/api/v2/requests/:id", kind: 'json', bodyKind: null },
@@ -359,6 +360,7 @@ export const API_ROUTES = {
     list: { id: 'tokens.list', method: 'GET', path: "/api/v2/me/tokens", kind: 'json', bodyKind: null },
     create: { id: 'tokens.create', method: 'POST', path: "/api/v2/me/tokens", kind: 'json', bodyKind: 'json' },
     revoke: { id: 'tokens.revoke', method: 'DELETE', path: "/api/v2/me/tokens/:id", kind: 'empty', bodyKind: null },
+  },
   translations: {
     forMod: { id: 'translations.forMod', method: 'GET', path: "/api/v2/mods/:id/translation", kind: 'json', bodyKind: null },
     studioList: { id: 'translations.studioList', method: 'GET', path: "/api/v2/studio/mods/:id/translations", kind: 'json', bodyKind: null },

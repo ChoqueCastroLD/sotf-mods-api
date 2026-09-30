@@ -8297,7 +8297,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "Kullanılan belirteç: {count} / {max}",
   "tokens_create_action": "Yeni belirteç",
   "tokens_create_submit": "Belirteç oluştur",
@@ -8354,7 +8353,6 @@
   "tokens_secret_text": "Yalnızca bu kez gösterilir. Güvenli bir yerde sakla ve kimseyle paylaşma.",
   "tokens_secret_title": "Belirtecini şimdi kopyala",
   "tokens_title": "Erişim belirteçleri",
-=======
   "translations_badge_author": "Yapımcı tarafından çevrildi",
   "translations_badge_machine": "Otomatik olarak çevrildi",
   "translations_cancel": "İptal",
@@ -8381,7 +8379,6 @@
   "translations_status_pending": "Çeviri bekleniyor",
   "translations_title": "Çeviriler",
   "translations_write": "Yaz",
->>>>>>> s/translations
   "ui_breadcrumbs": "Gezinme yolu",
   "ui_cancel": "İptal",
   "ui_choose": "Seç…",

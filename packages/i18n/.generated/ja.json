@@ -7569,7 +7569,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "使用中のトークン：{count} / {max}",
   "tokens_create_action": "新しいトークン",
   "tokens_create_submit": "トークンを作成",
@@ -7622,7 +7621,6 @@
   "tokens_secret_text": "表示されるのはこの1回だけです。安全な場所に保管し、他人と共有しないでください。",
   "tokens_secret_title": "今すぐトークンをコピーしてください",
   "tokens_title": "アクセストークン",
-=======
   "translations_badge_author": "作者による翻訳",
   "translations_badge_machine": "自動翻訳",
   "translations_cancel": "キャンセル",
@@ -7649,7 +7647,6 @@
   "translations_status_pending": "翻訳待ち",
   "translations_title": "翻訳",
   "translations_write": "書く",
->>>>>>> s/translations
   "ui_breadcrumbs": "パンくずリスト",
   "ui_cancel": "キャンセル",
   "ui_choose": "選択…",

@@ -8801,7 +8801,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "Используется токенов: {count} из {max}",
   "tokens_create_action": "Новый токен",
   "tokens_create_submit": "Создать токен",
@@ -8860,7 +8859,6 @@
   "tokens_secret_text": "Он показывается только один раз. Храните его в надёжном месте и никому не передавайте.",
   "tokens_secret_title": "Скопируйте токен сейчас",
   "tokens_title": "Токены доступа",
-=======
   "translations_badge_author": "Переведено автором",
   "translations_badge_machine": "Переведено автоматически",
   "translations_cancel": "Отмена",
@@ -8887,7 +8885,6 @@
   "translations_status_pending": "Перевод ожидается",
   "translations_title": "Переводы",
   "translations_write": "Написать",
->>>>>>> s/translations
   "ui_breadcrumbs": "Навигационная цепочка",
   "ui_cancel": "Отмена",
   "ui_choose": "Выбери…",

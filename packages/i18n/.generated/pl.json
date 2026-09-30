@@ -8801,7 +8801,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "Używane tokeny: {count} z {max}",
   "tokens_create_action": "Nowy token",
   "tokens_create_submit": "Utwórz token",
@@ -8860,7 +8859,6 @@
   "tokens_secret_text": "Wyświetlany jest tylko ten jeden raz. Zapisz go w bezpiecznym miejscu i nigdy nie udostępniaj.",
   "tokens_secret_title": "Skopiuj token teraz",
   "tokens_title": "Tokeny dostępu",
-=======
   "translations_badge_author": "Przetłumaczone przez twórcę",
   "translations_badge_machine": "Przetłumaczono automatycznie",
   "translations_cancel": "Anuluj",
@@ -8887,7 +8885,6 @@
   "translations_status_pending": "Tłumaczenie oczekuje",
   "translations_title": "Tłumaczenia",
   "translations_write": "Napisz",
->>>>>>> s/translations
   "ui_breadcrumbs": "Ścieżka nawigacji",
   "ui_cancel": "Anuluj",
   "ui_choose": "Wybierz…",

@@ -8297,7 +8297,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "Tokens in gebruik: {count} van {max}",
   "tokens_create_action": "Nieuw token",
   "tokens_create_submit": "Token maken",
@@ -8354,7 +8353,6 @@
   "tokens_secret_text": "Dit is de enige keer dat hij wordt getoond. Bewaar hem veilig en deel hem nooit.",
   "tokens_secret_title": "Kopieer je token nu",
   "tokens_title": "Toegangstokens",
-=======
   "translations_badge_author": "Vertaald door de maker",
   "translations_badge_machine": "Automatisch vertaald",
   "translations_cancel": "Annuleren",
@@ -8381,7 +8379,6 @@
   "translations_status_pending": "Vertaling in behandeling",
   "translations_title": "Vertalingen",
   "translations_write": "Schrijven",
->>>>>>> s/translations
   "ui_breadcrumbs": "Kruimelpad",
   "ui_cancel": "Annuleren",
   "ui_choose": "Kies…",

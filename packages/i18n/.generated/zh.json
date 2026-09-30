@@ -7569,7 +7569,6 @@
       }
     }
   ],
-<<<<<<< HEAD
   "tokens_count": "已使用令牌：{count} / {max}",
   "tokens_create_action": "新建令牌",
   "tokens_create_submit": "创建令牌",
@@ -7622,7 +7621,6 @@
   "tokens_secret_text": "令牌仅显示这一次。请妥善保存，切勿分享给他人。",
   "tokens_secret_title": "请立即复制你的令牌",
   "tokens_title": "访问令牌",
-=======
   "translations_badge_author": "由作者翻译",
   "translations_badge_machine": "自动翻译",
   "translations_cancel": "取消",
@@ -7649,7 +7647,6 @@
   "translations_status_pending": "等待翻译",
   "translations_title": "翻译",
   "translations_write": "撰写",
->>>>>>> s/translations
   "ui_breadcrumbs": "面包屑导航",
   "ui_cancel": "取消",
   "ui_choose": "请选择…",
