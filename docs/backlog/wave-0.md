@@ -73,13 +73,13 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   `e2e`) o adelantar esa parte de WP-91.
 - **`tooling/lhci` y `tooling/load` antes de W9** · son de WP-92, pero WP-22/WP-44/WP-53 piden
   `pnpm lhci` y WP-31/WP-33 `pnpm load` · asignar su creación al primer WP que los necesite.
-- **Assets de marca en la web** · `apps/web/public/**` (WP-22) · copiar tal cual
+- [x] resolved by WP-22 (verified by wire-web-public) (`apps/web/public` idéntico a `packages/brand/assets/public`) · **Assets de marca en la web** · `apps/web/public/**` (WP-22) · copiar tal cual
   `packages/brand/assets/public/**` (`/favicon.svg`, `/favicon.ico`, `/apple-touch-icon.png`,
   `/brand/*`); `assets/manifest.json` lista cada fichero con su SHA-256.
-- **Redirecciones de logos legacy** · `apps/web/src/middleware/**` (WP-22) ·
+- [x] resolved by WP-22 (verified by wire-web-public) (`middleware/redirects.ts`) · **Redirecciones de logos legacy** · `apps/web/src/middleware/**` (WP-22) ·
   `/static/images/logo*.png` → `/brand/logo-horizontal-night.png`, `favicon*` → `/favicon.svg`,
   `/static/images/hd_thumbnail.png` → `/brand/og-default.png` (tabla del §4.6).
-- **`/manifest.webmanifest`** · `apps/web/src/pages/**` (WP-22/WP-61) · generarlo con
+- [x] resolved by WP-22 (verified by wire-web-public) (`apps/web/public/manifest.webmanifest`) · **`/manifest.webmanifest`** · `apps/web/src/pages/**` (WP-22/WP-61) · generarlo con
   `manifestIcons()` y `themeColor` de `@sotf/brand`.
 - **Reutilizar los generativos de marca** · `apps/worker/src/jobs/og/**` (WP-61),
   `packages/ui/src/domain/**` (WP-25) · `topoLines` + `topoGroup`, `markPath`/`lockupBody` y
