@@ -78,5 +78,19 @@
   "signals_status_version_approved": "Version {version} von {mod} wurde freigegeben und ist online",
   "signals_status_version_rejected": "Version {version} von {mod} wurde nicht freigegeben",
   "signals_status_version_changes_requested": "Die Ranger wünschen Änderungen an Version {version} von {mod}",
-  "signals_status_version_held": "Version {version} von {mod} wartet auf die Prüfung durch einen Ranger"
+  "signals_status_version_held": "Version {version} von {mod} wartet auf die Prüfung durch einen Ranger",
+  "signals_template_reupload_without_permission": "Das sieht nach einem Reupload fremder Arbeit ohne Erlaubnis aus.",
+  "signals_template_malware_detected": "Der Sicherheitsscan hat die Datei als schädlich markiert.",
+  "signals_template_broken_or_empty": "Die Datei ist defekt, leer oder lädt nicht mit RedLoader.",
+  "signals_template_not_a_mod": "Dieser Upload ist kein Mod und kein Build für Sons of the Forest.",
+  "signals_template_duplicate": "Das dupliziert einen bereits gelisteten Mod. Veröffentliche stattdessen eine neue Version davon.",
+  "signals_template_spam": "Spam oder Werbung.",
+  "signals_template_missing_description": "Beschreibe bitte, was der Mod macht, wie man ihn installiert und benutzt.",
+  "signals_template_missing_screenshots": "Füge bitte mindestens einen Screenshot hinzu, der den Mod im Spiel zeigt.",
+  "signals_template_wrong_category": "Verschiebe den Mod bitte in die Kategorie, die zu seiner Funktion passt.",
+  "signals_template_nsfw_unmarked": "Der Mod enthält Inhalte für Erwachsene: Markiere ihn bitte als NSFW.",
+  "signals_template_credit_original_author": "Nenne bitte den Originalautor und verlinke seine Arbeit.",
+  "signals_template_rules_violation": "Wegen Verstoßes gegen die Seitenregeln entfernt.",
+  "signals_template_malware_confirmed": "Entfernt: Die Datei ist nachweislich schädlich.",
+  "signals_template_copyright_claim": "Nach einer gültigen Urheberrechtsbeschwerde entfernt."
 }

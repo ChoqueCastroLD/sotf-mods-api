@@ -78,5 +78,19 @@
   "signals_status_version_approved": "{mod} のバージョン {version} が承認され、公開されました",
   "signals_status_version_rejected": "{mod} のバージョン {version} は承認されませんでした",
   "signals_status_version_changes_requested": "レンジャーが {mod} のバージョン {version} の修正を求めています",
-  "signals_status_version_held": "{mod} のバージョン {version} はレンジャーの確認待ちです"
+  "signals_status_version_held": "{mod} のバージョン {version} はレンジャーの確認待ちです",
+  "signals_template_reupload_without_permission": "他人の作品を許可なく再アップロードしたもののようです。",
+  "signals_template_malware_detected": "セキュリティスキャンがファイルを悪意ありと判定しました。",
+  "signals_template_broken_or_empty": "ファイルが破損しているか、空か、RedLoader で読み込めません。",
+  "signals_template_not_a_mod": "このアップロードは Sons of the Forest のMODでも建築でもありません。",
+  "signals_template_duplicate": "すでに公開されているMODと重複しています。代わりにそのMODの新しいバージョンを公開してください。",
+  "signals_template_spam": "スパムまたは広告です。",
+  "signals_template_missing_description": "MODの機能、インストール方法、使い方を説明してください。",
+  "signals_template_missing_screenshots": "ゲーム内でMODが動いている様子のスクリーンショットを 1 枚以上追加してください。",
+  "signals_template_wrong_category": "MODの内容に合ったカテゴリーに移動してください。",
+  "signals_template_nsfw_unmarked": "このMODには成人向けコンテンツが含まれます。NSFW として設定してください。",
+  "signals_template_credit_original_author": "原作者をクレジットし、その作品へのリンクを載せてください。",
+  "signals_template_rules_violation": "サイトの規約に違反したため削除されました。",
+  "signals_template_malware_confirmed": "削除されました：ファイルが悪意あるものと確認されました。",
+  "signals_template_copyright_claim": "有効な著作権の申し立てにより削除されました。"
 }

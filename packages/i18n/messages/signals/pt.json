@@ -78,5 +78,19 @@
   "signals_status_version_approved": "A versão {version} de {mod} foi aprovada e já está no ar",
   "signals_status_version_rejected": "A versão {version} de {mod} não foi aprovada",
   "signals_status_version_changes_requested": "Os guardas pediram alterações na versão {version} de {mod}",
-  "signals_status_version_held": "A versão {version} de {mod} está retida até a checagem de um guarda"
+  "signals_status_version_held": "A versão {version} de {mod} está retida até a checagem de um guarda",
+  "signals_template_reupload_without_permission": "Parece um reenvio do trabalho de outra pessoa sem a permissão dela.",
+  "signals_template_malware_detected": "A análise de segurança marcou o arquivo como malicioso.",
+  "signals_template_broken_or_empty": "O arquivo está quebrado, vazio ou não carrega com o RedLoader.",
+  "signals_template_not_a_mod": "Este envio não é um mod nem uma build de Sons of the Forest.",
+  "signals_template_duplicate": "Isto duplica um mod que já está publicado. Publique uma nova versão dele.",
+  "signals_template_spam": "Spam ou publicidade.",
+  "signals_template_missing_description": "Descreva o que o mod faz, como instalar e como usar.",
+  "signals_template_missing_screenshots": "Adicione pelo menos uma captura que mostre o mod no jogo.",
+  "signals_template_wrong_category": "Mova o mod para a categoria que corresponde ao que ele faz.",
+  "signals_template_nsfw_unmarked": "O mod tem conteúdo adulto: marque-o como NSFW.",
+  "signals_template_credit_original_author": "Dê crédito ao autor original e coloque um link para o trabalho dele.",
+  "signals_template_rules_violation": "Removido por violar as regras do site.",
+  "signals_template_malware_confirmed": "Removido: foi confirmado que o arquivo é malicioso.",
+  "signals_template_copyright_claim": "Removido após uma reclamação de direitos autorais válida."
 }

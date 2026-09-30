@@ -78,5 +78,19 @@
   "signals_status_version_approved": "Version {version} of {mod} was approved and is live",
   "signals_status_version_rejected": "Version {version} of {mod} was not approved",
   "signals_status_version_changes_requested": "The Rangers asked for changes to version {version} of {mod}",
-  "signals_status_version_held": "Version {version} of {mod} is on hold for a ranger check"
+  "signals_status_version_held": "Version {version} of {mod} is on hold for a ranger check",
+  "signals_template_reupload_without_permission": "This looks like a reupload of someone else’s work without their permission.",
+  "signals_template_malware_detected": "The file was flagged as malicious by the security scan.",
+  "signals_template_broken_or_empty": "The file is broken, empty or does not load with RedLoader.",
+  "signals_template_not_a_mod": "This upload is not a Sons of the Forest mod or build.",
+  "signals_template_duplicate": "This duplicates a mod that is already listed. Publish a new version of it instead.",
+  "signals_template_spam": "Spam or advertising.",
+  "signals_template_missing_description": "Please describe what the mod does, how to install it and how to use it.",
+  "signals_template_missing_screenshots": "Please add at least one screenshot that shows the mod in game.",
+  "signals_template_wrong_category": "Please move the mod to the category that matches what it does.",
+  "signals_template_nsfw_unmarked": "The mod contains adult content: please mark it as NSFW.",
+  "signals_template_credit_original_author": "Please credit the original author and link their work.",
+  "signals_template_rules_violation": "Removed for breaking the site rules.",
+  "signals_template_malware_confirmed": "Removed: the file was confirmed to be malicious.",
+  "signals_template_copyright_claim": "Removed after a valid copyright claim."
 }

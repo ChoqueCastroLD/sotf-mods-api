@@ -78,5 +78,19 @@
   "signals_status_version_approved": "Versie {version} van {mod} is goedgekeurd en staat online",
   "signals_status_version_rejected": "Versie {version} van {mod} is niet goedgekeurd",
   "signals_status_version_changes_requested": "De rangers vragen om wijzigingen in versie {version} van {mod}",
-  "signals_status_version_held": "Versie {version} van {mod} wacht op controle door een ranger"
+  "signals_status_version_held": "Versie {version} van {mod} wacht op controle door een ranger",
+  "signals_template_reupload_without_permission": "Dit lijkt een herupload van andermans werk zonder toestemming.",
+  "signals_template_malware_detected": "De beveiligingsscan heeft het bestand als kwaadaardig gemarkeerd.",
+  "signals_template_broken_or_empty": "Het bestand is kapot, leeg of laadt niet met RedLoader.",
+  "signals_template_not_a_mod": "Deze upload is geen mod of build voor Sons of the Forest.",
+  "signals_template_duplicate": "Dit dupliceert een mod die al in de lijst staat. Publiceer in plaats daarvan een nieuwe versie ervan.",
+  "signals_template_spam": "Spam of reclame.",
+  "signals_template_missing_description": "Beschrijf wat de mod doet, hoe je hem installeert en hoe je hem gebruikt.",
+  "signals_template_missing_screenshots": "Voeg minstens één screenshot toe die de mod in het spel laat zien.",
+  "signals_template_wrong_category": "Zet de mod in de categorie die past bij wat hij doet.",
+  "signals_template_nsfw_unmarked": "De mod bevat inhoud voor volwassenen: markeer hem als NSFW.",
+  "signals_template_credit_original_author": "Vermeld de oorspronkelijke maker en link naar diens werk.",
+  "signals_template_rules_violation": "Verwijderd wegens overtreding van de siteregels.",
+  "signals_template_malware_confirmed": "Verwijderd: het bestand is bevestigd kwaadaardig.",
+  "signals_template_copyright_claim": "Verwijderd na een geldige auteursrechtclaim."
 }

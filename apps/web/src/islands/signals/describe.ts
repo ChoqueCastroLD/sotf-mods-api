@@ -26,7 +26,7 @@ import {
   Trophy,
   Wrench,
 } from 'lucide-react';
-import { badgeName, st } from './i18n.ts';
+import { badgeName, st, stOptional } from './i18n.ts';
 
 export type SignalTone = 'signal' | 'success' | 'warning' | 'danger' | 'neutral';
 
@@ -97,6 +97,20 @@ function statusSentence(signal: NotificationDTO, mod: string): { text: string; t
     default:
       return { text: st('signals_status_changed', { mod }), tone: 'neutral', icon: ShieldCheck };
   }
+}
+
+/**
+ * The reason of a moderation decision in the reader's locale. `reason` stores the English wording
+ * of the template, a blank line and the ranger's note (`@sotf/core` `resolveReason`); with a
+ * built-in template (`signals_template_<key>`, 13 locales) the wording is replaced and the note
+ * kept as written. Custom templates keep the stored text.
+ */
+export function moderationReason(reason: string | null, templateKey: string | null): string | null {
+  if (!templateKey) return reason;
+  const wording = stOptional(`signals_template_${templateKey}`);
+  if (!wording) return reason;
+  const note = reason ? reason.split('\n\n').slice(1).join('\n\n').trim() : '';
+  return note ? `${wording}\n\n${note}` : wording;
 }
 
 function awardSentence(kind: string | null, mod: string): string {
@@ -211,7 +225,7 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
       };
     case 'mod.status_changed': {
       const sentence = statusSentence(signal, mod);
-      return { ...sentence, excerpt: str(signal.data.reason) };
+      return { ...sentence, excerpt: moderationReason(str(signal.data.reason), str(signal.data.templateKey)) };
     }
     case 'milestone.reached': {
       const threshold = num(signal.data.threshold) ?? 0;

@@ -78,5 +78,19 @@
   "signals_status_version_approved": "{mod} 的 {version} 版本已通过审核并上线",
   "signals_status_version_rejected": "{mod} 的 {version} 版本未通过审核",
   "signals_status_version_changes_requested": "护林员要求修改 {mod} 的 {version} 版本",
-  "signals_status_version_held": "{mod} 的 {version} 版本正在等待护林员审核"
+  "signals_status_version_held": "{mod} 的 {version} 版本正在等待护林员审核",
+  "signals_template_reupload_without_permission": "这看起来是未经许可转载他人的作品。",
+  "signals_template_malware_detected": "安全扫描将该文件标记为恶意。",
+  "signals_template_broken_or_empty": "文件已损坏、为空，或无法通过 RedLoader 加载。",
+  "signals_template_not_a_mod": "此上传不是 Sons of the Forest 的模组或建筑。",
+  "signals_template_duplicate": "这与已发布的模组重复。请改为发布该模组的新版本。",
+  "signals_template_spam": "垃圾信息或广告。",
+  "signals_template_missing_description": "请说明模组的功能、安装方法和使用方法。",
+  "signals_template_missing_screenshots": "请至少添加一张展示模组游戏内效果的截图。",
+  "signals_template_wrong_category": "请把模组移到与其功能相符的分类。",
+  "signals_template_nsfw_unmarked": "该模组含有成人内容：请标记为 NSFW。",
+  "signals_template_credit_original_author": "请注明原作者并附上其作品链接。",
+  "signals_template_rules_violation": "因违反网站规则被移除。",
+  "signals_template_malware_confirmed": "已移除：该文件已确认为恶意。",
+  "signals_template_copyright_claim": "因有效的版权投诉被移除。"
 }

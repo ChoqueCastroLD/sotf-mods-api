@@ -113,3 +113,9 @@ export function badgeName(key: string): string | null {
 export function needsBadgeNames(signals: ReadonlyArray<{ type: string; data: Record<string, unknown> }>): boolean {
   return signals.some((signal) => signal.type === 'badge.awarded' && signal.data.welcome !== true);
 }
+
+/** A message of the loaded catalogue by a dynamic key, or null when the catalogue has no such key. */
+export function stOptional(key: string, params?: IcuParams): string | null {
+  const template = messages[key];
+  return template === undefined ? null : formatIcu(template, params, lang);
+}

@@ -78,5 +78,19 @@
   "signals_status_version_approved": "Версия {version} мода {mod} одобрена и опубликована",
   "signals_status_version_rejected": "Версия {version} мода {mod} не одобрена",
   "signals_status_version_changes_requested": "Рейнджеры просят доработать версию {version} мода {mod}",
-  "signals_status_version_held": "Версия {version} мода {mod} ждёт проверки рейнджером"
+  "signals_status_version_held": "Версия {version} мода {mod} ждёт проверки рейнджером",
+  "signals_template_reupload_without_permission": "Похоже на перезалив чужой работы без разрешения автора.",
+  "signals_template_malware_detected": "Сканирование безопасности отметило файл как вредоносный.",
+  "signals_template_broken_or_empty": "Файл повреждён, пуст или не загружается через RedLoader.",
+  "signals_template_not_a_mod": "Эта загрузка не является модом или постройкой для Sons of the Forest.",
+  "signals_template_duplicate": "Это дубликат уже опубликованного мода. Опубликуйте вместо этого его новую версию.",
+  "signals_template_spam": "Спам или реклама.",
+  "signals_template_missing_description": "Опишите, что делает мод, как его установить и как им пользоваться.",
+  "signals_template_missing_screenshots": "Добавьте хотя бы один скриншот мода в игре.",
+  "signals_template_wrong_category": "Перенесите мод в категорию, соответствующую тому, что он делает.",
+  "signals_template_nsfw_unmarked": "Мод содержит контент для взрослых: отметьте его как NSFW.",
+  "signals_template_credit_original_author": "Укажите автора оригинала и дайте ссылку на его работу.",
+  "signals_template_rules_violation": "Удалено за нарушение правил сайта.",
+  "signals_template_malware_confirmed": "Удалено: подтверждено, что файл вредоносный.",
+  "signals_template_copyright_claim": "Удалено по обоснованной жалобе правообладателя."
 }
