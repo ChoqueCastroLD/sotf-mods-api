@@ -1,0 +1,43 @@
+---
+/**
+ * Recommendations of the mod page (T1-15): «Players also downloaded» (co-downloads) and «Similar
+ * mods» (tags, category and co-downloads), both computed nightly by the worker. Compact cards.
+ */
+import { m } from '@sotf/i18n/messages';
+import { ModCard } from '@sotf/ui/domain';
+import { href } from '../../lib/i18n.ts';
+import type { ModCardDTO, ModDetailDTO } from './data.ts';
+import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  alsoDownloaded: ModCardDTO[];
+  similar: ModCardDTO[];
+}
+
+const { mod, alsoDownloaded, similar } = Astro.props;
+const locale = Astro.locals.locale;
+const currentBuild = mod.compatCurrent.gameBuild?.label ?? null;
+const sections = [
+  { id: 'also-downloaded', title: m.discovery_title_also(), hint: m.discovery_hint_also(), cards: alsoDownloaded },
+  { id: 'similar-mods', title: m.discovery_title_similar(), hint: m.discovery_hint_similar(), cards: similar },
+].filter((section) => section.cards.length > 0);
+---
+
+{
+  sections.map((section) => (
+    <section aria-labelledby={`${section.id}-title`} class:list={[PANEL_CLASSES, 'grid gap-3']}>
+      <div class="grid gap-0.5">
+        <h2 id={`${section.id}-title`} class={READOUT_CLASSES}>{section.title}</h2>
+        <p class="text-xs text-fg-muted">{section.hint}</p>
+      </div>
+      <ul class="grid gap-2">
+        {section.cards.map((card) => (
+          <li>
+            <ModCard mod={{ ...card, canonicalPath: href(card.canonicalPath, locale) }} variant="compact" headingLevel={3} viewTransition={false} currentBuild={currentBuild} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))
+}

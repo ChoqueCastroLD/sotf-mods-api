@@ -11,7 +11,16 @@ import { DomainEventSchema } from './domain-events.ts';
 import { CacheTagSchema } from './internal.ts';
 import { UploadPurpose } from './uploads.ts';
 
-export const OG_ENTITY_TYPES = ['mod', 'build', 'user', 'kit', 'category', 'patch-radar', 'guide', 'milestone'] as const;
+export const OG_ENTITY_TYPES = [
+  'mod',
+  'build',
+  'user',
+  'kit',
+  'category',
+  'patch-radar',
+  'guide',
+  'milestone',
+] as const;
 
 /** Payload schema of every queue. */
 export const JOB_PAYLOADS = {
@@ -66,6 +75,9 @@ export const JOB_PAYLOADS = {
   'cleanup.download-unique': z.object({}),
   'cleanup.analytics': z.object({}),
   'cleanup.kelvinseek': z.object({}),
+  'cleanup.scout': z.object({}),
+  // Discovery (T1-15): co-download and tag based recommendations of every mod
+  'recommendations.compute': z.object({}),
   // Operations (PLAN §10.3 «Alertas»)
   'ops.alerts': z.object({}),
   // Migration (one-off, idempotent)
@@ -110,6 +122,9 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'cleanup.download-unique', cron: '30 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.analytics', cron: '40 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.kelvinseek', cron: '50 4 * * *', key: 'daily', data: {} },
+  { queue: 'cleanup.scout', cron: '55 4 * * *', key: 'daily', data: {} },
+  // After the hourly trending rollup of 02:15, before the morning traffic.
+  { queue: 'recommendations.compute', cron: '30 2 * * *', key: 'nightly', data: {} },
   // Only after the cut-over (`POST_CUTOVER_QUEUES`): drains legacy mentions every 10 minutes.
   { queue: 'legacy.mentions', cron: '*/10 * * * *', key: 'every-10m', data: {} },
   // After `accounts.trust-level` (03:15): weights follow the reporters' new flags.
@@ -163,6 +178,8 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'cleanup.download-unique': {},
   'cleanup.analytics': {},
   'cleanup.kelvinseek': {},
+  'cleanup.scout': {},
+  'recommendations.compute': {},
   'ops.alerts': {},
   'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000 },
 };

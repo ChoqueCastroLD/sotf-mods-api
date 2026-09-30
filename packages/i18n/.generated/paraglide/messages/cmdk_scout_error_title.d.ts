@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_TitleInputs = {};
+export type Cmdk_Scout_Error_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing here yet" |
+* | "Scout couldn’t answer." |
 *
-* @param {Console_Empty_TitleInputs} inputs
+* @param {Cmdk_Scout_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_title: ((inputs?: Console_Empty_TitleInputs, options?: {
+export declare const cmdk_scout_error_title: ((inputs?: Cmdk_Scout_Error_TitleInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_TitleInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Cmdk_Scout_Error_TitleInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

@@ -76,6 +76,13 @@ export const apiEnvSchema = z.object({
   OPENAI_API_KEY: envOptional,
   KELVINSEEK_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
   KELVINSEEK_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(3),
+  /** Scout (T1-07): model, daily spend cap in USD (0 disables) and kill switch. */
+  SCOUT_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
+  SCOUT_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(2),
+  SCOUT_ENABLED: z
+    .enum(['true', 'false'])
+    .default('true')
+    .transform((v) => v === 'true'),
 });
 
 export type ApiEnv = z.output<typeof apiEnvSchema>;

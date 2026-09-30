@@ -20,6 +20,7 @@ import { loginHrefFor, versionsPagePath } from '../../../../components/mod/forma
 import { markdownLabels, taxonomyName } from '../../../../components/mod/i18n.ts';
 import ModFaq from '../../../../components/mod/ModFaq.astro';
 import ModLayout from '../../../../components/mod/ModLayout.astro';
+import RecommendedMods from '../../../../components/mod/RecommendedMods.astro';
 import RelatedMods from '../../../../components/mod/RelatedMods.astro';
 import RequiredBy from '../../../../components/mod/RequiredBy.astro';
 import StatsPanel from '../../../../components/mod/StatsPanel.astro';
@@ -167,6 +168,16 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
     <CreatorCard mod={mod} loginHref={loginHref} />
     <RequiredBy mod={mod} dependents={extras.dependents} />
     <StatsPanel mod={mod} stats={extras.stats} />
-    <RelatedMods mod={mod} related={extras.related} />
+    {
+      extras.recommendations.alsoDownloaded.length + extras.recommendations.similar.length > 0 ? (
+        <RecommendedMods
+          mod={mod}
+          alsoDownloaded={extras.recommendations.alsoDownloaded}
+          similar={extras.recommendations.similar}
+        />
+      ) : (
+        <RelatedMods mod={mod} related={extras.related} />
+      )
+    }
   </Fragment>
 </ModLayout>

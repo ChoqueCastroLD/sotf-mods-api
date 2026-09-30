@@ -72,5 +72,19 @@
   "cmdk_no_results": "Haritada “{query}” için bir şey yok. Daha az kelimeyle dene.",
   "cmdk_offline": "Çevrimdışısın. Gördüklerin güncel olmayabilir.",
   "cmdk_retry": "Tekrar dene",
-  "cmdk_close": "Kapat"
+  "cmdk_close": "Kapat",
+  "cmdk_scout_scope": "Scout’a sor",
+  "cmdk_scout_group": "Scout’un önerileri",
+  "cmdk_scout_placeholder": "İhtiyacın olan modu anlat…",
+  "cmdk_scout_intro": "Oyunda ne yapmak istediğini anlat, Scout sana uygun modları bulsun.",
+  "cmdk_scout_press_enter": "Scout’a sormak için Enter’a bas.",
+  "cmdk_scout_thinking": "Scout kataloğu tarıyor…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "Katalogdan yapay zekâ tarafından yazıldı. Kurmadan önce her modun sayfasına bak.",
+  "cmdk_scout_no_picks": "Scout uygun bir mod bulamadı. Farklı şekilde anlatmayı dene.",
+  "cmdk_scout_error_title": "Scout yanıt veremedi.",
+  "cmdk_scout_error_hint": "Biraz sonra tekrar dene ya da kataloğda ara.",
+  "cmdk_scout_error_rate": "Çok fazla soru.",
+  "cmdk_scout_error_rate_hint": "Bir dakika bekleyip tekrar sor.",
+  "cmdk_scout_hint_ask": "Sor"
 }

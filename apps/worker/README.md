@@ -63,6 +63,7 @@ Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 | `indexnow` | `indexnow.ping` | | WP-61 |
 | `inspection` | `inspection.run` | | WP-40 |
 | `kelvinseek` | `cleanup.kelvinseek` | | WP-32 |
+| `discovery` | `recommendations.compute`, `cleanup.scout` | | WP-33 |
 | `legacy-counters` | `legacy.counters` (off while `LEGACY_COEXIST=true`) | | WP-52 |
 | `legacy-mentions` | `legacy.mentions` (B18; off while `LEGACY_COEXIST=true`) | | WP-43 |
 | `media` | `media.process` | `description-images` | WP-40 |

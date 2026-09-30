@@ -25,6 +25,8 @@ export interface EntryItem {
   categorySlug?: string | null;
   tags?: readonly string[];
   manifestId?: string;
+  /** Scout's one-line reason for citing the mod (shown instead of the usual meta line). */
+  note?: string;
 }
 
 export type ActionId =
@@ -64,7 +66,8 @@ export type GroupId =
   | 'categories'
   | 'pages'
   | 'actions'
-  | 'server';
+  | 'server'
+  | 'scout';
 
 export interface ResultItem {
   item: PaletteItem;

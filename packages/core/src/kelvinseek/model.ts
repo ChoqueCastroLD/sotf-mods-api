@@ -8,6 +8,10 @@ export interface KelvinModelRequest {
   system: string;
   user: string;
   timeoutMs: number;
+  /** Ask for a JSON object answer (`response_format: json_object`). */
+  json?: boolean;
+  /** Overrides the model's default cap on the answer length. */
+  maxOutputTokens?: number;
 }
 
 export interface KelvinModelResult {
@@ -70,7 +74,8 @@ export function openAiModel(options: OpenAiModelOptions): KelvinModel {
             { role: 'system', content: request.system },
             { role: 'user', content: request.user },
           ],
-          max_completion_tokens: maxOutputTokens,
+          max_completion_tokens: request.maxOutputTokens ?? maxOutputTokens,
+          ...(request.json ? { response_format: { type: 'json_object' } } : {}),
         }),
         signal,
       });

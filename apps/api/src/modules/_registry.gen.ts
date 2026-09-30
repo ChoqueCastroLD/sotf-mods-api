@@ -10,6 +10,7 @@ import badgesModule from './badges/index.ts';
 import catalogModule from './catalog/index.ts';
 import commentsModule from './comments/index.ts';
 import compatModule from './compat/index.ts';
+import discoveryModule from './discovery/index.ts';
 import downloadsModule from './downloads/index.ts';
 import draftsModule from './drafts/index.ts';
 import ecosystemModule from './ecosystem/index.ts';
@@ -43,6 +44,7 @@ export const modules = [
   catalogModule,
   commentsModule,
   compatModule,
+  discoveryModule,
   downloadsModule,
   draftsModule,
   ecosystemModule,

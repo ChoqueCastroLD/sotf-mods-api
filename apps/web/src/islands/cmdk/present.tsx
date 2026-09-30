@@ -197,7 +197,7 @@ export function RowContent({ result, locale }: { result: ResultItem; locale: Loc
           <Highlighted segments={highlight(item.title, result.terms)} />
         </span>
         <span className="truncate text-xs text-fg-muted">
-          {snippet ? <Highlighted segments={snippet} /> : entryMeta(item, locale)}
+          {snippet ? <Highlighted segments={snippet} /> : (item.note ?? entryMeta(item, locale))}
         </span>
       </span>
       {item.compat && (item.type === 'mod' || item.type === 'build') ? <CompatMark status={item.compat} /> : null}

@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_DetailInputs = {};
+export type Cmdk_Scout_Ai_NoteInputs = {};
 /**
 * | output |
 * | --- |
-* | "This part of camp is still being set up. Check back soon." |
+* | "Written by AI from the catalog. Check each mod page before installing." |
 *
-* @param {Console_Empty_DetailInputs} inputs
+* @param {Cmdk_Scout_Ai_NoteInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_detail: ((inputs?: Console_Empty_DetailInputs, options?: {
+export declare const cmdk_scout_ai_note: ((inputs?: Cmdk_Scout_Ai_NoteInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_DetailInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Cmdk_Scout_Ai_NoteInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

@@ -101,6 +101,11 @@ export const API_ROUTES = {
     acknowledgeReport: { id: 'compat.acknowledgeReport', method: 'POST', path: "/api/v2/compat-reports/:id/acknowledge", kind: 'json', bodyKind: 'json' },
     myPrompts: { id: 'compat.myPrompts', method: 'GET', path: "/api/v2/me/compat-prompts", kind: 'json', bodyKind: null },
   },
+  discovery: {
+    scoutStatus: { id: 'discovery.scoutStatus', method: 'GET', path: "/api/v2/scout/status", kind: 'json', bodyKind: null },
+    scout: { id: 'discovery.scout', method: 'POST', path: "/api/v2/scout", kind: 'json', bodyKind: 'json' },
+    recommendations: { id: 'discovery.recommendations', method: 'GET', path: "/api/v2/mods/:id/recommendations", kind: 'json', bodyKind: null },
+  },
   downloads: {
     versionDownload: { id: 'downloads.versionDownload', method: 'GET', path: "/api/v2/versions/:id/download", kind: 'redirect', bodyKind: null },
     resolve: { id: 'downloads.resolve', method: 'GET', path: "/internal/downloads/resolve", kind: 'json', bodyKind: null },

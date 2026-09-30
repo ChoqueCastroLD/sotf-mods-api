@@ -72,5 +72,19 @@
   "cmdk_no_results": "「{query}」は地図に見つかりませんでした。キーワードを減らしてみてください。",
   "cmdk_offline": "オフラインです。表示中の内容は最新でない可能性があります。",
   "cmdk_retry": "再試行",
-  "cmdk_close": "閉じる"
+  "cmdk_close": "閉じる",
+  "cmdk_scout_scope": "Scoutに聞く",
+  "cmdk_scout_group": "Scoutのおすすめ",
+  "cmdk_scout_placeholder": "必要なModを説明してください…",
+  "cmdk_scout_intro": "ゲームでやりたいことを書くと、Scoutが合うModを探します。",
+  "cmdk_scout_press_enter": "Enterキーを押してScoutに聞く。",
+  "cmdk_scout_thinking": "Scoutがカタログを検索しています…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "カタログをもとにAIが作成しました。インストール前に各Modのページを確認してください。",
+  "cmdk_scout_no_picks": "合うModは見つかりませんでした。言い方を変えてみてください。",
+  "cmdk_scout_error_title": "Scoutが回答できませんでした。",
+  "cmdk_scout_error_hint": "しばらくしてからもう一度試すか、カタログを検索してください。",
+  "cmdk_scout_error_rate": "質問が多すぎます。",
+  "cmdk_scout_error_rate_hint": "1分ほど待ってからもう一度お試しください。",
+  "cmdk_scout_hint_ask": "聞く"
 }
