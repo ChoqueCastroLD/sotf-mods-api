@@ -8,7 +8,7 @@
  * - Mailpit receives the verification email and the link verifies the account;
  * - password reset (v2 tokens and the legacy 24 h window), email change;
  * - the data export contains the expected JSON; the deletion anonymizes after the grace period;
- * - `/me` exposes the `can()` permissions of each role.
+ * - `/me` exposes the `can()` permissions of each role; `/me/home` cards; `PATCH /me/profile`.
  */
 import { randomUUID } from 'node:crypto';
 import { SESSION_COOKIE } from '@sotf/contracts/auth';
@@ -17,7 +17,7 @@ import { executeDueDeletions, MemoryExportStorage, runExport } from '@sotf/core/
 import { bunHash } from '@sotf/core/auth/fixtures/bun-hashes';
 import type { BreachedPasswordChecker, TurnstileVerifier } from '@sotf/core/auth/index';
 import { createSmtpTransport, deliverOutboxEmail, type EmailRenderer } from '@sotf/core/email/index';
-import { authEvent, comment, emailOutbox, mod, passwordResetToken, session, user } from '@sotf/db';
+import { authEvent, comment, emailOutbox, media, mod, passwordResetToken, session, upload, user } from '@sotf/db';
 import { createFactories, type Factories } from '@sotf/db/testing';
 import { type AccountEmailTemplate, renderAccountEmail } from '@sotf/emails/account/index';
 import { and, desc, eq } from 'drizzle-orm';
@@ -128,6 +128,11 @@ async function lastOutbox(to: string, template: string) {
     .orderBy(desc(emailOutbox.id))
     .limit(1);
   return row;
+}
+
+/** Empties the process LRUs (catalog snapshot, profiles) so each scenario reads fresh rows. */
+function clearCaches(): void {
+  t.app.platform.caches.invalidate('*');
 }
 
 function tokenFromUrl(url: string): string {
@@ -832,10 +837,176 @@ describe('/me', () => {
       createdAt: new Date('2026-03-01T00:00:00Z'),
     });
     const cookie = sessionCookieOf(await login(reader.email, fixture.password));
+    clearCaches();
     const home = (await get('/api/v2/me/home', newIp(), cookie)).json();
     expect(home.updatesCount).toBe(1);
+    expect(home.updates).toHaveLength(1);
+    expect(home.updates[0]).toMatchObject({ fromVersion: '1.0.0', toVersion: '1.1.0' });
+    expect(home.updates[0].mod).toMatchObject({ id: followed.id, latestVersion: '1.1.0' });
     expect(home.onboarding.steps.find((s: { key: string }) => s.key === 'first_download').done).toBe(true);
     expect(home.onboarding.steps.find((s: { key: string }) => s.key === 'follow_mod').done).toBe(true);
+  });
+
+  it('shows NSFW update cards only to users who opted in', async () => {
+    const fixture = bunHash('argon2id-ascii');
+    const reader = await userWithPassword(fixture.hash);
+    const { mod: nsfw, version: v1 } = await f.modWithVersion(
+      { isNSFW: true },
+      { version: '2.0.0', createdAt: new Date('2026-01-01T00:00:00Z') },
+    );
+    await f.favorite({ userId: reader.id, modId: nsfw.id });
+    await f.download({ modVersionId: v1.id, userId: reader.id, createdAt: new Date('2026-02-01T00:00:00Z') });
+    await t.db.pool.query(`UPDATE "ModVersion" SET "isLatest" = false WHERE "id" = $1`, [v1.id]);
+    await f.modVersion({
+      modId: nsfw.id,
+      version: '2.1.0',
+      isLatest: true,
+      createdAt: new Date('2026-03-01T00:00:00Z'),
+    });
+    const cookie = sessionCookieOf(await login(reader.email, fixture.password));
+    clearCaches();
+    const hidden = (await get('/api/v2/me/home', newIp(), cookie)).json();
+    expect(hidden.updatesCount).toBe(1);
+    expect(hidden.updates).toEqual([]);
+    await t.app.inject({
+      method: 'PATCH',
+      url: '/api/v2/me/settings',
+      headers: headers(newIp(), cookie),
+      payload: JSON.stringify({ nsfwOptIn: true, confirmAdult: true }),
+    });
+    const shown = (await get('/api/v2/me/home', newIp(), cookie)).json();
+    expect(shown.updates.map((u: { mod: { id: number } }) => u.mod.id)).toEqual([nsfw.id]);
+  });
+
+  it('PATCH /me/profile edits the profile, pins own published mods and attaches uploaded images', async () => {
+    const fixture = bunHash('argon2id-ascii');
+    const owner = await userWithPassword(fixture.hash);
+    const other = await f.user();
+    const first = await f.mod({ userId: owner.id });
+    const second = await f.mod({ userId: owner.id });
+    const draft = await f.mod({ userId: owner.id, status: 'pending' });
+    const foreign = await f.mod({ userId: other.id });
+    const imageUpload = async (userId: number, purpose: 'avatar' | 'banner', status: 'processing' | 'pending') => {
+      const mediaId = randomUUID();
+      const uploadId = randomUUID();
+      await t.db.db.insert(media).values({
+        id: mediaId,
+        ownerId: userId,
+        purpose,
+        sourceBucket: 'private',
+        sourceKey: `incoming/${userId}/${uploadId}`,
+        status: 'ready',
+        width: 512,
+        height: 512,
+        variants: [{ key: `media/${mediaId}/w256.webp`, w: 256, format: 'webp', bytes: 1000 }],
+      });
+      await t.db.db.insert(upload).values({
+        id: uploadId,
+        userId,
+        purpose,
+        bucket: 'private',
+        key: `incoming/${userId}/${uploadId}`,
+        filename: `${purpose}.png`,
+        contentType: 'image/png',
+        declaredBytes: 1000,
+        maxBytes: 5_000_000,
+        status,
+        resultRef: { mediaId },
+        expiresAt: new Date(Date.now() + 86_400_000),
+      });
+      return { uploadId, mediaId };
+    };
+    const avatar = await imageUpload(owner.id, 'avatar', 'processing');
+    const banner = await imageUpload(owner.id, 'banner', 'processing');
+    const foreignAvatar = await imageUpload(other.id, 'avatar', 'processing');
+    const unfinished = await imageUpload(owner.id, 'avatar', 'pending');
+
+    const cookie = sessionCookieOf(await login(owner.email, fixture.password));
+    const patch = (body: unknown) =>
+      t.app.inject({
+        method: 'PATCH',
+        url: '/api/v2/me/profile',
+        headers: headers(newIp(), cookie),
+        payload: JSON.stringify(body),
+      });
+
+    clearCaches();
+    const res = await patch({
+      displayName: '  Axel Builder ',
+      bioMd: 'Modding **SOTF** since 2023.',
+      links: [{ kind: 'github', url: 'https://github.com/example', label: ' Code ' }],
+      pinnedModIds: [second.id, first.id],
+      avatarUploadId: avatar.uploadId,
+      bannerUploadId: banner.uploadId,
+      bannerSeed: 1234,
+    });
+    expect(res.statusCode).toBe(200);
+    expect(res.headers['cache-control']).toContain('no-store');
+    const profile = res.json();
+    expect(profile).toMatchObject({
+      id: owner.id,
+      handle: owner.slug,
+      displayName: 'Axel Builder',
+      bioMd: 'Modding **SOTF** since 2023.',
+      bannerSeed: 1234,
+      links: [{ kind: 'github', url: 'https://github.com/example', label: 'Code' }],
+    });
+    expect(profile.bioHtml).toContain('SOTF');
+    expect(profile.pinnedMods.map((m: { id: number }) => m.id)).toEqual([second.id, first.id]);
+    expect(profile.avatar).not.toBeNull();
+    expect(profile.banner).not.toBeNull();
+
+    const [stored] = await t.db.db.select().from(user).where(eq(user.id, owner.id));
+    expect(stored).toMatchObject({
+      avatarMediaId: avatar.mediaId,
+      bannerMediaId: banner.mediaId,
+      pinnedModIds: [second.id, first.id],
+    });
+    const events = await t.db.pool.query(
+      `SELECT data->'payload' AS payload FROM pgboss.job
+        WHERE name = 'domain.event' AND data->>'type' = 'user.profile_updated'
+          AND (data->'payload'->>'userId')::int = $1`,
+      [owner.id],
+    );
+    expect(events.rows.map((r) => r.payload)).toEqual([{ userId: owner.id, completed: true }]);
+
+    const invalidPins = [[foreign.id], [draft.id], [first.id, first.id]];
+    for (const pinnedModIds of invalidPins) {
+      const bad = await patch({ pinnedModIds });
+      expect(bad.statusCode).toBe(422);
+      expect(bad.json().code).toBe('VALIDATION_FAILED');
+    }
+    expect((await patch({ avatarUploadId: foreignAvatar.uploadId })).json().code).toBe('NOT_FOUND');
+    expect((await patch({ avatarUploadId: randomUUID() })).json().code).toBe('NOT_FOUND');
+    expect((await patch({ avatarUploadId: unfinished.uploadId })).json().code).toBe('VALIDATION_FAILED');
+    expect((await patch({ bannerUploadId: avatar.uploadId })).json().code).toBe('VALIDATION_FAILED');
+    expect((await patch({ bioMd: 'x'.repeat(501) })).statusCode).toBe(422);
+    expect((await patch({ unknown: true })).statusCode).toBe(422);
+
+    // The cached profile of the first edit is evicted: the response reflects every later change.
+    const cleared = await patch({
+      displayName: 'Axel',
+      avatarUploadId: null,
+      bannerUploadId: null,
+      bioMd: '   ',
+      pinnedModIds: [],
+    });
+    expect(cleared.statusCode).toBe(200);
+    expect(cleared.json()).toMatchObject({
+      displayName: 'Axel',
+      avatar: null,
+      banner: null,
+      bioMd: null,
+      bioHtml: null,
+      pinnedMods: [],
+    });
+    const [after] = await t.db.db.select().from(user).where(eq(user.id, owner.id));
+    expect(after).toMatchObject({ avatarMediaId: null, bannerMediaId: null, imageUrl: '', bioMd: null });
+
+    expect(
+      (await t.app.inject({ method: 'PATCH', url: '/api/v2/me/profile', headers: headers(newIp()), payload: '{}' }))
+        .statusCode,
+    ).toBe(401);
   });
 
   it('requires a session', async () => {
