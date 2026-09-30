@@ -91,8 +91,7 @@ export function createMeModule(options: AccountServicesOptions = {}): ApiModule 
             id: row.id,
             current: row.id === actor.sessionId,
             deviceLabel: row.deviceLabel,
-            // The session table stores no location yet (docs/backlog/WP-30.md).
-            country: null,
+            country: row.country,
             createdAt: row.createdAt.toISOString(),
             lastSeenAt: row.lastSeenAt.toISOString(),
             expiresAt: row.expiresAt.toISOString(),

@@ -52,6 +52,8 @@ export interface CreateSessionInput {
   remember: boolean;
   ipHash: string | null;
   userAgent: string | null;
+  /** ISO 3166-1 alpha-2 country of the request (edge header), stored for the owner's session list. */
+  country?: string | null;
   now: Date;
 }
 
@@ -75,6 +77,7 @@ export async function createSession(db: Executor, input: CreateSessionInput): Pr
     ipHash: input.ipHash,
     userAgent: storedUserAgent(input.userAgent),
     deviceLabel: deviceLabel(input.userAgent),
+    country: sessionCountry(input.country),
   });
   return {
     token,
@@ -83,6 +86,17 @@ export async function createSession(db: Executor, input: CreateSessionInput): Pr
     absoluteExpiresAt,
     cookieMaxAge: input.remember ? Math.floor((absoluteExpiresAt.getTime() - now) / 1000) : null,
   };
+}
+
+/**
+ * Normalizes the edge country header for storage: two ASCII letters, upper case. Cloudflare's
+ * pseudo-codes for unknown (`XX`) and Tor (`T1`) are dropped.
+ */
+export function sessionCountry(value: string | null | undefined): string | null {
+  if (!value) return null;
+  const code = value.trim().toUpperCase();
+  if (!/^[A-Z]{2}$/.test(code) || code === 'XX') return null;
+  return code;
 }
 
 /** Resolves a cookie token to its actor (null when unknown, expired, revoked or invalidated). */
@@ -182,6 +196,8 @@ export async function refreshSessionFingerprint(db: Executor, sessionId: string,
 export interface ActiveSession {
   id: string;
   deviceLabel: string | null;
+  /** Country of the request that created the session (null when unknown). */
+  country: string | null;
   createdAt: Date;
   lastSeenAt: Date;
   expiresAt: Date;
@@ -196,6 +212,7 @@ export async function listActiveSessions(db: Executor, userId: number, now: Date
     .select({
       id: session.id,
       deviceLabel: session.deviceLabel,
+      country: session.country,
       createdAt: session.createdAt,
       lastSeenAt: session.lastSeenAt,
       expiresAt: session.expiresAt,
