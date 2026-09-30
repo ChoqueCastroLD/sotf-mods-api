@@ -1,0 +1,133 @@
+---
+/**
+ * Gallery of a build inside the plan frame (research/03 §6.6): cyanotype grid, corner ticks and
+ * a dimension line with the piece count. The pictures are a scroll-snap strip (swipe on phones,
+ * arrows or the numbered ticks elsewhere) that works without JavaScript; the first picture is the
+ * LCP (eager, preloaded by the page). NSFW builds keep their pictures behind a disclosure.
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { DraftingCompass, EyeOff } from 'lucide-react';
+import Picture from '../layout/Picture.astro';
+import type { BuildSpec, ModDetailDTO } from './data.ts';
+
+interface Props {
+  build: ModDetailDTO;
+  spec: BuildSpec;
+}
+
+const { build, spec } = Astro.props;
+const locale = Astro.locals.locale;
+const seen = new Set<string>();
+const images = [build.thumbnail, ...build.gallery].filter((image): image is NonNullable<typeof image> => {
+  if (!image || seen.has(image.url)) return false;
+  seen.add(image.url);
+  return true;
+});
+const total = images.length;
+const sizes = '(min-width: 80rem) 760px, (min-width: 64rem) 58vw, 100vw';
+const pieces =
+  spec.elements === null
+    ? null
+    : m.builds_stat_pieces({ count: spec.elements, display: formatNumber(locale, spec.elements) });
+const corner = 'absolute size-4 border-blueprint';
+---
+
+<figure class="texture-blueprint relative grid gap-3 rounded-lg border border-blueprint/40 p-3 md:p-4" data-build-gallery>
+  <span aria-hidden="true" class="pointer-events-none absolute inset-1.5">
+    <span class={`${corner} start-0 top-0 border-s-2 border-t-2`}></span>
+    <span class={`${corner} end-0 top-0 border-e-2 border-t-2`}></span>
+    <span class={`${corner} start-0 bottom-0 border-s-2 border-b-2`}></span>
+    <span class={`${corner} end-0 bottom-0 border-e-2 border-b-2`}></span>
+  </span>
+
+  {
+    total === 0 ? (
+      <div class="flex aspect-video flex-col items-center justify-center gap-3 rounded-md border border-dashed border-blueprint/50 p-6 text-center text-blueprint">
+        <Icon icon={DraftingCompass} size={40} />
+        <p class="max-w-sm text-sm text-fg-muted">{m.builds_gallery_placeholder()}</p>
+      </div>
+    ) : build.nsfw ? (
+      <details class="group rounded-md border border-blueprint/40 bg-surface" data-nsfw-gate>
+        <summary class="flex aspect-video cursor-pointer list-none flex-col items-center justify-center gap-3 p-6 text-center [&::-webkit-details-marker]:hidden">
+          <Icon icon={EyeOff} size={32} className="text-blueprint" />
+          <span class="font-semibold text-fg">{m.builds_nsfw_title()}</span>
+          <span class="max-w-sm text-sm text-fg-muted">{m.builds_nsfw_text()}</span>
+          <span class="inline-flex min-h-11 items-center rounded-md border border-border-strong px-4 font-semibold text-fg">
+            {m.builds_nsfw_show()}
+          </span>
+        </summary>
+        <div class="grid gap-2 p-2">
+          {images.map((image, index) => (
+            <Picture
+              image={image}
+              sizes={sizes}
+              alt={image.alt || m.builds_gallery_image({ index: index + 1, total })}
+              class="aspect-video w-full rounded-sm object-contain"
+            />
+          ))}
+        </div>
+      </details>
+    ) : (
+      <div class="grid gap-2">
+        <ul
+          class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-md bg-surface [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          aria-label={m.builds_gallery_label({ name: build.name })}
+          tabindex={total > 1 ? 0 : undefined}
+          data-gallery-track
+        >
+          {images.map((image, index) => (
+            <li
+              id={`build-image-${index + 1}`}
+              class="relative w-full shrink-0 snap-center"
+              aria-label={m.builds_gallery_image({ index: index + 1, total })}
+            >
+              <Picture
+                image={image}
+                sizes={sizes}
+                priority={index === 0}
+                hero={index === 0}
+                alt={image.alt || (index === 0 ? m.builds_og_alt({ name: build.name }) : '')}
+                class="aspect-video w-full object-contain"
+              />
+            </li>
+          ))}
+        </ul>
+        {total > 1 && (
+          <ol class="flex flex-wrap justify-center gap-1.5" aria-label={m.builds_gallery_label({ name: build.name })}>
+            {images.map((_, index) => (
+              <li>
+                <a
+                  href={`#build-image-${index + 1}`}
+                  data-gallery-tick={index}
+                  aria-current={index === 0 ? 'true' : undefined}
+                  class="inline-flex size-8 items-center justify-center rounded-xs border border-blueprint/50 font-mono text-2xs text-blueprint tabular-nums hover:bg-blueprint/10 aria-[current=true]:bg-blueprint aria-[current=true]:text-blueprint-surface"
+                >
+                  <span class="sr-only">{m.builds_gallery_image({ index: index + 1, total })}</span>
+                  <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        )}
+      </div>
+    )
+  }
+
+  {
+    pieces && (
+      <figcaption class="flex items-center gap-2 font-mono text-2xs text-blueprint">
+        <span aria-hidden="true" class="flex flex-1 items-center">
+          <span class="h-3 w-px bg-current"></span>
+          <span class="h-px flex-1 bg-current"></span>
+        </span>
+        <span class="shrink-0 tabular-nums">{pieces}{spec.sizeClass ? ` · ${spec.sizeClass}` : ''}</span>
+        <span aria-hidden="true" class="flex flex-1 items-center">
+          <span class="h-px flex-1 bg-current"></span>
+          <span class="h-3 w-px bg-current"></span>
+        </span>
+      </figcaption>
+    )
+  }
+</figure>

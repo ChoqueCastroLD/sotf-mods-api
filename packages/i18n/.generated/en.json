@@ -124,6 +124,286 @@
   "auth_welcome_resend": "Send the link again",
   "auth_welcome_resent": "Sent. Check your inbox and your spam folder.",
   "auth_welcome_verify": "We sent a verification link to {email}. Open it to start commenting, reviewing and uploading.",
+  "builds_action_add_to_kit": "Add to Kit",
+  "builds_action_download_unavailable": "No file to download yet",
+  "builds_action_how_to_import": "How to import",
+  "builds_action_other_versions": "Other versions",
+  "builds_banner_archived_successor": "Try {name} instead",
+  "builds_banner_archived_text": "The builder no longer updates this build. It may not place correctly with recent BuildShare versions.",
+  "builds_banner_archived_title": "Archived",
+  "builds_banner_broken_text": "Survivors report that this build doesn’t work on the current game version.",
+  "builds_banner_broken_title": "Reported broken",
+  "builds_banner_outdated_text": "This build hasn’t been updated in a long time. It may not place correctly on the current patch.",
+  "builds_banner_outdated_title": "Possibly outdated",
+  "builds_banner_pending_text": "A ranger will check this build soon. Until then it stays out of listings and search.",
+  "builds_banner_pending_title": "Under review",
+  "builds_banner_unlisted_text": "This build is hidden from listings and search. Anyone with the link can still open it.",
+  "builds_banner_unlisted_title": "Unlisted",
+  "builds_blueprint_author": "Author in the blueprint: {author}",
+  "builds_by_author": "by {author}",
+  "builds_comments_empty": "No comments yet. Ask the builder something or share a screenshot of it on your island.",
+  "builds_comments_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} more comment",
+        "count__plural=*": "{count__number} more comments"
+      }
+    }
+  ],
+  "builds_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} more reply",
+        "count__plural=*": "{count__number} more replies"
+      }
+    }
+  ],
+  "builds_comments_sign_in": "Sign in to comment",
+  "builds_comments_title": "Comments",
+  "builds_comments_unavailable": "Comments didn’t load this time. Reload the page to try again.",
+  "builds_copy_failed": "Couldn’t copy. Select the text and copy it by hand.",
+  "builds_description_empty": "The builder hasn’t written a description yet. The spec sheet has the facts.",
+  "builds_description_title": "About this build",
+  "builds_follow_error": "Couldn’t update your Backpack. Check your connection and try again.",
+  "builds_follow_hint": "Get notified when this build gets a new version",
+  "builds_followed": "Added to your Backpack.",
+  "builds_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Picture {index__number} of {total__number}"
+      }
+    }
+  ],
+  "builds_gallery_label": "Pictures of {name}",
+  "builds_gallery_placeholder": "No pictures yet. The blueprint had no embedded thumbnail.",
+  "builds_import_copy_path": "Copy folder path",
+  "builds_import_key_hint": "You can change the key in Mods → BuildShare → Toggle Key.",
+  "builds_import_lead": "A build is a BuildShare blueprint: one .json file that you drop into your game and place like a prefab.",
+  "builds_import_path_copied": "Folder path copied.",
+  "builds_import_step1_buildshare": "Get BuildShare",
+  "builds_import_step1_guide": "Install guide",
+  "builds_import_step1_text": "BuildShare is the mod that places blueprints. It runs on RedLoader: if you have never installed a mod, follow the install guide first.",
+  "builds_import_step1_title": "Install RedLoader and BuildShare",
+  "builds_import_step2_text": "Download the .json above and copy it into this folder of your game:",
+  "builds_import_step2_title": "Put the blueprint in LocalBuildings",
+  "builds_import_step3_text": "In game, press {key} to open BuildShare, pick the blueprint and place it. Right-click switches between corner and free placement, the mouse wheel moves it and Esc cancels.",
+  "builds_import_step3_title": "Place it on the island",
+  "builds_import_title": "How to import (3 steps)",
+  "builds_in_kits": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "In {count__number} Kit",
+        "count__plural=*": "In {count__number} Kits"
+      }
+    }
+  ],
+  "builds_kind_label": "BuildShare blueprint",
+  "builds_link_copied": "Link copied.",
+  "builds_md_alert_caution": "Caution",
+  "builds_md_alert_important": "Important",
+  "builds_md_alert_note": "Note",
+  "builds_md_alert_tip": "Tip",
+  "builds_md_alert_warning": "Warning",
+  "builds_md_spoiler": "Spoiler",
+  "builds_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input pieceCount",
+        "input pieces",
+        "input count",
+        "input downloads",
+        "local pieceCount__plural = pieceCount: plural",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "pieceCount__plural",
+        "count__plural"
+      ],
+      "match": {
+        "pieceCount__plural=one, count__plural=one": "{name}: a Sons of the Forest build by {author} for BuildShare, {pieces} piece. {downloads} download, free, with import steps.",
+        "pieceCount__plural=one, count__plural=*": "{name}: a Sons of the Forest build by {author} for BuildShare, {pieces} piece. {downloads} downloads, free, with import steps.",
+        "pieceCount__plural=*, count__plural=one": "{name}: a Sons of the Forest build by {author} for BuildShare, {pieces} pieces. {downloads} download, free, with import steps.",
+        "pieceCount__plural=*, count__plural=*": "{name}: a Sons of the Forest build by {author} for BuildShare, {pieces} pieces. {downloads} downloads, free, with import steps."
+      }
+    }
+  ],
+  "builds_meta_description_fallback": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: a Sons of the Forest build by {author} for BuildShare. {downloads} download, free, with import steps.",
+        "count__plural=*": "{name}: a Sons of the Forest build by {author} for BuildShare. {downloads} downloads, free, with import steps."
+      }
+    }
+  ],
+  "builds_meta_title": "{name} — SOTF build (BuildShare blueprint)",
+  "builds_meta_title_short": "{name} — SOTF build",
+  "builds_nsfw_show": "Show pictures",
+  "builds_nsfw_text": "The creator marked this build as NSFW. Its pictures are hidden until you choose to see them.",
+  "builds_nsfw_title": "Mature content",
+  "builds_og_alt": "Blueprint of {name}",
+  "builds_original_author": "Original author: {author}",
+  "builds_related_all": "All builds",
+  "builds_related_title": "More blueprints",
+  "builds_requires_title": "Required mods",
+  "builds_reviews_empty": "No reviews yet. Built it? Tell other survivors how it went.",
+  "builds_reviews_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} more review",
+        "count__plural=*": "{count__number} more reviews"
+      }
+    }
+  ],
+  "builds_reviews_sign_in": "Sign in to review",
+  "builds_reviews_title": "Reviews",
+  "builds_reviews_unavailable": "Reviews didn’t load this time. Reload the page to try again.",
+  "builds_size_badge": "Size {size}",
+  "builds_size_name": [
+    {
+      "declarations": [
+        "input size"
+      ],
+      "selectors": [
+        "size"
+      ],
+      "match": {
+        "size=S": "Small",
+        "size=M": "Medium",
+        "size=L": "Large",
+        "size=XL": "Extra large",
+        "size=*": "{size}"
+      }
+    }
+  ],
+  "builds_size_range_above": "{min} pieces or more",
+  "builds_size_range_below": "Fewer than {max} pieces",
+  "builds_size_range_between": "{min} to {max} pieces",
+  "builds_size_scale_label": "Size scale",
+  "builds_spec_blueprint_author": "Blueprint author",
+  "builds_spec_buildshare": "BuildShare version",
+  "builds_spec_copy_guid": "Copy GUID",
+  "builds_spec_downloads": "Downloads",
+  "builds_spec_file": "File",
+  "builds_spec_guid": "Blueprint GUID",
+  "builds_spec_guid_copied": "GUID copied.",
+  "builds_spec_original_author": "Original author",
+  "builds_spec_pieces": "Pieces",
+  "builds_spec_published": "Published",
+  "builds_spec_size": "Size",
+  "builds_spec_structures": "Structures",
+  "builds_spec_title": "Spec sheet",
+  "builds_spec_unknown": "Not recorded",
+  "builds_spec_updated": "Updated",
+  "builds_spec_uploader": "Uploaded by",
+  "builds_spec_version": "Version",
+  "builds_stat_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} piece",
+        "count__plural=*": "{display} pieces"
+      }
+    }
+  ],
+  "builds_stat_rating": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} out of 5 · {count__number} review",
+        "count__plural=*": "{rating} out of 5 · {count__number} reviews"
+      }
+    }
+  ],
+  "builds_stats_label": "Build stats",
+  "builds_unfollowed": "Removed from your Backpack.",
+  "builds_verified_creator": "Verified creator",
+  "builds_versions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} version",
+        "count__plural=*": "{count__number} versions"
+      }
+    }
+  ],
+  "builds_versions_download": "Download v{version}",
+  "builds_versions_empty": "No published version yet.",
+  "builds_versions_latest": "Latest",
+  "builds_versions_title": "Versions",
+  "builds_versions_yanked": "Withdrawn",
   "common_account_menu": "Account menu",
   "common_account_profile": "Your profile",
   "common_account_settings": "Settings",

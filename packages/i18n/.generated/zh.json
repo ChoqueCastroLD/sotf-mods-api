@@ -124,6 +124,246 @@
   "auth_welcome_resend": "重新发送链接",
   "auth_welcome_resent": "已发送。请查看收件箱和垃圾邮件文件夹。",
   "auth_welcome_verify": "我们已向 {email} 发送验证链接。打开链接后即可评论、写评测和上传模组。",
+  "builds_action_add_to_kit": "加入套装",
+  "builds_action_download_unavailable": "暂时没有可下载的文件",
+  "builds_action_how_to_import": "如何导入",
+  "builds_action_other_versions": "其他版本",
+  "builds_banner_archived_successor": "改试 {name}",
+  "builds_banner_archived_text": "建造者已不再更新此建筑。使用较新的 BuildShare 版本时可能无法正确放置。",
+  "builds_banner_archived_title": "已归档",
+  "builds_banner_broken_text": "有幸存者报告此建筑在当前游戏版本中无法使用。",
+  "builds_banner_broken_title": "被报告无法使用",
+  "builds_banner_outdated_text": "此建筑已很久没有更新。在当前补丁中可能无法正确放置。",
+  "builds_banner_outdated_title": "可能已过时",
+  "builds_banner_pending_text": "护林员很快会审核此建筑。在此之前，它不会出现在列表和搜索中。",
+  "builds_banner_pending_title": "审核中",
+  "builds_banner_unlisted_text": "此建筑不会出现在列表和搜索中。拥有链接的人仍可打开。",
+  "builds_banner_unlisted_title": "未公开列出",
+  "builds_blueprint_author": "蓝图中的作者：{author}",
+  "builds_by_author": "作者 {author}",
+  "builds_comments_empty": "还没有评论。向建造者提个问题，或分享它在你岛上的截图。",
+  "builds_comments_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 条评论"
+      }
+    }
+  ],
+  "builds_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 条回复"
+      }
+    }
+  ],
+  "builds_comments_sign_in": "登录后发表评论",
+  "builds_comments_title": "评论",
+  "builds_comments_unavailable": "这次评论没有加载出来。请刷新页面重试。",
+  "builds_copy_failed": "复制失败。请选中文字后手动复制。",
+  "builds_description_empty": "建造者还没有写描述。技术参数里有相关信息。",
+  "builds_description_title": "关于此建筑",
+  "builds_follow_error": "无法更新你的背包。请检查网络连接后重试。",
+  "builds_follow_hint": "此建筑有新版本时通知我",
+  "builds_followed": "已加入你的背包。",
+  "builds_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {index__number} 张，共 {total__number} 张"
+      }
+    }
+  ],
+  "builds_gallery_label": "{name} 的图片",
+  "builds_gallery_placeholder": "暂无图片。蓝图中没有内嵌缩略图。",
+  "builds_import_copy_path": "复制文件夹路径",
+  "builds_import_key_hint": "可在 Mods → BuildShare → Toggle Key 中更改按键。",
+  "builds_import_lead": "建筑就是 BuildShare 蓝图：一个 .json 文件，放进游戏后即可像预制建筑一样放置。",
+  "builds_import_path_copied": "文件夹路径已复制。",
+  "builds_import_step1_buildshare": "获取 BuildShare",
+  "builds_import_step1_guide": "安装指南",
+  "builds_import_step1_text": "BuildShare 是负责放置蓝图的模组，运行在 RedLoader 上。如果你从没装过模组，请先按照安装指南操作。",
+  "builds_import_step1_title": "安装 RedLoader 和 BuildShare",
+  "builds_import_step2_text": "下载上方的 .json，并复制到游戏的这个文件夹：",
+  "builds_import_step2_title": "把蓝图放进 LocalBuildings",
+  "builds_import_step3_text": "在游戏中按 {key} 打开 BuildShare，选择蓝图并放置。右键可在贴角放置与自由放置之间切换，鼠标滚轮可移动建筑，按 Esc 取消。",
+  "builds_import_step3_title": "在岛上放置",
+  "builds_import_title": "如何导入（3 步）",
+  "builds_in_kits": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "收录于 {count__number} 个套装"
+      }
+    }
+  ],
+  "builds_kind_label": "BuildShare 蓝图",
+  "builds_link_copied": "链接已复制。",
+  "builds_md_alert_caution": "小心",
+  "builds_md_alert_important": "重要",
+  "builds_md_alert_note": "注意",
+  "builds_md_alert_tip": "提示",
+  "builds_md_alert_warning": "警告",
+  "builds_md_spoiler": "剧透",
+  "builds_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input pieceCount",
+        "input pieces",
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name}：{author} 为 BuildShare 制作的《森林之子》建筑，{pieces} 个部件。{downloads} 次下载，免费，附导入步骤。"
+      }
+    }
+  ],
+  "builds_meta_description_fallback": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name}：{author} 为 BuildShare 制作的《森林之子》建筑。{downloads} 次下载，免费，附导入步骤。"
+      }
+    }
+  ],
+  "builds_meta_title": "{name} — SOTF 建筑（BuildShare 蓝图）",
+  "builds_meta_title_short": "{name} — SOTF 建筑",
+  "builds_nsfw_show": "显示图片",
+  "builds_nsfw_text": "创作者将此建筑标记为 NSFW。图片会保持隐藏，直到你选择查看。",
+  "builds_nsfw_title": "成人内容",
+  "builds_og_alt": "{name} 的蓝图",
+  "builds_original_author": "原作者：{author}",
+  "builds_related_all": "所有建筑",
+  "builds_related_title": "更多蓝图",
+  "builds_requires_title": "所需模组",
+  "builds_reviews_empty": "还没有评价。建好了吗？告诉其他幸存者效果如何。",
+  "builds_reviews_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 条评价"
+      }
+    }
+  ],
+  "builds_reviews_sign_in": "登录后发表评价",
+  "builds_reviews_title": "评价",
+  "builds_reviews_unavailable": "这次评价没有加载出来。请刷新页面重试。",
+  "builds_size_badge": "尺寸 {size}",
+  "builds_size_name": [
+    {
+      "declarations": [
+        "input size"
+      ],
+      "selectors": [
+        "size"
+      ],
+      "match": {
+        "size=S": "小型",
+        "size=M": "中型",
+        "size=L": "大型",
+        "size=XL": "超大型",
+        "size=*": "{size}"
+      }
+    }
+  ],
+  "builds_size_range_above": "{min} 个部件及以上",
+  "builds_size_range_below": "少于 {max} 个部件",
+  "builds_size_range_between": "{min} 至 {max} 个部件",
+  "builds_size_scale_label": "尺寸等级",
+  "builds_spec_blueprint_author": "蓝图作者",
+  "builds_spec_buildshare": "BuildShare 版本",
+  "builds_spec_copy_guid": "复制 GUID",
+  "builds_spec_downloads": "下载量",
+  "builds_spec_file": "文件",
+  "builds_spec_guid": "蓝图 GUID",
+  "builds_spec_guid_copied": "GUID 已复制。",
+  "builds_spec_original_author": "原作者",
+  "builds_spec_pieces": "部件",
+  "builds_spec_published": "发布于",
+  "builds_spec_size": "尺寸",
+  "builds_spec_structures": "结构",
+  "builds_spec_title": "技术参数",
+  "builds_spec_unknown": "未记录",
+  "builds_spec_updated": "更新于",
+  "builds_spec_uploader": "上传者",
+  "builds_spec_version": "版本",
+  "builds_stat_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 个部件"
+      }
+    }
+  ],
+  "builds_stat_rating": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating} / 5 · {count__number} 条评价"
+      }
+    }
+  ],
+  "builds_stats_label": "建筑数据",
+  "builds_unfollowed": "已从你的背包移除。",
+  "builds_verified_creator": "已认证创作者",
+  "builds_versions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个版本"
+      }
+    }
+  ],
+  "builds_versions_download": "下载 v{version}",
+  "builds_versions_empty": "还没有已发布的版本。",
+  "builds_versions_latest": "最新",
+  "builds_versions_title": "版本",
+  "builds_versions_yanked": "已撤回",
   "common_account_menu": "账号菜单",
   "common_account_profile": "你的主页",
   "common_account_settings": "设置",

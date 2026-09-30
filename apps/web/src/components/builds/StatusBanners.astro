@@ -1,0 +1,123 @@
+---
+/**
+ * Status banners of a build (catalog rules, PLAN §5.2): under review, unlisted, archived (with the
+ * successor), reported broken on the current game build and possibly outdated. Icon + title +
+ * text: the status never relies on colour. NSFW is handled by the gallery.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Archive, CircleAlert, EyeOff, Hourglass, TriangleAlert } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+
+interface Props {
+  build: ModDetailDTO;
+}
+
+const { build } = Astro.props;
+const locale = Astro.locals.locale;
+
+type Tone = 'info' | 'warning' | 'danger';
+interface Item {
+  id: string;
+  tone: Tone;
+  icon: typeof Archive;
+  title: string;
+  text: string;
+  action?: { label: string; href: string };
+}
+
+const items: Item[] = [];
+for (const banner of build.banners) {
+  switch (banner) {
+    case 'pending_review':
+      items.push({
+        id: banner,
+        tone: 'info',
+        icon: Hourglass,
+        title: m.builds_banner_pending_title(),
+        text: m.builds_banner_pending_text(),
+      });
+      break;
+    case 'unlisted':
+      items.push({
+        id: banner,
+        tone: 'info',
+        icon: EyeOff,
+        title: m.builds_banner_unlisted_title(),
+        text: m.builds_banner_unlisted_text(),
+      });
+      break;
+    case 'archived':
+      items.push({
+        id: banner,
+        tone: 'warning',
+        icon: Archive,
+        title: m.builds_banner_archived_title(),
+        text: m.builds_banner_archived_text(),
+        ...(build.successor
+          ? {
+              action: {
+                label: m.builds_banner_archived_successor({ name: build.successor.name }),
+                href: href(build.successor.canonicalPath, locale),
+              },
+            }
+          : {}),
+      });
+      break;
+    case 'broken_on_current':
+      items.push({
+        id: banner,
+        tone: 'danger',
+        icon: CircleAlert,
+        title: m.builds_banner_broken_title(),
+        text: m.builds_banner_broken_text(),
+      });
+      break;
+    case 'possibly_outdated':
+      items.push({
+        id: banner,
+        tone: 'warning',
+        icon: TriangleAlert,
+        title: m.builds_banner_outdated_title(),
+        text: m.builds_banner_outdated_text(),
+      });
+      break;
+    default:
+      break;
+  }
+}
+
+const toneClasses: Record<Tone, { box: string; icon: string }> = {
+  info: { box: 'border-blueprint/40 bg-blueprint-surface', icon: 'text-blueprint' },
+  warning: { box: 'border-warning/40 bg-warning-soft', icon: 'text-warning' },
+  danger: { box: 'border-danger/40 bg-danger-soft', icon: 'text-danger' },
+};
+---
+
+{
+  items.length > 0 && (
+    <div class="grid gap-2" data-build-banners>
+      {items.map((item) => (
+        <div
+          role={item.tone === 'danger' ? 'alert' : 'status'}
+          data-banner={item.id}
+          class:list={['flex items-start gap-3 rounded-lg border p-3 text-sm text-fg', toneClasses[item.tone].box]}
+        >
+          <Icon icon={item.icon} size={18} className={`mt-0.5 shrink-0 ${toneClasses[item.tone].icon}`} />
+          <div class="grid min-w-0 flex-1 gap-1">
+            <p class="font-semibold">{item.title}</p>
+            <p class="text-fg-muted">{item.text}</p>
+            {item.action && (
+              <p>
+                <a href={item.action.href} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
+                  {item.action.label}
+                </a>
+              </p>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
