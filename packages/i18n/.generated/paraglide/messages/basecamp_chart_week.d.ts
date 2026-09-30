@@ -1,0 +1,16 @@
+export type LocalizedString = import('../runtime.js').LocalizedString;
+export type Basecamp_Chart_WeekInputs = {};
+/**
+* | output |
+* | --- |
+* | "Week" |
+*
+* @param {Basecamp_Chart_WeekInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export declare const basecamp_chart_week: ((inputs?: Basecamp_Chart_WeekInputs, options?: {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Basecamp_Chart_WeekInputs, {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}, {}>;

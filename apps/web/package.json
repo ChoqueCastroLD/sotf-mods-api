@@ -38,6 +38,7 @@
     "minisearch": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "recharts": "catalog:",
     "tailwindcss": "catalog:",
     "thumbhash": "catalog:",
     "web-vitals": "catalog:",

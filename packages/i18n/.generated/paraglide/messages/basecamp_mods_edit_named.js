@@ -1,0 +1,84 @@
+/* eslint-disable */
+import { getLocale, experimentalStaticLocale } from '../runtime.js';
+
+/** @typedef {import('../runtime.js').LocalizedString} LocalizedString */
+
+/** @typedef {{ name: NonNullable<unknown> }} Basecamp_Mods_Edit_NamedInputs */
+
+const en_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Edit ${i?.name}`)
+};
+
+const es_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Editar ${i?.name}`)
+};
+
+const de_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Bearbeiten: ${i?.name}`)
+};
+
+const fr_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Modifier ${i?.name}`)
+};
+
+const it_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Modifica ${i?.name}`)
+};
+
+const nl_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Bewerken: ${i?.name}`)
+};
+
+const pl_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Edytuj ${i?.name}`)
+};
+
+const pt_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Editar ${i?.name}`)
+};
+
+const ru_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Изменить ${i?.name}`)
+};
+
+const sv_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Redigera ${i?.name}`)
+};
+
+const tr_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Düzenle: ${i?.name}`)
+};
+
+const zh_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`编辑 ${i?.name}`)
+};
+
+const ja_basecamp_mods_edit_named = /** @type {(inputs: Basecamp_Mods_Edit_NamedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`編集：${i?.name}`)
+};
+
+/**
+* | output |
+* | --- |
+* | "Edit {name}" |
+*
+* @param {Basecamp_Mods_Edit_NamedInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export const basecamp_mods_edit_named = /** @type {((inputs: Basecamp_Mods_Edit_NamedInputs, options?: { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Basecamp_Mods_Edit_NamedInputs, { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }, {}>} */ ((inputs, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "es") return es_basecamp_mods_edit_named(inputs)
+	if (locale === "de") return de_basecamp_mods_edit_named(inputs)
+	if (locale === "fr") return fr_basecamp_mods_edit_named(inputs)
+	if (locale === "it") return it_basecamp_mods_edit_named(inputs)
+	if (locale === "nl") return nl_basecamp_mods_edit_named(inputs)
+	if (locale === "pl") return pl_basecamp_mods_edit_named(inputs)
+	if (locale === "pt") return pt_basecamp_mods_edit_named(inputs)
+	if (locale === "ru") return ru_basecamp_mods_edit_named(inputs)
+	if (locale === "sv") return sv_basecamp_mods_edit_named(inputs)
+	if (locale === "tr") return tr_basecamp_mods_edit_named(inputs)
+	if (locale === "zh") return zh_basecamp_mods_edit_named(inputs)
+	if (locale === "ja") return ja_basecamp_mods_edit_named(inputs)
+	return en_basecamp_mods_edit_named(inputs)
+});
