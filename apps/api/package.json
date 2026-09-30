@@ -28,6 +28,7 @@
     "@node-rs/argon2": "catalog:",
     "@node-rs/bcrypt": "catalog:",
     "@scalar/fastify-api-reference": "catalog:",
+    "@sentry/core": "catalog:",
     "@sotf/contracts": "workspace:*",
     "@sotf/core": "workspace:*",
     "@sotf/db": "workspace:*",

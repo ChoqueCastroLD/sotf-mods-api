@@ -7,7 +7,7 @@
  *   with `Content-Type: application/json` (no charset); a 404 carries the Spanish literal.
  *
  * Every error is `Cache-Control: no-store`, carries `X-Request-Id` and never leaks stack traces.
- * 5xx are logged at `error`, 4xx at `debug`.
+ * 5xx are logged at `error` (and reported to Sentry when `SENTRY_DSN` is set), 4xx at `debug`.
  */
 import {
   ERROR_DEFINITIONS,
@@ -22,6 +22,7 @@ import { DomainError, isDomainError, rateLimitDetail } from '@sotf/core';
 import type { FastifyError, FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
 import { hasZodFastifySchemaValidationErrors, isResponseSerializationError } from 'fastify-type-provider-zod';
 import { sendExactJson } from '../lib/http.ts';
+import { type ErrorReporter, noopReporter } from '../lib/sentry.ts';
 import { pathOf, surfaceOf } from '../lib/surface.ts';
 
 interface Rendered {
@@ -152,11 +153,18 @@ export function sendError(request: FastifyRequest, reply: FastifyReply, rendered
   return sendExactJson(reply, PROBLEM_CONTENT_TYPE, body);
 }
 
-export function setupErrors(app: FastifyInstance): void {
+export function setupErrors(app: FastifyInstance, reporter: ErrorReporter = noopReporter): void {
   app.setErrorHandler((error, request, reply) => {
     const rendered = renderError(error);
-    if (rendered.status >= 500) request.log.error({ err: error }, 'request failed');
-    else request.log.debug({ err: error, code: rendered.code }, 'request rejected');
+    if (rendered.status >= 500) {
+      request.log.error({ err: error }, 'request failed');
+      reporter.captureRequestError(error, {
+        method: request.method,
+        route: request.routeOptions?.url ?? null,
+        status: rendered.status,
+        requestId: request.id,
+      });
+    } else request.log.debug({ err: error, code: rendered.code }, 'request rejected');
     if (reply.sent || reply.raw.headersSent) return;
     return sendError(request, reply, rendered);
   });

@@ -543,6 +543,9 @@ importers:
       '@scalar/fastify-api-reference':
         specifier: 'catalog:'
         version: 1.72.1
+      '@sentry/core':
+        specifier: 'catalog:'
+        version: 11.1.0
       '@sotf/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts

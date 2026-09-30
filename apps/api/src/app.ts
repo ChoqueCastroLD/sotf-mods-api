@@ -36,6 +36,7 @@ import type { PgBoss } from 'pg-boss';
 import type { ApiEnv } from './env.ts';
 import { requestIdFrom } from './lib/client-ip.ts';
 import { type ApiModule, moduleContext } from './lib/define-module.ts';
+import { createErrorReporter, type ErrorReporter } from './lib/sentry.ts';
 import { surfaceOf } from './lib/surface.ts';
 import type { Platform, SessionResolver } from './lib/types.ts';
 import { modules as registeredModules } from './modules/_registry.gen.ts';
@@ -80,6 +81,8 @@ export interface BuildAppOptions {
    * tests turn it off: on a loaded shared host it answers 503 to requests that would succeed.
    */
   underPressure?: boolean;
+  /** Error reporting of 5xx (default: Sentry from `SENTRY_DSN`, a no-op without it). */
+  errorReporter?: ErrorReporter;
 }
 
 const anonymous: SessionResolver = async () => null;
@@ -177,7 +180,8 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   if (!options.sessionResolver && providers[0]?.sessionResolver)
     sessionResolver = providers[0].sessionResolver(platform);
 
-  setupErrors(app);
+  const errorReporter = options.errorReporter ?? createErrorReporter(env);
+  setupErrors(app, errorReporter);
   setupRequestBasics(app);
   await app.register(helmet, {
     // JSON API: nothing to render, nothing to frame. /api/docs overrides the CSP.
@@ -242,6 +246,7 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
     hub.close();
   });
   app.addHook('onClose', async () => {
+    await errorReporter.flush();
     await deps.stop();
     if (ownedDb) await ownedDb.close();
   });
