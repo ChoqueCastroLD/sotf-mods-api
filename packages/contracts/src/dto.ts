@@ -160,3 +160,24 @@ export function wireList<T extends z.ZodType<string, string>>(
 export function wireSchemaOf(schema: z.ZodType): Record<string, unknown> | undefined {
   return wireRegistry.get(schema)?.jsonSchema;
 }
+
+/**
+ * Repeatable query parameter that keeps a single value as it is (`?x=a` → `'a'`,
+ * `?x=a&x=b` → `['a', 'b']`). For filters that started as single values: existing callers that
+ * pass one value keep their types, new ones may pass several (OR).
+ */
+export function wireOneOrMany<T extends z.ZodType<string, string>>(
+  item: T,
+  opts: { max?: number; description?: string } = {},
+) {
+  const max = opts.max ?? 20;
+  const schema = z.union([item, z.array(item).min(1).max(max)]).optional();
+  const itemJson = z.toJSONSchema(item, { io: 'input', unrepresentable: 'any' }) as Record<string, unknown>;
+  delete itemJson.$schema;
+  return wire(schema, {
+    type: 'array',
+    items: itemJson,
+    maxItems: max,
+    ...(opts.description ? { description: opts.description } : {}),
+  });
+}

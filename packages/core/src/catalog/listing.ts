@@ -38,6 +38,8 @@ interface Resolved {
   excludeTags: ReadonlySet<string>;
   author: string | null;
   updatedSince: number | null;
+  /** Multiplayer roles (OR), null when not filtered. */
+  multiplayer: ReadonlySet<string> | null;
 }
 
 function resolve(snapshot: CatalogSnapshot, query: ListQuery, now: Date): Resolved {
@@ -60,6 +62,10 @@ function resolve(snapshot: CatalogSnapshot, query: ListQuery, now: Date): Resolv
     excludeTags: new Set((query.excludeTag ?? []).map((t) => t.toLowerCase())),
     author: query.author ? query.author.toLowerCase() : null,
     updatedSince: query.updatedWithin ? now.getTime() - UPDATED_WITHIN_DAYS[query.updatedWithin] * DAY_MS : null,
+    multiplayer:
+      query.multiplayer === undefined
+        ? null
+        : new Set(Array.isArray(query.multiplayer) ? query.multiplayer : [query.multiplayer]),
   };
 }
 
@@ -84,7 +90,12 @@ function matches(
     return false;
   if (r.excludeTags.size > 0 && entry.tagSlugs.some((t) => r.excludeTags.has(t))) return false;
   if (skip !== 'compat' && query.compat !== 'any' && entry.compatStatus !== query.compat) return false;
-  if (skip !== 'multiplayer' && query.multiplayer && entry.multiplayerRole !== query.multiplayer) return false;
+  if (
+    skip !== 'multiplayer' &&
+    r.multiplayer &&
+    (entry.multiplayerRole === null || !r.multiplayer.has(entry.multiplayerRole))
+  )
+    return false;
   if (query.dedicated === 'yes' && entry.dedicatedServer !== 'yes') return false;
   if (skip !== 'platform' && query.platform && entry.platform !== query.platform) return false;
   if (skip !== 'updatedWithin' && r.updatedSince !== null && entry.lastReleasedAt.getTime() < r.updatedSince)

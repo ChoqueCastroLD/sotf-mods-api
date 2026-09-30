@@ -482,3 +482,14 @@ describe('HTTP caching (ETag, Cache-Control, Cache-Tag, CORS, LRU)', () => {
     expect(listed.body.items[0].shortDescription).toBe('Bigger stacks, tested');
   });
 });
+
+describe('multiplayer filter (several roles)', () => {
+  it('accepts repeated roles as OR and still accepts a single role', async () => {
+    const one = await get('/api/v2/mods?multiplayer=host_only&type=all&pageSize=100');
+    const other = await get('/api/v2/mods?multiplayer=all_players&type=all&pageSize=100');
+    const both = await get('/api/v2/mods?multiplayer=host_only&multiplayer=all_players&type=all&pageSize=100');
+    expect([one.status, other.status, both.status]).toEqual([200, 200, 200]);
+    expect(both.body.total).toBe(one.body.total + other.body.total);
+    expect((await get('/api/v2/mods?multiplayer=host_only&multiplayer=everyone')).status).toBe(422);
+  });
+});

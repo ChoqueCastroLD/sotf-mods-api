@@ -45,7 +45,7 @@ import {
   VersionString,
 } from './common.ts';
 import { CompatSummaryDTO } from './compat.ts';
-import { dto, exampleOf, examplesOf, wireFlag, wireInt, wireList } from './dto.ts';
+import { dto, exampleOf, examplesOf, wireFlag, wireInt, wireList, wireOneOrMany } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { BuildMetaDTO } from './manifest.ts';
 import { CursorQuery, cursorPageOf, PageQuery, pageOf } from './pagination.ts';
@@ -268,6 +268,9 @@ export const ModSort = z.enum(MOD_SORTS);
 export type ModSort = z.infer<typeof ModSort>;
 export const SortOrder = z.enum(['asc', 'desc']);
 
+export const MULTIPLAYER_FILTERS = ['client_side', 'host_only', 'all_players', 'singleplayer_only'] as const;
+export const MultiplayerFilter = z.enum(MULTIPLAYER_FILTERS);
+
 export const ModListQuery = PageQuery.extend({
   type: z.enum(MOD_LIST_TYPES).default('all'),
   category: wireList(CategorySlug, { max: 12, description: 'Include categories (OR)' }),
@@ -275,7 +278,10 @@ export const ModListQuery = PageQuery.extend({
   tag: wireList(z.string().max(60), { max: 10, description: 'Include tags (AND)' }),
   excludeTag: wireList(z.string().max(60), { max: 10, description: 'Exclude tags' }),
   compat: z.enum(['works', 'untested', 'any']).default('any'),
-  multiplayer: z.enum(['client_side', 'host_only', 'all_players', 'singleplayer_only']).optional(),
+  multiplayer: wireOneOrMany(MultiplayerFilter, {
+    max: MULTIPLAYER_FILTERS.length,
+    description: 'Multiplayer roles (OR): `?multiplayer=host_only&multiplayer=all_players`',
+  }),
   dedicated: z.literal('yes').optional(),
   platform: Platform.optional(),
   updatedWithin: z.enum(['30d', '90d', '1y']).optional(),

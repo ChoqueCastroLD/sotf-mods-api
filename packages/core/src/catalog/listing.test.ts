@@ -186,6 +186,10 @@ describe('Explore listing', () => {
     expect(ids(runListQuery(snapshot, query({ compat: 'works' }), NOW).items)).toEqual([1]);
     expect(ids(runListQuery(snapshot, query({ platform: 'Universal' }), NOW).items)).toEqual([2]);
     expect(ids(runListQuery(snapshot, query({ multiplayer: 'host_only' }), NOW).items)).toEqual([4]);
+    // Several roles are OR (the /best/multiplayer-mods hub in one read); unknown roles are a 422.
+    expect(ids(runListQuery(snapshot, query({ multiplayer: ['host_only', 'all_players'] }), NOW).items)).toEqual([4]);
+    expect(runListQuery(snapshot, query({ multiplayer: ['client_side', 'all_players'] }), NOW).total).toBe(0);
+    expect(ModListQuery.safeParse({ multiplayer: ['host_only', 'nope'] }).success).toBe(false);
     expect(runListQuery(snapshot, query({ minRating: '4' }), NOW).total).toBe(0);
     expect(runListQuery(snapshot, query({ updatedWithin: '30d' }), NOW).total).toBe(4);
   });
