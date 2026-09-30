@@ -3,8 +3,10 @@
  * `src/worker.ts` is the entry point; tests build workers with `createWorker()` directly.
  */
 import { type Clock, createLogger, Jobs, type KernelDeps, type Logger, systemClock } from '@sotf/core';
+import { createTransport } from '@sotf/core/email/index';
 import { createDb, type DbHandle } from '@sotf/db';
 import { PgBoss } from 'pg-boss';
+import { type AlertMonitor, createAlertMonitor } from './alerts.ts';
 import type { JobGroup } from './define-job.ts';
 import type { WorkerEnv } from './env.ts';
 import { jobGroups as registeredGroups } from './jobs/_registry.gen.ts';
@@ -29,6 +31,11 @@ export interface CreateWorkerOptions {
   reporter?: ErrorReporter;
   /** Services handed to the jobs (default: built from `env`). */
   services?: WorkerServices;
+  /**
+   * Operational alerts to the admins every `ALERT_INTERVAL_SECONDS` (`src/alerts.ts`). Default
+   * false; `src/worker.ts` turns them on.
+   */
+  alerts?: boolean;
 }
 
 export interface Worker {
@@ -38,6 +45,8 @@ export interface Worker {
   log: Logger;
   deps: KernelDeps & { jobs: Jobs };
   services: WorkerServices;
+  /** The operational alert monitor (null when alerts are off). */
+  alerts: AlertMonitor | null;
   readonly started: boolean;
   start(): Promise<RuntimeState>;
   /** Graceful stop: waits for active jobs (up to `timeoutMs`), then closes pg-boss and the pool. */
@@ -70,6 +79,20 @@ export function createWorker(options: CreateWorkerOptions): Worker {
   const reporter = options.reporter ?? noopReporter;
   const services = options.services ?? createWorkerServices(env);
   let started = false;
+  const alerts =
+    options.alerts && env.ALERT_INTERVAL_SECONDS > 0
+      ? createAlertMonitor({
+          db: db.db,
+          bossSchema: env.PGBOSS_SCHEMA,
+          kelvinDailyBudgetUsd: env.KELVINSEEK_DAILY_BUDGET_USD,
+          kelvinModel: env.KELVINSEEK_MODEL,
+          transport: () => createTransport(env),
+          from: env.EMAIL_FROM,
+          clock,
+          log,
+          intervalMs: env.ALERT_INTERVAL_SECONDS * 1000,
+        })
+      : null;
 
   return {
     boss,
@@ -78,6 +101,7 @@ export function createWorker(options: CreateWorkerOptions): Worker {
     log,
     deps,
     services,
+    alerts,
     get started() {
       return started;
     },
@@ -95,10 +119,12 @@ export function createWorker(options: CreateWorkerOptions): Worker {
         onJobError: reporter.enabled ? (error, info) => reporter.captureJobError(error, info) : undefined,
       });
       started = true;
+      alerts?.start();
       return state;
     },
     async stop(timeoutMs = 30_000) {
       started = false;
+      await alerts?.stop();
       await boss.stop({ graceful: true, timeout: timeoutMs }).catch((error: unknown) => {
         log.warn({ err: error }, 'pg-boss stop failed');
       });

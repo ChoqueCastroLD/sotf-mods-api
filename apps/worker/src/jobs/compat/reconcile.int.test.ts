@@ -77,16 +77,14 @@ describe('compat reconciliation after accounts.trust-level', () => {
       [1, 2, 3].map(() => f.user({ createdAt: old, emailVerifiedAt: old, trustLevel: 1 })),
     );
     for (const reporter of reporters) {
-      await db.db
-        .insert(compatReport)
-        .values({
-          userId: reporter.id,
-          modVersionId: version.id,
-          gameBuildId: build.id,
-          mode: 'singleplayer',
-          result: 'works',
-          weight: 1,
-        });
+      await db.db.insert(compatReport).values({
+        userId: reporter.id,
+        modVersionId: version.id,
+        gameBuildId: build.id,
+        mode: 'singleplayer',
+        result: 'works',
+        weight: 1,
+      });
     }
     const ctx = systemCtx(worker.deps, 'test');
     await aggregateCompat(ctx, { modVersionId: version.id });
@@ -129,16 +127,14 @@ describe('compat reconciliation after accounts.trust-level', () => {
     const build = await f.gameBuild({ releasedAt: '2026-02-01' });
     const { version } = await f.modWithVersion({}, { status: 'active' });
     const reporter = await f.user({ createdAt: old, emailVerifiedAt: old, trustLevel: 1 });
-    await db.db
-      .insert(compatReport)
-      .values({
-        userId: reporter.id,
-        modVersionId: version.id,
-        gameBuildId: build.id,
-        mode: 'host',
-        result: 'broken',
-        weight: 1,
-      });
+    await db.db.insert(compatReport).values({
+      userId: reporter.id,
+      modVersionId: version.id,
+      gameBuildId: build.id,
+      mode: 'host',
+      result: 'broken',
+      weight: 1,
+    });
     const ctx = systemCtx(worker.deps, 'test');
     await aggregateCompat(ctx, { modVersionId: version.id });
     expect(await staleCompatVersions(ctx)).not.toContain(version.id);

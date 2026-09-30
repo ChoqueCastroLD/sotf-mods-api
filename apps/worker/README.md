@@ -21,6 +21,12 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   `@sentry/core` without OpenTelemetry): tags `queue`/`final`, context `job` (id, retry count),
   level `warning` while pg-boss will retry and `error` on the last attempt; fatal errors of the
   process are reported before exiting. No job payloads or user data are sent.
+- Alerts (PLAN §10.3, `src/alerts.ts`): every `ALERT_INTERVAL_SECONDS` (300; `0` = off) the
+  process emails the active admins (`"User"."role" = 'admin'`) through the configured transport
+  when new jobs reached the `dead-letter` queue since the previous check, and once per UTC day when
+  KelvinSeek spent 80 % of its daily budget (`SiteSetting('kelvinseek')` over
+  `KELVINSEEK_DAILY_BUDGET_USD`). The 5xx rate, `db:invariants` and the backup age are not checked
+  here (see `docs/operations/monitoring.md`).
 - Deployment variables: `ops/coolify/env/worker.env.example`.
 
 ## Backfills run by the worker (B15, B16…)
