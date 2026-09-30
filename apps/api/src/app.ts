@@ -153,7 +153,8 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
       if (url === '/api' || url.startsWith('/api/') || url.startsWith('/api?')) return url;
       // The internal surface (web → api over the Coolify network) lives outside `/api`.
       if (url.startsWith('/internal/')) return url;
-      if (url === '/healthz' || url === '/readyz' || url.startsWith('/healthz?') || url.startsWith('/readyz?')) return url;
+      if (url === '/healthz' || url === '/readyz' || url.startsWith('/healthz?') || url.startsWith('/readyz?'))
+        return url;
       return url === '/' ? '/api' : `/api${url}`;
     },
   }) as unknown as FastifyInstance;

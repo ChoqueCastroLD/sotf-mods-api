@@ -11,6 +11,7 @@
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { initCountUp } from './count-up.ts';
 import { initHall } from './hall.ts';
+import { initMap } from './map.ts';
 import { initPulse } from './pulse.ts';
 import { relativize } from './relative-time.ts';
 import { initHeroSearch } from './search.ts';
@@ -36,6 +37,7 @@ export function initLanding(doc: Document = document): void {
   safely(() => initPulse(doc));
   safely(() => initPicks(doc));
   safely(() => initHall(doc));
+  safely(() => initMap(doc));
   if (hasSignedInHint(doc.cookie)) {
     safely(() => import('./personal.ts').then(({ initPersonal }) => initPersonal(doc)));
   }

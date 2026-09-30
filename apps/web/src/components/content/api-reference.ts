@@ -51,7 +51,7 @@ export function publicReadEndpoints(): EndpointGroupRows[] {
 }
 
 /** Buckets a read-only client can hit, in the order shown. */
-const PUBLIC_BUCKETS: readonly RateLimitBucket[] = ['anonymousRead', 'legacyRead', 'downloads', 'kelvinseek'];
+const PUBLIC_BUCKETS: readonly RateLimitBucket[] = ['anonymousRead', 'legacyRead', 'downloads'];
 
 export interface RateLimitRow {
   bucket: RateLimitBucket;
@@ -69,7 +69,7 @@ export function publicRateLimits(): RateLimitRow[] {
 }
 
 export interface LegacyTiers {
-  /** Byte-compatible routes (RedManager, UpdatesChecker, KelvinSeek). */
+  /** Byte-compatible routes (RedManager, UpdatesChecker). */
   stable: EndpointRow[];
   /** Frozen routes answering with `Deprecation` and `Sunset`. */
   deprecated: EndpointRow[];
@@ -82,6 +82,8 @@ export function legacyTiers(): LegacyTiers {
   const stable: EndpointRow[] = [];
   const deprecated: EndpointRow[] = [];
   for (const endpoint of Object.values(legacyEndpoints)) {
+    // The deprecated in-game KelvinSeek endpoints stay live but are not documented.
+    if (endpoint.path.startsWith('/api/kelvinseek')) continue;
     const row: EndpointRow = {
       method: endpoint.method,
       path: endpoint.path,

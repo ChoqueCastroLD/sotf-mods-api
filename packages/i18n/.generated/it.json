@@ -234,88 +234,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "Dove il sito annuncia nuove mod, versioni, premi e traguardi.",
   "admin_integrations_title": "Integrazioni",
-  "admin_kelvin_budget": "Budget giornaliero",
-  "admin_kelvin_budget_alert_text": "È stato speso il {share} del budget di oggi. Oltre il budget, KelvinSeek usa le risposte offline fino alla mezzanotte UTC.",
-  "admin_kelvin_budget_alert_title": "Vicino al budget di oggi",
-  "admin_kelvin_budget_used": "Oggi: {spent} di {budget} ({share}).",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__plural = over: plural",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact",
-        "over__plural"
-      ],
-      "match": {
-        "over__exact=0, over__plural=*": "{cost} in totale · {tokensIn} token in ingresso, {tokensOut} in uscita · mai oltre il budget",
-        "over__exact=*, over__plural=one": "{cost} in totale · {tokensIn} token in ingresso, {tokensOut} in uscita · {over__number} giorno oltre il budget",
-        "over__exact=*, over__plural=*": "{cost} in totale · {tokensIn} token in ingresso, {tokensOut} in uscita · {over__number} giorni oltre il budget"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Ultimo giorno",
-        "count__plural=*": "Ultimi {count__number} giorni"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "Costo",
-  "admin_kelvin_col_day": "Giorno",
-  "admin_kelvin_col_fallbacks": "Risposte offline",
-  "admin_kelvin_col_requests": "Richieste",
-  "admin_kelvin_col_tokens_in": "Token in ingresso",
-  "admin_kelvin_col_tokens_out": "Token in uscita",
-  "admin_kelvin_config_description": "Si applica alle nuove richieste entro un minuto.",
-  "admin_kelvin_config_title": "Configurazione",
-  "admin_kelvin_cost_per_day": "Costo al giorno",
-  "admin_kelvin_daily_budget": "Budget giornaliero (USD)",
-  "admin_kelvin_daily_budget_hint": "Si azzera a mezzanotte UTC.",
-  "admin_kelvin_description": "Uso e costo dell’assistente di gioco, e il suo budget giornaliero.",
-  "admin_kelvin_detail": "Dettaglio giornaliero",
-  "admin_kelvin_enabled": "KelvinSeek attivo",
-  "admin_kelvin_enabled_hint": "Disattivato: il gioco riceve solo le risposte offline.",
-  "admin_kelvin_error_budget": "Tra 0 e {max}.",
-  "admin_kelvin_error_timeout": "Tra {min} e {max} ms.",
-  "admin_kelvin_fallbacks": "Risposte offline",
-  "admin_kelvin_model": "Modello",
-  "admin_kelvin_no_usage": "Nessuna richiesta in questo periodo.",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Richieste · {count__number} giorno",
-        "count__plural=*": "Richieste · {count__number} giorni"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "Impostazioni di KelvinSeek salvate",
-  "admin_kelvin_timeout": "Timeout (ms)",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "Speso oggi",
   "admin_kit_picks_col_followers": "Follower",
   "admin_kit_picks_col_items": "Mod",
   "admin_kit_picks_col_kit": "Kit",
@@ -2417,7 +2335,6 @@
   "console_nav_game_builds": "Versioni del gioco",
   "console_nav_inbox": "Posta",
   "console_nav_integrations": "Integrazioni",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "Console",
   "console_nav_my_mods": "Le mie mod",
   "console_nav_new_build": "Nuova build",
@@ -2545,7 +2462,6 @@
         "bucket=anonymousRead": "Letture API v2",
         "bucket=legacyRead": "Letture API legacy",
         "bucket=downloads": "Download",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2568,8 +2484,6 @@
   "content_dev_legacy_deprecated": "Congelate e deprecate",
   "content_dev_legacy_deprecated_text": "Queste rotte rispondono fino al {date}, poi verranno ritirate. Le loro risposte includono queste intestazioni:",
   "content_dev_legacy_deviations": "Differenze intenzionali rispetto al comportamento precedente",
-  "content_dev_legacy_kelvin_text": "Quando il modello linguistico non è disponibile (nessuna chiave, timeout o budget giornaliero esaurito), /api/kelvinseek/prompt non fallisce: risponde con il fallback deterministico legacy \"COMMAND|I will … right away (Chat GPT API Error …)\", così il bot in gioco continua a funzionare.",
-  "content_dev_legacy_kelvin_title": "Fallback di KelvinSeek",
   "content_dev_legacy_retired": "Ritirate",
   "content_dev_legacy_retired_text": "Qualsiasi metodo su queste rotte risponde 410 Gone con questo corpo:",
   "content_dev_legacy_retired_write": "Anche le rotte di scrittura ritirate (caricamenti, modifiche, commenti, voti) rispondono 410 con lo stesso envelope: status false, error GONE. Usa l’API v2 con un token.",
@@ -2636,66 +2550,6 @@
   ],
   "content_install_tldr": "In breve",
   "content_install_verified": "Verificato con il gioco {game} · RedLoader {loader}",
-  "content_kelvin_by": "Una mod di",
-  "content_kelvin_credit": "KelvinSeek è creato e mantenuto da {author}; SOTF Mods ospita solo l’API con cui comunica. Kelvin e Sons of the Forest appartengono a Endnight Games; questo è un progetto di fan.",
-  "content_kelvin_description": "KelvinSeek ti permette di chattare con Kelvin in Sons of the Forest e dargli ordini con parole tue. Come funziona, i suoi limiti e cosa succede ai tuoi messaggi.",
-  "content_kelvin_dev_hint": "Stai costruendo qualcosa di simile? L’endpoint fa parte dell’API legacy:",
-  "content_kelvin_eyebrow": "Mod della community",
-  "content_kelvin_history_text": "In passato si chiamava Kelvin-GPT. La vecchia versione che chiedeva la tua chiave OpenAI è stata ritirata: quella rotta esponeva la chiave nell’indirizzo e ora risponde «Gone».",
-  "content_kelvin_how_1": "Installa RedLoader e la mod KelvinSeek.",
-  "content_kelvin_how_2": "Nel gioco avvicinati a Kelvin e premi E per aprire il blocco note.",
-  "content_kelvin_how_3": "Premi T per scrivere, digita il messaggio e premi Invio.",
-  "content_kelvin_how_4": "Oppure usa la console: «askkelvin …» invia un messaggio, «clearkelvinchathistory» avvia una nuova conversazione.",
-  "content_kelvin_how_title": "Come si usa",
-  "content_kelvin_install_hint": "Nuovo alle mod? Inizia dalla guida:",
-  "content_kelvin_lead": "Scrivi a Kelvin con parole tue: ti risponde e fa quello che chiedi, dal raccogliere tronchi al costruire un riparo.",
-  "content_kelvin_limits_budget": "Il servizio di IA ha un budget giornaliero. Quando finisce, Kelvin ti capisce comunque: sceglie senza IA l’ordine noto più simile fino al giorno dopo.",
-  "content_kelvin_limits_busy": "Se scrivi troppo in fretta, Kelvin chiede qualche secondo di pausa. Non si perde nulla.",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "Fino a {perMinute__number} messaggi al minuto e {perDay__number} al giorno per giocatore."
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "Limiti",
-  "content_kelvin_open_mod": "Apri la pagina della mod",
-  "content_kelvin_privacy_ai": "Il testo dei tuoi messaggi viene inviato al fornitore di IA per generare la risposta. Non scrivere dati personali.",
-  "content_kelvin_privacy_hash": "L’ID della chat inviato dalla mod (contiene il tuo ID e il tuo nome Steam) viene salvato solo come hash irreversibile.",
-  "content_kelvin_privacy_link": "Leggi l’informativa sulla privacy",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__plural = days: plural",
-        "local days__number = days: number"
-      ],
-      "selectors": [
-        "days__plural"
-      ],
-      "match": {
-        "days__plural=one": "Gli ultimi messaggi di ogni conversazione vengono conservati per {days__number} giorno perché Kelvin ricordi il contesto, poi vengono eliminati.",
-        "days__plural=*": "Gli ultimi messaggi di ogni conversazione vengono conservati per {days__number} giorni perché Kelvin ricordi il contesto, poi vengono eliminati."
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "I tuoi messaggi",
-  "content_kelvin_status_compat": "Sulla build {build}",
-  "content_kelvin_status_downloads": "Download",
-  "content_kelvin_status_title": "Stato su SOTF Mods",
-  "content_kelvin_status_unavailable": "Non siamo riusciti a caricare lo stato attuale della mod. La pagina della mod mostra l’ultima versione.",
-  "content_kelvin_status_updated": "Ultima pubblicazione",
-  "content_kelvin_status_version": "Ultima versione",
-  "content_kelvin_title": "KelvinSeek: parla con Kelvin nel gioco",
-  "content_kelvin_what_text": "KelvinSeek è una mod di {author}. Invia ciò che scrivi a Kelvin a un servizio di IA tramite l’API di SOTF Mods e trasforma la risposta nella battuta di Kelvin e, quando chiedi qualcosa, in uno dei suoi ordini nel gioco. Non ti serve una chiave API personale.",
-  "content_kelvin_what_title": "Che cos’è",
   "content_legal_eyebrow": "Note legali",
   "content_legal_other": "Altre pagine legali",
   "content_md_alert_caution": "Cautela",
@@ -4748,7 +4602,13 @@
   "landing_blueprints_hint": "Build fresche dalla community",
   "landing_creators_all": "Tutti i creatori",
   "landing_creators_hint": "I sopravvissuti che costruiscono l’isola",
+  "landing_creators_last_release": "Ultima versione {when}",
+  "landing_creators_legends": "Leggende",
+  "landing_creators_legends_hint": "I creator più scaricati di sempre",
+  "landing_creators_rising": "In ascesa",
+  "landing_creators_rising_hint": "Nuovi e in rapida crescita negli ultimi 90 giorni",
   "landing_creators_title": "Creatori in primo piano",
+  "landing_creators_top": "Mod di punta",
   "landing_faq_figures": "Dati al {date}.",
   "landing_faq_hint": "Risposte brevi, verificate sul catalogo.",
   "landing_faq_more": "Leggi di più",
@@ -4787,6 +4647,27 @@
   "landing_kit_hint": "Un set di mod pronto all’uso, scelto dai ranger",
   "landing_kit_open": "Apri il Kit",
   "landing_kit_title": "Kit in evidenza",
+  "landing_map_kind_legend": "Leggenda",
+  "landing_map_kind_trending": "In tendenza",
+  "landing_map_kind_updated": "Aggiornato",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Mappa dell’isola con {count__number} mod segnato come waypoint",
+        "count__plural=*": "Mappa dell’isola con {count__number} mod segnati come waypoint"
+      }
+    }
+  ],
+  "landing_map_legend_label": "Legenda della mappa",
+  "landing_map_title": "Mappa dell’isola",
   "landing_motw_period": "Settimana del {start}",
   "landing_motw_title": "Mod della settimana",
   "landing_notes_all": "Tutti gli aggiornamenti recenti",
@@ -4813,26 +4694,6 @@
   "landing_picks_cta_hint": "Filtra per categoria, compatibilità, versione del gioco e altro",
   "landing_picks_tabs_label": "Ordina le mod",
   "landing_picks_title": "Trova la tua prossima mod",
-  "landing_pin_build": "Build di tendenza",
-  "landing_pin_download": "In download · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Kit · {count__number} mod",
-        "count__plural=*": "Kit · {count__number} mod"
-      }
-    }
-  ],
-  "landing_pin_release": "Aggiornata alla v{version}",
-  "landing_pins_label": "In diretta sull’isola",
   "landing_radar_breaking": "Aggiornamento che rompe le mod",
   "landing_radar_cta": "Guarda cosa non funziona",
   "landing_radar_empty": "Nessuna patch del gioco sul radar per ora. I rapporti sul campo partono con il prossimo aggiornamento.",
@@ -7085,7 +6946,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "Esplora le mod",
   "search_page_install": "Come installare le mod",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "Kit di mod",
   "search_page_news": "Novità",
   "search_page_patch_radar": "Radar delle patch",

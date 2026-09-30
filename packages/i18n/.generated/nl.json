@@ -234,88 +234,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "Waar de site nieuwe mods, versies, prijzen en mijlpalen aankondigt.",
   "admin_integrations_title": "Integraties",
-  "admin_kelvin_budget": "Dagbudget",
-  "admin_kelvin_budget_alert_text": "{share} van het budget van vandaag is op. Daarboven geeft KelvinSeek tot middernacht UTC zijn offline antwoorden.",
-  "admin_kelvin_budget_alert_title": "Bijna aan het budget van vandaag",
-  "admin_kelvin_budget_used": "Vandaag: {spent} van {budget} ({share}).",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__plural = over: plural",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact",
-        "over__plural"
-      ],
-      "match": {
-        "over__exact=0, over__plural=*": "{cost} in totaal · {tokensIn} tokens in, {tokensOut} uit · nooit boven budget",
-        "over__exact=*, over__plural=one": "{cost} in totaal · {tokensIn} tokens in, {tokensOut} uit · {over__number} dag boven budget",
-        "over__exact=*, over__plural=*": "{cost} in totaal · {tokensIn} tokens in, {tokensOut} uit · {over__number} dagen boven budget"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Laatste dag",
-        "count__plural=*": "Laatste {count__number} dagen"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "Kosten",
-  "admin_kelvin_col_day": "Dag",
-  "admin_kelvin_col_fallbacks": "Offline antwoorden",
-  "admin_kelvin_col_requests": "Verzoeken",
-  "admin_kelvin_col_tokens_in": "Tokens in",
-  "admin_kelvin_col_tokens_out": "Tokens uit",
-  "admin_kelvin_config_description": "Geldt binnen een minuut voor nieuwe verzoeken.",
-  "admin_kelvin_config_title": "Configuratie",
-  "admin_kelvin_cost_per_day": "Kosten per dag",
-  "admin_kelvin_daily_budget": "Dagbudget (USD)",
-  "admin_kelvin_daily_budget_hint": "Wordt om middernacht UTC gereset.",
-  "admin_kelvin_description": "Gebruik en kosten van de assistent in de game, en het dagbudget.",
-  "admin_kelvin_detail": "Details per dag",
-  "admin_kelvin_enabled": "KelvinSeek aan",
-  "admin_kelvin_enabled_hint": "Uit: de game krijgt alleen de offline antwoorden.",
-  "admin_kelvin_error_budget": "Tussen 0 en {max}.",
-  "admin_kelvin_error_timeout": "Tussen {min} en {max} ms.",
-  "admin_kelvin_fallbacks": "Offline antwoorden",
-  "admin_kelvin_model": "Model",
-  "admin_kelvin_no_usage": "Geen verzoeken in deze periode.",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Verzoeken · {count__number} dag",
-        "count__plural=*": "Verzoeken · {count__number} dagen"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "KelvinSeek-instellingen opgeslagen",
-  "admin_kelvin_timeout": "Time-out (ms)",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "Vandaag uitgegeven",
   "admin_kit_picks_col_followers": "Volgers",
   "admin_kit_picks_col_items": "Mods",
   "admin_kit_picks_col_kit": "Kit",
@@ -2417,7 +2335,6 @@
   "console_nav_game_builds": "Gameversies",
   "console_nav_inbox": "Inbox",
   "console_nav_integrations": "Integraties",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "Console",
   "console_nav_my_mods": "Mijn mods",
   "console_nav_new_build": "Nieuwe build",
@@ -2545,7 +2462,6 @@
         "bucket=anonymousRead": "Leesverzoeken API v2",
         "bucket=legacyRead": "Leesverzoeken legacy-API",
         "bucket=downloads": "Downloads",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2568,8 +2484,6 @@
   "content_dev_legacy_deprecated": "Bevroren en uitgefaseerd",
   "content_dev_legacy_deprecated_text": "Deze routes blijven antwoorden tot {date}; daarna worden ze uitgeschakeld. Hun antwoorden bevatten deze headers:",
   "content_dev_legacy_deviations": "Bewuste verschillen met het oude gedrag",
-  "content_dev_legacy_kelvin_text": "Als het taalmodel niet beschikbaar is (geen sleutel, time-out of dagbudget op), faalt /api/kelvinseek/prompt niet: het antwoordt met de deterministische legacy-fallback \"COMMAND|I will … right away (Chat GPT API Error …)\", zodat de bot in het spel blijft werken.",
-  "content_dev_legacy_kelvin_title": "KelvinSeek-fallback",
   "content_dev_legacy_retired": "Uitgeschakeld",
   "content_dev_legacy_retired_text": "Elke methode op deze routes antwoordt met 410 Gone en deze body:",
   "content_dev_legacy_retired_write": "Ingetrokken schrijfroutes (uploads, bewerkingen, reacties, stemmen) antwoorden ook met 410 en dezelfde envelope: status false, error GONE. Gebruik de v2-API met een token.",
@@ -2636,66 +2550,6 @@
   ],
   "content_install_tldr": "In het kort",
   "content_install_verified": "Gecontroleerd met game {game} · RedLoader {loader}",
-  "content_kelvin_by": "Een mod van",
-  "content_kelvin_credit": "KelvinSeek wordt gemaakt en onderhouden door {author}; SOTF Mods host alleen de API waarmee hij praat. Kelvin en Sons of the Forest zijn van Endnight Games; dit is een fanproject.",
-  "content_kelvin_description": "Met KelvinSeek chat je met Kelvin in Sons of the Forest en geef je hem opdrachten in je eigen woorden. Hoe het werkt, de limieten en wat er met je berichten gebeurt.",
-  "content_kelvin_dev_hint": "Bouw je iets vergelijkbaars? Het endpoint hoort bij de legacy-API:",
-  "content_kelvin_eyebrow": "Communitymod",
-  "content_kelvin_history_text": "Vroeger heette hij Kelvin-GPT. De oude versie die om je eigen OpenAI-sleutel vroeg, is uitgeschakeld: die route toonde de sleutel in het adres en antwoordt nu met ‘Gone’.",
-  "content_kelvin_how_1": "Installeer RedLoader en de mod KelvinSeek.",
-  "content_kelvin_how_2": "Loop in de game naar Kelvin en druk op E om het notitieblok te openen.",
-  "content_kelvin_how_3": "Druk op T om te typen, schrijf je bericht en druk op Enter.",
-  "content_kelvin_how_4": "Of gebruik de console: ‘askkelvin …’ stuurt een bericht, ‘clearkelvinchathistory’ begint een nieuw gesprek.",
-  "content_kelvin_how_title": "Zo gebruik je het",
-  "content_kelvin_install_hint": "Nieuw met mods? Begin met de gids:",
-  "content_kelvin_lead": "Schrijf Kelvin in je eigen woorden: hij antwoordt en doet wat je vraagt, van hout halen tot een schuilplaats bouwen.",
-  "content_kelvin_limits_budget": "De AI-dienst heeft een dagbudget. Is dat op, dan begrijpt Kelvin je nog steeds: hij kiest tot de volgende dag zonder AI de meest gelijkende bekende opdracht.",
-  "content_kelvin_limits_busy": "Schrijf je te snel, dan vraagt Kelvin om een paar seconden pauze. Er gaat niets verloren.",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "Tot {perMinute__number} berichten per minuut en {perDay__number} per dag per speler."
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "Limieten",
-  "content_kelvin_open_mod": "Modpagina openen",
-  "content_kelvin_privacy_ai": "De tekst van je berichten wordt naar de AI-aanbieder gestuurd om het antwoord te maken. Schrijf geen persoonlijke gegevens.",
-  "content_kelvin_privacy_hash": "De chat-id die de mod verstuurt (met je Steam-id en -naam) wordt alleen als onomkeerbare hash opgeslagen.",
-  "content_kelvin_privacy_link": "Privacybeleid lezen",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__plural = days: plural",
-        "local days__number = days: number"
-      ],
-      "selectors": [
-        "days__plural"
-      ],
-      "match": {
-        "days__plural=one": "De laatste berichten van elk gesprek worden {days__number} dag bewaard zodat Kelvin de context kent, en daarna verwijderd.",
-        "days__plural=*": "De laatste berichten van elk gesprek worden {days__number} dagen bewaard zodat Kelvin de context kent, en daarna verwijderd."
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "Je berichten",
-  "content_kelvin_status_compat": "Op build {build}",
-  "content_kelvin_status_downloads": "Downloads",
-  "content_kelvin_status_title": "Status op SOTF Mods",
-  "content_kelvin_status_unavailable": "We konden de huidige status van de mod niet laden. De modpagina toont de nieuwste versie.",
-  "content_kelvin_status_updated": "Laatste release",
-  "content_kelvin_status_version": "Nieuwste versie",
-  "content_kelvin_title": "KelvinSeek: praat met Kelvin in de game",
-  "content_kelvin_what_text": "KelvinSeek is een mod van {author}. Hij stuurt wat je aan Kelvin schrijft via de SOTF Mods-API naar een AI-dienst en maakt van het antwoord Kelvins reactie en, als je iets vraagt, een van zijn opdrachten in de game. Je hebt geen eigen API-sleutel nodig.",
-  "content_kelvin_what_title": "Wat het is",
   "content_legal_eyebrow": "Juridisch",
   "content_legal_other": "Andere juridische pagina’s",
   "content_md_alert_caution": "Voorzichtig",
@@ -4748,7 +4602,13 @@
   "landing_blueprints_hint": "Verse builds uit de community",
   "landing_creators_all": "Alle makers",
   "landing_creators_hint": "De overlevenden die het eiland bouwen",
+  "landing_creators_last_release": "Laatste release {when}",
+  "landing_creators_legends": "Legendes",
+  "landing_creators_legends_hint": "De meest gedownloade makers aller tijden",
+  "landing_creators_rising": "Opkomend",
+  "landing_creators_rising_hint": "Nieuw en snelgroeiend in de afgelopen 90 dagen",
   "landing_creators_title": "Makers in de spotlight",
+  "landing_creators_top": "Topmod",
   "landing_faq_figures": "Cijfers per {date}.",
   "landing_faq_hint": "Korte antwoorden, gecontroleerd met de catalogus.",
   "landing_faq_more": "Lees meer",
@@ -4787,6 +4647,27 @@
   "landing_kit_hint": "Een kant-en-klare set mods, gekozen door de rangers",
   "landing_kit_open": "Open de Kit",
   "landing_kit_title": "Uitgelichte Kit",
+  "landing_map_kind_legend": "Legende",
+  "landing_map_kind_trending": "Trending",
+  "landing_map_kind_updated": "Bijgewerkt",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Eilandkaart met {count__number} mod als waypoints",
+        "count__plural=*": "Eilandkaart met {count__number} mods als waypoints"
+      }
+    }
+  ],
+  "landing_map_legend_label": "Kaartlegenda",
+  "landing_map_title": "Eilandkaart",
   "landing_motw_period": "Week van {start}",
   "landing_motw_title": "Mod van de week",
   "landing_notes_all": "Alle recente updates",
@@ -4813,26 +4694,6 @@
   "landing_picks_cta_hint": "Filter op categorie, compatibiliteit, gameversie en meer",
   "landing_picks_tabs_label": "Mods sorteren",
   "landing_picks_title": "Vind je volgende mod",
-  "landing_pin_build": "Populaire build",
-  "landing_pin_download": "Wordt gedownload · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Kit · {count__number} mod",
-        "count__plural=*": "Kit · {count__number} mods"
-      }
-    }
-  ],
-  "landing_pin_release": "Bijgewerkt naar v{version}",
-  "landing_pins_label": "Live op het eiland",
   "landing_radar_breaking": "Update die mods breekt",
   "landing_radar_cta": "Bekijk wat er kapot is",
   "landing_radar_empty": "Nog geen gamepatch op de radar. Veldrapporten beginnen bij de volgende update.",
@@ -7085,7 +6946,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "Mods verkennen",
   "search_page_install": "Mods installeren",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "Modkits",
   "search_page_news": "Nieuws",
   "search_page_patch_radar": "Patchradar",

@@ -17,7 +17,7 @@ import { LEGACY_SUNSET_DATE } from '@sotf/contracts/legacy';
 import { type Clock, systemClock } from '@sotf/core';
 import { type ApiModule, defineModule } from '../lib/define-module.ts';
 import { createLegacyContext } from './context.ts';
-import { type KelvinSeekRouteOptions, registerKelvinSeekRoutes } from './kelvinseek.ts';
+import { registerKelvinSeekRoutes } from './kelvinseek.ts';
 import { registerModRoutes } from './mods.ts';
 import { registerRetiredRoutes } from './retired.ts';
 import type { LegacyCachedBody } from './route.ts';
@@ -35,7 +35,6 @@ export interface LegacyModuleOptions {
   clock?: Clock;
   /** TTL of the response LRU in ms (default 15 s; 0 disables it). */
   cacheTtlMs?: number;
-  kelvinseek?: KelvinSeekRouteOptions;
   usage?: LegacyUsageOptions;
   sunset?: Date;
 }
@@ -55,7 +54,7 @@ export function createLegacyModule(options: LegacyModuleOptions = {}): ApiModule
       const ctx = createLegacyContext(m.app, m.platform, clock, { sunset, cache });
       registerModRoutes(ctx);
       registerSiteRoutes(ctx);
-      registerKelvinSeekRoutes(ctx, options.kelvinseek);
+      registerKelvinSeekRoutes(ctx);
       await registerRetiredRoutes(m.app);
     },
   });

@@ -544,7 +544,7 @@ export const UserPublicDTO = dto(
 );
 export type UserPublicDTO = z.infer<typeof UserPublicDTO>;
 
-export const CREATOR_SORTS = ['downloads', 'followers', 'recent', 'spotlight'] as const;
+export const CREATOR_SORTS = ['downloads', 'followers', 'recent', 'spotlight', 'rising'] as const;
 
 export const CreatorCardDTO = dto(
   'CreatorCardDTO',

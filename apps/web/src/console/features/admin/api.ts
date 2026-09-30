@@ -15,7 +15,6 @@
  *   ['admin', 'awards']                 awards, newest first
  *   ['admin', 'announcements']          announcements
  *   ['admin', 'setting', key]           one `SiteSetting`
- *   ['admin', 'kelvinseek', days]       KelvinSeek usage
  *   ['admin', 'rum', range]             RUM p75 per template × country
  *   ['admin', 'operations']             job queues, dead letters, downloads, CDN purges
  *   ['admin', 'search', types, q]       mod/build picker of the awards form
@@ -37,7 +36,6 @@ export type Suggestion = Out<typeof api.admin.recategorize>['suggestions'][numbe
 export type Award = Out<typeof api.admin.listAwards>['items'][number];
 export type Announcement = Out<typeof api.admin.listAnnouncements>['items'][number];
 export type SiteSetting = Out<typeof api.admin.getSetting>;
-export type KelvinUsage = Out<typeof api.admin.kelvinseekUsage>;
 export type Rum = Out<typeof api.admin.rum>;
 export type RumRow = Rum['rows'][number];
 export type Operations = Out<typeof api.admin.operations>;
@@ -52,7 +50,6 @@ export type TagInput = In<typeof api.admin.createTag>['body'];
 export type RecategorizeChange = NonNullable<NonNullable<In<typeof api.admin.recategorize>['body']>['changes']>[number];
 export type AwardInput = In<typeof api.admin.createAward>['body'];
 export type AnnouncementInput = In<typeof api.admin.createAnnouncement>['body'];
-export type KelvinDays = NonNullable<NonNullable<In<typeof api.admin.kelvinseekUsage>['query']>['days']>;
 export type RumRange = NonNullable<NonNullable<In<typeof api.admin.rum>['query']>['range']>;
 
 export const adminKeys = {
@@ -66,7 +63,6 @@ export const adminKeys = {
   awards: ['admin', 'awards'] as const,
   announcements: ['admin', 'announcements'] as const,
   setting: (key: SiteSettingKey) => ['admin', 'setting', key] as const,
-  kelvinseek: (days: KelvinDays) => ['admin', 'kelvinseek', days] as const,
   rum: (range: RumRange) => ['admin', 'rum', range] as const,
   operations: ['admin', 'operations'] as const,
   search: (types: string, q: string) => ['admin', 'search', types, q] as const,
@@ -118,13 +114,6 @@ export const settingQuery = (key: SiteSettingKey) =>
   queryOptions({
     queryKey: adminKeys.setting(key),
     queryFn: ({ signal }) => api.admin.getSetting({ params: { key } }, { signal }),
-  });
-
-export const kelvinUsageQuery = (days: KelvinDays) =>
-  queryOptions({
-    queryKey: adminKeys.kelvinseek(days),
-    queryFn: ({ signal }) => api.admin.kelvinseekUsage({ query: { days } }, { signal }),
-    staleTime: 60_000,
   });
 
 export const rumQuery = (range: RumRange) =>

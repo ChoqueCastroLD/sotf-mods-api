@@ -16,7 +16,6 @@ which signs out and returns to the same screen after the new sign-in.
 | `announcements` | `AnnouncementsScreen`: global banner, 13 locales, window, preview | `admin.*Announcement*` |
 | `settings` | `SettingsScreen`: feature flags, rate-limit overrides, ads, moderation templates | `admin.get/putSetting` |
 | `integrations` | `IntegrationsScreen`: Discord webhooks (masked URLs, events, beta opt-out) | `admin.get/putSetting('discordWebhooks')` |
-| `kelvinseek?days=7\|30\|90` | `KelvinSeekScreen`: usage vs budget, daily chart + table, configuration | `admin.kelvinseekUsage`, setting `kelvinseek` |
 | `performance?range=7d\|28d` | `PerformanceScreen`: RUM p75 per template × country, CWV ratings, sortable | `admin.rum` |
 | `operations` | `OperationsScreen`: pg-boss queue depth, failures and oldest wait (health per queue), dead letters, downloads per hour/day, CDN purge state; refreshes every minute. 404/410/5xx rates stay in the logs | `admin.operations` |
 

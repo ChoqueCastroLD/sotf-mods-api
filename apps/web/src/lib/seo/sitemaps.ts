@@ -67,7 +67,6 @@ export const STATIC_PATHS: readonly string[] = [
   '/achievements',
   '/news',
   '/brand',
-  '/kelvinseek',
 ];
 
 /**

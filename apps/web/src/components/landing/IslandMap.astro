@@ -1,0 +1,76 @@
+---
+/**
+ * Hero «island map»: a stylised game map of the catalogue. ~26 mods (trending, recently updated
+ * and all-time popular) are waypoint links labelled with their title only; a details card opens on
+ * hover / focus (desktop). Below `lg` a compact artboard with fewer waypoints is shown instead and
+ * a tap goes straight to the mod. Positions are seeded by mod id (`island-map.ts`).
+ */
+import type { Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import type { Category, ModCardDTO } from './data.ts';
+import { COMPACT_MAP, FULL_MAP, layoutWaypoints, selectWaypoints } from './island-map.ts';
+import MapCanvas from './MapCanvas.astro';
+
+interface Props {
+  locale: Locale;
+  trending: readonly ModCardDTO[] | null;
+  updated: readonly ModCardDTO[] | null;
+  legends: readonly ModCardDTO[] | null;
+  categories: readonly Category[] | null;
+}
+
+const { locale, trending, updated, legends, categories } = Astro.props;
+const waypoints = selectWaypoints({ trending, updated, legends });
+const full = layoutWaypoints(waypoints, FULL_MAP);
+const compact = layoutWaypoints(waypoints, COMPACT_MAP);
+const kinds = [
+  { kind: 'trending', label: m.landing_map_kind_trending() },
+  { kind: 'updated', label: m.landing_map_kind_updated() },
+  { kind: 'legend', label: m.landing_map_kind_legend() },
+] as const;
+---
+
+{
+  full.length > 0 && (
+    <section class="island-map mx-auto w-full max-w-[34rem] lg:max-w-none" data-island-map aria-label={m.landing_map_label({ count: full.length })}>
+      <div class="mb-2 flex items-center justify-between gap-3">
+        <p class="readout flex items-center gap-2 text-signal">
+          <span class="relative inline-flex size-2" aria-hidden="true">
+            <span class="absolute inset-0 rounded-full bg-signal opacity-60 motion-safe:animate-ping-locator" />
+            <span class="relative size-2 rounded-full bg-signal" />
+          </span>
+          {m.landing_map_title()}
+        </p>
+        <p class="readout tabular-nums" aria-hidden="true" data-map-coords>N 47.2034 · W 122.4781</p>
+      </div>
+      <div class="hidden lg:block">
+        <MapCanvas locale={locale} layout="full" spec={FULL_MAP} cols={8} rows={7} waypoints={waypoints} placements={full} categories={categories} />
+      </div>
+      <div class="lg:hidden">
+        <MapCanvas locale={locale} layout="compact" spec={COMPACT_MAP} cols={6} rows={7} waypoints={waypoints} placements={compact} categories={categories} />
+      </div>
+      <ul class="readout mt-2 flex flex-wrap items-center gap-x-4 gap-y-1" aria-label={m.landing_map_legend_label()}>
+        {
+          kinds.map((item) => (
+            <li class="flex items-center gap-1.5">
+              <span class="legend-dot" data-kind={item.kind} aria-hidden="true" />
+              {item.label}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  )
+}
+
+<style>
+  .legend-dot {
+    display: inline-block;
+    inline-size: 8px;
+    block-size: 8px;
+    rotate: 45deg;
+    background: var(--color-primary);
+  }
+  .legend-dot[data-kind="updated"] { background: var(--color-signal); }
+  .legend-dot[data-kind="legend"] { background: var(--color-featured); }
+</style>

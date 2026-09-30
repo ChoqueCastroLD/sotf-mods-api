@@ -23,6 +23,7 @@ export const SITE_SETTING_KEYS = [
   'discordWebhooks',
   'moderationTemplates',
   'limits',
+  // Still a key of the API contract (deprecated endpoint); the console has no screen for it.
   'kelvinseek',
   'featureFlags',
 ] as const;
@@ -69,10 +70,6 @@ export const ADMIN_LIMITS = {
   flagKey: /^[a-zA-Z0-9_.-]{1,60}$/,
   adsClientId: /^ca-pub-\d{10,20}$/,
   adsSlotId: /^\d{6,20}$/,
-  kelvinModelMax: 60,
-  kelvinBudgetMax: 1000,
-  kelvinTimeoutMin: 1000,
-  kelvinTimeoutMax: 30_000,
 } as const;
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;

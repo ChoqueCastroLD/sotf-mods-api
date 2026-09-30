@@ -65,9 +65,10 @@ function count(tab: ProfileTab): number | null {
           href={href(tabPath(user, tab, { isDefault: tab === defaultTab }), locale)}
           aria-current={tab === active ? 'page' : undefined}
           data-tab={tab}
+          data-loc-pip
           class={cn(
             tabClasses,
-            'after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary after:opacity-0 aria-[current=page]:after:opacity-100',
+            'loc-host loc-frame [--loc-pip-y:-4px]',
           )}
         >
           {label(tab)}
