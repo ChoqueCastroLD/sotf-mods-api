@@ -1,0 +1,65 @@
+# Manual verification of the legacy hotfix patch series (WP-02, ops/legacy-hotfix/verify.sh) while
+# the legacy apps are still in production. Not part of `pnpm ci:local`: it clones the legacy
+# repositories at the exact base commits the patches apply to, builds them with Bun and runs them
+# against a throwaway PostgreSQL (compose project sotfv2-hotfix). Nothing is deployed and no
+# production host is contacted (VERIFY_R2_HEAD stays off).
+name: legacy-hotfix
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_repository:
+        description: Legacy API repository
+        default: ChoqueCastroLD/sotf-mods-api
+        type: string
+      frontend_repository:
+        description: Legacy frontend repository
+        default: ChoqueCastroLD/sotf-mods-frontend
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify patches (build, static checks, runtime checks)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      # Base commits of the patch series (ops/legacy-hotfix/verify.sh: API_BASE_COMMIT,
+      # FRONTEND_BASE_COMMIT); actions/checkout needs the full sha.
+      API_BASE_SHA: e0606b607c1ff8a883e67e1f56169608f584f09a
+      FRONTEND_BASE_SHA: e8ba2dcfc6385894d22256f31af7359ed2ccd6fa
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Checkout the legacy API at its base commit
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.api_repository }}
+          ref: ${{ env.API_BASE_SHA }}
+          path: legacy/sotf-mods-api
+          fetch-depth: 0
+          # A private legacy repository needs a read-only token in LEGACY_REPOS_TOKEN.
+          token: ${{ secrets.LEGACY_REPOS_TOKEN || github.token }}
+
+      - name: Checkout the legacy frontend at its base commit
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.frontend_repository }}
+          ref: ${{ env.FRONTEND_BASE_SHA }}
+          path: legacy/sotf-mods-frontend
+          fetch-depth: 0
+          token: ${{ secrets.LEGACY_REPOS_TOKEN || github.token }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Verify
+        env:
+          LEGACY_API_REPO: ${{ github.workspace }}/legacy/sotf-mods-api
+          LEGACY_FRONTEND_REPO: ${{ github.workspace }}/legacy/sotf-mods-frontend
+        run: bash ops/legacy-hotfix/verify.sh

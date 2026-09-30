@@ -1,0 +1,311 @@
+# End-to-end stack with the built images (PLAN §10.2 stage 10, §11.2). Compose project
+# "sotfv2-e2e"; every host port is in the 475xx range and bound to 127.0.0.1 only.
+#
+#   docker compose -p sotfv2-e2e -f ops/compose/e2e.yml up --build --detach --wait --wait-timeout 600
+#   pnpm e2e --grep @smoke                         # SOTF_E2E_BASE_URL=http://127.0.0.1:47521
+#   docker compose -p sotfv2-e2e -f ops/compose/e2e.yml down --volumes --remove-orphans
+#
+# Topology (mirrors Coolify, PLAN §11.3):
+#
+#   127.0.0.1:47521 ─ edge (Caddy) ─┬─ /api, /api/* ─ api:3001 (the same process also answers
+#                                   │                    127.0.0.1:47501, like api.sotf-mods.com)
+#                                   └─ everything else ─ web:4321
+#   worker (health 127.0.0.1:47502) · postgres 47532 · S3 (SeaweedFS) 47533 · Mailpit 47525/47580
+#
+# Start-up order: postgres → seed (tools image: `db:seed:dev --small`: snapshot + synthetic data,
+# every migration, backfills B1–B14, verification) → migrate (the production `node dist/migrate.js`
+# task, a no-op after the seed that proves the task works) → api + worker → web → edge.
+#
+# Images: built from ops/docker/*.Dockerfile unless SOTF_NODE_IMAGE / SOTF_TOOLS_IMAGE /
+# SOTF_WEB_IMAGE name images that already exist (CI builds them once and reuses them).
+# Credentials are throwaway values for this ephemeral stack, not secrets.
+name: sotfv2-e2e
+
+x-app-env: &app-env
+  NODE_ENV: production
+  TZ: UTC
+  LOG_LEVEL: ${SOTF_E2E_LOG_LEVEL:-warn}
+  SITE_ENV: ${SOTF_E2E_SITE_ENV:-development}
+  PUBLIC_SITE_URL: http://127.0.0.1:47521
+  INTERNAL_SECRET: e2e-internal-secret-not-a-real-secret-0123456789
+  GIT_SHA: e2e
+
+x-server-env: &server-env
+  <<: *app-env
+  DATABASE_URL: postgres://sotf:sotf@postgres:5432/sotf
+  APP_SECRET: e2e-app-secret-not-a-real-secret-0123456789abcdef
+  LEGACY_COEXIST: 'false'
+  LEGACY_SNAKE_ALIASES: 'false'
+  R2_ENDPOINT: http://seaweedfs:8333
+  R2_ACCESS_KEY_ID: sotf-e2e-access-key
+  R2_SECRET_ACCESS_KEY: sotf-e2e-secret-key
+  R2_BUCKET: sotf-mods
+  R2_PRIVATE_BUCKET: sotf-mods-private
+  R2_PUBLIC_BASE_URL: http://127.0.0.1:47533/sotf-mods
+  # Cloudflare's documented always-pass Turnstile test secret.
+  # check-forbidden-allow: secret-assignment Cloudflare's documented public always-pass test secret
+  TURNSTILE_SECRET_KEY: 1x0000000000000000000000000000000AA
+  KELVINSEEK_DAILY_BUDGET_USD: '0'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: sotf
+      POSTGRES_PASSWORD: sotf
+      POSTGRES_DB: sotf
+      TZ: UTC
+      PGTZ: UTC
+    command: [postgres, -c, timezone=UTC, -c, log_timezone=UTC, -c, fsync=off, -c, synchronous_commit=off, -c, full_page_writes=off]
+    ports:
+      - 127.0.0.1:47532:5432
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U sotf -d sotf -h 127.0.0.1]
+      interval: 2s
+      timeout: 3s
+      retries: 60
+      start_period: 5s
+
+  seaweedfs:
+    image: chrislusf/seaweedfs:4.48
+    command:
+      - server
+      - -dir=/data
+      - -ip=127.0.0.1
+      - -ip.bind=0.0.0.0
+      - -master.volumeSizeLimitMB=128
+      - -volume.max=0
+      - -s3
+      - -s3.port=8333
+      - -s3.config=/etc/seaweedfs/s3.json
+    environment:
+      TZ: UTC
+    configs:
+      - source: s3_identities
+        target: /etc/seaweedfs/s3.json
+    ports:
+      - 127.0.0.1:47533:8333
+    tmpfs:
+      - /data
+    healthcheck:
+      test: [CMD-SHELL, wget -q -O /dev/null http://127.0.0.1:8333/healthz || exit 1]
+      interval: 3s
+      timeout: 3s
+      retries: 60
+      start_period: 5s
+
+  # One-shot: creates the buckets through `weed shell`, sharing the network namespace of seaweedfs
+  # (its master and filer advertise 127.0.0.1).
+  buckets:
+    image: chrislusf/seaweedfs:4.48
+    network_mode: service:seaweedfs
+    depends_on:
+      seaweedfs:
+        condition: service_healthy
+    entrypoint: [/bin/sh, -c]
+    command:
+      - |
+        set -eu
+        for bucket in sotf-mods sotf-mods-private; do
+          if echo s3.bucket.list | weed shell -master=127.0.0.1:9333 | awk '{print $$1}' | grep -qx "$$bucket"; then
+            echo "bucket $$bucket exists"
+          else
+            echo "s3.bucket.create -name $$bucket" | weed shell -master=127.0.0.1:9333
+          fi
+        done
+    restart: 'no'
+
+  mailpit:
+    image: axllent/mailpit:v1.31.3
+    environment:
+      TZ: UTC
+      MP_SMTP_AUTH_ACCEPT_ANY: '1'
+      MP_SMTP_AUTH_ALLOW_INSECURE: '1'
+      MP_MAX_MESSAGES: '5000'
+    ports:
+      - 127.0.0.1:47525:1025
+      - 127.0.0.1:47580:8025
+    healthcheck:
+      test: [CMD, /mailpit, readyz]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 3s
+
+  # One-shot: the development dataset (PLAN §6.12). `db:seed:dev` only writes to local servers, so
+  # it shares the network namespace of postgres and connects to 127.0.0.1.
+  seed:
+    image: ${SOTF_TOOLS_IMAGE:-sotfv2-e2e/sotf-tools:local}
+    build:
+      context: ../..
+      dockerfile: ops/docker/node.Dockerfile
+      target: tools
+    network_mode: service:postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      TZ: UTC
+      DATABASE_URL: postgres://sotf:sotf@127.0.0.1:5432/sotf
+      MIGRATIONS_DATABASE_URL: postgres://sotf:sotf@127.0.0.1:5432/sotf
+    command: [src/cli/seed-dev.ts, --small, --no-dump]
+    restart: 'no'
+
+  # One-shot: the production migrate task (SOTF_ROLE=migrate: `node dist/migrate.js up`, owner).
+  migrate:
+    image: ${SOTF_NODE_IMAGE:-sotfv2-e2e/sotf-node:local}
+    build:
+      context: ../..
+      dockerfile: ops/docker/node.Dockerfile
+    depends_on:
+      seed:
+        condition: service_completed_successfully
+    environment:
+      <<: *server-env
+      MIGRATIONS_DATABASE_URL: postgres://sotf:sotf@postgres:5432/sotf
+      SOTF_ROLE: migrate
+    restart: 'no'
+
+  api:
+    image: ${SOTF_NODE_IMAGE:-sotfv2-e2e/sotf-node:local}
+    build:
+      context: ../..
+      dockerfile: ops/docker/node.Dockerfile
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      buckets:
+        condition: service_completed_successfully
+    environment:
+      <<: *server-env
+      PORT: '3001'
+      HOST: 0.0.0.0
+      DB_POOL_MAX: '10'
+      NODE_OPTIONS: --max-old-space-size=384
+      SOTF_ROLE: api
+    ports:
+      - 127.0.0.1:47501:3001
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:3001/healthz]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 5s
+
+  worker:
+    image: ${SOTF_NODE_IMAGE:-sotfv2-e2e/sotf-node:local}
+    build:
+      context: ../..
+      dockerfile: ops/docker/node.Dockerfile
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+      buckets:
+        condition: service_completed_successfully
+      mailpit:
+        condition: service_healthy
+    environment:
+      <<: *server-env
+      PORT: '3002'
+      HOST: 0.0.0.0
+      DB_POOL_MAX: '5'
+      WEB_INTERNAL_URL: http://web:4321
+      EMAIL_TRANSPORT: mailpit
+      SMTP_URL: smtp://mailpit:1025
+      EMAIL_FROM: SOTF Mods <noreply@sotf-mods.com>
+      NODE_OPTIONS: --max-old-space-size=576
+      SOTF_ROLE: worker
+    ports:
+      - 127.0.0.1:47502:3002
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:3002/healthz]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 5s
+
+  web:
+    image: ${SOTF_WEB_IMAGE:-sotfv2-e2e/sotf-web:local}
+    build:
+      context: ../..
+      dockerfile: ops/docker/web.Dockerfile
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      <<: *app-env
+      PORT: '4321'
+      HOST: 0.0.0.0
+      INTERNAL_API_URL: http://api:3001
+      R2_PUBLIC_BASE_URL: http://127.0.0.1:47533/sotf-mods
+      PUBLIC_TURNSTILE_SITE_KEY: 1x00000000000000000000AA
+      RELEASE_SHA: e2e
+      NODE_OPTIONS: --max-old-space-size=288
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:4321/healthz]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 5s
+
+  # Same-origin routing of Coolify/Traefik: `/api` (prefix kept, never stripped) → api, the rest →
+  # web. Streaming is not buffered (SSE on /api/v2/stream).
+  edge:
+    image: caddy:2.10-alpine
+    depends_on:
+      web:
+        condition: service_healthy
+      api:
+        condition: service_healthy
+    configs:
+      - source: caddyfile
+        target: /etc/caddy/Caddyfile
+    ports:
+      - 127.0.0.1:47521:8080
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/healthz]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 3s
+
+configs:
+  s3_identities:
+    content: |
+      {
+        "identities": [
+          {
+            "name": "sotf-e2e",
+            "credentials": [{ "accessKey": "sotf-e2e-access-key", "secretKey": "sotf-e2e-secret-key" }],
+            "actions": ["Admin", "Read", "List", "Tagging", "Write"]
+          },
+          {
+            "name": "anonymous",
+            "actions": ["Read:sotf-mods"]
+          }
+        ]
+      }
+  caddyfile:
+    content: |
+      {
+        admin off
+        auto_https off
+        servers {
+          trusted_proxies static private_ranges
+        }
+      }
+      :8080 {
+        @api path /api /api/*
+        handle @api {
+          reverse_proxy api:3001 {
+            flush_interval -1
+          }
+        }
+        handle {
+          reverse_proxy web:4321 {
+            flush_interval -1
+          }
+        }
+      }
