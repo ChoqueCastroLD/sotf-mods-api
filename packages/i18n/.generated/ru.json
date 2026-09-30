@@ -432,6 +432,151 @@
   "builds_versions_latest": "Последняя",
   "builds_versions_title": "Версии",
   "builds_versions_yanked": "Отозвана",
+  "cmdk_action_backpack": "Открыть рюкзак",
+  "cmdk_action_basecamp": "Перейти в Лагерь",
+  "cmdk_action_current": "Выбрано",
+  "cmdk_action_language": "Язык: {language}",
+  "cmdk_action_signals": "Открыть Сигналы",
+  "cmdk_action_theme": "Тема: {theme}",
+  "cmdk_action_upload": "Загрузить мод",
+  "cmdk_action_upload_build": "Поделиться постройкой",
+  "cmdk_close": "Закрыть",
+  "cmdk_compat_broken": "Не работает",
+  "cmdk_compat_mixed": "Отзывы расходятся",
+  "cmdk_compat_untested": "Не проверено",
+  "cmdk_compat_works": "Работает",
+  "cmdk_dialog_label": "Поиск и команды",
+  "cmdk_download_started": "Загрузка началась: {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} скачивание",
+        "count__plural=few": "{display} скачивания",
+        "count__plural=many": "{display} скачиваний",
+        "count__plural=*": "{display} скачивания"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "Нет команд по запросу «{query}».",
+  "cmdk_empty_hint": "Попробуйте меньше слов или уточните поиск: mods:, builds:, kits:, @автор или > для команд.",
+  "cmdk_error_hint": "Проверьте подключение и попробуйте ещё раз. Действия и недавние элементы по-прежнему работают.",
+  "cmdk_error_ref": "Код: {ref}",
+  "cmdk_error_title": "Не удалось загрузить поисковый индекс.",
+  "cmdk_fact_compat": "Совместимость",
+  "cmdk_fact_contents": "Содержимое",
+  "cmdk_fact_downloads": "Скачивания",
+  "cmdk_fact_manifest_id": "ID мода",
+  "cmdk_fact_published": "Опубликовано",
+  "cmdk_group_actions": "Действия",
+  "cmdk_group_categories": "Категории",
+  "cmdk_group_pages": "Страницы",
+  "cmdk_group_recent": "Недавние",
+  "cmdk_group_server": "Из полного поиска",
+  "cmdk_group_trending": "Популярное за неделю",
+  "cmdk_hint_close": "Закрыть",
+  "cmdk_hint_download": "Скачать",
+  "cmdk_hint_move": "Перемещение",
+  "cmdk_hint_new_tab": "Новая вкладка",
+  "cmdk_hint_open": "Открыть",
+  "cmdk_hint_scope": "Область",
+  "cmdk_input_label": "Ищите моды, постройки, наборы, авторов и команды",
+  "cmdk_kind_build": "Постройка",
+  "cmdk_kind_category": "Категория",
+  "cmdk_kind_creator": "Автор",
+  "cmdk_kind_kit": "Набор",
+  "cmdk_kind_library": "Библиотека",
+  "cmdk_kind_mod": "Мод",
+  "cmdk_kind_page": "Страница",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} элемент",
+        "count__plural=few": "{count__number} элемента",
+        "count__plural=many": "{count__number} элементов",
+        "count__plural=*": "{count__number} элемента"
+      }
+    }
+  ],
+  "cmdk_loading": "Разворачиваем карту…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод",
+        "count__plural=few": "{count__number} мода",
+        "count__plural=many": "{count__number} модов",
+        "count__plural=*": "{count__number} мода"
+      }
+    }
+  ],
+  "cmdk_no_results": "На карте нет ничего по запросу «{query}». Попробуйте меньше слов.",
+  "cmdk_offline": "Вы офлайн. Показанные данные могут быть устаревшими.",
+  "cmdk_placeholder": "Моды, постройки, наборы, авторы…",
+  "cmdk_placeholder_actions": "Введите команду…",
+  "cmdk_preview_download": "Скачать последнюю",
+  "cmdk_preview_empty": "Переходите по результатам, чтобы увидеть их здесь.",
+  "cmdk_preview_hint": "Нажмите Enter, чтобы открыть.",
+  "cmdk_preview_label": "Предпросмотр",
+  "cmdk_preview_open": "Открыть страницу",
+  "cmdk_recent_clear": "Очистить недавние",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Нет результатов",
+        "count__exact=*, count__plural=one": "{count__number} результат",
+        "count__exact=*, count__plural=few": "{count__number} результата",
+        "count__exact=*, count__plural=many": "{count__number} результатов",
+        "count__exact=*, count__plural=*": "{count__number} результата"
+      }
+    }
+  ],
+  "cmdk_retry": "Повторить",
+  "cmdk_scope_all": "Везде",
+  "cmdk_scope_label": "Где искать",
+  "cmdk_scope_remove": "Снова искать везде (убрать «{scope}»)",
+  "cmdk_searching": "Ищем по всему острову…",
+  "cmdk_see_all": "Все результаты по запросу «{query}»",
+  "cmdk_start_hint": "Страницы, которые вы откроете отсюда, появятся в этом списке.",
+  "cmdk_term_builds": "Постройки",
+  "cmdk_term_creators": "Авторы",
+  "cmdk_term_kits": "Наборы",
+  "cmdk_term_mods": "Моды",
+  "cmdk_theme_day": "День",
+  "cmdk_theme_night": "Ночь",
+  "cmdk_theme_system": "Системная",
   "common_account_menu": "Меню аккаунта",
   "common_account_profile": "Ваш профиль",
   "common_account_settings": "Настройки",

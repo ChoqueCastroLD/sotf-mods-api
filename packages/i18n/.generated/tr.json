@@ -404,6 +404,143 @@
   "builds_versions_latest": "En yeni",
   "builds_versions_title": "Sürümler",
   "builds_versions_yanked": "Geri çekildi",
+  "cmdk_action_backpack": "Sırt çantanı aç",
+  "cmdk_action_basecamp": "Ana Kamp’a git",
+  "cmdk_action_current": "Geçerli",
+  "cmdk_action_language": "Dil: {language}",
+  "cmdk_action_signals": "Sinyalleri aç",
+  "cmdk_action_theme": "Tema: {theme}",
+  "cmdk_action_upload": "Mod yükle",
+  "cmdk_action_upload_build": "Yapı paylaş",
+  "cmdk_close": "Kapat",
+  "cmdk_compat_broken": "Bozuk",
+  "cmdk_compat_mixed": "Karışık raporlar",
+  "cmdk_compat_untested": "Test edilmedi",
+  "cmdk_compat_works": "Çalışıyor",
+  "cmdk_dialog_label": "Arama ve komutlar",
+  "cmdk_download_started": "İndirme başladı: {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} indirme",
+        "count__plural=*": "{display} indirme"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "“{query}” ile eşleşen komut yok.",
+  "cmdk_empty_hint": "Daha az kelime dene ya da mods:, builds:, kits:, @üretici veya komutlar için > ile daralt.",
+  "cmdk_error_hint": "Bağlantını kontrol edip tekrar dene. Eylemler ve son açılanlar çalışmaya devam ediyor.",
+  "cmdk_error_ref": "Ref. {ref}",
+  "cmdk_error_title": "Arama dizini yüklenemedi.",
+  "cmdk_fact_compat": "Uyumluluk",
+  "cmdk_fact_contents": "İçerik",
+  "cmdk_fact_downloads": "İndirmeler",
+  "cmdk_fact_manifest_id": "Mod kimliği",
+  "cmdk_fact_published": "Yayımlanan",
+  "cmdk_group_actions": "Eylemler",
+  "cmdk_group_categories": "Kategoriler",
+  "cmdk_group_pages": "Sayfalar",
+  "cmdk_group_recent": "Son açılanlar",
+  "cmdk_group_server": "Tam aramadan",
+  "cmdk_group_trending": "Bu hafta popüler",
+  "cmdk_hint_close": "Kapat",
+  "cmdk_hint_download": "İndir",
+  "cmdk_hint_move": "Gezin",
+  "cmdk_hint_new_tab": "Yeni sekme",
+  "cmdk_hint_open": "Aç",
+  "cmdk_hint_scope": "Alan",
+  "cmdk_input_label": "Mod, yapı, kit, üretici ve komut ara",
+  "cmdk_kind_build": "Yapı",
+  "cmdk_kind_category": "Kategori",
+  "cmdk_kind_creator": "Üretici",
+  "cmdk_kind_kit": "Kit",
+  "cmdk_kind_library": "Kütüphane",
+  "cmdk_kind_mod": "Mod",
+  "cmdk_kind_page": "Sayfa",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} öğe",
+        "count__plural=*": "{count__number} öğe"
+      }
+    }
+  ],
+  "cmdk_loading": "Harita açılıyor…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "cmdk_no_results": "Haritada “{query}” için bir şey yok. Daha az kelimeyle dene.",
+  "cmdk_offline": "Çevrimdışısın. Gördüklerin güncel olmayabilir.",
+  "cmdk_placeholder": "Mod, yapı, kit, üretici ara…",
+  "cmdk_placeholder_actions": "Bir komut yaz…",
+  "cmdk_preview_download": "En yenisini indir",
+  "cmdk_preview_empty": "Önizlemek için sonuçlar arasında gezin.",
+  "cmdk_preview_hint": "Açmak için Enter’a bas.",
+  "cmdk_preview_label": "Önizleme",
+  "cmdk_preview_open": "Sayfayı aç",
+  "cmdk_recent_clear": "Son açılanları temizle",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sonuç yok",
+        "count__exact=*, count__plural=one": "{count__number} sonuç",
+        "count__exact=*, count__plural=*": "{count__number} sonuç"
+      }
+    }
+  ],
+  "cmdk_retry": "Tekrar dene",
+  "cmdk_scope_all": "Her şey",
+  "cmdk_scope_label": "Arama alanı",
+  "cmdk_scope_remove": "Yeniden her yerde ara (“{scope}” filtresini kaldır)",
+  "cmdk_searching": "Tüm ada taranıyor…",
+  "cmdk_see_all": "“{query}” için tüm sonuçları gör",
+  "cmdk_start_hint": "Buradan açtığın sayfalar bu listede görünecek.",
+  "cmdk_term_builds": "Yapılar",
+  "cmdk_term_creators": "Üreticiler",
+  "cmdk_term_kits": "Kitler",
+  "cmdk_term_mods": "Modlar",
+  "cmdk_theme_day": "Gündüz",
+  "cmdk_theme_night": "Gece",
+  "cmdk_theme_system": "Sistem",
   "common_account_menu": "Hesap menüsü",
   "common_account_profile": "Profilin",
   "common_account_settings": "Ayarlar",

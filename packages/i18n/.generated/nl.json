@@ -404,6 +404,143 @@
   "builds_versions_latest": "Nieuwste",
   "builds_versions_title": "Versies",
   "builds_versions_yanked": "Ingetrokken",
+  "cmdk_action_backpack": "Je rugzak openen",
+  "cmdk_action_basecamp": "Naar het Basiskamp",
+  "cmdk_action_current": "Huidig",
+  "cmdk_action_language": "Taal: {language}",
+  "cmdk_action_signals": "Signalen openen",
+  "cmdk_action_theme": "Thema: {theme}",
+  "cmdk_action_upload": "Een mod uploaden",
+  "cmdk_action_upload_build": "Een build delen",
+  "cmdk_close": "Sluiten",
+  "cmdk_compat_broken": "Kapot",
+  "cmdk_compat_mixed": "Wisselende meldingen",
+  "cmdk_compat_untested": "Niet getest",
+  "cmdk_compat_works": "Werkt",
+  "cmdk_dialog_label": "Zoeken en opdrachten",
+  "cmdk_download_started": "Download gestart: {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download",
+        "count__plural=*": "{display} downloads"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "Geen opdracht komt overeen met ‘{query}’.",
+  "cmdk_empty_hint": "Probeer minder woorden, of verfijn met mods:, builds:, kits:, @maker of > voor opdrachten.",
+  "cmdk_error_hint": "Controleer je verbinding en probeer het opnieuw. Acties en recente items werken nog steeds.",
+  "cmdk_error_ref": "Ref. {ref}",
+  "cmdk_error_title": "De zoekindex kon niet worden geladen.",
+  "cmdk_fact_compat": "Compatibiliteit",
+  "cmdk_fact_contents": "Inhoud",
+  "cmdk_fact_downloads": "Downloads",
+  "cmdk_fact_manifest_id": "Mod-ID",
+  "cmdk_fact_published": "Gepubliceerd",
+  "cmdk_group_actions": "Acties",
+  "cmdk_group_categories": "Categorieën",
+  "cmdk_group_pages": "Pagina’s",
+  "cmdk_group_recent": "Recent",
+  "cmdk_group_server": "Uit de volledige zoekopdracht",
+  "cmdk_group_trending": "Populair deze week",
+  "cmdk_hint_close": "Sluiten",
+  "cmdk_hint_download": "Downloaden",
+  "cmdk_hint_move": "Verplaatsen",
+  "cmdk_hint_new_tab": "Nieuw tabblad",
+  "cmdk_hint_open": "Openen",
+  "cmdk_hint_scope": "Bereik",
+  "cmdk_input_label": "Zoek mods, builds, kits, makers en opdrachten",
+  "cmdk_kind_build": "Build",
+  "cmdk_kind_category": "Categorie",
+  "cmdk_kind_creator": "Maker",
+  "cmdk_kind_kit": "Kit",
+  "cmdk_kind_library": "Bibliotheek",
+  "cmdk_kind_mod": "Mod",
+  "cmdk_kind_page": "Pagina",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} item",
+        "count__plural=*": "{count__number} items"
+      }
+    }
+  ],
+  "cmdk_loading": "De kaart wordt uitgevouwen…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "cmdk_no_results": "Niets op de kaart voor ‘{query}’. Probeer minder woorden.",
+  "cmdk_offline": "Je bent offline. Wat je ziet is misschien niet actueel.",
+  "cmdk_placeholder": "Zoek mods, builds, kits, makers…",
+  "cmdk_placeholder_actions": "Typ een opdracht…",
+  "cmdk_preview_download": "Nieuwste downloaden",
+  "cmdk_preview_empty": "Blader door de resultaten om ze hier te bekijken.",
+  "cmdk_preview_hint": "Druk op Enter om te openen.",
+  "cmdk_preview_label": "Voorbeeld",
+  "cmdk_preview_open": "Pagina openen",
+  "cmdk_recent_clear": "Recent wissen",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Geen resultaten",
+        "count__exact=*, count__plural=one": "{count__number} resultaat",
+        "count__exact=*, count__plural=*": "{count__number} resultaten"
+      }
+    }
+  ],
+  "cmdk_retry": "Opnieuw proberen",
+  "cmdk_scope_all": "Alles",
+  "cmdk_scope_label": "Zoeken in",
+  "cmdk_scope_remove": "Weer overal zoeken (‘{scope}’ verwijderen)",
+  "cmdk_searching": "Het hele eiland wordt doorzocht…",
+  "cmdk_see_all": "Alle resultaten voor ‘{query}’ bekijken",
+  "cmdk_start_hint": "Pagina’s die je hier opent, verschijnen in deze lijst.",
+  "cmdk_term_builds": "Builds",
+  "cmdk_term_creators": "Makers",
+  "cmdk_term_kits": "Kits",
+  "cmdk_term_mods": "Mods",
+  "cmdk_theme_day": "Dag",
+  "cmdk_theme_night": "Nacht",
+  "cmdk_theme_system": "Systeem",
   "common_account_menu": "Accountmenu",
   "common_account_profile": "Je profiel",
   "common_account_settings": "Instellingen",

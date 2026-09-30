@@ -404,6 +404,143 @@
   "builds_versions_latest": "Latest",
   "builds_versions_title": "Versions",
   "builds_versions_yanked": "Withdrawn",
+  "cmdk_action_backpack": "Open your backpack",
+  "cmdk_action_basecamp": "Go to Basecamp",
+  "cmdk_action_current": "Current",
+  "cmdk_action_language": "Language: {language}",
+  "cmdk_action_signals": "Open Signals",
+  "cmdk_action_theme": "Theme: {theme}",
+  "cmdk_action_upload": "Upload a mod",
+  "cmdk_action_upload_build": "Share a build",
+  "cmdk_close": "Close",
+  "cmdk_compat_broken": "Broken",
+  "cmdk_compat_mixed": "Mixed reports",
+  "cmdk_compat_untested": "Untested",
+  "cmdk_compat_works": "Works",
+  "cmdk_dialog_label": "Search and commands",
+  "cmdk_download_started": "Download started: {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download",
+        "count__plural=*": "{display} downloads"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "No command matches “{query}”.",
+  "cmdk_empty_hint": "Try fewer words, or narrow it down with mods:, builds:, kits:, @creator or > for commands.",
+  "cmdk_error_hint": "Check your connection and try again. Actions and recent items still work.",
+  "cmdk_error_ref": "Ref. {ref}",
+  "cmdk_error_title": "The search index didn’t load.",
+  "cmdk_fact_compat": "Compatibility",
+  "cmdk_fact_contents": "Contents",
+  "cmdk_fact_downloads": "Downloads",
+  "cmdk_fact_manifest_id": "Mod ID",
+  "cmdk_fact_published": "Published",
+  "cmdk_group_actions": "Actions",
+  "cmdk_group_categories": "Categories",
+  "cmdk_group_pages": "Pages",
+  "cmdk_group_recent": "Recent",
+  "cmdk_group_server": "From the full search",
+  "cmdk_group_trending": "Trending this week",
+  "cmdk_hint_close": "Close",
+  "cmdk_hint_download": "Download",
+  "cmdk_hint_move": "Move",
+  "cmdk_hint_new_tab": "New tab",
+  "cmdk_hint_open": "Open",
+  "cmdk_hint_scope": "Scope",
+  "cmdk_input_label": "Search mods, builds, kits, creators and commands",
+  "cmdk_kind_build": "Build",
+  "cmdk_kind_category": "Category",
+  "cmdk_kind_creator": "Creator",
+  "cmdk_kind_kit": "Kit",
+  "cmdk_kind_library": "Library",
+  "cmdk_kind_mod": "Mod",
+  "cmdk_kind_page": "Page",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} item",
+        "count__plural=*": "{count__number} items"
+      }
+    }
+  ],
+  "cmdk_loading": "Unfolding the map…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "cmdk_no_results": "Nothing on the map for “{query}”. Try fewer words.",
+  "cmdk_offline": "You’re offline. What you see may be out of date.",
+  "cmdk_placeholder": "Search mods, builds, kits, creators…",
+  "cmdk_placeholder_actions": "Type a command…",
+  "cmdk_preview_download": "Download latest",
+  "cmdk_preview_empty": "Move through the results to preview them here.",
+  "cmdk_preview_hint": "Press Enter to open it.",
+  "cmdk_preview_label": "Preview",
+  "cmdk_preview_open": "Open page",
+  "cmdk_recent_clear": "Clear recent",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "No results",
+        "count__exact=*, count__plural=one": "{count__number} result",
+        "count__exact=*, count__plural=*": "{count__number} results"
+      }
+    }
+  ],
+  "cmdk_retry": "Try again",
+  "cmdk_scope_all": "Everything",
+  "cmdk_scope_label": "Search in",
+  "cmdk_scope_remove": "Search everything again (remove “{scope}”)",
+  "cmdk_searching": "Searching the whole island…",
+  "cmdk_see_all": "See all results for “{query}”",
+  "cmdk_start_hint": "Recent pages you open from here will show up in this list.",
+  "cmdk_term_builds": "Builds",
+  "cmdk_term_creators": "Creators",
+  "cmdk_term_kits": "Kits",
+  "cmdk_term_mods": "Mods",
+  "cmdk_theme_day": "Day",
+  "cmdk_theme_night": "Night",
+  "cmdk_theme_system": "System",
   "common_account_menu": "Account menu",
   "common_account_profile": "Your profile",
   "common_account_settings": "Settings",

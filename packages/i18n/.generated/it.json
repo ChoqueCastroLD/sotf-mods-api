@@ -404,6 +404,143 @@
   "builds_versions_latest": "Ultima",
   "builds_versions_title": "Versioni",
   "builds_versions_yanked": "Ritirata",
+  "cmdk_action_backpack": "Apri il tuo zaino",
+  "cmdk_action_basecamp": "Vai al Campo base",
+  "cmdk_action_current": "Attuale",
+  "cmdk_action_language": "Lingua: {language}",
+  "cmdk_action_signals": "Apri i Segnali",
+  "cmdk_action_theme": "Tema: {theme}",
+  "cmdk_action_upload": "Carica una mod",
+  "cmdk_action_upload_build": "Condividi una build",
+  "cmdk_close": "Chiudi",
+  "cmdk_compat_broken": "Non funziona",
+  "cmdk_compat_mixed": "Segnalazioni contrastanti",
+  "cmdk_compat_untested": "Non testato",
+  "cmdk_compat_works": "Funziona",
+  "cmdk_dialog_label": "Ricerca e comandi",
+  "cmdk_download_started": "Download avviato: {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download",
+        "count__plural=*": "{display} download"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "Nessun comando corrisponde a «{query}».",
+  "cmdk_empty_hint": "Prova con meno parole o restringi con mods:, builds:, kits:, @creatore o > per i comandi.",
+  "cmdk_error_hint": "Controlla la connessione e riprova. Le azioni e i recenti funzionano comunque.",
+  "cmdk_error_ref": "Rif. {ref}",
+  "cmdk_error_title": "Non è stato possibile caricare l’indice di ricerca.",
+  "cmdk_fact_compat": "Compatibilità",
+  "cmdk_fact_contents": "Contenuto",
+  "cmdk_fact_downloads": "Download",
+  "cmdk_fact_manifest_id": "ID della mod",
+  "cmdk_fact_published": "Pubblicate",
+  "cmdk_group_actions": "Azioni",
+  "cmdk_group_categories": "Categorie",
+  "cmdk_group_pages": "Pagine",
+  "cmdk_group_recent": "Recenti",
+  "cmdk_group_server": "Dalla ricerca completa",
+  "cmdk_group_trending": "Di tendenza questa settimana",
+  "cmdk_hint_close": "Chiudi",
+  "cmdk_hint_download": "Scarica",
+  "cmdk_hint_move": "Sposta",
+  "cmdk_hint_new_tab": "Nuova scheda",
+  "cmdk_hint_open": "Apri",
+  "cmdk_hint_scope": "Ambito",
+  "cmdk_input_label": "Cerca mod, build, kit, creatori e comandi",
+  "cmdk_kind_build": "Build",
+  "cmdk_kind_category": "Categoria",
+  "cmdk_kind_creator": "Creatore",
+  "cmdk_kind_kit": "Kit",
+  "cmdk_kind_library": "Libreria",
+  "cmdk_kind_mod": "Mod",
+  "cmdk_kind_page": "Pagina",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} elemento",
+        "count__plural=*": "{count__number} elementi"
+      }
+    }
+  ],
+  "cmdk_loading": "Stiamo aprendo la mappa…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "cmdk_no_results": "Niente sulla mappa per «{query}». Prova con meno parole.",
+  "cmdk_offline": "Sei offline. Quello che vedi potrebbe non essere aggiornato.",
+  "cmdk_placeholder": "Cerca mod, build, kit, creatori…",
+  "cmdk_placeholder_actions": "Scrivi un comando…",
+  "cmdk_preview_download": "Scarica l’ultima",
+  "cmdk_preview_empty": "Scorri i risultati per vederne l’anteprima qui.",
+  "cmdk_preview_hint": "Premi Invio per aprirlo.",
+  "cmdk_preview_label": "Anteprima",
+  "cmdk_preview_open": "Apri la pagina",
+  "cmdk_recent_clear": "Cancella recenti",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Nessun risultato",
+        "count__exact=*, count__plural=one": "{count__number} risultato",
+        "count__exact=*, count__plural=*": "{count__number} risultati"
+      }
+    }
+  ],
+  "cmdk_retry": "Riprova",
+  "cmdk_scope_all": "Tutto",
+  "cmdk_scope_label": "Cerca in",
+  "cmdk_scope_remove": "Torna a cercare ovunque (rimuovi «{scope}»)",
+  "cmdk_searching": "Ricerca su tutta l’isola…",
+  "cmdk_see_all": "Vedi tutti i risultati per «{query}»",
+  "cmdk_start_hint": "Le pagine che apri da qui compariranno in questo elenco.",
+  "cmdk_term_builds": "Build",
+  "cmdk_term_creators": "Creatori",
+  "cmdk_term_kits": "Kit",
+  "cmdk_term_mods": "Mod",
+  "cmdk_theme_day": "Giorno",
+  "cmdk_theme_night": "Notte",
+  "cmdk_theme_system": "Sistema",
   "common_account_menu": "Menu dell’account",
   "common_account_profile": "Il tuo profilo",
   "common_account_settings": "Impostazioni",

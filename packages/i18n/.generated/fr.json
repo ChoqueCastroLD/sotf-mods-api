@@ -404,6 +404,143 @@
   "builds_versions_latest": "Dernière",
   "builds_versions_title": "Versions",
   "builds_versions_yanked": "Retirée",
+  "cmdk_action_backpack": "Ouvrir votre sac à dos",
+  "cmdk_action_basecamp": "Aller au Camp de base",
+  "cmdk_action_current": "Choix actuel",
+  "cmdk_action_language": "Langue : {language}",
+  "cmdk_action_signals": "Ouvrir les Signaux",
+  "cmdk_action_theme": "Thème : {theme}",
+  "cmdk_action_upload": "Publier un mod",
+  "cmdk_action_upload_build": "Partager un build",
+  "cmdk_close": "Fermer",
+  "cmdk_compat_broken": "Cassé",
+  "cmdk_compat_mixed": "Retours mitigés",
+  "cmdk_compat_untested": "Non testé",
+  "cmdk_compat_works": "Fonctionne",
+  "cmdk_dialog_label": "Recherche et commandes",
+  "cmdk_download_started": "Téléchargement lancé : {title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} téléchargement",
+        "count__plural=*": "{display} téléchargements"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "Aucune commande ne correspond à « {query} ».",
+  "cmdk_empty_hint": "Essayez avec moins de mots, ou affinez avec mods:, builds:, kits:, @créateur ou > pour les commandes.",
+  "cmdk_error_hint": "Vérifiez votre connexion et réessayez. Les actions et les éléments récents fonctionnent toujours.",
+  "cmdk_error_ref": "Réf. {ref}",
+  "cmdk_error_title": "L’index de recherche n’a pas pu être chargé.",
+  "cmdk_fact_compat": "Compatibilité",
+  "cmdk_fact_contents": "Contenu",
+  "cmdk_fact_downloads": "Téléchargements",
+  "cmdk_fact_manifest_id": "ID du mod",
+  "cmdk_fact_published": "Publiés",
+  "cmdk_group_actions": "Actions",
+  "cmdk_group_categories": "Catégories",
+  "cmdk_group_pages": "Pages",
+  "cmdk_group_recent": "Récents",
+  "cmdk_group_server": "De la recherche complète",
+  "cmdk_group_trending": "Tendances de la semaine",
+  "cmdk_hint_close": "Fermer",
+  "cmdk_hint_download": "Télécharger",
+  "cmdk_hint_move": "Se déplacer",
+  "cmdk_hint_new_tab": "Nouvel onglet",
+  "cmdk_hint_open": "Ouvrir",
+  "cmdk_hint_scope": "Portée",
+  "cmdk_input_label": "Rechercher des mods, builds, kits, créateurs et commandes",
+  "cmdk_kind_build": "Build",
+  "cmdk_kind_category": "Catégorie",
+  "cmdk_kind_creator": "Créateur",
+  "cmdk_kind_kit": "Kit",
+  "cmdk_kind_library": "Bibliothèque",
+  "cmdk_kind_mod": "Mod",
+  "cmdk_kind_page": "Page",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} élément",
+        "count__plural=*": "{count__number} éléments"
+      }
+    }
+  ],
+  "cmdk_loading": "Dépliage de la carte…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "cmdk_no_results": "Rien sur la carte pour « {query} ». Essayez avec moins de mots.",
+  "cmdk_offline": "Vous êtes hors ligne. Ce que vous voyez n’est peut-être pas à jour.",
+  "cmdk_placeholder": "Rechercher des mods, builds, kits, créateurs…",
+  "cmdk_placeholder_actions": "Tapez une commande…",
+  "cmdk_preview_download": "Télécharger la dernière",
+  "cmdk_preview_empty": "Parcourez les résultats pour les prévisualiser ici.",
+  "cmdk_preview_hint": "Appuyez sur Entrée pour l’ouvrir.",
+  "cmdk_preview_label": "Aperçu",
+  "cmdk_preview_open": "Ouvrir la page",
+  "cmdk_recent_clear": "Effacer les récents",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Aucun résultat",
+        "count__exact=*, count__plural=one": "{count__number} résultat",
+        "count__exact=*, count__plural=*": "{count__number} résultats"
+      }
+    }
+  ],
+  "cmdk_retry": "Réessayer",
+  "cmdk_scope_all": "Tout",
+  "cmdk_scope_label": "Rechercher dans",
+  "cmdk_scope_remove": "Rechercher partout (retirer « {scope} »)",
+  "cmdk_searching": "Recherche sur toute l’île…",
+  "cmdk_see_all": "Voir tous les résultats pour « {query} »",
+  "cmdk_start_hint": "Les pages que vous ouvrez d’ici apparaîtront dans cette liste.",
+  "cmdk_term_builds": "Builds",
+  "cmdk_term_creators": "Créateurs",
+  "cmdk_term_kits": "Kits",
+  "cmdk_term_mods": "Mods",
+  "cmdk_theme_day": "Jour",
+  "cmdk_theme_night": "Nuit",
+  "cmdk_theme_system": "Système",
   "common_account_menu": "Menu du compte",
   "common_account_profile": "Votre profil",
   "common_account_settings": "Paramètres",
