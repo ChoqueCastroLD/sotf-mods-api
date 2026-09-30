@@ -1,0 +1,16 @@
+export type LocalizedString = import('../runtime.js').LocalizedString;
+export type Ranger_User_VerifyInputs = {};
+/**
+* | output |
+* | --- |
+* | "Verify creator" |
+*
+* @param {Ranger_User_VerifyInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export declare const ranger_user_verify: ((inputs?: Ranger_User_VerifyInputs, options?: {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Ranger_User_VerifyInputs, {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}, {}>;

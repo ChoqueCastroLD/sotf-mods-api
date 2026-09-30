@@ -3310,6 +3310,537 @@
   "mod_whats_new_read": "Saha notlarını oku",
   "mod_whats_new_title": "Son indirmenden (v{version}) bu yana yenilikler",
   "mod_whats_new_up_to_date": "En yeni sürüme sahipsin (v{version}).",
+  "ranger_action_approve": "Onayla",
+  "ranger_action_mark_reviewed": "İncelendi olarak işaretle",
+  "ranger_action_reject": "Reddet",
+  "ranger_action_remove": "Kaldır",
+  "ranger_action_request_changes": "Değişiklik iste",
+  "ranger_action_restore": "Geri yükle",
+  "ranger_action_unlist": "Listelerden kaldır",
+  "ranger_assigned_short": "{name} üzerinde",
+  "ranger_assigned_to": "Atanan",
+  "ranger_audit_action": "İşlem",
+  "ranger_audit_actor": "İşlemi yapanın kullanıcı adı",
+  "ranger_audit_apply": "Filtrele",
+  "ranger_audit_changes": "Önce ve sonra",
+  "ranger_audit_clear": "Temizle",
+  "ranger_audit_description": "Ranger ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.",
+  "ranger_audit_empty_filtered": "Bu filtrelere uyan kayıt yok.",
+  "ranger_audit_empty_text": "Henüz hiçbir ranger işlemi kaydedilmedi.",
+  "ranger_audit_empty_title": "Kayıt yok",
+  "ranger_audit_reason_hint": "Denetim kaydında kalır.",
+  "ranger_audit_reason_label": "Gerekçe",
+  "ranger_audit_system": "Sistem",
+  "ranger_audit_target": "Hedef",
+  "ranger_audit_target_hint": "tür:id, örneğin user:12 veya mod:312",
+  "ranger_audit_target_invalid": "tür:id biçimini kullanın, örneğin user:12.",
+  "ranger_audit_title": "Denetim kaydı",
+  "ranger_author_unknown": "Bilinmeyen yazar",
+  "ranger_back_to_list": "Listeye dön",
+  "ranger_cancel": "İptal",
+  "ranger_changelog_none": "Bu sürümün değişiklik listesi yok.",
+  "ranger_checks_failed": "Kontroller başarısız",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dosya",
+        "count__plural=*": "{count__number} dosya"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "İncelemeye işaretlendi",
+  "ranger_checks_manifest_ok": "manifest.json geçerli",
+  "ranger_checks_no_flags": "Hiçbir kontrol uyarı vermedi.",
+  "ranger_checks_none": "Bu öğe için dosya incelemesi yok.",
+  "ranger_checks_passed": "Kontroller geçti",
+  "ranger_checks_pending": "Kontroller sürüyor",
+  "ranger_checks_ratio": "Sıkıştırma oranı {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "Açılmış hâli {size}",
+  "ranger_checks_title": "Otomatik kontroller",
+  "ranger_comment_hidden": "Yorum gizlendi.",
+  "ranger_comment_hide": "Gizle",
+  "ranger_comment_publish": "Yayımla",
+  "ranger_comment_published": "Yorum yayımlandı.",
+  "ranger_comment_reject_confirm": "Yorumu gizle",
+  "ranger_comment_reject_reason": "Gerekçe",
+  "ranger_comment_reject_reason_hint": "Denetim kaydında kalır.",
+  "ranger_comment_reject_title": "Bu yorumu gizle",
+  "ranger_conflict_detail": "Bu arada biri öğeyi değiştirdi. Kuyruk yenilendi; tekrar kontrol edin.",
+  "ranger_decided_approve": "Onaylandı: {title}",
+  "ranger_decided_reject": "Reddedildi: {title}",
+  "ranger_decided_remove": "Kaldırıldı: {title}",
+  "ranger_decided_request_changes": "Değişiklik istendi: {title}",
+  "ranger_decided_restore": "Geri yüklendi: {title}",
+  "ranger_decided_reviewed": "İncelendi olarak işaretlendi: {title}",
+  "ranger_decided_unlist": "Listelerden kaldırıldı: {title}",
+  "ranger_decision_failed": "Karar kaydedilmedi",
+  "ranger_decision_no_template": "Şablon yok — yalnızca notum",
+  "ranger_decision_note_hint": "Markdown. Şablonla birlikte gönderilir; neyin düzeltileceğini yazın.",
+  "ranger_decision_note_label": "Yazara not",
+  "ranger_decision_reason_required": "Bir gerekçe yazın (en az 3 karakter).",
+  "ranger_decision_template_label": "Gerekçe şablonu",
+  "ranger_decision_template_or_note": "Bir şablon seçin veya not yazın.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Gösterilecek metin yok.",
+  "ranger_diff_added": "Eklendi:",
+  "ranger_diff_changed": "Değişti:",
+  "ranger_diff_content_changed": "içerik değişti",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "İlk sürüm: karşılaştıracak bir şey yok. Zip {count__number} dosya içeriyor.",
+        "count__plural=*": "İlk sürüm: karşılaştıracak bir şey yok. Zip {count__number} dosya içeriyor."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "çalıştırılabilir",
+  "ranger_diff_identical": "Önceki sürümle aynı dosyalar.",
+  "ranger_diff_new_code": "yeni kod",
+  "ranger_diff_removed": "Silindi:",
+  "ranger_diff_summary": "Önceki sürüme göre: {added} eklendi, {removed} silindi, {changed} değişti.",
+  "ranger_diff_truncated": "{total} dosyanın ilk {shown} tanesi gösteriliyor.",
+  "ranger_diff_unavailable": "Karşılaştırılacak dosya listesi yok.",
+  "ranger_flag_absolute_path": "Zip içinde mutlak yol",
+  "ranger_flag_blueprint_invalid": "Yapı dosyası geçersiz",
+  "ranger_flag_extension_flagged": "Çalıştırılabilir dosya veya betik",
+  "ranger_flag_extension_not_allowed": "Dosya türüne izin verilmiyor",
+  "ranger_flag_file_too_large": "Dosya çok büyük",
+  "ranger_flag_manifest_id_mismatch": "Manifest kimliği modunkinden farklı",
+  "ranger_flag_manifest_invalid": "manifest.json geçersiz",
+  "ranger_flag_manifest_missing": "manifest.json eksik",
+  "ranger_flag_scan_detections": "Güvenlik taraması tespitleri",
+  "ranger_flag_version_not_greater": "Sürüm öncekinden yeni değil",
+  "ranger_flag_version_not_semver": "Sürüm anlamsal değil (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "Sıkıştırma oranı çok yüksek (zip bombası)",
+  "ranger_flag_zip_invalid": "Geçerli bir zip değil",
+  "ranger_flag_zip_slip": "Yol mod klasörünün dışına çıkıyor (zip slip)",
+  "ranger_flag_zip_too_many_entries": "Zip içinde çok fazla dosya",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} engelleyici kontrol",
+        "count__plural=*": "{count__number} engelleyici kontrol"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Hesap yaşı",
+  "ranger_history_attention": "Bu yazarın reddedilmiş modları veya etkin yaptırımları var.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} gün",
+        "count__plural=*": "{count__number} gün"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Denetim izi",
+  "ranger_history_open_user": "Kullanıcı kartını aç",
+  "ranger_history_published": "Yayımlanan modlar",
+  "ranger_history_rejected": "Reddedilen modlar",
+  "ranger_history_sanctions": "Etkin yaptırımlar",
+  "ranger_history_trust": "Güven",
+  "ranger_item_document_title": "İnceleme: {title}",
+  "ranger_item_gone_text": "Bu öğe hakkında başka bir ranger karar verdi ya da öğe kuyruktan çıktı.",
+  "ranger_item_gone_title": "Zaten ele alındı",
+  "ranger_item_next": "Sonraki öğe",
+  "ranger_item_region": "İncelenen öğe",
+  "ranger_lane_builds": "Yapılar",
+  "ranger_lane_builds_hint": "Onay veya yayın sonrası inceleme bekleyen yapılar.",
+  "ranger_lane_comments": "Yorumlar",
+  "ranger_lane_comments_hint": "Kimse okuyamadan önce incelemeye alınan yorumlar.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} öğe bekliyor",
+        "count__plural=*": "{count__number} öğe bekliyor"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "İnceleme bekleyen yorum yok.",
+  "ranger_lane_empty_reports": "Açık şikâyet yok. Topluluk uslu duruyor.",
+  "ranger_lane_empty_text": "Bu şeritte bekleyen bir şey yok. Yeni öğeler burada kendiliğinden görünür.",
+  "ranger_lane_empty_title": "Bu patika temiz",
+  "ranger_lane_new_mods": "Yeni modlar",
+  "ranger_lane_new_mods_hint": "İlk gönderimler ve onay bekleyen modlar.",
+  "ranger_lane_post_review": "Sonradan inceleme",
+  "ranger_lane_post_review_hint": "İnsan gözünden geçmeden yayımlanmış sürümler: 72 saat içinde inceleyin.",
+  "ranger_lane_reports": "Şikâyetler",
+  "ranger_lane_reports_hint": "Topluluktan gelen açık şikâyetler.",
+  "ranger_lane_versions": "Sürümler",
+  "ranger_lane_versions_hint": "Kontroller, güvenlik taraması veya bir şikâyet nedeniyle bekletilen sürümler.",
+  "ranger_lanes_label": "Kuyruk şeritleri",
+  "ranger_live": "Canlı",
+  "ranger_live_off": "Güncellemeler duraklatıldı — bağlantı geri geldiğinde liste yenilenir",
+  "ranger_load_more": "Daha fazla yükle",
+  "ranger_loading": "Yükleniyor…",
+  "ranger_manifest_after": "Sonra",
+  "ranger_manifest_before": "Önce",
+  "ranger_manifest_field": "Alan",
+  "ranger_manifest_identical": "Manifest değişmedi.",
+  "ranger_media_alt": "Görsel {index}",
+  "ranger_media_none": "Görsel yok.",
+  "ranger_more_actions": "Diğer işlemler",
+  "ranger_new_tab": "(yeni sekmede açılır)",
+  "ranger_next": "Sonraki",
+  "ranger_no_actions": "Burada karar verilecek bir şey kalmadı.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Sayfayı aç",
+  "ranger_open_reports": "Tüm şikâyetler",
+  "ranger_page_of": "Sayfa {page}/{total}",
+  "ranger_pagination": "Sayfalar",
+  "ranger_panel_error_text": "Bizim tarafımızda bir sorun oluştu. Birazdan tekrar deneyin.",
+  "ranger_panel_error_title": "Bu yüklenemedi",
+  "ranger_previous": "Önceki",
+  "ranger_queue_description": "Önce en eski ve en riskli olanlar. Her karar kayda geçer ve yazara bildirilir.",
+  "ranger_queue_title": "Moderasyon kuyruğu",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Çalışmıyor",
+  "ranger_reason_harassment": "Taciz",
+  "ranger_reason_illegal": "Yasa dışı içerik",
+  "ranger_reason_malware": "Kötü amaçlı yazılım",
+  "ranger_reason_nsfw_unmarked": "NSFW işaretlenmemiş",
+  "ranger_reason_other": "Diğer",
+  "ranger_reason_reupload": "İzinsiz yeniden yükleme",
+  "ranger_reason_spam": "Spam",
+  "ranger_reauth_action": "Yeniden giriş yap",
+  "ranger_reauth_text": "Ranger işlemleri son 12 saat içinde yapılmış bir giriş gerektirir. Devam etmek için yeniden giriş yapın.",
+  "ranger_reauth_title": "Siz olduğunuzu doğrulayın",
+  "ranger_reference": "Ref: {reference}",
+  "ranger_report_by": "Şikâyet eden",
+  "ranger_report_by_unknown": "Şikâyet eden hesabını sildi",
+  "ranger_report_dismiss": "Reddet",
+  "ranger_report_dismiss_text": "Şikâyet bir sorun değildi. Şikâyetler nedeniyle otomatik gizlenen içerik yeniden görünür.",
+  "ranger_report_dismiss_title": "Şikâyeti reddet",
+  "ranger_report_dismissed": "Şikâyet reddedildi.",
+  "ranger_report_hide_hint": "Modlar ve kitler listelerden kalkar, sürümler bekletilir, yorumlar ve incelemeler gizlenir.",
+  "ranger_report_hide_label": "İçeriği gizle",
+  "ranger_report_history": "Bu içeriğin geçmişi",
+  "ranger_report_no_details": "Ayrıntı verilmedi.",
+  "ranger_report_note_hint": "Şikâyetle birlikte ve denetim kaydında saklanır.",
+  "ranger_report_note_label": "Çözüm notu",
+  "ranger_report_open_user": "Kullanıcı kartını aç",
+  "ranger_report_resolution": "Çözüm: {note}",
+  "ranger_report_resolve": "Çöz",
+  "ranger_report_resolve_hide": "Çöz ve gizle",
+  "ranger_report_resolve_text": "Bu içerikle ilgili tüm açık şikâyetler kapanır ve her şikâyet edene ele alındığı bildirilir.",
+  "ranger_report_resolve_title": "Şikâyeti çöz",
+  "ranger_report_resolved": "Şikâyet çözüldü.",
+  "ranger_report_status_all": "Tümü",
+  "ranger_report_status_dismissed": "Reddedildi",
+  "ranger_report_status_open": "Açık",
+  "ranger_report_status_resolved": "Çözüldü",
+  "ranger_report_target_missing": "{type} #{id} (artık yok)",
+  "ranger_reports_description": "Topluluğun işaretlediği içerikler, gerekçe ve kanıtlarıyla. Bir şikâyet kapatılınca gönderen bilgilendirilir.",
+  "ranger_reports_empty_open_text": "Bakılacak bir şey yok. Yeni şikâyetler burada ve kuyrukta görünür.",
+  "ranger_reports_empty_open_title": "Açık şikâyet yok",
+  "ranger_reports_empty_text": "Bu filtreye uyan şikâyet yok.",
+  "ranger_reports_empty_title": "Burada şikâyet yok",
+  "ranger_reports_filter": "Şikâyet durumu",
+  "ranger_reports_title": "Şikâyetler",
+  "ranger_retry": "Tekrar dene",
+  "ranger_risk_high": "Yüksek risk",
+  "ranger_risk_low": "Düşük risk",
+  "ranger_risk_medium": "Orta risk",
+  "ranger_role_admin": "Yönetici",
+  "ranger_role_moderator": "Moderatör",
+  "ranger_role_user": "Kullanıcı",
+  "ranger_sanction_ban": "Yasakla",
+  "ranger_sanction_ban_hint": "Kalıcı. Her yerden çıkış yaptırır.",
+  "ranger_sanction_comment_mute": "Yorumları sustur",
+  "ranger_sanction_comment_mute_hint": "Yorum veya inceleme yazamaz — her yerde ya da tek bir modda.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} gün",
+        "count__plural=*": "{count__number} gün"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Süre",
+  "ranger_sanction_ended": "Sona erdi",
+  "ranger_sanction_failed": "Yaptırım uygulanmadı",
+  "ranger_sanction_kind": "Yaptırım",
+  "ranger_sanction_open": "Yaptırım uygula",
+  "ranger_sanction_permanent": "Kalıcı",
+  "ranger_sanction_reason": "Gerekçe",
+  "ranger_sanction_reason_hint": "Kullanıcı bunu görür. Olgulara bağlı kalın.",
+  "ranger_sanction_revoke": "Kaldır",
+  "ranger_sanction_revoke_failed": "Yaptırım kaldırılamadı",
+  "ranger_sanction_revoke_title": "Bu yaptırım kaldırılsın mı?",
+  "ranger_sanction_revoked": "Yaptırım kaldırıldı.",
+  "ranger_sanction_revoked_on": "Kaldırıldı: {date}",
+  "ranger_sanction_scope": "Yalnızca tek bir modda",
+  "ranger_sanction_scope_clear": "Bunun yerine her yerde sustur",
+  "ranger_sanction_scope_hint": "Her yerde susturmak için boş bırakın.",
+  "ranger_sanction_scope_none": "Eşleşen mod yok.",
+  "ranger_sanction_scope_on": "{mod} üzerinde",
+  "ranger_sanction_scope_placeholder": "Mod veya yapı ara",
+  "ranger_sanction_scope_results": "Eşleşen modlar",
+  "ranger_sanction_since": "Başlangıç: {date}",
+  "ranger_sanction_suspend": "Askıya al",
+  "ranger_sanction_suspend_hint": "Bitiş tarihine kadar giriş yapamaz.",
+  "ranger_sanction_title": "Bu kullanıcıya yaptırım uygula",
+  "ranger_sanction_until": "{date} tarihine kadar",
+  "ranger_sanction_upload_mute": "Yüklemeleri engelle",
+  "ranger_sanction_upload_mute_hint": "Mod, sürüm veya yapı yayımlayamaz.",
+  "ranger_scan_clean": "Tespit yok",
+  "ranger_scan_engines": "{total} motordan {positives}",
+  "ranger_scan_false_positive": "Doğrulanmış yanlış pozitif",
+  "ranger_scan_malicious": "Zararlı",
+  "ranger_scan_none": "Taranmadı",
+  "ranger_scan_override_confirm": "Kararı kaydet",
+  "ranger_scan_override_done": "Tarama kararı: “{verdict}”.",
+  "ranger_scan_override_failed": "Karar kaydedilmedi",
+  "ranger_scan_override_false_positive_hint": "Dosyaları kontrol ettiniz: tespitler yanlış pozitif. Taramanın beklettiği sürüm serbest bırakılır.",
+  "ranger_scan_override_malicious_hint": "Dosya zararlı. Sürüm geri çekilir ve erişilemez kalır.",
+  "ranger_scan_override_note": "Neden (denetim kaydında kalır)",
+  "ranger_scan_override_open": "Kararı değiştir",
+  "ranger_scan_override_title": "Tarama kararını değiştir",
+  "ranger_scan_override_verdict": "Yeni karar",
+  "ranger_scan_pending": "Tarama bekliyor",
+  "ranger_scan_report_link": "VirusTotal raporu",
+  "ranger_scan_suspicious": "Şüpheli",
+  "ranger_scan_unknown": "Taranmadı (tarayıcı yok)",
+  "ranger_select_item": "İncelemek için listeden bir öğe seçin.",
+  "ranger_severity_error": "yayımlamayı engeller",
+  "ranger_severity_warning": "insan gözü gerekir",
+  "ranger_shortcut_next": "Sonraki öğe",
+  "ranger_shortcut_previous": "Önceki öğe",
+  "ranger_sla_average": "Ortalama bekleme",
+  "ranger_sla_due": "{time} · SLA dolmak üzere",
+  "ranger_sla_oldest": "En eski",
+  "ranger_sla_over": "{hours} saati aşan",
+  "ranger_sla_overdue": "{time} · SLA aşıldı",
+  "ranger_sla_waiting": "Bu şeritte bekleyen",
+  "ranger_staff": "Ekip",
+  "ranger_submitted": "Gönderildi: {when}",
+  "ranger_tab_changelog": "Değişiklikler",
+  "ranger_tab_content": "İçerik",
+  "ranger_tab_description": "Açıklama",
+  "ranger_tab_files": "Dosya farkları",
+  "ranger_tab_history": "Yazarın geçmişi",
+  "ranger_tab_manifest": "Manifest farkları",
+  "ranger_tab_media": "Medya",
+  "ranger_tabs_label": "Öğe ayrıntıları",
+  "ranger_target_comment": "Yorum",
+  "ranger_target_compat_report": "Saha raporu",
+  "ranger_target_kit": "Kit",
+  "ranger_target_mod": "Mod",
+  "ranger_target_review": "İnceleme",
+  "ranger_target_user": "Kullanıcı",
+  "ranger_target_version": "Sürüm",
+  "ranger_template_broken_or_empty": "Dosya bozuk, boş ya da RedLoader ile yüklenmiyor.",
+  "ranger_template_broken_or_empty_title": "Bozuk veya boş",
+  "ranger_template_copyright_claim": "Geçerli bir telif hakkı talebinin ardından kaldırıldı.",
+  "ranger_template_copyright_claim_title": "Telif hakkı talebi",
+  "ranger_template_credit_original_author": "Lütfen asıl yazarı belirtin ve çalışmasına bağlantı verin.",
+  "ranger_template_credit_original_author_title": "Asıl yazarı belirtin",
+  "ranger_template_duplicate": "Bu, zaten listelenmiş bir modun kopyası. Bunun yerine onun yeni bir sürümünü yayımlayın.",
+  "ranger_template_duplicate_title": "Kopya",
+  "ranger_template_malware_confirmed": "Kaldırıldı: dosyanın zararlı olduğu doğrulandı.",
+  "ranger_template_malware_confirmed_title": "Zararlı yazılım doğrulandı",
+  "ranger_template_malware_detected": "Güvenlik taraması dosyayı zararlı olarak işaretledi.",
+  "ranger_template_malware_detected_title": "Tarama tarafından işaretlendi",
+  "ranger_template_missing_description": "Lütfen modun ne yaptığını, nasıl kurulduğunu ve nasıl kullanıldığını açıklayın.",
+  "ranger_template_missing_description_title": "Açıklama eksik",
+  "ranger_template_missing_screenshots": "Lütfen modu oyunda gösteren en az bir ekran görüntüsü ekleyin.",
+  "ranger_template_missing_screenshots_title": "Ekran görüntüsü eksik",
+  "ranger_template_not_a_mod": "Bu yükleme bir Sons of the Forest modu ya da yapısı değil.",
+  "ranger_template_not_a_mod_title": "Mod değil",
+  "ranger_template_nsfw_unmarked": "Mod yetişkin içeriği barındırıyor: lütfen NSFW olarak işaretleyin.",
+  "ranger_template_nsfw_unmarked_title": "NSFW işaretlenmemiş",
+  "ranger_template_reupload_without_permission": "Bu, başkasının çalışmasının izinsiz yeniden yüklenmesine benziyor.",
+  "ranger_template_reupload_without_permission_title": "İzinsiz yeniden yükleme",
+  "ranger_template_rules_violation": "Site kurallarını ihlal ettiği için kaldırıldı.",
+  "ranger_template_rules_violation_title": "Kural ihlali",
+  "ranger_template_spam": "Spam veya reklam.",
+  "ranger_template_spam_title": "Spam",
+  "ranger_template_wrong_category": "Lütfen modu yaptığı işe uyan kategoriye taşıyın.",
+  "ranger_template_wrong_category_title": "Yanlış kategori",
+  "ranger_triage_note": "Telefon görünümü: yalnızca hızlı ayıklama. Dosya ve manifest farkları için tablet veya bilgisayar gerekir.",
+  "ranger_trust_level": "Seviye {level}",
+  "ranger_user_account": "Hesap",
+  "ranger_user_action_failed": "Değişiklik kaydedilmedi",
+  "ranger_user_actions": "İşlemler",
+  "ranger_user_audit": "Denetim izi",
+  "ranger_user_banned": "Yasaklı",
+  "ranger_user_banned_on": "Yasaklanma: {date}",
+  "ranger_user_comments": "Yorumlar",
+  "ranger_user_document_title": "{name} · Kullanıcılar",
+  "ranger_user_email_unverified": "E-posta doğrulanmadı",
+  "ranger_user_email_verified": "E-posta doğrulandı",
+  "ranger_user_joined": "Katılma",
+  "ranger_user_last_seen": "Son görülme",
+  "ranger_user_legacy_trusted": "Eski sitede güvenilir",
+  "ranger_user_mods": "Modlar",
+  "ranger_user_no_sanctions": "Hiç yaptırım almamış.",
+  "ranger_user_outranked": "Ranger’lar yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.",
+  "ranger_user_public_profile": "Herkese açık profil",
+  "ranger_user_reports_against": "Aleyhine şikâyetler",
+  "ranger_user_reviews": "İncelemeler",
+  "ranger_user_revoke_sessions": "Her yerden çıkış yaptır",
+  "ranger_user_revoke_sessions_text": "Bu hesabın tüm oturumları şimdi sona erer. Askıya alınmadıysa veya yasaklanmadıysa yeniden giriş yapabilir.",
+  "ranger_user_revoke_sessions_title": "{name} her yerden çıkış yapsın mı?",
+  "ranger_user_role": "Rol",
+  "ranger_user_role_confirm": "Rolü değiştir",
+  "ranger_user_role_done": "{name} artık {role}.",
+  "ranger_user_role_hint": "Yönetici rolü yalnızca komut satırından verilir.",
+  "ranger_user_role_title": "{name} kullanıcısının rolü {role} olarak değiştirilsin mi?",
+  "ranger_user_sanctions": "Yaptırımlar",
+  "ranger_user_self": "Bu sizin hesabınız: başka bir ranger işlem yapmalı.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Açık oturum yoktu.",
+        "count__exact=*, count__plural=one": "{count__number} oturum sonlandırıldı.",
+        "count__exact=*, count__plural=*": "{count__number} oturum sonlandırıldı."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Askıda: {date} tarihine kadar",
+  "ranger_user_unverified_done": "{name} artık doğrulanmış üretici değil.",
+  "ranger_user_unverify": "İşareti kaldır",
+  "ranger_user_unverify_title": "{name} için doğrulanmış üretici işareti kaldırılsın mı?",
+  "ranger_user_verified_done": "{name} artık doğrulanmış üretici.",
+  "ranger_user_verified_hint": "Doğrulanmış üreticiler kontroller geçince hemen yayımlar ve daha yüksek sınırlara sahiptir.",
+  "ranger_user_verify": "Üreticiyi doğrula",
+  "ranger_user_verify_title": "{name} doğrulanmış üretici yapılsın mı?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kullanıcı",
+        "count__plural=*": "{count__number} kullanıcı"
+      }
+    }
+  ],
+  "ranger_users_description": "Kullanıcı adı, ad veya e-postayla arayın. Geçmişini ve yaptırımlarını görmek için bir kullanıcı açın.",
+  "ranger_users_empty_query": "“{query}” ile eşleşen kimse yok.",
+  "ranger_users_empty_text": "Henüz eşleşme yok.",
+  "ranger_users_empty_title": "Kullanıcı bulunamadı",
+  "ranger_users_row_stats": "Modlar: {mods} · Aleyhine şikâyet: {reports}",
+  "ranger_users_search_label": "Kullanıcı ara",
+  "ranger_users_search_placeholder": "Kullanıcı adı, ad veya e-posta",
+  "ranger_users_search_submit": "Ara",
+  "ranger_users_title": "Kullanıcılar",
+  "ranger_verified_creator": "Doğrulanmış içerik üreticisi",
+  "ranger_waiting": "{time} bekliyor",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} gün",
+        "count__plural=*": "{display} gün"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sa",
+        "count__plural=*": "{count__number} sa"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dk",
+        "count__plural=*": "{count__number} dk"
+      }
+    }
+  ],
   "social_action_back": "Geri",
   "social_action_cancel": "İptal",
   "social_action_close": "Kapat",

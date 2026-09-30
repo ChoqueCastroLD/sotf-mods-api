@@ -15,8 +15,14 @@ import { Route as MeRouteImport } from './routes/me.tsx'
 import { Route as RangerRouteImport } from './routes/ranger.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as SignalsRouteImport } from './routes/signals.tsx'
+import { Route as RangerIndexRouteImport } from './routes/ranger/index.tsx'
+import { Route as RangerAuditRouteImport } from './routes/ranger/audit.tsx'
+import { Route as RangerCommentsRouteImport } from './routes/ranger/comments.tsx'
+import { Route as RangerReportsRouteImport } from './routes/ranger/reports.tsx'
 import { Route as MeKitsIndexRouteImport } from './routes/me/kits/index.tsx'
 import { Route as MeKitsKitIdRouteImport } from './routes/me/kits/$kitId.tsx'
+import { Route as RangerUsersIndexRouteImport } from './routes/ranger/users/index.tsx'
+import { Route as RangerUsersUserIdRouteImport } from './routes/ranger/users/$userId.tsx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -48,6 +54,26 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RangerIndexRoute = RangerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerAuditRoute = RangerAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerCommentsRoute = RangerCommentsRouteImport.update({
+  id: '/comments',
+  path: '/comments',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerReportsRoute = RangerReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => RangerRoute,
+} as any)
 const MeKitsIndexRoute = MeKitsIndexRouteImport.update({
   id: '/kits/',
   path: '/kits/',
@@ -58,37 +84,64 @@ const MeKitsKitIdRoute = MeKitsKitIdRouteImport.update({
   path: '/kits/$kitId',
   getParentRoute: () => MeRoute,
 } as any)
+const RangerUsersIndexRoute = RangerUsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerUsersUserIdRoute = RangerUsersUserIdRouteImport.update({
+  id: '/users/$userId',
+  path: '/users/$userId',
+  getParentRoute: () => RangerRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
   '/me': typeof MeRouteWithChildren
-  '/ranger': typeof RangerRoute
+  '/ranger': typeof RangerRouteWithChildren
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/ranger/audit': typeof RangerAuditRoute
+  '/ranger/comments': typeof RangerCommentsRoute
+  '/ranger/reports': typeof RangerReportsRoute
+  '/ranger/': typeof RangerIndexRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
+  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
   '/me/kits/': typeof MeKitsIndexRoute
+  '/ranger/users/': typeof RangerUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
   '/me': typeof MeRouteWithChildren
-  '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/ranger/audit': typeof RangerAuditRoute
+  '/ranger/comments': typeof RangerCommentsRoute
+  '/ranger/reports': typeof RangerReportsRoute
+  '/ranger': typeof RangerIndexRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
+  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
   '/me/kits': typeof MeKitsIndexRoute
+  '/ranger/users': typeof RangerUsersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
   '/me': typeof MeRouteWithChildren
-  '/ranger': typeof RangerRoute
+  '/ranger': typeof RangerRouteWithChildren
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/ranger/audit': typeof RangerAuditRoute
+  '/ranger/comments': typeof RangerCommentsRoute
+  '/ranger/reports': typeof RangerReportsRoute
+  '/ranger/': typeof RangerIndexRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
+  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
   '/me/kits/': typeof MeKitsIndexRoute
+  '/ranger/users/': typeof RangerUsersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,18 +152,29 @@ export interface FileRouteTypes {
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/ranger/audit'
+    | '/ranger/comments'
+    | '/ranger/reports'
+    | '/ranger/'
     | '/me/kits/$kitId'
+    | '/ranger/users/$userId'
     | '/me/kits/'
+    | '/ranger/users/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/basecamp'
     | '/me'
-    | '/ranger'
     | '/settings'
     | '/signals'
+    | '/ranger/audit'
+    | '/ranger/comments'
+    | '/ranger/reports'
+    | '/ranger'
     | '/me/kits/$kitId'
+    | '/ranger/users/$userId'
     | '/me/kits'
+    | '/ranger/users'
   id:
     | '__root__'
     | '/'
@@ -119,15 +183,21 @@ export interface FileRouteTypes {
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/ranger/audit'
+    | '/ranger/comments'
+    | '/ranger/reports'
+    | '/ranger/'
     | '/me/kits/$kitId'
+    | '/ranger/users/$userId'
     | '/me/kits/'
+    | '/ranger/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BasecampRoute: typeof BasecampRoute
   MeRoute: typeof MeRouteWithChildren
-  RangerRoute: typeof RangerRoute
+  RangerRoute: typeof RangerRouteWithChildren
   SettingsRoute: typeof SettingsRoute
   SignalsRoute: typeof SignalsRoute
 }
@@ -176,6 +246,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/ranger/': {
+      id: '/ranger/'
+      path: '/'
+      fullPath: '/ranger/'
+      preLoaderRoute: typeof RangerIndexRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/audit': {
+      id: '/ranger/audit'
+      path: '/audit'
+      fullPath: '/ranger/audit'
+      preLoaderRoute: typeof RangerAuditRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/comments': {
+      id: '/ranger/comments'
+      path: '/comments'
+      fullPath: '/ranger/comments'
+      preLoaderRoute: typeof RangerCommentsRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/reports': {
+      id: '/ranger/reports'
+      path: '/reports'
+      fullPath: '/ranger/reports'
+      preLoaderRoute: typeof RangerReportsRouteImport
+      parentRoute: typeof RangerRoute
+    }
     '/me/kits/': {
       id: '/me/kits/'
       path: '/kits'
@@ -189,6 +287,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/me/kits/$kitId'
       preLoaderRoute: typeof MeKitsKitIdRouteImport
       parentRoute: typeof MeRoute
+    }
+    '/ranger/users/': {
+      id: '/ranger/users/'
+      path: '/users'
+      fullPath: '/ranger/users/'
+      preLoaderRoute: typeof RangerUsersIndexRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/users/$userId': {
+      id: '/ranger/users/$userId'
+      path: '/users/$userId'
+      fullPath: '/ranger/users/$userId'
+      preLoaderRoute: typeof RangerUsersUserIdRouteImport
+      parentRoute: typeof RangerRoute
     }
   }
 }
@@ -205,11 +317,32 @@ const MeRouteChildren: MeRouteChildren = {
 
 const MeRouteWithChildren = MeRoute._addFileChildren(MeRouteChildren)
 
+interface RangerRouteChildren {
+  RangerAuditRoute: typeof RangerAuditRoute
+  RangerCommentsRoute: typeof RangerCommentsRoute
+  RangerReportsRoute: typeof RangerReportsRoute
+  RangerIndexRoute: typeof RangerIndexRoute
+  RangerUsersUserIdRoute: typeof RangerUsersUserIdRoute
+  RangerUsersIndexRoute: typeof RangerUsersIndexRoute
+}
+
+const RangerRouteChildren: RangerRouteChildren = {
+  RangerAuditRoute: RangerAuditRoute,
+  RangerCommentsRoute: RangerCommentsRoute,
+  RangerReportsRoute: RangerReportsRoute,
+  RangerIndexRoute: RangerIndexRoute,
+  RangerUsersUserIdRoute: RangerUsersUserIdRoute,
+  RangerUsersIndexRoute: RangerUsersIndexRoute,
+}
+
+const RangerRouteWithChildren =
+  RangerRoute._addFileChildren(RangerRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BasecampRoute: BasecampRoute,
   MeRoute: MeRouteWithChildren,
-  RangerRoute: RangerRoute,
+  RangerRoute: RangerRouteWithChildren,
   SettingsRoute: SettingsRoute,
   SignalsRoute: SignalsRoute,
 }

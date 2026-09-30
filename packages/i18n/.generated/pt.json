@@ -3310,6 +3310,537 @@
   "mod_whats_new_read": "Ler as notas de campo",
   "mod_whats_new_title": "Novidades desde o seu último download (v{version})",
   "mod_whats_new_up_to_date": "Você tem a versão mais recente (v{version}).",
+  "ranger_action_approve": "Aprovar",
+  "ranger_action_mark_reviewed": "Marcar como revisado",
+  "ranger_action_reject": "Rejeitar",
+  "ranger_action_remove": "Remover",
+  "ranger_action_request_changes": "Pedir alterações",
+  "ranger_action_restore": "Restaurar",
+  "ranger_action_unlist": "Tirar das listas",
+  "ranger_assigned_short": "com {name}",
+  "ranger_assigned_to": "Atribuído a",
+  "ranger_audit_action": "Ação",
+  "ranger_audit_actor": "Usuário que agiu",
+  "ranger_audit_apply": "Filtrar",
+  "ranger_audit_changes": "Antes e depois",
+  "ranger_audit_clear": "Limpar",
+  "ranger_audit_description": "Cada ação de rangers e admins: quem, o quê, antes e depois, e por quê. As entradas não podem ser editadas.",
+  "ranger_audit_empty_filtered": "Nenhuma entrada corresponde a estes filtros.",
+  "ranger_audit_empty_text": "Nenhuma ação de ranger foi registrada ainda.",
+  "ranger_audit_empty_title": "Nenhuma entrada",
+  "ranger_audit_reason_hint": "Fica no registro de auditoria.",
+  "ranger_audit_reason_label": "Motivo",
+  "ranger_audit_system": "Sistema",
+  "ranger_audit_target": "Alvo",
+  "ranger_audit_target_hint": "tipo:id, por exemplo user:12 ou mod:312",
+  "ranger_audit_target_invalid": "Use tipo:id, por exemplo user:12.",
+  "ranger_audit_title": "Registro de auditoria",
+  "ranger_author_unknown": "Autor desconhecido",
+  "ranger_back_to_list": "Voltar para a lista",
+  "ranger_cancel": "Cancelar",
+  "ranger_changelog_none": "Esta versão não tem lista de alterações.",
+  "ranger_checks_failed": "Verificações falharam",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} arquivo",
+        "count__plural=*": "{count__number} arquivos"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "Marcado para revisão",
+  "ranger_checks_manifest_ok": "manifest.json válido",
+  "ranger_checks_no_flags": "Nenhuma verificação apontou problema.",
+  "ranger_checks_none": "Sem inspeção de arquivos para este item.",
+  "ranger_checks_passed": "Verificações aprovadas",
+  "ranger_checks_pending": "Verificações em andamento",
+  "ranger_checks_ratio": "Taxa de compressão {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "Descompactado {size}",
+  "ranger_checks_title": "Verificações automáticas",
+  "ranger_comment_hidden": "Comentário ocultado.",
+  "ranger_comment_hide": "Ocultar",
+  "ranger_comment_publish": "Publicar",
+  "ranger_comment_published": "Comentário publicado.",
+  "ranger_comment_reject_confirm": "Ocultar comentário",
+  "ranger_comment_reject_reason": "Motivo",
+  "ranger_comment_reject_reason_hint": "Fica no registro de auditoria.",
+  "ranger_comment_reject_title": "Ocultar este comentário",
+  "ranger_conflict_detail": "Alguém alterou este item nesse meio-tempo. A fila foi atualizada; confira de novo.",
+  "ranger_decided_approve": "Aprovado: {title}",
+  "ranger_decided_reject": "Rejeitado: {title}",
+  "ranger_decided_remove": "Removido: {title}",
+  "ranger_decided_request_changes": "Alterações pedidas: {title}",
+  "ranger_decided_restore": "Restaurado: {title}",
+  "ranger_decided_reviewed": "Marcado como revisado: {title}",
+  "ranger_decided_unlist": "Tirado das listas: {title}",
+  "ranger_decision_failed": "A decisão não foi salva",
+  "ranger_decision_no_template": "Sem modelo — só a minha nota",
+  "ranger_decision_note_hint": "Markdown. Vai junto com o modelo; diga o que corrigir.",
+  "ranger_decision_note_label": "Nota para o autor",
+  "ranger_decision_reason_required": "Escreva um motivo (pelo menos 3 caracteres).",
+  "ranger_decision_template_label": "Modelo de motivo",
+  "ranger_decision_template_or_note": "Escolha um modelo ou escreva uma nota.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Nenhum texto para mostrar.",
+  "ranger_diff_added": "Adicionado:",
+  "ranger_diff_changed": "Alterado:",
+  "ranger_diff_content_changed": "conteúdo alterado",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Primeira versão: nada para comparar. O zip contém {count__number} arquivo.",
+        "count__plural=*": "Primeira versão: nada para comparar. O zip contém {count__number} arquivos."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "executável",
+  "ranger_diff_identical": "Os mesmos arquivos da versão anterior.",
+  "ranger_diff_new_code": "código novo",
+  "ranger_diff_removed": "Removido:",
+  "ranger_diff_summary": "Comparado à versão anterior: {added} adicionados, {removed} removidos, {changed} alterados.",
+  "ranger_diff_truncated": "Mostrando os primeiros {shown} de {total} arquivos.",
+  "ranger_diff_unavailable": "Sem lista de arquivos para comparar.",
+  "ranger_flag_absolute_path": "Caminho absoluto dentro do zip",
+  "ranger_flag_blueprint_invalid": "Arquivo da build inválido",
+  "ranger_flag_extension_flagged": "Arquivo executável ou script",
+  "ranger_flag_extension_not_allowed": "Tipo de arquivo não permitido",
+  "ranger_flag_file_too_large": "Arquivo grande demais",
+  "ranger_flag_manifest_id_mismatch": "O id do manifest difere do mod",
+  "ranger_flag_manifest_invalid": "manifest.json inválido",
+  "ranger_flag_manifest_missing": "Falta o manifest.json",
+  "ranger_flag_scan_detections": "Detecções da análise de segurança",
+  "ranger_flag_version_not_greater": "A versão não é mais nova que a anterior",
+  "ranger_flag_version_not_semver": "A versão não é semântica (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "Taxa de compressão alta demais (zip bomb)",
+  "ranger_flag_zip_invalid": "Não é um zip válido",
+  "ranger_flag_zip_slip": "Caminho sai da pasta do mod (zip slip)",
+  "ranger_flag_zip_too_many_entries": "Arquivos demais no zip",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} verificação bloqueante",
+        "count__plural=*": "{count__number} verificações bloqueantes"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Idade da conta",
+  "ranger_history_attention": "Este autor tem mods rejeitados ou sanções ativas.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dia",
+        "count__plural=*": "{count__number} dias"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Rastro de auditoria",
+  "ranger_history_open_user": "Abrir ficha do usuário",
+  "ranger_history_published": "Mods publicados",
+  "ranger_history_rejected": "Mods rejeitados",
+  "ranger_history_sanctions": "Sanções ativas",
+  "ranger_history_trust": "Confiança",
+  "ranger_item_document_title": "Revisão: {title}",
+  "ranger_item_gone_text": "Outro ranger já decidiu sobre este item, ou ele saiu da fila.",
+  "ranger_item_gone_title": "Já resolvido",
+  "ranger_item_next": "Próximo item",
+  "ranger_item_region": "Item em revisão",
+  "ranger_lane_builds": "Builds",
+  "ranger_lane_builds_hint": "Builds aguardando aprovação ou revisão após a publicação.",
+  "ranger_lane_comments": "Comentários",
+  "ranger_lane_comments_hint": "Comentários retidos para revisão antes que alguém possa lê-los.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} item aguardando",
+        "count__plural=*": "{count__number} itens aguardando"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "Nenhum comentário aguardando revisão.",
+  "ranger_lane_empty_reports": "Nenhuma denúncia aberta. A comunidade está se comportando.",
+  "ranger_lane_empty_text": "Nada aguarda nesta faixa. Novos itens aparecem aqui sozinhos.",
+  "ranger_lane_empty_title": "Trilha livre",
+  "ranger_lane_new_mods": "Mods novos",
+  "ranger_lane_new_mods_hint": "Primeiros envios e mods aguardando aprovação.",
+  "ranger_lane_post_review": "Revisão posterior",
+  "ranger_lane_post_review_hint": "Versões já publicadas sem olhar humano: revise em até 72 horas.",
+  "ranger_lane_reports": "Denúncias",
+  "ranger_lane_reports_hint": "Denúncias abertas da comunidade.",
+  "ranger_lane_versions": "Versões",
+  "ranger_lane_versions_hint": "Versões retidas pelas verificações, pela análise de segurança ou por uma denúncia.",
+  "ranger_lanes_label": "Faixas da fila",
+  "ranger_live": "Ao vivo",
+  "ranger_live_off": "Atualizações pausadas — a lista atualiza quando a conexão voltar",
+  "ranger_load_more": "Carregar mais",
+  "ranger_loading": "Carregando…",
+  "ranger_manifest_after": "Depois",
+  "ranger_manifest_before": "Antes",
+  "ranger_manifest_field": "Campo",
+  "ranger_manifest_identical": "O manifest não mudou.",
+  "ranger_media_alt": "Imagem {index}",
+  "ranger_media_none": "Nenhuma imagem.",
+  "ranger_more_actions": "Mais ações",
+  "ranger_new_tab": "(abre em uma nova aba)",
+  "ranger_next": "Próxima",
+  "ranger_no_actions": "Não há mais nada para decidir aqui.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Abrir página",
+  "ranger_open_reports": "Todas as denúncias",
+  "ranger_page_of": "Página {page} de {total}",
+  "ranger_pagination": "Páginas",
+  "ranger_panel_error_text": "Algo deu errado do nosso lado. Tente de novo daqui a pouco.",
+  "ranger_panel_error_title": "Isto não carregou",
+  "ranger_previous": "Anterior",
+  "ranger_queue_description": "Primeiro os mais antigos e mais arriscados. Cada decisão fica registrada e o autor é avisado.",
+  "ranger_queue_title": "Fila de moderação",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Não funciona",
+  "ranger_reason_harassment": "Assédio",
+  "ranger_reason_illegal": "Conteúdo ilegal",
+  "ranger_reason_malware": "Malware",
+  "ranger_reason_nsfw_unmarked": "NSFW sem marcação",
+  "ranger_reason_other": "Outro",
+  "ranger_reason_reupload": "Reenvio sem permissão",
+  "ranger_reason_spam": "Spam",
+  "ranger_reauth_action": "Entrar de novo",
+  "ranger_reauth_text": "Ações de ranger exigem um login feito nas últimas 12 horas. Entre de novo para continuar.",
+  "ranger_reauth_title": "Confirme que é você",
+  "ranger_reference": "Ref.: {reference}",
+  "ranger_report_by": "Denunciado por",
+  "ranger_report_by_unknown": "Quem denunciou excluiu a conta",
+  "ranger_report_dismiss": "Descartar",
+  "ranger_report_dismiss_text": "A denúncia não era um problema. O conteúdo ocultado automaticamente por denúncias volta a aparecer.",
+  "ranger_report_dismiss_title": "Descartar a denúncia",
+  "ranger_report_dismissed": "Denúncia descartada.",
+  "ranger_report_hide_hint": "Mods e kits saem das listas, versões ficam retidas, comentários e avaliações são ocultados.",
+  "ranger_report_hide_label": "Ocultar o conteúdo",
+  "ranger_report_history": "Histórico deste conteúdo",
+  "ranger_report_no_details": "Sem detalhes.",
+  "ranger_report_note_hint": "Fica guardada com a denúncia e no registro de auditoria.",
+  "ranger_report_note_label": "Nota da resolução",
+  "ranger_report_open_user": "Abrir ficha do usuário",
+  "ranger_report_resolution": "Resolução: {note}",
+  "ranger_report_resolve": "Resolver",
+  "ranger_report_resolve_hide": "Resolver e ocultar",
+  "ranger_report_resolve_text": "Todas as denúncias abertas sobre este conteúdo são fechadas e cada denunciante é avisado.",
+  "ranger_report_resolve_title": "Resolver a denúncia",
+  "ranger_report_resolved": "Denúncia resolvida.",
+  "ranger_report_status_all": "Todas",
+  "ranger_report_status_dismissed": "Descartadas",
+  "ranger_report_status_open": "Abertas",
+  "ranger_report_status_resolved": "Resolvidas",
+  "ranger_report_target_missing": "{type} nº {id} (não existe mais)",
+  "ranger_reports_description": "O que a comunidade denunciou, com o motivo e as provas. Fechar uma denúncia avisa quem a enviou.",
+  "ranger_reports_empty_open_text": "Nada para ver. Novas denúncias aparecem aqui e na fila.",
+  "ranger_reports_empty_open_title": "Nenhuma denúncia aberta",
+  "ranger_reports_empty_text": "Nenhuma denúncia corresponde a este filtro.",
+  "ranger_reports_empty_title": "Nenhuma denúncia aqui",
+  "ranger_reports_filter": "Status da denúncia",
+  "ranger_reports_title": "Denúncias",
+  "ranger_retry": "Tentar de novo",
+  "ranger_risk_high": "Risco alto",
+  "ranger_risk_low": "Risco baixo",
+  "ranger_risk_medium": "Risco médio",
+  "ranger_role_admin": "Admin",
+  "ranger_role_moderator": "Moderador",
+  "ranger_role_user": "Usuário",
+  "ranger_sanction_ban": "Banir",
+  "ranger_sanction_ban_hint": "Permanente. Encerra todas as sessões.",
+  "ranger_sanction_comment_mute": "Silenciar comentários",
+  "ranger_sanction_comment_mute_hint": "Não pode comentar nem avaliar — em todo o site ou em um mod.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dia",
+        "count__plural=*": "{count__number} dias"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Duração",
+  "ranger_sanction_ended": "Encerrada",
+  "ranger_sanction_failed": "A sanção não foi aplicada",
+  "ranger_sanction_kind": "Sanção",
+  "ranger_sanction_open": "Sancionar",
+  "ranger_sanction_permanent": "Permanente",
+  "ranger_sanction_reason": "Motivo",
+  "ranger_sanction_reason_hint": "O usuário vai ver. Atenha-se aos fatos.",
+  "ranger_sanction_revoke": "Revogar",
+  "ranger_sanction_revoke_failed": "A sanção não foi revogada",
+  "ranger_sanction_revoke_title": "Revogar esta sanção?",
+  "ranger_sanction_revoked": "Sanção revogada.",
+  "ranger_sanction_revoked_on": "Revogada em {date}",
+  "ranger_sanction_scope": "Só em um mod",
+  "ranger_sanction_scope_clear": "Silenciar em todo o site",
+  "ranger_sanction_scope_hint": "Deixe vazio para silenciar em todo o site.",
+  "ranger_sanction_scope_none": "Nenhum mod corresponde.",
+  "ranger_sanction_scope_on": "em {mod}",
+  "ranger_sanction_scope_placeholder": "Busque um mod ou build",
+  "ranger_sanction_scope_results": "Mods correspondentes",
+  "ranger_sanction_since": "Desde {date}",
+  "ranger_sanction_suspend": "Suspender",
+  "ranger_sanction_suspend_hint": "Não pode entrar até a data final.",
+  "ranger_sanction_title": "Sancionar este usuário",
+  "ranger_sanction_until": "até {date}",
+  "ranger_sanction_upload_mute": "Bloquear envios",
+  "ranger_sanction_upload_mute_hint": "Não pode publicar mods, versões nem builds.",
+  "ranger_scan_clean": "Nenhuma detecção",
+  "ranger_scan_engines": "{positives} de {total} mecanismos",
+  "ranger_scan_false_positive": "Falso positivo verificado",
+  "ranger_scan_malicious": "Malicioso",
+  "ranger_scan_none": "Não analisado",
+  "ranger_scan_override_confirm": "Salvar veredito",
+  "ranger_scan_override_done": "Veredito da análise: “{verdict}”.",
+  "ranger_scan_override_failed": "O veredito não foi salvo",
+  "ranger_scan_override_false_positive_hint": "Você conferiu os arquivos: as detecções são falsos positivos. A versão retida pela análise é liberada.",
+  "ranger_scan_override_malicious_hint": "O arquivo é nocivo. A versão é retirada e fica indisponível.",
+  "ranger_scan_override_note": "Motivo (fica no registro de auditoria)",
+  "ranger_scan_override_open": "Alterar veredito",
+  "ranger_scan_override_title": "Alterar o veredito da análise",
+  "ranger_scan_override_verdict": "Novo veredito",
+  "ranger_scan_pending": "Análise pendente",
+  "ranger_scan_report_link": "Relatório do VirusTotal",
+  "ranger_scan_suspicious": "Suspeito",
+  "ranger_scan_unknown": "Não analisado (nenhum scanner disponível)",
+  "ranger_select_item": "Escolha um item da lista para revisá-lo.",
+  "ranger_severity_error": "bloqueia a publicação",
+  "ranger_severity_warning": "precisa de um olhar humano",
+  "ranger_shortcut_next": "Próximo item",
+  "ranger_shortcut_previous": "Item anterior",
+  "ranger_sla_average": "Espera média",
+  "ranger_sla_due": "{time} · SLA vencendo",
+  "ranger_sla_oldest": "Mais antigo",
+  "ranger_sla_over": "Mais de {hours} h",
+  "ranger_sla_overdue": "{time} · SLA vencido",
+  "ranger_sla_waiting": "Aguardando nesta faixa",
+  "ranger_staff": "Equipe",
+  "ranger_submitted": "Enviado {when}",
+  "ranger_tab_changelog": "Alterações",
+  "ranger_tab_content": "Conteúdo",
+  "ranger_tab_description": "Descrição",
+  "ranger_tab_files": "Diferenças de arquivos",
+  "ranger_tab_history": "Histórico do autor",
+  "ranger_tab_manifest": "Diferenças do manifest",
+  "ranger_tab_media": "Mídia",
+  "ranger_tabs_label": "Detalhes do item",
+  "ranger_target_comment": "Comentário",
+  "ranger_target_compat_report": "Relatório de campo",
+  "ranger_target_kit": "Kit",
+  "ranger_target_mod": "Mod",
+  "ranger_target_review": "Avaliação",
+  "ranger_target_user": "Usuário",
+  "ranger_target_version": "Versão",
+  "ranger_template_broken_or_empty": "O arquivo está quebrado, vazio ou não carrega com o RedLoader.",
+  "ranger_template_broken_or_empty_title": "Quebrado ou vazio",
+  "ranger_template_copyright_claim": "Removido após uma reclamação de direitos autorais válida.",
+  "ranger_template_copyright_claim_title": "Reclamação de direitos autorais",
+  "ranger_template_credit_original_author": "Dê crédito ao autor original e coloque um link para o trabalho dele.",
+  "ranger_template_credit_original_author_title": "Dê crédito ao autor original",
+  "ranger_template_duplicate": "Isto duplica um mod que já está publicado. Publique uma nova versão dele.",
+  "ranger_template_duplicate_title": "Duplicado",
+  "ranger_template_malware_confirmed": "Removido: foi confirmado que o arquivo é malicioso.",
+  "ranger_template_malware_confirmed_title": "Malware confirmado",
+  "ranger_template_malware_detected": "A análise de segurança marcou o arquivo como malicioso.",
+  "ranger_template_malware_detected_title": "Apontado pela análise",
+  "ranger_template_missing_description": "Descreva o que o mod faz, como instalar e como usar.",
+  "ranger_template_missing_description_title": "Falta descrição",
+  "ranger_template_missing_screenshots": "Adicione pelo menos uma captura que mostre o mod no jogo.",
+  "ranger_template_missing_screenshots_title": "Faltam capturas",
+  "ranger_template_not_a_mod": "Este envio não é um mod nem uma build de Sons of the Forest.",
+  "ranger_template_not_a_mod_title": "Não é um mod",
+  "ranger_template_nsfw_unmarked": "O mod tem conteúdo adulto: marque-o como NSFW.",
+  "ranger_template_nsfw_unmarked_title": "NSFW sem marcação",
+  "ranger_template_reupload_without_permission": "Parece um reenvio do trabalho de outra pessoa sem a permissão dela.",
+  "ranger_template_reupload_without_permission_title": "Reenvio sem permissão",
+  "ranger_template_rules_violation": "Removido por violar as regras do site.",
+  "ranger_template_rules_violation_title": "Violação das regras",
+  "ranger_template_spam": "Spam ou publicidade.",
+  "ranger_template_spam_title": "Spam",
+  "ranger_template_wrong_category": "Mova o mod para a categoria que corresponde ao que ele faz.",
+  "ranger_template_wrong_category_title": "Categoria errada",
+  "ranger_triage_note": "Visão de celular: só triagem rápida. As diferenças de arquivos e do manifest precisam de um tablet ou computador.",
+  "ranger_trust_level": "Nível {level}",
+  "ranger_user_account": "Conta",
+  "ranger_user_action_failed": "A alteração não foi salva",
+  "ranger_user_actions": "Ações",
+  "ranger_user_audit": "Rastro de auditoria",
+  "ranger_user_banned": "Banido",
+  "ranger_user_banned_on": "Banido em {date}",
+  "ranger_user_comments": "Comentários",
+  "ranger_user_document_title": "{name} · Usuários",
+  "ranger_user_email_unverified": "E-mail não verificado",
+  "ranger_user_email_verified": "E-mail verificado",
+  "ranger_user_joined": "Entrou em",
+  "ranger_user_last_seen": "Visto por último",
+  "ranger_user_legacy_trusted": "Confiável no site antigo",
+  "ranger_user_mods": "Mods",
+  "ranger_user_no_sanctions": "Nenhuma sanção, nunca.",
+  "ranger_user_outranked": "Rangers só podem agir sobre contas com papel abaixo do seu.",
+  "ranger_user_public_profile": "Perfil público",
+  "ranger_user_reports_against": "Denúncias contra",
+  "ranger_user_reviews": "Avaliações",
+  "ranger_user_revoke_sessions": "Encerrar todas as sessões",
+  "ranger_user_revoke_sessions_text": "Todas as sessões desta conta terminam agora. A pessoa pode entrar de novo, a menos que esteja suspensa ou banida.",
+  "ranger_user_revoke_sessions_title": "Encerrar todas as sessões de {name}?",
+  "ranger_user_role": "Papel",
+  "ranger_user_role_confirm": "Mudar papel",
+  "ranger_user_role_done": "{name} agora é {role}.",
+  "ranger_user_role_hint": "O papel de admin só é concedido pela linha de comando.",
+  "ranger_user_role_title": "Mudar o papel de {name} para {role}?",
+  "ranger_user_sanctions": "Sanções",
+  "ranger_user_self": "Esta é a sua própria conta: outro ranger precisa agir.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Nenhuma sessão estava aberta.",
+        "count__exact=*, count__plural=one": "{count__number} sessão encerrada.",
+        "count__exact=*, count__plural=*": "{count__number} sessões encerradas."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Suspenso até {date}",
+  "ranger_user_unverified_done": "{name} não é mais um criador verificado.",
+  "ranger_user_unverify": "Remover marca",
+  "ranger_user_unverify_title": "Remover de {name} a marca de criador verificado?",
+  "ranger_user_verified_done": "{name} agora é um criador verificado.",
+  "ranger_user_verified_hint": "Criadores verificados publicam na hora quando as verificações passam e têm limites maiores.",
+  "ranger_user_verify": "Verificar criador",
+  "ranger_user_verify_title": "Tornar {name} um criador verificado?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} usuário",
+        "count__plural=*": "{count__number} usuários"
+      }
+    }
+  ],
+  "ranger_users_description": "Busque por usuário, nome ou e-mail. Abra um usuário para ver o histórico e as sanções.",
+  "ranger_users_empty_query": "Ninguém corresponde a “{query}”.",
+  "ranger_users_empty_text": "Nenhuma correspondência ainda.",
+  "ranger_users_empty_title": "Nenhum usuário encontrado",
+  "ranger_users_row_stats": "Mods: {mods} · Denúncias contra: {reports}",
+  "ranger_users_search_label": "Buscar usuários",
+  "ranger_users_search_placeholder": "Usuário, nome ou e-mail",
+  "ranger_users_search_submit": "Buscar",
+  "ranger_users_title": "Usuários",
+  "ranger_verified_creator": "Criador verificado",
+  "ranger_waiting": "aguardando há {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} dia",
+        "count__plural=*": "{display} dias"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} h",
+        "count__plural=*": "{count__number} h"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} min",
+        "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
   "social_action_back": "Voltar",
   "social_action_cancel": "Cancelar",
   "social_action_close": "Fechar",

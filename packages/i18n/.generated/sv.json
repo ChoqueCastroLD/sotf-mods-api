@@ -3310,6 +3310,537 @@
   "mod_whats_new_read": "Läs fältanteckningarna",
   "mod_whats_new_title": "Nytt sedan din senaste nedladdning (v{version})",
   "mod_whats_new_up_to_date": "Du har den senaste versionen (v{version}).",
+  "ranger_action_approve": "Godkänn",
+  "ranger_action_mark_reviewed": "Markera som granskad",
+  "ranger_action_reject": "Avvisa",
+  "ranger_action_remove": "Ta bort",
+  "ranger_action_request_changes": "Begär ändringar",
+  "ranger_action_restore": "Återställ",
+  "ranger_action_unlist": "Ta bort ur listorna",
+  "ranger_assigned_short": "hos {name}",
+  "ranger_assigned_to": "Tilldelat",
+  "ranger_audit_action": "Åtgärd",
+  "ranger_audit_actor": "Utförarens användarnamn",
+  "ranger_audit_apply": "Filtrera",
+  "ranger_audit_changes": "Före och efter",
+  "ranger_audit_clear": "Rensa",
+  "ranger_audit_description": "Varje åtgärd av rangers och admins: vem, vad, före och efter och varför. Poster kan inte redigeras.",
+  "ranger_audit_empty_filtered": "Ingen post matchar filtren.",
+  "ranger_audit_empty_text": "Ingen ranger-åtgärd har loggats ännu.",
+  "ranger_audit_empty_title": "Inga poster",
+  "ranger_audit_reason_hint": "Sparas i granskningsloggen.",
+  "ranger_audit_reason_label": "Motivering",
+  "ranger_audit_system": "System",
+  "ranger_audit_target": "Mål",
+  "ranger_audit_target_hint": "typ:id, till exempel user:12 eller mod:312",
+  "ranger_audit_target_invalid": "Använd typ:id, till exempel user:12.",
+  "ranger_audit_title": "Granskningslogg",
+  "ranger_author_unknown": "Okänd skapare",
+  "ranger_back_to_list": "Tillbaka till listan",
+  "ranger_cancel": "Avbryt",
+  "ranger_changelog_none": "Ingen ändringslista för den här versionen.",
+  "ranger_checks_failed": "Kontrollerna misslyckades",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fil",
+        "count__plural=*": "{count__number} filer"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "Flaggat för granskning",
+  "ranger_checks_manifest_ok": "manifest.json giltig",
+  "ranger_checks_no_flags": "Ingen kontroll slog larm.",
+  "ranger_checks_none": "Ingen filinspektion för det här objektet.",
+  "ranger_checks_passed": "Kontrollerna godkända",
+  "ranger_checks_pending": "Kontrollerna pågår",
+  "ranger_checks_ratio": "Komprimeringsgrad {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "Uppackat {size}",
+  "ranger_checks_title": "Automatiska kontroller",
+  "ranger_comment_hidden": "Kommentaren doldes.",
+  "ranger_comment_hide": "Dölj",
+  "ranger_comment_publish": "Publicera",
+  "ranger_comment_published": "Kommentaren publicerades.",
+  "ranger_comment_reject_confirm": "Dölj kommentaren",
+  "ranger_comment_reject_reason": "Motivering",
+  "ranger_comment_reject_reason_hint": "Sparas i granskningsloggen.",
+  "ranger_comment_reject_title": "Dölj den här kommentaren",
+  "ranger_conflict_detail": "Någon ändrade objektet under tiden. Kön har uppdaterats; kontrollera det igen.",
+  "ranger_decided_approve": "Godkänd: {title}",
+  "ranger_decided_reject": "Avvisad: {title}",
+  "ranger_decided_remove": "Borttagen: {title}",
+  "ranger_decided_request_changes": "Ändringar begärda: {title}",
+  "ranger_decided_restore": "Återställd: {title}",
+  "ranger_decided_reviewed": "Markerad som granskad: {title}",
+  "ranger_decided_unlist": "Borttagen ur listorna: {title}",
+  "ranger_decision_failed": "Beslutet sparades inte",
+  "ranger_decision_no_template": "Ingen mall – bara min anteckning",
+  "ranger_decision_note_hint": "Markdown. Skickas med mallen; säg vad som ska rättas.",
+  "ranger_decision_note_label": "Anteckning till skaparen",
+  "ranger_decision_reason_required": "Skriv en motivering (minst 3 tecken).",
+  "ranger_decision_template_label": "Mall för motivering",
+  "ranger_decision_template_or_note": "Välj en mall eller skriv en anteckning.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Ingen text att visa.",
+  "ranger_diff_added": "Tillagd:",
+  "ranger_diff_changed": "Ändrad:",
+  "ranger_diff_content_changed": "innehållet ändrat",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Första versionen: inget att jämföra med. Zip-filen innehåller {count__number} fil.",
+        "count__plural=*": "Första versionen: inget att jämföra med. Zip-filen innehåller {count__number} filer."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "körbar",
+  "ranger_diff_identical": "Samma filer som i förra versionen.",
+  "ranger_diff_new_code": "ny kod",
+  "ranger_diff_removed": "Borttagen:",
+  "ranger_diff_summary": "Jämfört med förra versionen: {added} tillagda, {removed} borttagna, {changed} ändrade.",
+  "ranger_diff_truncated": "Visar de första {shown} av {total} filer.",
+  "ranger_diff_unavailable": "Ingen fillista att jämföra.",
+  "ranger_flag_absolute_path": "Absolut sökväg i zip-filen",
+  "ranger_flag_blueprint_invalid": "Byggfilen är ogiltig",
+  "ranger_flag_extension_flagged": "Körbar fil eller skript",
+  "ranger_flag_extension_not_allowed": "Filtypen är inte tillåten",
+  "ranger_flag_file_too_large": "Filen är för stor",
+  "ranger_flag_manifest_id_mismatch": "Manifestets id skiljer sig från modden",
+  "ranger_flag_manifest_invalid": "manifest.json är ogiltig",
+  "ranger_flag_manifest_missing": "manifest.json saknas",
+  "ranger_flag_scan_detections": "Träffar i säkerhetsskanningen",
+  "ranger_flag_version_not_greater": "Versionen är inte nyare än den förra",
+  "ranger_flag_version_not_semver": "Versionen är inte semantisk (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "För hög komprimeringsgrad (zipbomb)",
+  "ranger_flag_zip_invalid": "Inte en giltig zip",
+  "ranger_flag_zip_slip": "Sökväg lämnar moddmappen (zip slip)",
+  "ranger_flag_zip_too_many_entries": "För många filer i zip-filen",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} blockerande kontroll",
+        "count__plural=*": "{count__number} blockerande kontroller"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Kontots ålder",
+  "ranger_history_attention": "Den här skaparen har avvisade moddar eller aktiva sanktioner.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dag",
+        "count__plural=*": "{count__number} dagar"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Granskningsspåret",
+  "ranger_history_open_user": "Öppna användarkortet",
+  "ranger_history_published": "Publicerade moddar",
+  "ranger_history_rejected": "Avvisade moddar",
+  "ranger_history_sanctions": "Aktiva sanktioner",
+  "ranger_history_trust": "Förtroende",
+  "ranger_item_document_title": "Granskning: {title}",
+  "ranger_item_gone_text": "En annan ranger har redan beslutat om objektet, eller så har det lämnat kön.",
+  "ranger_item_gone_title": "Redan hanterat",
+  "ranger_item_next": "Nästa objekt",
+  "ranger_item_region": "Objekt under granskning",
+  "ranger_lane_builds": "Byggen",
+  "ranger_lane_builds_hint": "Byggen som väntar på godkännande eller granskning efter publicering.",
+  "ranger_lane_comments": "Kommentarer",
+  "ranger_lane_comments_hint": "Kommentarer som hålls kvar för granskning innan någon kan läsa dem.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} objekt väntar",
+        "count__plural=*": "{count__number} objekt väntar"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "Inga kommentarer väntar på granskning.",
+  "ranger_lane_empty_reports": "Inga öppna anmälningar. Communityn sköter sig.",
+  "ranger_lane_empty_text": "Inget väntar i den här filen. Nya objekt dyker upp här av sig själva.",
+  "ranger_lane_empty_title": "Fri stig",
+  "ranger_lane_new_mods": "Nya moddar",
+  "ranger_lane_new_mods_hint": "Första inskick och moddar som väntar på godkännande.",
+  "ranger_lane_post_review": "Efterhandsgranskning",
+  "ranger_lane_post_review_hint": "Redan publicerade versioner utan mänsklig granskning: granska dem inom 72 timmar.",
+  "ranger_lane_reports": "Anmälningar",
+  "ranger_lane_reports_hint": "Öppna anmälningar från communityn.",
+  "ranger_lane_versions": "Versioner",
+  "ranger_lane_versions_hint": "Versioner som hålls kvar av kontrollerna, säkerhetsskanningen eller en anmälan.",
+  "ranger_lanes_label": "Köns filer",
+  "ranger_live": "Live",
+  "ranger_live_off": "Uppdateringar pausade – listan uppdateras när anslutningen är tillbaka",
+  "ranger_load_more": "Läs in fler",
+  "ranger_loading": "Läser in …",
+  "ranger_manifest_after": "Efter",
+  "ranger_manifest_before": "Före",
+  "ranger_manifest_field": "Fält",
+  "ranger_manifest_identical": "Manifestet har inte ändrats.",
+  "ranger_media_alt": "Bild {index}",
+  "ranger_media_none": "Inga bilder.",
+  "ranger_more_actions": "Fler åtgärder",
+  "ranger_new_tab": "(öppnas i en ny flik)",
+  "ranger_next": "Nästa",
+  "ranger_no_actions": "Det finns inget mer att besluta här.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Öppna sidan",
+  "ranger_open_reports": "Alla anmälningar",
+  "ranger_page_of": "Sida {page} av {total}",
+  "ranger_pagination": "Sidor",
+  "ranger_panel_error_text": "Något gick fel hos oss. Försök igen om en stund.",
+  "ranger_panel_error_title": "Det här lästes inte in",
+  "ranger_previous": "Föregående",
+  "ranger_queue_description": "Äldst och mest riskfyllt först. Varje beslut loggas och skaparen meddelas.",
+  "ranger_queue_title": "Modereringskö",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Fungerar inte",
+  "ranger_reason_harassment": "Trakasserier",
+  "ranger_reason_illegal": "Olagligt innehåll",
+  "ranger_reason_malware": "Skadlig kod",
+  "ranger_reason_nsfw_unmarked": "NSFW inte markerat",
+  "ranger_reason_other": "Annat",
+  "ranger_reason_reupload": "Omuppladdning utan tillstånd",
+  "ranger_reason_spam": "Spam",
+  "ranger_reauth_action": "Logga in igen",
+  "ranger_reauth_text": "Ranger-åtgärder kräver en inloggning från de senaste 12 timmarna. Logga in igen för att fortsätta.",
+  "ranger_reauth_title": "Bekräfta att det är du",
+  "ranger_reference": "Ref: {reference}",
+  "ranger_report_by": "Anmäld av",
+  "ranger_report_by_unknown": "Anmälaren har raderat sitt konto",
+  "ranger_report_dismiss": "Avfärda",
+  "ranger_report_dismiss_text": "Anmälan var inget problem. Innehåll som dolts automatiskt av anmälningar blir synligt igen.",
+  "ranger_report_dismiss_title": "Avfärda anmälan",
+  "ranger_report_dismissed": "Anmälan avfärdad.",
+  "ranger_report_hide_hint": "Moddar och kit tas bort ur listorna, versioner hålls kvar, kommentarer och recensioner döljs.",
+  "ranger_report_hide_label": "Dölj innehållet",
+  "ranger_report_history": "Innehållets historik",
+  "ranger_report_no_details": "Inga detaljer angivna.",
+  "ranger_report_note_hint": "Sparas med anmälan och i granskningsloggen.",
+  "ranger_report_note_label": "Anteckning om lösningen",
+  "ranger_report_open_user": "Öppna användarkortet",
+  "ranger_report_resolution": "Lösning: {note}",
+  "ranger_report_resolve": "Lös",
+  "ranger_report_resolve_hide": "Lös och dölj",
+  "ranger_report_resolve_text": "Alla öppna anmälningar om innehållet stängs och varje anmälare får veta att det har hanterats.",
+  "ranger_report_resolve_title": "Lös anmälan",
+  "ranger_report_resolved": "Anmälan löst.",
+  "ranger_report_status_all": "Alla",
+  "ranger_report_status_dismissed": "Avfärdade",
+  "ranger_report_status_open": "Öppna",
+  "ranger_report_status_resolved": "Lösta",
+  "ranger_report_target_missing": "{type} nr {id} (finns inte längre)",
+  "ranger_reports_description": "Det communityn har anmält, med orsak och bevis. När en anmälan stängs meddelas den som skickade den.",
+  "ranger_reports_empty_open_text": "Inget att titta på. Nya anmälningar syns här och i kön.",
+  "ranger_reports_empty_open_title": "Inga öppna anmälningar",
+  "ranger_reports_empty_text": "Ingen anmälan matchar filtret.",
+  "ranger_reports_empty_title": "Inga anmälningar här",
+  "ranger_reports_filter": "Anmälans status",
+  "ranger_reports_title": "Anmälningar",
+  "ranger_retry": "Försök igen",
+  "ranger_risk_high": "Hög risk",
+  "ranger_risk_low": "Låg risk",
+  "ranger_risk_medium": "Medelhög risk",
+  "ranger_role_admin": "Admin",
+  "ranger_role_moderator": "Moderator",
+  "ranger_role_user": "Användare",
+  "ranger_sanction_ban": "Bannlys",
+  "ranger_sanction_ban_hint": "Permanent. Loggar ut överallt.",
+  "ranger_sanction_comment_mute": "Tysta kommentarer",
+  "ranger_sanction_comment_mute_hint": "Kan inte kommentera eller recensera – överallt eller på en modd.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dag",
+        "count__plural=*": "{count__number} dagar"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Längd",
+  "ranger_sanction_ended": "Avslutad",
+  "ranger_sanction_failed": "Sanktionen tillämpades inte",
+  "ranger_sanction_kind": "Sanktion",
+  "ranger_sanction_open": "Sanktionera",
+  "ranger_sanction_permanent": "Permanent",
+  "ranger_sanction_reason": "Motivering",
+  "ranger_sanction_reason_hint": "Användaren ser den. Håll dig till fakta.",
+  "ranger_sanction_revoke": "Återkalla",
+  "ranger_sanction_revoke_failed": "Sanktionen återkallades inte",
+  "ranger_sanction_revoke_title": "Återkalla sanktionen?",
+  "ranger_sanction_revoked": "Sanktionen återkallades.",
+  "ranger_sanction_revoked_on": "Återkallad {date}",
+  "ranger_sanction_scope": "Bara på en modd",
+  "ranger_sanction_scope_clear": "Tysta överallt i stället",
+  "ranger_sanction_scope_hint": "Lämna tomt för att tysta kommentarer överallt.",
+  "ranger_sanction_scope_none": "Ingen modd matchar.",
+  "ranger_sanction_scope_on": "på {mod}",
+  "ranger_sanction_scope_placeholder": "Sök en modd eller ett bygge",
+  "ranger_sanction_scope_results": "Matchande moddar",
+  "ranger_sanction_since": "Sedan {date}",
+  "ranger_sanction_suspend": "Stäng av",
+  "ranger_sanction_suspend_hint": "Kan inte logga in förrän slutdatumet.",
+  "ranger_sanction_title": "Sanktionera användaren",
+  "ranger_sanction_until": "till {date}",
+  "ranger_sanction_upload_mute": "Blockera uppladdningar",
+  "ranger_sanction_upload_mute_hint": "Kan inte publicera moddar, versioner eller byggen.",
+  "ranger_scan_clean": "Inga träffar",
+  "ranger_scan_engines": "{positives} av {total} motorer",
+  "ranger_scan_false_positive": "Verifierat falsklarm",
+  "ranger_scan_malicious": "Skadlig",
+  "ranger_scan_none": "Inte skannad",
+  "ranger_scan_override_confirm": "Spara utlåtande",
+  "ranger_scan_override_done": "Skanningens utlåtande: ”{verdict}”.",
+  "ranger_scan_override_failed": "Utlåtandet sparades inte",
+  "ranger_scan_override_false_positive_hint": "Du har kontrollerat filerna: träffarna är falsklarm. En version som skanningen höll kvar släpps.",
+  "ranger_scan_override_malicious_hint": "Filen är skadlig. Versionen dras tillbaka och förblir otillgänglig.",
+  "ranger_scan_override_note": "Varför (sparas i granskningsloggen)",
+  "ranger_scan_override_open": "Ändra utlåtande",
+  "ranger_scan_override_title": "Ändra skanningens utlåtande",
+  "ranger_scan_override_verdict": "Nytt utlåtande",
+  "ranger_scan_pending": "Skanning väntar",
+  "ranger_scan_report_link": "VirusTotal-rapport",
+  "ranger_scan_suspicious": "Misstänkt",
+  "ranger_scan_unknown": "Inte skannad (ingen skanner tillgänglig)",
+  "ranger_select_item": "Välj ett objekt i listan för att granska det.",
+  "ranger_severity_error": "blockerar publicering",
+  "ranger_severity_warning": "behöver en mänsklig blick",
+  "ranger_shortcut_next": "Nästa objekt",
+  "ranger_shortcut_previous": "Föregående objekt",
+  "ranger_sla_average": "Genomsnittlig väntetid",
+  "ranger_sla_due": "{time} · SLA löper snart ut",
+  "ranger_sla_oldest": "Äldst",
+  "ranger_sla_over": "Över {hours} h",
+  "ranger_sla_overdue": "{time} · SLA överskridet",
+  "ranger_sla_waiting": "Väntar i den här filen",
+  "ranger_staff": "Personal",
+  "ranger_submitted": "Inskickat {when}",
+  "ranger_tab_changelog": "Ändringar",
+  "ranger_tab_content": "Innehåll",
+  "ranger_tab_description": "Beskrivning",
+  "ranger_tab_files": "Filskillnader",
+  "ranger_tab_history": "Skaparens historik",
+  "ranger_tab_manifest": "Manifestskillnader",
+  "ranger_tab_media": "Media",
+  "ranger_tabs_label": "Objektets detaljer",
+  "ranger_target_comment": "Kommentar",
+  "ranger_target_compat_report": "Fältrapport",
+  "ranger_target_kit": "Kit",
+  "ranger_target_mod": "Modd",
+  "ranger_target_review": "Recension",
+  "ranger_target_user": "Användare",
+  "ranger_target_version": "Version",
+  "ranger_template_broken_or_empty": "Filen är trasig, tom eller laddar inte med RedLoader.",
+  "ranger_template_broken_or_empty_title": "Trasig eller tom",
+  "ranger_template_copyright_claim": "Borttagen efter ett giltigt upphovsrättsanspråk.",
+  "ranger_template_copyright_claim_title": "Upphovsrättsanspråk",
+  "ranger_template_credit_original_author": "Ange originalskaparen och länka till verket.",
+  "ranger_template_credit_original_author_title": "Ange originalskaparen",
+  "ranger_template_duplicate": "Det här dubblerar en modd som redan finns. Publicera en ny version av den i stället.",
+  "ranger_template_duplicate_title": "Dubblett",
+  "ranger_template_malware_confirmed": "Borttagen: filen är bekräftat skadlig.",
+  "ranger_template_malware_confirmed_title": "Skadlig kod bekräftad",
+  "ranger_template_malware_detected": "Säkerhetsskanningen flaggade filen som skadlig.",
+  "ranger_template_malware_detected_title": "Flaggad av skanningen",
+  "ranger_template_missing_description": "Beskriv vad modden gör, hur man installerar den och hur man använder den.",
+  "ranger_template_missing_description_title": "Beskrivning saknas",
+  "ranger_template_missing_screenshots": "Lägg till minst en skärmbild som visar modden i spelet.",
+  "ranger_template_missing_screenshots_title": "Skärmbilder saknas",
+  "ranger_template_not_a_mod": "Den här uppladdningen är varken en modd eller ett bygge för Sons of the Forest.",
+  "ranger_template_not_a_mod_title": "Inte en modd",
+  "ranger_template_nsfw_unmarked": "Modden innehåller vuxeninnehåll: markera den som NSFW.",
+  "ranger_template_nsfw_unmarked_title": "NSFW inte markerat",
+  "ranger_template_reupload_without_permission": "Det här ser ut som en omuppladdning av någon annans verk utan tillstånd.",
+  "ranger_template_reupload_without_permission_title": "Omuppladdning utan tillstånd",
+  "ranger_template_rules_violation": "Borttagen för brott mot sajtens regler.",
+  "ranger_template_rules_violation_title": "Regelbrott",
+  "ranger_template_spam": "Spam eller reklam.",
+  "ranger_template_spam_title": "Spam",
+  "ranger_template_wrong_category": "Flytta modden till den kategori som passar det den gör.",
+  "ranger_template_wrong_category_title": "Fel kategori",
+  "ranger_triage_note": "Mobilvy: bara snabb sortering. Fil- och manifestskillnaderna kräver en surfplatta eller dator.",
+  "ranger_trust_level": "Nivå {level}",
+  "ranger_user_account": "Konto",
+  "ranger_user_action_failed": "Ändringen sparades inte",
+  "ranger_user_actions": "Åtgärder",
+  "ranger_user_audit": "Granskningsspår",
+  "ranger_user_banned": "Bannlyst",
+  "ranger_user_banned_on": "Bannlyst {date}",
+  "ranger_user_comments": "Kommentarer",
+  "ranger_user_document_title": "{name} · Användare",
+  "ranger_user_email_unverified": "E-post inte verifierad",
+  "ranger_user_email_verified": "E-post verifierad",
+  "ranger_user_joined": "Gick med",
+  "ranger_user_last_seen": "Senast sedd",
+  "ranger_user_legacy_trusted": "Betrodd på den gamla sajten",
+  "ranger_user_mods": "Moddar",
+  "ranger_user_no_sanctions": "Aldrig några sanktioner.",
+  "ranger_user_outranked": "Rangers kan bara agera på konton med lägre roll än den egna.",
+  "ranger_user_public_profile": "Offentlig profil",
+  "ranger_user_reports_against": "Anmälningar mot",
+  "ranger_user_reviews": "Recensioner",
+  "ranger_user_revoke_sessions": "Logga ut överallt",
+  "ranger_user_revoke_sessions_text": "Alla sessioner för kontot avslutas nu. Personen kan logga in igen om kontot inte är avstängt eller bannlyst.",
+  "ranger_user_revoke_sessions_title": "Logga ut {name} överallt?",
+  "ranger_user_role": "Roll",
+  "ranger_user_role_confirm": "Ändra roll",
+  "ranger_user_role_done": "{name} är nu {role}.",
+  "ranger_user_role_hint": "Admins utses bara via kommandoraden.",
+  "ranger_user_role_title": "Ändra rollen för {name} till {role}?",
+  "ranger_user_sanctions": "Sanktioner",
+  "ranger_user_self": "Det här är ditt eget konto: en annan ranger måste agera.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Ingen session var öppen.",
+        "count__exact=*, count__plural=one": "{count__number} session avslutades.",
+        "count__exact=*, count__plural=*": "{count__number} sessioner avslutades."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Avstängd till {date}",
+  "ranger_user_unverified_done": "{name} är inte längre verifierad skapare.",
+  "ranger_user_unverify": "Ta bort markering",
+  "ranger_user_unverify_title": "Ta bort markeringen verifierad skapare från {name}?",
+  "ranger_user_verified_done": "{name} är nu verifierad skapare.",
+  "ranger_user_verified_hint": "Verifierade skapare publicerar direkt när kontrollerna går igenom och har högre gränser.",
+  "ranger_user_verify": "Verifiera skapare",
+  "ranger_user_verify_title": "Göra {name} till verifierad skapare?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} användare",
+        "count__plural=*": "{count__number} användare"
+      }
+    }
+  ],
+  "ranger_users_description": "Sök på användarnamn, namn eller e-post. Öppna en användare för att se historik och sanktioner.",
+  "ranger_users_empty_query": "Ingen matchar ”{query}”.",
+  "ranger_users_empty_text": "Inga träffar ännu.",
+  "ranger_users_empty_title": "Inga användare hittades",
+  "ranger_users_row_stats": "Moddar: {mods} · Anmälningar mot: {reports}",
+  "ranger_users_search_label": "Sök användare",
+  "ranger_users_search_placeholder": "Användarnamn, namn eller e-post",
+  "ranger_users_search_submit": "Sök",
+  "ranger_users_title": "Användare",
+  "ranger_verified_creator": "Verifierad skapare",
+  "ranger_waiting": "väntat {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} dag",
+        "count__plural=*": "{display} dagar"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} h",
+        "count__plural=*": "{count__number} h"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} min",
+        "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
   "social_action_back": "Tillbaka",
   "social_action_cancel": "Avbryt",
   "social_action_close": "Stäng",
