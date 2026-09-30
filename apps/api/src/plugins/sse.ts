@@ -13,9 +13,18 @@
  */
 import * as sseModule from '@fastify/sse';
 import { eventsEndpoints, SSE_HEARTBEAT_SECONDS, type SseChannel } from '@sotf/contracts';
-import { PG_EVENTS_CHANNEL } from '@sotf/contracts/events';
+import {
+  encodeModLiveFrame,
+  PG_EVENTS_CHANNEL,
+  SSE_MOD_LIVE_MAX_SECONDS,
+  SSE_MOD_LIVE_SECONDS,
+  type SseModLiveEvent,
+} from '@sotf/contracts/events';
+import { getModLive } from '@sotf/core/catalog/index';
 import { decodeRealtimeMessage, hasRole, type Logger, type PgListener, type RealtimeMessage } from '@sotf/core';
 import type { FastifyInstance, FastifyReply } from 'fastify';
+import { catalogConfigOf } from '../modules/catalog/index.ts';
+import { httpError } from './errors.ts';
 
 export interface SseHubOptions {
   log: Logger;
@@ -154,9 +163,17 @@ export class SseHub {
     for (const streams of this.#byUser.values()) for (const stream of [...streams]) stream.write(': ping\n\n');
   }
 
+  #closeHooks: Array<() => void> = [];
+
+  /** Runs `hook` on shutdown (streams that do not go through the hub's channels). */
+  onClose(hook: () => void): void {
+    this.#closeHooks.push(hook);
+  }
+
   /** Closes every stream and stops the heartbeat (graceful shutdown). */
   close(): void {
     this.#closed = true;
+    for (const hook of this.#closeHooks) hook();
     if (this.#ping) clearInterval(this.#ping);
     this.#ping = null;
     this.#detach?.();
@@ -216,6 +233,102 @@ export async function setupSse(app: FastifyInstance, hub: SseHub): Promise<void>
       const last = request.headers['last-event-id'];
       const lastId = Array.isArray(last) ? last[0] : last;
       if (lastId) for (const message of hub.replay(channels, lastId)) write(formatFrame(message));
+    },
+  });
+}
+
+/** Public mod streams open at once per client IP (a mod page needs one). */
+const MOD_LIVE_STREAMS_PER_IP = 4;
+
+/**
+ * `GET /api/v2/mods/:id/live/stream` (public, cookieless): the live counters of one reachable mod.
+ * Every stream re-reads the counters every 15 s (the `getModLive` LRU makes that one query per mod
+ * per window however many tabs are open) and only writes a frame when a figure changed, so the
+ * traffic is throttled by design. Streams are recycled every 10 minutes and closed on shutdown.
+ */
+export async function setupModLiveStream(app: FastifyInstance, hub: SseHub): Promise<void> {
+  const endpoint = eventsEndpoints.modLiveStream;
+  const config = catalogConfigOf(app.platform.env);
+  const perIp = new Map<string, number>();
+  const closers = new Set<() => void>();
+  hub.onClose(() => {
+    for (const close of [...closers]) close();
+  });
+  app.route({
+    method: endpoint.method,
+    url: endpoint.path,
+    config: { endpoint },
+    sse: { kind: 'manual', heartbeat: false },
+    handler: async (request, reply: FastifyReply) => {
+      const parsed = endpoint.params.safeParse(request.params);
+      if (!parsed.success) throw httpError('NOT_FOUND');
+      const modId = parsed.data.id;
+      const ip = request.clientIp;
+      if ((perIp.get(ip) ?? 0) >= MOD_LIVE_STREAMS_PER_IP) throw httpError('RATE_LIMITED');
+      // Throws NOT_FOUND for an unreachable mod before any byte is streamed.
+      let last = await getModLive(request.ctx, config, modId);
+      const context = reply.sse;
+      if (!context) throw new Error('@fastify/sse did not decorate the reply');
+      reply.header('cache-control', 'no-store');
+      reply.header('x-accel-buffering', 'no');
+      context.keepAlive();
+      context.sendHeaders(200);
+      const raw = reply.raw;
+      perIp.set(ip, (perIp.get(ip) ?? 0) + 1);
+      let open = true;
+      let seq = 1;
+      const frame = (live: typeof last): string => {
+        const event: SseModLiveEvent = {
+          event: 'mod.live',
+          id: String(seq++),
+          data: { modId, downloads: live.downloads, downloads24h: live.downloads24h, followers: live.followers },
+        };
+        return encodeModLiveFrame(event);
+      };
+      const close = () => {
+        if (!open) return;
+        open = false;
+        clearInterval(poll);
+        clearTimeout(recycle);
+        closers.delete(close);
+        const left = (perIp.get(ip) ?? 1) - 1;
+        if (left <= 0) perIp.delete(ip);
+        else perIp.set(ip, left);
+        context.close();
+        raw.end();
+      };
+      const poll = setInterval(() => {
+        void getModLive(request.ctx, config, modId).then(
+          (live) => {
+            if (!open) return;
+            if (
+              live.downloads !== last.downloads ||
+              live.downloads24h !== last.downloads24h ||
+              live.followers !== last.followers
+            ) {
+              last = live;
+              raw.write(frame(live));
+            } else raw.write(': ping\n\n');
+          },
+          () => close(),
+        );
+      }, SSE_MOD_LIVE_SECONDS * 1000);
+      const recycle = setTimeout(close, SSE_MOD_LIVE_MAX_SECONDS * 1000);
+      poll.unref();
+      recycle.unref();
+      closers.add(close);
+      context.onClose(() => {
+        if (!open) return;
+        open = false;
+        clearInterval(poll);
+        clearTimeout(recycle);
+        closers.delete(close);
+        const left = (perIp.get(ip) ?? 1) - 1;
+        if (left <= 0) perIp.delete(ip);
+        else perIp.set(ip, left);
+      });
+      // The first frame carries the current figures so the page can reconcile at once.
+      raw.write(`retry: 15000\n${frame(last)}`);
     },
   });
 }

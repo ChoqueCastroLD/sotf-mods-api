@@ -109,6 +109,7 @@ export const API_ROUTES = {
     removeMyDownload: { id: 'downloads.removeMyDownload', method: 'DELETE', path: "/api/v2/me/downloads/:modId", kind: 'empty', bodyKind: null },
   },
   events: {
+    modLiveStream: { id: 'events.modLiveStream', method: 'GET', path: "/api/v2/mods/:id/live/stream", kind: 'event-stream', bodyKind: null },
     stream: { id: 'events.stream', method: 'GET', path: "/api/v2/stream", kind: 'event-stream', bodyKind: null },
     beacon: { id: 'events.beacon', method: 'POST', path: "/api/v2/e", kind: 'empty', bodyKind: 'text' },
     vitals: { id: 'events.vitals', method: 'POST', path: "/api/v2/e/vitals", kind: 'empty', bodyKind: 'text' },

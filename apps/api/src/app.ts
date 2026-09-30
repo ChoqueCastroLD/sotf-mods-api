@@ -51,7 +51,7 @@ import { setupDocs } from './plugins/docs.ts';
 import { setupErrors } from './plugins/errors.ts';
 import { type RateLimitOverrides, setupRateLimit } from './plugins/rate-limit.ts';
 import { HSTS_MAX_AGE_SECONDS, setupSecurity } from './plugins/security/index.ts';
-import { SseHub, setupSse } from './plugins/sse.ts';
+import { SseHub, setupModLiveStream, setupSse } from './plugins/sse.ts';
 
 export interface BuildAppOptions {
   env: ApiEnv;
@@ -244,6 +244,7 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   registerHealth(app);
   await setupDocs(app, { version: env.GIT_SHA, siteUrl: env.PUBLIC_SITE_URL });
   await setupSse(app, hub);
+  await setupModLiveStream(app, hub);
 
   const implemented = new Map<string, string>();
   for (const module of options.modules ?? registeredModules) {
