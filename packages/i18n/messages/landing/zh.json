@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "报告模组是否可用",
   "landing_personal_step_create_kit": "组建你的第一个套装",
   "landing_personal_kits_title": "你最近的套装",
-  "landing_personal_error": "加载你的更新时信号中断。"
+  "landing_personal_error": "加载你的更新时信号中断。",
+  "landing_personal_step_mark_done": "将“{step}”标记为已完成",
+  "landing_personal_step_failed": "无法保存该步骤，请重试。"
 }

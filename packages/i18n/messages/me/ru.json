@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Объедините моды в набор, которым можно поделиться одним кодом.",
   "me_onboarding_kit_action": "Создать набор",
   "me_onboarding_completed": "Вы пережили первый день — значок получен",
-  "me_onboarding_failed": "Не удалось обновить список"
+  "me_onboarding_failed": "Не удалось обновить список",
+  "me_onboarding_mark_done": "Отметить «{step}» как выполненное"
 }

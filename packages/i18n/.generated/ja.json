@@ -4594,9 +4594,11 @@
   "landing_personal_step_compat_report": "MODが動いたか報告",
   "landing_personal_step_create_kit": "最初のキットを作る",
   "landing_personal_step_done": "完了",
+  "landing_personal_step_failed": "ステップを保存できませんでした。もう一度お試しください。",
   "landing_personal_step_first_download": "最初のMODをダウンロード",
   "landing_personal_step_follow_mod": "MODをフォロー",
   "landing_personal_step_install_redloader": "RedLoader をインストール",
+  "landing_personal_step_mark_done": "「{step}」を完了にする",
   "landing_personal_title": "あなたのアップデート",
   "landing_picks_cta": "{count}件のMODをすべて見る",
   "landing_picks_cta_hint": "カテゴリ、互換性、ゲームバージョンなどで絞り込み",
@@ -4796,6 +4798,7 @@
   "me_onboarding_kit_action": "キットを作成",
   "me_onboarding_kit_hint": "MODをまとめて、1つのコードで共有できるキットにしましょう。",
   "me_onboarding_kit_title": "キットを組もう",
+  "me_onboarding_mark_done": "「{step}」を完了にする",
   "me_onboarding_progress": [
     {
       "declarations": [

@@ -5053,9 +5053,11 @@
   "landing_personal_step_compat_report": "Meld of een mod werkte",
   "landing_personal_step_create_kit": "Stel je eerste Kit samen",
   "landing_personal_step_done": "Klaar",
+  "landing_personal_step_failed": "Die stap kon niet worden opgeslagen. Probeer het opnieuw.",
   "landing_personal_step_first_download": "Download je eerste mod",
   "landing_personal_step_follow_mod": "Volg een mod",
   "landing_personal_step_install_redloader": "Installeer RedLoader",
+  "landing_personal_step_mark_done": "„{step}” als gedaan markeren",
   "landing_personal_title": "Jouw updates",
   "landing_picks_cta": "Bekijk alle {count} mods",
   "landing_picks_cta_hint": "Filter op categorie, compatibiliteit, gameversie en meer",
@@ -5275,6 +5277,7 @@
   "me_onboarding_kit_action": "Kit maken",
   "me_onboarding_kit_hint": "Bundel je mods in een loadout die je met één code deelt.",
   "me_onboarding_kit_title": "Stel een kit samen",
+  "me_onboarding_mark_done": "„{step}” als gedaan markeren",
   "me_onboarding_progress": [
     {
       "declarations": [

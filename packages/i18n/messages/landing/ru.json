@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Сообщить, заработал ли мод",
   "landing_personal_step_create_kit": "Собрать первый набор",
   "landing_personal_kits_title": "Ваши недавние наборы",
-  "landing_personal_error": "Сигнал пропал при загрузке ваших обновлений."
+  "landing_personal_error": "Сигнал пропал при загрузке ваших обновлений.",
+  "landing_personal_step_mark_done": "Отметить «{step}» как выполненное",
+  "landing_personal_step_failed": "Не удалось сохранить шаг. Попробуйте ещё раз."
 }

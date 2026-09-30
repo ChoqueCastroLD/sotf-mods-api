@@ -4,7 +4,8 @@
  * State lives in `"User"."onboarding"` jsonb (same shape as `accounts/me.ts` reads):
  * `{ steps?: { <step>: ISO }, dismissedAt?: ISO, completedAt?: ISO, timeZone?: IANA }`.
  *
- * - `install_redloader` can only be self-reported; the other steps are derived from real activity
+ * - Every step can be ticked by hand (`markDone`, counts toward completion) and unticked
+ *   (`markUndone`); `install_redloader` can only be self-reported; the others are also derived from real activity
  *   (first counted download, first followed mod, first Field report, first kit) and their time is
  *   stored the first time they are observed, so the checklist keeps its dates.
  * - Completing every step sets `completedAt` once and emits `user.onboarding_completed` in the same
@@ -164,7 +165,7 @@ export async function getOnboarding(ctx: Ctx, timeZone?: string | null): Promise
   return dto;
 }
 
-/** `PATCH /me/onboarding`: dismiss/restore the checklist or self-report the manual step. */
+/** `PATCH /me/onboarding`: dismiss/restore the checklist, tick or untick steps by hand. */
 export async function updateOnboarding(
   ctx: Ctx,
   body: z.infer<typeof UpdateOnboardingBody>,
@@ -176,6 +177,8 @@ export async function updateOnboarding(
     syncOnboarding(tx, ctx.jobs, userId, now, (current) => {
       const state = withTimeZone(timeZone)(current);
       const steps = { ...(state.steps ?? {}) };
+      // Unticking is ignored once the checklist is complete (the badge is already awarded).
+      if (!state.completedAt) for (const step of body.markUndone ?? []) delete steps[step];
       for (const step of body.markDone ?? []) if (!steps[step]) steps[step] = now.toISOString();
       const next: OnboardingState = { ...state, steps };
       if (body.dismissed === true && !next.dismissedAt) next.dismissedAt = now.toISOString();

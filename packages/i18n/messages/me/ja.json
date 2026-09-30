@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "MODをまとめて、1つのコードで共有できるキットにしましょう。",
   "me_onboarding_kit_action": "キットを作成",
   "me_onboarding_completed": "1日目を生き延びました。バッジを獲得",
-  "me_onboarding_failed": "チェックリストを更新できませんでした"
+  "me_onboarding_failed": "チェックリストを更新できませんでした",
+  "me_onboarding_mark_done": "「{step}」を完了にする"
 }

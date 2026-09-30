@@ -111,21 +111,29 @@ const rowLink =
         >
           <div data-personal-progress-bar class="h-full w-0 rounded-full bg-primary transition-[width] duration-(--dur-slow)"></div>
         </div>
+        <p data-personal-step-error hidden role="alert" class="text-sm text-danger">{m.landing_personal_step_failed()}</p>
         <ol class="grid gap-1">
           {
             ONBOARDING_STEPS.map((step) => (
-              <li data-step={step} class="group">
-                <a href={href(STEP_PATH[step], locale)} class={rowLink}>
+              <li data-step={step} class="group flex items-center gap-1">
+                <button
+                  type="button"
+                  aria-pressed="false"
+                  data-step-toggle
+                  aria-label={m.landing_personal_step_mark_done({ step: STEP_LABEL[step] })}
+                  class="flex size-11 shrink-0 items-center justify-center rounded-md hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                >
                   <span class="text-fg-subtle group-data-done:hidden">
                     <Icon icon={Circle} size={18} />
                   </span>
                   <span class="hidden text-success group-data-done:inline">
                     <Icon icon={Check} size={18} />
                   </span>
+                </button>
+                <a href={href(STEP_PATH[step], locale)} class={`${rowLink} flex-1`}>
                   <span class="text-sm text-fg group-data-done:text-fg-muted group-data-done:line-through">
                     {STEP_LABEL[step]}
                   </span>
-                  <span class="sr-only hidden group-data-done:inline">({m.landing_personal_step_done()})</span>
                 </a>
               </li>
             ))

@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Dire si un mod a fonctionné",
   "landing_personal_step_create_kit": "Créer votre premier Kit",
   "landing_personal_kits_title": "Vos Kits récents",
-  "landing_personal_error": "Signal perdu pendant le chargement de vos mises à jour."
+  "landing_personal_error": "Signal perdu pendant le chargement de vos mises à jour.",
+  "landing_personal_step_mark_done": "Marquer « {step} » comme fait",
+  "landing_personal_step_failed": "Impossible d'enregistrer cette étape. Réessayez."
 }

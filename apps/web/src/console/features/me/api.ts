@@ -20,6 +20,7 @@ export type BackpackItem = Backpack['items'][number];
 export type DownloadHistory = Awaited<ReturnType<typeof api.downloads.myDownloads>>;
 export type DownloadItem = DownloadHistory['items'][number];
 export type Onboarding = Awaited<ReturnType<typeof api.gamification.onboarding>>;
+type StepKey = Onboarding['steps'][number]['key'];
 export type CompatPrompt = Awaited<ReturnType<typeof api.compat.myPrompts>>['items'][number];
 export type { CompatMode, CompatResult };
 
@@ -96,7 +97,7 @@ export const meApi = {
     result: CompatResult;
     note?: string;
   }) => api.compat.createReport({ body }),
-  updateOnboarding: (body: { dismissed?: boolean; markDone?: ['install_redloader'] }) =>
+  updateOnboarding: (body: { dismissed?: boolean; markDone?: StepKey[]; markUndone?: StepKey[] }) =>
     api.gamification.updateOnboarding({ body }, { headers: timeZoneHeaders() }),
 };
 

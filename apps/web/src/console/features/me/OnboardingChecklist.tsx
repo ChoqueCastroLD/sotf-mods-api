@@ -1,7 +1,8 @@
 /**
  * «Day 1 on the island» checklist (T0-33, WP-60 backend; shown in the «You» area by WP-81): five
- * first steps with their progress, each with the link that completes it. Only «Install RedLoader»
- * is self-reported («I did it»); the others tick themselves when the server sees the action.
+ * first steps with their progress, each with the link that completes it. Every step can also be
+ * ticked (or unticked) by hand from the checklist, optimistically; the server keeps ticking the
+ * ones it sees happen.
  * Completing it awards `survived-day-one`; «Hide» dismisses it for good. Renders nothing once
  * completed or dismissed.
  */
@@ -68,27 +69,49 @@ const actionClasses =
 export function OnboardingChecklist() {
   const queryClient = useQueryClient();
   const { data } = useQuery(onboardingQuery);
-  const [busy, setBusy] = useState<'dismiss' | 'install' | null>(null);
+  const [busy, setBusy] = useState<'dismiss' | null>(null);
 
   if (!data || data.completed || data.dismissed) return null;
 
   const done = data.steps.filter((step) => step.done).length;
   const total = data.steps.length;
 
-  const update = async (kind: 'dismiss' | 'install') => {
-    setBusy(kind);
+  const update = async () => {
+    setBusy('dismiss');
     try {
-      const next = await meApi.updateOnboarding(
-        kind === 'dismiss' ? { dismissed: true } : { markDone: ['install_redloader'] },
-      );
+      const next = await meApi.updateOnboarding({ dismissed: true });
       queryClient.setQueryData(meKeys.onboarding, next);
-      if (kind === 'dismiss' || next.completed)
-        void queryClient.invalidateQueries({ queryKey: queryKeys.me, exact: true });
-      if (next.completed) notify.success(m.me_onboarding_completed());
+      void queryClient.invalidateQueries({ queryKey: queryKeys.me, exact: true });
     } catch (failure) {
       notify.error(m.me_onboarding_failed(), { description: failureDescription(failure) });
     } finally {
       setBusy(null);
+    }
+  };
+
+  /** Ticks/unticks a step right away and reconciles with the server answer (rolls back on failure). */
+  const toggle = async (key: StepKey, done: boolean) => {
+    const previous = queryClient.getQueryData<Onboarding>(meKeys.onboarding);
+    queryClient.setQueryData<Onboarding>(meKeys.onboarding, (current) =>
+      current
+        ? {
+            ...current,
+            steps: current.steps.map((step) =>
+              step.key === key ? { ...step, done, doneAt: done ? new Date().toISOString() : null } : step,
+            ),
+          }
+        : current,
+    );
+    try {
+      const next = await meApi.updateOnboarding(done ? { markDone: [key] } : { markUndone: [key] });
+      queryClient.setQueryData(meKeys.onboarding, next);
+      if (next.completed) {
+        void queryClient.invalidateQueries({ queryKey: queryKeys.me, exact: true });
+        notify.success(m.me_onboarding_completed());
+      }
+    } catch (failure) {
+      queryClient.setQueryData(meKeys.onboarding, previous);
+      notify.error(m.me_onboarding_failed(), { description: failureDescription(failure) });
     }
   };
 
@@ -110,7 +133,7 @@ export function OnboardingChecklist() {
           size="sm"
           icon={<Icon icon={X} size={16} />}
           loading={busy === 'dismiss'}
-          onClick={() => void update('dismiss')}
+          onClick={() => void update()}
         >
           {m.me_onboarding_dismiss()}
         </Button>
@@ -144,15 +167,20 @@ export function OnboardingChecklist() {
                 step.done && 'opacity-80',
               )}
             >
-              <span
-                aria-hidden="true"
+              <button
+                type="button"
+                aria-pressed={step.done}
+                aria-label={m.me_onboarding_mark_done({ step: copy.title() })}
+                onClick={() => void toggle(step.key, !step.done)}
                 className={cn(
-                  'flex size-7 shrink-0 items-center justify-center rounded-full',
-                  step.done ? 'bg-success text-bg' : 'border border-dashed border-border-strong text-fg-subtle',
+                  'flex size-9 shrink-0 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+                  step.done
+                    ? 'bg-success text-bg'
+                    : 'border border-dashed border-border-strong text-fg-subtle hover:bg-fg/8',
                 )}
               >
                 <Icon icon={step.done ? Check : Circle} size={step.done ? 16 : 10} />
-              </span>
+              </button>
               <div className="grid min-w-0 flex-1 gap-0.5">
                 <p className={cn('text-sm font-semibold', step.done ? 'text-fg-muted line-through' : 'text-fg')}>
                   <span className="sr-only">
@@ -179,11 +207,6 @@ export function OnboardingChecklist() {
                       {copy.action()}
                     </a>
                   )}
-                  {step.key === 'install_redloader' ? (
-                    <Button size="sm" loading={busy === 'install'} onClick={() => void update('install')}>
-                      {m.me_onboarding_install_done()}
-                    </Button>
-                  ) : null}
                 </div>
               )}
             </li>

@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Segnala se una mod ha funzionato",
   "landing_personal_step_create_kit": "Crea il tuo primo Kit",
   "landing_personal_kits_title": "I tuoi Kit recenti",
-  "landing_personal_error": "Segnale perso durante il caricamento dei tuoi aggiornamenti."
+  "landing_personal_error": "Segnale perso durante il caricamento dei tuoi aggiornamenti.",
+  "landing_personal_step_mark_done": "Segna «{step}» come fatto",
+  "landing_personal_step_failed": "Impossibile salvare il passaggio. Riprova."
 }

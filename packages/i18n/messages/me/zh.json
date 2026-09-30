@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "把你的模组组合成一个套装，用一个代码即可分享。",
   "me_onboarding_kit_action": "创建套装",
   "me_onboarding_completed": "你撑过了第一天——徽章已解锁",
-  "me_onboarding_failed": "无法更新清单"
+  "me_onboarding_failed": "无法更新清单",
+  "me_onboarding_mark_done": "将“{step}”标记为已完成"
 }
