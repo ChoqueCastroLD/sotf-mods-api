@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "iyi",
   "admin_rum_rating_improve": "iyileştirilmeli",
   "admin_rum_rating_poor": "zayıf",
-  "admin_rum_legend": "Yeşil: iyi · kehribar: iyileştirilmeli · kırmızı: zayıf (Core Web Vitals eşikleri). “az”: {samples} ölçümün altında, dikkatle oku."
+  "admin_rum_legend": "Yeşil: iyi · kehribar: iyileştirilmeli · kırmızı: zayıf (Core Web Vitals eşikleri). “az”: {samples} ölçümün altında, dikkatle oku.",
+  "admin_kit_picks_title": "Ekibin seçtiği kitler",
+  "admin_kit_picks_text": "Ekip seçimleri ana sayfadaki «Başlamak için temel paket» bölümünde ve kurulum rehberinin başlangıç kiti olarak görünür.",
+  "admin_kit_picks_col_kit": "Kit",
+  "admin_kit_picks_col_items": "Modlar",
+  "admin_kit_picks_col_followers": "Takipçiler",
+  "admin_kit_picks_col_pick": "Ekip seçimi",
+  "admin_kit_picks_toggle": "Ekip seçimi: {name}",
+  "admin_kit_picks_on": "{name} artık bir ekip seçimi.",
+  "admin_kit_picks_off": "{name} artık bir ekip seçimi değil.",
+  "admin_kit_picks_failed": "Ekip seçimi değiştirilemedi",
+  "admin_kit_picks_empty": "Henüz herkese açık kit yok.",
+  "admin_kit_picks_only": "Yalnızca ekip seçimleri",
+  "admin_kit_picks_page": "Sayfa {page} / {pages}",
+  "admin_kit_picks_previous": "Önceki sayfa",
+  "admin_kit_picks_next": "Sonraki sayfa"
 }

@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "bon",
   "admin_rum_rating_improve": "à améliorer",
   "admin_rum_rating_poor": "médiocre",
-  "admin_rum_legend": "Vert : bon · ambre : à améliorer · rouge : médiocre (seuils Core Web Vitals). « peu » : moins de {samples} mesures, à lire avec prudence."
+  "admin_rum_legend": "Vert : bon · ambre : à améliorer · rouge : médiocre (seuils Core Web Vitals). « peu » : moins de {samples} mesures, à lire avec prudence.",
+  "admin_kit_picks_title": "Kits choisis par l’équipe",
+  "admin_kit_picks_text": "Les choix de l’équipe apparaissent dans «L’essentiel pour commencer» sur l’accueil et comme kit de départ du guide d’installation.",
+  "admin_kit_picks_col_kit": "Kit",
+  "admin_kit_picks_col_items": "Mods",
+  "admin_kit_picks_col_followers": "Abonnés",
+  "admin_kit_picks_col_pick": "Choix de l’équipe",
+  "admin_kit_picks_toggle": "Choix de l’équipe : {name}",
+  "admin_kit_picks_on": "{name} est maintenant un choix de l’équipe.",
+  "admin_kit_picks_off": "{name} n’est plus un choix de l’équipe.",
+  "admin_kit_picks_failed": "Impossible de modifier le choix de l’équipe",
+  "admin_kit_picks_empty": "Pas encore de kits publics.",
+  "admin_kit_picks_only": "Seulement les choix de l’équipe",
+  "admin_kit_picks_page": "Page {page} sur {pages}",
+  "admin_kit_picks_previous": "Page précédente",
+  "admin_kit_picks_next": "Page suivante"
 }

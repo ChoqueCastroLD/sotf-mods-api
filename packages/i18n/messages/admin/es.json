@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "bueno",
   "admin_rum_rating_improve": "mejorable",
   "admin_rum_rating_poor": "deficiente",
-  "admin_rum_legend": "Verde: bueno · ámbar: mejorable · rojo: deficiente (umbrales de Core Web Vitals). «pocas»: menos de {samples} muestras, tómalo con cautela."
+  "admin_rum_legend": "Verde: bueno · ámbar: mejorable · rojo: deficiente (umbrales de Core Web Vitals). «pocas»: menos de {samples} muestras, tómalo con cautela.",
+  "admin_kit_picks_title": "Kits destacados por el equipo",
+  "admin_kit_picks_text": "Los destacados aparecen en «Imprescindibles para empezar» en la portada y como kit inicial de la guía de instalación.",
+  "admin_kit_picks_col_kit": "Kit",
+  "admin_kit_picks_col_items": "Mods",
+  "admin_kit_picks_col_followers": "Seguidores",
+  "admin_kit_picks_col_pick": "Destacado",
+  "admin_kit_picks_toggle": "Destacado: {name}",
+  "admin_kit_picks_on": "{name} ahora es un destacado.",
+  "admin_kit_picks_off": "{name} ya no es un destacado.",
+  "admin_kit_picks_failed": "No se pudo cambiar el destacado",
+  "admin_kit_picks_empty": "Aún no hay kits públicos.",
+  "admin_kit_picks_only": "Solo destacados",
+  "admin_kit_picks_page": "Página {page} de {pages}",
+  "admin_kit_picks_previous": "Página anterior",
+  "admin_kit_picks_next": "Página siguiente"
 }

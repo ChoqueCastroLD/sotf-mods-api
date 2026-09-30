@@ -2,7 +2,8 @@
  * `/ranger/admin/awards` (PLAN §7.2 «Mod of the Week… El admin puede sustituirlo», «Staff pick es
  * manual»): every award, newest first, with the ones running today highlighted. «Give an award»
  * creates one; an award of the same kind and period replaces the existing one (that is how the
- * automatic Mod of the Week is overridden). Awards can be withdrawn (confirmed).
+ * automatic Mod of the Week is overridden). Awards can be withdrawn (confirmed). Kit staff picks
+ * are switched below (`KitPicksPanel`).
  */
 import { localizePath } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -22,6 +23,7 @@ import { type FormEvent, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
 import { type Award, adminApi, adminKeys, awardsQuery } from './api.ts';
 import { ADMIN_LIMITS, AWARD_KINDS, type AwardKind } from './constants.ts';
+import { KitPicksPanel } from './KitPicksPanel.tsx';
 import { ModSearchField, type PickedMod } from './ModSearchField.tsx';
 import {
   AdminHeader,
@@ -235,6 +237,7 @@ export function AwardsScreen() {
         tone="danger"
         onConfirm={() => (deleting ? remove(deleting) : undefined)}
       />
+      <KitPicksPanel />
     </div>
   );
 }

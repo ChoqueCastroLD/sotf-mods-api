@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "buono",
   "admin_rum_rating_improve": "da migliorare",
   "admin_rum_rating_poor": "scarso",
-  "admin_rum_legend": "Verde: buono · ambra: da migliorare · rosso: scarso (soglie dei Core Web Vitals). «poche»: meno di {samples} misurazioni, da leggere con cautela."
+  "admin_rum_legend": "Verde: buono · ambra: da migliorare · rosso: scarso (soglie dei Core Web Vitals). «poche»: meno di {samples} misurazioni, da leggere con cautela.",
+  "admin_kit_picks_title": "Kit scelti dallo staff",
+  "admin_kit_picks_text": "Le scelte dello staff compaiono in «L’essenziale per iniziare» nella home e come kit iniziale della guida di installazione.",
+  "admin_kit_picks_col_kit": "Kit",
+  "admin_kit_picks_col_items": "Mod",
+  "admin_kit_picks_col_followers": "Follower",
+  "admin_kit_picks_col_pick": "Scelta dello staff",
+  "admin_kit_picks_toggle": "Scelta dello staff: {name}",
+  "admin_kit_picks_on": "{name} ora è una scelta dello staff.",
+  "admin_kit_picks_off": "{name} non è più una scelta dello staff.",
+  "admin_kit_picks_failed": "Impossibile modificare la scelta dello staff",
+  "admin_kit_picks_empty": "Ancora nessun kit pubblico.",
+  "admin_kit_picks_only": "Solo scelte dello staff",
+  "admin_kit_picks_page": "Pagina {page} di {pages}",
+  "admin_kit_picks_previous": "Pagina precedente",
+  "admin_kit_picks_next": "Pagina successiva"
 }

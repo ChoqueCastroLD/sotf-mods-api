@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "хорошо",
   "admin_rum_rating_improve": "нужно улучшить",
   "admin_rum_rating_poor": "плохо",
-  "admin_rum_legend": "Зелёный: хорошо · янтарный: нужно улучшить · красный: плохо (пороги Core Web Vitals). «мало»: меньше {samples} замеров, оценивайте осторожно."
+  "admin_rum_legend": "Зелёный: хорошо · янтарный: нужно улучшить · красный: плохо (пороги Core Web Vitals). «мало»: меньше {samples} замеров, оценивайте осторожно.",
+  "admin_kit_picks_title": "Наборы — выбор команды",
+  "admin_kit_picks_text": "Выбранные наборы показываются в блоке «Всё нужное для старта» на главной и как стартовый набор в руководстве по установке.",
+  "admin_kit_picks_col_kit": "Набор",
+  "admin_kit_picks_col_items": "Моды",
+  "admin_kit_picks_col_followers": "Подписчики",
+  "admin_kit_picks_col_pick": "Выбор команды",
+  "admin_kit_picks_toggle": "Выбор команды: {name}",
+  "admin_kit_picks_on": "{name} теперь в выборе команды.",
+  "admin_kit_picks_off": "{name} больше не в выборе команды.",
+  "admin_kit_picks_failed": "Не удалось изменить выбор команды",
+  "admin_kit_picks_empty": "Публичных наборов пока нет.",
+  "admin_kit_picks_only": "Только выбор команды",
+  "admin_kit_picks_page": "Страница {page} из {pages}",
+  "admin_kit_picks_previous": "Предыдущая страница",
+  "admin_kit_picks_next": "Следующая страница"
 }

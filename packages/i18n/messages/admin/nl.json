@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "goed",
   "admin_rum_rating_improve": "kan beter",
   "admin_rum_rating_poor": "slecht",
-  "admin_rum_legend": "Groen: goed · oranje: kan beter · rood: slecht (drempels van Core Web Vitals). ‘weinig’: minder dan {samples} metingen, voorzichtig lezen."
+  "admin_rum_legend": "Groen: goed · oranje: kan beter · rood: slecht (drempels van Core Web Vitals). ‘weinig’: minder dan {samples} metingen, voorzichtig lezen.",
+  "admin_kit_picks_title": "Kits gekozen door het team",
+  "admin_kit_picks_text": "Teamkeuzes verschijnen bij «Essentieel om te beginnen» op de homepage en als starterskit in de installatiegids.",
+  "admin_kit_picks_col_kit": "Kit",
+  "admin_kit_picks_col_items": "Mods",
+  "admin_kit_picks_col_followers": "Volgers",
+  "admin_kit_picks_col_pick": "Teamkeuze",
+  "admin_kit_picks_toggle": "Teamkeuze: {name}",
+  "admin_kit_picks_on": "{name} is nu een teamkeuze.",
+  "admin_kit_picks_off": "{name} is geen teamkeuze meer.",
+  "admin_kit_picks_failed": "Teamkeuze kon niet worden gewijzigd",
+  "admin_kit_picks_empty": "Nog geen openbare kits.",
+  "admin_kit_picks_only": "Alleen teamkeuzes",
+  "admin_kit_picks_page": "Pagina {page} van {pages}",
+  "admin_kit_picks_previous": "Vorige pagina",
+  "admin_kit_picks_next": "Volgende pagina"
 }

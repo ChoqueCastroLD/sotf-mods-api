@@ -11,13 +11,12 @@
  *   ['moderation', 'user', id]              one user with sanctions
  *   ['moderation', 'audit', filters]        audit log (infinite)
  *
- * Reason templates (`SiteSetting.moderationTemplates`) live under `['ranger-templates']`: they
- * do not change with the queue.
+ * Reason templates (`GET /ranger/templates`) live under `['ranger-templates']` and the review-time
+ * metrics under `['ranger-metrics']`: they do not change with every queue event.
  *
  * Only `import type` from `@sotf/contracts/*`: the schema modules pull Zod, which the console
  * route chunks do not ship. Constants mirrored here are checked against the contract types.
  */
-import type { SiteSettingDTO } from '@sotf/contracts/admin';
 import type {
   AuditEntryDTO,
   AuditPageDTO,
@@ -32,6 +31,7 @@ import type {
   RangerUserPageDTO,
   ReportDTO,
   ReportPageDTO,
+  ReviewMetricsDTO,
   SanctionDTO,
 } from '@sotf/contracts/moderation';
 import { infiniteQueryOptions, type QueryClient, queryOptions } from '@tanstack/react-query';
@@ -54,6 +54,8 @@ export type Sanction = z.output<typeof SanctionDTO>;
 export type AuditEntry = z.output<typeof AuditEntryDTO>;
 export type AuditPage = z.output<typeof AuditPageDTO>;
 export type ModerationAction = QueueItemDetail['allowedActions'][number];
+export type Escalation = NonNullable<QueueItem['escalation']>;
+export type ReviewMetrics = z.output<typeof ReviewMetricsDTO>;
 export type ReportStatus = Report['status'];
 export type ReportReason = Report['reason'];
 export type ReportTargetType = Report['targetType'];
@@ -127,6 +129,9 @@ export const rangerKeys = {
   audit: (filters: AuditFilters) => [...queryKeys.moderation, 'audit', filters] as const,
   /** Outside the `moderation` prefix: stream events must not refetch them. */
   templates: ['ranger-templates'] as const,
+  metrics: (days: number) => ['ranger-metrics', days] as const,
+  /** Whether a user holds the admin-only translator badge (from their public badges). */
+  translator: (handle: string) => ['ranger-translator', handle] as const,
 } as const;
 
 // -----------------------------------------------------------------------------------------------
@@ -202,7 +207,58 @@ export const rangerApi = {
   revokeSessions: (id: number) => api.moderation.revokeSessions({ params: { id } }),
   overrideScan: (scanId: number, verdict: 'false_positive' | 'malicious', note: string) =>
     api.moderation.overrideScan({ params: { id: scanId }, body: { verdict, note } }),
+  /** The admin-only translator badge (PLAN §7.2). Resolves with the state after the change. */
+  setTranslatorBadge: (userId: number, granted: boolean) =>
+    granted
+      ? api.admin.grantManualBadge({ params: { id: userId, badgeKey: 'translator' } })
+      : api.admin.revokeManualBadge({ params: { id: userId, badgeKey: 'translator' } }),
+  /** «Assign to me» (`assign = false` releases the item). Resolves with the updated row. */
+  assign: (itemId: string, assign: boolean) => api.moderation.assignItem({ params: { id: itemId }, body: { assign } }),
+  /** Escalates to the admins with a note (`escalate = false` clears it). */
+  escalate: (itemId: string, escalate: boolean, note?: string) =>
+    api.moderation.escalateItem({
+      params: { id: itemId },
+      body: escalate ? { escalate, note: (note ?? '').trim() } : { escalate },
+    }),
 };
+
+/** Writes an updated row (assignment, escalation) into the open item and its cached lane. */
+export function storeQueueItem(queryClient: QueryClient, item: QueueItem): void {
+  queryClient.setQueryData<QueueItemDetail>(rangerKeys.item(item.id), (detail) =>
+    detail ? { ...detail, item } : detail,
+  );
+  queryClient.setQueryData<{ pages: QueuePage[]; pageParams: (string | null)[] }>(
+    rangerKeys.queue(item.lane),
+    (data) =>
+      data
+        ? {
+            ...data,
+            pages: data.pages.map((page) => ({
+              ...page,
+              items: page.items.map((entry) => (entry.id === item.id ? item : entry)),
+            })),
+          }
+        : data,
+  );
+}
+
+export const translatorBadgeQuery = (handle: string) =>
+  queryOptions({
+    queryKey: rangerKeys.translator(handle),
+    queryFn: async ({ signal }) =>
+      (await api.gamification.userBadges({ params: { handle } }, { signal })).earned.some(
+        (badge) => badge.key === 'translator',
+      ),
+    staleTime: 60_000,
+  });
+
+/** Review time of the last `days` days (`GET /ranger/metrics`, PLAN §7.4 «Métricas visibles»). */
+export const metricsQuery = (days = 30) =>
+  queryOptions({
+    queryKey: rangerKeys.metrics(days),
+    queryFn: ({ signal }) => api.moderation.metrics({ query: { days } }, { signal }),
+    staleTime: 5 * 60_000,
+  });
 
 /** After any decision: every lane, count and open item may have changed. */
 export function refreshModeration(queryClient: QueryClient): Promise<void> {
@@ -310,13 +366,14 @@ export const auditQuery = (filters: AuditFilters) =>
 export interface ReasonTemplate {
   key: string;
   action: ModerationAction;
-  /** Wording per locale (custom templates saved by an admin); built-ins use the `ranger` catalog. */
+  /** Wording per locale (templates saved by an admin); built-ins use the `ranger` catalog (13 locales). */
   messages: Partial<Record<string, string>> | null;
 }
 
 /**
  * The built-in templates of `@sotf/core/settings/templates` (`DEFAULT_MODERATION_TEMPLATES`), in
- * force until an admin saves their own. Their wording is translated in `ranger_template_*`.
+ * force until an admin saves their own. Their wording is translated in `ranger_template_*`. Also
+ * the fallback when `GET /ranger/templates` cannot be read.
  */
 export const BUILT_IN_TEMPLATES: readonly ReasonTemplate[] = [
   { key: 'reupload_without_permission', action: 'reject', messages: null },
@@ -335,37 +392,32 @@ export const BUILT_IN_TEMPLATES: readonly ReasonTemplate[] = [
   { key: 'copyright_claim', action: 'remove', messages: null },
 ];
 
-function parseTemplates(value: unknown): ReasonTemplate[] | null {
-  if (!Array.isArray(value)) return null;
-  const list: ReasonTemplate[] = [];
-  for (const entry of value) {
-    if (entry === null || typeof entry !== 'object') continue;
-    const { key, action, messages } = entry as Record<string, unknown>;
-    if (typeof key !== 'string' || typeof action !== 'string') continue;
-    if (messages === null || typeof messages !== 'object') continue;
-    list.push({ key, action: action as ModerationAction, messages: messages as Record<string, string> });
-  }
-  return list.length > 0 ? list : null;
+/**
+ * Templates of `GET /ranger/templates` as the dialog shows them: the built-in list keeps the
+ * catalog translations (`messages: null`), saved templates carry their own wording.
+ */
+export function templatesFromApi(list: {
+  source: 'setting' | 'built_in';
+  items: ReadonlyArray<{ key: string; action: ModerationAction; messages: Partial<Record<string, string>> }>;
+}): ReasonTemplate[] {
+  return list.items.map((item) => ({
+    key: item.key,
+    action: item.action,
+    messages: list.source === 'built_in' ? null : item.messages,
+  }));
 }
 
-/**
- * The templates in force. Admins read the saved setting (`GET /admin/settings/moderationTemplates`);
- * moderators cannot read site settings yet (docs/backlog/WP-82.md), so they get the built-ins.
- */
-export const templatesQuery = (isAdmin: boolean) =>
+/** The templates in force for every ranger (moderators and admins). */
+export const templatesQuery = () =>
   queryOptions({
-    queryKey: [...rangerKeys.templates, isAdmin] as const,
+    queryKey: rangerKeys.templates,
     queryFn: async ({ signal }): Promise<readonly ReasonTemplate[]> => {
-      if (!isAdmin) return BUILT_IN_TEMPLATES;
       try {
-        const setting: z.output<typeof SiteSettingDTO> = await api.admin.getSetting(
-          { params: { key: 'moderationTemplates' } },
-          { signal },
-        );
-        return parseTemplates(setting.value) ?? BUILT_IN_TEMPLATES;
+        const list = templatesFromApi(await api.moderation.templates({}, { signal }));
+        return list.length > 0 ? list : BUILT_IN_TEMPLATES;
       } catch (error) {
         if (error instanceof DOMException && error.name === 'AbortError') throw error;
-        // Not saved yet (404) or not readable: the built-ins are what the API applies.
+        // Unreadable (network, re-auth pending): the built-ins are what the API applies by default.
         return BUILT_IN_TEMPLATES;
       }
     },

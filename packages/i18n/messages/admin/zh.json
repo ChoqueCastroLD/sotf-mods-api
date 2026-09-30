@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "良好",
   "admin_rum_rating_improve": "需改进",
   "admin_rum_rating_poor": "较差",
-  "admin_rum_legend": "绿色：良好 · 琥珀色：需改进 · 红色：较差（Core Web Vitals 阈值）。“样本少”：少于 {samples} 个样本，请谨慎解读。"
+  "admin_rum_legend": "绿色：良好 · 琥珀色：需改进 · 红色：较差（Core Web Vitals 阈值）。“样本少”：少于 {samples} 个样本，请谨慎解读。",
+  "admin_kit_picks_title": "团队精选合集",
+  "admin_kit_picks_text": "精选合集会出现在首页的「入门必备」以及安装指南的新手合集中。",
+  "admin_kit_picks_col_kit": "合集",
+  "admin_kit_picks_col_items": "模组",
+  "admin_kit_picks_col_followers": "关注者",
+  "admin_kit_picks_col_pick": "精选",
+  "admin_kit_picks_toggle": "精选：{name}",
+  "admin_kit_picks_on": "{name} 已设为精选。",
+  "admin_kit_picks_off": "{name} 已取消精选。",
+  "admin_kit_picks_failed": "无法更改精选",
+  "admin_kit_picks_empty": "还没有公开合集。",
+  "admin_kit_picks_only": "仅精选",
+  "admin_kit_picks_page": "第 {page} 页，共 {pages} 页",
+  "admin_kit_picks_previous": "上一页",
+  "admin_kit_picks_next": "下一页"
 }

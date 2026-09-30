@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "良好",
   "admin_rum_rating_improve": "要改善",
   "admin_rum_rating_poor": "不良",
-  "admin_rum_legend": "緑：良好 · 琥珀色：要改善 · 赤：不良（Core Web Vitals のしきい値）。「少数」：サンプルが {samples} 未満のため、慎重に判断してください。"
+  "admin_rum_legend": "緑：良好 · 琥珀色：要改善 · 赤：不良（Core Web Vitals のしきい値）。「少数」：サンプルが {samples} 未満のため、慎重に判断してください。",
+  "admin_kit_picks_title": "スタッフおすすめキット",
+  "admin_kit_picks_text": "おすすめはトップページの「始めるための必需品」とインストールガイドのスターターキットに表示されます。",
+  "admin_kit_picks_col_kit": "キット",
+  "admin_kit_picks_col_items": "MOD",
+  "admin_kit_picks_col_followers": "フォロワー",
+  "admin_kit_picks_col_pick": "おすすめ",
+  "admin_kit_picks_toggle": "おすすめ: {name}",
+  "admin_kit_picks_on": "{name} をおすすめにしました。",
+  "admin_kit_picks_off": "{name} をおすすめから外しました。",
+  "admin_kit_picks_failed": "おすすめを変更できませんでした",
+  "admin_kit_picks_empty": "公開キットはまだありません。",
+  "admin_kit_picks_only": "おすすめのみ",
+  "admin_kit_picks_page": "{pages} ページ中 {page} ページ",
+  "admin_kit_picks_previous": "前のページ",
+  "admin_kit_picks_next": "次のページ"
 }

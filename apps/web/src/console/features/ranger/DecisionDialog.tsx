@@ -14,7 +14,6 @@ import { RadioCardGroup } from '@sotf/ui/radio-card';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQuery } from '@tanstack/react-query';
 import { type FormEvent, useEffect, useId, useState } from 'react';
-import { useMe } from '../../hooks/use-me.ts';
 import { type ReasonAction, templatesQuery } from './api.ts';
 import { actionLabel } from './labels.ts';
 import { templatesFor, templateText, templateTitle } from './templates.ts';
@@ -48,8 +47,7 @@ export function DecisionDialog({
   mode = 'decision',
   onSubmit,
 }: DecisionDialogProps) {
-  const me = useMe();
-  const templates = useQuery({ ...templatesQuery(me.user.role === 'admin'), enabled: open && mode === 'decision' });
+  const templates = useQuery({ ...templatesQuery(), enabled: open && mode === 'decision' });
   const [templateKey, setTemplateKey] = useState<string>(NO_TEMPLATE);
   const [note, setNote] = useState('');
   const [error, setError] = useState<string | null>(null);

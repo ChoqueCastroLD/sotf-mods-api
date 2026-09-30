@@ -220,8 +220,8 @@ interface BuildValues {
   releasedAt: string;
   isBreaking: boolean;
   isCurrent: boolean;
+  /** Markdown source of the notes (prefilled from `notesMd`; emptying it removes the notes). */
   notes: string;
-  clearNotes: boolean;
 }
 
 function valuesOf(build: GameBuild | 'new', hasCurrent: boolean): BuildValues {
@@ -233,7 +233,6 @@ function valuesOf(build: GameBuild | 'new', hasCurrent: boolean): BuildValues {
       isBreaking: false,
       isCurrent: !hasCurrent,
       notes: '',
-      clearNotes: false,
     };
   }
   return {
@@ -242,8 +241,7 @@ function valuesOf(build: GameBuild | 'new', hasCurrent: boolean): BuildValues {
     releasedAt: build.releasedAt,
     isBreaking: build.isBreaking,
     isCurrent: build.isCurrent,
-    notes: '',
-    clearNotes: false,
+    notes: build.notesMd ?? '',
   };
 }
 
@@ -297,7 +295,6 @@ function GameBuildForm({
   const [errors, setErrors] = useState<Partial<Record<'label' | 'steamBuildId' | 'releasedAt', string>>>({});
   const [saving, setSaving] = useState(false);
   const isNew = build === 'new';
-  const existingNotes = isNew ? '' : htmlToText(build.notesHtml);
   const set = <K extends keyof BuildValues>(key: K, value: BuildValues[K]) =>
     setValues((previous) => ({ ...previous, [key]: value }));
   const breakingNow = values.isBreaking && (isNew || !build.isBreaking);
@@ -335,7 +332,7 @@ function GameBuildForm({
           releasedAt: values.releasedAt,
           isBreaking: values.isBreaking,
           ...(values.isCurrent !== build.isCurrent ? { isCurrent: values.isCurrent } : {}),
-          ...(notes ? { notesMd: notes } : values.clearNotes ? { notesMd: null } : {}),
+          ...(notes !== (build.notesMd ?? '').trim() ? { notesMd: notes || null } : {}),
         });
       }
       await onSaved();
@@ -404,26 +401,14 @@ function GameBuildForm({
           {m.admin_builds_breaking_warning_text()}
         </Banner>
       ) : null}
-      <Field
-        label={m.admin_builds_field_notes()}
-        description={isNew ? m.admin_markdown_hint() : m.admin_builds_field_notes_edit_hint()}
-        optional
-      >
+      <Field label={m.admin_builds_field_notes()} description={m.admin_markdown_hint()} optional>
         <Textarea
           value={values.notes}
           maxLength={ADMIN_LIMITS.buildNotesMax}
           minRows={3}
-          placeholder={existingNotes || undefined}
           onChange={(event) => set('notes', event.currentTarget.value)}
         />
       </Field>
-      {!isNew && existingNotes && !values.notes.trim() ? (
-        <Switch
-          label={m.admin_builds_clear_notes()}
-          checked={values.clearNotes}
-          onCheckedChange={(checked) => set('clearNotes', checked)}
-        />
-      ) : null}
       <div className="flex flex-wrap justify-end gap-2">
         <DialogClose render={<Button variant="secondary" disabled={saving} />}>{m.admin_action_cancel()}</DialogClose>
         <Button type="submit" loading={saving}>

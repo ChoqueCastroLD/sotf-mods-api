@@ -460,5 +460,20 @@
   "admin_rum_rating_good": "bom",
   "admin_rum_rating_improve": "precisa melhorar",
   "admin_rum_rating_poor": "ruim",
-  "admin_rum_legend": "Verde: bom · âmbar: precisa melhorar · vermelho: ruim (limites dos Core Web Vitals). “poucas”: menos de {samples} medições, leia com cautela."
+  "admin_rum_legend": "Verde: bom · âmbar: precisa melhorar · vermelho: ruim (limites dos Core Web Vitals). “poucas”: menos de {samples} medições, leia com cautela.",
+  "admin_kit_picks_title": "Kits escolhidos pela equipe",
+  "admin_kit_picks_text": "As escolhas da equipe aparecem em «Essenciais para começar» na página inicial e como kit inicial do guia de instalação.",
+  "admin_kit_picks_col_kit": "Kit",
+  "admin_kit_picks_col_items": "Mods",
+  "admin_kit_picks_col_followers": "Seguidores",
+  "admin_kit_picks_col_pick": "Escolha da equipe",
+  "admin_kit_picks_toggle": "Escolha da equipe: {name}",
+  "admin_kit_picks_on": "{name} agora é uma escolha da equipe.",
+  "admin_kit_picks_off": "{name} não é mais uma escolha da equipe.",
+  "admin_kit_picks_failed": "Não foi possível alterar a escolha da equipe",
+  "admin_kit_picks_empty": "Ainda não há kits públicos.",
+  "admin_kit_picks_only": "Só escolhas da equipe",
+  "admin_kit_picks_page": "Página {page} de {pages}",
+  "admin_kit_picks_previous": "Página anterior",
+  "admin_kit_picks_next": "Próxima página"
 }

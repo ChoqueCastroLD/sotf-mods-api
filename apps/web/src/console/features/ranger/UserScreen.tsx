@@ -15,14 +15,23 @@ import { Icon } from '@sotf/ui/icons';
 import { Select } from '@sotf/ui/select';
 import { Switch } from '@sotf/ui/switch';
 import { Textarea } from '@sotf/ui/textarea';
-import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ExternalLink, Gavel, LogOut, ScrollText, ShieldOff } from 'lucide-react';
 import { type FormEvent, useId, useState } from 'react';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useMe } from '../../hooks/use-me.ts';
 import { notify } from '../../lib/notify.ts';
-import { ROLES, type Role, rangerApi, type Sanction, storeUser, userQuery } from './api.ts';
+import {
+  ROLES,
+  type Role,
+  rangerApi,
+  rangerKeys,
+  type Sanction,
+  storeUser,
+  translatorBadgeQuery,
+  userQuery,
+} from './api.ts';
 import { roleLabel, sanctionLabel } from './labels.ts';
 import { SanctionDialog } from './SanctionDialog.tsx';
 import { dateTime, number, profileHref, reportFailure, ScreenHeader, UserChip } from './shared.tsx';
@@ -179,6 +188,8 @@ export function UserScreen({ userId }: { userId: number }) {
           </>
         )}
       </section>
+
+      {isAdmin ? <TranslatorBadge userId={user.user.id} handle={user.user.handle} /> : null}
 
       <section aria-labelledby="ranger-user-sanctions" className="grid gap-3">
         <h2 id="ranger-user-sanctions" className="font-display text-lg text-fg">
@@ -405,5 +416,35 @@ function ReasonConfirm({
         </Field>
       </form>
     </Dialog>
+  );
+}
+
+/** Admin-only switch of the manual `translator` badge (state read from the user's public badges). */
+function TranslatorBadge({ userId, handle }: { userId: number; handle: string }) {
+  const queryClient = useQueryClient();
+  const query = useQuery(translatorBadgeQuery(handle));
+  const [saving, setSaving] = useState(false);
+  const change = async (granted: boolean) => {
+    setSaving(true);
+    try {
+      const result = await rangerApi.setTranslatorBadge(userId, granted);
+      queryClient.setQueryData(rangerKeys.translator(handle), result.granted);
+      notify.success(result.granted ? m.ranger_user_translator_on() : m.ranger_user_translator_off());
+    } catch (error) {
+      reportFailure(error, m.ranger_user_translator_failed());
+    } finally {
+      setSaving(false);
+    }
+  };
+  return (
+    <div className="grid max-w-xl gap-4 rounded-lg border border-border bg-surface p-4">
+      <Switch
+        label={m.ranger_user_translator()}
+        description={m.ranger_user_translator_hint()}
+        checked={query.data ?? false}
+        disabled={query.isPending || saving}
+        onCheckedChange={(value) => void change(value)}
+      />
+    </div>
   );
 }
