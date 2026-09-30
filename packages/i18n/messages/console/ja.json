@@ -68,5 +68,6 @@
   "console_shortcut_go_settings": "設定へ移動",
   "console_shortcut_go_ranger": "レンジャーステーションへ移動",
   "console_shortcut_toggle_sidebar": "サイドバーを折りたたむ／展開する",
-  "console_noscript": "コンソールには JavaScript が必要です。MOD、シグナル、設定を管理するには有効にしてください。"
+  "console_noscript": "コンソールには JavaScript が必要です。MOD、シグナル、設定を管理するには有効にしてください。",
+  "console_nav_operations": "運用"
 }

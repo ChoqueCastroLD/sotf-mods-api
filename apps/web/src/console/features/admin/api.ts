@@ -17,6 +17,7 @@
  *   ['admin', 'setting', key]           one `SiteSetting`
  *   ['admin', 'kelvinseek', days]       KelvinSeek usage
  *   ['admin', 'rum', range]             RUM p75 per template × country
+ *   ['admin', 'operations']             job queues, dead letters, downloads, CDN purges
  *   ['admin', 'search', types, q]       mod/build picker of the awards form
  */
 import { type QueryClient, queryOptions } from '@tanstack/react-query';
@@ -39,6 +40,7 @@ export type SiteSetting = Out<typeof api.admin.getSetting>;
 export type KelvinUsage = Out<typeof api.admin.kelvinseekUsage>;
 export type Rum = Out<typeof api.admin.rum>;
 export type RumRow = Rum['rows'][number];
+export type Operations = Out<typeof api.admin.operations>;
 export type SearchHit = Out<typeof api.search.search>['hits'][number];
 
 export type CreateGameBuildInput = In<typeof api.admin.createGameBuild>['body'];
@@ -66,6 +68,7 @@ export const adminKeys = {
   setting: (key: SiteSettingKey) => ['admin', 'setting', key] as const,
   kelvinseek: (days: KelvinDays) => ['admin', 'kelvinseek', days] as const,
   rum: (range: RumRange) => ['admin', 'rum', range] as const,
+  operations: ['admin', 'operations'] as const,
   search: (types: string, q: string) => ['admin', 'search', types, q] as const,
   kitPicks: (page: number, onlyPicks: boolean) => ['admin', 'kit-picks', page, onlyPicks] as const,
 } as const;
@@ -130,6 +133,15 @@ export const rumQuery = (range: RumRange) =>
     queryFn: ({ signal }) => api.admin.rum({ query: { range } }, { signal }),
     staleTime: 5 * 60_000,
   });
+
+/** Operational readout; the screen refreshes it every minute while it is open. */
+export const OPERATIONS_REFRESH_MS = 60_000;
+
+export const operationsQuery = queryOptions({
+  queryKey: adminKeys.operations,
+  queryFn: ({ signal }) => api.admin.operations({}, { signal }),
+  staleTime: 30_000,
+});
 
 /** Mods or builds matching `q` (awards form). */
 export const pickerSearchQuery = (types: 'mod' | 'build', q: string) =>

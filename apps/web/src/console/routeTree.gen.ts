@@ -52,6 +52,7 @@ import { Route as RangerAdminEcosystemRouteImport } from './routes/ranger/admin/
 import { Route as RangerAdminGameBuildsRouteImport } from './routes/ranger/admin/game-builds.tsx'
 import { Route as RangerAdminIntegrationsRouteImport } from './routes/ranger/admin/integrations.tsx'
 import { Route as RangerAdminKelvinseekRouteImport } from './routes/ranger/admin/kelvinseek.tsx'
+import { Route as RangerAdminOperationsRouteImport } from './routes/ranger/admin/operations.tsx'
 import { Route as RangerAdminPerformanceRouteImport } from './routes/ranger/admin/performance.tsx'
 import { Route as RangerAdminRecategorizeRouteImport } from './routes/ranger/admin/recategorize.tsx'
 import { Route as RangerAdminSettingsRouteImport } from './routes/ranger/admin/settings.tsx'
@@ -277,6 +278,11 @@ const RangerAdminKelvinseekRoute = RangerAdminKelvinseekRouteImport.update({
   path: '/kelvinseek',
   getParentRoute: () => RangerAdminRouteRoute,
 } as any)
+const RangerAdminOperationsRoute = RangerAdminOperationsRouteImport.update({
+  id: '/operations',
+  path: '/operations',
+  getParentRoute: () => RangerAdminRouteRoute,
+} as any)
 const RangerAdminPerformanceRoute = RangerAdminPerformanceRouteImport.update({
   id: '/performance',
   path: '/performance',
@@ -358,6 +364,7 @@ export interface FileRoutesByFullPath {
   '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
   '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
   '/ranger/admin/kelvinseek': typeof RangerAdminKelvinseekRoute
+  '/ranger/admin/operations': typeof RangerAdminOperationsRoute
   '/ranger/admin/performance': typeof RangerAdminPerformanceRoute
   '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
   '/ranger/admin/settings': typeof RangerAdminSettingsRoute
@@ -405,6 +412,7 @@ export interface FileRoutesByTo {
   '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
   '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
   '/ranger/admin/kelvinseek': typeof RangerAdminKelvinseekRoute
+  '/ranger/admin/operations': typeof RangerAdminOperationsRoute
   '/ranger/admin/performance': typeof RangerAdminPerformanceRoute
   '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
   '/ranger/admin/settings': typeof RangerAdminSettingsRoute
@@ -459,6 +467,7 @@ export interface FileRoutesById {
   '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
   '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
   '/ranger/admin/kelvinseek': typeof RangerAdminKelvinseekRoute
+  '/ranger/admin/operations': typeof RangerAdminOperationsRoute
   '/ranger/admin/performance': typeof RangerAdminPerformanceRoute
   '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
   '/ranger/admin/settings': typeof RangerAdminSettingsRoute
@@ -514,6 +523,7 @@ export interface FileRouteTypes {
     | '/ranger/admin/game-builds'
     | '/ranger/admin/integrations'
     | '/ranger/admin/kelvinseek'
+    | '/ranger/admin/operations'
     | '/ranger/admin/performance'
     | '/ranger/admin/recategorize'
     | '/ranger/admin/settings'
@@ -561,6 +571,7 @@ export interface FileRouteTypes {
     | '/ranger/admin/game-builds'
     | '/ranger/admin/integrations'
     | '/ranger/admin/kelvinseek'
+    | '/ranger/admin/operations'
     | '/ranger/admin/performance'
     | '/ranger/admin/recategorize'
     | '/ranger/admin/settings'
@@ -614,6 +625,7 @@ export interface FileRouteTypes {
     | '/ranger/admin/game-builds'
     | '/ranger/admin/integrations'
     | '/ranger/admin/kelvinseek'
+    | '/ranger/admin/operations'
     | '/ranger/admin/performance'
     | '/ranger/admin/recategorize'
     | '/ranger/admin/settings'
@@ -941,6 +953,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RangerAdminKelvinseekRouteImport
       parentRoute: typeof RangerAdminRouteRoute
     }
+    '/ranger/admin/operations': {
+      id: '/ranger/admin/operations'
+      path: '/operations'
+      fullPath: '/ranger/admin/operations'
+      preLoaderRoute: typeof RangerAdminOperationsRouteImport
+      parentRoute: typeof RangerAdminRouteRoute
+    }
     '/ranger/admin/performance': {
       id: '/ranger/admin/performance'
       path: '/performance'
@@ -1059,6 +1078,7 @@ interface RangerAdminRouteRouteChildren {
   RangerAdminGameBuildsRoute: typeof RangerAdminGameBuildsRoute
   RangerAdminIntegrationsRoute: typeof RangerAdminIntegrationsRoute
   RangerAdminKelvinseekRoute: typeof RangerAdminKelvinseekRoute
+  RangerAdminOperationsRoute: typeof RangerAdminOperationsRoute
   RangerAdminPerformanceRoute: typeof RangerAdminPerformanceRoute
   RangerAdminRecategorizeRoute: typeof RangerAdminRecategorizeRoute
   RangerAdminSettingsRoute: typeof RangerAdminSettingsRoute
@@ -1073,6 +1093,7 @@ const RangerAdminRouteRouteChildren: RangerAdminRouteRouteChildren = {
   RangerAdminGameBuildsRoute: RangerAdminGameBuildsRoute,
   RangerAdminIntegrationsRoute: RangerAdminIntegrationsRoute,
   RangerAdminKelvinseekRoute: RangerAdminKelvinseekRoute,
+  RangerAdminOperationsRoute: RangerAdminOperationsRoute,
   RangerAdminPerformanceRoute: RangerAdminPerformanceRoute,
   RangerAdminRecategorizeRoute: RangerAdminRecategorizeRoute,
   RangerAdminSettingsRoute: RangerAdminSettingsRoute,

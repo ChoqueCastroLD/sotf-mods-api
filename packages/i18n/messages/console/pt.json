@@ -68,5 +68,6 @@
   "console_shortcut_go_settings": "Ir para Configurações",
   "console_shortcut_go_ranger": "Ir para o Posto dos guardas",
   "console_shortcut_toggle_sidebar": "Recolher ou expandir a barra lateral",
-  "console_noscript": "O console precisa de JavaScript. Ative-o para gerenciar seus mods, sinais e configurações."
+  "console_noscript": "O console precisa de JavaScript. Ative-o para gerenciar seus mods, sinais e configurações.",
+  "console_nav_operations": "Operações"
 }

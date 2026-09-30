@@ -35,7 +35,6 @@ import type {
   StudioTransition,
   UpdateStudioModBody,
 } from '@sotf/contracts/studio';
-import type { VersionDTO } from '@sotf/contracts/versions';
 import { infiniteQueryOptions, type QueryClient, queryOptions } from '@tanstack/react-query';
 import type { z } from 'zod';
 import { api } from '../../lib/api.ts';

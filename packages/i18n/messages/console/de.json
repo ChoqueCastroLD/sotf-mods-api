@@ -68,5 +68,6 @@
   "console_shortcut_go_settings": "Zu den Einstellungen",
   "console_shortcut_go_ranger": "Zur Rangerstation",
   "console_shortcut_toggle_sidebar": "Seitenleiste ein- oder ausklappen",
-  "console_noscript": "Die Konsole braucht JavaScript. Aktiviere es, um deine Mods, Signale und Einstellungen zu verwalten."
+  "console_noscript": "Die Konsole braucht JavaScript. Aktiviere es, um deine Mods, Signale und Einstellungen zu verwalten.",
+  "console_nav_operations": "Betrieb"
 }

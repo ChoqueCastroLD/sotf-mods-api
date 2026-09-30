@@ -8,6 +8,7 @@
  */
 
 import {
+  Activity,
   Award,
   Backpack,
   BellRing,
@@ -179,6 +180,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/ranger/admin/integrations', label: () => t('console_nav_integrations'), icon: Plug },
           { to: '/ranger/admin/kelvinseek', label: () => t('console_nav_kelvinseek'), icon: Bot },
           { to: '/ranger/admin/performance', label: () => t('console_nav_performance'), icon: Gauge },
+          { to: '/ranger/admin/operations', label: () => t('console_nav_operations'), icon: Activity },
         ],
       },
     ],
