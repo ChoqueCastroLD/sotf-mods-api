@@ -276,7 +276,9 @@ export const StudioModListDTO = dto('StudioModListDTO', z.object({ items: z.arra
 
 export const OwnerVersionDTO = dto(
   'OwnerVersionDTO',
-  VersionDTO.extend({ changelogMd: z.string().nullable().describe('Markdown source of the changelog') }),
+  VersionDTO.extend({
+    changelogMd: z.string().nullable().optional().describe('Markdown source of the changelog (always sent by the API)'),
+  }),
   {
     description: 'A version as its author sees it (with the changelog source for «Edit changelog»).',
     examples: [{ ...exampleOf(VersionDTO), changelogMd: '- Fixed zipline noclip' }],
