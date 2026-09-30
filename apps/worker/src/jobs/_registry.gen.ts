@@ -9,6 +9,7 @@ import digestsJobs from './digests/index.ts';
 import discordJobs from './discord/index.ts';
 import downloadsJobs from './downloads/index.ts';
 import emailJobs from './email/index.ts';
+import gamificationJobs from './gamification/index.ts';
 import inspectionJobs from './inspection/index.ts';
 import kelvinseekJobs from './kelvinseek/index.ts';
 import legacyCountersJobs from './legacy-counters/index.ts';
@@ -28,6 +29,7 @@ export const jobGroups = [
   discordJobs,
   downloadsJobs,
   emailJobs,
+  gamificationJobs,
   inspectionJobs,
   kelvinseekJobs,
   legacyCountersJobs,
