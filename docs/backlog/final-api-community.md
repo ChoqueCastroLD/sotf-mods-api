@@ -1,0 +1,9 @@
+# Backlog final-api-community (audit of comments, reviews, follows, kits, compat, reports, ranger, admin, awards, badges, announcements, studio-analytics)
+
+Audit result: the console asks (ranger escalate, assign-to-me, `ScanSummaryDTO.id`, review metrics with mean/median/p90 hours, kit staff pick, thread lock, markdown in compat notes and kit descriptions, shared audit utility) are already implemented and declared in the contracts; no TODO/FIXME/stub remains in the area paths. What is left needs edits outside the area paths (one coordinated merge each):
+
+- [ ] **New signal types `compat.prompt`, `review.update_prompt`, `kit.added_my_mod`** · `packages/contracts/src/notifications.ts`, `packages/core/src/notifications/**`, `apps/worker/src/jobs/notifications/**`, `apps/web/src/console/features/settings/NotificationsScreen.tsx`, `apps/web/src/islands/signals/describe.ts`, i18n · adding a `NotificationType` breaks the exhaustive web records; the producers (`getCompatPrompts`, reviewers of an older major, kit items) already exist in the area.
+- [ ] **Immediate lane counts on submission** · `packages/core/src/publishing/submit.ts` · call `publishLaneCounts(tx, now, ['new_mods','versions'])` from `submitDraft`/`releaseVersion` (export is in `@sotf/core/moderation`).
+- [ ] **Milestone share card** · `packages/contracts/src/jobs.ts` (`OG_ENTITY_TYPES`) + `packages/core/src/og` · needs a stored key/route.
+- [ ] **Live download events / kit follows (T1-24)** · `packages/contracts/src/events.ts` · need a throttled SSE design and a product decision.
+- [ ] **Typecheck note** · the worktree has no install of its own; `@sentry/core`, `sharp` and `pg` are missing from the shared `node_modules`, so `tsc` of `apps/api` reports only those unrelated module-resolution errors; nothing in the area paths fails.
