@@ -11,6 +11,8 @@
  * - Route cache with the `cloudflareTags()` provider (edge headers + origin LRU + invalidation).
  * - CSP placeholder (`src/lib/security/csp.ts`), finalized by WP-93.
  * - `trailingSlash: 'never'` (the server entry also 301s trailing slashes before routing).
+ * - `astro dev` only: `/api/*` is proxied to the API (`INTERNAL_API_URL`), as Traefik does in
+ *   production, so islands and the console reach the API on the same origin (docs/backlog/WP-A4.md).
  */
 import node from '@astrojs/node';
 import react from '@astrojs/react';
@@ -20,6 +22,9 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { defineConfig } from 'astro/config';
 import { cspConfig } from './src/lib/security/csp.ts';
 import { CONSOLE_ROUTER_CONFIG } from './src/lib/tooling/router-config.ts';
+
+/** API origin for the dev proxy (same default as `src/lib/env.ts`). */
+const devApiOrigin = (process.env.INTERNAL_API_URL || 'http://127.0.0.1:47301').replace(/\/+$/, '');
 
 /** Astro ignores `_`-prefixed files in `src/pages`, so the internal endpoint is injected. */
 const internalRoutes = {
@@ -68,5 +73,12 @@ export default defineConfig({
   vite: {
     plugins: [tanstackRouter({ ...CONSOLE_ROUTER_CONFIG }), tailwindcss()],
     build: { assetsInlineLimit: 0 },
+    server: {
+      proxy: {
+        // Same-origin API in development: keep Host/Origin (CSRF, cookies) and stream SSE
+        // (`/api/v2/stream`) without buffering. Never used by the production server.
+        '^/api(?:/|$)': { target: devApiOrigin, changeOrigin: false, ws: false },
+      },
+    },
   },
 });

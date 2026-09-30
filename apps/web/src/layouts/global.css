@@ -88,3 +88,11 @@ html[data-scroll-dir="down"] [data-tab-bar] {
     fill: #ff7335;
   }
 }
+
+/* ---- Ads are for guests only (PLAN §8.5): the HTML is shared, so members hide the boxes once
+   the account hint resolves (`<html data-signed-in>`, scripts/account-hint.ts). Units are never
+   in the first viewport, so hiding them does not shift what the visitor sees. ---------------- */
+html[data-signed-in] [data-ad-slot-container],
+html[data-signed-in] [data-explore-ad] {
+  display: none;
+}

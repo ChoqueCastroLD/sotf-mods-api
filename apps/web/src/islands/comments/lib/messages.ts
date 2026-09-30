@@ -25,8 +25,12 @@ export type SocialMessageKey = Keys<typeof social> | Keys<typeof errors>;
 type Catalog = Readonly<Record<string, string>>;
 type CatalogModule = { default: Catalog };
 
-// Vite turns every file into its own lazy chunk; only the page locale's two are fetched.
-const LOADERS = import.meta.glob<CatalogModule>('../../../../../../packages/i18n/messages/{social,errors}/*.json');
+// Vite turns every file into its own lazy chunk; only the page locale's are fetched. The
+// `ui-domain` catalogue (texts of the `@sotf/ui/domain` components the islands render) is fetched
+// for non-English pages only: its English source ships with `@sotf/ui/domain` already.
+const LOADERS = import.meta.glob<CatalogModule>(
+  '../../../../../../packages/i18n/messages/{social,errors,ui-domain}/*.json',
+);
 
 const NAMESPACES = ['social', 'errors'] as const;
 
@@ -36,7 +40,7 @@ function loaderFor(namespace: string, locale: Locale): (() => Promise<CatalogMod
   return undefined;
 }
 
-let active: { lang: string; catalog: Catalog } | null = null;
+let active: { lang: string; catalog: Catalog; domain: Catalog } | null = null;
 let pending: Promise<boolean> | null = null;
 
 /** Locale of the page (`<html lang>`), English when unknown. */
@@ -45,15 +49,36 @@ export function pageLocale(): Locale {
   return (lang && matchLocale(lang)) || 'en';
 }
 
-async function load(locale: Locale): Promise<Catalog> {
-  const parts = await Promise.all(
-    NAMESPACES.map(async (namespace) => {
+async function load(locale: Locale): Promise<{ catalog: Catalog; domain: Catalog }> {
+  const domainLoader = locale === 'en' ? undefined : loaderFor('ui-domain', locale);
+  const [domain, ...parts] = await Promise.all([
+    // Optional: without it the domain components keep their English source.
+    domainLoader
+      ? domainLoader().then(
+          (module) => module.default,
+          () => ({}),
+        )
+      : Promise.resolve({}),
+    ...NAMESPACES.map(async (namespace) => {
       const loader = loaderFor(namespace, locale);
       if (!loader) throw new Error(`missing ${namespace} messages for ${locale}`);
       return (await loader()).default;
     }),
-  );
-  return Object.freeze(Object.assign({}, ...parts) as Record<string, string>);
+  ]);
+  return {
+    catalog: Object.freeze(Object.assign({}, ...parts) as Record<string, string>),
+    domain: Object.freeze({ ...domain }),
+  };
+}
+
+/** The `ui-domain` catalogue of the page locale (empty for English or before loading). */
+export function domainCatalog(): Catalog {
+  return active?.domain ?? {};
+}
+
+/** BCP-47 language of the loaded catalogue (`en` before loading). */
+export function activeLang(): string {
+  return active?.lang ?? 'en';
 }
 
 /**
@@ -67,7 +92,7 @@ export function loadSocialMessages(): Promise<boolean> {
     const locale = pageLocale();
     for (const candidate of locale === 'en' ? (['en'] as const) : ([locale, 'en'] as const)) {
       try {
-        active = { lang: toHtmlLang(candidate), catalog: await load(candidate) };
+        active = { lang: toHtmlLang(candidate), ...(await load(candidate)) };
         return true;
       } catch {
         // Try the next candidate.

@@ -6,6 +6,7 @@
  * The context is typed structurally (the subset of Astro's `APIContext` this route uses) so the
  * route does not depend on the web shell's helpers.
  */
+import { loadEnv } from '../../../../../lib/env.ts';
 import { downloadProxyEnv, proxyDownload } from './_proxy.ts';
 
 export const prerender = false;
@@ -53,9 +54,10 @@ function clientAddressOf(context: DownloadRouteContext): string | null {
   }
 }
 
-/** Runtime environment of the Node adapter (private variables are read at request time). */
+/** The validated web environment (`lib/env.ts`, same defaults as every other server module). */
 function runtimeEnv(): Readonly<Record<string, string | undefined>> {
-  return (globalThis as { process?: { env: Record<string, string | undefined> } }).process?.env ?? {};
+  const env = loadEnv();
+  return { INTERNAL_API_URL: env.internalApiUrl, INTERNAL_SECRET: env.internalSecret };
 }
 
 export async function GET(context: DownloadRouteContext): Promise<Response> {

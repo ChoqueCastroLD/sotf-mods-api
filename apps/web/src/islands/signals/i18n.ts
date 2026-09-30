@@ -59,3 +59,57 @@ export function st(key: SignalsMessageKey, params?: IcuParams): string {
   if (template === undefined) return key;
   return formatIcu(template, params, lang);
 }
+
+// ── Badge names (lazy) ──────────────────────────────────────────────────────────────────────────
+// The names live in the `profile` namespace (`profile_badge_<snake_key>_name`, WP-64). That file is
+// only fetched when a list actually shows a «You earned …» signal (docs/backlog/WP-A2.md).
+
+const PROFILE_CATALOGS = import.meta.glob<Catalog>('../../../../../packages/i18n/messages/profile/*.json', {
+  import: 'default',
+});
+
+let badgeNames: { locale: Locale; names: Catalog } | null = null;
+let badgeLoading: Promise<boolean> | null = null;
+
+/** Loads the badge names of the loaded locale (English fallback). Resolves false when unavailable. */
+export function ensureBadgeNames(): Promise<boolean> {
+  const locale = loadedLocale ?? 'en';
+  if (badgeNames?.locale === locale) return Promise.resolve(true);
+  badgeLoading ??= (async () => {
+    const find = (code: string) =>
+      Object.entries(PROFILE_CATALOGS).find(([path]) => path.endsWith(`/profile/${code}.json`))?.[1];
+    const load = find(locale) ?? find('en');
+    try {
+      const catalog = load ? await load() : {};
+      const names: Record<string, string> = {};
+      for (const [key, value] of Object.entries(catalog)) {
+        if (key.startsWith('profile_badge_') && key.endsWith('_name') && typeof value === 'string') names[key] = value;
+      }
+      badgeNames = { locale, names };
+      return true;
+    } catch {
+      return false;
+    } finally {
+      badgeLoading = null;
+    }
+  })();
+  return badgeLoading;
+}
+
+/** Localised name of a badge key (`first-blueprint`, `original-survivor-2024`), or null when unknown. */
+export function badgeName(key: string): string | null {
+  const names = badgeNames?.names;
+  if (!names) return null;
+  const survivor = /^original-survivor-(\d{4})$/.exec(key);
+  if (survivor) {
+    const template = names.profile_badge_original_survivor_name;
+    return template ? formatIcu(template, { year: survivor[1] ?? '' }, lang) : null;
+  }
+  const template = names[`profile_badge_${key.replace(/-/g, '_')}_name`];
+  return template ? formatIcu(template, {}, lang) : null;
+}
+
+/** Whether a list shows «You earned …» signals (worth loading the badge names). */
+export function needsBadgeNames(signals: ReadonlyArray<{ type: string; data: Record<string, unknown> }>): boolean {
+  return signals.some((signal) => signal.type === 'badge.awarded' && signal.data.welcome !== true);
+}

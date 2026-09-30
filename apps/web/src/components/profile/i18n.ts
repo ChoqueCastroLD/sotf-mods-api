@@ -12,7 +12,8 @@ import type { CreatorTierKey, LinkDTO, SurvivorRankKey } from '@sotf/contracts/c
 import type { BADGE_GROUPS, BadgeKey } from '@sotf/contracts/gamification';
 import { formatNumber, type Locale, toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { type DomainI18n, type DomainMessageKey, type DomainMessageParams, englishDomainI18n } from '@sotf/ui/domain';
+import type { DomainI18n, DomainMessageKey, DomainMessageParams } from '@sotf/ui/domain';
+import { domainTranslate } from '../../lib/domain-i18n.ts';
 
 type Text = () => string;
 
@@ -211,7 +212,7 @@ export function profileDomainI18n(
     timeZone: 'UTC',
     t: (key, params) => {
       const override = table[key];
-      return override ? override(params ?? {}) : englishDomainI18n.t(key, params);
+      return override ? override(params ?? {}) : domainTranslate(key, params, locale);
     },
     taxonomy,
   };

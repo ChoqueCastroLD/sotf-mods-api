@@ -3,6 +3,7 @@
  * including the 404/500 pages, after the server entry (`src/lib/server/fetch.ts`) has stripped
  * the locale prefix:
  *
+ * 0. resource isolation (`security.ts`, WP-93): Fetch Metadata policy, runs before everything;
  * 1. request context: `locals.locale`, `locals.pagePath`, `locals.requestId`;
  * 2. legacy rules (`redirects.ts`): 301 to the v2 URL, or 410 for 2023 uploads;
  * 3. the render runs inside `withLocale(locale)` so every message resolves per request;
@@ -11,17 +12,20 @@
  *    browser policy of public HTML.
  */
 
-import { defineMiddleware } from 'astro:middleware';
+import { defineMiddleware, sequence } from 'astro:middleware';
 import { withLocale } from '@sotf/i18n/server';
 import { requestLocaleOrDefault } from '../lib/cache/request-locale.ts';
 import { finalizePublicResponse } from '../lib/cache/response.ts';
+import { configureDomainMessages } from '../lib/domain-i18n.ts';
 import { configureUiMessages } from '../lib/i18n.ts';
 import { requestIdOf } from '../lib/server/request-id.ts';
 import { legacyRule } from './redirects.ts';
+import { securityMiddleware } from './security.ts';
 
 configureUiMessages();
+configureDomainMessages();
 
-export const onRequest = defineMiddleware(async (context, next) => {
+const siteMiddleware = defineMiddleware(async (context, next) => {
   const locale = requestLocaleOrDefault(context.request);
   const url = context.url;
   context.locals.locale = locale;
@@ -57,3 +61,5 @@ export const onRequest = defineMiddleware(async (context, next) => {
     });
   });
 });
+
+export const onRequest = sequence(securityMiddleware, siteMiddleware);

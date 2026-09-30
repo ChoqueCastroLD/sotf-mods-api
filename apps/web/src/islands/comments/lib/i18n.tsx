@@ -3,14 +3,15 @@
  * `social` and `errors` catalogues, loaded before the island mounts).
  *
  * The `@sotf/ui/domain` components (CommentItem, ReviewCard, StarRating) get the page's BCP-47
- * locale for `Intl` and the same texts as the server-rendered HTML (the `ui-domain` namespace is
- * served from its English source both on the server and here, see components/mod/i18n.ts).
+ * locale for `Intl` and the same texts as the server-rendered HTML: the `ui-domain` catalogue of
+ * the page locale (loaded with the social messages; the server uses the same namespace through
+ * Paraglide, `lib/domain-i18n.ts`), English source for missing keys.
  * Stored Markdown HTML carries label placeholders (`localizeHtml`), filled with the page locale.
  */
 import { DEFAULT_LABELS, localizeHtml } from '@sotf/markdown/labels';
-import { type DomainI18n, DomainI18nProvider, englishDomainI18n } from '@sotf/ui/domain';
+import { createDomainTranslate, type DomainI18n, DomainI18nProvider } from '@sotf/ui/domain';
 import type { ReactNode } from 'react';
-import { t } from './messages.ts';
+import { activeLang, domainCatalog, t } from './messages.ts';
 
 /** BCP-47 language of the page (`en`, `pt-BR`, `zh-Hans`…). */
 export function pageLang(): string {
@@ -20,7 +21,7 @@ export function pageLang(): string {
 let domain: DomainI18n | null = null;
 
 function domainI18n(): DomainI18n {
-  domain ??= { locale: pageLang(), t: englishDomainI18n.t };
+  domain ??= { locale: pageLang(), timeZone: 'UTC', t: createDomainTranslate(domainCatalog(), activeLang()) };
   return domain;
 }
 

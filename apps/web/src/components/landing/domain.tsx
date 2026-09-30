@@ -1,11 +1,11 @@
 /**
  * Locale scope of the `@sotf/ui/domain` cards rendered by the landing (server-only React, no
  * hydration). Numbers and dates follow the page language; category names come from the API's
- * localised taxonomy. The card copy itself stays in the `ui-domain` English catalogue until that
- * namespace is compiled into `@sotf/i18n` (docs/backlog/WP-53.md).
+ * localised taxonomy and the card copy from the compiled `ui-domain` namespace (`lib/domain-i18n.ts`).
  */
-import { type DomainI18n, DomainI18nProvider, englishDomainI18n } from '@sotf/ui/domain';
+import { type DomainI18n, DomainI18nProvider } from '@sotf/ui/domain';
 import type { ReactNode } from 'react';
+import { domainI18nFor } from '../../lib/domain-i18n.ts';
 
 export interface DomainScopeProps {
   /** BCP-47 page language (`toHtmlLang(locale)`). */
@@ -15,12 +15,7 @@ export interface DomainScopeProps {
 }
 
 export function domainI18nOf({ lang, taxonomy }: DomainScopeProps): DomainI18n {
-  return {
-    locale: lang,
-    t: englishDomainI18n.t,
-    taxonomy: (nameKey, fallback) => taxonomy[nameKey] ?? fallback,
-    timeZone: 'UTC',
-  };
+  return domainI18nFor(lang, (nameKey, fallback) => taxonomy[nameKey] ?? fallback);
 }
 
 export function DomainScope({ scope, children }: { scope: DomainScopeProps; children?: ReactNode }) {

@@ -2,7 +2,8 @@
  * The one module every public page loads (PLAN §2.5 «Vanilla TS», §8.2 JS ≤ 15 KB br).
  *
  * Immediate (tiny, needed for interaction): theme/primitives enhancement, header shortcuts,
- * mobile chrome, relogin banner, moon phase, view transitions, account hint.
+ * mobile chrome, relogin banner, moon phase, view transitions, account hint, and for members the
+ * account's display preferences (`scripts/account-settings.ts`).
  * Idle (never competes with the LCP): season + December snow, language suggestion (lazy chunk
  * with its three messages), the analytics beacon and RUM, and ads (lazy chunk, guests with ad
  * slots only).
@@ -10,6 +11,7 @@
 import { bindCmdkTrigger } from '../../islands/cmdk/Trigger.ts';
 import { initSignalsBell } from '../../islands/signals/mount.ts';
 import { initAccountHint } from '../../scripts/account-hint.ts';
+import { initDisplayPreferences } from '../../scripts/account-settings.ts';
 import { initBeacon } from '../../scripts/beacon.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
 import { initMoon } from '../../scripts/moon.ts';
@@ -52,11 +54,17 @@ export function boot(): void {
   safely(() => initViewTransitions());
   safely(() => initAccountHint());
   safely(() => initSignalsBell());
+  safely(() => initDisplayPreferences());
   whenIdle(() => {
     safely(() => initBeacon());
     safely(() => import('../../scripts/seasonal.ts').then(({ initSeasonal }) => initSeasonal()));
     if (mayNeedLanguageSuggestion()) {
       safely(() => import('../../scripts/lang-suggest.ts').then(({ initLangSuggest }) => initLangSuggest()));
+    }
+    // Spoilers and YouTube facades of stored Markdown outside the mod page (builds, kits,
+    // profiles, news, comment islands rendered later bind through the same delegation).
+    if (document.querySelector('.md-spoiler, .md-youtube-link')) {
+      safely(() => import('../../scripts/mod/prose.ts').then(({ initProse }) => initProse(null)));
     }
     if (document.querySelector('ins.adsbygoogle[data-ad-slot]')) {
       safely(() => import('../../scripts/ads.ts').then(({ initAds }) => initAds()));

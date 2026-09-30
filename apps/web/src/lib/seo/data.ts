@@ -19,7 +19,7 @@ import { isApiError } from '@sotf/contracts/client';
 import type { KitCardDTO } from '@sotf/contracts/kits';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
 import type { z } from 'zod';
-import { serverApi } from '../../../lib/api.ts';
+import { serverApi } from '../api.ts';
 
 export type CategoryDTO = z.infer<typeof CategorySchema>;
 export type TagDTO = z.infer<typeof TagSchema>;

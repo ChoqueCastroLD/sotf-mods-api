@@ -24,8 +24,10 @@ export interface SecurityHeaderOptions {
   siteUrl?: string;
   /** `R2_PUBLIC_BASE_URL`; read from the environment when omitted. */
   r2PublicBaseUrl?: string;
-  /** Forces enforcing or report-only (default per `siteEnv`, see `cspModeFor`). */
+  /** Forces enforcing or report-only (`CSP_MODE`; default per `siteEnv`, see `cspModeFor`). */
   cspMode?: CspMode;
+  /** Origin of a non-R2 S3 endpoint for presigned uploads (`R2_ENDPOINT`); read from the environment when omitted. */
+  storageUploadOrigin?: string;
 }
 
 /** 6 months (PLAN §9.1). */
@@ -85,6 +87,7 @@ interface ResolvedOptions {
   siteEnv: string;
   siteOrigin: string | undefined;
   r2Origin: string | undefined;
+  uploadOrigin: string | undefined;
   mode: CspMode;
   https: boolean;
 }
@@ -92,11 +95,15 @@ interface ResolvedOptions {
 function resolveOptions(options: SecurityHeaderOptions): ResolvedOptions {
   let siteUrl = options.siteUrl;
   let r2 = options.r2PublicBaseUrl;
-  if (siteUrl === undefined || r2 === undefined) {
+  let upload = options.storageUploadOrigin;
+  let cspMode = options.cspMode;
+  if (siteUrl === undefined || r2 === undefined || upload === undefined || cspMode === undefined) {
     try {
       const env = loadEnv();
       siteUrl ??= env.siteUrl;
       r2 ??= env.r2PublicBaseUrl;
+      upload ??= env.storageUploadOrigin;
+      cspMode ??= env.cspMode;
     } catch {
       // The entry validates the environment at start-up; tests may run without one.
     }
@@ -106,7 +113,8 @@ function resolveOptions(options: SecurityHeaderOptions): ResolvedOptions {
     siteEnv: options.siteEnv,
     siteOrigin,
     r2Origin: originOf(r2),
-    mode: options.cspMode ?? cspModeFor(options.siteEnv),
+    uploadOrigin: originOf(upload),
+    mode: cspMode ?? cspModeFor(options.siteEnv),
     https: siteOrigin?.startsWith('https://') ?? options.siteEnv !== 'development',
   };
 }
@@ -116,8 +124,14 @@ function extraSources(resolved: ResolvedOptions): Partial<Record<'img-src' | 'me
   const extra: string[] = [];
   if (resolved.r2Origin && resolved.r2Origin !== DEFAULT_R2_PUBLIC_ORIGIN) extra.push(resolved.r2Origin);
   if (resolved.siteEnv === 'development' || resolved.siteEnv === 'preflight') extra.push(...LOCAL_ORIGINS);
-  if (extra.length === 0) return {};
-  return { 'img-src': extra, 'media-src': extra, 'connect-src': extra };
+  const connect = resolved.uploadOrigin ? [...extra, resolved.uploadOrigin] : extra;
+  if (connect.length === 0) return {};
+  const out: Partial<Record<'img-src' | 'media-src' | 'connect-src', string[]>> = { 'connect-src': connect };
+  if (extra.length > 0) {
+    out['img-src'] = extra;
+    out['media-src'] = extra;
+  }
+  return out;
 }
 
 function reportUri(resolved: ResolvedOptions): string {
