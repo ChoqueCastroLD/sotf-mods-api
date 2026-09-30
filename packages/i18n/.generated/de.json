@@ -1274,6 +1274,11 @@
   "basecamp_kpis_label": "Kennzahlen",
   "basecamp_listing_category": "Kategorie",
   "basecamp_listing_category_placeholder": "Kategorie wählen",
+  "basecamp_listing_convert": "In Markdown umwandeln",
+  "basecamp_listing_convert_body": "Rohes HTML wird ab jetzt als Text angezeigt. Es gibt keinen Weg zurück.",
+  "basecamp_listing_convert_done": "Beschreibung in Markdown umgewandelt.",
+  "basecamp_listing_convert_save_first": "Speichere oder verwirf zuerst deine Änderungen.",
+  "basecamp_listing_convert_title": "Diese Beschreibung in Markdown umwandeln?",
   "basecamp_listing_description": "Beschreibung",
   "basecamp_listing_description_group": "Beschreibung",
   "basecamp_listing_description_hint": "Markdown. Was er tut, wie man ihn nutzt, bekannte Probleme. Ab 300 Zeichen fällt Spielern die Entscheidung leichter.",
@@ -1286,6 +1291,8 @@
   "basecamp_listing_language": "Sprache der Seite",
   "basecamp_listing_language_hint": "Die Sprache, in der du die Beschreibung geschrieben hast.",
   "basecamp_listing_language_placeholder": "Nicht angegeben",
+  "basecamp_listing_legacy_body": "Sie wurde auf der alten Seite geschrieben, daher wird ihr HTML weiterhin formatiert dargestellt. Wandle sie in Markdown um, um sie wie eine neue Beschreibung zu bearbeiten.",
+  "basecamp_listing_legacy_title": "Diese Beschreibung behält ihr altes Layout",
   "basecamp_listing_license": "Lizenz",
   "basecamp_listing_license_placeholder": "Lizenz wählen",
   "basecamp_listing_links_group": "Lizenz und Links",
@@ -3117,6 +3124,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "Der Spielbuild {build} ist da: Sag uns, ob die heruntergeladenen Mods noch funktionieren",
   "emails_notify_item_creator_mod_published": "{actor} hat {mod} veröffentlicht",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -3136,6 +3144,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} wurde zu einem öffentlichen Kit hinzugefügt",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -3183,6 +3192,7 @@
     }
   ],
   "emails_notify_item_review_reply": "Der Autor von {mod} hat auf deine Bewertung geantwortet",
+  "emails_notify_item_review_update_prompt": "{mod} hat eine neue Hauptversion ({version}) veröffentlicht: Aktualisiere deine Bewertung",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6773,6 +6783,8 @@
   "settings_notif_col_signal": "Signal",
   "settings_notif_comment": "Kommentare zu deinen Mods",
   "settings_notif_comment_hint": "Gebündelt: mehrere Kommentare kommen als ein Signal.",
+  "settings_notif_compat_prompt": "„Hat es funktioniert?“-Hinweise",
+  "settings_notif_compat_prompt_hint": "Ein neuer Spielbuild ist da und du hast Downloads, zu denen du berichten kannst.",
   "settings_notif_creator": "Neue Mods von Creators",
   "settings_notif_creator_hint": "Ein Creator, dem du folgst, hat etwas Neues veröffentlicht.",
   "settings_notif_defaults": "Standard wiederherstellen",
@@ -6781,6 +6793,8 @@
   "settings_notif_group_conversations": "Unterhaltungen",
   "settings_notif_group_follows": "Was du folgst",
   "settings_notif_group_my_mods": "Deine Mods",
+  "settings_notif_kit_added": "Kits mit deinen Mods",
+  "settings_notif_kit_added_hint": "Jemand hat einen deiner Mods zu einem öffentlichen Kit hinzugefügt.",
   "settings_notif_matrix_text": "Wähle für jede Art von Signal, ob es in der App erscheint und wie oft es per E-Mail kommt. Zusammenfassungen bündeln alles in einer E-Mail.",
   "settings_notif_matrix_title": "Signale und E-Mails",
   "settings_notif_mention": "Erwähnungen",
@@ -6798,6 +6812,8 @@
   "settings_notif_review_hint": "Jemand hat einen deiner Mods bewertet.",
   "settings_notif_review_reply": "Antworten auf deine Bewertungen",
   "settings_notif_review_reply_hint": "Ein Autor hat auf deine Bewertung geantwortet.",
+  "settings_notif_review_update": "Bewertungen aktualisieren",
+  "settings_notif_review_update_hint": "Ein Mod, den du bewertet hast, hat eine neue Hauptversion veröffentlicht.",
   "settings_notif_saved": "Benachrichtigungseinstellungen gespeichert",
   "settings_notif_status": "Prüfentscheidungen",
   "settings_notif_status_hint": "Ein Mod von dir wurde freigegeben, abgelehnt, braucht Änderungen oder wurde archiviert.",
@@ -7177,6 +7193,7 @@
     }
   ],
   "signals_compat_fixed_in": "Dein Feldbericht zu {mod} ist in {version} behoben",
+  "signals_compat_prompt": "Der Spielbuild {build} ist da. Funktionieren die heruntergeladenen Mods noch? Sag es uns.",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7210,6 +7227,7 @@
   "signals_filter_updates": "Updates",
   "signals_group_today": "Heute",
   "signals_group_yesterday": "Gestern",
+  "signals_kit_added_my_mod": "{actor} hat {mod} zum Kit „{kit}“ hinzugefügt",
   "signals_load_more": "Ältere Signale laden",
   "signals_loading": "Signale werden geladen…",
   "signals_loading_more": "Wird geladen…",
@@ -7259,6 +7277,7 @@
     }
   ],
   "signals_review_reply": "Der Autor von {mod} hat auf deine Bewertung geantwortet",
+  "signals_review_update_prompt": "{mod} hat Version {version} veröffentlicht. Möchtest du deine Bewertung aktualisieren?",
   "signals_see_all": "Alle Signale ansehen",
   "signals_show_all": "Alle Signale anzeigen",
   "signals_someone": "Jemand",

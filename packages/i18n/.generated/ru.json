@@ -1324,6 +1324,11 @@
   "basecamp_kpis_label": "Ключевые показатели",
   "basecamp_listing_category": "Категория",
   "basecamp_listing_category_placeholder": "Выберите категорию",
+  "basecamp_listing_convert": "Преобразовать в Markdown",
+  "basecamp_listing_convert_body": "Необработанный HTML теперь будет показан как обычный текст. Пути назад нет.",
+  "basecamp_listing_convert_done": "Описание преобразовано в Markdown.",
+  "basecamp_listing_convert_save_first": "Сначала сохраните или отмените изменения.",
+  "basecamp_listing_convert_title": "Преобразовать это описание в Markdown?",
   "basecamp_listing_description": "Описание",
   "basecamp_listing_description_group": "Описание",
   "basecamp_listing_description_hint": "Markdown. Что делает мод, как им пользоваться, известные проблемы. От 300 символов игрокам проще решиться.",
@@ -1336,6 +1341,8 @@
   "basecamp_listing_language": "Язык страницы",
   "basecamp_listing_language_hint": "Язык, на котором написано описание.",
   "basecamp_listing_language_placeholder": "Не указан",
+  "basecamp_listing_legacy_body": "Оно написано на старом сайте, поэтому его HTML всё ещё отображается с форматированием. Преобразуйте его в Markdown, чтобы редактировать как новое описание.",
+  "basecamp_listing_legacy_title": "Это описание сохраняет старую разметку",
   "basecamp_listing_license": "Лицензия",
   "basecamp_listing_license_placeholder": "Выберите лицензию",
   "basecamp_listing_links_group": "Лицензия и ссылки",
@@ -3263,6 +3270,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "Вышла сборка игры {build}: расскажите, работают ли скачанные вами моды",
   "emails_notify_item_creator_mod_published": "{actor} опубликовал(а) {mod}",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -3284,6 +3292,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} добавили в публичный набор",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -3333,6 +3342,7 @@
     }
   ],
   "emails_notify_item_review_reply": "Автор {mod} ответил на ваш отзыв",
+  "emails_notify_item_review_update_prompt": "{mod}: вышла новая мажорная версия ({version}), обновите свой отзыв",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -7235,6 +7245,8 @@
   "settings_notif_col_signal": "Сигнал",
   "settings_notif_comment": "Комментарии к вашим модам",
   "settings_notif_comment_hint": "Группируются: несколько комментариев приходят одним сигналом.",
+  "settings_notif_compat_prompt": "Вопросы «Сработало?»",
+  "settings_notif_compat_prompt_hint": "Вышла новая сборка игры, и у вас есть загрузки, о которых можно сообщить.",
   "settings_notif_creator": "Новые моды авторов",
   "settings_notif_creator_hint": "Автор, на которого вы подписаны, опубликовал что-то новое.",
   "settings_notif_defaults": "Восстановить по умолчанию",
@@ -7243,6 +7255,8 @@
   "settings_notif_group_conversations": "Обсуждения",
   "settings_notif_group_follows": "На что вы подписаны",
   "settings_notif_group_my_mods": "Ваши моды",
+  "settings_notif_kit_added": "Наборы с вашими модами",
+  "settings_notif_kit_added_hint": "Кто-то добавил ваш мод в публичный набор.",
   "settings_notif_matrix_text": "Для каждого типа сигнала выберите, показывать ли его в приложении и как часто присылать по почте. Сводки собирают всё в одно письмо.",
   "settings_notif_matrix_title": "Сигналы и письма",
   "settings_notif_mention": "Упоминания",
@@ -7260,6 +7274,8 @@
   "settings_notif_review_hint": "Кто-то оценил один из ваших модов.",
   "settings_notif_review_reply": "Ответы на ваши отзывы",
   "settings_notif_review_reply_hint": "Автор ответил на ваш отзыв.",
+  "settings_notif_review_update": "Обновление отзывов",
+  "settings_notif_review_update_hint": "Мод, на который вы оставили отзыв, выпустил новую мажорную версию.",
   "settings_notif_saved": "Настройки уведомлений сохранены",
   "settings_notif_status": "Решения модерации",
   "settings_notif_status_hint": "Ваш мод одобрен, отклонён, требует изменений или отправлен в архив.",
@@ -7653,6 +7669,7 @@
     }
   ],
   "signals_compat_fixed_in": "Проблема из вашего полевого отчёта о {mod} исправлена в {version}",
+  "signals_compat_prompt": "Вышла сборка игры {build}. Работают ли скачанные вами моды? Расскажите нам.",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7686,6 +7703,7 @@
   "signals_filter_updates": "Обновления",
   "signals_group_today": "Сегодня",
   "signals_group_yesterday": "Вчера",
+  "signals_kit_added_my_mod": "{actor} добавил(а) {mod} в набор «{kit}»",
   "signals_load_more": "Загрузить более старые сигналы",
   "signals_loading": "Загрузка сигналов…",
   "signals_loading_more": "Загрузка…",
@@ -7737,6 +7755,7 @@
     }
   ],
   "signals_review_reply": "Автор {mod} ответил на ваш отзыв",
+  "signals_review_update_prompt": "{mod}: вышла версия {version}. Хотите обновить свой отзыв?",
   "signals_see_all": "Все сигналы",
   "signals_show_all": "Показать все сигналы",
   "signals_someone": "Кто-то",

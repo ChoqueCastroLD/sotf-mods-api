@@ -1274,6 +1274,11 @@
   "basecamp_kpis_label": "Nyckeltal",
   "basecamp_listing_category": "Kategori",
   "basecamp_listing_category_placeholder": "Välj en kategori",
+  "basecamp_listing_convert": "Konvertera till Markdown",
+  "basecamp_listing_convert_body": "Rå HTML visas från och med nu som vanlig text. Det går inte att ångra.",
+  "basecamp_listing_convert_done": "Beskrivningen har konverterats till Markdown.",
+  "basecamp_listing_convert_save_first": "Spara eller förkasta dina ändringar först.",
+  "basecamp_listing_convert_title": "Konvertera den här beskrivningen till Markdown?",
   "basecamp_listing_description": "Beskrivning",
   "basecamp_listing_description_group": "Beskrivning",
   "basecamp_listing_description_hint": "Markdown. Vad den gör, hur man använder den, kända problem. Med 300 tecken eller fler är det lättare för spelare att bestämma sig.",
@@ -1286,6 +1291,8 @@
   "basecamp_listing_language": "Sidans språk",
   "basecamp_listing_language_hint": "Språket du skrev beskrivningen på.",
   "basecamp_listing_language_placeholder": "Inte angivet",
+  "basecamp_listing_legacy_body": "Den skrevs på den gamla sajten, så dess HTML visas fortfarande formaterad. Konvertera den till Markdown för att redigera den som en ny beskrivning.",
+  "basecamp_listing_legacy_title": "Den här beskrivningen behåller sin gamla layout",
   "basecamp_listing_license": "Licens",
   "basecamp_listing_license_placeholder": "Välj en licens",
   "basecamp_listing_links_group": "Licens och länkar",
@@ -3117,6 +3124,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "Spelversion {build} är ute: berätta om modden du laddade ner fortfarande fungerar",
   "emails_notify_item_creator_mod_published": "{actor} publicerade {mod}",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -3136,6 +3144,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} lades till i ett offentligt kit",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -3183,6 +3192,7 @@
     }
   ],
   "emails_notify_item_review_reply": "Skaparen av {mod} svarade på din recension",
+  "emails_notify_item_review_update_prompt": "{mod} har släppt en ny huvudversion ({version}): uppdatera din recension",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6773,6 +6783,8 @@
   "settings_notif_col_signal": "Signal",
   "settings_notif_comment": "Kommentarer på dina moddar",
   "settings_notif_comment_hint": "Samlade: flera kommentarer kommer som en signal.",
+  "settings_notif_compat_prompt": "Frågor om ”Fungerade det?”",
+  "settings_notif_compat_prompt_hint": "En ny spelversion är ute och du har nedladdningar att rapportera om.",
   "settings_notif_creator": "Nya moddar från skapare",
   "settings_notif_creator_hint": "En skapare du följer har publicerat något nytt.",
   "settings_notif_defaults": "Återställ standard",
@@ -6781,6 +6793,8 @@
   "settings_notif_group_conversations": "Samtal",
   "settings_notif_group_follows": "Det du följer",
   "settings_notif_group_my_mods": "Dina moddar",
+  "settings_notif_kit_added": "Kit med dina moddar",
+  "settings_notif_kit_added_hint": "Någon lade till en av dina moddar i ett offentligt kit.",
   "settings_notif_matrix_text": "Välj för varje typ av signal om den ska visas i appen och hur ofta den mejlas. Sammanfattningar samlar allt i ett mejl.",
   "settings_notif_matrix_title": "Signaler och mejl",
   "settings_notif_mention": "Omnämnanden",
@@ -6798,6 +6812,8 @@
   "settings_notif_review_hint": "Någon har betygsatt en av dina moddar.",
   "settings_notif_review_reply": "Svar på dina recensioner",
   "settings_notif_review_reply_hint": "En skapare har svarat på din recension.",
+  "settings_notif_review_update": "Recensionsuppdateringar",
+  "settings_notif_review_update_hint": "En mod du recenserat har släppt en ny huvudversion.",
   "settings_notif_saved": "Aviseringsinställningarna sparade",
   "settings_notif_status": "Granskningsbeslut",
   "settings_notif_status_hint": "En av dina moddar har godkänts, avvisats, behöver ändras eller har arkiverats.",
@@ -7177,6 +7193,7 @@
     }
   ],
   "signals_compat_fixed_in": "Din fältrapport om {mod} är åtgärdad i {version}",
+  "signals_compat_prompt": "Spelversion {build} är ute. Fungerar modden du laddade ner fortfarande? Berätta för oss.",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7210,6 +7227,7 @@
   "signals_filter_updates": "Uppdateringar",
   "signals_group_today": "I dag",
   "signals_group_yesterday": "I går",
+  "signals_kit_added_my_mod": "{actor} lade till {mod} i kitet ”{kit}”",
   "signals_load_more": "Ladda äldre signaler",
   "signals_loading": "Laddar signaler…",
   "signals_loading_more": "Laddar…",
@@ -7259,6 +7277,7 @@
     }
   ],
   "signals_review_reply": "Skaparen av {mod} svarade på din recension",
+  "signals_review_update_prompt": "{mod} har släppt version {version}. Vill du uppdatera din recension?",
   "signals_see_all": "Visa alla signaler",
   "signals_show_all": "Visa alla signaler",
   "signals_someone": "Någon",

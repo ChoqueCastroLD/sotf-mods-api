@@ -1180,6 +1180,11 @@
   "basecamp_kpis_label": "关键数据",
   "basecamp_listing_category": "分类",
   "basecamp_listing_category_placeholder": "选择分类",
+  "basecamp_listing_convert": "转换为 Markdown",
+  "basecamp_listing_convert_body": "原始 HTML 此后将显示为纯文本，且无法恢复。",
+  "basecamp_listing_convert_done": "描述已转换为 Markdown。",
+  "basecamp_listing_convert_save_first": "请先保存或放弃更改。",
+  "basecamp_listing_convert_title": "将此描述转换为 Markdown？",
   "basecamp_listing_description": "描述",
   "basecamp_listing_description_group": "描述",
   "basecamp_listing_description_hint": "支持 Markdown。写明功能、用法和已知问题。300 字以上更能帮助玩家做决定。",
@@ -1192,6 +1197,8 @@
   "basecamp_listing_language": "页面语言",
   "basecamp_listing_language_hint": "你撰写描述所用的语言。",
   "basecamp_listing_language_placeholder": "未设置",
+  "basecamp_listing_legacy_body": "它写于旧站点，因此其 HTML 仍按格式显示。转换为 Markdown 后即可像新描述一样编辑。",
+  "basecamp_listing_legacy_title": "此描述保留旧版排版",
   "basecamp_listing_license": "许可证",
   "basecamp_listing_license_placeholder": "选择许可证",
   "basecamp_listing_links_group": "许可证与链接",
@@ -2850,6 +2857,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "游戏版本 {build} 已发布：请告诉我们你下载的模组是否仍能运行",
   "emails_notify_item_creator_mod_published": "{actor} 发布了 {mod}",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -2865,6 +2873,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} 被添加到了公开套件",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -2908,6 +2917,7 @@
     }
   ],
   "emails_notify_item_review_reply": "{mod} 的作者回复了你的评价",
+  "emails_notify_item_review_update_prompt": "{mod} 发布了新的主要版本（{version}）：请更新你的评价",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6126,6 +6136,8 @@
   "settings_notif_col_signal": "信号",
   "settings_notif_comment": "你的模组收到的评论",
   "settings_notif_comment_hint": "合并发送：多条评论会合成一个信号。",
+  "settings_notif_compat_prompt": "“好用吗？”提醒",
+  "settings_notif_compat_prompt_hint": "新的游戏版本已发布，你有可以反馈的下载。",
   "settings_notif_creator": "创作者的新模组",
   "settings_notif_creator_hint": "你关注的创作者发布了新内容。",
   "settings_notif_defaults": "恢复默认",
@@ -6134,6 +6146,8 @@
   "settings_notif_group_conversations": "对话",
   "settings_notif_group_follows": "你关注的内容",
   "settings_notif_group_my_mods": "你的模组",
+  "settings_notif_kit_added": "包含你模组的套件",
+  "settings_notif_kit_added_hint": "有人把你的模组添加到了公开套件。",
   "settings_notif_matrix_text": "为每类信号选择是否在应用内显示，以及邮件发送频率。摘要会把所有内容合并成一封邮件。",
   "settings_notif_matrix_title": "信号和邮件",
   "settings_notif_mention": "提及",
@@ -6151,6 +6165,8 @@
   "settings_notif_review_hint": "有人给你的模组打了分。",
   "settings_notif_review_reply": "对你评价的回复",
   "settings_notif_review_reply_hint": "作者回复了你的评价。",
+  "settings_notif_review_update": "评价更新",
+  "settings_notif_review_update_hint": "你评价过的模组发布了新的主要版本。",
   "settings_notif_saved": "通知设置已保存",
   "settings_notif_status": "审核结果",
   "settings_notif_status_hint": "你的模组通过审核、被拒绝、需要修改或被归档。",
@@ -6503,6 +6519,7 @@
     }
   ],
   "signals_compat_fixed_in": "你关于 {mod} 的实地报告已在 {version} 中修复",
+  "signals_compat_prompt": "游戏版本 {build} 已发布。你下载的模组还能正常运行吗？请告诉我们。",
   "signals_creator_published": [
     {
       "declarations": [
@@ -6536,6 +6553,7 @@
   "signals_filter_updates": "更新",
   "signals_group_today": "今天",
   "signals_group_yesterday": "昨天",
+  "signals_kit_added_my_mod": "{actor} 将 {mod} 添加到了套件“{kit}”",
   "signals_load_more": "加载更早的信号",
   "signals_loading": "正在加载信号…",
   "signals_loading_more": "正在加载…",
@@ -6581,6 +6599,7 @@
     }
   ],
   "signals_review_reply": "{mod} 的作者回复了你的评价",
+  "signals_review_update_prompt": "{mod} 发布了版本 {version}。要更新你的评价吗？",
   "signals_see_all": "查看全部信号",
   "signals_show_all": "显示全部信号",
   "signals_someone": "有人",

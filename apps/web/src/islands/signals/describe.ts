@@ -14,7 +14,9 @@ import {
   BadgeCheck,
   Bug,
   CircleAlert,
+  CircleHelp,
   Flag,
+  Layers,
   type LucideIcon,
   Megaphone,
   MessageSquare,
@@ -216,6 +218,31 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         tone: 'success',
       };
     }
+    case 'compat.prompt':
+      return {
+        text: st('signals_compat_prompt', { build: str(signal.data.build) ?? st('signals_current_build') }),
+        excerpt: null,
+        icon: CircleHelp,
+        tone: 'signal',
+      };
+    case 'review.update_prompt':
+      return {
+        text: st('signals_review_update_prompt', { mod, version: str(signal.data.version) ?? '' }),
+        excerpt: null,
+        icon: Star,
+        tone: 'signal',
+      };
+    case 'kit.added_my_mod':
+      return {
+        text: st('signals_kit_added_my_mod', {
+          actor,
+          mod,
+          kit: str(signal.data.kitName) ?? signal.target?.title ?? '',
+        }),
+        excerpt: null,
+        icon: Layers,
+        tone: 'neutral',
+      };
     case 'patch.breaking_build':
       return {
         text: st('signals_patch_breaking', { build: str(signal.data.build) ?? signal.target?.title ?? '' }),

@@ -1274,6 +1274,11 @@
   "basecamp_kpis_label": "Kerncijfers",
   "basecamp_listing_category": "Categorie",
   "basecamp_listing_category_placeholder": "Kies een categorie",
+  "basecamp_listing_convert": "Omzetten naar Markdown",
+  "basecamp_listing_convert_body": "Ruwe HTML wordt voortaan als gewone tekst getoond. Er is geen weg terug.",
+  "basecamp_listing_convert_done": "Beschrijving omgezet naar Markdown.",
+  "basecamp_listing_convert_save_first": "Sla je wijzigingen eerst op of verwerp ze.",
+  "basecamp_listing_convert_title": "Deze beschrijving omzetten naar Markdown?",
   "basecamp_listing_description": "Beschrijving",
   "basecamp_listing_description_group": "Beschrijving",
   "basecamp_listing_description_hint": "Markdown. Wat hij doet, hoe je hem gebruikt, bekende problemen. Met 300 tekens of meer kiezen spelers makkelijker.",
@@ -1286,6 +1291,8 @@
   "basecamp_listing_language": "Taal van de pagina",
   "basecamp_listing_language_hint": "De taal waarin je de beschrijving schreef.",
   "basecamp_listing_language_placeholder": "Niet ingesteld",
+  "basecamp_listing_legacy_body": "Ze is op de oude site geschreven, dus de HTML wordt nog steeds opgemaakt weergegeven. Zet haar om naar Markdown om haar te bewerken als een nieuwe beschrijving.",
+  "basecamp_listing_legacy_title": "Deze beschrijving behoudt haar oude opmaak",
   "basecamp_listing_license": "Licentie",
   "basecamp_listing_license_placeholder": "Kies een licentie",
   "basecamp_listing_links_group": "Licentie en links",
@@ -3117,6 +3124,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "Game-build {build} is uit: laat ons weten of de mods die je downloadde nog werken",
   "emails_notify_item_creator_mod_published": "{actor} heeft {mod} gepubliceerd",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -3136,6 +3144,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} is toegevoegd aan een openbare kit",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -3183,6 +3192,7 @@
     }
   ],
   "emails_notify_item_review_reply": "De maker van {mod} heeft op je beoordeling gereageerd",
+  "emails_notify_item_review_update_prompt": "{mod} heeft een nieuwe hoofdversie ({version}) uitgebracht: werk je review bij",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6773,6 +6783,8 @@
   "settings_notif_col_signal": "Signaal",
   "settings_notif_comment": "Reacties op je mods",
   "settings_notif_comment_hint": "Gebundeld: meerdere reacties komen binnen als één signaal.",
+  "settings_notif_compat_prompt": "Meldingen «Werkte het?»",
+  "settings_notif_compat_prompt_hint": "Er is een nieuwe game-build uit en je hebt downloads om over te rapporteren.",
   "settings_notif_creator": "Nieuwe mods van makers",
   "settings_notif_creator_hint": "Een maker die je volgt heeft iets nieuws gepubliceerd.",
   "settings_notif_defaults": "Standaardwaarden herstellen",
@@ -6781,6 +6793,8 @@
   "settings_notif_group_conversations": "Gesprekken",
   "settings_notif_group_follows": "Wat je volgt",
   "settings_notif_group_my_mods": "Je mods",
+  "settings_notif_kit_added": "Kits met jouw mods",
+  "settings_notif_kit_added_hint": "Iemand heeft een mod van jou toegevoegd aan een openbare kit.",
   "settings_notif_matrix_text": "Kies per soort signaal of het in de app verschijnt en hoe vaak het wordt gemaild. Samenvattingen bundelen alles in één e-mail.",
   "settings_notif_matrix_title": "Signalen en e-mails",
   "settings_notif_mention": "Vermeldingen",
@@ -6798,6 +6812,8 @@
   "settings_notif_review_hint": "Iemand heeft een van je mods beoordeeld.",
   "settings_notif_review_reply": "Antwoorden op je reviews",
   "settings_notif_review_reply_hint": "Een maker heeft op je review gereageerd.",
+  "settings_notif_review_update": "Review-updates",
+  "settings_notif_review_update_hint": "Een mod die je hebt beoordeeld, heeft een nieuwe hoofdversie uitgebracht.",
   "settings_notif_saved": "Meldingsinstellingen opgeslagen",
   "settings_notif_status": "Beoordelingsbesluiten",
   "settings_notif_status_hint": "Een mod van jou is goedgekeurd, afgewezen, heeft wijzigingen nodig of is gearchiveerd.",
@@ -7177,6 +7193,7 @@
     }
   ],
   "signals_compat_fixed_in": "Je veldrapport over {mod} is opgelost in {version}",
+  "signals_compat_prompt": "Game-build {build} is uit. Werken de mods die je downloadde nog? Laat het ons weten.",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7210,6 +7227,7 @@
   "signals_filter_updates": "Updates",
   "signals_group_today": "Vandaag",
   "signals_group_yesterday": "Gisteren",
+  "signals_kit_added_my_mod": "{actor} heeft {mod} toegevoegd aan de kit “{kit}”",
   "signals_load_more": "Oudere signalen laden",
   "signals_loading": "Signalen laden…",
   "signals_loading_more": "Laden…",
@@ -7259,6 +7277,7 @@
     }
   ],
   "signals_review_reply": "De maker van {mod} heeft op je review gereageerd",
+  "signals_review_update_prompt": "{mod} heeft versie {version} uitgebracht. Wil je je review bijwerken?",
   "signals_see_all": "Alle signalen bekijken",
   "signals_show_all": "Alle signalen tonen",
   "signals_someone": "Iemand",

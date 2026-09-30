@@ -41,6 +41,12 @@ export function signalText(item: SignalEmailItem, locale: Locale): string {
       return m.emails_notify_item_compat_broken({ status: item.status ?? 'mixed', mod, build: item.build ?? '' }, o);
     case 'compat.acknowledged':
       return m.emails_notify_item_compat_acknowledged({ mod }, o);
+    case 'compat.prompt':
+      return m.emails_notify_item_compat_prompt({ build: item.build ?? '' }, o);
+    case 'review.update_prompt':
+      return m.emails_notify_item_review_update_prompt({ mod, version: item.version ?? '' }, o);
+    case 'kit.added_my_mod':
+      return m.emails_notify_item_kit_added_my_mod({ mod }, o);
     case 'patch.breaking_build':
       return m.emails_notify_item_patch_breaking({ build: item.build ?? '' }, o);
     case 'mod.status_changed':
