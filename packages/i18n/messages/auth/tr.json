@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Giriş yapan",
   "auth_menu_unverified": "Yorum yapmak, inceleme yazmak ve yüklemek için e-postanı doğrula.",
   "auth_menu_resend_failed": "Gönderilemedi. Birazdan tekrar dene.",
-  "auth_menu_unread": "Okunmamış:"
+  "auth_menu_unread": "Okunmamış:",
+  "auth_login_passkey": "Geçiş anahtarıyla giriş yap",
+  "auth_login_passkey_failed": "Geçiş anahtarıyla giriş iptal edildi veya bu cihazda kullanılabilir bir anahtar yok.",
+  "auth_twofactor_heading": "İki adımlı doğrulama",
+  "auth_twofactor_text": "Girişi tamamlamak için kimlik doğrulayıcı uygulamandaki kodu gir.",
+  "auth_twofactor_field": "Doğrulama kodu",
+  "auth_twofactor_hint": "Uygulamandaki 6 haneli kod veya kurtarma kodlarından biri.",
+  "auth_twofactor_submit": "Doğrula",
+  "auth_twofactor_passkey": "Bunun yerine geçiş anahtarı kullan",
+  "auth_twofactor_back": "Girişe dön",
+  "auth_twofactor_expired": "Bu adımın süresi doldu. Yenisini almak için tekrar giriş yap.",
+  "auth_twofactor_wrong": "Bu kod doğru değil. Tekrar dene."
 }

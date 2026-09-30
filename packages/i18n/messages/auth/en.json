@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Signed in as",
   "auth_menu_unverified": "Verify your email to comment, review and upload.",
   "auth_menu_resend_failed": "Couldn’t send it. Try again in a moment.",
-  "auth_menu_unread": "Unread:"
+  "auth_menu_unread": "Unread:",
+  "auth_login_passkey": "Sign in with a passkey",
+  "auth_login_passkey_failed": "The passkey sign-in was cancelled or no passkey is available on this device.",
+  "auth_twofactor_heading": "Two-step verification",
+  "auth_twofactor_text": "Enter the code from your authenticator app to finish signing in.",
+  "auth_twofactor_field": "Authentication code",
+  "auth_twofactor_hint": "The 6-digit code from your app, or one of your recovery codes.",
+  "auth_twofactor_submit": "Verify",
+  "auth_twofactor_passkey": "Use a passkey instead",
+  "auth_twofactor_back": "Back to sign in",
+  "auth_twofactor_expired": "This step expired. Sign in again to get a new one.",
+  "auth_twofactor_wrong": "That code is not correct. Try again."
 }

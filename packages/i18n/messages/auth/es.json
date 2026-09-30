@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Sesión iniciada como",
   "auth_menu_unverified": "Verifica tu email para comentar, reseñar y subir mods.",
   "auth_menu_resend_failed": "No se pudo enviar. Inténtalo de nuevo en un momento.",
-  "auth_menu_unread": "Sin leer:"
+  "auth_menu_unread": "Sin leer:",
+  "auth_login_passkey": "Iniciar sesión con una clave de acceso",
+  "auth_login_passkey_failed": "Se canceló el inicio con clave de acceso o no hay ninguna disponible en este dispositivo.",
+  "auth_twofactor_heading": "Verificación en dos pasos",
+  "auth_twofactor_text": "Introduce el código de tu app de autenticación para terminar de iniciar sesión.",
+  "auth_twofactor_field": "Código de verificación",
+  "auth_twofactor_hint": "El código de 6 dígitos de tu app o uno de tus códigos de recuperación.",
+  "auth_twofactor_submit": "Verificar",
+  "auth_twofactor_passkey": "Usar una clave de acceso",
+  "auth_twofactor_back": "Volver a iniciar sesión",
+  "auth_twofactor_expired": "Este paso ha caducado. Inicia sesión de nuevo para obtener otro.",
+  "auth_twofactor_wrong": "Ese código no es correcto. Inténtalo de nuevo."
 }

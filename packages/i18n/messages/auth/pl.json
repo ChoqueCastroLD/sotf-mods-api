@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Zalogowano jako",
   "auth_menu_unverified": "Potwierdź e-mail, aby komentować, recenzować i wgrywać mody.",
   "auth_menu_resend_failed": "Nie udało się wysłać. Spróbuj ponownie za chwilę.",
-  "auth_menu_unread": "Nieprzeczytane:"
+  "auth_menu_unread": "Nieprzeczytane:",
+  "auth_login_passkey": "Zaloguj się kluczem dostępu",
+  "auth_login_passkey_failed": "Logowanie kluczem dostępu zostało anulowane lub na tym urządzeniu nie ma dostępnego klucza.",
+  "auth_twofactor_heading": "Weryfikacja dwuetapowa",
+  "auth_twofactor_text": "Wpisz kod z aplikacji uwierzytelniającej, aby dokończyć logowanie.",
+  "auth_twofactor_field": "Kod weryfikacyjny",
+  "auth_twofactor_hint": "6-cyfrowy kod z aplikacji lub jeden z kodów odzyskiwania.",
+  "auth_twofactor_submit": "Zweryfikuj",
+  "auth_twofactor_passkey": "Użyj zamiast tego klucza dostępu",
+  "auth_twofactor_back": "Wróć do logowania",
+  "auth_twofactor_expired": "Ten krok wygasł. Zaloguj się ponownie, aby otrzymać nowy.",
+  "auth_twofactor_wrong": "Ten kod jest nieprawidłowy. Spróbuj ponownie."
 }

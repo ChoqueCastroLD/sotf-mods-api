@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Connecté en tant que",
   "auth_menu_unverified": "Vérifiez votre e-mail pour commenter, donner votre avis et publier.",
   "auth_menu_resend_failed": "Échec de l’envoi. Réessayez dans un instant.",
-  "auth_menu_unread": "Non lus :"
+  "auth_menu_unread": "Non lus :",
+  "auth_login_passkey": "Se connecter avec une clé d’accès",
+  "auth_login_passkey_failed": "La connexion par clé d’accès a été annulée ou aucune clé n’est disponible sur cet appareil.",
+  "auth_twofactor_heading": "Vérification en deux étapes",
+  "auth_twofactor_text": "Saisissez le code de votre application d’authentification pour terminer la connexion.",
+  "auth_twofactor_field": "Code de vérification",
+  "auth_twofactor_hint": "Le code à 6 chiffres de votre application, ou l’un de vos codes de récupération.",
+  "auth_twofactor_submit": "Vérifier",
+  "auth_twofactor_passkey": "Utiliser plutôt une clé d’accès",
+  "auth_twofactor_back": "Retour à la connexion",
+  "auth_twofactor_expired": "Cette étape a expiré. Reconnectez-vous pour en obtenir une nouvelle.",
+  "auth_twofactor_wrong": "Ce code n’est pas correct. Réessayez."
 }

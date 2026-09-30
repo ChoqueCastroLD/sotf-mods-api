@@ -7,7 +7,7 @@
  * failure kinds of PLAN §1.2: a problem from the API (RFC 9457 `problem+json`), the network being
  * down, or an unexpected answer.
  */
-import type { SelfUserDTO } from '@sotf/contracts/auth';
+import type { SecondFactor, SelfUserDTO } from '@sotf/contracts/auth';
 import type { MeSummaryDTO, UpdateSettingsBody } from '@sotf/contracts/me';
 import type { z } from 'zod';
 
@@ -129,6 +129,16 @@ export interface AuthResult {
   user: SelfUserDTO;
 }
 
+/** The password was right but a second factor is needed (no session yet). */
+export interface TwoFactorRequired {
+  twoFactor: { challengeId: string; methods: SecondFactor[]; expiresAt: string };
+}
+
+export interface PasskeyOptions {
+  challengeId: string;
+  options: Record<string, unknown>;
+}
+
 export interface LoginInput {
   identifier: string;
   password: string;
@@ -148,7 +158,15 @@ export interface RegisterInput {
 
 export const authApi = {
   login: (input: LoginInput, options: RequestOptions = {}) =>
-    request<AuthResult>('POST', '/auth/login', input, options),
+    request<AuthResult | TwoFactorRequired>('POST', '/auth/login', input, options),
+  verifyTwoFactor: (input: { challengeId: string; code: string }, options: RequestOptions = {}) =>
+    request<AuthResult>('POST', '/auth/2fa/verify', input, options),
+  passkeyOptions: (input: { challengeId?: string }, options: RequestOptions = {}) =>
+    request<PasskeyOptions>('POST', '/auth/passkey/options', input, options),
+  passkeyVerify: (
+    input: { challengeId: string; response: Record<string, unknown>; remember: boolean },
+    options: RequestOptions = {},
+  ) => request<AuthResult>('POST', '/auth/passkey/verify', input, options),
   register: (input: RegisterInput, options: RequestOptions = {}) =>
     request<AuthResult>('POST', '/auth/register', input, options),
   logout: (options: RequestOptions = {}) => request<void>('POST', '/auth/logout', {}, options),

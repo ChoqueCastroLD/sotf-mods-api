@@ -12,6 +12,7 @@ import {
   createHibpChecker,
   createTurnstileVerifier,
   PasswordHasher,
+  SecurityService,
   type TurnstileVerifier,
 } from '@sotf/core/auth/index';
 import type { Platform } from '../../lib/types.ts';
@@ -27,6 +28,7 @@ export interface AccountServicesOptions {
 
 export interface AccountServices {
   auth: AuthService;
+  security: SecurityService;
   storage: ExportStorage | null;
   mediaBaseUrl: string;
   siteUrl: string;
@@ -63,6 +65,7 @@ export function accountServices(platform: Platform, options: AccountServicesOpti
   });
   const created: AccountServices = {
     auth,
+    security: new SecurityService({ auth, appSecret: env.APP_SECRET, siteUrl: env.PUBLIC_SITE_URL }),
     storage: options.storage === undefined ? defaultStorage(platform) : options.storage,
     mediaBaseUrl: env.R2_PUBLIC_BASE_URL,
     siteUrl: env.PUBLIC_SITE_URL,

@@ -3,6 +3,7 @@
  *
  * - Sessions: kept until they expire (or are revoked) + 30 days, then deleted.
  * - One-time tokens: deleted 7 days after they expire or are used.
+ * - "AuthChallenge" (2FA / passkey steps): deleted 1 day after they expire.
  * - "AuthEvent": 90 days.
  * - "EmailOutbox": final rows (sent, suppressed, failed) after 90 days.
  * - Data exports: expired ZIPs deleted from the private bucket (24 h).
@@ -17,6 +18,7 @@ import type { ExportStorage } from './export-storage.ts';
 export interface CleanupResult {
   sessions: number;
   tokens: number;
+  challenges: number;
   authEvents: number;
   emails: number;
   exports: number;
@@ -36,6 +38,9 @@ export async function cleanupAccountData(deps: {
   const tokens = await deps.db.execute(sql`
     DELETE FROM "AuthToken"
     WHERE LEAST("expiresAt", COALESCE("usedAt", 'infinity'::timestamptz)) < ${now}::timestamptz - interval '7 days'`);
+  const challenges = await deps.db.execute(
+    sql`DELETE FROM "AuthChallenge" WHERE "expiresAt" < ${now}::timestamptz - interval '1 day'`,
+  );
   const authEvents = await deps.db.execute(
     sql`DELETE FROM "AuthEvent" WHERE "createdAt" < ${now}::timestamptz - interval '90 days'`,
   );
@@ -46,6 +51,7 @@ export async function cleanupAccountData(deps: {
   const result = {
     sessions: sessions.rowCount ?? 0,
     tokens: tokens.rowCount ?? 0,
+    challenges: challenges.rowCount ?? 0,
     authEvents: authEvents.rowCount ?? 0,
     emails: emails.rowCount ?? 0,
     exports,

@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "当前登录",
   "auth_menu_unverified": "验证邮箱后即可评论、写评测和上传模组。",
   "auth_menu_resend_failed": "发送失败，请稍后重试。",
-  "auth_menu_unread": "未读："
+  "auth_menu_unread": "未读：",
+  "auth_login_passkey": "使用通行密钥登录",
+  "auth_login_passkey_failed": "通行密钥登录已取消，或此设备上没有可用的通行密钥。",
+  "auth_twofactor_heading": "两步验证",
+  "auth_twofactor_text": "请输入验证器应用中的验证码以完成登录。",
+  "auth_twofactor_field": "验证码",
+  "auth_twofactor_hint": "应用中的 6 位验证码，或其中一个恢复码。",
+  "auth_twofactor_submit": "验证",
+  "auth_twofactor_passkey": "改用通行密钥",
+  "auth_twofactor_back": "返回登录",
+  "auth_twofactor_expired": "此步骤已过期，请重新登录以获取新的验证步骤。",
+  "auth_twofactor_wrong": "验证码不正确，请重试。"
 }

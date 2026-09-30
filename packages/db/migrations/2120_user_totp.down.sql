@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS "UserRecoveryCode";
+DROP TABLE IF EXISTS "UserTotp";

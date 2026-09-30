@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Inloggad som",
   "auth_menu_unverified": "Bekräfta din e-post för att kommentera, recensera och ladda upp.",
   "auth_menu_resend_failed": "Det gick inte att skicka. Försök igen om en stund.",
-  "auth_menu_unread": "Olästa:"
+  "auth_menu_unread": "Olästa:",
+  "auth_login_passkey": "Logga in med en passkey",
+  "auth_login_passkey_failed": "Inloggningen med passkey avbröts eller ingen passkey finns på den här enheten.",
+  "auth_twofactor_heading": "Tvåstegsverifiering",
+  "auth_twofactor_text": "Ange koden från din autentiseringsapp för att slutföra inloggningen.",
+  "auth_twofactor_field": "Verifieringskod",
+  "auth_twofactor_hint": "Den sexsiffriga koden från din app eller en av dina återställningskoder.",
+  "auth_twofactor_submit": "Verifiera",
+  "auth_twofactor_passkey": "Använd en passkey istället",
+  "auth_twofactor_back": "Tillbaka till inloggning",
+  "auth_twofactor_expired": "Det här steget har gått ut. Logga in igen för att få ett nytt.",
+  "auth_twofactor_wrong": "Koden stämmer inte. Försök igen."
 }

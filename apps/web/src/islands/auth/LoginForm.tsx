@@ -8,6 +8,9 @@
  *   completes it and signs in again.
  * - `?next=` goes through the allowlist; legacy `?registered` / `?reset` flags become toasts.
  * - A visitor who is already signed in (hint cookie → `/me/summary`) is offered to continue.
+ * - Two-factor (T1-02/T1-26): when the password is right but the account has an authenticator app,
+ *   the form asks for its code (or a recovery code, or a passkey) before the session opens; a
+ *   passkey can also sign in on its own.
  */
 import { type Locale, localizePath } from '@sotf/i18n';
 import { Button, ButtonLink } from '@sotf/ui/button';
@@ -17,10 +20,11 @@ import { Input } from '@sotf/ui/input';
 import { PasswordField } from '@sotf/ui/password-field';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
-import { authApi, type MeSummary } from './api.ts';
+import { authApi, type MeSummary, type TwoFactorRequired } from './api.ts';
 import { flagToasts, stripUrlParams } from './flags.ts';
 import { useLang, useT } from './i18n.tsx';
 import { NEXT_PARAM, safeNext, withNext } from './next.ts';
+import { passkeysSupported, signInWithPasskey } from './passkey.ts';
 import {
   AuthIsland,
   type AuthIslandProps,
@@ -63,6 +67,9 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
   const [needsTurnstile, setNeedsTurnstile] = useState(false);
   const [next, setNext] = useState<string | null>(null);
   const [signedIn, setSignedIn] = useState<MeSummary | null>(null);
+  const [challenge, setChallenge] = useState<TwoFactorRequired['twoFactor'] | null>(null);
+  const [passkeyBusy, setPasskeyBusy] = useState(false);
+  const [canPasskey, setCanPasskey] = useState(false);
   const [retryIn, startRetry] = useCountdown();
   const alertRef = useRef<HTMLDivElement | null>(null);
   const turnstile = useTurnstile({
@@ -76,6 +83,7 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setNext(params.get(NEXT_PARAM));
+    setCanPasskey(passkeysSupported());
     for (const flag of flagToasts(params)) notify(flag.kind, t(flag.messageKey));
     stripUrlParams();
     if (!hasSignedInHint(document.cookie)) return;
@@ -131,6 +139,11 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
       ...(turnstileToken ? { turnstileToken } : {}),
     });
     if (needsTurnstile) turnstile.reset();
+    if (result.ok && 'twoFactor' in result.data) {
+      setChallenge(result.data.twoFactor);
+      setSubmitting(false);
+      return;
+    }
     if (result.ok) {
       // Full navigation: the header, caches and islands start from the new session.
       window.location.assign(destination);
@@ -154,6 +167,34 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
       }
     }
     setFailure(result);
+  }
+
+  async function onPasskey() {
+    if (passkeyBusy) return;
+    setPasskeyBusy(true);
+    setFailure(null);
+    const result = await signInWithPasskey({ remember });
+    if (result.ok) {
+      window.location.assign(destination);
+      return;
+    }
+    setPasskeyBusy(false);
+    setFailure(result.kind === 'cancelled' ? null : result);
+    if (result.kind === 'cancelled') notify('error', t('auth_login_passkey_failed'));
+  }
+
+  if (challenge) {
+    return (
+      <TwoFactorStep
+        challenge={challenge}
+        remember={remember}
+        destination={destination}
+        onRestart={() => {
+          setChallenge(null);
+          setPassword('');
+        }}
+      />
+    );
   }
 
   if (signedIn) {
@@ -243,6 +284,11 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
       <Button type="submit" size="lg" block loading={submitting} disabled={retryIn > 0} glow>
         {retryIn > 0 ? t('auth_rate_limited_submit', { seconds: retryIn }) : t('auth_login_submit')}
       </Button>
+      {canPasskey ? (
+        <Button type="button" variant="outline" size="lg" block loading={passkeyBusy} onClick={onPasskey}>
+          {t('auth_login_passkey')}
+        </Button>
+      ) : null}
       <p className="text-center text-sm text-fg-muted">
         {t('auth_login_new_here')}{' '}
         <a
@@ -253,6 +299,132 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
         </a>
       </p>
       <p className="text-center text-xs text-fg-subtle">{t('auth_login_legacy_note')}</p>
+    </form>
+  );
+}
+
+interface TwoFactorStepProps {
+  challenge: TwoFactorRequired['twoFactor'];
+  remember: boolean;
+  destination: string;
+  /** Back to the password step (also when the challenge expired). */
+  onRestart: () => void;
+}
+
+/** Second step of a sign-in: authenticator code or recovery code, or a passkey. */
+function TwoFactorStep({ challenge, remember, destination, onRestart }: TwoFactorStepProps) {
+  const t = useT();
+  const [code, setCode] = useState('');
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [failure, setFailure] = useState<FormFailure | null>(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [expired, setExpired] = useState(false);
+  const [retryIn, startRetry] = useCountdown();
+  const alertRef = useRef<HTMLDivElement | null>(null);
+  useFocusOnChange(failure, alertRef);
+
+  function handle(failed: FormFailure) {
+    if (failed.kind === 'problem') {
+      const { code: problemCode, retryAfter } = failed.problem;
+      if (problemCode === 'GONE' || problemCode === 'NOT_FOUND') {
+        setExpired(true);
+        return;
+      }
+      if (problemCode === 'RATE_LIMITED') startRetry(retryAfter ?? 60);
+      if (problemCode === 'INVALID_CREDENTIALS') {
+        setError(t('auth_twofactor_wrong'));
+        document.getElementById('login-code')?.focus();
+        return;
+      }
+    }
+    setFailure(failed);
+  }
+
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (submitting || retryIn > 0) return;
+    const value = code.trim();
+    if (value === '') {
+      setError(t('errors_field_required'));
+      document.getElementById('login-code')?.focus();
+      return;
+    }
+    setError(undefined);
+    setFailure(null);
+    setSubmitting(true);
+    const result = await authApi.verifyTwoFactor({ challengeId: challenge.challengeId, code: value });
+    if (result.ok) {
+      window.location.assign(destination);
+      return;
+    }
+    setSubmitting(false);
+    handle(result);
+  }
+
+  async function onPasskey() {
+    if (submitting) return;
+    setSubmitting(true);
+    setFailure(null);
+    const result = await signInWithPasskey({ challengeId: challenge.challengeId, remember });
+    if (result.ok) {
+      window.location.assign(destination);
+      return;
+    }
+    setSubmitting(false);
+    if (result.kind === 'cancelled') setError(t('auth_login_passkey_failed'));
+    else handle(result);
+  }
+
+  if (expired) {
+    return (
+      <div className="grid gap-4" data-auth-form="login-2fa-expired">
+        <p role="alert" className="text-fg-muted">
+          {t('auth_twofactor_expired')}
+        </p>
+        <Button type="button" size="lg" onClick={onRestart}>
+          {t('auth_twofactor_back')}
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <form noValidate onSubmit={onSubmit} className="grid gap-5" data-auth-form="login-2fa">
+      <div className="grid gap-1">
+        <h2 className="font-display-caps text-display-xs text-fg">{t('auth_twofactor_heading')}</h2>
+        <p className="text-fg-muted">{t('auth_twofactor_text')}</p>
+      </div>
+      <FormAlert failure={failure} retryIn={retryIn} alertRef={alertRef} />
+      <Field label={t('auth_twofactor_field')} error={error} name="code" description={t('auth_twofactor_hint')}>
+        <Input
+          id="login-code"
+          value={code}
+          onValueChange={(value) => setCode(value)}
+          autoComplete="one-time-code"
+          inputMode="text"
+          autoCapitalize="none"
+          spellCheck={false}
+          enterKeyHint="go"
+          maxLength={32}
+          autoFocus
+          required
+        />
+      </Field>
+      <Button type="submit" size="lg" block loading={submitting} disabled={retryIn > 0} glow>
+        {retryIn > 0 ? t('auth_rate_limited_submit', { seconds: retryIn }) : t('auth_twofactor_submit')}
+      </Button>
+      {challenge.methods.includes('passkey') && passkeysSupported() ? (
+        <Button type="button" variant="outline" size="lg" block disabled={submitting} onClick={onPasskey}>
+          {t('auth_twofactor_passkey')}
+        </Button>
+      ) : null}
+      <button
+        type="button"
+        onClick={onRestart}
+        className="justify-self-center text-sm text-link underline-offset-3 hover:underline"
+      >
+        {t('auth_twofactor_back')}
+      </button>
     </form>
   );
 }

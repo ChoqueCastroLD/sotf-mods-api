@@ -5,6 +5,7 @@
  *   ['settings', 'profile', handle]         my public profile (`GET /users/:handle`)
  *   ['settings', 'profile-mods', handle]    my published mods (pinned-mod picker)
  *   ['settings', 'sessions']                active sessions
+ *   ['settings', 'security']                two-factor and passkey state
  *   ['settings', 'notification-preferences'] the type × channel matrix
  *   ['settings', 'export', id]              a data export being prepared
  *
@@ -19,6 +20,8 @@ import { queryKeys } from '../../lib/query-keys.ts';
 
 export type { EmailFrequency, NotificationType };
 export type Session = Awaited<ReturnType<typeof api.me.sessions>>['items'][number];
+export type SecurityOverview = Awaited<ReturnType<typeof api.security.overview>>;
+export type Passkey = SecurityOverview['passkeys'][number];
 export type DataExport = Awaited<ReturnType<typeof api.me.getExport>>;
 export type PublicProfile = Awaited<ReturnType<typeof api.catalog.getUser>>;
 export type SelfProfile = Awaited<ReturnType<typeof api.me.updateProfile>>;
@@ -32,6 +35,7 @@ export const settingsKeys = {
   profile: (handle: string) => ['settings', 'profile', handle] as const,
   profileMods: (handle: string) => ['settings', 'profile-mods', handle] as const,
   sessions: ['settings', 'sessions'] as const,
+  security: ['settings', 'security'] as const,
   preferences: ['settings', 'notification-preferences'] as const,
   export: (id: string) => ['settings', 'export', id] as const,
 } as const;
@@ -56,6 +60,12 @@ export const profileModsQuery = (handle: string) =>
 export const sessionsQuery = queryOptions({
   queryKey: settingsKeys.sessions,
   queryFn: async ({ signal }) => (await api.me.sessions({}, { signal })).items,
+  staleTime: 30_000,
+});
+
+export const securityQuery = queryOptions({
+  queryKey: settingsKeys.security,
+  queryFn: ({ signal }) => api.security.overview({}, { signal }),
   staleTime: 30_000,
 });
 
@@ -88,6 +98,16 @@ export const settingsApi = {
   revokeOthers: () => api.me.revokeOtherSessions({}),
   updatePreferences: (items: { type: NotificationType; inApp: boolean; email: EmailFrequency }[]) =>
     api.notifications.updatePreferences({ body: { items } }),
+  setupTotp: (password: string) => api.security.setupTotp({ body: { password } }),
+  enableTotp: (code: string) => api.security.enableTotp({ body: { code } }),
+  disableTotp: (password: string, code: string) => api.security.disableTotp({ body: { password, code } }),
+  regenerateRecoveryCodes: (password: string, code: string) =>
+    api.security.regenerateRecoveryCodes({ body: { password, code } }),
+  passkeyRegistrationOptions: (password: string) => api.security.passkeyRegistrationOptions({ body: { password } }),
+  registerPasskey: (challengeId: string, response: Record<string, unknown>, name?: string) =>
+    api.security.registerPasskey({ body: { challengeId, response, ...(name ? { name } : {}) } }),
+  renamePasskey: (id: string, name: string) => api.security.renamePasskey({ params: { id }, body: { name } }),
+  removePasskey: (id: string, password: string) => api.security.removePasskey({ params: { id }, body: { password } }),
   requestExport: () => api.me.requestExport({}),
   requestDeletion: (password: string, mode: 'archive_mods' | 'keep_mods_anonymous') =>
     api.me.requestDeletion({ body: { password, mode } }),

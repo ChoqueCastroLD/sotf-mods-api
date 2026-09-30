@@ -21,6 +21,7 @@ import { moderationEndpoints } from './moderation.ts';
 import { notificationsEndpoints } from './notifications.ts';
 import { reviewsEndpoints } from './reviews.ts';
 import { searchEndpoints } from './search.ts';
+import { securityEndpoints } from './security.ts';
 import { seoEndpoints } from './seo.ts';
 import { statsEndpoints } from './stats.ts';
 import { studioEndpoints } from './studio.ts';
@@ -45,6 +46,7 @@ export const apiContracts = {
   notifications: notificationsEndpoints,
   reviews: reviewsEndpoints,
   search: searchEndpoints,
+  security: securityEndpoints,
   seo: seoEndpoints,
   stats: statsEndpoints,
   studio: studioEndpoints,

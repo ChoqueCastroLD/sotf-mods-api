@@ -30,6 +30,21 @@ export const EMAIL_TEMPLATE_PAYLOADS = {
     requestedAt: Iso,
     securityUrl: Url,
   }),
+  'auth.new_login': z.object({
+    displayName: Name,
+    device: z.string().max(120).nullable(),
+    country: z.string().length(2).nullable(),
+    signedInAt: Iso,
+    sessionsUrl: Url,
+    resetUrl: Url,
+  }),
+  'auth.security_change': z.object({
+    displayName: Name,
+    change: z.enum(['totp_enabled', 'totp_disabled', 'recovery_codes_regenerated', 'passkey_added', 'passkey_removed']),
+    changedAt: Iso,
+    securityUrl: Url,
+    resetUrl: Url,
+  }),
   'account.export_ready': z.object({ displayName: Name, url: Url, expiresAt: Iso }),
   'account.deletion_scheduled': z.object({
     displayName: Name,
