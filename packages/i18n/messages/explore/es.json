@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "Revisa la ortografía, prueba con menos palabras o con el ID del manifiesto del mod, o explora por categoría.",
   "explore_search_error_text": "La búsqueda no está disponible ahora mismo. Vuelve a intentarlo en un momento.",
   "explore_search_in_explore": "Filtrar estos resultados en Explorar",
-  "explore_search_browse": "Ver categorías"
+  "explore_search_browse": "Ver categorías",
+  "explore_compare_title": "Comparar mods",
+  "explore_compare_description": "Pon mods de Sons of the Forest lado a lado: descargas, valoración, compatibilidad, rol multijugador, licencia y dependencias.",
+  "explore_compare_intro": "Escribe de dos a cuatro mods como creador/nombre o pega los enlaces de sus páginas.",
+  "explore_compare_slot_label": "Mod {n}",
+  "explore_compare_slot_hint": "creador/nombre-del-mod",
+  "explore_compare_submit": "Comparar",
+  "explore_compare_not_found": "No encontramos «{ref}».",
+  "explore_compare_need_two": "Elige al menos dos mods para comparar.",
+  "explore_compare_row_creator": "Creador",
+  "explore_compare_row_category": "Categoría",
+  "explore_compare_row_dependencies": "Dependencias",
+  "explore_compare_row_compat": "Compatibilidad",
+  "explore_compare_row_multiplayer": "Multijugador",
+  "explore_compare_row_downloads_week": "Descargas esta semana",
+  "explore_compare_none": "Ninguna",
+  "explore_compare_crumb": "Comparar"
 }

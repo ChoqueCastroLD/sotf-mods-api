@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "Kontrollera stavningen, prova färre ord eller moddens manifest-ID, eller bläddra per kategori.",
   "explore_search_error_text": "Sökningen går inte att nå just nu. Försök igen om en stund.",
   "explore_search_in_explore": "Filtrera resultaten i Utforska",
-  "explore_search_browse": "Bläddra bland kategorier"
+  "explore_search_browse": "Bläddra bland kategorier",
+  "explore_compare_title": "Jämför mods",
+  "explore_compare_description": "Ställ Sons of the Forest-mods bredvid varandra: nedladdningar, betyg, kompatibilitet, flerspelarroll, licens och beroenden.",
+  "explore_compare_intro": "Ange två till fyra mods som skapare/namn eller klistra in länkarna till deras sidor.",
+  "explore_compare_slot_label": "Mod {n}",
+  "explore_compare_slot_hint": "skapare/mod-namn",
+  "explore_compare_submit": "Jämför",
+  "explore_compare_not_found": "Vi hittade inte ”{ref}”.",
+  "explore_compare_need_two": "Välj minst två mods att jämföra.",
+  "explore_compare_row_creator": "Skapare",
+  "explore_compare_row_category": "Kategori",
+  "explore_compare_row_dependencies": "Beroenden",
+  "explore_compare_row_compat": "Kompatibilitet",
+  "explore_compare_row_multiplayer": "Flerspelare",
+  "explore_compare_row_downloads_week": "Nedladdningar den här veckan",
+  "explore_compare_none": "Inga",
+  "explore_compare_crumb": "Jämför"
 }

@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "Yazımı kontrol et, daha az kelime ya da modun manifest kimliğini dene veya kategorilere göz at.",
   "explore_search_error_text": "Arama şu anda kullanılamıyor. Birazdan yeniden dene.",
   "explore_search_in_explore": "Bu sonuçları Keşfet’te filtrele",
-  "explore_search_browse": "Kategorilere göz at"
+  "explore_search_browse": "Kategorilere göz at",
+  "explore_compare_title": "Modları karşılaştır",
+  "explore_compare_description": "Sons of the Forest modlarını yan yana koy: indirmeler, puan, uyumluluk, çok oyunculu rolü, lisans ve bağımlılıklar.",
+  "explore_compare_intro": "İki ila dört modu yapımcı/ad biçiminde gir veya sayfa bağlantılarını yapıştır.",
+  "explore_compare_slot_label": "Mod {n}",
+  "explore_compare_slot_hint": "yapimci/mod-adi",
+  "explore_compare_submit": "Karşılaştır",
+  "explore_compare_not_found": "“{ref}” bulunamadı.",
+  "explore_compare_need_two": "Karşılaştırmak için en az iki mod seç.",
+  "explore_compare_row_creator": "Yapımcı",
+  "explore_compare_row_category": "Kategori",
+  "explore_compare_row_dependencies": "Bağımlılıklar",
+  "explore_compare_row_compat": "Uyumluluk",
+  "explore_compare_row_multiplayer": "Çok oyunculu",
+  "explore_compare_row_downloads_week": "Bu haftaki indirmeler",
+  "explore_compare_none": "Yok",
+  "explore_compare_crumb": "Karşılaştır"
 }

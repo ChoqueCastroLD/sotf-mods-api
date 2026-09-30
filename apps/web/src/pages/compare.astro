@@ -1,0 +1,156 @@
+---
+/**
+ * `/compare?mods=creator/name&mods=creator/name` (PLAN §7.14 T2, mod comparator): up to four mods
+ * side by side (downloads, rating, compatibility, multiplayer role, licence, dependencies). A GET
+ * form, so it works without JavaScript and every comparison is a shareable URL. `noindex`;
+ * comparisons are not cached at the edge (they depend on the query), the API failing → 503.
+ */
+import { formatDate, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { isApiError } from '@sotf/contracts/client';
+import { type ModDetailDTO, resolveModPage } from '../components/mod/data.ts';
+import { licenseLabel, taxonomyName } from '../components/mod/i18n.ts';
+import { compatSentence, multiplayerLabel, platformLabel } from '../components/mod/format.ts';
+import PageLayout from '../layouts/PageLayout.astro';
+import { setPageCache } from '../lib/cache/page.ts';
+import { MAX_COMPARE, parseCompareRefs } from '../lib/compare.ts';
+import { href } from '../lib/i18n.ts';
+import { ensureLocals } from '../lib/request-context.ts';
+import { modPath } from '@sotf/contracts/seo';
+
+export const prerender = false;
+
+const locale = ensureLocals(Astro).locale;
+setPageCache(Astro, false);
+const refs = parseCompareRefs(Astro.url.searchParams.getAll('mods'));
+
+interface Column {
+  ref: string;
+  mod: ModDetailDTO | null;
+}
+let failed = false;
+const columns: Column[] = await Promise.all(
+  refs.map(async (ref): Promise<Column> => {
+    try {
+      const url = new URL(modPath('mod', ref.user, ref.slug), Astro.url);
+      const resolved = await resolveModPage({ locals: Astro.locals, url });
+      if (resolved.kind === 'ok') return { ref: ref.raw, mod: resolved.mod };
+      if (resolved.kind === 'redirect') {
+        const target = new URL(resolved.location, Astro.url);
+        const again = await resolveModPage({ locals: Astro.locals, url: new URL(target.pathname.replace(/^\/[a-z]{2}(?=\/mods\/)/, ''), Astro.url) });
+        return { ref: ref.raw, mod: again.kind === 'ok' ? again.mod : null };
+      }
+      return { ref: ref.raw, mod: null };
+    } catch (error) {
+      if (!isApiError(error) || error.status >= 500) failed = true;
+      return { ref: ref.raw, mod: null };
+    }
+  }),
+);
+if (failed) Astro.response.status = 503;
+const found = columns.filter((column): column is { ref: string; mod: ModDetailDTO } => column.mod !== null);
+const missing = columns.filter((column) => column.mod === null);
+const slots = Math.min(MAX_COMPARE, Math.max(2, refs.length + (refs.length < MAX_COMPARE ? 1 : 0)));
+const slotValues = Array.from({ length: slots }, (_, i) => refs[i]?.raw ?? '');
+const none = m.explore_compare_none();
+
+const rows: Array<{ label: string; cell: (mod: ModDetailDTO) => string }> = [
+  { label: m.explore_compare_row_creator(), cell: (mod) => mod.userDisplayName },
+  { label: m.explore_compare_row_category(), cell: (mod) => (mod.category ? taxonomyName(mod.category) : none) },
+  { label: m.mod_fact_version(), cell: (mod) => (mod.latestVersion ? `v${mod.latestVersion.version}` : none) },
+  { label: m.mod_fact_updated_label(), cell: (mod) => formatDate(locale, mod.lastReleasedAt) },
+  { label: m.mod_stat_downloads(), cell: (mod) => formatNumber(locale, mod.downloads) },
+  { label: m.explore_compare_row_downloads_week(), cell: (mod) => formatNumber(locale, mod.downloads7d) },
+  { label: m.mod_stat_followers(), cell: (mod) => formatNumber(locale, mod.followers) },
+  {
+    label: m.mod_stat_rating(),
+    cell: (mod) =>
+      mod.ratingAvg === null
+        ? none
+        : m.mod_stat_rating_value({ rating: formatNumber(locale, mod.ratingAvg, { maximumFractionDigits: 1 }), count: mod.ratingCount }),
+  },
+  { label: m.explore_compare_row_compat(), cell: (mod) => compatSentence(mod) },
+  { label: m.explore_compare_row_multiplayer(), cell: (mod) => (mod.multiplayerRole ? (multiplayerLabel(mod.multiplayerRole) ?? none) : none) },
+  { label: m.mod_fact_platform(), cell: (mod) => (mod.platform ? platformLabel(mod.platform) : none) },
+  { label: m.mod_fact_license(), cell: (mod) => (mod.license ? licenseLabel(mod.license) : none) },
+  {
+    label: m.explore_compare_row_dependencies(),
+    cell: (mod) => (mod.dependencies.length > 0 ? mod.dependencies.map((dep) => dep.mod?.name ?? dep.manifestId).join(', ') : none),
+  },
+];
+---
+
+<PageLayout
+  template="compare"
+  seo={{ title: m.explore_compare_title(), description: m.explore_compare_description(), path: '/compare', noindex: true }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_nav_explore(), path: '/explore' }, { label: m.explore_compare_crumb() }]}
+>
+  <div class="flex flex-col gap-6">
+    <header class="flex flex-col gap-2">
+      <h1 class="font-display-caps text-display-sm text-fg">{m.explore_compare_title()}</h1>
+      <p class="max-w-(--container-prose) text-base text-fg-muted">{m.explore_compare_intro()}</p>
+    </header>
+    <form method="get" action={href('/compare', locale)} class="flex flex-wrap items-end gap-3">
+      {
+        slotValues.map((value, index) => (
+          <label class="grid gap-1 text-sm text-fg-muted">
+            <span>{m.explore_compare_slot_label({ n: index + 1 })}</span>
+            <input
+              type="text"
+              name="mods"
+              value={value}
+              placeholder={m.explore_compare_slot_hint()}
+              autocomplete="off"
+              spellcheck="false"
+              class="h-11 w-64 rounded-md border border-border-strong bg-surface px-3 text-base text-fg placeholder:text-fg-subtle md:h-10"
+            />
+          </label>
+        ))
+      }
+      <button type="submit" class={buttonClasses({ variant: 'primary' })}>{m.explore_compare_submit()}</button>
+    </form>
+    {
+      missing.length > 0 && (
+        <ul class="grid gap-1 text-sm text-danger" role="status">
+          {missing.map((column) => (
+            <li>{m.explore_compare_not_found({ ref: column.ref })}</li>
+          ))}
+        </ul>
+      )
+    }
+    {
+      found.length === 1 && missing.length === 0 && <p class="text-fg-muted" role="status">{m.explore_compare_need_two()}</p>
+    }
+    {
+      found.length >= 2 && (
+        <div class="overflow-x-auto rounded-lg border border-border">
+          <table class="w-full min-w-[40rem] border-collapse text-start text-sm">
+            <thead>
+              <tr class="border-b border-border bg-surface">
+                <td class="p-3" />
+                {found.map(({ mod }) => (
+                  <th scope="col" class="p-3 text-start align-bottom">
+                    <a href={href(mod.canonicalPath, locale)} class="font-semibold text-fg hover:underline">
+                      {mod.name}
+                    </a>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr class="border-b border-border last:border-b-0">
+                  <th scope="row" class="p-3 text-start font-medium text-fg-muted">{row.label}</th>
+                  {found.map(({ mod }) => (
+                    <td class="p-3 text-fg">{row.cell(mod)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    }
+  </div>
+</PageLayout>
