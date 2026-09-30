@@ -1273,6 +1273,12 @@ importers:
 
   tooling/migration:
     dependencies:
+      '@aws-sdk/client-s3':
+        specifier: 'catalog:'
+        version: 3.1142.0
+      '@sotf/core':
+        specifier: workspace:*
+        version: link:../../packages/core
       '@sotf/db':
         specifier: workspace:*
         version: link:../../packages/db
