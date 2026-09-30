@@ -150,9 +150,12 @@ describe('backfill registry', () => {
     expect(BACKFILLS.filter((b) => b.touchesLegacy).map((b) => b.id)).toEqual(['B4', 'B5']);
   });
 
-  it('selects by id and explains B8', () => {
+  it('selects by id and names the command of the backfills run elsewhere', () => {
     expect(selectBackfills(['b11,B1']).map((b) => b.id)).toEqual(['B1', 'B11']);
-    expect(() => selectBackfills(['B8'])).toThrow(/WP-84/);
+    expect(() => selectBackfills(['B8'])).toThrow(/WP-84.*r2:manifest-fixes/);
+    expect(() => selectBackfills(['b4m'])).toThrow(/r2:manifest-fixes/);
+    expect(() => selectBackfills(['B16'])).toThrow(/node dist\/backfill\.js B16/);
+    expect(() => selectBackfills(['B15', 'B17'])).toThrow(/B15 is the R2 pass.*r2:b17/);
     expect(() => selectBackfills(['B99'])).toThrow(/unknown backfill/);
   });
 });

@@ -1,5 +1,5 @@
 {
   "extends": "../../packages/config/tsconfig/node.json",
-  "include": ["src", "test", "*.ts"],
+  "include": ["src", "test", "backfills-r2", "*.ts"],
   "exclude": ["node_modules"]
 }

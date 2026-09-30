@@ -185,6 +185,7 @@ describe('B2 · B3 · B6 · B7 · B9 · B12', () => {
     expect(comment.rows[0].bodyHtml).toContain('href="/profile/user1"');
     expect(await scalar(c, `SELECT "changelogMd" FROM "ModVersion" WHERE "id" = 1`)).toBe('fixed <3 bugs & more');
     expect(await scalar(c, `SELECT "descriptionHtml" FROM "Mod" WHERE "id" = 1`)).toContain('<strong>mod 1</strong>');
+    expect(await scalar(c, `SELECT string_agg(DISTINCT "descriptionFormat", ',') FROM "Mod"`)).toBe('legacy');
     // B10: resolved and unresolved dependencies on the latest version.
     const deps = await c.query(`SELECT "depManifestId", "depModId" FROM "ModDependency" ORDER BY 1`);
     expect(deps.rows).toEqual([
