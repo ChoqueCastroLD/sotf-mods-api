@@ -2030,6 +2030,584 @@
   "explore_view_grid": "Izgara",
   "explore_view_label": "Görünüm",
   "explore_view_list": "Liste",
+  "kits_about_empty": "Henüz açıklama yok.",
+  "kits_about_title": "Bu kit hakkında",
+  "kits_action_create": "Kit oluştur",
+  "kits_actions_for": "{name} işlemleri",
+  "kits_add_already": "{name} zaten “{kit}” içinde.",
+  "kits_add_button": "Ekle",
+  "kits_add_description": "Bir kit seç ya da bu modla yeni bir kit başlat.",
+  "kits_add_dismiss": "Kapat",
+  "kits_add_done": "{name}, “{kit}” kitine eklendi.",
+  "kits_add_failed": "{name} eklenemedi.",
+  "kits_add_in_kit": "Kitte",
+  "kits_add_mod_missing": "Bu mod artık mevcut değil.",
+  "kits_add_new_kit": "Bu modla yeni kit",
+  "kits_add_title": "{name} modunu bir kite ekle",
+  "kits_add_title_loading": "Bir kite ekle",
+  "kits_add_to_named": "{kit} kitine ekle",
+  "kits_announce_added": "{name}, {position}. sıraya eklendi.",
+  "kits_announce_cancelled": "Taşıma iptal edildi. {name} yeniden {position}. sırada.",
+  "kits_announce_dropped": "{name}, {position}/{total} sırasına bırakıldı.",
+  "kits_announce_grabbed": "{name} tutuldu. Sıra {position}/{total}.",
+  "kits_announce_moved": "{name}, {position}/{total} sırasına taşındı.",
+  "kits_announce_removed": "{name} kaldırıldı.",
+  "kits_announce_restored": "{name} geri getirildi.",
+  "kits_autos_hint": "Yukarıdaki öğeler bunlara ihtiyaç duyuyor. Listeyi takip ederler: onlara ihtiyaç duyan öğeyi kaldırırsan onlar da gider.",
+  "kits_autos_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bağımlılık otomatik eklendi",
+        "count__plural=*": "{count__number} bağımlılık otomatik eklendi"
+      }
+    }
+  ],
+  "kits_autosave_hint": "Değişiklikler otomatik kaydedilir · rev. {revision}",
+  "kits_back_to_first": "1. sayfaya dön",
+  "kits_back_to_list": "Kitlerim",
+  "kits_broken_text": "Oyuncular güncel yamada çalışmadıklarını bildiriyor. Eski bir sürümü sabitle ya da alternatif ara.",
+  "kits_broken_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod bozuk olarak bildirildi",
+        "count__plural=*": "{count__number} mod bozuk olarak bildirildi"
+      }
+    }
+  ],
+  "kits_clear_filters": "Filtreleri temizle",
+  "kits_code_copied": "{code} kodu kopyalandı",
+  "kits_code_lookup_label": "Kit kodun var mı?",
+  "kits_code_lookup_submit": "Kiti aç",
+  "kits_compat_broken": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} tanesi bozuk olarak bildirildi",
+        "count__plural=*": "{count__number} tanesi bozuk olarak bildirildi"
+      }
+    }
+  ],
+  "kits_compat_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} çakışma bulundu",
+        "count__plural=*": "{count__number} çakışma bulundu"
+      }
+    }
+  ],
+  "kits_compat_no_conflicts": "Çakışma bulunmadı",
+  "kits_compat_untested": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} tanesi henüz doğrulanmadı",
+        "count__plural=*": "{count__number} tanesi henüz doğrulanmadı"
+      }
+    }
+  ],
+  "kits_compat_works": "{works}/{total} tanesi güncel yamada çalışıyor",
+  "kits_compat_works_on": "{works}/{total} tanesi {build} ile çalışıyor",
+  "kits_conflicts_text": "Bazı modlar birlikte çalışmadıklarını belirtiyor. Sayfalarına bak ve her çiftten birini tut.",
+  "kits_conflicts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Bu kitte {count__number} çakışma var",
+        "count__plural=*": "Bu kitte {count__number} çakışma var"
+      }
+    }
+  ],
+  "kits_console_description": "Senin hazırladığın mod koleksiyonları: herkese açık, bağlantıyla paylaşılan ya da yalnızca sana özel.",
+  "kits_console_empty_text": "Bir kit oluştur, oynadığın modları diz ve tek bir kodla paylaş.",
+  "kits_console_empty_title": "Masan boş",
+  "kits_console_list_label": "Kitlerim",
+  "kits_console_readout": "Setlerin",
+  "kits_console_title": "Kitlerim",
+  "kits_copy_code": "Kit kodunu kopyala",
+  "kits_copy_failed": "Kopyalanamadı. Metni seçip elle kopyala.",
+  "kits_cover_auto": "Otomatik: öğeler masaya dizilir.",
+  "kits_cover_custom": "Özel görsel.",
+  "kits_cover_error_processing": "Görselin işlenmesi çok uzun sürüyor. Daha sonra tekrar dene.",
+  "kits_cover_error_rejected": "Görsel reddedildi.",
+  "kits_cover_error_size": "Görsel {max} MB’tan büyük.",
+  "kits_cover_error_type": "Bu dosya türü desteklenmiyor.",
+  "kits_cover_error_upload": "Yükleme başarısız. Bağlantını kontrol et.",
+  "kits_cover_failed": "Kapak güncellenemedi.",
+  "kits_cover_hint": "PNG, JPEG, WebP, AVIF veya GIF, en fazla {max} MB. En iyisi 3:1 geniş bir görsel.",
+  "kits_cover_label": "Kapak",
+  "kits_cover_progress": "Yükleniyor… %{percent}",
+  "kits_cover_remove": "Otomatik kapağı kullan",
+  "kits_cover_removed": "Otomatik kapağa dönüldü",
+  "kits_cover_replace": "Görseli değiştir",
+  "kits_cover_saved": "Kapak güncellendi",
+  "kits_cover_upload": "Görsel yükle",
+  "kits_create_description": "Şimdi bir ad ver; modları düzenleyicide ekleyeceksin.",
+  "kits_create_submit": "Kiti oluştur",
+  "kits_create_title": "Yeni kit",
+  "kits_create_with_mod": "{name} ilk öğesi olacak.",
+  "kits_created": "“{name}” oluşturuldu",
+  "kits_curated_by": "Hazırlayan: {curator}",
+  "kits_delete": "Kiti sil",
+  "kits_delete_confirm": "Kiti sil",
+  "kits_delete_failed": "Kit silinemedi.",
+  "kits_delete_hint": "Silmek adresi serbest bırakır; kod asla yeniden kullanılmaz.",
+  "kits_delete_text": "Kit, kodu ve bağlantıları herkes için çalışmaz hâle gelir. Bu işlem geri alınamaz.",
+  "kits_delete_title": "“{name}” silinsin mi?",
+  "kits_deleted": "“{name}” silindi",
+  "kits_detail_empty_text": "Hazırlayan kişi bu kite henüz mod eklemedi.",
+  "kits_detail_empty_title": "Henüz boş",
+  "kits_detail_readout": "Kit",
+  "kits_details_discard": "Vazgeç",
+  "kits_details_save": "Ayrıntıları kaydet",
+  "kits_details_saved": "Ayrıntılar kaydedildi",
+  "kits_details_title": "Ayrıntılar",
+  "kits_download_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dosyayı indir",
+        "count__plural=*": "{count__number} dosyanın hepsini indir"
+      }
+    }
+  ],
+  "kits_download_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dosya, tek tek",
+        "count__plural=*": "{count__number} dosya, tek tek"
+      }
+    }
+  ],
+  "kits_download_all_description_size": [
+    {
+      "declarations": [
+        "input count",
+        "input size",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dosya · toplam {size}",
+        "count__plural=*": "{count__number} dosya · toplam {size}"
+      }
+    }
+  ],
+  "kits_download_all_done": "Tüm dosyalar indirildi. Kurulum zamanı.",
+  "kits_download_all_hint": "Dosyaları sırayla indir, sonra RedLoader ile kur. Bağımlılıklar listede zaten var.",
+  "kits_download_all_title": "Tümünü indir",
+  "kits_download_install_guide": "Mod nasıl kurulur",
+  "kits_download_next": "Sıradakini indir",
+  "kits_download_progress": "İndirilen {done}/{total}",
+  "kits_download_progress_label": "İndirme durumu",
+  "kits_drag_handle": "{name} öğesini taşı, sıra {position}/{total}",
+  "kits_drag_instructions": "Sıralamak için bir tutamacı seçip Boşluk’a bas, ok tuşlarıyla taşı, bırakmak için yine Boşluk’a, iptal için Escape’e bas.",
+  "kits_duplicate": "Çoğalt",
+  "kits_duplicated": "“{name}” kopyası oluşturuldu",
+  "kits_edit": "Kiti düzenle",
+  "kits_editor_empty_text": "Yukarıdan bir mod ara. Bağımlılıkları kendiliğinden eklenir.",
+  "kits_editor_empty_title": "İlk öğeni yerleştir",
+  "kits_editor_readout": "Plan",
+  "kits_editor_static_title": "Kit düzenleyici",
+  "kits_editor_title": "{name} düzenleniyor",
+  "kits_empty_filtered_text": "Henüz bu filtrelere uyan bir kit yok. Tümünü görmek için filtreleri temizle.",
+  "kits_empty_filtered_title": "Eşleşen kit yok",
+  "kits_empty_text": "İlk sen ol: favori modlarını seç, her birine not ekle ve seti tek bir kodla paylaş.",
+  "kits_empty_title": "Henüz kit yok",
+  "kits_error_email": "Kit oluşturmak ve düzenlemek için e-posta adresini doğrula.",
+  "kits_error_rate": "Kısa sürede çok fazla değişiklik. Bir dakika bekle.",
+  "kits_error_slug_taken": "Bu adreste zaten bir kitin var. Başka bir adres seç.",
+  "kits_error_text": "Bizim tarafta bir sorun oluştu. Birazdan tekrar dene.",
+  "kits_error_title": "Kitler yüklenemedi",
+  "kits_error_validation": "Kitte geçersiz bir şey var. Alanları kontrol edip tekrar dene.",
+  "kits_field_description": "Açıklama",
+  "kits_field_description_hint": "Markdown. Kitin amacı, yükleme sırası ipuçları, ayarlar.",
+  "kits_field_name": "Ad",
+  "kits_field_name_placeholder": "Zorlu QoL",
+  "kits_field_slug": "Adres",
+  "kits_field_slug_hint": "Küçük harf, rakam ve kısa çizgi; /kits/sen/adres içinde kullanılır.",
+  "kits_field_visibility": "Kimler görebilir",
+  "kits_filter_label": "Kitleri filtrele",
+  "kits_filter_off": "(kapalı)",
+  "kits_filter_on": "(açık)",
+  "kits_filter_staff_picks": "Ekibin seçimleri",
+  "kits_filter_works": "Güncel yamada çalışıyor",
+  "kits_filter_works_on": "{build} ile çalışıyor",
+  "kits_followers": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} takipçi",
+        "count__plural=*": "{display} takipçi"
+      }
+    }
+  ],
+  "kits_fork": "Kopyala",
+  "kits_fork_email": "Kit oluşturmak için e-posta adresini doğrula.",
+  "kits_fork_failed": "Kit kopyalanamadı. Tekrar dene.",
+  "kits_fork_rate": "Kısa sürede çok fazla kit. Bir dakika bekleyip tekrar dene.",
+  "kits_fork_working": "Kit kopyalanıyor…",
+  "kits_forked_banner_text": "Şimdilik gizli. İstediğini değiştir, sonra paylaşmak için herkese açık yap.",
+  "kits_forked_banner_title": "Kopyan hazır.",
+  "kits_forked_from": "@{handle} kullanıcısının {kit} kitinden kopyalandı",
+  "kits_item_auto_dependency": "Bağımlılık, otomatik eklendi",
+  "kits_item_by": "yapan: {creator}",
+  "kits_item_download_sr": "{name} v{version}",
+  "kits_item_kind_build": "Yapı",
+  "kits_item_kind_library": "Kütüphane",
+  "kits_item_latest": "Her zaman en yenisi",
+  "kits_item_note_label": "Not:",
+  "kits_item_options": "Not ve sürüm",
+  "kits_item_pinned": "(sabitlenmiş sürüm)",
+  "kits_item_position": "Sıra {position}:",
+  "kits_item_remove": "{name} öğesini kaldır",
+  "kits_item_unavailable": "Dosya yok",
+  "kits_items_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} öğe",
+        "count__plural=*": "{count__number} öğe"
+      }
+    }
+  ],
+  "kits_items_limit": "Bir kit, bağımlılıklar dahil en fazla {max} öğe içerebilir.",
+  "kits_items_title": "Bu kitte",
+  "kits_items_total": "Öğeler: {count}/{max}",
+  "kits_items_with_auto": [
+    {
+      "declarations": [
+        "input count",
+        "input auto",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local auto__plural = auto: plural",
+        "local auto__number = auto: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "auto__plural"
+      ],
+      "match": {
+        "count__plural=one, auto__plural=one": "{count__number} öğe + {auto__number} bağımlılık",
+        "count__plural=one, auto__plural=*": "{count__number} öğe + {auto__number} bağımlılık",
+        "count__plural=*, auto__plural=one": "{count__number} öğe + {auto__number} bağımlılık",
+        "count__plural=*, auto__plural=*": "{count__number} öğe + {auto__number} bağımlılık"
+      }
+    }
+  ],
+  "kits_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kit",
+        "count__plural=*": "{count__number} kit"
+      }
+    }
+  ],
+  "kits_list_description": "Sons of the Forest için seçilmiş mod setleri: bağımlılıklar dahil, uyumluluk kontrol edilmiş ve arkadaşlarına verebileceğin tek bir kod.",
+  "kits_list_heading": "Kitler",
+  "kits_list_readout": "Seçilmiş mod setleri",
+  "kits_list_title": "Sons of the Forest mod kitleri",
+  "kits_list_title_page": "{title} — sayfa {page}",
+  "kits_manage_title": "Yönet",
+  "kits_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input curator",
+        "input count",
+        "input mods",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: {curator} tarafından hazırlanan, {count__number} öğe içeren Sons of the Forest mod kiti ({mods}). Bağımlılıklar dahil, ücretsiz doğrudan indirme.",
+        "count__plural=*": "{name}: {curator} tarafından hazırlanan, {count__number} öğe içeren Sons of the Forest mod kiti ({mods}). Bağımlılıklar dahil, ücretsiz doğrudan indirme."
+      }
+    }
+  ],
+  "kits_meta_title": "{name} — {curator} mod kiti",
+  "kits_more_from": "{curator} kullanıcısının diğer kitleri",
+  "kits_mp_all_players": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Tüm oyuncular: {count__number} mod",
+        "count__plural=*": "Tüm oyuncular: {count__number} mod"
+      }
+    }
+  ],
+  "kits_mp_client_side": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "İstemci tarafı: {count__number} mod",
+        "count__plural=*": "İstemci tarafı: {count__number} mod"
+      }
+    }
+  ],
+  "kits_mp_host_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Yalnızca sunucu: {count__number} mod",
+        "count__plural=*": "Yalnızca sunucu: {count__number} mod"
+      }
+    }
+  ],
+  "kits_mp_none": "Henüz çok oyunculu bilgisi yok.",
+  "kits_mp_solo_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Yalnızca tek oyunculu: {count__number} mod",
+        "count__plural=*": "Yalnızca tek oyunculu: {count__number} mod"
+      }
+    }
+  ],
+  "kits_mp_unknown": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Belirtilmemiş: {count__number} mod",
+        "count__plural=*": "Belirtilmemiş: {count__number} mod"
+      }
+    }
+  ],
+  "kits_name_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "En az {min__number} karakter kullan.",
+        "min__plural=*": "En az {min__number} karakter kullan."
+      }
+    }
+  ],
+  "kits_note_hint": "Kit sayfasında modun altında gösterilir · {count}/{max}",
+  "kits_note_label": "Not",
+  "kits_note_placeholder": "Ayarlarda yarıçapı 6 yap",
+  "kits_offline": "Çevrimdışısın. Yeniden bağlanıp tekrar dene.",
+  "kits_og_alt": "{name}, SOTF Mods’ta bir Sons of the Forest mod kiti",
+  "kits_past_end_text": "O kadar çok kit yok. İlk sayfaya dön.",
+  "kits_past_end_title": "Son sayfanın ötesi",
+  "kits_picker_error": "Arama başarısız. Tekrar denemek için yazmaya devam et.",
+  "kits_picker_in_kit": "Eklendi",
+  "kits_picker_label": "Mod veya yapı ekle",
+  "kits_picker_none": "Hiçbir şey bulunamadı. Manifest kimliğini dene.",
+  "kits_picker_placeholder": "Ada veya manifest kimliğine göre ara…",
+  "kits_picker_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sonuç",
+        "count__plural=*": "{count__number} sonuç"
+      }
+    }
+  ],
+  "kits_picker_results_label": "Arama sonuçları",
+  "kits_picker_searching": "Aranıyor…",
+  "kits_pin_error": "Sürümler yüklenemedi.",
+  "kits_pin_hint": "Sürüm sabitlemeyi yalnızca daha yeni sürüm kiti bozuyorsa yap.",
+  "kits_pin_label": "Sürüm",
+  "kits_pin_latest": "Her zaman en yenisi",
+  "kits_pin_loading": "Sürümler yükleniyor…",
+  "kits_qr_failed": "QR kodu oluşturulamadı.",
+  "kits_removed": "{name} kitten kaldırıldı",
+  "kits_revision": "rev. {revision}",
+  "kits_revisions_title": "Revizyonlar",
+  "kits_save_failed": "Kaydedilmedi.",
+  "kits_saved": "Kaydedildi · rev. {revision}",
+  "kits_saving": "Kaydediliyor…",
+  "kits_share_code_label": "Kit kodu",
+  "kits_share_description": "Arkadaşlarına kodu ya da kısa bağlantıyı ver: herkes aynı seti alır.",
+  "kits_share_link_label": "Tam bağlantı",
+  "kits_share_markdown_label": "Discord için Markdown",
+  "kits_share_markdown_suffix": [
+    {
+      "declarations": [
+        "input count",
+        "input code",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod · kod {code}",
+        "count__plural=*": "{count__number} mod · kod {code}"
+      }
+    }
+  ],
+  "kits_share_more": "Diğer seçenekler",
+  "kits_share_on": "{network} üzerinde paylaş",
+  "kits_share_private": "Bu kit gizli: yalnızca sen görebilirsin. Paylaşmak için herkese açık veya listelenmemiş yap.",
+  "kits_share_qr": "QR kodu",
+  "kits_share_qr_alt": "{name} kısa bağlantısının QR kodu",
+  "kits_share_qr_hint": "Kiti açmak için telefonla tara.",
+  "kits_share_short_label": "Kısa bağlantı",
+  "kits_share_text": "{name} — bir Sons of the Forest mod kiti",
+  "kits_share_title": "Bu kiti paylaş",
+  "kits_sidebar_label": "Bu kit hakkında",
+  "kits_slug_invalid": "2–80 küçük harf, rakam ve kısa çizgi; başta veya sonda çizgi olmasın.",
+  "kits_sort_label": "Kitleri sırala",
+  "kits_sort_new": "Yeni",
+  "kits_sort_popular": "Popüler",
+  "kits_staff_pick": "Ekibin seçimi",
+  "kits_summary_compat": "Uyumluluk",
+  "kits_summary_multiplayer": "Çok oyunculu",
+  "kits_summary_size": "İçerik",
+  "kits_summary_title": "Kit özeti",
+  "kits_total_size": "Toplam indirme: {size}",
+  "kits_total_size_unknown": "Toplam boyut henüz ölçülmedi",
+  "kits_undo_failed": "Geri alınamadı.",
+  "kits_unlisted_text": "Bu kiti yalnızca bağlantıya veya koda sahip olanlar açabilir.",
+  "kits_unlisted_title": "Listelenmemiş.",
+  "kits_unsaved": "Kaydedilmemiş değişiklikler",
+  "kits_updated_on": "güncellendi: {date}",
+  "kits_view_public": "Herkese açık sayfayı gör",
+  "kits_visibility_private": "Gizli",
+  "kits_visibility_private_hint": "Yalnızca sen.",
+  "kits_visibility_public": "Herkese açık",
+  "kits_visibility_public_hint": "Kitler’de ve aramada görünür.",
+  "kits_visibility_unlisted": "Listelenmemiş",
+  "kits_visibility_unlisted_hint": "Yalnızca bağlantıya veya koda sahip olanlar.",
   "landing_blueprints_all": "Tüm yapılar",
   "landing_blueprints_hint": "Topluluktan yeni yapılar",
   "landing_creators_all": "Tüm yapımcılar",

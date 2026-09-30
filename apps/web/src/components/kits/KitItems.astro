@@ -1,0 +1,120 @@
+---
+/**
+ * The ordered items of a kit (research/03 §6.5 «DETALLE»): position, thumbnail, name and
+ * creator, the version a visitor gets (pinned or «always the latest»), the «auto-added
+ * dependency» mark, compatibility on the current build, the curator's note and a direct
+ * download link (each click counts, like on the mod page).
+ */
+import { m } from '@sotf/i18n/messages';
+import { CompatBadge } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { Download, Link2, Pin, Quote } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import Picture from '../layout/Picture.astro';
+import type { KitDTO } from './data.ts';
+import { itemDownloadPath, itemVersion } from './format.ts';
+
+interface Props {
+  kit: KitDTO;
+  currentBuild: string | null;
+}
+
+const { kit, currentBuild } = Astro.props;
+const locale = Astro.locals.locale;
+const downloadClasses =
+  'relative z-10 inline-flex h-11 shrink-0 items-center gap-2 rounded-md border border-border-strong bg-raised px-3 text-sm font-semibold text-fg hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+---
+
+<ol class="grid gap-3" data-kit-items>
+  {
+    kit.items.map((item, index) => {
+      const version = itemVersion(item);
+      const unavailable = version === null || item.mod.status === 'removed';
+      const creator = item.mod.userDisplayName || item.mod.userHandle;
+      return (
+        <li
+          class="relative grid grid-cols-[auto_minmax(0,1fr)] gap-x-3 gap-y-2 rounded-lg border border-border bg-surface p-3 sm:grid-cols-[auto_auto_minmax(0,1fr)_auto] sm:items-center"
+          data-kit-item={item.mod.id}
+        >
+          <span class="hidden w-7 text-end font-mono text-sm text-fg-subtle tabular-nums sm:block" aria-hidden="true">
+            {index + 1}
+          </span>
+          <span class="size-14 shrink-0 overflow-hidden rounded-md bg-raised">
+            {item.mod.thumbnail ? (
+              <Picture
+                image={item.mod.thumbnail}
+                sizes="56px"
+                alt=""
+                fallbackWidth={56}
+                fallbackHeight={56}
+                class="size-full object-cover"
+              />
+            ) : (
+              <span class="flex size-full items-center justify-center font-display-caps text-lg text-fg-subtle" aria-hidden="true">
+                {Array.from(item.mod.name)[0]?.toUpperCase()}
+              </span>
+            )}
+          </span>
+          <div class="grid min-w-0 gap-1">
+            <p class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+              <span class="sr-only">{m.kits_item_position({ position: index + 1 })}</span>
+              <a
+                href={href(item.mod.canonicalPath, locale)}
+                class="truncate font-semibold text-fg hover:text-link hover:underline"
+              >
+                {item.mod.name}
+              </a>
+              {version && (
+                <span class="inline-flex items-center gap-1 font-mono text-xs text-fg-muted">
+                  {item.pinnedVersion && <Icon icon={Pin} size={12} />}
+                  v{version}
+                  <span class="sr-only">
+                    {item.pinnedVersion ? m.kits_item_pinned() : m.kits_item_latest()}
+                  </span>
+                </span>
+              )}
+              {item.isAutoDependency && (
+                <span class="inline-flex items-center gap-1 rounded-full border border-dashed border-border-strong px-2 py-0.5 text-2xs font-medium text-fg-muted">
+                  <Icon icon={Link2} size={12} />
+                  {m.kits_item_auto_dependency()}
+                </span>
+              )}
+            </p>
+            <p class="truncate text-xs text-fg-muted">
+              {m.kits_item_by({ creator })}
+              {item.mod.kind === 'build' && <> · {m.kits_item_kind_build()}</>}
+              {item.mod.kind === 'library' && <> · {m.kits_item_kind_library()}</>}
+            </p>
+            {item.note && (
+              <p class="flex items-start gap-1.5 text-sm text-fg">
+                <Icon icon={Quote} size={14} className="mt-0.5 shrink-0 text-fg-subtle" />
+                <span class="min-w-0 break-words">
+                  <span class="sr-only">{m.kits_item_note_label()}</span>
+                  {item.note}
+                </span>
+              </p>
+            )}
+          </div>
+          <div class="col-span-2 flex flex-wrap items-center justify-end gap-2 sm:col-span-1">
+            <CompatBadge status={item.mod.compatStatus} build={currentBuild} short size="sm" />
+            {unavailable ? (
+              <span class="text-xs text-fg-muted">{m.kits_item_unavailable()}</span>
+            ) : (
+              <a
+                href={itemDownloadPath(item)}
+                rel="nofollow"
+                data-no-prerender
+                data-kit-download={item.mod.id}
+                class={downloadClasses}
+              >
+                <Icon icon={Download} size={16} />
+                {m.common_action_download()}
+                <span class="sr-only">{m.kits_item_download_sr({ name: item.mod.name, version: version ?? '' })}</span>
+              </a>
+            )}
+          </div>
+        </li>
+      );
+    })
+  }
+</ol>
