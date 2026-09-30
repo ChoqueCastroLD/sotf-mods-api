@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Kazanılanlar ({count})",
   "basecamp_badges_earned_on": "{date} tarihinde kazanıldı",
   "basecamp_badges_none_title": "Henüz rozet yok",
-  "basecamp_badges_none_text": "Yayınlamak, oyunculara yanıt vermek ve modları her yamadan sonra çalışır tutmak rozet kazandırır."
+  "basecamp_badges_none_text": "Yayınlamak, oyunculara yanıt vermek ve modları her yamadan sonra çalışır tutmak rozet kazandırır.",
+  "basecamp_inbox_template_insert": "Kayıtlı bir yanıt ekle",
+  "basecamp_inbox_template_manage": "Kayıtlı yanıtları yönet"
 }

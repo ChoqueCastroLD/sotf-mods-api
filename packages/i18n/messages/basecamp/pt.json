@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Conquistadas ({count})",
   "basecamp_badges_earned_on": "Conquistada em {date}",
   "basecamp_badges_none_title": "Ainda não há insígnias",
-  "basecamp_badges_none_text": "Publicar, responder aos jogadores e manter os mods funcionando depois de cada patch rende insígnias."
+  "basecamp_badges_none_text": "Publicar, responder aos jogadores e manter os mods funcionando depois de cada patch rende insígnias.",
+  "basecamp_inbox_template_insert": "Inserir uma resposta salva",
+  "basecamp_inbox_template_manage": "Gerenciar respostas salvas"
 }

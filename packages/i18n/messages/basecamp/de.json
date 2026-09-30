@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Verdient ({count})",
   "basecamp_badges_earned_on": "Verdient am {date}",
   "basecamp_badges_none_title": "Noch keine Abzeichen",
-  "basecamp_badges_none_text": "Veröffentlichen, Spielern antworten und Mods nach jedem Patch am Laufen halten bringt Abzeichen."
+  "basecamp_badges_none_text": "Veröffentlichen, Spielern antworten und Mods nach jedem Patch am Laufen halten bringt Abzeichen.",
+  "basecamp_inbox_template_insert": "Gespeicherte Antwort einfügen",
+  "basecamp_inbox_template_manage": "Gespeicherte Antworten verwalten"
 }

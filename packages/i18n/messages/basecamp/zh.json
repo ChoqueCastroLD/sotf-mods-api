@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "已获得（{count}）",
   "basecamp_badges_earned_on": "获得于 {date}",
   "basecamp_badges_none_title": "还没有徽章",
-  "basecamp_badges_none_text": "发布模组、回复玩家、在每次补丁后保持模组可用，都能获得徽章。"
+  "basecamp_badges_none_text": "发布模组、回复玩家、在每次补丁后保持模组可用，都能获得徽章。",
+  "basecamp_inbox_template_insert": "插入已保存的回复",
+  "basecamp_inbox_template_manage": "管理已保存的回复"
 }

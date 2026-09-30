@@ -86,6 +86,8 @@ export const meApi = {
   follow: (modId: number, notify: boolean) => api.follows.followMod({ params: { id: modId }, body: { notify } }),
   unfollow: (modId: number) => api.follows.unfollowMod({ params: { id: modId } }),
   clearDownloads: () => api.downloads.clearMyDownloads({}),
+  /** Detaches my downloads of one mod (`DELETE /me/downloads/:modId`, idempotent). */
+  removeDownload: (modId: number) => api.downloads.removeMyDownload({ params: { modId } }),
   setDownloadHistory: (enabled: boolean) => api.me.updateSettings({ body: { downloadHistory: enabled } }),
   report: (body: {
     modVersionId: number;

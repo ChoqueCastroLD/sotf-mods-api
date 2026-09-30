@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Earned ({count})",
   "basecamp_badges_earned_on": "Earned on {date}",
   "basecamp_badges_none_title": "No badges yet",
-  "basecamp_badges_none_text": "Publishing, answering players and keeping mods working on new patches all earn badges."
+  "basecamp_badges_none_text": "Publishing, answering players and keeping mods working on new patches all earn badges.",
+  "basecamp_inbox_template_insert": "Insert a saved reply",
+  "basecamp_inbox_template_manage": "Manage saved replies"
 }

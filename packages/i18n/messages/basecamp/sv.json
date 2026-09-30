@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Intjänade ({count})",
   "basecamp_badges_earned_on": "Intjänat {date}",
   "basecamp_badges_none_title": "Inga märken än",
-  "basecamp_badges_none_text": "Att publicera, svara spelare och hålla moddar igång efter varje patch ger märken."
+  "basecamp_badges_none_text": "Att publicera, svara spelare och hålla moddar igång efter varje patch ger märken.",
+  "basecamp_inbox_template_insert": "Infoga ett sparat svar",
+  "basecamp_inbox_template_manage": "Hantera sparade svar"
 }

@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "獲得済み（{count}）",
   "basecamp_badges_earned_on": "{date} に獲得",
   "basecamp_badges_none_title": "まだバッジはありません",
-  "basecamp_badges_none_text": "公開、プレイヤーへの返信、パッチごとの MOD の動作維持でバッジを獲得できます。"
+  "basecamp_badges_none_text": "公開、プレイヤーへの返信、パッチごとの MOD の動作維持でバッジを獲得できます。",
+  "basecamp_inbox_template_insert": "保存した返信を挿入",
+  "basecamp_inbox_template_manage": "保存した返信を管理"
 }

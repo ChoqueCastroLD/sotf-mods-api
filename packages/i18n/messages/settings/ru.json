@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Передумали? Отмените сейчас, и всё останется как есть.",
   "settings_delete_cancel": "Отменить удаление",
   "settings_delete_cancelled": "Удаление отменено — с возвращением",
-  "settings_delete_cancel_failed": "Не удалось отменить удаление"
+  "settings_delete_cancel_failed": "Не удалось отменить удаление",
+  "settings_featured_badges_title": "Избранные значки",
+  "settings_featured_badges_text": "Выберите до {max} полученных значков для шапки профиля.",
+  "settings_featured_badges_empty": "Получайте значки на острове, чтобы выбрать их здесь.",
+  "settings_featured_badges_count": "Выбрано {count} из {max}",
+  "settings_featured_badges_saved": "Избранные значки сохранены."
 }

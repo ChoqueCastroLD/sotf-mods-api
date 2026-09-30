@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Zmieniłeś zdanie? Anuluj teraz, a wszystko zostanie po staremu.",
   "settings_delete_cancel": "Anuluj usunięcie",
   "settings_delete_cancelled": "Anulowano usunięcie — witaj ponownie",
-  "settings_delete_cancel_failed": "Nie udało się anulować usunięcia"
+  "settings_delete_cancel_failed": "Nie udało się anulować usunięcia",
+  "settings_featured_badges_title": "Wyróżnione odznaki",
+  "settings_featured_badges_text": "Wybierz do {max} zdobytych odznak do nagłówka profilu.",
+  "settings_featured_badges_empty": "Zdobywaj odznaki na wyspie, aby je tu wyróżnić.",
+  "settings_featured_badges_count": "Wybrano {count} z {max}",
+  "settings_featured_badges_saved": "Zapisano wyróżnione odznaki."
 }

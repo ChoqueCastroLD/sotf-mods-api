@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Umentschieden? Brich jetzt ab und alles bleibt, wie es ist.",
   "settings_delete_cancel": "Löschung abbrechen",
   "settings_delete_cancelled": "Löschung abgebrochen – willkommen zurück",
-  "settings_delete_cancel_failed": "Die Löschung konnte nicht abgebrochen werden"
+  "settings_delete_cancel_failed": "Die Löschung konnte nicht abgebrochen werden",
+  "settings_featured_badges_title": "Hervorgehobene Abzeichen",
+  "settings_featured_badges_text": "Wähle bis zu {max} verdiente Abzeichen für den Kopf deines Profils.",
+  "settings_featured_badges_empty": "Verdiene Abzeichen auf der Insel, um sie hier hervorzuheben.",
+  "settings_featured_badges_count": "{count} von {max} ausgewählt",
+  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert."
 }

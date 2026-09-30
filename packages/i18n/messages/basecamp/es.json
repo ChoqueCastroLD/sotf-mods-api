@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Conseguidas ({count})",
   "basecamp_badges_earned_on": "Conseguida el {date}",
   "basecamp_badges_none_title": "Aún no hay insignias",
-  "basecamp_badges_none_text": "Publicar, responder a los jugadores y mantener los mods funcionando tras cada parche dan insignias."
+  "basecamp_badges_none_text": "Publicar, responder a los jugadores y mantener los mods funcionando tras cada parche dan insignias.",
+  "basecamp_inbox_template_insert": "Insertar una respuesta guardada",
+  "basecamp_inbox_template_manage": "Gestionar respuestas guardadas"
 }

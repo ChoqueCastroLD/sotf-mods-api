@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "改变主意了？现在取消，一切保持原样。",
   "settings_delete_cancel": "取消删除",
   "settings_delete_cancelled": "已取消删除——欢迎回来",
-  "settings_delete_cancel_failed": "无法取消删除"
+  "settings_delete_cancel_failed": "无法取消删除",
+  "settings_featured_badges_title": "展示的徽章",
+  "settings_featured_badges_text": "最多选择 {max} 个已获得的徽章展示在个人资料顶部。",
+  "settings_featured_badges_empty": "在岛上获得徽章后即可在此展示。",
+  "settings_featured_badges_count": "已选 {count} / {max}",
+  "settings_featured_badges_saved": "已保存展示的徽章。"
 }

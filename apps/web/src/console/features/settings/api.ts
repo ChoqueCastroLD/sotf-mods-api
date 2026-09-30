@@ -39,7 +39,8 @@ export const settingsKeys = {
 export const profileQuery = (handle: string) =>
   queryOptions({
     queryKey: settingsKeys.profile(handle),
-    queryFn: ({ signal }) => api.catalog.getUser({ params: { handle } }, { signal }),
+    // Owner read (`GET /me/profile`): fresh (not edge-cached) and with the bio's Markdown source.
+    queryFn: ({ signal }) => api.me.getProfile({}, { signal }),
     staleTime: 60_000,
   });
 

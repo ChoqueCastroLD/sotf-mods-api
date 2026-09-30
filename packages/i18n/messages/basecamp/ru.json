@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Получены ({count})",
   "basecamp_badges_earned_on": "Получен {date}",
   "basecamp_badges_none_title": "Значков пока нет",
-  "basecamp_badges_none_text": "Публикация модов, ответы игрокам и поддержка модов после каждого патча приносят значки."
+  "basecamp_badges_none_text": "Публикация модов, ответы игрокам и поддержка модов после каждого патча приносят значки.",
+  "basecamp_inbox_template_insert": "Вставить сохранённый ответ",
+  "basecamp_inbox_template_manage": "Управлять сохранёнными ответами"
 }

@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Verdiend ({count})",
   "basecamp_badges_earned_on": "Verdiend op {date}",
   "basecamp_badges_none_title": "Nog geen badges",
-  "basecamp_badges_none_text": "Publiceren, spelers antwoorden en mods na elke patch werkend houden leveren badges op."
+  "basecamp_badges_none_text": "Publiceren, spelers antwoorden en mods na elke patch werkend houden leveren badges op.",
+  "basecamp_inbox_template_insert": "Opgeslagen antwoord invoegen",
+  "basecamp_inbox_template_manage": "Opgeslagen antwoorden beheren"
 }

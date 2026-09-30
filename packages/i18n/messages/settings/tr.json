@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Fikrini mi değiştirdin? Şimdi iptal et, her şey olduğu gibi kalsın.",
   "settings_delete_cancel": "Silmeyi iptal et",
   "settings_delete_cancelled": "Silme iptal edildi — tekrar hoş geldin",
-  "settings_delete_cancel_failed": "Silme iptal edilemedi"
+  "settings_delete_cancel_failed": "Silme iptal edilemedi",
+  "settings_featured_badges_title": "Öne çıkan rozetler",
+  "settings_featured_badges_text": "Profil başlığın için kazandığın en fazla {max} rozeti seç.",
+  "settings_featured_badges_empty": "Burada öne çıkarmak için adada rozet kazan.",
+  "settings_featured_badges_count": "{max} içinden {count} seçildi",
+  "settings_featured_badges_saved": "Öne çıkan rozetler kaydedildi."
 }

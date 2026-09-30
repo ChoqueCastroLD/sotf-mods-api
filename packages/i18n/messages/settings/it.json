@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Hai cambiato idea? Annulla ora e tutto resta com’è.",
   "settings_delete_cancel": "Annulla l’eliminazione",
   "settings_delete_cancelled": "Eliminazione annullata: bentornato",
-  "settings_delete_cancel_failed": "Impossibile annullare l’eliminazione"
+  "settings_delete_cancel_failed": "Impossibile annullare l’eliminazione",
+  "settings_featured_badges_title": "Distintivi in evidenza",
+  "settings_featured_badges_text": "Scegli fino a {max} distintivi ottenuti per l’intestazione del tuo profilo.",
+  "settings_featured_badges_empty": "Ottieni distintivi sull’isola per metterli in evidenza qui.",
+  "settings_featured_badges_count": "{count} di {max} selezionati",
+  "settings_featured_badges_saved": "Distintivi in evidenza salvati."
 }

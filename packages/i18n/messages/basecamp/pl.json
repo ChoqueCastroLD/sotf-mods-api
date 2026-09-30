@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Zdobyte ({count})",
   "basecamp_badges_earned_on": "Zdobyta {date}",
   "basecamp_badges_none_title": "Na razie brak odznak",
-  "basecamp_badges_none_text": "Publikowanie, odpowiadanie graczom i utrzymywanie modów po każdej łatce daje odznaki."
+  "basecamp_badges_none_text": "Publikowanie, odpowiadanie graczom i utrzymywanie modów po każdej łatce daje odznaki.",
+  "basecamp_inbox_template_insert": "Wstaw zapisaną odpowiedź",
+  "basecamp_inbox_template_manage": "Zarządzaj zapisanymi odpowiedziami"
 }

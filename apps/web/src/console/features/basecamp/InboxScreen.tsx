@@ -21,10 +21,12 @@ import { Icon } from '@sotf/ui/icons';
 import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
 import { type InfiniteData, useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
 import { Bug, CheckCheck, ExternalLink, Inbox, MessageSquare, Radar, Reply, Star } from 'lucide-react';
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { useTurnstile } from '../../../islands/auth/turnstile.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { useMe } from '../../hooks/use-me.ts';
 import { problemCode } from '../../lib/errors.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
@@ -99,6 +101,17 @@ function Composer({
   const id = useId();
   const field = useRef<HTMLTextAreaElement>(null);
   const [body, setBody] = useState('');
+  // Saved replies of Settings → Creator (`settings.replyTemplates`).
+  const templates = useMe().settings.replyTemplates;
+  const insertTemplate = (index: string | null) => {
+    const template = index === null ? undefined : templates[Number(index)];
+    if (!template) return;
+    setBody((current) => {
+      const joined = current.trim() ? `${current.trimEnd()}\n\n${template.text}` : template.text;
+      return joined.slice(0, LIMITS.replyMax);
+    });
+    field.current?.focus();
+  };
   useEffect(() => field.current?.focus(), []);
   const [busy, setBusy] = useState(false);
   const length = body.trim().length;
@@ -122,6 +135,21 @@ function Composer({
       <label htmlFor={id} className="text-sm font-medium text-fg">
         {label}
       </label>
+      {templates.length > 0 ? (
+        <div className="flex flex-wrap items-end gap-3">
+          <Select<string>
+            label={bt('basecamp_inbox_template_insert')}
+            value={null}
+            placeholder={bt('basecamp_inbox_template_insert')}
+            options={templates.map((template, index) => ({ value: String(index), label: template.name }))}
+            onValueChange={insertTemplate}
+            className="min-w-56"
+          />
+          <Link to={'/settings/creator' as '/'} hash="creator-defaults" className="pb-2 text-xs text-link">
+            {bt('basecamp_inbox_template_manage')}
+          </Link>
+        </div>
+      ) : null}
       <Textarea
         id={id}
         ref={field}

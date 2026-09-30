@@ -435,5 +435,7 @@
   "basecamp_badges_earned_title": "Obtenus ({count})",
   "basecamp_badges_earned_on": "Obtenu le {date}",
   "basecamp_badges_none_title": "Pas encore de badges",
-  "basecamp_badges_none_text": "Publier, répondre aux joueurs et garder vos mods fonctionnels après chaque patch rapporte des badges."
+  "basecamp_badges_none_text": "Publier, répondre aux joueurs et garder vos mods fonctionnels après chaque patch rapporte des badges.",
+  "basecamp_inbox_template_insert": "Insérer une réponse enregistrée",
+  "basecamp_inbox_template_manage": "Gérer les réponses enregistrées"
 }

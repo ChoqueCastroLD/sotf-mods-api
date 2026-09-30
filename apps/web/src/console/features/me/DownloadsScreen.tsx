@@ -5,8 +5,9 @@
  * an answer), follow / unfollow and remove from the list (with «Undo»). The page can clear the
  * whole history and turn the history off (`settings.downloadHistory`).
  *
- * Removing one row is local to this browser until the API offers a per-mod delete
- * (docs/backlog/WP-81.md): the row is hidden until that mod is downloaded again.
+ * Removing one row detaches my downloads of that mod on the server (`DELETE /me/downloads/:modId`;
+ * the row comes back with the next download). Rows an earlier version hid only in this browser
+ * (`sotf_me_downloads_hidden`) are removed on the server once, then the local list is dropped.
  */
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
@@ -18,7 +19,7 @@ import { Icon } from '@sotf/ui/icons';
 import { Switch } from '@sotf/ui/switch';
 import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { ArrowUpCircle, CircleHelp, Download, Heart, HeartOff, History, Search, Trash2, X } from 'lucide-react';
-import { useCallback, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { track } from '../../../scripts/beacon.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
@@ -39,9 +40,9 @@ import {
 import { DidItWorkDialog, type ReportTarget } from './DidItWorkDialog.tsx';
 import { CompatLine, isBrokenNow, localDate, ModThumb, publicHref } from './shared.tsx';
 
+/** Rows hidden in this browser by an earlier version (modId → `lastDownloaded.at`). */
 const HIDDEN_KEY = 'sotf_me_downloads_hidden';
 
-/** modId → `lastDownloaded.at` of the hidden row (a newer download shows the row again). */
 function readHidden(): Record<string, string> {
   try {
     const parsed = JSON.parse(storage.get(HIDDEN_KEY) ?? '{}') as unknown;
@@ -51,9 +52,12 @@ function readHidden(): Record<string, string> {
   }
 }
 
-function writeHidden(hidden: Record<string, string>): void {
-  if (Object.keys(hidden).length === 0) storage.remove(HIDDEN_KEY);
-  else storage.set(HIDDEN_KEY, JSON.stringify(hidden));
+/** Mods of the legacy local list whose row is still the one that was hidden. */
+export function legacyHiddenModIds(
+  items: ReadonlyArray<{ mod: { id: number }; lastDownloaded: { at: string } }>,
+  hidden: Readonly<Record<string, string>>,
+): number[] {
+  return items.filter((item) => hidden[String(item.mod.id)] === item.lastDownloaded.at).map((item) => item.mod.id);
 }
 
 function downloadHref(item: DownloadItem): string | null {
@@ -65,7 +69,7 @@ export function DownloadsScreen() {
   const queryClient = useQueryClient();
   const me = useMe();
   const { data } = useSuspenseQuery(downloadsQuery);
-  const [hidden, setHidden] = useState<Record<string, string>>(() => readHidden());
+  const [legacyHidden] = useState<Record<string, string>>(() => readHidden());
   const [confirmClear, setConfirmClear] = useState(false);
   const [toggling, setToggling] = useState(false);
   const [report, setReport] = useState<ReportTarget | null>(null);
@@ -73,9 +77,18 @@ export function DownloadsScreen() {
   useDocumentTitle(m.me_downloads_title());
 
   const items = useMemo(
-    () => data.items.filter((item) => hidden[String(item.mod.id)] !== item.lastDownloaded.at),
-    [data.items, hidden],
+    () => data.items.filter((item) => legacyHidden[String(item.mod.id)] !== item.lastDownloaded.at),
+    [data.items, legacyHidden],
   );
+
+  // One-time migration of the rows hidden locally by an earlier version.
+  useEffect(() => {
+    if (Object.keys(legacyHidden).length === 0) return;
+    const modIds = legacyHiddenModIds(data.items, legacyHidden);
+    void Promise.allSettled(modIds.map((modId) => meApi.removeDownload(modId))).then((results) => {
+      if (results.every((result) => result.status === 'fulfilled')) storage.remove(HIDDEN_KEY);
+    });
+  }, [legacyHidden, data.items]);
   const ids = useMemo(() => items.map((item) => item.mod.id).sort((a, b) => a - b), [items]);
   const lookup = useQuery(followLookupQuery(ids));
   const followed = lookup.data;
@@ -85,25 +98,19 @@ export function DownloadsScreen() {
     [prompts.data],
   );
 
-  const updateHidden = useCallback((next: Record<string, string>) => {
-    writeHidden(next);
-    setHidden(next);
-  }, []);
-
-  const remove = (item: DownloadItem) => {
-    const key = String(item.mod.id);
-    const next = { ...readHidden(), [key]: item.lastDownloaded.at };
-    updateHidden(next);
-    notify.success(m.me_downloads_removed({ mod: item.mod.name }), {
-      action: {
-        label: m.me_undo(),
-        onClick: () => {
-          const current = readHidden();
-          delete current[key];
-          updateHidden(current);
-        },
-      },
-    });
+  const remove = async (item: DownloadItem) => {
+    const previous = queryClient.getQueryData<DownloadHistory>(meKeys.downloads);
+    queryClient.setQueryData<DownloadHistory>(meKeys.downloads, (current) =>
+      current ? { ...current, items: current.items.filter((entry) => entry.mod.id !== item.mod.id) } : current,
+    );
+    try {
+      await meApi.removeDownload(item.mod.id);
+      notify.success(m.me_downloads_removed({ mod: item.mod.name }));
+      void queryClient.invalidateQueries({ queryKey: meKeys.downloads });
+    } catch (failure) {
+      if (previous) queryClient.setQueryData(meKeys.downloads, previous);
+      notify.error(m.me_action_failed(), { description: failureDescription(failure) });
+    }
   };
 
   const clearAll = async () => {
@@ -112,7 +119,7 @@ export function DownloadsScreen() {
       queryClient.setQueryData<DownloadHistory>(meKeys.downloads, (current) =>
         current ? { ...current, items: [], updatesAvailable: 0 } : current,
       );
-      updateHidden({});
+      storage.remove(HIDDEN_KEY);
       void queryClient.invalidateQueries({ queryKey: meKeys.prompts });
       notify.success(m.me_downloads_cleared());
     } catch (failure) {
@@ -327,7 +334,7 @@ export function DownloadsScreen() {
                       size="sm"
                       aria-label={m.me_downloads_remove_label({ mod: item.mod.name })}
                       title={m.me_downloads_remove()}
-                      onClick={() => remove(item)}
+                      onClick={() => void remove(item)}
                     >
                       <Icon icon={X} size={16} />
                     </Button>
