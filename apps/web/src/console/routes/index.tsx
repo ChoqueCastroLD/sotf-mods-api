@@ -1,5 +1,5 @@
 /**
- * Console index route — STUB created by WP-22, owned and completed by WP-34.
+ * Console index route (WP-34).
  *
  * The console has no page at `/` (that is the public landing, served by Astro); the SPA only runs
  * under `/basecamp`, `/ranger`, `/settings`, `/signals` and `/me`. If the router ever resolves `/`
