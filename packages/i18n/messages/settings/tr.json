@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Kitime yorum",
   "settings_notif_kit_comment_hint": "Küratörlüğünü yaptığın bir kite biri yorum yaptı.",
   "settings_notif_kit_reply": "Kitte yanıt",
-  "settings_notif_kit_reply_hint": "Bir kitteki yorumuna biri yanıt verdi."
+  "settings_notif_kit_reply_hint": "Bir kitteki yorumuna biri yanıt verdi.",
+  "settings_notif_coauthor": "Ortak yazar davetleri",
+  "settings_notif_coauthor_hint": "Biri seni modlarından birinin ortak yazarı olmaya davet ediyor."
 }

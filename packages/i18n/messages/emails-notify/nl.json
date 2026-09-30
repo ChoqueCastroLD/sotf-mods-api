@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "Je krijgt dit rapport omdat je op SOTF Mods publiceert.",
   "emails_notify_item_kit_updated_followed": "De kit {kit} die je volgt is bijgewerkt",
   "emails_notify_item_kit_comment": "{actor} heeft gereageerd op je kit {kit}",
-  "emails_notify_item_kit_comment_reply": "{actor} heeft gereageerd op je reactie bij de kit {kit}"
+  "emails_notify_item_kit_comment_reply": "{actor} heeft gereageerd op je reactie bij de kit {kit}",
+  "emails_notify_item_coauthor_invited": "{actor} heeft je uitgenodigd als mede-auteur van {mod}"
 }

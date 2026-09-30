@@ -41,10 +41,11 @@ import {
   descriptionFormatOf,
   existingVersions,
   type FileUpload,
+  isAcceptedCoAuthor,
   kindOfType,
   loadFileUpload,
-  loadOwnedMod,
-  lockOwnedMod,
+  loadManagedMod,
+  lockManagedMod,
   persistDescriptionFormat,
   type ResolvedDependency,
   resolveDependencies,
@@ -400,8 +401,10 @@ export async function releaseVersion(
 ): Promise<{ versionId: number; submit: SubmitResultDTO }> {
   const subject = await assertCanPublish(ctx);
   const actor = actorOf(ctx);
-  const current = await loadOwnedMod(ctx, modId);
-  if (!can(subject, 'version.publish', { ownerId: current.userId }, ctx.clock.now()) && subject.role !== 'admin') {
+  const current = await loadManagedMod(ctx, modId);
+  // A co-author (accepted invitation) releases versions with the owner's rights over the mod.
+  const publisherOf = (await isAcceptedCoAuthor(ctx.db, current.id, actor.userId)) ? actor.userId : current.userId;
+  if (!can(subject, 'version.publish', { ownerId: publisherOf }, ctx.clock.now()) && subject.role !== 'admin') {
     throw errors.forbidden('This is not your mod');
   }
   if (current.status === 'removed') throw errors.forbidden('A removed mod cannot receive new versions');
@@ -462,7 +465,7 @@ export async function releaseVersion(
 
   try {
     await ctx.db.transaction(async (tx) => {
-      const locked = await lockOwnedMod(ctx, tx, current.id);
+      const locked = await lockManagedMod(ctx, tx, current.id);
       if (locked.status !== current.status) throw errors.conflict('The mod changed meanwhile; try again');
       await persistDescriptionFormat(tx, locked.id, descriptionFormat);
       if (manifest) {

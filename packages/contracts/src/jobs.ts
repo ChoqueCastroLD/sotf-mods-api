@@ -66,6 +66,7 @@ export const JOB_PAYLOADS = {
   'cleanup.download-unique': z.object({}),
   'cleanup.analytics': z.object({}),
   'cleanup.kelvinseek': z.object({}),
+  'cleanup.coauthor-invites': z.object({}),
   // Operations (PLAN §10.3 «Alertas»)
   'ops.alerts': z.object({}),
   // Migration (one-off, idempotent)
@@ -110,6 +111,7 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'cleanup.download-unique', cron: '30 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.analytics', cron: '40 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.kelvinseek', cron: '50 4 * * *', key: 'daily', data: {} },
+  { queue: 'cleanup.coauthor-invites', cron: '55 4 * * *', key: 'daily', data: {} },
   // Only after the cut-over (`POST_CUTOVER_QUEUES`): drains legacy mentions every 10 minutes.
   { queue: 'legacy.mentions', cron: '*/10 * * * *', key: 'every-10m', data: {} },
   // After `accounts.trust-level` (03:15): weights follow the reporters' new flags.
@@ -163,6 +165,7 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'cleanup.download-unique': {},
   'cleanup.analytics': {},
   'cleanup.kelvinseek': {},
+  'cleanup.coauthor-invites': {},
   'ops.alerts': {},
   'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000 },
 };

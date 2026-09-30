@@ -13,8 +13,10 @@ import { NotebookPen, Package, Plus, Search } from 'lucide-react';
 import { useDeferredValue, useId } from 'react';
 import { activeLocale } from '../../lib/messages.ts';
 import { MOD_STATUS_VALUES, type ModRow, type ModStatus, modsQuery } from './api.ts';
+import { CoAuthoredPanel } from './CoAuthoredPanel.tsx';
 import { number } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
+import { useKnowledgeMessages } from './knowledge-i18n.ts';
 import { modStatusLabel } from './labels.ts';
 import { ModsTable } from './ModsTable.tsx';
 import { MOD_SORTS, type ModSort } from './mod-sorts.ts';
@@ -77,6 +79,7 @@ export function ModsScreen({
   onFilters: (next: Partial<ModsFilters>) => void;
 }) {
   useBasecampMessages();
+  useKnowledgeMessages();
   const searchId = useId();
   const { data } = useSuspenseQuery(modsQuery);
   const q = useDeferredValue(filters.q.trim().toLocaleLowerCase(activeLocale()));
@@ -123,6 +126,8 @@ export function ModsScreen({
           </>
         }
       />
+
+      <CoAuthoredPanel />
 
       {data.items.length === 0 ? (
         <EmptyState

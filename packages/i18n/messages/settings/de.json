@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Kommentar zu meinem Kit",
   "settings_notif_kit_comment_hint": "Jemand kommentiert ein Kit, das du kuratierst.",
   "settings_notif_kit_reply": "Antwort bei einem Kit",
-  "settings_notif_kit_reply_hint": "Jemand antwortet auf deinen Kommentar bei einem Kit."
+  "settings_notif_kit_reply_hint": "Jemand antwortet auf deinen Kommentar bei einem Kit.",
+  "settings_notif_coauthor": "Einladungen zur Mitautorenschaft",
+  "settings_notif_coauthor_hint": "Jemand lädt dich ein, an einem seiner Mods mitzuarbeiten."
 }

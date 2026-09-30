@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Комментарий к моему набору",
   "settings_notif_kit_comment_hint": "Кто-то комментирует набор, который вы ведёте.",
   "settings_notif_kit_reply": "Ответ в наборе",
-  "settings_notif_kit_reply_hint": "Кто-то отвечает на ваш комментарий к набору."
+  "settings_notif_kit_reply_hint": "Кто-то отвечает на ваш комментарий к набору.",
+  "settings_notif_coauthor": "Приглашения в соавторы",
+  "settings_notif_coauthor_hint": "Кто-то приглашает вас стать соавтором одного из своих модов."
 }

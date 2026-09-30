@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Reactie op mijn kit",
   "settings_notif_kit_comment_hint": "Iemand reageert op een kit die je beheert.",
   "settings_notif_kit_reply": "Antwoord bij een kit",
-  "settings_notif_kit_reply_hint": "Iemand reageert op je reactie bij een kit."
+  "settings_notif_kit_reply_hint": "Iemand reageert op je reactie bij een kit.",
+  "settings_notif_coauthor": "Uitnodigingen voor mede-auteurschap",
+  "settings_notif_coauthor_hint": "Iemand nodigt je uit als mede-auteur van een van zijn mods."
 }

@@ -26,6 +26,7 @@ import {
   Star,
   TrendingUp,
   Trophy,
+  Users,
   Wrench,
 } from 'lucide-react';
 import { badgeName, st, stOptional } from './i18n.ts';
@@ -263,6 +264,13 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         excerpt,
         icon: Reply,
         tone: 'neutral',
+      };
+    case 'coauthor.invited':
+      return {
+        text: st('signals_coauthor_invited', { actor, mod }),
+        excerpt: null,
+        icon: Users,
+        tone: 'signal',
       };
     case 'patch.breaking_build':
       return {

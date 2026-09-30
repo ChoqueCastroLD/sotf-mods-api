@@ -6,6 +6,7 @@
  * and the generated FAQ, with absolute links. English (machine endpoints are not localized).
  */
 import type { ModCardDTO, ModDetailDTO, UserPublicDTO } from '@sotf/contracts/catalog';
+import type { ModKnowledgeDTO } from '@sotf/contracts/mod-knowledge';
 import { absoluteUrl, profilePath, versionsPath } from '@sotf/contracts/seo';
 import { STEAM_APP_URL } from '../site.ts';
 import { buildModFaq } from './faq.ts';
@@ -81,7 +82,12 @@ function compatLine(mod: ModDetailDTO): string {
 }
 
 /** The Markdown document of a mod, library or build. `now` dates the figures («as of»). */
-export function modMarkdown(mod: ModDetailDTO, siteUrl: string, now: Date): string {
+export function modMarkdown(
+  mod: ModDetailDTO,
+  siteUrl: string,
+  now: Date,
+  knowledge: ModKnowledgeDTO | null = null,
+): string {
   const url = absoluteUrl(mod.canonicalPath, siteUrl);
   const isBuild = mod.kind === 'build';
   const kindLabel = isBuild ? 'Build (BuildShare blueprint)' : mod.kind === 'library' ? 'Library' : 'Mod';
@@ -194,11 +200,37 @@ export function modMarkdown(mod: ModDetailDTO, siteUrl: string, now: Date): stri
     lines.push(`All versions: ${absoluteUrl(versionsPath(mod.kind, mod.userHandle, mod.slug), siteUrl)}`, '');
   }
 
-  // FAQ generated from the facts.
-  const faq = buildModFaq(mod, 'en');
+  // Known issues the author maintains.
+  if (knowledge && knowledge.knownIssues.length > 0) {
+    lines.push('## Known issues', '');
+    for (const issue of knowledge.knownIssues) {
+      const facts = [
+        issue.status,
+        issue.affectedVersions ? `affects ${issue.affectedVersions}` : null,
+        issue.fixedInVersion ? `fixed in ${issue.fixedInVersion}` : null,
+      ].filter(Boolean);
+      lines.push(`- **${mdInline(issue.title)}** (${facts.join(', ')}): ${mdInline(issue.body)}`);
+    }
+    lines.push('');
+  }
+
+  // FAQ: the author's answers first, then the ones generated from the facts.
+  const faq = [
+    ...(knowledge?.faq ?? []).map((entry) => ({ question: entry.question, answer: entry.answer })),
+    ...buildModFaq(mod, 'en'),
+  ];
   if (faq.length > 0) {
     lines.push('## FAQ', '');
-    for (const entry of faq) lines.push(`### ${mdInline(entry.question)}`, '', entry.answer, '');
+    for (const entry of faq) lines.push(`### ${mdInline(entry.question)}`, '', mdInline(entry.answer), '');
+  }
+
+  if (knowledge && knowledge.coAuthors.length > 0) {
+    lines.push('## Co-authors', '');
+    for (const coAuthor of knowledge.coAuthors) {
+      const handle = coAuthor.user.handle;
+      lines.push(`- ${mdLink(coAuthor.user.displayName || handle, absoluteUrl(profilePath(handle), siteUrl))}`);
+    }
+    lines.push('');
   }
 
   if (mod.supportLinks.length > 0) {

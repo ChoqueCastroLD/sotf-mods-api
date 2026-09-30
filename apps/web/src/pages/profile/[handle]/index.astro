@@ -17,6 +17,7 @@
 import { cacheTag } from '@sotf/contracts/cache';
 import { BADGES, nextSurvivorRank } from '@sotf/contracts/gamification';
 import { formatDate, formatNumber } from '@sotf/i18n';
+import type { CoAuthoredModListDTO } from '@sotf/contracts/mod-knowledge';
 import { m } from '@sotf/i18n/messages';
 import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
 import { Icon } from '@sotf/ui/icons';
@@ -47,12 +48,14 @@ import {
   visibleTabs,
 } from '../../../components/profile/data.ts';
 import { badgeGroupName, badgeHint, badgeName, profileDomainI18n, rankName } from '../../../components/profile/i18n.ts';
+import CoAuthoredMods from '../../../components/profile/CoAuthoredMods.astro';
 import ProfileHeader from '../../../components/profile/ProfileHeader.astro';
 import ProfileTabs from '../../../components/profile/ProfileTabs.astro';
 import { redirectClean, respondUnresolved } from '../../../components/profile/responses.ts';
 import { profileDescription, profileJsonLd, profileTitle } from '../../../components/profile/seo.ts';
 import TabState from '../../../components/profile/TabState.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { optional, serverApi } from '../../../lib/api.ts';
 import { setPageCache } from '../../../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../../../lib/cache/policy.ts';
 import { loadEnv } from '../../../lib/env.ts';
@@ -78,7 +81,12 @@ const [badges, taxonomy] = await Promise.all([
   loadUserBadges(user.handle, query.tab === 'badges' ? 2500 : 800),
   query.tab === 'mods' || query.tab === 'builds' ? loadTaxonomy(locale) : Promise.resolve(null),
 ]);
-const content: TabContent = await loadTab(user, query, badges);
+const [content, coAuthored]: [TabContent, CoAuthoredModListDTO | null] = await Promise.all([
+  loadTab(user, query, badges),
+  query.tab === 'mods' && query.page === 1
+    ? optional((signal) => serverApi().modKnowledge.userCoAuthored({ params: { handle: user.handle } }, { signal }))
+    : Promise.resolve(null),
+]);
 
 setPageCache(
   Astro,
@@ -212,6 +220,9 @@ const catalogTotal = notebook?.catalog?.badges.filter((badge) => !badge.isSecret
         )
       }
 
+      {
+        content.tab === 'mods' && coAuthored && <CoAuthoredMods name={name} items={coAuthored.items} />
+      }
       {
         (content.tab === 'mods' || content.tab === 'builds') && (
           <section aria-labelledby="cards-title" class="grid gap-4">

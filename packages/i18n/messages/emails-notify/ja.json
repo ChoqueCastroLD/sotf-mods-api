@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "SOTF Mods で公開しているため、このレポートをお送りしています。",
   "emails_notify_item_kit_updated_followed": "フォロー中のキット {kit} が更新されました",
   "emails_notify_item_kit_comment": "{actor} さんがあなたのキット {kit} にコメントしました",
-  "emails_notify_item_kit_comment_reply": "{actor} さんがキット {kit} のあなたのコメントに返信しました"
+  "emails_notify_item_kit_comment_reply": "{actor} さんがキット {kit} のあなたのコメントに返信しました",
+  "emails_notify_item_coauthor_invited": "{actor} さんが {mod} の共同作者にあなたを招待しました"
 }

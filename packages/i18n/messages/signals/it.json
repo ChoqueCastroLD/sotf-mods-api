@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "Nottambulo",
   "signals_kit_updated_followed": "Il kit «{kit}» che segui è stato aggiornato",
   "signals_kit_comment": "{actor} ha commentato il tuo kit «{kit}»",
-  "signals_kit_comment_reply": "{actor} ha risposto al tuo commento sul kit «{kit}»"
+  "signals_kit_comment_reply": "{actor} ha risposto al tuo commento sul kit «{kit}»",
+  "signals_coauthor_invited": "{actor} ti ha invitato a co-creare {mod}"
 }

@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "Oiseau de nuit",
   "signals_kit_updated_followed": "Le kit « {kit} » que vous suivez a été mis à jour",
   "signals_kit_comment": "{actor} a commenté votre kit « {kit} »",
-  "signals_kit_comment_reply": "{actor} a répondu à votre commentaire sur le kit « {kit} »"
+  "signals_kit_comment_reply": "{actor} a répondu à votre commentaire sur le kit « {kit} »",
+  "signals_coauthor_invited": "{actor} vous a invité à co-créer {mod}"
 }

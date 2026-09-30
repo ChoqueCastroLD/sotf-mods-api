@@ -1,0 +1,57 @@
+---
+/**
+ * Known issues the author maintains (T1-14): open and investigating first, then the fixed ones.
+ * Plain text written in Basecamp; the FAQ the author writes is merged into `#faq` by the page.
+ */
+import { formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Badge } from '@sotf/ui/badge';
+import type { KnownIssueDTO } from '@sotf/contracts/mod-knowledge';
+import { SECTION_TITLE_CLASSES } from './styles.ts';
+
+interface Props {
+  issues: readonly KnownIssueDTO[];
+}
+
+const { issues } = Astro.props;
+const locale = Astro.locals.locale;
+
+const STATUS_LABEL: Record<KnownIssueDTO['status'], () => string> = {
+  open: () => m.mod_knowledge_status_open(),
+  investigating: () => m.mod_knowledge_status_investigating(),
+  fixed: () => m.mod_knowledge_status_fixed(),
+};
+const STATUS_VARIANT = { open: 'danger', investigating: 'warning', fixed: 'signal' } as const;
+---
+
+{
+  issues.length > 0 && (
+    <section id="known-issues" aria-labelledby="known-issues-title" class="grid scroll-mt-24 gap-4">
+      <h2 id="known-issues-title" class={SECTION_TITLE_CLASSES}>
+        {m.mod_knowledge_issues_title()}
+      </h2>
+      <ul class="grid gap-3">
+        {issues.map((issue) => (
+          <li id={`issue-${issue.id}`} class="scroll-mt-24 grid gap-1.5 rounded-lg border border-border bg-surface p-4 sm:p-5">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="font-semibold text-balance text-fg">{issue.title}</h3>
+              <Badge variant={STATUS_VARIANT[issue.status]} size="sm">
+                {STATUS_LABEL[issue.status]()}
+              </Badge>
+            </div>
+            {issue.body && <p class="whitespace-pre-line text-pretty text-fg-muted">{issue.body}</p>}
+            <p class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-fg-subtle">
+              {issue.affectedVersions && <span>{m.mod_knowledge_issue_affects({ versions: issue.affectedVersions })}</span>}
+              {issue.fixedInVersion && <span>{m.mod_knowledge_issue_fixed_in({ version: issue.fixedInVersion })}</span>}
+              {issue.resolvedAt && (
+                <time datetime={issue.resolvedAt}>
+                  {m.mod_knowledge_issue_resolved({ date: formatDate(locale, issue.resolvedAt) })}
+                </time>
+              )}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

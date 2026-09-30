@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Komentarz do mojego zestawu",
   "settings_notif_kit_comment_hint": "Ktoś komentuje zestaw, którego jesteś autorem.",
   "settings_notif_kit_reply": "Odpowiedź w zestawie",
-  "settings_notif_kit_reply_hint": "Ktoś odpowiada na Twój komentarz w zestawie."
+  "settings_notif_kit_reply_hint": "Ktoś odpowiada na Twój komentarz w zestawie.",
+  "settings_notif_coauthor": "Zaproszenia do współtworzenia",
+  "settings_notif_coauthor_hint": "Ktoś zaprasza Cię do współtworzenia jednego ze swoich modów."
 }

@@ -53,6 +53,8 @@ export function signalText(item: SignalEmailItem, locale: Locale): string {
       return m.emails_notify_item_kit_comment({ actor, kit: mod }, o);
     case 'kit.comment_reply':
       return m.emails_notify_item_kit_comment_reply({ actor, kit: mod }, o);
+    case 'coauthor.invited':
+      return m.emails_notify_item_coauthor_invited({ actor, mod }, o);
     case 'patch.breaking_build':
       return m.emails_notify_item_patch_breaking({ build: item.build ?? '' }, o);
     case 'mod.status_changed':

@@ -20,6 +20,7 @@ import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
 import markdownPreviewModule from './markdown-preview/index.ts';
 import meModule from './me/index.ts';
+import modKnowledgeModule from './mod-knowledge/index.ts';
 import notificationsModule from './notifications/index.ts';
 import oauthModule from './oauth/index.ts';
 import onboardingModule from './onboarding/index.ts';
@@ -57,6 +58,7 @@ export const modules = [
   legacyModule,
   markdownPreviewModule,
   meModule,
+  modKnowledgeModule,
   notificationsModule,
   oauthModule,
   onboardingModule,

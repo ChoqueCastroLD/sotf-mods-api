@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Kommentar på mitt kit",
   "settings_notif_kit_comment_hint": "Någon kommenterar ett kit du kurerar.",
   "settings_notif_kit_reply": "Svar på ett kit",
-  "settings_notif_kit_reply_hint": "Någon svarar på din kommentar på ett kit."
+  "settings_notif_kit_reply_hint": "Någon svarar på din kommentar på ett kit.",
+  "settings_notif_coauthor": "Inbjudningar som medförfattare",
+  "settings_notif_coauthor_hint": "Någon bjuder in dig som medförfattare till en av sina moddar."
 }

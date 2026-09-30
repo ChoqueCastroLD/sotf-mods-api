@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "Ricevi questo rapporto perché pubblichi su SOTF Mods.",
   "emails_notify_item_kit_updated_followed": "Il kit {kit} che segui è stato aggiornato",
   "emails_notify_item_kit_comment": "{actor} ha commentato il tuo kit {kit}",
-  "emails_notify_item_kit_comment_reply": "{actor} ha risposto al tuo commento sul kit {kit}"
+  "emails_notify_item_kit_comment_reply": "{actor} ha risposto al tuo commento sul kit {kit}",
+  "emails_notify_item_coauthor_invited": "{actor} ti ha invitato a co-creare {mod}"
 }

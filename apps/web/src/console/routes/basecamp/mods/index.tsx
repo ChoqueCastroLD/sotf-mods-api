@@ -3,8 +3,9 @@
  * `?q=` and `?sort=` keep the filters in the URL.
  */
 import { createFileRoute } from '@tanstack/react-router';
-import { type ModStatus, modsQuery } from '../../../features/basecamp/api.ts';
+import { coAuthoredQuery, invitesQuery, type ModStatus, modsQuery } from '../../../features/basecamp/api.ts';
 import { bt, loadBasecampMessages } from '../../../features/basecamp/i18n.ts';
+import { loadKnowledgeMessages } from '../../../features/basecamp/knowledge-i18n.ts';
 import { ModsScreen } from '../../../features/basecamp/ModsScreen.tsx';
 import { MOD_SORTS, type ModSort } from '../../../features/basecamp/mod-sorts.ts';
 import { MOD_STATUS_VALUES } from '../../../features/basecamp/search.ts';
@@ -26,7 +27,13 @@ export const Route = createFileRoute('/basecamp/mods/')({
     ...(oneOf(MOD_SORTS, search.sort) && search.sort !== 'downloads' ? { sort: search.sort } : {}),
   }),
   loader: async ({ context }) => {
-    await Promise.all([loadBasecampMessages(), context.queryClient.ensureQueryData(modsQuery)]);
+    await Promise.all([
+      loadBasecampMessages(),
+      loadKnowledgeMessages(),
+      context.queryClient.ensureQueryData(modsQuery),
+      context.queryClient.ensureQueryData(coAuthoredQuery),
+      context.queryClient.ensureQueryData(invitesQuery),
+    ]);
   },
   staticData: { title: () => bt('basecamp_mods_title') },
   component: ModsRoute,

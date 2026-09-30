@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "夜猫子",
   "signals_kit_updated_followed": "你关注的套件“{kit}”已更新",
   "signals_kit_comment": "{actor} 评论了你的套件“{kit}”",
-  "signals_kit_comment_reply": "{actor} 回复了你在套件“{kit}”下的评论"
+  "signals_kit_comment_reply": "{actor} 回复了你在套件“{kit}”下的评论",
+  "signals_coauthor_invited": "{actor} 邀请你共同维护 {mod}"
 }

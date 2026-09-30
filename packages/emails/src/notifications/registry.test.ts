@@ -44,6 +44,7 @@ const TYPES = [
   'kit.updated_followed',
   'kit.comment',
   'kit.comment_reply',
+  'coauthor.invited',
   'patch.breaking_build',
   'mod.status_changed',
   'milestone.reached',

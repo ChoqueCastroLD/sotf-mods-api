@@ -42,7 +42,9 @@ import {
   assertWriter,
   descriptionFormatOf,
   kindOfType,
+  loadManagedMod,
   loadOwnedMod,
+  lockManagedMod,
   lockOwnedMod,
   persistDescriptionFormat,
 } from './queries.ts';
@@ -169,7 +171,7 @@ export async function listStudioMods(ctx: Ctx, deps: PublishingDeps): Promise<{ 
 
 /** Owner view (`GET /studio/mods/:id` and the response of every studio write). */
 export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number): Promise<StudioModDTO> {
-  const row = await loadOwnedMod(ctx, modId);
+  const row = await loadManagedMod(ctx, modId);
   const { snapshot, entry } = await entryOf(ctx, deps, row.id);
   const kind = kindOfType(row.type);
   const [detail, versions, facts, descriptionFormat, media] = await Promise.all([
@@ -387,13 +389,13 @@ export async function updateStudioVersion(
       { path: 'yank', code: 'invalid', message: 'yank and unyank' },
     ]);
   }
-  const current = await loadOwnedMod(ctx, modId);
+  const current = await loadManagedMod(ctx, modId);
   if (current.status === 'removed') throw errors.forbidden('A removed mod cannot be edited');
   const kind = kindOfType(current.type);
   const now = ctx.clock.now();
 
   await ctx.db.transaction(async (tx) => {
-    await lockOwnedMod(ctx, tx, current.id);
+    await lockManagedMod(ctx, tx, current.id);
     const [version] = await tx
       .select()
       .from(modVersion)

@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods.",
   "emails_notify_item_kit_updated_followed": "Kitet {kit} som du följer har uppdaterats",
   "emails_notify_item_kit_comment": "{actor} kommenterade ditt kit {kit}",
-  "emails_notify_item_kit_comment_reply": "{actor} svarade på din kommentar på kitet {kit}"
+  "emails_notify_item_kit_comment_reply": "{actor} svarade på din kommentar på kitet {kit}",
+  "emails_notify_item_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}"
 }

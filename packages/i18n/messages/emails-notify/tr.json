@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "SOTF Mods’ta içerik yayımladığın için bu raporu alıyorsun.",
   "emails_notify_item_kit_updated_followed": "Takip ettiğin {kit} kiti güncellendi",
   "emails_notify_item_kit_comment": "{actor}, {kit} kitine yorum yaptı",
-  "emails_notify_item_kit_comment_reply": "{actor}, {kit} kitindeki yorumuna yanıt verdi"
+  "emails_notify_item_kit_comment_reply": "{actor}, {kit} kitindeki yorumuna yanıt verdi",
+  "emails_notify_item_coauthor_invited": "{actor} seni {mod} için ortak yazar olarak davet etti"
 }

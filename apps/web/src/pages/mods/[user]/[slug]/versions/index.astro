@@ -15,6 +15,7 @@ import { SECTION_TITLE_CLASSES } from '../../../../../components/mod/styles.ts';
 import VersionTimeline from '../../../../../components/mod/VersionTimeline.astro';
 import { setPageCache } from '../../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../../lib/cache/policy.ts';
+import { href } from '../../../../../lib/i18n.ts';
 import { ensureLocals } from '../../../../../lib/request-context.ts';
 
 export const prerender = false;
@@ -50,6 +51,18 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
   <section aria-labelledby="versions-title" class="grid gap-4">
     <h2 id="versions-title" class={SECTION_TITLE_CLASSES}>{m.mod_versions_title({ count: versions.length })}</h2>
     <VersionTable versions={versions} caption={m.mod_versions_caption({ name: mod.name })} />
+    {
+      versions.length > 1 && (
+        <p>
+          <a
+            href={href(`${versionsPagePath(mod)}/compare`, Astro.locals.locale)}
+            class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link"
+          >
+            {m.mod_knowledge_compare_link()}
+          </a>
+        </p>
+      )
+    }
   </section>
 
   <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4">

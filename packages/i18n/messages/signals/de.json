@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "Nachteule",
   "signals_kit_updated_followed": "Das Kit „{kit}“, dem du folgst, wurde aktualisiert",
   "signals_kit_comment": "{actor} hat dein Kit „{kit}“ kommentiert",
-  "signals_kit_comment_reply": "{actor} hat auf deinen Kommentar beim Kit „{kit}“ geantwortet"
+  "signals_kit_comment_reply": "{actor} hat auf deinen Kommentar beim Kit „{kit}“ geantwortet",
+  "signals_coauthor_invited": "{actor} hat dich eingeladen, {mod} mitzuentwickeln"
 }

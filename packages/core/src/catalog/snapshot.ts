@@ -35,7 +35,7 @@ import {
 } from '@sotf/contracts/common';
 import { bayesianRating } from '@sotf/contracts/reviews';
 import { modPath } from '@sotf/contracts/seo';
-import type { LocalizedNames, MediaVariant, UserPrivacy } from '@sotf/db';
+import type { Database, LocalizedNames, MediaVariant, UserPrivacy } from '@sotf/db';
 import type { Ctx } from '../kernel/context.ts';
 import { buildCardFacts } from './build-facts.ts';
 import { type CatalogConfig, imageDto, type MediaRow, mediaUrlForWidth, safeHttpUrl, variantUrlOnly } from './media.ts';
@@ -466,6 +466,36 @@ function buildAuthor(config: CatalogConfig, a: AuthorRow): AuthorInfo {
     ratingAvg: numOrNull(a.ratingAvg),
     hidden: a.deletedAt !== null || a.bannedAt !== null,
   };
+}
+
+/**
+ * Public references of arbitrary users (co-authors need not own a mod, so the snapshot's authors
+ * do not cover them). Deleted or banned users are left out.
+ */
+export async function loadUserRefs(
+  db: Database,
+  config: CatalogConfig,
+  ids: readonly number[],
+): Promise<Map<number, UserRefDTO>> {
+  const out = new Map<number, UserRefDTO>();
+  const unique = [...new Set(ids)];
+  if (unique.length === 0) return out;
+  const found = await rows<AuthorRow>(
+    db,
+    `SELECT u."id", u."slug", u."name", u."displayName", u."imageUrl", u."verifiedCreator", u."role", u."privacy",
+            u."deletedAt", u."bannedAt", s."creatorTier", s."survivorRank", s."followersCount", s."ratingAvg",
+            ${MEDIA_COLUMNS('med')}
+       FROM "User" u
+       LEFT JOIN "UserStats" s ON s."userId" = u."id"
+       LEFT JOIN "Media" med ON med."id" = u."avatarMediaId"
+      WHERE u."id" = ANY($1::int[]) AND u."slug" IS NOT NULL`,
+    [unique],
+  );
+  for (const a of found) {
+    const author = buildAuthor(config, a);
+    if (!author.hidden) out.set(a.id, author.ref);
+  }
+  return out;
 }
 
 /** Loads the snapshot from the database (uncached). */

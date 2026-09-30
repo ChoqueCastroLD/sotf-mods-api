@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "自分のキットへのコメント",
   "settings_notif_kit_comment_hint": "あなたがキュレーションしているキットにコメントがあったとき。",
   "settings_notif_kit_reply": "キットでの返信",
-  "settings_notif_kit_reply_hint": "キットでのあなたのコメントに返信があったとき。"
+  "settings_notif_kit_reply_hint": "キットでのあなたのコメントに返信があったとき。",
+  "settings_notif_coauthor": "共同作者への招待",
+  "settings_notif_coauthor_hint": "誰かがあなたを自分の MOD の共同作者に招待します。"
 }

@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "Вы получаете этот отчёт, потому что публикуете на SOTF Mods.",
   "emails_notify_item_kit_updated_followed": "Набор {kit}, на который вы подписаны, обновлён",
   "emails_notify_item_kit_comment": "{actor} прокомментировал(а) ваш набор {kit}",
-  "emails_notify_item_kit_comment_reply": "{actor} ответил(а) на ваш комментарий к набору {kit}"
+  "emails_notify_item_kit_comment_reply": "{actor} ответил(а) на ваш комментарий к набору {kit}",
+  "emails_notify_item_coauthor_invited": "{actor} приглашает вас стать соавтором {mod}"
 }

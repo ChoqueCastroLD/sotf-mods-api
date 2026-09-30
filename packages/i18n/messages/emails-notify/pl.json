@@ -58,5 +58,6 @@
   "emails_notify_creator_reason": "Otrzymujesz ten raport, ponieważ publikujesz w SOTF Mods.",
   "emails_notify_item_kit_updated_followed": "Zestaw {kit}, który obserwujesz, został zaktualizowany",
   "emails_notify_item_kit_comment": "{actor} skomentował(a) Twój zestaw {kit}",
-  "emails_notify_item_kit_comment_reply": "{actor} odpowiedział(a) na Twój komentarz w zestawie {kit}"
+  "emails_notify_item_kit_comment_reply": "{actor} odpowiedział(a) na Twój komentarz w zestawie {kit}",
+  "emails_notify_item_coauthor_invited": "{actor} zaprasza Cię do współtworzenia {mod}"
 }

@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "Ночная сова",
   "signals_kit_updated_followed": "Набор «{kit}», на который вы подписаны, обновлён",
   "signals_kit_comment": "{actor} прокомментировал(а) ваш набор «{kit}»",
-  "signals_kit_comment_reply": "{actor} ответил(а) на ваш комментарий к набору «{kit}»"
+  "signals_kit_comment_reply": "{actor} ответил(а) на ваш комментарий к набору «{kit}»",
+  "signals_coauthor_invited": "{actor} приглашает вас стать соавтором {mod}"
 }

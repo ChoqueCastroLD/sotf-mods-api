@@ -18,6 +18,7 @@ import { kitSocialEndpoints } from './kit-social.ts';
 import { kitsEndpoints } from './kits.ts';
 import { legacyEndpoints } from './legacy.ts';
 import { meEndpoints } from './me.ts';
+import { modKnowledgeEndpoints } from './mod-knowledge.ts';
 import { moderationEndpoints } from './moderation.ts';
 import { notificationsEndpoints } from './notifications.ts';
 import { oauthEndpoints } from './oauth.ts';
@@ -46,6 +47,7 @@ export const apiContracts = {
   kitSocial: kitSocialEndpoints,
   legacy: legacyEndpoints,
   me: meEndpoints,
+  modKnowledge: modKnowledgeEndpoints,
   moderation: moderationEndpoints,
   notifications: notificationsEndpoints,
   oauth: oauthEndpoints,

@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "夜ふかし",
   "signals_kit_updated_followed": "フォロー中のキット「{kit}」が更新されました",
   "signals_kit_comment": "{actor} さんがあなたのキット「{kit}」にコメントしました",
-  "signals_kit_comment_reply": "{actor} さんがキット「{kit}」のあなたのコメントに返信しました"
+  "signals_kit_comment_reply": "{actor} さんがキット「{kit}」のあなたのコメントに返信しました",
+  "signals_coauthor_invited": "{actor} さんが {mod} の共同作者にあなたを招待しました"
 }

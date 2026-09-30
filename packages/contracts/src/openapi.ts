@@ -52,6 +52,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   legacy:
     'Legacy v1 API (`/api/*`) kept byte-compatible for RedManager, UpdatesChecker and KelvinSeek. Deprecated routes carry `Deprecation` and `Sunset` headers.',
   me: 'The signed-in user: profile, settings, privacy, sessions, data export and deletion.',
+  modKnowledge: 'Known issues, author FAQ, version diff and co-authors of a mod.',
   moderation: 'Reports and the Ranger Station (moderators).',
   notifications: 'Signals (notifications), preferences and one-click unsubscribe.',
   oauth: 'OAuth sign-in and account linking (Discord); inactive unless configured on the server.',

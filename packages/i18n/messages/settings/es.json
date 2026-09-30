@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "Comentario en mi kit",
   "settings_notif_kit_comment_hint": "Alguien comenta en un kit que curas.",
   "settings_notif_kit_reply": "Respuesta en un kit",
-  "settings_notif_kit_reply_hint": "Alguien responde a tu comentario en un kit."
+  "settings_notif_kit_reply_hint": "Alguien responde a tu comentario en un kit.",
+  "settings_notif_coauthor": "Invitaciones de coautoría",
+  "settings_notif_coauthor_hint": "Alguien te invita a ser coautor de uno de sus mods."
 }

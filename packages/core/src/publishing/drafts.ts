@@ -29,8 +29,8 @@ import {
   findTags,
   kindOfType,
   loadFileUpload,
+  loadManagedMod,
   loadMedia,
-  loadOwnedMod,
   manifestIdTaken,
   type ResolvedDependency,
   resolveDependencies,
@@ -149,7 +149,7 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
 
   let target: DraftEvaluation['target'] = null;
   if (row.modId !== null) {
-    const m = await loadOwnedMod(ctx, row.modId).catch(() => null);
+    const m = await loadManagedMod(ctx, row.modId).catch(() => null);
     if (m) target = { id: m.id, manifestId: m.manifestId, status: m.status, type: m.type, userId: m.userId };
   }
   const isBuild = row.kind === 'build';
@@ -303,7 +303,7 @@ export async function createDraft(
         { path: 'modId', code: 'required', message: 'modId is required for kind "version"' },
       ]);
     }
-    const target = await loadOwnedMod(ctx, input.modId);
+    const target = await loadManagedMod(ctx, input.modId);
     if (target.status === 'removed') throw errors.forbidden('A removed mod cannot receive new versions');
     modId = target.id;
     dbKind = kindOfType(target.type) === 'build' ? 'build' : 'mod';

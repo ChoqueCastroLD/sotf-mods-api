@@ -119,5 +119,6 @@
   "signals_badge_name_night_owl": "Búho nocturno",
   "signals_kit_updated_followed": "El kit «{kit}» que sigues se actualizó",
   "signals_kit_comment": "{actor} comentó en tu kit «{kit}»",
-  "signals_kit_comment_reply": "{actor} respondió a tu comentario en el kit «{kit}»"
+  "signals_kit_comment_reply": "{actor} respondió a tu comentario en el kit «{kit}»",
+  "signals_coauthor_invited": "{actor} te invitó a ser coautor de {mod}"
 }

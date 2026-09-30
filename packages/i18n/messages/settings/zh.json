@@ -403,5 +403,7 @@
   "settings_notif_kit_comment": "我的套件有新评论",
   "settings_notif_kit_comment_hint": "有人评论了你策展的套件。",
   "settings_notif_kit_reply": "套件中的回复",
-  "settings_notif_kit_reply_hint": "有人回复了你在套件下的评论。"
+  "settings_notif_kit_reply_hint": "有人回复了你在套件下的评论。",
+  "settings_notif_coauthor": "共同作者邀请",
+  "settings_notif_coauthor_hint": "有人邀请你共同维护他的某个模组。"
 }
