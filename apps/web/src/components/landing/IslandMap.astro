@@ -35,10 +35,7 @@ const kinds = [
     <section class="island-map mx-auto w-full max-w-[34rem] lg:max-w-none" data-island-map aria-label={m.landing_map_label({ count: full.length })}>
       <div class="mb-2 flex items-center justify-between gap-3">
         <p class="readout flex items-center gap-2 text-signal">
-          <span class="relative inline-flex size-2" aria-hidden="true">
-            <span class="absolute inset-0 rounded-full bg-signal opacity-60 motion-safe:animate-ping-locator" />
-            <span class="relative size-2 rounded-full bg-signal" />
-          </span>
+          <span class="size-2 rounded-full bg-signal" aria-hidden="true" />
           {m.landing_map_title()}
         </p>
         <p class="readout tabular-nums" aria-hidden="true" data-map-coords>N 47.2034 · W 122.4781</p>

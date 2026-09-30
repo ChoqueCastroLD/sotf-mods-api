@@ -240,5 +240,8 @@
   "mod_stats_loading": "Загрузка графика…",
   "mod_graph_title": "Граф зависимостей",
   "mod_graph_label": "Граф зависимостей {name}",
-  "mod_graph_required_by": "Требуется для"
+  "mod_graph_required_by": "Требуется для",
+  "mod_compat_report_cta": "Сообщить, работает ли",
+  "mod_action_more": "Другие действия",
+  "mod_action_report_mod": "Пожаловаться на мод"
 }

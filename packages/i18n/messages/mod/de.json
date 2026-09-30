@@ -240,5 +240,8 @@
   "mod_stats_loading": "Diagramm wird geladen…",
   "mod_graph_title": "Abhängigkeitsgraph",
   "mod_graph_label": "Abhängigkeitsgraph von {name}",
-  "mod_graph_required_by": "Benötigt von"
+  "mod_graph_required_by": "Benötigt von",
+  "mod_compat_report_cta": "Melden, ob es funktioniert",
+  "mod_action_more": "Weitere Aktionen",
+  "mod_action_report_mod": "Diesen Mod melden"
 }

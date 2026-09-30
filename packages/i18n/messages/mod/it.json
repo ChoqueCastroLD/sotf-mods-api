@@ -240,5 +240,8 @@
   "mod_stats_loading": "Caricamento del grafico…",
   "mod_graph_title": "Grafo delle dipendenze",
   "mod_graph_label": "Grafo delle dipendenze di {name}",
-  "mod_graph_required_by": "Richiesto da"
+  "mod_graph_required_by": "Richiesto da",
+  "mod_compat_report_cta": "Segnala se funziona",
+  "mod_action_more": "Altre azioni",
+  "mod_action_report_mod": "Segnala questo mod"
 }

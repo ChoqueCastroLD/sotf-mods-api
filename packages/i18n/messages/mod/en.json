@@ -240,5 +240,8 @@
   "mod_stats_loading": "Loading chart…",
   "mod_graph_title": "Dependency graph",
   "mod_graph_label": "Dependency graph of {name}",
-  "mod_graph_required_by": "Required by"
+  "mod_graph_required_by": "Required by",
+  "mod_compat_report_cta": "Report whether it works",
+  "mod_action_more": "More actions",
+  "mod_action_report_mod": "Report this mod"
 }

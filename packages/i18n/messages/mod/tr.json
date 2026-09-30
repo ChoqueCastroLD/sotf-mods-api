@@ -240,5 +240,8 @@
   "mod_stats_loading": "Grafik yükleniyor…",
   "mod_graph_title": "Bağımlılık grafiği",
   "mod_graph_label": "{name} bağımlılık grafiği",
-  "mod_graph_required_by": "Şunlar için gerekli"
+  "mod_graph_required_by": "Şunlar için gerekli",
+  "mod_compat_report_cta": "Çalışıp çalışmadığını bildir",
+  "mod_action_more": "Diğer eylemler",
+  "mod_action_report_mod": "Bu modu şikâyet et"
 }
