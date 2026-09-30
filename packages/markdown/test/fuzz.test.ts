@@ -91,15 +91,21 @@ const CASES: ReadonlyArray<[MarkdownProfile, number]> = [
 ];
 
 describe('content-model fuzzing (browser tree = verified tree)', () => {
-  it.each(CASES)('%s: %i random tag soups', (profile, count) => {
-    const random = generator(20260929);
-    const failures: string[] = [];
-    for (let i = 0; i < count; i++) {
-      const input = tagSoup(random);
-      const { tree } = renderMarkdownTree(input, { profile, resolveMention: (handle) => ({ href: `/u/${handle}` }) });
-      const problems = findViolations(toSafeHtml(tree), tree);
-      if (problems.length > 0) failures.push(`${JSON.stringify(input)}: ${problems.join(' | ')}`);
-    }
-    expect(failures).toEqual([]);
-  });
+  it.each(CASES)(
+    '%s: %i random tag soups',
+    (profile, count) => {
+      const random = generator(20260929);
+      const failures: string[] = [];
+      for (let i = 0; i < count; i++) {
+        const input = tagSoup(random);
+        const { tree } = renderMarkdownTree(input, { profile, resolveMention: (handle) => ({ href: `/u/${handle}` }) });
+        const problems = findViolations(toSafeHtml(tree), tree);
+        if (problems.length > 0) failures.push(`${JSON.stringify(input)}: ${problems.join(' | ')}`);
+      }
+      expect(failures).toEqual([]);
+      // A correctness fuzz (jsdom parses every output), not a performance budget: ~5 s on a busy
+      // shared host would trip the default 5 s timeout. bench.test.ts owns the time budgets.
+    },
+    60_000,
+  );
 });
