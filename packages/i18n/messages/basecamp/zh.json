@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "保存更新日志",
   "basecamp_analytics_versions_daily": "各版本下载量趋势",
   "basecamp_inbox_filter_mod": "仅 {mod}",
-  "basecamp_inbox_filter_mod_clear": "显示所有模组"
+  "basecamp_inbox_filter_mod_clear": "显示所有模组",
+  "basecamp_listing_legacy_title": "此描述保留旧版排版",
+  "basecamp_listing_legacy_body": "它写于旧站点，因此其 HTML 仍按格式显示。转换为 Markdown 后即可像新描述一样编辑。",
+  "basecamp_listing_convert": "转换为 Markdown",
+  "basecamp_listing_convert_save_first": "请先保存或放弃更改。",
+  "basecamp_listing_convert_title": "将此描述转换为 Markdown？",
+  "basecamp_listing_convert_body": "原始 HTML 此后将显示为纯文本，且无法恢复。",
+  "basecamp_listing_convert_done": "描述已转换为 Markdown。"
 }

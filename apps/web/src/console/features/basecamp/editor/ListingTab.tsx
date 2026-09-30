@@ -9,6 +9,7 @@
  */
 import { LOCALES } from '@sotf/i18n';
 import { Button } from '@sotf/ui/button';
+import { ConfirmDialog } from '@sotf/ui/dialog';
 import { Field } from '@sotf/ui/field';
 import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
@@ -19,6 +20,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { activeLocale } from '../../../lib/messages.ts';
 import { notify } from '../../../lib/notify.ts';
+import { Callout } from '../../upload/components/Callout.tsx';
 import { MarkdownField } from '../../upload/components/MarkdownField.tsx';
 import { SupportLinksEditor } from '../../upload/components/SupportLinksEditor.tsx';
 import { TagPicker } from '../../upload/components/TagPicker.tsx';
@@ -149,6 +151,7 @@ export function ListingTab({ studio, onDirty }: { studio: StudioMod; onDirty: (d
   const baselineRef = useRef(base);
   const [touched, setTouched] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [confirmConvert, setConfirmConvert] = useState(false);
 
   // A fresher copy from the server (stream, another tab) replaces the form while it is clean.
   useEffect(() => {
@@ -186,6 +189,12 @@ export function ListingTab({ studio, onDirty }: { studio: StudioMod; onDirty: (d
     } finally {
       setSaving(false);
     }
+  };
+
+  const convertDescription = async () => {
+    const updated = await basecampApi.updateMod(studio.mod.id, { descriptionFormat: 'markdown' });
+    storeStudioMod(queryClient, updated);
+    notify.success(bt('basecamp_listing_convert_done'));
   };
 
   const categoryOptions = (categories.data?.items ?? []).map((c) => ({
@@ -270,6 +279,26 @@ export function ListingTab({ studio, onDirty }: { studio: StudioMod; onDirty: (d
       </FieldGroup>
 
       <FieldGroup id="basecamp-listing-description" title={bt('basecamp_listing_description_group')}>
+        {studio.descriptionFormat === 'legacy' && (
+          <Callout
+            tone="warning"
+            title={bt('basecamp_listing_legacy_title')}
+            action={
+              <Button
+                type="button"
+                variant="secondary"
+                size="sm"
+                disabled={dirty}
+                onClick={() => setConfirmConvert(true)}
+              >
+                {bt('basecamp_listing_convert')}
+              </Button>
+            }
+          >
+            {bt('basecamp_listing_legacy_body')}
+            {dirty ? ` ${bt('basecamp_listing_convert_save_first')}` : ''}
+          </Callout>
+        )}
         <MarkdownField
           id="basecamp-description"
           label={bt('basecamp_listing_description')}
@@ -383,6 +412,14 @@ export function ListingTab({ studio, onDirty }: { studio: StudioMod; onDirty: (d
           setForm(baseline);
           setTouched(false);
         }}
+      />
+      <ConfirmDialog
+        open={confirmConvert}
+        onOpenChange={setConfirmConvert}
+        title={bt('basecamp_listing_convert_title')}
+        description={bt('basecamp_listing_convert_body')}
+        confirmLabel={bt('basecamp_listing_convert')}
+        onConfirm={convertDescription}
       />
     </form>
   );

@@ -153,7 +153,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   de v2: confirmar o cambiar de forma aditiva. (WP-11.)
 - [x] resolved by wire-api (core part in place (snapshot resolves legacySlugs)): **Categorías retiradas** · `packages/core/src/catalog/**` (WP-33), Explore (WP-54) · resolver
   vía `legacySlugs` (`qol` → `quality-of-life`). (WP-10.)
-- **Locale de la consola** · `apps/web/src/console/**` (WP-34/WP-81) · `User.settings.locale` →
+- [x] resolved by final-console-creator: **Locale de la consola** · `apps/web/src/console/**` (WP-34/WP-81) · `User.settings.locale` →
   `localStorage` → `negotiateLocale`, `setLocale(locale, { reload: false })`. (WP-13.)
 - [x] resolved by wire-api (confirmed as delivered): **Umbrales de tamaño de builds** · `packages/contracts/src/manifest.ts` (WP-40/WP-63) ·
   S < 500 ≤ M < 2 000 ≤ L < 8 000 ≤ XL no están en el plan; el blueprint legacy guarda `Data` como

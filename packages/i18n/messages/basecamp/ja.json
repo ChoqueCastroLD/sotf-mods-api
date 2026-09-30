@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "更新履歴を保存",
   "basecamp_analytics_versions_daily": "バージョン別ダウンロードの推移",
   "basecamp_inbox_filter_mod": "{mod} のみ",
-  "basecamp_inbox_filter_mod_clear": "すべての MOD を表示"
+  "basecamp_inbox_filter_mod_clear": "すべての MOD を表示",
+  "basecamp_listing_legacy_title": "この説明は旧レイアウトのままです",
+  "basecamp_listing_legacy_body": "旧サイトで書かれたため、HTMLは今も書式付きで表示されます。新しい説明と同じように編集するにはMarkdownに変換してください。",
+  "basecamp_listing_convert": "Markdownに変換",
+  "basecamp_listing_convert_save_first": "先に変更を保存または破棄してください。",
+  "basecamp_listing_convert_title": "この説明をMarkdownに変換しますか？",
+  "basecamp_listing_convert_body": "生のHTMLは今後プレーンテキストとして表示されます。元には戻せません。",
+  "basecamp_listing_convert_done": "説明をMarkdownに変換しました。"
 }

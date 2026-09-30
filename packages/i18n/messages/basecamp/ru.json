@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "Сохранить изменения",
   "basecamp_analytics_versions_daily": "Загрузки по версиям во времени",
   "basecamp_inbox_filter_mod": "Только {mod}",
-  "basecamp_inbox_filter_mod_clear": "Показать все моды"
+  "basecamp_inbox_filter_mod_clear": "Показать все моды",
+  "basecamp_listing_legacy_title": "Это описание сохраняет старую разметку",
+  "basecamp_listing_legacy_body": "Оно написано на старом сайте, поэтому его HTML всё ещё отображается с форматированием. Преобразуйте его в Markdown, чтобы редактировать как новое описание.",
+  "basecamp_listing_convert": "Преобразовать в Markdown",
+  "basecamp_listing_convert_save_first": "Сначала сохраните или отмените изменения.",
+  "basecamp_listing_convert_title": "Преобразовать это описание в Markdown?",
+  "basecamp_listing_convert_body": "Необработанный HTML теперь будет показан как обычный текст. Пути назад нет.",
+  "basecamp_listing_convert_done": "Описание преобразовано в Markdown."
 }

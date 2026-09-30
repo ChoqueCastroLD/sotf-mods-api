@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "Zapisz listę zmian",
   "basecamp_analytics_versions_daily": "Pobrania według wersji w czasie",
   "basecamp_inbox_filter_mod": "Tylko {mod}",
-  "basecamp_inbox_filter_mod_clear": "Pokaż wszystkie mody"
+  "basecamp_inbox_filter_mod_clear": "Pokaż wszystkie mody",
+  "basecamp_listing_legacy_title": "Ten opis zachowuje stary układ",
+  "basecamp_listing_legacy_body": "Został napisany na starej stronie, więc jego HTML nadal jest wyświetlany z formatowaniem. Przekonwertuj go na Markdown, aby edytować jak nowy opis.",
+  "basecamp_listing_convert": "Konwertuj na Markdown",
+  "basecamp_listing_convert_save_first": "Najpierw zapisz lub odrzuć zmiany.",
+  "basecamp_listing_convert_title": "Przekonwertować ten opis na Markdown?",
+  "basecamp_listing_convert_body": "Surowy HTML będzie od teraz wyświetlany jako zwykły tekst. Nie ma powrotu.",
+  "basecamp_listing_convert_done": "Opis przekonwertowany na Markdown."
 }

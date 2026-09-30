@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "Save changelog",
   "basecamp_analytics_versions_daily": "Downloads per version over time",
   "basecamp_inbox_filter_mod": "Only {mod}",
-  "basecamp_inbox_filter_mod_clear": "Show every mod"
+  "basecamp_inbox_filter_mod_clear": "Show every mod",
+  "basecamp_listing_legacy_title": "This description keeps its old layout",
+  "basecamp_listing_legacy_body": "It was written on the old site, so its HTML still renders as formatting. Convert it to Markdown to edit it like any new description.",
+  "basecamp_listing_convert": "Convert to Markdown",
+  "basecamp_listing_convert_save_first": "Save or discard your changes first.",
+  "basecamp_listing_convert_title": "Convert this description to Markdown?",
+  "basecamp_listing_convert_body": "Raw HTML will show as plain text from now on. There is no way back.",
+  "basecamp_listing_convert_done": "Description converted to Markdown."
 }

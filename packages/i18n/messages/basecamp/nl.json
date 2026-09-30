@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "Wijzigingen opslaan",
   "basecamp_analytics_versions_daily": "Downloads per versie door de tijd",
   "basecamp_inbox_filter_mod": "Alleen {mod}",
-  "basecamp_inbox_filter_mod_clear": "Alle mods tonen"
+  "basecamp_inbox_filter_mod_clear": "Alle mods tonen",
+  "basecamp_listing_legacy_title": "Deze beschrijving behoudt haar oude opmaak",
+  "basecamp_listing_legacy_body": "Ze is op de oude site geschreven, dus de HTML wordt nog steeds opgemaakt weergegeven. Zet haar om naar Markdown om haar te bewerken als een nieuwe beschrijving.",
+  "basecamp_listing_convert": "Omzetten naar Markdown",
+  "basecamp_listing_convert_save_first": "Sla je wijzigingen eerst op of verwerp ze.",
+  "basecamp_listing_convert_title": "Deze beschrijving omzetten naar Markdown?",
+  "basecamp_listing_convert_body": "Ruwe HTML wordt voortaan als gewone tekst getoond. Er is geen weg terug.",
+  "basecamp_listing_convert_done": "Beschrijving omgezet naar Markdown."
 }

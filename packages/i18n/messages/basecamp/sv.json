@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "Spara ändringslogg",
   "basecamp_analytics_versions_daily": "Nedladdningar per version över tid",
   "basecamp_inbox_filter_mod": "Bara {mod}",
-  "basecamp_inbox_filter_mod_clear": "Visa alla moddar"
+  "basecamp_inbox_filter_mod_clear": "Visa alla moddar",
+  "basecamp_listing_legacy_title": "Den här beskrivningen behåller sin gamla layout",
+  "basecamp_listing_legacy_body": "Den skrevs på den gamla sajten, så dess HTML visas fortfarande formaterad. Konvertera den till Markdown för att redigera den som en ny beskrivning.",
+  "basecamp_listing_convert": "Konvertera till Markdown",
+  "basecamp_listing_convert_save_first": "Spara eller förkasta dina ändringar först.",
+  "basecamp_listing_convert_title": "Konvertera den här beskrivningen till Markdown?",
+  "basecamp_listing_convert_body": "Rå HTML visas från och med nu som vanlig text. Det går inte att ångra.",
+  "basecamp_listing_convert_done": "Beskrivningen har konverterats till Markdown."
 }
