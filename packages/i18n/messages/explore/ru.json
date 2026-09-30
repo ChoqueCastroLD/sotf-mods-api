@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "Проверьте написание, попробуйте меньше слов или ID манифеста мода либо посмотрите категории.",
   "explore_search_error_text": "Поиск сейчас недоступен. Попробуйте через минуту.",
   "explore_search_in_explore": "Отфильтровать эти результаты в обзоре",
-  "explore_search_browse": "Смотреть категории"
+  "explore_search_browse": "Смотреть категории",
+  "explore_compare_title": "Сравнение модов",
+  "explore_compare_description": "Сравните моды Sons of the Forest бок о бок: загрузки, оценка, совместимость, роль в мультиплеере, лицензия и зависимости.",
+  "explore_compare_intro": "Введите от двух до четырёх модов в виде автор/название или вставьте ссылки на их страницы.",
+  "explore_compare_slot_label": "Мод {n}",
+  "explore_compare_slot_hint": "автор/название-мода",
+  "explore_compare_submit": "Сравнить",
+  "explore_compare_not_found": "Не удалось найти «{ref}».",
+  "explore_compare_need_two": "Выберите не менее двух модов для сравнения.",
+  "explore_compare_row_creator": "Автор",
+  "explore_compare_row_category": "Категория",
+  "explore_compare_row_dependencies": "Зависимости",
+  "explore_compare_row_compat": "Совместимость",
+  "explore_compare_row_multiplayer": "Мультиплеер",
+  "explore_compare_row_downloads_week": "Загрузок за неделю",
+  "explore_compare_none": "Нет",
+  "explore_compare_crumb": "Сравнить"
 }

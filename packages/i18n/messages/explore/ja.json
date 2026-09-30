@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "つづりを確認するか、言葉を減らすか、MOD のマニフェスト ID を試してください。カテゴリから探すこともできます。",
   "explore_search_error_text": "現在、検索を利用できません。しばらくしてからお試しください。",
   "explore_search_in_explore": "この結果を「探す」で絞り込む",
-  "explore_search_browse": "カテゴリを見る"
+  "explore_search_browse": "カテゴリを見る",
+  "explore_compare_title": "Mod を比較",
+  "explore_compare_description": "Sons of the Forest の Mod を並べて比較: ダウンロード数、評価、互換性、マルチプレイでの役割、ライセンス、依存関係。",
+  "explore_compare_intro": "作者/名前の形式で 2 ～ 4 個の Mod を入力するか、ページのリンクを貼り付けてください。",
+  "explore_compare_slot_label": "Mod {n}",
+  "explore_compare_slot_hint": "作者/mod-name",
+  "explore_compare_submit": "比較する",
+  "explore_compare_not_found": "「{ref}」が見つかりませんでした。",
+  "explore_compare_need_two": "比較する Mod を 2 個以上選んでください。",
+  "explore_compare_row_creator": "作者",
+  "explore_compare_row_category": "カテゴリ",
+  "explore_compare_row_dependencies": "依存関係",
+  "explore_compare_row_compat": "互換性",
+  "explore_compare_row_multiplayer": "マルチプレイ",
+  "explore_compare_row_downloads_week": "今週のダウンロード数",
+  "explore_compare_none": "なし",
+  "explore_compare_crumb": "比較"
 }

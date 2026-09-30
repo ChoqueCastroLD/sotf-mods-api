@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "检查拼写，减少关键词或尝试模组的清单 ID，也可以按分类浏览。",
   "explore_search_error_text": "搜索暂时无法使用，请稍后再试。",
   "explore_search_in_explore": "在探索中筛选这些结果",
-  "explore_search_browse": "浏览分类"
+  "explore_search_browse": "浏览分类",
+  "explore_compare_title": "对比模组",
+  "explore_compare_description": "将《森林之子》模组并排对比：下载量、评分、兼容性、多人模式角色、许可证和依赖项。",
+  "explore_compare_intro": "以“创作者/名称”的格式输入两到四个模组，或粘贴它们的页面链接。",
+  "explore_compare_slot_label": "模组 {n}",
+  "explore_compare_slot_hint": "创作者/模组名称",
+  "explore_compare_submit": "对比",
+  "explore_compare_not_found": "找不到“{ref}”。",
+  "explore_compare_need_two": "请至少选择两个模组进行对比。",
+  "explore_compare_row_creator": "创作者",
+  "explore_compare_row_category": "分类",
+  "explore_compare_row_dependencies": "依赖项",
+  "explore_compare_row_compat": "兼容性",
+  "explore_compare_row_multiplayer": "多人模式",
+  "explore_compare_row_downloads_week": "本周下载量",
+  "explore_compare_none": "无",
+  "explore_compare_crumb": "对比"
 }

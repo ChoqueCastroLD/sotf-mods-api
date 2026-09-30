@@ -167,5 +167,21 @@
   "explore_search_empty_hint": "Prüfe die Schreibweise, versuch es mit weniger Wörtern oder der Manifest-ID der Mod, oder stöbere nach Kategorie.",
   "explore_search_error_text": "Die Suche ist gerade nicht erreichbar. Versuch es gleich noch einmal.",
   "explore_search_in_explore": "Diese Ergebnisse unter Entdecken filtern",
-  "explore_search_browse": "Kategorien ansehen"
+  "explore_search_browse": "Kategorien ansehen",
+  "explore_compare_title": "Mods vergleichen",
+  "explore_compare_description": "Stelle Sons-of-the-Forest-Mods nebeneinander: Downloads, Bewertung, Kompatibilität, Mehrspielerrolle, Lizenz und Abhängigkeiten.",
+  "explore_compare_intro": "Gib zwei bis vier Mods als Ersteller/Name ein oder füge ihre Seitenlinks ein.",
+  "explore_compare_slot_label": "Mod {n}",
+  "explore_compare_slot_hint": "ersteller/mod-name",
+  "explore_compare_submit": "Vergleichen",
+  "explore_compare_not_found": "„{ref}“ wurde nicht gefunden.",
+  "explore_compare_need_two": "Wähle mindestens zwei Mods zum Vergleichen.",
+  "explore_compare_row_creator": "Ersteller",
+  "explore_compare_row_category": "Kategorie",
+  "explore_compare_row_dependencies": "Abhängigkeiten",
+  "explore_compare_row_compat": "Kompatibilität",
+  "explore_compare_row_multiplayer": "Mehrspieler",
+  "explore_compare_row_downloads_week": "Downloads diese Woche",
+  "explore_compare_none": "Keine",
+  "explore_compare_crumb": "Vergleichen"
 }

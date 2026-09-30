@@ -15,6 +15,7 @@ import { initDisplayPreferences } from '../../scripts/account-settings.ts';
 import { initBeacon } from '../../scripts/beacon.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
 import { initMoon } from '../../scripts/moon.ts';
+import { initOfflineGuides } from '../../scripts/offline-guides.ts';
 import { initTheme } from '../../scripts/theme.ts';
 import { initViewTransitions } from '../../scripts/view-transitions.ts';
 import { initChrome } from './chrome.ts';
@@ -57,6 +58,7 @@ export function boot(): void {
   safely(() => initDisplayPreferences());
   whenIdle(() => {
     safely(() => initBeacon());
+    safely(() => initOfflineGuides());
     safely(() => import('../../scripts/seasonal.ts').then(({ initSeasonal }) => initSeasonal()));
     if (mayNeedLanguageSuggestion()) {
       safely(() => import('../../scripts/lang-suggest.ts').then(({ initLangSuggest }) => initLangSuggest()));
