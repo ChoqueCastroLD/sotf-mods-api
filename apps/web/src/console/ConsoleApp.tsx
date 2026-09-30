@@ -14,7 +14,6 @@ import { UiTranslateProvider } from '@sotf/ui/labels';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from '@tanstack/react-router';
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { config as configureZod } from 'zod/v4/core';
 import { LazyToaster } from './components/LazyToaster.tsx';
 import { BootScreen } from './components/PendingScreen.tsx';
 import { ConsoleErrorBoundary } from './components/RouteError.tsx';
@@ -27,10 +26,6 @@ import { applyLocale, initialLocale } from './lib/locale.ts';
 import { loadCatalog, setActiveCatalog } from './lib/messages.ts';
 import { createConsoleQueryClient } from './lib/query-client.ts';
 import { createConsoleRouter } from './router.ts';
-
-// zod 4 probes `new Function` on the first parse; under the CSP (no 'unsafe-eval') that probe
-// fails safely but reports a violation on every page load. The interpreter is fast enough here.
-configureZod({ jitless: true });
 
 /** Loads `locale`'s messages (English if that fails) and activates them everywhere. */
 async function activate(locale: Locale): Promise<Locale> {

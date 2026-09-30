@@ -3,9 +3,11 @@
  * `?q=` and `?sort=` keep the filters in the URL.
  */
 import { createFileRoute } from '@tanstack/react-router';
-import { MOD_STATUS_VALUES, type ModStatus, modsQuery } from '../../../features/basecamp/api.ts';
+import { type ModStatus, modsQuery } from '../../../features/basecamp/api.ts';
 import { bt, loadBasecampMessages } from '../../../features/basecamp/i18n.ts';
-import { MOD_SORTS, type ModSort, ModsScreen } from '../../../features/basecamp/ModsScreen.tsx';
+import { ModsScreen } from '../../../features/basecamp/ModsScreen.tsx';
+import { MOD_SORTS, type ModSort } from '../../../features/basecamp/mod-sorts.ts';
+import { MOD_STATUS_VALUES } from '../../../features/basecamp/search.ts';
 
 interface ModsSearch {
   status?: ModStatus;

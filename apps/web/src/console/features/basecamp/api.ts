@@ -21,10 +21,8 @@ import type { ModCompatDTO } from '@sotf/contracts/compat';
 import type { BadgeCatalogDTO, UserBadgesDTO } from '@sotf/contracts/gamification';
 import type { ModLiveDTO } from '@sotf/contracts/stats';
 import type {
-  ANALYTICS_RANGES,
   AnalyticsDTO,
   DOWNLOAD_CHANNELS,
-  INBOX_TYPES,
   InboxItemDTO,
   InboxPageDTO,
   StudioModDTO,
@@ -39,6 +37,17 @@ import { infiniteQueryOptions, type QueryClient, queryOptions } from '@tanstack/
 import type { z } from 'zod';
 import { api } from '../../lib/api.ts';
 import { queryKeys } from '../../lib/query-keys.ts';
+import { type AnalyticsRange, INBOX_KINDS, type InboxType } from './search.ts';
+
+export {
+  type AnalyticsRange,
+  INBOX_KINDS,
+  type InboxType,
+  isInboxType,
+  isRange,
+  MOD_STATUS_VALUES,
+  RANGES,
+} from './search.ts';
 
 export type Overview = z.output<typeof StudioOverviewDTO>;
 export type Kpi = Overview['kpis']['downloads7d'];
@@ -52,11 +61,9 @@ export type ModState = z.output<typeof StudioModStateDTO>;
 /** A version as its author sees it (`OwnerVersionDTO`: with the changelog source). */
 export type Version = StudioMod['versions'][number];
 export type Analytics = z.output<typeof AnalyticsDTO>;
-export type AnalyticsRange = (typeof ANALYTICS_RANGES)[number];
 export type DownloadChannel = (typeof DOWNLOAD_CHANNELS)[number];
 export type InboxItem = z.output<typeof InboxItemDTO>;
 export type InboxPage = z.output<typeof InboxPageDTO>;
-export type InboxType = (typeof INBOX_TYPES)[number];
 export type InboxState = 'open' | 'all';
 export type ModCompat = z.output<typeof ModCompatDTO>;
 export type BadgeCatalog = z.output<typeof BadgeCatalogDTO>;
@@ -66,20 +73,8 @@ export type ListingPatch = z.input<typeof UpdateStudioModBody>;
 export type Transition = StudioTransition;
 export type { CompatStatus, ModStatus, VersionStatus };
 
-/** `ANALYTICS_RANGES` of the contracts, in the order of the range switch. */
-export const RANGES = ['7d', '30d', '90d', 'all'] as const satisfies readonly AnalyticsRange[];
-/** `INBOX_TYPES` of the contracts. */
-export const INBOX_KINDS = ['comment', 'bug', 'review', 'compat'] as const satisfies readonly InboxType[];
 /** `DOWNLOAD_CHANNELS` of the contracts. */
 export const CHANNELS = ['web', 'redmanager', 'client', 'api', 'unknown'] as const satisfies readonly DownloadChannel[];
-export const MOD_STATUS_VALUES = [
-  'published',
-  'pending',
-  'unlisted',
-  'rejected',
-  'archived',
-  'removed',
-] as const satisfies readonly ModStatus[];
 
 /** `STUDIO_LIMITS` of the contracts (kept Zod-free). */
 export const LIMITS = {
@@ -98,14 +93,6 @@ export const LIMITS = {
   /** `REVIEW_RULES.replyMax` and `COMMENT_RULES.bodyMax`. */
   replyMax: 2000,
 } as const;
-
-export function isRange(value: unknown): value is AnalyticsRange {
-  return typeof value === 'string' && (RANGES as readonly string[]).includes(value);
-}
-
-export function isInboxType(value: unknown): value is InboxType {
-  return typeof value === 'string' && (INBOX_KINDS as readonly string[]).includes(value);
-}
 
 /** Buckets of a range: days up to 90 days, weeks for the whole history. */
 export function granularityOf(range: AnalyticsRange): 'day' | 'week' {

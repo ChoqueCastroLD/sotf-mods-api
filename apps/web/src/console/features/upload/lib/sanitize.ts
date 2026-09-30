@@ -5,6 +5,7 @@
  * applies to stored drafts. The fields keep showing what the creator typed; only the saved copy
  * waits until the value is valid. Loaded lazily with the first save (keeps Zod out of the route).
  */
+import '../../../lib/zod-config.ts';
 import { DraftData } from '@sotf/contracts/studio';
 
 type Data = DraftData;

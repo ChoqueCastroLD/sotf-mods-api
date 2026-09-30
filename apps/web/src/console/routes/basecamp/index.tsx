@@ -3,9 +3,10 @@
  * is the range of the downloads chart. The screen lives in `features/basecamp`.
  */
 import { createFileRoute } from '@tanstack/react-router';
-import { type AnalyticsRange, isRange, overviewQuery } from '../../features/basecamp/api.ts';
+import { overviewQuery } from '../../features/basecamp/api.ts';
 import { bt, loadBasecampMessages } from '../../features/basecamp/i18n.ts';
 import { OverviewScreen } from '../../features/basecamp/OverviewScreen.tsx';
+import { type AnalyticsRange, isRange } from '../../features/basecamp/search.ts';
 
 interface OverviewSearch {
   range?: AnalyticsRange;

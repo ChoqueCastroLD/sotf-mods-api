@@ -17,10 +17,8 @@ import { number } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
 import { modStatusLabel } from './labels.ts';
 import { ModsTable } from './ModsTable.tsx';
+import { MOD_SORTS, type ModSort } from './mod-sorts.ts';
 import { ScreenHeader } from './shared.tsx';
-
-export const MOD_SORTS = ['downloads', 'updated', 'name', 'rating', 'attention'] as const;
-export type ModSort = (typeof MOD_SORTS)[number];
 
 export interface ModsFilters {
   status: ModStatus | 'all';

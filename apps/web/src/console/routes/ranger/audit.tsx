@@ -4,7 +4,7 @@
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
 import { AuditScreen } from '../../features/ranger/AuditScreen.tsx';
-import { AUDIT_TARGET, type AuditFilters } from '../../features/ranger/api.ts';
+import { AUDIT_TARGET, type AuditFilters } from '../../features/ranger/search.ts';
 import { RangerRouteError } from '../../features/ranger/shared.tsx';
 
 function text(value: unknown, max: number): string | undefined {

@@ -4,9 +4,9 @@
  * `?state=all` includes the answered and resolved ones.
  */
 import { createFileRoute } from '@tanstack/react-router';
-import { type InboxType, isInboxType } from '../../features/basecamp/api.ts';
 import { InboxScreen } from '../../features/basecamp/InboxScreen.tsx';
 import { bt, loadBasecampMessages } from '../../features/basecamp/i18n.ts';
+import { type InboxType, isInboxType } from '../../features/basecamp/search.ts';
 
 interface InboxSearch {
   type?: InboxType;

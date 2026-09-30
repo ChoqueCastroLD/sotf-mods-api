@@ -14,15 +14,11 @@ import { type InfiniteData, infiniteQueryOptions, type QueryClient, queryOptions
 import { loadSignalsMessages } from '../../../islands/signals/i18n.ts';
 import { api } from '../../lib/api.ts';
 import { setUnreadCount } from '../../lib/stream.ts';
+import type { SignalFilter } from './search.ts';
+
+export { isSignalFilter, SIGNAL_FILTERS, type SignalFilter } from './search.ts';
 
 export type { NotificationDTO };
-
-export const SIGNAL_FILTERS = ['all', 'mentions', 'updates', 'my_mods', 'ranger'] as const;
-export type SignalFilter = (typeof SIGNAL_FILTERS)[number];
-
-export function isSignalFilter(value: unknown): value is SignalFilter {
-  return typeof value === 'string' && (SIGNAL_FILTERS as readonly string[]).includes(value);
-}
 
 export const PAGE_SIZE = 30;
 

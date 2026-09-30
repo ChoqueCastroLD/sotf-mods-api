@@ -38,6 +38,16 @@ import { infiniteQueryOptions, type QueryClient, queryOptions } from '@tanstack/
 import type { z } from 'zod';
 import { api } from '../../lib/api.ts';
 import { queryKeys } from '../../lib/query-keys.ts';
+import type { AuditFilters, ReportFilter } from './search.ts';
+
+export {
+  AUDIT_TARGET,
+  type AuditFilters,
+  isItemId,
+  QUEUE_LANES,
+  REPORT_STATUSES,
+  type ReportFilter,
+} from './search.ts';
 
 export type Lane = ModerationLane;
 export type QueueItem = z.output<typeof QueueItemDTO>;
@@ -75,15 +85,6 @@ export const LANES = [
   'comments',
 ] as const satisfies readonly Lane[];
 
-/** Lanes of the main queue screen (`/ranger`); comments have their own screen (`/ranger/comments`). */
-export const QUEUE_LANES = [
-  'new_mods',
-  'versions',
-  'post_review',
-  'builds',
-  'reports',
-] as const satisfies readonly Lane[];
-
 export function isLane(value: unknown): value is Lane {
   return typeof value === 'string' && (LANES as readonly string[]).includes(value);
 }
@@ -92,9 +93,6 @@ export function isLane(value: unknown): value is Lane {
 export const SLA_HOURS = 72;
 /** Items past this share of the SLA are shown as «due soon». */
 export const SLA_WARNING_RATIO = 2 / 3;
-
-export const REPORT_STATUSES = ['open', 'resolved', 'dismissed', 'all'] as const;
-export type ReportFilter = (typeof REPORT_STATUSES)[number];
 
 export const SANCTION_KINDS = [
   'suspend',
@@ -110,13 +108,6 @@ export type ReasonAction = (typeof REASON_ACTIONS)[number];
 
 export function needsReason(action: ModerationAction): action is ReasonAction {
   return (REASON_ACTIONS as readonly string[]).includes(action);
-}
-
-/** Item ids are `<lane>:<targetType>:<targetId>` (`QueueItemDTO.id`). */
-const ITEM_ID = /^([a-z_]+):([a-z_]+):(\d+)$/;
-
-export function isItemId(value: unknown): value is string {
-  return typeof value === 'string' && value.length <= 80 && ITEM_ID.test(value);
 }
 
 export const rangerKeys = {
@@ -328,15 +319,6 @@ export function storeUser(queryClient: QueryClient, user: RangerUser): void {
 // -----------------------------------------------------------------------------------------------
 // Audit
 // -----------------------------------------------------------------------------------------------
-
-export interface AuditFilters {
-  actor?: string;
-  action?: string;
-  target?: string;
-}
-
-/** `target` filter of the audit endpoint: `<targetType>:<id>`. */
-export const AUDIT_TARGET = /^[a-z_]+:\d+$/;
 
 export const auditQuery = (filters: AuditFilters) =>
   infiniteQueryOptions({

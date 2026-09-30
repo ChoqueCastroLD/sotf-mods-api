@@ -4,8 +4,9 @@
  */
 import { createFileRoute } from '@tanstack/react-router';
 import { AnalyticsScreen } from '../../features/basecamp/AnalyticsScreen.tsx';
-import { type AnalyticsRange, isRange, modsQuery } from '../../features/basecamp/api.ts';
+import { modsQuery } from '../../features/basecamp/api.ts';
 import { bt, loadBasecampMessages } from '../../features/basecamp/i18n.ts';
+import { type AnalyticsRange, isRange } from '../../features/basecamp/search.ts';
 
 interface AnalyticsSearch {
   mod?: number;
