@@ -1,5 +1,822 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "admin_action_add": "Aggiungi",
+  "admin_action_cancel": "Annulla",
+  "admin_action_delete": "Elimina",
+  "admin_action_discard": "Scarta le modifiche",
+  "admin_action_edit": "Modifica",
+  "admin_action_save": "Salva",
+  "admin_actions_for": "Azioni per {name}",
+  "admin_ads_add_slot": "Aggiungi blocco",
+  "admin_ads_client": "ID publisher",
+  "admin_ads_client_hint": "ca-pub- seguito da cifre.",
+  "admin_ads_description": "Google AdSense per i visitatori che hanno accettato i cookie pubblicitari. Mai nella console né nei download.",
+  "admin_ads_enabled": "Mostra pubblicità",
+  "admin_ads_enabled_hint": "Richiede l’ID publisher qui sotto.",
+  "admin_ads_error_client": "Usa ca-pub- seguito da 10 a 20 cifre.",
+  "admin_ads_error_client_required": "La pubblicità richiede un ID publisher.",
+  "admin_ads_error_slot": "Gli ID dei blocchi hanno da 6 a 20 cifre.",
+  "admin_ads_saved": "Impostazioni pubblicitarie salvate",
+  "admin_ads_slot_id": "ID del blocco",
+  "admin_ads_slot_name": "Posizione",
+  "admin_ads_slots": "Blocchi di annunci",
+  "admin_ads_slots_empty": "Nessun blocco.",
+  "admin_ads_title": "Pubblicità",
+  "admin_ann_add": "Nuovo annuncio",
+  "admin_ann_delete_failed": "Impossibile eliminare l’annuncio",
+  "admin_ann_delete_text": "Sparisce dal sito entro pochi minuti.",
+  "admin_ann_delete_title": "Eliminare questo annuncio?",
+  "admin_ann_deleted": "Annuncio eliminato",
+  "admin_ann_description": "Il banner sotto l’intestazione del sito. Nelle lingue senza traduzione compare il messaggio in inglese.",
+  "admin_ann_dismissible": "Si può chiudere",
+  "admin_ann_duplicate": "Duplica",
+  "admin_ann_edit": "Modifica annuncio",
+  "admin_ann_empty_text": "Usali per patch, manutenzione o notizie della community.",
+  "admin_ann_empty_title": "Nessun annuncio",
+  "admin_ann_end_now": "Termina ora",
+  "admin_ann_ended": "Annuncio terminato",
+  "admin_ann_error_href": "Usa un percorso che inizia con / o un indirizzo https://.",
+  "admin_ann_field_dismissible": "I visitatori possono chiuderlo",
+  "admin_ann_field_dismissible_hint": "Lascia sempre visibili gli avvisi critici (manutenzione).",
+  "admin_ann_field_ends": "Fine",
+  "admin_ann_field_ends_hint": "Lascia vuoto per mantenerlo finché non lo termini.",
+  "admin_ann_field_href": "Link",
+  "admin_ann_field_href_hint": "Un percorso del sito come /patch-radar o un indirizzo https://.",
+  "admin_ann_field_level": "Livello",
+  "admin_ann_field_message": "Messaggio ({language})",
+  "admin_ann_field_message_hint": "Una o due frasi brevi, senza Markdown.",
+  "admin_ann_field_starts": "Inizio",
+  "admin_ann_field_timezone": "Nel tuo fuso orario.",
+  "admin_ann_field_translations": "Traduzioni",
+  "admin_ann_from": "Dal {start}",
+  "admin_ann_level_info": "Info",
+  "admin_ann_level_patch": "Patch",
+  "admin_ann_level_warning": "Avviso",
+  "admin_ann_not_dismissible": "Sempre visibile",
+  "admin_ann_phase_ended": "Terminato",
+  "admin_ann_phase_live": "Attivo",
+  "admin_ann_phase_scheduled": "Programmato",
+  "admin_ann_preview": "Anteprima",
+  "admin_ann_preview_empty": "Il tuo messaggio compare qui.",
+  "admin_ann_preview_link": "Scopri di più",
+  "admin_ann_save_failed": "Impossibile salvare l’annuncio",
+  "admin_ann_saved": "Annuncio salvato",
+  "admin_ann_title": "Annunci",
+  "admin_ann_translations": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Solo inglese",
+        "count__exact=*, count__plural=one": "Inglese + {count__number} traduzione",
+        "count__exact=*, count__plural=*": "Inglese + {count__number} traduzioni"
+      }
+    }
+  ],
+  "admin_awards_add": "Assegna un premio",
+  "admin_awards_automatic": "Automatico",
+  "admin_awards_col_kind": "Premio",
+  "admin_awards_col_mod": "Mod",
+  "admin_awards_col_period": "Periodo",
+  "admin_awards_col_reason": "Motivo",
+  "admin_awards_delete": "Revoca",
+  "admin_awards_delete_failed": "Impossibile revocare il premio",
+  "admin_awards_delete_for": "Revoca {kind} a {name}",
+  "admin_awards_delete_text": "Il premio sparisce dalla pagina della mod, dalla home e dal profilo del creatore.",
+  "admin_awards_delete_title": "Revocare {kind} a {name}?",
+  "admin_awards_deleted": "Premio revocato a {name}",
+  "admin_awards_description": "Mod della settimana, scelte dello staff e premi mensili. Un nuovo premio sostituisce quello dello stesso tipo e periodo: così si rimpiazza la Mod della settimana automatica.",
+  "admin_awards_empty_text": "La prima Mod della settimana viene scelta automaticamente il lunedì; le scelte dello staff spettano a te.",
+  "admin_awards_empty_title": "Ancora nessun premio",
+  "admin_awards_error_build": "Scegli una build.",
+  "admin_awards_error_mod": "Scegli una mod.",
+  "admin_awards_field_build": "Build",
+  "admin_awards_field_end": "Al",
+  "admin_awards_field_kind": "Premio",
+  "admin_awards_field_mod": "Mod",
+  "admin_awards_field_reason": "Motivo",
+  "admin_awards_field_reason_hint": "Mostrato insieme al premio. Fino a 500 caratteri.",
+  "admin_awards_field_start": "Dal",
+  "admin_awards_filter": "Tipo",
+  "admin_awards_filter_all": "Tutti i tipi",
+  "admin_awards_form_description": "La mod viene annunciata dove compare il premio (home, pagina della mod, profilo e Discord per la Mod della settimana).",
+  "admin_awards_kind_build_of_month": "Build del mese",
+  "admin_awards_kind_mod_of_month": "Mod del mese",
+  "admin_awards_kind_mod_of_week": "Mod della settimana",
+  "admin_awards_kind_staff_pick": "Scelta dello staff",
+  "admin_awards_override_text": "Se esiste già una Mod della settimana per queste date, questa prende il suo posto.",
+  "admin_awards_override_title": "Sostituisce la scelta di questa settimana",
+  "admin_awards_running": "In corso",
+  "admin_awards_save_failed": "Impossibile assegnare il premio",
+  "admin_awards_saved": "{kind}: {name}",
+  "admin_awards_table_label": "Premi, dal più recente",
+  "admin_awards_title": "Premi",
+  "admin_awards_upcoming": "In arrivo",
+  "admin_builds_add": "Registra build",
+  "admin_builds_breaking": "Rompe le mod",
+  "admin_builds_breaking_warning_text": "Salvando una build che rompe le mod compare il banner della patch, tutti i creatori vengono avvisati e le mod più vecchie risultano forse non aggiornate.",
+  "admin_builds_breaking_warning_title": "Questo avvisa tutto il sito",
+  "admin_builds_clear_notes": "Rimuovi le note attuali",
+  "admin_builds_col_label": "Build",
+  "admin_builds_col_notes": "Note",
+  "admin_builds_col_released": "Uscita",
+  "admin_builds_col_steam": "ID build di Steam",
+  "admin_builds_current": "Attuale",
+  "admin_builds_current_done": "{label} è ora la build attuale",
+  "admin_builds_delete_conflict": "Ci sono già report dei giocatori su questa build. Tienila oppure segnane un’altra come attuale.",
+  "admin_builds_delete_failed": "Impossibile eliminare la build",
+  "admin_builds_delete_text": "Si possono eliminare solo le build senza report.",
+  "admin_builds_delete_title": "Eliminare {label}?",
+  "admin_builds_deleted": "{label} eliminata",
+  "admin_builds_description": "Le patch di Sons of the Forest a cui si riferiscono i report sul campo, i badge di compatibilità e il Radar delle patch. Esattamente una è quella attuale.",
+  "admin_builds_edit_title": "Modifica {label}",
+  "admin_builds_empty_text": "Registra la patch che i giocatori usano oggi, così i report sul campo hanno un riferimento.",
+  "admin_builds_empty_title": "Ancora nessuna build del gioco",
+  "admin_builds_error_steam": "Solo cifre, al massimo 12.",
+  "admin_builds_field_breaking": "Aggiornamento che rompe le mod",
+  "admin_builds_field_breaking_hint": "La patch ha rotto delle mod (nuova versione del gioco per RedLoader, assembly cambiati…).",
+  "admin_builds_field_current": "Build attuale",
+  "admin_builds_field_current_hint": "La build che i giocatori usano adesso. Segnando questa si toglie il segno alla precedente.",
+  "admin_builds_field_label": "Etichetta",
+  "admin_builds_field_label_hint": "Fino a 40 caratteri.",
+  "admin_builds_field_notes": "Note",
+  "admin_builds_field_notes_edit_hint": "Markdown. Lascia vuoto per mantenere le note attuali.",
+  "admin_builds_field_released": "Data di uscita",
+  "admin_builds_field_steam": "ID build di Steam",
+  "admin_builds_field_steam_hint": "Da SteamDB, solo cifre.",
+  "admin_builds_form_description": "Etichetta come la chiamano i giocatori («1.0.4», «Patch 13»).",
+  "admin_builds_make_current": "Imposta come attuale",
+  "admin_builds_no_current_text": "Segna l’ultima patch come attuale: i badge di compatibilità e il Radar delle patch ne hanno bisogno.",
+  "admin_builds_no_current_title": "Nessuna build attuale",
+  "admin_builds_save_failed": "Impossibile salvare la build",
+  "admin_builds_saved": "{label} salvata",
+  "admin_builds_table_label": "Build del gioco, dalla più recente",
+  "admin_builds_title": "Build del gioco",
+  "admin_col_actions": "Azioni",
+  "admin_eco_add_release": "Aggiungi versione",
+  "admin_eco_add_release_description": "Una nuova versione di RedLoader o RedManager.",
+  "admin_eco_cell_label": "{loader} su {build}",
+  "admin_eco_clear_note": "Rimuovi nota",
+  "admin_eco_col_build": "Build",
+  "admin_eco_current_note": "Nota attuale",
+  "admin_eco_empty_builds": "Registra prima una build del gioco.",
+  "admin_eco_empty_releases": "Aggiungi le versioni di RedLoader e RedManager usate dai giocatori.",
+  "admin_eco_empty_title": "Ancora niente da mappare",
+  "admin_eco_field_name": "Strumento",
+  "admin_eco_field_note": "Nuova nota",
+  "admin_eco_field_released": "Data di uscita",
+  "admin_eco_field_status": "Stato",
+  "admin_eco_field_url": "Pagina della versione",
+  "admin_eco_field_version": "Versione",
+  "admin_eco_matrix_description": "Ogni modifica si salva subito. Aggiungi una nota quando qualcosa funziona solo in parte.",
+  "admin_eco_matrix_title": "Stato per build",
+  "admin_eco_note_for": "Nota: {loader} su {build}",
+  "admin_eco_release_failed": "Impossibile aggiungere la versione",
+  "admin_eco_release_link": "Pagina della versione {name}",
+  "admin_eco_release_saved": "{name} aggiunta",
+  "admin_eco_release_undated": "Senza data di uscita",
+  "admin_eco_releases_description": "Dalla più recente, per strumento.",
+  "admin_eco_releases_title": "Versioni",
+  "admin_eco_save_failed": "Impossibile salvare lo stato",
+  "admin_eco_saved": "{loader} su {build}: {status}",
+  "admin_eco_show_all": "Mostra tutte le {count} build",
+  "admin_eco_show_recent": "Mostra le ultime {count}",
+  "admin_eco_status_broken": "Non funziona",
+  "admin_eco_status_partial": "Parziale",
+  "admin_eco_status_unknown": "Sconosciuto",
+  "admin_eco_status_works": "Funziona",
+  "admin_ecosystem_description": "Le versioni di RedLoader e RedManager e se funzionano su ogni build del gioco, come mostrato nel Radar delle patch.",
+  "admin_ecosystem_title": "Ecosistema",
+  "admin_error_date": "Inserisci una data valida.",
+  "admin_error_duplicate": "È già nell’elenco.",
+  "admin_error_integer": "Inserisci un numero intero.",
+  "admin_error_period": "La fine deve essere successiva all’inizio.",
+  "admin_error_reference": "Rif.: {reference}",
+  "admin_error_required": "Obbligatorio.",
+  "admin_error_slug": "Solo minuscole, cifre e trattini (niente trattino all’inizio o alla fine).",
+  "admin_error_url": "Inserisci un indirizzo http(s) completo.",
+  "admin_flags_description": "Attiva o disattiva funzioni senza un deploy.",
+  "admin_flags_empty": "Nessun flag impostato",
+  "admin_flags_error_key": "Usa da 1 a 60 lettere, cifre, punti, trattini o trattini bassi.",
+  "admin_flags_new": "Nuovo flag",
+  "admin_flags_new_hint": "Lettere, cifre, punti, trattini e trattini bassi.",
+  "admin_flags_saved": "Feature flag salvati",
+  "admin_flags_title": "Feature flag",
+  "admin_hooks_add": "Aggiungi webhook",
+  "admin_hooks_description": "Fino a {max} canali. Gli indirizzi dei webhook sono segreti: chiunque ne abbia uno può pubblicare nel canale.",
+  "admin_hooks_empty_text": "Crea un webhook nelle impostazioni del canale Discord e incolla qui il suo indirizzo.",
+  "admin_hooks_empty_title": "Nessun webhook",
+  "admin_hooks_error_events": "Scegli almeno un evento.",
+  "admin_hooks_error_url": "Incolla un indirizzo di webhook di Discord.",
+  "admin_hooks_event_milestone": "Traguardi di 10.000 download",
+  "admin_hooks_event_mod_of_week": "Mod della settimana",
+  "admin_hooks_event_mod_published": "Nuove mod",
+  "admin_hooks_event_version_published": "Nuove versioni",
+  "admin_hooks_events": "Annuncia",
+  "admin_hooks_exclude_beta": "Salta gli eventi della beta",
+  "admin_hooks_exclude_beta_hint": "Non pubblicare ciò che succede su beta.sotf-mods.com.",
+  "admin_hooks_hide_url": "Nascondi indirizzo",
+  "admin_hooks_name": "Nome",
+  "admin_hooks_remove": "Rimuovi webhook",
+  "admin_hooks_saved": "Webhook salvati",
+  "admin_hooks_show_url": "Mostra indirizzo",
+  "admin_hooks_title": "Webhook di Discord",
+  "admin_hooks_untitled": "Nuovo webhook",
+  "admin_hooks_url": "Indirizzo del webhook",
+  "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
+  "admin_integrations_description": "Dove il sito annuncia nuove mod, versioni, premi e traguardi.",
+  "admin_integrations_title": "Integrazioni",
+  "admin_kelvin_budget": "Budget giornaliero",
+  "admin_kelvin_budget_alert_text": "È stato speso il {share} del budget di oggi. Oltre il budget, KelvinSeek usa le risposte offline fino alla mezzanotte UTC.",
+  "admin_kelvin_budget_alert_title": "Vicino al budget di oggi",
+  "admin_kelvin_budget_used": "Oggi: {spent} di {budget} ({share}).",
+  "admin_kelvin_chart_description": [
+    {
+      "declarations": [
+        "input cost",
+        "input tokensIn",
+        "input tokensOut",
+        "input over",
+        "local over__exact = over: number maximumFractionDigits=20",
+        "local over__plural = over: plural",
+        "local over__number = over: number"
+      ],
+      "selectors": [
+        "over__exact",
+        "over__plural"
+      ],
+      "match": {
+        "over__exact=0, over__plural=*": "{cost} in totale · {tokensIn} token in ingresso, {tokensOut} in uscita · mai oltre il budget",
+        "over__exact=*, over__plural=one": "{cost} in totale · {tokensIn} token in ingresso, {tokensOut} in uscita · {over__number} giorno oltre il budget",
+        "over__exact=*, over__plural=*": "{cost} in totale · {tokensIn} token in ingresso, {tokensOut} in uscita · {over__number} giorni oltre il budget"
+      }
+    }
+  ],
+  "admin_kelvin_chart_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ultimo giorno",
+        "count__plural=*": "Ultimi {count__number} giorni"
+      }
+    }
+  ],
+  "admin_kelvin_col_cost": "Costo",
+  "admin_kelvin_col_day": "Giorno",
+  "admin_kelvin_col_fallbacks": "Risposte offline",
+  "admin_kelvin_col_requests": "Richieste",
+  "admin_kelvin_col_tokens_in": "Token in ingresso",
+  "admin_kelvin_col_tokens_out": "Token in uscita",
+  "admin_kelvin_config_description": "Si applica alle nuove richieste entro un minuto.",
+  "admin_kelvin_config_title": "Configurazione",
+  "admin_kelvin_cost_per_day": "Costo al giorno",
+  "admin_kelvin_daily_budget": "Budget giornaliero (USD)",
+  "admin_kelvin_daily_budget_hint": "Si azzera a mezzanotte UTC.",
+  "admin_kelvin_description": "Uso e costo dell’assistente di gioco, e il suo budget giornaliero.",
+  "admin_kelvin_detail": "Dettaglio giornaliero",
+  "admin_kelvin_enabled": "KelvinSeek attivo",
+  "admin_kelvin_enabled_hint": "Disattivato: il gioco riceve solo le risposte offline.",
+  "admin_kelvin_error_budget": "Tra 0 e {max}.",
+  "admin_kelvin_error_timeout": "Tra {min} e {max} ms.",
+  "admin_kelvin_fallbacks": "Risposte offline",
+  "admin_kelvin_model": "Modello",
+  "admin_kelvin_no_usage": "Nessuna richiesta in questo periodo.",
+  "admin_kelvin_requests": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Richieste · {count__number} giorno",
+        "count__plural=*": "Richieste · {count__number} giorni"
+      }
+    }
+  ],
+  "admin_kelvin_saved": "Impostazioni di KelvinSeek salvate",
+  "admin_kelvin_timeout": "Timeout (ms)",
+  "admin_kelvin_title": "KelvinSeek",
+  "admin_kelvin_today": "Speso oggi",
+  "admin_limits_add": "Aggiungi sostituzione",
+  "admin_limits_bucket": "Gruppo",
+  "admin_limits_default": [
+    {
+      "declarations": [
+        "input max",
+        "input seconds",
+        "local seconds__number = seconds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Predefinito: {max} ogni {seconds__number} s"
+      }
+    }
+  ],
+  "admin_limits_description": "Sostituzioni dei limiti predefiniti per gruppo. I gruppi senza sostituzione mantengono il valore predefinito.",
+  "admin_limits_empty": "Nessuna sostituzione: ogni gruppo usa il suo valore predefinito.",
+  "admin_limits_error_number": "Richieste e secondi devono essere numeri interi maggiori di 0.",
+  "admin_limits_max": "Richieste",
+  "admin_limits_saved": "Limiti di frequenza salvati",
+  "admin_limits_title": "Limiti di frequenza",
+  "admin_limits_window": "Ogni (secondi)",
+  "admin_markdown_hint": "Markdown: link, elenchi ed enfasi.",
+  "admin_mod_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=pending": "In attesa",
+        "status=unlisted": "Non in elenco",
+        "status=archived": "Archiviato",
+        "status=rejected": "Rifiutato",
+        "status=removed": "Rimosso",
+        "status=draft": "Bozza",
+        "status=*": "Non pubblico"
+      }
+    }
+  ],
+  "admin_no_matches": "Niente corrisponde a questi filtri",
+  "admin_panel_error_title": "Questo pannello non è stato caricato",
+  "admin_period": "{start} – {end}",
+  "admin_picker_change": "Cambia",
+  "admin_picker_error": "La ricerca non è riuscita. Riprova.",
+  "admin_picker_placeholder_build": "Cerca build per nome",
+  "admin_picker_placeholder_mod": "Cerca mod per nome o ID del manifest",
+  "admin_picker_searching": "Ricerca in corso…",
+  "admin_range_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} giorno",
+        "count__plural=*": "{count__number} giorni"
+      }
+    }
+  ],
+  "admin_range_label": "Periodo",
+  "admin_readout": "Admin · Ranger Station",
+  "admin_reauth_action": "Accedi di nuovo",
+  "admin_reauth_text": "Gli strumenti di amministrazione richiedono un accesso nelle ultime 12 ore. Accedi di nuovo e tornerai direttamente qui.",
+  "admin_reauth_title": "Conferma che sei tu",
+  "admin_recat_add_tag": "+ Tag",
+  "admin_recat_add_tag_for": "Aggiungi un tag a {name}",
+  "admin_recat_applied": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Non c’era niente da cambiare",
+        "count__exact=*, count__plural=one": "{count__number} mod ricategorizzata",
+        "count__exact=*, count__plural=*": "{count__number} mod ricategorizzate"
+      }
+    }
+  ],
+  "admin_recat_applied_tags_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod ha mantenuto i suoi tag (non pubblica o già piena).",
+        "count__plural=*": "{count__number} mod hanno mantenuto i loro tag (non pubbliche o già piene)."
+      }
+    }
+  ],
+  "admin_recat_applied_unchanged": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} era già a posto.",
+        "count__plural=*": "{count__number} erano già a posto."
+      }
+    }
+  ],
+  "admin_recat_apply": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Applica {count__number} modifica",
+        "count__plural=*": "Applica {count__number} modifiche"
+      }
+    }
+  ],
+  "admin_recat_apply_failed": "Impossibile applicare le modifiche",
+  "admin_recat_apply_tags": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Aggiungi anche i tag scelti ({count__number} mod)",
+        "count__plural=*": "Aggiungi anche i tag scelti ({count__number} mod)"
+      }
+    }
+  ],
+  "admin_recat_apply_tags_hint": "I tag si sommano a quelli che ogni mod ha già (5 al massimo). Le mod non pubbliche mantengono i loro tag.",
+  "admin_recat_apply_text": "Le mod passano subito a queste categorie; le loro pagine e gli elenchi si aggiornano in pochi minuti.",
+  "admin_recat_apply_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Applicare {count__number} modifica?",
+        "count__plural=*": "Applicare {count__number} modifiche?"
+      }
+    }
+  ],
+  "admin_recat_bulk_category": "Categoria per la selezione",
+  "admin_recat_bulk_category_placeholder": "Scegli…",
+  "admin_recat_bulk_clear_tags": "Svuota i tag",
+  "admin_recat_bulk_dismiss": "Togli dall’elenco",
+  "admin_recat_bulk_label": "Righe selezionate",
+  "admin_recat_bulk_set": "Imposta",
+  "admin_recat_bulk_set_done": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} riga impostata su {name}",
+        "count__plural=*": "{count__number} righe impostate su {name}"
+      }
+    }
+  ],
+  "admin_recat_bulk_unselect": "Deseleziona",
+  "admin_recat_col_confidence": "Affidabilità",
+  "admin_recat_col_current": "Ora",
+  "admin_recat_col_mod": "Mod",
+  "admin_recat_col_reason": "Perché",
+  "admin_recat_col_tags": "Tag da aggiungere",
+  "admin_recat_col_target": "Sposta in",
+  "admin_recat_confidence_at_least": "Almeno {value}",
+  "admin_recat_counts": [
+    {
+      "declarations": [
+        "input visible",
+        "input total",
+        "input selected",
+        "local visible__plural = visible: plural",
+        "local visible__number = visible: number"
+      ],
+      "selectors": [
+        "visible__plural"
+      ],
+      "match": {
+        "visible__plural=one": "{visible__number} riga mostrata su {total} · {selected} selezionate",
+        "visible__plural=*": "{visible__number} righe mostrate su {total} · {selected} selezionate"
+      }
+    }
+  ],
+  "admin_recat_csv_done": "CSV importato: {added} righe nuove, {updated} aggiornate",
+  "admin_recat_csv_dropped_tags": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} tag sconosciuto è stato scartato.",
+        "count__plural=*": "{count__number} tag sconosciuti sono stati scartati."
+      }
+    }
+  ],
+  "admin_recat_csv_empty": "Il file non ha righe utilizzabili.",
+  "admin_recat_csv_failed": "Impossibile importare il CSV",
+  "admin_recat_csv_issues": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} riga è stata saltata:",
+        "count__plural=*": "{count__number} righe sono state saltate:"
+      }
+    }
+  ],
+  "admin_recat_csv_line_no_category": "Riga {line}: nessuna categoria.",
+  "admin_recat_csv_line_no_mod": "Riga {line}: nessuna mod.",
+  "admin_recat_csv_more": "…e altre {count}.",
+  "admin_recat_csv_no_category_column": "Manca una colonna della categoria (categorySlug).",
+  "admin_recat_csv_no_header": "Il file è vuoto.",
+  "admin_recat_csv_no_mod_column": "Manca una colonna della mod (modId o manifestId).",
+  "admin_recat_csv_report_title": "CSV: {added} righe nuove, {updated} suggerimenti sostituiti",
+  "admin_recat_csv_skip_category": "Riga {line}: «{value}» non è una categoria di mod attiva.",
+  "admin_recat_csv_skip_duplicate": "Riga {line}: la mod {value} compare due volte; vale la prima riga.",
+  "admin_recat_csv_skip_mod": "Riga {line}: mod sconosciuta «{value}» (usa il modId numerico).",
+  "admin_recat_csv_too_big": "Il file supera i 5 MB.",
+  "admin_recat_csv_unreadable": "Impossibile leggere il file.",
+  "admin_recat_current_unknown": "Non caricata",
+  "admin_recat_description": "Sposta le mod nelle categorie v2. I suggerimenti vengono da regole per parole chiave e dal CSV importato; nulla cambia finché non applichi.",
+  "admin_recat_empty_text": "Nessuna mod ha bisogno di una nuova categoria. Importa un CSV per esaminare altre modifiche.",
+  "admin_recat_empty_title": "Tutto al suo posto",
+  "admin_recat_export": "Esporta CSV",
+  "admin_recat_filter_any": "Qualsiasi",
+  "admin_recat_filter_confidence": "Affidabilità",
+  "admin_recat_filter_current": "Categoria attuale",
+  "admin_recat_filter_search": "Cerca mod",
+  "admin_recat_filter_source": "Origine",
+  "admin_recat_human_text": "Esamina ogni suggerimento: cambia la categoria di destinazione o i tag, seleziona le righe che approvi e applicale. Ogni modifica viene registrata.",
+  "admin_recat_human_title": "Decidi tu",
+  "admin_recat_import": "Importa CSV",
+  "admin_recat_load_failed": "Impossibile caricare i suggerimenti",
+  "admin_recat_loading": "Valutazione di tutte le mod…",
+  "admin_recat_no_category": "Nessuna categoria",
+  "admin_recat_partial": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modifica è stata applicata prima dell’errore.",
+        "count__plural=*": "{count__number} modifiche sono state applicate prima dell’errore."
+      }
+    }
+  ],
+  "admin_recat_preparing": "Preparazione delle modifiche…",
+  "admin_recat_progress": "Applicazione del lotto {batch} di {total}…",
+  "admin_recat_reload": "Ricarica i suggerimenti",
+  "admin_recat_reload_text": "Le tue modifiche e le righe importate dal CSV andranno perse.",
+  "admin_recat_reload_title": "Ricaricare i suggerimenti?",
+  "admin_recat_remove_tag": "Rimuovi il tag {tag} da {name}",
+  "admin_recat_select_visible": "Seleziona le {count} righe mostrate",
+  "admin_recat_selected": "Selezionate: {count}",
+  "admin_recat_source_csv": "CSV",
+  "admin_recat_source_rules": "Regole per parole chiave",
+  "admin_recat_suggested_was": "Suggerita: {name}",
+  "admin_recat_table_label": "Categorie suggerite",
+  "admin_recat_target_for": "Nuova categoria per {name}",
+  "admin_recat_title": "Ricategorizza",
+  "admin_remove_named": "Rimuovi {name}",
+  "admin_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Nessun risultato",
+        "count__exact=*, count__plural=one": "{count__number} risultato",
+        "count__exact=*, count__plural=*": "{count__number} risultati"
+      }
+    }
+  ],
+  "admin_rum_all_countries": "Tutti i paesi",
+  "admin_rum_col_samples": "Misurazioni",
+  "admin_rum_col_template": "Modello",
+  "admin_rum_country": "Paese",
+  "admin_rum_description": "Core Web Vitals dei visitatori reali: il 75° percentile per modello di pagina.",
+  "admin_rum_empty_text": "I browser dei visitatori inviano le misurazioni mentre navigano; ricontrolla domani.",
+  "admin_rum_empty_title": "Ancora nessun dato sul campo",
+  "admin_rum_legend": "Verde: buono · ambra: da migliorare · rosso: scarso (soglie dei Core Web Vitals). «poche»: meno di {samples} misurazioni, da leggere con cautela.",
+  "admin_rum_low_samples": "poche",
+  "admin_rum_no_rows": "Nessun dato per questo paese.",
+  "admin_rum_poor_summary": "p75 scarso: {list}",
+  "admin_rum_rating_good": "buono",
+  "admin_rum_rating_improve": "da migliorare",
+  "admin_rum_rating_poor": "scarso",
+  "admin_rum_summary": [
+    {
+      "declarations": [
+        "input templates",
+        "input samples",
+        "local templates__plural = templates: plural",
+        "local templates__number = templates: number"
+      ],
+      "selectors": [
+        "templates__plural"
+      ],
+      "match": {
+        "templates__plural=one": "{templates__number} modello · {samples} misurazioni",
+        "templates__plural=*": "{templates__number} modelli · {samples} misurazioni"
+      }
+    }
+  ],
+  "admin_rum_table_title": "p75 per modello",
+  "admin_rum_title": "Prestazioni",
+  "admin_settings_default": "Valori predefiniti in uso",
+  "admin_settings_description": "Feature flag, limiti di frequenza, pubblicità e modelli di moderazione. Ogni modifica viene convalidata dall’API e registrata.",
+  "admin_settings_save_failed": "Impossibile salvare l’impostazione",
+  "admin_settings_title": "Impostazioni del sito",
+  "admin_settings_unsaved": "Modifiche non salvate",
+  "admin_settings_updated": "Ultima modifica: {when}",
+  "admin_show_more": "Mostra altri {count}",
+  "admin_tax_add_category": "Nuova categoria",
+  "admin_tax_add_tag": "Nuovo tag",
+  "admin_tax_categories_empty": "Nessuna categoria",
+  "admin_tax_categories_empty_text": "Crea la prima categoria.",
+  "admin_tax_categories_hint": "Le categorie non si eliminano mai: ritirane una quando le sue mod sono state spostate e aggiungi il suo slug ai vecchi slug della sostituta, così i vecchi link continuano a funzionare.",
+  "admin_tax_category_saved": "{name} salvata",
+  "admin_tax_col_count": "Pubblicate",
+  "admin_tax_col_group": "Gruppo",
+  "admin_tax_col_kind": "Per",
+  "admin_tax_col_legacy": "Vecchi slug",
+  "admin_tax_col_name": "Nome",
+  "admin_tax_col_order": "Ordine",
+  "admin_tax_col_slug": "Slug",
+  "admin_tax_edit_category": "Modifica {name}",
+  "admin_tax_edit_tag": "Modifica {name}",
+  "admin_tax_error_legacy": "Al massimo {max} vecchi slug.",
+  "admin_tax_field_description": "Descrizione",
+  "admin_tax_field_group": "Gruppo",
+  "admin_tax_field_group_hint": "Raggruppa i tag nei filtri, ad es. gameplay.",
+  "admin_tax_field_hub_intro": "Introduzione dell’hub (Markdown, per lingua)",
+  "admin_tax_field_icon": "Icona",
+  "admin_tax_field_icon_hint": "Un nome di icona Lucide, ad es. wand-sparkles.",
+  "admin_tax_field_kind": "Per",
+  "admin_tax_field_kind_locked": "Non modificabile dopo la creazione.",
+  "admin_tax_field_legacy": "Vecchi slug",
+  "admin_tax_field_legacy_hint": "Vecchi slug che reindirizzano qui, separati da virgole.",
+  "admin_tax_field_name": "Nome (inglese)",
+  "admin_tax_field_name_hint": "Le altre lingue sono più sotto.",
+  "admin_tax_field_names": "Nome nelle altre lingue",
+  "admin_tax_field_order": "Ordine",
+  "admin_tax_field_order_hint": "I numeri più bassi vengono prima.",
+  "admin_tax_field_slug": "Slug",
+  "admin_tax_field_slug_hint": "Parte dell’URL. Cambiarlo rompe i vecchi link, a meno che il vecchio slug resti come vecchio slug.",
+  "admin_tax_filter_tags": "Filtra i tag",
+  "admin_tax_hub_intro_unknown_text": "L’API non la restituisce ancora. Salvando viene sostituita da ciò che scrivi qui (vuoto la elimina).",
+  "admin_tax_hub_intro_unknown_title": "Impossibile mostrare l’introduzione attuale dell’hub",
+  "admin_tax_kind_build": "Build",
+  "admin_tax_kind_mod": "Mod",
+  "admin_tax_recategorize_mods": "Ricategorizza le sue mod",
+  "admin_tax_retire": "Ritira",
+  "admin_tax_retire_conflict": "Alcune mod attive la usano ancora. Ricategorizzale prima.",
+  "admin_tax_retire_failed": "Impossibile ritirare la categoria",
+  "admin_tax_retire_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Nessuna mod pubblicata la usa. Le categorie ritirate spariscono dai menu; le loro pagine reindirizzano tramite i vecchi slug.",
+        "count__exact=*, count__plural=one": "{count__number} mod pubblicata la usa ancora: spostala prima. Le categorie ritirate spariscono dai menu; le loro pagine reindirizzano tramite i vecchi slug.",
+        "count__exact=*, count__plural=*": "{count__number} mod pubblicate la usano ancora: spostale prima. Le categorie ritirate spariscono dai menu; le loro pagine reindirizzano tramite i vecchi slug."
+      }
+    }
+  ],
+  "admin_tax_retire_title": "Ritirare {name}?",
+  "admin_tax_retired": "{name} ritirata",
+  "admin_tax_retired_badge": "Ritirata",
+  "admin_tax_save_failed": "Impossibile salvare",
+  "admin_tax_tab_categories": "Categorie",
+  "admin_tax_tab_tags": "Tag",
+  "admin_tax_tag_delete_failed": "Impossibile eliminare il tag",
+  "admin_tax_tag_delete_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Nessuna mod lo usa.",
+        "count__exact=*, count__plural=one": "Verrà rimosso da {count__number} mod.",
+        "count__exact=*, count__plural=*": "Verrà rimosso da {count__number} mod."
+      }
+    }
+  ],
+  "admin_tax_tag_delete_title": "Eliminare {name}?",
+  "admin_tax_tag_deleted": "{name} eliminato",
+  "admin_tax_tag_extras_unknown_text": "L’API non li restituisce ancora. Salvando vengono sostituiti dai valori di questo modulo.",
+  "admin_tax_tag_extras_unknown_title": "Impossibile caricare descrizione e ordine",
+  "admin_tax_tag_free": "Libero",
+  "admin_tax_tag_saved": "{name} salvato",
+  "admin_tax_tags_empty": "Nessun tag",
+  "admin_tax_tags_empty_text": "Crea tag curati per descrivere le mod oltre alla loro categoria.",
+  "admin_taxonomy_description": "La tassonomia di mod e build: nomi in ogni lingua, ordine, vecchi slug e tag curati.",
+  "admin_taxonomy_title": "Categorie e tag",
+  "admin_title": "Amministrazione",
+  "admin_tpl_action": "Azione",
+  "admin_tpl_action_approve": "Approva",
+  "admin_tpl_action_reject": "Rifiuta",
+  "admin_tpl_action_remove": "Rimuovi",
+  "admin_tpl_action_request_changes": "Chiedi modifiche",
+  "admin_tpl_action_restore": "Ripristina",
+  "admin_tpl_action_unlist": "Togli dall’elenco",
+  "admin_tpl_add": "Nuovo modello",
+  "admin_tpl_description": "I motivi che i ranger scelgono quando approvano, rifiutano o chiedono modifiche. Gli autori li leggono nella loro lingua.",
+  "admin_tpl_empty": "Nessun modello per questa azione",
+  "admin_tpl_error_key": "Chiave non valida.",
+  "admin_tpl_error_message": "Il messaggio in inglese è obbligatorio.",
+  "admin_tpl_filter": "Azione",
+  "admin_tpl_filter_all": "Tutti ({count})",
+  "admin_tpl_invalid_text": "Correggi i modelli segnalati prima di salvare.",
+  "admin_tpl_invalid_title": "Alcuni modelli richiedono attenzione",
+  "admin_tpl_key": "Chiave",
+  "admin_tpl_key_hint": "Da 2 a 60 minuscole, cifre o trattini bassi.",
+  "admin_tpl_message": "Messaggio ({language})",
+  "admin_tpl_remove": "Rimuovi modello",
+  "admin_tpl_saved": "Modelli di moderazione salvati",
+  "admin_tpl_title": "Modelli di moderazione",
+  "admin_tpl_translations": "Traduzioni",
+  "admin_tpl_untitled": "Nuovo modello",
+  "admin_translations_filled": "{filled} di {total} compilate",
+  "admin_unsaved_confirm": "Hai modifiche non salvate. Uscire senza salvare?",
   "auth_art_benefit_backpack": "Metti le mod nel tuo zaino",
   "auth_art_benefit_community": "Vota, recensisci e crea Kit",
   "auth_art_benefit_updates": "Ricevi un avviso quando le mod si aggiornano",

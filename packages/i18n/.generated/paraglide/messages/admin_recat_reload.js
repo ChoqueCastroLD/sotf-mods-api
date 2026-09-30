@@ -1,0 +1,84 @@
+/* eslint-disable */
+import { getLocale, experimentalStaticLocale } from '../runtime.js';
+
+/** @typedef {import('../runtime.js').LocalizedString} LocalizedString */
+
+/** @typedef {{}} Admin_Recat_ReloadInputs */
+
+const en_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Reload suggestions`)
+};
+
+const es_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Recargar sugerencias`)
+};
+
+const de_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Vorschläge neu laden`)
+};
+
+const fr_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Recharger les suggestions`)
+};
+
+const it_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ricarica i suggerimenti`)
+};
+
+const nl_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Suggesties herladen`)
+};
+
+const pl_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Wczytaj sugestie ponownie`)
+};
+
+const pt_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Recarregar sugestões`)
+};
+
+const ru_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Обновить предложения`)
+};
+
+const sv_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ladda om förslag`)
+};
+
+const tr_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Önerileri yenile`)
+};
+
+const zh_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`重新加载建议`)
+};
+
+const ja_admin_recat_reload = /** @type {(inputs: Admin_Recat_ReloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`候補を再読み込み`)
+};
+
+/**
+* | output |
+* | --- |
+* | "Reload suggestions" |
+*
+* @param {Admin_Recat_ReloadInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export const admin_recat_reload = /** @type {((inputs?: Admin_Recat_ReloadInputs, options?: { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Admin_Recat_ReloadInputs, { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "es") return es_admin_recat_reload(inputs)
+	if (locale === "de") return de_admin_recat_reload(inputs)
+	if (locale === "fr") return fr_admin_recat_reload(inputs)
+	if (locale === "it") return it_admin_recat_reload(inputs)
+	if (locale === "nl") return nl_admin_recat_reload(inputs)
+	if (locale === "pl") return pl_admin_recat_reload(inputs)
+	if (locale === "pt") return pt_admin_recat_reload(inputs)
+	if (locale === "ru") return ru_admin_recat_reload(inputs)
+	if (locale === "sv") return sv_admin_recat_reload(inputs)
+	if (locale === "tr") return tr_admin_recat_reload(inputs)
+	if (locale === "zh") return zh_admin_recat_reload(inputs)
+	if (locale === "ja") return ja_admin_recat_reload(inputs)
+	return en_admin_recat_reload(inputs)
+});
