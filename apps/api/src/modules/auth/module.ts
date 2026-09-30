@@ -30,6 +30,8 @@ export function createAuthModule(options: AccountServicesOptions = {}): ApiModul
 
       m.implement(authEndpoints.login, async ({ body, ctx, reply }) => {
         const outcome = await services().auth.login(ctx, body);
+        // Password right but a second factor is needed: no session (and no cookie) yet.
+        if ('twoFactor' in outcome) return { twoFactor: outcome.twoFactor };
         setSessionCookies(reply, outcome.session);
         return { user: outcome.user };
       });

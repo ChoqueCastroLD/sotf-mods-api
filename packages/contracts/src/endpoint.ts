@@ -57,6 +57,7 @@ export const RATE_LIMITS = {
   kelvinseek: { max: 20, window: '1 minute', key: 'chat', extra: '300/day per chat_id + IP and a global daily budget' },
   beacon: { max: 120, window: '1 minute', key: 'ip', extra: 'excess is dropped silently (204)' },
   userWrite: { max: 60, window: '1 minute', key: 'user' },
+  securityWrite: { max: 20, window: '1 hour', key: 'user', extra: 'two-factor and passkey management' },
   downloads: {
     max: 60,
     window: '1 minute',

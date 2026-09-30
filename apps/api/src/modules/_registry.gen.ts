@@ -27,6 +27,7 @@ import reportsModule from './reports/index.ts';
 import resolveModule from './resolve/index.ts';
 import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
+import securityModule from './security/index.ts';
 import siteModule from './site/index.ts';
 import studioAnalyticsModule from './studio-analytics/index.ts';
 import studioModsModule from './studio-mods/index.ts';
@@ -60,6 +61,7 @@ export const modules = [
   resolveModule,
   reviewsModule,
   searchModule,
+  securityModule,
   siteModule,
   studioAnalyticsModule,
   studioModsModule,

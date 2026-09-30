@@ -13,7 +13,7 @@
  *
  * Every security-relevant step is recorded in "AuthEvent" (90-day retention, hashed IP).
  */
-import type { SelfUserDTO } from '@sotf/contracts/auth';
+import type { SecondFactor, SelfUserDTO } from '@sotf/contracts/auth';
 import { type AuthTokenKind, authEvent, type Executor, passwordResetToken, type User, user, withTx } from '@sotf/db';
 import { and, count, eq, gt, isNull, or, sql } from 'drizzle-orm';
 import { queueEmail } from '../email/outbox.ts';
@@ -21,8 +21,10 @@ import { maskEmail } from '../email/templates.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { logHash } from '../kernel/hashing.ts';
+import { createChallenge, secondFactorMethods } from './challenges.ts';
 import { isDisposableEmail, normalizeEmail } from './disposable.ts';
 import type { BreachedPasswordChecker } from './hibp.ts';
+import { recordLoginSignals } from './login-signals.ts';
 import { type PasswordHasher, pwdFingerprint } from './passwords.ts';
 import {
   type CreatedSession,
@@ -30,9 +32,11 @@ import {
   refreshSessionFingerprint,
   revokeSession,
   revokeUserSessions,
+  sessionCountry,
 } from './sessions.ts';
 import { consumeAuthToken, issueAuthToken } from './tokens-store.ts';
 import type { TurnstileVerifier } from './turnstile.ts';
+import { deviceLabel } from './user-agent.ts';
 import {
   displayNameOf,
   emailTaken,
@@ -61,6 +65,14 @@ export const AUTH_EVENT_KINDS = [
   'account_delete_request',
   'account_delete_cancel',
   'account_export',
+  'login_2fa_challenge',
+  'login_2fa',
+  'login_passkey',
+  'two_factor_enable',
+  'two_factor_disable',
+  'recovery_codes_regenerate',
+  'passkey_add',
+  'passkey_remove',
 ] as const;
 export type AuthEventKind = (typeof AUTH_EVENT_KINDS)[number];
 
@@ -95,6 +107,16 @@ export interface AuthOutcome {
   user: SelfUserDTO;
   session: CreatedSession;
 }
+
+/** The password was right but the account needs a second factor: no session yet. */
+export interface TwoFactorOutcome {
+  twoFactor: { challengeId: string; methods: SecondFactor[]; expiresAt: string };
+}
+
+export type LoginOutcome = AuthOutcome | TwoFactorOutcome;
+
+/** How a session was earned (recorded in the security log). */
+export type SignInMethod = 'login' | 'login_2fa' | 'login_passkey';
 
 export interface RegisterInput {
   email: string;
@@ -244,6 +266,12 @@ export class AuthService {
           country: ctx.country,
           now,
         });
+        await recordLoginSignals(tx, {
+          userId: created.id,
+          country: sessionCountry(ctx.country),
+          device: deviceLabel(ctx.userAgent),
+          now,
+        });
         await this.recordEvent(tx, ctx, 'register', true, created.id);
         ctx.log.info({ userId: created.id }, 'account registered');
         return { user: await toSelfUser(tx, created, this.deps.mediaBaseUrl), session };
@@ -280,7 +308,7 @@ export class AuthService {
     return Number(row?.n ?? 0);
   }
 
-  async login(ctx: Ctx, input: LoginInput): Promise<AuthOutcome> {
+  async login(ctx: Ctx, input: LoginInput): Promise<LoginOutcome> {
     const started = performance.now();
     const found = await findUserByIdentifier(ctx.db, input.identifier);
 
@@ -331,22 +359,72 @@ export class AuthService {
           passwordHash = found.password;
         }
       }
-      await tx.execute(
-        sql`UPDATE "User" SET "lastLoginAt" = ${now.toISOString()}::timestamptz AT TIME ZONE 'UTC' WHERE "id" = ${found.id}`,
-      );
-      const session = await createSession(tx, {
-        userId: found.id,
-        passwordHash,
-        remember: input.remember,
-        ipHash: ctx.ipHash,
-        userAgent: ctx.userAgent,
-        country: ctx.country,
-        now,
-      });
-      await this.recordEvent(tx, ctx, 'login', true, found.id);
-      const fresh = (await findUserById(tx, found.id)) ?? found;
-      return { user: await toSelfUser(tx, fresh, this.deps.mediaBaseUrl), session };
+      const methods = await secondFactorMethods(tx, found.id);
+      if (methods.length > 0) {
+        // The password was right but the account asks for a second factor: no session yet.
+        const challenge = await createChallenge(tx, {
+          kind: 'login_2fa',
+          userId: found.id,
+          payload: { remember: input.remember },
+          now,
+        });
+        await this.recordEvent(tx, ctx, 'login_2fa_challenge', true, found.id);
+        return {
+          twoFactor: { challengeId: challenge.id, methods, expiresAt: challenge.expiresAt.toISOString() },
+        };
+      }
+      return this.completeSignIn(tx, ctx, found, { passwordHash, remember: input.remember, method: 'login' });
     });
+  }
+
+  /**
+   * Opens the session of an authenticated account (password alone, password + second factor, or a
+   * passkey): stamps the last login, records the security event and, for a country or device the
+   * account has not used before, queues the «new sign-in» email (verified addresses only).
+   */
+  async completeSignIn(
+    tx: Executor,
+    ctx: Ctx,
+    target: User,
+    input: { passwordHash: string; remember: boolean; method: SignInMethod },
+  ): Promise<AuthOutcome> {
+    const now = ctx.clock.now();
+    await tx.execute(
+      sql`UPDATE "User" SET "lastLoginAt" = ${now.toISOString()}::timestamptz AT TIME ZONE 'UTC' WHERE "id" = ${target.id}`,
+    );
+    const session = await createSession(tx, {
+      userId: target.id,
+      passwordHash: input.passwordHash,
+      remember: input.remember,
+      ipHash: ctx.ipHash,
+      userAgent: ctx.userAgent,
+      country: ctx.country,
+      now,
+    });
+    const device = deviceLabel(ctx.userAgent);
+    const country = sessionCountry(ctx.country);
+    const signals = await recordLoginSignals(tx, { userId: target.id, country, device, now });
+    if ((signals.newCountry || signals.newDevice) && target.emailVerifiedAt) {
+      const locale = localeOf(target, ctx.locale);
+      await queueEmail(tx, ctx.jobs, {
+        userId: target.id,
+        to: target.email,
+        template: 'auth.new_login',
+        locale,
+        payload: {
+          displayName: displayNameOf(target),
+          device,
+          country,
+          signedInAt: now.toISOString(),
+          sessionsUrl: `${siteLink(this.deps.siteUrl, locale, '/settings/security')}#security-sessions`,
+          resetUrl: siteLink(this.deps.siteUrl, locale, '/forgot-password'),
+        },
+        dedupeKey: `auth.new-login:${session.id}`,
+      });
+    }
+    await this.recordEvent(tx, ctx, input.method === 'login' ? 'login' : input.method, true, target.id);
+    const fresh = (await findUserById(tx, target.id)) ?? target;
+    return { user: await toSelfUser(tx, fresh, this.deps.mediaBaseUrl), session };
   }
 
   async logout(ctx: Ctx): Promise<void> {

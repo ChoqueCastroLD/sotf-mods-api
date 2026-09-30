@@ -3,9 +3,11 @@
  * Bun formats, opaque sessions, single-use email tokens, Turnstile, HIBP and the account flows
  * (`AuthService`). Import from `@sotf/core/auth/index`.
  */
+export * from './challenges.ts';
 export * from './disposable.ts';
 export * from './hibp.ts';
 export * from './passwords.ts';
+export * from './security-service.ts';
 export * from './semaphore.ts';
 export * from './service.ts';
 export * from './sessions.ts';

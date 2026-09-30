@@ -1,11 +1,13 @@
 /**
- * Settings → Security (T0-13): active sessions — device and browser, country, when it started,
- * last activity — with «Sign out» per session and «Sign out everywhere else». Signing out the
- * current session ends at the login page.
+ * Settings → Security (T0-13, T1-02, T1-26): two-step verification, passkeys and the active
+ * sessions (device and browser, country, when it started, last activity) with «Sign out» per
+ * session and «Sign out everywhere else». Signing out the current session ends at the login page.
+ * Moderators and admins without a second factor see a banner (a prompt, never enforced).
  */
 import { toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
+import { Banner } from '@sotf/ui/banner';
 import { Button } from '@sotf/ui/button';
 import { ConfirmDialog } from '@sotf/ui/dialog';
 import { Icon } from '@sotf/ui/icons';
@@ -15,10 +17,12 @@ import { useState } from 'react';
 import { redirectToLogin } from '../../lib/auth.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
-import { type Session, sessionsQuery, settingsApi, settingsKeys } from './api.ts';
+import { type Session, securityQuery, sessionsQuery, settingsApi, settingsKeys } from './api.ts';
 import { failureDescription } from './errors.ts';
 import { localDateTime, relativeTime } from './format.ts';
 import { SettingsCard, SettingsPage } from './layout.tsx';
+import { PasskeysCard } from './PasskeysCard.tsx';
+import { TwoFactorCard } from './TwoFactorCard.tsx';
 
 const MOBILE = /android|iphone|ipad|ios|mobile/i;
 
@@ -34,6 +38,7 @@ function countryName(code: string | null): string | null {
 export function SecurityScreen() {
   const queryClient = useQueryClient();
   const { data: sessions } = useSuspenseQuery(sessionsQuery);
+  const { data: security } = useSuspenseQuery(securityQuery);
   const [confirm, setConfirm] = useState<Session | 'others' | null>(null);
   const others = sessions.filter((session) => !session.current);
   const ordered = [...sessions].sort((a, b) =>
@@ -69,6 +74,13 @@ export function SecurityScreen() {
 
   return (
     <SettingsPage section="security">
+      {security.staffPrompt ? (
+        <Banner tone="warning" title={m.settings_2fa_staff_title()}>
+          {m.settings_2fa_staff_text()}
+        </Banner>
+      ) : null}
+      <TwoFactorCard overview={security} />
+      <PasskeysCard overview={security} />
       <SettingsCard id="security-sessions" title={m.settings_sessions_title()} description={m.settings_sessions_text()}>
         <ul className="grid divide-y divide-border rounded-md border border-border">
           {ordered.map((session) => {

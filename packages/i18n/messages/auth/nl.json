@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Ingelogd als",
   "auth_menu_unverified": "Bevestig je e-mailadres om te reageren, te recenseren en te uploaden.",
   "auth_menu_resend_failed": "Versturen mislukt. Probeer het zo opnieuw.",
-  "auth_menu_unread": "Ongelezen:"
+  "auth_menu_unread": "Ongelezen:",
+  "auth_login_passkey": "Inloggen met een passkey",
+  "auth_login_passkey_failed": "Inloggen met passkey is geannuleerd of er is geen passkey beschikbaar op dit apparaat.",
+  "auth_twofactor_heading": "Verificatie in twee stappen",
+  "auth_twofactor_text": "Voer de code uit je authenticator-app in om het inloggen af te ronden.",
+  "auth_twofactor_field": "Verificatiecode",
+  "auth_twofactor_hint": "De 6-cijferige code uit je app of een van je herstelcodes.",
+  "auth_twofactor_submit": "Verifiëren",
+  "auth_twofactor_passkey": "Gebruik in plaats daarvan een passkey",
+  "auth_twofactor_back": "Terug naar inloggen",
+  "auth_twofactor_expired": "Deze stap is verlopen. Log opnieuw in om een nieuwe te krijgen.",
+  "auth_twofactor_wrong": "Die code klopt niet. Probeer het opnieuw."
 }

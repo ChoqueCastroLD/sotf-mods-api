@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Conectado como",
   "auth_menu_unverified": "Confirme seu e-mail para comentar, avaliar e enviar mods.",
   "auth_menu_resend_failed": "Não foi possível enviar. Tente de novo em instantes.",
-  "auth_menu_unread": "Não lidas:"
+  "auth_menu_unread": "Não lidas:",
+  "auth_login_passkey": "Entrar com uma chave de acesso",
+  "auth_login_passkey_failed": "O login com chave de acesso foi cancelado ou não há nenhuma chave disponível neste dispositivo.",
+  "auth_twofactor_heading": "Verificação em duas etapas",
+  "auth_twofactor_text": "Digite o código do seu app autenticador para concluir o login.",
+  "auth_twofactor_field": "Código de verificação",
+  "auth_twofactor_hint": "O código de 6 dígitos do seu app ou um dos seus códigos de recuperação.",
+  "auth_twofactor_submit": "Verificar",
+  "auth_twofactor_passkey": "Usar uma chave de acesso",
+  "auth_twofactor_back": "Voltar ao login",
+  "auth_twofactor_expired": "Esta etapa expirou. Entre novamente para obter uma nova.",
+  "auth_twofactor_wrong": "Esse código não está correto. Tente de novo."
 }

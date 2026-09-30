@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Accesso effettuato come",
   "auth_menu_unverified": "Verifica la tua email per commentare, recensire e caricare.",
   "auth_menu_resend_failed": "Invio non riuscito. Riprova tra un attimo.",
-  "auth_menu_unread": "Non letti:"
+  "auth_menu_unread": "Non letti:",
+  "auth_login_passkey": "Accedi con una passkey",
+  "auth_login_passkey_failed": "L’accesso con passkey è stato annullato o non c’è nessuna passkey disponibile su questo dispositivo.",
+  "auth_twofactor_heading": "Verifica in due passaggi",
+  "auth_twofactor_text": "Inserisci il codice della tua app di autenticazione per completare l’accesso.",
+  "auth_twofactor_field": "Codice di verifica",
+  "auth_twofactor_hint": "Il codice a 6 cifre della tua app o uno dei tuoi codici di recupero.",
+  "auth_twofactor_submit": "Verifica",
+  "auth_twofactor_passkey": "Usa invece una passkey",
+  "auth_twofactor_back": "Torna all’accesso",
+  "auth_twofactor_expired": "Questo passaggio è scaduto. Accedi di nuovo per ottenerne uno nuovo.",
+  "auth_twofactor_wrong": "Il codice non è corretto. Riprova."
 }

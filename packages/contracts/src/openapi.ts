@@ -55,6 +55,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   notifications: 'Signals (notifications), preferences and one-click unsubscribe.',
   reviews: 'Reviews, helpful votes and author replies.',
   search: 'Search and the compact Cmd+K index.',
+  security: 'Two-factor authentication (TOTP, recovery codes), passkeys and the second step of a sign-in.',
   seo: 'Path resolution for legacy and canonical URLs.',
   stats: 'Public statistics and live counters.',
   studio: 'Basecamp: drafts, publishing, versions, analytics and inbox.',

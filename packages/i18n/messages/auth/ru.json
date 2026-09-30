@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Вы вошли как",
   "auth_menu_unverified": "Подтвердите email, чтобы комментировать, писать отзывы и загружать моды.",
   "auth_menu_resend_failed": "Не удалось отправить. Попробуйте чуть позже.",
-  "auth_menu_unread": "Непрочитанные:"
+  "auth_menu_unread": "Непрочитанные:",
+  "auth_login_passkey": "Войти с ключом доступа",
+  "auth_login_passkey_failed": "Вход по ключу доступа отменён или на этом устройстве нет доступного ключа.",
+  "auth_twofactor_heading": "Двухэтапная проверка",
+  "auth_twofactor_text": "Введите код из приложения-аутентификатора, чтобы завершить вход.",
+  "auth_twofactor_field": "Код подтверждения",
+  "auth_twofactor_hint": "6-значный код из приложения или один из кодов восстановления.",
+  "auth_twofactor_submit": "Подтвердить",
+  "auth_twofactor_passkey": "Использовать ключ доступа",
+  "auth_twofactor_back": "Назад ко входу",
+  "auth_twofactor_expired": "Этот шаг истёк. Войдите снова, чтобы получить новый.",
+  "auth_twofactor_wrong": "Неверный код. Попробуйте ещё раз."
 }

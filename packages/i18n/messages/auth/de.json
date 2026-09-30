@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "Angemeldet als",
   "auth_menu_unverified": "Bestätige deine E-Mail, um zu kommentieren, zu rezensieren und hochzuladen.",
   "auth_menu_resend_failed": "Senden fehlgeschlagen. Versuch es gleich noch einmal.",
-  "auth_menu_unread": "Ungelesen:"
+  "auth_menu_unread": "Ungelesen:",
+  "auth_login_passkey": "Mit einem Passkey anmelden",
+  "auth_login_passkey_failed": "Die Anmeldung mit Passkey wurde abgebrochen oder auf diesem Gerät ist kein Passkey verfügbar.",
+  "auth_twofactor_heading": "Bestätigung in zwei Schritten",
+  "auth_twofactor_text": "Gib den Code aus deiner Authenticator-App ein, um die Anmeldung abzuschließen.",
+  "auth_twofactor_field": "Bestätigungscode",
+  "auth_twofactor_hint": "Der 6-stellige Code aus deiner App oder einer deiner Wiederherstellungscodes.",
+  "auth_twofactor_submit": "Bestätigen",
+  "auth_twofactor_passkey": "Stattdessen einen Passkey verwenden",
+  "auth_twofactor_back": "Zurück zur Anmeldung",
+  "auth_twofactor_expired": "Dieser Schritt ist abgelaufen. Melde dich erneut an, um einen neuen zu erhalten.",
+  "auth_twofactor_wrong": "Dieser Code ist nicht korrekt. Versuche es erneut."
 }

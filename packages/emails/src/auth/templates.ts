@@ -136,3 +136,67 @@ export function emailChangeNotice(p: EmailChangeNoticePayload, c: TemplateContex
     }),
   };
 }
+
+export interface NewLoginPayload {
+  displayName: string;
+  device: string | null;
+  country: string | null;
+  signedInAt: string;
+  sessionsUrl: string;
+  resetUrl: string;
+}
+
+export function newLogin(p: NewLoginPayload, c: TemplateContext): TemplateOutput {
+  const o = { locale: c.locale };
+  const details: string[] = [];
+  if (p.device) details.push(m.emails_auth_new_login_device({ device: p.device }, o));
+  if (p.country) details.push(m.emails_auth_new_login_country({ country: p.country }, o));
+  return {
+    subject: m.emails_auth_new_login_subject({}, o),
+    element: h(ActionEmail, {
+      ...c,
+      preview: m.emails_auth_new_login_preview({}, o),
+      name: p.displayName,
+      heading: m.emails_auth_new_login_heading({}, o),
+      paragraphs: [
+        m.emails_auth_new_login_body({ when: emailDateTime(c.locale, p.signedInAt) }, o),
+        ...details,
+        m.emails_auth_new_login_not_you({}, o),
+      ],
+      action: { label: m.emails_auth_new_login_button({}, o), url: p.resetUrl },
+      secondaryLink: { label: m.emails_auth_review_sessions({}, o), url: p.sessionsUrl },
+    }),
+  };
+}
+
+export interface SecurityChangePayload {
+  displayName: string;
+  change: 'totp_enabled' | 'totp_disabled' | 'recovery_codes_regenerated' | 'passkey_added' | 'passkey_removed';
+  changedAt: string;
+  securityUrl: string;
+  resetUrl: string;
+}
+
+export function securityChange(p: SecurityChangePayload, c: TemplateContext): TemplateOutput {
+  const o = { locale: c.locale };
+  const args = { when: emailDateTime(c.locale, p.changedAt) };
+  const body = {
+    totp_enabled: m.emails_auth_security_change_totp_enabled(args, o),
+    totp_disabled: m.emails_auth_security_change_totp_disabled(args, o),
+    recovery_codes_regenerated: m.emails_auth_security_change_recovery_codes(args, o),
+    passkey_added: m.emails_auth_security_change_passkey_added(args, o),
+    passkey_removed: m.emails_auth_security_change_passkey_removed(args, o),
+  }[p.change];
+  return {
+    subject: m.emails_auth_security_change_subject({}, o),
+    element: h(ActionEmail, {
+      ...c,
+      preview: m.emails_auth_security_change_preview({}, o),
+      name: p.displayName,
+      heading: m.emails_auth_security_change_heading({}, o),
+      paragraphs: [body, m.emails_auth_security_change_not_you({}, o)],
+      action: { label: m.emails_auth_security_change_button({}, o), url: p.securityUrl },
+      secondaryLink: { label: m.emails_auth_new_login_button({}, o), url: p.resetUrl },
+    }),
+  };
+}

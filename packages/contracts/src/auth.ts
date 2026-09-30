@@ -18,8 +18,9 @@ import {
   Locale,
   NewPassword,
   Role,
+  Uuid,
 } from './common.ts';
-import { dto } from './dto.ts';
+import { dto, exampleOf } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 
 /** Session cookie name (`__Host-` prefix: Secure, Path=/, no Domain). */
@@ -105,6 +106,42 @@ export const AuthResultDTO = dto('AuthResultDTO', z.object({ user: SelfUserDTO }
   ],
 });
 export type AuthResultDTO = z.infer<typeof AuthResultDTO>;
+
+/** Second factors a sign-in can be completed with. */
+export const SECOND_FACTORS = ['totp', 'recovery', 'passkey'] as const;
+export const SecondFactor = z.enum(SECOND_FACTORS);
+export type SecondFactor = z.infer<typeof SecondFactor>;
+
+export const TwoFactorRequiredDTO = dto(
+  'TwoFactorRequiredDTO',
+  z.object({
+    twoFactor: z.object({
+      challengeId: Uuid.describe('Single-use challenge (5 min) to send with the second factor'),
+      methods: z.array(SecondFactor).min(1).describe('What the account can answer with'),
+      expiresAt: IsoDateTime,
+    }),
+  }),
+  {
+    description:
+      'The password was right but the account has two-factor authentication: no session yet. Complete it with `auth.verifyTwoFactor` or the passkey endpoints.',
+    examples: [
+      {
+        twoFactor: {
+          challengeId: '0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d',
+          methods: ['totp', 'recovery', 'passkey'],
+          expiresAt: '2026-10-02T10:05:00.000Z',
+        },
+      },
+    ],
+  },
+);
+export type TwoFactorRequiredDTO = z.infer<typeof TwoFactorRequiredDTO>;
+
+export const LoginResultDTO = dto('LoginResultDTO', z.union([AuthResultDTO, TwoFactorRequiredDTO]), {
+  description: 'Either the signed-in user (session cookie set) or a second-factor challenge (no session yet).',
+  examples: [exampleOf(AuthResultDTO)],
+});
+export type LoginResultDTO = z.infer<typeof LoginResultDTO>;
 
 export const RegisterBody = dto(
   'RegisterBody',
@@ -195,11 +232,12 @@ export const authEndpoints = {
     method: 'POST',
     path: `${base}/login`,
     summary: 'Sign in',
-    description: 'Constant-time login by email or handle. Any failure is `INVALID_CREDENTIALS`.',
+    description:
+      'Constant-time login by email or handle. Any failure is `INVALID_CREDENTIALS`. Accounts with two-factor authentication answer a `twoFactor` challenge instead of a session.',
     auth: 'public',
     requires: ['turnstile_after_failures'],
     body: LoginBody,
-    response: AuthResultDTO,
+    response: LoginResultDTO,
     errors: ['INVALID_CREDENTIALS', 'TURNSTILE_REQUIRED', 'SUSPENDED'],
     cache: cache.noStore,
     rateLimit: 'login',

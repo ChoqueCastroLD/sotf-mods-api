@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_DetailInputs = {};
+export type Emails_Auth_Security_Change_ButtonInputs = {};
 /**
 * | output |
 * | --- |
-* | "This part of camp is still being set up. Check back soon." |
+* | "Review security settings" |
 *
-* @param {Console_Empty_DetailInputs} inputs
+* @param {Emails_Auth_Security_Change_ButtonInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_detail: ((inputs?: Console_Empty_DetailInputs, options?: {
+export declare const emails_auth_security_change_button: ((inputs?: Emails_Auth_Security_Change_ButtonInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_DetailInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Emails_Auth_Security_Change_ButtonInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

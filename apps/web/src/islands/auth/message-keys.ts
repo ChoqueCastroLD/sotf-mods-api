@@ -80,6 +80,17 @@ export const LOGIN_KEYS = [
   'auth_flag_verified',
   'auth_flag_expired',
   'common_action_continue',
+  'auth_login_passkey',
+  'auth_login_passkey_failed',
+  'auth_twofactor_heading',
+  'auth_twofactor_text',
+  'auth_twofactor_field',
+  'auth_twofactor_hint',
+  'auth_twofactor_submit',
+  'auth_twofactor_passkey',
+  'auth_twofactor_back',
+  'auth_twofactor_expired',
+  'auth_twofactor_wrong',
 ] as const;
 
 export const REGISTER_KEYS = [

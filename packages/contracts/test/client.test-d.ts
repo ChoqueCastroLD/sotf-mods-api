@@ -6,11 +6,11 @@ import { describe, expectTypeOf, it } from 'vitest';
 import type { z } from 'zod';
 import type { ApiClient, EndpointInput, EndpointOutput, RedirectResult } from '../src/client.ts';
 import type {
-  AuthResultDTO,
   apiContracts,
   CommentPageDTO,
   DownloadResolveDTO,
   LegacyModListResponse,
+  LoginResultDTO,
   ModDetailDTO,
   ModListQuery,
   RegisterBody,
@@ -23,7 +23,7 @@ type C = typeof apiContracts;
 describe('typed client', () => {
   it('infers response types from the contracts', () => {
     expectTypeOf(api.catalog.getMod).returns.resolves.toEqualTypeOf<z.output<typeof ModDetailDTO>>();
-    expectTypeOf(api.auth.login).returns.resolves.toEqualTypeOf<z.output<typeof AuthResultDTO>>();
+    expectTypeOf(api.auth.login).returns.resolves.toEqualTypeOf<z.output<typeof LoginResultDTO>>();
     expectTypeOf(api.comments.list).returns.resolves.toEqualTypeOf<z.output<typeof CommentPageDTO>>();
     expectTypeOf(api.legacy.listMods).returns.resolves.toEqualTypeOf<z.output<typeof LegacyModListResponse>>();
     expectTypeOf(api.internal.healthz).returns.resolves.toHaveProperty('status');

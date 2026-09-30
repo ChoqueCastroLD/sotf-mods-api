@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_TitleInputs = {};
+export type Auth_Twofactor_FieldInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing here yet" |
+* | "Authentication code" |
 *
-* @param {Console_Empty_TitleInputs} inputs
+* @param {Auth_Twofactor_FieldInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_title: ((inputs?: Console_Empty_TitleInputs, options?: {
+export declare const auth_twofactor_field: ((inputs?: Auth_Twofactor_FieldInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_TitleInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Auth_Twofactor_FieldInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

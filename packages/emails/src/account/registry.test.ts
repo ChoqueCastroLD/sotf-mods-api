@@ -27,6 +27,21 @@ const PAYLOADS: Record<AccountEmailTemplate, Record<string, unknown>> = {
     requestedAt: '2026-10-01T10:00:00.000Z',
     securityUrl: `${SITE}/settings/security`,
   },
+  'auth.new_login': {
+    displayName: 'Kelvin',
+    device: 'Firefox on Linux',
+    country: 'ES',
+    signedInAt: '2026-10-01T10:00:00.000Z',
+    sessionsUrl: `${SITE}/settings/security#security-sessions`,
+    resetUrl: `${SITE}/forgot-password`,
+  },
+  'auth.security_change': {
+    displayName: 'Kelvin',
+    change: 'totp_enabled',
+    changedAt: '2026-10-01T10:00:00.000Z',
+    securityUrl: `${SITE}/settings/security`,
+    resetUrl: `${SITE}/forgot-password`,
+  },
   'account.export_ready': {
     displayName: 'Kelvin',
     url: 'https://storage.example.test/exports/1/x.zip?sig=1',

@@ -100,5 +100,16 @@
   "auth_menu_signed_in_as": "ログイン中",
   "auth_menu_unverified": "コメント、レビュー、アップロードをするにはメールアドレスを確認してください。",
   "auth_menu_resend_failed": "送信できませんでした。少し待ってからもう一度お試しください。",
-  "auth_menu_unread": "未読："
+  "auth_menu_unread": "未読：",
+  "auth_login_passkey": "パスキーでログイン",
+  "auth_login_passkey_failed": "パスキーでのログインがキャンセルされたか、この端末に利用できるパスキーがありません。",
+  "auth_twofactor_heading": "2段階認証",
+  "auth_twofactor_text": "認証アプリのコードを入力して、ログインを完了してください。",
+  "auth_twofactor_field": "認証コード",
+  "auth_twofactor_hint": "アプリの6桁のコード、またはリカバリーコードのいずれか。",
+  "auth_twofactor_submit": "確認",
+  "auth_twofactor_passkey": "代わりにパスキーを使う",
+  "auth_twofactor_back": "ログインに戻る",
+  "auth_twofactor_expired": "このステップの有効期限が切れました。もう一度ログインして新しいものを取得してください。",
+  "auth_twofactor_wrong": "コードが正しくありません。もう一度お試しください。"
 }
