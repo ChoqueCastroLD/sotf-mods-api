@@ -7,6 +7,7 @@ import catalogModule from './catalog/index.ts';
 import commentsModule from './comments/index.ts';
 import compatModule from './compat/index.ts';
 import downloadsModule from './downloads/index.ts';
+import draftsModule from './drafts/index.ts';
 import ecosystemModule from './ecosystem/index.ts';
 import followsModule from './follows/index.ts';
 import kitsModule from './kits/index.ts';
@@ -18,6 +19,7 @@ import resolveModule from './resolve/index.ts';
 import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
+import studioModsModule from './studio-mods/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
 
@@ -28,6 +30,7 @@ export const modules = [
   commentsModule,
   compatModule,
   downloadsModule,
+  draftsModule,
   ecosystemModule,
   followsModule,
   kitsModule,
@@ -39,6 +42,7 @@ export const modules = [
   reviewsModule,
   searchModule,
   siteModule,
+  studioModsModule,
   unsubscribeModule,
   uploadsModule,
 ] as const;
