@@ -334,6 +334,16 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         tone: 'success',
       };
     }
+    case 'jam.phase':
+      return {
+        text: st('signals_jam_phase', {
+          phase: str(signal.data.phase) ?? 'other',
+          jam: str(signal.data.jamTitle) ?? signal.target?.title ?? '',
+        }),
+        excerpt: null,
+        icon: Trophy,
+        tone: 'signal',
+      };
     case 'award.won':
       return {
         text: awardSentence(str(signal.data.awardKind), mod),

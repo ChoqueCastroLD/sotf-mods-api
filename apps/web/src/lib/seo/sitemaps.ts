@@ -22,6 +22,7 @@ import {
   allCards,
   allCategories,
   allCreators,
+  allJams,
   allKits,
   allRequests,
   allTags,
@@ -38,6 +39,7 @@ export const SITEMAP_TYPES = [
   'tags',
   'kits',
   'requests',
+  'jams',
   'creators',
   'news',
   'best',
@@ -60,6 +62,7 @@ export const STATIC_PATHS: readonly string[] = [
   '/builds',
   '/kits',
   '/requests',
+  '/jams',
   '/creators',
   '/categories',
   '/tags',
@@ -193,6 +196,14 @@ async function requestPages(): Promise<SitemapPage[]> {
   }));
 }
 
+async function jamPages(): Promise<SitemapPage[]> {
+  const jams = await allJams();
+  return jams.map((jam) => ({
+    path: `/jams/${jam.slug}`,
+    lastmod: jam.resultsPublishedAt ?? jam.announceAt ?? undefined,
+  }));
+}
+
 async function creatorPages(): Promise<SitemapPage[]> {
   const creators = await allCreators();
   return creators
@@ -246,6 +257,8 @@ export async function sitemapPages(type: SitemapType): Promise<SitemapPage[]> {
       return kitPages();
     case 'requests':
       return requestPages();
+    case 'jams':
+      return jamPages();
     case 'creators':
       return creatorPages();
     case 'news':

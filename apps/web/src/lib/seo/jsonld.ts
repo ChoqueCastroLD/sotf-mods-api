@@ -5,7 +5,7 @@
  */
 import type { Locale } from '@sotf/i18n';
 import { toHreflang } from '@sotf/i18n';
-import type { BreadcrumbList, Organization, Thing, WebSite, WithContext } from 'schema-dts';
+import type { BreadcrumbList, Event, Organization, Thing, WebSite, WithContext } from 'schema-dts';
 import { LOGO_PATH, SOCIAL_LINKS } from '../site.ts';
 
 export type JsonLd = WithContext<Thing>;
@@ -72,5 +72,37 @@ export function breadcrumbJsonLd(crumbs: readonly Crumb[]): WithContext<Breadcru
       name: crumb.name,
       ...(crumb.url ? { item: crumb.url } : {}),
     })),
+  };
+}
+
+export interface JamEventInput {
+  name: string;
+  description: string;
+  /** Absolute canonical URL of the jam page. */
+  url: string;
+  /** Start of the jam (first milestone) and its end, ISO 8601. */
+  startDate: string | null;
+  endDate: string | null;
+  image: string | null;
+  organizerName: string;
+  organizerUrl: string;
+}
+
+/** `Event` node of a Mod Jam: an online, free, community event with a start and an end. */
+export function jamEventJsonLd(input: JamEventInput): WithContext<Event> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: input.name,
+    description: input.description,
+    url: input.url,
+    eventAttendanceMode: 'https://schema.org/OnlineEventAttendanceMode',
+    eventStatus: 'https://schema.org/EventScheduled',
+    location: { '@type': 'VirtualLocation', url: input.url },
+    ...(input.startDate ? { startDate: input.startDate } : {}),
+    ...(input.endDate ? { endDate: input.endDate } : {}),
+    ...(input.image ? { image: input.image } : {}),
+    isAccessibleForFree: true,
+    organizer: { '@type': 'Organization', name: input.organizerName, url: input.organizerUrl },
   };
 }

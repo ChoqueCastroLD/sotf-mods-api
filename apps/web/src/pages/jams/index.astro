@@ -1,0 +1,80 @@
+---
+/**
+ * `/jams` — the Mod Jams hub: jams happening now (announced, open for entries, voting), jams
+ * with fresh results, and the archive. All plain links, no JavaScript needed.
+ *
+ * - Cache: E(300) `list:jams` (purged by every phase change); the API failing gives 503 with an
+ *   error state, never cached.
+ */
+import { m } from '@sotf/i18n/messages';
+import { KitsEmpty, KitsError } from '../../components/kits/KitStates.tsx';
+import { groupJams, loadJamList } from '../../components/jams/data.ts';
+import JamCard from '../../components/jams/JamCard.astro';
+import { configureModDomainI18n } from '../../components/mod/i18n.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+configureModDomainI18n();
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.listJams());
+
+const items = await loadJamList();
+if (items === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const groups = groupJams(items ?? []);
+const sections = [
+  { id: 'running', title: m.jams_hub_running(), jams: groups.running },
+  { id: 'results', title: m.jams_hub_results(), jams: groups.results },
+  { id: 'archive', title: m.jams_hub_archive(), jams: groups.archive },
+].filter((section) => section.jams.length > 0);
+---
+
+<PageLayout
+  template="jams"
+  width="wide"
+  seo={{ title: m.jams_hub_title(), description: m.jams_hub_description(), path: '/jams' }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.jams_nav() }]}
+>
+  <div class="flex flex-col gap-8">
+    <header class="flex flex-col gap-2">
+      <p class="readout text-signal">{m.jams_hub_readout()}</p>
+      <h1 class="font-display-caps text-display-sm text-fg">{m.jams_hub_title()}</h1>
+      <p class="max-w-(--container-prose) text-base text-fg-muted">{m.jams_hub_intro()}</p>
+    </header>
+
+    {
+      items === null ? (
+        <KitsError
+          title={m.jams_error_title()}
+          text={m.jams_error_text()}
+          retryHref={href(Astro.url.pathname, locale)}
+          reference={Astro.locals.requestId}
+        />
+      ) : sections.length === 0 ? (
+        <KitsEmpty title={m.jams_empty_title()} text={m.jams_empty_text()} />
+      ) : (
+        sections.map((section) => (
+          <section aria-labelledby={`jams-${section.id}`} class="flex flex-col gap-3">
+            <h2 id={`jams-${section.id}`} class="text-lg font-semibold text-fg">
+              {section.title}
+              <span class="ms-1 font-mono text-sm font-normal text-fg-muted">{section.jams.length}</span>
+            </h2>
+            <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {section.jams.map((jam) => (
+                <li class="min-w-0">
+                  <JamCard jam={jam} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      )
+    }
+  </div>
+</PageLayout>
