@@ -1,0 +1,84 @@
+---
+/**
+ * Tab bar of the profile (T0-15): real links (`?tab=`), so every tab is crawlable, works without
+ * JavaScript and keeps its own URL (research/03 §5.4). The active tab has `aria-current="page"`;
+ * the bar scrolls horizontally on narrow screens.
+ */
+import { formatCompactNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { cn } from '@sotf/ui/cn';
+import { tabClasses, tabListClasses } from '@sotf/ui/tabs';
+import { href } from '../../lib/i18n.ts';
+import { type ProfileTab, tabPath, type UserPublicDTO } from './data.ts';
+
+interface Props {
+  user: UserPublicDTO;
+  tabs: readonly ProfileTab[];
+  active: ProfileTab;
+  defaultTab: ProfileTab;
+  /** Earned badges (distinct keys), when known. */
+  badgeCount: number | null;
+}
+
+const { user, tabs, active, defaultTab, badgeCount } = Astro.props;
+const locale = Astro.locals.locale;
+
+function label(tab: ProfileTab): string {
+  switch (tab) {
+    case 'mods':
+      return m.profile_tab_mods();
+    case 'builds':
+      return m.profile_tab_builds();
+    case 'kits':
+      return m.profile_tab_kits();
+    case 'badges':
+      return m.profile_tab_badges();
+    case 'activity':
+      return m.profile_tab_activity();
+    case 'reviews':
+      return m.profile_tab_reviews();
+  }
+}
+
+function count(tab: ProfileTab): number | null {
+  switch (tab) {
+    case 'mods':
+      return user.stats.modsCount;
+    case 'builds':
+      return user.stats.buildsCount;
+    case 'badges':
+      return badgeCount;
+    case 'reviews':
+      return user.stats.reviewsCount;
+    default:
+      return null;
+  }
+}
+---
+
+<nav aria-label={m.profile_tabs_label()} class={cn(tabListClasses, 'sticky top-[calc(4rem+1px)] z-(--z-raised) bg-bg')}>
+  {
+    tabs.map((tab) => {
+      const n = count(tab);
+      return (
+        <a
+          href={href(tabPath(user, tab, { isDefault: tab === defaultTab }), locale)}
+          aria-current={tab === active ? 'page' : undefined}
+          data-tab={tab}
+          class={cn(
+            tabClasses,
+            'after:absolute after:inset-x-3 after:bottom-0 after:h-0.5 after:rounded-full after:bg-primary after:opacity-0 aria-[current=page]:after:opacity-100',
+          )}
+        >
+          {label(tab)}
+          {n !== null && (
+            <span class="rounded-full bg-fg/8 px-1.5 font-mono text-2xs tabular-nums text-fg-muted" aria-hidden="true">
+              {formatCompactNumber(locale, n)}
+            </span>
+          )}
+          {n !== null && <span class="sr-only">({formatCompactNumber(locale, n)})</span>}
+        </a>
+      );
+    })
+  }
+</nav>

@@ -1,0 +1,287 @@
+---
+/**
+ * Profile header (research/03 §6.4, T0-15): generative terrain banner (seeded by the user id, or
+ * the uploaded image), overlapping avatar, name + @handle + verified mark, «Day N on the island»,
+ * identity stamps (rank, tier, Ranger), bio, links, stats and the actions (follow, share, and
+ * «Edit profile» revealed by `profile-page.ts` on your own profile).
+ *
+ * Mobile: banner at 3:1, stats in 2×2, «Follow» full width.
+ */
+import { bannerSvg } from '@sotf/brand/banner';
+import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Avatar } from '@sotf/ui/avatar';
+import { buttonClasses } from '@sotf/ui/button';
+import { type DomainI18n, ProseLocator, SPOTLIGHT_TIERS } from '@sotf/ui/domain';
+import { Icon, type LucideIcon } from '@sotf/ui/icons';
+import {
+  BadgeCheck,
+  CodeXml,
+  Coffee,
+  Globe,
+  HeartHandshake,
+  Link as LinkIcon,
+  MessageCircle,
+  Pencil,
+  Share2,
+  SquarePlay,
+  Tv,
+  UserCheck,
+  UserPlus,
+} from 'lucide-react';
+import Picture from '../layout/Picture.astro';
+import { dayOnIsland } from './activity.ts';
+import { IdentityStamps } from './Domain.tsx';
+import type { UserPublicDTO } from './data.ts';
+import { linkLabel } from './i18n.ts';
+import ProfileToast from './ProfileToast.astro';
+
+interface Props {
+  user: UserPublicDTO;
+  i18n: DomainI18n;
+  /** Localised sign-in page and the `next` it returns to (guest fallback of «Follow»). */
+  loginAction: string;
+  next: string;
+  /** Localised `/settings/profile`. */
+  editHref: string;
+}
+
+const { user, i18n, loginAction, next, editHref } = Astro.props;
+const locale = Astro.locals.locale;
+const name = user.displayName || user.handle;
+const stats = user.stats;
+const day = dayOnIsland(user.createdAt);
+const isRanger = user.role === 'moderator' || user.role === 'admin';
+// Each creator tier frames the avatar; Fortress and Landmark in Solafite (PLAN §7.2).
+const frame = user.creatorTier ? (SPOTLIGHT_TIERS.has(user.creatorTier) ? 'spotlight' : 'tier') : null;
+const bannerNight = user.banner
+  ? null
+  : bannerSvg(user.id, user.bannerSeed, { width: 1600, height: 400, className: 'block size-full light:hidden' });
+const bannerDay = user.banner
+  ? null
+  : bannerSvg(user.id, user.bannerSeed, {
+      width: 1600,
+      height: 400,
+      theme: 'day',
+      className: 'block size-full dark:hidden',
+    });
+
+const LINK_ICONS: Record<string, LucideIcon> = {
+  website: Globe,
+  github: CodeXml,
+  youtube: SquarePlay,
+  twitch: Tv,
+  discord: MessageCircle,
+  kofi: Coffee,
+  patreon: HeartHandshake,
+};
+
+const statItems = [
+  {
+    label: m.profile_stat_mods_label(),
+    value: formatNumber(locale, stats.modsCount + stats.buildsCount),
+    title: m.profile_stat_mods_title({ mods: stats.modsCount, builds: stats.buildsCount }),
+  },
+  {
+    label: m.profile_stat_downloads_label(),
+    value: formatCompactNumber(locale, stats.downloadsTotal),
+    title: formatNumber(locale, stats.downloadsTotal),
+  },
+  {
+    label: m.profile_stat_followers_label(),
+    value: formatCompactNumber(locale, stats.followersCount),
+    title: formatNumber(locale, stats.followersCount),
+    followers: stats.followersCount,
+  },
+  stats.ratingAvg !== null
+    ? {
+        label: m.profile_stat_rating_label(),
+        value: formatNumber(locale, stats.ratingAvg, { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+        title: m.profile_stat_rating_title({
+          rating: formatNumber(locale, stats.ratingAvg, { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
+        }),
+      }
+    : {
+        label: m.profile_stat_helpful_label(),
+        value: formatCompactNumber(locale, stats.helpfulVotes),
+        title: formatNumber(locale, stats.helpfulVotes),
+      },
+];
+const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
+---
+
+<header class="grid gap-5">
+  <div
+    class="relative -mx-4 aspect-[3/1] overflow-hidden bg-raised md:mx-0 md:aspect-banner md:rounded-xl md:border md:border-border"
+  >
+    {
+      user.banner ? (
+        <Picture
+          image={user.banner}
+          sizes="(min-width: 96rem) 1536px, 100vw"
+          alt=""
+          priority
+          hero
+          fallbackWidth={1600}
+          fallbackHeight={400}
+          class="block size-full object-cover"
+        />
+      ) : (
+        <>
+          <Fragment set:html={bannerNight} />
+          <Fragment set:html={bannerDay} />
+        </>
+      )
+    }
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-end md:gap-6">
+    <div
+      class:list={[
+        '-mt-14 flex w-fit items-end rounded-full md:-mt-20',
+        frame === 'spotlight' && 'bg-bg p-1 outline-3 -outline-offset-1 outline-featured',
+        frame === 'tier' && 'bg-bg p-1 outline-2 -outline-offset-1 outline-border-strong',
+      ]}
+      data-avatar-frame={user.creatorTier ?? undefined}
+    >
+      {
+        user.avatar ? (
+          <Picture
+            image={user.avatar}
+            sizes="(min-width: 48rem) 128px, 96px"
+            alt={m.profile_avatar_alt({ name })}
+            priority={!user.banner}
+            fallbackWidth={128}
+            fallbackHeight={128}
+            class="block size-24 rounded-full bg-raised object-cover ring-4 ring-bg md:size-32"
+          />
+        ) : (
+          <Avatar
+            name={name}
+            id={user.id}
+            size={128}
+            className="size-24 ring-4 ring-bg md:size-32"
+          />
+        )
+      }
+    </div>
+
+    <div class="grid min-w-0 gap-1.5">
+      <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+        <h1 id="profile-name" class="font-display-caps text-display-sm break-words text-fg">{name}</h1>
+        {
+          user.verifiedCreator && (
+            <span class="inline-flex items-center gap-1 text-sm font-medium text-signal" title={m.profile_verified_creator()}>
+              <Icon icon={BadgeCheck} size={20} />
+              <span class="sr-only md:not-sr-only">{m.profile_verified_creator()}</span>
+            </span>
+          )
+        }
+      </div>
+      <p class="font-mono text-sm text-fg-muted">@{user.handle}</p>
+      <p class="readout text-fg-muted">
+        <time datetime={user.createdAt} title={m.profile_joined({ date: formatDate(locale, user.createdAt, 'long') })}>
+          {m.profile_day_on_island({ day: formatNumber(locale, day) })}
+        </time>
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2" data-profile-actions>
+      <form method="get" action={loginAction} class="contents" data-profile-follow-form>
+        <input type="hidden" name="next" value={next} />
+        <button
+          type="submit"
+          aria-pressed="false"
+          data-follow-user={user.handle}
+          data-follow-user-id={user.id}
+          data-followers={stats.followersCount}
+          class={buttonClasses({ variant: 'primary', size: 'md', className: 'group/follow max-md:w-full' })}
+        >
+          <Icon icon={UserPlus} size={18} className="group-aria-pressed/follow:hidden" />
+          <Icon icon={UserCheck} size={18} className="hidden group-aria-pressed/follow:inline" />
+          <span data-follow-label>{m.common_action_follow()}</span>
+          <span class="sr-only">{name}</span>
+        </button>
+      </form>
+      <a
+        href={editHref}
+        hidden
+        data-profile-edit
+        class={buttonClasses({ variant: 'secondary', size: 'md', className: 'max-md:h-11' })}
+      >
+        <Icon icon={Pencil} size={18} />
+        {m.profile_action_edit()}
+      </a>
+      <button
+        type="button"
+        data-profile-share
+        data-share-title={name}
+        data-copied={m.profile_link_copied()}
+        class={buttonClasses({ variant: 'secondary', size: 'md', className: 'max-md:h-11' })}
+      >
+        <Icon icon={Share2} size={18} />
+        {m.common_action_share()}
+      </button>
+    </div>
+  </div>
+
+  <IdentityStamps
+    i18n={i18n}
+    rank={user.survivorRank}
+    tier={user.creatorTier}
+    ranger={isRanger ? m.profile_badge_ranger_name() : null}
+  />
+
+  {
+    user.bioHtml && (
+      <ProseLocator html={user.bioHtml} className="max-w-(--container-prose) text-pretty" />
+    )
+  }
+
+  {
+    user.links.length > 0 && (
+      <ul class="flex flex-wrap gap-2" aria-label={m.profile_links_label()}>
+        {user.links.map((link) => (
+          <li>
+            <a
+              href={link.url}
+              rel="me ugc nofollow noopener"
+              target="_blank"
+              class="inline-flex min-h-11 items-center gap-1.5 rounded-md border border-border px-3 text-sm text-fg hover:border-border-strong hover:bg-fg/4 md:min-h-9"
+            >
+              <Icon icon={LINK_ICONS[link.kind] ?? LinkIcon} size={16} className="text-fg-muted" />
+              {linkLabel(link)}
+              <span class="sr-only">{m.common_new_tab()}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  <dl class="grid grid-cols-2 gap-3 border-y border-border py-4 sm:grid-cols-4" aria-label={m.profile_stats_label()}>
+    {
+      statItems.map((item) => (
+        <div class="flex min-w-0 flex-col gap-0.5" title={item.title}>
+          <dt class="readout truncate text-fg-muted">{item.label}</dt>
+          <dd
+            class="font-display-caps text-display-xs leading-none tabular-nums text-fg"
+            data-follow-count={item.followers === undefined ? undefined : ''}
+            data-followers={item.followers}
+          >
+            {item.value}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+  {
+    showHelpfulExtra && (
+      <p class="-mt-3 text-sm text-fg-muted">
+        {m.profile_stat_helpful_line({ count: stats.helpfulVotes })}
+      </p>
+    )
+  }
+
+  <ProfileToast />
+</header>

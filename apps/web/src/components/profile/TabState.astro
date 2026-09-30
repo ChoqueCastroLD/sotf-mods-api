@@ -1,0 +1,63 @@
+---
+/**
+ * Empty, hidden-by-privacy and error states of a profile tab or listing (PLAN §1.2): brand
+ * microcopy and one call to action; the error state says what happened, offers «Try again» (the
+ * same URL) and shows the request reference.
+ */
+import { buttonClasses } from '@sotf/ui/button';
+import { EmptyState } from '@sotf/ui/empty-state';
+import { ErrorState } from '@sotf/ui/error-state';
+import { Icon, type LucideIcon } from '@sotf/ui/icons';
+import { href } from '../../lib/i18n.ts';
+
+interface Props {
+  kind: 'empty' | 'hidden' | 'error';
+  title: string;
+  description?: string;
+  icon?: LucideIcon;
+  action?: { href: string; label: string } | null;
+  /** Error: URL of the retry link (default: the current page). */
+  retryHref?: string;
+  headingLevel?: 2 | 3;
+}
+
+const { kind, title, description, icon, action, retryHref, headingLevel = 2 } = Astro.props;
+const retry = retryHref ?? href(Astro.locals.pagePath, Astro.locals.locale);
+---
+
+{
+  kind === 'error' ? (
+    <ErrorState
+      title={title}
+      description={description}
+      retryHref={retry}
+      reference={Astro.locals.requestId}
+      headingLevel={headingLevel}
+      className="rounded-lg border border-border bg-surface"
+    />
+  ) : (
+    <EmptyState
+      title={title}
+      description={description}
+      headingLevel={headingLevel}
+      className="rounded-lg border border-dashed border-border-strong"
+    >
+      {icon && (
+        <span slot="icon" class="contents">
+          <Icon icon={icon} size={32} />
+        </span>
+      )}
+      {
+        action && (
+          <a
+            slot="action"
+            href={action.href}
+            class={buttonClasses({ variant: 'secondary', size: 'md', className: 'max-md:h-11' })}
+          >
+            {action.label}
+          </a>
+        )
+      }
+    </EmptyState>
+  )
+}

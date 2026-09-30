@@ -2331,6 +2331,457 @@
   "mod_whats_new_read": "フィールドノートを読む",
   "mod_whats_new_title": "前回のダウンロード（v{version}）以降の変更点",
   "mod_whats_new_up_to_date": "最新バージョン（v{version}）を持っています。",
+  "profile_achievements_badge_repeatable": "何度でも獲得可能",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "サバイバーの {share} · {count__number} 人が所持"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "バッジは各サバイバーのフィールドノートを埋めていきます。未獲得のバッジはヒント付きの点線で表示されるので、次の目標がいつでもわかります。",
+  "profile_achievements_badges_title": "バッジ",
+  "profile_achievements_day_body": "各プロフィールには、アカウント作成からの経過日数が表示されます。純粋なアイデンティティで、ポイントにはなりません。",
+  "profile_achievements_day_title": "島での N 日目",
+  "profile_achievements_fair_play_downloads": "ダウンロード数で XP は得られないので、水増ししても意味がありません。",
+  "profile_achievements_fair_play_new_accounts": "作成されたばかりのアカウントは、信頼を得るまで評価と互換性で半分の重みになります。",
+  "profile_achievements_fair_play_reversible": "XP はすべて記録され、不正によるものは取り消されることがあります。",
+  "profile_achievements_fair_play_same_network": "同じネットワークのアカウント間で 24 時間以内に行われた投票やレポートはカウントされません。",
+  "profile_achievements_fair_play_spikes": "急激なダウンロード増加はレンジャーが確認します。",
+  "profile_achievements_fair_play_title": "フェアプレー",
+  "profile_achievements_intro": "島の報酬のルールをすべて公開しています。評価するのは質と助け合いで、単なる量ではありません。",
+  "profile_achievements_meta_description": "SOTF Mods のサバイバーランク、XP、クリエイターティア、バッジ、MOD マイルストーンの仕組み。量ではなく質と助け合いを評価する公開ルールです。",
+  "profile_achievements_meta_title": "バッジ、ランク、クリエイターティア",
+  "profile_achievements_milestones_intro": "各 MOD は初日から数えたダウンロード数のマイルストーンを祝います。MOD ページのタイムラインに表示され、大きなものは Discord で告知されます。",
+  "profile_achievements_milestones_title": "MOD マイルストーン",
+  "profile_achievements_motw_body": "毎週月曜日、ユニークダウンロードの勢いが最も強い MOD が選ばれます。公開中で、現行ビルドで壊れておらず、評価が高いことが条件です。同じクリエイターが 2 週間以内に 2 回選ばれることはありません。",
+  "profile_achievements_motw_title": "今週の MOD",
+  "profile_achievements_principle_no_streaks": "連続ログインも、ルートボックスも、誰かを貶めるランキングもありません。",
+  "profile_achievements_principle_privacy": "ランクとアクティビティはプライバシー設定で非表示にできます。",
+  "profile_achievements_principle_quality": "XP はほかの人を助けることで得られます：役立つレビュー、正確なフィールドレポート、解決した問題。ダウンロード数で XP は得られません。",
+  "profile_achievements_principle_retroactive": "すべて遡って適用されます：2023 年以降のアカウントは、これまでの成果をそのまま保持します。",
+  "profile_achievements_ranks_intro": "メンバー全員に、コミュニティを助けて得た XP で上がるサバイバーランクがあります。購入はできず、活動しなくても下がりません。",
+  "profile_achievements_ranks_title": "サバイバーランク",
+  "profile_achievements_tier_perks": "ティアスタンプとアバター枠。",
+  "profile_achievements_tier_perks_spotlight": "ティアスタンプ、アバター枠、トップページでのスポットライト。",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{downloads} ダウンロード"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "クリエイターは、v2 以前の履歴も含めた全 MOD の累計ダウンロード数で自動的にティアが上がります。ティアごとにプロフィールのスタンプとアバターの枠が追加されます。",
+  "profile_achievements_tiers_title": "クリエイターティア",
+  "profile_achievements_title": "実績",
+  "profile_achievements_toc": "このページの内容",
+  "profile_achievements_xp_action": "行動",
+  "profile_achievements_xp_limit": "上限",
+  "profile_achievements_xp_needed": "必要 XP",
+  "profile_achievements_xp_note": "自分のコンテンツに対する行動はカウントされません。XP は監査され、不正によるものは取り消されることがあります。",
+  "profile_achievements_xp_title": "XP の獲得方法",
+  "profile_action_edit": "プロフィールを編集",
+  "profile_activity_caption": "1 日ごとのリリース、コメント、レビュー、フィールドレポート（UTC）。",
+  "profile_activity_cell": "{date}：{detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "コメント {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "リリース {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "フィールドレポート {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "レビュー {count__number} 件"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} は過去 12 か月、リリース・コメント・レビュー・報告を行っていません。",
+  "profile_activity_empty_title": "静かな小道",
+  "profile_activity_heatmap_label": "{name} の過去 12 か月の貢献",
+  "profile_activity_kind_comments": "コメント",
+  "profile_activity_kind_releases": "リリース",
+  "profile_activity_kind_reports": "フィールドレポート",
+  "profile_activity_kind_reviews": "レビュー",
+  "profile_activity_legend_less": "少",
+  "profile_activity_legend_more": "多",
+  "profile_activity_private": "{name} はアクティビティを非公開にしています。",
+  "profile_activity_recent_title": "最近の足跡",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input days",
+        "input count",
+        "local days__number = days: number",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "{from}〜{to} の {days__number} 日間で貢献なし。",
+        "count__exact=*": "{from}〜{to} の {days__number} 日間で貢献 {count__number} 件。"
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "活動日数",
+  "profile_activity_table_caption": "{name} の月別の貢献",
+  "profile_activity_table_month": "月",
+  "profile_activity_table_toggle": "表で表示",
+  "profile_activity_table_total": "合計",
+  "profile_activity_title": "アクティビティ",
+  "profile_avatar_alt": "{name} のアバター",
+  "profile_badge_bug_hunter_hint": "バグ報告 5 件をクリエイターに解決済みにしてもらう。",
+  "profile_badge_bug_hunter_name": "バグハンター",
+  "profile_badge_cartographer_hint": "フォロワーが 10 人に達する公開キットを作る。",
+  "profile_badge_cartographer_name": "地図職人",
+  "profile_badge_crash_landing_hint": "最初の MOD を公開する。",
+  "profile_badge_crash_landing_name": "不時着",
+  "profile_badge_earned_on": "{date} に獲得",
+  "profile_badge_featured": "注目",
+  "profile_badge_field_medic_hint": "コミュニティの合意と一致する互換性レポートを 10 件送る。",
+  "profile_badge_field_medic_name": "フィールドメディック",
+  "profile_badge_first_blueprint_hint": "最初の建築を公開する。",
+  "profile_badge_first_blueprint_name": "最初の設計図",
+  "profile_badge_first_field_report_hint": "最初の互換性レポートを送る。",
+  "profile_badge_first_field_report_name": "最初のフィールドレポート",
+  "profile_badge_first_review_hint": "テキスト付きの最初のレビューを書く。",
+  "profile_badge_first_review_name": "最初のレビュー",
+  "profile_badge_group_awards": "アワード",
+  "profile_badge_group_community": "コミュニティ",
+  "profile_badge_group_creator": "クリエイター",
+  "profile_badge_group_legacy": "初期サバイバー",
+  "profile_badge_group_onboarding": "はじめの一歩",
+  "profile_badge_group_roles": "ロール",
+  "profile_badge_group_secret": "シークレット",
+  "profile_badge_helping_hand_hint": "コメント 5 件をクリエイターに解決策としてマーク、またはピン留めしてもらう。",
+  "profile_badge_helping_hand_name": "助けの手",
+  "profile_badge_island_favorite_hint": "評価 4.5 以上・レビュー 20 件以上の MOD を持つ。",
+  "profile_badge_island_favorite_name": "島のお気に入り",
+  "profile_badge_locked": "未獲得",
+  "profile_badge_mod_of_the_week_hint": "自分の MOD が今週の MOD に選ばれる。何度でも獲得可能。",
+  "profile_badge_mod_of_the_week_name": "今週の MOD",
+  "profile_badge_night_owl_hint": "現地時間の午前 0 時から 4 時の間に 5 回貢献する。",
+  "profile_badge_night_owl_name": "夜ふかし",
+  "profile_badge_original_survivor_hint": "SOTF Mods v2 の公開前、{year} 年に作成されたアカウント。",
+  "profile_badge_original_survivor_name": "初期サバイバー {year}",
+  "profile_badge_patch_day_hero_hint": "MOD を壊すゲームアップデートから 7 日以内に互換バージョンを公開する。",
+  "profile_badge_patch_day_hero_name": "パッチデーの英雄",
+  "profile_badge_pillar_of_the_island_hint": "ほかのクリエイターの MOD 3 件以上が依存するライブラリを作る。",
+  "profile_badge_pillar_of_the_island_name": "島の柱",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "島の安全を守るモデレーター。",
+  "profile_badge_ranger_name": "レンジャー",
+  "profile_badge_secret_hint": "探索を続けよう。島には夜にしか見つからないものもある。",
+  "profile_badge_secret_name": "シークレットバッジ",
+  "profile_badge_staff_pick_hint": "自分の MOD がスタッフに選ばれる。何度でも獲得可能。",
+  "profile_badge_staff_pick_name": "スタッフのおすすめ",
+  "profile_badge_survived_day_one_hint": "「1 日目」チェックリストを完了する。",
+  "profile_badge_survived_day_one_name": "1 日目を生き延びた",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "SOTF Mods の翻訳に協力した。",
+  "profile_badge_translator_name": "翻訳者",
+  "profile_badge_verified_creator_hint": "SOTF Mods チームが認証したクリエイター。",
+  "profile_badge_verified_creator_name": "認証済みクリエイター",
+  "profile_badge_voice_of_the_island_hint": "レビューで「役に立った」票を 50 件もらう。",
+  "profile_badge_voice_of_the_island_name": "島の声",
+  "profile_badge_well_documented_hint": "自分の MOD のページ品質を 100 にする。",
+  "profile_badge_well_documented_name": "ドキュメント充実",
+  "profile_badges_empty_description": "バッジは、公開・レビュー・互換性レポート・ほかの人の手助けで獲得できます。未獲得のバッジは点線で表示されます。",
+  "profile_badges_empty_title": "ノートはまだ白紙です",
+  "profile_badges_featured_label": "注目のバッジ",
+  "profile_badges_rules_link": "バッジの仕組み",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "まだバッジはありません。",
+        "count__exact=*": "バッジを {count__number} 個獲得。"
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input total",
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "{total} 個中 0 個。",
+        "count__exact=*": "{total} 個中 {count__number} 個。"
+      }
+    }
+  ],
+  "profile_badges_title": "フィールドノート",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "v2 へようこそ：バッジを {badgeCount__number} 個獲得しました"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "まだ建築はありません",
+  "profile_builds_title": "{name} の建築",
+  "profile_cards_empty_action": "MOD を探す",
+  "profile_cards_empty_description": "{name} はまだここに何も公開していません。島のほかの人たちの作品を見てみましょう。",
+  "profile_creator_top_mod": "代表作：{mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "クリエイター {display} 人"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "まだ誰も MOD を公開していません。最初の人には「不時着」バッジが贈られます。",
+  "profile_creators_empty_title": "まだクリエイターはいません",
+  "profile_creators_error_title": "クリエイターを読み込めませんでした",
+  "profile_creators_intro": "島の MOD と建築を作るサバイバーたち。フォローすると、新作の公開時にシグナルが届きます。",
+  "profile_creators_meta_description": "Sons of the Forest の MOD と建築を作る人たち：ダウンロード数、フォロワー、ティア、代表作。クリエイターをフォローして新作を見逃さないように。",
+  "profile_creators_meta_title": "Sons of the Forest の MOD クリエイター",
+  "profile_creators_meta_title_page": "Sons of the Forest の MOD クリエイター — {page} ページ目",
+  "profile_creators_sort_downloads": "ダウンロード数順",
+  "profile_creators_sort_followers": "フォロワー数順",
+  "profile_creators_sort_recent": "最近のリリース順",
+  "profile_creators_sort_spotlight": "スポットライト",
+  "profile_creators_tiers_link": "クリエイターティアの仕組み",
+  "profile_creators_title": "クリエイター",
+  "profile_day_on_island": "島での {day} 日目",
+  "profile_feed_title": "{name} の新着リリース",
+  "profile_follow_error": "フォローを更新できませんでした。接続を確認して、もう一度お試しください。",
+  "profile_follow_name": "{name} をフォロー",
+  "profile_follow_own": "自分自身はフォローできません。",
+  "profile_follow_verify_email": "クリエイターをフォローするには、メールアドレスを確認してください。",
+  "profile_followed": "フォローしました。新しいリリースがあるとシグナルが届きます。",
+  "profile_joined": "{date} に参加",
+  "profile_kits_empty_action": "キットを見る",
+  "profile_kits_empty_description": "{name} はまだキットを共有していません。キットは、誰でも一度にインストールできる MOD の厳選セットです。",
+  "profile_kits_empty_title": "公開キットはありません",
+  "profile_kits_private": "{name} はキットを非公開にしています。",
+  "profile_kits_title": "{name} のキット",
+  "profile_link_copied": "プロフィールのリンクをコピーしました",
+  "profile_link_copy_failed": "リンクをコピーできませんでした。アドレスバーからコピーしてください。",
+  "profile_link_website": "ウェブサイト",
+  "profile_links_label": "リンク",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__number = count: number",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} は Sons of the Forest の MOD を制作しています：MOD・建築 {count__number} 件、{downloads} ダウンロード、フォロワー {followers__number} 人。SOTF Mods で無料ダウンロード。"
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__number = reviews: number",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD コミュニティ SOTF Mods の {name}：レビュー {reviews__number} 件、フィールドレポート {reports__number} 件。"
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name}（@{handle}）— Sons of the Forest の MOD クリエイター",
+  "profile_meta_title_member": "{name}（@{handle}）— Sons of the Forest MOD コミュニティ",
+  "profile_meta_title_tab": "{tab} · {name}（@{handle}）",
+  "profile_mods_empty_title": "まだ MOD はありません",
+  "profile_mods_title": "{name} の MOD",
+  "profile_pinned_title": "ピン留め",
+  "profile_private_title": "非公開",
+  "profile_rank_builder": "建築家",
+  "profile_rank_castaway": "漂流者",
+  "profile_rank_forager": "採集者",
+  "profile_rank_label": "サバイバーランク",
+  "profile_rank_legend": "島の伝説",
+  "profile_rank_pathfinder": "開拓者",
+  "profile_rank_progress": "{rank} · {xp} XP。{next} まであと {needed} XP。",
+  "profile_rank_scavenger": "スカベンジャー",
+  "profile_rank_top": "{rank} · {xp} XP。島の頂点です。",
+  "profile_rank_trapper": "罠師",
+  "profile_rank_veteran": "ベテラン",
+  "profile_review_of": "{mod} のレビュー",
+  "profile_reviews_empty_description": "{name} はまだ MOD をレビューしていません。",
+  "profile_reviews_empty_title": "まだレビューはありません",
+  "profile_reviews_newest": "最新のレビュー",
+  "profile_reviews_older": "以前のレビュー",
+  "profile_reviews_pagination": "さらにレビューを表示",
+  "profile_reviews_title": "{name} のレビュー",
+  "profile_sort_downloads": "ダウンロード数順",
+  "profile_sort_label": "並べ替え",
+  "profile_sort_new": "新着順",
+  "profile_sort_updated": "最近の更新順",
+  "profile_stat_downloads_label": "ダウンロード",
+  "profile_stat_followers_label": "フォロワー",
+  "profile_stat_helpful_label": "「役に立った」票",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "レビューへの「役に立った」票 {count__number} 件"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "MOD",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__number = mods: number",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "MOD {mods__number} 件、建築 {builds__number} 件"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "平均評価",
+  "profile_stat_rating_title": "平均 {rating}（5 点満点）",
+  "profile_stats_label": "統計",
+  "profile_tab_activity": "アクティビティ",
+  "profile_tab_badges": "バッジ",
+  "profile_tab_builds": "建築",
+  "profile_tab_error_description": "サーバーの応答に時間がかかりすぎました。少し待ってからもう一度お試しください。",
+  "profile_tab_error_title": "このセクションを読み込めませんでした",
+  "profile_tab_kits": "キット",
+  "profile_tab_mods": "MOD",
+  "profile_tab_reviews": "レビュー",
+  "profile_tabs_label": "プロフィールのセクション",
+  "profile_tier_cabin": "キャビン",
+  "profile_tier_campfire": "焚き火",
+  "profile_tier_fortress": "要塞",
+  "profile_tier_label": "クリエイターティア",
+  "profile_tier_landmark": "ランドマーク",
+  "profile_tier_lean_to": "差しかけ小屋",
+  "profile_tier_treehouse": "ツリーハウス",
+  "profile_unfollowed": "フォローを解除しました。",
+  "profile_verified_creator": "認証済みクリエイター",
+  "profile_xp_bug_report_resolved": "バグ報告がクリエイターに解決済みにされる",
+  "profile_xp_comment_solution_or_pinned": "コメントがクリエイターに解決策としてマーク、またはピン留めされる",
+  "profile_xp_compat_report": "フィールドレポート（このビルドで動く？）",
+  "profile_xp_compat_report_consensus": "ボーナス：72 時間後にレポートが合意と一致",
+  "profile_xp_first_follow": "最初の MOD またはクリエイターをフォローする",
+  "profile_xp_kit_followers_10": "キットのフォロワーが 10 人増えるごと",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "1 日 {count__number} 回"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "上限なし",
+  "profile_xp_limit_once": "1 回のみ",
+  "profile_xp_limit_per_build": "ゲームビルドごとに 1 回",
+  "profile_xp_onboarding_completed": "「1 日目」チェックリストを完了する",
+  "profile_xp_patch_day_release": "クリエイター：MOD を壊すアップデートから 14 日以内に互換バージョンを公開",
+  "profile_xp_profile_completed": "プロフィールを完成させる",
+  "profile_xp_review_helpful_vote": "レビューへの「役に立った」票",
+  "profile_xp_review_with_text": "80 文字以上のテキスト付きレビュー",
   "ui_breadcrumbs": "パンくずリスト",
   "ui_cancel": "キャンセル",
   "ui_choose": "選択…",

@@ -2757,6 +2757,653 @@
   "mod_whats_new_read": "Читать полевые заметки",
   "mod_whats_new_title": "Что нового с вашей последней загрузки (v{version})",
   "mod_whats_new_up_to_date": "У вас последняя версия (v{version}).",
+  "profile_achievements_badge_repeatable": "Можно получить несколько раз",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} выживших · есть у {count__number} участника",
+        "count__plural=few": "{share} выживших · есть у {count__number} участников",
+        "count__plural=many": "{share} выживших · есть у {count__number} участников",
+        "count__plural=*": "{share} выживших · есть у {count__number} участника"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "Значки заполняют полевой дневник каждого выжившего. Закрытые показаны пунктиром с подсказкой, чтобы вы всегда знали, что дальше.",
+  "profile_achievements_badges_title": "Значки",
+  "profile_achievements_day_body": "Каждый профиль показывает, сколько дней прошло с создания аккаунта. Чистая идентичность: очков это не даёт.",
+  "profile_achievements_day_title": "День N на острове",
+  "profile_achievements_fair_play_downloads": "Скачивания никогда не дают XP, поэтому накручивать их бессмысленно.",
+  "profile_achievements_fair_play_new_accounts": "Совсем новые аккаунты весят вдвое меньше в оценках и совместимости, пока не заслужат доверие.",
+  "profile_achievements_fair_play_reversible": "Каждое очко XP записывается и может быть отменено, если получено нечестно.",
+  "profile_achievements_fair_play_same_network": "Голоса и отчёты между аккаунтами из одной сети в течение 24 часов не учитываются.",
+  "profile_achievements_fair_play_spikes": "Резкие всплески скачиваний проверяют рейнджеры.",
+  "profile_achievements_fair_play_title": "Честная игра",
+  "profile_achievements_intro": "Все правила наград острова — открыто. Они отмечают качество и помощь, а не голое количество.",
+  "profile_achievements_meta_description": "Как устроены ранги выживших, XP, уровни авторов, значки и вехи модов на SOTF Mods. Открытые правила, которые награждают качество и помощь, а не количество.",
+  "profile_achievements_meta_title": "Значки, ранги и уровни авторов",
+  "profile_achievements_milestones_intro": "Каждый мод отмечает вехи по скачиваниям, считая с первого дня. Они показаны на временной шкале на странице мода, а самые крупные объявляются в Discord.",
+  "profile_achievements_milestones_title": "Вехи модов",
+  "profile_achievements_motw_body": "Каждый понедельник побеждает мод с самым сильным ростом уникальных скачиваний — если он опубликован, работает на текущей сборке и хорошо оценён. Один и тот же автор не может победить дважды за две недели.",
+  "profile_achievements_motw_title": "Мод недели",
+  "profile_achievements_principle_no_streaks": "Никаких ежедневных серий, лутбоксов и рейтингов, которые кого-то унижают.",
+  "profile_achievements_principle_privacy": "Ранг и активность можно скрыть в настройках приватности.",
+  "profile_achievements_principle_quality": "XP дают за помощь другим: полезные отзывы, точные полевые отчёты и решённые проблемы. Скачивания никогда не дают XP.",
+  "profile_achievements_principle_retroactive": "Всё засчитывается задним числом: аккаунты с 2023 года сохраняют то, что уже заработали.",
+  "profile_achievements_ranks_intro": "У каждого участника есть ранг выжившего, который растёт вместе с XP за помощь сообществу. Его нельзя купить, и он никогда не сгорает из-за неактивности.",
+  "profile_achievements_ranks_title": "Ранги выживших",
+  "profile_achievements_tier_perks": "Штамп уровня и рамка аватара.",
+  "profile_achievements_tier_perks_spotlight": "Штамп уровня, рамка аватара и место в центре внимания на главной.",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{downloads} скачивание",
+        "count__plural=few": "{downloads} скачивания",
+        "count__plural=many": "{downloads} скачиваний",
+        "count__plural=*": "{downloads} скачивания"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "Авторы автоматически растут в уровне по сумме скачиваний всех своих модов, включая историю до v2. Каждый уровень добавляет штамп в профиль и рамку к аватару.",
+  "profile_achievements_tiers_title": "Уровни авторов",
+  "profile_achievements_title": "Достижения",
+  "profile_achievements_toc": "На этой странице",
+  "profile_achievements_xp_action": "Действие",
+  "profile_achievements_xp_limit": "Лимит",
+  "profile_achievements_xp_needed": "Нужно XP",
+  "profile_achievements_xp_note": "Действия с вашим собственным контентом не считаются. XP проверяется и может быть отменён, если получен нечестно.",
+  "profile_achievements_xp_title": "Как заработать XP",
+  "profile_action_edit": "Редактировать профиль",
+  "profile_activity_caption": "Релизы, комментарии, отзывы и полевые отчёты по дням (UTC).",
+  "profile_activity_cell": "{date}: {detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} комментарий",
+        "count__plural=few": "{count__number} комментария",
+        "count__plural=many": "{count__number} комментариев",
+        "count__plural=*": "{count__number} комментария"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} релиз",
+        "count__plural=few": "{count__number} релиза",
+        "count__plural=many": "{count__number} релизов",
+        "count__plural=*": "{count__number} релиза"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} полевой отчёт",
+        "count__plural=few": "{count__number} полевых отчёта",
+        "count__plural=many": "{count__number} полевых отчётов",
+        "count__plural=*": "{count__number} полевого отчёта"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} отзыв",
+        "count__plural=few": "{count__number} отзыва",
+        "count__plural=many": "{count__number} отзывов",
+        "count__plural=*": "{count__number} отзыва"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} за последние 12 месяцев ничего не публиковал(а), не комментировал(а), не оценивал(а) и не сообщал(а).",
+  "profile_activity_empty_title": "Тихая тропа",
+  "profile_activity_heatmap_label": "Вклады {name} за последние 12 месяцев",
+  "profile_activity_kind_comments": "Комментарии",
+  "profile_activity_kind_releases": "Релизы",
+  "profile_activity_kind_reports": "Полевые отчёты",
+  "profile_activity_kind_reviews": "Отзывы",
+  "profile_activity_legend_less": "Меньше",
+  "profile_activity_legend_more": "Больше",
+  "profile_activity_private": "{name} скрывает свою активность.",
+  "profile_activity_recent_title": "Последние дни на тропе",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input days",
+        "input from",
+        "input to",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural",
+        "days__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*, days__plural=one": "Нет вкладов за {days__number} день с {from} по {to}.",
+        "count__exact=0, count__plural=*, days__plural=few": "Нет вкладов за {days__number} дня с {from} по {to}.",
+        "count__exact=0, count__plural=*, days__plural=many": "Нет вкладов за {days__number} дней с {from} по {to}.",
+        "count__exact=0, count__plural=*, days__plural=*": "Нет вкладов за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=one, days__plural=one": "{count__number} вклад за {days__number} день с {from} по {to}.",
+        "count__exact=*, count__plural=one, days__plural=few": "{count__number} вклад за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=one, days__plural=many": "{count__number} вклад за {days__number} дней с {from} по {to}.",
+        "count__exact=*, count__plural=one, days__plural=*": "{count__number} вклад за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=few, days__plural=one": "{count__number} вклада за {days__number} день с {from} по {to}.",
+        "count__exact=*, count__plural=few, days__plural=few": "{count__number} вклада за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=few, days__plural=many": "{count__number} вклада за {days__number} дней с {from} по {to}.",
+        "count__exact=*, count__plural=few, days__plural=*": "{count__number} вклада за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=many, days__plural=one": "{count__number} вкладов за {days__number} день с {from} по {to}.",
+        "count__exact=*, count__plural=many, days__plural=few": "{count__number} вкладов за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=many, days__plural=many": "{count__number} вкладов за {days__number} дней с {from} по {to}.",
+        "count__exact=*, count__plural=many, days__plural=*": "{count__number} вкладов за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=*, days__plural=one": "{count__number} вклада за {days__number} день с {from} по {to}.",
+        "count__exact=*, count__plural=*, days__plural=few": "{count__number} вклада за {days__number} дня с {from} по {to}.",
+        "count__exact=*, count__plural=*, days__plural=many": "{count__number} вклада за {days__number} дней с {from} по {to}.",
+        "count__exact=*, count__plural=*, days__plural=*": "{count__number} вклада за {days__number} дня с {from} по {to}."
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "Активные дни",
+  "profile_activity_table_caption": "Вклады {name} по месяцам",
+  "profile_activity_table_month": "Месяц",
+  "profile_activity_table_toggle": "Показать таблицей",
+  "profile_activity_table_total": "Всего",
+  "profile_activity_title": "Активность",
+  "profile_avatar_alt": "Аватар {name}",
+  "profile_badge_bug_hunter_hint": "Добейтесь, чтобы авторы отметили 5 ваших баг-репортов как решённые.",
+  "profile_badge_bug_hunter_name": "Охотник за багами",
+  "profile_badge_cartographer_hint": "Создайте публичный набор, у которого будет 10 подписчиков.",
+  "profile_badge_cartographer_name": "Картограф",
+  "profile_badge_crash_landing_hint": "Опубликуйте свой первый мод.",
+  "profile_badge_crash_landing_name": "Аварийная посадка",
+  "profile_badge_earned_on": "Получен {date}",
+  "profile_badge_featured": "Избранный",
+  "profile_badge_field_medic_hint": "Отправьте 10 отчётов о совместимости, совпавших с мнением сообщества.",
+  "profile_badge_field_medic_name": "Полевой медик",
+  "profile_badge_first_blueprint_hint": "Опубликуйте свою первую постройку.",
+  "profile_badge_first_blueprint_name": "Первый чертёж",
+  "profile_badge_first_field_report_hint": "Отправьте свой первый отчёт о совместимости.",
+  "profile_badge_first_field_report_name": "Первый полевой отчёт",
+  "profile_badge_first_review_hint": "Напишите свой первый отзыв с текстом.",
+  "profile_badge_first_review_name": "Первый отзыв",
+  "profile_badge_group_awards": "Награды",
+  "profile_badge_group_community": "Сообщество",
+  "profile_badge_group_creator": "Автор",
+  "profile_badge_group_legacy": "Первые выжившие",
+  "profile_badge_group_onboarding": "Первые шаги",
+  "profile_badge_group_roles": "Роли",
+  "profile_badge_group_secret": "Секретные",
+  "profile_badge_helping_hand_hint": "Добейтесь, чтобы автор отметил 5 ваших комментариев как решение или закрепил их.",
+  "profile_badge_helping_hand_name": "Рука помощи",
+  "profile_badge_island_favorite_hint": "Получите для мода оценку 4,5 или выше при минимум 20 отзывах.",
+  "profile_badge_island_favorite_name": "Любимец острова",
+  "profile_badge_locked": "Закрыт",
+  "profile_badge_mod_of_the_week_hint": "Один из ваших модов выбран модом недели. Можно получить несколько раз.",
+  "profile_badge_mod_of_the_week_name": "Мод недели",
+  "profile_badge_night_owl_hint": "Сделайте 5 вкладов между полуночью и 4 часами утра по местному времени.",
+  "profile_badge_night_owl_name": "Ночная сова",
+  "profile_badge_original_survivor_hint": "Аккаунт создан в {year} году, до запуска SOTF Mods v2.",
+  "profile_badge_original_survivor_name": "Первый выживший {year}",
+  "profile_badge_patch_day_hero_hint": "Выпустите совместимую версию в течение 7 дней после обновления игры, ломающего моды.",
+  "profile_badge_patch_day_hero_name": "Герой дня патча",
+  "profile_badge_pillar_of_the_island_hint": "Сделайте библиотеку, которая нужна как минимум 3 модам других авторов.",
+  "profile_badge_pillar_of_the_island_name": "Опора острова",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "Модераторы, которые берегут остров.",
+  "profile_badge_ranger_name": "Рейнджер",
+  "profile_badge_secret_hint": "Продолжайте исследовать. Кое-что на острове можно найти только ночью.",
+  "profile_badge_secret_name": "Секретный значок",
+  "profile_badge_staff_pick_hint": "Команда выбрала один из ваших модов. Можно получить несколько раз.",
+  "profile_badge_staff_pick_name": "Выбор команды",
+  "profile_badge_survived_day_one_hint": "Выполните чек-лист первого дня.",
+  "profile_badge_survived_day_one_name": "Пережил первый день",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "Помог(ла) перевести SOTF Mods на другой язык.",
+  "profile_badge_translator_name": "Переводчик",
+  "profile_badge_verified_creator_hint": "Авторы, проверенные командой SOTF Mods.",
+  "profile_badge_verified_creator_name": "Проверенный автор",
+  "profile_badge_voice_of_the_island_hint": "Получите 50 голосов «полезно» за свои отзывы.",
+  "profile_badge_voice_of_the_island_name": "Голос острова",
+  "profile_badge_well_documented_hint": "Доведите качество карточки одного из модов до 100.",
+  "profile_badge_well_documented_name": "Хорошо задокументирован",
+  "profile_badges_empty_description": "Значки выдаются за публикации, отзывы, отчёты о совместимости и помощь другим. Закрытые показаны здесь пунктиром.",
+  "profile_badges_empty_title": "Дневник пока пуст",
+  "profile_badges_featured_label": "Избранные значки",
+  "profile_badges_rules_link": "Как работают значки",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Значков пока нет.",
+        "count__exact=*, count__plural=one": "Получен {count__number} значок.",
+        "count__exact=*, count__plural=few": "Получено {count__number} значка.",
+        "count__exact=*, count__plural=many": "Получено {count__number} значков.",
+        "count__exact=*, count__plural=*": "Получено {count__number} значка."
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input count",
+        "input total",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Ни одного значка из {total}.",
+        "count__exact=*, count__plural=one": "{count__number} значок из {total}.",
+        "count__exact=*, count__plural=few": "{count__number} значка из {total}.",
+        "count__exact=*, count__plural=many": "{count__number} значков из {total}.",
+        "count__exact=*, count__plural=*": "{count__number} значка из {total}."
+      }
+    }
+  ],
+  "profile_badges_title": "Полевой дневник",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__plural = badgeCount: plural",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [
+        "badgeCount__plural"
+      ],
+      "match": {
+        "badgeCount__plural=one": "Добро пожаловать в v2: вы получили {badgeCount__number} значок",
+        "badgeCount__plural=few": "Добро пожаловать в v2: вы получили {badgeCount__number} значка",
+        "badgeCount__plural=many": "Добро пожаловать в v2: вы получили {badgeCount__number} значков",
+        "badgeCount__plural=*": "Добро пожаловать в v2: вы получили {badgeCount__number} значка"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "Построек пока нет",
+  "profile_builds_title": "Постройки автора {name}",
+  "profile_cards_empty_action": "Смотреть моды",
+  "profile_cards_empty_description": "{name} ещё ничего здесь не опубликовал(а). Посмотрите, что сделали другие жители острова.",
+  "profile_creator_top_mod": "Главный мод: {mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} автор",
+        "count__plural=few": "{display} автора",
+        "count__plural=many": "{display} авторов",
+        "count__plural=*": "{display} автора"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "Здесь ещё никто не опубликовал мод. Первый получит значок «Аварийная посадка».",
+  "profile_creators_empty_title": "Авторов пока нет",
+  "profile_creators_error_title": "Авторы не загрузились",
+  "profile_creators_intro": "Выжившие, которые создают моды и постройки острова. Подпишитесь, чтобы получать сигнал, когда они выпускают что-то новое.",
+  "profile_creators_meta_description": "Люди, которые делают моды и постройки для Sons of the Forest: скачивания, подписчики, уровни и самые известные работы. Подпишитесь на автора, чтобы узнавать о новых релизах.",
+  "profile_creators_meta_title": "Авторы модов для Sons of the Forest",
+  "profile_creators_meta_title_page": "Авторы модов для Sons of the Forest — страница {page}",
+  "profile_creators_sort_downloads": "Больше всего скачиваний",
+  "profile_creators_sort_followers": "Больше всего подписчиков",
+  "profile_creators_sort_recent": "Недавние релизы",
+  "profile_creators_sort_spotlight": "В центре внимания",
+  "profile_creators_tiers_link": "Как работают уровни авторов",
+  "profile_creators_title": "Авторы",
+  "profile_day_on_island": "День {day} на острове",
+  "profile_feed_title": "Новые релизы автора {name}",
+  "profile_follow_error": "Не удалось обновить подписку. Проверьте соединение и попробуйте снова.",
+  "profile_follow_name": "Подписаться на {name}",
+  "profile_follow_own": "Нельзя подписаться на самого себя.",
+  "profile_follow_verify_email": "Подтвердите адрес электронной почты, чтобы подписываться на авторов.",
+  "profile_followed": "Вы подписаны. Мы пришлём сигнал, когда выйдет что-то новое.",
+  "profile_joined": "На сайте с {date}",
+  "profile_kits_empty_action": "Смотреть наборы",
+  "profile_kits_empty_description": "{name} ещё не поделился(-ась) ни одним набором. Наборы — это подборки модов, которые можно установить за один раз.",
+  "profile_kits_empty_title": "Нет публичных наборов",
+  "profile_kits_private": "{name} скрывает свои наборы.",
+  "profile_kits_title": "Наборы автора {name}",
+  "profile_link_copied": "Ссылка на профиль скопирована",
+  "profile_link_copy_failed": "Не удалось скопировать ссылку. Скопируйте её из адресной строки.",
+  "profile_link_website": "Сайт",
+  "profile_links_label": "Ссылки",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local downloadsCount__plural = downloadsCount: plural",
+        "local followers__plural = followers: plural",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "downloadsCount__plural",
+        "followers__plural"
+      ],
+      "match": {
+        "count__plural=one, downloadsCount__plural=one, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивание, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивание, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=few, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачиваний, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачиваний, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=many, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мод или постройка, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=one, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=few, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=many, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=few, downloadsCount__plural=*, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивание, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивание, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=one, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=few, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачиваний, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачиваний, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=many, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=many, downloadsCount__plural=*, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} модов и построек, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивание, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=few, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=many, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачиваний, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=one": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчик. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=few": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=many": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчиков. Бесплатные загрузки на SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=*": "{name} делает моды для Sons of the Forest: {count__number} мода и постройки, {downloads} скачивания, {followers__number} подписчика. Бесплатные загрузки на SOTF Mods."
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number",
+        "local reports__plural = reports: plural",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [
+        "reviews__plural",
+        "reports__plural"
+      ],
+      "match": {
+        "reviews__plural=one, reports__plural=one": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыв и {reports__number} полевой отчёт.",
+        "reviews__plural=one, reports__plural=few": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыв и {reports__number} полевых отчёта.",
+        "reviews__plural=one, reports__plural=many": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыв и {reports__number} полевых отчётов.",
+        "reviews__plural=one, reports__plural=*": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыв и {reports__number} полевого отчёта.",
+        "reviews__plural=few, reports__plural=one": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевой отчёт.",
+        "reviews__plural=few, reports__plural=few": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевых отчёта.",
+        "reviews__plural=few, reports__plural=many": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевых отчётов.",
+        "reviews__plural=few, reports__plural=*": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевого отчёта.",
+        "reviews__plural=many, reports__plural=one": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзывов и {reports__number} полевой отчёт.",
+        "reviews__plural=many, reports__plural=few": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзывов и {reports__number} полевых отчёта.",
+        "reviews__plural=many, reports__plural=many": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзывов и {reports__number} полевых отчётов.",
+        "reviews__plural=many, reports__plural=*": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзывов и {reports__number} полевого отчёта.",
+        "reviews__plural=*, reports__plural=one": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевой отчёт.",
+        "reviews__plural=*, reports__plural=few": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевых отчёта.",
+        "reviews__plural=*, reports__plural=many": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевых отчётов.",
+        "reviews__plural=*, reports__plural=*": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва и {reports__number} полевого отчёта."
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name} (@{handle}) — автор модов для Sons of the Forest",
+  "profile_meta_title_member": "{name} (@{handle}) — сообщество моддинга Sons of the Forest",
+  "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_mods_empty_title": "Модов пока нет",
+  "profile_mods_title": "Моды автора {name}",
+  "profile_pinned_title": "Закреплённые",
+  "profile_private_title": "Скрыто",
+  "profile_rank_builder": "Строитель",
+  "profile_rank_castaway": "Потерпевший крушение",
+  "profile_rank_forager": "Собиратель",
+  "profile_rank_label": "Ранг выжившего",
+  "profile_rank_legend": "Легенда острова",
+  "profile_rank_pathfinder": "Следопыт",
+  "profile_rank_progress": "{rank} · {xp} XP. До ранга «{next}» осталось {needed} XP.",
+  "profile_rank_scavenger": "Мародёр",
+  "profile_rank_top": "{rank} · {xp} XP. Вершина острова.",
+  "profile_rank_trapper": "Охотник-ловчий",
+  "profile_rank_veteran": "Ветеран",
+  "profile_review_of": "Отзыв о {mod}",
+  "profile_reviews_empty_description": "{name} ещё не оценил(а) ни одного мода.",
+  "profile_reviews_empty_title": "Отзывов пока нет",
+  "profile_reviews_newest": "Новые отзывы",
+  "profile_reviews_older": "Более старые отзывы",
+  "profile_reviews_pagination": "Ещё отзывы",
+  "profile_reviews_title": "Отзывы автора {name}",
+  "profile_sort_downloads": "Больше всего скачиваний",
+  "profile_sort_label": "Сортировка",
+  "profile_sort_new": "Новые",
+  "profile_sort_updated": "Недавно обновлённые",
+  "profile_stat_downloads_label": "Скачивания",
+  "profile_stat_followers_label": "Подписчики",
+  "profile_stat_helpful_label": "Голоса «полезно»",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} голос «полезно» за отзывы",
+        "count__plural=few": "{count__number} голоса «полезно» за отзывы",
+        "count__plural=many": "{count__number} голосов «полезно» за отзывы",
+        "count__plural=*": "{count__number} голоса «полезно» за отзывы"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "Моды",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__plural = mods: plural",
+        "local mods__number = mods: number",
+        "local builds__plural = builds: plural",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [
+        "mods__plural",
+        "builds__plural"
+      ],
+      "match": {
+        "mods__plural=one, builds__plural=one": "{mods__number} мод и {builds__number} постройка",
+        "mods__plural=one, builds__plural=few": "{mods__number} мод и {builds__number} постройки",
+        "mods__plural=one, builds__plural=many": "{mods__number} мод и {builds__number} построек",
+        "mods__plural=one, builds__plural=*": "{mods__number} мод и {builds__number} постройки",
+        "mods__plural=few, builds__plural=one": "{mods__number} мода и {builds__number} постройка",
+        "mods__plural=few, builds__plural=few": "{mods__number} мода и {builds__number} постройки",
+        "mods__plural=few, builds__plural=many": "{mods__number} мода и {builds__number} построек",
+        "mods__plural=few, builds__plural=*": "{mods__number} мода и {builds__number} постройки",
+        "mods__plural=many, builds__plural=one": "{mods__number} модов и {builds__number} постройка",
+        "mods__plural=many, builds__plural=few": "{mods__number} модов и {builds__number} постройки",
+        "mods__plural=many, builds__plural=many": "{mods__number} модов и {builds__number} построек",
+        "mods__plural=many, builds__plural=*": "{mods__number} модов и {builds__number} постройки",
+        "mods__plural=*, builds__plural=one": "{mods__number} мода и {builds__number} постройка",
+        "mods__plural=*, builds__plural=few": "{mods__number} мода и {builds__number} постройки",
+        "mods__plural=*, builds__plural=many": "{mods__number} мода и {builds__number} построек",
+        "mods__plural=*, builds__plural=*": "{mods__number} мода и {builds__number} постройки"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "Средняя оценка",
+  "profile_stat_rating_title": "В среднем {rating} из 5",
+  "profile_stats_label": "Статистика",
+  "profile_tab_activity": "Активность",
+  "profile_tab_badges": "Значки",
+  "profile_tab_builds": "Постройки",
+  "profile_tab_error_description": "Сервер отвечал слишком долго. Попробуйте ещё раз через минуту.",
+  "profile_tab_error_title": "Этот раздел не загрузился",
+  "profile_tab_kits": "Наборы",
+  "profile_tab_mods": "Моды",
+  "profile_tab_reviews": "Отзывы",
+  "profile_tabs_label": "Разделы профиля",
+  "profile_tier_cabin": "Хижина",
+  "profile_tier_campfire": "Костёр",
+  "profile_tier_fortress": "Крепость",
+  "profile_tier_label": "Уровень автора",
+  "profile_tier_landmark": "Достопримечательность",
+  "profile_tier_lean_to": "Навес",
+  "profile_tier_treehouse": "Дом на дереве",
+  "profile_unfollowed": "Вы отписались.",
+  "profile_verified_creator": "Проверенный автор",
+  "profile_xp_bug_report_resolved": "Баг-репорт отмечен автором как решённый",
+  "profile_xp_comment_solution_or_pinned": "Комментарий отмечен автором как решение или закреплён",
+  "profile_xp_compat_report": "Полевой отчёт (работает ли на этой сборке?)",
+  "profile_xp_compat_report_consensus": "Бонус: ваш отчёт совпал с общим мнением через 72 ч",
+  "profile_xp_first_follow": "Подписаться на первый мод или автора",
+  "profile_xp_kit_followers_10": "Ваш набор набирает очередные 10 подписчиков",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} в день"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "Без лимита",
+  "profile_xp_limit_once": "Один раз",
+  "profile_xp_limit_per_build": "Один раз на сборку игры",
+  "profile_xp_onboarding_completed": "Выполнить чек-лист первого дня",
+  "profile_xp_patch_day_release": "Автор: совместимая версия в течение 14 дней после обновления, ломающего моды",
+  "profile_xp_profile_completed": "Заполнить профиль",
+  "profile_xp_review_helpful_vote": "Голос «полезно» за ваш отзыв",
+  "profile_xp_review_with_text": "Отзыв с текстом не короче 80 символов",
   "ui_breadcrumbs": "Навигационная цепочка",
   "ui_cancel": "Отмена",
   "ui_choose": "Выбери…",

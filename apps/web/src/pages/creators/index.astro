@@ -1,0 +1,176 @@
+---
+/**
+ * Creators directory `/creators` (WP-64, PLAN §4.2): every creator with a published mod or build,
+ * with their stats, tier and top mod, sortable by downloads, followers, latest release or the
+ * weekly spotlight, and a follow button per card (vanilla, `profile-page.ts`).
+ *
+ * - SSR, edge-cached 900 s with `list:mods`. `?page=N` is canonical to itself; other sorts are
+ *   `noindex, follow` with the canonical pointing to the default listing.
+ * - JSON-LD `CollectionPage` + `ItemList` (+ `BreadcrumbList` from `PageLayout`).
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Pagination } from '@sotf/ui/pagination';
+import { ArrowRight, Users } from 'lucide-react';
+import { CreatorGrid } from '../../components/profile/Domain.tsx';
+import {
+  CREATOR_DIRECTORY_SORTS,
+  CREATORS_PAGE_SIZE,
+  type CreatorDirectorySort,
+  isCreatorSort,
+  loadCreators,
+  parsePage,
+} from '../../components/profile/data.ts';
+import { profileDomainI18n } from '../../components/profile/i18n.ts';
+import ProfileToast from '../../components/profile/ProfileToast.astro';
+import { redirectClean } from '../../components/profile/responses.ts';
+import { creatorsJsonLd } from '../../components/profile/seo.ts';
+import TabState from '../../components/profile/TabState.astro';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+import { ensureLocals } from '../../lib/request-context.ts';
+
+export const prerender = false;
+
+const DEFAULT_SORT: CreatorDirectorySort = 'downloads';
+
+const locale = ensureLocals(Astro).locale;
+const params = Astro.url.searchParams;
+const rawSort = params.get('sort');
+const page = parsePage(params.get('page'));
+if (page === null || (rawSort !== null && !isCreatorSort(rawSort))) {
+  return redirectClean(Astro, href('/creators', locale));
+}
+const sort: CreatorDirectorySort = rawSort !== null && isCreatorSort(rawSort) ? rawSort : DEFAULT_SORT;
+
+function listPath(options: { sort?: CreatorDirectorySort; page?: number }): string {
+  const query = new URLSearchParams();
+  if (options.sort && options.sort !== DEFAULT_SORT) query.set('sort', options.sort);
+  if (options.page && options.page > 1) query.set('page', String(options.page));
+  const text = query.toString();
+  return text ? `/creators?${text}` : '/creators';
+}
+
+const result = await loadCreators(sort, page);
+if (result && page > 1 && result.totalPages > 0 && page > result.totalPages) {
+  return redirectClean(Astro, href(listPath({ sort, page: result.totalPages }), locale));
+}
+setPageCache(Astro, result ? pageCache.custom(EDGE_TTL.detail, ['list:mods']) : pageCache.custom(EDGE_TTL.notFound));
+
+const env = loadEnv();
+const i18n = profileDomainI18n(locale);
+const canonicalPath = sort === DEFAULT_SORT ? listPath({ page }) : '/creators';
+const pageUrl = `${env.siteUrl}${href(canonicalPath, locale)}`;
+const SORT_LABEL: Record<CreatorDirectorySort, () => string> = {
+  downloads: () => m.profile_creators_sort_downloads(),
+  followers: () => m.profile_creators_sort_followers(),
+  recent: () => m.profile_creators_sort_recent(),
+  spotlight: () => m.profile_creators_sort_spotlight(),
+};
+const title =
+  page > 1 ? m.profile_creators_meta_title_page({ page }) : m.profile_creators_meta_title();
+const jsonLd = result
+  ? [
+      creatorsJsonLd({
+        creators: result.items,
+        locale,
+        siteUrl: env.siteUrl,
+        pageUrl,
+        offset: (page - 1) * CREATORS_PAGE_SIZE,
+      }),
+    ]
+  : [];
+---
+
+<PageLayout
+  template="creators"
+  width="wide"
+  seo={{
+    title,
+    description: m.profile_creators_meta_description(),
+    path: canonicalPath,
+    noindex: sort !== DEFAULT_SORT || !result || result.items.length === 0,
+  }}
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_nav_creators() }]}
+>
+  <div class="grid gap-8" data-creators-page>
+    <header class="grid gap-3">
+      <h1 class="font-display-caps text-display-md text-fg">{m.profile_creators_title()}</h1>
+      <p class="max-w-(--container-prose) text-lg text-pretty text-fg-muted">{m.profile_creators_intro()}</p>
+      {
+        result && result.total > 0 && (
+          <p class="readout text-fg-muted">{m.profile_creators_count({ count: result.total, display: formatNumber(locale, result.total) })}</p>
+        )
+      }
+    </header>
+
+    <div class="flex flex-wrap items-center justify-between gap-3">
+      <nav aria-label={m.profile_sort_label()} class="flex flex-wrap items-center gap-1 text-sm">
+        <span class="me-1 text-fg-muted">{m.profile_sort_label()}</span>
+        {
+          CREATOR_DIRECTORY_SORTS.map((option) => (
+            <a
+              href={href(listPath({ sort: option }), locale)}
+              aria-current={sort === option ? 'page' : undefined}
+              class="inline-flex min-h-11 items-center rounded-md px-2.5 text-fg-muted hover:bg-fg/6 hover:text-fg aria-[current=page]:bg-fg/8 aria-[current=page]:font-semibold aria-[current=page]:text-fg md:min-h-8"
+            >
+              {SORT_LABEL[option]()}
+            </a>
+          ))
+        }
+      </nav>
+      <a href={href('/achievements', locale)} class="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-link md:min-h-8">
+        {m.profile_creators_tiers_link()}
+        <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+      </a>
+    </div>
+
+    {
+      result ? (
+        result.items.length > 0 ? (
+          <>
+            <CreatorGrid
+              i18n={i18n}
+              creators={result.items}
+              label={m.profile_creators_title()}
+              follow={{
+                loginAction: href('/login', locale),
+                next: href(Astro.locals.pagePath, locale),
+                follow: m.common_action_follow(),
+                followName: (name: string) => m.profile_follow_name({ name }),
+              }}
+            />
+            <Pagination
+              page={result.page}
+              totalPages={result.totalPages}
+              hrefFor={(target: number) => href(listPath({ sort, page: target }), locale)}
+            />
+          </>
+        ) : (
+          <TabState
+            kind="empty"
+            icon={Users}
+            title={m.profile_creators_empty_title()}
+            description={m.profile_creators_empty_description()}
+            action={{ href: href('/mods', locale), label: m.profile_cards_empty_action() }}
+          />
+        )
+      ) : (
+        <TabState kind="error" title={m.profile_creators_error_title()} description={m.profile_tab_error_description()} />
+      )
+    }
+
+    <ProfileToast />
+  </div>
+</PageLayout>
+
+<script>
+  import { initProfilePage } from '../../components/profile/profile-page.ts';
+
+  initProfilePage();
+</script>
