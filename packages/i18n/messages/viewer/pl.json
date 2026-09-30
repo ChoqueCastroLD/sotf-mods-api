@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "Widok z góry",
+  "viewer_alt": "Widok z góry na {name}: {pieces} elementów, {width} na {depth} na {height} metra.",
+  "viewer_stats": "{width} × {depth} × {height} m · {pieces} elementów",
+  "viewer_explore": "Zobacz w 3D",
+  "viewer_back": "Wróć do podglądu",
+  "viewer_loading": "Wczytywanie widoku 3D…",
+  "viewer_pending": "Podgląd jest generowany. Wróć za minutę.",
+  "viewer_unavailable": "Brak podglądu dla tej budowli.",
+  "viewer_no_webgl": "Twoja przeglądarka nie potrafi pokazać widoku 3D, więc zostaje widok z góry.",
+  "viewer_failed": "Nie udało się wczytać widoku 3D.",
+  "viewer_sampled": "Pokazano {shown} z {total} elementów.",
+  "viewer_controls": "Przeciągnij, aby obrócić, przewiń lub ściśnij, aby przybliżyć, strzałki obracają widok, plus i minus zmieniają zoom.",
+  "viewer_canvas_label": "Interaktywny widok 3D: {name}"
+}

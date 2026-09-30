@@ -20,6 +20,7 @@ import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
 import { ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
+import BuildViewer from '../../../../components/builds/BuildViewer.astro';
 import BuildGallery from '../../../../components/builds/BuildGallery.astro';
 import BuildHeader from '../../../../components/builds/BuildHeader.astro';
 import BuildSocial from '../../../../components/builds/BuildSocial.astro';
@@ -138,7 +139,10 @@ const visibleCrumbs = trail.map((crumb) => ({
     <StatusBanners build={build} />
 
     <div class="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
-      <BuildGallery build={build} spec={spec} />
+      <div class="grid min-w-0 gap-6">
+        <BuildGallery build={build} spec={spec} />
+        <BuildViewer build={build} preview={extras.preview} />
+      </div>
       <BuildHeader build={build} spec={spec} versions={extras.versions} />
     </div>
 
@@ -210,7 +214,9 @@ const visibleCrumbs = trail.map((crumb) => ({
 </BaseLayout>
 
 <script>
+  import { initBuildViewer } from '../../../../components/builds/build-viewer.ts';
   import { initBuildPage } from '../../../../components/builds/build-page.ts';
 
   initBuildPage();
+  initBuildViewer();
 </script>

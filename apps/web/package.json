@@ -40,6 +40,7 @@
     "react-dom": "catalog:",
     "recharts": "catalog:",
     "tailwindcss": "catalog:",
+    "three": "catalog:",
     "thumbhash": "catalog:",
     "web-vitals": "catalog:",
     "zod": "catalog:"
@@ -56,6 +57,7 @@
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@types/three": "catalog:",
     "jsdom": "catalog:",
     "schema-dts": "catalog:",
     "typescript": "catalog:ts6",

@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "Vue de dessus",
+  "viewer_alt": "Vue de dessus de {name} : {pieces} pièces, {width} sur {depth} sur {height} mètres.",
+  "viewer_stats": "{width} × {depth} × {height} m · {pieces} pièces",
+  "viewer_explore": "Explorer en 3D",
+  "viewer_back": "Retour à l'aperçu",
+  "viewer_loading": "Chargement de la vue 3D…",
+  "viewer_pending": "L'aperçu est en cours de génération. Reviens dans une minute.",
+  "viewer_unavailable": "Aucun aperçu n'est disponible pour cette construction.",
+  "viewer_no_webgl": "Ton navigateur ne peut pas afficher la vue 3D, la vue de dessus reste affichée.",
+  "viewer_failed": "La vue 3D n'a pas pu être chargée.",
+  "viewer_sampled": "{shown} pièces affichées sur {total}.",
+  "viewer_controls": "Glisse pour tourner, molette ou pincement pour zoomer, flèches pour orbiter, plus et moins pour zoomer.",
+  "viewer_canvas_label": "Vue 3D interactive de {name}"
+}

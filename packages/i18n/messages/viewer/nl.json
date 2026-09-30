@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "Bovenaanzicht",
+  "viewer_alt": "Bovenaanzicht van {name}: {pieces} stukken, {width} bij {depth} bij {height} meter.",
+  "viewer_stats": "{width} × {depth} × {height} m · {pieces} stukken",
+  "viewer_explore": "Verken in 3D",
+  "viewer_back": "Terug naar het voorbeeld",
+  "viewer_loading": "3D-weergave laden…",
+  "viewer_pending": "Het voorbeeld wordt gemaakt. Kom over een minuut terug.",
+  "viewer_unavailable": "Er is geen voorbeeld voor deze bouwwerk.",
+  "viewer_no_webgl": "Je browser kan de 3D-weergave niet tonen, dus het bovenaanzicht blijft staan.",
+  "viewer_failed": "De 3D-weergave kon niet worden geladen.",
+  "viewer_sampled": "{shown} van {total} stukken getoond.",
+  "viewer_controls": "Sleep om te draaien, scroll of knijp om te zoomen, pijltjestoetsen om te cirkelen, plus en min om te zoomen.",
+  "viewer_canvas_label": "Interactieve 3D-weergave van {name}"
+}

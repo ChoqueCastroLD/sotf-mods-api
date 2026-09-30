@@ -1,0 +1,92 @@
+---
+/**
+ * Top-down preview of a build (T1-06). The default is a static SVG rendered on the server from the
+ * parsed blueprint (no JavaScript, no three.js); «Explore in 3D» loads three.js on click
+ * (`build-viewer.ts`). The SVG is decorative (`aria-hidden`) and the figure carries a text
+ * alternative with the size and the piece count, so the block is fully usable without sight, with
+ * JavaScript off or without WebGL.
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import type { BuildPreviewDTO } from '@sotf/contracts/build-viewer';
+import { Icon } from '@sotf/ui/icons';
+import { Box } from 'lucide-react';
+import type { ModDetailDTO } from './data.ts';
+
+interface Props {
+  build: ModDetailDTO;
+  preview: BuildPreviewDTO | null;
+}
+
+const { build, preview } = Astro.props;
+const locale = Astro.locals.locale;
+const ready = preview?.status === 'ready' && preview.svg && preview.size;
+const fmt = (value: number) => formatNumber(locale, Math.round(value * 10) / 10);
+const facts = ready
+  ? {
+      name: build.name,
+      pieces: formatNumber(locale, preview.totalPieces),
+      width: fmt(preview.size!.width),
+      depth: fmt(preview.size!.depth),
+      height: fmt(preview.size!.height),
+    }
+  : null;
+---
+
+<section
+  class="grid gap-3 rounded-lg border border-blueprint/40 p-3 md:p-4"
+  data-build-viewer
+  data-mod-id={build.id}
+  data-name={build.name}
+  aria-labelledby="build-viewer-title"
+>
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <h2 id="build-viewer-title" class="readout text-fg">{m.viewer_heading()}</h2>
+    {
+      ready && (
+        <button type="button" class="btn-viewer" data-viewer-open>
+          <Icon icon={Box} size={16} />
+          {m.viewer_explore()}
+        </button>
+      )
+    }
+  </div>
+
+  {
+    facts && preview ? (
+      <figure class="grid gap-2" data-viewer-stage>
+        <div
+          class="texture-blueprint relative overflow-hidden rounded-md text-blueprint"
+          style={`aspect-ratio: ${preview.viewBox.width} / ${preview.viewBox.height}`}
+          data-viewer-frame
+        >
+          <div role="img" aria-label={m.viewer_alt(facts)} class="size-full [&>svg]:size-full" data-viewer-svg set:html={preview.svg} />
+        </div>
+        <figcaption class="font-mono text-xs text-fg-muted">{m.viewer_stats(facts)}</figcaption>
+      </figure>
+    ) : (
+      <p class="text-sm text-fg-muted">
+        {preview?.status === 'pending' ? m.viewer_pending() : m.viewer_unavailable()}
+      </p>
+    )
+  }
+  <p class="text-sm text-fg-muted" role="status" aria-live="polite" data-viewer-status></p>
+</section>
+
+<style>
+  .btn-viewer {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.25rem;
+    padding: 0 0.875rem;
+    border: 1px solid var(--color-blueprint, currentColor);
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+  .btn-viewer:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+</style>

@@ -14,12 +14,14 @@ import { AlertTriangle, ArrowLeft, ChartLine, CheckCircle2, ExternalLink, Plus }
 import { useCallback, useState } from 'react';
 import { DomainI18nBridge } from '../../../components/DomainI18nBridge.tsx';
 import { useDocumentTitle } from '../../../hooks/use-document-title.ts';
+import { bdt, useBundlesMessages } from '../../bundles/i18n.ts';
 import { useUploadMessages } from '../../upload/i18n.ts';
 import { preflightLabel } from '../../upload/labels.ts';
 import { type StudioMod, studioModQuery } from '../api.ts';
 import { number, percent, publicHref } from '../format.ts';
 import { bt, useBasecampMessages } from '../i18n.ts';
 import { Meter, ModThumb, StatusBadge } from '../shared.tsx';
+import { BundlesTab } from './BundlesTab.tsx';
 import { CompatTab } from './CompatTab.tsx';
 import { ListingTab } from './ListingTab.tsx';
 import { MediaTab } from './MediaTab.tsx';
@@ -104,6 +106,7 @@ export function ModEditorScreen({
 }) {
   useBasecampMessages();
   useUploadMessages();
+  useBundlesMessages();
   const { data: studio } = useSuspenseQuery(studioModQuery(modId));
   useDocumentTitle(bt('basecamp_editor_title', { name: studio.mod.name }));
   const [dirtyTabs, setDirtyTabs] = useState<ReadonlySet<EditorTab>>(new Set());
@@ -236,6 +239,16 @@ export function ModEditorScreen({
               content: (
                 <div className="pt-5">
                   <CompatTab studio={studio} onDirty={onCompatDirty} />
+                </div>
+              ),
+            },
+            {
+              value: 'bundles',
+              label: bdt('bundles_tab'),
+              disabled: removed || mod.status === 'pending' || mod.status === 'rejected',
+              content: (
+                <div className="pt-5">
+                  <BundlesTab studio={studio} />
                 </div>
               ),
             },

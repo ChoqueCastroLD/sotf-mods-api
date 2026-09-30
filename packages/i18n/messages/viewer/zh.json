@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "俯视图",
+  "viewer_alt": "{name} 的俯视预览：{pieces} 个构件，{width} × {depth} × {height} 米。",
+  "viewer_stats": "{width} × {depth} × {height} 米 · {pieces} 个构件",
+  "viewer_explore": "以 3D 查看",
+  "viewer_back": "返回预览",
+  "viewer_loading": "正在加载 3D 视图…",
+  "viewer_pending": "预览正在生成，请一分钟后再来。",
+  "viewer_unavailable": "此建筑没有可用的预览。",
+  "viewer_no_webgl": "你的浏览器无法显示 3D 视图，因此保留俯视图。",
+  "viewer_failed": "无法加载 3D 视图。",
+  "viewer_sampled": "显示 {total} 个构件中的 {shown} 个。",
+  "viewer_controls": "拖动旋转，滚轮或双指缩放，方向键环绕，加减号缩放。",
+  "viewer_canvas_label": "{name} 的交互式 3D 视图"
+}

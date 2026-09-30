@@ -8,6 +8,7 @@ import { studioModQuery } from '../../../../features/basecamp/api.ts';
 import { ModEditorScreen } from '../../../../features/basecamp/editor/ModEditorScreen.tsx';
 import { type EditorTab, isEditorTab } from '../../../../features/basecamp/editor/tabs.ts';
 import { bt, loadBasecampMessages } from '../../../../features/basecamp/i18n.ts';
+import { loadBundlesMessages } from '../../../../features/bundles/i18n.ts';
 import { loadUploadMessages } from '../../../../features/upload/i18n.ts';
 
 interface EditorSearch {
@@ -27,6 +28,7 @@ export const Route = createFileRoute('/basecamp/mods/$modId/')({
     await Promise.all([
       loadBasecampMessages(),
       loadUploadMessages(),
+      loadBundlesMessages(),
       context.queryClient.ensureQueryData(studioModQuery(modIdOf(params.modId))),
     ]);
   },

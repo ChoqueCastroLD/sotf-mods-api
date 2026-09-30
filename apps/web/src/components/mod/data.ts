@@ -10,6 +10,7 @@
  * Secondary blocks (dependents, related, first reviews and comments, per-build compatibility) are
  * optional: each has an 800 ms budget and the page renders without it when the API is slow.
  */
+import type { ModBundleDTO } from '@sotf/contracts/bundles';
 import type { ModCardDTO, ModDetailDTO } from '@sotf/contracts/catalog';
 import { type ApiClient, isApiError } from '@sotf/contracts/client';
 import { encodePathSegment, modPath } from '@sotf/contracts/seo';
@@ -122,13 +123,15 @@ export interface OverviewExtras {
   compat: ModCompat | null;
   /** Public download series of the last 30 days (sparkline); null when the API is slow. */
   stats: ModPublicStats | null;
+  /** Official bundles (kits as one zip) that are ready to download (T1-04). */
+  bundles: ModBundleDTO[];
 }
 
 /** The optional blocks of the overview, fetched in parallel. */
 export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExtras> {
   const api = serverApi();
   const id = mod.id;
-  const [versions, dependents, related, reviews, comments, compat, stats] = await Promise.all([
+  const [versions, dependents, related, reviews, comments, compat, stats, bundles] = await Promise.all([
     loadVersionsOptional(id),
     mod.dependentsCount > 0
       ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
@@ -142,6 +145,7 @@ export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExt
       : Promise.resolve(null),
     optional((signal) => api.compat.modCompat({ params: { id } }, { signal })),
     optional((signal) => api.stats.modPublicStats({ params: { id }, query: { range: '30d' } }, { signal })),
+    optional((signal) => api.bundles.forMod({ params: { id } }, { signal })),
   ]);
   return {
     versions,
@@ -151,6 +155,7 @@ export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExt
     comments,
     compat,
     stats,
+    bundles: bundles?.items ?? [],
   };
 }
 
