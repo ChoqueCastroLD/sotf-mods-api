@@ -1,0 +1,86 @@
+---
+/**
+ * `/news` (T0-28, PLAN §4.2): site announcements, newest first, with their RSS feed
+ * (`/news/feed.xml`). Posts are Markdown per locale (`content/news`); JSON-LD `CollectionPage`.
+ * Edge-cached a day, purged on deploy (a new post is a deploy).
+ */
+import { formatDate, toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, Rss } from 'lucide-react';
+import ContentHeader from '../../components/content/ContentHeader.astro';
+import { collectionPageJsonLd } from '../../components/content/jsonld.ts';
+import { readingMinutes } from '../../components/content/markdown.ts';
+import { newsPosts } from '../../content/news/index.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href, localizePath } from '../../lib/i18n.ts';
+
+setPageCache(Astro, pageCache.static());
+const locale = Astro.locals.locale;
+const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
+const posts = newsPosts(locale);
+const path = '/news';
+const title = m.content_news_title();
+const description = m.content_news_description();
+---
+
+<PageLayout
+  template="news"
+  seo={{ title, description, path }}
+  jsonLd={[
+    collectionPageJsonLd({
+      siteUrl,
+      url: `${siteUrl}${localizePath(path, locale)}`,
+      locale,
+      name: title,
+      description,
+      items: posts.map((post) => ({ name: post.title, url: `${siteUrl}${localizePath(`/news/${post.slug}`, locale)}` })),
+    }),
+  ]}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_nav_news() }]}
+>
+  <link slot="head" rel="alternate" type="application/rss+xml" title={m.content_news_feed_title()} href="/news/feed.xml" />
+  <div class="flex flex-col gap-8">
+    <ContentHeader eyebrow={m.content_news_eyebrow()} title={title} id="news-title" lead={description} />
+    <a href="/news/feed.xml" class="inline-flex min-h-11 items-center gap-2 self-start text-sm font-semibold text-link hover:underline">
+      <Icon icon={Rss} size={16} />
+      {m.content_news_feed()}
+    </a>
+    {
+      posts.length === 0 ? (
+        <p class="rounded-lg border border-dashed border-border-strong bg-surface p-6 text-fg-muted">{m.content_news_empty()}</p>
+      ) : (
+        <ol class="grid gap-4" aria-labelledby="news-title">
+          {posts.map((post) => (
+            <li>
+              <article class="relative flex flex-col gap-2 rounded-lg border border-border bg-surface p-5 hover:border-border-strong">
+                <p class="flex flex-wrap gap-x-3 font-mono text-xs text-fg-muted">
+                  <time datetime={post.published}>{formatDate(locale, post.published, 'long')}</time>
+                  <span>{m.content_reading_time({ minutes: readingMinutes(post.text) })}</span>
+                </p>
+                <h2 class="text-xl font-semibold text-balance text-fg" lang={post.translated ? undefined : toHtmlLang(post.locale)}>
+                  <a
+                    href={href(`/news/${post.slug}`, locale)}
+                    class="after:absolute after:inset-0 after:rounded-lg hover:text-link focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                  >
+                    {post.title}
+                  </a>
+                </h2>
+                <p class="text-pretty text-fg-muted" lang={post.translated ? undefined : toHtmlLang(post.locale)}>
+                  {post.description}
+                </p>
+                <span aria-hidden="true" class="inline-flex items-center gap-1 text-sm font-semibold text-link">
+                  {m.content_news_read()}
+                  <Icon icon={ArrowRight} size={14} />
+                </span>
+              </article>
+            </li>
+          ))}
+        </ol>
+      )
+    }
+  </div>
+</PageLayout>

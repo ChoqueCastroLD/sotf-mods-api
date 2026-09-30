@@ -1,0 +1,18 @@
+---
+/** «Draft — pending legal review» (legal texts until the owner has them reviewed, T0-14). */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { FilePenLine } from 'lucide-react';
+---
+
+<aside
+  class="flex items-start gap-3 rounded-lg border border-warning/50 bg-warning-soft p-4 text-sm text-fg"
+  aria-label={m.content_draft_label()}
+  data-legal-draft
+>
+  <Icon icon={FilePenLine} size={20} className="mt-0.5 shrink-0 text-warning" />
+  <div class="grid gap-1">
+    <p class="font-semibold">{m.content_draft_title()}</p>
+    <p class="text-fg-muted">{m.content_draft_text()}</p>
+  </div>
+</aside>

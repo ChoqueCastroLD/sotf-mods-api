@@ -1,0 +1,173 @@
+---
+/**
+ * `/kelvinseek` (T0-25, PLAN §4.2, §5.5): presents KelvinSeek — the in-game mod by ShokoCC that
+ * lets you talk to Kelvin, and the only third-party AI use of our API — with its live status on
+ * the site (latest version, downloads, compatibility on the current build), how it works, the
+ * limits and daily budget (with the deterministic fallback), and what happens to the chat text.
+ *
+ * The mod data is an optional read: without it the page still explains everything and links to
+ * the mod page. Edge-cached a day with the mod's tag (purged when it changes); 5 min when the
+ * read failed. KelvinSeek is not our brand: the page credits its author.
+ */
+
+import { cacheTag } from '@sotf/contracts/cache';
+import type { ModDetailDTO } from '@sotf/contracts/catalog';
+import { RATE_LIMITS } from '@sotf/contracts/endpoint';
+import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { Bot, Gauge, Keyboard, ShieldCheck } from 'lucide-react';
+import type { z } from 'zod';
+import ContentHeader from '../components/content/ContentHeader.astro';
+import { webPageJsonLd } from '../components/content/jsonld.ts';
+import PageLayout from '../layouts/PageLayout.astro';
+import { optional, serverApi } from '../lib/api.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../lib/cache/policy.ts';
+import { loadEnv } from '../lib/env.ts';
+import { href, localizePath } from '../lib/i18n.ts';
+
+/** Where the mod lives on the site (legacy slug, unchanged in v2). */
+const KELVINSEEK = { user: 'shokocc', slug: 'kelvinseek', path: '/mods/shokocc/kelvinseek', author: 'ShokoCC' } as const;
+/** Retention of the (hashed) conversation history, PLAN §9.3. */
+const RETENTION_DAYS = 30;
+/** Daily requests per player (`chat_id` + IP) on top of the per-minute bucket, PLAN §5.1. */
+const DAILY_PER_CHAT = 300;
+
+const locale = Astro.locals.locale;
+const mod: z.output<typeof ModDetailDTO> | null = await optional(
+  (signal) => serverApi().catalog.getModBySlug({ params: { user: KELVINSEEK.user, slug: KELVINSEEK.slug } }, { signal }),
+  1500,
+);
+setPageCache(
+  Astro,
+  mod ? pageCache.custom(EDGE_TTL.static, [cacheTag.mod(mod.id), cacheTag.user(mod.userId)]) : pageCache.custom(EDGE_TTL.list),
+);
+
+const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
+const path = '/kelvinseek';
+const title = m.content_kelvin_title();
+const description = m.content_kelvin_description();
+const limit = RATE_LIMITS.kelvinseek;
+const modHref = href(mod?.canonicalPath ?? KELVINSEEK.path, locale);
+const authorHref = href(`/profile/${mod?.userHandle ?? KELVINSEEK.user}`, locale);
+const statusText = mod ? m.content_radar_status({ status: mod.compatCurrent.status }) : null;
+const build = mod?.compatCurrent.gameBuild?.label ?? null;
+const steps = [m.content_kelvin_how_1(), m.content_kelvin_how_2(), m.content_kelvin_how_3(), m.content_kelvin_how_4()];
+---
+
+<PageLayout
+  template="kelvinseek"
+  width="wide"
+  seo={{ title, description, path }}
+  jsonLd={[webPageJsonLd({ siteUrl, url: `${siteUrl}${localizePath(path, locale)}`, locale, name: title, description })]}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: 'KelvinSeek' }]}
+>
+  <article class="flex flex-col gap-10" aria-labelledby="kelvin-title">
+    <ContentHeader eyebrow={m.content_kelvin_eyebrow()} title={title} id="kelvin-title" lead={m.content_kelvin_lead()}>
+      <span>
+        {m.content_kelvin_by()}{' '}
+        <a href={authorHref} class="font-sans font-semibold text-link underline underline-offset-3">{mod?.userDisplayName ?? KELVINSEEK.author}</a>
+      </span>
+    </ContentHeader>
+
+    <section aria-labelledby="kelvin-status-title" class="grid gap-4 rounded-lg border border-border-strong bg-surface p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6">
+      <div class="grid gap-3">
+        <h2 id="kelvin-status-title" class="readout">{m.content_kelvin_status_title()}</h2>
+        {
+          mod ? (
+            <dl class="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+              <div>
+                <dt class="text-xs text-fg-muted">{m.content_kelvin_status_version()}</dt>
+                <dd class="font-mono text-lg font-semibold text-fg">{mod.latestVersion ? `v${mod.latestVersion.version}` : '—'}</dd>
+              </div>
+              <div>
+                <dt class="text-xs text-fg-muted">{m.content_kelvin_status_updated()}</dt>
+                <dd class="text-lg font-semibold text-fg">
+                  <time datetime={mod.lastReleasedAt}>{formatDate(locale, mod.lastReleasedAt)}</time>
+                </dd>
+              </div>
+              <div>
+                <dt class="text-xs text-fg-muted">{m.content_kelvin_status_downloads()}</dt>
+                <dd class="font-display-caps text-2xl text-fg" title={formatNumber(locale, mod.downloads)}>
+                  {formatCompactNumber(locale, mod.downloads)}
+                </dd>
+              </div>
+              <div>
+                <dt class="text-xs text-fg-muted">{m.content_kelvin_status_compat({ build: build ?? '—' })}</dt>
+                <dd class="text-lg font-semibold text-fg">{statusText}</dd>
+              </div>
+            </dl>
+          ) : (
+            <p class="text-sm text-fg-muted">{m.content_kelvin_status_unavailable()}</p>
+          )
+        }
+        {mod?.possiblyOutdated && <p class="text-sm font-semibold text-warning">{m.content_radar_outdated()}</p>}
+      </div>
+      <a href={modHref} class={buttonClasses({ variant: 'primary', size: 'lg' })}>{m.content_kelvin_open_mod()}</a>
+    </section>
+
+    <div class="grid gap-6 lg:grid-cols-2">
+      <section aria-labelledby="kelvin-what-title" class="flex flex-col gap-3">
+        <h2 id="kelvin-what-title" class="flex items-center gap-2 font-display-caps text-display-xs text-fg">
+          <Icon icon={Bot} size={22} className="text-primary" />
+          {m.content_kelvin_what_title()}
+        </h2>
+        <p class="text-pretty text-fg-muted">{m.content_kelvin_what_text({ author: KELVINSEEK.author })}</p>
+        <p class="text-pretty text-fg-muted">{m.content_kelvin_history_text()}</p>
+      </section>
+
+      <section aria-labelledby="kelvin-how-title" class="flex flex-col gap-3">
+        <h2 id="kelvin-how-title" class="flex items-center gap-2 font-display-caps text-display-xs text-fg">
+          <Icon icon={Keyboard} size={22} className="text-primary" />
+          {m.content_kelvin_how_title()}
+        </h2>
+        <ol class="grid list-decimal gap-2 ps-6 text-pretty text-fg-muted marker:font-mono marker:text-fg-subtle">
+          {steps.map((step) => <li>{step}</li>)}
+        </ol>
+        <p class="text-sm text-fg-muted">
+          {m.content_kelvin_install_hint()}{' '}
+          <a href={href('/install', locale)} class="font-semibold text-link underline underline-offset-3">{m.common_nav_install()}</a>
+        </p>
+      </section>
+
+      <section aria-labelledby="kelvin-limits-title" class="flex flex-col gap-3">
+        <h2 id="kelvin-limits-title" class="flex items-center gap-2 font-display-caps text-display-xs text-fg">
+          <Icon icon={Gauge} size={22} className="text-primary" />
+          {m.content_kelvin_limits_title()}
+        </h2>
+        <ul class="grid list-disc gap-2 ps-6 text-pretty text-fg-muted marker:text-primary">
+          <li>{m.content_kelvin_limits_rate({ perMinute: limit.max, perDay: DAILY_PER_CHAT })}</li>
+          <li>{m.content_kelvin_limits_budget()}</li>
+          <li>{m.content_kelvin_limits_busy()}</li>
+        </ul>
+      </section>
+
+      <section aria-labelledby="kelvin-privacy-title" class="flex flex-col gap-3">
+        <h2 id="kelvin-privacy-title" class="flex items-center gap-2 font-display-caps text-display-xs text-fg">
+          <Icon icon={ShieldCheck} size={22} className="text-primary" />
+          {m.content_kelvin_privacy_title()}
+        </h2>
+        <ul class="grid list-disc gap-2 ps-6 text-pretty text-fg-muted marker:text-primary">
+          <li>{m.content_kelvin_privacy_hash()}</li>
+          <li>{m.content_kelvin_privacy_retention({ days: RETENTION_DAYS })}</li>
+          <li>{m.content_kelvin_privacy_ai()}</li>
+        </ul>
+        <a href={href('/privacy#kelvinseek', locale)} class="self-start text-sm font-semibold text-link underline underline-offset-3">
+          {m.content_kelvin_privacy_link()}
+        </a>
+      </section>
+    </div>
+
+    <aside class="grid gap-2 rounded-lg border border-border bg-surface p-5 text-sm text-fg-muted">
+      <p>{m.content_kelvin_credit({ author: KELVINSEEK.author })}</p>
+      <p>
+        {m.content_kelvin_dev_hint()}{' '}
+        <a href={href('/developers#legacy', locale)} class="font-semibold text-link underline underline-offset-3">
+          {m.common_footer_developers()}
+        </a>
+      </p>
+    </aside>
+  </article>
+</PageLayout>

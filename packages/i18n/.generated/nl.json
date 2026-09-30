@@ -809,6 +809,424 @@
   "console_update_detail": "We hebben SOTF Mods bijgewerkt terwijl je hier was. Herlaad om de nieuwste versie te krijgen.",
   "console_update_reload": "Herladen",
   "console_update_title": "Er is een nieuwe versie",
+  "content_about_disclaimer_title": "Onofficiële fancommunity",
+  "content_about_eyebrow": "Over ons",
+  "content_about_links_title": "Rond het kamp",
+  "content_binding_note": "Deze vertaling is alleen ter informatie. Als ze afwijkt van de Engelse versie, geldt de Engelse versie.",
+  "content_brand_asset_app_icon": "App-pictogram",
+  "content_brand_asset_app_icon_hint": "De pin op een Night-vlak, voor avatars en snelkoppelingen.",
+  "content_brand_asset_horizontal": "Horizontaal logo",
+  "content_brand_asset_horizontal_hint": "De standaardversie: beeldmerk en woordmerk naast elkaar.",
+  "content_brand_asset_mark": "Beeldmerk (Contour Pin)",
+  "content_brand_asset_mark_hint": "Alleen de pin. Gebruik tussen 16 en 24 px de vereenvoudigde versie.",
+  "content_brand_asset_og": "Voorbeeldafbeelding voor sociale media",
+  "content_brand_asset_og_hint": "1200 × 630, voor linkvoorbeelden en thumbnails.",
+  "content_brand_asset_stacked": "Gestapeld logo",
+  "content_brand_asset_stacked_hint": "Voor vierkante en hoge ruimtes.",
+  "content_brand_asset_wordmark": "Woordmerk",
+  "content_brand_asset_wordmark_hint": "‘SOTF MODS’ zonder pin, voor smalle horizontale ruimtes.",
+  "content_brand_color_blueprint": "Blueprint (builds)",
+  "content_brand_color_bone": "Bone (tekst, Day-achtergrond)",
+  "content_brand_color_flare_day": "Flare op Day",
+  "content_brand_color_flare_night": "Flare op Night",
+  "content_brand_color_lichen": "Lichen (werkt)",
+  "content_brand_color_night": "Night (achtergrond)",
+  "content_brand_color_signal": "Signal (live, info)",
+  "content_brand_color_solafite": "Solafite (uitgelicht)",
+  "content_brand_colors_text": "Night en Bone vormen de basis; Flare is het enige accent. De statuskleuren dragen betekenis en zijn geen decoratie.",
+  "content_brand_colors_title": "Kleuren",
+  "content_brand_description": "Download het logo, beeldmerk en de kleuren van SOTF Mods en zie hoe je vanuit je mod, video of server naar de site linkt.",
+  "content_brand_do_contrast": "Gebruik de Night-bestanden op donkere en de Day-bestanden op lichte achtergronden.",
+  "content_brand_do_link": "Laat het logo naar sotf-mods.com linken.",
+  "content_brand_do_size": "Gebruik het volledige beeldmerk op 24 px of groter (16 px voor de vereenvoudigde versie).",
+  "content_brand_do_space": "Laat rond het logo minstens een kwart van zijn hoogte vrij.",
+  "content_brand_do_title": "Wel",
+  "content_brand_dont_distort": "Het niet uitrekken, draaien, bijsnijden of de onderdelen herschikken.",
+  "content_brand_dont_endorse": "Niet suggereren dat SOTF Mods je project steunt, sponsort of heeft gecontroleerd.",
+  "content_brand_dont_game": "Het niet combineren met het officiële gamelogo, artwork of namen van personages.",
+  "content_brand_dont_recolor": "Het logo niet herkleuren, omlijnen of voorzien van effecten.",
+  "content_brand_dont_title": "Niet",
+  "content_brand_eyebrow": "Merkkit",
+  "content_brand_font_display": "Display: titels en cijfers, altijd in hoofdletters.",
+  "content_brand_font_link": "{name} downloaden",
+  "content_brand_font_mono": "Uitlezingen: versies, id’s en code.",
+  "content_brand_font_ui": "Interface en leestekst.",
+  "content_brand_lead": "Link je naar SOTF Mods vanaf je modpagina, een video of je server? Gebruik deze bestanden en houd je aan de regels hieronder.",
+  "content_brand_legal_text": "De naam en het logo van SOTF Mods identificeren deze communitysite. Je mag ze gebruiken om naar de site te verwijzen of te linken; voor elk ander gebruik is onze toestemming nodig.",
+  "content_brand_legal_title": "Merken",
+  "content_brand_link_text": "Kopieer deze code naar je README, website of modbeschrijving. Hij verwijst naar het live logo en blijft dus altijd actueel.",
+  "content_brand_link_title": "Naar SOTF Mods linken",
+  "content_brand_logos_text": "Elk bestand heeft een Night-versie voor donkere achtergronden en een Day-versie voor lichte. Gebruik bij voorkeur SVG; PNG alleen waar SVG niet werkt.",
+  "content_brand_logos_title": "Logo’s",
+  "content_brand_on_day": "Lichte achtergronden",
+  "content_brand_on_night": "Donkere achtergronden",
+  "content_brand_rules_title": "Het logo gebruiken",
+  "content_brand_snippet_label": "HTML-code",
+  "content_brand_title": "Het merk SOTF Mods",
+  "content_brand_type_title": "Lettertypen",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Leesverzoeken API v2",
+        "bucket=legacyRead": "Leesverzoeken legacy-API",
+        "bucket=downloads": "Downloads",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Code",
+  "content_dev_col_limit": "Limiet",
+  "content_dev_col_meaning": "Betekenis",
+  "content_dev_col_method": "Methode",
+  "content_dev_col_notes": "Opmerkingen",
+  "content_dev_col_path": "Pad",
+  "content_dev_col_scope": "Bereik",
+  "content_dev_col_status": "Status",
+  "content_dev_col_summary": "Wat het doet",
+  "content_dev_endpoints_caption": "Openbare endpoints: {domain}",
+  "content_dev_endpoints_text": "Anoniem, cachebaar en met CORS. De referentie beschrijft parameters, antwoorden en fouten van elk endpoint.",
+  "content_dev_endpoints_title": "Openbare lees-endpoints",
+  "content_dev_errors_text": "Het veld code van een fout is een van deze waarden. De type-URI van elk probleem verwijst naar de bijbehorende rij hier.",
+  "content_dev_errors_title": "Foutcodes",
+  "content_dev_eyebrow": "Ontwikkelaars",
+  "content_dev_legacy_deprecated": "Bevroren en uitgefaseerd",
+  "content_dev_legacy_deprecated_text": "Deze routes blijven antwoorden tot {date}; daarna worden ze uitgeschakeld. Hun antwoorden bevatten deze headers:",
+  "content_dev_legacy_deviations": "Bewuste verschillen met het oude gedrag",
+  "content_dev_legacy_retired": "Uitgeschakeld",
+  "content_dev_legacy_retired_text": "Elke methode op deze routes antwoordt met 410 Gone en deze body:",
+  "content_dev_legacy_stable": "Ondersteund (byte voor byte compatibel)",
+  "content_dev_legacy_text": "De API van de eerste versie van de site antwoordt nog op api.sotf-mods.com/api/* en sotf-mods.com/api/*, zodat RedManager, UpdatesChecker en mods in de game blijven werken. Nieuwe integraties gebruiken beter v2.",
+  "content_dev_legacy_title": "Legacy-API en uitfasering",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "per IP",
+        "key=user": "per account",
+        "key=chat": "per speler",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "Boven een limiet antwoordt de API met 429 en een Retry-After-header. Cache antwoorden en respecteer ETags; dan kom je er zelden in de buurt.",
+  "content_dev_limits_title": "Rate limits",
+  "content_dev_link_docs_text": "Alle v2-endpoints met schema’s en voorbeelden, interactief.",
+  "content_dev_link_docs_title": "API-referentie",
+  "content_dev_link_legacy_text": "Nog in gebruik; bevroren routes stoppen op {date}.",
+  "content_dev_link_legacy_title": "Legacy-API",
+  "content_dev_link_openapi_text": "De machineleesbare specificatie, om een client te genereren.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Conceptmelding",
+  "content_draft_text": "Deze tekst beschrijft hoe SOTF Mods vandaag werkt, maar is nog niet door een jurist bekeken. Hij kan nog veranderen voordat hij definitief is; elke wijziging krijgt een datum.",
+  "content_draft_title": "Concept – juridische controle volgt nog",
+  "content_error_ref": "Ref.: {ref}",
+  "content_fallback_binding": "Voor juridische teksten geldt de Engelse versie.",
+  "content_fallback_link": "Pagina openen in het {original}",
+  "content_fallback_text": "Deze pagina is nog niet beschikbaar in het {language}, dus je leest het origineel in het {original}.",
+  "content_install_eyebrow": "Installatiegids",
+  "content_install_faq_nav": "FAQ",
+  "content_install_faq_title": "Veelgestelde vragen",
+  "content_install_get_redmanager": "RedManager downloaden",
+  "content_install_help_discord": "Vragen op Discord",
+  "content_install_help_text": "Kijk of de huidige gamepatch je mods heeft gebroken, of vraag het de community. Vermeld je gameversie, je RedLoader-versie en de mods die je gebruikt.",
+  "content_install_help_title": "Kom je er niet uit?",
+  "content_install_kit_more": "Alle Kits bekijken",
+  "content_install_kit_nav": "Starterskit",
+  "content_install_kit_text": "Een selectie van het team met mods die goed samenwerken. Een goede eerste uitrusting.",
+  "content_install_kit_title": "Starterskit",
+  "content_install_manual": "Handmatig installeren",
+  "content_install_progress": "Leesvoortgang",
+  "content_install_rail_label": "Onderdelen van de gids",
+  "content_install_rail_title": "Stappen",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Stap {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "In het kort",
+  "content_install_verified": "Gecontroleerd met game {game} · RedLoader {loader}",
+  "content_kelvin_by": "Een mod van",
+  "content_kelvin_credit": "KelvinSeek wordt gemaakt en onderhouden door {author}; SOTF Mods host alleen de API waarmee hij praat. Kelvin en Sons of the Forest zijn van Endnight Games; dit is een fanproject.",
+  "content_kelvin_description": "Met KelvinSeek chat je met Kelvin in Sons of the Forest en geef je hem opdrachten in je eigen woorden. Hoe het werkt, de limieten en wat er met je berichten gebeurt.",
+  "content_kelvin_dev_hint": "Bouw je iets vergelijkbaars? Het endpoint hoort bij de legacy-API:",
+  "content_kelvin_eyebrow": "Communitymod",
+  "content_kelvin_history_text": "Vroeger heette hij Kelvin-GPT. De oude versie die om je eigen OpenAI-sleutel vroeg, is uitgeschakeld: die route toonde de sleutel in het adres en antwoordt nu met ‘Gone’.",
+  "content_kelvin_how_1": "Installeer RedLoader en de mod KelvinSeek.",
+  "content_kelvin_how_2": "Loop in de game naar Kelvin en druk op E om het notitieblok te openen.",
+  "content_kelvin_how_3": "Druk op T om te typen, schrijf je bericht en druk op Enter.",
+  "content_kelvin_how_4": "Of gebruik de console: ‘askkelvin …’ stuurt een bericht, ‘clearkelvinchathistory’ begint een nieuw gesprek.",
+  "content_kelvin_how_title": "Zo gebruik je het",
+  "content_kelvin_install_hint": "Nieuw met mods? Begin met de gids:",
+  "content_kelvin_lead": "Schrijf Kelvin in je eigen woorden: hij antwoordt en doet wat je vraagt, van hout halen tot een schuilplaats bouwen.",
+  "content_kelvin_limits_budget": "De AI-dienst heeft een dagbudget. Is dat op, dan begrijpt Kelvin je nog steeds: hij kiest tot de volgende dag zonder AI de meest gelijkende bekende opdracht.",
+  "content_kelvin_limits_busy": "Schrijf je te snel, dan vraagt Kelvin om een paar seconden pauze. Er gaat niets verloren.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tot {perMinute__number} berichten per minuut en {perDay__number} per dag per speler."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Limieten",
+  "content_kelvin_open_mod": "Modpagina openen",
+  "content_kelvin_privacy_ai": "De tekst van je berichten wordt naar de AI-aanbieder gestuurd om het antwoord te maken. Schrijf geen persoonlijke gegevens.",
+  "content_kelvin_privacy_hash": "De chat-id die de mod verstuurt (met je Steam-id en -naam) wordt alleen als onomkeerbare hash opgeslagen.",
+  "content_kelvin_privacy_link": "Privacybeleid lezen",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "De laatste berichten van elk gesprek worden {days__number} dag bewaard zodat Kelvin de context kent, en daarna verwijderd.",
+        "days__plural=*": "De laatste berichten van elk gesprek worden {days__number} dagen bewaard zodat Kelvin de context kent, en daarna verwijderd."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Je berichten",
+  "content_kelvin_status_compat": "Op build {build}",
+  "content_kelvin_status_downloads": "Downloads",
+  "content_kelvin_status_title": "Status op SOTF Mods",
+  "content_kelvin_status_unavailable": "We konden de huidige status van de mod niet laden. De modpagina toont de nieuwste versie.",
+  "content_kelvin_status_updated": "Laatste release",
+  "content_kelvin_status_version": "Nieuwste versie",
+  "content_kelvin_title": "KelvinSeek: praat met Kelvin in de game",
+  "content_kelvin_what_text": "KelvinSeek is een mod van {author}. Hij stuurt wat je aan Kelvin schrijft via de SOTF Mods-API naar een AI-dienst en maakt van het antwoord Kelvins reactie en, als je iets vraagt, een van zijn opdrachten in de game. Je hebt geen eigen API-sleutel nodig.",
+  "content_kelvin_what_title": "Wat het is",
+  "content_legal_eyebrow": "Juridisch",
+  "content_legal_other": "Andere juridische pagina’s",
+  "content_md_alert_caution": "Voorzichtig",
+  "content_md_alert_important": "Belangrijk",
+  "content_md_alert_note": "Opmerking",
+  "content_md_alert_tip": "Tip",
+  "content_md_alert_warning": "Let op",
+  "content_md_spoiler": "Spoiler",
+  "content_news_back": "Al het nieuws",
+  "content_news_byline": "door {author}",
+  "content_news_description": "Aankondigingen van het SOTF Mods-team: nieuwe functies, wijzigingen aan de site en de API, en wat er nog komt.",
+  "content_news_empty": "Nog geen nieuws. Alles rustig in het bos.",
+  "content_news_eyebrow": "Veldnotities",
+  "content_news_feed": "Abonneren via RSS",
+  "content_news_feed_title": "SOTF Mods — Nieuws",
+  "content_news_read": "Lezen",
+  "content_news_title": "Nieuws",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} werken, {broken__number} kapot, {pending__number} wachten op meldingen"
+      }
+    }
+  ],
+  "content_radar_breaking": "Update die mods breekt",
+  "content_radar_broken_empty": "Geen van de topmods is gemeld als kapot op {build}.",
+  "content_radar_broken_title": "Gemeld als kapot",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} van de topmod bevestigd op {build}",
+        "count__plural=*": "{share} van de top {count__number} mods bevestigd op {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} werkt · {partial__number} deels · {broken__number} kapot"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Mods die op meldingen wachten",
+  "content_radar_cta_text": "Open de mod, kies hoe je speelde (solo, host, client of dedicated) en zeg of hij werkt. Elk veldrapport levert XP op en bespaart andere overlevenden een kapotte save.",
+  "content_radar_cta_title": "Een van deze geprobeerd op {build}?",
+  "content_radar_current": "Huidige build",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Patch {build}: {share} van de 50 meest gedownloade Sons of the Forest-mods bevestigd door spelers — {works__number} werken, {broken__number} kapot, {pending__number} wachten op meldingen."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Welke Sons of the Forest-mods werken op de huidige gamepatch: status van RedLoader en veldrapporten van spelers voor de 50 meest gedownloade mods.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download in 30 dagen",
+        "count__plural=*": "{display} downloads in 30 dagen"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Werkt",
+        "status=partial": "Werkt deels",
+        "status=broken": "Kapot",
+        "status=*": "Onbekend"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Voor deze build is nog geen loaderstatus vastgelegd.",
+  "content_radar_ecosystem_title": "Loader en manager op {build}",
+  "content_radar_empty_text": "Er is nog geen gamebuild geregistreerd. Zodra de rangers de huidige patch vastleggen, laat deze pagina zien welke populaire mods erop werken.",
+  "content_radar_empty_title": "De radar warmt op",
+  "content_radar_error_text": "We konden de compatibiliteitsgegevens niet laden. Probeer het over een minuut opnieuw; blijft het misgaan, laat het ons dan weten op Discord met de referentie hieronder.",
+  "content_radar_error_title": "Geen signaal",
+  "content_radar_history_empty": "Dit is de eerste geregistreerde build.",
+  "content_radar_history_title": "Buildgeschiedenis",
+  "content_radar_install_link": "Zo installeer je RedLoader",
+  "content_radar_legend_outdated": "‘Mogelijk verouderd’ betekent dat de nieuwste versie ouder is dan de laatste update die mods breekt en dat sindsdien niemand heeft bevestigd dat hij werkt.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Meldingen worden gewogen: de eigen test van de maker telt dubbel, geverifieerde makers 1,5×, gloednieuwe accounts de helft. Onder {min__number} gewogen meldingen blijft een mod ongetest; vanaf {works} werkend werkt hij; vanaf {broken} kapot is hij kapot; al het andere is gemengd."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Zo wordt de status bepaald",
+  "content_radar_list_name": "Topmods voor Sons of the Forest op patch {build}",
+  "content_radar_notes": "Patchnotes",
+  "content_radar_outdated": "Mogelijk verouderd",
+  "content_radar_past_link": "Huidige build bekijken",
+  "content_radar_past_notice": "Dit is een oudere build. De game staat nu op {build}.",
+  "content_radar_pending_empty": "Elke topmod heeft een duidelijk oordeel op deze build.",
+  "content_radar_pending_hint": "Niet getest of gemengde resultaten",
+  "content_radar_pending_title": "Wacht op veldrapporten",
+  "content_radar_released": "Uitgebracht op {date}",
+  "content_radar_report": "Melden",
+  "content_radar_seo_title": "Werken SOTF-mods op patch {build}? — Patch Radar",
+  "content_radar_seo_title_generic": "Werken SOTF-mods op de nieuwste patch? — Patch Radar",
+  "content_radar_stat_broken": "Kapot",
+  "content_radar_stat_pending": "Meldingen nodig",
+  "content_radar_stat_works": "Werken",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Werkt",
+        "status=mixed": "Gemengd",
+        "status=broken": "Kapot",
+        "status=*": "Geen gegevens"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Samenvatting",
+  "content_radar_title": "Werken SOTF-mods op patch {build}?",
+  "content_radar_works_empty": "Nog geen topmod is bevestigd op {build}. Er een geprobeerd? Laat het weten.",
+  "content_radar_works_title": "Bevestigd werkend",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} min lezen",
+        "minutes__plural=*": "{minutes__number} min lezen"
+      }
+    }
+  ],
+  "content_toc_title": "Op deze pagina",
+  "content_updated_on": "Laatst bijgewerkt: {date}",
   "emails_auth_deleted_body": "Je persoonsgegevens zijn gewist. Reacties en recensies blijven staan als ‘Verwijderde overlevende’. Bedankt dat je deel uitmaakte van het eiland.",
   "emails_auth_deleted_heading": "Account verwijderd",
   "emails_auth_deleted_preview": "Je persoonsgegevens zijn gewist.",

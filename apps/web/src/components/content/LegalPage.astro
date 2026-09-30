@@ -1,0 +1,77 @@
+---
+/**
+ * One legal page (`/privacy`, `/terms`, `/content-policy`, `/dmca`, `/cookies`; T0-14): the
+ * Markdown draft in the page language (English otherwise), «pending legal review» until
+ * `LEGAL_META[doc].reviewed`, and links to the other legal pages. The page sets its cache policy
+ * (`pageCache.static()`: a day at the edge, purged on deploy, PLAN §2.7).
+ */
+import { m } from '@sotf/i18n/messages';
+import { LEGAL_DOCS, LEGAL_META, type LegalDoc, legalDocs } from '../../content/legal/index.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href, localizePath } from '../../lib/i18n.ts';
+import DocLayout from './DocLayout.astro';
+import { webPageJsonLd } from './jsonld.ts';
+
+interface Props {
+  doc: LegalDoc;
+}
+
+const { doc: key } = Astro.props;
+const locale = Astro.locals.locale;
+
+const doc = legalDocs.get(locale, key);
+if (!doc) throw new Error(`legal document ${key} has no English text`);
+const meta = LEGAL_META[key];
+const path = `/${key}`;
+const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
+const url = `${siteUrl}${localizePath(path, doc.locale)}`;
+
+const LABELS: Readonly<Record<LegalDoc, () => string>> = {
+  privacy: () => m.common_footer_privacy(),
+  terms: () => m.common_footer_terms(),
+  'content-policy': () => m.common_footer_content_policy(),
+  dmca: () => m.common_footer_dmca(),
+  cookies: () => m.common_footer_cookies(),
+};
+const others = LEGAL_DOCS.filter((other) => other !== key);
+---
+
+<DocLayout
+  template="legal"
+  path={path}
+  eyebrow={m.content_legal_eyebrow()}
+  doc={doc}
+  translatedLocales={legalDocs.locales(key)}
+  updated={meta.updated}
+  draft={!meta.reviewed}
+  binding
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: LABELS[key]() }]}
+  jsonLd={[
+    webPageJsonLd({
+      siteUrl,
+      url,
+      locale: doc.locale,
+      name: doc.frontmatter.title,
+      description: doc.frontmatter.description,
+      dateModified: meta.updated,
+    }),
+  ]}
+>
+  <nav aria-labelledby="legal-others-title" class="border-t border-border pt-6">
+    <h2 id="legal-others-title" class="readout mb-3">{m.content_legal_other()}</h2>
+    <ul class="flex flex-wrap gap-2">
+      {
+        others.map((other) => (
+          <li>
+            <a
+              href={href(`/${other}`, locale)}
+              class="inline-flex h-9 items-center rounded-full border border-border-strong px-3 text-sm text-fg hover:border-primary hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              {LABELS[other]()}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</DocLayout>

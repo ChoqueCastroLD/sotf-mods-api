@@ -809,6 +809,424 @@
   "console_update_detail": "Atualizamos o SOTF Mods enquanto você estava aqui. Recarregue para obter a versão mais recente.",
   "console_update_reload": "Recarregar",
   "console_update_title": "Saiu uma nova versão",
+  "content_about_disclaimer_title": "Comunidade de fãs não oficial",
+  "content_about_eyebrow": "Sobre",
+  "content_about_links_title": "Pelo acampamento",
+  "content_binding_note": "Esta tradução é apenas uma referência. Se divergir da versão em inglês, vale a versão em inglês.",
+  "content_brand_asset_app_icon": "Ícone de app",
+  "content_brand_asset_app_icon_hint": "O pino sobre um fundo Noite, para avatares e atalhos.",
+  "content_brand_asset_horizontal": "Logo horizontal",
+  "content_brand_asset_horizontal_hint": "A versão padrão: símbolo e logotipo lado a lado.",
+  "content_brand_asset_mark": "Símbolo (Contour Pin)",
+  "content_brand_asset_mark_hint": "Só o pino. Entre 16 e 24 px, use a versão simplificada.",
+  "content_brand_asset_og": "Imagem de prévia social",
+  "content_brand_asset_og_hint": "1200 × 630, para prévias de links e miniaturas.",
+  "content_brand_asset_stacked": "Logo empilhado",
+  "content_brand_asset_stacked_hint": "Para espaços quadrados e verticais.",
+  "content_brand_asset_wordmark": "Logotipo",
+  "content_brand_asset_wordmark_hint": "“SOTF MODS” sem o pino, para espaços horizontais estreitos.",
+  "content_brand_color_blueprint": "Planta (builds)",
+  "content_brand_color_bone": "Osso (texto, fundo Dia)",
+  "content_brand_color_flare_day": "Sinalizador sobre Dia",
+  "content_brand_color_flare_night": "Sinalizador sobre Noite",
+  "content_brand_color_lichen": "Líquen (funciona)",
+  "content_brand_color_night": "Noite (fundo)",
+  "content_brand_color_signal": "Sinal (ao vivo, informação)",
+  "content_brand_color_solafite": "Solafita (destaque)",
+  "content_brand_colors_text": "Noite e Osso são a base; Sinalizador é o único destaque. As cores de status servem para dar significado, não para decorar.",
+  "content_brand_colors_title": "Cores",
+  "content_brand_description": "Baixe o logo, o símbolo e as cores do SOTF Mods e veja como colocar um link para o site no seu mod, vídeo ou servidor.",
+  "content_brand_do_contrast": "Use os arquivos Noite em fundos escuros e os arquivos Dia em fundos claros.",
+  "content_brand_do_link": "Faça o logo apontar para sotf-mods.com.",
+  "content_brand_do_size": "Use o símbolo completo com 24 px ou mais (16 px para o simplificado).",
+  "content_brand_do_space": "Deixe em volta do logo um espaço livre de pelo menos um quarto da altura dele.",
+  "content_brand_do_title": "Faça",
+  "content_brand_dont_distort": "Não estique, gire, corte nem reorganize as partes dele.",
+  "content_brand_dont_endorse": "Não sugira que o SOTF Mods apoia, patrocina ou revisou seu projeto.",
+  "content_brand_dont_game": "Não combine com o logo oficial do jogo, as artes dele ou nomes de personagens.",
+  "content_brand_dont_recolor": "Não mude as cores do logo nem adicione contornos ou efeitos.",
+  "content_brand_dont_title": "Evite",
+  "content_brand_eyebrow": "Kit da marca",
+  "content_brand_font_display": "Display: títulos e números, sempre em maiúsculas.",
+  "content_brand_font_link": "Obter {name}",
+  "content_brand_font_mono": "Leituras: versões, IDs e código.",
+  "content_brand_font_ui": "Interface e texto de leitura.",
+  "content_brand_lead": "Vai colocar um link para o SOTF Mods na página do seu mod, em um vídeo ou no seu servidor? Use estes arquivos e siga as regras abaixo.",
+  "content_brand_legal_text": "O nome e o logo do SOTF Mods identificam este site da comunidade. Você pode usá-los para mencionar ou linkar o site; qualquer outro uso precisa da nossa permissão.",
+  "content_brand_legal_title": "Marcas",
+  "content_brand_link_text": "Copie este código no seu README, site ou descrição do mod. Ele aponta para o logo online, então fica sempre atualizado.",
+  "content_brand_link_title": "Link para o SOTF Mods",
+  "content_brand_logos_text": "Cada arquivo tem uma versão Noite para fundos escuros e uma versão Dia para fundos claros. Prefira SVG; use PNG onde SVG não é aceito.",
+  "content_brand_logos_title": "Logos",
+  "content_brand_on_day": "Fundos claros",
+  "content_brand_on_night": "Fundos escuros",
+  "content_brand_rules_title": "Como usar o logo",
+  "content_brand_snippet_label": "Código HTML",
+  "content_brand_title": "A marca SOTF Mods",
+  "content_brand_type_title": "Fontes",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Leituras da API v2",
+        "bucket=legacyRead": "Leituras da API legada",
+        "bucket=downloads": "Downloads",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Código",
+  "content_dev_col_limit": "Limite",
+  "content_dev_col_meaning": "Significado",
+  "content_dev_col_method": "Método",
+  "content_dev_col_notes": "Observações",
+  "content_dev_col_path": "Caminho",
+  "content_dev_col_scope": "Escopo",
+  "content_dev_col_status": "Status",
+  "content_dev_col_summary": "O que faz",
+  "content_dev_endpoints_caption": "Endpoints públicos: {domain}",
+  "content_dev_endpoints_text": "Anônimos, cacheáveis e com CORS. A referência documenta parâmetros, respostas e erros de cada um.",
+  "content_dev_endpoints_title": "Endpoints públicos de leitura",
+  "content_dev_errors_text": "O campo code de um erro é um destes. A URI type de cada problema aponta para a linha dele aqui.",
+  "content_dev_errors_title": "Códigos de erro",
+  "content_dev_eyebrow": "Desenvolvedores",
+  "content_dev_legacy_deprecated": "Congeladas e descontinuadas",
+  "content_dev_legacy_deprecated_text": "Estas rotas respondem até {date}; depois, serão desativadas. As respostas trazem estes cabeçalhos:",
+  "content_dev_legacy_deviations": "Diferenças intencionais em relação ao comportamento antigo",
+  "content_dev_legacy_retired": "Desativadas",
+  "content_dev_legacy_retired_text": "Qualquer método nestas rotas responde 410 Gone com este corpo:",
+  "content_dev_legacy_stable": "Suportadas (compatíveis byte a byte)",
+  "content_dev_legacy_text": "A API da primeira versão do site continua respondendo em api.sotf-mods.com/api/* e sotf-mods.com/api/*, para que o RedManager, o UpdatesChecker e os mods do jogo continuem funcionando. Integrações novas devem usar a v2.",
+  "content_dev_legacy_title": "API legada e descontinuações",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "por IP",
+        "key=user": "por conta",
+        "key=chat": "por jogador",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "Acima de um limite, a API responde 429 com o cabeçalho Retry-After. Faça cache das respostas e respeite os ETags; você raramente vai chegar perto.",
+  "content_dev_limits_title": "Limites de uso",
+  "content_dev_link_docs_text": "Todos os endpoints v2 com esquemas e exemplos, interativa.",
+  "content_dev_link_docs_title": "Referência da API",
+  "content_dev_link_legacy_text": "Ainda no ar; as rotas congeladas serão desativadas em {date}.",
+  "content_dev_link_legacy_title": "API legada",
+  "content_dev_link_openapi_text": "A especificação legível por máquina, para gerar um cliente.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Aviso de rascunho",
+  "content_draft_text": "Este texto descreve como o SOTF Mods funciona hoje, mas ainda não foi revisado por um advogado. Ele pode mudar antes da versão final; cada mudança será datada.",
+  "content_draft_title": "Rascunho: aguardando revisão jurídica",
+  "content_error_ref": "Ref.: {ref}",
+  "content_fallback_binding": "Nos textos jurídicos, vale a versão em inglês.",
+  "content_fallback_link": "Abrir a página em {original}",
+  "content_fallback_text": "Esta página ainda não está disponível em {language}, então você está lendo o original em {original}.",
+  "content_install_eyebrow": "Guia de instalação",
+  "content_install_faq_nav": "Perguntas frequentes",
+  "content_install_faq_title": "Perguntas frequentes",
+  "content_install_get_redmanager": "Baixar o RedManager",
+  "content_install_help_discord": "Perguntar no Discord",
+  "content_install_help_text": "Veja se o patch atual do jogo quebrou seus mods ou pergunte à comunidade. Informe a versão do jogo, a do RedLoader e os mods que você usa.",
+  "content_install_help_title": "Ainda travado?",
+  "content_install_kit_more": "Ver todos os Kits",
+  "content_install_kit_nav": "Kit inicial",
+  "content_install_kit_text": "Uma seleção da equipe com mods que funcionam bem juntos. Um bom primeiro equipamento.",
+  "content_install_kit_title": "Kit inicial",
+  "content_install_manual": "Instalar manualmente",
+  "content_install_progress": "Progresso da leitura",
+  "content_install_rail_label": "Seções do guia",
+  "content_install_rail_title": "Passos",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Passo {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "Em resumo",
+  "content_install_verified": "Verificado com o jogo {game} · RedLoader {loader}",
+  "content_kelvin_by": "Um mod de",
+  "content_kelvin_credit": "O KelvinSeek é criado e mantido por {author}; o SOTF Mods só hospeda a API com que ele conversa. Kelvin e Sons of the Forest pertencem à Endnight Games; este é um projeto de fãs.",
+  "content_kelvin_description": "O KelvinSeek permite conversar com o Kelvin em Sons of the Forest e dar ordens com suas palavras. Como funciona, os limites e o que acontece com suas mensagens.",
+  "content_kelvin_dev_hint": "Construindo algo parecido? O endpoint faz parte da API legada:",
+  "content_kelvin_eyebrow": "Mod da comunidade",
+  "content_kelvin_history_text": "Antes ele se chamava Kelvin-GPT. A versão antiga, que pedia sua própria chave da OpenAI, foi desativada: essa rota expunha a chave no endereço e agora responde “Gone”.",
+  "content_kelvin_how_1": "Instale o RedLoader e o mod KelvinSeek.",
+  "content_kelvin_how_2": "No jogo, vá até o Kelvin e pressione E para abrir o bloco de notas.",
+  "content_kelvin_how_3": "Pressione T para digitar, escreva sua mensagem e pressione Enter.",
+  "content_kelvin_how_4": "Ou use o console: “askkelvin …” envia uma mensagem e “clearkelvinchathistory” começa uma conversa nova.",
+  "content_kelvin_how_title": "Como usar",
+  "content_kelvin_install_hint": "Novo com mods? Comece pelo guia:",
+  "content_kelvin_lead": "Escreva para o Kelvin com suas palavras: ele responde e faz o que você pede, de buscar toras a montar um abrigo.",
+  "content_kelvin_limits_budget": "O serviço de IA tem um orçamento diário. Quando ele acaba, o Kelvin continua entendendo você: escolhe, sem IA, a ordem conhecida mais parecida até o dia seguinte.",
+  "content_kelvin_limits_busy": "Se você escrever rápido demais, o Kelvin pede alguns segundos de pausa. Nada se perde.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Até {perMinute__number} mensagens por minuto e {perDay__number} por dia por jogador."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Limites",
+  "content_kelvin_open_mod": "Abrir a página do mod",
+  "content_kelvin_privacy_ai": "O texto das suas mensagens é enviado ao provedor de IA para gerar a resposta. Não escreva dados pessoais.",
+  "content_kelvin_privacy_hash": "O ID de chat enviado pelo mod (ele contém seu ID e nome da Steam) é guardado apenas como um hash irreversível.",
+  "content_kelvin_privacy_link": "Ler a política de privacidade",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "As últimas mensagens de cada conversa ficam guardadas por {days__number} dia para o Kelvin lembrar do contexto e depois são apagadas.",
+        "days__plural=*": "As últimas mensagens de cada conversa ficam guardadas por {days__number} dias para o Kelvin lembrar do contexto e depois são apagadas."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Suas mensagens",
+  "content_kelvin_status_compat": "Na build {build}",
+  "content_kelvin_status_downloads": "Downloads",
+  "content_kelvin_status_title": "Status no SOTF Mods",
+  "content_kelvin_status_unavailable": "Não conseguimos carregar o status atual do mod. A página do mod tem a versão mais recente.",
+  "content_kelvin_status_updated": "Último lançamento",
+  "content_kelvin_status_version": "Versão mais recente",
+  "content_kelvin_title": "KelvinSeek: converse com o Kelvin no jogo",
+  "content_kelvin_what_text": "O KelvinSeek é um mod de {author}. Ele envia o que você escreve para o Kelvin a um serviço de IA pela API do SOTF Mods e transforma a resposta na fala do Kelvin e, quando você pede algo, em uma das ordens dele no jogo. Você não precisa de uma chave de API própria.",
+  "content_kelvin_what_title": "O que é",
+  "content_legal_eyebrow": "Jurídico",
+  "content_legal_other": "Outras páginas jurídicas",
+  "content_md_alert_caution": "Cuidado",
+  "content_md_alert_important": "Importante",
+  "content_md_alert_note": "Nota",
+  "content_md_alert_tip": "Dica",
+  "content_md_alert_warning": "Atenção",
+  "content_md_spoiler": "Spoiler",
+  "content_news_back": "Todas as novidades",
+  "content_news_byline": "por {author}",
+  "content_news_description": "Anúncios da equipe do SOTF Mods: novos recursos, mudanças no site e na API e o que vem por aí.",
+  "content_news_empty": "Nenhuma novidade ainda. Tudo tranquilo na floresta.",
+  "content_news_eyebrow": "Notas de campo",
+  "content_news_feed": "Assinar via RSS",
+  "content_news_feed_title": "SOTF Mods — Novidades",
+  "content_news_read": "Ler",
+  "content_news_title": "Novidades",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} funcionam, {broken__number} quebrados, {pending__number} aguardando relatos"
+      }
+    }
+  ],
+  "content_radar_breaking": "Atualização que quebra mods",
+  "content_radar_broken_empty": "Nenhum dos mods principais foi relatado como quebrado na {build}.",
+  "content_radar_broken_title": "Relatados como quebrados",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} do mod principal confirmado na {build}",
+        "count__plural=*": "{share} dos {count__number} mods principais confirmados na {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} funciona · {partial__number} parcial · {broken__number} quebrado"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Mods aguardando relatos",
+  "content_radar_cta_text": "Abra o mod, escolha como você jogou (solo, host, cliente ou dedicado) e diga se funciona. Cada relato de campo rende XP e poupa outros sobreviventes de um save quebrado.",
+  "content_radar_cta_title": "Testou algum destes na {build}?",
+  "content_radar_current": "Build atual",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Patch {build}: {share} dos 50 mods de Sons of the Forest mais baixados confirmados pelos jogadores — {works__number} funcionam, {broken__number} quebrados, {pending__number} aguardando relatos."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Quais mods de Sons of the Forest funcionam no patch atual do jogo: status do RedLoader e relatos de campo dos jogadores para os 50 mods mais baixados.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download em 30 dias",
+        "count__plural=*": "{display} downloads em 30 dias"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Funciona",
+        "status=partial": "Funciona em parte",
+        "status=broken": "Quebrado",
+        "status=*": "Desconhecido"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Ainda não há status do loader registrado para esta build.",
+  "content_radar_ecosystem_title": "Loader e gerenciador na {build}",
+  "content_radar_empty_text": "Nenhuma build do jogo foi registrada ainda. Assim que os rangers registrarem o patch atual, esta página mostrará quais mods populares funcionam nele.",
+  "content_radar_empty_title": "O radar está aquecendo",
+  "content_radar_error_text": "Não conseguimos carregar os dados de compatibilidade. Tente de novo em um minuto; se continuar falhando, avise a gente no Discord com a referência abaixo.",
+  "content_radar_error_title": "Sem sinal",
+  "content_radar_history_empty": "Esta é a primeira build registrada.",
+  "content_radar_history_title": "Histórico de builds",
+  "content_radar_install_link": "Como instalar o RedLoader",
+  "content_radar_legend_outdated": "“Possivelmente desatualizado” significa que a versão mais recente é anterior à última atualização que quebra mods e ninguém confirmou que ela funciona desde então.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Os relatos têm pesos: o teste do próprio autor conta em dobro, criadores verificados 1,5× e contas recém-criadas pela metade. Com menos de {min__number} relatos ponderados, o mod fica como não testado; com {works} ou mais funcionando, funciona; com {broken} ou mais quebrados, está quebrado; o resto é misto."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Como o status é decidido",
+  "content_radar_list_name": "Principais mods de Sons of the Forest no patch {build}",
+  "content_radar_notes": "Notas do patch",
+  "content_radar_outdated": "Possivelmente desatualizado",
+  "content_radar_past_link": "Ver a build atual",
+  "content_radar_past_notice": "Esta é uma build antiga. O jogo agora está na {build}.",
+  "content_radar_pending_empty": "Todos os mods principais têm um veredito claro nesta build.",
+  "content_radar_pending_hint": "Não testados ou com resultados mistos",
+  "content_radar_pending_title": "Aguardando relatos de campo",
+  "content_radar_released": "Lançado em {date}",
+  "content_radar_report": "Relatar",
+  "content_radar_seo_title": "Os mods de SOTF funcionam no patch {build}? — Patch Radar",
+  "content_radar_seo_title_generic": "Os mods de SOTF funcionam no último patch? — Patch Radar",
+  "content_radar_stat_broken": "Quebrados",
+  "content_radar_stat_pending": "Faltam relatos",
+  "content_radar_stat_works": "Funcionam",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Funciona",
+        "status=mixed": "Misto",
+        "status=broken": "Quebrado",
+        "status=*": "Sem dados"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Resumo",
+  "content_radar_title": "Os mods de SOTF funcionam no patch {build}?",
+  "content_radar_works_empty": "Nenhum mod principal foi confirmado na {build} ainda. Testou algum? Conte pra gente.",
+  "content_radar_works_title": "Confirmados funcionando",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} min de leitura",
+        "minutes__plural=*": "{minutes__number} min de leitura"
+      }
+    }
+  ],
+  "content_toc_title": "Nesta página",
+  "content_updated_on": "Última atualização: {date}",
   "emails_auth_deleted_body": "Seus dados pessoais foram apagados. Comentários e avaliações continuam como “Sobrevivente excluído”. Obrigado por fazer parte da ilha.",
   "emails_auth_deleted_heading": "Conta excluída",
   "emails_auth_deleted_preview": "Seus dados pessoais foram apagados.",
