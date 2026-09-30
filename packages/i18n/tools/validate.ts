@@ -17,6 +17,7 @@
  * - Three dots instead of the ellipsis character.
  * - A non-English message identical to English (often a forgotten translation; brand names and
  *   symbols are legitimately identical, so this is informational).
+ * - French typography: plain spaces before `: ; ? !` or inside `« »` (style.ts).
  */
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '../src/locales.ts';
 import type { Catalog, Diagnostic } from './catalog.ts';
@@ -33,6 +34,7 @@ import {
   walkIcu,
 } from './icu.ts';
 import { toInlangMessage } from './inlang.ts';
+import { frenchTypographyDiagnostics } from './style.ts';
 
 export interface ValidatedCatalog {
   diagnostics: Diagnostic[];
@@ -242,6 +244,8 @@ export function validateCatalog(catalog: Catalog): ValidatedCatalog {
       }
     }
   }
+
+  diagnostics.push(...frenchTypographyDiagnostics(catalog));
 
   const order = { error: 0, warning: 1 } as const;
   diagnostics.sort(

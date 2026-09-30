@@ -2,19 +2,30 @@
  * `pnpm i18n:check`: every key present and valid in the 13 locales, and `.generated/` fresh
  * (rules in tools/validate.ts). Warnings never fail the check unless `--strict` is given.
  *
- *   node tools/cli/check.ts [--strict] [--verbose]
+ *   node tools/cli/check.ts [--strict] [--verbose] [--glossary]
+ *
+ * `--glossary` adds the brand-term hints of tools/style.ts (warnings) for reviewers.
  */
 import { parseArgs } from 'node:util';
 import { LOCALES } from '../../src/locales.ts';
+import { loadCatalog } from '../catalog.ts';
 import { buildGenerated, diffGenerated } from '../compile.ts';
+import { glossaryDiagnostics } from '../style.ts';
 import { color, errorCount, loadValidated, main, PACKAGE_ROOT, printDiagnostics } from './shared.ts';
 
 main(async () => {
   const { values } = parseArgs({
-    options: { strict: { type: 'boolean', default: false }, verbose: { type: 'boolean', default: false } },
+    options: {
+      strict: { type: 'boolean', default: false },
+      verbose: { type: 'boolean', default: false },
+      glossary: { type: 'boolean', default: false },
+    },
   });
   const validated = loadValidated();
-  const { diagnostics, identical, messages } = validated;
+  const { identical, messages } = validated;
+  const diagnostics = values.glossary
+    ? [...validated.diagnostics, ...glossaryDiagnostics(loadCatalog(PACKAGE_ROOT))]
+    : validated.diagnostics;
   printDiagnostics(diagnostics);
   let errors = errorCount(diagnostics);
   const warnings = diagnostics.length - errors;

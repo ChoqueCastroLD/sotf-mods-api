@@ -66,5 +66,7 @@
   "console_shortcut_go_settings": "Aller aux paramètres",
   "console_shortcut_go_ranger": "Aller au poste des rangers",
   "console_shortcut_toggle_sidebar": "Réduire ou déployer la barre latérale",
-  "console_noscript": "La console a besoin de JavaScript. Activez-le pour gérer vos mods, vos signaux et vos paramètres."
+  "console_noscript": "La console a besoin de JavaScript. Activez-le pour gérer vos mods, vos signaux et vos paramètres.",
+  "console_nav_inbox": "Boîte de réception",
+  "console_nav_drafts": "Brouillons"
 }
