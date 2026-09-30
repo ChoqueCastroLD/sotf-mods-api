@@ -124,6 +124,314 @@
   "auth_welcome_resend": "Wyślij link ponownie",
   "auth_welcome_resent": "Wysłano. Sprawdź skrzynkę odbiorczą i folder spam.",
   "auth_welcome_verify": "Wysłaliśmy link weryfikacyjny na adres {email}. Otwórz go, aby komentować, recenzować i wgrywać mody.",
+  "builds_action_add_to_kit": "Dodaj do zestawu",
+  "builds_action_download_unavailable": "Na razie brak pliku do pobrania",
+  "builds_action_how_to_import": "Jak zaimportować",
+  "builds_action_other_versions": "Inne wersje",
+  "builds_banner_archived_successor": "Wypróbuj zamiast tego {name}",
+  "builds_banner_archived_text": "Budowniczy nie aktualizuje już tego buildu. Z nowszymi wersjami BuildShare może nie stawiać się poprawnie.",
+  "builds_banner_archived_title": "Zarchiwizowany",
+  "builds_banner_broken_text": "Ocalali zgłaszają, że ten build nie działa w obecnej wersji gry.",
+  "builds_banner_broken_title": "Zgłoszony jako zepsuty",
+  "builds_banner_outdated_text": "Ten build od dawna nie był aktualizowany. Na obecnej łatce może nie stawiać się poprawnie.",
+  "builds_banner_outdated_title": "Możliwie nieaktualny",
+  "builds_banner_pending_text": "Ranger wkrótce sprawdzi ten build. Do tego czasu nie pojawia się na listach ani w wyszukiwarce.",
+  "builds_banner_pending_title": "W weryfikacji",
+  "builds_banner_unlisted_text": "Ten build nie pojawia się na listach ani w wyszukiwarce. Każdy, kto ma link, nadal może go otworzyć.",
+  "builds_banner_unlisted_title": "Niepubliczny",
+  "builds_blueprint_author": "Autor w planie: {author}",
+  "builds_by_author": "autor: {author}",
+  "builds_comments_empty": "Brak komentarzy. Zapytaj o coś budowniczego albo podziel się zrzutem ekranu z tym buildem na swojej wyspie.",
+  "builds_comments_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Jeszcze {count__number} komentarz",
+        "count__plural=few": "Jeszcze {count__number} komentarze",
+        "count__plural=many": "Jeszcze {count__number} komentarzy",
+        "count__plural=*": "Jeszcze {count__number} komentarza"
+      }
+    }
+  ],
+  "builds_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Jeszcze {count__number} odpowiedź",
+        "count__plural=few": "Jeszcze {count__number} odpowiedzi",
+        "count__plural=many": "Jeszcze {count__number} odpowiedzi",
+        "count__plural=*": "Jeszcze {count__number} odpowiedzi"
+      }
+    }
+  ],
+  "builds_comments_sign_in": "Zaloguj się, aby skomentować",
+  "builds_comments_title": "Komentarze",
+  "builds_comments_unavailable": "Tym razem komentarze się nie wczytały. Odśwież stronę, aby spróbować ponownie.",
+  "builds_copy_failed": "Nie udało się skopiować. Zaznacz tekst i skopiuj go ręcznie.",
+  "builds_description_empty": "Budowniczy nie napisał jeszcze opisu. Karta techniczna zawiera fakty.",
+  "builds_description_title": "O tym buildzie",
+  "builds_follow_error": "Nie udało się zaktualizować plecaka. Sprawdź połączenie i spróbuj ponownie.",
+  "builds_follow_hint": "Otrzymuj powiadomienie, gdy ten build dostanie nową wersję",
+  "builds_followed": "Dodano do plecaka.",
+  "builds_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Obraz {index__number} z {total__number}"
+      }
+    }
+  ],
+  "builds_gallery_label": "Obrazy: {name}",
+  "builds_gallery_placeholder": "Na razie brak obrazów. Plan nie zawierał miniatury.",
+  "builds_import_copy_path": "Kopiuj ścieżkę folderu",
+  "builds_import_key_hint": "Klawisz zmienisz w Mods → BuildShare → Toggle Key.",
+  "builds_import_lead": "Build to plan BuildShare: jeden plik .json, który wrzucasz do gry i stawiasz jak gotową konstrukcję.",
+  "builds_import_path_copied": "Skopiowano ścieżkę folderu.",
+  "builds_import_step1_buildshare": "Pobierz BuildShare",
+  "builds_import_step1_guide": "Poradnik instalacji",
+  "builds_import_step1_text": "BuildShare to mod, który stawia plany. Działa na RedLoaderze: jeśli nigdy nie instalowałeś moda, najpierw przejdź przez poradnik instalacji.",
+  "builds_import_step1_title": "Zainstaluj RedLoader i BuildShare",
+  "builds_import_step2_text": "Pobierz plik .json powyżej i skopiuj go do tego folderu gry:",
+  "builds_import_step2_title": "Wrzuć plan do LocalBuildings",
+  "builds_import_step3_text": "W grze naciśnij {key}, aby otworzyć BuildShare, wybierz plan i postaw go. Prawy przycisk myszy przełącza między stawianiem narożnikami a swobodnym, kółko myszy go przesuwa, a Esc anuluje.",
+  "builds_import_step3_title": "Postaw go na wyspie",
+  "builds_import_title": "Jak zaimportować (3 kroki)",
+  "builds_in_kits": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "W {count__number} zestawie",
+        "count__plural=few": "W {count__number} zestawach",
+        "count__plural=many": "W {count__number} zestawach",
+        "count__plural=*": "W {count__number} zestawu"
+      }
+    }
+  ],
+  "builds_kind_label": "Plan BuildShare",
+  "builds_link_copied": "Skopiowano link.",
+  "builds_md_alert_caution": "Ostrożnie",
+  "builds_md_alert_important": "Ważne",
+  "builds_md_alert_note": "Uwaga",
+  "builds_md_alert_tip": "Wskazówka",
+  "builds_md_alert_warning": "Ostrzeżenie",
+  "builds_md_spoiler": "Spoiler",
+  "builds_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input pieceCount",
+        "input pieces",
+        "input count",
+        "input downloads",
+        "local pieceCount__plural = pieceCount: plural",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "pieceCount__plural",
+        "count__plural"
+      ],
+      "match": {
+        "pieceCount__plural=one, count__plural=one": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} element. {downloads} pobranie, za darmo, z instrukcją importu.",
+        "pieceCount__plural=one, count__plural=few": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} element. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=one, count__plural=many": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} element. {downloads} pobrań, za darmo, z instrukcją importu.",
+        "pieceCount__plural=one, count__plural=*": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} element. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=few, count__plural=one": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementy. {downloads} pobranie, za darmo, z instrukcją importu.",
+        "pieceCount__plural=few, count__plural=few": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementy. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=few, count__plural=many": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementy. {downloads} pobrań, za darmo, z instrukcją importu.",
+        "pieceCount__plural=few, count__plural=*": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementy. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=many, count__plural=one": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementów. {downloads} pobranie, za darmo, z instrukcją importu.",
+        "pieceCount__plural=many, count__plural=few": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementów. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=many, count__plural=many": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementów. {downloads} pobrań, za darmo, z instrukcją importu.",
+        "pieceCount__plural=many, count__plural=*": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementów. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=*, count__plural=one": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementu. {downloads} pobranie, za darmo, z instrukcją importu.",
+        "pieceCount__plural=*, count__plural=few": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementu. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "pieceCount__plural=*, count__plural=many": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementu. {downloads} pobrań, za darmo, z instrukcją importu.",
+        "pieceCount__plural=*, count__plural=*": "{name}: build do Sons of the Forest od {author} dla BuildShare, {pieces} elementu. {downloads} pobrania, za darmo, z instrukcją importu."
+      }
+    }
+  ],
+  "builds_meta_description_fallback": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: build do Sons of the Forest od {author} dla BuildShare. {downloads} pobranie, za darmo, z instrukcją importu.",
+        "count__plural=few": "{name}: build do Sons of the Forest od {author} dla BuildShare. {downloads} pobrania, za darmo, z instrukcją importu.",
+        "count__plural=many": "{name}: build do Sons of the Forest od {author} dla BuildShare. {downloads} pobrań, za darmo, z instrukcją importu.",
+        "count__plural=*": "{name}: build do Sons of the Forest od {author} dla BuildShare. {downloads} pobrania, za darmo, z instrukcją importu."
+      }
+    }
+  ],
+  "builds_meta_title": "{name} — build do SOTF (plan BuildShare)",
+  "builds_meta_title_short": "{name} — build do SOTF",
+  "builds_nsfw_show": "Pokaż obrazy",
+  "builds_nsfw_text": "Twórca oznaczył ten build jako NSFW. Obrazy pozostaną ukryte, dopóki nie zdecydujesz się ich zobaczyć.",
+  "builds_nsfw_title": "Treści dla dorosłych",
+  "builds_og_alt": "Plan budowli {name}",
+  "builds_original_author": "Pierwotny autor: {author}",
+  "builds_related_all": "Wszystkie buildy",
+  "builds_related_title": "Więcej planów",
+  "builds_requires_title": "Wymagane mody",
+  "builds_reviews_empty": "Brak recenzji. Zbudowałeś to? Opowiedz innym ocalałym, jak poszło.",
+  "builds_reviews_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Jeszcze {count__number} recenzja",
+        "count__plural=few": "Jeszcze {count__number} recenzje",
+        "count__plural=many": "Jeszcze {count__number} recenzji",
+        "count__plural=*": "Jeszcze {count__number} recenzji"
+      }
+    }
+  ],
+  "builds_reviews_sign_in": "Zaloguj się, aby dodać recenzję",
+  "builds_reviews_title": "Recenzje",
+  "builds_reviews_unavailable": "Tym razem recenzje się nie wczytały. Odśwież stronę, aby spróbować ponownie.",
+  "builds_size_badge": "Rozmiar {size}",
+  "builds_size_name": [
+    {
+      "declarations": [
+        "input size"
+      ],
+      "selectors": [
+        "size"
+      ],
+      "match": {
+        "size=S": "Mały",
+        "size=M": "Średni",
+        "size=L": "Duży",
+        "size=XL": "Ogromny",
+        "size=*": "{size}"
+      }
+    }
+  ],
+  "builds_size_range_above": "{min} elementów lub więcej",
+  "builds_size_range_below": "Mniej niż {max} elementów",
+  "builds_size_range_between": "Od {min} do {max} elementów",
+  "builds_size_scale_label": "Skala rozmiaru",
+  "builds_spec_blueprint_author": "Autor planu",
+  "builds_spec_buildshare": "Wersja BuildShare",
+  "builds_spec_copy_guid": "Kopiuj GUID",
+  "builds_spec_downloads": "Pobrania",
+  "builds_spec_file": "Plik",
+  "builds_spec_guid": "GUID planu",
+  "builds_spec_guid_copied": "Skopiowano GUID.",
+  "builds_spec_original_author": "Pierwotny autor",
+  "builds_spec_pieces": "Elementy",
+  "builds_spec_published": "Opublikowano",
+  "builds_spec_size": "Rozmiar",
+  "builds_spec_structures": "Struktury",
+  "builds_spec_title": "Karta techniczna",
+  "builds_spec_unknown": "Brak danych",
+  "builds_spec_updated": "Zaktualizowano",
+  "builds_spec_uploader": "Przesłał(a)",
+  "builds_spec_version": "Wersja",
+  "builds_stat_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} element",
+        "count__plural=few": "{display} elementy",
+        "count__plural=many": "{display} elementów",
+        "count__plural=*": "{display} elementu"
+      }
+    }
+  ],
+  "builds_stat_rating": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} na 5 · {count__number} recenzja",
+        "count__plural=few": "{rating} na 5 · {count__number} recenzje",
+        "count__plural=many": "{rating} na 5 · {count__number} recenzji",
+        "count__plural=*": "{rating} na 5 · {count__number} recenzji"
+      }
+    }
+  ],
+  "builds_stats_label": "Statystyki buildu",
+  "builds_unfollowed": "Usunięto z plecaka.",
+  "builds_verified_creator": "Zweryfikowany twórca",
+  "builds_versions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} wersja",
+        "count__plural=few": "{count__number} wersje",
+        "count__plural=many": "{count__number} wersji",
+        "count__plural=*": "{count__number} wersji"
+      }
+    }
+  ],
+  "builds_versions_download": "Pobierz v{version}",
+  "builds_versions_empty": "Brak opublikowanej wersji.",
+  "builds_versions_latest": "Najnowsza",
+  "builds_versions_title": "Wersje",
+  "builds_versions_yanked": "Wycofana",
   "common_account_menu": "Menu konta",
   "common_account_profile": "Twój profil",
   "common_account_settings": "Ustawienia",

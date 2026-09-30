@@ -1,0 +1,96 @@
+---
+/**
+ * «How to import (3 steps)» (T0-24: BuildShare as an automatic dependency, with instructions).
+ * The steps follow BuildShare's own documentation: blueprints live in
+ * `Sons Of The Forest/Mods/BuildShare/LocalBuildings` and the panel opens with Page Up (Mods →
+ * BuildShare → Toggle Key). Step 1 links the BuildShare page (the build's dependency, or a search
+ * when the catalog does not carry it) and the install guide.
+ */
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { Copy, Download, Route } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import {
+  BUILDSHARE_MANIFEST_ID,
+  BUILDSHARE_TOGGLE_KEY,
+  buildShareDependency,
+  LOCAL_BUILDINGS_PATH,
+  type ModDetailDTO,
+} from './data.ts';
+
+interface Props {
+  build: ModDetailDTO;
+}
+
+const { build } = Astro.props;
+const locale = Astro.locals.locale;
+const dependency = buildShareDependency(build);
+const buildShareHref =
+  dependency?.mod && dependency.state === 'ok'
+    ? href(dependency.mod.canonicalPath, locale)
+    : `${href('/search', locale)}?q=${encodeURIComponent(BUILDSHARE_MANIFEST_ID)}`;
+const keyParts = m.builds_import_step3_text({ key: '\u0000' }).split('\u0000');
+const stepNumber =
+  'flex size-10 shrink-0 items-center justify-center rounded-full border-2 border-blueprint font-mono text-sm font-semibold text-blueprint';
+---
+
+<section id="import" aria-labelledby="import-title" class="grid scroll-mt-24 gap-4">
+  <div class="grid gap-1">
+    <h2 id="import-title" class="font-display-caps text-display-xs text-fg">{m.builds_import_title()}</h2>
+    <p class="text-fg-muted">{m.builds_import_lead()}</p>
+  </div>
+  <ol class="grid gap-4">
+    <li class="flex gap-4 rounded-lg border border-border bg-surface p-4">
+      <span class={stepNumber} aria-hidden="true">1</span>
+      <div class="grid min-w-0 gap-2">
+        <h3 class="font-semibold text-fg">{m.builds_import_step1_title()}</h3>
+        <p class="text-sm text-fg-muted">{m.builds_import_step1_text()}</p>
+        <p class="flex flex-wrap gap-2">
+          <a href={buildShareHref} class={buttonClasses({ variant: 'secondary', size: 'sm' })}>
+            <Icon icon={Download} size={16} />
+            {m.builds_import_step1_buildshare()}
+          </a>
+          <a href={href('/install', locale)} class={buttonClasses({ variant: 'ghost', size: 'sm' })}>
+            <Icon icon={Route} size={16} />
+            {m.builds_import_step1_guide()}
+          </a>
+        </p>
+      </div>
+    </li>
+    <li class="flex gap-4 rounded-lg border border-border bg-surface p-4">
+      <span class={stepNumber} aria-hidden="true">2</span>
+      <div class="grid min-w-0 gap-2">
+        <h3 class="font-semibold text-fg">{m.builds_import_step2_title()}</h3>
+        <p class="text-sm text-fg-muted">{m.builds_import_step2_text()}</p>
+        <div class="flex min-w-0 items-center gap-2 rounded-md border border-blueprint/40 bg-blueprint-surface p-2">
+          <code class="min-w-0 flex-1 overflow-x-auto font-mono text-xs whitespace-nowrap text-blueprint" data-import-path
+            >{LOCAL_BUILDINGS_PATH}</code
+          >
+          <button
+            type="button"
+            data-copy-text={LOCAL_BUILDINGS_PATH}
+            data-copied={m.builds_import_path_copied()}
+            class="inline-flex size-8 shrink-0 items-center justify-center rounded-sm text-blueprint hover:bg-blueprint/10"
+            title={m.builds_import_copy_path()}
+          >
+            <Icon icon={Copy} size={16} label={m.builds_import_copy_path()} />
+          </button>
+        </div>
+      </div>
+    </li>
+    <li class="flex gap-4 rounded-lg border border-border bg-surface p-4">
+      <span class={stepNumber} aria-hidden="true">3</span>
+      <div class="grid min-w-0 gap-2">
+        <h3 class="font-semibold text-fg">{m.builds_import_step3_title()}</h3>
+        <p class="text-sm text-fg-muted">
+          {keyParts[0]}<kbd
+            class="rounded-xs border border-border-strong bg-raised px-1.5 py-0.5 font-mono text-xs text-fg"
+            >{BUILDSHARE_TOGGLE_KEY}</kbd
+          >{keyParts[1]}
+        </p>
+        <p class="text-xs text-fg-subtle">{m.builds_import_key_hint()}</p>
+      </div>
+    </li>
+  </ol>
+</section>

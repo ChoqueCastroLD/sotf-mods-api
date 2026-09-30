@@ -1,0 +1,102 @@
+---
+/**
+ * Reviews and comments of a build, «as on mods» (T0-24): the first reviews (most helpful) and the
+ * top comments are server-rendered (indexable, fast); the islands of WP-70 mount on
+ * `[data-island="reviews"]` and `[data-island="comments"]` (same attributes as the mod page) to
+ * write, vote, react, reply and load more from `data-next-cursor`.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { href } from '../../lib/i18n.ts';
+import { BuildCommentList, BuildReviewList } from './Domain.tsx';
+import type { CommentPage, ModDetailDTO, ReviewPage } from './data.ts';
+import { loginHrefFor, markdownLabels } from './i18n.ts';
+
+interface Props {
+  build: ModDetailDTO;
+  reviews: ReviewPage | null;
+  comments: CommentPage | null;
+}
+
+const { build, reviews, comments } = Astro.props;
+const locale = Astro.locals.locale;
+const lang = toHtmlLang(locale);
+const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale));
+const labels = markdownLabels();
+const localize = <T extends { bodyHtml: string | null }>(item: T): T => ({
+  ...item,
+  bodyHtml: item.bodyHtml ? localizeHtml(item.bodyHtml, labels) : item.bodyHtml,
+});
+const reviewItems = (reviews?.items ?? []).map((review) => localize(review));
+const commentItems = (comments?.items ?? []).map((comment) => ({
+  ...localize(comment),
+  replies: comment.replies.map(localize),
+}));
+const reviewCount = build.reviewsSummary.count;
+const moreReviews = Math.max(0, reviewCount - reviewItems.length);
+const shownComments = commentItems.reduce((sum, comment) => sum + 1 + comment.replies.length, 0);
+// «N more comments» only when the API says there is a next page (the count includes replies).
+const moreComments = comments?.nextCursor ? Math.max(0, build.commentsCount - shownComments) : 0;
+const creatorName = build.userDisplayName || build.userHandle;
+const moreRepliesLabel = (count: number) => m.builds_comments_more_replies({ count });
+const titleClass = 'font-display-caps text-display-xs text-fg';
+---
+
+<section id="reviews" aria-labelledby="reviews-title" class="grid scroll-mt-24 gap-4">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 id="reviews-title" class={titleClass}>{m.builds_reviews_title()}</h2>
+    {reviewCount > 0 && <p class="text-sm text-fg-muted">{m.common_reviews_count({ count: reviewCount })}</p>}
+  </div>
+  {
+    reviewItems.length > 0 ? (
+      <BuildReviewList lang={lang} summary={build.reviewsSummary} reviews={reviewItems} creatorName={creatorName} />
+    ) : (
+      <p class="text-fg-muted">{reviewCount > 0 ? m.builds_reviews_unavailable() : m.builds_reviews_empty()}</p>
+    )
+  }
+  {moreReviews > 0 && <p class="text-sm text-fg-muted">{m.builds_reviews_more({ count: moreReviews })}</p>}
+  <div
+    data-island="reviews"
+    data-mod-id={build.id}
+    data-mod-author-id={build.userId}
+    data-next-cursor={reviews?.nextCursor ?? undefined}
+    data-total={reviewCount}
+    class="grid gap-2"
+  >
+    <p class="text-sm" data-review-guest-hint>
+      <a href={loginHref} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
+        {m.builds_reviews_sign_in()}
+      </a>
+    </p>
+  </div>
+</section>
+
+<section id="comments" aria-labelledby="comments-title" class="grid scroll-mt-24 gap-4">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 id="comments-title" class={titleClass}>{m.builds_comments_title()}</h2>
+    {build.commentsCount > 0 && <p class="text-sm text-fg-muted">{m.common_comments_count({ count: build.commentsCount })}</p>}
+  </div>
+  {
+    commentItems.length > 0 ? (
+      <BuildCommentList lang={lang} comments={commentItems} moreRepliesLabel={moreRepliesLabel} />
+    ) : (
+      <p class="text-fg-muted">{build.commentsCount > 0 ? m.builds_comments_unavailable() : m.builds_comments_empty()}</p>
+    )
+  }
+  {moreComments > 0 && <p class="text-sm text-fg-muted">{m.builds_comments_more({ count: moreComments })}</p>}
+  <div
+    data-island="comments"
+    data-mod-id={build.id}
+    data-mod-author-id={build.userId}
+    data-next-cursor={comments?.nextCursor ?? undefined}
+    data-total={build.commentsCount}
+    class="grid gap-2"
+  >
+    <p class="text-sm" data-comment-guest-hint>
+      <a href={loginHref} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
+        {m.builds_comments_sign_in()}
+      </a>
+    </p>
+  </div>
+</section>

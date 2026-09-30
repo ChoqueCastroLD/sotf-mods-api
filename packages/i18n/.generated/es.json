@@ -124,6 +124,286 @@
   "auth_welcome_resend": "Enviar el enlace otra vez",
   "auth_welcome_resent": "Enviado. Revisa tu bandeja de entrada y la carpeta de spam.",
   "auth_welcome_verify": "Hemos enviado un enlace de verificación a {email}. Ábrelo para empezar a comentar, reseñar y subir mods.",
+  "builds_action_add_to_kit": "Añadir al Kit",
+  "builds_action_download_unavailable": "Todavía no hay archivo para descargar",
+  "builds_action_how_to_import": "Cómo importar",
+  "builds_action_other_versions": "Otras versiones",
+  "builds_banner_archived_successor": "Prueba {name} en su lugar",
+  "builds_banner_archived_text": "El constructor ya no actualiza esta build. Puede que no se coloque bien con versiones recientes de BuildShare.",
+  "builds_banner_archived_title": "Archivada",
+  "builds_banner_broken_text": "Hay supervivientes que dicen que esta build no funciona en la versión actual del juego.",
+  "builds_banner_broken_title": "Reportada como rota",
+  "builds_banner_outdated_text": "Esta build lleva mucho tiempo sin actualizarse. Puede que no se coloque bien en el parche actual.",
+  "builds_banner_outdated_title": "Posiblemente desactualizada",
+  "builds_banner_pending_text": "Un ranger revisará esta build pronto. Hasta entonces no aparece en listados ni búsquedas.",
+  "builds_banner_pending_title": "En revisión",
+  "builds_banner_unlisted_text": "Esta build no aparece en listados ni búsquedas. Cualquiera con el enlace puede abrirla.",
+  "builds_banner_unlisted_title": "No listada",
+  "builds_blueprint_author": "Autor en el plano: {author}",
+  "builds_by_author": "de {author}",
+  "builds_comments_empty": "Aún no hay comentarios. Pregúntale algo al constructor o comparte una captura de la build en tu isla.",
+  "builds_comments_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} comentario más",
+        "count__plural=*": "{count__number} comentarios más"
+      }
+    }
+  ],
+  "builds_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} respuesta más",
+        "count__plural=*": "{count__number} respuestas más"
+      }
+    }
+  ],
+  "builds_comments_sign_in": "Inicia sesión para comentar",
+  "builds_comments_title": "Comentarios",
+  "builds_comments_unavailable": "Los comentarios no se han cargado esta vez. Recarga la página para intentarlo de nuevo.",
+  "builds_copy_failed": "No se pudo copiar. Selecciona el texto y cópialo a mano.",
+  "builds_description_empty": "El constructor aún no ha escrito una descripción. La ficha técnica tiene los datos.",
+  "builds_description_title": "Sobre esta build",
+  "builds_follow_error": "No se pudo actualizar tu Mochila. Revisa tu conexión y vuelve a intentarlo.",
+  "builds_follow_hint": "Recibe un aviso cuando esta build tenga una versión nueva",
+  "builds_followed": "Añadida a tu Mochila.",
+  "builds_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Imagen {index__number} de {total__number}"
+      }
+    }
+  ],
+  "builds_gallery_label": "Imágenes de {name}",
+  "builds_gallery_placeholder": "Todavía no hay imágenes. El plano no traía miniatura.",
+  "builds_import_copy_path": "Copiar la ruta de la carpeta",
+  "builds_import_key_hint": "Puedes cambiar la tecla en Mods → BuildShare → Toggle Key.",
+  "builds_import_lead": "Una build es un plano de BuildShare: un solo archivo .json que pones en tu juego y colocas como una construcción prefabricada.",
+  "builds_import_path_copied": "Ruta de la carpeta copiada.",
+  "builds_import_step1_buildshare": "Conseguir BuildShare",
+  "builds_import_step1_guide": "Guía de instalación",
+  "builds_import_step1_text": "BuildShare es el mod que coloca los planos. Funciona con RedLoader: si nunca has instalado un mod, sigue primero la guía de instalación.",
+  "builds_import_step1_title": "Instala RedLoader y BuildShare",
+  "builds_import_step2_text": "Descarga el .json de arriba y cópialo en esta carpeta del juego:",
+  "builds_import_step2_title": "Pon el plano en LocalBuildings",
+  "builds_import_step3_text": "En el juego, pulsa {key} para abrir BuildShare, elige el plano y colócalo. El clic derecho cambia entre colocación por esquinas y libre, la rueda del ratón lo mueve y Esc cancela.",
+  "builds_import_step3_title": "Colócala en la isla",
+  "builds_import_title": "Cómo importar (3 pasos)",
+  "builds_in_kits": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "En {count__number} Kit",
+        "count__plural=*": "En {count__number} Kits"
+      }
+    }
+  ],
+  "builds_kind_label": "Plano de BuildShare",
+  "builds_link_copied": "Enlace copiado.",
+  "builds_md_alert_caution": "Precaución",
+  "builds_md_alert_important": "Importante",
+  "builds_md_alert_note": "Nota",
+  "builds_md_alert_tip": "Consejo",
+  "builds_md_alert_warning": "Aviso",
+  "builds_md_spoiler": "Spoiler",
+  "builds_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input pieceCount",
+        "input pieces",
+        "input count",
+        "input downloads",
+        "local pieceCount__plural = pieceCount: plural",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "pieceCount__plural",
+        "count__plural"
+      ],
+      "match": {
+        "pieceCount__plural=one, count__plural=one": "{name}: una build de Sons of the Forest de {author} para BuildShare, {pieces} pieza. {downloads} descarga, gratis y con pasos para importarla.",
+        "pieceCount__plural=one, count__plural=*": "{name}: una build de Sons of the Forest de {author} para BuildShare, {pieces} pieza. {downloads} descargas, gratis y con pasos para importarla.",
+        "pieceCount__plural=*, count__plural=one": "{name}: una build de Sons of the Forest de {author} para BuildShare, {pieces} piezas. {downloads} descarga, gratis y con pasos para importarla.",
+        "pieceCount__plural=*, count__plural=*": "{name}: una build de Sons of the Forest de {author} para BuildShare, {pieces} piezas. {downloads} descargas, gratis y con pasos para importarla."
+      }
+    }
+  ],
+  "builds_meta_description_fallback": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: una build de Sons of the Forest de {author} para BuildShare. {downloads} descarga, gratis y con pasos para importarla.",
+        "count__plural=*": "{name}: una build de Sons of the Forest de {author} para BuildShare. {downloads} descargas, gratis y con pasos para importarla."
+      }
+    }
+  ],
+  "builds_meta_title": "{name} — build de SOTF (plano de BuildShare)",
+  "builds_meta_title_short": "{name} — build de SOTF",
+  "builds_nsfw_show": "Ver imágenes",
+  "builds_nsfw_text": "El creador marcó esta build como NSFW. Sus imágenes quedan ocultas hasta que decidas verlas.",
+  "builds_nsfw_title": "Contenido para adultos",
+  "builds_og_alt": "Plano de {name}",
+  "builds_original_author": "Autor original: {author}",
+  "builds_related_all": "Todas las builds",
+  "builds_related_title": "Más planos",
+  "builds_requires_title": "Mods necesarios",
+  "builds_reviews_empty": "Aún no hay reseñas. ¿La has construido? Cuéntales a otros supervivientes qué tal.",
+  "builds_reviews_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} reseña más",
+        "count__plural=*": "{count__number} reseñas más"
+      }
+    }
+  ],
+  "builds_reviews_sign_in": "Inicia sesión para reseñar",
+  "builds_reviews_title": "Reseñas",
+  "builds_reviews_unavailable": "Las reseñas no se han cargado esta vez. Recarga la página para intentarlo de nuevo.",
+  "builds_size_badge": "Tamaño {size}",
+  "builds_size_name": [
+    {
+      "declarations": [
+        "input size"
+      ],
+      "selectors": [
+        "size"
+      ],
+      "match": {
+        "size=S": "Pequeña",
+        "size=M": "Mediana",
+        "size=L": "Grande",
+        "size=XL": "Enorme",
+        "size=*": "{size}"
+      }
+    }
+  ],
+  "builds_size_range_above": "{min} piezas o más",
+  "builds_size_range_below": "Menos de {max} piezas",
+  "builds_size_range_between": "De {min} a {max} piezas",
+  "builds_size_scale_label": "Escala de tamaño",
+  "builds_spec_blueprint_author": "Autor del plano",
+  "builds_spec_buildshare": "Versión de BuildShare",
+  "builds_spec_copy_guid": "Copiar GUID",
+  "builds_spec_downloads": "Descargas",
+  "builds_spec_file": "Archivo",
+  "builds_spec_guid": "GUID del plano",
+  "builds_spec_guid_copied": "GUID copiado.",
+  "builds_spec_original_author": "Autor original",
+  "builds_spec_pieces": "Piezas",
+  "builds_spec_published": "Publicada",
+  "builds_spec_size": "Tamaño",
+  "builds_spec_structures": "Estructuras",
+  "builds_spec_title": "Ficha técnica",
+  "builds_spec_unknown": "Sin registrar",
+  "builds_spec_updated": "Actualizada",
+  "builds_spec_uploader": "Subida por",
+  "builds_spec_version": "Versión",
+  "builds_stat_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} pieza",
+        "count__plural=*": "{display} piezas"
+      }
+    }
+  ],
+  "builds_stat_rating": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} de 5 · {count__number} reseña",
+        "count__plural=*": "{rating} de 5 · {count__number} reseñas"
+      }
+    }
+  ],
+  "builds_stats_label": "Estadísticas de la build",
+  "builds_unfollowed": "Quitada de tu Mochila.",
+  "builds_verified_creator": "Creador verificado",
+  "builds_versions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} versión",
+        "count__plural=*": "{count__number} versiones"
+      }
+    }
+  ],
+  "builds_versions_download": "Descargar v{version}",
+  "builds_versions_empty": "Todavía no hay ninguna versión publicada.",
+  "builds_versions_latest": "Última",
+  "builds_versions_title": "Versiones",
+  "builds_versions_yanked": "Retirada",
   "common_account_menu": "Menú de la cuenta",
   "common_account_profile": "Tu perfil",
   "common_account_settings": "Ajustes",

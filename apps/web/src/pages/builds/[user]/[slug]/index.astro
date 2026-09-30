@@ -1,0 +1,204 @@
+---
+/**
+ * Build page `/builds/:user/:slug` (WP-63, T0-24, research/03 §6.6) — Blueprint sub-aesthetic
+ * (`data-surface="blueprint"`: cyanotype grid, corner ticks, dimension lines).
+ *
+ * - SSR, edge-cached 900 s with `mod:{id}` + `user:{id}` (PLAN §4.2); the resolver answers
+ *   301/404/410 for old, mistyped or removed URLs and sends mods reached through `/builds` to
+ *   `/mods/…`. Unknown sub-paths are 404.
+ * - Gallery · header (uploader, blueprint and original authors, stats, size S/M/L/XL, download,
+ *   follow ♥, copy link) · description · «How to import (3 steps)» · required mods · versions ·
+ *   reviews and comments (first page in the HTML + WP-70 mount points) · spec sheet · related.
+ * - JSON-LD `CreativeWork` (+ `BreadcrumbList` of the visible trail); `aggregateRating` only with ≥ 3
+ *   visible reviews. Everything user-specific is filled in by `build-page.ts` after load.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
+import { ProseLocator } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import BuildGallery from '../../../../components/builds/BuildGallery.astro';
+import BuildHeader from '../../../../components/builds/BuildHeader.astro';
+import BuildSocial from '../../../../components/builds/BuildSocial.astro';
+import { BuildDependencies, RelatedBuildGrid } from '../../../../components/builds/Domain.tsx';
+import {
+  BUILDSHARE_MANIFEST_ID,
+  loadBuildExtras,
+  resolveBuildPage,
+} from '../../../../components/builds/data.ts';
+import ImportSteps from '../../../../components/builds/ImportSteps.astro';
+import { markdownLabels } from '../../../../components/builds/i18n.ts';
+import MobileDownloadBar from '../../../../components/builds/MobileDownloadBar.astro';
+import { respondUnresolved } from '../../../../components/builds/responses.ts';
+import SpecSheet from '../../../../components/builds/SpecSheet.astro';
+import StatusBanners from '../../../../components/builds/StatusBanners.astro';
+import { buildDescription, buildJsonLd, buildTitle } from '../../../../components/builds/seo.ts';
+import VersionsList from '../../../../components/builds/VersionsList.astro';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { setPageCache } from '../../../../lib/cache/page.ts';
+import { pageCache } from '../../../../lib/cache/policy.ts';
+import { loadEnv } from '../../../../lib/env.ts';
+import { href } from '../../../../lib/i18n.ts';
+import { pictureSources } from '../../../../lib/images.ts';
+import { ensureLocals } from '../../../../lib/request-context.ts';
+import { breadcrumbJsonLd } from '../../../../lib/seo/jsonld.ts';
+
+export const prerender = false;
+
+const locale = ensureLocals(Astro).locale;
+const resolved = await resolveBuildPage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+if (resolved.rest.length > 0) return respondUnresolved(Astro, { kind: 'not-found' });
+
+const { build } = resolved;
+setPageCache(Astro, pageCache.mod(build.id, build.userId));
+const extras = await loadBuildExtras(build);
+const { spec } = extras;
+const env = loadEnv();
+const lang = toHtmlLang(locale);
+const pageUrl = `${env.siteUrl}${href(build.canonicalPath, locale)}`;
+const labels = markdownLabels();
+const descriptionHtml = build.descriptionHtml.trim() ? localizeHtml(build.descriptionHtml, labels) : '';
+const otherDependencies = build.dependencies.filter((dependency) => dependency.manifestId !== BUILDSHARE_MANIFEST_ID);
+
+const hero = build.nsfw ? null : (build.thumbnail ?? build.gallery[0] ?? null);
+const heroSources = hero ? pictureSources(hero.srcset) : null;
+const preloadImage = hero
+  ? heroSources?.avif
+    ? {
+        href: hero.url,
+        srcset: heroSources.avif,
+        sizes: '(min-width: 80rem) 760px, (min-width: 64rem) 58vw, 100vw',
+        type: 'image/avif',
+      }
+    : { href: hero.url }
+  : undefined;
+const ogImage = build.nsfw ? undefined : (build.thumbnail?.url ?? build.gallery[0]?.url);
+const sectionTitle = 'font-display-caps text-display-xs text-fg';
+const trail: { label: string; path?: string }[] = [
+  { label: m.common_nav_home(), path: '/' },
+  { label: m.common_term_builds(), path: '/builds' },
+  { label: build.name },
+];
+const jsonLd = [
+  ...buildJsonLd({ build, spec, locale, siteUrl: env.siteUrl, pageUrl }),
+  breadcrumbJsonLd(
+    trail.map((crumb) => ({
+      name: crumb.label,
+      url: crumb.path === undefined ? undefined : `${env.siteUrl}${href(crumb.path, locale)}`,
+    })),
+  ),
+];
+const visibleCrumbs = trail.map((crumb) => ({
+  label: crumb.label,
+  href: crumb.path === undefined ? undefined : href(crumb.path, locale),
+}));
+---
+
+<BaseLayout
+  template="build"
+  seo={{
+    title: buildTitle(build),
+    description: buildDescription(build, spec, locale),
+    path: build.canonicalPath,
+    noindex: build.noindex,
+    adult: build.nsfw,
+    og: {
+      imageAlt: m.builds_og_alt({ name: build.name }),
+      type: 'article',
+      ...(ogImage ? { image: ogImage } : {}),
+    },
+  }}
+  jsonLd={jsonLd}
+  preloadImage={preloadImage}
+  entity={{ type: 'build', id: build.id }}
+>
+  <div class="mx-auto grid w-full max-w-(--container-wide) gap-6 px-4 py-6 md:px-6 md:py-10">
+  <Breadcrumbs items={visibleCrumbs} />
+  <article
+    data-surface="blueprint"
+    data-build-page
+    data-mod-id={build.id}
+    class="grid gap-8 md:gap-10"
+    aria-labelledby="build-title"
+  >
+    <StatusBanners build={build} />
+
+    <div class="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
+      <BuildGallery build={build} spec={spec} />
+      <BuildHeader build={build} spec={spec} versions={extras.versions} />
+    </div>
+
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem]">
+      <div class="grid min-w-0 gap-10">
+        <section aria-labelledby="about-title" class="grid gap-4">
+          <h2 id="about-title" class={sectionTitle}>{m.builds_description_title()}</h2>
+          {
+            descriptionHtml ? (
+              <ProseLocator
+                html={descriptionHtml}
+                lang={build.contentLang ?? undefined}
+                className="max-w-(--container-prose)"
+              />
+            ) : (
+              <p class="text-fg-muted">{m.builds_description_empty()}</p>
+            )
+          }
+        </section>
+
+        <ImportSteps build={build} />
+
+        {
+          otherDependencies.length > 0 && (
+            <section id="dependencies" aria-labelledby="dependencies-title" class="grid gap-3">
+              <h2 id="dependencies-title" class={sectionTitle}>
+                {m.builds_requires_title()}
+              </h2>
+              <BuildDependencies lang={lang} dependencies={otherDependencies} />
+            </section>
+          )
+        }
+
+        <VersionsList build={build} versions={extras.versions} />
+
+        <BuildSocial build={build} reviews={extras.reviews} comments={extras.comments} />
+      </div>
+
+      <aside class="order-first grid min-w-0 gap-6 lg:sticky lg:top-24 lg:order-none">
+        <SpecSheet build={build} spec={spec} />
+      </aside>
+    </div>
+
+    {
+      extras.related.length > 0 && (
+        <section aria-labelledby="related-title" class="grid gap-4">
+          <div class="flex flex-wrap items-baseline justify-between gap-3">
+            <h2 id="related-title" class={sectionTitle}>
+              {m.builds_related_title()}
+            </h2>
+            <a
+              href={href('/builds', locale)}
+              class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link"
+            >
+              {m.builds_related_all()}
+              <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+            </a>
+          </div>
+          <RelatedBuildGrid lang={lang} builds={extras.related} label={m.builds_related_title()} />
+        </section>
+      )
+    }
+  </article>
+
+  </div>
+
+  <MobileDownloadBar build={build} />
+</BaseLayout>
+
+<script>
+  import { initBuildPage } from '../../../../components/builds/build-page.ts';
+
+  initBuildPage();
+</script>

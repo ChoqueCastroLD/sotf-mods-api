@@ -124,6 +124,286 @@
   "auth_welcome_resend": "Invia di nuovo il link",
   "auth_welcome_resent": "Inviato. Controlla la posta in arrivo e la cartella spam.",
   "auth_welcome_verify": "Abbiamo inviato un link di verifica a {email}. Aprilo per iniziare a commentare, recensire e caricare.",
+  "builds_action_add_to_kit": "Aggiungi al Kit",
+  "builds_action_download_unavailable": "Ancora nessun file da scaricare",
+  "builds_action_how_to_import": "Come importarla",
+  "builds_action_other_versions": "Altre versioni",
+  "builds_banner_archived_successor": "Prova invece {name}",
+  "builds_banner_archived_text": "Il costruttore non aggiorna più questa build. Potrebbe non piazzarsi bene con le versioni recenti di BuildShare.",
+  "builds_banner_archived_title": "Archiviata",
+  "builds_banner_broken_text": "Alcuni sopravvissuti segnalano che questa build non funziona sulla versione attuale del gioco.",
+  "builds_banner_broken_title": "Segnalata come rotta",
+  "builds_banner_outdated_text": "Questa build non viene aggiornata da molto tempo. Potrebbe non piazzarsi bene con la patch attuale.",
+  "builds_banner_outdated_title": "Forse obsoleta",
+  "builds_banner_pending_text": "Un ranger controllerà presto questa build. Fino ad allora non compare negli elenchi né nella ricerca.",
+  "builds_banner_pending_title": "In revisione",
+  "builds_banner_unlisted_text": "Questa build non compare negli elenchi né nella ricerca. Chi ha il link può comunque aprirla.",
+  "builds_banner_unlisted_title": "Non in elenco",
+  "builds_blueprint_author": "Autore nel progetto: {author}",
+  "builds_by_author": "di {author}",
+  "builds_comments_empty": "Ancora nessun commento. Chiedi qualcosa al costruttore o condividi uno screenshot della build sulla tua isola.",
+  "builds_comments_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ancora {count__number} commento",
+        "count__plural=*": "Altri {count__number} commenti"
+      }
+    }
+  ],
+  "builds_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ancora {count__number} risposta",
+        "count__plural=*": "Altre {count__number} risposte"
+      }
+    }
+  ],
+  "builds_comments_sign_in": "Accedi per commentare",
+  "builds_comments_title": "Commenti",
+  "builds_comments_unavailable": "I commenti non si sono caricati stavolta. Ricarica la pagina per riprovare.",
+  "builds_copy_failed": "Copia non riuscita. Seleziona il testo e copialo a mano.",
+  "builds_description_empty": "Il costruttore non ha ancora scritto una descrizione. La scheda tecnica riporta i dati.",
+  "builds_description_title": "Informazioni su questa build",
+  "builds_follow_error": "Impossibile aggiornare il tuo zaino. Controlla la connessione e riprova.",
+  "builds_follow_hint": "Ricevi un avviso quando questa build ha una nuova versione",
+  "builds_followed": "Aggiunta al tuo zaino.",
+  "builds_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Immagine {index__number} di {total__number}"
+      }
+    }
+  ],
+  "builds_gallery_label": "Immagini di {name}",
+  "builds_gallery_placeholder": "Ancora nessuna immagine. Il progetto non conteneva una miniatura.",
+  "builds_import_copy_path": "Copia il percorso della cartella",
+  "builds_import_key_hint": "Puoi cambiare il tasto in Mods → BuildShare → Toggle Key.",
+  "builds_import_lead": "Una build è un progetto BuildShare: un solo file .json da mettere nel gioco e piazzare come una costruzione prefabbricata.",
+  "builds_import_path_copied": "Percorso della cartella copiato.",
+  "builds_import_step1_buildshare": "Scarica BuildShare",
+  "builds_import_step1_guide": "Guida all’installazione",
+  "builds_import_step1_text": "BuildShare è la mod che piazza i progetti. Funziona con RedLoader: se non hai mai installato una mod, segui prima la guida all’installazione.",
+  "builds_import_step1_title": "Installa RedLoader e BuildShare",
+  "builds_import_step2_text": "Scarica il .json qui sopra e copialo in questa cartella del gioco:",
+  "builds_import_step2_title": "Metti il progetto in LocalBuildings",
+  "builds_import_step3_text": "Nel gioco, premi {key} per aprire BuildShare, scegli il progetto e piazzalo. Il clic destro alterna il posizionamento sugli angoli e quello libero, la rotellina lo sposta ed Esc annulla.",
+  "builds_import_step3_title": "Piazzala sull’isola",
+  "builds_import_title": "Come importarla (3 passaggi)",
+  "builds_in_kits": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "In {count__number} Kit",
+        "count__plural=*": "In {count__number} Kit"
+      }
+    }
+  ],
+  "builds_kind_label": "Progetto BuildShare",
+  "builds_link_copied": "Link copiato.",
+  "builds_md_alert_caution": "Attenzione",
+  "builds_md_alert_important": "Importante",
+  "builds_md_alert_note": "Nota",
+  "builds_md_alert_tip": "Suggerimento",
+  "builds_md_alert_warning": "Avviso",
+  "builds_md_spoiler": "Spoiler",
+  "builds_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input pieceCount",
+        "input pieces",
+        "input count",
+        "input downloads",
+        "local pieceCount__plural = pieceCount: plural",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "pieceCount__plural",
+        "count__plural"
+      ],
+      "match": {
+        "pieceCount__plural=one, count__plural=one": "{name}: una build di Sons of the Forest di {author} per BuildShare, {pieces} pezzo. {downloads} download, gratis, con i passaggi per importarla.",
+        "pieceCount__plural=one, count__plural=*": "{name}: una build di Sons of the Forest di {author} per BuildShare, {pieces} pezzo. {downloads} download, gratis, con i passaggi per importarla.",
+        "pieceCount__plural=*, count__plural=one": "{name}: una build di Sons of the Forest di {author} per BuildShare, {pieces} pezzi. {downloads} download, gratis, con i passaggi per importarla.",
+        "pieceCount__plural=*, count__plural=*": "{name}: una build di Sons of the Forest di {author} per BuildShare, {pieces} pezzi. {downloads} download, gratis, con i passaggi per importarla."
+      }
+    }
+  ],
+  "builds_meta_description_fallback": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: una build di Sons of the Forest di {author} per BuildShare. {downloads} download, gratis, con i passaggi per importarla.",
+        "count__plural=*": "{name}: una build di Sons of the Forest di {author} per BuildShare. {downloads} download, gratis, con i passaggi per importarla."
+      }
+    }
+  ],
+  "builds_meta_title": "{name} — build di SOTF (progetto BuildShare)",
+  "builds_meta_title_short": "{name} — build di SOTF",
+  "builds_nsfw_show": "Mostra immagini",
+  "builds_nsfw_text": "Il creatore ha segnato questa build come NSFW. Le immagini restano nascoste finché non scegli di vederle.",
+  "builds_nsfw_title": "Contenuti per adulti",
+  "builds_og_alt": "Progetto di {name}",
+  "builds_original_author": "Autore originale: {author}",
+  "builds_related_all": "Tutte le build",
+  "builds_related_title": "Altri progetti",
+  "builds_requires_title": "Mod richieste",
+  "builds_reviews_empty": "Ancora nessuna recensione. L’hai costruita? Racconta agli altri sopravvissuti com’è andata.",
+  "builds_reviews_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ancora {count__number} recensione",
+        "count__plural=*": "Altre {count__number} recensioni"
+      }
+    }
+  ],
+  "builds_reviews_sign_in": "Accedi per recensire",
+  "builds_reviews_title": "Recensioni",
+  "builds_reviews_unavailable": "Le recensioni non si sono caricate stavolta. Ricarica la pagina per riprovare.",
+  "builds_size_badge": "Taglia {size}",
+  "builds_size_name": [
+    {
+      "declarations": [
+        "input size"
+      ],
+      "selectors": [
+        "size"
+      ],
+      "match": {
+        "size=S": "Piccola",
+        "size=M": "Media",
+        "size=L": "Grande",
+        "size=XL": "Enorme",
+        "size=*": "{size}"
+      }
+    }
+  ],
+  "builds_size_range_above": "{min} pezzi o più",
+  "builds_size_range_below": "Meno di {max} pezzi",
+  "builds_size_range_between": "Da {min} a {max} pezzi",
+  "builds_size_scale_label": "Scala delle taglie",
+  "builds_spec_blueprint_author": "Autore del progetto",
+  "builds_spec_buildshare": "Versione di BuildShare",
+  "builds_spec_copy_guid": "Copia GUID",
+  "builds_spec_downloads": "Download",
+  "builds_spec_file": "File",
+  "builds_spec_guid": "GUID del progetto",
+  "builds_spec_guid_copied": "GUID copiato.",
+  "builds_spec_original_author": "Autore originale",
+  "builds_spec_pieces": "Pezzi",
+  "builds_spec_published": "Pubblicata",
+  "builds_spec_size": "Taglia",
+  "builds_spec_structures": "Strutture",
+  "builds_spec_title": "Scheda tecnica",
+  "builds_spec_unknown": "Non registrato",
+  "builds_spec_updated": "Aggiornata",
+  "builds_spec_uploader": "Caricata da",
+  "builds_spec_version": "Versione",
+  "builds_stat_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} pezzo",
+        "count__plural=*": "{display} pezzi"
+      }
+    }
+  ],
+  "builds_stat_rating": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} su 5 · {count__number} recensione",
+        "count__plural=*": "{rating} su 5 · {count__number} recensioni"
+      }
+    }
+  ],
+  "builds_stats_label": "Statistiche della build",
+  "builds_unfollowed": "Rimossa dal tuo zaino.",
+  "builds_verified_creator": "Creatore verificato",
+  "builds_versions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} versione",
+        "count__plural=*": "{count__number} versioni"
+      }
+    }
+  ],
+  "builds_versions_download": "Scarica v{version}",
+  "builds_versions_empty": "Ancora nessuna versione pubblicata.",
+  "builds_versions_latest": "Ultima",
+  "builds_versions_title": "Versioni",
+  "builds_versions_yanked": "Ritirata",
   "common_account_menu": "Menu dell’account",
   "common_account_profile": "Il tuo profilo",
   "common_account_settings": "Impostazioni",
