@@ -139,6 +139,7 @@ export type DraftData = z.infer<typeof DraftData>;
 
 export const DRAFT_KINDS = ['mod', 'build', 'version'] as const;
 export const DraftKind = z.enum(DRAFT_KINDS);
+export type DraftKind = z.infer<typeof DraftKind>;
 
 export const PreflightItemDTO = dto(
   'PreflightItemDTO',
@@ -152,6 +153,7 @@ export const PreflightItemDTO = dto(
     examples: [{ field: 'gallery', severity: 'warning', code: 'gallery_below_3' }],
   },
 );
+export type PreflightItemDTO = z.infer<typeof PreflightItemDTO>;
 
 export const DraftDTO = dto(
   'DraftDTO',
@@ -213,6 +215,7 @@ export const CreateDraftBody = dto(
     examples: [{ kind: 'mod', data: { step: 1 } }],
   },
 );
+export type CreateDraftBody = z.infer<typeof CreateDraftBody>;
 
 export const UpdateDraftBody = dto('UpdateDraftBody', z.strictObject({ data: DraftData }), {
   description: 'Autosave (replaces `data`; sent every 3 s and on step change).',
@@ -227,6 +230,8 @@ export const SubmitResultDTO = dto(
     examples: [{ modId: 312, versionId: 640, status: 'pending', canonicalPath: '/mods/cooklog/cook-alert' }],
   },
 );
+export type UpdateDraftBody = z.infer<typeof UpdateDraftBody>;
+export type SubmitResultDTO = z.infer<typeof SubmitResultDTO>;
 
 // -----------------------------------------------------------------------------------------------
 // Studio mods
@@ -234,6 +239,7 @@ export const SubmitResultDTO = dto(
 
 export const STUDIO_TRANSITIONS = ['archive', 'unlist', 'publish', 'request_removal', 'resubmit'] as const;
 export const StudioTransition = z.enum(STUDIO_TRANSITIONS);
+export type StudioTransition = z.infer<typeof StudioTransition>;
 
 export const StudioModRowDTO = dto(
   'StudioModRowDTO',
@@ -261,6 +267,7 @@ export const StudioModRowDTO = dto(
     ],
   },
 );
+export type StudioModRowDTO = z.infer<typeof StudioModRowDTO>;
 
 export const StudioModListDTO = dto('StudioModListDTO', z.object({ items: z.array(StudioModRowDTO) }), {
   description: 'Mods and builds of the signed-in creator (any status).',
@@ -293,6 +300,7 @@ export const StudioModDTO = dto(
     ],
   },
 );
+export type StudioModDTO = z.infer<typeof StudioModDTO>;
 
 export const UpdateStudioModBody = dto(
   'UpdateStudioModBody',
@@ -321,6 +329,7 @@ export const UpdateStudioModBody = dto(
     ],
   },
 );
+export type UpdateStudioModBody = z.infer<typeof UpdateStudioModBody>;
 
 export const PutModMediaBody = dto(
   'PutModMediaBody',
@@ -346,6 +355,7 @@ export const PutModMediaBody = dto(
     ],
   },
 );
+export type PutModMediaBody = z.infer<typeof PutModMediaBody>;
 
 export const CreateVersionBody = dto(
   'CreateVersionBody',
@@ -367,6 +377,7 @@ export const CreateVersionBody = dto(
     ],
   },
 );
+export type CreateVersionBody = z.infer<typeof CreateVersionBody>;
 
 export const UpdateVersionBody = dto(
   'UpdateVersionBody',
@@ -381,6 +392,7 @@ export const UpdateVersionBody = dto(
     examples: [{ yank: { reason: 'Crashes on 1.0.4' } }],
   },
 );
+export type UpdateVersionBody = z.infer<typeof UpdateVersionBody>;
 
 export const ArchiveModBody = dto('ArchiveModBody', z.strictObject({ successorModId: EntityId.optional() }), {
   description: 'Archive (optionally pointing to a successor).',
@@ -395,6 +407,8 @@ export const RequestRemovalBody = dto(
     examples: [{ reason: 'Replaced by a new mod, please remove this one.' }],
   },
 );
+export type RequestRemovalBody = z.infer<typeof RequestRemovalBody>;
+export type ArchiveModBody = z.infer<typeof ArchiveModBody>;
 
 export const StudioModStateDTO = dto(
   'StudioModStateDTO',
@@ -409,6 +423,7 @@ export const StudioModStateDTO = dto(
     examples: [{ modId: 20, status: 'archived', statusReason: null, allowedTransitions: ['publish'] }],
   },
 );
+export type StudioModStateDTO = z.infer<typeof StudioModStateDTO>;
 
 // -----------------------------------------------------------------------------------------------
 // Overview, analytics and inbox (WP-52)

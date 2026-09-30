@@ -5,6 +5,7 @@ import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
 import catalogModule from './catalog/index.ts';
 import downloadsModule from './downloads/index.ts';
+import draftsModule from './drafts/index.ts';
 import legacyModule from './legacy/index.ts';
 import meModule from './me/index.ts';
 import notificationsModule from './notifications/index.ts';
@@ -12,6 +13,7 @@ import platformModule from './platform/index.ts';
 import resolveModule from './resolve/index.ts';
 import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
+import studioModsModule from './studio-mods/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
 
@@ -20,6 +22,7 @@ export const modules = [
   authModule,
   catalogModule,
   downloadsModule,
+  draftsModule,
   legacyModule,
   meModule,
   notificationsModule,
@@ -27,6 +30,7 @@ export const modules = [
   resolveModule,
   searchModule,
   siteModule,
+  studioModsModule,
   unsubscribeModule,
   uploadsModule,
 ] as const;

@@ -2,24 +2,30 @@
 // Regenerate after adding, removing or renaming an entry; on merge conflicts, regenerate.
 
 import accountsJobs from './accounts/index.ts';
+import buildsJobs from './builds/index.ts';
 import digestsJobs from './digests/index.ts';
 import discordJobs from './discord/index.ts';
 import downloadsJobs from './downloads/index.ts';
 import emailJobs from './email/index.ts';
+import inspectionJobs from './inspection/index.ts';
 import kelvinseekJobs from './kelvinseek/index.ts';
 import legacyMentionsJobs from './legacy-mentions/index.ts';
+import mediaJobs from './media/index.ts';
 import notificationsJobs from './notifications/index.ts';
 import platformJobs from './platform/index.ts';
 import uploadsJobs from './uploads/index.ts';
 
 export const jobGroups = [
   accountsJobs,
+  buildsJobs,
   digestsJobs,
   discordJobs,
   downloadsJobs,
   emailJobs,
+  inspectionJobs,
   kelvinseekJobs,
   legacyMentionsJobs,
+  mediaJobs,
   notificationsJobs,
   platformJobs,
   uploadsJobs,

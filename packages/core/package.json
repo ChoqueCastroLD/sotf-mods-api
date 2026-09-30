@@ -21,14 +21,19 @@
     "@sotf/brand": "workspace:*",
     "@sotf/contracts": "workspace:*",
     "@sotf/db": "workspace:*",
+    "@sotf/markdown": "workspace:*",
     "drizzle-orm": "catalog:",
     "fflate": "catalog:",
+    "file-type": "catalog:",
     "isbot": "catalog:",
     "lru-cache": "catalog:",
     "pg": "catalog:",
     "pg-boss": "catalog:",
     "pino": "catalog:",
+    "sharp": "catalog:",
+    "thumbhash": "catalog:",
     "uuidv7": "catalog:",
+    "yauzl": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
@@ -36,6 +41,7 @@
     "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
     "@types/pg": "catalog:",
+    "@types/yauzl": "catalog:",
     "testcontainers": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
