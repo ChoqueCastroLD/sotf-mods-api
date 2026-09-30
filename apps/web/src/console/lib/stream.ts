@@ -30,7 +30,7 @@ export const RECONNECT_BASE_MS = 1000;
 export const RECONNECT_MAX_MS = 60_000;
 
 /** Names of the events of PLAN §5.3 (`ping` is a comment and never reaches listeners). */
-export const STREAM_EVENTS = ['notification', 'mod.updated', 'moderation.queue'] as const;
+export const STREAM_EVENTS = ['notification', 'mod.updated', 'moderation.queue', 'mod.live'] as const;
 
 /** Structural subset of `EventSource` (the browser one, or a fake in tests). */
 export interface EventSourceLike {
@@ -81,6 +81,9 @@ export function parseStreamEvent(name: string, data: string, id = ''): SseEvent 
     case 'mod.updated':
       if (!isId(json.modId)) return null;
       return { event: 'mod.updated', id, data: { modId: json.modId } };
+    case 'mod.live':
+      if (!isId(json.modId) || !isCount(json.downloads)) return null;
+      return { event: 'mod.live', id, data: { modId: json.modId, downloads: json.downloads } };
     case 'moderation.queue':
       if (typeof json.lane !== 'string' || !isCount(json.count)) return null;
       return { event: 'moderation.queue', id, data: json } as SseEvent;
@@ -238,6 +241,11 @@ export function applyStreamEvent(queryClient: QueryClient, event: SseEvent): voi
     case 'mod.updated':
       // The mod itself and every list it appears in (lists key their filters under the prefix).
       void queryClient.invalidateQueries({ queryKey: queryKeys.studioMods });
+      break;
+    case 'mod.live':
+      // Download totals of the studio lists change; refetch them (the page-level counters are
+      // served by the public per-mod stream).
+      void queryClient.invalidateQueries({ queryKey: queryKeys.studioMod(event.data.modId) });
       break;
     case 'moderation.queue':
       void queryClient.invalidateQueries({ queryKey: queryKeys.moderation });

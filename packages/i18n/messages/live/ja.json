@@ -1,0 +1,12 @@
+{
+  "live_compare_action": "比較",
+  "live_embed_title": "ページ用バッジ",
+  "live_embed_intro": "READMEやフォーラム、Discordにバッジを貼れます。自動で更新されます。",
+  "live_embed_markdown_label": "Markdown",
+  "live_embed_html_label": "HTML",
+  "live_embed_kind_downloads": "ダウンロード数",
+  "live_embed_kind_version": "バージョン",
+  "live_embed_kind_compat": "互換性",
+  "live_embed_kind_rating": "評価",
+  "live_embed_badge_alt": "{kind}バッジ: {name}"
+}

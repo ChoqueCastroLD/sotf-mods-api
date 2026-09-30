@@ -1,0 +1,12 @@
+{
+  "live_compare_action": "Porównaj",
+  "live_embed_title": "Odznaki dla Twojej strony",
+  "live_embed_intro": "Wklej odznakę do README, na forum lub Discorda. Aktualizują się same.",
+  "live_embed_markdown_label": "Markdown",
+  "live_embed_html_label": "HTML",
+  "live_embed_kind_downloads": "Pobrania",
+  "live_embed_kind_version": "Wersja",
+  "live_embed_kind_compat": "Zgodność",
+  "live_embed_kind_rating": "Ocena",
+  "live_embed_badge_alt": "Odznaka „{kind}”: {name}"
+}

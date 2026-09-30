@@ -1,0 +1,12 @@
+{
+  "live_compare_action": "对比",
+  "live_embed_title": "页面徽章",
+  "live_embed_intro": "可将徽章粘贴到 README、论坛或 Discord，会自动更新。",
+  "live_embed_markdown_label": "Markdown",
+  "live_embed_html_label": "HTML",
+  "live_embed_kind_downloads": "下载量",
+  "live_embed_kind_version": "版本",
+  "live_embed_kind_compat": "兼容性",
+  "live_embed_kind_rating": "评分",
+  "live_embed_badge_alt": "{kind}徽章：{name}"
+}

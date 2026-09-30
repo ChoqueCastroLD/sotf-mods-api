@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_DetailInputs = {};
+export type Live_Embed_Kind_RatingInputs = {};
 /**
 * | output |
 * | --- |
-* | "This part of camp is still being set up. Check back soon." |
+* | "Rating" |
 *
-* @param {Console_Empty_DetailInputs} inputs
+* @param {Live_Embed_Kind_RatingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_detail: ((inputs?: Console_Empty_DetailInputs, options?: {
+export declare const live_embed_kind_rating: ((inputs?: Live_Embed_Kind_RatingInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_DetailInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Live_Embed_Kind_RatingInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

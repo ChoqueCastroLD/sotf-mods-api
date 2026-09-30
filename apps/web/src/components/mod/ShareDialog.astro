@@ -6,7 +6,7 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { Copy, QrCode, Share2 } from 'lucide-react';
+import { Code2, Copy, QrCode, Share2 } from 'lucide-react';
 import type { ModDetailDTO } from './data.ts';
 import ModDialog from './ModDialog.astro';
 
@@ -22,6 +22,22 @@ const markdown = `**[${mod.name.replace(/[[\]]/g, '')}](${url})**${summary}`;
 const shareText = m.mod_share_text({ name: mod.name });
 const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
 const redditHref = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(mod.name)}`;
+const modPath = mod.canonicalPath.replace(/^\/(mods|builds)\//, '');
+const origin = new URL(url).origin;
+const badgeKinds = ['downloads', 'version', 'compat', 'rating'] as const;
+const kindLabels = {
+  downloads: m.live_embed_kind_downloads(),
+  version: m.live_embed_kind_version(),
+  compat: m.live_embed_kind_compat(),
+  rating: m.live_embed_kind_rating(),
+};
+const badges = badgeKinds.map((kind) => {
+  const src = `${origin}/badges/mods/${modPath}/${kind}.svg`;
+  const alt = m.live_embed_badge_alt({ kind: kindLabels[kind], name: mod.name }).replace(/[[\]"<>&]/g, '');
+  return { kind, src, alt, markdown: `[![${alt}](${src})](${url})`, html: `<a href="${url}"><img src="${src}" alt="${alt}"></a>` };
+});
+const allMarkdown = badges.map((b) => b.markdown).join('\n');
+const allHtml = badges.map((b) => b.html).join('\n');
 const fieldClasses =
   'min-w-0 flex-1 rounded-md border border-border-strong bg-raised px-3 py-2 font-mono text-xs text-fg';
 const copyClasses =
@@ -69,6 +85,43 @@ const externalClasses =
       {m.mod_share_more()}
     </button>
   </div>
+
+  <details class="group rounded-md border border-border">
+    <summary class="flex min-h-11 cursor-pointer items-center gap-2 px-3 font-semibold">
+      <Icon icon={Code2} size={18} />
+      {m.live_embed_title()}
+    </summary>
+    <div class="grid gap-3 p-4">
+      <p class="text-xs text-fg-muted">{m.live_embed_intro()}</p>
+      <div class="flex flex-wrap gap-2">
+        {badges.map((b) => <img src={b.src} alt={b.alt} loading="lazy" height="20" class="h-5" />)}
+      </div>
+      <div class="grid gap-1.5">
+        <label for="embed-markdown" class="text-sm font-semibold">{m.live_embed_markdown_label()}</label>
+        <div class="flex gap-2">
+          <textarea id="embed-markdown" readonly rows="4" class:list={[fieldClasses, 'resize-none']} data-share-select
+            >{allMarkdown}</textarea
+          >
+          <button type="button" class={copyClasses} data-copy-from="embed-markdown">
+            <Icon icon={Copy} size={16} />
+            {m.common_action_copy()}
+          </button>
+        </div>
+      </div>
+      <div class="grid gap-1.5">
+        <label for="embed-html" class="text-sm font-semibold">{m.live_embed_html_label()}</label>
+        <div class="flex gap-2">
+          <textarea id="embed-html" readonly rows="4" class:list={[fieldClasses, 'resize-none']} data-share-select
+            >{allHtml}</textarea
+          >
+          <button type="button" class={copyClasses} data-copy-from="embed-html">
+            <Icon icon={Copy} size={16} />
+            {m.common_action_copy()}
+          </button>
+        </div>
+      </div>
+    </div>
+  </details>
 
   <details class="group rounded-md border border-border" data-share-qr-details>
     <summary class="flex min-h-11 cursor-pointer items-center gap-2 px-3 font-semibold">

@@ -11,7 +11,7 @@
 import { m } from '@sotf/i18n/messages';
 import { DownloadSplitButton, downloadOptionOf } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { BookOpen, Flag, Heart, Plus, Share2 } from 'lucide-react';
+import { BookOpen, Flag, GitCompareArrows, Heart, Plus, Share2 } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { otherVersions, versionsPagePath } from './format.ts';
@@ -29,6 +29,7 @@ const latest = mod.latestVersion;
 const downloadable = latest !== null && latest.status === 'active';
 const others = otherVersions(versions, latest?.id ?? null).map(downloadOptionOf);
 const versionsHref = href(versionsPagePath(mod), locale);
+const compareHref = `${href('/compare', locale)}?mods=${mod.canonicalPath.replace(/^\/(mods|builds)\//, '')}`;
 const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
 ---
 
@@ -76,6 +77,10 @@ const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
     <a href={kitHref} data-kit-add={mod.id} class={ACTION_CLASSES}>
       <Icon icon={Plus} size={18} />
       <span>{m.mod_action_add_to_kit()}</span>
+    </a>
+    <a href={compareHref} class={ACTION_CLASSES}>
+      <Icon icon={GitCompareArrows} size={18} />
+      <span>{m.live_compare_action()}</span>
     </a>
     <button type="button" hidden data-dialog-open="share-dialog" data-js-only class={ACTION_CLASSES}>
       <Icon icon={Share2} size={18} />
