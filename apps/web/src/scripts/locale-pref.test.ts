@@ -1,6 +1,14 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ACK_KEY, acknowledge, isBot, PREF_KEY, readPref, setPreferredLocale, writePref } from '../lib/client/locale-pref.ts';
+import {
+  ACK_KEY,
+  acknowledge,
+  isBot,
+  PREF_KEY,
+  readPref,
+  setPreferredLocale,
+  writePref,
+} from '../lib/client/locale-pref.ts';
 import { decideLocaleAction, initLocalePreference, localeTarget, originalLocaleOf } from './locale-pref.ts';
 import { initLocalePrompt } from './locale-prompt.ts';
 

@@ -14,13 +14,18 @@
  */
 import { isLocale, type Locale, matchLocale } from '@sotf/i18n/locales';
 import { localizePath } from '@sotf/i18n/paths';
-import { acknowledge, isBot, type LocaleMode, type LocalePref, readAcknowledged, readPref, setPreferredLocale } from '../lib/client/locale-pref.ts';
+import {
+  acknowledge,
+  isBot,
+  type LocaleMode,
+  type LocalePref,
+  readAcknowledged,
+  readPref,
+  setPreferredLocale,
+} from '../lib/client/locale-pref.ts';
 import { hasSignedInHint } from './account-hint.ts';
 
-export type LocaleAction =
-  | { kind: 'none' }
-  | { kind: 'redirect'; locale: Locale }
-  | { kind: 'prompt' };
+export type LocaleAction = { kind: 'none' } | { kind: 'redirect'; locale: Locale } | { kind: 'prompt' };
 
 export interface LocaleDecisionInput {
   pageLocale: Locale;
