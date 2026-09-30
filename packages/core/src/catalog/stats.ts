@@ -23,6 +23,12 @@ type ModPublicStats = z.infer<typeof ModPublicStatsDTO>;
 
 const DAY_MS = 86_400_000;
 
+/**
+ * An instant parameter compared with the legacy `timestamp(3)` columns, which hold UTC wall
+ * time: pass `toISOString()` and convert explicitly, independent of the process time zone.
+ */
+const UTC_PARAM = (n: number) => `($${n}::timestamptz AT TIME ZONE 'UTC')`;
+
 /** Site-wide figures (cached 60 s, tag `stats`). */
 export function getSiteStats(ctx: Ctx, config: CatalogConfig): Promise<SiteStats> {
   return cached<SiteStats>(ctx, { name: 'site:stats', max: 1, ttlMs: 60_000 }, 'site', async () => {
@@ -68,17 +74,18 @@ export function getLivePulse(ctx: Ctx, config: CatalogConfig): Promise<LivePulse
       getSnapshot(ctx, config),
       row<{ today: string; hour: string }>(
         ctx.db,
-        `SELECT count(*) FILTER (WHERE "createdAt" >= $1) AS today, count(*) FILTER (WHERE "createdAt" >= $2) AS hour
-           FROM "ModDownload" WHERE "createdAt" >= least($1, $2)`,
-        [midnight, hourAgo],
+        `SELECT count(*) FILTER (WHERE "createdAt" >= ${UTC_PARAM(1)}) AS today,
+                count(*) FILTER (WHERE "createdAt" >= ${UTC_PARAM(2)}) AS hour
+           FROM "ModDownload" WHERE "createdAt" >= least(${UTC_PARAM(1)}, ${UTC_PARAM(2)})`,
+        [midnight.toISOString(), hourAgo.toISOString()],
       ),
       rows<{ modId: number; version: string; at: Date }>(
         ctx.db,
         `SELECT v."modId", v."version", d."createdAt" AS at
            FROM "ModDownload" d JOIN "ModVersion" v ON v."id" = d."modVersionId"
-          WHERE d."createdAt" >= $1 AND v."modId" IS NOT NULL
+          WHERE d."createdAt" >= ${UTC_PARAM(1)} AND v."modId" IS NOT NULL
           ORDER BY d."createdAt" DESC, d."id" DESC LIMIT 60`,
-        [new Date(now.getTime() - DAY_MS)],
+        [new Date(now.getTime() - DAY_MS).toISOString()],
       ),
       rows<{ modId: number; version: string; at: Date }>(
         ctx.db,
@@ -126,9 +133,9 @@ export async function getModLive(ctx: Ctx, config: CatalogConfig, id: number): P
       `SELECT (SELECT coalesce(sum(a."downloads"), 0) FROM "ModVersionDownloadDaily" a
                  JOIN "ModVersion" v ON v."id" = a."modVersionId" WHERE v."modId" = $1) AS downloads,
               (SELECT count(*) FROM "ModDownload" d JOIN "ModVersion" v ON v."id" = d."modVersionId"
-                WHERE v."modId" = $1 AND d."createdAt" >= $2) AS day,
+                WHERE v."modId" = $1 AND d."createdAt" >= ${UTC_PARAM(2)}) AS day,
               (SELECT count(*) FROM "ModFavorite" WHERE "modId" = $1) AS followers`,
-      [entry.id, new Date(now.getTime() - DAY_MS)],
+      [entry.id, new Date(now.getTime() - DAY_MS).toISOString()],
     );
     return {
       value: {

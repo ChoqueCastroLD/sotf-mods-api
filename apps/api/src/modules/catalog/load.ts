@@ -4,10 +4,12 @@
  * related, search, taxonomy, profiles, the Cmd+K index, site stats) with keep-alive connections
  * and reports latency percentiles measured at the client, i.e. origin latency without the edge.
  *
- * Library: `runCatalogLoad({ baseUrl })` (used by the integration test and by `tooling/load`).
- * CLI against a running API (e.g. `pnpm dev` on the development seed):
+ * Library: `runCatalogLoad({ baseUrl })` / `runCatalogLoadInWorker` (for `tooling/load`).
+ * CLI, self-contained (disposable seeded database + in-process API, needs Docker), or against a
+ * running API (e.g. `pnpm dev` on the development seed):
  *
- *   node apps/api/src/modules/catalog/load.ts --url http://127.0.0.1:3001 [--requests 3000] [--rate 100] [--concurrency 32]
+ *   node apps/api/src/modules/catalog/load.ts --seeded [--requests 3000] [--rate 100] [--concurrency 32]
+ *   node apps/api/src/modules/catalog/load.ts --url http://127.0.0.1:3001 [...]
  *
  * The default is an open model at 100 req/s (well above the expected origin traffic, since the
  * edge answers most public reads) with latency measured from each request's scheduled start;
@@ -206,24 +208,58 @@ function argValue(args: readonly string[], name: string): string | undefined {
   return i >= 0 ? args[i + 1] : undefined;
 }
 
+/**
+ * `--seeded`: a self-contained run: a disposable PostgreSQL 16 (Testcontainers) with the small
+ * development seed, the API listening on a local port, and the load sent from a worker thread.
+ */
+async function withSeededApi<T>(run: (baseUrl: string) => Promise<T>): Promise<T> {
+  const [{ buildTestApp }, { startSeededDb, waitUntilCalm }, { stopTestServer }] = await Promise.all([
+    import('../../testing.ts'),
+    import('./__tests__/seeded.ts'),
+    import('@sotf/db/testing'),
+  ]);
+  const db = await startSeededDb();
+  try {
+    // Every request comes from one IP: lift the anonymous read limit (300/min in production).
+    const t = await buildTestApp({ db, rateLimits: { anonymousRead: { max: 1_000_000, window: '1 minute' } } });
+    try {
+      await waitUntilCalm(t.app);
+      await t.app.listen({ host: '127.0.0.1', port: 0 });
+      const address = t.app.server.address();
+      if (!address || typeof address === 'string') throw new Error('the API is not listening on TCP');
+      return await run(`http://127.0.0.1:${address.port}`);
+    } finally {
+      await t.close();
+    }
+  } finally {
+    await db.stop();
+    await stopTestServer();
+  }
+}
+
 async function main(args: readonly string[]): Promise<number> {
-  const baseUrl = argValue(args, '--url');
-  if (!baseUrl) {
+  const url = argValue(args, '--url');
+  const seeded = args.includes('--seeded');
+  if (!url && !seeded) {
     process.stderr.write(
-      'usage: node apps/api/src/modules/catalog/load.ts --url <api base url> [--requests n] [--rate n] [--concurrency n]\n',
+      'usage: node apps/api/src/modules/catalog/load.ts (--url <api base url> | --seeded) [--requests n] [--rate n] [--concurrency n]\n',
     );
     return 2;
   }
-  const report = await runCatalogLoad({
-    baseUrl,
+  const options = {
     requests: Number(argValue(args, '--requests') ?? 3000),
     rate: Number(argValue(args, '--rate') ?? 100),
     concurrency: Number(argValue(args, '--concurrency') ?? 32),
-  });
+  };
+  const report = url
+    ? await runCatalogLoad({ baseUrl: url, ...options })
+    : await withSeededApi((baseUrl) => runCatalogLoadInWorker({ baseUrl, ...options }));
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
   const ok = report.failures.length === 0 && report.p95 < CATALOG_P95_BUDGET_MS;
   process.stdout.write(
-    ok ? `ok: p95 ${report.p95} ms < ${CATALOG_P95_BUDGET_MS} ms\n` : `FAIL: p95 ${report.p95} ms\n`,
+    ok
+      ? `ok: p95 ${report.p95} ms < ${CATALOG_P95_BUDGET_MS} ms (${report.requests} requests at ${options.rate || 'max'} req/s)\n`
+      : `FAIL: p95 ${report.p95} ms (budget ${CATALOG_P95_BUDGET_MS} ms), ${report.failures.length} failures\n`,
   );
   return ok ? 0 : 1;
 }

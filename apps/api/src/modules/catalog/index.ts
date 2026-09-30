@@ -25,6 +25,7 @@ import {
   listTags,
 } from '@sotf/core/catalog/index';
 import { defineModule } from '../../lib/define-module.ts';
+import { encodedJson } from './respond.ts';
 
 /** Catalog configuration from the API environment. */
 export function catalogConfigOf(env: { R2_PUBLIC_BASE_URL: string; R2_BUCKET: string }): CatalogConfig {
@@ -44,32 +45,33 @@ export default defineModule({
   register(m) {
     const config = catalogConfigOf(m.platform.env);
 
-    m.implement(catalogEndpoints.listMods, async ({ query, ctx, cache }) => {
+    m.implement(catalogEndpoints.listMods, async ({ query, ctx, cache, request, reply }) => {
       cache({}, filterTags(query.category, query.tag));
-      return listMods(ctx, config, query);
+      return encodedJson(catalogEndpoints.listMods, request, reply, await listMods(ctx, config, query));
     });
 
-    m.implement(catalogEndpoints.getMod, async ({ params, ctx, cache }) => {
+    m.implement(catalogEndpoints.getMod, async ({ params, ctx, cache, request, reply }) => {
       const mod = await getModDetail(ctx, config, { id: params.id });
       cache({ id: mod.id }, [cacheTag.user(mod.userId)]);
-      return mod;
+      return encodedJson(catalogEndpoints.getMod, request, reply, mod);
     });
 
-    m.implement(catalogEndpoints.getModBySlug, async ({ params, ctx, cache }) => {
+    m.implement(catalogEndpoints.getModBySlug, async ({ params, ctx, cache, request, reply }) => {
       const mod = await getModDetail(ctx, config, { handle: params.user, slug: params.slug });
       cache({ id: mod.id }, [cacheTag.user(mod.userId)]);
-      return mod;
+      return encodedJson(catalogEndpoints.getModBySlug, request, reply, mod);
     });
 
-    m.implement(catalogEndpoints.getModByManifest, async ({ params, ctx, cache }) => {
+    m.implement(catalogEndpoints.getModByManifest, async ({ params, ctx, cache, request, reply }) => {
       const mod = await getModDetail(ctx, config, { manifestId: params.manifestId });
       cache({ id: mod.id }, [cacheTag.user(mod.userId)]);
-      return mod;
+      return encodedJson(catalogEndpoints.getModByManifest, request, reply, mod);
     });
 
-    m.implement(catalogEndpoints.dependencies, async ({ params, ctx, cache }) => {
+    m.implement(catalogEndpoints.dependencies, async ({ params, ctx, cache, request, reply }) => {
       cache({ id: params.id });
-      return { items: await getDependencies(ctx, config, params.id) };
+      const items = await getDependencies(ctx, config, params.id);
+      return encodedJson(catalogEndpoints.dependencies, request, reply, { items }, items);
     });
 
     m.implement(catalogEndpoints.dependents, async ({ params, ctx, cache }) => {
@@ -82,14 +84,20 @@ export default defineModule({
       return { items: await getRelated(ctx, config, params.id) };
     });
 
-    m.implement(versionsEndpoints.list, async ({ params, ctx, cache }) => {
+    m.implement(versionsEndpoints.list, async ({ params, ctx, cache, request, reply }) => {
       cache({ id: params.id });
-      return { items: await getVersionList(ctx, config, params.id) };
+      const items = await getVersionList(ctx, config, params.id);
+      return encodedJson(versionsEndpoints.list, request, reply, { items }, items);
     });
 
-    m.implement(versionsEndpoints.get, async ({ params, ctx, cache }) => {
+    m.implement(versionsEndpoints.get, async ({ params, ctx, cache, request, reply }) => {
       cache({ id: params.id });
-      return getVersion(ctx, config, params.id, params.version);
+      return encodedJson(
+        versionsEndpoints.get,
+        request,
+        reply,
+        await getVersion(ctx, config, params.id, params.version),
+      );
     });
 
     m.implement(catalogEndpoints.categories, async ({ query, ctx }) => ({
@@ -100,10 +108,10 @@ export default defineModule({
 
     m.implement(catalogEndpoints.creators, async ({ query, ctx }) => listCreators(ctx, config, query));
 
-    m.implement(catalogEndpoints.getUser, async ({ params, ctx, cache }) => {
+    m.implement(catalogEndpoints.getUser, async ({ params, ctx, cache, request, reply }) => {
       const user = await getUserProfile(ctx, config, params.handle);
       cache({ id: user.id });
-      return user;
+      return encodedJson(catalogEndpoints.getUser, request, reply, user);
     });
 
     m.implement(catalogEndpoints.userMods, async ({ params, query, ctx, cache }) => {

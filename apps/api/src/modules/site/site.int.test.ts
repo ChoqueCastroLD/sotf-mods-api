@@ -22,7 +22,7 @@ beforeAll(async () => {
   db = await startSeededDb();
   // Two fresh downloads of StackMod's latest version (as the download flush writes them).
   const version = await exec(db, `SELECT "id" FROM "ModVersion" WHERE "modId" = $1 AND "isLatest"`, [STACKMOD]);
-  for (const minutesAgo of [5, 50]) {
+  for (const minutesAgo of [2, 20]) {
     await exec(
       db,
       `INSERT INTO "ModDownload" ("ip", "userAgent", "createdAt", "updatedAt", "modVersionId", "source")
@@ -71,7 +71,11 @@ describe('site figures', () => {
     expect(res.status).toBe(200);
     expect(res.headers['cloudflare-cdn-cache-control']).toBe('public, max-age=30, stale-while-revalidate=60');
     expect(res.body.downloadsLastHour).toBeGreaterThanOrEqual(2);
-    expect(res.body.downloadsToday).toBeGreaterThanOrEqual(res.body.downloadsLastHour);
+    const today = await exec(
+      db,
+      `SELECT count(*)::int AS n FROM "ModDownload" WHERE "createdAt" >= date_trunc('day', now() AT TIME ZONE 'UTC')`,
+    );
+    expect(res.body.downloadsToday).toBe(today.rows[0].n);
     expect(res.body.recent[0].mod.id).toBe(STACKMOD);
     expect(res.body.recent.length).toBeLessThanOrEqual(12);
     expect(res.body.recent.every((r: any) => r.mod.status === 'published' && !r.mod.nsfw)).toBe(true);
