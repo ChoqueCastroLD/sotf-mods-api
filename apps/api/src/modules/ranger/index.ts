@@ -1,7 +1,8 @@
 /**
  * Ranger Station module (WP-51, PLAN §5.2 "Moderación y administración", §7.4): `/api/v2/ranger/*`.
  *
- * - Queue lanes and the item view (inspection, file diff, scan, author history).
+ * - Queue lanes and the item view (inspection, file diff, scan, author history, the report), taking
+ *   and escalating items, the reason templates in force and the review-time metrics.
  * - Decisions on mods and versions (held files are published from R2 `quarantine/` on approval,
  *   so the module needs R2; without it approving a held file answers 503).
  * - Reports, hiding comments and reviews, users and sanctions, roles (👑), the verified creator
@@ -13,11 +14,15 @@
 import { moderationEndpoints } from '@sotf/contracts/moderation';
 import { listAudit } from '@sotf/core/audit/index';
 import {
+  assignQueueItem,
   decideMod,
   decideVersion,
+  escalateQueueItem,
   getQueue,
   getQueueItem,
+  listModerationTemplates,
   type ModerationDeps,
+  reviewMetrics,
   setCommentHidden,
   setReviewHidden,
 } from '@sotf/core/moderation/index';
@@ -50,6 +55,14 @@ export default defineModule({
       getQueue(ctx, deps, { lane: query.lane, cursor: query.cursor, limit: query.limit }),
     );
     m.implement(moderationEndpoints.item, async ({ params, ctx }) => getQueueItem(ctx, deps, params.id));
+    m.implement(moderationEndpoints.assignItem, async ({ params, body, ctx }) =>
+      assignQueueItem(ctx, deps, params.id, body),
+    );
+    m.implement(moderationEndpoints.escalateItem, async ({ params, body, ctx }) =>
+      escalateQueueItem(ctx, deps, params.id, body),
+    );
+    m.implement(moderationEndpoints.templates, async ({ ctx }) => listModerationTemplates(ctx));
+    m.implement(moderationEndpoints.metrics, async ({ query, ctx }) => reviewMetrics(ctx, { days: query.days }));
 
     // Decisions.
     m.implement(moderationEndpoints.decideMod, async ({ params, body, ctx }) => decideMod(ctx, deps, params.id, body));

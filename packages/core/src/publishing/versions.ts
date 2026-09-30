@@ -48,6 +48,7 @@ interface DependencyRow {
 }
 
 interface ScanRow {
+  id: number | string;
   modVersionId: number;
   verdict: string;
   engine: string;
@@ -121,7 +122,7 @@ export async function ownerVersions(
     ),
     rows<ScanRow>(
       ctx.db,
-      `SELECT DISTINCT ON ("modVersionId") "modVersionId", "verdict", "engine", "positives", "total", "permalink", "scannedAt"
+      `SELECT DISTINCT ON ("modVersionId") "id", "modVersionId", "verdict", "engine", "positives", "total", "permalink", "scannedAt"
          FROM "SecurityScan" WHERE "modVersionId" = ANY($1::int[])
         ORDER BY "modVersionId", "scannedAt" DESC NULLS LAST, "id" DESC`,
       [ids],
@@ -160,6 +161,7 @@ export async function ownerVersions(
       scan:
         scan && SCAN_VERDICTS.has(scan.verdict)
           ? {
+              id: Number(scan.id),
               verdict: scan.verdict as NonNullable<VersionDTO['scan']>['verdict'],
               engine: scan.engine,
               positives: scan.positives,

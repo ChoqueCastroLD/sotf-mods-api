@@ -4,6 +4,7 @@
  * decisions on mods and versions, and hiding community content. Import from
  * `@sotf/core/moderation/index`. See README.md.
  */
+export * from './assignment.ts';
 export * from './content.ts';
 export * from './decisions.ts';
 export * from './guard.ts';
