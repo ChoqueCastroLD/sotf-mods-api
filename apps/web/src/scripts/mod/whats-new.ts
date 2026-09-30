@@ -25,8 +25,7 @@ export async function initWhatsNew(root: HTMLElement, data: ModPageData, doc: Do
   const history = await apiCall<DownloadHistory>('GET', '/api/v2/me/downloads');
   if (!history.ok || !history.data.enabled) return;
   const entry = history.data.items.find((item) => item.mod.id === data.modId);
-  if (!entry || !entry.hasUpdate || !entry.current || entry.current.versionId === entry.lastDownloaded.versionId)
-    return;
+  if (!entry?.hasUpdate || !entry.current || entry.current.versionId === entry.lastDownloaded.versionId) return;
   const since = Date.parse(entry.lastDownloaded.at);
   const newer: HTMLElement[] = [];
   for (const item of timeline) {

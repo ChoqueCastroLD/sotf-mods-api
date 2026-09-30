@@ -102,6 +102,13 @@ const jsonLd = list
     { label: name },
   ]}
 >
+  <link
+    slot="head"
+    rel="alternate"
+    type="application/rss+xml"
+    href={`/categories/${encodeURIComponent(category.slug)}/feed.xml`}
+    title={name}
+  />
   <ExploreView
     data={data}
     heading={name}

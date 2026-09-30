@@ -8,6 +8,7 @@
  * - Download clicks are recorded (`download_click`); the link itself does the download.
  * - Gallery: the numbered ticks follow the visible picture and scroll the strip (not the page).
  * - Reviews and comments: the WP-70 islands (`islands/comments/social.ts`).
+ * - «Report»: the mod page's report dialog (`scripts/mod/{dialogs,report}.ts`).
  */
 import {
   builds_copy_failed,
@@ -21,6 +22,7 @@ import {
 import { initSocialIslands } from '../../islands/comments/social.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
+import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from '../../scripts/mod/dialogs.ts';
 import { whenSession } from '../../scripts/mod/session.ts';
 
 const TOAST_MS = 6000;
@@ -271,6 +273,23 @@ export function initBuildPage(): void {
   if (Number.isInteger(modId) && modId > 0) initDownloads(modId);
   initGallery();
   initSocial();
+  initReport();
+}
+
+/** «Report» opens the shared report dialog; its form is bound lazily on the first opening. */
+function initReport(): void {
+  try {
+    initDialogs(document.body, document);
+    document.addEventListener(DIALOG_OPEN_EVENT, (event) => {
+      const { id, dialog } = (event as CustomEvent<DialogOpenDetail>).detail;
+      if (id !== 'report-dialog') return;
+      void whenSession().then((summary) =>
+        import('../../scripts/mod/report.ts').then(({ bindReport }) => bindReport(dialog, summary)),
+      );
+    });
+  } catch {
+    // Progressive enhancement only: the button stays hidden without JavaScript.
+  }
 }
 
 /**

@@ -24,7 +24,6 @@ export interface ModPageMessages {
   creatorUnfollowed: string;
   /** `{n}` templates per CLDR plural category («{n} followers»). */
   followers: Record<string, string>;
-  reportChooseReason: string;
   videoEmbedTitle: string;
   undo: string;
   error: string;
@@ -34,8 +33,6 @@ export interface ModPageMessages {
   verifyEmail: string;
   copied: string;
   copyFailed: string;
-  reportSent: string;
-  reportDuplicate: string;
   downloadDone: string;
   downloadDoneHint: string;
   downloadAllProgress: string;

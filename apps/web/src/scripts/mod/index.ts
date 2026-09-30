@@ -50,7 +50,7 @@ export function initModPage(doc: Document = document): void {
   doc.addEventListener(DIALOG_OPEN_EVENT, (event) => {
     const { id, dialog } = (event as CustomEvent<DialogOpenDetail>).detail;
     if (id === 'report-dialog') {
-      void session.then((summary) => import('./report.ts').then(({ bindReport }) => bindReport(dialog, data, summary)));
+      void session.then((summary) => import('./report.ts').then(({ bindReport }) => bindReport(dialog, summary)));
     }
   });
 

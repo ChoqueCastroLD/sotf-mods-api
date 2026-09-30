@@ -8,7 +8,7 @@
  */
 import type { MeSummary } from '../account-hint.ts';
 import { pageEntity, track } from '../beacon.ts';
-import { apiCall, type ApiFailure } from './api.ts';
+import { type ApiFailure, apiCall } from './api.ts';
 import { plural } from './data.ts';
 import { toast } from './toast.ts';
 import type { ModPageData } from './types.ts';
