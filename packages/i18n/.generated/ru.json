@@ -1695,6 +1695,164 @@
   "explore_view_grid": "Сетка",
   "explore_view_label": "Вид",
   "explore_view_list": "Список",
+  "landing_blueprints_all": "Все постройки",
+  "landing_blueprints_hint": "Свежие постройки от сообщества",
+  "landing_creators_all": "Все авторы",
+  "landing_creators_hint": "Выжившие, которые строят остров",
+  "landing_creators_title": "Авторы в центре внимания",
+  "landing_faq_figures": "Данные на {date}.",
+  "landing_faq_hint": "Короткие ответы, сверенные с каталогом.",
+  "landing_faq_more": "Подробнее",
+  "landing_faq_title": "Вопросы выживших",
+  "landing_hero_cta_explore": "Смотреть моды",
+  "landing_hero_cta_install": "Как установить (3 мин)",
+  "landing_hero_lead": [
+    {
+      "declarations": [
+        "input modCount",
+        "input buildCount",
+        "local modCount__plural = modCount: plural",
+        "local modCount__number = modCount: number",
+        "local buildCount__plural = buildCount: plural",
+        "local buildCount__number = buildCount: number"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "buildCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, buildCount__plural=one": "{modCount__number} мод для Sons of the Forest, {buildCount__number} постройка и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=one, buildCount__plural=few": "{modCount__number} мод для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=one, buildCount__plural=many": "{modCount__number} мод для Sons of the Forest, {buildCount__number} построек и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=one, buildCount__plural=*": "{modCount__number} мод для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=few, buildCount__plural=one": "{modCount__number} мода для Sons of the Forest, {buildCount__number} постройка и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=few, buildCount__plural=few": "{modCount__number} мода для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=few, buildCount__plural=many": "{modCount__number} мода для Sons of the Forest, {buildCount__number} построек и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=few, buildCount__plural=*": "{modCount__number} мода для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=many, buildCount__plural=one": "{modCount__number} модов для Sons of the Forest, {buildCount__number} постройка и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=many, buildCount__plural=few": "{modCount__number} модов для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=many, buildCount__plural=many": "{modCount__number} модов для Sons of the Forest, {buildCount__number} построек и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=many, buildCount__plural=*": "{modCount__number} модов для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=*, buildCount__plural=one": "{modCount__number} мода для Sons of the Forest, {buildCount__number} постройка и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=*, buildCount__plural=few": "{modCount__number} мода для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=*, buildCount__plural=many": "{modCount__number} мода для Sons of the Forest, {buildCount__number} построек и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+        "modCount__plural=*, buildCount__plural=*": "{modCount__number} мода для Sons of the Forest, {buildCount__number} постройки и наборы — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации."
+      }
+    }
+  ],
+  "landing_hero_lead_fallback": "Моды, постройки и наборы для Sons of the Forest — с отчётами о совместимости от игроков и прямыми загрузками. Без ожидания и регистрации.",
+  "landing_hero_search_label": "Поиск по каталогу",
+  "landing_hero_title_accent": "Проверено в полевых условиях.",
+  "landing_hero_title_lead": "Моды для острова.",
+  "landing_kit_all": "Все наборы",
+  "landing_kit_hint": "Готовый набор модов, выбранный рейнджерами",
+  "landing_kit_open": "Открыть набор",
+  "landing_kit_title": "Набор в центре внимания",
+  "landing_motw_period": "Неделя с {start}",
+  "landing_motw_title": "Мод недели",
+  "landing_notes_all": "Все недавние обновления",
+  "landing_notes_empty": "Обновлений пока нет. Авторы ещё в лесу.",
+  "landing_notes_hint": "Последние обновления от авторов",
+  "landing_notes_version": "v{version}",
+  "landing_personal_backpack": "Открыть рюкзак",
+  "landing_personal_checklist_hint": "Выполните список, чтобы получить значок «Пережил первый день».",
+  "landing_personal_checklist_title": "День 1 на острове",
+  "landing_personal_error": "Сигнал пропал при загрузке ваших обновлений.",
+  "landing_personal_hint": "Новые версии модов из вашего рюкзака",
+  "landing_personal_kits_title": "Ваши недавние наборы",
+  "landing_personal_label": "Для вас",
+  "landing_personal_none": "Всё в вашем рюкзаке актуально.",
+  "landing_personal_progress": "Прогресс списка",
+  "landing_personal_step_compat_report": "Сообщить, заработал ли мод",
+  "landing_personal_step_create_kit": "Собрать первый набор",
+  "landing_personal_step_done": "Готово",
+  "landing_personal_step_first_download": "Скачать первый мод",
+  "landing_personal_step_follow_mod": "Подписаться на мод",
+  "landing_personal_step_install_redloader": "Установить RedLoader",
+  "landing_personal_title": "Ваши обновления",
+  "landing_pin_build": "Популярная постройка",
+  "landing_pin_download": "Скачивают · v{version}",
+  "landing_pin_kit": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Набор · {count__number} мод",
+        "count__plural=few": "Набор · {count__number} мода",
+        "count__plural=many": "Набор · {count__number} модов",
+        "count__plural=*": "Набор · {count__number} мода"
+      }
+    }
+  ],
+  "landing_pin_release": "Обновлён до v{version}",
+  "landing_pins_label": "Сейчас на острове",
+  "landing_radar_breaking": "Обновление ломает моды",
+  "landing_radar_cta": "Что сломано",
+  "landing_radar_empty": "На радаре пока нет патчей игры. Полевые отчёты начнутся со следующего обновления.",
+  "landing_radar_loader": [
+    {
+      "declarations": [
+        "input loader",
+        "input version",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "{loader} {version}: работает",
+        "status=partial": "{loader} {version}: работает частично",
+        "status=broken": "{loader} {version}: не работает",
+        "status=*": "{loader} {version}: ещё не проверен"
+      }
+    }
+  ],
+  "landing_radar_summary": "Игра {build} · подтверждено {share} из топ-50 модов на этом патче",
+  "landing_readout_game": "Игра {build}",
+  "landing_readout_hour": "За последний час",
+  "landing_readout_live": "В эфире",
+  "landing_readout_offline": "Сигнал потерян: показаны последние данные",
+  "landing_readout_today": "Загрузок сегодня",
+  "landing_regions_empty": "Карта ещё рисуется. Регионы появятся по мере публикации модов.",
+  "landing_regions_hint": "Исследуйте остров по категориям",
+  "landing_regions_title": "Регионы",
+  "landing_section_error": "Не удалось добраться до этой части карты. Обновите страницу через минуту.",
+  "landing_start_cta": "Читать руководство по установке",
+  "landing_start_hint": "Три шага, около трёх минут.",
+  "landing_start_install_text": "Загрузчик модов для Sons of the Forest. Устанавливается один раз — через RedManager или вручную.",
+  "landing_start_install_title": "Установите RedLoader",
+  "landing_start_pick_text": "Посмотрите каталог или возьмите набор модов, которые уже работают вместе.",
+  "landing_start_pick_title": "Выберите моды или набор",
+  "landing_start_play_text": "Запустите игру и нажмите F1, чтобы убедиться, что моды загрузились. После патча загляните в радар патчей.",
+  "landing_start_play_title": "Запускайте и играйте",
+  "landing_start_step": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Шаг {step__number}"
+      }
+    }
+  ],
+  "landing_start_title": "С чего начать",
+  "landing_stat_creators": "Авторы",
+  "landing_stat_downloads": "Загрузки",
+  "landing_stat_mods": "Моды",
+  "landing_stat_survivors": "Выжившие",
+  "landing_stats_label": "Остров в цифрах",
+  "landing_trending_all": "Все моды",
+  "landing_trending_empty": "Тихая неделя на острове. Моды появятся здесь, когда выжившие начнут их скачивать.",
+  "landing_trending_hint": "По загрузкам за последние 7 дней",
+  "landing_trending_title": "Популярное за неделю",
   "meta_default_description": "Дом моддинга Sons of the Forest: моды, постройки и наборы для RedLoader, проверенные на каждом патче. Бесплатные прямые загрузки.",
   "meta_feed_description": "Свежие моды и обновления для Sons of the Forest на SOTF Mods.",
   "meta_feed_title": "SOTF Mods: новые и обновлённые моды",

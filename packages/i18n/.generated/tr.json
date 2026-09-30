@@ -1613,6 +1613,150 @@
   "explore_view_grid": "Izgara",
   "explore_view_label": "Görünüm",
   "explore_view_list": "Liste",
+  "landing_blueprints_all": "Tüm yapılar",
+  "landing_blueprints_hint": "Topluluktan yeni yapılar",
+  "landing_creators_all": "Tüm yapımcılar",
+  "landing_creators_hint": "Adayı inşa eden hayatta kalanlar",
+  "landing_creators_title": "Öne çıkan yapımcılar",
+  "landing_faq_figures": "{date} itibarıyla rakamlar.",
+  "landing_faq_hint": "Katalogla doğrulanmış kısa yanıtlar.",
+  "landing_faq_more": "Devamını oku",
+  "landing_faq_title": "Hayatta kalanların soruları",
+  "landing_hero_cta_explore": "Modları keşfet",
+  "landing_hero_cta_install": "Nasıl kurulur (3 dk)",
+  "landing_hero_lead": [
+    {
+      "declarations": [
+        "input modCount",
+        "input buildCount",
+        "local modCount__plural = modCount: plural",
+        "local modCount__number = modCount: number",
+        "local buildCount__plural = buildCount: plural",
+        "local buildCount__number = buildCount: number"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "buildCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, buildCount__plural=one": "{modCount__number} Sons of the Forest modu, {buildCount__number} yapı ve kitler; oyunculardan uyumluluk raporları ve doğrudan indirmelerle. Bekleme yok, kayıt yok.",
+        "modCount__plural=one, buildCount__plural=*": "{modCount__number} Sons of the Forest modu, {buildCount__number} yapı ve kitler; oyunculardan uyumluluk raporları ve doğrudan indirmelerle. Bekleme yok, kayıt yok.",
+        "modCount__plural=*, buildCount__plural=one": "{modCount__number} Sons of the Forest modu, {buildCount__number} yapı ve kitler; oyunculardan uyumluluk raporları ve doğrudan indirmelerle. Bekleme yok, kayıt yok.",
+        "modCount__plural=*, buildCount__plural=*": "{modCount__number} Sons of the Forest modu, {buildCount__number} yapı ve kitler; oyunculardan uyumluluk raporları ve doğrudan indirmelerle. Bekleme yok, kayıt yok."
+      }
+    }
+  ],
+  "landing_hero_lead_fallback": "Sons of the Forest modları, yapıları ve kitleri; oyunculardan uyumluluk raporları ve doğrudan indirmelerle. Bekleme yok, kayıt yok.",
+  "landing_hero_search_label": "Katalogda ara",
+  "landing_hero_title_accent": "Sahada test edildi.",
+  "landing_hero_title_lead": "Ada için modlar.",
+  "landing_kit_all": "Tüm kitler",
+  "landing_kit_hint": "Korucuların seçtiği, kullanıma hazır bir mod seti",
+  "landing_kit_open": "Kiti aç",
+  "landing_kit_title": "Öne çıkan kit",
+  "landing_motw_period": "{start} haftası",
+  "landing_motw_title": "Haftanın modu",
+  "landing_notes_all": "Tüm son güncellemeler",
+  "landing_notes_empty": "Henüz güncelleme yok. Yapımcılar hâlâ ormanda.",
+  "landing_notes_hint": "Yapımcılardan son güncellemeler",
+  "landing_notes_version": "v{version}",
+  "landing_personal_backpack": "Sırt çantanı aç",
+  "landing_personal_checklist_hint": "Listeyi tamamla ve “1. günü atlattı” rozetini kazan.",
+  "landing_personal_checklist_title": "Adada 1. gün",
+  "landing_personal_error": "Güncellemelerin yüklenirken sinyal kayboldu.",
+  "landing_personal_hint": "Sırt çantandaki modların yeni sürümleri",
+  "landing_personal_kits_title": "Son kitlerin",
+  "landing_personal_label": "Senin için",
+  "landing_personal_none": "Sırt çantandaki her şey güncel.",
+  "landing_personal_progress": "Liste ilerlemesi",
+  "landing_personal_step_compat_report": "Bir modun çalışıp çalışmadığını bildir",
+  "landing_personal_step_create_kit": "İlk kitini oluştur",
+  "landing_personal_step_done": "Tamamlandı",
+  "landing_personal_step_first_download": "İlk modunu indir",
+  "landing_personal_step_follow_mod": "Bir modu takip et",
+  "landing_personal_step_install_redloader": "RedLoader’ı kur",
+  "landing_personal_title": "Güncellemelerin",
+  "landing_pin_build": "Popüler yapı",
+  "landing_pin_download": "İndiriliyor · v{version}",
+  "landing_pin_kit": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Kit · {count__number} mod",
+        "count__plural=*": "Kit · {count__number} mod"
+      }
+    }
+  ],
+  "landing_pin_release": "v{version} sürümüne güncellendi",
+  "landing_pins_label": "Adada şu an",
+  "landing_radar_breaking": "Modları bozan güncelleme",
+  "landing_radar_cta": "Nelerin bozuk olduğunu gör",
+  "landing_radar_empty": "Radarda henüz oyun yaması yok. Saha raporları bir sonraki güncellemeyle başlayacak.",
+  "landing_radar_loader": [
+    {
+      "declarations": [
+        "input loader",
+        "input version",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "{loader} {version}: çalışıyor",
+        "status=partial": "{loader} {version}: kısmen çalışıyor",
+        "status=broken": "{loader} {version}: bozuk",
+        "status=*": "{loader} {version}: henüz test edilmedi"
+      }
+    }
+  ],
+  "landing_radar_summary": "Oyun {build} · en popüler 50 modun {share} kadarı bu yamada doğrulandı",
+  "landing_readout_game": "Oyun {build}",
+  "landing_readout_hour": "Son bir saat",
+  "landing_readout_live": "Canlı",
+  "landing_readout_offline": "Sinyal kayboldu: son okuma gösteriliyor",
+  "landing_readout_today": "Bugünkü indirmeler",
+  "landing_regions_empty": "Harita hâlâ çiziliyor. Modlar yayımlandıkça bölgeler görünecek.",
+  "landing_regions_hint": "Adayı kategorilere göre gez",
+  "landing_regions_title": "Bölgeler",
+  "landing_section_error": "Haritanın bu kısmına ulaşamadık. Bir dakika sonra sayfayı yenile.",
+  "landing_start_cta": "Kurulum rehberini oku",
+  "landing_start_hint": "Üç adım, yaklaşık üç dakika.",
+  "landing_start_install_text": "Sons of the Forest için mod yükleyici. RedManager ile ya da elle bir kez kurman yeterli.",
+  "landing_start_install_title": "RedLoader’ı kur",
+  "landing_start_pick_text": "Kataloğa göz at ya da birlikte çalıştığı bilinen modlardan oluşan bir kit al.",
+  "landing_start_pick_title": "Mod ya da kit seç",
+  "landing_start_play_text": "Oyunu başlat ve modların yüklendiğini görmek için F1’e bas. Bir yamadan sonra Yama Radarı’na bak.",
+  "landing_start_play_title": "Başlat ve oyna",
+  "landing_start_step": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Adım {step__number}"
+      }
+    }
+  ],
+  "landing_start_title": "Buradan başla",
+  "landing_stat_creators": "Yapımcı",
+  "landing_stat_downloads": "İndirme",
+  "landing_stat_mods": "Mod",
+  "landing_stat_survivors": "Hayatta kalan",
+  "landing_stats_label": "Rakamlarla ada",
+  "landing_trending_all": "Tüm modlar",
+  "landing_trending_empty": "Adada sakin bir hafta. Hayatta kalanlar indirdikçe modlar burada görünecek.",
+  "landing_trending_hint": "Son 7 günün indirmelerine göre",
+  "landing_trending_title": "Bu haftanın popülerleri",
   "meta_default_description": "Sons of the Forest modlamanın evi: RedLoader için her yamada test edilen modlar, yapılar ve kitler. Ücretsiz, doğrudan indirme.",
   "meta_feed_description": "SOTF Mods’ta yayınlanan en yeni Sons of the Forest modları ve güncellemeleri.",
   "meta_feed_title": "SOTF Mods: yeni ve güncellenen modlar",

@@ -1,0 +1,63 @@
+---
+/**
+ * «Regions» (research/03 §6.1): the categories as map regions — localised name, published count
+ * and the category's accent as a survey mark. Links go to the category hubs.
+ */
+import { formatNumber, type Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { categoryAccent } from '@sotf/ui/domain';
+import { href } from '../../lib/i18n.ts';
+import type { Category } from './data.ts';
+import EmptyNote from './EmptyNote.astro';
+import SectionError from './SectionError.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  locale: Locale;
+  categories: readonly Category[] | null;
+}
+
+const { locale, categories } = Astro.props;
+---
+
+<section class="mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6 md:py-14" aria-labelledby="regions-title">
+  <SectionHeader
+    id="regions-title"
+    title={m.landing_regions_title()}
+    hint={m.landing_regions_hint()}
+    link={{ href: href('/mods', locale), label: m.landing_trending_all() }}
+  />
+  {
+    categories === null ? (
+      <SectionError />
+    ) : categories.length === 0 ? (
+      <EmptyNote text={m.landing_regions_empty()} />
+    ) : (
+      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+        {categories.map((category) => (
+          <li>
+            <a
+              href={href(`/categories/${encodeURIComponent(category.slug)}`, locale)}
+              class="group flex min-h-16 items-center gap-3 rounded-lg border border-border bg-surface p-3 transition-colors duration-(--dur-fast) hover:border-border-strong hover:bg-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              <span
+                aria-hidden="true"
+                class="h-10 w-1.5 shrink-0 rounded-full"
+                style={{ backgroundColor: categoryAccent(category.slug) }}
+              />
+              <span class="grid min-w-0 flex-1">
+                <span class="truncate font-semibold text-fg group-hover:text-primary">
+                  {category.names[locale] ?? category.name}
+                </span>
+                <span class="readout">
+                  <span class="sr-only">{m.common_mods_count({ count: category.count })}</span>
+                  <span aria-hidden="true" class="tabular-nums">{formatNumber(locale, category.count)}</span>
+                </span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</section>

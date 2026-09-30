@@ -1455,6 +1455,138 @@
   "explore_view_grid": "グリッド",
   "explore_view_label": "表示",
   "explore_view_list": "リスト",
+  "landing_blueprints_all": "すべての建築",
+  "landing_blueprints_hint": "コミュニティの最新の建築",
+  "landing_creators_all": "すべてのクリエイター",
+  "landing_creators_hint": "島を作るサバイバーたち",
+  "landing_creators_title": "注目のクリエイター",
+  "landing_faq_figures": "{date} 時点の数値です。",
+  "landing_faq_hint": "カタログで確認した短い回答です。",
+  "landing_faq_more": "詳しく見る",
+  "landing_faq_title": "サバイバーからのよくある質問",
+  "landing_hero_cta_explore": "MODを探す",
+  "landing_hero_cta_install": "インストール方法（3分）",
+  "landing_hero_lead": [
+    {
+      "declarations": [
+        "input modCount",
+        "input buildCount",
+        "local modCount__number = modCount: number",
+        "local buildCount__number = buildCount: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest のMOD {modCount__number} 件、建築 {buildCount__number} 件、そしてキット。プレイヤーによる互換性レポートと直接ダウンロード付き。待ち時間も登録も不要です。"
+      }
+    }
+  ],
+  "landing_hero_lead_fallback": "Sons of the Forest のMOD、建築、キット。プレイヤーによる互換性レポートと直接ダウンロード付き。待ち時間も登録も不要です。",
+  "landing_hero_search_label": "カタログを検索",
+  "landing_hero_title_accent": "現地でテスト済み。",
+  "landing_hero_title_lead": "島のためのMOD。",
+  "landing_kit_all": "すべてのキット",
+  "landing_kit_hint": "レンジャーが選んだ、すぐに使えるMODセット",
+  "landing_kit_open": "キットを開く",
+  "landing_kit_title": "注目のキット",
+  "landing_motw_period": "{start} の週",
+  "landing_motw_title": "今週のMOD",
+  "landing_notes_all": "最近のアップデートをすべて見る",
+  "landing_notes_empty": "まだアップデートはありません。クリエイターたちはまだ森の中です。",
+  "landing_notes_hint": "クリエイターの最新アップデート",
+  "landing_notes_version": "v{version}",
+  "landing_personal_backpack": "バックパックを開く",
+  "landing_personal_checklist_hint": "チェックリストを完了すると「1日目を生き延びた」バッジがもらえます。",
+  "landing_personal_checklist_title": "島での1日目",
+  "landing_personal_error": "アップデートの読み込み中に信号が途切れました。",
+  "landing_personal_hint": "バックパック内のMODの新バージョン",
+  "landing_personal_kits_title": "最近のキット",
+  "landing_personal_label": "あなた向け",
+  "landing_personal_none": "バックパックの中身はすべて最新です。",
+  "landing_personal_progress": "チェックリストの進捗",
+  "landing_personal_step_compat_report": "MODが動いたか報告",
+  "landing_personal_step_create_kit": "最初のキットを作る",
+  "landing_personal_step_done": "完了",
+  "landing_personal_step_first_download": "最初のMODをダウンロード",
+  "landing_personal_step_follow_mod": "MODをフォロー",
+  "landing_personal_step_install_redloader": "RedLoader をインストール",
+  "landing_personal_title": "あなたのアップデート",
+  "landing_pin_build": "人気の建築",
+  "landing_pin_download": "ダウンロード中 · v{version}",
+  "landing_pin_kit": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "キット · MOD {count__number} 件"
+      }
+    }
+  ],
+  "landing_pin_release": "v{version} に更新",
+  "landing_pins_label": "島のライブ情報",
+  "landing_radar_breaking": "MODが壊れる更新",
+  "landing_radar_cta": "動かないものを見る",
+  "landing_radar_empty": "レーダーにはまだゲームパッチがありません。現地レポートは次の更新から始まります。",
+  "landing_radar_loader": [
+    {
+      "declarations": [
+        "input loader",
+        "input version",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "{loader} {version}：動作",
+        "status=partial": "{loader} {version}：一部動作",
+        "status=broken": "{loader} {version}：動作しない",
+        "status=*": "{loader} {version}：未テスト"
+      }
+    }
+  ],
+  "landing_radar_summary": "ゲーム {build} · 上位50件のMODのうち {share} がこのパッチで確認済み",
+  "landing_readout_game": "ゲーム {build}",
+  "landing_readout_hour": "直近1時間",
+  "landing_readout_live": "ライブ",
+  "landing_readout_offline": "信号が途切れました：前回の値を表示中",
+  "landing_readout_today": "今日のダウンロード",
+  "landing_regions_empty": "地図はまだ作成中です。MODが公開されると地域が表示されます。",
+  "landing_regions_hint": "カテゴリ別に島を探索",
+  "landing_regions_title": "地域",
+  "landing_section_error": "地図のこの部分に到達できませんでした。1分後にページを再読み込みしてください。",
+  "landing_start_cta": "インストールガイドを読む",
+  "landing_start_hint": "3ステップ、約3分です。",
+  "landing_start_install_text": "Sons of the Forest 用のMODローダーです。RedManager か手動で一度だけ設定します。",
+  "landing_start_install_title": "RedLoader をインストール",
+  "landing_start_pick_text": "カタログを見るか、一緒に動作するMODをまとめたキットを使いましょう。",
+  "landing_start_pick_title": "MODかキットを選ぶ",
+  "landing_start_play_text": "ゲームを起動し、F1 を押してMODが読み込まれたか確認します。パッチの後はパッチレーダーをチェック。",
+  "landing_start_play_title": "起動してプレイ",
+  "landing_start_step": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ステップ {step__number}"
+      }
+    }
+  ],
+  "landing_start_title": "ここから始めよう",
+  "landing_stat_creators": "クリエイター",
+  "landing_stat_downloads": "ダウンロード",
+  "landing_stat_mods": "MOD",
+  "landing_stat_survivors": "サバイバー",
+  "landing_stats_label": "数字で見る島",
+  "landing_trending_all": "すべてのMOD",
+  "landing_trending_empty": "島は静かな一週間です。サバイバーがダウンロードすると、ここにMODが表示されます。",
+  "landing_trending_hint": "直近7日間のダウンロード数順",
+  "landing_trending_title": "今週の人気",
   "meta_default_description": "Sons of the Forest の MOD の拠点。RedLoader 向けの MOD・建築・キットをパッチごとにテスト。無料で直接ダウンロードできます。",
   "meta_feed_description": "SOTF Mods で公開された Sons of the Forest の最新の MOD とアップデート。",
   "meta_feed_title": "SOTF Mods：新着・更新された MOD",

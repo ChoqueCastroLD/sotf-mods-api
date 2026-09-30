@@ -1,0 +1,34 @@
+{
+  "install": {
+    "question": "Hoe installeer ik mods in Sons of the Forest?",
+    "answer": "Installeer RedLoader, de modloader, zet elke mod in de map _RedLoader/Mods in je gamemap en start de game. RedManager kan beide stappen voor je doen. Druk in de game op F1 om te controleren of je mods geladen zijn. Elke modpagina noemt de afhankelijkheden en de installatiegids legt elke stap uit."
+  },
+  "free": {
+    "question": "Zijn de downloads gratis?",
+    "answer": "Ja. Alle mods, builds en Kits op SOTF Mods download je gratis, rechtstreeks uit onze opslag: zonder account, zonder wachttijd en zonder downloadmanager. Advertenties zie je alleen als je niet bent ingelogd, en ze staan nooit naast een downloadknop."
+  },
+  "multiplayer": {
+    "question": "Werken mods in multiplayer?",
+    "answer": "Veel wel, maar het hangt van de mod af. Elke modpagina vermeldt of alleen de host hem nodig heeft, of alle spelers hem nodig hebben of dat hij alleen voor singleplayer is, en of hij op dedicated servers werkt. Bij twijfel installeert de hele groep dezelfde mods in dezelfde versies."
+  },
+  "patch": {
+    "question": "Werken mods nog na een game-update?",
+    "answer": "Niet altijd: gamepatches kunnen mods breken tot de makers ze bijwerken. De Patchradar volgt de huidige gamebuild, de status van RedLoader en welke van de 50 meest gedownloade mods spelers hebben bevestigd als werkend, kapot of ongetest. De veldrapporten op elke modpagina tonen de nieuwste resultaten."
+  },
+  "bepinex": {
+    "question": "Kan ik BepInEx-mods gebruiken met RedLoader?",
+    "answer": "Nee. SOTF Mods verzamelt mods voor RedLoader, de loader die voor Sons of the Forest is gemaakt. BepInEx-mods hebben een andere loader nodig: in de mappen van RedLoader doen ze gewoon niets en tonen ze geen foutmelding. Controleer vóór installatie of een mod voor RedLoader gemaakt is."
+  },
+  "safe": {
+    "question": "Is het veilig om de mods te downloaden?",
+    "answer": "Elke nieuwe mod wordt door de Rangerpost gecontroleerd voordat hij verschijnt, en elk bestand toont zijn grootte en SHA-256-checksum zodat je je download kunt controleren. Sommige virusscanners zien modloaders ten onrechte als bedreiging; scan bij twijfel het bestand of vraag het in onze Discord."
+  },
+  "kits": {
+    "question": "Wat is een Kit?",
+    "answer": "Een Kit is een deelbare verzameling mods, zoals een overlevingskit: een maker of speler legt mods klaar die goed samenwerken, met notities, en iedereen kan hem volgen, klonen of alles erin downloaden. De rangers lichten Kits uit voor nieuwe spelers en voor dedicated servers."
+  },
+  "catalog": {
+    "question": "Hoeveel mods zijn er voor Sons of the Forest?",
+    "answer": "Per {date} telt SOTF Mods {mods} mods en {builds} builds van {creators} makers, in totaal {downloads} keer gedownload. Het is de grootste catalogus van RedLoader-mods voor Sons of the Forest, en de cijfers op deze pagina worden om de paar minuten bijgewerkt."
+  }
+}

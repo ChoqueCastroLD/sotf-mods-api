@@ -3,38 +3,56 @@
 
 import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
+import awardsModule from './awards/index.ts';
+import badgesModule from './badges/index.ts';
 import catalogModule from './catalog/index.ts';
 import commentsModule from './comments/index.ts';
+import compatModule from './compat/index.ts';
 import downloadsModule from './downloads/index.ts';
+import draftsModule from './drafts/index.ts';
+import ecosystemModule from './ecosystem/index.ts';
+import eventsModule from './events/index.ts';
 import followsModule from './follows/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
 import meModule from './me/index.ts';
 import notificationsModule from './notifications/index.ts';
+import onboardingModule from './onboarding/index.ts';
 import platformModule from './platform/index.ts';
 import resolveModule from './resolve/index.ts';
 import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
+import studioAnalyticsModule from './studio-analytics/index.ts';
+import studioModsModule from './studio-mods/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
 
 export const modules = [
   accountModule,
   authModule,
+  awardsModule,
+  badgesModule,
   catalogModule,
   commentsModule,
+  compatModule,
   downloadsModule,
+  draftsModule,
+  ecosystemModule,
+  eventsModule,
   followsModule,
   kitsModule,
   legacyModule,
   meModule,
   notificationsModule,
+  onboardingModule,
   platformModule,
   resolveModule,
   reviewsModule,
   searchModule,
   siteModule,
+  studioAnalyticsModule,
+  studioModsModule,
   unsubscribeModule,
   uploadsModule,
 ] as const;

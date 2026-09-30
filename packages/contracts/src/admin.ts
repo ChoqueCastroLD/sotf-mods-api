@@ -513,7 +513,7 @@ export const adminEndpoints = {
   listGameBuilds: defineEndpoint({
     ...adminRead,
     id: 'admin.listGameBuilds',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'GET',
     path: `${admin}/game-builds`,
     summary: 'Game builds',
@@ -523,7 +523,7 @@ export const adminEndpoints = {
   createGameBuild: defineEndpoint({
     ...adminWrite,
     id: 'admin.createGameBuild',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'POST',
     path: `${admin}/game-builds`,
     summary: 'Register a game build',
@@ -535,7 +535,7 @@ export const adminEndpoints = {
   updateGameBuild: defineEndpoint({
     ...adminWrite,
     id: 'admin.updateGameBuild',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'PATCH',
     path: `${admin}/game-builds/:id`,
     summary: 'Edit a game build',
@@ -547,7 +547,7 @@ export const adminEndpoints = {
   deleteGameBuild: defineEndpoint({
     ...adminWrite,
     id: 'admin.deleteGameBuild',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'DELETE',
     path: `${admin}/game-builds/:id`,
     summary: 'Delete a game build without reports',
@@ -558,7 +558,7 @@ export const adminEndpoints = {
   listLoaderReleases: defineEndpoint({
     ...adminRead,
     id: 'admin.listLoaderReleases',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'GET',
     path: `${admin}/loader-releases`,
     summary: 'Loader and manager releases',
@@ -568,7 +568,7 @@ export const adminEndpoints = {
   createLoaderRelease: defineEndpoint({
     ...adminWrite,
     id: 'admin.createLoaderRelease',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'POST',
     path: `${admin}/loader-releases`,
     summary: 'Register a loader or manager release',
@@ -580,7 +580,7 @@ export const adminEndpoints = {
   putEcosystem: defineEndpoint({
     ...adminWrite,
     id: 'admin.putEcosystem',
-    owner: 'WP-51',
+    owner: 'WP-50',
     method: 'PUT',
     path: `${admin}/ecosystem`,
     summary: 'Set the ecosystem status of a loader on a build',
