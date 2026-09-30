@@ -15,6 +15,7 @@
   "mod_tab_reviews": "评价",
   "mod_tab_comments": "评论",
   "mod_sidebar_label": "关于此模组",
+  "mod_feed_title": "{name} 的版本",
   "mod_banners_label": "模组状态",
   "mod_banner_pending_title": "审核中。",
   "mod_banner_pending_text": "护林员正在检查此模组。它还未出现在列表中，内容可能还会变化。",

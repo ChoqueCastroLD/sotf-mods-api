@@ -3151,6 +3151,7 @@
   "mod_fact_updated": "{date} に更新",
   "mod_fact_updated_label": "更新日",
   "mod_fact_version": "バージョン",
+  "mod_feed_title": "{name} のリリース",
   "mod_field_report_sign_in": "ログインしてフィールドレポートを追加",
   "mod_field_report_text": "フィールドレポートは 10 秒。この MOD が現在のパッチで動くかどうかをみんなに伝えられます。",
   "mod_field_report_title": "ゲームで動きましたか？",

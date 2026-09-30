@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Aggiornata il {date}",
   "mod_fact_updated_label": "Aggiornata",
   "mod_fact_version": "Versione",
+  "mod_feed_title": "Versioni di {name}",
   "mod_field_report_sign_in": "Accedi per aggiungere un rapporto sul campo",
   "mod_field_report_text": "Un rapporto sul campo richiede dieci secondi e dice a tutti se questa mod funziona con la patch attuale.",
   "mod_field_report_title": "Ha funzionato nella tua partita?",

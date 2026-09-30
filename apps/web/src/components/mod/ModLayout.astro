@@ -3,6 +3,7 @@
  * Shell of every mod page (overview, versions, one version, reviews; WP-62):
  *
  * - `BaseLayout` with the page SEO + JSON-LD (+ `BreadcrumbList` built from the visible trail),
+ *   the `.md` and per-mod RSS alternates (PLAN §4.2, §8.7),
  *   `entity` for analytics and the LCP preload;
  * - 2 px top edge in the mod's `logColor` accent;
  * - breadcrumbs, status banners, the adult-content gate (content hidden behind it), header, tabs;
@@ -98,6 +99,15 @@ const hasGlance = Astro.slots.has('glance');
   entity={{ type: 'mod', id: mod.id }}
   preloadImage={gated ? undefined : preloadImage}
 >
+  <Fragment slot="head">
+    <link rel="alternate" type="text/markdown" href={`${mod.canonicalPath}.md`} title={mod.name} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href={`${mod.canonicalPath}/feed.xml`}
+      title={m.mod_feed_title({ name: mod.name })}
+    />
+  </Fragment>
   <div
     data-mod-page
     data-mod-id={mod.id}

@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Mis à jour le {date}",
   "mod_fact_updated_label": "Mis à jour",
   "mod_fact_version": "Version",
+  "mod_feed_title": "Versions de {name}",
   "mod_field_report_sign_in": "Connectez-vous pour ajouter un rapport de terrain",
   "mod_field_report_text": "Un rapport de terrain prend dix secondes et dit à tous si ce mod fonctionne sur le patch actuel.",
   "mod_field_report_title": "Ça a marché dans votre partie ?",

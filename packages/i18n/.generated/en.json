@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Updated {date}",
   "mod_fact_updated_label": "Updated",
   "mod_fact_version": "Version",
+  "mod_feed_title": "Releases of {name}",
   "mod_field_report_sign_in": "Sign in to add a field report",
   "mod_field_report_text": "A field report takes ten seconds and tells everyone whether this mod works on the current patch.",
   "mod_field_report_title": "Did it work in your game?",

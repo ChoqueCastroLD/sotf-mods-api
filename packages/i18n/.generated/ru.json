@@ -3759,6 +3759,7 @@
   "mod_fact_updated": "Обновлён {date}",
   "mod_fact_updated_label": "Обновлён",
   "mod_fact_version": "Версия",
+  "mod_feed_title": "Релизы {name}",
   "mod_field_report_sign_in": "Войдите, чтобы добавить полевой отчёт",
   "mod_field_report_text": "Полевой отчёт занимает десять секунд и показывает всем, работает ли мод на текущем патче.",
   "mod_field_report_title": "Сработало в вашей игре?",
