@@ -9,3 +9,4 @@ export * from './history.ts';
 export * from './resolve.ts';
 export * from './retention.ts';
 export * from './service.ts';
+export * from './compat-prompt.ts';

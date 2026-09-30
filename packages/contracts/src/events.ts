@@ -27,7 +27,7 @@ export const PG_EVENTS_CHANNEL = 'events';
 /** Postgres NOTIFY channel that clears the API LRU. */
 export const PG_CACHE_CHANNEL = 'cache';
 
-/** SSE channels: `user:{id}`, `moderation` and (T1) `mod:{id}`. */
+/** SSE channels: `user:{id}`, `moderation` and `mod:{id}` (public, read-only live counters). */
 export type SseChannel = `user:${number}` | 'moderation' | `mod:${number}`;
 export const sseChannel = {
   user: (id: number): SseChannel => `user:${id}`,
@@ -41,6 +41,8 @@ export const SseNotificationData = z.object({
   unreadCount: z.number().int().nonnegative(),
 });
 export const SseModUpdatedData = z.object({ modId: EntityId });
+/** Live total of a mod's downloads, pushed to `mod:{id}` (public stream `GET /mods/:id/live/stream`). */
+export const SseModLiveData = z.object({ modId: EntityId, downloads: z.number().int().nonnegative() });
 export const SseModerationQueueData = z.object({ lane: ModerationLane, count: z.number().int().nonnegative() });
 
 /** Every SSE event: `event:` name → `data:` JSON. */
@@ -48,6 +50,7 @@ export const SSE_EVENTS = {
   notification: SseNotificationData,
   'mod.updated': SseModUpdatedData,
   'moderation.queue': SseModerationQueueData,
+  'mod.live': SseModLiveData,
 } as const;
 export type SseEventName = keyof typeof SSE_EVENTS;
 
@@ -57,6 +60,7 @@ export const SseEventDTO = dto(
     z.object({ event: z.literal('notification'), id: z.string(), data: SseNotificationData }),
     z.object({ event: z.literal('mod.updated'), id: z.string(), data: SseModUpdatedData }),
     z.object({ event: z.literal('moderation.queue'), id: z.string(), data: SseModerationQueueData }),
+    z.object({ event: z.literal('mod.live'), id: z.string(), data: SseModLiveData }),
   ]),
   {
     description: 'One server-sent event (`id:` enables `Last-Event-ID` resumption).',

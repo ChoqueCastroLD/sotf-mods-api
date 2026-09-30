@@ -7,7 +7,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { Count, IdParam, IsoDate, IsoDateTime, ModRefDTO, VersionString } from './common.ts';
+import { Count, EntityId, IdParam, IsoDate, IsoDateTime, ModRefDTO, VersionString } from './common.ts';
 import { dto, exampleOf } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 
@@ -73,6 +73,8 @@ export const ModLiveDTO = dto(
   },
 );
 
+export const BADGE_KINDS = ['downloads', 'version', 'rating', 'followers', 'compat'] as const;
+
 export const PUBLIC_STATS_RANGES = ['30d', '1y', 'all'] as const;
 
 export const ModPublicStatsDTO = dto(
@@ -135,6 +137,35 @@ export const statsEndpoints = {
     response: ModLiveDTO,
     errors: ['NOT_FOUND', 'GONE'],
     cache: cache.live(['stats']),
+    rateLimit: 'anonymousRead',
+  }),
+  modLiveStream: defineEndpoint({
+    id: 'stats.modLiveStream',
+    owner: 'WP-33',
+    method: 'GET',
+    path: `${API_V2_PREFIX}/mods/:id/live/stream`,
+    summary: 'Live download total of a mod (server-sent events)',
+    description:
+      'Public, cookie-less `text/event-stream`. Emits `mod.live` ({modId, downloads}) whenever downloads of the mod are counted (at most every 2 s). Clients keep polling `GET /mods/:id/live` as a fallback.',
+    auth: 'public',
+    params: z.object({ id: IdParam }),
+    response: z.object({ event: z.literal('mod.live'), id: z.string(), data: z.object({ modId: EntityId, downloads: Count }) }),
+    responseKind: 'event-stream',
+    errors: ['NOT_FOUND'],
+    cache: cache.noStore,
+    rateLimit: 'anonymousRead',
+  }),
+  modBadge: defineEndpoint({
+    id: 'stats.modBadge',
+    owner: 'WP-33',
+    method: 'GET',
+    path: `${API_V2_PREFIX}/mods/:id/badge/:kind`,
+    summary: 'SVG badge of a mod (downloads, version, rating, followers, compat)',
+    auth: 'public',
+    params: z.object({ id: IdParam, kind: z.enum(BADGE_KINDS) }),
+    responseKind: 'text',
+    errors: ['NOT_FOUND', 'GONE'],
+    cache: cache.publicApi(['stats']),
     rateLimit: 'anonymousRead',
   }),
   modPublicStats: defineEndpoint({

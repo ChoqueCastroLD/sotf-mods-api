@@ -40,11 +40,21 @@ export interface DownloadCounterOptions {
   maxBatch?: number;
   /** Events kept while the database is failing (default 100 000). */
   maxRetained?: number;
+  /** Called after each committed flush (errors are logged and ignored). */
+  onFlushed?: (report: FlushReport) => Promise<void> | void;
 }
 
 export interface FlushResult {
   inserted: number;
   unique: number;
+}
+
+/** What a committed flush changed: drives live notices and follow-up signals (never throws into the flush). */
+export interface FlushReport {
+  /** Mod id → new lifetime download total after this flush. */
+  mods: ReadonlyMap<number, number>;
+  /** Signed-in users (history on) that downloaded something in this flush. */
+  userIds: readonly number[];
 }
 
 type Row = Record<string, unknown>;
@@ -55,9 +65,10 @@ export class DownloadCounter {
   readonly #intervalMs: number;
   readonly #maxBatch: number;
   readonly #maxRetained: number;
+  readonly #onFlushed: DownloadCounterOptions['onFlushed'];
   #buffer: DownloadEvent[] = [];
   #timer: NodeJS.Timeout | null = null;
-  #flushing: Promise<FlushResult> | null = null;
+  #flushing: Promise<FlushResult & { report: FlushReport }> | null = null;
   #closed = false;
   /** Shutdown started: every new event is flushed right away (the periodic timer is gone). */
   #closing = false;
@@ -70,6 +81,7 @@ export class DownloadCounter {
     this.#intervalMs = options.flushIntervalMs ?? 2_000;
     this.#maxBatch = options.maxBatch ?? 2_000;
     this.#maxRetained = options.maxRetained ?? 100_000;
+    this.#onFlushed = options.onFlushed;
   }
 
   get pending(): number {
@@ -127,6 +139,13 @@ export class DownloadCounter {
       this.#flushing = this.#write(batch);
       try {
         const done = await this.#flushing;
+        if (this.#onFlushed) {
+          try {
+            await this.#onFlushed(done.report);
+          } catch (error) {
+            this.#log.warn({ err: error }, 'download flush follow-up failed');
+          }
+        }
         total.inserted += done.inserted;
         total.unique += done.unique;
         this.stats.flushed += done.inserted;
@@ -163,7 +182,7 @@ export class DownloadCounter {
     }
   }
 
-  async #write(batch: DownloadEvent[]): Promise<FlushResult> {
+  async #write(batch: DownloadEvent[]): Promise<FlushResult & { report: FlushReport }> {
     return this.#db.transaction(async (tx) => {
       // Users who disabled their download history: store the row without userId.
       const userIds = [...new Set(batch.map((e) => e.userId).filter((id): id is number => id !== null))];
@@ -254,14 +273,19 @@ export class DownloadCounter {
                       ${sql.param(versions.map(([, c]) => c.u))}::int[]) AS x(id, n, u)
          WHERE v."id" = x.id`);
       const mods = [...perMod.entries()].sort(([a], [b]) => a - b);
-      await tx.execute(sql`
+      const totals = await tx.execute<Row>(sql`
         UPDATE "Mod" m
            SET "downloads" = m."downloads" + x.n
           FROM unnest(${sql.param(mods.map(([id]) => id))}::int[],
                       ${sql.param(mods.map(([, n]) => n))}::int[]) AS x(id, n)
-         WHERE m."id" = x.id`);
+         WHERE m."id" = x.id
+        RETURNING m."id" AS "id", m."downloads" AS "downloads"`);
+      const report: FlushReport = {
+        mods: new Map(totals.rows.map((r) => [Number(r.id), Number(r.downloads)])),
+        userIds: userIds.filter((id) => !optedOut.has(id)),
+      };
 
-      return { inserted: batch.length, unique: isUnique.filter(Boolean).length };
+      return { inserted: batch.length, unique: isUnique.filter(Boolean).length, report };
     });
   }
 }
