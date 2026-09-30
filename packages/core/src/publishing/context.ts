@@ -2,8 +2,9 @@
  * Dependencies of the publishing services and small shared helpers (audit trail, domain-event
  * routing of a mod, local cache eviction after a write).
  */
-import { auditLog, type Executor, type JsonObject } from '@sotf/db';
+import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
+import { recordAudit } from '../audit/audit.ts';
 import type { CatalogConfig } from '../catalog/media.ts';
 import type { Ctx } from '../kernel/context.ts';
 import type { ObjectStorage } from '../storage/client.ts';
@@ -37,7 +38,7 @@ export async function modRouting(exec: Executor, modId: number): Promise<ModRout
   };
 }
 
-/** Appends to the immutable `AuditLog` (every status transition, PLAN §7.4). */
+/** Appends to the immutable `AuditLog` (every status transition, PLAN §7.4) through `recordAudit`. */
 export async function audit(
   ctx: Ctx,
   exec: Executor,
@@ -50,16 +51,7 @@ export async function audit(
     reason?: string | null;
   },
 ): Promise<void> {
-  await exec.insert(auditLog).values({
-    actorId: ctx.actor?.userId ?? null,
-    action: entry.action,
-    targetType: entry.targetType,
-    targetId: entry.targetId,
-    before: entry.before ? (JSON.parse(JSON.stringify(entry.before)) as JsonObject) : null,
-    after: entry.after ? (JSON.parse(JSON.stringify(entry.after)) as JsonObject) : null,
-    reason: entry.reason ?? null,
-    ipHash: ctx.ipHash,
-  });
+  await recordAudit(exec, ctx, entry);
 }
 
 /**

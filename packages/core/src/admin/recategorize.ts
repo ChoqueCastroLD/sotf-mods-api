@@ -266,6 +266,7 @@ async function suggest(ctx: Ctx, config: CatalogConfig): Promise<Suggestion[]> {
     out.push({
       mod: ref,
       currentCategory: current,
+      currentTags: [...existing].sort(),
       suggestedCategory: best.slug,
       suggestedTags,
       // A mod without an active category gets a suggestion even with weak evidence.

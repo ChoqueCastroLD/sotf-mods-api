@@ -5,7 +5,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { CategoryDTO, CategoryListDTO, LocalizedNames, TagDTO, TagListDTO } from './catalog.ts';
+import { CategoryDTO, LocalizedNames, TagDTO } from './catalog.ts';
 import {
   AwardKind,
   CategorySlug,
@@ -153,6 +153,42 @@ export const TagInputBody = dto(
   },
 );
 
+export const AdminCategoryDTO = dto(
+  'AdminCategoryDTO',
+  CategoryDTO.extend({
+    retiredAt: IsoDateTime.nullable().describe('Set when the category was retired (soft delete)'),
+    hubIntro: LocalizedNames.describe('Stored editorial intro per locale (Markdown)'),
+  }),
+  {
+    description: 'A category as the admins edit it (retired state and hub intro included).',
+    examples: [
+      { ...exampleOf(CategoryDTO), retiredAt: null, hubIntro: { en: 'Small fixes that make every day easier.' } },
+    ],
+  },
+);
+
+export const AdminCategoryListDTO = dto('AdminCategoryListDTO', z.object({ items: z.array(AdminCategoryDTO) }), {
+  description: 'Every category, retired ones last.',
+  examples: [{ items: [exampleOf(AdminCategoryDTO)] }],
+});
+
+export const AdminTagDTO = dto(
+  'AdminTagDTO',
+  TagDTO.extend({
+    description: z.string(),
+    sortOrder: z.number().int(),
+  }),
+  {
+    description: 'A tag as the admins edit it (description and sort order included).',
+    examples: [{ ...exampleOf(TagDTO), description: 'Inventory and storage tweaks', sortOrder: 2 }],
+  },
+);
+
+export const AdminTagListDTO = dto('AdminTagListDTO', z.object({ items: z.array(AdminTagDTO) }), {
+  description: 'Every tag (curated and free).',
+  examples: [{ items: [exampleOf(AdminTagDTO)] }],
+});
+
 export const RecategorizeBody = dto(
   'RecategorizeBody',
   z.strictObject({
@@ -182,6 +218,7 @@ export const RecategorizeResultDTO = dto(
       z.object({
         mod: ModRefDTO,
         currentCategory: z.string().nullable(),
+        currentTags: z.array(z.string()).describe('Current tag slugs (`tagSlugs` of a change replaces them)'),
         suggestedCategory: CategorySlug,
         suggestedTags: z.array(z.string()),
         confidence: z.number().min(0).max(1),
@@ -198,6 +235,7 @@ export const RecategorizeResultDTO = dto(
           {
             mod: exampleOf(ModRefDTO),
             currentCategory: 'qol',
+            currentTags: ['cheats'],
             suggestedCategory: 'menus-sandbox',
             suggestedTags: ['cheats'],
             confidence: 0.82,
@@ -207,6 +245,31 @@ export const RecategorizeResultDTO = dto(
         applied: 0,
       },
     ],
+  },
+);
+
+// -----------------------------------------------------------------------------------------------
+// Curation: kit staff picks and manual badges
+// -----------------------------------------------------------------------------------------------
+
+export const KitStaffPickBody = dto('KitStaffPickBody', z.strictObject({ isStaffPick: z.boolean() }), {
+  description: 'Feature a public kit (landing «Esenciales para empezar», `/install` starter kit) or stop featuring it.',
+  examples: [{ isStaffPick: true }],
+});
+
+export const KitStaffPickDTO = dto('KitStaffPickDTO', z.object({ kitId: EntityId, isStaffPick: z.boolean() }), {
+  description: 'Staff-pick state of a kit after the change.',
+  examples: [{ kitId: 5, isStaffPick: true }],
+});
+
+export const MANUAL_BADGE_KEYS = ['translator'] as const;
+
+export const ManualBadgeDTO = dto(
+  'ManualBadgeDTO',
+  z.object({ userId: EntityId, badgeKey: z.enum(MANUAL_BADGE_KEYS), granted: z.boolean() }),
+  {
+    description: 'A badge only admins grant (PLAN §7.2 `translator`) and whether the user holds it now.',
+    examples: [{ userId: 12, badgeKey: 'translator', granted: true }],
   },
 );
 
@@ -595,7 +658,7 @@ export const adminEndpoints = {
     method: 'GET',
     path: `${admin}/categories`,
     summary: 'All categories, retired included',
-    response: CategoryListDTO,
+    response: AdminCategoryListDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
   }),
   createCategory: defineEndpoint({
@@ -607,7 +670,7 @@ export const adminEndpoints = {
     summary: 'Create a category',
     body: CategoryInputBody,
     status: 201,
-    response: CategoryDTO,
+    response: AdminCategoryDTO,
     errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   updateCategory: defineEndpoint({
@@ -619,7 +682,7 @@ export const adminEndpoints = {
     summary: 'Replace a category',
     params: IdParams,
     body: CategoryInputBody,
-    response: CategoryDTO,
+    response: AdminCategoryDTO,
     errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   retireCategory: defineEndpoint({
@@ -640,7 +703,7 @@ export const adminEndpoints = {
     method: 'GET',
     path: `${admin}/tags`,
     summary: 'All tags',
-    response: TagListDTO,
+    response: AdminTagListDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
   }),
   createTag: defineEndpoint({
@@ -652,7 +715,7 @@ export const adminEndpoints = {
     summary: 'Create a tag',
     body: TagInputBody,
     status: 201,
-    response: TagDTO,
+    response: AdminTagDTO,
     errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   updateTag: defineEndpoint({
@@ -664,7 +727,7 @@ export const adminEndpoints = {
     summary: 'Replace a tag',
     params: IdParams,
     body: TagInputBody,
-    response: TagDTO,
+    response: AdminTagDTO,
     errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
   }),
   deleteTag: defineEndpoint({
@@ -688,6 +751,40 @@ export const adminEndpoints = {
     body: RecategorizeBody,
     response: RecategorizeResultDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+  }),
+  setKitStaffPick: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.setKitStaffPick',
+    owner: 'WP-51',
+    method: 'PUT',
+    path: `${admin}/kits/:id/staff-pick`,
+    summary: 'Feature a kit as a staff pick (or stop featuring it)',
+    params: IdParams,
+    body: KitStaffPickBody,
+    response: KitStaffPickDTO,
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+  }),
+  grantManualBadge: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.grantManualBadge',
+    owner: 'WP-51',
+    method: 'PUT',
+    path: `${admin}/users/:id/badges/:badgeKey`,
+    summary: 'Grant a manual badge (translator)',
+    params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
+    response: ManualBadgeDTO,
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+  }),
+  revokeManualBadge: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.revokeManualBadge',
+    owner: 'WP-51',
+    method: 'DELETE',
+    path: `${admin}/users/:id/badges/:badgeKey`,
+    summary: 'Remove a manual badge (translator)',
+    params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
+    response: ManualBadgeDTO,
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
   }),
   listAwards: defineEndpoint({
     ...adminRead,

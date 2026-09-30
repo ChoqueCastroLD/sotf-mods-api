@@ -25,12 +25,12 @@ import type {
 import { KIT_LIMITS, normalizeKitCode } from '@sotf/contracts/kits';
 import { totalPages } from '@sotf/contracts/pagination';
 import { type Executor, type JsonObject, type Transaction, withTx } from '@sotf/db';
+import { renderMarkdown } from '@sotf/markdown';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { type CatalogSnapshot, getSnapshot } from '../catalog/snapshot.ts';
 import { resolveUserId } from '../catalog/users.ts';
-import { textToHtml } from '../catalog/versions.ts';
 import { at, intArray, query, queryOne, sqlState } from '../follows/sql.ts';
 import type { Actor, Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
@@ -67,8 +67,8 @@ import {
 export interface KitsDeps {
   config: CatalogConfig;
   /**
-   * Renders a kit description (Markdown) to safe HTML. Defaults to escaped paragraphs until core
-   * depends on `@sotf/markdown` (docs/backlog/WP-42.md).
+   * Renders a kit description (Markdown) to safe HTML. Defaults to the `lite` profile of
+   * `@sotf/markdown` (the same pipeline as comments and reviews).
    */
   renderDescription?: (md: string) => string;
 }
@@ -94,8 +94,13 @@ function actorOf(ctx: Ctx): Actor {
   return ctx.actor;
 }
 
+/** Default renderer of kit descriptions: Markdown `lite` (no headings, images or embeds). */
+export function renderKitDescription(md: string): string {
+  return renderMarkdown(md, { profile: 'lite' }).html;
+}
+
 function renderOf(deps: KitsDeps): (md: string) => string {
-  return deps.renderDescription ?? textToHtml;
+  return deps.renderDescription ?? renderKitDescription;
 }
 
 function describe(deps: KitsDeps, md: string | null | undefined): { md: string | null; html: string | null } {

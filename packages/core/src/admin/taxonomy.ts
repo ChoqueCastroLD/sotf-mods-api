@@ -13,15 +13,21 @@
  *   (recategorise first, `POST /admin/recategorize`).
  * - Deleting a tag detaches it from every mod (the `_ModToTag` rows) in the same transaction.
  */
-import type { CategoryInputBody, TagInputBody } from '@sotf/contracts/admin';
-import type { CategoryDTO, CategoryListDTO, TagDTO, TagListDTO } from '@sotf/contracts/catalog';
+import type {
+  AdminCategoryDTO,
+  AdminCategoryListDTO,
+  AdminTagDTO,
+  AdminTagListDTO,
+  CategoryInputBody,
+  TagInputBody,
+} from '@sotf/contracts/admin';
 import { LOCALE_BCP47, LOCALES, type Locale } from '@sotf/contracts/common';
 import type { Executor, Transaction } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { recordAudit } from '../audit/audit.ts';
 import { localizedNames, taxonomyKey } from '../catalog/snapshot.ts';
-import { query, queryOne, sqlState } from '../follows/sql.ts';
+import { query, queryOne, sqlState, toDate } from '../follows/sql.ts';
 import { purge } from '../kernel/cache-tags.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -29,8 +35,8 @@ import { publishCacheInvalidation } from '../kernel/notify.ts';
 import { assertStaff } from '../moderation/guard.ts';
 import { textArray } from './sql.ts';
 
-type Category = z.infer<typeof CategoryDTO>;
-type Tag = z.infer<typeof TagDTO>;
+type Category = z.infer<typeof AdminCategoryDTO>;
+type Tag = z.infer<typeof AdminTagDTO>;
 type CategoryInput = z.output<typeof CategoryInputBody>;
 type TagInput = z.output<typeof TagInputBody>;
 
@@ -95,7 +101,19 @@ function categoryDto(r: CategoryRow): Category {
     sortOrder: r.sortOrder,
     legacySlugs: r.legacySlugs ?? [],
     count: Number(r.count ?? 0),
+    retiredAt: toDate(r.retiredAt)?.toISOString() ?? null,
+    hubIntro: hubIntroRead(r.hubIntro),
   };
+}
+
+/** Stored hub intro (keyed by URL locale) as `LocalizedNames`, unknown keys dropped. */
+function hubIntroRead(value: Record<string, string> | null): Partial<Record<Locale, string>> {
+  const out: Partial<Record<Locale, string>> = {};
+  for (const locale of LOCALES) {
+    const text = value?.[locale];
+    if (typeof text === 'string' && text !== '') out[locale] = text;
+  }
+  return out;
 }
 
 function tagDto(r: TagRow): Tag {
@@ -109,6 +127,8 @@ function tagDto(r: TagRow): Tag {
     group: r.group,
     isCurated: r.isCurated,
     count: Number(r.count ?? 0),
+    description: r.description ?? '',
+    sortOrder: r.sortOrder,
   };
 }
 
@@ -164,7 +184,7 @@ async function loadCategories(exec: Executor, id?: number): Promise<CategoryRow[
 }
 
 /** `GET /admin/categories`: every category, retired ones last. */
-export async function listAdminCategories(ctx: Ctx): Promise<z.infer<typeof CategoryListDTO>> {
+export async function listAdminCategories(ctx: Ctx): Promise<z.infer<typeof AdminCategoryListDTO>> {
   await assertStaff(ctx, 'admin.taxonomy');
   return { items: (await loadCategories(ctx.db)).map(categoryDto) };
 }
@@ -341,7 +361,7 @@ function tagAudit(r: TagRow): Record<string, unknown> {
 }
 
 /** `GET /admin/tags`: every tag (curated and free). */
-export async function listAdminTags(ctx: Ctx): Promise<z.infer<typeof TagListDTO>> {
+export async function listAdminTags(ctx: Ctx): Promise<z.infer<typeof AdminTagListDTO>> {
   await assertStaff(ctx, 'admin.taxonomy');
   return { items: (await loadTags(ctx.db)).map(tagDto) };
 }
