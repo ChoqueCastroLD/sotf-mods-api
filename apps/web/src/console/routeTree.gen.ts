@@ -15,6 +15,12 @@ import { Route as MeRouteImport } from './routes/me.tsx'
 import { Route as RangerRouteImport } from './routes/ranger.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as SignalsRouteImport } from './routes/signals.tsx'
+import { Route as BasecampDraftsIndexRouteImport } from './routes/basecamp/drafts/index.tsx'
+import { Route as BasecampDraftsDraftIdRouteImport } from './routes/basecamp/drafts/$draftId.tsx'
+import { Route as BasecampNewIndexRouteImport } from './routes/basecamp/new/index.tsx'
+import { Route as BasecampNewBuildRouteImport } from './routes/basecamp/new/build.tsx'
+import { Route as BasecampNewModRouteImport } from './routes/basecamp/new/mod.tsx'
+import { Route as BasecampModsModIdNewVersionRouteImport } from './routes/basecamp/mods/$modId/new-version.tsx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,37 +52,110 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BasecampDraftsIndexRoute = BasecampDraftsIndexRouteImport.update({
+  id: '/drafts/',
+  path: '/drafts/',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampDraftsDraftIdRoute = BasecampDraftsDraftIdRouteImport.update({
+  id: '/drafts/$draftId',
+  path: '/drafts/$draftId',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampNewIndexRoute = BasecampNewIndexRouteImport.update({
+  id: '/new/',
+  path: '/new/',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampNewBuildRoute = BasecampNewBuildRouteImport.update({
+  id: '/new/build',
+  path: '/new/build',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampNewModRoute = BasecampNewModRouteImport.update({
+  id: '/new/mod',
+  path: '/new/mod',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampModsModIdNewVersionRoute =
+  BasecampModsModIdNewVersionRouteImport.update({
+    id: '/mods/$modId/new-version',
+    path: '/mods/$modId/new-version',
+    getParentRoute: () => BasecampRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRoute
+  '/basecamp': typeof BasecampRouteWithChildren
   '/me': typeof MeRoute
   '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
+  '/basecamp/new/build': typeof BasecampNewBuildRoute
+  '/basecamp/new/mod': typeof BasecampNewModRoute
+  '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
+  '/basecamp/new/': typeof BasecampNewIndexRoute
+  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRoute
+  '/basecamp': typeof BasecampRouteWithChildren
   '/me': typeof MeRoute
   '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
+  '/basecamp/new/build': typeof BasecampNewBuildRoute
+  '/basecamp/new/mod': typeof BasecampNewModRoute
+  '/basecamp/drafts': typeof BasecampDraftsIndexRoute
+  '/basecamp/new': typeof BasecampNewIndexRoute
+  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRoute
+  '/basecamp': typeof BasecampRouteWithChildren
   '/me': typeof MeRoute
   '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
+  '/basecamp/new/build': typeof BasecampNewBuildRoute
+  '/basecamp/new/mod': typeof BasecampNewModRoute
+  '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
+  '/basecamp/new/': typeof BasecampNewIndexRoute
+  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/basecamp' | '/me' | '/ranger' | '/settings' | '/signals'
+  fullPaths:
+    | '/'
+    | '/basecamp'
+    | '/me'
+    | '/ranger'
+    | '/settings'
+    | '/signals'
+    | '/basecamp/drafts/$draftId'
+    | '/basecamp/new/build'
+    | '/basecamp/new/mod'
+    | '/basecamp/drafts/'
+    | '/basecamp/new/'
+    | '/basecamp/mods/$modId/new-version'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/basecamp' | '/me' | '/ranger' | '/settings' | '/signals'
+  to:
+    | '/'
+    | '/basecamp'
+    | '/me'
+    | '/ranger'
+    | '/settings'
+    | '/signals'
+    | '/basecamp/drafts/$draftId'
+    | '/basecamp/new/build'
+    | '/basecamp/new/mod'
+    | '/basecamp/drafts'
+    | '/basecamp/new'
+    | '/basecamp/mods/$modId/new-version'
   id:
     | '__root__'
     | '/'
@@ -85,11 +164,17 @@ export interface FileRouteTypes {
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/basecamp/drafts/$draftId'
+    | '/basecamp/new/build'
+    | '/basecamp/new/mod'
+    | '/basecamp/drafts/'
+    | '/basecamp/new/'
+    | '/basecamp/mods/$modId/new-version'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BasecampRoute: typeof BasecampRoute
+  BasecampRoute: typeof BasecampRouteWithChildren
   MeRoute: typeof MeRoute
   RangerRoute: typeof RangerRoute
   SettingsRoute: typeof SettingsRoute
@@ -140,12 +225,76 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/basecamp/drafts/': {
+      id: '/basecamp/drafts/'
+      path: '/drafts'
+      fullPath: '/basecamp/drafts/'
+      preLoaderRoute: typeof BasecampDraftsIndexRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/drafts/$draftId': {
+      id: '/basecamp/drafts/$draftId'
+      path: '/drafts/$draftId'
+      fullPath: '/basecamp/drafts/$draftId'
+      preLoaderRoute: typeof BasecampDraftsDraftIdRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/new/': {
+      id: '/basecamp/new/'
+      path: '/new'
+      fullPath: '/basecamp/new/'
+      preLoaderRoute: typeof BasecampNewIndexRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/new/build': {
+      id: '/basecamp/new/build'
+      path: '/new/build'
+      fullPath: '/basecamp/new/build'
+      preLoaderRoute: typeof BasecampNewBuildRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/new/mod': {
+      id: '/basecamp/new/mod'
+      path: '/new/mod'
+      fullPath: '/basecamp/new/mod'
+      preLoaderRoute: typeof BasecampNewModRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/mods/$modId/new-version': {
+      id: '/basecamp/mods/$modId/new-version'
+      path: '/mods/$modId/new-version'
+      fullPath: '/basecamp/mods/$modId/new-version'
+      preLoaderRoute: typeof BasecampModsModIdNewVersionRouteImport
+      parentRoute: typeof BasecampRoute
+    }
   }
 }
 
+interface BasecampRouteChildren {
+  BasecampDraftsDraftIdRoute: typeof BasecampDraftsDraftIdRoute
+  BasecampNewBuildRoute: typeof BasecampNewBuildRoute
+  BasecampNewModRoute: typeof BasecampNewModRoute
+  BasecampDraftsIndexRoute: typeof BasecampDraftsIndexRoute
+  BasecampNewIndexRoute: typeof BasecampNewIndexRoute
+  BasecampModsModIdNewVersionRoute: typeof BasecampModsModIdNewVersionRoute
+}
+
+const BasecampRouteChildren: BasecampRouteChildren = {
+  BasecampDraftsDraftIdRoute: BasecampDraftsDraftIdRoute,
+  BasecampNewBuildRoute: BasecampNewBuildRoute,
+  BasecampNewModRoute: BasecampNewModRoute,
+  BasecampDraftsIndexRoute: BasecampDraftsIndexRoute,
+  BasecampNewIndexRoute: BasecampNewIndexRoute,
+  BasecampModsModIdNewVersionRoute: BasecampModsModIdNewVersionRoute,
+}
+
+const BasecampRouteWithChildren = BasecampRoute._addFileChildren(
+  BasecampRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BasecampRoute: BasecampRoute,
+  BasecampRoute: BasecampRouteWithChildren,
   MeRoute: MeRoute,
   RangerRoute: RangerRoute,
   SettingsRoute: SettingsRoute,
