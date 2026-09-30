@@ -16,6 +16,7 @@ import { initNsfwGate } from './nsfw.ts';
 import { initProse } from './prose.ts';
 import { whenSession } from './session.ts';
 import { initShare } from './share.ts';
+import { initTranslation } from './translation.ts';
 import type { ModPageData } from './types.ts';
 import { initWhatsNew } from './whats-new.ts';
 
@@ -56,6 +57,7 @@ export function initModPage(doc: Document = document): void {
   safely(() => initNsfwGate(root, session));
   safely(() => initDownloads(root, data, doc));
   safely(() => initShare(root, data, doc));
+  safely(() => initTranslation(root));
   safely(() => initGallery(root, data, doc));
   safely(() => initProse(root, data.messages.videoEmbedTitle, doc));
   // Members get the «Did it work?» callout in place from the field-report island (server truth,

@@ -26,6 +26,7 @@ import ogJobs from './og/index.ts';
 import platformJobs from './platform/index.ts';
 import securityScanJobs from './security-scan/index.ts';
 import statsJobs from './stats/index.ts';
+import translationsJobs from './translations/index.ts';
 import uploadsJobs from './uploads/index.ts';
 
 export const jobGroups = [
@@ -54,5 +55,6 @@ export const jobGroups = [
   platformJobs,
   securityScanJobs,
   statsJobs,
+  translationsJobs,
   uploadsJobs,
 ] as const;

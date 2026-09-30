@@ -34,6 +34,7 @@ import { number } from '../format.ts';
 import { bt } from '../i18n.ts';
 import { languageName } from '../labels.ts';
 import { reportFailure } from '../shared.tsx';
+import { TranslationsSection } from '../translations/TranslationsSection.tsx';
 
 export interface ListingForm {
   name: string;
@@ -403,6 +404,8 @@ export function ListingTab({ studio, onDirty }: { studio: StudioMod; onDirty: (d
           onCheckedChange={(value) => set('nsfw', value)}
         />
       </FieldGroup>
+
+      <TranslationsSection modId={studio.mod.id} />
 
       <SaveBar
         dirty={dirty}

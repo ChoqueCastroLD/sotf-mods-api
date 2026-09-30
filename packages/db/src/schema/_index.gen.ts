@@ -27,3 +27,4 @@ export * from './ext/mod-knowledge.ts';
 export * from './ext/discovery.ts';
 export * from './ext/compat-uptime.ts';
 export * from './ext/requests.ts';
+export * from './ext/translation.ts';

@@ -189,6 +189,11 @@ describe('endpoint contracts', () => {
       v2('GET', '/studio/analytics'),
       v2('GET', '/studio/analytics.csv'),
       v2('GET', '/studio/inbox'),
+      // Translations (T1-25)
+      v2('GET', '/mods/:id/translation'),
+      v2('GET', '/studio/mods/:id/translations'),
+      v2('PUT', '/studio/mods/:id/translations/:locale'),
+      v2('DELETE', '/studio/mods/:id/translations/:locale'),
       // Community
       v2('GET', '/mods/:id/comments'),
       v2('GET', '/comments/:id'),
@@ -343,6 +348,7 @@ describe('endpoint contracts', () => {
         'stats',
         'studio',
         'tokens',
+        'translations',
         'uploads',
         'versions',
       ].sort(),

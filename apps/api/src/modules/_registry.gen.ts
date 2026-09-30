@@ -37,6 +37,7 @@ import siteModule from './site/index.ts';
 import studioAnalyticsModule from './studio-analytics/index.ts';
 import studioModsModule from './studio-mods/index.ts';
 import tokensModule from './tokens/index.ts';
+import translationsModule from './translations/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
 
@@ -77,6 +78,7 @@ export const modules = [
   studioAnalyticsModule,
   studioModsModule,
   tokensModule,
+  translationsModule,
   unsubscribeModule,
   uploadsModule,
 ] as const;

@@ -9,6 +9,7 @@ import { DISCORD_EVENTS } from './admin.ts';
 import { EntityId, IsoDate, IsoDateTime, SitePath, Uuid } from './common.ts';
 import { DomainEventSchema } from './domain-events.ts';
 import { CacheTagSchema } from './internal.ts';
+import { TRANSLATION_LOCALES } from './translations.ts';
 import { UploadPurpose } from './uploads.ts';
 
 export const OG_ENTITY_TYPES = [
@@ -35,6 +36,18 @@ export const JOB_PAYLOADS = {
   'security.rescan': z.object({}),
   'markdown.rerender': z.object({
     batchSize: z.number().int().min(1).max(1000).default(200).describe('Mods re-rendered per run'),
+  }),
+  // Translations (T1-25)
+  'translation.mod': z.object({
+    modId: EntityId,
+    locales: z
+      .array(z.enum(TRANSLATION_LOCALES))
+      .min(1)
+      .optional()
+      .describe('Omit to translate every missing or stale locale'),
+  }),
+  'translation.sweep': z.object({
+    batchSize: z.number().int().min(1).max(200).default(40).describe('Mods queued per run'),
   }),
   // Cache and indexing
   'cdn.purge': z.object({ tags: z.array(CacheTagSchema).min(1), reason: z.string().max(120) }),
@@ -128,6 +141,8 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'cleanup.scout', cron: '55 4 * * *', key: 'daily', data: {} },
   // After the hourly trending rollup of 02:15, before the morning traffic.
   { queue: 'recommendations.compute', cron: '30 2 * * *', key: 'nightly', data: {} },
+  // Catches mods without (or with stale) translations: older mods, failed or over-budget runs.
+  { queue: 'translation.sweep', cron: '*/30 * * * *', key: 'every-30m', data: {} },
   // Only after the cut-over (`POST_CUTOVER_QUEUES`): drains legacy mentions every 10 minutes.
   { queue: 'legacy.mentions', cron: '*/10 * * * *', key: 'every-10m', data: {} },
   // After `accounts.trust-level` (03:15): weights follow the reporters' new flags.
@@ -155,6 +170,8 @@ export const JOB_DEBOUNCE_SECONDS: Partial<Record<JobQueue, number>> = {
 export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.event'>]: JobPayload<Q> } = {
   'media.process': { mediaId: '0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d' },
   'og.render': { entityType: 'mod', entityId: 20 },
+  'translation.mod': { modId: 20 },
+  'translation.sweep': { batchSize: 40 },
   'inspection.run': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', purpose: 'mod_file', modVersionId: null },
   'security.scan': { modVersionId: 415, sha256: '9f2c0a4f1f0d6b1e2c3a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90' },
   'build.extract': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', modVersionId: 589 },
