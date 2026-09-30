@@ -1,0 +1,152 @@
+---
+/**
+ * Mod page `/mods/:user/:slug` (WP-62, T0-08, research/03 §6.3). SSR, edge-cached 900 s with
+ * `mod:{id}` + `user:{id}` (PLAN §4.2); the resolver answers 301/404/410 for old, mistyped or
+ * removed URLs. Everything user-specific (follow state, «What's new since your last download»,
+ * the «Did it work?» prompt) is fetched by the page script after load.
+ */
+import { tagPath } from '@sotf/contracts/seo';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { DependencyList, ProseLocator } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import AtAGlance from '../../../../components/mod/AtAGlance.astro';
+import CommentsPreview from '../../../../components/mod/CommentsPreview.astro';
+import CreatorCard from '../../../../components/mod/CreatorCard.astro';
+import { loadOverviewExtras, resolveModPage } from '../../../../components/mod/data.ts';
+import { loginHrefFor, versionsPagePath } from '../../../../components/mod/format.ts';
+import { markdownLabels, taxonomyName } from '../../../../components/mod/i18n.ts';
+import ModLayout from '../../../../components/mod/ModLayout.astro';
+import RelatedMods from '../../../../components/mod/RelatedMods.astro';
+import RequiredBy from '../../../../components/mod/RequiredBy.astro';
+import { respondUnresolved } from '../../../../components/mod/responses.ts';
+import ReviewsPreview from '../../../../components/mod/ReviewsPreview.astro';
+import { modDescription, modJsonLd, modTitle } from '../../../../components/mod/seo.ts';
+import { SECTION_TITLE_CLASSES } from '../../../../components/mod/styles.ts';
+import VersionTimeline from '../../../../components/mod/VersionTimeline.astro';
+import WhatsNew from '../../../../components/mod/WhatsNew.astro';
+import { setPageCache } from '../../../../lib/cache/page.ts';
+import { pageCache } from '../../../../lib/cache/policy.ts';
+import { loadEnv } from '../../../../lib/env.ts';
+import { href } from '../../../../lib/i18n.ts';
+import { pictureSources } from '../../../../lib/images.ts';
+import { ensureLocals } from '../../../../lib/request-context.ts';
+
+export const prerender = false;
+
+const locale = ensureLocals(Astro).locale;
+const resolved = await resolveModPage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+if (resolved.rest.length > 0) return respondUnresolved(Astro, { kind: 'not-found' });
+
+const { mod } = resolved;
+setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
+const extras = await loadOverviewExtras(mod);
+const env = loadEnv();
+const pageUrl = `${env.siteUrl}${href(mod.canonicalPath, locale)}`;
+const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale));
+const labels = markdownLabels();
+const descriptionHtml = mod.descriptionHtml.trim() ? localizeHtml(mod.descriptionHtml, labels) : '';
+const recentVersions = (extras.versions ?? (mod.latestVersion ? [mod.latestVersion] : [])).slice(0, 3);
+const versionsCount = extras.versions?.length ?? null;
+const hero = mod.thumbnail ?? mod.gallery[0] ?? null;
+const heroSources = hero ? pictureSources(hero.srcset) : null;
+const preloadImage = hero
+  ? heroSources?.avif
+    ? {
+        href: hero.url,
+        srcset: heroSources.avif,
+        sizes: '(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw',
+        type: 'image/avif',
+      }
+    : { href: hero.url }
+  : undefined;
+const ogImage = mod.nsfw ? undefined : (mod.thumbnail?.url ?? mod.gallery[0]?.url);
+const tags = mod.tags;
+---
+
+<ModLayout
+  mod={mod}
+  tab="overview"
+  versions={extras.versions}
+  seo={{
+    title: modTitle(mod),
+    description: modDescription(mod, locale),
+    path: mod.canonicalPath,
+    noindex: mod.noindex,
+    og: {
+      imageAlt: m.mod_og_alt({ name: mod.name }),
+      type: 'website',
+      ...(ogImage ? { image: ogImage } : {}),
+    },
+  }}
+  jsonLd={modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl })}
+  preloadImage={preloadImage}
+>
+  <section aria-labelledby="overview-title" class="grid gap-4">
+    <h2 id="overview-title" class="sr-only">{m.mod_tab_overview()}</h2>
+    {
+      descriptionHtml ? (
+        <ProseLocator html={descriptionHtml} lang={mod.contentLang ?? undefined} className="max-w-(--container-prose)" />
+      ) : (
+        <p class="text-fg-muted">{m.mod_description_empty()}</p>
+      )
+    }
+    {
+      tags.length > 0 && (
+        <ul class="flex flex-wrap gap-2" aria-label={m.mod_tags_label()}>
+          {tags.map((tag) => (
+            <li>
+              <a
+                href={href(tagPath(tag.slug), locale)}
+                class="inline-flex min-h-8 items-center rounded-full border border-border px-3 text-sm text-fg-muted hover:border-border-strong hover:text-fg"
+              >
+                #{taxonomyName(tag)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+
+  {
+    mod.dependencies.length > 0 && (
+      <section id="dependencies" aria-labelledby="dependencies-title" class="grid gap-3">
+        <h2 id="dependencies-title" class={SECTION_TITLE_CLASSES}>{m.mod_dependencies_title()}</h2>
+        <DependencyList dependencies={mod.dependencies} headingLevel={3} />
+      </section>
+    )
+  }
+
+  <WhatsNew mod={mod} />
+
+  <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4">
+    <div class="flex flex-wrap items-baseline justify-between gap-3">
+      <h2 id="field-notes-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_notes()}</h2>
+      <a href={href(versionsPagePath(mod), locale)} class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link">
+        {versionsCount === null ? m.mod_versions_all() : m.mod_versions_all_count({ count: versionsCount })}
+        <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+      </a>
+    </div>
+    {
+      recentVersions.length > 0 ? (
+        <VersionTimeline mod={mod} versions={recentVersions} />
+      ) : (
+        <p class="text-fg-muted">{m.mod_versions_empty()}</p>
+      )
+    }
+  </section>
+
+  <ReviewsPreview mod={mod} reviews={extras.reviews} loginHref={loginHref} />
+  <CommentsPreview mod={mod} comments={extras.comments} loginHref={loginHref} />
+
+  <AtAGlance slot="glance" mod={mod} compat={extras.compat} loginHref={loginHref} />
+
+  <Fragment slot="sidebar">
+    <CreatorCard mod={mod} loginHref={loginHref} />
+    <RequiredBy mod={mod} dependents={extras.dependents} />
+    <RelatedMods mod={mod} related={extras.related} />
+  </Fragment>
+</ModLayout>

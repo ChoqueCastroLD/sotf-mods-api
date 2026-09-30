@@ -1,0 +1,138 @@
+---
+/**
+ * Status banners of a mod (T0-08): in review, unlisted, archived (with successor), broken on the
+ * current build, possibly outdated, adult content. The API decides which apply (`mod.banners`);
+ * each banner pairs an icon with text (status is never colour alone) and offers the next step.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Archive, CircleAlert, EyeOff, Hourglass, Info, TriangleAlert } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  /** Localised overview path (the field-report anchor lives there). */
+  overviewHref: string;
+}
+
+const { mod, overviewHref } = Astro.props;
+const reportHref = `${overviewHref}#field-report`;
+const locale = Astro.locals.locale;
+const build = mod.compatCurrent.gameBuild?.label ?? null;
+
+type Tone = 'info' | 'warning' | 'danger' | 'signal';
+interface Item {
+  key: string;
+  tone: Tone;
+  icon: typeof Info;
+  title: string;
+  text: string;
+  action?: { label: string; href: string };
+}
+
+const items: Item[] = [];
+for (const banner of mod.banners) {
+  switch (banner) {
+    case 'pending_review':
+      items.push({
+        key: banner,
+        tone: 'signal',
+        icon: Hourglass,
+        title: m.mod_banner_pending_title(),
+        text: m.mod_banner_pending_text(),
+      });
+      break;
+    case 'unlisted':
+      items.push({
+        key: banner,
+        tone: 'info',
+        icon: EyeOff,
+        title: m.mod_banner_unlisted_title(),
+        text: m.mod_banner_unlisted_text(),
+      });
+      break;
+    case 'archived':
+      items.push({
+        key: banner,
+        tone: 'warning',
+        icon: Archive,
+        title: m.mod_banner_archived_title(),
+        text: mod.successor
+          ? m.mod_banner_archived_successor({ name: mod.successor.name })
+          : m.mod_banner_archived_text(),
+        ...(mod.successor
+          ? { action: { label: m.mod_banner_archived_action(), href: href(mod.successor.canonicalPath, locale) } }
+          : {}),
+      });
+      break;
+    case 'broken_on_current':
+      items.push({
+        key: banner,
+        tone: 'danger',
+        icon: CircleAlert,
+        title: m.mod_banner_broken_title(),
+        text: build ? m.common_compat_broken({ build }) : m.mod_banner_broken_text(),
+        action: { label: m.mod_banner_broken_action(), href: reportHref },
+      });
+      break;
+    case 'possibly_outdated':
+      items.push({
+        key: banner,
+        tone: 'warning',
+        icon: TriangleAlert,
+        title: m.mod_banner_outdated_title(),
+        text: m.mod_banner_outdated_text(),
+        action: { label: m.mod_banner_outdated_action(), href: reportHref },
+      });
+      break;
+    case 'nsfw':
+      items.push({
+        key: banner,
+        tone: 'info',
+        icon: Info,
+        title: m.mod_banner_nsfw_title(),
+        text: m.mod_banner_nsfw_text(),
+      });
+      break;
+  }
+}
+
+const toneClasses: Record<Tone, { box: string; icon: string }> = {
+  info: { box: 'border-border bg-raised', icon: 'text-signal' },
+  signal: { box: 'border-signal/40 bg-signal-soft', icon: 'text-signal' },
+  warning: { box: 'border-warning/40 bg-warning-soft', icon: 'text-warning' },
+  danger: { box: 'border-danger/40 bg-danger-soft', icon: 'text-danger' },
+};
+---
+
+{
+  items.length > 0 && (
+    <ul class="grid gap-2" aria-label={m.mod_banners_label()}>
+      {items.map((item) => (
+        <li
+          data-mod-banner={item.key}
+          class:list={['flex items-start gap-3 rounded-lg border p-3 text-sm text-fg md:items-center', toneClasses[item.tone].box]}
+        >
+          <span class:list={['mt-0.5 flex md:mt-0', toneClasses[item.tone].icon]}>
+            <Icon icon={item.icon} size={18} />
+          </span>
+          <div class="flex min-w-0 flex-1 flex-col gap-2 md:flex-row md:items-center md:gap-4">
+            <p class="min-w-0 flex-1">
+              <strong class="me-1.5 font-semibold">{item.title}</strong>
+              {item.text}
+            </p>
+            {item.action && (
+              <a
+                href={item.action.href}
+                class="inline-flex min-h-11 shrink-0 items-center font-semibold text-link underline underline-offset-3 md:min-h-6"
+              >
+                {item.action.label}
+              </a>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  )
+}

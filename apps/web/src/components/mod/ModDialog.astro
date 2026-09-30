@@ -1,0 +1,58 @@
+---
+/**
+ * Native `<dialog>` shell of the mod page (install guide, dependency sheet, share, report,
+ * lightbox). Opened by any element with `data-dialog-open="<id>"` (`scripts/mod/dialogs.ts`:
+ * `showModal()`, focus trap and Esc from the platform, focus returns to the opener, click on the
+ * backdrop closes). The openers are real links to a fallback page, so everything works without
+ * JavaScript.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { X } from 'lucide-react';
+import { DIALOG_BODY_CLASSES, DIALOG_CLASSES, DIALOG_HEADER_CLASSES, DIALOG_TITLE_CLASSES } from './styles.ts';
+
+interface Props {
+  id: string;
+  title: string;
+  /** Optional line under the title. */
+  description?: string;
+  /** Wider dialog (lightbox). */
+  size?: 'md' | 'lg' | 'full';
+  class?: string;
+}
+
+const { id, title, description, size = 'md', class: className } = Astro.props;
+const titleId = `${id}-title`;
+const descriptionId = description ? `${id}-description` : undefined;
+const sizeClass = {
+  md: '',
+  lg: 'md:w-[min(52rem,calc(100vw-2rem))]',
+  full: 'md:w-[min(80rem,calc(100vw-2rem))] md:max-h-[calc(100dvh-2rem)]',
+}[size];
+---
+
+<dialog
+  id={id}
+  aria-labelledby={titleId}
+  aria-describedby={descriptionId}
+  data-mod-dialog
+  class:list={[DIALOG_CLASSES, sizeClass, className]}
+>
+  <div class={DIALOG_HEADER_CLASSES}>
+    <div class="grid min-w-0 gap-1">
+      <h2 id={titleId} class={DIALOG_TITLE_CLASSES}>{title}</h2>
+      {description && <p id={descriptionId} class="text-sm text-fg-muted">{description}</p>}
+    </div>
+    <button
+      type="button"
+      data-dialog-close
+      class="inline-flex size-11 shrink-0 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg"
+    >
+      <Icon icon={X} size={20} />
+      <span class="sr-only">{m.common_action_close()}</span>
+    </button>
+  </div>
+  <div class={DIALOG_BODY_CLASSES}>
+    <slot />
+  </div>
+</dialog>

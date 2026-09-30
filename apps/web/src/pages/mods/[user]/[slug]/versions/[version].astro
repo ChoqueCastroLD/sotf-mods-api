@@ -1,0 +1,268 @@
+---
+/**
+ * `/mods/:user/:slug/versions/:version` (WP-62, PLAN §4.2): one version with its file (name, size,
+ * SHA-256), the public security report, declared game/loader versions, tested builds,
+ * dependencies, field reports per build and the changelog. `latest` redirects (302) to the
+ * current latest version. SSR, edge-cached with `mod:{id}`.
+ */
+import { formatBytes, formatDate, formatDateTime, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { Badge } from '@sotf/ui/badge';
+import { DependencyList, DownloadSplitButton, downloadOptionOf, FieldReportMeter, ProseLocator } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { CircleAlert, CircleCheck, CircleHelp, Copy, ExternalLink, ShieldAlert, ShieldCheck } from 'lucide-react';
+import { loadCompatOptional, loadVersion, loadVersionsOptional, resolveModPage } from '../../../../../components/mod/data.ts';
+import { platformLabel, versionPagePath, versionsPagePath } from '../../../../../components/mod/format.ts';
+import { markdownLabels } from '../../../../../components/mod/i18n.ts';
+import ModLayout from '../../../../../components/mod/ModLayout.astro';
+import { respondNotFound, respondUnresolved } from '../../../../../components/mod/responses.ts';
+import { subpageTitle, truncate } from '../../../../../components/mod/seo.ts';
+import { PANEL_CLASSES, SECTION_TITLE_CLASSES } from '../../../../../components/mod/styles.ts';
+import { setPageCache } from '../../../../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../../../../lib/cache/policy.ts';
+import { href } from '../../../../../lib/i18n.ts';
+import { ensureLocals } from '../../../../../lib/request-context.ts';
+
+export const prerender = false;
+
+const locale = ensureLocals(Astro).locale;
+const resolved = await resolveModPage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+const [section, selector] = resolved.rest;
+if (section !== 'versions' || !selector || resolved.rest.length !== 2) return respondNotFound(Astro);
+
+const { mod } = resolved;
+const [version, versions, compat] = await Promise.all([
+  loadVersion(mod.id, selector),
+  loadVersionsOptional(mod.id),
+  loadCompatOptional(mod.id),
+]);
+if (!version) {
+  setPageCache(Astro, pageCache.notFound());
+  return respondNotFound(Astro);
+}
+if (selector !== version.version) {
+  // `latest`, a numeric id or another spelling: send to the canonical version URL.
+  setPageCache(Astro, pageCache.custom(EDGE_TTL.notFound, []));
+  return Astro.redirect(`${href(versionPagePath(mod, version.version), locale)}${Astro.url.search}`, selector === 'latest' ? 302 : 301);
+}
+setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
+
+const labels = markdownLabels();
+const builds =
+  compat?.versions.find((entry) => entry.versionId === version.id)?.builds ?? version.compat;
+const sortedBuilds = [...builds].sort((a, b) => b.gameBuild.id - a.gameBuild.id);
+const currentBuild = sortedBuilds.find((aggregate) => aggregate.gameBuild.isCurrent) ?? sortedBuilds[0] ?? null;
+const downloadable = version.status === 'active';
+const scan = version.scan;
+const scanTone = {
+  clean: { icon: ShieldCheck, classes: 'text-success', label: m.mod_scan_clean() },
+  false_positive: { icon: ShieldCheck, classes: 'text-success', label: m.mod_scan_false_positive() },
+  pending: { icon: CircleHelp, classes: 'text-fg-muted', label: m.mod_scan_pending() },
+  unknown: { icon: CircleHelp, classes: 'text-fg-muted', label: m.mod_scan_unknown() },
+  suspicious: { icon: ShieldAlert, classes: 'text-warning', label: m.mod_scan_suspicious() },
+  malicious: { icon: CircleAlert, classes: 'text-danger', label: m.mod_scan_malicious() },
+} as const;
+const title = subpageTitle(`v${version.version}`, mod);
+const row = 'grid gap-1 border-b border-border py-2.5 last:border-b-0 sm:grid-cols-[12rem_1fr] sm:gap-4';
+---
+
+<ModLayout
+  mod={mod}
+  tab="versions"
+  versions={versions}
+  crumbs={[{ label: m.mod_tab_versions(), path: versionsPagePath(mod) }, { label: `v${version.version}` }]}
+  seo={{
+    title,
+    description: truncate(
+      m.mod_version_meta_description({
+        name: mod.name,
+        version: version.version,
+        date: formatDate(locale, version.publishedAt),
+      }),
+      160,
+    ),
+    path: versionPagePath(mod, version.version),
+    noindex: mod.noindex || version.status !== 'active',
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+  }}
+>
+  <section aria-labelledby="version-title" class="grid gap-5">
+    <div class="flex flex-wrap items-center gap-2">
+      <h2 id="version-title" class="font-mono text-2xl font-semibold text-fg">v{version.version}</h2>
+      {version.isLatest && <Badge variant="signal">{m.mod_version_latest()}</Badge>}
+      {version.channel === 'beta' && <Badge variant="warning">{m.mod_version_beta()}</Badge>}
+      {version.status === 'yanked' && <Badge variant="danger">{m.mod_version_yanked()}</Badge>}
+      <time datetime={version.publishedAt} class="text-sm text-fg-muted">{formatDateTime(locale, version.publishedAt)}</time>
+    </div>
+
+    {
+      version.status === 'yanked' && (
+        <p class="flex items-start gap-2 rounded-lg border border-danger/40 bg-danger-soft p-3 text-sm">
+          <Icon icon={CircleAlert} size={18} className="mt-0.5 shrink-0 text-danger" />
+          <span>
+            {version.statusReason
+              ? m.mod_version_yanked_reason({ reason: version.statusReason })
+              : m.mod_version_yanked_text()}
+          </span>
+        </p>
+      )
+    }
+
+    {
+      downloadable ? (
+        <DownloadSplitButton primary={downloadOptionOf(version)} allVersionsHref={href(versionsPagePath(mod), locale)} size="lg" className="max-w-md" />
+      ) : (
+        <p class="text-sm text-fg-muted">{m.mod_version_not_downloadable()}</p>
+      )
+    }
+
+    <dl class:list={[PANEL_CLASSES, 'text-sm']}>
+      {
+        version.fileName && (
+          <div class={row}>
+            <dt class="text-fg-muted">{m.mod_file_name()}</dt>
+            <dd class="break-all font-mono text-xs">{version.fileName}</dd>
+          </div>
+        )
+      }
+      {
+        typeof version.fileSize === 'number' && (
+          <div class={row}>
+            <dt class="text-fg-muted">{m.mod_fact_size()}</dt>
+            <dd class="tabular-nums">{formatBytes(locale, version.fileSize)}</dd>
+          </div>
+        )
+      }
+      {
+        version.sha256 && (
+          <div class={row}>
+            <dt class="text-fg-muted">SHA-256</dt>
+            <dd class="flex min-w-0 items-center gap-2">
+              <code id="version-sha256" class="min-w-0 break-all font-mono text-xs">{version.sha256}</code>
+              <button
+                type="button"
+                hidden
+                data-js-only
+                data-copy-text={version.sha256}
+                class="inline-flex size-11 shrink-0 items-center justify-center rounded-md border border-border-strong hover:bg-fg/6 md:size-8"
+              >
+                <Icon icon={Copy} size={14} />
+                <span class="sr-only">{m.mod_copy_hash()}</span>
+              </button>
+            </dd>
+          </div>
+        )
+      }
+      <div class={row}>
+        <dt class="text-fg-muted">{m.mod_fact_game_version()}</dt>
+        <dd>{version.gameVersionDeclared ?? m.mod_value_not_declared()}</dd>
+      </div>
+      <div class={row}>
+        <dt class="text-fg-muted">{m.mod_fact_loader_version()}</dt>
+        <dd>{version.loaderVersionDeclared ? m.mod_capsule_loader_short({ version: version.loaderVersionDeclared }) : m.mod_value_not_declared()}</dd>
+      </div>
+      {
+        version.platform && (
+          <div class={row}>
+            <dt class="text-fg-muted">{m.mod_fact_platform()}</dt>
+            <dd>{platformLabel(version.platform)}</dd>
+          </div>
+        )
+      }
+      {
+        version.testedGameBuilds.length > 0 && (
+          <div class={row}>
+            <dt class="text-fg-muted">{m.mod_fact_tested_builds()}</dt>
+            <dd class="flex flex-wrap gap-1.5">
+              {version.testedGameBuilds.map((build) => (
+                <Badge variant={build.isCurrent ? 'success' : 'neutral'} size="sm">{build.label}</Badge>
+              ))}
+            </dd>
+          </div>
+        )
+      }
+      <div class={row}>
+        <dt class="text-fg-muted">{m.mod_stat_downloads()}</dt>
+        <dd class="tabular-nums">{formatNumber(locale, version.downloadsCount)}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section aria-labelledby="scan-title" class="grid gap-3">
+    <h2 id="scan-title" class={SECTION_TITLE_CLASSES}>{m.mod_scan_title()}</h2>
+    {
+      scan ? (
+        <div class:list={[PANEL_CLASSES, 'grid gap-2 text-sm']}>
+          <p class:list={['flex items-center gap-2 font-semibold', scanTone[scan.verdict].classes]}>
+            <Icon icon={scanTone[scan.verdict].icon} size={18} />
+            {scanTone[scan.verdict].label}
+          </p>
+          {scan.total !== null && scan.positives !== null && (
+            <p class="text-fg-muted">
+              {m.mod_scan_engines({ positives: scan.positives, total: scan.total, engine: scan.engine === 'virustotal' ? 'VirusTotal' : scan.engine })}
+            </p>
+          )}
+          {scan.scannedAt && (
+            <p class="text-fg-muted">{m.mod_scan_date({ date: formatDate(locale, scan.scannedAt) })}</p>
+          )}
+          {scan.permalink && (
+            <a href={scan.permalink} target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center gap-1.5 self-start font-semibold text-link underline underline-offset-3 md:min-h-6">
+              {m.mod_scan_report()}
+              <Icon icon={ExternalLink} size={14} />
+              <span class="sr-only">{m.common_new_tab()}</span>
+            </a>
+          )}
+        </div>
+      ) : (
+        <p class="flex items-center gap-2 text-sm text-fg-muted">
+          <Icon icon={CircleHelp} size={16} />
+          {m.mod_scan_none()}
+        </p>
+      )
+    }
+  </section>
+
+  {
+    version.dependencies.length > 0 && (
+      <section aria-labelledby="version-dependencies-title" class="grid gap-3">
+        <h2 id="version-dependencies-title" class={SECTION_TITLE_CLASSES}>{m.mod_dependencies_title()}</h2>
+        <DependencyList dependencies={version.dependencies} headingLevel={3} />
+      </section>
+    )
+  }
+
+  <section aria-labelledby="version-compat-title" class="grid gap-3">
+    <h2 id="version-compat-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_reports()}</h2>
+    <div class={PANEL_CLASSES}>
+      <FieldReportMeter
+        works={currentBuild?.works ?? 0}
+        partial={currentBuild?.partial ?? 0}
+        broken={currentBuild?.broken ?? 0}
+        build={currentBuild?.gameBuild.label ?? null}
+        reportHref={`${href(mod.canonicalPath, locale)}#field-report`}
+        byBuild={sortedBuilds}
+      />
+    </div>
+    {
+      currentBuild?.authorTested && (
+        <p class="flex items-center gap-2 text-sm text-fg-muted">
+          <Icon icon={CircleCheck} size={16} className="text-success" />
+          {m.mod_compat_author_tested({ build: currentBuild.gameBuild.label })}
+        </p>
+      )
+    }
+  </section>
+
+  <section aria-labelledby="changelog-title" class="grid gap-3">
+    <h2 id="changelog-title" class={SECTION_TITLE_CLASSES}>{m.mod_changelog_title()}</h2>
+    {
+      version.changelogHtml.trim() ? (
+        <ProseLocator html={localizeHtml(version.changelogHtml, labels)} lang={mod.contentLang ?? undefined} />
+      ) : (
+        <p class="text-fg-muted">{m.mod_version_no_changelog()}</p>
+      )
+    }
+  </section>
+</ModLayout>

@@ -1,0 +1,13 @@
+---
+/**
+ * The mod page script: one bundled module (vanilla TS, PLAN §2.5) that wires the dialogs,
+ * downloads, follow, share, report, gallery, prose and the signed-in islands. Heavy or rare parts
+ * (lightbox, QR code, report form) are imported on first use.
+ */
+---
+
+<script>
+  import { initModPage } from '../../scripts/mod/index.ts';
+
+  initModPage();
+</script>

@@ -1,0 +1,75 @@
+---
+/**
+ * Reviews on the overview (T0-08, §7.7): histogram + the three most helpful reviews (SSR), a link
+ * to the reviews page and the mount point of the reviews island (WP-70: write, vote, reply).
+ * Stars are only public with ≥ 3 visible reviews (`RatingHistogram` follows `showStars`).
+ */
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { RatingHistogram, ReviewCard } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO, ReviewPage } from './data.ts';
+import { reviewsPagePath } from './format.ts';
+import { markdownLabels } from './i18n.ts';
+import { SECTION_TITLE_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  reviews: ReviewPage | null;
+  loginHref: string;
+}
+
+const { mod, reviews, loginHref } = Astro.props;
+const locale = Astro.locals.locale;
+const summary = mod.reviewsSummary;
+const labels = markdownLabels();
+const items = (reviews?.items ?? []).slice(0, 3).map((review) => ({
+  ...review,
+  bodyHtml: review.bodyHtml ? localizeHtml(review.bodyHtml, labels) : null,
+}));
+const reviewsHref = href(reviewsPagePath(mod), locale);
+const creatorName = mod.author.displayName || mod.author.handle;
+---
+
+<section id="reviews" aria-labelledby="reviews-title" class="grid gap-4">
+  <div class="flex flex-wrap items-baseline justify-between gap-3">
+    <h2 id="reviews-title" class={SECTION_TITLE_CLASSES}>{m.mod_reviews_title({ count: summary.count })}</h2>
+    {
+      summary.count > 0 && (
+        <a href={reviewsHref} class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link">
+          {m.mod_reviews_all({ count: summary.count })}
+          <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+        </a>
+      )
+    }
+  </div>
+  {
+    summary.count > 0 ? (
+      <>
+        <RatingHistogram summary={summary} />
+        {items.length > 0 && (
+          <ul class="grid gap-3">
+            {items.map((review) => (
+              <li>
+                <ReviewCard review={review} creatorName={creatorName} headingLevel={3} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </>
+    ) : (
+      <p class="text-fg-muted">{m.mod_reviews_empty()}</p>
+    )
+  }
+  <div data-island="reviews" data-mod-id={mod.id} data-mod-author-id={mod.userId} class="grid gap-2">
+    <a href={`${reviewsHref}#write-review`} data-review-write class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3">
+      {m.mod_reviews_write()}
+    </a>
+    <p class="text-xs text-fg-muted" data-review-guest-hint>
+      <a href={loginHref} class="underline underline-offset-3">{m.common_account_sign_in()}</a>
+      {' · '}{m.mod_reviews_rules()}
+    </p>
+  </div>
+</section>

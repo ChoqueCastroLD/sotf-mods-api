@@ -1,0 +1,91 @@
+---
+/**
+ * Share (T0-08): copy the link, copy a Markdown line for Discord, post to X or Reddit, the system
+ * share sheet where available (phones) and a QR code (drawn on demand by `scripts/mod/qr.ts`, so
+ * nothing is downloaded until the visitor asks for it).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Copy, QrCode, Share2 } from 'lucide-react';
+import type { ModDetailDTO } from './data.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+  /** Absolute canonical URL of the mod (localised). */
+  url: string;
+}
+
+const { mod, url } = Astro.props;
+const summary = mod.shortDescription ? ` — ${mod.shortDescription}` : '';
+const markdown = `**[${mod.name.replace(/[[\]]/g, '')}](${url})**${summary}`;
+const shareText = m.mod_share_text({ name: mod.name });
+const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;
+const redditHref = `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(mod.name)}`;
+const fieldClasses =
+  'min-w-0 flex-1 rounded-md border border-border-strong bg-raised px-3 py-2 font-mono text-xs text-fg';
+const copyClasses =
+  'inline-flex h-11 shrink-0 items-center gap-2 rounded-md border border-border-strong px-3 text-sm font-semibold hover:bg-fg/6';
+const externalClasses =
+  'inline-flex h-11 items-center justify-center gap-2 rounded-md border border-border-strong px-3 text-sm font-semibold hover:bg-fg/6';
+---
+
+<ModDialog id="share-dialog" title={m.mod_share_title()}>
+  <div class="grid gap-1.5">
+    <label for="share-link" class="text-sm font-semibold">{m.mod_share_link_label()}</label>
+    <div class="flex gap-2">
+      <input id="share-link" type="text" readonly value={url} class={fieldClasses} data-share-select />
+      <button type="button" class={copyClasses} data-copy-from="share-link">
+        <Icon icon={Copy} size={16} />
+        {m.common_action_copy()}
+      </button>
+    </div>
+  </div>
+
+  <div class="grid gap-1.5">
+    <label for="share-markdown" class="text-sm font-semibold">{m.mod_share_markdown_label()}</label>
+    <div class="flex gap-2">
+      <textarea id="share-markdown" readonly rows="2" class:list={[fieldClasses, 'resize-none']} data-share-select
+        >{markdown}</textarea
+      >
+      <button type="button" class={copyClasses} data-copy-from="share-markdown">
+        <Icon icon={Copy} size={16} />
+        {m.common_action_copy()}
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 gap-2 sm:grid-cols-3">
+    <a href={xHref} target="_blank" rel="noopener noreferrer" class={externalClasses}>
+      {m.mod_share_on({ network: 'X' })}
+      <span class="sr-only">{m.common_new_tab()}</span>
+    </a>
+    <a href={redditHref} target="_blank" rel="noopener noreferrer" class={externalClasses}>
+      {m.mod_share_on({ network: 'Reddit' })}
+      <span class="sr-only">{m.common_new_tab()}</span>
+    </a>
+    <button type="button" hidden data-native-share class={externalClasses}>
+      <Icon icon={Share2} size={16} />
+      {m.mod_share_more()}
+    </button>
+  </div>
+
+  <details class="group rounded-md border border-border" data-share-qr-details>
+    <summary class="flex min-h-11 cursor-pointer items-center gap-2 px-3 font-semibold">
+      <Icon icon={QrCode} size={18} />
+      {m.mod_share_qr()}
+    </summary>
+    <div class="grid justify-items-center gap-2 p-4">
+      <div
+        data-share-qr
+        data-qr-value={url}
+        role="img"
+        aria-label={m.mod_share_qr_alt({ name: mod.name })}
+        class="size-56 rounded-md bg-white p-3"
+      >
+      </div>
+      <p class="text-xs text-fg-muted">{m.mod_share_qr_hint()}</p>
+    </div>
+  </details>
+  <p class="sr-only" role="status" aria-live="polite" data-share-status></p>
+</ModDialog>

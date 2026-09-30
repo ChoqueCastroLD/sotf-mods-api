@@ -1,0 +1,87 @@
+---
+/**
+ * The JSON island read by the mod page scripts (`scripts/mod/types.ts`): ids, URLs, required
+ * dependencies and the localised strings the scripts need (no message catalogue in the bundle).
+ * Serialised with `<`, `>`, `&` and line separators escaped, so user text cannot close the element.
+ */
+import { absoluteUrl } from '@sotf/contracts/seo';
+import { m } from '@sotf/i18n/messages';
+import { href } from '../../lib/i18n.ts';
+import { MOD_PAGE_DATA_ID, type ModPageData } from '../../scripts/mod/types.ts';
+import type { ModDetailDTO } from './data.ts';
+import { latestDownloadPath, pluralTemplates } from './format.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  siteUrl: string;
+  loginHref: string;
+}
+
+const { mod, siteUrl, loginHref } = Astro.props;
+const locale = Astro.locals.locale;
+const required = mod.dependencies.filter((dependency) => dependency.kind === 'required');
+const downloadable = required.filter(
+  (dependency) =>
+    dependency.mod !== null &&
+    (dependency.state === 'ok' || dependency.state === 'unlisted' || dependency.state === 'archived'),
+);
+const creatorName = mod.author.displayName || mod.author.handle;
+const data: ModPageData = {
+  modId: mod.id,
+  name: mod.name,
+  url: absoluteUrl(href(mod.canonicalPath, locale), siteUrl),
+  shortDescription: mod.shortDescription,
+  latestVersion: mod.latestVersion?.version ?? null,
+  loginHref,
+  requiredDependencies: downloadable.map((dependency) => ({
+    name: dependency.mod?.name ?? dependency.manifestId,
+    manifestId: dependency.manifestId,
+    href: dependency.mod ? href(dependency.mod.canonicalPath, locale) : null,
+    downloadHref: dependency.mod ? latestDownloadPath(dependency.mod.userHandle, dependency.mod.slug) : null,
+  })),
+  unavailableDependencies: required.length - downloadable.length,
+  messages: {
+    follow: m.common_action_follow(),
+    following: m.common_action_following(),
+    followed: m.mod_toast_followed({ name: mod.name }),
+    unfollowed: m.mod_toast_unfollowed({ name: mod.name }),
+    creatorFollow: m.mod_creator_follow(),
+    creatorFollowing: m.mod_creator_following(),
+    creatorFollowed: m.mod_toast_followed_creator({ name: creatorName }),
+    creatorUnfollowed: m.mod_toast_unfollowed_creator({ name: creatorName }),
+    followers: pluralTemplates(locale, (count) => m.common_followers_count({ count })),
+    reportChooseReason: m.mod_report_choose_reason(),
+    videoEmbedTitle: m.mod_video_embed_title(),
+    undo: m.common_action_undo(),
+    error: m.mod_toast_error(),
+    offline: m.common_state_offline(),
+    rateLimited: m.mod_toast_rate_limited(),
+    signInRequired: m.mod_toast_sign_in(),
+    verifyEmail: m.mod_toast_verify_email(),
+    copied: m.common_action_copied(),
+    copyFailed: m.mod_toast_copy_failed(),
+    reportSent: m.mod_report_sent(),
+    reportDuplicate: m.mod_report_duplicate(),
+    downloadDone: m.mod_download_done_label(),
+    downloadDoneHint: m.common_download_done(),
+    downloadAllProgress: m.mod_deps_progress({ current: '{current}', total: '{total}' }),
+    whatsNewTitle: m.mod_whats_new_title({ version: '{version}' }),
+    whatsNewBadge: m.mod_whats_new_badge(),
+    whatsNewUpToDate: m.mod_whats_new_up_to_date({ version: '{version}' }),
+    compatPrompt: m.mod_compat_prompt({ version: '{version}' }),
+    compatPromptAction: m.mod_compat_prompt_action(),
+    galleryCounter: m.mod_gallery_counter({ index: '{index}', total: '{total}' }),
+    videoTitle: mod.video ? m.mod_video_title({ name: mod.name }) : '',
+    close: m.common_action_close(),
+    shareTitle: m.mod_share_text({ name: mod.name }),
+  },
+};
+const json = JSON.stringify(data)
+  .replace(/</g, '\\u003c')
+  .replace(/>/g, '\\u003e')
+  .replace(/&/g, '\\u0026')
+  .replace(/\u2028/g, '\\u2028')
+  .replace(/\u2029/g, '\\u2029');
+---
+
+<script type="application/json" id={MOD_PAGE_DATA_ID} is:inline set:html={json} />

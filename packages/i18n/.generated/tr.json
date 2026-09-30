@@ -1153,6 +1153,516 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "Kit",
+  "mod_action_install": "Kur",
+  "mod_action_report": "Şikâyet et",
+  "mod_banner_archived_action": "Yeni moda git",
+  "mod_banner_archived_successor": "Yapımcı artık bu modu geliştirmiyor ve yerine {name} öneriyor.",
+  "mod_banner_archived_text": "Yapımcı artık bu modu geliştirmiyor. Güncel yamada çalışmayabilir.",
+  "mod_banner_archived_title": "Arşivlendi.",
+  "mod_banner_broken_action": "Saha raporunu ekle",
+  "mod_banner_broken_text": "Hayatta kalanlar bu modun oyunun güncel sürümünde çalışmadığını bildiriyor.",
+  "mod_banner_broken_title": "Güncel yamada bozuk.",
+  "mod_banner_nsfw_text": "Bu mod yetişkin içerik barındırıyor.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "Denedin mi? Bildir",
+  "mod_banner_outdated_text": "Modları bozan son yamadan beri güncellenmedi veya doğrulanmadı.",
+  "mod_banner_outdated_title": "Güncel olmayabilir.",
+  "mod_banner_pending_text": "Bir korucu bu modu kontrol ediyor. Henüz listelerde yok ve değişebilir.",
+  "mod_banner_pending_title": "İncelemede.",
+  "mod_banner_unlisted_text": "Bu modu yalnızca bağlantıya sahip olanlar bulabilir.",
+  "mod_banner_unlisted_title": "Listelenmemiş.",
+  "mod_banners_label": "Mod durumu",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "Tümünü gör",
+  "mod_changelog_title": "Değişiklik günlüğü",
+  "mod_comments_empty": "Henüz yorum yok. Sorular, ipuçları ve hatalar buraya.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yanıt daha",
+        "count__plural=*": "{count__number} yanıt daha"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Yorum yapmak için giriş yap",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Yorumlar",
+        "count__exact=*, count__plural=one": "{count__number} yorum",
+        "count__exact=*, count__plural=*": "{count__number} yorum"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "Yorumlar yüklenemedi. Tekrar denemek için sayfayı yenile.",
+  "mod_compat_author_tested": "Yapımcı tarafından {build} üzerinde test edildi.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} için karışık raporlar: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "v{version} oyununda çalıştı mı?",
+  "mod_compat_prompt_action": "Bildir",
+  "mod_compat_report": "Bildir",
+  "mod_copy_hash": "SHA-256’yı kopyala",
+  "mod_cover_alt": "{name} kapak görseli",
+  "mod_creator_follow": "Yapımcıyı takip et",
+  "mod_creator_following": "Yapımcıyı takip ediyorsun",
+  "mod_creator_title": "Yapımcı",
+  "mod_dependencies_title": "Bağımlılıklar",
+  "mod_dependency_archived": "Yapımcısı tarafından arşivlendi",
+  "mod_dependency_removed": "Siteden kaldırıldı",
+  "mod_dependency_unavailable": "Sitede mevcut değil",
+  "mod_deps_already_have": "Zaten bende var",
+  "mod_deps_download_all": "Tümünü indir",
+  "mod_deps_progress": "İndiriliyor: {current} / {total}…",
+  "mod_deps_sheet_text": "{name} bu modlar olmadan çalışmaz. Onları da indir ya da zaten varsa devam et.",
+  "mod_deps_sheet_title": "Şunlara da ihtiyacın var: {names}",
+  "mod_description_empty": "Yapımcı henüz bir açıklama yazmadı.",
+  "mod_download_done_label": "İndirildi ✓",
+  "mod_download_unavailable": "Şu anda indirilebilir bir dosya yok.",
+  "mod_fact_game_version": "Belirtilen oyun sürümü",
+  "mod_fact_license": "Lisans",
+  "mod_fact_loader_version": "Belirtilen RedLoader",
+  "mod_fact_platform": "Platform",
+  "mod_fact_published": "Yayımlandı",
+  "mod_fact_size": "Dosya boyutu",
+  "mod_fact_source": "Kaynak kod",
+  "mod_fact_tested_builds": "Test edildiği sürümler",
+  "mod_fact_updated": "{date} tarihinde güncellendi",
+  "mod_fact_updated_label": "Güncellendi",
+  "mod_fact_version": "Sürüm",
+  "mod_field_report_sign_in": "Saha raporu eklemek için giriş yap",
+  "mod_field_report_text": "Bir saha raporu on saniye sürer ve herkese bu modun güncel yamada çalışıp çalışmadığını gösterir.",
+  "mod_field_report_title": "Oyununda çalıştı mı?",
+  "mod_file_name": "Dosya",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input name",
+        "input index",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} ekran görüntüsü {index__number}"
+      }
+    }
+  ],
+  "mod_gallery_label": "{name} galerisi",
+  "mod_gallery_next": "Sonraki görsel",
+  "mod_gallery_previous": "Önceki görsel",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} / {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "Bir bakışta",
+  "mod_in_kits_browse": "Kitlere göz at",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kitte",
+        "count__plural=*": "{count__number} kitte"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Şunlarla birlikte kullanma:",
+  "mod_install_full_guide": "Tam kurulum rehberi",
+  "mod_install_intro": "Beş dakika, yönetici gerekmez. Bu adımlar {name} içindir.",
+  "mod_install_manager_tip": "Tek tık mı tercih edersin? RedManager modları ve bağımlılıklarını senin için kurar ve günceller.",
+  "mod_install_multiplayer": "Çok oyunculu: {role}.",
+  "mod_install_redloader_not_bepinex": "Bu mod BepInEx değil, RedLoader gerektirir. BepInEx modları ve rehberleri Sons of the Forest için geçerli değildir.",
+  "mod_install_step_dependencies_title": "Önce bağımlılıklarını kur",
+  "mod_install_step_download": "{name} indir",
+  "mod_install_step_download_version": "{name} v{version} indir",
+  "mod_install_step_extract_client": "Bilgisayarında oyunun Mods klasörüne çıkar:",
+  "mod_install_step_extract_note": "ZIP içindeki klasör yapısını koru. ZIP dosyasının kendisini klasöre koyma.",
+  "mod_install_step_extract_server": "Özel sunucuda sunucunun Mods klasörüne çıkar:",
+  "mod_install_step_extract_title": "ZIP’i Mods klasörüne çıkar",
+  "mod_install_step_launch_text": "RedLoader modu açılışta yükler. Mod listesini görmek için ana menüde F1’e bas.",
+  "mod_install_step_launch_title": "Oyunu başlat",
+  "mod_install_step_loader_link": "RedLoader nasıl kurulur",
+  "mod_install_step_loader_text": "RedLoader, Sons of the Forest’ın mod yükleyicisidir. Bir kez kur, tüm modlar çalışsın.",
+  "mod_install_step_loader_title": "RedLoader’ı kur",
+  "mod_install_step_loader_version": "RedLoader {version} veya daha yenisini kullan.",
+  "mod_install_title": "Bu mod nasıl kurulur",
+  "mod_kind_library": "Kütüphane",
+  "mod_license_all_rights_reserved": "Tüm hakları saklıdır",
+  "mod_license_other": "Özel lisans",
+  "mod_license_reupload_with_credit": "Kaynak göstererek yeniden yükleme",
+  "mod_link_website": "Web sitesi",
+  "mod_md_alert_caution": "Dikkat",
+  "mod_md_alert_important": "Önemli",
+  "mod_md_alert_note": "Not",
+  "mod_md_alert_tip": "İpucu",
+  "mod_md_alert_warning": "Uyarı",
+  "mod_md_spoiler": "Spoiler",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input kind",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest kütüphanesi. {downloads} indirme, ücretsiz ve doğrudan.",
+        "kind=library, count__plural=*": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest kütüphanesi. {downloads} indirme, ücretsiz ve doğrudan.",
+        "kind=*, count__plural=one": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest modu. {downloads} indirme, ücretsiz ve doğrudan.",
+        "kind=*, count__plural=*": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest modu. {downloads} indirme, ücretsiz ve doğrudan."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — {author} tarafından Sons of the Forest kütüphanesi",
+        "kind=*": "{name} — {author} tarafından Sons of the Forest modu"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest kütüphanesi",
+        "kind=*": "{name} — Sons of the Forest modu"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Yalnızca sende olması yeterli",
+  "mod_nsfw_confirm": "18 yaşında veya daha büyüğüm, göster",
+  "mod_nsfw_leave": "Keşfet’e dön",
+  "mod_nsfw_settings": "18+ içeriği her zaman göster (ayarlar)",
+  "mod_nsfw_text": "Bu mod 18+ olarak işaretli. Görmek için yetişkin olduğunu onayla.",
+  "mod_nsfw_title": "Yetişkin içerik",
+  "mod_og_alt": "SOTF Mods’ta {name}",
+  "mod_original_author": "Orijinal yapımcı: {name}",
+  "mod_other_versions": "Diğer sürümler",
+  "mod_platform_client": "İstemci",
+  "mod_platform_server": "Özel sunucu",
+  "mod_platform_universal": "İstemci ve sunucu",
+  "mod_related_title": "Benzer modlar",
+  "mod_report_choose_reason": "Bir neden seç.",
+  "mod_report_details_hint": "Bağlantılar, sürümler veya korucuların işine yarayacak her şey. En fazla 2.000 karakter.",
+  "mod_report_details_label": "Ayrıntılar (isteğe bağlı)",
+  "mod_report_duplicate": "Bu modu zaten şikâyet ettin. Korucular ilgileniyor.",
+  "mod_report_intro": "Korucular’a sorunu anlat. Şikâyetler gizlidir.",
+  "mod_report_reason_broken": "Bozuk veya sahte indirme",
+  "mod_report_reason_harassment": "Taciz veya nefret",
+  "mod_report_reason_illegal": "Yasa dışı içerik",
+  "mod_report_reason_label": "Neden",
+  "mod_report_reason_malware": "Zararlı yazılım veya şüpheli dosya",
+  "mod_report_reason_nsfw_unmarked": "18+ olarak işaretlenmemiş yetişkin içerik",
+  "mod_report_reason_other": "Başka bir şey",
+  "mod_report_reason_reupload": "Başkasının çalışmasının yeniden yüklenmesi",
+  "mod_report_reason_spam": "Spam veya reklam",
+  "mod_report_sent": "Teşekkürler. Korucular inceleyecek.",
+  "mod_report_sign_in": "Bir modu şikâyet etmek için giriş yap. Böylece şikâyetler dürüst kalır.",
+  "mod_report_submit": "Şikâyeti gönder",
+  "mod_report_title": "{name} için şikâyet",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ve {count__number} tane daha"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod bunu gerektiriyor",
+        "count__plural=*": "{count__number} mod bunu gerektiriyor"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "İncelemeyi oku",
+        "count__plural=*": "{count__number} incelemenin tümünü oku"
+      }
+    }
+  ],
+  "mod_reviews_empty": "Henüz inceleme yok. İndirdin mi? Nasıl gittiğini ilk sen anlat.",
+  "mod_reviews_end": "Tüm incelemeler bu kadar.",
+  "mod_reviews_first_page": "İlk sayfaya dön",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Bir Sons of the Forest modu olan {name} için oyuncu incelemeleri: puanlar, doğrulanmış indirmeler ve yapımcı yanıtlarıyla {count__number} inceleme.",
+        "count__plural=*": "Bir Sons of the Forest modu olan {name} için oyuncu incelemeleri: puanlar, doğrulanmış indirmeler ve yapımcı yanıtlarıyla {count__number} inceleme."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "Daha fazla inceleme",
+  "mod_reviews_rules": "Hayatta kalan başına bir inceleme. Net ol: sürüm, neyin çalıştığı, neyin çalışmadığı.",
+  "mod_reviews_sort_critical": "Eleştirel",
+  "mod_reviews_sort_helpful": "En faydalı",
+  "mod_reviews_sort_label": "İncelemeleri sırala",
+  "mod_reviews_sort_new": "En yeni",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "İncelemeler",
+        "count__exact=*, count__plural=one": "{count__number} inceleme",
+        "count__exact=*, count__plural=*": "{count__number} inceleme"
+      }
+    }
+  ],
+  "mod_reviews_write": "İnceleme yaz",
+  "mod_scan_clean": "Tehdit bulunamadı",
+  "mod_scan_date": "{date} tarihinde tarandı",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input total",
+        "input engine",
+        "input positives",
+        "local total__number = total: number",
+        "local positives__number = positives: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{total__number} {engine} motorundan {positives__number} tanesi dosyayı işaretledi."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Bazı motorlar işaretledi, bir korucu onayladı",
+  "mod_scan_malicious": "Zararlı: kurma",
+  "mod_scan_none": "Bu dosya için henüz güvenlik raporu yok.",
+  "mod_scan_pending": "Tarama sürüyor",
+  "mod_scan_report": "Tam rapor",
+  "mod_scan_suspicious": "Şüpheli: bir korucu inceliyor",
+  "mod_scan_title": "Güvenlik taraması",
+  "mod_scan_unknown": "Henüz taranmadı",
+  "mod_share_link_label": "Bağlantı",
+  "mod_share_markdown_label": "Discord için Markdown",
+  "mod_share_more": "Diğer…",
+  "mod_share_on": "{network} üzerinde paylaş",
+  "mod_share_qr": "QR kodu",
+  "mod_share_qr_alt": "{name} bağlantısının QR kodu",
+  "mod_share_qr_hint": "Sayfayı açmak için telefonunla tara.",
+  "mod_share_text": "Sons of the Forest için {name}",
+  "mod_share_title": "Bu modu paylaş",
+  "mod_sidebar_label": "Bu mod hakkında",
+  "mod_stat_downloads": "İndirmeler",
+  "mod_stat_downloads_total": "toplam",
+  "mod_stat_followers": "Takipçiler",
+  "mod_stat_rating": "Puan",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} inceleme)",
+        "count__plural=*": "{rating} ({count__number} inceleme)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Bu haftaki indirmeler",
+  "mod_stat_this_week_value": "bu hafta {display}",
+  "mod_support_title": "Yapımcıyı destekle",
+  "mod_tab_comments": "Yorumlar",
+  "mod_tab_overview": "Genel bakış",
+  "mod_tab_reviews": "İncelemeler",
+  "mod_tab_versions": "Sürümler",
+  "mod_tabs_label": "Mod bölümleri",
+  "mod_tags_label": "Etiketler",
+  "mod_toast_copy_failed": "Kopyalanamadı. Metni seçip elle kopyala.",
+  "mod_toast_error": "Olmadı. Birazdan tekrar dene.",
+  "mod_toast_followed": "{name} sırt çantanda. Güncellemelerden haberin olacak.",
+  "mod_toast_followed_creator": "{name} kullanıcısını takip ediyorsun.",
+  "mod_toast_rate_limited": "Çok fazla deneme. Bir dakika bekleyip tekrar dene.",
+  "mod_toast_sign_in": "Oturumun sona erdi. Tekrar giriş yap.",
+  "mod_toast_unfollowed": "{name} sırt çantandan çıktı.",
+  "mod_toast_unfollowed_creator": "Artık {name} kullanıcısını takip etmiyorsun.",
+  "mod_toast_verify_email": "Önce e-postanı doğrula. Gelen kutunu kontrol et.",
+  "mod_value_not_declared": "Belirtilmemiş",
+  "mod_version_beta": "Beta",
+  "mod_version_latest": "En yeni",
+  "mod_version_meta_description": "Sons of the Forest için {name} v{version}, {date} tarihinde yayımlandı: değişiklik günlüğü, dosya boyutu, SHA-256, güvenlik taraması ve uyumluluk.",
+  "mod_version_no_changelog": "Bu sürüm için değişiklik günlüğü yok.",
+  "mod_version_not_downloadable": "Bu sürüm indirilemez.",
+  "mod_version_yanked": "Geri çekildi",
+  "mod_version_yanked_reason": "Yapımcı tarafından geri çekildi: {reason}",
+  "mod_version_yanked_text": "Yapımcı bu sürümü geri çekti. Daha yeni bir sürüm kullan.",
+  "mod_versions_all": "Tüm sürümler",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sürüm",
+        "count__plural=*": "Tüm {count__number} sürüm"
+      }
+    }
+  ],
+  "mod_versions_caption": "{name} sürümleri",
+  "mod_versions_empty": "Henüz yayımlanmış sürüm yok.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Sons of the Forest için {name} modunun {count__number} sürümü: değişiklik günlükleri, dosya boyutları ve uyumluluk. En yeni: v{version}.",
+        "count__plural=*": "Sons of the Forest için {name} modunun {count__number} sürümünün tamamı: değişiklik günlükleri, dosya boyutları ve uyumluluk. En yeni: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sürüm",
+        "count__plural=*": "{count__number} sürüm"
+      }
+    }
+  ],
+  "mod_video_embed_title": "YouTube videosu",
+  "mod_video_play": "{name} fragmanını oynat",
+  "mod_video_title": "{name} fragmanı",
+  "mod_whats_new_badge": "Senin için yeni",
+  "mod_whats_new_read": "Saha notlarını oku",
+  "mod_whats_new_title": "Son indirmenden (v{version}) bu yana yenilikler",
+  "mod_whats_new_up_to_date": "En yeni sürüme sahipsin (v{version}).",
   "ui_breadcrumbs": "Gezinme yolu",
   "ui_cancel": "İptal",
   "ui_choose": "Seç…",

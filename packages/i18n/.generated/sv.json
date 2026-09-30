@@ -1153,6 +1153,516 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "Kit",
+  "mod_action_install": "Installera",
+  "mod_action_report": "Anmäl",
+  "mod_banner_archived_action": "Till efterföljaren",
+  "mod_banner_archived_successor": "Skaparen underhåller inte längre den här moden och rekommenderar {name} i stället.",
+  "mod_banner_archived_text": "Skaparen underhåller inte längre den här moden. Den kanske inte fungerar med den aktuella patchen.",
+  "mod_banner_archived_title": "Arkiverad.",
+  "mod_banner_broken_action": "Lägg till din fältrapport",
+  "mod_banner_broken_text": "Överlevare rapporterar att moden inte fungerar i den aktuella spelversionen.",
+  "mod_banner_broken_title": "Trasig i den aktuella patchen.",
+  "mod_banner_nsfw_text": "Den här moden innehåller vuxeninnehåll.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "Testat? Berätta",
+  "mod_banner_outdated_text": "Den har inte uppdaterats eller bekräftats sedan den senaste patchen som förstörde moddar.",
+  "mod_banner_outdated_title": "Kanske inaktuell.",
+  "mod_banner_pending_text": "En ranger kontrollerar den här moden. Den är inte listad än och kan fortfarande ändras.",
+  "mod_banner_pending_title": "Granskas.",
+  "mod_banner_unlisted_text": "Bara den som har länken kan hitta den här moden.",
+  "mod_banner_unlisted_title": "Olistad.",
+  "mod_banners_label": "Modens status",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "Visa allt",
+  "mod_changelog_title": "Ändringslogg",
+  "mod_comments_empty": "Inga kommentarer än. Frågor, tips och buggar hör hemma här.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} svar till",
+        "count__plural=*": "{count__number} svar till"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Logga in för att kommentera",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Kommentarer",
+        "count__exact=*, count__plural=one": "{count__number} kommentar",
+        "count__exact=*, count__plural=*": "{count__number} kommentarer"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "Kommentarerna kunde inte laddas. Ladda om sidan för att försöka igen.",
+  "mod_compat_author_tested": "Testad av skaparen på {build}.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Blandade rapporter på {build}: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "Fungerade v{version} i ditt spel?",
+  "mod_compat_prompt_action": "Rapportera",
+  "mod_compat_report": "Rapportera",
+  "mod_copy_hash": "Kopiera SHA-256",
+  "mod_cover_alt": "Omslagsbild för {name}",
+  "mod_creator_follow": "Följ skaparen",
+  "mod_creator_following": "Du följer skaparen",
+  "mod_creator_title": "Skapare",
+  "mod_dependencies_title": "Beroenden",
+  "mod_dependency_archived": "Arkiverad av skaparen",
+  "mod_dependency_removed": "Borttagen från sajten",
+  "mod_dependency_unavailable": "Finns inte på sajten",
+  "mod_deps_already_have": "Jag har dem redan",
+  "mod_deps_download_all": "Ladda ner allt",
+  "mod_deps_progress": "Laddar ner {current} av {total}…",
+  "mod_deps_sheet_text": "{name} fungerar inte utan de här moddarna. Ladda ner dem också, eller fortsätt om du redan har dem.",
+  "mod_deps_sheet_title": "Du behöver också {names}",
+  "mod_description_empty": "Skaparen har inte skrivit någon beskrivning än.",
+  "mod_download_done_label": "Nedladdad ✓",
+  "mod_download_unavailable": "Det finns ingen fil att ladda ner just nu.",
+  "mod_fact_game_version": "Angiven spelversion",
+  "mod_fact_license": "Licens",
+  "mod_fact_loader_version": "Angiven RedLoader",
+  "mod_fact_platform": "Plattform",
+  "mod_fact_published": "Publicerad",
+  "mod_fact_size": "Filstorlek",
+  "mod_fact_source": "Källkod",
+  "mod_fact_tested_builds": "Testad på",
+  "mod_fact_updated": "Uppdaterad {date}",
+  "mod_fact_updated_label": "Uppdaterad",
+  "mod_fact_version": "Version",
+  "mod_field_report_sign_in": "Logga in för att lägga till en fältrapport",
+  "mod_field_report_text": "En fältrapport tar tio sekunder och visar alla om moden fungerar i den aktuella patchen.",
+  "mod_field_report_title": "Fungerade det i ditt spel?",
+  "mod_file_name": "Fil",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input index",
+        "input name",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Skärmbild {index__number} av {name}"
+      }
+    }
+  ],
+  "mod_gallery_label": "Galleri för {name}",
+  "mod_gallery_next": "Nästa bild",
+  "mod_gallery_previous": "Föregående bild",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} av {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "I korthet",
+  "mod_in_kits_browse": "Bläddra bland kit",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "I {count__number} kit",
+        "count__plural=*": "I {count__number} kit"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Använd inte tillsammans med:",
+  "mod_install_full_guide": "Fullständig installationsguide",
+  "mod_install_intro": "Fem minuter, ingen hanterare behövs. De här stegen gäller {name}.",
+  "mod_install_manager_tip": "Hellre ett klick? RedManager installerar och uppdaterar moddar och deras beroenden åt dig.",
+  "mod_install_multiplayer": "Flerspelare: {role}.",
+  "mod_install_redloader_not_bepinex": "Den här moden kräver RedLoader, inte BepInEx. BepInEx-moddar och guider gäller inte Sons of the Forest.",
+  "mod_install_step_dependencies_title": "Installera beroendena först",
+  "mod_install_step_download": "Ladda ner {name}",
+  "mod_install_step_download_version": "Ladda ner {name} v{version}",
+  "mod_install_step_extract_client": "På din dator, packa upp den i spelets Mods-mapp:",
+  "mod_install_step_extract_note": "Behåll mappstrukturen i ZIP-filen. Lägg inte själva ZIP-filen i mappen.",
+  "mod_install_step_extract_server": "På en dedikerad server, packa upp den i serverns Mods-mapp:",
+  "mod_install_step_extract_title": "Packa upp ZIP-filen i mappen Mods",
+  "mod_install_step_launch_text": "RedLoader laddar moden vid start. Tryck F1 i huvudmenyn för att se listan med moddar.",
+  "mod_install_step_launch_title": "Starta spelet",
+  "mod_install_step_loader_link": "Så installerar du RedLoader",
+  "mod_install_step_loader_text": "RedLoader är modladdaren för Sons of the Forest. Installera den en gång så fungerar alla moddar.",
+  "mod_install_step_loader_title": "Installera RedLoader",
+  "mod_install_step_loader_version": "Använd RedLoader {version} eller senare.",
+  "mod_install_title": "Så installerar du moden",
+  "mod_kind_library": "Bibliotek",
+  "mod_license_all_rights_reserved": "Alla rättigheter förbehållna",
+  "mod_license_other": "Egen licens",
+  "mod_license_reupload_with_credit": "Återpublicering med erkännande",
+  "mod_link_website": "Webbplats",
+  "mod_md_alert_caution": "Försiktighet",
+  "mod_md_alert_important": "Viktigt",
+  "mod_md_alert_note": "Obs",
+  "mod_md_alert_tip": "Tips",
+  "mod_md_alert_warning": "Varning",
+  "mod_md_spoiler": "Spoiler",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name} är ett bibliotek till Sons of the Forest av {author} för RedLoader. {downloads} nedladdning, gratis och direkt.",
+        "kind=library, count__plural=*": "{name} är ett bibliotek till Sons of the Forest av {author} för RedLoader. {downloads} nedladdningar, gratis och direkt.",
+        "kind=*, count__plural=one": "{name} är en mod till Sons of the Forest av {author} för RedLoader. {downloads} nedladdning, gratis och direkt.",
+        "kind=*, count__plural=*": "{name} är en mod till Sons of the Forest av {author} för RedLoader. {downloads} nedladdningar, gratis och direkt."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — bibliotek till Sons of the Forest av {author}",
+        "kind=*": "{name} — mod till Sons of the Forest av {author}"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — bibliotek till Sons of the Forest",
+        "kind=*": "{name} — mod till Sons of the Forest"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Bara du behöver den",
+  "mod_nsfw_confirm": "Jag är 18 eller äldre, visa",
+  "mod_nsfw_leave": "Tillbaka till Utforska",
+  "mod_nsfw_settings": "Visa alltid 18+-innehåll (inställningar)",
+  "mod_nsfw_text": "Den här moden är märkt 18+. Bekräfta att du är vuxen för att se den.",
+  "mod_nsfw_title": "Vuxeninnehåll",
+  "mod_og_alt": "{name} på SOTF Mods",
+  "mod_original_author": "Ursprunglig upphovsperson: {name}",
+  "mod_other_versions": "Andra versioner",
+  "mod_platform_client": "Klient",
+  "mod_platform_server": "Dedikerad server",
+  "mod_platform_universal": "Klient och server",
+  "mod_related_title": "Liknande moddar",
+  "mod_report_choose_reason": "Välj en anledning.",
+  "mod_report_details_hint": "Länkar, versioner eller annat som hjälper rangers. Upp till 2 000 tecken.",
+  "mod_report_details_label": "Detaljer (valfritt)",
+  "mod_report_duplicate": "Du har redan anmält den här moden. Rangers har den.",
+  "mod_report_intro": "Berätta för rangers vad som är fel. Anmälningar är privata.",
+  "mod_report_reason_broken": "Trasig eller falsk nedladdning",
+  "mod_report_reason_harassment": "Trakasserier eller hat",
+  "mod_report_reason_illegal": "Olagligt innehåll",
+  "mod_report_reason_label": "Anledning",
+  "mod_report_reason_malware": "Skadlig kod eller misstänkt fil",
+  "mod_report_reason_nsfw_unmarked": "Vuxeninnehåll utan 18+-märkning",
+  "mod_report_reason_other": "Något annat",
+  "mod_report_reason_reupload": "Återpublicering av någon annans verk",
+  "mod_report_reason_spam": "Spam eller reklam",
+  "mod_report_sent": "Tack. En ranger tittar på det.",
+  "mod_report_sign_in": "Logga in för att anmäla en mod. Det håller anmälningarna ärliga.",
+  "mod_report_submit": "Skicka anmälan",
+  "mod_report_title": "Anmäl {name}",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Och {count__number} till"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Krävs av {count__number} mod",
+        "count__plural=*": "Krävs av {count__number} moddar"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Läs recensionen",
+        "count__plural=*": "Läs alla {count__number} recensioner"
+      }
+    }
+  ],
+  "mod_reviews_empty": "Inga recensioner än. Laddat ner den? Berätta först hur det gick.",
+  "mod_reviews_end": "Det var alla recensioner.",
+  "mod_reviews_first_page": "Tillbaka till första sidan",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Spelarrecensioner av {name}, en mod till Sons of the Forest: {count__number} recension med betyg, verifierade nedladdningar och svar från skaparen.",
+        "count__plural=*": "Spelarrecensioner av {name}, en mod till Sons of the Forest: {count__number} recensioner med betyg, verifierade nedladdningar och svar från skaparen."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "Fler recensioner",
+  "mod_reviews_rules": "En recension per överlevare. Var konkret: version, vad som fungerade och vad som inte gjorde det.",
+  "mod_reviews_sort_critical": "Kritiska",
+  "mod_reviews_sort_helpful": "Mest hjälpsamma",
+  "mod_reviews_sort_label": "Sortera recensioner",
+  "mod_reviews_sort_new": "Senaste",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Recensioner",
+        "count__exact=*, count__plural=one": "{count__number} recension",
+        "count__exact=*, count__plural=*": "{count__number} recensioner"
+      }
+    }
+  ],
+  "mod_reviews_write": "Skriv en recension",
+  "mod_scan_clean": "Inga hot hittades",
+  "mod_scan_date": "Skannad {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input positives",
+        "input total",
+        "input engine",
+        "local positives__number = positives: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{positives__number} av {total__number} {engine}-motorer flaggade filen."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Flaggad av vissa motorer, godkänd av en ranger",
+  "mod_scan_malicious": "Skadlig: installera inte",
+  "mod_scan_none": "Det finns ingen säkerhetsrapport för filen än.",
+  "mod_scan_pending": "Skanning pågår",
+  "mod_scan_report": "Fullständig rapport",
+  "mod_scan_suspicious": "Misstänkt: en ranger granskar den",
+  "mod_scan_title": "Säkerhetsskanning",
+  "mod_scan_unknown": "Inte skannad än",
+  "mod_share_link_label": "Länk",
+  "mod_share_markdown_label": "Markdown för Discord",
+  "mod_share_more": "Mer…",
+  "mod_share_on": "Dela på {network}",
+  "mod_share_qr": "QR-kod",
+  "mod_share_qr_alt": "QR-kod för länken till {name}",
+  "mod_share_qr_hint": "Skanna den med mobilen för att öppna sidan.",
+  "mod_share_text": "{name} till Sons of the Forest",
+  "mod_share_title": "Dela moden",
+  "mod_sidebar_label": "Om den här moden",
+  "mod_stat_downloads": "Nedladdningar",
+  "mod_stat_downloads_total": "totalt",
+  "mod_stat_followers": "Följare",
+  "mod_stat_rating": "Betyg",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} recension)",
+        "count__plural=*": "{rating} ({count__number} recensioner)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Nedladdningar den här veckan",
+  "mod_stat_this_week_value": "{display} den här veckan",
+  "mod_support_title": "Stöd skaparen",
+  "mod_tab_comments": "Kommentarer",
+  "mod_tab_overview": "Översikt",
+  "mod_tab_reviews": "Recensioner",
+  "mod_tab_versions": "Versioner",
+  "mod_tabs_label": "Modens avsnitt",
+  "mod_tags_label": "Taggar",
+  "mod_toast_copy_failed": "Kunde inte kopiera. Markera texten och kopiera den själv.",
+  "mod_toast_error": "Det gick inte. Försök igen om en stund.",
+  "mod_toast_followed": "{name} ligger i din ryggsäck. Du får höra om uppdateringar.",
+  "mod_toast_followed_creator": "Du följer {name}.",
+  "mod_toast_rate_limited": "För många försök. Vänta en minut och försök igen.",
+  "mod_toast_sign_in": "Din session har gått ut. Logga in igen.",
+  "mod_toast_unfollowed": "{name} har lämnat din ryggsäck.",
+  "mod_toast_unfollowed_creator": "Du följer inte längre {name}.",
+  "mod_toast_verify_email": "Verifiera din e-post först. Kolla inkorgen.",
+  "mod_value_not_declared": "Inte angivet",
+  "mod_version_beta": "Beta",
+  "mod_version_latest": "Senaste",
+  "mod_version_meta_description": "{name} v{version} till Sons of the Forest, släppt {date}: ändringslogg, filstorlek, SHA-256, säkerhetsskanning och kompatibilitet.",
+  "mod_version_no_changelog": "Ingen ändringslogg för den här versionen.",
+  "mod_version_not_downloadable": "Den här versionen kan inte laddas ner.",
+  "mod_version_yanked": "Indragen",
+  "mod_version_yanked_reason": "Indragen av skaparen: {reason}",
+  "mod_version_yanked_text": "Skaparen har dragit in den här versionen. Använd en nyare.",
+  "mod_versions_all": "Alla versioner",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Den {count__number} versionen",
+        "count__plural=*": "Alla {count__number} versioner"
+      }
+    }
+  ],
+  "mod_versions_caption": "Versioner av {name}",
+  "mod_versions_empty": "Inga versioner publicerade än.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Den {count__number} versionen av {name} till Sons of the Forest, med ändringsloggar, filstorlekar och kompatibilitet. Senaste: v{version}.",
+        "count__plural=*": "Alla {count__number} versioner av {name} till Sons of the Forest, med ändringsloggar, filstorlekar och kompatibilitet. Senaste: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} version",
+        "count__plural=*": "{count__number} versioner"
+      }
+    }
+  ],
+  "mod_video_embed_title": "YouTube-video",
+  "mod_video_play": "Spela upp trailern för {name}",
+  "mod_video_title": "Trailer för {name}",
+  "mod_whats_new_badge": "Nytt för dig",
+  "mod_whats_new_read": "Läs fältanteckningarna",
+  "mod_whats_new_title": "Nytt sedan din senaste nedladdning (v{version})",
+  "mod_whats_new_up_to_date": "Du har den senaste versionen (v{version}).",
   "ui_breadcrumbs": "Brödsmulor",
   "ui_cancel": "Avbryt",
   "ui_choose": "Välj…",

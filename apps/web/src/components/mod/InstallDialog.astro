@@ -1,0 +1,139 @@
+---
+/**
+ * «How to install this mod» (T0-08 InstallButton → modal): steps by kind and platform, required
+ * dependencies first, «Needs RedLoader, not BepInEx», multiplayer note and the full guide at
+ * `/install`. Opened by `[data-dialog-open="install-dialog"]` (a link to `/install` without JS).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, TriangleAlert } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { multiplayerLabel } from './format.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+const locale = Astro.locals.locale;
+const required = mod.dependencies.filter((dependency) => dependency.kind === 'required');
+const conflicts = mod.dependencies.filter((dependency) => dependency.kind === 'conflicts');
+const latest = mod.latestVersion;
+const platform = mod.platform ?? 'Client';
+const loader = latest?.loaderVersionDeclared ?? null;
+const multiplayer = mod.multiplayerRole ? multiplayerLabel(mod.multiplayerRole) : null;
+const installHref = href('/install', locale);
+const CLIENT_PATH = 'Steam/steamapps/common/Sons Of The Forest/Mods';
+const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
+---
+
+<ModDialog id="install-dialog" title={m.mod_install_title()} description={m.mod_install_intro({ name: mod.name })}>
+  <p class="flex items-start gap-2 rounded-md border border-warning/40 bg-warning-soft p-3 text-sm">
+    <Icon icon={TriangleAlert} size={18} className="mt-0.5 shrink-0 text-warning" />
+    <span>{m.mod_install_redloader_not_bepinex()}</span>
+  </p>
+
+  <ol class="grid list-none gap-4 [counter-reset:step]">
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+      <div class="grid gap-1">
+        <p class="font-semibold">{m.mod_install_step_loader_title()}</p>
+        <p class="text-sm text-fg-muted">
+          {loader ? m.mod_install_step_loader_version({ version: loader }) : m.mod_install_step_loader_text()}
+        </p>
+        <a href={`${installHref}#redloader`} class="text-sm font-semibold text-link underline underline-offset-3">
+          {m.mod_install_step_loader_link()}
+        </a>
+      </div>
+    </li>
+
+    {
+      required.length > 0 && (
+        <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+          <div class="grid gap-1">
+            <p class="font-semibold">{m.mod_install_step_dependencies_title()}</p>
+            <ul class="grid gap-1 text-sm">
+              {required.map((dependency) => (
+                <li class="flex flex-wrap items-center gap-2">
+                  {dependency.mod ? (
+                    <a href={href(dependency.mod.canonicalPath, locale)} class="font-semibold text-link underline underline-offset-3">
+                      {dependency.mod.name}
+                    </a>
+                  ) : (
+                    <span class="font-mono">{dependency.manifestId}</span>
+                  )}
+                  {dependency.versionRange && <span class="font-mono text-xs text-fg-muted">{dependency.versionRange}</span>}
+                  {dependency.state !== 'ok' && (
+                    <span class="text-xs text-danger">{m.mod_dependency_unavailable()}</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      )
+    }
+
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+      <div class="grid gap-1">
+        <p class="font-semibold">
+          {latest ? m.mod_install_step_download_version({ name: mod.name, version: latest.version }) : m.mod_install_step_download({ name: mod.name })}
+        </p>
+        {
+          latest && latest.status === 'active' && (
+            <a href={latest.downloadPath} rel="nofollow" data-download={latest.version} class="text-sm font-semibold text-link underline underline-offset-3">
+              {m.common_download_version_short({ version: latest.version })}
+            </a>
+          )
+        }
+      </div>
+    </li>
+
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+      <div class="grid gap-2">
+        <p class="font-semibold">{m.mod_install_step_extract_title()}</p>
+        {
+          platform !== 'Server' && (
+            <div class="grid gap-1 text-sm text-fg-muted">
+              <p>{m.mod_install_step_extract_client()}</p>
+              <code class="block overflow-x-auto rounded-sm bg-raised px-2 py-1 font-mono text-xs text-fg">{CLIENT_PATH}</code>
+            </div>
+          )
+        }
+        {
+          platform !== 'Client' && (
+            <div class="grid gap-1 text-sm text-fg-muted">
+              <p>{m.mod_install_step_extract_server()}</p>
+              <code class="block overflow-x-auto rounded-sm bg-raised px-2 py-1 font-mono text-xs text-fg">{SERVER_PATH}</code>
+            </div>
+          )
+        }
+        <p class="text-sm text-fg-muted">{m.mod_install_step_extract_note()}</p>
+      </div>
+    </li>
+
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+      <div class="grid gap-1">
+        <p class="font-semibold">{m.mod_install_step_launch_title()}</p>
+        <p class="text-sm text-fg-muted">{m.mod_install_step_launch_text()}</p>
+        {multiplayer && <p class="text-sm text-fg-muted">{m.mod_install_multiplayer({ role: multiplayer })}</p>}
+      </div>
+    </li>
+  </ol>
+
+  {
+    conflicts.length > 0 && (
+      <div class="grid gap-1 rounded-md border border-danger/40 bg-danger-soft p-3 text-sm">
+        <p class="font-semibold">{m.mod_install_conflicts_title()}</p>
+        <p>{conflicts.map((dependency) => dependency.mod?.name ?? dependency.manifestId).join(', ')}</p>
+      </div>
+    )
+  }
+
+  <p class="text-sm text-fg-muted">{m.mod_install_manager_tip()}</p>
+  <a href={installHref} class="inline-flex min-h-11 items-center gap-2 self-start font-semibold text-link">
+    {m.mod_install_full_guide()}
+    <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+  </a>
+</ModDialog>

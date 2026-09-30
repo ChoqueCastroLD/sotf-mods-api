@@ -1,0 +1,77 @@
+---
+/**
+ * Report the mod to the rangers (T0-08, PLAN §7.4): reason + optional details →
+ * `POST /api/v2/reports { targetType: 'mod' }` (`scripts/mod/report.ts`). Guests see a sign-in
+ * link instead of the form (reports need an account with a verified email).
+ */
+import { REPORT_REASONS } from '@sotf/contracts/moderation';
+import { m } from '@sotf/i18n/messages';
+import type { ModDetailDTO } from './data.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+  loginHref: string;
+}
+
+const { mod, loginHref } = Astro.props;
+const reasonLabel: Record<(typeof REPORT_REASONS)[number], string> = {
+  malware: m.mod_report_reason_malware(),
+  broken: m.mod_report_reason_broken(),
+  reupload: m.mod_report_reason_reupload(),
+  nsfw_unmarked: m.mod_report_reason_nsfw_unmarked(),
+  spam: m.mod_report_reason_spam(),
+  harassment: m.mod_report_reason_harassment(),
+  illegal: m.mod_report_reason_illegal(),
+  other: m.mod_report_reason_other(),
+};
+---
+
+<ModDialog id="report-dialog" title={m.mod_report_title({ name: mod.name })} description={m.mod_report_intro()}>
+  <div data-report-guest hidden class="grid gap-3">
+    <p class="text-sm text-fg-muted">{m.mod_report_sign_in()}</p>
+    <a
+      href={loginHref}
+      class="inline-flex h-11 items-center justify-center self-start rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover"
+    >
+      {m.common_account_sign_in()}
+    </a>
+  </div>
+  <form method="dialog" data-report-form data-mod-id={mod.id} class="grid gap-4" novalidate>
+    <fieldset class="grid gap-2">
+      <legend class="mb-1 text-sm font-semibold">{m.mod_report_reason_label()}</legend>
+      {
+        REPORT_REASONS.map((reason, index) => (
+          <label class="flex min-h-11 cursor-pointer items-center gap-3 rounded-md border border-border px-3 has-checked:border-primary">
+            <input type="radio" name="reason" value={reason} required={index === 0} class="size-4 accent-(--color-primary)" />
+            <span class="text-sm">{reasonLabel[reason]}</span>
+          </label>
+        ))
+      }
+    </fieldset>
+    <div class="grid gap-1.5">
+      <label for="report-details" class="text-sm font-semibold">{m.mod_report_details_label()}</label>
+      <textarea
+        id="report-details"
+        name="details"
+        rows="4"
+        maxlength="2000"
+        class="rounded-md border border-border-strong bg-raised px-3 py-2 text-sm text-fg"
+        aria-describedby="report-details-hint"></textarea>
+      <p id="report-details-hint" class="text-xs text-fg-muted">{m.mod_report_details_hint()}</p>
+    </div>
+    <p class="text-sm text-danger" role="alert" data-report-error hidden></p>
+    <div class="flex flex-wrap gap-2">
+      <button
+        type="submit"
+        class="inline-flex h-11 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover aria-busy:opacity-70"
+      >
+        {m.mod_report_submit()}
+      </button>
+      <button type="button" data-dialog-close class="inline-flex h-11 items-center rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+        {m.common_action_cancel()}
+      </button>
+    </div>
+  </form>
+  <p data-report-done hidden role="status" class="rounded-md border border-border bg-raised p-3 text-sm"></p>
+</ModDialog>

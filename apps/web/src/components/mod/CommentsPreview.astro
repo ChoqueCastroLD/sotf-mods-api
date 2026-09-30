@@ -1,0 +1,68 @@
+---
+/**
+ * Comments on the overview (T0-08, §7.6): the first 10 top-level comments by «top» with their
+ * first replies, server-rendered (indexable, fast), and the mount point of the comments island
+ * (WP-70: write, react, reply, load more from `data-next-cursor`, sort).
+ */
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { CommentItem } from '@sotf/ui/domain';
+import type { CommentPage, ModDetailDTO } from './data.ts';
+import { markdownLabels } from './i18n.ts';
+import { SECTION_TITLE_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  comments: CommentPage | null;
+  loginHref: string;
+}
+
+const { mod, comments, loginHref } = Astro.props;
+const labels = markdownLabels();
+const localize = <T extends { bodyHtml: string }>(comment: T): T => ({
+  ...comment,
+  bodyHtml: comment.bodyHtml ? localizeHtml(comment.bodyHtml, labels) : comment.bodyHtml,
+});
+const items = (comments?.items ?? []).map((comment) => ({
+  ...localize(comment),
+  replies: comment.replies.map(localize),
+}));
+---
+
+<section id="comments" aria-labelledby="comments-title" class="grid gap-4">
+  <h2 id="comments-title" class={SECTION_TITLE_CLASSES}>{m.mod_comments_title({ count: mod.commentsCount })}</h2>
+  {
+    items.length > 0 ? (
+      <ol class="grid gap-6" data-comment-list>
+        {items.map((comment) => (
+          <li>
+            <CommentItem comment={comment} permalink={`#comment-${comment.id}`}>
+              {comment.replies.map((reply) => (
+                <CommentItem comment={reply} permalink={`#comment-${reply.id}`} />
+              ))}
+            </CommentItem>
+            {comment.repliesCount > comment.replies.length && (
+              <p class="ms-12 mt-2 text-sm text-fg-muted">
+                {m.mod_comments_more_replies({ count: comment.repliesCount - comment.replies.length })}
+              </p>
+            )}
+          </li>
+        ))}
+      </ol>
+    ) : (
+      <p class="text-fg-muted">{mod.commentsCount > 0 ? m.mod_comments_unavailable() : m.mod_comments_empty()}</p>
+    )
+  }
+  <div
+    data-island="comments"
+    data-mod-id={mod.id}
+    data-mod-author-id={mod.userId}
+    data-next-cursor={comments?.nextCursor ?? undefined}
+    data-total={mod.commentsCount}
+    class="grid gap-2"
+  >
+    <p class="text-sm text-fg-muted" data-comment-guest-hint>
+      <a href={loginHref} class="font-semibold text-link underline underline-offset-3">{m.mod_comments_sign_in()}</a>
+    </p>
+  </div>
+</section>

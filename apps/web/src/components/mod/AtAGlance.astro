@@ -1,0 +1,134 @@
+---
+/**
+ * «At a glance» (research/03 §6.3): the citable `<dl>` answer for people and LLMs — game build and
+ * status, RedLoader, platform, multiplayer, dedicated server, safe to remove, dependencies and
+ * conflicts (`CompatCapsule`), then version, size, updated, licence and source. Below it, the
+ * field-report meter of the current build with the per-build breakdown, and the mount point of
+ * the field-report island (WP-70).
+ */
+import { formatBytes, formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { CompatCapsule, compatCapsulePropsOf, FieldReportMeter } from '@sotf/ui/domain';
+import type { ModCompat, ModDetailDTO } from './data.ts';
+import { licenseHref, licenseLabel } from './i18n.ts';
+import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  compat: ModCompat | null;
+  loginHref: string;
+  class?: string;
+}
+
+const { mod, compat, loginHref, class: className } = Astro.props;
+const locale = Astro.locals.locale;
+const latest = mod.latestVersion;
+const current = mod.compatCurrent;
+const byBuild =
+  compat?.versions.find((entry) => entry.versionId === latest?.id)?.builds ??
+  latest?.compat ??
+  [];
+const sortedByBuild = [...byBuild].sort((a, b) => b.gameBuild.id - a.gameBuild.id);
+const licenseUrl = mod.license ? licenseHref(mod.license) : null;
+let sourceHost: string | null = null;
+if (mod.sourceUrl) {
+  try {
+    const url = new URL(mod.sourceUrl);
+    sourceHost = `${url.hostname.replace(/^www\./, '')}${url.pathname.replace(/\/$/, '')}`;
+  } catch {
+    sourceHost = mod.sourceUrl;
+  }
+}
+const row = 'flex items-start justify-between gap-2 border-b border-border py-2 last:border-b-0';
+---
+
+<section id="at-a-glance" aria-labelledby="at-a-glance-title" class:list={[PANEL_CLASSES, 'grid gap-3', className]}>
+  <h2 id="at-a-glance-title" class={READOUT_CLASSES}>{m.mod_glance_title()}</h2>
+  <CompatCapsule {...compatCapsulePropsOf(mod)} layout="list" />
+  <dl class="flex flex-col text-sm">
+    {
+      latest && (
+        <div class={row}>
+          <dt class="text-xs text-fg-muted">{m.mod_fact_version()}</dt>
+          <dd class="text-end font-mono text-xs">{latest.version}</dd>
+        </div>
+      )
+    }
+    {
+      latest && typeof latest.fileSize === 'number' && (
+        <div class={row}>
+          <dt class="text-xs text-fg-muted">{m.mod_fact_size()}</dt>
+          <dd class="text-end tabular-nums">{formatBytes(locale, latest.fileSize)}</dd>
+        </div>
+      )
+    }
+    <div class={row}>
+      <dt class="text-xs text-fg-muted">{m.mod_fact_updated_label()}</dt>
+      <dd class="text-end">
+        <time datetime={mod.lastReleasedAt}>{formatDate(locale, mod.lastReleasedAt)}</time>
+      </dd>
+    </div>
+    {
+      mod.publishedAt && (
+        <div class={row}>
+          <dt class="text-xs text-fg-muted">{m.mod_fact_published()}</dt>
+          <dd class="text-end">
+            <time datetime={mod.publishedAt}>{formatDate(locale, mod.publishedAt)}</time>
+          </dd>
+        </div>
+      )
+    }
+    {
+      mod.license && (
+        <div class={row}>
+          <dt class="text-xs text-fg-muted">{m.mod_fact_license()}</dt>
+          <dd class="text-end">
+            {licenseUrl ? (
+              <a href={licenseUrl} rel="noopener" class="text-link underline underline-offset-3">
+                {licenseLabel(mod.license)}
+              </a>
+            ) : (
+              licenseLabel(mod.license)
+            )}
+          </dd>
+        </div>
+      )
+    }
+    {
+      mod.sourceUrl && (
+        <div class={row}>
+          <dt class="text-xs text-fg-muted">{m.mod_fact_source()}</dt>
+          <dd class="min-w-0 text-end">
+            <a href={mod.sourceUrl} rel="ugc nofollow noopener" class="block truncate text-link underline underline-offset-3">
+              {sourceHost}
+            </a>
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+
+  <FieldReportMeter
+    works={current.works}
+    partial={current.partial}
+    broken={current.broken}
+    build={current.gameBuild?.label ?? null}
+    reportHref="#field-report"
+    byBuild={sortedByBuild}
+  />
+
+  <div
+    id="field-report"
+    data-island="field-report"
+    data-mod-id={mod.id}
+    data-version-id={latest?.id}
+    data-game-build-id={current.gameBuild?.id}
+    class="grid gap-2 rounded-md border border-dashed border-border p-3 text-sm"
+  >
+    <p class="font-semibold">{m.mod_field_report_title()}</p>
+    <p class="text-fg-muted">{m.mod_field_report_text()}</p>
+    <a href={loginHref} class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3" data-field-report-guest>
+      {m.mod_field_report_sign_in()}
+    </a>
+  </div>
+</section>
