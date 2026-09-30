@@ -1,0 +1,83 @@
+---
+/**
+ * Field notes (changelogs) as a vertical timeline (research/03 §5.x «Changelog / Field notes»):
+ * one entry per version with channel badge, absolute date, file facts and the sanitised changelog.
+ * Each entry carries `data-published-at` so the «What's new since your last download» island
+ * (`scripts/mod/whats-new.ts`, signed-in visitors) can highlight the newer ones.
+ */
+import { formatBytes, formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { Badge } from '@sotf/ui/badge';
+import { ProseLocator } from '@sotf/ui/domain';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO, VersionDTO } from './data.ts';
+import { versionPagePath } from './format.ts';
+import { markdownLabels } from './i18n.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  versions: readonly VersionDTO[];
+  /** Heading level of each version title. */
+  headingLevel?: 3 | 4;
+  /** Link each title to its version page. Default true. */
+  linkTitles?: boolean;
+}
+
+const { mod, versions, headingLevel = 3, linkTitles = true } = Astro.props;
+const locale = Astro.locals.locale;
+const labels = markdownLabels();
+const Heading = headingLevel === 3 ? 'h3' : 'h4';
+---
+
+<ol class="relative grid gap-6 border-s border-border ps-6" data-version-timeline>
+  {
+    versions.map((version) => (
+      <li
+        id={`v-${version.version}`}
+        class="relative grid gap-2"
+        data-version={version.version}
+        data-published-at={version.publishedAt}
+      >
+        <span
+          aria-hidden="true"
+          class:list={[
+            'absolute -start-[1.95rem] top-1 size-3 rounded-full border-2 border-bg',
+            version.isLatest ? 'bg-primary' : 'bg-border-strong',
+          ]}
+        ></span>
+        <div class="flex flex-wrap items-center gap-2">
+          <Heading class="font-mono text-base font-semibold text-fg">
+            {linkTitles ? (
+              <a href={href(versionPagePath(mod, version.version), locale)} class="hover:underline underline-offset-3">
+                v{version.version}
+              </a>
+            ) : (
+              `v${version.version}`
+            )}
+          </Heading>
+          {version.isLatest && <Badge variant="signal" size="sm">{m.mod_version_latest()}</Badge>}
+          {version.channel === 'beta' && <Badge variant="warning" size="sm">{m.mod_version_beta()}</Badge>}
+          {version.status === 'yanked' && <Badge variant="danger" size="sm">{m.mod_version_yanked()}</Badge>}
+          <span hidden data-whats-new-badge>
+            <Badge variant="signal" size="sm">{m.mod_whats_new_badge()}</Badge>
+          </span>
+          <time datetime={version.publishedAt} class="text-sm text-fg-muted">
+            {formatDate(locale, version.publishedAt)}
+          </time>
+          {typeof version.fileSize === 'number' && (
+            <span class="text-sm text-fg-muted tabular-nums">· {formatBytes(locale, version.fileSize)}</span>
+          )}
+        </div>
+        {version.status === 'yanked' && version.statusReason && (
+          <p class="text-sm text-danger">{m.mod_version_yanked_reason({ reason: version.statusReason })}</p>
+        )}
+        {version.changelogHtml.trim() ? (
+          <ProseLocator html={localizeHtml(version.changelogHtml, labels)} size="sm" lang={mod.contentLang ?? undefined} />
+        ) : (
+          <p class="text-sm text-fg-muted">{m.mod_version_no_changelog()}</p>
+        )}
+      </li>
+    ))
+  }
+</ol>

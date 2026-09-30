@@ -1,0 +1,49 @@
+---
+/**
+ * Adult-content interstitial (T0-30): direct links to an NSFW mod show this gate first. The page
+ * content is rendered hidden right after it (`[data-nsfw-content]`) and revealed by
+ * `scripts/mod/nsfw.ts` when the visitor confirms (remembered for the session) or has the NSFW
+ * opt-in in their settings. Without JavaScript, «Show» reloads with `?adult=1`, which renders the
+ * page without the gate.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ShieldAlert } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+
+interface Props {
+  /** Current path + `?adult=1` (localised). */
+  revealHref: string;
+}
+
+const { revealHref } = Astro.props;
+const locale = Astro.locals.locale;
+---
+
+<section
+  data-nsfw-gate
+  aria-labelledby="nsfw-gate-title"
+  class="mx-auto my-10 grid max-w-xl justify-items-center gap-4 rounded-xl border border-border-strong bg-surface p-8 text-center"
+>
+  <span class="flex size-14 items-center justify-center rounded-full bg-warning-soft text-warning">
+    <Icon icon={ShieldAlert} size={28} />
+  </span>
+  <h2 id="nsfw-gate-title" class="font-display-caps text-display-xs text-fg">{m.mod_nsfw_title()}</h2>
+  <p class="text-fg-muted">{m.mod_nsfw_text()}</p>
+  <div class="flex flex-wrap justify-center gap-2">
+    <a
+      href={revealHref}
+      rel="nofollow"
+      data-nsfw-reveal
+      class="inline-flex h-11 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover"
+    >
+      {m.mod_nsfw_confirm()}
+    </a>
+    <a href={href('/mods', locale)} class="inline-flex h-11 items-center rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+      {m.mod_nsfw_leave()}
+    </a>
+  </div>
+  <p class="text-sm text-fg-muted">
+    <a href={href('/settings/preferences', locale)} class="text-link underline underline-offset-3">{m.mod_nsfw_settings()}</a>
+  </p>
+</section>

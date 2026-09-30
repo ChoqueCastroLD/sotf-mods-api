@@ -1,0 +1,166 @@
+---
+/**
+ * Shell of every mod page (overview, versions, one version, reviews; WP-62):
+ *
+ * - `BaseLayout` with the page SEO + JSON-LD (+ `BreadcrumbList` built from the visible trail),
+ *   `entity` for analytics and the LCP preload;
+ * - 2 px top edge in the mod's `logColor` accent;
+ * - breadcrumbs, status banners, the adult-content gate (content hidden behind it), header, tabs;
+ * - main column + optional sidebar (`slot="sidebar"`) + optional glance block (`slot="glance"`):
+ *   phones → header, main, glance, sidebar; tablets → glance under the header, then main and
+ *   sidebar; desktops → main on the left, glance + sidebar on the right;
+ * - dialogs (install, dependencies, share, report, lightbox), the mobile download bar, the JSON
+ *   island and the page script (`scripts/mod/index.ts`, vanilla, lazy parts on demand).
+ */
+import { categoryPath } from '@sotf/contracts/seo';
+import { m } from '@sotf/i18n/messages';
+import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
+import type { SeoProps } from '../layout/SeoHead.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+import { breadcrumbJsonLd, type JsonLd } from '../../lib/seo/jsonld.ts';
+import type { ModDetailDTO, VersionDTO } from './data.ts';
+import DependencySheet from './DependencySheet.astro';
+import { loginHrefFor } from './format.ts';
+import { configureModDomainI18n, taxonomyName } from './i18n.ts';
+import InstallDialog from './InstallDialog.astro';
+import Lightbox from './Lightbox.astro';
+import MobileDownloadBar from './MobileDownloadBar.astro';
+import ModHeader from './ModHeader.astro';
+import ModScripts from './ModScripts.astro';
+import ModTabs, { type ModTab } from './ModTabs.astro';
+import NsfwGate from './NsfwGate.astro';
+import PageData from './PageData.astro';
+import ReportDialog from './ReportDialog.astro';
+import ShareDialog from './ShareDialog.astro';
+import StatusBanners from './StatusBanners.astro';
+
+export interface ModCrumb {
+  label: string;
+  /** Locale-less path; omit on the current page. */
+  path?: string;
+}
+
+interface Props {
+  mod: ModDetailDTO;
+  tab: ModTab;
+  seo: SeoProps;
+  jsonLd?: readonly JsonLd[];
+  versions: VersionDTO[] | null;
+  /** Crumbs after the mod (sub-pages). */
+  crumbs?: readonly ModCrumb[];
+  preloadImage?: { href: string; srcset?: string; sizes?: string; type?: string };
+}
+
+configureModDomainI18n();
+
+const { mod, tab, seo, jsonLd = [], versions, crumbs = [], preloadImage } = Astro.props;
+const locale = Astro.locals.locale;
+const env = loadEnv();
+const overviewHref = href(mod.canonicalPath, locale);
+const currentPath = href(Astro.locals.pagePath, locale);
+const loginHref = loginHrefFor(href('/login', locale), currentPath);
+const adultAccepted = Astro.url.searchParams.get('adult') === '1';
+const gated = mod.nsfw && !adultAccepted;
+const revealUrl = new URL(Astro.url.href);
+revealUrl.searchParams.set('adult', '1');
+const revealHref = `${href(Astro.url.pathname, locale)}${revealUrl.search}`;
+
+const trail: ModCrumb[] = [
+  { label: m.common_nav_explore(), path: '/mods' },
+  ...(mod.category ? [{ label: taxonomyName(mod.category), path: categoryPath(mod.category.slug) }] : []),
+  crumbs.length > 0 ? { label: mod.name, path: mod.canonicalPath } : { label: mod.name },
+  ...crumbs,
+];
+const visibleCrumbs = trail.map((crumb) => ({
+  label: crumb.label,
+  href: crumb.path === undefined ? undefined : href(crumb.path, locale),
+}));
+const graph: JsonLd[] = [
+  ...jsonLd,
+  breadcrumbJsonLd(
+    trail.map((crumb) => ({
+      name: crumb.label,
+      url: crumb.path === undefined ? undefined : `${env.siteUrl}${href(crumb.path, locale)}`,
+    })),
+  ),
+];
+const accent = mod.logColor ?? null;
+const hasSidebar = Astro.slots.has('sidebar');
+const hasGlance = Astro.slots.has('glance');
+---
+
+<BaseLayout
+  template="mod"
+  seo={{ ...seo, adult: mod.nsfw || seo.adult === true }}
+  jsonLd={graph}
+  entity={{ type: 'mod', id: mod.id }}
+  preloadImage={gated ? undefined : preloadImage}
+>
+  <div
+    data-mod-page
+    data-mod-id={mod.id}
+    data-nsfw={mod.nsfw ? '' : undefined}
+    class="border-t-2 border-transparent"
+    style={accent ? `border-top-color:${accent}` : undefined}
+  >
+    <div class="mx-auto grid w-full max-w-(--container-content) gap-6 px-4 py-6 md:px-6 md:py-8">
+      <Breadcrumbs items={visibleCrumbs} />
+      <StatusBanners mod={mod} overviewHref={overviewHref} />
+      {gated && <NsfwGate revealHref={revealHref} />}
+      <div data-nsfw-content hidden={gated ? true : undefined}>
+        <ModHeader
+          mod={mod}
+          versions={versions}
+          compact={tab !== 'overview'}
+          overviewHref={overviewHref}
+          loginHref={loginHref}
+        />
+        <ModTabs mod={mod} active={tab} versionsCount={versions?.length ?? null} />
+        <div
+          class:list={[
+            'mt-6 grid gap-8',
+            (hasSidebar || hasGlance) && 'lg:grid-cols-[minmax(0,1fr)_20rem] lg:grid-rows-[auto_1fr]',
+          ]}
+        >
+          <div class="order-2 grid min-w-0 content-start gap-10 lg:order-none lg:col-start-1 lg:row-span-2 lg:row-start-1">
+            <slot />
+          </div>
+          {
+            hasGlance && (
+              <div class="order-3 min-w-0 md:order-1 lg:order-none lg:col-start-2 lg:row-start-1">
+                <slot name="glance" />
+              </div>
+            )
+          }
+          {
+            hasSidebar && (
+              <aside
+                aria-label={m.mod_sidebar_label()}
+                class="order-4 grid min-w-0 content-start gap-4 lg:order-none lg:col-start-2 lg:row-start-2"
+              >
+                <slot name="sidebar" />
+              </aside>
+            )
+          }
+        </div>
+        <MobileDownloadBar mod={mod} />
+      </div>
+    </div>
+
+    <InstallDialog mod={mod} />
+    <DependencySheet mod={mod} />
+    <ShareDialog mod={mod} url={`${env.siteUrl}${overviewHref}`} />
+    <ReportDialog mod={mod} loginHref={loginHref} />
+    {tab === 'overview' && <Lightbox mod={mod} />}
+    <div
+      data-mod-toast
+      role="status"
+      aria-live="polite"
+      class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
+    ></div>
+    <PageData mod={mod} siteUrl={env.siteUrl} loginHref={loginHref} />
+    <ModScripts />
+  </div>
+</BaseLayout>

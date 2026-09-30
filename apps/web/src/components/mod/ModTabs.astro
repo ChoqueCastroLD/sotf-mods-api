@@ -1,0 +1,63 @@
+---
+/**
+ * Tab bar of the mod pages (research/03 §6.3): Overview · Field notes · Versions (n) · Reviews (n)
+ * · Comments (n). Links (real pages and anchors of the overview), `aria-current="page"` on the
+ * active page, horizontal scroll on phones.
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { tabClasses, tabListClasses } from '@sotf/ui/tabs';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { reviewsPagePath, versionsPagePath } from './format.ts';
+
+export type ModTab = 'overview' | 'versions' | 'reviews';
+
+interface Props {
+  mod: ModDetailDTO;
+  active: ModTab;
+  versionsCount: number | null;
+}
+
+const { mod, active, versionsCount } = Astro.props;
+const locale = Astro.locals.locale;
+const overview = href(mod.canonicalPath, locale);
+const tabs: Array<{ key: string; label: string; count?: number | null; href: string; current: boolean }> = [
+  { key: 'overview', label: m.mod_tab_overview(), href: overview, current: active === 'overview' },
+  { key: 'field-notes', label: m.common_term_field_notes(), href: `${overview}#field-notes`, current: false },
+  {
+    key: 'versions',
+    label: m.mod_tab_versions(),
+    count: versionsCount,
+    href: href(versionsPagePath(mod), locale),
+    current: active === 'versions',
+  },
+  {
+    key: 'reviews',
+    label: m.mod_tab_reviews(),
+    count: mod.reviewsSummary.count,
+    href: href(reviewsPagePath(mod), locale),
+    current: active === 'reviews',
+  },
+  { key: 'comments', label: m.mod_tab_comments(), count: mod.commentsCount, href: `${overview}#comments`, current: false },
+];
+const indicator =
+  'after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-transparent aria-[current=page]:after:bg-primary';
+---
+
+<nav aria-label={m.mod_tabs_label()} class="mt-8">
+  <ul class={tabListClasses}>
+    {
+      tabs.map((tab) => (
+        <li class="flex">
+          <a href={tab.href} aria-current={tab.current ? 'page' : undefined} class:list={[tabClasses, indicator]}>
+            {tab.label}
+            {typeof tab.count === 'number' && (
+              <span class="rounded-full bg-fg/8 px-1.5 text-xs tabular-nums text-fg-muted">{formatNumber(locale, tab.count)}</span>
+            )}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

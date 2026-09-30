@@ -1,0 +1,142 @@
+---
+/**
+ * `/mods/:user/:slug/reviews` (WP-62, PLAN §4.2, §7.7): histogram, sort (helpful · recent ·
+ * critical) and a cursor page of reviews, server-rendered; the writing form, votes and the
+ * creator's replies are the reviews island (WP-70) mounted at `#write-review`. Indexable only with
+ * ≥ 3 visible reviews, and only its base URL (sorts and further pages are `noindex, follow` with
+ * the canonical on the base).
+ */
+import { REVIEW_RULES } from '@sotf/contracts/reviews';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { RatingHistogram, ReviewCard } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import { loadReviews, loadVersionsOptional, resolveModPage } from '../../../../components/mod/data.ts';
+import { loginHrefFor, reviewsPagePath } from '../../../../components/mod/format.ts';
+import { markdownLabels } from '../../../../components/mod/i18n.ts';
+import ModLayout from '../../../../components/mod/ModLayout.astro';
+import { respondUnresolved } from '../../../../components/mod/responses.ts';
+import { subpageTitle, truncate } from '../../../../components/mod/seo.ts';
+import { SECTION_TITLE_CLASSES } from '../../../../components/mod/styles.ts';
+import { setPageCache } from '../../../../lib/cache/page.ts';
+import { pageCache } from '../../../../lib/cache/policy.ts';
+import { href } from '../../../../lib/i18n.ts';
+import { ensureLocals } from '../../../../lib/request-context.ts';
+
+export const prerender = false;
+
+const SORTS = ['helpful', 'new', 'critical'] as const;
+type Sort = (typeof SORTS)[number];
+
+const locale = ensureLocals(Astro).locale;
+const resolved = await resolveModPage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+if (resolved.rest.length !== 1 || resolved.rest[0] !== 'reviews') return respondUnresolved(Astro, { kind: 'not-found' });
+
+const { mod } = resolved;
+setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
+const params = Astro.url.searchParams;
+const requestedSort = params.get('sort');
+const sort: Sort = SORTS.includes(requestedSort as Sort) ? (requestedSort as Sort) : 'helpful';
+const rawCursor = params.get('cursor');
+const cursor = rawCursor && /^[A-Za-z0-9_-]{1,200}$/.test(rawCursor) ? rawCursor : undefined;
+const [page, versions] = await Promise.all([loadReviews(mod.id, sort, cursor), loadVersionsOptional(mod.id)]);
+const summary = mod.reviewsSummary;
+const labels = markdownLabels();
+const reviews = page.items.map((review) => ({
+  ...review,
+  bodyHtml: review.bodyHtml ? localizeHtml(review.bodyHtml, labels) : null,
+}));
+const basePath = reviewsPagePath(mod);
+const baseHref = href(basePath, locale);
+const sortHref = (value: Sort) => (value === 'helpful' ? baseHref : `${baseHref}?sort=${value}`);
+const nextHref = page.nextCursor
+  ? `${baseHref}?${new URLSearchParams({ ...(sort === 'helpful' ? {} : { sort }), cursor: page.nextCursor }).toString()}`
+  : null;
+const isBase = sort === 'helpful' && !cursor;
+const indexable = !mod.noindex && isBase && summary.count >= REVIEW_RULES.publicStarsMinReviews;
+const label = m.mod_tab_reviews();
+const sortLabels: Record<Sort, string> = {
+  helpful: m.mod_reviews_sort_helpful(),
+  new: m.mod_reviews_sort_new(),
+  critical: m.mod_reviews_sort_critical(),
+};
+const creatorName = mod.author.displayName || mod.author.handle;
+const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale));
+---
+
+<ModLayout
+  mod={mod}
+  tab="reviews"
+  versions={versions}
+  crumbs={[{ label }]}
+  seo={{
+    title: subpageTitle(label, mod),
+    description: truncate(m.mod_reviews_meta_description({ name: mod.name, count: summary.count }), 160),
+    path: basePath,
+    noindex: !indexable,
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+  }}
+>
+  <section aria-labelledby="reviews-title" class="grid gap-5">
+    <h2 id="reviews-title" class={SECTION_TITLE_CLASSES}>{m.mod_reviews_title({ count: summary.count })}</h2>
+    {summary.count > 0 && <RatingHistogram summary={summary} />}
+
+    <div id="write-review" data-island="reviews-write" data-mod-id={mod.id} data-mod-author-id={mod.userId} class="grid gap-2 rounded-lg border border-dashed border-border p-4">
+      <p class="font-semibold">{m.mod_reviews_write()}</p>
+      <p class="text-sm text-fg-muted">{m.mod_reviews_rules()}</p>
+      <a href={loginHref} class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3" data-review-guest-hint>
+        {m.common_account_sign_in()}
+      </a>
+    </div>
+
+    {
+      summary.count > 0 && (
+        <nav aria-label={m.mod_reviews_sort_label()} class="flex flex-wrap gap-2">
+          {SORTS.map((value) => (
+            <a
+              href={sortHref(value)}
+              aria-current={value === sort ? 'page' : undefined}
+              class="inline-flex min-h-11 items-center rounded-full border border-border px-4 text-sm font-medium text-fg-muted hover:border-border-strong hover:text-fg aria-[current=page]:border-primary aria-[current=page]:text-fg md:min-h-9"
+            >
+              {sortLabels[value]}
+            </a>
+          ))}
+        </nav>
+      )
+    }
+
+    {
+      reviews.length > 0 ? (
+        <ul class="grid gap-3" data-review-list data-sort={sort}>
+          {reviews.map((review) => (
+            <li>
+              <ReviewCard review={review} creatorName={creatorName} headingLevel={3} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="text-fg-muted">{cursor ? m.mod_reviews_end() : m.mod_reviews_empty()}</p>
+      )
+    }
+
+    <div class="flex flex-wrap gap-3">
+      {
+        cursor && (
+          <a href={sortHref(sort)} class="inline-flex min-h-11 items-center rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+            {m.mod_reviews_first_page()}
+          </a>
+        )
+      }
+      {
+        nextHref && (
+          <a href={nextHref} rel="next" class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+            {m.mod_reviews_next_page()}
+            <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+          </a>
+        )
+      }
+    </div>
+  </section>
+</ModLayout>

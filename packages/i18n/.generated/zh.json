@@ -986,6 +986,475 @@
       }
     }
   ],
+  "explore_active_author": "作者 @{handle}",
+  "explore_active_label": "当前筛选",
+  "explore_active_not": "排除 {label}",
+  "explore_active_query": "“{query}”",
+  "explore_active_remove": "移除筛选：{label}",
+  "explore_any": "不限",
+  "explore_back_to_first": "返回第 1 页",
+  "explore_best_building_mods_description": "Sons of the Forest 建造模组：更好的吸附、新部件、蓝图以及打造大型基地的工具。",
+  "explore_best_building_mods_heading": "最佳建造模组",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最佳 SOTF 建造模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "可在 Sons of the Forest 专用服务器上运行的模组：管理工具、服务器端调整和合作修复。",
+  "explore_best_dedicated_server_mods_heading": "最佳专用服务器模组",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最佳 SOTF 专用服务器模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "Sons of the Forest 模组所依赖的共享前置库，按下载量排序。在使用它们的模组之前安装一次即可。",
+  "explore_best_libraries_heading": "必备模组前置库",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你需要的 SOTF 模组前置库（{count__number}）"
+      }
+    }
+  ],
+  "explore_best_mods_description": "SOTF Mods 上下载最多的 Sons of the Forest 模组，附当前补丁兼容性和 RedLoader 直接下载。",
+  "explore_best_mods_heading": "最佳 Sons of the Forest 模组",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最佳 Sons of the Forest 模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "可在合作模式中使用的 Sons of the Forest 模组，并注明谁需要安装：只需你、仅房主或所有人。",
+  "explore_best_multiplayer_mods_heading": "最佳多人模组",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最佳 SOTF 多人模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Sons of the Forest 玩家最先安装的便利改进模组：更大的堆叠、更好的菜单、更少的琐事。",
+  "explore_best_quality_of_life_mods_heading": "最佳便利改进模组",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最佳 SOTF 便利改进模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_categories_browse": "浏览",
+  "explore_categories_builds_heading": "建筑分类",
+  "explore_categories_description": "SOTF Mods 上所有 Sons of the Forest 模组与建筑分类，包括各分类的内容和收录数量。",
+  "explore_categories_heading": "分类",
+  "explore_categories_mods_heading": "模组分类",
+  "explore_categories_title": "Sons of the Forest 模组与建筑分类",
+  "explore_category_intro_building": "为建造者准备的工具和部件：吸附、蓝图、新结构以及更多打造基地的方式。",
+  "explore_category_intro_builds_generic": "{category}分类下的 Sons of the Forest 建筑：可直接放置的 BuildShare 蓝图。",
+  "explore_category_intro_companions": "Kelvin、Virginia 等同伴：更聪明的指令、新的行为和更多同行方式。",
+  "explore_category_intro_gameplay": "改变游戏玩法的模组：难度、战斗、敌人、生存规则和新机制。",
+  "explore_category_intro_generic": "{category}分类下的 Sons of the Forest 模组，附兼容性、评分和直接下载。",
+  "explore_category_intro_library": "其他模组所依赖的共享代码。当某个模组将其列为前置时再安装。",
+  "explore_category_intro_menus_sandbox": "修改器、生成菜单和沙盒工具，让你在单人或作为房主时自由试验。",
+  "explore_category_intro_misc": "无法归入其他分类的模组：实验性作品、实用工具和零散创意。",
+  "explore_category_intro_model_swap": "用新模型替换游戏内模型：角色、生物、武器和道具。",
+  "explore_category_intro_multiplayer_servers": "适用于合作模式和专用服务器的模组：管理工具、同步修复和玩家管理。",
+  "explore_category_intro_quality_of_life": "让日常生存更顺畅的小修复与便利功能：更大的堆叠、更快的制作、更清爽的菜单和更少的琐事。",
+  "explore_category_intro_ui_hud": "HUD、地图、小地图和菜单模组，显示更多信息，干扰更少。",
+  "explore_category_intro_vehicles_movement": "高尔夫球车、滑翔翼、骑士盔甲和新的移动方式：速度、操控与通行。",
+  "explore_category_intro_weapons_gear": "用于战斗和探索岛屿的新增或调整过的武器、弹药、护甲和装备。",
+  "explore_clear_all": "全部清除",
+  "explore_compat_untested": "尚未在当前补丁测试",
+  "explore_compat_works": "可用于当前补丁",
+  "explore_dedicated": "支持专用服务器",
+  "explore_empty_category_text": "此分类暂无模组。浏览全部模组，或成为第一个发布的人。",
+  "explore_empty_category_title": "地图的这一块还是空白",
+  "explore_empty_text": "没有模组同时符合这些筛选条件。移除一个后再试。",
+  "explore_empty_title": "这条小路上什么也没有",
+  "explore_empty_try_removing": "试试移除：",
+  "explore_empty_unfiltered_text": "这里还没有发布任何内容，请稍后再来。",
+  "explore_error_text": "无法加载此列表。请检查网络连接后重试。",
+  "explore_error_title": "没有信号",
+  "explore_facet_category": "分类",
+  "explore_facet_compat": "兼容性",
+  "explore_facet_more": "更多",
+  "explore_facet_multiplayer": "多人模式",
+  "explore_facet_platform": "平台",
+  "explore_facet_rating": "评分",
+  "explore_facet_tags": "标签",
+  "explore_facet_tags_more": "更多标签",
+  "explore_facet_updated": "更新时间",
+  "explore_failed": "结果未能加载，正在重新加载页面…",
+  "explore_filter_exclude": "排除 {label}",
+  "explore_filter_excluded": "已排除",
+  "explore_filter_included": "已包含",
+  "explore_filter_search_label": "筛选",
+  "explore_filter_search_placeholder": "名称、标签或作者…",
+  "explore_filter_unexclude": "取消排除 {label}",
+  "explore_filters_apply": "应用筛选",
+  "explore_filters_close": "关闭筛选",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "筛选",
+        "count__exact=*": "筛选（{count__number}）"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有结果",
+        "count__exact=*": "查看 {count__number} 个结果"
+      }
+    }
+  ],
+  "explore_filters_title": "筛选",
+  "explore_has_source": "附带源代码",
+  "explore_heading_all": "探索全部",
+  "explore_heading_builds": "探索建筑",
+  "explore_heading_libraries": "探索前置库",
+  "explore_heading_mods": "探索模组",
+  "explore_heading_tag": "标签：“{tag}”",
+  "explore_hub_others": "更多野外指南",
+  "explore_hub_see_all": "在探索中查看全部",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "列表",
+        "count__exact=*": "前 {count__number} 名"
+      }
+    }
+  ],
+  "explore_hub_updated": "更新于 {date}",
+  "explore_loading": "正在加载结果…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "整座岛尽在一个列表：{count__number} 个 Sons of the Forest 模组、前置库和建筑，可筛选、可排序。"
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "全部 Sons of the Forest 模组与建筑（{count__number}）"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 份Sons of the Forest 的 BuildShare 蓝图：社区分享的基地、堡垒和树屋，可直接放置。"
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 建筑（{count__number}）"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest {category}建筑（{count__number}）"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest {category}模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个其他 Sons of the Forest 模组所依赖的前置库。只需安装一次，所有需要它们的模组都能正常运行。"
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 模组前置库（{count__number}）"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "浏览 {count__number} 个适用于 RedLoader 的 Sons of the Forest 模组。可按分类、兼容性和多人模式筛选，默认按本周下载量排序。"
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input count",
+        "input tag",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个带有“{tag}”标签的 Sons of the Forest 模组和建筑，附兼容性、评分和直接下载。"
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "带有“{tag}”标签的 Sons of the Forest 模组（{count__number}）"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "所有人都需安装",
+  "explore_multiplayer_client_side": "只需你安装",
+  "explore_multiplayer_host_only": "仅房主",
+  "explore_multiplayer_singleplayer_only": "仅单人",
+  "explore_offline": "你已离线。屏幕上的结果可能已过时。",
+  "explore_order_reverse": "反转顺序",
+  "explore_past_end_text": "此页超出了最后一页。自链接分享以来，列表可能已变短。",
+  "explore_past_end_title": "你已到达列表末尾",
+  "explore_platform_client": "客户端",
+  "explore_platform_server": "专用服务器",
+  "explore_platform_universal": "客户端和服务器",
+  "explore_rating_any": "不限评分",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating__number}★ 及以上"
+      }
+    }
+  ],
+  "explore_readout_build_category": "建筑分类",
+  "explore_readout_category": "分类",
+  "explore_readout_explore": "探索",
+  "explore_readout_hub": "野外指南",
+  "explore_readout_tag": "标签",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有结果",
+        "count__exact=*": "{count__number} 个结果"
+      }
+    }
+  ],
+  "explore_results_heading": "结果",
+  "explore_search_browse": "浏览分类",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有“{query}”的结果",
+        "count__exact=*": "“{query}”共 {count__number} 个结果"
+      }
+    }
+  ],
+  "explore_search_description": "在 SOTF Mods 上搜索 Sons of the Forest 模组、建筑、套装、创作者和指南。",
+  "explore_search_empty_hint": "检查拼写，减少关键词或尝试模组的清单 ID，也可以按分类浏览。",
+  "explore_search_error_text": "搜索暂时无法使用，请稍后再试。",
+  "explore_search_heading": "搜索全岛",
+  "explore_search_heading_query": "“{query}”的搜索结果",
+  "explore_search_in_explore": "在探索中筛选这些结果",
+  "explore_search_prompt_text": "按名称、作者或清单 ID 搜索模组、建筑、套装、创作者和指南。",
+  "explore_search_prompt_title": "你在找什么？",
+  "explore_search_type_all": "全部",
+  "explore_search_type_pages": "页面",
+  "explore_search_types_label": "结果类型",
+  "explore_sort_comments": "讨论最多",
+  "explore_sort_downloads": "下载最多",
+  "explore_sort_follows": "关注最多",
+  "explore_sort_label": "排序：",
+  "explore_sort_new": "最新发布",
+  "explore_sort_rating": "评分最高",
+  "explore_sort_relevance": "最相关",
+  "explore_sort_reversed": "{sort}（倒序）",
+  "explore_sort_trending": "热门",
+  "explore_sort_updated": "最近更新",
+  "explore_tab_all": "全部",
+  "explore_tabs_label": "显示内容",
+  "explore_tag_group_audio": "音频",
+  "explore_tag_group_building": "建造",
+  "explore_tag_group_gameplay": "玩法",
+  "explore_tag_group_players": "玩家",
+  "explore_tag_group_survival": "生存",
+  "explore_tag_group_tech": "技术",
+  "explore_tag_group_ui": "界面",
+  "explore_tag_group_visuals": "画面",
+  "explore_tag_group_world": "世界",
+  "explore_tags_description": "按修改内容查找 Sons of the Forest 模组：物品栏、建造工具、敌人、画面等。",
+  "explore_tags_heading": "标签",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "另外 {count__number} 个标签"
+      }
+    }
+  ],
+  "explore_tags_other_group": "其他",
+  "explore_tags_title": "Sons of the Forest 模组标签",
+  "explore_updated_1y": "最近 12 个月",
+  "explore_updated_30d": "最近 30 天",
+  "explore_updated_90d": "最近 90 天",
+  "explore_updated_any": "不限时间",
+  "explore_verified": "仅认证创作者",
+  "explore_view_compact": "紧凑",
+  "explore_view_grid": "网格",
+  "explore_view_label": "视图",
+  "explore_view_list": "列表",
   "landing_blueprints_all": "全部建筑",
   "landing_blueprints_hint": "来自社区的新鲜建筑",
   "landing_creators_all": "全部创作者",
@@ -1158,6 +1627,470 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "加入合集",
+  "mod_action_install": "安装",
+  "mod_action_report": "举报",
+  "mod_banner_archived_action": "前往替代模组",
+  "mod_banner_archived_successor": "作者已不再维护此模组，并推荐改用 {name}。",
+  "mod_banner_archived_text": "作者已不再维护此模组，它可能无法在当前补丁下运行。",
+  "mod_banner_archived_title": "已归档。",
+  "mod_banner_broken_action": "提交你的实地报告",
+  "mod_banner_broken_text": "幸存者反馈此模组在当前游戏版本下无法使用。",
+  "mod_banner_broken_title": "当前补丁下无法使用。",
+  "mod_banner_nsfw_text": "此模组包含成人内容。",
+  "mod_banner_nsfw_title": "18+。",
+  "mod_banner_outdated_action": "试过了？告诉大家",
+  "mod_banner_outdated_text": "自上次导致模组失效的补丁以来，它既没有更新也没有被确认可用。",
+  "mod_banner_outdated_title": "可能已过时。",
+  "mod_banner_pending_text": "护林员正在检查此模组。它还未出现在列表中，内容可能还会变化。",
+  "mod_banner_pending_title": "审核中。",
+  "mod_banner_unlisted_text": "只有拿到链接的人才能找到此模组。",
+  "mod_banner_unlisted_title": "未公开列出。",
+  "mod_banners_label": "模组状态",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "查看全部",
+  "mod_changelog_title": "更新日志",
+  "mod_comments_empty": "还没有评论。提问、技巧和 bug 反馈都可以写在这里。",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 条回复"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "登录后发表评论",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "评论",
+        "count__exact=*": "{count__number} 条评论"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "评论暂时无法加载，请刷新页面重试。",
+  "mod_compat_author_tested": "作者已在 {build} 上测试。",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} 上的报告不一：{works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "v{version} 在你的游戏里能用吗？",
+  "mod_compat_prompt_action": "报告",
+  "mod_compat_report": "报告",
+  "mod_copy_hash": "复制 SHA-256",
+  "mod_cover_alt": "{name} 的封面图",
+  "mod_creator_follow": "关注作者",
+  "mod_creator_following": "已关注作者",
+  "mod_creator_title": "作者",
+  "mod_dependencies_title": "前置",
+  "mod_dependency_archived": "已被作者归档",
+  "mod_dependency_removed": "已从本站移除",
+  "mod_dependency_unavailable": "本站未收录",
+  "mod_deps_already_have": "我已经有了",
+  "mod_deps_download_all": "全部下载",
+  "mod_deps_progress": "正在下载第 {current} 个，共 {total} 个…",
+  "mod_deps_sheet_text": "没有这些模组，{name} 无法运行。一起下载，或者如果你已经有了就继续。",
+  "mod_deps_sheet_title": "你还需要 {names}",
+  "mod_description_empty": "作者还没有写简介。",
+  "mod_download_done_label": "已下载 ✓",
+  "mod_download_unavailable": "目前没有可下载的文件。",
+  "mod_fact_game_version": "声明的游戏版本",
+  "mod_fact_license": "许可证",
+  "mod_fact_loader_version": "声明的 RedLoader 版本",
+  "mod_fact_platform": "平台",
+  "mod_fact_published": "发布于",
+  "mod_fact_size": "文件大小",
+  "mod_fact_source": "源代码",
+  "mod_fact_tested_builds": "测试版本",
+  "mod_fact_updated": "更新于 {date}",
+  "mod_fact_updated_label": "更新于",
+  "mod_fact_version": "版本",
+  "mod_field_report_sign_in": "登录后提交实地报告",
+  "mod_field_report_text": "实地报告只需十秒，就能让大家知道此模组在当前补丁下是否可用。",
+  "mod_field_report_title": "在你的游戏里能用吗？",
+  "mod_file_name": "文件",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input name",
+        "input index",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} 截图 {index__number}"
+      }
+    }
+  ],
+  "mod_gallery_label": "{name} 的图库",
+  "mod_gallery_next": "下一张",
+  "mod_gallery_previous": "上一张",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {index__number} 张，共 {total__number} 张"
+      }
+    }
+  ],
+  "mod_glance_title": "速览",
+  "mod_in_kits_browse": "浏览合集",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "收录于 {count__number} 个合集"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "请勿与以下模组同时使用：",
+  "mod_install_full_guide": "完整安装指南",
+  "mod_install_intro": "五分钟搞定，无需管理器。以下步骤适用于 {name}。",
+  "mod_install_manager_tip": "想一键搞定？RedManager 可以替你安装和更新模组及其前置。",
+  "mod_install_multiplayer": "多人游戏：{role}。",
+  "mod_install_redloader_not_bepinex": "此模组需要 RedLoader，而不是 BepInEx。BepInEx 的模组和教程不适用于 Sons of the Forest。",
+  "mod_install_step_dependencies_title": "先安装它的前置",
+  "mod_install_step_download": "下载 {name}",
+  "mod_install_step_download_version": "下载 {name} v{version}",
+  "mod_install_step_extract_client": "在电脑上，解压到游戏的 Mods 文件夹：",
+  "mod_install_step_extract_note": "保持 ZIP 内的文件夹结构，不要把 ZIP 文件本身放进文件夹。",
+  "mod_install_step_extract_server": "在专用服务器上，解压到服务器的 Mods 文件夹：",
+  "mod_install_step_extract_title": "把 ZIP 解压到 Mods 文件夹",
+  "mod_install_step_launch_text": "RedLoader 会在启动时加载模组。在主菜单按 F1 查看模组列表。",
+  "mod_install_step_launch_title": "启动游戏",
+  "mod_install_step_loader_link": "如何安装 RedLoader",
+  "mod_install_step_loader_text": "RedLoader 是 Sons of the Forest 的模组加载器。安装一次，所有模组都能用。",
+  "mod_install_step_loader_title": "安装 RedLoader",
+  "mod_install_step_loader_version": "请使用 RedLoader {version} 或更高版本。",
+  "mod_install_title": "如何安装此模组",
+  "mod_kind_library": "前置库",
+  "mod_license_all_rights_reserved": "保留所有权利",
+  "mod_license_other": "自定义许可证",
+  "mod_license_reupload_with_credit": "注明作者后可转载",
+  "mod_link_website": "网站",
+  "mod_md_alert_caution": "小心",
+  "mod_md_alert_important": "重要",
+  "mod_md_alert_note": "注意",
+  "mod_md_alert_tip": "提示",
+  "mod_md_alert_warning": "警告",
+  "mod_md_spoiler": "剧透",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input kind",
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} 是 {author} 为 RedLoader 制作的 Sons of the Forest 前置库。已下载 {downloads} 次，免费直链下载。",
+        "kind=*": "{name} 是 {author} 为 RedLoader 制作的 Sons of the Forest 模组。已下载 {downloads} 次，免费直链下载。"
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — {author} 制作的 Sons of the Forest 前置库",
+        "kind=*": "{name} — {author} 制作的 Sons of the Forest 模组"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest 前置库",
+        "kind=*": "{name} — Sons of the Forest 模组"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "只有你需要安装",
+  "mod_nsfw_confirm": "我已年满 18 岁，显示",
+  "mod_nsfw_leave": "返回探索",
+  "mod_nsfw_settings": "始终显示 18+ 内容（设置）",
+  "mod_nsfw_text": "此模组被标记为 18+。请确认你已成年后再查看。",
+  "mod_nsfw_title": "成人内容",
+  "mod_og_alt": "SOTF Mods 上的 {name}",
+  "mod_original_author": "原作者：{name}",
+  "mod_other_versions": "其他版本",
+  "mod_platform_client": "客户端",
+  "mod_platform_server": "专用服务器",
+  "mod_platform_universal": "客户端和服务器",
+  "mod_related_title": "相关模组",
+  "mod_report_choose_reason": "请选择一个原因。",
+  "mod_report_details_hint": "链接、版本或任何能帮助护林员的信息，最多 2000 个字符。",
+  "mod_report_details_label": "详情（可选）",
+  "mod_report_duplicate": "你已经举报过此模组，护林员正在处理。",
+  "mod_report_intro": "告诉护林员哪里有问题。举报内容不公开。",
+  "mod_report_reason_broken": "下载损坏或虚假",
+  "mod_report_reason_harassment": "骚扰或仇恨",
+  "mod_report_reason_illegal": "违法内容",
+  "mod_report_reason_label": "原因",
+  "mod_report_reason_malware": "恶意软件或可疑文件",
+  "mod_report_reason_nsfw_unmarked": "成人内容未标记 18+",
+  "mod_report_reason_other": "其他",
+  "mod_report_reason_reupload": "转载他人作品",
+  "mod_report_reason_spam": "垃圾信息或广告",
+  "mod_report_sent": "谢谢，护林员会查看。",
+  "mod_report_sign_in": "登录后才能举报模组，这样举报更可信。",
+  "mod_report_submit": "提交举报",
+  "mod_report_title": "举报 {name}",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 个"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组依赖它"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "查看全部 {count__number} 条评价"
+      }
+    }
+  ],
+  "mod_reviews_empty": "还没有评价。下载过了吗？来当第一个分享体验的人。",
+  "mod_reviews_end": "评价已经全部看完了。",
+  "mod_reviews_first_page": "返回第一页",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 模组 {name} 的玩家评价：{count__number} 条评价，含评分、已验证下载和作者回复。"
+      }
+    }
+  ],
+  "mod_reviews_next_page": "更多评价",
+  "mod_reviews_rules": "每位幸存者一条评价。请具体说明：版本、哪些能用、哪些不能用。",
+  "mod_reviews_sort_critical": "差评",
+  "mod_reviews_sort_helpful": "最有帮助",
+  "mod_reviews_sort_label": "评价排序",
+  "mod_reviews_sort_new": "最新",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "评价",
+        "count__exact=*": "{count__number} 条评价"
+      }
+    }
+  ],
+  "mod_reviews_write": "写评价",
+  "mod_scan_clean": "未发现威胁",
+  "mod_scan_date": "扫描于 {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input total",
+        "input engine",
+        "input positives",
+        "local total__number = total: number",
+        "local positives__number = positives: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{total__number} 个 {engine} 引擎中有 {positives__number} 个标记了此文件。"
+      }
+    }
+  ],
+  "mod_scan_false_positive": "部分引擎报毒，已由护林员确认安全",
+  "mod_scan_malicious": "恶意：请勿安装",
+  "mod_scan_none": "此文件还没有安全报告。",
+  "mod_scan_pending": "正在扫描",
+  "mod_scan_report": "完整报告",
+  "mod_scan_suspicious": "可疑：护林员正在审核",
+  "mod_scan_title": "安全扫描",
+  "mod_scan_unknown": "尚未扫描",
+  "mod_share_link_label": "链接",
+  "mod_share_markdown_label": "Discord 用 Markdown",
+  "mod_share_more": "更多…",
+  "mod_share_on": "分享到 {network}",
+  "mod_share_qr": "二维码",
+  "mod_share_qr_alt": "{name} 链接的二维码",
+  "mod_share_qr_hint": "用手机扫描即可打开页面。",
+  "mod_share_text": "Sons of the Forest 模组：{name}",
+  "mod_share_title": "分享此模组",
+  "mod_sidebar_label": "关于此模组",
+  "mod_stat_downloads": "下载量",
+  "mod_stat_downloads_total": "总计",
+  "mod_stat_followers": "关注者",
+  "mod_stat_rating": "评分",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating}（{count__number} 条评价）"
+      }
+    }
+  ],
+  "mod_stat_this_week": "本周下载量",
+  "mod_stat_this_week_value": "本周 {display}",
+  "mod_support_title": "支持作者",
+  "mod_tab_comments": "评论",
+  "mod_tab_overview": "概览",
+  "mod_tab_reviews": "评价",
+  "mod_tab_versions": "版本",
+  "mod_tabs_label": "模组页面分区",
+  "mod_tags_label": "标签",
+  "mod_toast_copy_failed": "复制失败，请选中文本手动复制。",
+  "mod_toast_error": "操作失败，请稍后再试。",
+  "mod_toast_followed": "{name} 已放进你的背包，有更新会通知你。",
+  "mod_toast_followed_creator": "你已关注 {name}。",
+  "mod_toast_rate_limited": "尝试次数过多，请等一分钟后再试。",
+  "mod_toast_sign_in": "登录已过期，请重新登录。",
+  "mod_toast_unfollowed": "{name} 已从你的背包移除。",
+  "mod_toast_unfollowed_creator": "你已取消关注 {name}。",
+  "mod_toast_verify_email": "请先验证邮箱，查看你的收件箱。",
+  "mod_value_not_declared": "未声明",
+  "mod_version_beta": "测试版",
+  "mod_version_latest": "最新",
+  "mod_version_meta_description": "Sons of the Forest 模组 {name} v{version}，发布于 {date}：更新日志、文件大小、SHA-256、安全扫描和兼容性。",
+  "mod_version_no_changelog": "此版本没有更新日志。",
+  "mod_version_not_downloadable": "此版本无法下载。",
+  "mod_version_yanked": "已撤回",
+  "mod_version_yanked_reason": "作者已撤回：{reason}",
+  "mod_version_yanked_text": "作者撤回了此版本，请使用更新的版本。",
+  "mod_versions_all": "全部版本",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "全部 {count__number} 个版本"
+      }
+    }
+  ],
+  "mod_versions_caption": "{name} 的版本",
+  "mod_versions_empty": "还没有发布任何版本。",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input version",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 模组 {name} 的全部 {count__number} 个版本，含更新日志、文件大小和兼容性。最新：v{version}。"
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个版本"
+      }
+    }
+  ],
+  "mod_video_embed_title": "YouTube 视频",
+  "mod_video_play": "播放 {name} 预告片",
+  "mod_video_title": "{name} 预告片",
+  "mod_whats_new_badge": "对你是新的",
+  "mod_whats_new_read": "阅读实地笔记",
+  "mod_whats_new_title": "自你上次下载（v{version}）以来的更新",
+  "mod_whats_new_up_to_date": "你已有最新版本（v{version}）。",
   "ui_breadcrumbs": "面包屑导航",
   "ui_cancel": "取消",
   "ui_choose": "请选择…",

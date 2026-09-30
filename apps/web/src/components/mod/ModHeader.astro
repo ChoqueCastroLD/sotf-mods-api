@@ -1,0 +1,242 @@
+---
+/**
+ * Mod header (research/03 §6.3, T0-08): cover 16:9 + gallery strip, h1, short description, author
+ * with TrustedMark, fact chips (category, kind, licence, version, updated), stats (downloads, this
+ * week, rating with ≥ 3 reviews, followers), the action bar and the compatibility line. On phones
+ * the «At a glance» capsule collapses to one line with a «See all» link.
+ *
+ * `compact` (sub-pages): no gallery or description, smaller title; the action bar stays.
+ */
+import { categoryPath, profilePath } from '@sotf/contracts/seo';
+import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Avatar } from '@sotf/ui/avatar';
+import { CompatBadge, Cover, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { CalendarClock, Download, Heart, Scale, Star, TrendingUp } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import Picture from '../layout/Picture.astro';
+import ActionBar from './ActionBar.astro';
+import type { ModDetailDTO, VersionDTO } from './data.ts';
+import { compatSentence, multiplayerLabel, platformLabel, reviewsPagePath } from './format.ts';
+import { licenseLabel, taxonomyName } from './i18n.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  versions: VersionDTO[] | null;
+  compact?: boolean;
+  /** Localised overview path. */
+  overviewHref: string;
+  loginHref: string;
+}
+
+const { mod, versions, compact = false, overviewHref, loginHref } = Astro.props;
+const locale = Astro.locals.locale;
+const hero = mod.thumbnail ?? mod.gallery[0] ?? null;
+const heroInGallery = hero !== null && mod.gallery.some((image) => image.url === hero.url);
+const heroIndex = heroInGallery ? mod.gallery.findIndex((image) => image.url === hero?.url) + (mod.video ? 1 : 0) : -1;
+const summary = mod.reviewsSummary;
+const author = mod.author;
+const authorName = author.displayName || author.handle;
+const build = mod.compatCurrent.gameBuild?.label ?? mod.latestVersion?.gameVersionDeclared ?? null;
+const loader = mod.latestVersion?.loaderVersionDeclared ?? null;
+const multiplayer = mod.multiplayerRole ? multiplayerLabel(mod.multiplayerRole) : null;
+const oneLine = [
+  build,
+  mod.platform ? platformLabel(mod.platform) : null,
+  multiplayer,
+  loader ? m.mod_capsule_loader_short({ version: loader }) : null,
+].filter((part): part is string => Boolean(part));
+const galleryLabel = m.mod_gallery_label({ name: mod.name });
+---
+
+<header class:list={['grid gap-6', compact ? '' : 'md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-start']}>
+  {
+    !compact && (
+      <div class="grid min-w-0 gap-3">
+        <div
+          data-vt-cover-target
+          class="relative aspect-video overflow-hidden rounded-lg border border-border bg-raised"
+          style={hero?.dominantColor ? `background-color:${hero.dominantColor}` : undefined}
+        >
+          {hero ? (
+            heroInGallery ? (
+              <a href={hero.url} data-gallery-index={heroIndex} data-gallery-kind="image" class="block size-full">
+                <Picture
+                  image={hero}
+                  sizes="(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw"
+                  priority
+                  hero
+                  alt={hero.alt ?? m.mod_cover_alt({ name: mod.name })}
+                  class="block size-full object-cover"
+                />
+              </a>
+            ) : (
+              <Picture
+                image={hero}
+                sizes="(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw"
+                priority
+                hero
+                alt={hero.alt ?? m.mod_cover_alt({ name: mod.name })}
+                class="block size-full object-cover"
+              />
+            )
+          ) : (
+            <Cover image={null} seed={mod.slug} name={mod.name} category={mod.category} priority />
+          )}
+        </div>
+        {(mod.gallery.length > 1 || mod.video) && (
+          <div data-gallery-strip>
+            <GalleryStrip
+              images={mod.gallery}
+              video={mod.video ? { id: mod.video.id, url: mod.video.url } : null}
+              label={galleryLabel}
+            />
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  <div class="grid min-w-0 content-start gap-4">
+    <div class="grid gap-2">
+      {
+        mod.kind === 'library' && (
+          <p class="readout text-signal">{m.mod_kind_library()}</p>
+        )
+      }
+      <h1
+        class:list={[
+          'font-display-caps break-words text-fg',
+          compact ? 'text-display-xs' : 'text-display-sm',
+        ]}
+        lang={mod.contentLang ?? undefined}
+      >
+        {compact ? <a href={overviewHref} class="hover:underline underline-offset-4">{mod.name}</a> : mod.name}
+      </h1>
+      {
+        !compact && mod.shortDescription && (
+          <p class="text-lg text-fg-muted" lang={mod.contentLang ?? undefined}>
+            {mod.shortDescription}
+          </p>
+        )
+      }
+    </div>
+
+    <p class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-fg-muted">
+      <a
+        href={href(profilePath(author.handle), locale)}
+        class="inline-flex min-h-6 items-center gap-2 font-semibold text-fg hover:underline underline-offset-3"
+      >
+        <Avatar name={authorName} id={author.id} src={author.avatarUrl} size={24} />
+        <span>{authorName}</span>
+        {author.verifiedCreator && <TrustedMark size={16} />}
+      </a>
+      {
+        mod.category && (
+          <a
+            href={href(categoryPath(mod.category.slug), locale)}
+            class="inline-flex min-h-6 items-center rounded-full border border-border px-2.5 hover:border-border-strong hover:text-fg"
+          >
+            {taxonomyName(mod.category)}
+          </a>
+        )
+      }
+      {
+        mod.license && (
+          <span class="inline-flex items-center gap-1">
+            <Icon icon={Scale} size={14} className="text-fg-subtle" />
+            <span class="sr-only">{m.mod_fact_license()}:</span>
+            {licenseLabel(mod.license)}
+          </span>
+        )
+      }
+      {
+        mod.latestVersion && (
+          <span class="inline-flex items-center gap-1 font-mono text-xs">
+            <span class="sr-only">{m.mod_fact_version()}:</span>v{mod.latestVersion.version}
+          </span>
+        )
+      }
+      <span class="inline-flex items-center gap-1">
+        <Icon icon={CalendarClock} size={14} className="text-fg-subtle" />
+        {m.mod_fact_updated({ date: formatDate(locale, mod.lastReleasedAt) })}
+      </span>
+    </p>
+
+    {
+      !compact && mod.originalAuthor && (
+        <p class="text-sm text-fg-muted">
+          {mod.originalAuthor.url ? (
+            <a href={mod.originalAuthor.url} rel="ugc nofollow noopener" class="text-link underline underline-offset-3">
+              {m.mod_original_author({ name: mod.originalAuthor.name })}
+            </a>
+          ) : (
+            m.mod_original_author({ name: mod.originalAuthor.name })
+          )}
+        </p>
+      )
+    }
+
+    <dl class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+      <div class="inline-flex items-center gap-1.5">
+        <dt class="text-fg-subtle"><Icon icon={Download} size={16} /><span class="sr-only">{m.mod_stat_downloads()}</span></dt>
+        <dd class="tabular-nums text-fg">
+          <span aria-hidden="true">{formatCompactNumber(locale, mod.downloads)}</span>
+          <span class="sr-only">{formatNumber(locale, mod.downloads)}</span>
+          <span class="text-fg-muted"> {m.mod_stat_downloads_total()}</span>
+        </dd>
+      </div>
+      {
+        mod.downloads7d > 0 && (
+          <div class="inline-flex items-center gap-1.5">
+            <dt class="text-fg-subtle"><Icon icon={TrendingUp} size={16} /><span class="sr-only">{m.mod_stat_this_week()}</span></dt>
+            <dd class="tabular-nums text-fg">
+              {m.mod_stat_this_week_value({ display: formatCompactNumber(locale, mod.downloads7d) })}
+            </dd>
+          </div>
+        )
+      }
+      {
+        summary.showStars && summary.average !== null && (
+          <div class="inline-flex items-center gap-1.5">
+            <dt class="text-featured"><Icon icon={Star} size={16} className="fill-current" /><span class="sr-only">{m.mod_stat_rating()}</span></dt>
+            <dd class="inline-flex items-center gap-1.5 tabular-nums text-fg">
+              <a href={href(reviewsPagePath(mod), locale)} class="inline-flex items-center gap-1.5 hover:underline underline-offset-3">
+                <StarRating value={summary.average} size={14} />
+                {m.mod_stat_rating_value({ rating: formatNumber(locale, summary.average, { maximumFractionDigits: 1, minimumFractionDigits: 1 }), count: summary.count })}
+              </a>
+            </dd>
+          </div>
+        )
+      }
+      <div class="inline-flex items-center gap-1.5">
+        <dt class="text-fg-subtle"><Icon icon={Heart} size={16} /><span class="sr-only">{m.mod_stat_followers()}</span></dt>
+        <dd class="tabular-nums text-fg" data-follow-count-text>
+          {m.common_followers_count({ count: mod.followers })}
+        </dd>
+      </div>
+    </dl>
+
+    <ActionBar mod={mod} versions={versions} loginHref={loginHref} />
+
+    <p class="flex flex-wrap items-center gap-2 text-sm text-fg-muted">
+      <CompatBadge status={mod.compatCurrent.status} build={build} size="sm" />
+      <span>{compatSentence(mod)}</span>
+      <a href={`${overviewHref}#field-report`} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
+        {m.mod_compat_report()}
+      </a>
+    </p>
+
+    {
+      oneLine.length > 0 && (
+        <p class="flex items-center gap-2 rounded-md border border-border bg-raised px-3 py-2 text-sm md:hidden">
+          <span class="min-w-0 flex-1 truncate">{oneLine.join(' · ')}</span>
+          <a href={`${overviewHref}#at-a-glance`} class="inline-flex min-h-11 shrink-0 items-center font-semibold text-link">
+            {m.mod_capsule_see_all()}
+          </a>
+        </p>
+      )
+    }
+  </div>
+</header>

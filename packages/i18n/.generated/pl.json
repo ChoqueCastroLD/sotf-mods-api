@@ -1165,6 +1165,536 @@
       }
     }
   ],
+  "explore_active_author": "Od @{handle}",
+  "explore_active_label": "Aktywne filtry",
+  "explore_active_not": "Bez: {label}",
+  "explore_active_query": "„{query}”",
+  "explore_active_remove": "Usuń filtr: {label}",
+  "explore_any": "Dowolne",
+  "explore_back_to_first": "Wróć do strony 1",
+  "explore_best_building_mods_description": "Mody do budowania w Sons of the Forest: lepsze przyciąganie, nowe elementy, plany i narzędzia do większych baz.",
+  "explore_best_building_mods_heading": "Najlepsze mody do budowania",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Najlepsze mody do budowania w SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Mody działające na serwerach dedykowanych Sons of the Forest: narzędzia administracyjne, ustawienia serwera i poprawki kooperacji.",
+  "explore_best_dedicated_server_mods_heading": "Najlepsze mody na serwery dedykowane",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Najlepsze mody na serwery dedykowane SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "Wspólne biblioteki, od których zależą mody do Sons of the Forest, według pobrań. Zainstaluj je raz, przed modami, które z nich korzystają.",
+  "explore_best_libraries_heading": "Niezbędne biblioteki modów",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Biblioteki modów do SOTF, których potrzebujesz ({count__number})"
+      }
+    }
+  ],
+  "explore_best_mods_description": "Najczęściej pobierane mody do Sons of the Forest w SOTF Mods, ze zgodnością z obecną łatką i bezpośrednim pobieraniem dla RedLoadera.",
+  "explore_best_mods_heading": "Najlepsze mody do Sons of the Forest",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Najlepsze mody do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "Mody do Sons of the Forest działające w kooperacji, z informacją, kto musi je zainstalować: tylko ty, host czy wszyscy.",
+  "explore_best_multiplayer_mods_heading": "Najlepsze mody wieloosobowe",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Najlepsze mody wieloosobowe do SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Mody z udogodnieniami do Sons of the Forest, które gracze instalują najpierw: większe stosy, lepsze menu, mniej obowiązków.",
+  "explore_best_quality_of_life_mods_heading": "Najlepsze mody z udogodnieniami",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Najlepsze mody z udogodnieniami do SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_categories_browse": "Przeglądaj",
+  "explore_categories_builds_heading": "Kategorie buildów",
+  "explore_categories_description": "Wszystkie kategorie modów i buildów do Sons of the Forest w SOTF Mods, z opisem zawartości i liczbą elementów.",
+  "explore_categories_heading": "Kategorie",
+  "explore_categories_mods_heading": "Kategorie modów",
+  "explore_categories_title": "Kategorie modów i buildów do Sons of the Forest",
+  "explore_category_intro_building": "Narzędzia i elementy dla budowniczych: przyciąganie, plany, nowe konstrukcje i więcej sposobów na kształtowanie bazy.",
+  "explore_category_intro_builds_generic": "Buildy do Sons of the Forest z kategorii {category}: plany BuildShare gotowe do postawienia.",
+  "explore_category_intro_companions": "Kelvin, Virginia i inni sojusznicy: sprytniejsze polecenia, nowe zachowania i więcej sposobów na wspólną podróż.",
+  "explore_category_intro_gameplay": "Mody, które zmieniają rozgrywkę: poziom trudności, walkę, wrogów, zasady przetrwania i nowe mechaniki.",
+  "explore_category_intro_generic": "Mody do Sons of the Forest z kategorii {category}, ze zgodnością, ocenami i bezpośrednim pobieraniem.",
+  "explore_category_intro_library": "Wspólny kod, od którego zależą inne mody. Zainstaluj go, gdy mod wymienia go jako wymaganie.",
+  "explore_category_intro_menus_sandbox": "Trainery, menu spawnowania i narzędzia piaskownicy do swobodnych eksperymentów w pojedynkę lub jako host.",
+  "explore_category_intro_misc": "Mody, które nie pasują nigdzie indziej: eksperymenty, narzędzia i pojedyncze pomysły.",
+  "explore_category_intro_model_swap": "Zamień modele w grze na nowe: postacie, stwory, bronie i przedmioty.",
+  "explore_category_intro_multiplayer_servers": "Mody do gry w kooperacji i na serwerach dedykowanych: narzędzia administracyjne, poprawki synchronizacji i zarządzanie graczami.",
+  "explore_category_intro_quality_of_life": "Drobne poprawki i udogodnienia, które ułatwiają codzienne przetrwanie: większe stosy, szybsze wytwarzanie, czytelniejsze menu i mniej obowiązków.",
+  "explore_category_intro_ui_hud": "Mody HUD, mapy, minimapy i menu, które pokazują więcej, a przeszkadzają mniej.",
+  "explore_category_intro_vehicles_movement": "Wózki golfowe, lotnie, zbroje rycerskie i nowe sposoby poruszania się: prędkość, sterowanie i przemieszczanie.",
+  "explore_category_intro_weapons_gear": "Nowe i dopracowane bronie, amunicja, pancerze i wyposażenie do walki i eksploracji wyspy.",
+  "explore_clear_all": "Wyczyść wszystko",
+  "explore_compat_untested": "Jeszcze na niej nietestowane",
+  "explore_compat_works": "Działa na obecnej łatce",
+  "explore_dedicated": "Działa na serwerach dedykowanych",
+  "explore_empty_category_text": "W tej kategorii nie ma jeszcze modów. Przejrzyj wszystkie mody albo opublikuj pierwszy.",
+  "explore_empty_category_title": "Ta część mapy jest jeszcze pusta",
+  "explore_empty_text": "Żaden mod nie spełnia wszystkich tych filtrów. Usuń któryś i spróbuj ponownie.",
+  "explore_empty_title": "Na tym szlaku nic nie ma",
+  "explore_empty_try_removing": "Spróbuj usunąć:",
+  "explore_empty_unfiltered_text": "Nic tu jeszcze nie opublikowano. Zajrzyj wkrótce.",
+  "explore_error_text": "Nie udało się wczytać tej listy. Sprawdź połączenie i spróbuj ponownie.",
+  "explore_error_title": "Brak sygnału",
+  "explore_facet_category": "Kategoria",
+  "explore_facet_compat": "Zgodność",
+  "explore_facet_more": "Więcej",
+  "explore_facet_multiplayer": "Tryb wieloosobowy",
+  "explore_facet_platform": "Platforma",
+  "explore_facet_rating": "Ocena",
+  "explore_facet_tags": "Tagi",
+  "explore_facet_tags_more": "Więcej tagów",
+  "explore_facet_updated": "Aktualizacja",
+  "explore_failed": "Wyniki się nie wczytały. Odświeżamy stronę…",
+  "explore_filter_exclude": "Wyklucz: {label}",
+  "explore_filter_excluded": "wykluczony",
+  "explore_filter_included": "uwzględniony",
+  "explore_filter_search_label": "Filtruj",
+  "explore_filter_search_placeholder": "Nazwa, tag lub autor…",
+  "explore_filter_unexclude": "Przestań wykluczać: {label}",
+  "explore_filters_apply": "Zastosuj filtry",
+  "explore_filters_close": "Zamknij filtry",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Filtry",
+        "count__exact=*, count__plural=one": "Filtry ({count__number})",
+        "count__exact=*, count__plural=few": "Filtry ({count__number})",
+        "count__exact=*, count__plural=many": "Filtry ({count__number})",
+        "count__exact=*, count__plural=*": "Filtry ({count__number})"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak wyników",
+        "count__exact=*, count__plural=one": "Pokaż {count__number} wynik",
+        "count__exact=*, count__plural=few": "Pokaż {count__number} wyniki",
+        "count__exact=*, count__plural=many": "Pokaż {count__number} wyników",
+        "count__exact=*, count__plural=*": "Pokaż {count__number} wyniku"
+      }
+    }
+  ],
+  "explore_filters_title": "Filtry",
+  "explore_has_source": "Z kodem źródłowym",
+  "explore_heading_all": "Przeglądaj wszystko",
+  "explore_heading_builds": "Przeglądaj buildy",
+  "explore_heading_libraries": "Przeglądaj biblioteki",
+  "explore_heading_mods": "Przeglądaj mody",
+  "explore_heading_tag": "Z tagiem „{tag}”",
+  "explore_hub_others": "Więcej przewodników terenowych",
+  "explore_hub_see_all": "Zobacz wszystko w Przeglądaj",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Lista",
+        "count__exact=*, count__plural=one": "Najlepszy wybór",
+        "count__exact=*, count__plural=few": "Najlepsze {count__number}",
+        "count__exact=*, count__plural=many": "Najlepszych {count__number}",
+        "count__exact=*, count__plural=*": "Najlepsze {count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "Zaktualizowano {date}",
+  "explore_loading": "Wczytywanie wyników…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Cała wyspa na jednej liście: {count__number} mod, biblioteka lub build do Sons of the Forest, z filtrami i sortowaniem.",
+        "count__plural=few": "Cała wyspa na jednej liście: {count__number} mody, biblioteki i buildy do Sons of the Forest, z filtrami i sortowaniem.",
+        "count__plural=many": "Cała wyspa na jednej liście: {count__number} modów, bibliotek i buildów do Sons of the Forest, z filtrami i sortowaniem.",
+        "count__plural=*": "Cała wyspa na jednej liście: {count__number} moda, biblioteki i buildu do Sons of the Forest, z filtrami i sortowaniem."
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Wszystkie mody i buildy do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} plan BuildShare do Sons of the Forest: bazy, forty i domki na drzewie od społeczności, gotowe do postawienia.",
+        "count__plural=few": "{count__number} plany BuildShare do Sons of the Forest: bazy, forty i domki na drzewie od społeczności, gotowe do postawienia.",
+        "count__plural=many": "{count__number} planów BuildShare do Sons of the Forest: bazy, forty i domki na drzewie od społeczności, gotowe do postawienia.",
+        "count__plural=*": "{count__number} planu BuildShare do Sons of the Forest: bazy, forty i domki na drzewie od społeczności, gotowe do postawienia."
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Buildy do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Buildy {category} do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mody {category} do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} biblioteka, od której zależą inne mody do Sons of the Forest. Zainstaluj je raz, a każdy mod, który ich potrzebuje, zadziała.",
+        "count__plural=few": "{count__number} biblioteki, od których zależą inne mody do Sons of the Forest. Zainstaluj je raz, a każdy mod, który ich potrzebuje, zadziała.",
+        "count__plural=many": "{count__number} bibliotek, od których zależą inne mody do Sons of the Forest. Zainstaluj je raz, a każdy mod, który ich potrzebuje, zadziała.",
+        "count__plural=*": "{count__number} biblioteki, od których zależą inne mody do Sons of the Forest. Zainstaluj je raz, a każdy mod, który ich potrzebuje, zadziała."
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Biblioteki modów do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Przeglądaj {count__number} mod do Sons of the Forest dla RedLoadera. Filtruj według kategorii, zgodności i trybu wieloosobowego; posortowane według pobrań z tego tygodnia.",
+        "count__plural=few": "Przeglądaj {count__number} mody do Sons of the Forest dla RedLoadera. Filtruj według kategorii, zgodności i trybu wieloosobowego; posortowane według pobrań z tego tygodnia.",
+        "count__plural=many": "Przeglądaj {count__number} modów do Sons of the Forest dla RedLoadera. Filtruj według kategorii, zgodności i trybu wieloosobowego; posortowane według pobrań z tego tygodnia.",
+        "count__plural=*": "Przeglądaj {count__number} moda do Sons of the Forest dla RedLoadera. Filtruj według kategorii, zgodności i trybu wieloosobowego; posortowane według pobrań z tego tygodnia."
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mody do Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input count",
+        "input tag",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod lub build do Sons of the Forest z tagiem „{tag}”, ze zgodnością, ocenami i bezpośrednim pobieraniem.",
+        "count__plural=few": "{count__number} mody i buildy do Sons of the Forest z tagiem „{tag}”, ze zgodnością, ocenami i bezpośrednim pobieraniem.",
+        "count__plural=many": "{count__number} modów i buildów do Sons of the Forest z tagiem „{tag}”, ze zgodnością, ocenami i bezpośrednim pobieraniem.",
+        "count__plural=*": "{count__number} moda lub buildu do Sons of the Forest z tagiem „{tag}”, ze zgodnością, ocenami i bezpośrednim pobieraniem."
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mody do Sons of the Forest z tagiem {tag} ({count__number})"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "Potrzebują go wszyscy",
+  "explore_multiplayer_client_side": "Potrzebujesz go tylko ty",
+  "explore_multiplayer_host_only": "Tylko host",
+  "explore_multiplayer_singleplayer_only": "Tylko dla jednego gracza",
+  "explore_offline": "Jesteś offline. Wyniki na ekranie mogą być nieaktualne.",
+  "explore_order_reverse": "Odwróć kolejność",
+  "explore_past_end_text": "Ta strona jest za ostatnią. Lista mogła się skrócić od czasu udostępnienia linku.",
+  "explore_past_end_title": "Dotarłeś do końca listy",
+  "explore_platform_client": "Klient",
+  "explore_platform_server": "Serwer dedykowany",
+  "explore_platform_universal": "Klient i serwer",
+  "explore_rating_any": "Dowolna ocena",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Od {rating__number}★"
+      }
+    }
+  ],
+  "explore_readout_build_category": "Kategoria buildów",
+  "explore_readout_category": "Kategoria",
+  "explore_readout_explore": "Przeglądaj",
+  "explore_readout_hub": "Przewodnik terenowy",
+  "explore_readout_tag": "Tag",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak wyników",
+        "count__exact=*, count__plural=one": "{count__number} wynik",
+        "count__exact=*, count__plural=few": "{count__number} wyniki",
+        "count__exact=*, count__plural=many": "{count__number} wyników",
+        "count__exact=*, count__plural=*": "{count__number} wyniku"
+      }
+    }
+  ],
+  "explore_results_heading": "Wyniki",
+  "explore_search_browse": "Przeglądaj kategorie",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Brak wyników dla „{query}”",
+        "count__exact=*, count__plural=one": "{count__number} wynik dla „{query}”",
+        "count__exact=*, count__plural=few": "{count__number} wyniki dla „{query}”",
+        "count__exact=*, count__plural=many": "{count__number} wyników dla „{query}”",
+        "count__exact=*, count__plural=*": "{count__number} wyniku dla „{query}”"
+      }
+    }
+  ],
+  "explore_search_description": "Szukaj modów, buildów, zestawów, twórców i poradników do Sons of the Forest w SOTF Mods.",
+  "explore_search_empty_hint": "Sprawdź pisownię, spróbuj mniejszej liczby słów lub ID manifestu moda albo przeglądaj według kategorii.",
+  "explore_search_error_text": "Wyszukiwanie jest teraz niedostępne. Spróbuj ponownie za chwilę.",
+  "explore_search_heading": "Przeszukaj wyspę",
+  "explore_search_heading_query": "Wyniki dla „{query}”",
+  "explore_search_in_explore": "Filtruj te wyniki w Przeglądaj",
+  "explore_search_prompt_text": "Szukaj modów, buildów, zestawów, twórców i poradników po nazwie, autorze lub ID manifestu.",
+  "explore_search_prompt_title": "Czego szukasz?",
+  "explore_search_type_all": "Wszystko",
+  "explore_search_type_pages": "Strony",
+  "explore_search_types_label": "Rodzaj wyniku",
+  "explore_sort_comments": "Najczęściej komentowane",
+  "explore_sort_downloads": "Najczęściej pobierane",
+  "explore_sort_follows": "Najczęściej obserwowane",
+  "explore_sort_label": "Sortuj:",
+  "explore_sort_new": "Najnowsze",
+  "explore_sort_rating": "Najlepiej oceniane",
+  "explore_sort_relevance": "Najtrafniejsze",
+  "explore_sort_reversed": "{sort} (odwrotnie)",
+  "explore_sort_trending": "Na topie",
+  "explore_sort_updated": "Ostatnio aktualizowane",
+  "explore_tab_all": "Wszystko",
+  "explore_tabs_label": "Co pokazać",
+  "explore_tag_group_audio": "Dźwięk",
+  "explore_tag_group_building": "Budowanie",
+  "explore_tag_group_gameplay": "Rozgrywka",
+  "explore_tag_group_players": "Gracze",
+  "explore_tag_group_survival": "Przetrwanie",
+  "explore_tag_group_tech": "Technika",
+  "explore_tag_group_ui": "Interfejs",
+  "explore_tag_group_visuals": "Grafika",
+  "explore_tag_group_world": "Świat",
+  "explore_tags_description": "Znajdź mody do Sons of the Forest według tego, co zmieniają: ekwipunek, narzędzia budowania, wrogów, grafikę i nie tylko.",
+  "explore_tags_heading": "Tagi",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Jeszcze {count__number} tag",
+        "count__plural=few": "Jeszcze {count__number} tagi",
+        "count__plural=many": "Jeszcze {count__number} tagów",
+        "count__plural=*": "Jeszcze {count__number} tagu"
+      }
+    }
+  ],
+  "explore_tags_other_group": "Inne",
+  "explore_tags_title": "Tagi modów do Sons of the Forest",
+  "explore_updated_1y": "Ostatnie 12 miesięcy",
+  "explore_updated_30d": "Ostatnie 30 dni",
+  "explore_updated_90d": "Ostatnie 90 dni",
+  "explore_updated_any": "Kiedykolwiek",
+  "explore_verified": "Tylko zweryfikowani twórcy",
+  "explore_view_compact": "Kompaktowy",
+  "explore_view_grid": "Siatka",
+  "explore_view_label": "Widok",
+  "explore_view_list": "Lista",
   "landing_blueprints_all": "Wszystkie buildy",
   "landing_blueprints_hint": "Świeże buildy od społeczności",
   "landing_creators_all": "Wszyscy twórcy",
@@ -1383,6 +1913,542 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "Zestaw",
+  "mod_action_install": "Instaluj",
+  "mod_action_report": "Zgłoś",
+  "mod_banner_archived_action": "Przejdź do następcy",
+  "mod_banner_archived_successor": "Twórca już nie rozwija tego moda i poleca zamiast niego {name}.",
+  "mod_banner_archived_text": "Twórca już nie rozwija tego moda. Może nie działać z obecną łatką.",
+  "mod_banner_archived_title": "Zarchiwizowany.",
+  "mod_banner_broken_action": "Dodaj swój raport z terenu",
+  "mod_banner_broken_text": "Ocaleni zgłaszają, że ten mod nie działa z obecną wersją gry.",
+  "mod_banner_broken_title": "Nie działa z obecną łatką.",
+  "mod_banner_nsfw_text": "Ten mod zawiera treści dla dorosłych.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "Testowałeś? Daj znać",
+  "mod_banner_outdated_text": "Nie był aktualizowany ani potwierdzony od ostatniej łatki, która psuła mody.",
+  "mod_banner_outdated_title": "Możliwie nieaktualny.",
+  "mod_banner_pending_text": "Ranger sprawdza ten mod. Nie ma go jeszcze na listach i może się zmienić.",
+  "mod_banner_pending_title": "W weryfikacji.",
+  "mod_banner_unlisted_text": "Ten mod znajdą tylko osoby z linkiem.",
+  "mod_banner_unlisted_title": "Niepubliczny.",
+  "mod_banners_label": "Stan moda",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "Zobacz wszystko",
+  "mod_changelog_title": "Lista zmian",
+  "mod_comments_empty": "Brak komentarzy. Pytania, porady i błędy zgłaszaj tutaj.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Jeszcze {count__number} odpowiedź",
+        "count__plural=few": "Jeszcze {count__number} odpowiedzi",
+        "count__plural=many": "Jeszcze {count__number} odpowiedzi",
+        "count__plural=*": "Jeszcze {count__number} odpowiedzi"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Zaloguj się, aby skomentować",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Komentarze",
+        "count__exact=*, count__plural=one": "{count__number} komentarz",
+        "count__exact=*, count__plural=few": "{count__number} komentarze",
+        "count__exact=*, count__plural=many": "{count__number} komentarzy",
+        "count__exact=*, count__plural=*": "{count__number} komentarzy"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "Nie udało się wczytać komentarzy. Odśwież stronę, aby spróbować ponownie.",
+  "mod_compat_author_tested": "Przetestowane przez twórcę na {build}.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mieszane raporty na {build}: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "Czy v{version} działała w twojej grze?",
+  "mod_compat_prompt_action": "Zgłoś",
+  "mod_compat_report": "Zgłoś",
+  "mod_copy_hash": "Kopiuj SHA-256",
+  "mod_cover_alt": "Okładka {name}",
+  "mod_creator_follow": "Obserwuj twórcę",
+  "mod_creator_following": "Obserwujesz twórcę",
+  "mod_creator_title": "Twórca",
+  "mod_dependencies_title": "Zależności",
+  "mod_dependency_archived": "Zarchiwizowane przez twórcę",
+  "mod_dependency_removed": "Usunięte ze strony",
+  "mod_dependency_unavailable": "Niedostępne na stronie",
+  "mod_deps_already_have": "Już je mam",
+  "mod_deps_download_all": "Pobierz wszystko",
+  "mod_deps_progress": "Pobieranie {current} z {total}…",
+  "mod_deps_sheet_text": "{name} nie działa bez tych modów. Pobierz je też albo kontynuuj, jeśli już je masz.",
+  "mod_deps_sheet_title": "Potrzebujesz też {names}",
+  "mod_description_empty": "Twórca nie napisał jeszcze opisu.",
+  "mod_download_done_label": "Pobrano ✓",
+  "mod_download_unavailable": "Obecnie nie ma pliku do pobrania.",
+  "mod_fact_game_version": "Deklarowana wersja gry",
+  "mod_fact_license": "Licencja",
+  "mod_fact_loader_version": "Deklarowany RedLoader",
+  "mod_fact_platform": "Platforma",
+  "mod_fact_published": "Opublikowano",
+  "mod_fact_size": "Rozmiar pliku",
+  "mod_fact_source": "Kod źródłowy",
+  "mod_fact_tested_builds": "Testowano na",
+  "mod_fact_updated": "Zaktualizowano {date}",
+  "mod_fact_updated_label": "Zaktualizowano",
+  "mod_fact_version": "Wersja",
+  "mod_field_report_sign_in": "Zaloguj się, aby dodać raport z terenu",
+  "mod_field_report_text": "Raport z terenu zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.",
+  "mod_field_report_title": "Czy działało w twojej grze?",
+  "mod_file_name": "Plik",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input index",
+        "input name",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Zrzut ekranu {index__number} z {name}"
+      }
+    }
+  ],
+  "mod_gallery_label": "Galeria {name}",
+  "mod_gallery_next": "Następny obraz",
+  "mod_gallery_previous": "Poprzedni obraz",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} z {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "W skrócie",
+  "mod_in_kits_browse": "Przeglądaj zestawy",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "W {count__number} zestawie",
+        "count__plural=few": "W {count__number} zestawach",
+        "count__plural=many": "W {count__number} zestawach",
+        "count__plural=*": "W {count__number} zestawach"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Nie używaj razem z:",
+  "mod_install_full_guide": "Pełny poradnik instalacji",
+  "mod_install_intro": "Pięć minut, bez menedżera. Te kroki dotyczą {name}.",
+  "mod_install_manager_tip": "Wolisz jedno kliknięcie? RedManager zainstaluje i zaktualizuje mody oraz ich zależności za ciebie.",
+  "mod_install_multiplayer": "Tryb wieloosobowy: {role}.",
+  "mod_install_redloader_not_bepinex": "Ten mod wymaga RedLoadera, nie BepInEx. Mody i poradniki do BepInEx nie dotyczą Sons of the Forest.",
+  "mod_install_step_dependencies_title": "Najpierw zainstaluj zależności",
+  "mod_install_step_download": "Pobierz {name}",
+  "mod_install_step_download_version": "Pobierz {name} v{version}",
+  "mod_install_step_extract_client": "Na komputerze rozpakuj go do folderu Mods gry:",
+  "mod_install_step_extract_note": "Zachowaj strukturę folderów z ZIP-a. Nie wrzucaj samego ZIP-a do folderu.",
+  "mod_install_step_extract_server": "Na serwerze dedykowanym rozpakuj go do folderu Mods serwera:",
+  "mod_install_step_extract_title": "Rozpakuj ZIP do folderu Mods",
+  "mod_install_step_launch_text": "RedLoader wczytuje mod przy starcie. Naciśnij F1 w menu głównym, aby zobaczyć listę modów.",
+  "mod_install_step_launch_title": "Uruchom grę",
+  "mod_install_step_loader_link": "Jak zainstalować RedLoader",
+  "mod_install_step_loader_text": "RedLoader to loader modów do Sons of the Forest. Instalujesz go raz i działa każdy mod.",
+  "mod_install_step_loader_title": "Zainstaluj RedLoader",
+  "mod_install_step_loader_version": "Użyj RedLoadera {version} lub nowszego.",
+  "mod_install_title": "Jak zainstalować ten mod",
+  "mod_kind_library": "Biblioteka",
+  "mod_license_all_rights_reserved": "Wszelkie prawa zastrzeżone",
+  "mod_license_other": "Własna licencja",
+  "mod_license_reupload_with_credit": "Ponowne udostępnienie z podaniem autora",
+  "mod_link_website": "Strona",
+  "mod_md_alert_caution": "Ostrożnie",
+  "mod_md_alert_important": "Ważne",
+  "mod_md_alert_note": "Uwaga",
+  "mod_md_alert_tip": "Wskazówka",
+  "mod_md_alert_warning": "Ostrzeżenie",
+  "mod_md_spoiler": "Spoiler",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobranie, za darmo i bezpośrednio.",
+        "kind=library, count__plural=few": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania, za darmo i bezpośrednio.",
+        "kind=library, count__plural=many": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrań, za darmo i bezpośrednio.",
+        "kind=library, count__plural=*": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania, za darmo i bezpośrednio.",
+        "kind=*, count__plural=one": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobranie, za darmo i bezpośrednio.",
+        "kind=*, count__plural=few": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania, za darmo i bezpośrednio.",
+        "kind=*, count__plural=many": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrań, za darmo i bezpośrednio.",
+        "kind=*, count__plural=*": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania, za darmo i bezpośrednio."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — biblioteka do Sons of the Forest od {author}",
+        "kind=*": "{name} — mod do Sons of the Forest od {author}"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — biblioteka do Sons of the Forest",
+        "kind=*": "{name} — mod do Sons of the Forest"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Potrzebujesz go tylko ty",
+  "mod_nsfw_confirm": "Mam co najmniej 18 lat, pokaż",
+  "mod_nsfw_leave": "Wróć do przeglądania",
+  "mod_nsfw_settings": "Zawsze pokazuj treści 18+ (ustawienia)",
+  "mod_nsfw_text": "Ten mod jest oznaczony jako 18+. Potwierdź, że jesteś pełnoletni, aby go zobaczyć.",
+  "mod_nsfw_title": "Treści dla dorosłych",
+  "mod_og_alt": "{name} w SOTF Mods",
+  "mod_original_author": "Pierwotny autor: {name}",
+  "mod_other_versions": "Inne wersje",
+  "mod_platform_client": "Klient",
+  "mod_platform_server": "Serwer dedykowany",
+  "mod_platform_universal": "Klient i serwer",
+  "mod_related_title": "Podobne mody",
+  "mod_report_choose_reason": "Wybierz powód.",
+  "mod_report_details_hint": "Linki, wersje lub cokolwiek, co pomoże rangerom. Do 2000 znaków.",
+  "mod_report_details_label": "Szczegóły (opcjonalnie)",
+  "mod_report_duplicate": "Ten mod został już przez ciebie zgłoszony. Rangerzy się tym zajmują.",
+  "mod_report_intro": "Powiedz rangerom, co jest nie tak. Zgłoszenia są prywatne.",
+  "mod_report_reason_broken": "Uszkodzony lub fałszywy plik",
+  "mod_report_reason_harassment": "Nękanie lub nienawiść",
+  "mod_report_reason_illegal": "Nielegalne treści",
+  "mod_report_reason_label": "Powód",
+  "mod_report_reason_malware": "Złośliwe oprogramowanie lub podejrzany plik",
+  "mod_report_reason_nsfw_unmarked": "Treści dla dorosłych bez oznaczenia 18+",
+  "mod_report_reason_other": "Coś innego",
+  "mod_report_reason_reupload": "Ponowne wrzucenie cudzej pracy",
+  "mod_report_reason_spam": "Spam lub reklama",
+  "mod_report_sent": "Dzięki. Rangerzy to sprawdzą.",
+  "mod_report_sign_in": "Zaloguj się, aby zgłosić mod. Dzięki temu zgłoszenia są uczciwe.",
+  "mod_report_submit": "Wyślij zgłoszenie",
+  "mod_report_title": "Zgłoś {name}",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "I jeszcze {count__number}"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Wymagany przez {count__number} mod",
+        "count__plural=few": "Wymagany przez {count__number} mody",
+        "count__plural=many": "Wymagany przez {count__number} modów",
+        "count__plural=*": "Wymagany przez {count__number} modów"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Przeczytaj recenzję",
+        "count__plural=few": "Przeczytaj wszystkie {count__number} recenzje",
+        "count__plural=many": "Przeczytaj wszystkie {count__number} recenzji",
+        "count__plural=*": "Przeczytaj wszystkie {count__number} recenzji"
+      }
+    }
+  ],
+  "mod_reviews_empty": "Brak recenzji. Pobrałeś? Opowiedz jako pierwszy, jak poszło.",
+  "mod_reviews_end": "To wszystkie recenzje.",
+  "mod_reviews_first_page": "Wróć do pierwszej strony",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Recenzje graczy moda {name} do Sons of the Forest: {count__number} recenzja z ocenami, zweryfikowanymi pobraniami i odpowiedziami twórcy.",
+        "count__plural=few": "Recenzje graczy moda {name} do Sons of the Forest: {count__number} recenzje z ocenami, zweryfikowanymi pobraniami i odpowiedziami twórcy.",
+        "count__plural=many": "Recenzje graczy moda {name} do Sons of the Forest: {count__number} recenzji z ocenami, zweryfikowanymi pobraniami i odpowiedziami twórcy.",
+        "count__plural=*": "Recenzje graczy moda {name} do Sons of the Forest: {count__number} recenzji z ocenami, zweryfikowanymi pobraniami i odpowiedziami twórcy."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "Więcej recenzji",
+  "mod_reviews_rules": "Jedna recenzja na ocalałego. Konkretnie: wersja, co działało, a co nie.",
+  "mod_reviews_sort_critical": "Krytyczne",
+  "mod_reviews_sort_helpful": "Najbardziej pomocne",
+  "mod_reviews_sort_label": "Sortuj recenzje",
+  "mod_reviews_sort_new": "Najnowsze",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Recenzje",
+        "count__exact=*, count__plural=one": "{count__number} recenzja",
+        "count__exact=*, count__plural=few": "{count__number} recenzje",
+        "count__exact=*, count__plural=many": "{count__number} recenzji",
+        "count__exact=*, count__plural=*": "{count__number} recenzji"
+      }
+    }
+  ],
+  "mod_reviews_write": "Napisz recenzję",
+  "mod_scan_clean": "Nie znaleziono zagrożeń",
+  "mod_scan_date": "Przeskanowano {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input positives",
+        "input total",
+        "input engine",
+        "local positives__number = positives: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Plik oznaczyło {positives__number} z {total__number} silników {engine}."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Oznaczony przez niektóre silniki, zatwierdzony przez rangera",
+  "mod_scan_malicious": "Złośliwy: nie instaluj",
+  "mod_scan_none": "Ten plik nie ma jeszcze raportu bezpieczeństwa.",
+  "mod_scan_pending": "Trwa skanowanie",
+  "mod_scan_report": "Pełny raport",
+  "mod_scan_suspicious": "Podejrzany: ranger go sprawdza",
+  "mod_scan_title": "Skan bezpieczeństwa",
+  "mod_scan_unknown": "Jeszcze nie przeskanowano",
+  "mod_share_link_label": "Link",
+  "mod_share_markdown_label": "Markdown dla Discorda",
+  "mod_share_more": "Więcej…",
+  "mod_share_on": "Udostępnij na {network}",
+  "mod_share_qr": "Kod QR",
+  "mod_share_qr_alt": "Kod QR linku do {name}",
+  "mod_share_qr_hint": "Zeskanuj go telefonem, aby otworzyć stronę.",
+  "mod_share_text": "{name} do Sons of the Forest",
+  "mod_share_title": "Udostępnij ten mod",
+  "mod_sidebar_label": "O tym modzie",
+  "mod_stat_downloads": "Pobrania",
+  "mod_stat_downloads_total": "łącznie",
+  "mod_stat_followers": "Obserwujący",
+  "mod_stat_rating": "Ocena",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} recenzja)",
+        "count__plural=few": "{rating} ({count__number} recenzje)",
+        "count__plural=many": "{rating} ({count__number} recenzji)",
+        "count__plural=*": "{rating} ({count__number} recenzji)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Pobrania w tym tygodniu",
+  "mod_stat_this_week_value": "{display} w tym tygodniu",
+  "mod_support_title": "Wesprzyj twórcę",
+  "mod_tab_comments": "Komentarze",
+  "mod_tab_overview": "Przegląd",
+  "mod_tab_reviews": "Recenzje",
+  "mod_tab_versions": "Wersje",
+  "mod_tabs_label": "Sekcje moda",
+  "mod_tags_label": "Tagi",
+  "mod_toast_copy_failed": "Nie udało się skopiować. Zaznacz tekst i skopiuj go ręcznie.",
+  "mod_toast_error": "Nie udało się. Spróbuj ponownie za chwilę.",
+  "mod_toast_followed": "{name} jest w twoim plecaku. Dowiesz się o aktualizacjach.",
+  "mod_toast_followed_creator": "Obserwujesz {name}.",
+  "mod_toast_rate_limited": "Za dużo prób. Odczekaj minutę i spróbuj ponownie.",
+  "mod_toast_sign_in": "Sesja wygasła. Zaloguj się ponownie.",
+  "mod_toast_unfollowed": "{name} nie jest już w twoim plecaku.",
+  "mod_toast_unfollowed_creator": "Nie obserwujesz już {name}.",
+  "mod_toast_verify_email": "Najpierw potwierdź adres e-mail. Sprawdź skrzynkę.",
+  "mod_value_not_declared": "Nie podano",
+  "mod_version_beta": "Beta",
+  "mod_version_latest": "Najnowsza",
+  "mod_version_meta_description": "{name} v{version} do Sons of the Forest, wydana {date}: lista zmian, rozmiar, SHA-256, skan bezpieczeństwa i kompatybilność.",
+  "mod_version_no_changelog": "Brak listy zmian dla tej wersji.",
+  "mod_version_not_downloadable": "Tej wersji nie można pobrać.",
+  "mod_version_yanked": "Wycofana",
+  "mod_version_yanked_reason": "Wycofana przez twórcę: {reason}",
+  "mod_version_yanked_text": "Twórca wycofał tę wersję. Użyj nowszej.",
+  "mod_versions_all": "Wszystkie wersje",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} wersja",
+        "count__plural=few": "Wszystkie {count__number} wersje",
+        "count__plural=many": "Wszystkie {count__number} wersji",
+        "count__plural=*": "Wszystkie {count__number} wersji"
+      }
+    }
+  ],
+  "mod_versions_caption": "Wersje {name}",
+  "mod_versions_empty": "Nie opublikowano jeszcze żadnej wersji.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} wersja {name} do Sons of the Forest z listami zmian, rozmiarami plików i kompatybilnością. Najnowsza: v{version}.",
+        "count__plural=few": "{count__number} wersje {name} do Sons of the Forest z listami zmian, rozmiarami plików i kompatybilnością. Najnowsza: v{version}.",
+        "count__plural=many": "{count__number} wersji {name} do Sons of the Forest z listami zmian, rozmiarami plików i kompatybilnością. Najnowsza: v{version}.",
+        "count__plural=*": "{count__number} wersji {name} do Sons of the Forest z listami zmian, rozmiarami plików i kompatybilnością. Najnowsza: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} wersja",
+        "count__plural=few": "{count__number} wersje",
+        "count__plural=many": "{count__number} wersji",
+        "count__plural=*": "{count__number} wersji"
+      }
+    }
+  ],
+  "mod_video_embed_title": "Film w YouTube",
+  "mod_video_play": "Odtwórz zwiastun {name}",
+  "mod_video_title": "Zwiastun {name}",
+  "mod_whats_new_badge": "Nowe dla ciebie",
+  "mod_whats_new_read": "Przeczytaj notatki z terenu",
+  "mod_whats_new_title": "Co nowego od twojego ostatniego pobrania (v{version})",
+  "mod_whats_new_up_to_date": "Masz najnowszą wersję (v{version}).",
   "ui_breadcrumbs": "Ścieżka nawigacji",
   "ui_cancel": "Anuluj",
   "ui_choose": "Wybierz…",

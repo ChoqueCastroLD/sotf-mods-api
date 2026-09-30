@@ -1,0 +1,109 @@
+---
+/**
+ * «You also need X, Y» (T0-09): shown by `scripts/mod/download.ts` when a download of a mod with
+ * required dependencies starts. «Download all» follows each dependency's download route one by
+ * one (every file counts) and then the mod; «I already have them» continues with the mod only and
+ * is remembered for this mod. Dependencies that are not on the site, archived or removed are
+ * listed with their state (icon + text).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Archive, CircleAlert, Download, Info } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { latestDownloadPath } from './format.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+const locale = Astro.locals.locale;
+const required = mod.dependencies.filter((dependency) => dependency.kind === 'required');
+const names = required.map((dependency) => dependency.mod?.name ?? dependency.manifestId);
+---
+
+{
+  required.length > 0 && (
+    <ModDialog
+      id="dependency-sheet"
+      title={m.mod_deps_sheet_title({ names: names.join(', ') })}
+      description={m.mod_deps_sheet_text({ name: mod.name })}
+    >
+      <ul class="grid gap-2">
+        {required.map((dependency) => {
+          const target = dependency.mod;
+          const available = dependency.state === 'ok' || dependency.state === 'unlisted';
+          return (
+            <li
+              class:list={[
+                'flex flex-wrap items-center gap-3 rounded-md border p-3',
+                available ? 'border-border bg-raised' : 'border-warning/40 bg-warning-soft',
+              ]}
+            >
+              <span class="grid min-w-0 flex-1 gap-0.5">
+                {target ? (
+                  <a href={href(target.canonicalPath, locale)} class="truncate font-semibold text-fg hover:underline underline-offset-3">
+                    {target.name}
+                  </a>
+                ) : (
+                  <span class="truncate font-mono text-sm">{dependency.manifestId}</span>
+                )}
+                {dependency.versionRange && <span class="font-mono text-xs text-fg-muted">{dependency.versionRange}</span>}
+                {dependency.state === 'missing' && (
+                  <span class="inline-flex items-center gap-1 text-xs text-fg-muted">
+                    <Icon icon={Info} size={14} />
+                    {m.mod_dependency_unavailable()}
+                  </span>
+                )}
+                {dependency.state === 'archived' && (
+                  <span class="inline-flex items-center gap-1 text-xs text-fg-muted">
+                    <Icon icon={Archive} size={14} />
+                    {m.mod_dependency_archived()}
+                  </span>
+                )}
+                {dependency.state === 'removed' && (
+                  <span class="inline-flex items-center gap-1 text-xs text-danger">
+                    <Icon icon={CircleAlert} size={14} />
+                    {m.mod_dependency_removed()}
+                  </span>
+                )}
+              </span>
+              {target && (dependency.state === 'ok' || dependency.state === 'unlisted' || dependency.state === 'archived') && (
+                <a
+                  href={latestDownloadPath(target.userHandle, target.slug)}
+                  rel="nofollow"
+                  data-dependency-download={target.id}
+                  class="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm font-semibold hover:bg-fg/6"
+                >
+                  <Icon icon={Download} size={16} />
+                  {m.common_action_download()}
+                  <span class="sr-only">{target.name}</span>
+                </a>
+              )}
+            </li>
+          );
+        })}
+      </ul>
+      <p class="text-sm text-fg-muted" role="status" aria-live="polite" data-deps-progress></p>
+      <div class="flex flex-wrap gap-2">
+        <button
+          type="button"
+          data-deps-download-all
+          class="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover"
+        >
+          <Icon icon={Download} size={18} />
+          {m.mod_deps_download_all()}
+        </button>
+        <button
+          type="button"
+          data-deps-skip
+          class="inline-flex h-11 items-center rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6"
+        >
+          {m.mod_deps_already_have()}
+        </button>
+      </div>
+    </ModDialog>
+  )
+}

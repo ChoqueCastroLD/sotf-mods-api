@@ -1105,6 +1105,514 @@
       }
     }
   ],
+  "explore_active_author": "Van @{handle}",
+  "explore_active_label": "Actieve filters",
+  "explore_active_not": "Zonder {label}",
+  "explore_active_query": "‘{query}’",
+  "explore_active_remove": "Filter verwijderen: {label}",
+  "explore_any": "Maakt niet uit",
+  "explore_back_to_first": "Terug naar pagina 1",
+  "explore_best_building_mods_description": "Bouwmods voor Sons of the Forest: beter vastklikken, nieuwe onderdelen, bouwtekeningen en gereedschap voor grotere bases.",
+  "explore_best_building_mods_heading": "De beste bouwmods",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Beste SOTF-bouwmods ({count__number})"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Mods die op dedicated servers van Sons of the Forest draaien: beheergereedschap, serveraanpassingen en co-opfixes.",
+  "explore_best_dedicated_server_mods_heading": "De beste mods voor dedicated servers",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Beste SOTF-mods voor dedicated servers ({count__number})"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "De gedeelde bibliotheken waar Sons of the Forest-mods op leunen, op downloads. Eén keer installeren, vóór de mods die ze gebruiken.",
+  "explore_best_libraries_heading": "Onmisbare modbibliotheken",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF-modbibliotheken die je nodig hebt ({count__number})"
+      }
+    }
+  ],
+  "explore_best_mods_description": "De meest gedownloade Sons of the Forest-mods op SOTF Mods, met compatibiliteit op de huidige patch en directe downloads voor RedLoader.",
+  "explore_best_mods_heading": "De beste Sons of the Forest-mods",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Beste Sons of the Forest-mods ({count__number})"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "Sons of the Forest-mods die in co-op werken, met wie ze moet installeren: alleen jij, de host of iedereen.",
+  "explore_best_multiplayer_mods_heading": "De beste multiplayer-mods",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Beste SOTF-multiplayermods ({count__number})"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Gebruiksgemak-mods voor Sons of the Forest die overlevers als eerste installeren: grotere stapels, betere menu’s, minder klusjes.",
+  "explore_best_quality_of_life_mods_heading": "De beste gebruiksgemak-mods",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Beste SOTF-mods voor gebruiksgemak ({count__number})"
+      }
+    }
+  ],
+  "explore_categories_browse": "Bekijken",
+  "explore_categories_builds_heading": "Buildcategorieën",
+  "explore_categories_description": "Alle categorieën van Sons of the Forest-mods en -builds op SOTF Mods, met wat elke categorie omvat en hoeveel items erin zitten.",
+  "explore_categories_heading": "Categorieën",
+  "explore_categories_mods_heading": "Modcategorieën",
+  "explore_categories_title": "Categorieën voor Sons of the Forest-mods en -builds",
+  "explore_category_intro_building": "Gereedschap en onderdelen voor bouwers: vastklikken, bouwtekeningen, nieuwe constructies en meer manieren om je basis vorm te geven.",
+  "explore_category_intro_builds_generic": "Sons of the Forest-builds in de categorie {category}: BuildShare-bouwtekeningen, klaar om te plaatsen.",
+  "explore_category_intro_companions": "Kelvin, Virginia en andere bondgenoten: slimmere commando’s, nieuw gedrag en meer manieren om samen te reizen.",
+  "explore_category_intro_gameplay": "Mods die veranderen hoe het spel speelt: moeilijkheid, gevechten, vijanden, overlevingsregels en nieuwe mechanieken.",
+  "explore_category_intro_generic": "Sons of the Forest-mods in de categorie {category}, met compatibiliteit, beoordelingen en directe download.",
+  "explore_category_intro_library": "Gedeelde code waar andere mods op leunen. Installeer ze wanneer een mod ze als vereiste noemt.",
+  "explore_category_intro_menus_sandbox": "Trainers, spawnmenu’s en sandboxgereedschap om vrij te experimenteren in singleplayer of als host.",
+  "explore_category_intro_misc": "Mods die nergens anders passen: experimenten, hulpmiddelen en losse ideeën.",
+  "explore_category_intro_model_swap": "Vervang modellen in het spel door nieuwe: personages, wezens, wapens en objecten.",
+  "explore_category_intro_multiplayer_servers": "Mods voor co-op en dedicated servers: beheergereedschap, synchronisatiefixes en spelersbeheer.",
+  "explore_category_intro_quality_of_life": "Kleine verbeteringen en gemakken die het dagelijkse overleven soepeler maken: grotere stapels, sneller craften, overzichtelijkere menu’s en minder klusjes.",
+  "explore_category_intro_ui_hud": "Mods voor HUD, kaart, minikaart en menu’s die je meer laten zien en minder in de weg zitten.",
+  "explore_category_intro_vehicles_movement": "Golfkarretjes, zweefvliegers, ridderpakken en nieuwe manieren om je te verplaatsen: snelheid, besturing en bewegen.",
+  "explore_category_intro_weapons_gear": "Nieuwe en bijgestelde wapens, munitie, bepantsering en uitrusting om te vechten en het eiland te verkennen.",
+  "explore_clear_all": "Alles wissen",
+  "explore_compat_untested": "Daar nog niet op getest",
+  "explore_compat_works": "Werkt op de huidige patch",
+  "explore_dedicated": "Werkt op dedicated servers",
+  "explore_empty_category_text": "Nog geen mods in deze categorie. Bekijk alle mods of publiceer als eerste een mod.",
+  "explore_empty_category_title": "Dit deel van de kaart is nog leeg",
+  "explore_empty_text": "Geen enkele mod voldoet aan al deze filters. Haal er een weg en probeer het opnieuw.",
+  "explore_empty_title": "Niets op dit pad",
+  "explore_empty_try_removing": "Probeer dit weg te halen:",
+  "explore_empty_unfiltered_text": "Hier is nog niets gepubliceerd. Kom snel terug.",
+  "explore_error_text": "We konden deze lijst niet laden. Controleer je verbinding en probeer het opnieuw.",
+  "explore_error_title": "Geen signaal",
+  "explore_facet_category": "Categorie",
+  "explore_facet_compat": "Compatibiliteit",
+  "explore_facet_more": "Meer",
+  "explore_facet_multiplayer": "Multiplayer",
+  "explore_facet_platform": "Platform",
+  "explore_facet_rating": "Beoordeling",
+  "explore_facet_tags": "Tags",
+  "explore_facet_tags_more": "Meer tags",
+  "explore_facet_updated": "Bijgewerkt",
+  "explore_failed": "De resultaten zijn niet geladen. De pagina wordt herladen…",
+  "explore_filter_exclude": "{label} uitsluiten",
+  "explore_filter_excluded": "uitgesloten",
+  "explore_filter_included": "inbegrepen",
+  "explore_filter_search_label": "Filteren",
+  "explore_filter_search_placeholder": "Naam, tag of maker…",
+  "explore_filter_unexclude": "{label} niet meer uitsluiten",
+  "explore_filters_apply": "Filters toepassen",
+  "explore_filters_close": "Filters sluiten",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Filters",
+        "count__exact=*, count__plural=one": "Filters ({count__number})",
+        "count__exact=*, count__plural=*": "Filters ({count__number})"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Geen resultaten",
+        "count__exact=*, count__plural=one": "{count__number} resultaat tonen",
+        "count__exact=*, count__plural=*": "{count__number} resultaten tonen"
+      }
+    }
+  ],
+  "explore_filters_title": "Filters",
+  "explore_has_source": "Met broncode",
+  "explore_heading_all": "Alles verkennen",
+  "explore_heading_builds": "Builds verkennen",
+  "explore_heading_libraries": "Bibliotheken verkennen",
+  "explore_heading_mods": "Mods verkennen",
+  "explore_heading_tag": "Met tag ‘{tag}’",
+  "explore_hub_others": "Meer veldgidsen",
+  "explore_hub_see_all": "Alles bekijken in Verkennen",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "De lijst",
+        "count__exact=*, count__plural=one": "De topkeuze",
+        "count__exact=*, count__plural=*": "De top {count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "Bijgewerkt op {date}",
+  "explore_loading": "Resultaten laden…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Het hele eiland in één lijst: {count__number} mod, bibliotheek of build voor Sons of the Forest, te filteren en te sorteren.",
+        "count__plural=*": "Het hele eiland in één lijst: {count__number} mods, bibliotheken en builds voor Sons of the Forest, te filteren en te sorteren."
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Alle Sons of the Forest-mods en -builds ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} BuildShare-bouwtekening voor Sons of the Forest: bases, forten en boomhutten uit de community, klaar om te plaatsen.",
+        "count__plural=*": "{count__number} BuildShare-bouwtekeningen voor Sons of the Forest: bases, forten en boomhutten uit de community, klaar om te plaatsen."
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest-builds ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest-builds: {category} ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest-mods: {category} ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bibliotheek waar andere Sons of the Forest-mods op leunen. Eén keer installeren en elke mod die ze nodig heeft, werkt.",
+        "count__plural=*": "{count__number} bibliotheken waar andere Sons of the Forest-mods op leunen. Eén keer installeren en elke mod die ze nodig heeft, werkt."
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest-modbibliotheken ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Blader door {count__number} Sons of the Forest-mod voor RedLoader. Filter op categorie, compatibiliteit en multiplayer; gesorteerd op de downloads van deze week.",
+        "count__plural=*": "Blader door {count__number} Sons of the Forest-mods voor RedLoader. Filter op categorie, compatibiliteit en multiplayer; gesorteerd op de downloads van deze week."
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest-mods ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input count",
+        "input tag",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} Sons of the Forest-mod of -build met de tag ‘{tag}’, met compatibiliteit, beoordelingen en directe download.",
+        "count__plural=*": "{count__number} Sons of the Forest-mods en -builds met de tag ‘{tag}’, met compatibiliteit, beoordelingen en directe download."
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest-mods met tag {tag} ({count__number})"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "Iedereen heeft hem nodig",
+  "explore_multiplayer_client_side": "Alleen jij hebt hem nodig",
+  "explore_multiplayer_host_only": "Alleen de host",
+  "explore_multiplayer_singleplayer_only": "Alleen singleplayer",
+  "explore_offline": "Je bent offline. De resultaten op je scherm zijn mogelijk verouderd.",
+  "explore_order_reverse": "Volgorde omkeren",
+  "explore_past_end_text": "Deze pagina ligt voorbij de laatste. De lijst is misschien korter geworden sinds de link werd gedeeld.",
+  "explore_past_end_title": "Je bent aan het einde van de lijst",
+  "explore_platform_client": "Client",
+  "explore_platform_server": "Dedicated server",
+  "explore_platform_universal": "Client en server",
+  "explore_rating_any": "Elke beoordeling",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating__number}★ en hoger"
+      }
+    }
+  ],
+  "explore_readout_build_category": "Buildcategorie",
+  "explore_readout_category": "Categorie",
+  "explore_readout_explore": "Verkennen",
+  "explore_readout_hub": "Veldgids",
+  "explore_readout_tag": "Tag",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Geen resultaten",
+        "count__exact=*, count__plural=one": "{count__number} resultaat",
+        "count__exact=*, count__plural=*": "{count__number} resultaten"
+      }
+    }
+  ],
+  "explore_results_heading": "Resultaten",
+  "explore_search_browse": "Categorieën bekijken",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Geen resultaten voor ‘{query}’",
+        "count__exact=*, count__plural=one": "{count__number} resultaat voor ‘{query}’",
+        "count__exact=*, count__plural=*": "{count__number} resultaten voor ‘{query}’"
+      }
+    }
+  ],
+  "explore_search_description": "Zoek Sons of the Forest-mods, builds, kits, makers en handleidingen op SOTF Mods.",
+  "explore_search_empty_hint": "Controleer de spelling, probeer minder woorden of het manifest-ID van de mod, of blader per categorie.",
+  "explore_search_error_text": "Zoeken is nu niet bereikbaar. Probeer het zo meteen opnieuw.",
+  "explore_search_heading": "Doorzoek het eiland",
+  "explore_search_heading_query": "Resultaten voor ‘{query}’",
+  "explore_search_in_explore": "Deze resultaten filteren in Verkennen",
+  "explore_search_prompt_text": "Zoek mods, builds, kits, makers en handleidingen op naam, maker of manifest-ID.",
+  "explore_search_prompt_title": "Waar ben je naar op zoek?",
+  "explore_search_type_all": "Alles",
+  "explore_search_type_pages": "Pagina’s",
+  "explore_search_types_label": "Soort resultaat",
+  "explore_sort_comments": "Meest besproken",
+  "explore_sort_downloads": "Meest gedownload",
+  "explore_sort_follows": "Meest gevolgd",
+  "explore_sort_label": "Sorteren:",
+  "explore_sort_new": "Nieuwste",
+  "explore_sort_rating": "Best beoordeeld",
+  "explore_sort_relevance": "Beste match",
+  "explore_sort_reversed": "{sort} (omgekeerd)",
+  "explore_sort_trending": "Populair nu",
+  "explore_sort_updated": "Onlangs bijgewerkt",
+  "explore_tab_all": "Alles",
+  "explore_tabs_label": "Wat tonen",
+  "explore_tag_group_audio": "Audio",
+  "explore_tag_group_building": "Bouwen",
+  "explore_tag_group_gameplay": "Gameplay",
+  "explore_tag_group_players": "Spelers",
+  "explore_tag_group_survival": "Overleven",
+  "explore_tag_group_tech": "Techniek",
+  "explore_tag_group_ui": "Interface",
+  "explore_tag_group_visuals": "Graphics",
+  "explore_tag_group_world": "Wereld",
+  "explore_tags_description": "Vind Sons of the Forest-mods op basis van wat ze aanpassen: inventaris, bouwgereedschap, vijanden, graphics en meer.",
+  "explore_tags_heading": "Tags",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nog {count__number} tag",
+        "count__plural=*": "Nog {count__number} tags"
+      }
+    }
+  ],
+  "explore_tags_other_group": "Overig",
+  "explore_tags_title": "Tags voor Sons of the Forest-mods",
+  "explore_updated_1y": "Afgelopen 12 maanden",
+  "explore_updated_30d": "Afgelopen 30 dagen",
+  "explore_updated_90d": "Afgelopen 90 dagen",
+  "explore_updated_any": "Altijd",
+  "explore_verified": "Alleen geverifieerde makers",
+  "explore_view_compact": "Compact",
+  "explore_view_grid": "Raster",
+  "explore_view_label": "Weergave",
+  "explore_view_list": "Lijst",
   "landing_blueprints_all": "Alle builds",
   "landing_blueprints_hint": "Verse builds uit de community",
   "landing_creators_all": "Alle makers",
@@ -1297,6 +1805,516 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "Kit",
+  "mod_action_install": "Installeren",
+  "mod_action_report": "Rapporteren",
+  "mod_banner_archived_action": "Naar de opvolger",
+  "mod_banner_archived_successor": "De maker onderhoudt deze mod niet meer en raadt in plaats daarvan {name} aan.",
+  "mod_banner_archived_text": "De maker onderhoudt deze mod niet meer. Misschien werkt hij niet op de huidige patch.",
+  "mod_banner_archived_title": "Gearchiveerd.",
+  "mod_banner_broken_action": "Voeg je veldrapport toe",
+  "mod_banner_broken_text": "Overlevenden melden dat deze mod niet werkt op de huidige gameversie.",
+  "mod_banner_broken_title": "Kapot op de huidige patch.",
+  "mod_banner_nsfw_text": "Deze mod bevat inhoud voor volwassenen.",
+  "mod_banner_nsfw_title": "18+.",
+  "mod_banner_outdated_action": "Geprobeerd? Laat het weten",
+  "mod_banner_outdated_text": "Hij is niet bijgewerkt of bevestigd sinds de laatste patch die mods brak.",
+  "mod_banner_outdated_title": "Mogelijk verouderd.",
+  "mod_banner_pending_text": "Een ranger controleert deze mod. Hij staat nog niet in de lijsten en kan nog veranderen.",
+  "mod_banner_pending_title": "In beoordeling.",
+  "mod_banner_unlisted_text": "Alleen mensen met de link kunnen deze mod vinden.",
+  "mod_banner_unlisted_title": "Niet vermeld.",
+  "mod_banners_label": "Status van de mod",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "Alles bekijken",
+  "mod_changelog_title": "Changelog",
+  "mod_comments_empty": "Nog geen reacties. Vragen, tips en bugs horen hier.",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nog {count__number} antwoord",
+        "count__plural=*": "Nog {count__number} antwoorden"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "Log in om te reageren",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Reacties",
+        "count__exact=*, count__plural=one": "{count__number} reactie",
+        "count__exact=*, count__plural=*": "{count__number} reacties"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "De reacties konden niet worden geladen. Herlaad de pagina om het opnieuw te proberen.",
+  "mod_compat_author_tested": "Getest door de maker op {build}.",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Wisselende rapporten op {build}: {works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "Werkte v{version} in je game?",
+  "mod_compat_prompt_action": "Melden",
+  "mod_compat_report": "Melden",
+  "mod_copy_hash": "SHA-256 kopiëren",
+  "mod_cover_alt": "Omslagafbeelding van {name}",
+  "mod_creator_follow": "Maker volgen",
+  "mod_creator_following": "Je volgt de maker",
+  "mod_creator_title": "Maker",
+  "mod_dependencies_title": "Afhankelijkheden",
+  "mod_dependency_archived": "Gearchiveerd door de maker",
+  "mod_dependency_removed": "Verwijderd van de site",
+  "mod_dependency_unavailable": "Niet beschikbaar op de site",
+  "mod_deps_already_have": "Heb ik al",
+  "mod_deps_download_all": "Alles downloaden",
+  "mod_deps_progress": "Downloaden {current} van {total}…",
+  "mod_deps_sheet_text": "{name} werkt niet zonder deze mods. Download ze ook, of ga verder als je ze al hebt.",
+  "mod_deps_sheet_title": "Je hebt ook {names} nodig",
+  "mod_description_empty": "De maker heeft nog geen beschrijving geschreven.",
+  "mod_download_done_label": "Gedownload ✓",
+  "mod_download_unavailable": "Er is nu geen downloadbaar bestand.",
+  "mod_fact_game_version": "Opgegeven gameversie",
+  "mod_fact_license": "Licentie",
+  "mod_fact_loader_version": "Opgegeven RedLoader",
+  "mod_fact_platform": "Platform",
+  "mod_fact_published": "Gepubliceerd",
+  "mod_fact_size": "Bestandsgrootte",
+  "mod_fact_source": "Broncode",
+  "mod_fact_tested_builds": "Getest op",
+  "mod_fact_updated": "Bijgewerkt op {date}",
+  "mod_fact_updated_label": "Bijgewerkt",
+  "mod_fact_version": "Versie",
+  "mod_field_report_sign_in": "Log in om een veldrapport toe te voegen",
+  "mod_field_report_text": "Een veldrapport kost tien seconden en vertelt iedereen of deze mod op de huidige patch werkt.",
+  "mod_field_report_title": "Werkte het in je game?",
+  "mod_file_name": "Bestand",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input index",
+        "input name",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Screenshot {index__number} van {name}"
+      }
+    }
+  ],
+  "mod_gallery_label": "Galerij van {name}",
+  "mod_gallery_next": "Volgende afbeelding",
+  "mod_gallery_previous": "Vorige afbeelding",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{index__number} van {total__number}"
+      }
+    }
+  ],
+  "mod_glance_title": "In één oogopslag",
+  "mod_in_kits_browse": "Kits bekijken",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "In {count__number} kit",
+        "count__plural=*": "In {count__number} kits"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "Niet samen gebruiken met:",
+  "mod_install_full_guide": "Volledige installatiegids",
+  "mod_install_intro": "Vijf minuten, geen manager nodig. Deze stappen gelden voor {name}.",
+  "mod_install_manager_tip": "Liever met één klik? RedManager installeert en werkt mods en hun afhankelijkheden voor je bij.",
+  "mod_install_multiplayer": "Multiplayer: {role}.",
+  "mod_install_redloader_not_bepinex": "Deze mod heeft RedLoader nodig, niet BepInEx. BepInEx-mods en -gidsen gelden niet voor Sons of the Forest.",
+  "mod_install_step_dependencies_title": "Installeer eerst de afhankelijkheden",
+  "mod_install_step_download": "Download {name}",
+  "mod_install_step_download_version": "Download {name} v{version}",
+  "mod_install_step_extract_client": "Pak hem op je pc uit in de map Mods van de game:",
+  "mod_install_step_extract_note": "Behoud de mappenstructuur van de ZIP. Zet de ZIP zelf niet in de map.",
+  "mod_install_step_extract_server": "Pak hem op een dedicated server uit in de map Mods van de server:",
+  "mod_install_step_extract_title": "Pak de ZIP uit in de map Mods",
+  "mod_install_step_launch_text": "RedLoader laadt de mod bij het opstarten. Druk in het hoofdmenu op F1 om de lijst met mods te zien.",
+  "mod_install_step_launch_title": "Start de game",
+  "mod_install_step_loader_link": "Zo installeer je RedLoader",
+  "mod_install_step_loader_text": "RedLoader is de modloader van Sons of the Forest. Eén keer installeren en elke mod werkt.",
+  "mod_install_step_loader_title": "Installeer RedLoader",
+  "mod_install_step_loader_version": "Gebruik RedLoader {version} of nieuwer.",
+  "mod_install_title": "Zo installeer je deze mod",
+  "mod_kind_library": "Bibliotheek",
+  "mod_license_all_rights_reserved": "Alle rechten voorbehouden",
+  "mod_license_other": "Eigen licentie",
+  "mod_license_reupload_with_credit": "Opnieuw uploaden met naamsvermelding",
+  "mod_link_website": "Website",
+  "mod_md_alert_caution": "Let op",
+  "mod_md_alert_important": "Belangrijk",
+  "mod_md_alert_note": "Opmerking",
+  "mod_md_alert_tip": "Tip",
+  "mod_md_alert_warning": "Waarschuwing",
+  "mod_md_spoiler": "Spoiler",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author",
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "kind",
+        "count__plural"
+      ],
+      "match": {
+        "kind=library, count__plural=one": "{name} is een bibliotheek voor Sons of the Forest van {author}, voor RedLoader. {downloads} download, gratis en direct.",
+        "kind=library, count__plural=*": "{name} is een bibliotheek voor Sons of the Forest van {author}, voor RedLoader. {downloads} downloads, gratis en direct.",
+        "kind=*, count__plural=one": "{name} is een mod voor Sons of the Forest van {author}, voor RedLoader. {downloads} download, gratis en direct.",
+        "kind=*, count__plural=*": "{name} is een mod voor Sons of the Forest van {author}, voor RedLoader. {downloads} downloads, gratis en direct."
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input kind",
+        "input author"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest-bibliotheek van {author}",
+        "kind=*": "{name} — Sons of the Forest-mod van {author}"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest-bibliotheek",
+        "kind=*": "{name} — Sons of the Forest-mod"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "Alleen jij hebt hem nodig",
+  "mod_nsfw_confirm": "Ik ben 18 of ouder, tonen",
+  "mod_nsfw_leave": "Terug naar Verkennen",
+  "mod_nsfw_settings": "18+-inhoud altijd tonen (instellingen)",
+  "mod_nsfw_text": "Deze mod is gemarkeerd als 18+. Bevestig dat je volwassen bent om hem te zien.",
+  "mod_nsfw_title": "Inhoud voor volwassenen",
+  "mod_og_alt": "{name} op SOTF Mods",
+  "mod_original_author": "Oorspronkelijke auteur: {name}",
+  "mod_other_versions": "Andere versies",
+  "mod_platform_client": "Client",
+  "mod_platform_server": "Dedicated server",
+  "mod_platform_universal": "Client en server",
+  "mod_related_title": "Vergelijkbare mods",
+  "mod_report_choose_reason": "Kies een reden.",
+  "mod_report_details_hint": "Links, versies of wat de rangers verder helpt. Tot 2000 tekens.",
+  "mod_report_details_label": "Details (optioneel)",
+  "mod_report_duplicate": "Je hebt deze mod al gerapporteerd. De rangers zijn ermee bezig.",
+  "mod_report_intro": "Vertel de rangers wat er mis is. Meldingen zijn privé.",
+  "mod_report_reason_broken": "Kapotte of nep-download",
+  "mod_report_reason_harassment": "Intimidatie of haat",
+  "mod_report_reason_illegal": "Illegale inhoud",
+  "mod_report_reason_label": "Reden",
+  "mod_report_reason_malware": "Malware of verdacht bestand",
+  "mod_report_reason_nsfw_unmarked": "Inhoud voor volwassenen zonder 18+-markering",
+  "mod_report_reason_other": "Iets anders",
+  "mod_report_reason_reupload": "Herupload van andermans werk",
+  "mod_report_reason_spam": "Spam of reclame",
+  "mod_report_sent": "Bedankt. De rangers kijken ernaar.",
+  "mod_report_sign_in": "Log in om een mod te rapporteren. Zo blijven meldingen eerlijk.",
+  "mod_report_submit": "Melding versturen",
+  "mod_report_title": "{name} rapporteren",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En nog {count__number}"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nodig voor {count__number} mod",
+        "count__plural=*": "Nodig voor {count__number} mods"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Lees de review",
+        "count__plural=*": "Lees alle {count__number} reviews"
+      }
+    }
+  ],
+  "mod_reviews_empty": "Nog geen reviews. Gedownload? Vertel als eerste hoe het ging.",
+  "mod_reviews_end": "Dat waren alle reviews.",
+  "mod_reviews_first_page": "Terug naar de eerste pagina",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Spelersreviews van {name}, een Sons of the Forest-mod: {count__number} review met beoordelingen, geverifieerde downloads en antwoorden van de maker.",
+        "count__plural=*": "Spelersreviews van {name}, een Sons of the Forest-mod: {count__number} reviews met beoordelingen, geverifieerde downloads en antwoorden van de maker."
+      }
+    }
+  ],
+  "mod_reviews_next_page": "Meer reviews",
+  "mod_reviews_rules": "Eén review per overlevende. Wees concreet: versie, wat werkte en wat niet.",
+  "mod_reviews_sort_critical": "Kritisch",
+  "mod_reviews_sort_helpful": "Nuttigst",
+  "mod_reviews_sort_label": "Reviews sorteren",
+  "mod_reviews_sort_new": "Nieuwst",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Reviews",
+        "count__exact=*, count__plural=one": "{count__number} review",
+        "count__exact=*, count__plural=*": "{count__number} reviews"
+      }
+    }
+  ],
+  "mod_reviews_write": "Schrijf een review",
+  "mod_scan_clean": "Geen bedreigingen gevonden",
+  "mod_scan_date": "Gescand op {date}",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input positives",
+        "input total",
+        "input engine",
+        "local positives__number = positives: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{positives__number} van de {total__number} {engine}-engines markeerden het bestand."
+      }
+    }
+  ],
+  "mod_scan_false_positive": "Gemarkeerd door sommige engines, vrijgegeven door een ranger",
+  "mod_scan_malicious": "Schadelijk: niet installeren",
+  "mod_scan_none": "Nog geen beveiligingsrapport voor dit bestand.",
+  "mod_scan_pending": "Scan bezig",
+  "mod_scan_report": "Volledig rapport",
+  "mod_scan_suspicious": "Verdacht: een ranger bekijkt het",
+  "mod_scan_title": "Beveiligingsscan",
+  "mod_scan_unknown": "Nog niet gescand",
+  "mod_share_link_label": "Link",
+  "mod_share_markdown_label": "Markdown voor Discord",
+  "mod_share_more": "Meer…",
+  "mod_share_on": "Delen op {network}",
+  "mod_share_qr": "QR-code",
+  "mod_share_qr_alt": "QR-code van de link naar {name}",
+  "mod_share_qr_hint": "Scan hem met je telefoon om de pagina te openen.",
+  "mod_share_text": "{name} voor Sons of the Forest",
+  "mod_share_title": "Deze mod delen",
+  "mod_sidebar_label": "Over deze mod",
+  "mod_stat_downloads": "Downloads",
+  "mod_stat_downloads_total": "in totaal",
+  "mod_stat_followers": "Volgers",
+  "mod_stat_rating": "Beoordeling",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{rating} ({count__number} review)",
+        "count__plural=*": "{rating} ({count__number} reviews)"
+      }
+    }
+  ],
+  "mod_stat_this_week": "Downloads deze week",
+  "mod_stat_this_week_value": "{display} deze week",
+  "mod_support_title": "Steun de maker",
+  "mod_tab_comments": "Reacties",
+  "mod_tab_overview": "Overzicht",
+  "mod_tab_reviews": "Reviews",
+  "mod_tab_versions": "Versies",
+  "mod_tabs_label": "Onderdelen van de mod",
+  "mod_tags_label": "Tags",
+  "mod_toast_copy_failed": "Kopiëren mislukt. Selecteer de tekst en kopieer hem zelf.",
+  "mod_toast_error": "Dat lukte niet. Probeer het zo opnieuw.",
+  "mod_toast_followed": "{name} zit in je rugzak. Je hoort over updates.",
+  "mod_toast_followed_creator": "Je volgt {name}.",
+  "mod_toast_rate_limited": "Te veel pogingen. Wacht een minuut en probeer het opnieuw.",
+  "mod_toast_sign_in": "Je sessie is verlopen. Log opnieuw in.",
+  "mod_toast_unfollowed": "{name} is uit je rugzak.",
+  "mod_toast_unfollowed_creator": "Je volgt {name} niet meer.",
+  "mod_toast_verify_email": "Bevestig eerst je e-mailadres. Kijk in je inbox.",
+  "mod_value_not_declared": "Niet opgegeven",
+  "mod_version_beta": "Bèta",
+  "mod_version_latest": "Nieuwste",
+  "mod_version_meta_description": "{name} v{version} voor Sons of the Forest, uitgebracht op {date}: changelog, bestandsgrootte, SHA-256, beveiligingsscan en compatibiliteit.",
+  "mod_version_no_changelog": "Geen changelog voor deze versie.",
+  "mod_version_not_downloadable": "Deze versie kan niet worden gedownload.",
+  "mod_version_yanked": "Ingetrokken",
+  "mod_version_yanked_reason": "Ingetrokken door de maker: {reason}",
+  "mod_version_yanked_text": "De maker heeft deze versie ingetrokken. Gebruik een nieuwere.",
+  "mod_versions_all": "Alle versies",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "De {count__number} versie",
+        "count__plural=*": "Alle {count__number} versies"
+      }
+    }
+  ],
+  "mod_versions_caption": "Versies van {name}",
+  "mod_versions_empty": "Nog geen versies gepubliceerd.",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "De {count__number} versie van {name} voor Sons of the Forest, met changelogs, bestandsgroottes en compatibiliteit. Nieuwste: v{version}.",
+        "count__plural=*": "Alle {count__number} versies van {name} voor Sons of the Forest, met changelogs, bestandsgroottes en compatibiliteit. Nieuwste: v{version}."
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} versie",
+        "count__plural=*": "{count__number} versies"
+      }
+    }
+  ],
+  "mod_video_embed_title": "YouTube-video",
+  "mod_video_play": "Speel de trailer van {name} af",
+  "mod_video_title": "Trailer van {name}",
+  "mod_whats_new_badge": "Nieuw voor jou",
+  "mod_whats_new_read": "Lees de veldnotities",
+  "mod_whats_new_title": "Nieuw sinds je laatste download (v{version})",
+  "mod_whats_new_up_to_date": "Je hebt de nieuwste versie (v{version}).",
   "ui_breadcrumbs": "Kruimelpad",
   "ui_cancel": "Annuleren",
   "ui_choose": "Kies…",

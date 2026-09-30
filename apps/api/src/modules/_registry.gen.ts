@@ -2,7 +2,11 @@
 // Regenerate after adding, removing or renaming an entry; on merge conflicts, regenerate.
 
 import accountModule from './account/index.ts';
+import adminModule from './admin/index.ts';
+import announcementsModule from './announcements/index.ts';
 import authModule from './auth/index.ts';
+import awardsModule from './awards/index.ts';
+import badgesModule from './badges/index.ts';
 import catalogModule from './catalog/index.ts';
 import commentsModule from './comments/index.ts';
 import compatModule from './compat/index.ts';
@@ -15,7 +19,10 @@ import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
 import meModule from './me/index.ts';
 import notificationsModule from './notifications/index.ts';
+import onboardingModule from './onboarding/index.ts';
 import platformModule from './platform/index.ts';
+import rangerModule from './ranger/index.ts';
+import reportsModule from './reports/index.ts';
 import resolveModule from './resolve/index.ts';
 import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
@@ -27,7 +34,11 @@ import uploadsModule from './uploads/index.ts';
 
 export const modules = [
   accountModule,
+  adminModule,
+  announcementsModule,
   authModule,
+  awardsModule,
+  badgesModule,
   catalogModule,
   commentsModule,
   compatModule,
@@ -40,7 +51,10 @@ export const modules = [
   legacyModule,
   meModule,
   notificationsModule,
+  onboardingModule,
   platformModule,
+  rangerModule,
+  reportsModule,
   resolveModule,
   reviewsModule,
   searchModule,

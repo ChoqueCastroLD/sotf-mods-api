@@ -1,0 +1,74 @@
+---
+/**
+ * Creator card of the sidebar (research/03 §6.3): avatar, name, trusted mark, follow the creator
+ * (a toggle for signed-in visitors, `scripts/mod/follow.ts`) and the mod's support links.
+ */
+import { profilePath } from '@sotf/contracts/seo';
+import { m } from '@sotf/i18n/messages';
+import { Avatar } from '@sotf/ui/avatar';
+import { TrustedMark } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ExternalLink, UserPlus } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { linkLabel } from './i18n.ts';
+import { ACTION_CLASSES, PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  loginHref: string;
+}
+
+const { mod, loginHref } = Astro.props;
+const locale = Astro.locals.locale;
+const author = mod.author;
+const name = author.displayName || author.handle;
+const profileHref = href(profilePath(author.handle), locale);
+---
+
+<section aria-labelledby="creator-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
+  <h2 id="creator-title" class={READOUT_CLASSES}>{m.mod_creator_title()}</h2>
+  <a href={profileHref} class="flex items-center gap-3 rounded-md hover:bg-fg/4">
+    <Avatar name={name} id={author.id} src={author.avatarUrl} size={48} />
+    <span class="grid min-w-0 gap-0.5">
+      <span class="flex items-center gap-1.5 truncate font-semibold text-fg">
+        {name}
+        {author.verifiedCreator && <TrustedMark size={16} />}
+      </span>
+      <span class="truncate text-sm text-fg-muted">@{author.handle}</span>
+    </span>
+  </a>
+  <a
+    href={loginHref}
+    data-follow-user={author.handle}
+    data-follow-user-id={author.id}
+    class={ACTION_CLASSES}
+  >
+    <Icon icon={UserPlus} size={18} />
+    <span data-follow-label>{m.mod_creator_follow()}</span>
+    <span class="sr-only">{name}</span>
+  </a>
+  {
+    mod.supportLinks.length > 0 && (
+      <div class="grid gap-2">
+        <p class="text-sm font-semibold">{m.mod_support_title()}</p>
+        <ul class="flex flex-wrap gap-2">
+          {mod.supportLinks.map((link) => (
+            <li>
+              <a
+                href={link.url}
+                rel="ugc nofollow noopener"
+                target="_blank"
+                class="inline-flex min-h-11 items-center gap-1.5 rounded-md border border-border px-3 text-sm hover:border-border-strong md:min-h-8"
+              >
+                {linkLabel(link)}
+                <Icon icon={ExternalLink} size={14} className="text-fg-subtle" />
+                <span class="sr-only">{m.common_new_tab()}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</section>

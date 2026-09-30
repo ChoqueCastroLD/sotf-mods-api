@@ -1,0 +1,39 @@
+---
+/**
+ * «What's new since your last download» (T0-08, signed-in island): hidden in the cached HTML;
+ * `scripts/mod/whats-new.ts` reads `GET /api/v2/me/downloads` for signed-in visitors and, when a
+ * newer version exists than the one they downloaded, fills the title, lists the newer versions
+ * and marks them in the field notes timeline.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Sparkles } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { versionsPagePath } from './format.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+const locale = Astro.locals.locale;
+---
+
+<section
+  id="whats-new"
+  hidden
+  data-whats-new
+  data-versions-href={href(versionsPagePath(mod), locale)}
+  aria-labelledby="whats-new-title"
+  class="grid gap-3 rounded-lg border border-signal/40 bg-signal-soft p-4"
+>
+  <h2 id="whats-new-title" class="flex items-center gap-2 font-semibold text-fg">
+    <Icon icon={Sparkles} size={18} className="text-signal" />
+    <span data-whats-new-title></span>
+  </h2>
+  <ul class="flex flex-wrap gap-2" data-whats-new-list></ul>
+  <a href="#field-notes" class="inline-flex min-h-11 items-center self-start text-sm font-semibold text-link underline underline-offset-3">
+    {m.mod_whats_new_read()}
+  </a>
+</section>

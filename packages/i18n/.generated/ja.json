@@ -986,6 +986,475 @@
       }
     }
   ],
+  "explore_active_author": "@{handle} の作品",
+  "explore_active_label": "適用中の絞り込み",
+  "explore_active_not": "{label} を除く",
+  "explore_active_query": "「{query}」",
+  "explore_active_remove": "絞り込みを解除：{label}",
+  "explore_any": "指定なし",
+  "explore_back_to_first": "1 ページ目に戻る",
+  "explore_best_building_mods_description": "Sons of the Forest の建築 MOD。スナップの改善、新しいパーツ、設計図、大きな拠点のためのツール。",
+  "explore_best_building_mods_heading": "おすすめの建築 MOD",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF のおすすめ建築 MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Sons of the Forest の専用サーバーで動く MOD。管理ツール、サーバー側の調整、協力プレイの修正。",
+  "explore_best_dedicated_server_mods_heading": "おすすめの専用サーバー MOD",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF のおすすめ専用サーバー MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "Sons of the Forest の MOD が依存する共有ライブラリをダウンロード数順に。使う MOD より先に一度だけ導入します。",
+  "explore_best_libraries_heading": "必須の MOD ライブラリ",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF に必要な MOD ライブラリ（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_best_mods_description": "SOTF Mods で最もダウンロードされている Sons of the Forest の MOD。現行パッチでの互換性と RedLoader 向け直接ダウンロード付き。",
+  "explore_best_mods_heading": "Sons of the Forest のおすすめ MOD",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest のおすすめ MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "協力プレイで使える Sons of the Forest の MOD。自分だけ、ホストのみ、全員のうち誰が導入すべきかも表示。",
+  "explore_best_multiplayer_mods_heading": "おすすめのマルチプレイ MOD",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF のおすすめマルチプレイ MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Sons of the Forest でまず入れたい快適性向上 MOD。スタック拡張、便利なメニュー、面倒な作業の削減。",
+  "explore_best_quality_of_life_mods_heading": "おすすめの快適性向上 MOD",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF のおすすめ快適性向上 MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_categories_browse": "見る",
+  "explore_categories_builds_heading": "建築のカテゴリ",
+  "explore_categories_description": "SOTF Mods にある Sons of the Forest の MOD と建築のカテゴリ一覧。それぞれの内容と件数を確認できます。",
+  "explore_categories_heading": "カテゴリ",
+  "explore_categories_mods_heading": "MOD のカテゴリ",
+  "explore_categories_title": "Sons of the Forest の MOD と建築のカテゴリ",
+  "explore_category_intro_building": "スナップ、設計図、新しい構造物など、拠点づくりを広げる建築家向けのツールとパーツ。",
+  "explore_category_intro_builds_generic": "{category}カテゴリの Sons of the Forest 建築。すぐに配置できる BuildShare 設計図。",
+  "explore_category_intro_companions": "ケルビン、バージニアなどの仲間に、賢い指示、新しい行動、一緒に旅する方法を追加。",
+  "explore_category_intro_gameplay": "難易度、戦闘、敵、サバイバルのルール、新しい仕組みなど、遊び方そのものを変える MOD。",
+  "explore_category_intro_generic": "{category}カテゴリの Sons of the Forest MOD。互換性、評価、直接ダウンロード付き。",
+  "explore_category_intro_library": "ほかの MOD が依存する共有コード。MOD の必須要件に挙げられているときに導入します。",
+  "explore_category_intro_menus_sandbox": "トレーナー、スポーンメニュー、サンドボックスツール。ソロやホストで自由に試せます。",
+  "explore_category_intro_misc": "ほかのどこにも当てはまらない MOD。実験作、ユーティリティ、単発のアイデア。",
+  "explore_category_intro_model_swap": "ゲーム内のモデルを新しいものに差し替え。キャラクター、クリーチャー、武器、小物など。",
+  "explore_category_intro_multiplayer_servers": "協力プレイと専用サーバー向けの MOD。管理ツール、同期の修正、プレイヤー管理。",
+  "explore_category_intro_quality_of_life": "日々のサバイバルを快適にする小さな修正や便利機能。スタック拡張、クラフト高速化、見やすいメニュー、面倒な作業の削減など。",
+  "explore_category_intro_ui_hud": "HUD、マップ、ミニマップ、メニューの MOD。より多くを表示し、邪魔にならない。",
+  "explore_category_intro_vehicles_movement": "ゴルフカート、グライダー、騎士の鎧、新しい移動手段。速度、操作性、移動を改善。",
+  "explore_category_intro_weapons_gear": "戦いと島の探索のための、新しい・調整済みの武器、弾薬、防具、装備。",
+  "explore_clear_all": "すべて解除",
+  "explore_compat_untested": "現行パッチでは未検証",
+  "explore_compat_works": "現行パッチで動作",
+  "explore_dedicated": "専用サーバーで動作",
+  "explore_empty_category_text": "このカテゴリにはまだ MOD がありません。すべての MOD を見るか、最初のひとつを公開しましょう。",
+  "explore_empty_category_title": "地図のこの部分はまだ空白です",
+  "explore_empty_text": "すべての条件に合う MOD はありません。条件をひとつ外して、もう一度お試しください。",
+  "explore_empty_title": "この道には何もありません",
+  "explore_empty_try_removing": "外してみる条件：",
+  "explore_empty_unfiltered_text": "ここにはまだ何も公開されていません。また後で見に来てください。",
+  "explore_error_text": "このリストを読み込めませんでした。接続を確認して、もう一度お試しください。",
+  "explore_error_title": "電波が届きません",
+  "explore_facet_category": "カテゴリ",
+  "explore_facet_compat": "互換性",
+  "explore_facet_more": "その他",
+  "explore_facet_multiplayer": "マルチプレイ",
+  "explore_facet_platform": "プラットフォーム",
+  "explore_facet_rating": "評価",
+  "explore_facet_tags": "タグ",
+  "explore_facet_tags_more": "その他のタグ",
+  "explore_facet_updated": "更新",
+  "explore_failed": "結果を読み込めませんでした。ページを再読み込みしています…",
+  "explore_filter_exclude": "{label} を除外",
+  "explore_filter_excluded": "除外",
+  "explore_filter_included": "含む",
+  "explore_filter_search_label": "絞り込み",
+  "explore_filter_search_placeholder": "名前、タグ、作者…",
+  "explore_filter_unexclude": "{label} の除外をやめる",
+  "explore_filters_apply": "絞り込みを適用",
+  "explore_filters_close": "絞り込みを閉じる",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "絞り込み",
+        "count__exact=*": "絞り込み（{count__number}）"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "結果なし",
+        "count__exact=*": "{count__number} 件を表示"
+      }
+    }
+  ],
+  "explore_filters_title": "絞り込み",
+  "explore_has_source": "ソースコードあり",
+  "explore_heading_all": "すべてを探す",
+  "explore_heading_builds": "建築を探す",
+  "explore_heading_libraries": "ライブラリを探す",
+  "explore_heading_mods": "MOD を探す",
+  "explore_heading_tag": "タグ「{tag}」",
+  "explore_hub_others": "ほかのフィールドガイド",
+  "explore_hub_see_all": "探すですべて見る",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "リスト",
+        "count__exact=*": "トップ {count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "{date} 更新",
+  "explore_loading": "結果を読み込んでいます…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "島のすべてをひとつのリストに。Sons of the Forest の MOD、ライブラリ、建築 {count__number} 件を絞り込み・並べ替えできます。"
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD と建築すべて（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 向け BuildShare 設計図 {count__number} 件。コミュニティが共有した拠点、砦、ツリーハウスをすぐに配置できます。"
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の建築（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の{category}建築（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の{category} MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほかの Sons of the Forest MOD が必要とするライブラリ {count__number} 件。一度入れておけば、それを使う MOD がすべて動きます。"
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD ライブラリ（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "RedLoader 対応の Sons of the Forest MOD {count__number} 件を閲覧。カテゴリ、互換性、マルチプレイで絞り込めて、今週のダウンロード数順に並びます。"
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "タグ「{tag}」が付いた Sons of the Forest の MOD と建築 {count__number} 件。互換性、評価、直接ダウンロード付き。"
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "タグ「{tag}」の Sons of the Forest MOD（{count__number} 件）"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "全員の導入が必要",
+  "explore_multiplayer_client_side": "自分だけ導入すれば OK",
+  "explore_multiplayer_host_only": "ホストのみ",
+  "explore_multiplayer_singleplayer_only": "シングルプレイ専用",
+  "explore_offline": "オフラインです。表示中の結果は古い可能性があります。",
+  "explore_order_reverse": "順番を逆にする",
+  "explore_past_end_text": "このページは最終ページより先です。リンクが共有されてからリストが短くなった可能性があります。",
+  "explore_past_end_title": "リストの最後に到達しました",
+  "explore_platform_client": "クライアント",
+  "explore_platform_server": "専用サーバー",
+  "explore_platform_universal": "クライアントとサーバー",
+  "explore_rating_any": "評価指定なし",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating__number}★ 以上"
+      }
+    }
+  ],
+  "explore_readout_build_category": "建築カテゴリ",
+  "explore_readout_category": "カテゴリ",
+  "explore_readout_explore": "探す",
+  "explore_readout_hub": "フィールドガイド",
+  "explore_readout_tag": "タグ",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "結果なし",
+        "count__exact=*": "{count__number} 件"
+      }
+    }
+  ],
+  "explore_results_heading": "結果",
+  "explore_search_browse": "カテゴリを見る",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "「{query}」の結果はありません",
+        "count__exact=*": "「{query}」の結果 {count__number} 件"
+      }
+    }
+  ],
+  "explore_search_description": "SOTF Mods で Sons of the Forest の MOD、建築、キット、クリエイター、ガイドを検索。",
+  "explore_search_empty_hint": "つづりを確認するか、言葉を減らすか、MOD のマニフェスト ID を試してください。カテゴリから探すこともできます。",
+  "explore_search_error_text": "現在、検索を利用できません。しばらくしてからお試しください。",
+  "explore_search_heading": "島を検索",
+  "explore_search_heading_query": "「{query}」の検索結果",
+  "explore_search_in_explore": "この結果を「探す」で絞り込む",
+  "explore_search_prompt_text": "名前、作者、マニフェスト ID で MOD、建築、キット、クリエイター、ガイドを検索できます。",
+  "explore_search_prompt_title": "何をお探しですか？",
+  "explore_search_type_all": "すべて",
+  "explore_search_type_pages": "ページ",
+  "explore_search_types_label": "結果の種類",
+  "explore_sort_comments": "コメント数順",
+  "explore_sort_downloads": "ダウンロード数順",
+  "explore_sort_follows": "フォロー数順",
+  "explore_sort_label": "並べ替え：",
+  "explore_sort_new": "新着順",
+  "explore_sort_rating": "高評価順",
+  "explore_sort_relevance": "関連度順",
+  "explore_sort_reversed": "{sort}（逆順）",
+  "explore_sort_trending": "注目",
+  "explore_sort_updated": "最近の更新順",
+  "explore_tab_all": "すべて",
+  "explore_tabs_label": "表示する内容",
+  "explore_tag_group_audio": "サウンド",
+  "explore_tag_group_building": "建築",
+  "explore_tag_group_gameplay": "ゲームプレイ",
+  "explore_tag_group_players": "プレイヤー",
+  "explore_tag_group_survival": "サバイバル",
+  "explore_tag_group_tech": "技術",
+  "explore_tag_group_ui": "インターフェース",
+  "explore_tag_group_visuals": "グラフィック",
+  "explore_tag_group_world": "ワールド",
+  "explore_tags_description": "インベントリ、建築ツール、敵、グラフィックなど、変更する内容から Sons of the Forest の MOD を探せます。",
+  "explore_tags_heading": "タグ",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほか {count__number} 件のタグ"
+      }
+    }
+  ],
+  "explore_tags_other_group": "その他",
+  "explore_tags_title": "Sons of the Forest の MOD タグ",
+  "explore_updated_1y": "過去 12 か月",
+  "explore_updated_30d": "過去 30 日",
+  "explore_updated_90d": "過去 90 日",
+  "explore_updated_any": "期間指定なし",
+  "explore_verified": "認証済みクリエイターのみ",
+  "explore_view_compact": "コンパクト",
+  "explore_view_grid": "グリッド",
+  "explore_view_label": "表示",
+  "explore_view_list": "リスト",
   "landing_blueprints_all": "すべての建築",
   "landing_blueprints_hint": "コミュニティの最新の建築",
   "landing_creators_all": "すべてのクリエイター",
@@ -1158,6 +1627,470 @@
     }
   ],
   "meta_title_template": "{title} | SOTF Mods",
+  "mod_action_add_to_kit": "キットに追加",
+  "mod_action_install": "導入方法",
+  "mod_action_report": "通報",
+  "mod_banner_archived_action": "後継 MOD へ",
+  "mod_banner_archived_successor": "作者はこの MOD の更新を終了し、代わりに {name} を勧めています。",
+  "mod_banner_archived_text": "作者はこの MOD の更新を終了しました。現在のパッチでは動かない可能性があります。",
+  "mod_banner_archived_title": "アーカイブ済み。",
+  "mod_banner_broken_action": "フィールドレポートを追加",
+  "mod_banner_broken_text": "サバイバーから、この MOD が現在のゲームバージョンで動かないと報告されています。",
+  "mod_banner_broken_title": "現在のパッチで動作しません。",
+  "mod_banner_nsfw_text": "この MOD には成人向けコンテンツが含まれます。",
+  "mod_banner_nsfw_title": "18 歳以上。",
+  "mod_banner_outdated_action": "試した？報告しよう",
+  "mod_banner_outdated_text": "MOD が壊れた前回のパッチ以降、更新も動作確認もされていません。",
+  "mod_banner_outdated_title": "古い可能性があります。",
+  "mod_banner_pending_text": "レンジャーがこの MOD を確認しています。まだ一覧には表示されず、内容が変わることもあります。",
+  "mod_banner_pending_title": "審査中。",
+  "mod_banner_unlisted_text": "この MOD はリンクを知っている人だけが見つけられます。",
+  "mod_banner_unlisted_title": "非公開リスト。",
+  "mod_banners_label": "MOD の状態",
+  "mod_capsule_loader_short": "RedLoader {version}+",
+  "mod_capsule_see_all": "すべて表示",
+  "mod_changelog_title": "更新履歴",
+  "mod_comments_empty": "まだコメントはありません。質問、コツ、バグ報告はこちらへ。",
+  "mod_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほか {count__number} 件の返信"
+      }
+    }
+  ],
+  "mod_comments_sign_in": "ログインしてコメントする",
+  "mod_comments_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "コメント",
+        "count__exact=*": "コメント {count__number} 件"
+      }
+    }
+  ],
+  "mod_comments_unavailable": "コメントを読み込めませんでした。ページを再読み込みしてください。",
+  "mod_compat_author_tested": "作者が {build} で動作確認済み。",
+  "mod_compat_mixed": [
+    {
+      "declarations": [
+        "input build",
+        "input works",
+        "input broken",
+        "local works__number = works: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} での報告は賛否あり：{works__number} ✔ · {broken__number} ✖"
+      }
+    }
+  ],
+  "mod_compat_prompt": "v{version} はゲームで動きましたか？",
+  "mod_compat_prompt_action": "報告する",
+  "mod_compat_report": "報告",
+  "mod_copy_hash": "SHA-256 をコピー",
+  "mod_cover_alt": "{name} のカバー画像",
+  "mod_creator_follow": "作者をフォロー",
+  "mod_creator_following": "作者をフォロー中",
+  "mod_creator_title": "作者",
+  "mod_dependencies_title": "前提 MOD",
+  "mod_dependency_archived": "作者がアーカイブ済み",
+  "mod_dependency_removed": "サイトから削除済み",
+  "mod_dependency_unavailable": "このサイトにはありません",
+  "mod_deps_already_have": "もう持っている",
+  "mod_deps_download_all": "すべてダウンロード",
+  "mod_deps_progress": "{total} 件中 {current} 件目をダウンロード中…",
+  "mod_deps_sheet_text": "{name} はこれらの MOD がないと動きません。一緒にダウンロードするか、すでに持っていればそのまま続けてください。",
+  "mod_deps_sheet_title": "{names} も必要です",
+  "mod_description_empty": "作者はまだ説明を書いていません。",
+  "mod_download_done_label": "ダウンロード済み ✓",
+  "mod_download_unavailable": "現在ダウンロードできるファイルはありません。",
+  "mod_fact_game_version": "対応ゲームバージョン（申告）",
+  "mod_fact_license": "ライセンス",
+  "mod_fact_loader_version": "RedLoader（申告）",
+  "mod_fact_platform": "プラットフォーム",
+  "mod_fact_published": "公開日",
+  "mod_fact_size": "ファイルサイズ",
+  "mod_fact_source": "ソースコード",
+  "mod_fact_tested_builds": "動作確認",
+  "mod_fact_updated": "{date} に更新",
+  "mod_fact_updated_label": "更新日",
+  "mod_fact_version": "バージョン",
+  "mod_field_report_sign_in": "ログインしてフィールドレポートを追加",
+  "mod_field_report_text": "フィールドレポートは 10 秒。この MOD が現在のパッチで動くかどうかをみんなに伝えられます。",
+  "mod_field_report_title": "ゲームで動きましたか？",
+  "mod_file_name": "ファイル",
+  "mod_gallery_counter": "{index} / {total}",
+  "mod_gallery_image_alt": [
+    {
+      "declarations": [
+        "input name",
+        "input index",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} のスクリーンショット {index__number}"
+      }
+    }
+  ],
+  "mod_gallery_label": "{name} のギャラリー",
+  "mod_gallery_next": "次の画像",
+  "mod_gallery_previous": "前の画像",
+  "mod_gallery_slide": [
+    {
+      "declarations": [
+        "input total",
+        "input index",
+        "local total__number = total: number",
+        "local index__number = index: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{total__number} 枚中 {index__number} 枚目"
+      }
+    }
+  ],
+  "mod_glance_title": "ひと目でわかる",
+  "mod_in_kits_browse": "キットを見る",
+  "mod_in_kits_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 個のキットに収録"
+      }
+    }
+  ],
+  "mod_install_conflicts_title": "次の MOD とは併用しないでください：",
+  "mod_install_full_guide": "導入ガイドを見る",
+  "mod_install_intro": "5 分で完了、マネージャー不要。{name} 用の手順です。",
+  "mod_install_manager_tip": "ワンクリックがいい？RedManager なら MOD と前提 MOD の導入や更新を自動でやってくれます。",
+  "mod_install_multiplayer": "マルチプレイ：{role}。",
+  "mod_install_redloader_not_bepinex": "この MOD には BepInEx ではなく RedLoader が必要です。BepInEx 向けの MOD や解説は Sons of the Forest には使えません。",
+  "mod_install_step_dependencies_title": "先に前提 MOD を導入する",
+  "mod_install_step_download": "{name} をダウンロード",
+  "mod_install_step_download_version": "{name} v{version} をダウンロード",
+  "mod_install_step_extract_client": "PC では、ゲームの Mods フォルダーに展開します：",
+  "mod_install_step_extract_note": "ZIP 内のフォルダー構成はそのままに。ZIP ファイル自体をフォルダーに入れないでください。",
+  "mod_install_step_extract_server": "専用サーバーでは、サーバーの Mods フォルダーに展開します：",
+  "mod_install_step_extract_title": "ZIP を Mods フォルダーに展開する",
+  "mod_install_step_launch_text": "RedLoader が起動時に MOD を読み込みます。メインメニューで F1 を押すと MOD 一覧が表示されます。",
+  "mod_install_step_launch_title": "ゲームを起動する",
+  "mod_install_step_loader_link": "RedLoader の導入方法",
+  "mod_install_step_loader_text": "RedLoader は Sons of the Forest の MOD ローダーです。一度入れればすべての MOD が動きます。",
+  "mod_install_step_loader_title": "RedLoader を導入する",
+  "mod_install_step_loader_version": "RedLoader {version} 以降を使ってください。",
+  "mod_install_title": "この MOD の導入方法",
+  "mod_kind_library": "ライブラリ",
+  "mod_license_all_rights_reserved": "All rights reserved",
+  "mod_license_other": "独自ライセンス",
+  "mod_license_reupload_with_credit": "クレジット表記で再配布可",
+  "mod_link_website": "ウェブサイト",
+  "mod_md_alert_caution": "注意",
+  "mod_md_alert_important": "重要",
+  "mod_md_alert_note": "メモ",
+  "mod_md_alert_tip": "ヒント",
+  "mod_md_alert_warning": "警告",
+  "mod_md_spoiler": "ネタバレ",
+  "mod_meta_description_facts": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input kind",
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} は {author} が RedLoader 向けに作った Sons of the Forest ライブラリ です。{downloads} ダウンロード、無料で直接ダウンロードできます。",
+        "kind=*": "{name} は {author} が RedLoader 向けに作った Sons of the Forest MOD です。{downloads} ダウンロード、無料で直接ダウンロードできます。"
+      }
+    }
+  ],
+  "mod_meta_subpage_title": "{page} · {name}",
+  "mod_meta_title": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — {author} による Sons of the Forest ライブラリ",
+        "kind=*": "{name} — {author} による Sons of the Forest MOD"
+      }
+    }
+  ],
+  "mod_meta_title_short": [
+    {
+      "declarations": [
+        "input name",
+        "input kind"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=library": "{name} — Sons of the Forest ライブラリ",
+        "kind=*": "{name} — Sons of the Forest MOD"
+      }
+    }
+  ],
+  "mod_multiplayer_client_side": "自分だけ導入すれば OK",
+  "mod_nsfw_confirm": "18 歳以上なので表示する",
+  "mod_nsfw_leave": "探索に戻る",
+  "mod_nsfw_settings": "18 歳以上向けを常に表示（設定）",
+  "mod_nsfw_text": "この MOD は 18 歳以上向けです。表示するには成人であることを確認してください。",
+  "mod_nsfw_title": "成人向けコンテンツ",
+  "mod_og_alt": "SOTF Mods の {name}",
+  "mod_original_author": "原作者：{name}",
+  "mod_other_versions": "ほかのバージョン",
+  "mod_platform_client": "クライアント",
+  "mod_platform_server": "専用サーバー",
+  "mod_platform_universal": "クライアントとサーバー",
+  "mod_related_title": "関連 MOD",
+  "mod_report_choose_reason": "理由を選んでください。",
+  "mod_report_details_hint": "リンクやバージョンなど、レンジャーの役に立つ情報。2000 文字まで。",
+  "mod_report_details_label": "詳細（任意）",
+  "mod_report_duplicate": "この MOD はすでに通報済みです。レンジャーが対応中です。",
+  "mod_report_intro": "問題をレンジャーに伝えてください。通報は非公開です。",
+  "mod_report_reason_broken": "壊れた、または偽のダウンロード",
+  "mod_report_reason_harassment": "嫌がらせやヘイト",
+  "mod_report_reason_illegal": "違法なコンテンツ",
+  "mod_report_reason_label": "理由",
+  "mod_report_reason_malware": "マルウェアまたは不審なファイル",
+  "mod_report_reason_nsfw_unmarked": "18 歳以上の表示がない成人向けコンテンツ",
+  "mod_report_reason_other": "その他",
+  "mod_report_reason_reupload": "他人の作品の無断再アップロード",
+  "mod_report_reason_spam": "スパムまたは広告",
+  "mod_report_sent": "ありがとうございます。レンジャーが確認します。",
+  "mod_report_sign_in": "MOD を通報するにはログインしてください。通報の信頼性を保つためです。",
+  "mod_report_submit": "通報を送信",
+  "mod_report_title": "{name} を通報",
+  "mod_required_by_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほか {count__number} 個"
+      }
+    }
+  ],
+  "mod_required_by_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 個の MODが必要としています"
+      }
+    }
+  ],
+  "mod_reviews_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "レビュー {count__number} 件をすべて読む"
+      }
+    }
+  ],
+  "mod_reviews_empty": "まだレビューはありません。ダウンロードした？最初に感想を書いてみよう。",
+  "mod_reviews_end": "レビューは以上です。",
+  "mod_reviews_first_page": "最初のページに戻る",
+  "mod_reviews_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD {name} のプレイヤーレビュー：評価、確認済みダウンロード、作者の返信つきで {count__number} 件。"
+      }
+    }
+  ],
+  "mod_reviews_next_page": "さらにレビューを見る",
+  "mod_reviews_rules": "レビューはサバイバー 1 人につき 1 件。バージョン、動いた点、動かなかった点を具体的に。",
+  "mod_reviews_sort_critical": "低評価",
+  "mod_reviews_sort_helpful": "参考になった順",
+  "mod_reviews_sort_label": "レビューの並べ替え",
+  "mod_reviews_sort_new": "新しい順",
+  "mod_reviews_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "レビュー",
+        "count__exact=*": "レビュー {count__number} 件"
+      }
+    }
+  ],
+  "mod_reviews_write": "レビューを書く",
+  "mod_scan_clean": "脅威は見つかりませんでした",
+  "mod_scan_date": "{date} にスキャン",
+  "mod_scan_engines": [
+    {
+      "declarations": [
+        "input engine",
+        "input total",
+        "input positives",
+        "local total__number = total: number",
+        "local positives__number = positives: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{engine} の {total__number} エンジン中 {positives__number} 個がファイルを検出しました。"
+      }
+    }
+  ],
+  "mod_scan_false_positive": "一部のエンジンが検出、レンジャーが安全と判断",
+  "mod_scan_malicious": "悪意あり：導入しないでください",
+  "mod_scan_none": "このファイルのセキュリティレポートはまだありません。",
+  "mod_scan_pending": "スキャン中",
+  "mod_scan_report": "詳細レポート",
+  "mod_scan_suspicious": "不審：レンジャーが確認中",
+  "mod_scan_title": "セキュリティスキャン",
+  "mod_scan_unknown": "未スキャン",
+  "mod_share_link_label": "リンク",
+  "mod_share_markdown_label": "Discord 用 Markdown",
+  "mod_share_more": "その他…",
+  "mod_share_on": "{network} で共有",
+  "mod_share_qr": "QR コード",
+  "mod_share_qr_alt": "{name} へのリンクの QR コード",
+  "mod_share_qr_hint": "スマホで読み取るとページが開きます。",
+  "mod_share_text": "Sons of the Forest 用 MOD：{name}",
+  "mod_share_title": "この MOD を共有",
+  "mod_sidebar_label": "この MOD について",
+  "mod_stat_downloads": "ダウンロード数",
+  "mod_stat_downloads_total": "合計",
+  "mod_stat_followers": "フォロワー",
+  "mod_stat_rating": "評価",
+  "mod_stat_rating_value": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating}（{count__number} 件）"
+      }
+    }
+  ],
+  "mod_stat_this_week": "今週のダウンロード数",
+  "mod_stat_this_week_value": "今週 {display}",
+  "mod_support_title": "作者を支援する",
+  "mod_tab_comments": "コメント",
+  "mod_tab_overview": "概要",
+  "mod_tab_reviews": "レビュー",
+  "mod_tab_versions": "バージョン",
+  "mod_tabs_label": "MOD のセクション",
+  "mod_tags_label": "タグ",
+  "mod_toast_copy_failed": "コピーできませんでした。テキストを選択して手動でコピーしてください。",
+  "mod_toast_error": "うまくいきませんでした。少し待ってからもう一度お試しください。",
+  "mod_toast_followed": "{name} をバックパックに入れました。更新があればお知らせします。",
+  "mod_toast_followed_creator": "{name} をフォローしました。",
+  "mod_toast_rate_limited": "試行回数が多すぎます。1 分待ってからもう一度お試しください。",
+  "mod_toast_sign_in": "セッションが切れました。もう一度ログインしてください。",
+  "mod_toast_unfollowed": "{name} をバックパックから外しました。",
+  "mod_toast_unfollowed_creator": "{name} のフォローを解除しました。",
+  "mod_toast_verify_email": "先にメールアドレスを確認してください。受信トレイをチェックしましょう。",
+  "mod_value_not_declared": "未申告",
+  "mod_version_beta": "ベータ",
+  "mod_version_latest": "最新",
+  "mod_version_meta_description": "Sons of the Forest 用 {name} v{version}（{date} 公開）：更新履歴、ファイルサイズ、SHA-256、セキュリティスキャン、互換性。",
+  "mod_version_no_changelog": "このバージョンには更新履歴がありません。",
+  "mod_version_not_downloadable": "このバージョンはダウンロードできません。",
+  "mod_version_yanked": "取り下げ",
+  "mod_version_yanked_reason": "作者が取り下げ：{reason}",
+  "mod_version_yanked_text": "作者がこのバージョンを取り下げました。新しいバージョンを使ってください。",
+  "mod_versions_all": "すべてのバージョン",
+  "mod_versions_all_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "全 {count__number} バージョン"
+      }
+    }
+  ],
+  "mod_versions_caption": "{name} のバージョン",
+  "mod_versions_empty": "まだ公開されたバージョンはありません。",
+  "mod_versions_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input version",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 用 {name} の全 {count__number} バージョン。更新履歴、ファイルサイズ、互換性つき。最新：v{version}。"
+      }
+    }
+  ],
+  "mod_versions_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} バージョン"
+      }
+    }
+  ],
+  "mod_video_embed_title": "YouTube 動画",
+  "mod_video_play": "{name} のトレーラーを再生",
+  "mod_video_title": "{name} のトレーラー",
+  "mod_whats_new_badge": "あなたにとって新着",
+  "mod_whats_new_read": "フィールドノートを読む",
+  "mod_whats_new_title": "前回のダウンロード（v{version}）以降の変更点",
+  "mod_whats_new_up_to_date": "最新バージョン（v{version}）を持っています。",
   "ui_breadcrumbs": "パンくずリスト",
   "ui_cancel": "キャンセル",
   "ui_choose": "選択…",

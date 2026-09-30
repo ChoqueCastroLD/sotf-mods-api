@@ -1,0 +1,65 @@
+---
+/**
+ * `/mods/:user/:slug/versions` (WP-62, PLAN §4.2): every version in semver order — the version
+ * table (size, game/loader, downloads, reports, direct download) and the full field notes
+ * (changelogs) with an anchor per version. SSR, edge-cached with `mod:{id}`.
+ */
+import { m } from '@sotf/i18n/messages';
+import { VersionTable } from '@sotf/ui/domain';
+import { loadVersions, resolveModPage } from '../../../../../components/mod/data.ts';
+import { versionsPagePath } from '../../../../../components/mod/format.ts';
+import ModLayout from '../../../../../components/mod/ModLayout.astro';
+import { respondUnresolved } from '../../../../../components/mod/responses.ts';
+import { subpageTitle, truncate } from '../../../../../components/mod/seo.ts';
+import { SECTION_TITLE_CLASSES } from '../../../../../components/mod/styles.ts';
+import VersionTimeline from '../../../../../components/mod/VersionTimeline.astro';
+import { setPageCache } from '../../../../../lib/cache/page.ts';
+import { pageCache } from '../../../../../lib/cache/policy.ts';
+import { ensureLocals } from '../../../../../lib/request-context.ts';
+
+export const prerender = false;
+
+ensureLocals(Astro);
+const resolved = await resolveModPage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+if (resolved.rest.length !== 1 || resolved.rest[0] !== 'versions') return respondUnresolved(Astro, { kind: 'not-found' });
+
+const { mod } = resolved;
+setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
+const versions = await loadVersions(mod.id);
+const label = m.mod_tab_versions();
+const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? null;
+---
+
+<ModLayout
+  mod={mod}
+  tab="versions"
+  versions={versions}
+  crumbs={[{ label }]}
+  seo={{
+    title: subpageTitle(label, mod),
+    description: truncate(
+      m.mod_versions_meta_description({ name: mod.name, count: versions.length, version: latest?.version ?? '—' }),
+      160,
+    ),
+    path: versionsPagePath(mod),
+    noindex: mod.noindex,
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+  }}
+>
+  <section aria-labelledby="versions-title" class="grid gap-4">
+    <h2 id="versions-title" class={SECTION_TITLE_CLASSES}>{m.mod_versions_title({ count: versions.length })}</h2>
+    <VersionTable versions={versions} caption={m.mod_versions_caption({ name: mod.name })} />
+  </section>
+
+  <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4">
+    <h2 id="field-notes-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_notes()}</h2>
+    {
+      versions.length > 0 ? (
+        <VersionTimeline mod={mod} versions={versions} />
+      ) : (
+        <p class="text-fg-muted">{m.mod_versions_empty()}</p>
+      )
+    }
+  </section>
+</ModLayout>

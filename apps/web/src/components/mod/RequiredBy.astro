@@ -1,0 +1,55 @@
+---
+/**
+ * «Required by (N)» (T0-09): published mods that declare this one as a required dependency, and
+ * «In N kits». The list comes from `GET /mods/:id/dependents` (optional call).
+ */
+import { m } from '@sotf/i18n/messages';
+import { ModCard } from '@sotf/ui/domain';
+import { href } from '../../lib/i18n.ts';
+import type { ModCardDTO, ModDetailDTO } from './data.ts';
+import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  dependents: ModCardDTO[];
+}
+
+const { mod, dependents } = Astro.props;
+const locale = Astro.locals.locale;
+const shown = dependents.slice(0, 6);
+const currentBuild = mod.compatCurrent.gameBuild?.label ?? null;
+---
+
+{
+  (mod.dependentsCount > 0 || mod.kitsCount > 0) && (
+    <section aria-labelledby="required-by-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
+      {mod.dependentsCount > 0 ? (
+        <>
+          <h2 id="required-by-title" class={READOUT_CLASSES}>
+            {m.mod_required_by_title({ count: mod.dependentsCount })}
+          </h2>
+          {shown.length > 0 && (
+            <ul class="grid gap-2">
+              {shown.map((card) => (
+                <li>
+                  <ModCard mod={{ ...card, canonicalPath: href(card.canonicalPath, locale) }} variant="compact" headingLevel={3} viewTransition={false} currentBuild={currentBuild} />
+                </li>
+              ))}
+            </ul>
+          )}
+          {mod.dependentsCount > shown.length && (
+            <p class="text-sm text-fg-muted">{m.mod_required_by_more({ count: mod.dependentsCount - shown.length })}</p>
+          )}
+        </>
+      ) : (
+        <h2 id="required-by-title" class="sr-only">{m.mod_in_kits_title({ count: mod.kitsCount })}</h2>
+      )}
+      {mod.kitsCount > 0 && (
+        <p class="flex flex-wrap items-center gap-2 border-t border-border pt-3 text-sm first:border-t-0 first:pt-0">
+          <span class="font-semibold">{m.mod_in_kits_title({ count: mod.kitsCount })}</span>
+          <a href={href('/kits', locale)} class="text-link underline underline-offset-3">{m.mod_in_kits_browse()}</a>
+        </p>
+      )}
+    </section>
+  )
+}

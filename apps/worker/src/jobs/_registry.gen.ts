@@ -10,15 +10,18 @@ import digestsJobs from './digests/index.ts';
 import discordJobs from './discord/index.ts';
 import downloadsJobs from './downloads/index.ts';
 import emailJobs from './email/index.ts';
+import gamificationJobs from './gamification/index.ts';
 import indexnowJobs from './indexnow/index.ts';
 import inspectionJobs from './inspection/index.ts';
 import kelvinseekJobs from './kelvinseek/index.ts';
 import legacyCountersJobs from './legacy-counters/index.ts';
 import legacyMentionsJobs from './legacy-mentions/index.ts';
 import mediaJobs from './media/index.ts';
+import moderationJobs from './moderation/index.ts';
 import notificationsJobs from './notifications/index.ts';
 import ogJobs from './og/index.ts';
 import platformJobs from './platform/index.ts';
+import securityScanJobs from './security-scan/index.ts';
 import statsJobs from './stats/index.ts';
 import uploadsJobs from './uploads/index.ts';
 
@@ -32,15 +35,18 @@ export const jobGroups = [
   discordJobs,
   downloadsJobs,
   emailJobs,
+  gamificationJobs,
   indexnowJobs,
   inspectionJobs,
   kelvinseekJobs,
   legacyCountersJobs,
   legacyMentionsJobs,
   mediaJobs,
+  moderationJobs,
   notificationsJobs,
   ogJobs,
   platformJobs,
+  securityScanJobs,
   statsJobs,
   uploadsJobs,
 ] as const;
