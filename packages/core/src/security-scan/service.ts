@@ -516,3 +516,41 @@ export async function staleScans(
          ORDER BY "modVersionId", "createdAt" DESC LIMIT 100`,
   );
 }
+
+/** A scan left `pending` this long without a job in flight is re-enqueued by `security.rescan`. */
+export const STALE_SCAN_MS = 6 * 3600 * 1000;
+
+const PGBOSS_SCHEMA = /^[a-z_][a-z0-9_]*$/;
+
+/**
+ * `security.rescan` (hourly, backlog WP-51): versions whose scan stayed `pending` for 6 h and have
+ * no `security.scan` job waiting, retrying or running (a job lost with a crashed worker, or one
+ * dropped by pg-boss) get a new job. Scans rescheduled on purpose (VirusTotal quota) still have
+ * their delayed job in the queue and are left alone. `schema` is the pg-boss schema.
+ */
+export async function rescanStaleScans(
+  ctx: Ctx,
+  options: { schema?: string; olderThanMs?: number } = {},
+): Promise<{ enqueued: number[] }> {
+  const schema = options.schema ?? 'pgboss';
+  if (!PGBOSS_SCHEMA.test(schema)) throw new Error(`invalid pg-boss schema "${schema}"`);
+  const stale = await staleScans(ctx, options.olderThanMs ?? STALE_SCAN_MS);
+  if (stale.length === 0) return { enqueued: [] };
+  const job = sql.raw(`"${schema}"."job"`);
+  const inFlight = await query<{ modVersionId: number }>(
+    ctx.db,
+    sql`SELECT DISTINCT (j."data"->>'modVersionId')::int AS "modVersionId" FROM ${job} j
+         WHERE j."name" = 'security.scan' AND j."state" IN ('created', 'retry', 'active')
+           AND (j."data"->>'modVersionId')::int = ANY(${`{${stale.map((s) => s.modVersionId).join(',')}}`}::int[])`,
+  );
+  const busy = new Set(inFlight.map((r) => Number(r.modVersionId)));
+  const enqueued: number[] = [];
+  for (const scan of stale) {
+    const modVersionId = Number(scan.modVersionId);
+    if (busy.has(modVersionId)) continue;
+    await ctx.jobs.enqueue('security.scan', { modVersionId, sha256: scan.sha256 });
+    enqueued.push(modVersionId);
+  }
+  if (enqueued.length > 0) ctx.log.warn({ versions: enqueued }, 'stale security scans re-enqueued');
+  return { enqueued };
+}

@@ -110,6 +110,8 @@ export default defineModule({
       getKelvinSeekUsage(ctx, kelvinseek, Number(query.days) as 7 | 30 | 90),
     );
     m.implement(adminEndpoints.rum, async ({ query, ctx }) => getAdminRum(ctx, query.range));
-    m.implement(adminEndpoints.operations, async ({ ctx }) => getOperations(ctx, env.PGBOSS_SCHEMA));
+    m.implement(adminEndpoints.operations, async ({ ctx }) =>
+      getOperations(ctx, env.PGBOSS_SCHEMA, { kelvinSeek: kelvinseek, siteUrl: env.PUBLIC_SITE_URL }),
+    );
   },
 });

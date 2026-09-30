@@ -44,6 +44,11 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'awards.mod-of-week': { policy: 'singleton' },
   'milestones.check': { policy: 'singleton' },
   'gamification.evaluate': { retryLimit: 3 },
+  // Sweeps: one run at a time; the next schedule retries anyway.
+  'compat.reconcile': { policy: 'singleton', retryLimit: 2 },
+  'security.rescan': { policy: 'singleton', retryLimit: 1 },
+  'markdown.rerender': { policy: 'singleton', retryLimit: 2, expireInSeconds: 60 * 60 },
+  'ops.alerts': { policy: 'singleton', retryLimit: 1, expireInSeconds: 4 * 60 },
 };
 
 /** Effective configuration of a queue. */

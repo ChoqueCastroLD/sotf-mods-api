@@ -3,6 +3,7 @@
  */
 import type { CacheTag, Endpoint, RateLimitBucket } from '@sotf/contracts';
 import type { Actor, CacheRegistry, Ctx, Jobs, Logger } from '@sotf/core';
+import type { HttpStatusRecorder } from '@sotf/core/ops/index';
 import type { Database } from '@sotf/db';
 import type { FastifyRequest } from 'fastify';
 import type { PgBoss } from 'pg-boss';
@@ -48,6 +49,8 @@ export interface EndpointRouteConfig {
 declare module 'fastify' {
   interface FastifyInstance {
     platform: Platform;
+    /** Response status counters (absent when `statusCounters: false`). */
+    statusCounters?: HttpStatusRecorder;
   }
   interface FastifyRequest {
     /** Core context of the request (actor, request id, hashed IP…). */

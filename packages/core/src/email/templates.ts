@@ -7,6 +7,7 @@
  * Groups: `auth.*` and `account.*` (WP-30). Notification templates (WP-43) are added here the same
  * way (additive).
  */
+import { OPS_ALERT_KEYS } from '@sotf/contracts/admin';
 import { z } from 'zod';
 
 const Url = z.string().url();
@@ -38,6 +39,14 @@ export const EMAIL_TEMPLATE_PAYLOADS = {
   }),
   'account.deletion_cancelled': z.object({ displayName: Name, cancelledAt: Iso }),
   'account.deletion_completed': z.object({ displayName: Name }),
+  /** Operator alert of PLAN §10.3 (English only: it goes to the site admins). */
+  'ops.alert': z.object({
+    key: z.enum(OPS_ALERT_KEYS),
+    summary: z.string().max(300),
+    details: z.array(z.string().max(300)).max(30),
+    checkedAt: Iso,
+    opsUrl: Url,
+  }),
 } as const;
 
 export type EmailTemplate = keyof typeof EMAIL_TEMPLATE_PAYLOADS;

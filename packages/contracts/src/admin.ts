@@ -584,6 +584,16 @@ export const OpsQueueDTO = dto(
   },
 );
 
+const HttpStatusCountsDTO = z.object({
+  total: Count,
+  s404: Count,
+  s410: Count,
+  s4xx: Count.describe('Every 4xx (404 and 410 included)'),
+  s5xx: Count,
+});
+
+export const OPS_ALERT_KEYS = ['dead_letter', 'http_5xx', 'invariants', 'kelvinseek_budget'] as const;
+
 export const OpsDTO = dto(
   'OpsDTO',
   z.object({
@@ -596,9 +606,16 @@ export const OpsDTO = dto(
       queued: Count,
       failed24h: Count,
     }),
+    http: z
+      .object({ last5m: HttpStatusCountsDTO, lastHour: HttpStatusCountsDTO })
+      .describe('API responses by status (404, 410 and 5xx rates, PLAN §10.3)'),
+    alerts: z
+      .array(z.object({ key: z.enum(OPS_ALERT_KEYS), summary: z.string(), details: z.array(z.string()) }))
+      .describe('Alerts active now (the `ops.alerts` job emails them to the admins)'),
   }),
   {
-    description: 'Operational readout of Ranger Station › Admin: job queues, dead letters, downloads and CDN purges.',
+    description:
+      'Operational readout of Ranger Station › Admin: job queues, dead letters, downloads, CDN purges, response statuses and active alerts.',
     examples: [
       {
         generatedAt: '2026-09-29T10:00:00.000Z',
@@ -606,6 +623,11 @@ export const OpsDTO = dto(
         deadLetter: 0,
         downloads: { lastHour: 94, last24h: 1_720 },
         purge: { lastCompletedAt: '2026-09-29T09:58:12.000Z', queued: 2, failed24h: 0 },
+        http: {
+          last5m: { total: 1_204, s404: 12, s410: 1, s4xx: 20, s5xx: 0 },
+          lastHour: { total: 14_880, s404: 160, s410: 9, s4xx: 240, s5xx: 2 },
+        },
+        alerts: [],
       },
     ],
   },

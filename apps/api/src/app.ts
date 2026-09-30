@@ -29,6 +29,7 @@ import {
   PgListener,
   systemClock,
 } from '@sotf/core';
+import { HttpStatusRecorder } from '@sotf/core/ops/index';
 import { createDb, type Database, type DbHandle } from '@sotf/db';
 import Fastify, { type FastifyInstance, LogController } from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
@@ -83,6 +84,11 @@ export interface BuildAppOptions {
   underPressure?: boolean;
   /** Error reporting of 5xx (default: Sentry from `SENTRY_DSN`, a no-op without it). */
   errorReporter?: ErrorReporter;
+  /**
+   * Response status counters (`AnalyticsEvent` kind `http_status`, read by the `ops.alerts` job).
+   * `flushMs` default 60 s (0: only on close and on demand); `false` turns them off.
+   */
+  statusCounters?: { flushMs?: number } | false;
 }
 
 const anonymous: SessionResolver = async () => null;
@@ -217,6 +223,23 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   await setupCacheHeaders(app);
   // After the cache headers: its onSend hooks demote cookie-setting/private responses.
   await setupSecurity(app, { env });
+
+  if (options.statusCounters !== false) {
+    const recorder = new HttpStatusRecorder({ clock });
+    app.addHook('onResponse', async (request, reply) => {
+      const path = request.url.split('?', 1)[0];
+      if (path === '/healthz' || path === '/readyz') return;
+      recorder.record(reply.statusCode);
+    });
+    const every = options.statusCounters?.flushMs ?? 60_000;
+    const timer = every > 0 ? setInterval(() => void recorder.flush(db, log), every) : null;
+    timer?.unref();
+    app.decorate('statusCounters', recorder);
+    app.addHook('onClose', async () => {
+      if (timer) clearInterval(timer);
+      await recorder.flush(db, log);
+    });
+  }
 
   registerHealth(app);
   await setupDocs(app, { version: env.GIT_SHA, siteUrl: env.PUBLIC_SITE_URL });

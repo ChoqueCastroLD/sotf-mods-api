@@ -12,6 +12,7 @@ export * from './policy.ts';
 export * from './preflight.ts';
 export * from './queries.ts';
 export * from './release.ts';
+export * from './rerender.ts';
 export * from './studio.ts';
 export * from './submit.ts';
 export * from './text.ts';
