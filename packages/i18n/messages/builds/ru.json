@@ -104,5 +104,10 @@
   "builds_md_alert_important": "Важно",
   "builds_md_alert_warning": "Предупреждение",
   "builds_md_alert_caution": "Осторожно",
-  "builds_md_spoiler": "Спойлер"
+  "builds_md_spoiler": "Спойлер",
+  "builds_kit_popover_title": "Добавить в набор",
+  "builds_kit_popover_empty": "У вас пока нет наборов.",
+  "builds_kit_popover_create": "Создать набор",
+  "builds_kit_added": "Добавлено в {kit}",
+  "builds_kit_already": "Уже в {kit}"
 }

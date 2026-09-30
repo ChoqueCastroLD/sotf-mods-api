@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "Aviso",
   "mod_md_alert_caution": "Cuidado",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Perguntas frequentes"
+  "mod_faq_title": "Perguntas frequentes",
+  "mod_stats_title": "Downloads, últimos 30 dias",
+  "mod_stats_series": "Downloads por dia",
+  "mod_stats_day": "Dia",
+  "mod_stats_empty": "Ainda não há downloads suficientes para traçar uma tendência."
 }

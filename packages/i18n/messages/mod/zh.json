@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "警告",
   "mod_md_alert_caution": "小心",
   "mod_md_spoiler": "剧透",
-  "mod_faq_title": "常见问题"
+  "mod_faq_title": "常见问题",
+  "mod_stats_title": "最近 30 天的下载量",
+  "mod_stats_series": "每日下载量",
+  "mod_stats_day": "日期",
+  "mod_stats_empty": "下载量还不足以绘制趋势。"
 }

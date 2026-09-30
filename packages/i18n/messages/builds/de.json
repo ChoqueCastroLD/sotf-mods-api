@@ -104,5 +104,10 @@
   "builds_md_alert_important": "Wichtig",
   "builds_md_alert_warning": "Warnung",
   "builds_md_alert_caution": "Vorsicht",
-  "builds_md_spoiler": "Spoiler"
+  "builds_md_spoiler": "Spoiler",
+  "builds_kit_popover_title": "Zu einem Kit hinzufügen",
+  "builds_kit_popover_empty": "Du hast noch keine Kits.",
+  "builds_kit_popover_create": "Kit erstellen",
+  "builds_kit_added": "Zu {kit} hinzugefügt",
+  "builds_kit_already": "Bereits in {kit}"
 }
