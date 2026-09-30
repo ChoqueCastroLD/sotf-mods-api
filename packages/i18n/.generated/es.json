@@ -3310,6 +3310,537 @@
   "mod_whats_new_read": "Leer las notas de campo",
   "mod_whats_new_title": "Novedades desde tu última descarga (v{version})",
   "mod_whats_new_up_to_date": "Tienes la última versión (v{version}).",
+  "profile_achievements_badge_repeatable": "Se puede ganar varias veces",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} de los supervivientes · {count__number} la tiene",
+        "count__plural=*": "{share} de los supervivientes · {count__number} la tienen"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "Las insignias llenan el cuaderno de campo de cada superviviente. Las bloqueadas se ven con el contorno punteado y una pista, para que siempre sepas qué viene después.",
+  "profile_achievements_badges_title": "Insignias",
+  "profile_achievements_day_body": "Cada perfil muestra cuántos días han pasado desde que se creó la cuenta. Pura identidad: no da puntos.",
+  "profile_achievements_day_title": "Día N en la isla",
+  "profile_achievements_fair_play_downloads": "Las descargas nunca dan XP, así que no se gana nada inflándolas.",
+  "profile_achievements_fair_play_new_accounts": "Las cuentas recién creadas pesan la mitad en valoraciones y compatibilidad hasta ganarse la confianza.",
+  "profile_achievements_fair_play_reversible": "Cada punto de XP queda registrado y puede revertirse si viene de un abuso.",
+  "profile_achievements_fair_play_same_network": "No cuentan los votos ni los reportes entre cuentas de la misma red en 24 horas.",
+  "profile_achievements_fair_play_spikes": "Los Rangers revisan los picos repentinos de descargas.",
+  "profile_achievements_fair_play_title": "Juego limpio",
+  "profile_achievements_intro": "Todas las reglas de las recompensas de la isla, a la vista. Reconocen la calidad y la ayuda, nunca el volumen.",
+  "profile_achievements_meta_description": "Cómo funcionan los rangos de superviviente, la XP, los niveles de creador, las insignias y los hitos de los mods en SOTF Mods. Reglas públicas que premian la calidad y la ayuda, no el volumen.",
+  "profile_achievements_meta_title": "Insignias, rangos y niveles de creador",
+  "profile_achievements_milestones_intro": "Cada mod celebra sus hitos de descargas, contados desde su primer día. Aparecen como línea de tiempo en la página del mod y los más grandes se anuncian en Discord.",
+  "profile_achievements_milestones_title": "Hitos de los mods",
+  "profile_achievements_motw_body": "Cada lunes gana el mod con más impulso en descargas únicas, siempre que esté publicado, no esté roto en la build actual y tenga buenas valoraciones. Un mismo creador no puede ganar dos veces en dos semanas.",
+  "profile_achievements_motw_title": "Mod de la semana",
+  "profile_achievements_principle_no_streaks": "Sin rachas diarias, sin cajas de botín y sin clasificaciones que humillen a nadie.",
+  "profile_achievements_principle_privacy": "Puedes ocultar tu rango y tu actividad en los ajustes de privacidad.",
+  "profile_achievements_principle_quality": "La XP viene de ayudar a los demás: reseñas útiles, reportes de campo acertados y problemas resueltos. Las descargas nunca dan XP.",
+  "profile_achievements_principle_retroactive": "Todo es retroactivo: las cuentas desde 2023 conservan lo que ya se ganaron.",
+  "profile_achievements_ranks_intro": "Cada miembro tiene un rango de superviviente que crece con la XP que gana ayudando a la comunidad. No se compra y nunca se pierde por inactividad.",
+  "profile_achievements_ranks_title": "Rangos de superviviente",
+  "profile_achievements_tier_perks": "Sello de nivel y marco de avatar.",
+  "profile_achievements_tier_perks_spotlight": "Sello de nivel, marco de avatar y un lugar destacado en la portada.",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{downloads} descarga",
+        "count__plural=*": "{downloads} descargas"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "Los creadores suben de nivel automáticamente con las descargas totales de todos sus mods, incluido el histórico anterior a v2. Cada nivel añade un sello al perfil y un marco al avatar.",
+  "profile_achievements_tiers_title": "Niveles de creador",
+  "profile_achievements_title": "Logros",
+  "profile_achievements_toc": "En esta página",
+  "profile_achievements_xp_action": "Acción",
+  "profile_achievements_xp_limit": "Límite",
+  "profile_achievements_xp_needed": "XP necesaria",
+  "profile_achievements_xp_note": "Las acciones sobre tu propio contenido no cuentan. La XP se audita y puede revertirse si viene de un abuso.",
+  "profile_achievements_xp_title": "Cómo ganar XP",
+  "profile_action_edit": "Editar perfil",
+  "profile_activity_caption": "Publicaciones, comentarios, reseñas y reportes de campo por día (UTC).",
+  "profile_activity_cell": "{date}: {detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} comentario",
+        "count__plural=*": "{count__number} comentarios"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} publicación",
+        "count__plural=*": "{count__number} publicaciones"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} reporte de campo",
+        "count__plural=*": "{count__number} reportes de campo"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} reseña",
+        "count__plural=*": "{count__number} reseñas"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} no ha publicado, comentado, reseñado ni reportado nada en los últimos 12 meses.",
+  "profile_activity_empty_title": "Camino tranquilo",
+  "profile_activity_heatmap_label": "Contribuciones de {name} en los últimos 12 meses",
+  "profile_activity_kind_comments": "Comentarios",
+  "profile_activity_kind_releases": "Publicaciones",
+  "profile_activity_kind_reports": "Reportes de campo",
+  "profile_activity_kind_reviews": "Reseñas",
+  "profile_activity_legend_less": "Menos",
+  "profile_activity_legend_more": "Más",
+  "profile_activity_private": "{name} mantiene su actividad en privado.",
+  "profile_activity_recent_title": "Últimos días en el camino",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input days",
+        "input from",
+        "input to",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural",
+        "days__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*, days__plural=one": "Ninguna contribución en {days__number} día entre el {from} y el {to}.",
+        "count__exact=0, count__plural=*, days__plural=*": "Ninguna contribución en {days__number} días entre el {from} y el {to}.",
+        "count__exact=*, count__plural=one, days__plural=one": "{count__number} contribución en {days__number} día entre el {from} y el {to}.",
+        "count__exact=*, count__plural=one, days__plural=*": "{count__number} contribución en {days__number} días entre el {from} y el {to}.",
+        "count__exact=*, count__plural=*, days__plural=one": "{count__number} contribuciones en {days__number} día entre el {from} y el {to}.",
+        "count__exact=*, count__plural=*, days__plural=*": "{count__number} contribuciones en {days__number} días entre el {from} y el {to}."
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "Días activos",
+  "profile_activity_table_caption": "Contribuciones de {name} por mes",
+  "profile_activity_table_month": "Mes",
+  "profile_activity_table_toggle": "Ver como tabla",
+  "profile_activity_table_total": "Total",
+  "profile_activity_title": "Actividad",
+  "profile_avatar_alt": "Avatar de {name}",
+  "profile_badge_bug_hunter_hint": "Consigue que los creadores marquen 5 de tus reportes de bugs como resueltos.",
+  "profile_badge_bug_hunter_name": "Cazador de bugs",
+  "profile_badge_cartographer_hint": "Crea un kit público que llegue a 10 seguidores.",
+  "profile_badge_cartographer_name": "Cartógrafo",
+  "profile_badge_crash_landing_hint": "Publica tu primer mod.",
+  "profile_badge_crash_landing_name": "Aterrizaje forzoso",
+  "profile_badge_earned_on": "Conseguida el {date}",
+  "profile_badge_featured": "Destacada",
+  "profile_badge_field_medic_hint": "Envía 10 reportes de compatibilidad que coincidan con el consenso de la comunidad.",
+  "profile_badge_field_medic_name": "Médico de campo",
+  "profile_badge_first_blueprint_hint": "Publica tu primera build.",
+  "profile_badge_first_blueprint_name": "Primer plano",
+  "profile_badge_first_field_report_hint": "Envía tu primer reporte de compatibilidad.",
+  "profile_badge_first_field_report_name": "Primer reporte de campo",
+  "profile_badge_first_review_hint": "Escribe tu primera reseña con texto.",
+  "profile_badge_first_review_name": "Primera reseña",
+  "profile_badge_group_awards": "Premios",
+  "profile_badge_group_community": "Comunidad",
+  "profile_badge_group_creator": "Creador",
+  "profile_badge_group_legacy": "Supervivientes originales",
+  "profile_badge_group_onboarding": "Primeros pasos",
+  "profile_badge_group_roles": "Roles",
+  "profile_badge_group_secret": "Secretas",
+  "profile_badge_helping_hand_hint": "Consigue que un creador marque 5 de tus comentarios como solución o los fije.",
+  "profile_badge_helping_hand_name": "Mano amiga",
+  "profile_badge_island_favorite_hint": "Ten un mod con una valoración de 4,5 o más y al menos 20 reseñas.",
+  "profile_badge_island_favorite_name": "Favorito de la isla",
+  "profile_badge_locked": "Bloqueada",
+  "profile_badge_mod_of_the_week_hint": "Que uno de tus mods sea elegido Mod de la semana. Se puede ganar varias veces.",
+  "profile_badge_mod_of_the_week_name": "Mod de la semana",
+  "profile_badge_night_owl_hint": "Haz 5 contribuciones entre la medianoche y las 4 de la madrugada, en tu hora local.",
+  "profile_badge_night_owl_name": "Búho nocturno",
+  "profile_badge_original_survivor_hint": "Cuenta creada en {year}, antes del lanzamiento de SOTF Mods v2.",
+  "profile_badge_original_survivor_name": "Superviviente original {year}",
+  "profile_badge_patch_day_hero_hint": "Publica una versión compatible en los 7 días siguientes a una actualización del juego que rompa mods.",
+  "profile_badge_patch_day_hero_name": "Héroe del parche",
+  "profile_badge_pillar_of_the_island_hint": "Crea una librería que requieran al menos 3 mods de otros creadores.",
+  "profile_badge_pillar_of_the_island_name": "Pilar de la isla",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "Moderadores que mantienen la isla a salvo.",
+  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_secret_hint": "Sigue explorando. Algunas cosas de la isla solo se encuentran de noche.",
+  "profile_badge_secret_name": "Insignia secreta",
+  "profile_badge_staff_pick_hint": "Que el equipo elija uno de tus mods. Se puede ganar varias veces.",
+  "profile_badge_staff_pick_name": "Elegido por el equipo",
+  "profile_badge_survived_day_one_hint": "Completa la lista del Día 1.",
+  "profile_badge_survived_day_one_name": "Sobreviviste al día 1",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "Ayudó a traducir SOTF Mods a otro idioma.",
+  "profile_badge_translator_name": "Traductor",
+  "profile_badge_verified_creator_hint": "Creadores verificados por el equipo de SOTF Mods.",
+  "profile_badge_verified_creator_name": "Creador verificado",
+  "profile_badge_voice_of_the_island_hint": "Recibe 50 votos útiles en tus reseñas.",
+  "profile_badge_voice_of_the_island_name": "Voz de la isla",
+  "profile_badge_well_documented_hint": "Alcanza una calidad de ficha de 100 en uno de tus mods.",
+  "profile_badge_well_documented_name": "Bien documentado",
+  "profile_badges_empty_description": "Las insignias se ganan publicando, reseñando, reportando compatibilidad y ayudando a otros. Las bloqueadas aparecen aquí con el contorno punteado.",
+  "profile_badges_empty_title": "El cuaderno está en blanco",
+  "profile_badges_featured_label": "Insignias destacadas",
+  "profile_badges_rules_link": "Cómo funcionan las insignias",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Aún no hay insignias.",
+        "count__exact=*, count__plural=one": "{count__number} insignia conseguida.",
+        "count__exact=*, count__plural=*": "{count__number} insignias conseguidas."
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input count",
+        "input total",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Ninguna insignia de {total}.",
+        "count__exact=*, count__plural=one": "{count__number} insignia de {total}.",
+        "count__exact=*, count__plural=*": "{count__number} insignias de {total}."
+      }
+    }
+  ],
+  "profile_badges_title": "Cuaderno de campo",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__plural = badgeCount: plural",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [
+        "badgeCount__plural"
+      ],
+      "match": {
+        "badgeCount__plural=one": "Bienvenido a v2: has ganado {badgeCount__number} insignia",
+        "badgeCount__plural=*": "Bienvenido a v2: has ganado {badgeCount__number} insignias"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "Aún no hay builds",
+  "profile_builds_title": "Builds de {name}",
+  "profile_cards_empty_action": "Explorar mods",
+  "profile_cards_empty_description": "{name} todavía no ha publicado nada aquí. Explora lo que ha hecho el resto de la isla.",
+  "profile_creator_top_mod": "Mod más popular: {mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} creador",
+        "count__plural=*": "{display} creadores"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "Nadie ha publicado un mod todavía. El primero se lleva la insignia Aterrizaje forzoso.",
+  "profile_creators_empty_title": "Aún no hay creadores",
+  "profile_creators_error_title": "Los creadores no se han cargado",
+  "profile_creators_intro": "Los supervivientes que crean los mods y builds de la isla. Síguelos para recibir una señal cuando publiquen algo nuevo.",
+  "profile_creators_meta_description": "Las personas detrás de los mods y builds de Sons of the Forest: descargas, seguidores, niveles y sus trabajos más conocidos. Sigue a un creador para enterarte de sus novedades.",
+  "profile_creators_meta_title": "Creadores de mods de Sons of the Forest",
+  "profile_creators_meta_title_page": "Creadores de mods de Sons of the Forest — página {page}",
+  "profile_creators_sort_downloads": "Más descargados",
+  "profile_creators_sort_followers": "Más seguidos",
+  "profile_creators_sort_recent": "Publicado recientemente",
+  "profile_creators_sort_spotlight": "Destacados",
+  "profile_creators_tiers_link": "Cómo funcionan los niveles de creador",
+  "profile_creators_title": "Creadores",
+  "profile_day_on_island": "Día {day} en la isla",
+  "profile_feed_title": "Novedades de {name}",
+  "profile_follow_error": "No se pudo actualizar el seguimiento. Revisa tu conexión y vuelve a intentarlo.",
+  "profile_follow_name": "Seguir a {name}",
+  "profile_follow_own": "No puedes seguirte a ti mismo.",
+  "profile_follow_verify_email": "Verifica tu correo electrónico para seguir a creadores.",
+  "profile_followed": "Siguiendo. Recibirás una señal cuando publique algo.",
+  "profile_joined": "Se unió el {date}",
+  "profile_kits_empty_action": "Ver kits",
+  "profile_kits_empty_description": "{name} aún no ha compartido ningún kit. Los kits son selecciones de mods que cualquiera puede instalar de una vez.",
+  "profile_kits_empty_title": "No hay kits públicos",
+  "profile_kits_private": "{name} mantiene sus kits en privado.",
+  "profile_kits_title": "Kits de {name}",
+  "profile_link_copied": "Enlace del perfil copiado",
+  "profile_link_copy_failed": "No se pudo copiar el enlace. Cópialo desde la barra de direcciones.",
+  "profile_link_website": "Web",
+  "profile_links_label": "Enlaces",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local downloadsCount__plural = downloadsCount: plural",
+        "local followers__plural = followers: plural",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "downloadsCount__plural",
+        "followers__plural"
+      ],
+      "match": {
+        "count__plural=one, downloadsCount__plural=one, followers__plural=one": "{name} crea mods de Sons of the Forest: {count__number} mod o build, {downloads} descarga, {followers__number} seguidor. Descargas gratis en SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=*": "{name} crea mods de Sons of the Forest: {count__number} mod o build, {downloads} descarga, {followers__number} seguidores. Descargas gratis en SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=one": "{name} crea mods de Sons of the Forest: {count__number} mod o build, {downloads} descargas, {followers__number} seguidor. Descargas gratis en SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=*": "{name} crea mods de Sons of the Forest: {count__number} mod o build, {downloads} descargas, {followers__number} seguidores. Descargas gratis en SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=one": "{name} crea mods de Sons of the Forest: {count__number} mods y builds, {downloads} descarga, {followers__number} seguidor. Descargas gratis en SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=*": "{name} crea mods de Sons of the Forest: {count__number} mods y builds, {downloads} descarga, {followers__number} seguidores. Descargas gratis en SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=one": "{name} crea mods de Sons of the Forest: {count__number} mods y builds, {downloads} descargas, {followers__number} seguidor. Descargas gratis en SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=*": "{name} crea mods de Sons of the Forest: {count__number} mods y builds, {downloads} descargas, {followers__number} seguidores. Descargas gratis en SOTF Mods."
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number",
+        "local reports__plural = reports: plural",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [
+        "reviews__plural",
+        "reports__plural"
+      ],
+      "match": {
+        "reviews__plural=one, reports__plural=one": "{name} en SOTF Mods, la comunidad de mods de Sons of the Forest: {reviews__number} reseña y {reports__number} reporte de campo.",
+        "reviews__plural=one, reports__plural=*": "{name} en SOTF Mods, la comunidad de mods de Sons of the Forest: {reviews__number} reseña y {reports__number} reportes de campo.",
+        "reviews__plural=*, reports__plural=one": "{name} en SOTF Mods, la comunidad de mods de Sons of the Forest: {reviews__number} reseñas y {reports__number} reporte de campo.",
+        "reviews__plural=*, reports__plural=*": "{name} en SOTF Mods, la comunidad de mods de Sons of the Forest: {reviews__number} reseñas y {reports__number} reportes de campo."
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name} (@{handle}) — creador de mods de Sons of the Forest",
+  "profile_meta_title_member": "{name} (@{handle}) — comunidad de mods de Sons of the Forest",
+  "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_mods_empty_title": "Aún no hay mods",
+  "profile_mods_title": "Mods de {name}",
+  "profile_pinned_title": "Fijados",
+  "profile_private_title": "Privado",
+  "profile_rank_builder": "Constructor",
+  "profile_rank_castaway": "Náufrago",
+  "profile_rank_forager": "Recolector",
+  "profile_rank_label": "Rango de superviviente",
+  "profile_rank_legend": "Leyenda de la isla",
+  "profile_rank_pathfinder": "Pionero",
+  "profile_rank_progress": "{rank} · {xp} XP. Faltan {needed} XP para {next}.",
+  "profile_rank_scavenger": "Carroñero",
+  "profile_rank_top": "{rank} · {xp} XP. Lo más alto de la isla.",
+  "profile_rank_trapper": "Trampero",
+  "profile_rank_veteran": "Veterano",
+  "profile_review_of": "Reseña de {mod}",
+  "profile_reviews_empty_description": "{name} todavía no ha reseñado ningún mod.",
+  "profile_reviews_empty_title": "Aún no hay reseñas",
+  "profile_reviews_newest": "Reseñas más recientes",
+  "profile_reviews_older": "Reseñas anteriores",
+  "profile_reviews_pagination": "Más reseñas",
+  "profile_reviews_title": "Reseñas de {name}",
+  "profile_sort_downloads": "Más descargados",
+  "profile_sort_label": "Ordenar",
+  "profile_sort_new": "Más nuevos",
+  "profile_sort_updated": "Actualizados recientemente",
+  "profile_stat_downloads_label": "Descargas",
+  "profile_stat_followers_label": "Seguidores",
+  "profile_stat_helpful_label": "Votos útiles",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} voto útil en sus reseñas",
+        "count__plural=*": "{count__number} votos útiles en sus reseñas"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "Mods",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__plural = mods: plural",
+        "local mods__number = mods: number",
+        "local builds__plural = builds: plural",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [
+        "mods__plural",
+        "builds__plural"
+      ],
+      "match": {
+        "mods__plural=one, builds__plural=one": "{mods__number} mod y {builds__number} build",
+        "mods__plural=one, builds__plural=*": "{mods__number} mod y {builds__number} builds",
+        "mods__plural=*, builds__plural=one": "{mods__number} mods y {builds__number} build",
+        "mods__plural=*, builds__plural=*": "{mods__number} mods y {builds__number} builds"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "Valoración media",
+  "profile_stat_rating_title": "{rating} de 5 de media",
+  "profile_stats_label": "Estadísticas",
+  "profile_tab_activity": "Actividad",
+  "profile_tab_badges": "Insignias",
+  "profile_tab_builds": "Builds",
+  "profile_tab_error_description": "El servidor ha tardado demasiado en responder. Inténtalo de nuevo en un momento.",
+  "profile_tab_error_title": "Esta sección no se ha cargado",
+  "profile_tab_kits": "Kits",
+  "profile_tab_mods": "Mods",
+  "profile_tab_reviews": "Reseñas",
+  "profile_tabs_label": "Secciones del perfil",
+  "profile_tier_cabin": "Cabaña",
+  "profile_tier_campfire": "Hoguera",
+  "profile_tier_fortress": "Fortaleza",
+  "profile_tier_label": "Nivel de creador",
+  "profile_tier_landmark": "Hito",
+  "profile_tier_lean_to": "Refugio",
+  "profile_tier_treehouse": "Casa del árbol",
+  "profile_unfollowed": "Has dejado de seguirle.",
+  "profile_verified_creator": "Creador verificado",
+  "profile_xp_bug_report_resolved": "Reporte de bug marcado como resuelto por el creador",
+  "profile_xp_comment_solution_or_pinned": "Comentario marcado como solución o fijado por el creador",
+  "profile_xp_compat_report": "Reporte de campo (¿funciona en esta build?)",
+  "profile_xp_compat_report_consensus": "Bonus: tu reporte coincide con el consenso a las 72 h",
+  "profile_xp_first_follow": "Sigue tu primer mod o creador",
+  "profile_xp_kit_followers_10": "Tu kit alcanza cada 10 seguidores",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} al día"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "Sin límite",
+  "profile_xp_limit_once": "Una vez",
+  "profile_xp_limit_per_build": "Una vez por build del juego",
+  "profile_xp_onboarding_completed": "Completa la lista del Día 1",
+  "profile_xp_patch_day_release": "Creador: versión compatible en los 14 días siguientes a una actualización que rompa mods",
+  "profile_xp_profile_completed": "Completa tu perfil",
+  "profile_xp_review_helpful_vote": "Un voto «útil» en tu reseña",
+  "profile_xp_review_with_text": "Reseña con al menos 80 caracteres de texto",
   "social_action_back": "Volver",
   "social_action_cancel": "Cancelar",
   "social_action_close": "Cerrar",

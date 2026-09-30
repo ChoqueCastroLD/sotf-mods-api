@@ -2939,6 +2939,457 @@
   "mod_whats_new_read": "阅读实地笔记",
   "mod_whats_new_title": "自你上次下载（v{version}）以来的更新",
   "mod_whats_new_up_to_date": "你已有最新版本（v{version}）。",
+  "profile_achievements_badge_repeatable": "可重复获得",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{share} 的幸存者 · {count__number} 人拥有"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "徽章会填满每位幸存者的野外笔记。未解锁的徽章以虚线显示并附提示，让你随时知道下一步。",
+  "profile_achievements_badges_title": "徽章",
+  "profile_achievements_day_body": "每个个人主页都会显示账号创建至今的天数。纯粹的身份标识：不计分。",
+  "profile_achievements_day_title": "登岛第 N 天",
+  "profile_achievements_fair_play_downloads": "下载量永远不会带来 XP，刷量毫无意义。",
+  "profile_achievements_fair_play_new_accounts": "全新账号在评分和兼容性中仅计一半权重，直到建立信任。",
+  "profile_achievements_fair_play_reversible": "每一点 XP 都有记录，若来自滥用可被撤销。",
+  "profile_achievements_fair_play_same_network": "同一网络下的账号在 24 小时内的相互投票和报告不计入。",
+  "profile_achievements_fair_play_spikes": "下载量的异常激增会由巡林员审查。",
+  "profile_achievements_fair_play_title": "公平竞技",
+  "profile_achievements_intro": "小岛奖励的全部规则，公开透明。它们认可质量与互助，绝不只看数量。",
+  "profile_achievements_meta_description": "SOTF Mods 的幸存者等级、XP、创作者段位、徽章和模组里程碑如何运作。公开的规则奖励质量与互助，而非数量。",
+  "profile_achievements_meta_title": "徽章、等级与创作者段位",
+  "profile_achievements_milestones_intro": "每个模组都会庆祝自己的下载里程碑，从第一天开始计算。它们以时间线形式显示在模组页面上，最重要的会在 Discord 公布。",
+  "profile_achievements_milestones_title": "模组里程碑",
+  "profile_achievements_motw_body": "每周一，独立下载增长势头最强的模组胜出，前提是已发布、在当前版本上未损坏且评分良好。同一位创作者两周内不能连续获胜。",
+  "profile_achievements_motw_title": "本周模组",
+  "profile_achievements_principle_no_streaks": "没有每日连签，没有开箱，也没有让人难堪的排行榜。",
+  "profile_achievements_principle_privacy": "你可以在隐私设置中隐藏自己的等级和动态。",
+  "profile_achievements_principle_quality": "XP 来自帮助他人：有用的评价、准确的实地报告和解决的问题。下载量永远不会带来 XP。",
+  "profile_achievements_principle_retroactive": "一切均可追溯：自 2023 年起的账号都会保留已获得的成就。",
+  "profile_achievements_ranks_intro": "每位成员都有幸存者等级，会随着帮助社区获得的 XP 提升。等级无法购买，也不会因不活跃而丢失。",
+  "profile_achievements_ranks_title": "幸存者等级",
+  "profile_achievements_tier_perks": "段位印章和头像边框。",
+  "profile_achievements_tier_perks_spotlight": "段位印章、头像边框，并在首页焦点展示。",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{downloads} 次下载"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "创作者会根据其全部模组的累计下载量（含 v2 之前的历史）自动升段。每个段位都会在个人主页添加印章，并为头像加上边框。",
+  "profile_achievements_tiers_title": "创作者段位",
+  "profile_achievements_title": "成就",
+  "profile_achievements_toc": "本页内容",
+  "profile_achievements_xp_action": "行为",
+  "profile_achievements_xp_limit": "上限",
+  "profile_achievements_xp_needed": "所需 XP",
+  "profile_achievements_xp_note": "针对自己内容的操作不计入。XP 会被审核，若来自滥用可被撤销。",
+  "profile_achievements_xp_title": "如何获得 XP",
+  "profile_action_edit": "编辑个人资料",
+  "profile_activity_caption": "每日发布、评论、评价和实地报告（UTC）。",
+  "profile_activity_cell": "{date}：{detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条评论"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次发布"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 份实地报告"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条评价"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} 在过去 12 个月里没有发布、评论、评价或报告任何内容。",
+  "profile_activity_empty_title": "小径静悄悄",
+  "profile_activity_heatmap_label": "{name} 近 12 个月的贡献",
+  "profile_activity_kind_comments": "评论",
+  "profile_activity_kind_releases": "发布",
+  "profile_activity_kind_reports": "实地报告",
+  "profile_activity_kind_reviews": "评价",
+  "profile_activity_legend_less": "少",
+  "profile_activity_legend_more": "多",
+  "profile_activity_private": "{name} 未公开其动态。",
+  "profile_activity_recent_title": "最近的足迹",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input days",
+        "input count",
+        "local days__number = days: number",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "{from} 至 {to} 期间，在 {days__number} 天里共有零次贡献。",
+        "count__exact=*": "{from} 至 {to} 期间，在 {days__number} 天里共有 {count__number} 次贡献。"
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "活跃天数",
+  "profile_activity_table_caption": "{name} 每月的贡献",
+  "profile_activity_table_month": "月份",
+  "profile_activity_table_toggle": "以表格查看",
+  "profile_activity_table_total": "合计",
+  "profile_activity_title": "动态",
+  "profile_avatar_alt": "{name} 的头像",
+  "profile_badge_bug_hunter_hint": "有 5 份漏洞报告被创作者标记为已解决。",
+  "profile_badge_bug_hunter_name": "漏洞猎手",
+  "profile_badge_cartographer_hint": "创建一个关注者达到 10 人的公开合集。",
+  "profile_badge_cartographer_name": "制图师",
+  "profile_badge_crash_landing_hint": "发布你的第一个模组。",
+  "profile_badge_crash_landing_name": "迫降",
+  "profile_badge_earned_on": "获得于 {date}",
+  "profile_badge_featured": "精选",
+  "profile_badge_field_medic_hint": "提交 10 份与社区共识一致的兼容性报告。",
+  "profile_badge_field_medic_name": "战地医生",
+  "profile_badge_first_blueprint_hint": "发布你的第一个建筑。",
+  "profile_badge_first_blueprint_name": "第一张蓝图",
+  "profile_badge_first_field_report_hint": "提交你的第一份兼容性报告。",
+  "profile_badge_first_field_report_name": "首份实地报告",
+  "profile_badge_first_review_hint": "撰写你的第一条带文字的评价。",
+  "profile_badge_first_review_name": "首条评价",
+  "profile_badge_group_awards": "奖项",
+  "profile_badge_group_community": "社区",
+  "profile_badge_group_creator": "创作者",
+  "profile_badge_group_legacy": "元老幸存者",
+  "profile_badge_group_onboarding": "新手起步",
+  "profile_badge_group_roles": "身份",
+  "profile_badge_group_secret": "隐藏",
+  "profile_badge_helping_hand_hint": "有 5 条评论被创作者标记为解决方案或置顶。",
+  "profile_badge_helping_hand_name": "援手",
+  "profile_badge_island_favorite_hint": "拥有一个评分 4.5 以上且至少 20 条评价的模组。",
+  "profile_badge_island_favorite_name": "小岛最爱",
+  "profile_badge_locked": "未解锁",
+  "profile_badge_mod_of_the_week_hint": "你的模组被选为本周模组。可重复获得。",
+  "profile_badge_mod_of_the_week_name": "本周模组",
+  "profile_badge_night_owl_hint": "在当地时间午夜至凌晨 4 点之间做出 5 次贡献。",
+  "profile_badge_night_owl_name": "夜猫子",
+  "profile_badge_original_survivor_hint": "账号创建于 {year} 年，早于 SOTF Mods v2 上线。",
+  "profile_badge_original_survivor_name": "{year} 元老幸存者",
+  "profile_badge_patch_day_hero_hint": "在破坏模组的游戏更新后 7 天内发布兼容版本。",
+  "profile_badge_patch_day_hero_name": "补丁日英雄",
+  "profile_badge_pillar_of_the_island_hint": "制作一个被至少 3 个其他创作者的模组依赖的库。",
+  "profile_badge_pillar_of_the_island_name": "小岛支柱",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "守护小岛安全的版主。",
+  "profile_badge_ranger_name": "巡林员",
+  "profile_badge_secret_hint": "继续探索吧。岛上有些东西只在夜里才能找到。",
+  "profile_badge_secret_name": "隐藏徽章",
+  "profile_badge_staff_pick_hint": "你的模组被团队选中。可重复获得。",
+  "profile_badge_staff_pick_name": "团队精选",
+  "profile_badge_survived_day_one_hint": "完成“第 1 天”清单。",
+  "profile_badge_survived_day_one_name": "熬过第一天",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "帮助将 SOTF Mods 翻译成其他语言。",
+  "profile_badge_translator_name": "译者",
+  "profile_badge_verified_creator_hint": "经 SOTF Mods 团队认证的创作者。",
+  "profile_badge_verified_creator_name": "认证创作者",
+  "profile_badge_voice_of_the_island_hint": "你的评价累计获得 50 张“有帮助”票。",
+  "profile_badge_voice_of_the_island_name": "小岛之声",
+  "profile_badge_well_documented_hint": "让你的某个模组页面质量达到 100。",
+  "profile_badge_well_documented_name": "文档完善",
+  "profile_badges_empty_description": "发布作品、撰写评价、报告兼容性和帮助他人都能获得徽章。未解锁的徽章会以虚线轮廓显示在这里。",
+  "profile_badges_empty_title": "笔记本还是空的",
+  "profile_badges_featured_label": "精选徽章",
+  "profile_badges_rules_link": "徽章规则",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "尚未获得徽章。",
+        "count__exact=*": "已获得 {count__number} 枚徽章。"
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input count",
+        "input total",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "尚未获得徽章，共 {total} 枚。",
+        "count__exact=*": "已获得 {count__number} 枚，共 {total} 枚。"
+      }
+    }
+  ],
+  "profile_badges_title": "野外笔记",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "欢迎来到 v2：你获得了 {badgeCount__number} 枚徽章"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "暂无建筑",
+  "profile_builds_title": "{name} 的建筑",
+  "profile_cards_empty_action": "浏览模组",
+  "profile_cards_empty_description": "{name} 还没有在这里发布内容。去看看岛上其他人的作品吧。",
+  "profile_creator_top_mod": "代表作：{mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 位创作者"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "这里还没有人发布模组。第一位发布者将获得“迫降”徽章。",
+  "profile_creators_empty_title": "暂无创作者",
+  "profile_creators_error_title": "创作者列表未能加载",
+  "profile_creators_intro": "为小岛打造模组和建筑的幸存者们。关注他们，有新作发布时就会收到信号。",
+  "profile_creators_meta_description": "Sons of the Forest 模组和建筑背后的创作者：下载量、关注者、段位和代表作。关注创作者，第一时间获知新发布。",
+  "profile_creators_meta_title": "Sons of the Forest 模组创作者",
+  "profile_creators_meta_title_page": "Sons of the Forest 模组创作者 — 第 {page} 页",
+  "profile_creators_sort_downloads": "下载最多",
+  "profile_creators_sort_followers": "关注最多",
+  "profile_creators_sort_recent": "最近发布",
+  "profile_creators_sort_spotlight": "焦点",
+  "profile_creators_tiers_link": "创作者段位规则",
+  "profile_creators_title": "创作者",
+  "profile_day_on_island": "登岛第 {day} 天",
+  "profile_feed_title": "{name} 的新发布",
+  "profile_follow_error": "无法更新关注状态。请检查网络连接后重试。",
+  "profile_follow_name": "关注 {name}",
+  "profile_follow_own": "你不能关注自己。",
+  "profile_follow_verify_email": "请先验证你的电子邮箱，才能关注创作者。",
+  "profile_followed": "已关注。有新发布时你会收到信号。",
+  "profile_joined": "加入于 {date}",
+  "profile_kits_empty_action": "浏览合集",
+  "profile_kits_empty_description": "{name} 还没有分享合集。合集是精选的模组组合，任何人都可以一次性安装。",
+  "profile_kits_empty_title": "没有公开的合集",
+  "profile_kits_private": "{name} 未公开其合集。",
+  "profile_kits_title": "{name} 的合集",
+  "profile_link_copied": "已复制个人主页链接",
+  "profile_link_copy_failed": "无法复制链接，请从地址栏复制。",
+  "profile_link_website": "网站",
+  "profile_links_label": "链接",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__number = count: number",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} 为 Sons of the Forest 制作模组：{count__number} 个模组和建筑，{downloads} 次下载，{followers__number} 位关注者。在 SOTF Mods 免费下载。"
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__number = reviews: number",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} 在 SOTF Mods（Sons of the Forest 模组社区）：{reviews__number} 条评价，{reports__number} 份实地报告。"
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name}（@{handle}）— Sons of the Forest 模组创作者",
+  "profile_meta_title_member": "{name}（@{handle}）— Sons of the Forest 模组社区",
+  "profile_meta_title_tab": "{tab} · {name}（@{handle}）",
+  "profile_mods_empty_title": "暂无模组",
+  "profile_mods_title": "{name} 的模组",
+  "profile_pinned_title": "置顶",
+  "profile_private_title": "未公开",
+  "profile_rank_builder": "建造者",
+  "profile_rank_castaway": "遇难者",
+  "profile_rank_forager": "采集者",
+  "profile_rank_label": "幸存者等级",
+  "profile_rank_legend": "小岛传奇",
+  "profile_rank_pathfinder": "开拓者",
+  "profile_rank_progress": "{rank} · {xp} XP。距离{next}还差 {needed} XP。",
+  "profile_rank_scavenger": "拾荒者",
+  "profile_rank_top": "{rank} · {xp} XP。已登顶小岛。",
+  "profile_rank_trapper": "猎人",
+  "profile_rank_veteran": "老手",
+  "profile_review_of": "对 {mod} 的评价",
+  "profile_reviews_empty_description": "{name} 还没有评价过任何模组。",
+  "profile_reviews_empty_title": "暂无评价",
+  "profile_reviews_newest": "最新评价",
+  "profile_reviews_older": "更早的评价",
+  "profile_reviews_pagination": "更多评价",
+  "profile_reviews_title": "{name} 的评价",
+  "profile_sort_downloads": "下载最多",
+  "profile_sort_label": "排序",
+  "profile_sort_new": "最新",
+  "profile_sort_updated": "最近更新",
+  "profile_stat_downloads_label": "下载",
+  "profile_stat_followers_label": "关注者",
+  "profile_stat_helpful_label": "“有帮助”票",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "其评价获得 {count__number} 张“有帮助”票"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "模组",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__number = mods: number",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mods__number} 个模组和{builds__number} 个建筑"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "平均评分",
+  "profile_stat_rating_title": "平均 {rating} 分（满分 5 分）",
+  "profile_stats_label": "统计",
+  "profile_tab_activity": "动态",
+  "profile_tab_badges": "徽章",
+  "profile_tab_builds": "建筑",
+  "profile_tab_error_description": "服务器响应超时，请稍后重试。",
+  "profile_tab_error_title": "此板块未能加载",
+  "profile_tab_kits": "合集",
+  "profile_tab_mods": "模组",
+  "profile_tab_reviews": "评价",
+  "profile_tabs_label": "个人主页板块",
+  "profile_tier_cabin": "小屋",
+  "profile_tier_campfire": "篝火",
+  "profile_tier_fortress": "堡垒",
+  "profile_tier_label": "创作者段位",
+  "profile_tier_landmark": "地标",
+  "profile_tier_lean_to": "窝棚",
+  "profile_tier_treehouse": "树屋",
+  "profile_unfollowed": "已取消关注。",
+  "profile_verified_creator": "认证创作者",
+  "profile_xp_bug_report_resolved": "漏洞报告被创作者标记为已解决",
+  "profile_xp_comment_solution_or_pinned": "评论被创作者标记为解决方案或置顶",
+  "profile_xp_compat_report": "实地报告（在此版本上能用吗？）",
+  "profile_xp_compat_report_consensus": "奖励：72 小时后你的报告与共识一致",
+  "profile_xp_first_follow": "关注你的第一个模组或创作者",
+  "profile_xp_kit_followers_10": "你的合集每新增 10 位关注者",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "每天 {count__number} 次"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "无上限",
+  "profile_xp_limit_once": "一次",
+  "profile_xp_limit_per_build": "每个游戏版本一次",
+  "profile_xp_onboarding_completed": "完成“第 1 天”清单",
+  "profile_xp_patch_day_release": "创作者：在破坏模组的更新后 14 天内发布兼容版本",
+  "profile_xp_profile_completed": "完善个人资料",
+  "profile_xp_review_helpful_vote": "你的评价获得一张“有帮助”票",
+  "profile_xp_review_with_text": "撰写至少 80 个字符的评价",
   "social_action_back": "返回",
   "social_action_cancel": "取消",
   "social_action_close": "关闭",

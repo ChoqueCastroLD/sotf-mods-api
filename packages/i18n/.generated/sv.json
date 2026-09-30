@@ -3310,6 +3310,537 @@
   "mod_whats_new_read": "Läs fältanteckningarna",
   "mod_whats_new_title": "Nytt sedan din senaste nedladdning (v{version})",
   "mod_whats_new_up_to_date": "Du har den senaste versionen (v{version}).",
+  "profile_achievements_badge_repeatable": "Kan tjänas in flera gånger",
+  "profile_achievements_badge_share": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} av överlevarna · {count__number} innehavare",
+        "count__plural=*": "{share} av överlevarna · {count__number} innehavare"
+      }
+    }
+  ],
+  "profile_achievements_badges_intro": "Märken fyller varje överlevares fältdagbok. Låsta märken visas streckade med en ledtråd, så att du alltid vet vad som väntar.",
+  "profile_achievements_badges_title": "Märken",
+  "profile_achievements_day_body": "Varje profil visar hur många dagar som gått sedan kontot skapades. Ren identitet: det ger inga poäng.",
+  "profile_achievements_day_title": "Dag N på ön",
+  "profile_achievements_fair_play_downloads": "Nedladdningar ger aldrig XP, så det finns inget att vinna på att blåsa upp dem.",
+  "profile_achievements_fair_play_new_accounts": "Helt nya konton väger hälften i betyg och kompatibilitet tills de byggt upp förtroende.",
+  "profile_achievements_fair_play_reversible": "Varje XP-poäng loggas och kan dras tillbaka vid missbruk.",
+  "profile_achievements_fair_play_same_network": "Röster och rapporter mellan konton på samma nätverk inom 24 timmar räknas inte.",
+  "profile_achievements_fair_play_spikes": "Plötsliga toppar i nedladdningar granskas av Rangers.",
+  "profile_achievements_fair_play_title": "Rent spel",
+  "profile_achievements_intro": "Alla regler för öns belöningar, helt öppet. De uppmärksammar kvalitet och hjälp, aldrig ren volym.",
+  "profile_achievements_meta_description": "Så fungerar överlevarranger, XP, skaparnivåer, märken och moddmilstolpar på SOTF Mods. Offentliga regler som belönar kvalitet och hjälp, inte volym.",
+  "profile_achievements_meta_title": "Märken, ranger och skaparnivåer",
+  "profile_achievements_milestones_intro": "Varje modd firar sina nedladdningsmilstolpar, räknade från första dagen. De visas som en tidslinje på moddsidan och de största tillkännages på Discord.",
+  "profile_achievements_milestones_title": "Moddmilstolpar",
+  "profile_achievements_motw_body": "Varje måndag vinner modden med starkast fart bland unika nedladdningar, så länge den är publicerad, fungerar på det aktuella bygget och har bra betyg. Samma skapare kan inte vinna två gånger inom två veckor.",
+  "profile_achievements_motw_title": "Veckans modd",
+  "profile_achievements_principle_no_streaks": "Inga dagliga sviter, inga lootlådor och inga topplistor som hänger ut någon.",
+  "profile_achievements_principle_privacy": "Du kan dölja din rang och aktivitet i dina sekretessinställningar.",
+  "profile_achievements_principle_quality": "XP kommer från att hjälpa andra: användbara recensioner, träffsäkra fältrapporter och lösta problem. Nedladdningar ger aldrig XP.",
+  "profile_achievements_principle_retroactive": "Allt gäller retroaktivt: konton från 2023 och framåt behåller det de redan tjänat in.",
+  "profile_achievements_ranks_intro": "Varje medlem har en överlevarrang som växer med den XP man tjänar genom att hjälpa gemenskapen. Den kan inte köpas och försvinner aldrig vid inaktivitet.",
+  "profile_achievements_ranks_title": "Överlevarranger",
+  "profile_achievements_tier_perks": "Nivåstämpel och avatarram.",
+  "profile_achievements_tier_perks_spotlight": "Nivåstämpel, avatarram och en plats i rampljuset på startsidan.",
+  "profile_achievements_tier_threshold": [
+    {
+      "declarations": [
+        "input count",
+        "input downloads",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{downloads} nedladdning",
+        "count__plural=*": "{downloads} nedladdningar"
+      }
+    }
+  ],
+  "profile_achievements_tiers_intro": "Skapare klättrar automatiskt i nivå med det totala antalet nedladdningar av alla sina moddar, historiken före v2 inräknad. Varje nivå ger en stämpel på profilen och en ram runt avataren.",
+  "profile_achievements_tiers_title": "Skaparnivåer",
+  "profile_achievements_title": "Prestationer",
+  "profile_achievements_toc": "På den här sidan",
+  "profile_achievements_xp_action": "Handling",
+  "profile_achievements_xp_limit": "Gräns",
+  "profile_achievements_xp_needed": "XP som krävs",
+  "profile_achievements_xp_note": "Handlingar på ditt eget innehåll räknas inte. XP granskas och kan dras tillbaka vid missbruk.",
+  "profile_achievements_xp_title": "Så tjänar du XP",
+  "profile_action_edit": "Redigera profil",
+  "profile_activity_caption": "Släpp, kommentarer, recensioner och fältrapporter per dag (UTC).",
+  "profile_activity_cell": "{date}: {detail}",
+  "profile_activity_count_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kommentar",
+        "count__plural=*": "{count__number} kommentarer"
+      }
+    }
+  ],
+  "profile_activity_count_releases": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} släpp",
+        "count__plural=*": "{count__number} släpp"
+      }
+    }
+  ],
+  "profile_activity_count_reports": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fältrapport",
+        "count__plural=*": "{count__number} fältrapporter"
+      }
+    }
+  ],
+  "profile_activity_count_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} recension",
+        "count__plural=*": "{count__number} recensioner"
+      }
+    }
+  ],
+  "profile_activity_empty_description": "{name} har inte släppt, kommenterat, recenserat eller rapporterat något de senaste 12 månaderna.",
+  "profile_activity_empty_title": "Tyst stig",
+  "profile_activity_heatmap_label": "Bidrag från {name} de senaste 12 månaderna",
+  "profile_activity_kind_comments": "Kommentarer",
+  "profile_activity_kind_releases": "Släpp",
+  "profile_activity_kind_reports": "Fältrapporter",
+  "profile_activity_kind_reviews": "Recensioner",
+  "profile_activity_legend_less": "Mindre",
+  "profile_activity_legend_more": "Mer",
+  "profile_activity_private": "{name} håller sin aktivitet privat.",
+  "profile_activity_recent_title": "Senaste dagarna på stigen",
+  "profile_activity_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input days",
+        "input from",
+        "input to",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural",
+        "days__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*, days__plural=one": "Inga bidrag under {days__number} dag mellan {from} och {to}.",
+        "count__exact=0, count__plural=*, days__plural=*": "Inga bidrag under {days__number} dagar mellan {from} och {to}.",
+        "count__exact=*, count__plural=one, days__plural=one": "{count__number} bidrag under {days__number} dag mellan {from} och {to}.",
+        "count__exact=*, count__plural=one, days__plural=*": "{count__number} bidrag under {days__number} dagar mellan {from} och {to}.",
+        "count__exact=*, count__plural=*, days__plural=one": "{count__number} bidrag under {days__number} dag mellan {from} och {to}.",
+        "count__exact=*, count__plural=*, days__plural=*": "{count__number} bidrag under {days__number} dagar mellan {from} och {to}."
+      }
+    }
+  ],
+  "profile_activity_table_active_days": "Aktiva dagar",
+  "profile_activity_table_caption": "Bidrag från {name} per månad",
+  "profile_activity_table_month": "Månad",
+  "profile_activity_table_toggle": "Visa som tabell",
+  "profile_activity_table_total": "Totalt",
+  "profile_activity_title": "Aktivitet",
+  "profile_avatar_alt": "Avatar för {name}",
+  "profile_badge_bug_hunter_hint": "Få 5 av dina buggrapporter markerade som lösta av skaparna.",
+  "profile_badge_bug_hunter_name": "Buggjägare",
+  "profile_badge_cartographer_hint": "Gör ett offentligt kit som når 10 följare.",
+  "profile_badge_cartographer_name": "Kartograf",
+  "profile_badge_crash_landing_hint": "Publicera din första modd.",
+  "profile_badge_crash_landing_name": "Kraschlandning",
+  "profile_badge_earned_on": "Intjänat {date}",
+  "profile_badge_featured": "Utvalt",
+  "profile_badge_field_medic_hint": "Skicka 10 kompatibilitetsrapporter som stämmer med gemenskapens konsensus.",
+  "profile_badge_field_medic_name": "Fältsjukvårdare",
+  "profile_badge_first_blueprint_hint": "Publicera ditt första bygge.",
+  "profile_badge_first_blueprint_name": "Första ritningen",
+  "profile_badge_first_field_report_hint": "Skicka din första kompatibilitetsrapport.",
+  "profile_badge_first_field_report_name": "Första fältrapporten",
+  "profile_badge_first_review_hint": "Skriv din första recension med text.",
+  "profile_badge_first_review_name": "Första recensionen",
+  "profile_badge_group_awards": "Utmärkelser",
+  "profile_badge_group_community": "Gemenskap",
+  "profile_badge_group_creator": "Skapare",
+  "profile_badge_group_legacy": "Ursprungliga överlevare",
+  "profile_badge_group_onboarding": "Första stegen",
+  "profile_badge_group_roles": "Roller",
+  "profile_badge_group_secret": "Hemliga",
+  "profile_badge_helping_hand_hint": "Få 5 av dina kommentarer markerade som lösning eller fästa av en skapare.",
+  "profile_badge_helping_hand_name": "Hjälpande hand",
+  "profile_badge_island_favorite_hint": "Ha en modd med betyget 4,5 eller högre och minst 20 recensioner.",
+  "profile_badge_island_favorite_name": "Öns favorit",
+  "profile_badge_locked": "Låst",
+  "profile_badge_mod_of_the_week_hint": "En av dina moddar blir Veckans modd. Kan tjänas in flera gånger.",
+  "profile_badge_mod_of_the_week_name": "Veckans modd",
+  "profile_badge_night_owl_hint": "Gör 5 bidrag mellan midnatt och klockan 4 på natten, lokal tid.",
+  "profile_badge_night_owl_name": "Nattuggla",
+  "profile_badge_original_survivor_hint": "Kontot skapades {year}, innan SOTF Mods v2 lanserades.",
+  "profile_badge_original_survivor_name": "Ursprunglig överlevare {year}",
+  "profile_badge_patch_day_hero_hint": "Släpp en kompatibel version inom 7 dagar efter en speluppdatering som förstör moddar.",
+  "profile_badge_patch_day_hero_name": "Patchdagens hjälte",
+  "profile_badge_pillar_of_the_island_hint": "Gör ett bibliotek som minst 3 moddar av andra skapare kräver.",
+  "profile_badge_pillar_of_the_island_name": "Öns pelare",
+  "profile_badge_progress": "{current} / {target}",
+  "profile_badge_ranger_hint": "Moderatorer som håller ön trygg.",
+  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_secret_hint": "Fortsätt utforska. Vissa saker på ön hittar man bara på natten.",
+  "profile_badge_secret_name": "Hemligt märke",
+  "profile_badge_staff_pick_hint": "Teamet väljer en av dina moddar. Kan tjänas in flera gånger.",
+  "profile_badge_staff_pick_name": "Teamets val",
+  "profile_badge_survived_day_one_hint": "Slutför checklistan för Dag 1.",
+  "profile_badge_survived_day_one_name": "Överlevde dag 1",
+  "profile_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "profile_badge_translator_hint": "Hjälpte till att översätta SOTF Mods till ett annat språk.",
+  "profile_badge_translator_name": "Översättare",
+  "profile_badge_verified_creator_hint": "Skapare som verifierats av SOTF Mods-teamet.",
+  "profile_badge_verified_creator_name": "Verifierad skapare",
+  "profile_badge_voice_of_the_island_hint": "Få 50 hjälpsam-röster på dina recensioner.",
+  "profile_badge_voice_of_the_island_name": "Öns röst",
+  "profile_badge_well_documented_hint": "Nå en sidkvalitet på 100 på en av dina moddar.",
+  "profile_badge_well_documented_name": "Väldokumenterad",
+  "profile_badges_empty_description": "Märken tjänas in genom att publicera, recensera, rapportera kompatibilitet och hjälpa andra. Låsta märken syns här med streckad kontur.",
+  "profile_badges_empty_title": "Dagboken är tom",
+  "profile_badges_featured_label": "Utvalda märken",
+  "profile_badges_rules_link": "Så fungerar märken",
+  "profile_badges_summary": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Inga märken än.",
+        "count__exact=*, count__plural=one": "{count__number} märke intjänat.",
+        "count__exact=*, count__plural=*": "{count__number} märken intjänade."
+      }
+    }
+  ],
+  "profile_badges_summary_of": [
+    {
+      "declarations": [
+        "input count",
+        "input total",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Inga märken av {total}.",
+        "count__exact=*, count__plural=one": "{count__number} märke av {total}.",
+        "count__exact=*, count__plural=*": "{count__number} märken av {total}."
+      }
+    }
+  ],
+  "profile_badges_title": "Fältdagbok",
+  "profile_badges_welcome_signal": [
+    {
+      "declarations": [
+        "input badgeCount",
+        "local badgeCount__plural = badgeCount: plural",
+        "local badgeCount__number = badgeCount: number"
+      ],
+      "selectors": [
+        "badgeCount__plural"
+      ],
+      "match": {
+        "badgeCount__plural=one": "Välkommen till v2: du har tjänat in {badgeCount__number} märke",
+        "badgeCount__plural=*": "Välkommen till v2: du har tjänat in {badgeCount__number} märken"
+      }
+    }
+  ],
+  "profile_builds_empty_title": "Inga byggen än",
+  "profile_builds_title": "Byggen av {name}",
+  "profile_cards_empty_action": "Utforska moddar",
+  "profile_cards_empty_description": "{name} har inte publicerat något här än. Utforska vad resten av ön har gjort.",
+  "profile_creator_top_mod": "Toppmodd: {mod}",
+  "profile_creators_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} skapare",
+        "count__plural=*": "{display} skapare"
+      }
+    }
+  ],
+  "profile_creators_empty_description": "Ingen har publicerat en modd här än. Den första får märket Kraschlandning.",
+  "profile_creators_empty_title": "Inga skapare än",
+  "profile_creators_error_title": "Skaparna laddades inte",
+  "profile_creators_intro": "Överlevarna som gör öns moddar och byggen. Följ dem för att få en signal när de släpper något nytt.",
+  "profile_creators_meta_description": "Människorna bakom moddarna och byggena till Sons of the Forest: nedladdningar, följare, nivåer och deras mest kända verk. Följ en skapare för att höra om nya släpp.",
+  "profile_creators_meta_title": "Modskapare för Sons of the Forest",
+  "profile_creators_meta_title_page": "Modskapare för Sons of the Forest — sida {page}",
+  "profile_creators_sort_downloads": "Mest nedladdade",
+  "profile_creators_sort_followers": "Mest följda",
+  "profile_creators_sort_recent": "Nyligen släppta",
+  "profile_creators_sort_spotlight": "I rampljuset",
+  "profile_creators_tiers_link": "Så fungerar skaparnivåer",
+  "profile_creators_title": "Skapare",
+  "profile_day_on_island": "Dag {day} på ön",
+  "profile_feed_title": "Nya släpp från {name}",
+  "profile_follow_error": "Det gick inte att uppdatera följningen. Kontrollera anslutningen och försök igen.",
+  "profile_follow_name": "Följ {name}",
+  "profile_follow_own": "Du kan inte följa dig själv.",
+  "profile_follow_verify_email": "Verifiera din e-postadress för att följa skapare.",
+  "profile_followed": "Du följer nu. Du får en signal när något nytt släpps.",
+  "profile_joined": "Gick med {date}",
+  "profile_kits_empty_action": "Bläddra bland kit",
+  "profile_kits_empty_description": "{name} har inte delat något kit än. Kit är utvalda modpaket som vem som helst kan installera på en gång.",
+  "profile_kits_empty_title": "Inga offentliga kit",
+  "profile_kits_private": "{name} håller sina kit privata.",
+  "profile_kits_title": "Kit av {name}",
+  "profile_link_copied": "Profillänken har kopierats",
+  "profile_link_copy_failed": "Länken kunde inte kopieras. Kopiera den från adressfältet.",
+  "profile_link_website": "Webbplats",
+  "profile_links_label": "Länkar",
+  "profile_meta_description_creator": [
+    {
+      "declarations": [
+        "input name",
+        "input count",
+        "input downloadsCount",
+        "input downloads",
+        "input followers",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local downloadsCount__plural = downloadsCount: plural",
+        "local followers__plural = followers: plural",
+        "local followers__number = followers: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "downloadsCount__plural",
+        "followers__plural"
+      ],
+      "match": {
+        "count__plural=one, downloadsCount__plural=one, followers__plural=one": "{name} gör moddar till Sons of the Forest: {count__number} modd eller bygge, {downloads} nedladdning, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=one, followers__plural=*": "{name} gör moddar till Sons of the Forest: {count__number} modd eller bygge, {downloads} nedladdning, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=one": "{name} gör moddar till Sons of the Forest: {count__number} modd eller bygge, {downloads} nedladdningar, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=one, downloadsCount__plural=*, followers__plural=*": "{name} gör moddar till Sons of the Forest: {count__number} modd eller bygge, {downloads} nedladdningar, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=one": "{name} gör moddar till Sons of the Forest: {count__number} moddar och byggen, {downloads} nedladdning, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=one, followers__plural=*": "{name} gör moddar till Sons of the Forest: {count__number} moddar och byggen, {downloads} nedladdning, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=one": "{name} gör moddar till Sons of the Forest: {count__number} moddar och byggen, {downloads} nedladdningar, {followers__number} följare. Gratis nedladdningar på SOTF Mods.",
+        "count__plural=*, downloadsCount__plural=*, followers__plural=*": "{name} gör moddar till Sons of the Forest: {count__number} moddar och byggen, {downloads} nedladdningar, {followers__number} följare. Gratis nedladdningar på SOTF Mods."
+      }
+    }
+  ],
+  "profile_meta_description_member": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "input reports",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number",
+        "local reports__plural = reports: plural",
+        "local reports__number = reports: number"
+      ],
+      "selectors": [
+        "reviews__plural",
+        "reports__plural"
+      ],
+      "match": {
+        "reviews__plural=one, reports__plural=one": "{name} på SOTF Mods, moddinggemenskapen för Sons of the Forest: {reviews__number} recension och {reports__number} fältrapport.",
+        "reviews__plural=one, reports__plural=*": "{name} på SOTF Mods, moddinggemenskapen för Sons of the Forest: {reviews__number} recension och {reports__number} fältrapporter.",
+        "reviews__plural=*, reports__plural=one": "{name} på SOTF Mods, moddinggemenskapen för Sons of the Forest: {reviews__number} recensioner och {reports__number} fältrapport.",
+        "reviews__plural=*, reports__plural=*": "{name} på SOTF Mods, moddinggemenskapen för Sons of the Forest: {reviews__number} recensioner och {reports__number} fältrapporter."
+      }
+    }
+  ],
+  "profile_meta_title_creator": "{name} (@{handle}) — modskapare för Sons of the Forest",
+  "profile_meta_title_member": "{name} (@{handle}) — moddinggemenskapen för Sons of the Forest",
+  "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_mods_empty_title": "Inga moddar än",
+  "profile_mods_title": "Moddar av {name}",
+  "profile_pinned_title": "Fästa",
+  "profile_private_title": "Privat",
+  "profile_rank_builder": "Byggare",
+  "profile_rank_castaway": "Skeppsbruten",
+  "profile_rank_forager": "Samlare",
+  "profile_rank_label": "Överlevarrang",
+  "profile_rank_legend": "Öns legend",
+  "profile_rank_pathfinder": "Stigfinnare",
+  "profile_rank_progress": "{rank} · {xp} XP. {needed} XP kvar till {next}.",
+  "profile_rank_scavenger": "Asätare",
+  "profile_rank_top": "{rank} · {xp} XP. Toppen av ön.",
+  "profile_rank_trapper": "Pälsjägare",
+  "profile_rank_veteran": "Veteran",
+  "profile_review_of": "Recension av {mod}",
+  "profile_reviews_empty_description": "{name} har inte recenserat någon modd än.",
+  "profile_reviews_empty_title": "Inga recensioner än",
+  "profile_reviews_newest": "Nyaste recensionerna",
+  "profile_reviews_older": "Äldre recensioner",
+  "profile_reviews_pagination": "Fler recensioner",
+  "profile_reviews_title": "Recensioner av {name}",
+  "profile_sort_downloads": "Mest nedladdade",
+  "profile_sort_label": "Sortera",
+  "profile_sort_new": "Nyaste",
+  "profile_sort_updated": "Nyligen uppdaterade",
+  "profile_stat_downloads_label": "Nedladdningar",
+  "profile_stat_followers_label": "Följare",
+  "profile_stat_helpful_label": "Hjälpsam-röster",
+  "profile_stat_helpful_line": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} hjälpsam-röst på sina recensioner",
+        "count__plural=*": "{count__number} hjälpsam-röster på sina recensioner"
+      }
+    }
+  ],
+  "profile_stat_mods_label": "Moddar",
+  "profile_stat_mods_title": [
+    {
+      "declarations": [
+        "input mods",
+        "input builds",
+        "local mods__plural = mods: plural",
+        "local mods__number = mods: number",
+        "local builds__plural = builds: plural",
+        "local builds__number = builds: number"
+      ],
+      "selectors": [
+        "mods__plural",
+        "builds__plural"
+      ],
+      "match": {
+        "mods__plural=one, builds__plural=one": "{mods__number} modd och {builds__number} bygge",
+        "mods__plural=one, builds__plural=*": "{mods__number} modd och {builds__number} byggen",
+        "mods__plural=*, builds__plural=one": "{mods__number} moddar och {builds__number} bygge",
+        "mods__plural=*, builds__plural=*": "{mods__number} moddar och {builds__number} byggen"
+      }
+    }
+  ],
+  "profile_stat_rating_label": "Snittbetyg",
+  "profile_stat_rating_title": "{rating} av 5 i snitt",
+  "profile_stats_label": "Statistik",
+  "profile_tab_activity": "Aktivitet",
+  "profile_tab_badges": "Märken",
+  "profile_tab_builds": "Byggen",
+  "profile_tab_error_description": "Servern tog för lång tid på sig. Försök igen om en stund.",
+  "profile_tab_error_title": "Det här avsnittet laddades inte",
+  "profile_tab_kits": "Kit",
+  "profile_tab_mods": "Moddar",
+  "profile_tab_reviews": "Recensioner",
+  "profile_tabs_label": "Profilavsnitt",
+  "profile_tier_cabin": "Stuga",
+  "profile_tier_campfire": "Lägereld",
+  "profile_tier_fortress": "Fästning",
+  "profile_tier_label": "Skaparnivå",
+  "profile_tier_landmark": "Landmärke",
+  "profile_tier_lean_to": "Vindskydd",
+  "profile_tier_treehouse": "Trädkoja",
+  "profile_unfollowed": "Du följer inte längre.",
+  "profile_verified_creator": "Verifierad skapare",
+  "profile_xp_bug_report_resolved": "Buggrapport markerad som löst av skaparen",
+  "profile_xp_comment_solution_or_pinned": "Kommentar markerad som lösning eller fäst av skaparen",
+  "profile_xp_compat_report": "Fältrapport (fungerar det på det här bygget?)",
+  "profile_xp_compat_report_consensus": "Bonus: din rapport stämmer med konsensus efter 72 h",
+  "profile_xp_first_follow": "Följ din första modd eller skapare",
+  "profile_xp_kit_followers_10": "Ditt kit når ytterligare 10 följare",
+  "profile_xp_limit_daily": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} per dag"
+      }
+    }
+  ],
+  "profile_xp_limit_none": "Ingen gräns",
+  "profile_xp_limit_once": "En gång",
+  "profile_xp_limit_per_build": "En gång per spelversion",
+  "profile_xp_onboarding_completed": "Slutför checklistan för Dag 1",
+  "profile_xp_patch_day_release": "Skapare: kompatibel version inom 14 dagar efter en uppdatering som förstör moddar",
+  "profile_xp_profile_completed": "Fyll i din profil",
+  "profile_xp_review_helpful_vote": "En ”hjälpsam”-röst på din recension",
+  "profile_xp_review_with_text": "Recension med minst 80 tecken text",
   "social_action_back": "Tillbaka",
   "social_action_cancel": "Avbryt",
   "social_action_close": "Stäng",
