@@ -15,6 +15,8 @@ import { Route as MeRouteImport } from './routes/me.tsx'
 import { Route as RangerRouteImport } from './routes/ranger.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as SignalsRouteImport } from './routes/signals.tsx'
+import { Route as MeKitsIndexRouteImport } from './routes/me/kits/index.tsx'
+import { Route as MeKitsKitIdRouteImport } from './routes/me/kits/$kitId.tsx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,37 +48,69 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeKitsIndexRoute = MeKitsIndexRouteImport.update({
+  id: '/kits/',
+  path: '/kits/',
+  getParentRoute: () => MeRoute,
+} as any)
+const MeKitsKitIdRoute = MeKitsKitIdRouteImport.update({
+  id: '/kits/$kitId',
+  path: '/kits/$kitId',
+  getParentRoute: () => MeRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
-  '/me': typeof MeRoute
+  '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/me/kits/$kitId': typeof MeKitsKitIdRoute
+  '/me/kits/': typeof MeKitsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
-  '/me': typeof MeRoute
+  '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/me/kits/$kitId': typeof MeKitsKitIdRoute
+  '/me/kits': typeof MeKitsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
-  '/me': typeof MeRoute
+  '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRoute
   '/settings': typeof SettingsRoute
   '/signals': typeof SignalsRoute
+  '/me/kits/$kitId': typeof MeKitsKitIdRoute
+  '/me/kits/': typeof MeKitsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/basecamp' | '/me' | '/ranger' | '/settings' | '/signals'
+  fullPaths:
+    | '/'
+    | '/basecamp'
+    | '/me'
+    | '/ranger'
+    | '/settings'
+    | '/signals'
+    | '/me/kits/$kitId'
+    | '/me/kits/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/basecamp' | '/me' | '/ranger' | '/settings' | '/signals'
+  to:
+    | '/'
+    | '/basecamp'
+    | '/me'
+    | '/ranger'
+    | '/settings'
+    | '/signals'
+    | '/me/kits/$kitId'
+    | '/me/kits'
   id:
     | '__root__'
     | '/'
@@ -85,12 +119,14 @@ export interface FileRouteTypes {
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/me/kits/$kitId'
+    | '/me/kits/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BasecampRoute: typeof BasecampRoute
-  MeRoute: typeof MeRoute
+  MeRoute: typeof MeRouteWithChildren
   RangerRoute: typeof RangerRoute
   SettingsRoute: typeof SettingsRoute
   SignalsRoute: typeof SignalsRoute
@@ -140,13 +176,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/me/kits/': {
+      id: '/me/kits/'
+      path: '/kits'
+      fullPath: '/me/kits/'
+      preLoaderRoute: typeof MeKitsIndexRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/me/kits/$kitId': {
+      id: '/me/kits/$kitId'
+      path: '/kits/$kitId'
+      fullPath: '/me/kits/$kitId'
+      preLoaderRoute: typeof MeKitsKitIdRouteImport
+      parentRoute: typeof MeRoute
+    }
   }
 }
+
+interface MeRouteChildren {
+  MeKitsKitIdRoute: typeof MeKitsKitIdRoute
+  MeKitsIndexRoute: typeof MeKitsIndexRoute
+}
+
+const MeRouteChildren: MeRouteChildren = {
+  MeKitsKitIdRoute: MeKitsKitIdRoute,
+  MeKitsIndexRoute: MeKitsIndexRoute,
+}
+
+const MeRouteWithChildren = MeRoute._addFileChildren(MeRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BasecampRoute: BasecampRoute,
-  MeRoute: MeRoute,
+  MeRoute: MeRouteWithChildren,
   RangerRoute: RangerRoute,
   SettingsRoute: SettingsRoute,
   SignalsRoute: SignalsRoute,

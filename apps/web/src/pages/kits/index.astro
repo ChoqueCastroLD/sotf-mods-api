@@ -1,0 +1,233 @@
+---
+/**
+ * `/kits` — curated mod loadouts (WP-71, PLAN §7.8, research/03 §6.5 «LISTA /kits»).
+ *
+ * - Knolling cards (`KitCard` of `@sotf/ui/domain`), sort (popular · new), filters (works on the
+ *   current build, staff picks) as plain links, page-based pagination with real URLs.
+ * - «Have a kit code?» is a GET form to `/k` (works without JavaScript).
+ * - Indexable: `/kits` and `/kits?page=N`; sorted/filtered views are `noindex, follow` and point
+ *   their canonical to the base listing.
+ * - Cache: E(300) `list:kits`; the API failing → 503 with an error state, never cached.
+ */
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { KitCard } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { Pagination } from '@sotf/ui/pagination';
+import { Check, Plus } from 'lucide-react';
+import { isFiltered, kitListHref, kitListQuery, loadKitList } from '../../components/kits/data.ts';
+import { KitsEmpty, KitsError } from '../../components/kits/KitStates.tsx';
+import { kitListJsonLd } from '../../components/kits/seo.ts';
+import { configureModDomainI18n } from '../../components/mod/i18n.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+configureModDomainI18n();
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.listKits());
+
+const data = await loadKitList(Astro.url, locale);
+if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
+
+const { state, list, currentBuild } = data;
+if (list === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const items = list?.items ?? [];
+const total = list?.total ?? null;
+const totalPages = list?.totalPages ?? 0;
+const pastEnd = list !== null && list.total > 0 && state.page > list.totalPages;
+const filtered = isFiltered(state);
+const siteUrl = loadEnv().siteUrl;
+const heading = m.kits_list_heading();
+const description = m.kits_list_description();
+const baseTitle = m.kits_list_title();
+const title = state.page > 1 ? m.kits_list_title_page({ title: baseTitle, page: state.page }) : baseTitle;
+const seoPath = filtered ? '/kits' : `/kits${kitListQuery({ ...state })}`;
+// The console has no locale prefix (PLAN §4.3): its language follows the user.
+const createHref = '/me/kits?new=1';
+const pageHref = (page: number) => kitListHref(state, { page }, locale);
+const offset = (state.page - 1) * (list?.pageSize ?? 24);
+const jsonLd =
+  list && items.length > 0
+    ? [kitListJsonLd({ siteUrl, locale, path: seoPath, name: heading, description, items, offset })]
+    : [];
+
+const sorts = [
+  { key: 'popular', label: m.kits_sort_popular() },
+  { key: 'new', label: m.kits_sort_new() },
+] as const;
+const filters = [
+  {
+    key: 'works',
+    active: state.works,
+    label: currentBuild ? m.kits_filter_works_on({ build: currentBuild }) : m.kits_filter_works(),
+    href: kitListHref(state, { works: !state.works }, locale),
+  },
+  {
+    key: 'staff',
+    active: state.staffPick,
+    label: m.kits_filter_staff_picks(),
+    href: kitListHref(state, { staffPick: !state.staffPick }, locale),
+  },
+];
+const pillBase =
+  'inline-flex min-h-11 items-center gap-1.5 rounded-full border px-3 text-sm font-medium transition-colors md:min-h-9';
+---
+
+<PageLayout
+  template="kits"
+  width="wide"
+  seo={{ title, description, path: seoPath, noindex: filtered }}
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_term_kits() }]}
+>
+  <div class="flex flex-col gap-6">
+    <header class="flex flex-col gap-3">
+      <p class="readout text-signal">{m.kits_list_readout()}</p>
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div class="flex flex-col gap-2">
+          <h1 class="font-display-caps text-display-sm text-fg">{heading}</h1>
+          <p class="max-w-(--container-prose) text-base text-fg-muted">{description}</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <a href={createHref} class={buttonClasses({ variant: 'primary' })} rel="nofollow">
+            <Icon icon={Plus} size={18} />
+            {m.kits_action_create()}
+          </a>
+        </div>
+      </div>
+      <search>
+      <form method="get" action={href('/k', locale)} class="flex max-w-md flex-wrap items-end gap-2">
+        <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+          <label for="kit-code" class="text-sm font-medium text-fg">{m.kits_code_lookup_label()}</label>
+          <input
+            id="kit-code"
+            name="code"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            required
+            maxlength="16"
+            placeholder="KIT-XXXX-XX"
+            class="h-11 rounded-md border border-border-strong bg-raised px-3 font-mono text-sm text-fg uppercase placeholder:text-fg-subtle md:h-10"
+          />
+        </div>
+        <button type="submit" class={buttonClasses({ variant: 'secondary' })}>{m.kits_code_lookup_submit()}</button>
+      </form>
+      </search>
+    </header>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
+      <nav aria-label={m.kits_sort_label()}>
+        <ul class="flex flex-wrap gap-1">
+          {
+            sorts.map((sort) => (
+              <li>
+                <a
+                  href={kitListHref(state, { sort: sort.key }, locale)}
+                  rel="nofollow"
+                  aria-current={state.sort === sort.key ? 'true' : undefined}
+                  class:list={[
+                    'inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold md:min-h-9',
+                    state.sort === sort.key ? 'bg-fg/8 text-fg' : 'text-fg-muted hover:text-fg',
+                  ]}
+                >
+                  {sort.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <fieldset class="flex flex-wrap items-center gap-2">
+        <legend class="sr-only">{m.kits_filter_label()}</legend>
+        {
+          filters.map((filter) => (
+            <a
+              href={filter.href}
+              rel="nofollow"
+              class:list={[
+                pillBase,
+                filter.active
+                  ? 'border-primary bg-primary/10 text-fg'
+                  : 'border-border-strong text-fg-muted hover:text-fg',
+              ]}
+            >
+              {filter.active && <Icon icon={Check} size={14} />}
+              {filter.label}
+              <span class="sr-only">{filter.active ? m.kits_filter_on() : m.kits_filter_off()}</span>
+            </a>
+          ))
+        }
+      </fieldset>
+      {
+        total !== null && (
+          <p class="w-full font-mono text-sm text-fg-muted tabular-nums sm:w-auto">
+            {m.kits_list_count({ count: total })}
+          </p>
+        )
+      }
+    </div>
+
+    <section aria-label={heading}>
+      {
+        list === null ? (
+          <KitsError
+            title={m.kits_error_title()}
+            text={m.kits_error_text()}
+            retryHref={href(Astro.url.pathname + Astro.url.search, locale)}
+            reference={Astro.locals.requestId}
+          />
+        ) : pastEnd ? (
+          <KitsEmpty
+            title={m.kits_past_end_title()}
+            text={m.kits_past_end_text()}
+            action={{ label: m.kits_back_to_first(), href: pageHref(1) }}
+          />
+        ) : items.length === 0 ? (
+          filtered ? (
+            <KitsEmpty
+              title={m.kits_empty_filtered_title()}
+              text={m.kits_empty_filtered_text()}
+              action={{ label: m.kits_clear_filters(), href: href('/kits', locale), nofollow: true }}
+            />
+          ) : (
+            <KitsEmpty
+              title={m.kits_empty_title()}
+              text={m.kits_empty_text()}
+              action={{ label: m.kits_action_create(), href: createHref, nofollow: true }}
+            />
+          )
+        ) : (
+          <ul class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+            {items.map((kit) => (
+              <li class="min-w-0">
+                <KitCard kit={kit} currentBuild={currentBuild} headingLevel={2} className="h-full" />
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </section>
+
+    {
+      list !== null && items.length > 0 && (
+        <div class="mt-4 flex flex-col items-center gap-4">
+          <p class="font-mono text-xs text-fg-subtle tabular-nums">
+            {m.common_pagination_page_of({ page: state.page, total: Math.max(1, totalPages) })}
+          </p>
+          <Pagination page={state.page} totalPages={totalPages} hrefFor={pageHref} />
+        </div>
+      )
+    }
+  </div>
+</PageLayout>

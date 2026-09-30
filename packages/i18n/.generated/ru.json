@@ -1695,6 +1695,638 @@
   "explore_view_grid": "Сетка",
   "explore_view_label": "Вид",
   "explore_view_list": "Список",
+  "kits_about_empty": "Описания пока нет.",
+  "kits_about_title": "Об этом наборе",
+  "kits_action_create": "Создать набор",
+  "kits_actions_for": "Действия с {name}",
+  "kits_add_already": "{name} уже в наборе «{kit}».",
+  "kits_add_button": "Добавить",
+  "kits_add_description": "Выберите набор или создайте новый с этим модом.",
+  "kits_add_dismiss": "Закрыть",
+  "kits_add_done": "{name} добавлен в «{kit}».",
+  "kits_add_failed": "Не удалось добавить {name}.",
+  "kits_add_in_kit": "В наборе",
+  "kits_add_mod_missing": "Этот мод больше недоступен.",
+  "kits_add_new_kit": "Новый набор с этим модом",
+  "kits_add_title": "Добавить {name} в набор",
+  "kits_add_title_loading": "Добавить в набор",
+  "kits_add_to_named": "Добавить в {kit}",
+  "kits_announce_added": "{name} добавлен на позицию {position}.",
+  "kits_announce_cancelled": "Перемещение отменено. {name} снова на позиции {position}.",
+  "kits_announce_dropped": "{name} отпущен на позиции {position} из {total}.",
+  "kits_announce_grabbed": "{name} захвачен. Позиция {position} из {total}.",
+  "kits_announce_moved": "{name} перемещён на позицию {position} из {total}.",
+  "kits_announce_removed": "{name} удалён.",
+  "kits_announce_restored": "{name} восстановлен.",
+  "kits_autos_hint": "Нужны элементам выше. Они следуют за списком: уберите элемент, которому они нужны, и они исчезнут вместе с ним.",
+  "kits_autos_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} зависимость добавлена автоматически",
+        "count__plural=few": "{count__number} зависимости добавлены автоматически",
+        "count__plural=many": "{count__number} зависимостей добавлено автоматически",
+        "count__plural=*": "{count__number} зависимости добавлено автоматически"
+      }
+    }
+  ],
+  "kits_autosave_hint": "Изменения сохраняются автоматически · ред. {revision}",
+  "kits_back_to_first": "Вернуться на страницу 1",
+  "kits_back_to_list": "Мои наборы",
+  "kits_broken_text": "Игроки сообщают, что они не работают на текущем патче. Закрепите более старую версию или найдите замену.",
+  "kits_broken_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод отмечен как сломанный",
+        "count__plural=few": "{count__number} мода отмечены как сломанные",
+        "count__plural=many": "{count__number} модов отмечены как сломанные",
+        "count__plural=*": "{count__number} мода отмечены как сломанные"
+      }
+    }
+  ],
+  "kits_clear_filters": "Сбросить фильтры",
+  "kits_code_copied": "Код {code} скопирован",
+  "kits_code_lookup_label": "Есть код набора?",
+  "kits_code_lookup_submit": "Открыть набор",
+  "kits_compat_broken": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} отмечен как сломанный",
+        "count__plural=few": "{count__number} отмечены как сломанные",
+        "count__plural=many": "{count__number} отмечены как сломанные",
+        "count__plural=*": "{count__number} отмечены как сломанные"
+      }
+    }
+  ],
+  "kits_compat_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Найден {count__number} конфликт",
+        "count__plural=few": "Найдено {count__number} конфликта",
+        "count__plural=many": "Найдено {count__number} конфликтов",
+        "count__plural=*": "Найдено {count__number} конфликта"
+      }
+    }
+  ],
+  "kits_compat_no_conflicts": "Конфликтов не найдено",
+  "kits_compat_untested": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ещё не проверен",
+        "count__plural=few": "{count__number} ещё не проверены",
+        "count__plural=many": "{count__number} ещё не проверены",
+        "count__plural=*": "{count__number} ещё не проверены"
+      }
+    }
+  ],
+  "kits_compat_works": "{works}/{total} работают на текущем патче",
+  "kits_compat_works_on": "{works}/{total} работают на {build}",
+  "kits_conflicts_text": "Некоторые моды заявляют, что несовместимы друг с другом. Проверьте их страницы и оставьте по одному из каждой пары.",
+  "kits_conflicts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} конфликт в наборе",
+        "count__plural=few": "{count__number} конфликта в наборе",
+        "count__plural=many": "{count__number} конфликтов в наборе",
+        "count__plural=*": "{count__number} конфликта в наборе"
+      }
+    }
+  ],
+  "kits_console_description": "Подборки модов, которые вы собираете: публичные, по ссылке или только для вас.",
+  "kits_console_empty_text": "Создайте набор, разложите моды, с которыми играете, и поделитесь им по одному коду.",
+  "kits_console_empty_title": "Ваш коврик пуст",
+  "kits_console_list_label": "Мои наборы",
+  "kits_console_readout": "Ваши подборки",
+  "kits_console_title": "Мои наборы",
+  "kits_copy_code": "Скопировать код набора",
+  "kits_copy_failed": "Не удалось скопировать. Выделите текст и скопируйте его вручную.",
+  "kits_cover_auto": "Автоматическая: элементы, разложенные на коврике.",
+  "kits_cover_custom": "Своё изображение.",
+  "kits_cover_error_processing": "Обработка изображения занимает слишком много времени. Попробуйте позже.",
+  "kits_cover_error_rejected": "Изображение отклонено.",
+  "kits_cover_error_size": "Изображение больше {max} МБ.",
+  "kits_cover_error_type": "Этот тип файла не поддерживается.",
+  "kits_cover_error_upload": "Загрузка не удалась. Проверьте подключение.",
+  "kits_cover_failed": "Не удалось обновить обложку.",
+  "kits_cover_hint": "PNG, JPEG, WebP, AVIF или GIF, до {max} МБ. Лучше всего широкое изображение 3:1.",
+  "kits_cover_label": "Обложка",
+  "kits_cover_progress": "Загрузка… {percent}%",
+  "kits_cover_remove": "Использовать автоматическую обложку",
+  "kits_cover_removed": "Возвращена автоматическая обложка",
+  "kits_cover_replace": "Заменить изображение",
+  "kits_cover_saved": "Обложка обновлена",
+  "kits_cover_upload": "Загрузить изображение",
+  "kits_create_description": "Задайте название сейчас, а моды добавите в редакторе.",
+  "kits_create_submit": "Создать набор",
+  "kits_create_title": "Новый набор",
+  "kits_create_with_mod": "{name} станет первым элементом.",
+  "kits_created": "«{name}» создан",
+  "kits_curated_by": "Собрал {curator}",
+  "kits_delete": "Удалить набор",
+  "kits_delete_confirm": "Удалить набор",
+  "kits_delete_failed": "Не удалось удалить набор.",
+  "kits_delete_hint": "После удаления адрес освободится, а код больше никогда не будет выдан.",
+  "kits_delete_text": "Набор, его код и ссылки перестанут работать для всех. Это нельзя отменить.",
+  "kits_delete_title": "Удалить «{name}»?",
+  "kits_deleted": "«{name}» удалён",
+  "kits_detail_empty_text": "Автор ещё не добавил в этот набор ни одного мода.",
+  "kits_detail_empty_title": "Пока пусто",
+  "kits_detail_readout": "Набор",
+  "kits_details_discard": "Отменить",
+  "kits_details_save": "Сохранить сведения",
+  "kits_details_saved": "Сведения сохранены",
+  "kits_details_title": "Сведения",
+  "kits_download_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Скачать {count__number} файл",
+        "count__plural=few": "Скачать {count__number} файла",
+        "count__plural=many": "Скачать {count__number} файлов",
+        "count__plural=*": "Скачать {count__number} файла"
+      }
+    }
+  ],
+  "kits_download_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} файл, по одному",
+        "count__plural=few": "{count__number} файла, по одному",
+        "count__plural=many": "{count__number} файлов, по одному",
+        "count__plural=*": "{count__number} файла, по одному"
+      }
+    }
+  ],
+  "kits_download_all_description_size": [
+    {
+      "declarations": [
+        "input count",
+        "input size",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} файл · всего {size}",
+        "count__plural=few": "{count__number} файла · всего {size}",
+        "count__plural=many": "{count__number} файлов · всего {size}",
+        "count__plural=*": "{count__number} файла · всего {size}"
+      }
+    }
+  ],
+  "kits_download_all_done": "Все файлы скачаны. Пора устанавливать.",
+  "kits_download_all_hint": "Скачайте файлы по порядку, затем установите их через RedLoader. Зависимости уже в списке.",
+  "kits_download_all_title": "Скачать всё",
+  "kits_download_install_guide": "Как устанавливать моды",
+  "kits_download_next": "Скачать следующий",
+  "kits_download_progress": "Скачано {done}/{total}",
+  "kits_download_progress_label": "Ход загрузки",
+  "kits_drag_handle": "Переместить {name}, позиция {position} из {total}",
+  "kits_drag_instructions": "Чтобы изменить порядок, наведите фокус на маркер и нажмите Пробел, перемещайте стрелками, затем снова нажмите Пробел, чтобы отпустить, или Escape для отмены.",
+  "kits_duplicate": "Дублировать",
+  "kits_duplicated": "Создана копия «{name}»",
+  "kits_edit": "Редактировать набор",
+  "kits_editor_empty_text": "Найдите мод выше. Его зависимости добавятся сами.",
+  "kits_editor_empty_title": "Разложите первый элемент",
+  "kits_editor_readout": "Чертёж",
+  "kits_editor_static_title": "Редактор набора",
+  "kits_editor_title": "Редактирование: {name}",
+  "kits_empty_filtered_text": "Пока ни один набор не проходит эти фильтры. Сбросьте их, чтобы увидеть все наборы.",
+  "kits_empty_filtered_title": "Подходящих наборов нет",
+  "kits_empty_text": "Станьте первым: выберите любимые моды, добавьте к каждому заметку и поделитесь набором по одному коду.",
+  "kits_empty_title": "Наборов пока нет",
+  "kits_error_email": "Подтвердите адрес электронной почты, чтобы создавать и редактировать наборы.",
+  "kits_error_rate": "Слишком много изменений за короткое время. Подождите минуту.",
+  "kits_error_slug_taken": "У вас уже есть набор с таким адресом. Выберите другой.",
+  "kits_error_text": "У нас что-то пошло не так. Попробуйте ещё раз чуть позже.",
+  "kits_error_title": "Не удалось загрузить наборы",
+  "kits_error_validation": "В наборе что-то указано неверно. Проверьте поля и попробуйте снова.",
+  "kits_field_description": "Описание",
+  "kits_field_description_hint": "Markdown. Для чего набор, советы по порядку загрузки, настройки.",
+  "kits_field_name": "Название",
+  "kits_field_name_placeholder": "Хардкорный QoL",
+  "kits_field_slug": "Адрес",
+  "kits_field_slug_hint": "Строчные латинские буквы, цифры и дефисы: /kits/вы/адрес.",
+  "kits_field_visibility": "Кто может видеть",
+  "kits_filter_label": "Фильтр наборов",
+  "kits_filter_off": "(выключен)",
+  "kits_filter_on": "(включён)",
+  "kits_filter_staff_picks": "Выбор команды",
+  "kits_filter_works": "Работает на текущем патче",
+  "kits_filter_works_on": "Работает на {build}",
+  "kits_followers": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} подписчик",
+        "count__plural=few": "{display} подписчика",
+        "count__plural=many": "{display} подписчиков",
+        "count__plural=*": "{display} подписчика"
+      }
+    }
+  ],
+  "kits_fork": "Скопировать",
+  "kits_fork_email": "Подтвердите адрес электронной почты, чтобы создавать наборы.",
+  "kits_fork_failed": "Не удалось скопировать набор. Попробуйте ещё раз.",
+  "kits_fork_rate": "Слишком много наборов за короткое время. Подождите минуту и попробуйте снова.",
+  "kits_fork_working": "Копируем набор…",
+  "kits_forked_banner_text": "Пока она скрыта. Измените что нужно, а затем сделайте её публичной, чтобы поделиться.",
+  "kits_forked_banner_title": "Ваша копия готова.",
+  "kits_forked_from": "Копия набора {kit} от @{handle}",
+  "kits_item_auto_dependency": "Зависимость, добавлена автоматически",
+  "kits_item_by": "автор: {creator}",
+  "kits_item_download_sr": "{name} v{version}",
+  "kits_item_kind_build": "Постройка",
+  "kits_item_kind_library": "Библиотека",
+  "kits_item_latest": "Всегда последняя",
+  "kits_item_note_label": "Заметка:",
+  "kits_item_options": "Заметка и версия",
+  "kits_item_pinned": "(закреплённая версия)",
+  "kits_item_position": "Позиция {position}:",
+  "kits_item_remove": "Убрать {name}",
+  "kits_item_unavailable": "Файл недоступен",
+  "kits_items_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} элемент",
+        "count__plural=few": "{count__number} элемента",
+        "count__plural=many": "{count__number} элементов",
+        "count__plural=*": "{count__number} элемента"
+      }
+    }
+  ],
+  "kits_items_limit": "В наборе может быть до {max} элементов вместе с зависимостями.",
+  "kits_items_title": "В этом наборе",
+  "kits_items_total": "Элементы: {count}/{max}",
+  "kits_items_with_auto": [
+    {
+      "declarations": [
+        "input count",
+        "input auto",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local auto__plural = auto: plural",
+        "local auto__number = auto: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "auto__plural"
+      ],
+      "match": {
+        "count__plural=one, auto__plural=one": "{count__number} элемент + {auto__number} зависимость",
+        "count__plural=one, auto__plural=few": "{count__number} элемент + {auto__number} зависимости",
+        "count__plural=one, auto__plural=many": "{count__number} элемент + {auto__number} зависимостей",
+        "count__plural=one, auto__plural=*": "{count__number} элемент + {auto__number} зависимости",
+        "count__plural=few, auto__plural=one": "{count__number} элемента + {auto__number} зависимость",
+        "count__plural=few, auto__plural=few": "{count__number} элемента + {auto__number} зависимости",
+        "count__plural=few, auto__plural=many": "{count__number} элемента + {auto__number} зависимостей",
+        "count__plural=few, auto__plural=*": "{count__number} элемента + {auto__number} зависимости",
+        "count__plural=many, auto__plural=one": "{count__number} элементов + {auto__number} зависимость",
+        "count__plural=many, auto__plural=few": "{count__number} элементов + {auto__number} зависимости",
+        "count__plural=many, auto__plural=many": "{count__number} элементов + {auto__number} зависимостей",
+        "count__plural=many, auto__plural=*": "{count__number} элементов + {auto__number} зависимости",
+        "count__plural=*, auto__plural=one": "{count__number} элемента + {auto__number} зависимость",
+        "count__plural=*, auto__plural=few": "{count__number} элемента + {auto__number} зависимости",
+        "count__plural=*, auto__plural=many": "{count__number} элемента + {auto__number} зависимостей",
+        "count__plural=*, auto__plural=*": "{count__number} элемента + {auto__number} зависимости"
+      }
+    }
+  ],
+  "kits_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} набор",
+        "count__plural=few": "{count__number} набора",
+        "count__plural=many": "{count__number} наборов",
+        "count__plural=*": "{count__number} набора"
+      }
+    }
+  ],
+  "kits_list_description": "Подборки модов для Sons of the Forest: с зависимостями, проверенной совместимостью и одним кодом, который можно передать друзьям.",
+  "kits_list_heading": "Наборы",
+  "kits_list_readout": "Подборки модов",
+  "kits_list_title": "Наборы модов для Sons of the Forest",
+  "kits_list_title_page": "{title} — страница {page}",
+  "kits_manage_title": "Управление",
+  "kits_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input curator",
+        "input count",
+        "input mods",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: набор модов для Sons of the Forest от {curator}, {count__number} элемент ({mods}). С зависимостями, бесплатные прямые загрузки.",
+        "count__plural=few": "{name}: набор модов для Sons of the Forest от {curator}, {count__number} элемента ({mods}). С зависимостями, бесплатные прямые загрузки.",
+        "count__plural=many": "{name}: набор модов для Sons of the Forest от {curator}, {count__number} элементов ({mods}). С зависимостями, бесплатные прямые загрузки.",
+        "count__plural=*": "{name}: набор модов для Sons of the Forest от {curator}, {count__number} элемента ({mods}). С зависимостями, бесплатные прямые загрузки."
+      }
+    }
+  ],
+  "kits_meta_title": "{name} — набор модов от {curator}",
+  "kits_more_from": "Другие наборы от {curator}",
+  "kits_mp_all_players": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Всем игрокам: {count__number} мод",
+        "count__plural=few": "Всем игрокам: {count__number} мода",
+        "count__plural=many": "Всем игрокам: {count__number} модов",
+        "count__plural=*": "Всем игрокам: {count__number} мода"
+      }
+    }
+  ],
+  "kits_mp_client_side": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "На стороне клиента: {count__number} мод",
+        "count__plural=few": "На стороне клиента: {count__number} мода",
+        "count__plural=many": "На стороне клиента: {count__number} модов",
+        "count__plural=*": "На стороне клиента: {count__number} мода"
+      }
+    }
+  ],
+  "kits_mp_host_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Только хосту: {count__number} мод",
+        "count__plural=few": "Только хосту: {count__number} мода",
+        "count__plural=many": "Только хосту: {count__number} модов",
+        "count__plural=*": "Только хосту: {count__number} мода"
+      }
+    }
+  ],
+  "kits_mp_none": "Данных о мультиплеере пока нет.",
+  "kits_mp_solo_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Только одиночная игра: {count__number} мод",
+        "count__plural=few": "Только одиночная игра: {count__number} мода",
+        "count__plural=many": "Только одиночная игра: {count__number} модов",
+        "count__plural=*": "Только одиночная игра: {count__number} мода"
+      }
+    }
+  ],
+  "kits_mp_unknown": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Не указано: {count__number} мод",
+        "count__plural=few": "Не указано: {count__number} мода",
+        "count__plural=many": "Не указано: {count__number} модов",
+        "count__plural=*": "Не указано: {count__number} мода"
+      }
+    }
+  ],
+  "kits_name_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "Минимум {min__number} символ.",
+        "min__plural=few": "Минимум {min__number} символа.",
+        "min__plural=many": "Минимум {min__number} символов.",
+        "min__plural=*": "Минимум {min__number} символа."
+      }
+    }
+  ],
+  "kits_note_hint": "Показывается под модом на странице набора · {count}/{max}",
+  "kits_note_label": "Заметка",
+  "kits_note_placeholder": "Поставьте радиус 6 в конфиге",
+  "kits_offline": "Нет подключения. Подключитесь и попробуйте снова.",
+  "kits_og_alt": "{name} — набор модов для Sons of the Forest на SOTF Mods",
+  "kits_past_end_text": "Столько наборов нет. Вернитесь на первую страницу.",
+  "kits_past_end_title": "Дальше последней страницы",
+  "kits_picker_error": "Поиск не удался. Продолжайте вводить, чтобы повторить.",
+  "kits_picker_in_kit": "Добавлен",
+  "kits_picker_label": "Добавить мод или постройку",
+  "kits_picker_none": "Ничего не найдено. Попробуйте ID манифеста.",
+  "kits_picker_placeholder": "Поиск по названию или ID манифеста…",
+  "kits_picker_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} результат",
+        "count__plural=few": "{count__number} результата",
+        "count__plural=many": "{count__number} результатов",
+        "count__plural=*": "{count__number} результата"
+      }
+    }
+  ],
+  "kits_picker_results_label": "Результаты поиска",
+  "kits_picker_searching": "Поиск…",
+  "kits_pin_error": "Не удалось загрузить версии.",
+  "kits_pin_hint": "Закрепляйте версию, только если более новая ломает набор.",
+  "kits_pin_label": "Версия",
+  "kits_pin_latest": "Всегда последняя",
+  "kits_pin_loading": "Загрузка версий…",
+  "kits_qr_failed": "Не удалось построить QR-код.",
+  "kits_removed": "{name} удалён из набора",
+  "kits_revision": "ред. {revision}",
+  "kits_revisions_title": "Редакции",
+  "kits_save_failed": "Не сохранено.",
+  "kits_saved": "Сохранено · ред. {revision}",
+  "kits_saving": "Сохранение…",
+  "kits_share_code_label": "Код набора",
+  "kits_share_description": "Передайте друзьям код или короткую ссылку — у всех будет одинаковый набор.",
+  "kits_share_link_label": "Полная ссылка",
+  "kits_share_markdown_label": "Markdown для Discord",
+  "kits_share_markdown_suffix": [
+    {
+      "declarations": [
+        "input count",
+        "input code",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод · код {code}",
+        "count__plural=few": "{count__number} мода · код {code}",
+        "count__plural=many": "{count__number} модов · код {code}",
+        "count__plural=*": "{count__number} мода · код {code}"
+      }
+    }
+  ],
+  "kits_share_more": "Другие варианты",
+  "kits_share_on": "Поделиться в {network}",
+  "kits_share_private": "Этот набор скрыт: его видите только вы. Сделайте его публичным или доступным по ссылке, чтобы поделиться.",
+  "kits_share_qr": "QR-код",
+  "kits_share_qr_alt": "QR-код короткой ссылки на {name}",
+  "kits_share_qr_hint": "Отсканируйте телефоном, чтобы открыть набор.",
+  "kits_share_short_label": "Короткая ссылка",
+  "kits_share_text": "{name} — набор модов для Sons of the Forest",
+  "kits_share_title": "Поделиться набором",
+  "kits_sidebar_label": "Об этом наборе",
+  "kits_slug_invalid": "От 2 до 80 строчных латинских букв, цифр и дефисов, без дефиса в начале и конце.",
+  "kits_sort_label": "Сортировка наборов",
+  "kits_sort_new": "Новые",
+  "kits_sort_popular": "Популярные",
+  "kits_staff_pick": "Выбор команды",
+  "kits_summary_compat": "Совместимость",
+  "kits_summary_multiplayer": "Мультиплеер",
+  "kits_summary_size": "Состав",
+  "kits_summary_title": "Сводка набора",
+  "kits_total_size": "Всего к загрузке: {size}",
+  "kits_total_size_unknown": "Общий размер ещё не измерен",
+  "kits_undo_failed": "Не удалось отменить.",
+  "kits_unlisted_text": "Этот набор могут открыть только те, у кого есть ссылка или код.",
+  "kits_unlisted_title": "Не в каталоге.",
+  "kits_unsaved": "Несохранённые изменения",
+  "kits_updated_on": "обновлён {date}",
+  "kits_view_public": "Открыть публичную страницу",
+  "kits_visibility_private": "Скрытый",
+  "kits_visibility_private_hint": "Только вы.",
+  "kits_visibility_public": "Публичный",
+  "kits_visibility_public_hint": "Виден в разделе «Наборы» и в поиске.",
+  "kits_visibility_unlisted": "По ссылке",
+  "kits_visibility_unlisted_hint": "Только у кого есть ссылка или код.",
   "landing_blueprints_all": "Все постройки",
   "landing_blueprints_hint": "Свежие постройки от сообщества",
   "landing_creators_all": "Все авторы",

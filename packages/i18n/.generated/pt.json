@@ -1613,6 +1613,584 @@
   "explore_view_grid": "Grade",
   "explore_view_label": "Visualização",
   "explore_view_list": "Lista",
+  "kits_about_empty": "Ainda não há descrição.",
+  "kits_about_title": "Sobre este kit",
+  "kits_action_create": "Criar um kit",
+  "kits_actions_for": "Ações de {name}",
+  "kits_add_already": "{name} já está em “{kit}”.",
+  "kits_add_button": "Adicionar",
+  "kits_add_description": "Escolha um kit ou comece um novo com este mod.",
+  "kits_add_dismiss": "Fechar",
+  "kits_add_done": "{name} adicionado a “{kit}”.",
+  "kits_add_failed": "Não foi possível adicionar {name}.",
+  "kits_add_in_kit": "Neste kit",
+  "kits_add_mod_missing": "Este mod não está mais disponível.",
+  "kits_add_new_kit": "Novo kit com este mod",
+  "kits_add_title": "Adicionar {name} a um kit",
+  "kits_add_title_loading": "Adicionar a um kit",
+  "kits_add_to_named": "Adicionar a {kit}",
+  "kits_announce_added": "{name} adicionado na posição {position}.",
+  "kits_announce_cancelled": "Movimento cancelado. {name} voltou à posição {position}.",
+  "kits_announce_dropped": "{name} solto na posição {position} de {total}.",
+  "kits_announce_grabbed": "{name} selecionado. Posição {position} de {total}.",
+  "kits_announce_moved": "{name} movido para a posição {position} de {total}.",
+  "kits_announce_removed": "{name} removido.",
+  "kits_announce_restored": "{name} restaurado.",
+  "kits_autos_hint": "Exigidas pelos itens acima. Elas acompanham a lista: remova o item que precisa delas e elas saem também.",
+  "kits_autos_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dependência adicionada automaticamente",
+        "count__plural=*": "{count__number} dependências adicionadas automaticamente"
+      }
+    }
+  ],
+  "kits_autosave_hint": "As alterações são salvas sozinhas · rev. {revision}",
+  "kits_back_to_first": "Voltar à página 1",
+  "kits_back_to_list": "Meus kits",
+  "kits_broken_text": "Jogadores relatam que não funcionam no patch atual. Fixe uma versão anterior ou procure uma alternativa.",
+  "kits_broken_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod com defeito relatado",
+        "count__plural=*": "{count__number} mods com defeito relatado"
+      }
+    }
+  ],
+  "kits_clear_filters": "Limpar filtros",
+  "kits_code_copied": "Código {code} copiado",
+  "kits_code_lookup_label": "Tem um código de kit?",
+  "kits_code_lookup_submit": "Abrir kit",
+  "kits_compat_broken": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} com defeito relatado",
+        "count__plural=*": "{count__number} com defeito relatado"
+      }
+    }
+  ],
+  "kits_compat_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} conflito detectado",
+        "count__plural=*": "{count__number} conflitos detectados"
+      }
+    }
+  ],
+  "kits_compat_no_conflicts": "Nenhum conflito detectado",
+  "kits_compat_untested": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ainda não verificado",
+        "count__plural=*": "{count__number} ainda não verificados"
+      }
+    }
+  ],
+  "kits_compat_works": "{works}/{total} funcionam no patch atual",
+  "kits_compat_works_on": "{works}/{total} funcionam no {build}",
+  "kits_conflicts_text": "Alguns mods declaram que não funcionam juntos. Confira as páginas e mantenha um de cada par.",
+  "kits_conflicts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} conflito neste kit",
+        "count__plural=*": "{count__number} conflitos neste kit"
+      }
+    }
+  ],
+  "kits_console_description": "Coleções de mods que você monta: públicas, compartilhadas por link ou só para você.",
+  "kits_console_empty_text": "Crie um kit, organize os mods com que você joga e compartilhe com um código.",
+  "kits_console_empty_title": "Sua bancada está vazia",
+  "kits_console_list_label": "Meus kits",
+  "kits_console_readout": "Seus loadouts",
+  "kits_console_title": "Meus kits",
+  "kits_copy_code": "Copiar código do kit",
+  "kits_copy_failed": "Não foi possível copiar. Selecione o texto e copie manualmente.",
+  "kits_cover_auto": "Automática: os itens organizados na bancada.",
+  "kits_cover_custom": "Imagem própria.",
+  "kits_cover_error_processing": "O processamento da imagem está demorando demais. Tente mais tarde.",
+  "kits_cover_error_rejected": "A imagem foi recusada.",
+  "kits_cover_error_size": "A imagem tem mais de {max} MB.",
+  "kits_cover_error_type": "Esse tipo de arquivo não é compatível.",
+  "kits_cover_error_upload": "O envio falhou. Verifique sua conexão.",
+  "kits_cover_failed": "Não foi possível atualizar a capa.",
+  "kits_cover_hint": "PNG, JPEG, WebP, AVIF ou GIF, até {max} MB. O ideal é uma imagem larga 3:1.",
+  "kits_cover_label": "Capa",
+  "kits_cover_progress": "Enviando… {percent}%",
+  "kits_cover_remove": "Usar a capa automática",
+  "kits_cover_removed": "De volta à capa automática",
+  "kits_cover_replace": "Trocar imagem",
+  "kits_cover_saved": "Capa atualizada",
+  "kits_cover_upload": "Enviar imagem",
+  "kits_create_description": "Dê um nome agora; os mods você adiciona no editor.",
+  "kits_create_submit": "Criar kit",
+  "kits_create_title": "Novo kit",
+  "kits_create_with_mod": "{name} será o primeiro item.",
+  "kits_created": "“{name}” criado",
+  "kits_curated_by": "Montado por {curator}",
+  "kits_delete": "Excluir kit",
+  "kits_delete_confirm": "Excluir kit",
+  "kits_delete_failed": "Não foi possível excluir o kit.",
+  "kits_delete_hint": "Excluir libera o endereço; o código nunca é reutilizado.",
+  "kits_delete_text": "O kit, o código e os links deixarão de funcionar para todos. Não dá para desfazer.",
+  "kits_delete_title": "Excluir “{name}”?",
+  "kits_deleted": "“{name}” excluído",
+  "kits_detail_empty_text": "Quem criou o kit ainda não adicionou nenhum mod.",
+  "kits_detail_empty_title": "Ainda está vazio",
+  "kits_detail_readout": "Kit",
+  "kits_details_discard": "Descartar",
+  "kits_details_save": "Salvar detalhes",
+  "kits_details_saved": "Detalhes salvos",
+  "kits_details_title": "Detalhes",
+  "kits_download_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Baixar {count__number} arquivo",
+        "count__plural=*": "Baixar os {count__number} arquivos"
+      }
+    }
+  ],
+  "kits_download_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} arquivo, um por vez",
+        "count__plural=*": "{count__number} arquivos, um por vez"
+      }
+    }
+  ],
+  "kits_download_all_description_size": [
+    {
+      "declarations": [
+        "input count",
+        "input size",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} arquivo · {size} no total",
+        "count__plural=*": "{count__number} arquivos · {size} no total"
+      }
+    }
+  ],
+  "kits_download_all_done": "Todos os arquivos baixados. Hora de instalar.",
+  "kits_download_all_hint": "Baixe os arquivos em ordem e depois instale-os com o RedLoader. As dependências já estão na lista.",
+  "kits_download_all_title": "Baixar tudo",
+  "kits_download_install_guide": "Como instalar mods",
+  "kits_download_next": "Baixar o próximo",
+  "kits_download_progress": "Baixados {done}/{total}",
+  "kits_download_progress_label": "Progresso do download",
+  "kits_drag_handle": "Mover {name}, posição {position} de {total}",
+  "kits_drag_instructions": "Para reordenar, foque uma alça e pressione Espaço, mova com as setas e pressione Espaço de novo para soltar ou Esc para cancelar.",
+  "kits_duplicate": "Duplicar",
+  "kits_duplicated": "Cópia “{name}” criada",
+  "kits_edit": "Editar kit",
+  "kits_editor_empty_text": "Busque um mod acima. As dependências são adicionadas sozinhas.",
+  "kits_editor_empty_title": "Coloque seu primeiro item",
+  "kits_editor_readout": "Planta",
+  "kits_editor_static_title": "Editor de kits",
+  "kits_editor_title": "Editando {name}",
+  "kits_empty_filtered_text": "Nenhum kit passa por esses filtros ainda. Limpe-os para ver todos.",
+  "kits_empty_filtered_title": "Nenhum kit corresponde",
+  "kits_empty_text": "Seja o primeiro: escolha seus mods favoritos, adicione uma nota a cada um e compartilhe o loadout com um código.",
+  "kits_empty_title": "Ainda não há kits",
+  "kits_error_email": "Verifique seu e-mail para criar e editar kits.",
+  "kits_error_rate": "Alterações demais em pouco tempo. Aguarde um minuto.",
+  "kits_error_slug_taken": "Você já tem um kit neste endereço. Escolha outro.",
+  "kits_error_text": "Algo deu errado do nosso lado. Tente de novo em instantes.",
+  "kits_error_title": "Não foi possível carregar os kits",
+  "kits_error_validation": "Algo no kit não é válido. Confira os campos e tente de novo.",
+  "kits_field_description": "Descrição",
+  "kits_field_description_hint": "Markdown. Para que serve o kit, dicas de ordem de carregamento, configurações.",
+  "kits_field_name": "Nome",
+  "kits_field_name_placeholder": "QoL hardcore",
+  "kits_field_slug": "Endereço",
+  "kits_field_slug_hint": "Letras minúsculas, números e hifens, usados em /kits/você/endereço.",
+  "kits_field_visibility": "Quem pode ver",
+  "kits_filter_label": "Filtrar kits",
+  "kits_filter_off": "(desativado)",
+  "kits_filter_on": "(ativado)",
+  "kits_filter_staff_picks": "Escolhas da equipe",
+  "kits_filter_works": "Funciona no patch atual",
+  "kits_filter_works_on": "Funciona no {build}",
+  "kits_followers": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} seguidor",
+        "count__plural=*": "{display} seguidores"
+      }
+    }
+  ],
+  "kits_fork": "Copiar",
+  "kits_fork_email": "Verifique seu e-mail para criar kits.",
+  "kits_fork_failed": "Não foi possível copiar o kit. Tente de novo.",
+  "kits_fork_rate": "Kits demais em pouco tempo. Aguarde um minuto e tente de novo.",
+  "kits_fork_working": "Copiando o kit…",
+  "kits_forked_banner_text": "Por enquanto ela é privada. Mude o que quiser e depois torne-a pública para compartilhar.",
+  "kits_forked_banner_title": "Sua cópia está pronta.",
+  "kits_forked_from": "Cópia de {kit} de @{handle}",
+  "kits_item_auto_dependency": "Dependência adicionada automaticamente",
+  "kits_item_by": "de {creator}",
+  "kits_item_download_sr": "{name} v{version}",
+  "kits_item_kind_build": "Construção",
+  "kits_item_kind_library": "Biblioteca",
+  "kits_item_latest": "Sempre a mais recente",
+  "kits_item_note_label": "Nota:",
+  "kits_item_options": "Nota e versão",
+  "kits_item_pinned": "(versão fixada)",
+  "kits_item_position": "Posição {position}:",
+  "kits_item_remove": "Remover {name}",
+  "kits_item_unavailable": "Nenhum arquivo disponível",
+  "kits_items_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} item",
+        "count__plural=*": "{count__number} itens"
+      }
+    }
+  ],
+  "kits_items_limit": "Um kit comporta até {max} itens, dependências incluídas.",
+  "kits_items_title": "Neste kit",
+  "kits_items_total": "Itens: {count}/{max}",
+  "kits_items_with_auto": [
+    {
+      "declarations": [
+        "input count",
+        "input auto",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local auto__plural = auto: plural",
+        "local auto__number = auto: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "auto__plural"
+      ],
+      "match": {
+        "count__plural=one, auto__plural=one": "{count__number} item + {auto__number} dependência",
+        "count__plural=one, auto__plural=*": "{count__number} item + {auto__number} dependências",
+        "count__plural=*, auto__plural=one": "{count__number} itens + {auto__number} dependência",
+        "count__plural=*, auto__plural=*": "{count__number} itens + {auto__number} dependências"
+      }
+    }
+  ],
+  "kits_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kit",
+        "count__plural=*": "{count__number} kits"
+      }
+    }
+  ],
+  "kits_list_description": "Loadouts de mods de Sons of the Forest escolhidos pela comunidade: dependências incluídas, compatibilidade verificada e um só código para passar aos amigos.",
+  "kits_list_heading": "Kits",
+  "kits_list_readout": "Loadouts de mods selecionados",
+  "kits_list_title": "Kits de mods de Sons of the Forest",
+  "kits_list_title_page": "{title} — página {page}",
+  "kits_manage_title": "Gerenciar",
+  "kits_meta_description": [
+    {
+      "declarations": [
+        "input name",
+        "input curator",
+        "input count",
+        "input mods",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name}: kit de mods de Sons of the Forest de {curator} com {count__number} item ({mods}). Dependências incluídas, downloads diretos e grátis.",
+        "count__plural=*": "{name}: kit de mods de Sons of the Forest de {curator} com {count__number} itens ({mods}). Dependências incluídas, downloads diretos e grátis."
+      }
+    }
+  ],
+  "kits_meta_title": "{name} — kit de mods de {curator}",
+  "kits_more_from": "Mais kits de {curator}",
+  "kits_mp_all_players": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Todos os jogadores: {count__number} mod",
+        "count__plural=*": "Todos os jogadores: {count__number} mods"
+      }
+    }
+  ],
+  "kits_mp_client_side": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Do lado do cliente: {count__number} mod",
+        "count__plural=*": "Do lado do cliente: {count__number} mods"
+      }
+    }
+  ],
+  "kits_mp_host_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Só o anfitrião: {count__number} mod",
+        "count__plural=*": "Só o anfitrião: {count__number} mods"
+      }
+    }
+  ],
+  "kits_mp_none": "Ainda não há dados de multijogador.",
+  "kits_mp_solo_only": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Só um jogador: {count__number} mod",
+        "count__plural=*": "Só um jogador: {count__number} mods"
+      }
+    }
+  ],
+  "kits_mp_unknown": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Não informado: {count__number} mod",
+        "count__plural=*": "Não informado: {count__number} mods"
+      }
+    }
+  ],
+  "kits_name_too_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__plural = min: plural",
+        "local min__number = min: number"
+      ],
+      "selectors": [
+        "min__plural"
+      ],
+      "match": {
+        "min__plural=one": "Use pelo menos {min__number} caractere.",
+        "min__plural=*": "Use pelo menos {min__number} caracteres."
+      }
+    }
+  ],
+  "kits_note_hint": "Aparece abaixo do mod na página do kit · {count}/{max}",
+  "kits_note_label": "Nota",
+  "kits_note_placeholder": "Defina o raio como 6 na configuração",
+  "kits_offline": "Você está offline. Reconecte-se e tente de novo.",
+  "kits_og_alt": "{name}, um kit de mods de Sons of the Forest no SOTF Mods",
+  "kits_past_end_text": "Não há tantos kits. Volte à primeira página.",
+  "kits_past_end_title": "Além da última página",
+  "kits_picker_error": "A busca falhou. Continue digitando para tentar de novo.",
+  "kits_picker_in_kit": "Adicionado",
+  "kits_picker_label": "Adicionar um mod ou construção",
+  "kits_picker_none": "Nada encontrado. Tente o ID do manifesto.",
+  "kits_picker_placeholder": "Busque por nome ou ID do manifesto…",
+  "kits_picker_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} resultado",
+        "count__plural=*": "{count__number} resultados"
+      }
+    }
+  ],
+  "kits_picker_results_label": "Resultados da busca",
+  "kits_picker_searching": "Buscando…",
+  "kits_pin_error": "Não foi possível carregar as versões.",
+  "kits_pin_hint": "Fixe uma versão só quando uma mais nova quebrar o kit.",
+  "kits_pin_label": "Versão",
+  "kits_pin_latest": "Sempre a mais recente",
+  "kits_pin_loading": "Carregando versões…",
+  "kits_qr_failed": "Não foi possível gerar o código QR.",
+  "kits_removed": "{name} removido do kit",
+  "kits_revision": "rev. {revision}",
+  "kits_revisions_title": "Revisões",
+  "kits_save_failed": "Não salvo.",
+  "kits_saved": "Salvo · rev. {revision}",
+  "kits_saving": "Salvando…",
+  "kits_share_code_label": "Código do kit",
+  "kits_share_description": "Passe o código ou o link curto aos amigos: todos terão o mesmo loadout.",
+  "kits_share_link_label": "Link completo",
+  "kits_share_markdown_label": "Markdown para Discord",
+  "kits_share_markdown_suffix": [
+    {
+      "declarations": [
+        "input count",
+        "input code",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod · código {code}",
+        "count__plural=*": "{count__number} mods · código {code}"
+      }
+    }
+  ],
+  "kits_share_more": "Mais opções",
+  "kits_share_on": "Compartilhar no {network}",
+  "kits_share_private": "Este kit é privado: só você pode vê-lo. Torne-o público ou não listado para compartilhar.",
+  "kits_share_qr": "Código QR",
+  "kits_share_qr_alt": "Código QR do link curto para {name}",
+  "kits_share_qr_hint": "Escaneie com o celular para abrir o kit.",
+  "kits_share_short_label": "Link curto",
+  "kits_share_text": "{name} — um kit de mods de Sons of the Forest",
+  "kits_share_title": "Compartilhar este kit",
+  "kits_sidebar_label": "Sobre este kit",
+  "kits_slug_invalid": "De 2 a 80 letras minúsculas, números e hifens, sem hífen no início ou no fim.",
+  "kits_sort_label": "Ordenar kits",
+  "kits_sort_new": "Novos",
+  "kits_sort_popular": "Populares",
+  "kits_staff_pick": "Escolha da equipe",
+  "kits_summary_compat": "Compatibilidade",
+  "kits_summary_multiplayer": "Multijogador",
+  "kits_summary_size": "Conteúdo",
+  "kits_summary_title": "Resumo do kit",
+  "kits_total_size": "Download total: {size}",
+  "kits_total_size_unknown": "Tamanho total ainda não medido",
+  "kits_undo_failed": "Não foi possível desfazer.",
+  "kits_unlisted_text": "Só quem tem o link ou o código pode abrir este kit.",
+  "kits_unlisted_title": "Não listado.",
+  "kits_unsaved": "Alterações não salvas",
+  "kits_updated_on": "atualizado em {date}",
+  "kits_view_public": "Ver página pública",
+  "kits_visibility_private": "Privado",
+  "kits_visibility_private_hint": "Só você.",
+  "kits_visibility_public": "Público",
+  "kits_visibility_public_hint": "Aparece em Kits e na busca.",
+  "kits_visibility_unlisted": "Não listado",
+  "kits_visibility_unlisted_hint": "Só quem tem o link ou o código.",
   "landing_blueprints_all": "Todas as builds",
   "landing_blueprints_hint": "Builds recém-saídas da comunidade",
   "landing_creators_all": "Todos os criadores",
