@@ -19,6 +19,7 @@ import { legacyEndpoints } from './legacy.ts';
 import { meEndpoints } from './me.ts';
 import { moderationEndpoints } from './moderation.ts';
 import { notificationsEndpoints } from './notifications.ts';
+import { requestsEndpoints } from './requests.ts';
 import { reviewsEndpoints } from './reviews.ts';
 import { searchEndpoints } from './search.ts';
 import { seoEndpoints } from './seo.ts';
@@ -43,6 +44,7 @@ export const apiContracts = {
   me: meEndpoints,
   moderation: moderationEndpoints,
   notifications: notificationsEndpoints,
+  requests: requestsEndpoints,
   reviews: reviewsEndpoints,
   search: searchEndpoints,
   seo: seoEndpoints,

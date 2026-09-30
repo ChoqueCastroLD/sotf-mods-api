@@ -13,6 +13,7 @@ export type CacheTag =
   | 'list:mods'
   | 'list:builds'
   | 'list:kits'
+  | 'list:requests'
   | 'compat'
   | 'sitemap'
   | 'feed'
@@ -22,6 +23,7 @@ export type CacheTag =
   | `mod:${number}`
   | `user:${number}`
   | `kit:${number}`
+  | `request:${number}`
   | `category:${string}`
   | `tag:${string}`
   | `locale:${string}`;
@@ -36,6 +38,7 @@ export type CacheTagTemplate =
   | `mod:{${string}}`
   | `user:{${string}}`
   | `kit:{${string}}`
+  | `request:{${string}}`
   | `category:{${string}}`
   | `tag:{${string}}`
   | `locale:{${string}}`;
@@ -46,6 +49,7 @@ const STATIC_TAGS = new Set<string>([
   'list:mods',
   'list:builds',
   'list:kits',
+  'list:requests',
   'compat',
   'sitemap',
   'feed',
@@ -55,7 +59,7 @@ const STATIC_TAGS = new Set<string>([
 ]);
 
 /** Cloudflare limits a single tag to 1024 bytes; ours are short, but slugs are user data. */
-const DYNAMIC_TAG = /^(?:mod|user|kit):[1-9]\d{0,15}$|^(?:category|tag):[a-z0-9-]{1,80}$|^locale:[a-z]{2}$/;
+const DYNAMIC_TAG = /^(?:mod|user|kit|request):[1-9]\d{0,15}$|^(?:category|tag):[a-z0-9-]{1,80}$|^locale:[a-z]{2}$/;
 
 /** True when `value` is a well-formed cache tag. */
 export function isCacheTag(value: string): value is CacheTag {
@@ -67,6 +71,7 @@ export const cacheTag = {
   mod: (id: number): CacheTag => `mod:${id}`,
   user: (id: number): CacheTag => `user:${id}`,
   kit: (id: number): CacheTag => `kit:${id}`,
+  request: (id: number): CacheTag => `request:${id}`,
   category: (slug: string): CacheTag => `category:${slug}`,
   tag: (slug: string): CacheTag => `tag:${slug}`,
   locale: (locale: string): CacheTag => `locale:${locale}`,

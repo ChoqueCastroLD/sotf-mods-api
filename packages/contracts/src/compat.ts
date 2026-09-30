@@ -20,7 +20,7 @@ import {
   UserRefDTO,
   VersionString,
 } from './common.ts';
-import { dto, exampleOf, examplesOf, wireInt } from './dto.ts';
+import { dto, exampleOf, examplesOf, wireInt, wireIntDefault } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 
 export const COMPAT_MODES = ['singleplayer', 'host', 'client', 'dedicated'] as const;
@@ -284,6 +284,91 @@ export const PatchRadarDTO = dto(
   },
 );
 
+export const UPTIME_COMPONENTS = ['web', 'api', 'media', 'database'] as const;
+export const UptimeComponent = z.enum(UPTIME_COMPONENTS);
+export type UptimeComponent = z.infer<typeof UptimeComponent>;
+
+/** Uptime probes: sampling period and retention (shared by the worker job and the page copy). */
+export const UPTIME_RULES = {
+  probeEveryMinutes: 5,
+  retentionDays: 100,
+  defaultWindowDays: 30,
+  maxWindowDays: 90,
+  /** A probe slower than this counts as down. */
+  timeoutMs: 8000,
+} as const;
+
+export const UptimeDayDTO = dto(
+  'UptimeDayDTO',
+  z.object({
+    date: IsoDate,
+    samples: Count,
+    okSamples: Count,
+    uptime: z.number().min(0).max(1).nullable().describe('null without samples that day'),
+  }),
+  {
+    description: 'Uptime of one UTC day.',
+    examples: [{ date: '2026-09-29', samples: 288, okSamples: 287, uptime: 0.9965 }],
+  },
+);
+
+export const UptimeComponentDTO = dto(
+  'UptimeComponentDTO',
+  z.object({
+    component: UptimeComponent,
+    uptime: z.number().min(0).max(1).nullable().describe('Share of ok samples in the window; null without samples'),
+    samples: Count,
+    avgLatencyMs: z.number().int().nonnegative().nullable(),
+    p95LatencyMs: z.number().int().nonnegative().nullable(),
+    current: z.object({ ok: z.boolean(), checkedAt: IsoDateTime }).nullable().describe('Latest sample'),
+    days: z.array(UptimeDayDTO).describe('One entry per UTC day of the window, oldest first'),
+  }),
+  {
+    description: 'Uptime of one platform component.',
+    examples: [
+      {
+        component: 'web',
+        uptime: 0.9982,
+        samples: 8640,
+        avgLatencyMs: 182,
+        p95LatencyMs: 410,
+        current: { ok: true, checkedAt: '2026-09-30T09:55:00.000Z' },
+        days: [...examplesOf(UptimeDayDTO)],
+      },
+    ],
+  },
+);
+
+export const UptimeDTO = dto(
+  'UptimeDTO',
+  z.object({
+    windowDays: z.number().int().min(1).max(UPTIME_RULES.maxWindowDays),
+    generatedAt: IsoDateTime,
+    overall: z.number().min(0).max(1).nullable().describe('Share of probe rounds where every component was ok'),
+    components: z.array(UptimeComponentDTO),
+  }),
+  {
+    description: 'Platform uptime series shown on the Patch Radar (probes every 5 minutes).',
+    examples: [
+      {
+        windowDays: 30,
+        generatedAt: '2026-09-30T10:00:00.000Z',
+        overall: 0.9971,
+        components: [...examplesOf(UptimeComponentDTO)],
+      },
+    ],
+  },
+);
+export type UptimeDTO = z.infer<typeof UptimeDTO>;
+
+export const UptimeQuery = z.object({
+  days: wireIntDefault(UPTIME_RULES.defaultWindowDays, {
+    min: 1,
+    max: UPTIME_RULES.maxWindowDays,
+    description: 'Window in days',
+  }),
+});
+
 export const CompatReportDTO = dto(
   'CompatReportDTO',
   z.object({
@@ -454,6 +539,18 @@ export const compatEndpoints = {
     response: PatchRadarDTO,
     errors: ['NOT_FOUND'],
     cache: cache.publicApi(['compat']),
+    rateLimit: 'anonymousRead',
+  }),
+  uptime: defineEndpoint({
+    id: 'compat.uptime',
+    owner: 'WP-RR',
+    method: 'GET',
+    path: `${base}/compat/uptime`,
+    summary: 'Uptime series of the platform components (Patch Radar)',
+    auth: 'public',
+    query: UptimeQuery,
+    response: UptimeDTO,
+    cache: cache.publicApi(['compat'], 300),
     rateLimit: 'anonymousRead',
   }),
   createReport: defineEndpoint({

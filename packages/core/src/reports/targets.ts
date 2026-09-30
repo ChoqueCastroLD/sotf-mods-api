@@ -13,6 +13,8 @@
  * | version | `active` → `pending` (held, no longer offered; latest recomputed) | `active` |
  * | kit | `public` → `unlisted` | `public` |
  * | compat_report | `status = 'hidden'` (out of the aggregate) | `visible` |
+ * | request | `hiddenAt` set (404 on the public pages) | `hiddenAt` cleared |
+ * | request_comment | `status = 'hidden'` (comment count follows) | `visible` |
  * | user | nothing (users are sanctioned, not hidden) | — |
  *
  * Restoring only undoes a hide done by this module (the target must still be in the hidden state
@@ -31,6 +33,7 @@ import { publishCacheInvalidation } from '../kernel/notify.ts';
 import { kindOfType, utcTimestamp } from '../moderation/shared.ts';
 import { modRouting } from '../publishing/context.ts';
 import { recomputeLatest } from '../publishing/versions.ts';
+import { refreshRequestCommentCount } from '../requests/service.ts';
 import { refreshRatingCounters } from '../reviews/service.ts';
 
 export type ReportTargetType = z.infer<typeof ReportDTO>['targetType'];
@@ -124,6 +127,25 @@ export async function loadTarget(
               FROM "Kit" k JOIN "User" u ON u."id" = k."ownerId" WHERE k."id" = ${id}`,
       );
       break;
+    case 'request':
+      row = await queryOne<Row>(
+        exec,
+        sql`SELECT r."authorId" AS "ownerId", NULL::int AS "modId", 'Request: ' || r."title" AS "title", NULL AS "userSlug",
+                   NULL AS "slug", NULL AS "type", (r."deletedAt" IS NOT NULL) AS "gone", r."id" AS "extraId",
+                   NULL AS "kitSlug"
+              FROM "ModRequest" r WHERE r."id" = ${id}`,
+      );
+      break;
+    case 'request_comment':
+      row = await queryOne<Row>(
+        exec,
+        sql`SELECT c."authorId" AS "ownerId", NULL::int AS "modId", 'Comment on request: ' || r."title" AS "title",
+                   NULL AS "userSlug", NULL AS "slug", NULL AS "type",
+                   (c."status" = 'deleted' OR r."deletedAt" IS NOT NULL) AS "gone", r."id" AS "extraId",
+                   NULL AS "kitSlug"
+              FROM "ModRequestComment" c JOIN "ModRequest" r ON r."id" = c."requestId" WHERE c."id" = ${id}`,
+      );
+      break;
     case 'compat_report':
       row = await queryOne<Row>(
         exec,
@@ -142,6 +164,8 @@ export async function loadTarget(
   if (type === 'comment' && base) path = `${base}#c-${id}`;
   if (type === 'review' && base) path = `${base}#review-${id}`;
   if (type === 'compat_report' && base) path = `${base}#compat`;
+  if (type === 'request') path = `/requests/${id}`;
+  if (type === 'request_comment' && row.extraId !== null) path = `/requests/${row.extraId}#c-${id}`;
   if (type === 'user') path = row.userSlug ? profilePath(row.userSlug) : null;
   if (type === 'kit') path = row.userSlug && row.kitSlug ? kitPath(row.userSlug, row.kitSlug) : null;
   return {
@@ -303,6 +327,31 @@ export async function hideTarget(
       await ctx.jobs.enqueue('compat.aggregate', { modVersionId: r.modVersionId, gameBuildId: r.gameBuildId }, { tx });
       return true;
     }
+    case 'request': {
+      const r = await queryOne<{ id: number }>(
+        tx,
+        sql`UPDATE "ModRequest" SET "hiddenAt" = ${now}, "hiddenReason" = ${reason}, "updatedAt" = ${now}
+             WHERE "id" = ${id} AND "hiddenAt" IS NULL AND "deletedAt" IS NULL
+         RETURNING "id"`,
+      );
+      if (!r) return false;
+      await ctx.jobs.emitNew(tx, 'request.changed', { requestId: id }, { actorId });
+      await publishCacheInvalidation(tx, ['list:requests', `request:${id}`]);
+      return true;
+    }
+    case 'request_comment': {
+      const c = await queryOne<{ requestId: number }>(
+        tx,
+        sql`UPDATE "ModRequestComment" SET "status" = 'hidden'
+             WHERE "id" = ${id} AND "status" = 'visible'
+         RETURNING "requestId"`,
+      );
+      if (!c) return false;
+      await refreshRequestCommentCount(tx, c.requestId);
+      await ctx.jobs.emitNew(tx, 'request.changed', { requestId: c.requestId }, { actorId });
+      await publishCacheInvalidation(tx, ['list:requests', `request:${c.requestId}`]);
+      return true;
+    }
     case 'user':
       return false;
   }
@@ -442,6 +491,32 @@ export async function restoreTarget(
       );
       if (!r) return false;
       await ctx.jobs.enqueue('compat.aggregate', { modVersionId: r.modVersionId, gameBuildId: r.gameBuildId }, { tx });
+      return true;
+    }
+    case 'request': {
+      const r = await queryOne<{ id: number }>(
+        tx,
+        sql`UPDATE "ModRequest" SET "hiddenAt" = NULL, "hiddenReason" = NULL, "updatedAt" = ${now}
+             WHERE "id" = ${id} AND "hiddenAt" IS NOT NULL AND "deletedAt" IS NULL
+               AND "hiddenReason" = ${REPORT_HIDE_REASON}
+         RETURNING "id"`,
+      );
+      if (!r) return false;
+      await ctx.jobs.emitNew(tx, 'request.changed', { requestId: id }, { actorId });
+      await publishCacheInvalidation(tx, ['list:requests', `request:${id}`]);
+      return true;
+    }
+    case 'request_comment': {
+      const c = await queryOne<{ requestId: number }>(
+        tx,
+        sql`UPDATE "ModRequestComment" SET "status" = 'visible'
+             WHERE "id" = ${id} AND "status" = 'hidden'
+         RETURNING "requestId"`,
+      );
+      if (!c) return false;
+      await refreshRequestCommentCount(tx, c.requestId);
+      await ctx.jobs.emitNew(tx, 'request.changed', { requestId: c.requestId }, { actorId });
+      await publishCacheInvalidation(tx, ['list:requests', `request:${c.requestId}`]);
       return true;
     }
     case 'user':

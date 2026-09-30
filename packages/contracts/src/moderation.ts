@@ -64,7 +64,17 @@ export function allowedTransitions(from: ModStatus, actor: TransitionActor): Mod
 // Reports (users → moderation)
 // -----------------------------------------------------------------------------------------------
 
-export const REPORT_TARGET_TYPES = ['mod', 'version', 'comment', 'review', 'user', 'kit', 'compat_report'] as const;
+export const REPORT_TARGET_TYPES = [
+  'mod',
+  'version',
+  'comment',
+  'review',
+  'user',
+  'kit',
+  'compat_report',
+  'request',
+  'request_comment',
+] as const;
 export const ReportTargetType = z.enum(REPORT_TARGET_TYPES);
 
 export const REPORT_REASONS = [

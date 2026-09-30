@@ -299,6 +299,20 @@ export async function getQueueItem(ctx: Ctx, deps: ModerationDeps, itemId: strin
       );
       contentHtml = r ? (r.bodyHtml ?? textToHtml(`${r.title}\n\n${r.message}`)) : null;
     }
+    if (report.targetType === 'request') {
+      const r = await queryOne<{ title: string; bodyHtml: string | null }>(
+        ctx.db,
+        sql`SELECT "title", "bodyHtml" FROM "ModRequest" WHERE "id" = ${report.targetId}`,
+      );
+      contentHtml = r ? (r.bodyHtml ?? textToHtml(r.title)) : null;
+    }
+    if (report.targetType === 'request_comment') {
+      const r = await queryOne<{ bodyHtml: string }>(
+        ctx.db,
+        sql`SELECT "bodyHtml" FROM "ModRequestComment" WHERE "id" = ${report.targetId}`,
+      );
+      contentHtml = r?.bodyHtml ?? null;
+    }
     if (report.targetType === 'compat_report') {
       const r = await queryOne<{ note: string | null }>(
         ctx.db,

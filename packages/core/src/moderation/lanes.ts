@@ -353,6 +353,13 @@ export function reportTargetSql(type: SQL, id: SQL): SQL {
     UNION ALL
     SELECT NULL::int, k."ownerId", 'Kit ' || k."name" FROM "Kit" k WHERE ${type} = 'kit' AND k."id" = ${id}
     UNION ALL
+    SELECT NULL::int, rq."authorId", 'Request: ' || rq."title" FROM "ModRequest" rq
+     WHERE ${type} = 'request' AND rq."id" = ${id}
+    UNION ALL
+    SELECT NULL::int, rc."authorId", 'Comment on request: ' || rq."title"
+      FROM "ModRequestComment" rc JOIN "ModRequest" rq ON rq."id" = rc."requestId"
+     WHERE ${type} = 'request_comment' AND rc."id" = ${id}
+    UNION ALL
     SELECT m."id", cr."userId", 'Compatibility report on ' || m."name" || ' ' || v."version"
       FROM "CompatReport" cr JOIN "ModVersion" v ON v."id" = cr."modVersionId" JOIN "Mod" m ON m."id" = v."modId"
      WHERE ${type} = 'compat_report' AND cr."id" = ${id}

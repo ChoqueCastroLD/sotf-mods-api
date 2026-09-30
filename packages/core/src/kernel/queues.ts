@@ -46,6 +46,8 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'gamification.evaluate': { retryLimit: 3 },
   // Sweeps: one run at a time; the next schedule retries anyway.
   'compat.reconcile': { policy: 'singleton', retryLimit: 2 },
+  // A probe that overlaps the next one is useless: skip it, never retry.
+  'compat.uptime-probe': { policy: 'singleton', retryLimit: 0, expireInSeconds: 2 * 60 },
   'security.rescan': { policy: 'singleton', retryLimit: 1 },
   'markdown.rerender': { policy: 'singleton', retryLimit: 2, expireInSeconds: 60 * 60 },
   'ops.alerts': { policy: 'singleton', retryLimit: 1, expireInSeconds: 4 * 60 },
