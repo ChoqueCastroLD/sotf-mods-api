@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, one {# more reply} other {# more replies}}",
   "builds_related_title": "More blueprints",
   "builds_related_all": "All builds",
+  "builds_feed_title": "SOTF Mods: new and updated builds",
   "builds_banner_pending_title": "Under review",
   "builds_banner_pending_text": "A ranger will check this build soon. Until then it stays out of listings and search.",
   "builds_banner_unlisted_title": "Unlisted",

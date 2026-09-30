@@ -180,6 +180,7 @@
   "builds_copy_failed": "Couldn’t copy. Select the text and copy it by hand.",
   "builds_description_empty": "The builder hasn’t written a description yet. The spec sheet has the facts.",
   "builds_description_title": "About this build",
+  "builds_feed_title": "SOTF Mods: new and updated builds",
   "builds_follow_error": "Couldn’t update your Backpack. Check your connection and try again.",
   "builds_follow_hint": "Get notified when this build gets a new version",
   "builds_followed": "Added to your Backpack.",

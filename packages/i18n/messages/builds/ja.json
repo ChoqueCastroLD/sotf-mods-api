@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, other {ほかに返信 # 件}}",
   "builds_related_title": "ほかの設計図",
   "builds_related_all": "すべての建築",
+  "builds_feed_title": "SOTF Mods：新しい建築と更新された建築",
   "builds_banner_pending_title": "審査中",
   "builds_banner_pending_text": "まもなくレンジャーがこの建築を確認します。それまでは一覧や検索に表示されません。",
   "builds_banner_unlisted_title": "非公開リスト",

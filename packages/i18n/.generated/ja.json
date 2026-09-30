@@ -172,6 +172,7 @@
   "builds_copy_failed": "コピーできませんでした。テキストを選択して手動でコピーしてください。",
   "builds_description_empty": "建築者はまだ説明を書いていません。仕様書で詳細を確認できます。",
   "builds_description_title": "この建築について",
+  "builds_feed_title": "SOTF Mods：新しい建築と更新された建築",
   "builds_follow_error": "バックパックを更新できませんでした。接続を確認してもう一度お試しください。",
   "builds_follow_hint": "この建築の新しいバージョンが出たら通知を受け取る",
   "builds_followed": "バックパックに追加しました。",

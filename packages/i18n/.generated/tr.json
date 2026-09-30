@@ -180,6 +180,7 @@
   "builds_copy_failed": "Kopyalanamadı. Metni seçip elle kopyala.",
   "builds_description_empty": "Yapımcı henüz bir açıklama yazmadı. Teknik sayfada bilgiler var.",
   "builds_description_title": "Bu yapı hakkında",
+  "builds_feed_title": "SOTF Mods: yeni ve güncellenen yapılar",
   "builds_follow_error": "Sırt çantan güncellenemedi. Bağlantını kontrol edip tekrar dene.",
   "builds_follow_hint": "Bu yapının yeni sürümü çıktığında bildirim al",
   "builds_followed": "Sırt çantana eklendi.",

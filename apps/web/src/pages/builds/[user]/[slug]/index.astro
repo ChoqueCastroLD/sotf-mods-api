@@ -9,6 +9,7 @@
  * - Gallery · header (uploader, blueprint and original authors, stats, size S/M/L/XL, download,
  *   follow ♥, copy link) · description · «How to import (3 steps)» · required mods · versions ·
  *   reviews and comments (first page in the HTML + WP-70 mount points) · spec sheet · related.
+ * - Discovery links (WP-61): Markdown alternate, builds RSS feed and oEmbed.
  * - JSON-LD `CreativeWork` (+ `BreadcrumbList` of the visible trail); `aggregateRating` only with ≥ 3
  *   visible reviews. Everything user-specific is filled in by `build-page.ts` after load.
  */
@@ -91,6 +92,7 @@ const jsonLd = [
     })),
   ),
 ];
+const oembedHref = `/oembed?url=${encodeURIComponent(pageUrl)}&format=json`;
 const visibleCrumbs = trail.map((crumb) => ({
   label: crumb.label,
   href: crumb.path === undefined ? undefined : href(crumb.path, locale),
@@ -115,6 +117,12 @@ const visibleCrumbs = trail.map((crumb) => ({
   preloadImage={preloadImage}
   entity={{ type: 'build', id: build.id }}
 >
+  <Fragment slot="head">
+    <link rel="alternate" type="text/markdown" href={`${build.canonicalPath}.md`} title={build.name} />
+    <link rel="alternate" type="application/rss+xml" href="/builds/feed.xml" title={m.builds_feed_title()} />
+    <link rel="alternate" type="application/json+oembed" href={oembedHref} title={build.name} />
+  </Fragment>
+
   <div class="mx-auto grid w-full max-w-(--container-wide) gap-6 px-4 py-6 md:px-6 md:py-10">
   <Breadcrumbs items={visibleCrumbs} />
   <article

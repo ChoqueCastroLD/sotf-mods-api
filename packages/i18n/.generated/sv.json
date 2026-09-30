@@ -180,6 +180,7 @@
   "builds_copy_failed": "Det gick inte att kopiera. Markera texten och kopiera den för hand.",
   "builds_description_empty": "Byggaren har inte skrivit någon beskrivning än. Databladet har fakta.",
   "builds_description_title": "Om bygget",
+  "builds_feed_title": "SOTF Mods: nya och uppdaterade byggen",
   "builds_follow_error": "Det gick inte att uppdatera din ryggsäck. Kontrollera anslutningen och försök igen.",
   "builds_follow_hint": "Få en avisering när bygget får en ny version",
   "builds_followed": "Tillagt i din ryggsäck.",

@@ -180,6 +180,7 @@
   "builds_copy_failed": "Kopiëren mislukt. Selecteer de tekst en kopieer hem handmatig.",
   "builds_description_empty": "De bouwer heeft nog geen beschrijving geschreven. De specificaties bevatten de feiten.",
   "builds_description_title": "Over deze build",
+  "builds_feed_title": "SOTF Mods: nieuwe en bijgewerkte builds",
   "builds_follow_error": "Je rugzak kon niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.",
   "builds_follow_hint": "Krijg een melding als deze build een nieuwe versie krijgt",
   "builds_followed": "Toegevoegd aan je rugzak.",

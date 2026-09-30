@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, one {Nog # antwoord} other {Nog # antwoorden}}",
   "builds_related_title": "Meer bouwtekeningen",
   "builds_related_all": "Alle builds",
+  "builds_feed_title": "SOTF Mods: nieuwe en bijgewerkte builds",
   "builds_banner_pending_title": "Wordt beoordeeld",
   "builds_banner_pending_text": "Een ranger bekijkt deze build binnenkort. Tot die tijd staat hij niet in overzichten en zoekresultaten.",
   "builds_banner_unlisted_title": "Niet vermeld",

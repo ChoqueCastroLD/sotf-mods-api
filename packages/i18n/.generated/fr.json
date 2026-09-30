@@ -180,6 +180,7 @@
   "builds_copy_failed": "Copie impossible. Sélectionnez le texte et copiez-le à la main.",
   "builds_description_empty": "Le bâtisseur n’a pas encore écrit de description. La fiche technique contient les faits.",
   "builds_description_title": "À propos de cette build",
+  "builds_feed_title": "SOTF Mods : builds nouvelles et mises à jour",
   "builds_follow_error": "Impossible de mettre à jour votre sac à dos. Vérifiez votre connexion et réessayez.",
   "builds_follow_hint": "Être prévenu quand cette build reçoit une nouvelle version",
   "builds_followed": "Ajoutée à votre sac à dos.",

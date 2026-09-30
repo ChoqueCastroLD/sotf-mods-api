@@ -184,6 +184,7 @@
   "builds_copy_failed": "Nie udało się skopiować. Zaznacz tekst i skopiuj go ręcznie.",
   "builds_description_empty": "Budowniczy nie napisał jeszcze opisu. Karta techniczna zawiera fakty.",
   "builds_description_title": "O tym buildzie",
+  "builds_feed_title": "SOTF Mods: nowe i zaktualizowane buildy",
   "builds_follow_error": "Nie udało się zaktualizować plecaka. Sprawdź połączenie i spróbuj ponownie.",
   "builds_follow_hint": "Otrzymuj powiadomienie, gdy ten build dostanie nową wersję",
   "builds_followed": "Dodano do plecaka.",
