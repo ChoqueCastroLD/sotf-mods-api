@@ -27,12 +27,14 @@ x-app-env: &app-env
   LOG_LEVEL: ${SOTF_E2E_LOG_LEVEL:-warn}
   SITE_ENV: ${SOTF_E2E_SITE_ENV:-development}
   PUBLIC_SITE_URL: http://127.0.0.1:47521
+  # check-forbidden-allow: secret-assignment throwaway value for the local e2e stack only
   INTERNAL_SECRET: e2e-internal-secret-not-a-real-secret-0123456789
   GIT_SHA: e2e
 
 x-server-env: &server-env
   <<: *app-env
   DATABASE_URL: postgres://sotf:sotf@postgres:5432/sotf
+  # check-forbidden-allow: secret-assignment throwaway value for the local e2e stack only
   APP_SECRET: e2e-app-secret-not-a-real-secret-0123456789abcdef
   LEGACY_COEXIST: 'false'
   LEGACY_SNAKE_ALIASES: 'false'
