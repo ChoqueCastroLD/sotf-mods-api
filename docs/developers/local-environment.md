@@ -15,8 +15,7 @@ está el detalle.
 
 ```bash
 pnpm install                # 1. dependencias (versiones exactas del catálogo)
-# 2. .env con secretos locales aleatorios (ver §3)
-node -e "const fs=require('node:fs'),c=require('node:crypto');fs.writeFileSync('.env',fs.readFileSync('.env.example','utf8').replace(/^(APP_SECRET|INTERNAL_SECRET)=$/gm,(_,k)=>k+'='+c.randomBytes(48).toString('base64url')))"
+pnpm env:init               # 2. .env con secretos locales aleatorios (ver §3)
 pnpm infra:up               # 3. postgres, S3 (SeaweedFS) y Mailpit, healthy
 pnpm db:seed:dev --small    # 4. base de desarrollo migrada y con datos (~15 s)
 pnpm dev                    # 5. web 47321, api 47301, worker 47302
@@ -26,10 +25,10 @@ Abre `http://127.0.0.1:47321`.
 
 ## 3. El fichero `.env`
 
-- El paso 2 copia `.env.example` a `.env` y genera `APP_SECRET` e `INTERNAL_SECRET` (≥ 32
-  caracteres; la api y el worker no arrancan sin ellos). Equivale a `cp .env.example .env` y
-  rellenar ambos con `openssl rand -base64 48`. Si ya tienes un `.env`, el paso lo sobrescribe:
-  sáltalo.
+- El paso 2 (`pnpm env:init`) copia `.env.example` a `.env` y genera `APP_SECRET` e
+  `INTERNAL_SECRET` (≥ 32 caracteres; la api y el worker no arrancan sin ellos). Equivale a
+  `cp .env.example .env` y rellenar ambos con `openssl rand -base64 48`. Si ya tienes un `.env`,
+  solo rellena esos dos secretos cuando están vacíos; `pnpm env:init --force` lo regenera.
 - Lo cargan la api, el worker y los scripts `db:*` (`process.loadEnvFile`, sin sobrescribir
   variables ya definidas; nunca con `NODE_ENV=production`; `SOTF_NO_DOTENV=1` lo desactiva).
 - Los valores de `.env.example` apuntan a la infraestructura local; las credenciales locales son
@@ -91,7 +90,7 @@ La tabla completa de scripts raíz está en el [README](../../README.md#scripts-
 | Síntoma | Causa y arreglo |
 |---|---|
 | `invalid environment for @sotf/api: APP_SECRET …` | Falta `.env` o los secretos están vacíos (§3) |
-| La landing carga pero sus secciones muestran «no se pudo cargar» | La api no está en `127.0.0.1:47301` (la web la llama por `INTERNAL_API_URL`). Comprueba `curl 127.0.0.1:47301/healthz` y el puerto de la api (ver el aviso del README) |
+| La landing carga pero sus secciones muestran «no se pudo cargar» | La api no está en `127.0.0.1:47301` (la web la llama por `INTERNAL_API_URL`). Comprueba `curl 127.0.0.1:47301/healthz`; el script `dev` de la api fija `PORT=47301` salvo que exportes otro `PORT` |
 | `EADDRINUSE` al arrancar | Otro proceso usa el puerto: `ss -ltnp \| grep 4732` y páralo si es tuyo |
 | `db:seed:dev` se niega: la base no está vacía | `pnpm db:seed:dev --small --reset` |
 | `db:migrate` aborta con drift de la guarda | La base local tiene cambios a mano: `pnpm db:reset:dev` y vuelve a sembrar |

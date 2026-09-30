@@ -15,8 +15,8 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   overriding set variables; `SOTF_NO_DOTENV=1` disables it). Locally, e-mails go to Mailpit
   (`EMAIL_TRANSPORT=mailpit`, UI `http://127.0.0.1:47080`) and the CDN purge is a no-op without
   `CF_ZONE_ID`/`CF_API_TOKEN`.
-- `PORT` defaults to 3002 (the Coolify port); the development port is 47302:
-  `PORT=47302 pnpm --filter @sotf/worker dev` until the dev script pins it (`docs/backlog/WP-A4.md`).
+- The `dev` script serves the health endpoint on `127.0.0.1:47302` (`PORT`/`HOST` exported in the
+  shell override it); outside it `PORT` defaults to 3002 (the Coolify port).
 - Deployment variables: `ops/coolify/env/worker.env.example`.
 
 ## Backfills run by the worker (B15, B16…)

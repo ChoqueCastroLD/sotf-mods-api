@@ -75,10 +75,23 @@ jobs:
         run: |
           docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.7 -color
           docker run --rm -v "$PWD:/repo" -w /repo koalaman/shellcheck:v0.10.0 -x \
-            ops/docker/*.sh ops/coolify/*.sh ops/runbooks/deploy/*.sh
+            ops/docker/*.sh ops/coolify/*.sh ops/runbooks/deploy/*.sh tooling/scripts/*.sh
 
       - name: 2 · check:forbidden
         run: pnpm check:forbidden
+
+      # PLAN §9.4: the repository becomes public, so a secret added and later removed in a PR
+      # would still be published. Pull requests scan every line their commits add; pushes scan
+      # the working tree (the weekly nightly job scans the whole history).
+      - name: 2 · secrets-scan
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ -n "$BASE_REF" ]; then
+            node tooling/scripts/secrets-scan.ts --history --rev="origin/${BASE_REF}..HEAD"
+          else
+            node tooling/scripts/secrets-scan.ts
+          fi
 
       - name: 2b · generated files are committed and fresh
         run: |
@@ -112,6 +125,24 @@ jobs:
       - name: 5 · unit tests
         run: pnpm exec turbo run test
 
+      # The .NET UpdatesChecker checker of @sotf/legacy-contract (mcr.microsoft.com/dotnet/sdk:10.0,
+      # ~900 MB, NuGet restore at build time) is built once through the GitHub Actions cache; its
+      # `docker build` inside test:int / contract:legacy then only hits the local layer cache.
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: 6 · .NET checker image (cached)
+        uses: docker/build-push-action@v6
+        with:
+          context: tooling/legacy-contract/dotnet
+          load: true
+          push: false
+          tags: sotfv2-legacy-contract-dotnet:local
+          cache-from: type=gha,scope=legacy-contract-dotnet
+          cache-to: type=gha,scope=legacy-contract-dotnet,mode=max
+
+      # Testcontainers starts PostgreSQL 16 (and Mailpit/SeaweedFS where needed) on the runner's
+      # Docker: @sotf/db, @sotf/migration-tools, @sotf/api, @sotf/worker and the legacy harness.
       - name: 6 · integration tests (Testcontainers)
         run: pnpm exec turbo run test:int
 
@@ -315,6 +346,13 @@ jobs:
             -e PUBLIC_SITE_URL=http://127.0.0.1:47621 -e SITE_ENV=development \
             -e INTERNAL_SECRET="$secret" -e APP_SECRET="$secret" \
             -e DATABASE_URL=postgres://nobody:nothing@127.0.0.1:9/none sotfv2-ci/sotf-node:ci
+          # The worker bundle links React (e-mail templates) at start-up: a broken dependency
+          # layout only shows when the process starts. Without a database its health server never
+          # turns ready (by design), so it only has to stay up.
+          docker run -d --name sotfv2-ci-worker -e SOTF_ROLE=worker \
+            -e PUBLIC_SITE_URL=http://127.0.0.1:47621 -e SITE_ENV=development \
+            -e INTERNAL_SECRET="$secret" -e APP_SECRET="$secret" \
+            -e DATABASE_URL=postgres://nobody:nothing@127.0.0.1:9/none sotfv2-ci/sotf-node:ci
           for url in http://127.0.0.1:47621/healthz http://127.0.0.1:47601/healthz; do
             for _ in $(seq 1 30); do curl --silent --fail "$url" && echo && continue 2; sleep 2; done
             docker logs sotfv2-ci-web || true
@@ -322,7 +360,12 @@ jobs:
             echo "::error::$url did not answer 200"
             exit 1
           done
+          if [ "$(docker inspect -f '{{.State.Running}}' sotfv2-ci-worker)" != "true" ]; then
+            docker logs sotfv2-ci-worker || true
+            echo "::error::the worker exited at start-up"
+            exit 1
+          fi
 
       - name: 12 · stop the containers
         if: always()
-        run: docker rm -f sotfv2-ci-web sotfv2-ci-api || true
+        run: docker rm -f sotfv2-ci-web sotfv2-ci-api sotfv2-ci-worker || true
