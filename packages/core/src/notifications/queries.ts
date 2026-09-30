@@ -9,6 +9,7 @@ import { decodeCursor, encodeCursor } from '@sotf/contracts/pagination';
 import { type Database, type Executor, notification, user, withTx } from '@sotf/db';
 import { and, desc, eq, inArray, isNull, lt, or } from 'drizzle-orm';
 import { avatarUrlOf, displayNameOf } from '../auth/users.ts';
+import { gamificationRefs } from '../gamification/queries.ts';
 import { errors } from '../kernel/errors.ts';
 import { publishNotificationNotice } from '../realtime/index.ts';
 import { INTERNAL_DATA_KEYS, unreadCount, visibleNotification } from './service.ts';
@@ -78,6 +79,11 @@ export async function listNotifications(
     .orderBy(desc(notification.createdAt), desc(notification.id))
     .limit(input.limit + 1);
   const page = rows.slice(0, input.limit);
+  // Creator tier and survivor rank of the actors (the rank honours `privacy.hideRank`).
+  const refs = await gamificationRefs(
+    db,
+    page.map((r) => r.actorId).filter((id): id is number => id !== null),
+  );
   const items: NotificationDTO[] = [];
   for (const r of page) {
     const data = r.data as Record<string, unknown>;
@@ -98,9 +104,8 @@ export async function listNotifications(
             ),
             verifiedCreator: r.actorVerifiedCreator ?? false,
             role: r.actorRole ?? 'user',
-            // Tiers and ranks are computed by gamification (WP-60); signals show the plain reference.
-            creatorTier: null,
-            survivorRank: null,
+            creatorTier: refs.get(r.actorId)?.creatorTier ?? null,
+            survivorRank: refs.get(r.actorId)?.survivorRank ?? null,
           }
         : null;
     const title = typeof data.targetTitle === 'string' ? data.targetTitle : '';
