@@ -1,0 +1,102 @@
+---
+/**
+ * `/news/:slug` (T0-28): one announcement. English is authoritative; a post not translated into
+ * the page language shows the English text (marked `lang="en"`, canonical to English, no hreflang
+ * cluster). JSON-LD `BlogPosting`; edge-cached a day, purged on deploy. Unknown slug → 404;
+ * other letter cases → 301.
+ */
+import { formatDate, LOCALES, toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowLeft, Rss } from 'lucide-react';
+import ContentHeader from '../../components/content/ContentHeader.astro';
+import FallbackNotice from '../../components/content/FallbackNotice.astro';
+import { blogPostingJsonLd } from '../../components/content/jsonld.ts';
+import { readingMinutes } from '../../components/content/markdown.ts';
+import Prose from '../../components/content/Prose.astro';
+import { newsPost } from '../../content/news/index.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href, localizePath } from '../../lib/i18n.ts';
+
+const locale = Astro.locals.locale;
+const raw = Astro.params.slug ?? '';
+const slug = raw.toLowerCase();
+const post = newsPost(slug, locale);
+if (!post) {
+  setPageCache(Astro, pageCache.notFound());
+  return new Response(null, { status: 404 });
+}
+if (slug !== raw) {
+  setPageCache(Astro, pageCache.custom(EDGE_TTL.hour));
+  return Astro.redirect(href(`/news/${slug}`, locale), 301);
+}
+setPageCache(Astro, pageCache.static());
+
+const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
+const path = `/news/${slug}`;
+const url = `${siteUrl}${localizePath(path, post.locale)}`;
+const translatedEverywhere = LOCALES.every((code) => newsPost(slug, code)?.translated === true);
+const modified = post.updated ?? post.published;
+const DATE_SLOT = '';
+const [byBefore = '', byAfter = ''] = m.content_news_byline({ author: DATE_SLOT }).split(DATE_SLOT);
+---
+
+<PageLayout
+  template="news-post"
+  width="content"
+  seo={{
+    title: post.title,
+    description: post.description,
+    path,
+    alternates: translatedEverywhere,
+    canonicalLocale: post.locale,
+    og: { imageAlt: m.meta_og_default_alt(), type: 'article' },
+  }}
+  jsonLd={[
+    blogPostingJsonLd({
+      siteUrl,
+      url,
+      locale: post.locale,
+      headline: post.title,
+      description: post.description,
+      datePublished: post.published,
+      dateModified: modified,
+      authorName: post.author,
+    }),
+  ]}
+  breadcrumbs={[
+    { label: m.common_nav_home(), path: '/' },
+    { label: m.common_nav_news(), path: '/news' },
+    { label: post.title },
+  ]}
+>
+  <link slot="head" rel="alternate" type="application/rss+xml" title={m.content_news_feed_title()} href="/news/feed.xml" />
+  <article class="mx-auto flex max-w-(--container-prose) flex-col gap-6" aria-labelledby="post-title">
+    <ContentHeader
+      eyebrow={m.content_news_eyebrow()}
+      title={post.title}
+      id="post-title"
+      lead={post.description}
+      textLang={post.translated ? undefined : toHtmlLang(post.locale)}
+    >
+      <time datetime={post.published}>{formatDate(locale, post.published, 'long')}</time>
+      <span>{byBefore}{post.author}{byAfter}</span>
+      <span>{m.content_reading_time({ minutes: readingMinutes(post.text) })}</span>
+    </ContentHeader>
+    {!post.translated && <FallbackNotice path={path} textLocale={post.locale} />}
+    <Prose html={post.html} textLocale={post.locale} />
+    <footer class="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-6">
+      <a href={href('/news', locale)} class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-link hover:underline">
+        <Icon icon={ArrowLeft} size={16} />
+        {m.content_news_back()}
+      </a>
+      <a href="/news/feed.xml" class="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-link hover:underline">
+        <Icon icon={Rss} size={16} />
+        {m.content_news_feed()}
+      </a>
+    </footer>
+  </article>
+</PageLayout>

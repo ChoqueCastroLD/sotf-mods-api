@@ -1,0 +1,81 @@
+---
+/**
+ * `/about` (research/03 §6.15, PLAN §3.1, §4.2): what SOTF Mods is, who runs it, how moderation
+ * and compatibility work, and the mandatory fan disclaimer. Markdown per locale
+ * (`content/about`), JSON-LD `AboutPage`; edge-cached a day, purged on deploy.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, Scale } from 'lucide-react';
+import DocLayout from '../components/content/DocLayout.astro';
+import { aboutPageJsonLd } from '../components/content/jsonld.ts';
+import { ABOUT_UPDATED, aboutDoc } from '../content/about/index.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { loadEnv } from '../lib/env.ts';
+import { href, localizePath } from '../lib/i18n.ts';
+import { SOCIAL_LINKS } from '../lib/site.ts';
+
+setPageCache(Astro, pageCache.static());
+const locale = Astro.locals.locale;
+const doc = aboutDoc.get(locale);
+if (!doc) throw new Error('about: the English text is missing');
+const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
+const path = '/about';
+const links = [
+  { href: href('/install', locale), label: m.common_nav_install() },
+  { href: href('/patch-radar', locale), label: m.common_term_patch_radar() },
+  { href: href('/brand', locale), label: m.common_footer_brand() },
+  { href: href('/developers', locale), label: m.common_footer_developers() },
+  { href: href('/news', locale), label: m.common_nav_news() },
+  { href: SOCIAL_LINKS.discord, label: 'Discord', external: true },
+  { href: SOCIAL_LINKS.github, label: 'GitHub', external: true },
+];
+---
+
+<DocLayout
+  template="about"
+  path={path}
+  eyebrow={m.content_about_eyebrow()}
+  doc={doc}
+  translatedLocales={aboutDoc.locales()}
+  updated={ABOUT_UPDATED}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_footer_about() }]}
+  jsonLd={[
+    aboutPageJsonLd({
+      siteUrl,
+      url: `${siteUrl}${localizePath(path, doc.locale)}`,
+      locale: doc.locale,
+      name: doc.frontmatter.title,
+      description: doc.frontmatter.description,
+      dateModified: ABOUT_UPDATED,
+    }),
+  ]}
+>
+  <aside aria-labelledby="about-disclaimer-title" class="flex items-start gap-3 rounded-lg border border-border-strong bg-surface p-5">
+    <Icon icon={Scale} size={20} className="mt-0.5 shrink-0 text-fg-muted" />
+    <div class="grid gap-1">
+      <h2 id="about-disclaimer-title" class="font-semibold text-fg">{m.content_about_disclaimer_title()}</h2>
+      <p class="text-sm text-pretty text-fg-muted">{m.common_disclaimer()}</p>
+    </div>
+  </aside>
+  <nav aria-labelledby="about-links-title" class="border-t border-border pt-6">
+    <h2 id="about-links-title" class="readout mb-3">{m.content_about_links_title()}</h2>
+    <ul class="flex flex-wrap gap-2">
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              rel={link.external ? 'noopener' : undefined}
+              class="inline-flex h-9 items-center gap-1 rounded-full border border-border-strong px-3 text-sm text-fg hover:border-primary hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              {link.label}
+              {!link.external && <Icon icon={ArrowRight} size={14} />}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</DocLayout>

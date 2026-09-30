@@ -8,6 +8,7 @@
  * slots only).
  */
 import { bindCmdkTrigger } from '../../islands/cmdk/Trigger.ts';
+import { initSignalsBell } from '../../islands/signals/mount.ts';
 import { initAccountHint } from '../../scripts/account-hint.ts';
 import { initBeacon } from '../../scripts/beacon.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
@@ -50,6 +51,7 @@ export function boot(): void {
   safely(() => initMoon());
   safely(() => initViewTransitions());
   safely(() => initAccountHint());
+  safely(() => initSignalsBell());
   whenIdle(() => {
     safely(() => initBeacon());
     safely(() => import('../../scripts/seasonal.ts').then(({ initSeasonal }) => initSeasonal()));

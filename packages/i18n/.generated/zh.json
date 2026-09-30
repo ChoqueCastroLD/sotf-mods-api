@@ -915,6 +915,7 @@
   "builds_copy_failed": "复制失败。请选中文字后手动复制。",
   "builds_description_empty": "建造者还没有写描述。技术参数里有相关信息。",
   "builds_description_title": "关于此建筑",
+  "builds_feed_title": "SOTF Mods：新增和更新的建筑",
   "builds_follow_error": "无法更新你的背包。请检查网络连接后重试。",
   "builds_follow_hint": "此建筑有新版本时通知我",
   "builds_followed": "已加入你的背包。",
@@ -1595,6 +1596,408 @@
   "console_update_detail": "你浏览期间我们更新了 SOTF Mods。重新加载即可获得最新版本。",
   "console_update_reload": "重新加载",
   "console_update_title": "新版本已发布",
+  "content_about_disclaimer_title": "非官方粉丝社区",
+  "content_about_eyebrow": "关于",
+  "content_about_links_title": "营地周边",
+  "content_binding_note": "本译文仅供参考。如与英文版不一致，以英文版为准。",
+  "content_brand_asset_app_icon": "应用图标",
+  "content_brand_asset_app_icon_hint": "夜间底色上的图钉，用于头像和快捷方式。",
+  "content_brand_asset_horizontal": "横版标志",
+  "content_brand_asset_horizontal_hint": "默认版本：图形标与文字标并排。",
+  "content_brand_asset_mark": "图形标（Contour Pin）",
+  "content_brand_asset_mark_hint": "仅图钉。16 到 24 px 之间请使用简化版。",
+  "content_brand_asset_og": "社交分享预览图",
+  "content_brand_asset_og_hint": "1200 × 630，用于链接预览和缩略图。",
+  "content_brand_asset_stacked": "竖版标志",
+  "content_brand_asset_stacked_hint": "用于方形或较高的空间。",
+  "content_brand_asset_wordmark": "文字标",
+  "content_brand_asset_wordmark_hint": "不含图钉的“SOTF MODS”，用于狭窄的横向空间。",
+  "content_brand_color_blueprint": "蓝图（建筑）",
+  "content_brand_color_bone": "骨白（文字、日间背景）",
+  "content_brand_color_flare_day": "日间上的信号焰",
+  "content_brand_color_flare_night": "夜色上的信号焰",
+  "content_brand_color_lichen": "地衣（可用）",
+  "content_brand_color_night": "夜色（背景）",
+  "content_brand_color_signal": "信号（实时、信息）",
+  "content_brand_color_solafite": "索拉石（精选）",
+  "content_brand_colors_text": "夜色与骨白是基础，信号焰是唯一的强调色。状态色用于表达含义，而非装饰。",
+  "content_brand_colors_title": "配色",
+  "content_brand_description": "下载 SOTF Mods 的标志、图形标和配色，并了解如何在你的模组、视频或服务器中链接到本站。",
+  "content_brand_do_contrast": "深色背景用夜间版文件，浅色背景用日间版文件。",
+  "content_brand_do_link": "将标志链接到 sotf-mods.com。",
+  "content_brand_do_size": "完整图形标不小于 24 px（简化版不小于 16 px）。",
+  "content_brand_do_space": "标志四周至少留出其高度四分之一的空白。",
+  "content_brand_do_title": "建议",
+  "content_brand_dont_distort": "不要拉伸、旋转、裁剪标志或重排其组成部分。",
+  "content_brand_dont_endorse": "不要暗示 SOTF Mods 认可、赞助或审核过你的项目。",
+  "content_brand_dont_game": "不要与游戏官方标志、美术或角色名称组合使用。",
+  "content_brand_dont_recolor": "不要给标志改色、加描边或添加特效。",
+  "content_brand_dont_title": "避免",
+  "content_brand_eyebrow": "品牌素材",
+  "content_brand_font_display": "标题字体：标题与数字，始终使用大写。",
+  "content_brand_font_link": "获取 {name}",
+  "content_brand_font_mono": "读数：版本、ID 与代码。",
+  "content_brand_font_ui": "界面与正文。",
+  "content_brand_lead": "要在模组页面、视频或服务器中链接 SOTF Mods？请使用这些文件并遵守下面的规则。",
+  "content_brand_legal_text": "SOTF Mods 的名称和标志用于标识本社区网站。你可以用它们提及或链接本站；其他任何用途都需要获得我们的许可。",
+  "content_brand_legal_title": "商标",
+  "content_brand_link_text": "把这段代码复制到你的 README、网站或模组介绍中。它指向在线标志，因此始终保持最新。",
+  "content_brand_link_title": "链接到 SOTF Mods",
+  "content_brand_logos_text": "每个文件都有用于深色背景的夜间版和用于浅色背景的日间版。优先使用 SVG；不支持 SVG 时使用 PNG。",
+  "content_brand_logos_title": "标志",
+  "content_brand_on_day": "浅色背景",
+  "content_brand_on_night": "深色背景",
+  "content_brand_rules_title": "标志使用规范",
+  "content_brand_snippet_label": "HTML 代码",
+  "content_brand_title": "SOTF Mods 品牌",
+  "content_brand_type_title": "字体",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "API v2 读取",
+        "bucket=legacyRead": "旧版 API 读取",
+        "bucket=downloads": "下载",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "代码",
+  "content_dev_col_limit": "限制",
+  "content_dev_col_meaning": "含义",
+  "content_dev_col_method": "方法",
+  "content_dev_col_notes": "备注",
+  "content_dev_col_path": "路径",
+  "content_dev_col_scope": "范围",
+  "content_dev_col_status": "状态",
+  "content_dev_col_summary": "作用",
+  "content_dev_endpoints_caption": "公开接口：{domain}",
+  "content_dev_endpoints_text": "匿名、可缓存并支持 CORS。参考文档列出了每个接口的参数、响应和错误。",
+  "content_dev_endpoints_title": "公开只读接口",
+  "content_dev_errors_text": "错误的 code 字段取以下值之一。每个问题的 type URI 都指向这里对应的行。",
+  "content_dev_errors_title": "错误代码",
+  "content_dev_eyebrow": "开发者",
+  "content_dev_legacy_deprecated": "已冻结并弃用",
+  "content_dev_legacy_deprecated_text": "这些路由将响应至 {date}，之后停用。其响应包含以下头：",
+  "content_dev_legacy_deviations": "与旧行为的有意差异",
+  "content_dev_legacy_retired": "已停用",
+  "content_dev_legacy_retired_text": "这些路由上的任何方法都会返回 410 Gone 和以下内容：",
+  "content_dev_legacy_stable": "受支持（逐字节兼容）",
+  "content_dev_legacy_text": "网站第一版的 API 仍在 api.sotf-mods.com/api/* 和 sotf-mods.com/api/* 上响应，以便 RedManager、UpdatesChecker 和游戏内模组继续工作。新的集成应使用 v2。",
+  "content_dev_legacy_title": "旧版 API 与弃用计划",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "每个 IP",
+        "key=user": "每个账号",
+        "key=chat": "每位玩家",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "超过限制时，API 返回 429 并附带 Retry-After 头。缓存响应并遵守 ETag，你几乎不会触及限制。",
+  "content_dev_limits_title": "速率限制",
+  "content_dev_link_docs_text": "所有 v2 接口，含结构与示例，可交互。",
+  "content_dev_link_docs_title": "API 参考",
+  "content_dev_link_legacy_text": "仍在服务；冻结的路由将于 {date} 停用。",
+  "content_dev_link_legacy_title": "旧版 API",
+  "content_dev_link_openapi_text": "机器可读的规范，可用于生成客户端。",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "草稿说明",
+  "content_draft_text": "本文描述的是 SOTF Mods 当前的运作方式，但尚未经过律师审核。定稿前可能会修改，每次修改都会注明日期。",
+  "content_draft_title": "草稿——等待法律审核",
+  "content_error_ref": "参考编号：{ref}",
+  "content_fallback_binding": "法律文本以英文版为准。",
+  "content_fallback_link": "打开{original}页面",
+  "content_fallback_text": "本页尚无{language}版本，你正在阅读{original}原文。",
+  "content_install_eyebrow": "安装指南",
+  "content_install_faq_nav": "常见问题",
+  "content_install_faq_title": "常见问题",
+  "content_install_get_redmanager": "获取 RedManager",
+  "content_install_help_discord": "在 Discord 提问",
+  "content_install_help_text": "看看当前游戏补丁是否让你的模组失效，或者向社区求助。请注明游戏版本、RedLoader 版本以及你使用的模组。",
+  "content_install_help_title": "还是没搞定？",
+  "content_install_kit_more": "浏览所有 Kit",
+  "content_install_kit_nav": "新手 Kit",
+  "content_install_kit_text": "团队精选的一组搭配良好的模组，适合作为第一套装备。",
+  "content_install_kit_title": "新手 Kit",
+  "content_install_manual": "手动安装",
+  "content_install_progress": "阅读进度",
+  "content_install_rail_label": "指南章节",
+  "content_install_rail_title": "步骤",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {step__number} 步："
+      }
+    }
+  ],
+  "content_install_tldr": "简而言之",
+  "content_install_verified": "已在游戏 {game} · RedLoader {loader} 上验证",
+  "content_kelvin_by": "模组作者：",
+  "content_kelvin_credit": "KelvinSeek 由 {author} 制作和维护；SOTF Mods 只运行它所调用的 API。Kelvin 和 Sons of the Forest 属于 Endnight Games；这是一个粉丝项目。",
+  "content_kelvin_description": "KelvinSeek 让你在 Sons of the Forest 中与 Kelvin 聊天，并用自己的话给他下命令。了解它的工作方式、使用限制以及你的消息会如何处理。",
+  "content_kelvin_dev_hint": "在做类似的东西？该接口属于旧版 API：",
+  "content_kelvin_eyebrow": "社区模组",
+  "content_kelvin_history_text": "它以前叫 Kelvin-GPT。需要你自己 OpenAI 密钥的旧版本已停用：那个路由会在地址中暴露密钥，现在只返回“Gone”。",
+  "content_kelvin_how_1": "安装 RedLoader 和 KelvinSeek 模组。",
+  "content_kelvin_how_2": "在游戏中走到 Kelvin 身边，按 E 打开记事本。",
+  "content_kelvin_how_3": "按 T 输入，写下消息后按回车。",
+  "content_kelvin_how_4": "或者使用控制台：“askkelvin …”发送消息，“clearkelvinchathistory”开始新对话。",
+  "content_kelvin_how_title": "使用方法",
+  "content_kelvin_install_hint": "第一次用模组？先看指南：",
+  "content_kelvin_lead": "用自己的话写给 Kelvin，他会回应并照做——从搬木头到搭建庇护所。",
+  "content_kelvin_limits_budget": "AI 服务有每日预算。用完后 Kelvin 依然能理解你：在第二天之前，他会不借助 AI，选择最接近的已知命令。",
+  "content_kelvin_limits_busy": "如果你写得太快，Kelvin 会要求休息几秒。不会丢失任何内容。",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "每位玩家每分钟最多 {perMinute__number} 条消息，每天最多 {perDay__number} 条。"
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "限制",
+  "content_kelvin_open_mod": "打开模组页面",
+  "content_kelvin_privacy_ai": "你的消息文本会发送给 AI 提供商以生成回复。请不要填写个人信息。",
+  "content_kelvin_privacy_hash": "模组发送的聊天 ID（包含你的 Steam ID 和名称）只以不可逆的哈希形式保存。",
+  "content_kelvin_privacy_link": "阅读隐私政策",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "每段对话的最近消息会保存 {days__number} 天，以便 Kelvin 记住上下文，之后删除。"
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "你的消息",
+  "content_kelvin_status_compat": "在 {build} 上",
+  "content_kelvin_status_downloads": "下载量",
+  "content_kelvin_status_title": "在 SOTF Mods 上的状态",
+  "content_kelvin_status_unavailable": "无法加载模组的当前状态。模组页面上有最新版本。",
+  "content_kelvin_status_updated": "最近发布",
+  "content_kelvin_status_version": "最新版本",
+  "content_kelvin_title": "KelvinSeek：在游戏中和 Kelvin 对话",
+  "content_kelvin_what_text": "KelvinSeek 是 {author} 制作的模组。它通过 SOTF Mods API 将你写给 Kelvin 的内容发送给 AI 服务，并把回复变成 Kelvin 的回答；当你提出要求时，还会变成他的一条游戏内命令。你不需要自己的 API 密钥。",
+  "content_kelvin_what_title": "这是什么",
+  "content_legal_eyebrow": "法律信息",
+  "content_legal_other": "其他法律页面",
+  "content_md_alert_caution": "小心",
+  "content_md_alert_important": "重要",
+  "content_md_alert_note": "注意",
+  "content_md_alert_tip": "提示",
+  "content_md_alert_warning": "警告",
+  "content_md_spoiler": "剧透",
+  "content_news_back": "全部新闻",
+  "content_news_byline": "作者：{author}",
+  "content_news_description": "SOTF Mods 团队的公告：新功能、网站与 API 的变化，以及接下来的计划。",
+  "content_news_empty": "还没有新闻。林中一片宁静。",
+  "content_news_eyebrow": "实地笔记",
+  "content_news_feed": "通过 RSS 订阅",
+  "content_news_feed_title": "SOTF Mods — 新闻",
+  "content_news_read": "阅读",
+  "content_news_title": "新闻",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} 个可用，{broken__number} 个失效，{pending__number} 个等待报告"
+      }
+    }
+  ],
+  "content_radar_breaking": "破坏性更新",
+  "content_radar_broken_empty": "在 {build} 上没有热门模组被报告失效。",
+  "content_radar_broken_title": "报告失效",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input build",
+        "input count",
+        "input share",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} 上前 {count__number} 个模组中已确认 {share}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "可用 {works__number} · 部分 {partial__number} · 失效 {broken__number}"
+      }
+    }
+  ],
+  "content_radar_cta_button": "等待报告的模组",
+  "content_radar_cta_text": "打开模组，选择你的游玩方式（单人、主机、客户端或专用服务器），告诉我们能否运行。每份实地报告都能获得 XP，并帮其他幸存者避开坏档。",
+  "content_radar_cta_title": "在 {build} 上试过其中的模组吗？",
+  "content_radar_current": "当前版本",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} 补丁：下载量前 50 的 Sons of the Forest 模组中有 {share} 已由玩家确认——{works__number} 个可用，{broken__number} 个失效，{pending__number} 个等待报告。"
+      }
+    }
+  ],
+  "content_radar_description_generic": "哪些 Sons of the Forest 模组能在当前游戏补丁上运行：RedLoader 状态以及玩家对下载量前 50 模组的实地报告。",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "30 天内 {display} 次下载"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "可用",
+        "status=partial": "部分可用",
+        "status=broken": "失效",
+        "status=*": "未知"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "此版本尚未记录加载器状态。",
+  "content_radar_ecosystem_title": "{build} 上的加载器与管理器",
+  "content_radar_empty_text": "还没有登记任何游戏版本。护林员登记当前补丁后，本页会显示哪些热门模组可以运行。",
+  "content_radar_empty_title": "雷达正在预热",
+  "content_radar_error_text": "无法加载兼容性数据。请一分钟后重试；如果仍然失败，请在 Discord 告诉我们并附上下面的参考编号。",
+  "content_radar_error_title": "信号丢失",
+  "content_radar_history_empty": "这是记录中的第一个版本。",
+  "content_radar_history_title": "版本历史",
+  "content_radar_install_link": "如何安装 RedLoader",
+  "content_radar_legend_outdated": "“可能已过时”表示最新版本早于最近一次破坏性更新，且此后没有人确认它可用。",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "报告会加权：作者本人的测试算双倍，认证创作者算 1.5 倍，全新账号算一半。加权报告少于 {min__number} 份的模组视为未测试；可用比例达到 {works} 即为可用；失效比例达到 {broken} 即为失效；其余为结果不一。"
+      }
+    }
+  ],
+  "content_radar_legend_title": "状态如何判定",
+  "content_radar_list_name": "{build} 补丁上的热门 Sons of the Forest 模组",
+  "content_radar_notes": "补丁说明",
+  "content_radar_outdated": "可能已过时",
+  "content_radar_past_link": "查看当前版本",
+  "content_radar_past_notice": "这是旧版本。游戏现在是 {build}。",
+  "content_radar_pending_empty": "此版本上每个热门模组都已有明确结论。",
+  "content_radar_pending_hint": "未测试或结果不一",
+  "content_radar_pending_title": "等待实地报告",
+  "content_radar_released": "发布于 {date}",
+  "content_radar_report": "报告",
+  "content_radar_seo_title": "SOTF 模组能在 {build} 补丁上运行吗？— Patch Radar",
+  "content_radar_seo_title_generic": "SOTF 模组能在最新补丁上运行吗？— Patch Radar",
+  "content_radar_stat_broken": "失效",
+  "content_radar_stat_pending": "需要报告",
+  "content_radar_stat_works": "可用",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "可用",
+        "status=mixed": "不一",
+        "status=broken": "失效",
+        "status=*": "无数据"
+      }
+    }
+  ],
+  "content_radar_summary_title": "概要",
+  "content_radar_title": "SOTF 模组能在 {build} 补丁上运行吗？",
+  "content_radar_works_empty": "{build} 上还没有确认可用的热门模组。试过哪个？告诉我们。",
+  "content_radar_works_title": "确认可用",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "阅读约 {minutes__number} 分钟"
+      }
+    }
+  ],
+  "content_toc_title": "本页内容",
+  "content_updated_on": "最后更新：{date}",
   "emails_auth_deleted_body": "你的个人数据已被清除。评论和评价将以“已删除的幸存者”的名义保留。感谢你曾是岛上的一员。",
   "emails_auth_deleted_heading": "账号已删除",
   "emails_auth_deleted_preview": "你的个人数据已被清除。",
@@ -3178,6 +3581,179 @@
   "landing_trending_empty": "岛上这周很安静。幸存者下载模组后，它们会出现在这里。",
   "landing_trending_hint": "按最近 7 天的下载量",
   "landing_trending_title": "本周热门",
+  "me_action_download": "下载",
+  "me_action_failed": "操作失败",
+  "me_action_update": "获取更新",
+  "me_backpack_description": "你关注的模组，以及它们的更新和在当前版本上的运行情况。",
+  "me_backpack_empty_text": "在模组上点 ♥ 就能放进背包，并收到更新通知。",
+  "me_backpack_empty_title": "你的背包是空的",
+  "me_backpack_list_label": "已关注的模组",
+  "me_backpack_no_broken_text": "你的模组在当前游戏版本上都没有被报告失效。",
+  "me_backpack_no_broken_title": "没有失效报告",
+  "me_backpack_no_updates_text": "背包中没有比你下载的版本更新的模组。",
+  "me_backpack_no_updates_title": "全部已是最新",
+  "me_backpack_notify_off": "不再接收 {mod} 的更新信号",
+  "me_backpack_notify_on": "{mod} 更新时你会收到信号",
+  "me_backpack_readout": "你的装备",
+  "me_backpack_removed": "{mod} 已从背包中移除",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "updates__exact"
+      ],
+      "match": {
+        "updates__exact=0": "背包中有 {count__number} 个模组 · 全部已是最新",
+        "updates__exact=*": "背包中有 {count__number} 个模组 · {updates__number} 个可用更新"
+      }
+    }
+  ],
+  "me_backpack_title": "背包",
+  "me_broken_on_current": "在 {build} 上失效",
+  "me_browse_mods": "浏览模组",
+  "me_by_author": "作者：{author}",
+  "me_cancel": "取消",
+  "me_did_it_work": "能用吗？",
+  "me_downloads_clear": "清除记录",
+  "me_downloads_clear_confirm": "清除记录",
+  "me_downloads_clear_text": "所有条目以及关于以往下载的“能用吗？”提问都会消失。模组的下载计数不受影响。此操作无法撤销。",
+  "me_downloads_clear_title": "要清除下载记录吗？",
+  "me_downloads_cleared": "下载记录已清除",
+  "me_downloads_description": "你登录后下载过的所有模组，以及你还没获取的更新。",
+  "me_downloads_empty_off_text": "你的记录已关闭，这里不会记录新的内容。",
+  "me_downloads_empty_text": "登录后下载模组，它就会出现在这里，有新版本时还会提醒你。",
+  "me_downloads_empty_title": "还没有下载",
+  "me_downloads_history_off": "下载记录已关闭",
+  "me_downloads_history_on": "下载记录已开启",
+  "me_downloads_keep_history": "保留下载记录",
+  "me_downloads_last": "你于 {date} 下载了 {version}",
+  "me_downloads_list_label": "已下载的模组",
+  "me_downloads_off_text": "新的下载不会被记录，因此这里和背包中的更新提醒无法比较版本。你可以随时重新开启。",
+  "me_downloads_off_title": "你的下载记录已关闭",
+  "me_downloads_readout": "补给日志",
+  "me_downloads_remove": "从列表中移除",
+  "me_downloads_remove_label": "将 {mod} 从列表中移除",
+  "me_downloads_removed": "已将 {mod} 从列表中移除",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "updates__exact"
+      ],
+      "match": {
+        "updates__exact=0": "已下载 {count__number} 个模组 · 全部已是最新",
+        "updates__exact=*": "已下载 {count__number} 个模组 · {updates__number} 个可用更新"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次下载"
+      }
+    }
+  ],
+  "me_downloads_title": "我的下载",
+  "me_filter_all": "全部",
+  "me_filter_broken": "当前版本失效",
+  "me_filter_label": "显示",
+  "me_filter_updates": "有更新",
+  "me_follow": "关注",
+  "me_followed": "{mod} 已放入背包",
+  "me_followed_on": "{date} 关注",
+  "me_latest_version": "最新：{version}",
+  "me_no_current_version": "当前没有可用版本",
+  "me_notify_off": "更新信号已关闭",
+  "me_notify_on": "更新信号已开启",
+  "me_onboarding_completed": "你撑过了第一天——徽章已解锁",
+  "me_onboarding_dismiss": "隐藏",
+  "me_onboarding_download_action": "浏览模组",
+  "me_onboarding_download_hint": "任选一个在当前版本上可用的模组。",
+  "me_onboarding_download_title": "下载你的第一个模组",
+  "me_onboarding_failed": "无法更新清单",
+  "me_onboarding_follow_action": "找一个模组来关注",
+  "me_onboarding_follow_hint": "点 ♥ 把它放进背包，并收到更新通知。",
+  "me_onboarding_follow_title": "关注一个模组",
+  "me_onboarding_install_action": "打开安装指南",
+  "me_onboarding_install_done": "我已安装",
+  "me_onboarding_install_hint": "所有 Sons of the Forest 模组都需要的模组加载器。",
+  "me_onboarding_install_title": "安装 RedLoader",
+  "me_onboarding_kit_action": "创建套装",
+  "me_onboarding_kit_hint": "把你的模组组合成一个套装，用一个代码即可分享。",
+  "me_onboarding_kit_title": "打包一个套装",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "已完成 {done__number}/{total__number}"
+      }
+    }
+  ],
+  "me_onboarding_readout": "登岛第 1 天",
+  "me_onboarding_report_action": "前往我的下载",
+  "me_onboarding_report_hint": "为你下载过的模组回答“能用吗？”。",
+  "me_onboarding_report_title": "告诉我们能不能用",
+  "me_onboarding_step_done": "已完成：",
+  "me_onboarding_step_todo": "待完成：",
+  "me_onboarding_text": "五个快速入门步骤。全部完成即可获得“撑过第一天”徽章。",
+  "me_onboarding_title": "撑过你的第一天",
+  "me_report_broken": "不能用",
+  "me_report_description": "你关于 {version} 版在游戏版本 {build} 上的实地报告，能帮助所有幸存者挑选可用的模组。",
+  "me_report_mode_client": "多人游戏客户端",
+  "me_report_mode_dedicated": "专用服务器",
+  "me_report_mode_host": "多人游戏主机",
+  "me_report_mode_label": "游玩方式",
+  "me_report_mode_singleplayer": "单人游戏",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "崩溃、与其他模组冲突……最多 {max__number} 个字符。"
+      }
+    }
+  ],
+  "me_report_note_label": "发生了什么",
+  "me_report_partial": "部分可用",
+  "me_report_pick_result": "请选择情况。",
+  "me_report_result_legend": "情况如何？",
+  "me_report_submit": "提交报告",
+  "me_report_thanks": "谢谢——你关于 {mod} 的报告已标在地图上",
+  "me_report_title": "{mod} 能用吗？",
+  "me_report_verify_email": "提交实地报告前请先验证你的邮箱。",
+  "me_report_works": "可以用",
+  "me_undo": "撤销",
+  "me_unfollow": "取消关注",
+  "me_unfollowed": "{mod} 已从背包中移除",
+  "me_up_to_date": "已是最新（{version}）",
+  "me_update_available": "有可用更新",
+  "me_update_from_to": "更新：{from} → {to}",
   "meta_default_description": "《森林之子》模组之家：适用于 RedLoader 的模组、建筑与套装，每个补丁都经过测试。免费直接下载。",
   "meta_feed_description": "SOTF Mods 上最新发布的《森林之子》模组与更新。",
   "meta_feed_title": "SOTF Mods：新增与更新的模组",
@@ -3319,6 +3895,7 @@
   "mod_fact_updated": "更新于 {date}",
   "mod_fact_updated_label": "更新于",
   "mod_fact_version": "版本",
+  "mod_feed_title": "{name} 的版本",
   "mod_field_report_sign_in": "登录后提交实地报告",
   "mod_field_report_text": "实地报告只需十秒，就能让大家知道此模组在当前补丁下是否可用。",
   "mod_field_report_title": "在你的游戏里能用吗？",
@@ -4133,6 +4710,1230 @@
   "profile_xp_profile_completed": "完善个人资料",
   "profile_xp_review_helpful_vote": "你的评价获得一张“有帮助”票",
   "profile_xp_review_with_text": "撰写至少 80 个字符的评价",
+  "ranger_action_approve": "批准",
+  "ranger_action_mark_reviewed": "标记为已审核",
+  "ranger_action_reject": "拒绝",
+  "ranger_action_remove": "移除",
+  "ranger_action_request_changes": "要求修改",
+  "ranger_action_restore": "恢复",
+  "ranger_action_unlist": "从列表隐藏",
+  "ranger_assigned_short": "由 {name} 处理",
+  "ranger_assigned_to": "指派给",
+  "ranger_audit_action": "操作",
+  "ranger_audit_actor": "操作者用户名",
+  "ranger_audit_apply": "筛选",
+  "ranger_audit_changes": "前后对比",
+  "ranger_audit_clear": "清除",
+  "ranger_audit_description": "巡林员和管理员的每项操作：谁、做了什么、前后变化以及原因。记录不可编辑。",
+  "ranger_audit_empty_filtered": "没有符合这些筛选条件的记录。",
+  "ranger_audit_empty_text": "尚未记录任何巡林员操作。",
+  "ranger_audit_empty_title": "没有记录",
+  "ranger_audit_reason_hint": "记录在审计日志中。",
+  "ranger_audit_reason_label": "原因",
+  "ranger_audit_system": "系统",
+  "ranger_audit_target": "对象",
+  "ranger_audit_target_hint": "类型:id，例如 user:12 或 mod:312",
+  "ranger_audit_target_invalid": "请使用 类型:id，例如 user:12。",
+  "ranger_audit_title": "审计日志",
+  "ranger_author_unknown": "未知作者",
+  "ranger_back_to_list": "返回列表",
+  "ranger_cancel": "取消",
+  "ranger_changelog_none": "此版本没有更新日志。",
+  "ranger_checks_failed": "检查未通过",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个文件"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "已标记待审",
+  "ranger_checks_manifest_ok": "manifest.json 有效",
+  "ranger_checks_no_flags": "没有任何检查发出警告。",
+  "ranger_checks_none": "此项目没有文件检查。",
+  "ranger_checks_passed": "检查通过",
+  "ranger_checks_pending": "检查进行中",
+  "ranger_checks_ratio": "压缩比 {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "解压后 {size}",
+  "ranger_checks_title": "自动检查",
+  "ranger_comment_hidden": "评论已隐藏。",
+  "ranger_comment_hide": "隐藏",
+  "ranger_comment_publish": "发布",
+  "ranger_comment_published": "评论已发布。",
+  "ranger_comment_reject_confirm": "隐藏评论",
+  "ranger_comment_reject_reason": "原因",
+  "ranger_comment_reject_reason_hint": "记录在审计日志中。",
+  "ranger_comment_reject_title": "隐藏这条评论",
+  "ranger_conflict_detail": "有人在此期间修改了该项目。队列已刷新，请重新检查。",
+  "ranger_decided_approve": "已批准：{title}",
+  "ranger_decided_reject": "已拒绝：{title}",
+  "ranger_decided_remove": "已移除：{title}",
+  "ranger_decided_request_changes": "已要求修改：{title}",
+  "ranger_decided_restore": "已恢复：{title}",
+  "ranger_decided_reviewed": "已标记为已审核：{title}",
+  "ranger_decided_unlist": "已从列表隐藏：{title}",
+  "ranger_decision_failed": "决定未保存",
+  "ranger_decision_no_template": "不用模板——只用我的备注",
+  "ranger_decision_note_hint": "支持 Markdown。与模板一起发送；说明需要修改什么。",
+  "ranger_decision_note_label": "给作者的备注",
+  "ranger_decision_reason_required": "请填写原因（至少 3 个字符）。",
+  "ranger_decision_template_label": "原因模板",
+  "ranger_decision_template_or_note": "请选择模板或填写备注。",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "没有可显示的文字。",
+  "ranger_diff_added": "新增：",
+  "ranger_diff_changed": "修改：",
+  "ranger_diff_content_changed": "内容已更改",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "首个版本：没有可比较的对象。zip 中有 {count__number} 个文件。"
+      }
+    }
+  ],
+  "ranger_diff_flagged": "可执行",
+  "ranger_diff_identical": "与上一版本文件相同。",
+  "ranger_diff_new_code": "新代码",
+  "ranger_diff_removed": "删除：",
+  "ranger_diff_summary": "与上一版本相比：新增 {added}，删除 {removed}，修改 {changed}。",
+  "ranger_diff_truncated": "显示 {total} 个文件中的前 {shown} 个。",
+  "ranger_diff_unavailable": "没有可比较的文件列表。",
+  "ranger_flag_absolute_path": "zip 中含绝对路径",
+  "ranger_flag_blueprint_invalid": "建筑文件无效",
+  "ranger_flag_extension_flagged": "可执行文件或脚本",
+  "ranger_flag_extension_not_allowed": "不允许的文件类型",
+  "ranger_flag_file_too_large": "文件过大",
+  "ranger_flag_manifest_id_mismatch": "清单 id 与模组不一致",
+  "ranger_flag_manifest_invalid": "manifest.json 无效",
+  "ranger_flag_manifest_missing": "缺少 manifest.json",
+  "ranger_flag_scan_detections": "安全扫描检出",
+  "ranger_flag_version_not_greater": "版本不比上一个新",
+  "ranger_flag_version_not_semver": "版本号不符合语义化格式（x.y.z）",
+  "ranger_flag_zip_bomb_ratio": "压缩比过高（zip 炸弹）",
+  "ranger_flag_zip_invalid": "不是有效的 zip",
+  "ranger_flag_zip_slip": "路径超出模组文件夹（zip slip）",
+  "ranger_flag_zip_too_many_entries": "zip 中文件过多",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项阻止性检查"
+      }
+    }
+  ],
+  "ranger_history_account_age": "账号年龄",
+  "ranger_history_attention": "该作者有被拒的模组或生效中的处罚。",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 天"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "其审计记录",
+  "ranger_history_open_user": "打开用户卡片",
+  "ranger_history_published": "已发布模组",
+  "ranger_history_rejected": "被拒模组",
+  "ranger_history_sanctions": "生效中的处罚",
+  "ranger_history_trust": "信任",
+  "ranger_item_document_title": "审核：{title}",
+  "ranger_item_gone_text": "其他巡林员已对此作出决定，或它已离开队列。",
+  "ranger_item_gone_title": "已处理",
+  "ranger_item_next": "下一项",
+  "ranger_item_region": "正在审核的项目",
+  "ranger_lane_builds": "建筑",
+  "ranger_lane_builds_hint": "等待批准或发布后审核的建筑。",
+  "ranger_lane_comments": "评论",
+  "ranger_lane_comments_hint": "在他人可见之前被暂扣待审的评论。",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项等待中"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "没有等待审核的评论。",
+  "ranger_lane_empty_reports": "没有未处理的举报。社区很守规矩。",
+  "ranger_lane_empty_text": "此通道没有待处理项。新项目会自动出现在这里。",
+  "ranger_lane_empty_title": "这条小径很干净",
+  "ranger_lane_new_mods": "新模组",
+  "ranger_lane_new_mods_hint": "首次提交和等待批准的模组。",
+  "ranger_lane_post_review": "事后审核",
+  "ranger_lane_post_review_hint": "未经人工审核就已发布的版本：请在 72 小时内审核。",
+  "ranger_lane_reports": "举报",
+  "ranger_lane_reports_hint": "社区提交的未处理举报。",
+  "ranger_lane_versions": "版本",
+  "ranger_lane_versions_hint": "被检查、安全扫描或举报暂扣的版本。",
+  "ranger_lanes_label": "队列通道",
+  "ranger_live": "实时",
+  "ranger_live_off": "更新已暂停——连接恢复后列表会自动刷新",
+  "ranger_load_more": "加载更多",
+  "ranger_loading": "加载中…",
+  "ranger_manifest_after": "之后",
+  "ranger_manifest_before": "之前",
+  "ranger_manifest_field": "字段",
+  "ranger_manifest_identical": "清单没有变化。",
+  "ranger_media_alt": "图片 {index}",
+  "ranger_media_none": "没有图片。",
+  "ranger_more_actions": "更多操作",
+  "ranger_new_tab": "（在新标签页中打开）",
+  "ranger_next": "下一页",
+  "ranger_no_actions": "这里已无需再作决定。",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "打开页面",
+  "ranger_open_reports": "所有举报",
+  "ranger_page_of": "第 {page} 页，共 {total} 页",
+  "ranger_pagination": "分页",
+  "ranger_panel_error_text": "我们这边出了点问题。请稍后再试。",
+  "ranger_panel_error_title": "加载失败",
+  "ranger_previous": "上一页",
+  "ranger_queue_description": "最久和风险最高的优先。每项决定都会记录，并通知作者。",
+  "ranger_queue_title": "审核队列",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "无法使用",
+  "ranger_reason_harassment": "骚扰",
+  "ranger_reason_illegal": "违法内容",
+  "ranger_reason_malware": "恶意软件",
+  "ranger_reason_nsfw_unmarked": "未标记 NSFW",
+  "ranger_reason_other": "其他",
+  "ranger_reason_reupload": "未经许可转载",
+  "ranger_reason_spam": "垃圾信息",
+  "ranger_reauth_action": "重新登录",
+  "ranger_reauth_text": "巡林员操作需要 12 小时内的登录。请重新登录后继续。",
+  "ranger_reauth_title": "确认是你本人",
+  "ranger_reference": "编号：{reference}",
+  "ranger_report_by": "举报人",
+  "ranger_report_by_unknown": "举报人已删除账号",
+  "ranger_report_dismiss": "驳回",
+  "ranger_report_dismiss_text": "该举报不成立。因举报被自动隐藏的内容将重新可见。",
+  "ranger_report_dismiss_title": "驳回举报",
+  "ranger_report_dismissed": "举报已驳回。",
+  "ranger_report_hide_hint": "模组和合集从列表隐藏，版本被暂扣，评论和评价被隐藏。",
+  "ranger_report_hide_label": "隐藏内容",
+  "ranger_report_history": "此内容的记录",
+  "ranger_report_no_details": "未提供详情。",
+  "ranger_report_note_hint": "与举报一起保存，并记录在审计日志中。",
+  "ranger_report_note_label": "处理备注",
+  "ranger_report_open_user": "打开用户卡片",
+  "ranger_report_resolution": "处理结果：{note}",
+  "ranger_report_resolve": "解决",
+  "ranger_report_resolve_hide": "解决并隐藏",
+  "ranger_report_resolve_text": "关于此内容的所有未处理举报都会关闭，并通知每位举报人。",
+  "ranger_report_resolve_title": "解决举报",
+  "ranger_report_resolved": "举报已解决。",
+  "ranger_report_status_all": "全部",
+  "ranger_report_status_dismissed": "已驳回",
+  "ranger_report_status_open": "未处理",
+  "ranger_report_status_resolved": "已解决",
+  "ranger_report_target_missing": "{type} #{id}（已不存在）",
+  "ranger_reports_description": "社区标记的内容，附原因和证据。关闭举报时会通知举报人。",
+  "ranger_reports_empty_open_text": "暂无需要查看的内容。新举报会出现在这里和队列中。",
+  "ranger_reports_empty_open_title": "没有未处理的举报",
+  "ranger_reports_empty_text": "没有符合此筛选条件的举报。",
+  "ranger_reports_empty_title": "这里没有举报",
+  "ranger_reports_filter": "举报状态",
+  "ranger_reports_title": "举报",
+  "ranger_retry": "重试",
+  "ranger_risk_high": "高风险",
+  "ranger_risk_low": "低风险",
+  "ranger_risk_medium": "中风险",
+  "ranger_role_admin": "管理员",
+  "ranger_role_moderator": "版主",
+  "ranger_role_user": "用户",
+  "ranger_sanction_ban": "封禁",
+  "ranger_sanction_ban_hint": "永久。在所有设备上退出。",
+  "ranger_sanction_comment_mute": "禁止评论",
+  "ranger_sanction_comment_mute_hint": "无法评论或评价——全站或仅限某个模组。",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 天"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}：{name}",
+  "ranger_sanction_duration": "时长",
+  "ranger_sanction_ended": "已结束",
+  "ranger_sanction_failed": "处罚未生效",
+  "ranger_sanction_kind": "处罚类型",
+  "ranger_sanction_open": "处罚",
+  "ranger_sanction_permanent": "永久",
+  "ranger_sanction_reason": "原因",
+  "ranger_sanction_reason_hint": "用户会看到。请陈述事实。",
+  "ranger_sanction_revoke": "撤销",
+  "ranger_sanction_revoke_failed": "处罚未撤销",
+  "ranger_sanction_revoke_title": "撤销此处罚？",
+  "ranger_sanction_revoked": "处罚已撤销。",
+  "ranger_sanction_revoked_on": "于 {date} 撤销",
+  "ranger_sanction_scope": "仅限一个模组",
+  "ranger_sanction_scope_clear": "改为全站禁止",
+  "ranger_sanction_scope_hint": "留空则全站禁止评论。",
+  "ranger_sanction_scope_none": "没有匹配的模组。",
+  "ranger_sanction_scope_on": "于 {mod}",
+  "ranger_sanction_scope_placeholder": "搜索模组或建筑",
+  "ranger_sanction_scope_results": "匹配的模组",
+  "ranger_sanction_since": "自 {date}",
+  "ranger_sanction_suspend": "停用",
+  "ranger_sanction_suspend_hint": "在结束日期前无法登录。",
+  "ranger_sanction_title": "处罚此用户",
+  "ranger_sanction_until": "至 {date}",
+  "ranger_sanction_upload_mute": "禁止上传",
+  "ranger_sanction_upload_mute_hint": "无法发布模组、版本或建筑。",
+  "ranger_scan_clean": "未检出",
+  "ranger_scan_engines": "{total} 个引擎中 {positives} 个",
+  "ranger_scan_false_positive": "已确认误报",
+  "ranger_scan_malicious": "恶意",
+  "ranger_scan_none": "未扫描",
+  "ranger_scan_override_confirm": "保存判定",
+  "ranger_scan_override_done": "扫描判定：“{verdict}”。",
+  "ranger_scan_override_failed": "判定未保存",
+  "ranger_scan_override_false_positive_hint": "你已检查文件：检出为误报。被扫描暂扣的版本将被放行。",
+  "ranger_scan_override_malicious_hint": "文件有害。该版本将被撤下并保持不可用。",
+  "ranger_scan_override_note": "原因（记录在审计日志中）",
+  "ranger_scan_override_open": "更改判定",
+  "ranger_scan_override_title": "更改扫描判定",
+  "ranger_scan_override_verdict": "新判定",
+  "ranger_scan_pending": "等待扫描",
+  "ranger_scan_report_link": "VirusTotal 报告",
+  "ranger_scan_suspicious": "可疑",
+  "ranger_scan_unknown": "未扫描（无可用扫描器）",
+  "ranger_select_item": "从列表中选择一项进行审核。",
+  "ranger_severity_error": "阻止发布",
+  "ranger_severity_warning": "需要人工查看",
+  "ranger_shortcut_next": "下一项",
+  "ranger_shortcut_previous": "上一项",
+  "ranger_sla_average": "平均等待",
+  "ranger_sla_due": "{time} · SLA 即将到期",
+  "ranger_sla_oldest": "最久",
+  "ranger_sla_over": "超过 {hours} 小时",
+  "ranger_sla_overdue": "{time} · 已超出 SLA",
+  "ranger_sla_waiting": "此通道等待中",
+  "ranger_staff": "工作人员",
+  "ranger_submitted": "提交于 {when}",
+  "ranger_tab_changelog": "更新日志",
+  "ranger_tab_content": "内容",
+  "ranger_tab_description": "描述",
+  "ranger_tab_files": "文件差异",
+  "ranger_tab_history": "作者记录",
+  "ranger_tab_manifest": "清单差异",
+  "ranger_tab_media": "媒体",
+  "ranger_tabs_label": "项目详情",
+  "ranger_target_comment": "评论",
+  "ranger_target_compat_report": "实测报告",
+  "ranger_target_kit": "合集",
+  "ranger_target_mod": "模组",
+  "ranger_target_review": "评价",
+  "ranger_target_user": "用户",
+  "ranger_target_version": "版本",
+  "ranger_template_broken_or_empty": "文件已损坏、为空，或无法通过 RedLoader 加载。",
+  "ranger_template_broken_or_empty_title": "损坏或为空",
+  "ranger_template_copyright_claim": "因有效的版权投诉被移除。",
+  "ranger_template_copyright_claim_title": "版权投诉",
+  "ranger_template_credit_original_author": "请注明原作者并附上其作品链接。",
+  "ranger_template_credit_original_author_title": "注明原作者",
+  "ranger_template_duplicate": "这与已发布的模组重复。请改为发布该模组的新版本。",
+  "ranger_template_duplicate_title": "重复",
+  "ranger_template_malware_confirmed": "已移除：该文件已确认为恶意。",
+  "ranger_template_malware_confirmed_title": "已确认恶意软件",
+  "ranger_template_malware_detected": "安全扫描将该文件标记为恶意。",
+  "ranger_template_malware_detected_title": "被扫描标记",
+  "ranger_template_missing_description": "请说明模组的功能、安装方法和使用方法。",
+  "ranger_template_missing_description_title": "缺少描述",
+  "ranger_template_missing_screenshots": "请至少添加一张展示模组游戏内效果的截图。",
+  "ranger_template_missing_screenshots_title": "缺少截图",
+  "ranger_template_not_a_mod": "此上传不是 Sons of the Forest 的模组或建筑。",
+  "ranger_template_not_a_mod_title": "不是模组",
+  "ranger_template_nsfw_unmarked": "该模组含有成人内容：请标记为 NSFW。",
+  "ranger_template_nsfw_unmarked_title": "未标记 NSFW",
+  "ranger_template_reupload_without_permission": "这看起来是未经许可转载他人的作品。",
+  "ranger_template_reupload_without_permission_title": "未经许可转载",
+  "ranger_template_rules_violation": "因违反网站规则被移除。",
+  "ranger_template_rules_violation_title": "违反规则",
+  "ranger_template_spam": "垃圾信息或广告。",
+  "ranger_template_spam_title": "垃圾信息",
+  "ranger_template_wrong_category": "请把模组移到与其功能相符的分类。",
+  "ranger_template_wrong_category_title": "分类错误",
+  "ranger_triage_note": "手机视图：仅快速分拣。文件和清单差异需要平板或电脑。",
+  "ranger_trust_level": "等级 {level}",
+  "ranger_user_account": "账号",
+  "ranger_user_action_failed": "更改未保存",
+  "ranger_user_actions": "操作",
+  "ranger_user_audit": "审计记录",
+  "ranger_user_banned": "已封禁",
+  "ranger_user_banned_on": "封禁于 {date}",
+  "ranger_user_comments": "评论",
+  "ranger_user_document_title": "{name} · 用户",
+  "ranger_user_email_unverified": "邮箱未验证",
+  "ranger_user_email_verified": "邮箱已验证",
+  "ranger_user_joined": "注册于",
+  "ranger_user_last_seen": "最近在线",
+  "ranger_user_legacy_trusted": "旧站受信任用户",
+  "ranger_user_mods": "模组",
+  "ranger_user_no_sanctions": "从未受过处罚。",
+  "ranger_user_outranked": "巡林员只能处理角色低于自己的账号。",
+  "ranger_user_public_profile": "公开资料",
+  "ranger_user_reports_against": "被举报次数",
+  "ranger_user_reviews": "评价",
+  "ranger_user_revoke_sessions": "在所有设备上退出",
+  "ranger_user_revoke_sessions_text": "该账号的所有会话将立即结束。除非账号被停用或封禁，否则可以重新登录。",
+  "ranger_user_revoke_sessions_title": "让 {name} 在所有设备上退出？",
+  "ranger_user_role": "角色",
+  "ranger_user_role_confirm": "更改角色",
+  "ranger_user_role_done": "{name} 现在是 {role}。",
+  "ranger_user_role_hint": "管理员角色只能通过命令行授予。",
+  "ranger_user_role_title": "将 {name} 的角色改为 {role}？",
+  "ranger_user_sanctions": "处罚",
+  "ranger_user_self": "这是你自己的账号：需要由其他巡林员处理。",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有已打开的会话。",
+        "count__exact=*": "已结束 {count__number} 个会话。"
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "停用至 {date}",
+  "ranger_user_unverified_done": "{name} 不再是认证作者。",
+  "ranger_user_unverify": "取消标记",
+  "ranger_user_unverify_title": "取消 {name} 的认证作者标记？",
+  "ranger_user_verified_done": "{name} 现在是认证作者。",
+  "ranger_user_verified_hint": "认证作者在检查通过后可立即发布，并享有更高的限额。",
+  "ranger_user_verify": "认证作者",
+  "ranger_user_verify_title": "将 {name} 设为认证作者？",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 位用户"
+      }
+    }
+  ],
+  "ranger_users_description": "按用户名、名称或邮箱搜索。打开用户可查看其记录和处罚。",
+  "ranger_users_empty_query": "没有人匹配“{query}”。",
+  "ranger_users_empty_text": "暂无匹配结果。",
+  "ranger_users_empty_title": "未找到用户",
+  "ranger_users_row_stats": "模组：{mods} · 被举报：{reports}",
+  "ranger_users_search_label": "搜索用户",
+  "ranger_users_search_placeholder": "用户名、名称或邮箱",
+  "ranger_users_search_submit": "搜索",
+  "ranger_users_title": "用户",
+  "ranger_verified_creator": "认证作者",
+  "ranger_waiting": "已等待 {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 天"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 小时"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 分钟"
+      }
+    }
+  ],
+  "settings_about_saved": "个人资料已保存",
+  "settings_about_text": "你在个人资料、模组和评论中如何展示。",
+  "settings_about_title": "关于你",
+  "settings_account_hint": "登录邮箱和密码。",
+  "settings_account_overview_title": "你的账户",
+  "settings_account_title": "账户",
+  "settings_appearance_saved": "外观已保存",
+  "settings_appearance_text": "SOTF Mods 在此设备和你其他设备上的外观。",
+  "settings_appearance_title": "外观",
+  "settings_avatar_change": "更换照片",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG、JPEG、WebP、AVIF 或 GIF，最大 {max__number} MB。保存前可以裁剪。"
+      }
+    }
+  ],
+  "settings_avatar_label": "头像",
+  "settings_avatar_remove": "移除照片",
+  "settings_avatar_removed": "照片已移除",
+  "settings_avatar_saved": "新照片已保存",
+  "settings_avatar_upload": "上传照片",
+  "settings_avatar_uploading": "正在上传你的照片…",
+  "settings_back": "设置",
+  "settings_banner_custom_hint": "你正在使用自己的图片。重新生成地形即可换回生成的横幅。",
+  "settings_banner_label": "横幅",
+  "settings_banner_reroll": "重新生成地形",
+  "settings_banner_reroll_hint": "正在预览新地形——选择“使用此地形”即可保留。",
+  "settings_banner_saved": "新横幅已保存",
+  "settings_banner_terrain_hint": "一张专为你绘制的地图。不断重新生成，直到你喜欢自己岛屿的形状。",
+  "settings_banner_terrain_saved": "地形横幅已保存",
+  "settings_banner_upload": "上传图片",
+  "settings_banner_uploading": "正在上传你的横幅…",
+  "settings_banner_use_terrain": "使用此地形",
+  "settings_behaviour_saved": "偏好已保存",
+  "settings_behaviour_title": "行为",
+  "settings_bio": "简介",
+  "settings_bio_hint": "支持 Markdown：**粗体**、_斜体_ 和链接。",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "简介请控制在 {max__number} 个字符以内。"
+      }
+    }
+  ],
+  "settings_cancel": "取消",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还剩 {count__number} 个字符"
+      }
+    }
+  ],
+  "settings_compat_prompts": "下载后询问“能用吗？”",
+  "settings_compat_prompts_hint": "你的回答会告诉其他幸存者哪些模组能在当前版本上使用。",
+  "settings_creator_badges": "你的徽章",
+  "settings_creator_basecamp": "打开营地",
+  "settings_creator_hint": "创作者状态、赞助链接、默认许可和回复模板。",
+  "settings_creator_not_verified": "尚未认证",
+  "settings_creator_not_verified_text": "护林员会认证那些持续发布安全、维护良好的模组的创作者。继续发布吧——无需申请。",
+  "settings_creator_policy": "你发布的所有内容都须遵守内容政策。",
+  "settings_creator_policy_link": "阅读内容政策",
+  "settings_creator_status_title": "创作者状态",
+  "settings_creator_title": "创作者",
+  "settings_creator_verified": "认证创作者",
+  "settings_creator_verified_text": "你的模组带有认证标记，并且你可以上传更大的文件。",
+  "settings_crop_avatar_title": "裁剪你的照片",
+  "settings_crop_banner_title": "裁剪你的横幅",
+  "settings_crop_failed": "无法读取这张图片。请换一个文件试试。",
+  "settings_crop_help": "拖动图片或用方向键移动；用滑块或 + 和 − 缩放。",
+  "settings_crop_label": "图片裁剪区域",
+  "settings_crop_roledescription": "裁剪区域",
+  "settings_crop_use": "使用图片",
+  "settings_crop_zoom": "缩放",
+  "settings_data_hint": "导出我们保存的关于你的所有数据，或删除你的账户。",
+  "settings_data_title": "你的数据",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "登岛第 {day__number} 天"
+      }
+    }
+  ],
+  "settings_default_license": "默认许可",
+  "settings_default_license_hint": "发布新模组时预先选中；每个模组仍可单独修改。",
+  "settings_default_license_none": "每次都询问我",
+  "settings_defaults_local_note": "这些默认设置仅保存在此浏览器中。",
+  "settings_defaults_saved": "默认设置已保存",
+  "settings_defaults_text": "预先填写新模组，更快回复常见问题。",
+  "settings_defaults_title": "发布默认设置",
+  "settings_delete_already": "你的账户已安排删除。",
+  "settings_delete_cancel": "取消删除",
+  "settings_delete_cancel_failed": "无法取消删除",
+  "settings_delete_cancelled": "已取消删除——欢迎回来",
+  "settings_delete_confirm": "14 天后删除",
+  "settings_delete_dialog_text": "你的账户将在 14 天后删除。在此之前，你可以在本页面取消。",
+  "settings_delete_dialog_title": "要删除你的账户吗？",
+  "settings_delete_mode_archive": "归档",
+  "settings_delete_mode_archive_hint": "它们会从列表和搜索中消失，也不再署你的名字。",
+  "settings_delete_mode_keep": "保持发布",
+  "settings_delete_mode_keep_hint": "玩家仍能找到它们，但不会显示你的名字。",
+  "settings_delete_mods_legend": "你的模组将如何处理",
+  "settings_delete_open": "删除我的账户…",
+  "settings_delete_point_content": "你的评论和评价会保留，署名为“已删除的幸存者”。",
+  "settings_delete_point_export": "如需备份，请先导出你的数据。",
+  "settings_delete_point_grace": "你有 14 天时间改变主意；登录并在这里取消即可终止。",
+  "settings_delete_point_mods": "你的模组会被归档，或在不显示你名字的情况下继续发布——由你选择。",
+  "settings_delete_scheduled_text": "改变主意了？现在取消，一切保持原样。",
+  "settings_delete_scheduled_title": "你的账户将于 {date} 删除",
+  "settings_delete_scheduled_toast": "你的账户将于 {date} 删除",
+  "settings_delete_text": "在 14 天宽限期后永久删除你的个人数据。",
+  "settings_delete_title": "删除你的账户",
+  "settings_delete_type_handle": "请准确输入“{handle}”以确认。",
+  "settings_delete_type_label": "输入你的用户名“{handle}”以确认",
+  "settings_density": "密度",
+  "settings_density_comfortable": "宽松",
+  "settings_density_comfortable_hint": "留出更多空间。",
+  "settings_density_compact": "紧凑",
+  "settings_density_compact_hint": "一屏显示更多内容。",
+  "settings_discard": "放弃更改",
+  "settings_display_name": "显示名称",
+  "settings_display_name_hint": "任意语言、任意字符，2–32 个字符。可随时更改。",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "请使用 {min__number} 到 {max__number} 个字符。"
+      }
+    }
+  ],
+  "settings_email_daily": "每日摘要",
+  "settings_email_instant": "立即",
+  "settings_email_invalid": "请输入有效的邮箱地址。",
+  "settings_email_new": "新邮箱地址",
+  "settings_email_off": "关闭",
+  "settings_email_same": "这已经是你的邮箱地址。",
+  "settings_email_sent_text": "我们已向 {email} 发送确认链接。打开后你的地址就会更改。",
+  "settings_email_sent_title": "请查看你的收件箱",
+  "settings_email_sent_toast": "确认链接已发送",
+  "settings_email_submit": "更改邮箱",
+  "settings_email_taken": "该地址无法使用。请换一个。",
+  "settings_email_text": "用于登录以及接收你选择的邮件。更改时，请在收件箱中确认新地址；我们也会通知旧地址。",
+  "settings_email_title": "邮箱地址",
+  "settings_email_unverified": "未验证",
+  "settings_email_verified": "已验证",
+  "settings_email_weekly": "每周摘要",
+  "settings_export_again": "准备新的导出",
+  "settings_export_download": "下载 ZIP",
+  "settings_export_email_note": "我们也会通过邮件发送下载链接，有效期 24 小时。",
+  "settings_export_expired": "此导出链接已过期。",
+  "settings_export_expires": "链接有效期至 {date}",
+  "settings_export_failed": "无法开始导出",
+  "settings_export_preparing": "正在准备你的导出…",
+  "settings_export_rate_limited": "你最近已请求过导出——请稍后再试",
+  "settings_export_ready": "你的导出已就绪",
+  "settings_export_request": "准备我的导出",
+  "settings_export_requested": "我们正在准备你的导出",
+  "settings_export_requested_at": "请求于 {date}",
+  "settings_export_status_failed": "导出失败。请重试。",
+  "settings_export_text": "一个包含 JSON 文件的 ZIP：账户、个人资料、模组、评论、评价、套装、关注和设置。",
+  "settings_export_title": "导出你的数据",
+  "settings_handle": "用户名",
+  "settings_handle_hint": "你的个人资料地址。目前还不能更改。",
+  "settings_history_link": "打开我的下载",
+  "settings_history_off_saved": "下载记录已关闭",
+  "settings_history_on_saved": "下载记录已开启",
+  "settings_history_switch": "保留下载记录",
+  "settings_history_text": "开启后，你登录时的下载会出现在“我的下载”中，方便我们提醒你更新。",
+  "settings_history_title": "下载记录",
+  "settings_image_processing": "图片处理时间过长。请稍后再试。",
+  "settings_image_rejected": "图片被拒绝。请换一张试试。",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "图片太大。上限为 {max__number} MB。"
+      }
+    }
+  ],
+  "settings_image_type": "不支持该文件类型。请使用 PNG、JPEG、WebP 或 AVIF。",
+  "settings_index_title": "设置",
+  "settings_language_browser": "跟随浏览器",
+  "settings_language_label": "语言",
+  "settings_language_saved": "语言已保存",
+  "settings_language_text": "控制台以及我们发给你的邮件所使用的语言。",
+  "settings_language_title": "语言和数字",
+  "settings_link_add": "添加链接",
+  "settings_link_invalid": "请输入以 https:// 开头的完整网址",
+  "settings_link_kind": "类型",
+  "settings_link_label": "标签",
+  "settings_link_other": "其他",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "移除第 {n__number} 个链接"
+      }
+    }
+  ],
+  "settings_link_url": "地址",
+  "settings_link_website": "网站",
+  "settings_links_empty": "还没有链接。",
+  "settings_links_saved": "链接已保存",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "个人资料上最多 {max__number} 个链接：你的网站、频道，以及别人可以支持你的地方。"
+      }
+    }
+  ],
+  "settings_links_title": "链接",
+  "settings_loading": "正在加载…",
+  "settings_member_since": "幸存起始",
+  "settings_motion": "动画",
+  "settings_motion_full": "全部",
+  "settings_motion_full_hint": "开启所有动画。",
+  "settings_motion_reduce": "减少",
+  "settings_motion_reduce_hint": "不滑动、不缩放、不庆祝。",
+  "settings_motion_system": "跟随设备",
+  "settings_motion_system_hint": "遵循系统的减少动态效果设置。",
+  "settings_notif_ack": "你的实地报告",
+  "settings_notif_ack_hint": "作者看到或修复了你报告的问题。",
+  "settings_notif_announcement": "公告",
+  "settings_notif_announcement_hint": "来自 SOTF Mods 团队的消息。",
+  "settings_notif_award": "奖项",
+  "settings_notif_award_hint": "你的模组当选本周模组或入选团队精选。",
+  "settings_notif_badge": "徽章",
+  "settings_notif_badge_hint": "你解锁了一枚徽章。",
+  "settings_notif_broken": "你的模组被报告失效",
+  "settings_notif_broken_hint": "实地报告显示你的某个模组在当前版本上失效。",
+  "settings_notif_col_app": "应用内",
+  "settings_notif_col_email": "邮件",
+  "settings_notif_col_signal": "信号",
+  "settings_notif_comment": "你的模组收到的评论",
+  "settings_notif_comment_hint": "合并发送：多条评论会合成一个信号。",
+  "settings_notif_creator": "创作者的新模组",
+  "settings_notif_creator_hint": "你关注的创作者发布了新内容。",
+  "settings_notif_defaults": "恢复默认",
+  "settings_notif_email_only": "仅邮件",
+  "settings_notif_group_community": "社区和护林员",
+  "settings_notif_group_conversations": "对话",
+  "settings_notif_group_follows": "你关注的内容",
+  "settings_notif_group_my_mods": "你的模组",
+  "settings_notif_matrix_text": "为每类信号选择是否在应用内显示，以及邮件发送频率。摘要会把所有内容合并成一封邮件。",
+  "settings_notif_matrix_title": "信号和邮件",
+  "settings_notif_mention": "提及",
+  "settings_notif_mention_hint": "有人 @ 了你。",
+  "settings_notif_milestone": "下载里程碑",
+  "settings_notif_milestone_hint": "你的某个模组达到了下载里程碑。",
+  "settings_notif_patch": "导致模组失效的游戏补丁",
+  "settings_notif_patch_hint": "新的游戏版本可能会导致模组失效（发送给创作者）。",
+  "settings_notif_removal_note": "如果你的模组被删除，我们总会通过邮件通知你。",
+  "settings_notif_reply": "回复",
+  "settings_notif_reply_hint": "有人回复了你的评论。",
+  "settings_notif_report": "你的举报",
+  "settings_notif_report_hint": "护林员处理了你举报的内容。",
+  "settings_notif_review": "你的模组收到的评价",
+  "settings_notif_review_hint": "有人给你的模组打了分。",
+  "settings_notif_review_reply": "对你评价的回复",
+  "settings_notif_review_reply_hint": "作者回复了你的评价。",
+  "settings_notif_saved": "通知设置已保存",
+  "settings_notif_status": "审核结果",
+  "settings_notif_status_hint": "你的模组通过审核、被拒绝、需要修改或被归档。",
+  "settings_notif_version": "新版本",
+  "settings_notif_version_hint": "你背包中的某个模组发布了更新。",
+  "settings_notif_weekly": "创作者周报",
+  "settings_notif_weekly_hint": "每周一：你的模组的下载量、关注者和评价。",
+  "settings_notifications_hint": "你在应用内和邮件中接收哪些信号。",
+  "settings_notifications_title": "通知",
+  "settings_nsfw_adult": "我已年满 18 岁（或已达到所在地的法定成年年龄）",
+  "settings_nsfw_confirm": "显示",
+  "settings_nsfw_confirm_text": "NSFW 模组可能包含裸露或露骨内容。你可以随时再次隐藏。",
+  "settings_nsfw_confirm_title": "要显示成人内容吗？",
+  "settings_nsfw_confirmed_on": "已于 {date} 确认",
+  "settings_nsfw_hide": "隐藏成人内容",
+  "settings_nsfw_off_saved": "成人内容已隐藏",
+  "settings_nsfw_on_saved": "现在会显示成人内容",
+  "settings_nsfw_show": "显示成人内容",
+  "settings_nsfw_status_off": "隐藏",
+  "settings_nsfw_status_on": "显示",
+  "settings_nsfw_text": "标记为 NSFW 的模组会在列表、搜索和订阅源中隐藏，并在其自身页面以外的地方模糊显示。开启后即可查看。",
+  "settings_nsfw_title": "成人内容",
+  "settings_number_compact": "简写",
+  "settings_number_compact_hint": "1.2千 次下载",
+  "settings_number_format": "大数字",
+  "settings_number_full": "完整",
+  "settings_number_full_hint": "1,234 次下载",
+  "settings_password_changed": "密码已更改",
+  "settings_password_changed_revoked": "密码已更改，其他设备已退出登录",
+  "settings_password_confirm": "再次输入新密码",
+  "settings_password_current": "当前密码",
+  "settings_password_mismatch": "两次输入的新密码不一致。",
+  "settings_password_new": "新密码",
+  "settings_password_rejected": "该密码曾出现在数据泄露中。请换一个。",
+  "settings_password_required": "请输入当前密码。",
+  "settings_password_revoke": "退出我的其他设备",
+  "settings_password_revoke_hint": "如果你怀疑别人知道你的密码，建议勾选。",
+  "settings_password_same": "请选择与当前密码不同的新密码。",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "请至少使用 {min__number} 个字符。"
+      }
+    }
+  ],
+  "settings_password_submit": "更改密码",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "至少 {min__number} 个字符。长句子更好记，也更难被猜到。"
+      }
+    }
+  ],
+  "settings_password_title": "密码",
+  "settings_password_wrong": "密码不正确。",
+  "settings_photos_text": "你的头像和个人资料顶部的横幅。上传完成后会立即保存。",
+  "settings_photos_title": "头像和横幅",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "已置顶 {count__number}/{max__number}"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次下载"
+      }
+    }
+  ],
+  "settings_pinned_empty": "等你的模组发布后，就可以在这里置顶。",
+  "settings_pinned_failed": "无法加载你的模组。",
+  "settings_pinned_hidden": "部分置顶模组当前未公开；它们仍保持置顶，公开后会重新显示。",
+  "settings_pinned_saved": "置顶模组已保存",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最多选择 {max__number} 个模组，按此顺序优先展示在你的个人资料上。"
+      }
+    }
+  ],
+  "settings_pinned_title": "置顶模组",
+  "settings_preferences_hint": "语言、主题、动画、快捷键和成人内容。",
+  "settings_preferences_title": "偏好",
+  "settings_privacy_data_link": "导出或删除我的数据",
+  "settings_privacy_data_text": "你可以导出我们保存的关于你的所有数据，或删除你的账户。",
+  "settings_privacy_data_title": "你的数据",
+  "settings_privacy_hint": "别人在你的个人资料上能看到什么，以及你的下载记录。",
+  "settings_privacy_policy_link": "隐私政策",
+  "settings_privacy_saved": "隐私设置已保存",
+  "settings_privacy_title": "隐私",
+  "settings_profile_hint": "头像、横幅、名称、简介、链接和置顶模组。",
+  "settings_profile_title": "个人资料",
+  "settings_profile_view_public": "查看你的公开资料",
+  "settings_readout": "营地设置",
+  "settings_retry": "重试",
+  "settings_save": "保存",
+  "settings_save_failed": "无法保存你的更改",
+  "settings_security_hint": "你在哪里登录，以及退出其他设备。",
+  "settings_security_tip_email": "我们绝不会通过邮件或 Discord 索要你的密码。",
+  "settings_security_tip_password": "使用一个别处从未用过的密码。",
+  "settings_security_tip_sessions": "在共享或公共电脑上用完后请退出登录。",
+  "settings_security_tips_title": "保护好你的营地",
+  "settings_security_title": "安全",
+  "settings_sessions_active_now": "当前活跃",
+  "settings_sessions_confirm_current_text": "你将前往登录页面。",
+  "settings_sessions_confirm_current_title": "要在此浏览器中退出吗？",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "将结束另外 {count__number} 个会话。此浏览器会保持登录。"
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "要退出其他所有设备吗？",
+  "settings_sessions_confirm_text": "{device} 需要重新登录。",
+  "settings_sessions_confirm_title": "要退出此设备吗？",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个活跃会话"
+      }
+    }
+  ],
+  "settings_sessions_failed": "无法退出该会话",
+  "settings_sessions_last_seen": "最后活跃于 {when}",
+  "settings_sessions_revoked": "{device} 已退出登录",
+  "settings_sessions_revoked_others": "其他设备已退出登录",
+  "settings_sessions_sign_out": "退出登录",
+  "settings_sessions_sign_out_here": "在此退出",
+  "settings_sessions_sign_out_others": "退出其他所有设备",
+  "settings_sessions_started": "{date} 登录",
+  "settings_sessions_text": "所有有活跃会话的浏览器和设备。退出你不认识的会话。",
+  "settings_sessions_this_device": "当前设备",
+  "settings_sessions_title": "你在哪些地方登录",
+  "settings_sessions_unknown_device": "未知设备",
+  "settings_shortcuts": "键盘快捷键",
+  "settings_shortcuts_hint": "控制台中的单键快捷键。如果它们干扰你的辅助技术，请关闭。",
+  "settings_show_activity": "显示我的动态",
+  "settings_show_activity_hint": "12 个月热力图和你最近的动态。",
+  "settings_show_kits": "显示我的套装",
+  "settings_show_kits_hint": "个人资料中的“套装”标签页（私人套装永远不会显示）。",
+  "settings_show_leaderboards": "出现在排行榜上",
+  "settings_show_leaderboards_hint": "顶尖创作者和顶尖幸存者榜单。",
+  "settings_show_rank": "显示我的幸存者等级和 XP",
+  "settings_show_rank_hint": "你名字旁边的等级印章。",
+  "settings_support_edit": "编辑个人资料中的链接",
+  "settings_support_empty": "你还没有添加 Ko-fi 或 Patreon 链接。",
+  "settings_support_text": "个人资料中的 Ko-fi 和 Patreon 链接会显示在你的个人资料上，以及你的模组下载按钮旁边。",
+  "settings_support_title": "赞助链接",
+  "settings_template_add": "添加模板",
+  "settings_template_copied": "已复制“{name}”",
+  "settings_template_copy": "复制",
+  "settings_template_copy_failed": "无法复制到剪贴板",
+  "settings_template_delete": "删除",
+  "settings_template_name": "名称",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "请起个名字（最多 {max__number} 个字符）。"
+      }
+    }
+  ],
+  "settings_template_text": "内容",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "请填写内容（最多 {max__number} 个字符）。"
+      }
+    }
+  ],
+  "settings_templates_empty": "还没有模板。",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最多 {max__number} 条现成回复（安装步骤、已知冲突……），可复制到评论和评价回复中。"
+      }
+    }
+  ],
+  "settings_templates_title": "回复模板",
+  "settings_theme": "主题",
+  "settings_theme_day": "日间",
+  "settings_theme_night": "夜间",
+  "settings_theme_system": "跟随设备",
+  "settings_verify_already": "你的邮箱地址已经验证",
+  "settings_verify_resend": "重新发送链接",
+  "settings_verify_resend_failed": "无法发送链接",
+  "settings_verify_resent": "我们已向 {email} 发送了新链接",
+  "settings_verify_text": "在此之前你可以浏览和下载，但不能评论、评价或发布。",
+  "settings_verify_title": "验证你的邮箱地址",
+  "settings_visibility_text": "关闭你不想公开的内容。",
+  "settings_visibility_title": "你的个人资料",
+  "signals_action_download": "下载",
+  "signals_announcement": "护林员发布了新公告",
+  "signals_announcement_titled": "公告：{title}",
+  "signals_award_build_of_month": "{mod} 当选本月建筑",
+  "signals_award_generic": "{mod} 获得了奖项",
+  "signals_award_mod_of_month": "{mod} 当选本月模组",
+  "signals_award_mod_of_week": "{mod} 当选本周模组",
+  "signals_award_staff_pick": "{mod} 入选团队精选",
+  "signals_badge_awarded": "解锁徽章：{badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "欢迎来到全新的 SOTF Mods",
+        "count__exact=*": "欢迎来到全新的 SOTF Mods——你的野外手册里有 {count__number} 枚徽章等你查看"
+      }
+    }
+  ],
+  "signals_bell_label": "信号",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "信号：{count__number} 条未读"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} 报告了 {mod} 的一个错误",
+  "signals_comment_mention": "{actor} 在 {mod} 的评论中提到了你",
+  "signals_comment_on_mod": "{actor} 评论了 {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 有 {count__number} 条新评论"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} 回复了你在 {mod} 下的评论",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你在 {mod} 下的评论收到 {count__number} 条回复"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "{mod} 的作者已看到你的实地报告",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input build",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} 在 {build} 上被报告为失效",
+        "status=*": "{mod} 在 {build} 上被报告为部分可用"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "你关于 {mod} 的实地报告已在 {version} 中修复",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} 发布了建筑 {mod}",
+        "kind=*": "{actor} 发布了{mod}"
+      }
+    }
+  ],
+  "signals_current_build": "当前版本",
+  "signals_empty_filtered_text": "暂时没有符合此筛选条件的信号。试试“全部”。",
+  "signals_empty_filtered_title": "这个频道没有内容",
+  "signals_empty_text": "关注模组和创作者，有变化时第一时间知道。",
+  "signals_empty_title": "森林里一片宁静",
+  "signals_end": "目前就这些信号。",
+  "signals_error_text": "我们这边出了点问题，请稍后再试。",
+  "signals_error_title": "信号加载失败。",
+  "signals_excerpt": "“{text}”",
+  "signals_filter_all": "全部",
+  "signals_filter_label": "筛选信号",
+  "signals_filter_mentions": "提及",
+  "signals_filter_my_mods": "我的模组",
+  "signals_filter_ranger": "护林员",
+  "signals_filter_updates": "更新",
+  "signals_group_today": "今天",
+  "signals_group_yesterday": "昨天",
+  "signals_load_more": "加载更早的信号",
+  "signals_loading": "正在加载信号…",
+  "signals_loading_more": "正在加载…",
+  "signals_mark_all_read": "全部标为已读",
+  "signals_mark_failed": "无法将信号标为已读",
+  "signals_mark_read": "标为已读",
+  "signals_marked_all": "所有信号均已标为已读",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 的下载量突破了 {threshold__number}"
+      }
+    }
+  ],
+  "signals_more_error": "更早的信号加载失败。",
+  "signals_page_description": "你关注内容的更新、回复、提及以及你的模组动态。",
+  "signals_page_readout": "无线电日志",
+  "signals_page_title": "信号",
+  "signals_panel_title": "信号",
+  "signals_patch_breaking": "游戏版本 {build} 可能导致模组失效——在 Patch Radar 中检查你的模组",
+  "signals_preferences": "通知设置",
+  "signals_report_dismissed": "你的举报已处理——无需采取措施",
+  "signals_report_resolved": "你的举报已处理，并已采取措施",
+  "signals_retry": "重试",
+  "signals_review_on_mod": "{actor} 给 {mod} 打了 {rating} 星评价",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 有 {count__number} 条新评价"
+      }
+    }
+  ],
+  "signals_review_reply": "{mod} 的作者回复了你的评价",
+  "signals_see_all": "查看全部信号",
+  "signals_show_all": "显示全部信号",
+  "signals_someone": "有人",
+  "signals_status_approved": "你的模组 {mod} 已通过审核并上线",
+  "signals_status_archived": "你的模组 {mod} 已归档",
+  "signals_status_changed": "{mod} 的状态已变更",
+  "signals_status_changes_requested": "护林员要求你修改 {mod}",
+  "signals_status_rejected": "你的模组 {mod} 未通过审核",
+  "signals_status_removed": "你的模组 {mod} 已被删除",
+  "signals_status_republished": "你的模组 {mod} 已重新公开",
+  "signals_status_unlisted": "你的模组 {mod} 已从列表中移除",
+  "signals_unknown_mod": "某个模组",
+  "signals_unread_prefix": "未读：",
+  "signals_version_published": "{mod} {version} 已发布——你关注了它",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 有 {count__number} 个新版本"
+      }
+    }
+  ],
+  "signals_weekly_report": "你的创作者周报已生成",
   "social_action_back": "返回",
   "social_action_cancel": "取消",
   "social_action_close": "关闭",
@@ -4445,5 +6246,550 @@
   "ui_theme_dark": "夜间",
   "ui_theme_light": "日间",
   "ui_theme_system": "跟随系统",
-  "ui_type_to_confirm": "输入 {text} 以确认。"
+  "ui_type_to_confirm": "输入 {text} 以确认。",
+  "upload_announce_group": "已测试版本和通知",
+  "upload_autosave_error": "保存失败，稍后会自动重试，你的更改仍保留在这里。",
+  "upload_autosave_idle": "暂无需要保存的内容",
+  "upload_autosave_limit": "草稿数量已达上限：删除一个草稿才能保存这个。",
+  "upload_autosave_offline": "已离线。更改会保留在这里，恢复联网后自动保存。",
+  "upload_autosave_pending": "有未保存的更改",
+  "upload_autosave_saved": "已自动保存（{when}）",
+  "upload_autosave_saving": "正在保存…",
+  "upload_back": "上一步",
+  "upload_block_empty": "文件是空的。",
+  "upload_block_local_problems": "下方检查发现错误。修正后请重新选择文件。",
+  "upload_block_manifest_id_mismatch": "这是另一个模组：清单 ID 为 {found}，应为 {expected}。",
+  "upload_block_too_large": "文件超过 {max}。",
+  "upload_block_unreadable": "无法读取文件。它是完整有效的下载吗？",
+  "upload_block_version_exists": "版本 {version} 已存在。请在 manifest.json 中提高版本号。",
+  "upload_block_version_not_greater": "版本 {version} 必须高于 {previous}。请在 manifest.json 中提高版本号。",
+  "upload_block_version_not_semver": "版本 {version} 不是语义化版本（x.y.z）。",
+  "upload_block_wrong_type": "文件类型不正确。请选择拖放区显示的类型。",
+  "upload_blocked_title": "这个文件无法上传。",
+  "upload_build_buildshare_version": "BuildShare 版本",
+  "upload_build_detected": "已识别蓝图",
+  "upload_build_elements": "元素",
+  "upload_build_guid": "蓝图 ID",
+  "upload_build_no_thumbnail": "这个蓝图没有缩略图。请在媒体步骤添加封面。",
+  "upload_build_size_class": "规模",
+  "upload_build_structures": "结构",
+  "upload_build_thumbnail_alt": "蓝图 {name} 的缩略图",
+  "upload_cancel": "取消",
+  "upload_category_label": "分类",
+  "upload_category_placeholder": "选择分类",
+  "upload_changelog_group": "更新日志",
+  "upload_changelog_hint_first": "首次发布可不填。",
+  "upload_changelog_hint_version": "关注者会在信号中看到这些内容。",
+  "upload_changelog_label": "更新内容（Markdown）",
+  "upload_changelog_placeholder": "修复了…，新增了…，调整了…",
+  "upload_channel_beta": "测试版",
+  "upload_channel_beta_hint": "面向想尝鲜的测试者。",
+  "upload_channel_label": "渠道",
+  "upload_channel_release": "稳定版",
+  "upload_channel_release_hint": "面向所有人，成为最新版本。",
+  "upload_choose_other": "选择其他文件",
+  "upload_compat_game": "游戏和加载器",
+  "upload_compat_intro": "告诉玩家你的模组能在哪里运行。幸存者的实地报告之后会补充这些信息。",
+  "upload_compat_title": "兼容性",
+  "upload_compat_where": "运行环境",
+  "upload_counter": "{count} / {max}",
+  "upload_cover_build_fallback": "没有封面时使用蓝图缩略图。",
+  "upload_cover_choose": "选择图片",
+  "upload_cover_description": "显示在卡片和页面顶部，裁剪为 16:9。",
+  "upload_cover_drop": "把封面图片拖到这里",
+  "upload_cover_failed": "封面上传失败。",
+  "upload_cover_hint": "PNG、JPEG、WebP、AVIF 或 GIF · 最大 10 MB · 建议 1280 × 720 以上",
+  "upload_cover_label": "封面",
+  "upload_cover_preview_alt": "封面预览",
+  "upload_cover_remove": "移除封面",
+  "upload_cover_replace": "更换封面",
+  "upload_cover_uploading": "封面上传进度",
+  "upload_crop_confirm": "使用此裁剪",
+  "upload_crop_description": "拖动裁剪框，或选中后用方向键移动。+ 和 − 调整大小。",
+  "upload_crop_frame": "裁剪框",
+  "upload_crop_keyboard": "方向键移动 · Shift 加速 · + 和 − 调整大小",
+  "upload_crop_output": "输出 {width} × {height}",
+  "upload_crop_position": "左 {x} px，上 {y} px",
+  "upload_crop_size": "裁剪框大小",
+  "upload_crop_title": "裁剪封面",
+  "upload_dedicated_hint": "它能在专用服务器上运行吗？",
+  "upload_dedicated_label": "专用服务器",
+  "upload_dedicated_no": "不能",
+  "upload_dedicated_partial": "部分可以",
+  "upload_dedicated_unknown": "不确定",
+  "upload_dedicated_yes": "能",
+  "upload_dependencies_hint": "manifest.json 中的依赖始终为必需。在这里添加可选模组和冲突。",
+  "upload_dependencies_label": "依赖",
+  "upload_dependencies_none": "没有依赖。",
+  "upload_dependency_add": "添加",
+  "upload_dependency_add_as": "将 {name} 添加为{kind}",
+  "upload_dependency_conflicts": "冲突",
+  "upload_dependency_duplicate": "这个依赖已在列表中。",
+  "upload_dependency_from_manifest": "来自 manifest.json",
+  "upload_dependency_invalid_id": "清单 ID 只能包含字母、数字、“.”、“_”和“-”。",
+  "upload_dependency_kind": "与 {id} 的关系",
+  "upload_dependency_manual": "或输入清单 ID",
+  "upload_dependency_no_results": "没有匹配的模组。",
+  "upload_dependency_optional": "可选",
+  "upload_dependency_range": "{id} 的版本范围",
+  "upload_dependency_range_placeholder": "任意版本（例如 >=1.2.0）",
+  "upload_dependency_remove": "移除 {id}",
+  "upload_dependency_required": "必需",
+  "upload_dependency_search": "在 SOTF Mods 上搜索模组和前置库",
+  "upload_dependency_search_failed": "搜索失败，请重试。",
+  "upload_description_group": "描述",
+  "upload_description_hint": "它的功能、用法和已知问题。支持标题、列表、图片和 YouTube 链接。",
+  "upload_description_label": "描述（Markdown）",
+  "upload_description_placeholder": "你的模组能做什么、怎么用、已知问题…",
+  "upload_details_discovery": "分类和标签",
+  "upload_details_discovery_hint": "它们决定幸存者在探索和搜索中从哪里找到它。",
+  "upload_details_identity": "名称和地址",
+  "upload_details_intro": "这是你的页面在网站上的呈现方式。我们已根据文件预先填写了部分内容。",
+  "upload_details_links": "许可和链接",
+  "upload_details_title": "详情",
+  "upload_draft_limit_detail": "删除一个不再需要的草稿，才能开始新的。",
+  "upload_draft_limit_title": "你已有 20 个草稿。",
+  "upload_draft_missing_detail": "它已被提交或删除。你的其他草稿仍在列表中。",
+  "upload_draft_missing_title": "这个草稿已不存在。",
+  "upload_draft_other_flow_detail": "请在开始它的地方打开，以保留其步骤。",
+  "upload_draft_other_flow_title": "这个草稿属于另一个流程。",
+  "upload_drafts_blockers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项待修正"
+      }
+    }
+  ],
+  "upload_drafts_counter": "{count} / {max}",
+  "upload_drafts_delete": "删除",
+  "upload_drafts_delete_detail": "“{name}”及其未提交的文件将被删除，且无法恢复。",
+  "upload_drafts_delete_named": "删除 {name}",
+  "upload_drafts_delete_title": "删除这个草稿？",
+  "upload_drafts_deleted": "草稿已删除",
+  "upload_drafts_empty_detail": "你开始发布的内容都会保存在这里，直到提交为止。",
+  "upload_drafts_empty_title": "没有草稿",
+  "upload_drafts_intro": "编辑时自动保存。最多同时保留 {max} 个草稿。",
+  "upload_drafts_loading": "正在加载草稿",
+  "upload_drafts_quality": "质量 {score}",
+  "upload_drafts_ready": "可以提交",
+  "upload_drafts_resume": "继续",
+  "upload_drafts_start": "开始发布",
+  "upload_drafts_step": "第 {current}/{total} 步 · {label}",
+  "upload_drafts_title": "草稿",
+  "upload_drafts_untitled": "未命名草稿",
+  "upload_drafts_untitled_version": "新版本",
+  "upload_drafts_updated": "编辑于 {when}",
+  "upload_drop_button": "选择文件",
+  "upload_drop_hint": "{type} · 最大 {max}",
+  "upload_drop_replace": "拖入另一个文件以替换",
+  "upload_drop_title_build": "把蓝图 .json 拖到这里",
+  "upload_drop_title_mod": "把 .zip 拖到这里",
+  "upload_entries_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 个文件"
+      }
+    }
+  ],
+  "upload_entries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "zip 中共 {count__number} 个文件"
+      }
+    }
+  ],
+  "upload_entry_flagged": "需审核",
+  "upload_entry_not_allowed": "不常见类型",
+  "upload_entry_unsafe": "不安全路径",
+  "upload_error_loader_version": "请使用类似 0.9.0 的版本。",
+  "upload_error_name": "请使用 2 到 80 个字符。",
+  "upload_error_slug": "请使用小写字母、数字和连字符（2 到 80 个）。",
+  "upload_error_title": "上传已中断。",
+  "upload_error_url": "请输入以 https:// 开头的完整地址",
+  "upload_error_youtube": "请粘贴 YouTube 视频链接（youtube.com/watch、youtu.be 或 shorts）。",
+  "upload_expired_detail": "上传在使用前已过期，请重新上传文件。",
+  "upload_failure_api": "我们这边出了问题，请稍后再试。",
+  "upload_failure_expired": "上传链接已过期。重试以获取新链接。",
+  "upload_failure_forbidden": "你的账号目前无法上传（邮箱未验证或受到限制）。",
+  "upload_failure_network": "连接中断，进度已保留：恢复联网后继续即可。",
+  "upload_failure_rejected": "文件未通过检查。",
+  "upload_failure_too_large": "文件超出你账号的上限。",
+  "upload_failure_unsupported": "不接受这种文件类型。",
+  "upload_file_intro_build": "拖入 BuildShare 导出的蓝图 .json。缩略图、元素数量和版本会自动读取。",
+  "upload_file_intro_mod": "拖入你会发给玩家的 .zip。我们会先在浏览器中打开它并展示内容，上传前不会发送任何东西。",
+  "upload_file_intro_version": "上传 {name} 的新文件。清单 ID 必须是 {manifestId}，版本需高于 {version}。",
+  "upload_file_title_build": "你的 BuildShare 蓝图",
+  "upload_file_title_mod": "你的模组文件",
+  "upload_flag_absolute_path": "有文件使用了绝对路径。",
+  "upload_flag_blueprint_invalid": "这不是有效的 BuildShare 蓝图。",
+  "upload_flag_extension_flagged": "可执行文件或脚本：需要护林员审核。",
+  "upload_flag_extension_not_allowed": "对模组来说不常见的文件类型。",
+  "upload_flag_file_too_large": "文件过大。",
+  "upload_flag_manifest_id_mismatch": "清单 ID 与此模组不符。",
+  "upload_flag_manifest_invalid": "manifest.json 有错误。",
+  "upload_flag_manifest_missing": "未找到 manifest.json（最多两层文件夹深）。",
+  "upload_flag_scan_detections": "安全扫描报告了检出项。",
+  "upload_flag_unknown": "检查失败（{code}）。",
+  "upload_flag_version_not_greater": "版本不高于最新版本。",
+  "upload_flag_version_not_semver": "版本不是语义化版本（x.y.z）。",
+  "upload_flag_zip_bomb_ratio": "压缩比异常偏高。",
+  "upload_flag_zip_invalid": "zip 已损坏或已加密。",
+  "upload_flag_zip_slip": "有路径跳出了模组文件夹（“..”或链接）。",
+  "upload_flag_zip_too_many_entries": "zip 中文件过多（最多 5000 个）。",
+  "upload_flagged_detail": "其中有内容需要人工检查（见下方警告）。你仍可提交，批准后即会发布。",
+  "upload_flagged_title": "护林员会查看这个文件。",
+  "upload_gallery_added": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "已添加 {count__number} 张图片"
+      }
+    }
+  ],
+  "upload_gallery_alt": "图片 {n} 的描述",
+  "upload_gallery_alt_placeholder": "图中显示了什么？",
+  "upload_gallery_choose": "选择图片",
+  "upload_gallery_counter": "{count} / {max}",
+  "upload_gallery_description": "最多 10 张截图。拖动排序，并为屏幕阅读器写下每张图的描述。",
+  "upload_gallery_drop": "把截图拖到这里",
+  "upload_gallery_full": "图库已满（{max} 张）。",
+  "upload_gallery_hint": "可一次选择多张 · PNG、JPEG、WebP、AVIF 或 GIF · 每张最大 10 MB · 最多 {max} 张",
+  "upload_gallery_image": "截图 {n}",
+  "upload_gallery_label": "图库",
+  "upload_gallery_move_after": "将图片 {n} 后移",
+  "upload_gallery_move_before": "将图片 {n} 前移",
+  "upload_gallery_moved": "图片已移到第 {position} 位（共 {total} 张）",
+  "upload_gallery_queued": "等待中…",
+  "upload_gallery_remove": "移除图片 {n}",
+  "upload_gallery_removed": "图片已移除",
+  "upload_gallery_reorder_hint": "拖动图片或使用箭头调整顺序。",
+  "upload_gallery_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "已跳过 {count__number} 个文件（类型不对、超过 10 MB 或图库已满）"
+      }
+    }
+  ],
+  "upload_gallery_uploading": "图片 {n} 上传进度",
+  "upload_game_build_current": "{label}（当前）",
+  "upload_game_builds_failed": "无法加载游戏版本，请稍后再试。",
+  "upload_game_builds_hint": "只勾选你真正玩过的补丁。",
+  "upload_game_builds_label": "你测试过的游戏版本",
+  "upload_image_no_preview": "已上传（处理完成后在页面上预览）",
+  "upload_image_reading": "正在读取图片…",
+  "upload_image_too_large": "图片最大 10 MB。",
+  "upload_image_unreadable": "无法打开这张图片。",
+  "upload_image_wrong_type": "请使用 PNG、JPEG、WebP、AVIF 或 GIF 图片。",
+  "upload_inspecting_detail": "自动检查在服务器端进行，你可以先填写其他步骤。",
+  "upload_inspecting_title": "正在检查文件…",
+  "upload_issue_invalid_data": "蓝图的 Data 无效。",
+  "upload_issue_invalid_dependencies": "依赖列表无效。",
+  "upload_issue_invalid_field": "字段“{field}”缺失或无效。",
+  "upload_issue_invalid_id": "id 只能包含字母、数字、“.”、“_”和“-”。",
+  "upload_issue_invalid_json": "文件不是有效的 JSON。",
+  "upload_issue_invalid_log_color": "日志颜色必须是十六进制颜色，例如 #FF9900。",
+  "upload_issue_invalid_number_of_elements": "NumberOfElements 必须是整数。",
+  "upload_issue_invalid_platform": "平台必须是 Client、Server 或 Universal。",
+  "upload_issue_invalid_priority": "优先级必须是整数。",
+  "upload_issue_invalid_thumbnail": "无法读取蓝图缩略图。",
+  "upload_issue_invalid_type": "类型必须是“Mod”或“Library”。",
+  "upload_issue_invalid_url": "url 无效。",
+  "upload_issue_invalid_version": "版本格式应类似 1.2.3。",
+  "upload_issue_missing_description": "蓝图缺少 Description。",
+  "upload_issue_missing_guid": "蓝图缺少 Guid。",
+  "upload_issue_missing_id": "清单缺少 id。",
+  "upload_issue_missing_name": "蓝图缺少 Name。",
+  "upload_issue_missing_version": "清单缺少版本。",
+  "upload_issue_not_an_object": "JSON 必须是对象。",
+  "upload_kind_build": "建筑",
+  "upload_kind_mod": "模组",
+  "upload_kind_version": "新版本",
+  "upload_license_all_rights_reserved": "保留所有权利",
+  "upload_license_cc_by4": "CC BY 4.0",
+  "upload_license_gpl3": "GPL-3.0",
+  "upload_license_hint": "他人可以如何使用你的文件。",
+  "upload_license_label": "许可",
+  "upload_license_mit": "MIT",
+  "upload_license_other": "其他（在描述中说明）",
+  "upload_license_placeholder": "选择许可",
+  "upload_license_reupload_with_credit": "注明出处可转载",
+  "upload_link_discord": "Discord",
+  "upload_link_github": "GitHub",
+  "upload_link_kofi": "Ko-fi",
+  "upload_link_other": "其他",
+  "upload_link_patreon": "Patreon",
+  "upload_link_twitch": "Twitch",
+  "upload_link_website": "网站",
+  "upload_link_youtube": "YouTube",
+  "upload_links_add": "添加链接",
+  "upload_links_empty": "还没有链接。",
+  "upload_links_full": "最多 {max} 个链接。",
+  "upload_links_kind": "链接 {n} 的类型",
+  "upload_links_label": "支持链接",
+  "upload_links_remove": "移除链接 {n}",
+  "upload_links_url": "链接 {n} 的地址",
+  "upload_loader_hint": "你的模组能运行的最旧 RedLoader 版本。",
+  "upload_loader_label": "最低 RedLoader 版本",
+  "upload_loading": "正在加载向导…",
+  "upload_manifest_author": "作者",
+  "upload_manifest_dependencies": "依赖",
+  "upload_manifest_dependency_missing": "不在 SOTF Mods 上",
+  "upload_manifest_found": "已找到 manifest.json",
+  "upload_manifest_game_version": "游戏版本",
+  "upload_manifest_id": "清单 ID",
+  "upload_manifest_loader_version": "RedLoader 版本",
+  "upload_manifest_log_color": "日志颜色",
+  "upload_manifest_name": "名称",
+  "upload_manifest_no_dependencies": "未声明",
+  "upload_manifest_platform": "平台",
+  "upload_manifest_type": "类型",
+  "upload_manifest_type_library": "前置库",
+  "upload_manifest_type_mod": "模组",
+  "upload_manifest_version": "版本",
+  "upload_markdown_help": "Markdown：**粗体**、_斜体_、列表、`代码`、> 引用、||剧透||。",
+  "upload_markdown_preview": "预览",
+  "upload_markdown_preview_empty": "输入时预览会显示在这里。",
+  "upload_markdown_recommended": "建议 {min} 字以上",
+  "upload_markdown_view": "编辑器视图",
+  "upload_markdown_write": "编辑",
+  "upload_media_intro": "好的图片能让模组更受欢迎。有 3 张以上图片的页面下载量要高得多。",
+  "upload_media_title": "媒体",
+  "upload_multiplayer_all_players": "所有人都需要",
+  "upload_multiplayer_all_players_hint": "会话中的每位玩家都必须安装。",
+  "upload_multiplayer_client_side": "客户端",
+  "upload_multiplayer_client_side_hint": "只有安装它的玩家需要。",
+  "upload_multiplayer_host_only": "仅房主",
+  "upload_multiplayer_host_only_hint": "只有房主需要，其他玩家无需安装即可加入。",
+  "upload_multiplayer_label": "多人游戏",
+  "upload_multiplayer_singleplayer_only": "仅单人",
+  "upload_multiplayer_singleplayer_only_hint": "不适用于多人会话。",
+  "upload_multiplayer_unknown": "不确定",
+  "upload_multiplayer_unknown_hint": "幸存者的实地报告会给出答案。",
+  "upload_my_drafts": "我的草稿",
+  "upload_name_hint": "玩家对它的称呼。2 到 80 个字符。",
+  "upload_name_label": "名称",
+  "upload_new_build": "建筑",
+  "upload_new_build_detail": "BuildShare 蓝图 .json。缩略图和数据会自动读取。",
+  "upload_new_drafts_detail": "从上次停下的地方继续，或在下方开始新的内容。",
+  "upload_new_drafts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你有 {count__number} 个进行中的草稿。"
+      }
+    }
+  ],
+  "upload_new_intro": "今天你想和幸存者们分享什么？",
+  "upload_new_mod": "模组或前置库",
+  "upload_new_mod_detail": "带 manifest.json 的 RedLoader .zip。六个简短步骤。",
+  "upload_new_title": "发布",
+  "upload_new_version_more": "“我的模组”中还有：{count}",
+  "upload_new_version_none": "你已发布的模组会显示在这里，方便添加新版本。",
+  "upload_new_version_title": "更新你的模组",
+  "upload_next": "下一步",
+  "upload_no_permission_detail": "护林员暂时限制了上传。详情请查看信号，或联系团队。",
+  "upload_no_permission_title": "此账号的发布功能已暂停。",
+  "upload_notify_hint": "模组的关注者会收到关于此版本的信号。",
+  "upload_notify_label": "通知关注者",
+  "upload_nsfw_hint": "对未开启此选项的用户隐藏。",
+  "upload_nsfw_label": "成人内容（NSFW）",
+  "upload_optional": "可选",
+  "upload_platform_client": "客户端",
+  "upload_platform_client_hint": "在你玩的游戏中运行。",
+  "upload_platform_hint": "RedLoader 在哪里加载它。",
+  "upload_platform_label": "平台",
+  "upload_platform_server": "服务器",
+  "upload_platform_server_hint": "只在专用服务器上运行。",
+  "upload_platform_universal": "通用",
+  "upload_platform_universal_hint": "两者都可运行。",
+  "upload_preflight_category_invalid": "该分类已不存在：请选择其他分类。",
+  "upload_preflight_category_missing": "请选择分类。",
+  "upload_preflight_category_ok": "已选择分类。",
+  "upload_preflight_changelog_missing": "没有更新日志：关注者想知道改了什么。",
+  "upload_preflight_changelog_ok": "已填写更新日志。",
+  "upload_preflight_dependency_cycle": "依赖之间形成了循环。",
+  "upload_preflight_dependency_unknown": "有依赖不在 SOTF Mods 上：玩家需要去别处寻找。",
+  "upload_preflight_description_ok": "描述很详细。",
+  "upload_preflight_description_raw_html": "描述中含有 HTML：将以文本形式显示。",
+  "upload_preflight_description_short": "描述较短（建议 300 字以上）。",
+  "upload_preflight_file_expired": "上传已过期：请重新上传文件。",
+  "upload_preflight_file_failed": "文件未通过自动检查。",
+  "upload_preflight_file_flagged": "文件需要护林员审核后才能发布。",
+  "upload_preflight_file_inspecting": "文件仍在检查中。",
+  "upload_preflight_file_missing": "请上传文件。",
+  "upload_preflight_file_ok": "文件通过了自动检查。",
+  "upload_preflight_fix": "去修改",
+  "upload_preflight_gallery_below_3": "图库图片少于 3 张。",
+  "upload_preflight_gallery_ok": "图库有 3 张以上图片。",
+  "upload_preflight_license_missing": "未选择许可。",
+  "upload_preflight_license_ok": "已选择许可。",
+  "upload_preflight_manifest_id_taken": "另一个模组已在使用这个清单 ID。",
+  "upload_preflight_media_invalid": "有一张图片处理失败：请移除或重新上传。",
+  "upload_preflight_media_processing": "图片仍在处理中。",
+  "upload_preflight_name_missing": "请填写名称（至少 2 个字符）。",
+  "upload_preflight_name_ok": "已填写名称。",
+  "upload_preflight_platform_missing": "未设置平台。",
+  "upload_preflight_platform_ok": "已设置平台。",
+  "upload_preflight_refreshing": "正在更新…",
+  "upload_preflight_short_description_missing": "请填写简短描述。",
+  "upload_preflight_short_description_ok": "已填写简短描述。",
+  "upload_preflight_slug_invalid": "地址无效。",
+  "upload_preflight_slug_ok": "地址可用。",
+  "upload_preflight_slug_taken": "你在这个地址已有页面。",
+  "upload_preflight_source_missing": "没有源代码链接。",
+  "upload_preflight_source_ok": "已链接源代码。",
+  "upload_preflight_tags_missing": "没有标签：标签能帮助幸存者找到它。",
+  "upload_preflight_tags_ok": "已选择标签。",
+  "upload_preflight_tags_unknown": "部分标签已不存在。",
+  "upload_preflight_target_missing": "此版本对应的模组已不存在。",
+  "upload_preflight_target_removed": "此版本对应的模组已被移除。",
+  "upload_preflight_thumbnail_missing": "没有封面图片。",
+  "upload_preflight_thumbnail_ok": "已设置封面。",
+  "upload_preflight_title": "预检",
+  "upload_preflight_waiting": "草稿保存后会显示检查结果。",
+  "upload_problems_label": "文件的错误和警告",
+  "upload_progress_direct": "文件直接上传到存储。连接中断后可以继续上传。",
+  "upload_progress_finishing": "即将完成…",
+  "upload_progress_label": "上传进度",
+  "upload_progress_value": "{percent} · {loaded} / {total}",
+  "upload_quality_description": "描述达到 300 字以上",
+  "upload_quality_gallery": "图库有 3 张以上图片",
+  "upload_quality_hint": "完整的页面在探索中排名更高，下载也更多。",
+  "upload_quality_license": "许可",
+  "upload_quality_met": "已完成",
+  "upload_quality_missing": "缺失",
+  "upload_quality_platform": "平台",
+  "upload_quality_source": "源代码链接",
+  "upload_quality_tags": "标签",
+  "upload_quality_title": "页面质量",
+  "upload_reading_build": "正在读取蓝图…",
+  "upload_reading_zip": "正在浏览器中打开 zip…",
+  "upload_ready_detail": "自动检查的所有项目都没有问题。",
+  "upload_ready_title": "文件检查通过。",
+  "upload_reference": "编号：{ref}",
+  "upload_rejected_detail": "请修正下方错误后重新上传。",
+  "upload_rejected_title": "文件被拒绝。",
+  "upload_release_intro": "版本号来自 manifest.json。告诉玩家有哪些变化。",
+  "upload_release_title": "发布版本",
+  "upload_resume": "继续上传",
+  "upload_retry": "重试",
+  "upload_review_intro": "在护林员查看之前最后看一眼。请修正错误；警告只是建议。",
+  "upload_review_title": "检查",
+  "upload_safe_remove_label": "移除它会不会损坏存档？",
+  "upload_safe_remove_no": "会",
+  "upload_safe_remove_no_hint": "使用它创建的存档在移除后可能损坏。",
+  "upload_safe_remove_unknown": "不确定",
+  "upload_safe_remove_unknown_hint": "会提醒玩家先备份。",
+  "upload_safe_remove_yes": "不会",
+  "upload_safe_remove_yes_hint": "卸载后存档保持完好。",
+  "upload_save_draft": "保存草稿",
+  "upload_saved_toast": "草稿已保存",
+  "upload_select_placeholder": "请选择…",
+  "upload_severity_error": "错误",
+  "upload_severity_ok": "正常",
+  "upload_severity_warning": "警告",
+  "upload_short_description_label": "简短描述",
+  "upload_slug_label": "地址",
+  "upload_slug_preview": "你的页面地址将是",
+  "upload_source_hint": "公开仓库能赢得信任，也能帮助他人学习。",
+  "upload_source_label": "源代码",
+  "upload_step_compat": "兼容性",
+  "upload_step_compat_hint": "游戏版本、多人、依赖",
+  "upload_step_details": "详情",
+  "upload_step_details_hint": "名称、描述、标签",
+  "upload_step_done": "已完成",
+  "upload_step_file": "文件",
+  "upload_step_file_hint": "Zip 或蓝图",
+  "upload_step_media": "媒体",
+  "upload_step_media_hint": "封面、图库、视频",
+  "upload_step_needs_attention": "需要处理",
+  "upload_step_of": "第 {current} 步，共 {total} 步",
+  "upload_step_release": "发布版本",
+  "upload_step_release_hint": "版本号与更新内容",
+  "upload_step_review": "检查",
+  "upload_step_review_hint": "检查并提交",
+  "upload_steps_label": "发布步骤",
+  "upload_submit": "提交到护林站",
+  "upload_submit_blocked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 个错误需要修正。"
+      }
+    }
+  ],
+  "upload_submit_failed": "提交失败。",
+  "upload_submit_ready": "准备就绪。首次发布由护林员审核；认证创作者会立即发布。",
+  "upload_submit_ready_version": "准备就绪。版本上线后会通知关注者。",
+  "upload_submit_version": "发布此版本",
+  "upload_success_another": "再发布一个",
+  "upload_success_basecamp": "返回营地",
+  "upload_success_live_detail": "{name} 已发布。快分享给幸存者们吧。",
+  "upload_success_live_title": "已上线！",
+  "upload_success_live_version": "{name} 的新版本已上线，正在通知关注者。",
+  "upload_success_preview": "预览页面",
+  "upload_success_queued_detail": "{name} 已进入审核队列。护林员做出决定后你会收到信号。",
+  "upload_success_queued_title": "已提交到护林站",
+  "upload_success_queued_version": "{name} 的新版本正在等待护林员审核。上线后你会收到信号。",
+  "upload_success_view": "查看页面",
+  "upload_summary_address": "地址",
+  "upload_summary_name": "名称",
+  "upload_summary_version": "版本",
+  "upload_summary_version_build": "新的建筑版本",
+  "upload_tags_counter": "{count} / {max}",
+  "upload_tags_filter": "筛选标签",
+  "upload_tags_full": "已选 {max} 个标签：移除一个才能选择其他。",
+  "upload_tags_label": "标签",
+  "upload_tags_none": "没有匹配的标签。",
+  "upload_target_removed_detail": "已移除的模组无法接收新版本。",
+  "upload_target_removed_title": "此模组已被移除。",
+  "upload_title_build": "新建筑",
+  "upload_title_mod": "新模组",
+  "upload_title_version": "{name} 的新版本",
+  "upload_verify_email_detail": "打开我们发给你的链接再回来，草稿会一直等你。",
+  "upload_verify_email_title": "验证邮箱后才能发布。",
+  "upload_version_build": "建筑按日期区分版本：每次上传都是一个新版本。",
+  "upload_version_draft_exists_detail": "继续那个草稿，或在这里重新开始。",
+  "upload_version_draft_exists_title": "你已为这个模组开始了一个版本。",
+  "upload_version_first": "首次发布",
+  "upload_version_from_manifest": "读取自 manifest.json。如需修改，请编辑清单后重新上传文件。",
+  "upload_version_invalid_title": "此版本无法发布。",
+  "upload_version_label": "版本",
+  "upload_version_pending": "请先选择文件：版本号会从中读取。",
+  "upload_version_previous": "上一版本：v{version}",
+  "upload_video_group": "视频",
+  "upload_video_hint": "展示或教程视频，显示在图库之后。",
+  "upload_video_label": "YouTube 视频"
 }

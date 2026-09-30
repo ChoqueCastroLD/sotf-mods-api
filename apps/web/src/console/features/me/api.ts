@@ -1,0 +1,104 @@
+/**
+ * Data of the «You» area (`/me/backpack`, `/me/downloads`; WP-81 on WP-42, WP-31, WP-50, WP-60).
+ *
+ *   ['me', 'backpack']          followed mods with update and compatibility state
+ *   ['me', 'downloads']         download history (one row per mod)
+ *   ['me', 'follow-lookup', ids] which history rows I follow
+ *   ['me', 'compat-prompts']    downloaded versions awaiting «Did it work?»
+ *   ['me', 'onboarding']        the «Day 1 on the island» checklist
+ *
+ * Every key sits under `['me']`, so a stream reconnection refetches them with the user.
+ */
+import type { CompatMode, CompatResult } from '@sotf/contracts/compat';
+import { type QueryClient, queryOptions } from '@tanstack/react-query';
+import type { Me } from '../../hooks/use-me.ts';
+import { api } from '../../lib/api.ts';
+import { queryKeys } from '../../lib/query-keys.ts';
+
+export type Backpack = Awaited<ReturnType<typeof api.follows.backpack>>;
+export type BackpackItem = Backpack['items'][number];
+export type DownloadHistory = Awaited<ReturnType<typeof api.downloads.myDownloads>>;
+export type DownloadItem = DownloadHistory['items'][number];
+export type Onboarding = Awaited<ReturnType<typeof api.gamification.onboarding>>;
+export type CompatPrompt = Awaited<ReturnType<typeof api.compat.myPrompts>>['items'][number];
+export type { CompatMode, CompatResult };
+
+export const meKeys = {
+  backpack: ['me', 'backpack'] as const,
+  downloads: ['me', 'downloads'] as const,
+  followLookup: (ids: readonly number[]) => ['me', 'follow-lookup', ids.join(',')] as const,
+  prompts: ['me', 'compat-prompts'] as const,
+  onboarding: ['me', 'onboarding'] as const,
+} as const;
+
+/** `Sotf-Time-Zone` lets the onboarding and streak logic count the user's calendar days. */
+function timeZoneHeaders(): Record<string, string> {
+  try {
+    const zone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return zone ? { 'Sotf-Time-Zone': zone } : {};
+  } catch {
+    return {};
+  }
+}
+
+export const backpackQuery = queryOptions({
+  queryKey: meKeys.backpack,
+  queryFn: ({ signal }) => api.follows.backpack({}, { signal }),
+  staleTime: 30_000,
+});
+
+export const downloadsQuery = queryOptions({
+  queryKey: meKeys.downloads,
+  queryFn: ({ signal }) => api.downloads.myDownloads({}, { signal }),
+  staleTime: 30_000,
+});
+
+export const promptsQuery = queryOptions({
+  queryKey: meKeys.prompts,
+  queryFn: async ({ signal }) => (await api.compat.myPrompts({}, { signal })).items,
+  staleTime: 60_000,
+});
+
+export const followLookupQuery = (ids: readonly number[]) =>
+  queryOptions({
+    queryKey: meKeys.followLookup(ids),
+    queryFn: async ({ signal }) => {
+      if (ids.length === 0) return new Set<number>();
+      const chunks: string[][] = [];
+      for (let index = 0; index < ids.length; index += 100) {
+        chunks.push(ids.slice(index, index + 100).map(String));
+      }
+      const results = await Promise.all(
+        chunks.map((mod) => api.follows.lookup({ query: { mod, user: [] } }, { signal })),
+      );
+      return new Set(results.flatMap((result) => result.mods));
+    },
+    staleTime: 60_000,
+  });
+
+export const onboardingQuery = queryOptions({
+  queryKey: meKeys.onboarding,
+  queryFn: ({ signal }) => api.gamification.onboarding({}, { signal, headers: timeZoneHeaders() }),
+  staleTime: 60_000,
+});
+
+export const meApi = {
+  follow: (modId: number, notify: boolean) => api.follows.followMod({ params: { id: modId }, body: { notify } }),
+  unfollow: (modId: number) => api.follows.unfollowMod({ params: { id: modId } }),
+  clearDownloads: () => api.downloads.clearMyDownloads({}),
+  setDownloadHistory: (enabled: boolean) => api.me.updateSettings({ body: { downloadHistory: enabled } }),
+  report: (body: {
+    modVersionId: number;
+    gameBuildId: number;
+    mode: CompatMode;
+    result: CompatResult;
+    note?: string;
+  }) => api.compat.createReport({ body }),
+  updateOnboarding: (body: { dismissed?: boolean; markDone?: ['install_redloader'] }) =>
+    api.gamification.updateOnboarding({ body }, { headers: timeZoneHeaders() }),
+};
+
+/** Writes new settings into the cached `/me` (what `PATCH /me/settings` answered). */
+export function storeSettings(queryClient: QueryClient, settings: Me['settings']): void {
+  queryClient.setQueryData<Me>(queryKeys.me, (me) => (me ? { ...me, settings } : me));
+}

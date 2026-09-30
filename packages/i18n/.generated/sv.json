@@ -997,6 +997,7 @@
   "builds_copy_failed": "Det gick inte att kopiera. Markera texten och kopiera den för hand.",
   "builds_description_empty": "Byggaren har inte skrivit någon beskrivning än. Databladet har fakta.",
   "builds_description_title": "Om bygget",
+  "builds_feed_title": "SOTF Mods: nya och uppdaterade byggen",
   "builds_follow_error": "Det gick inte att uppdatera din ryggsäck. Kontrollera anslutningen och försök igen.",
   "builds_follow_hint": "Få en avisering när bygget får en ny version",
   "builds_followed": "Tillagt i din ryggsäck.",
@@ -1763,6 +1764,424 @@
   "console_update_detail": "Vi uppdaterade SOTF Mods medan du var här. Ladda om för att få den senaste versionen.",
   "console_update_reload": "Ladda om",
   "console_update_title": "En ny version finns",
+  "content_about_disclaimer_title": "Inofficiell fangemenskap",
+  "content_about_eyebrow": "Om oss",
+  "content_about_links_title": "Runt lägret",
+  "content_binding_note": "Översättningen är bara vägledande. Om den skiljer sig från den engelska versionen gäller den engelska.",
+  "content_brand_asset_app_icon": "Appikon",
+  "content_brand_asset_app_icon_hint": "Nålen på en Night-yta, för avatarer och genvägar.",
+  "content_brand_asset_horizontal": "Horisontell logotyp",
+  "content_brand_asset_horizontal_hint": "Standardversionen: symbol och ordmärke sida vid sida.",
+  "content_brand_asset_mark": "Symbol (Contour Pin)",
+  "content_brand_asset_mark_hint": "Bara nålen. Använd den förenklade versionen mellan 16 och 24 px.",
+  "content_brand_asset_og": "Förhandsbild för sociala medier",
+  "content_brand_asset_og_hint": "1200 × 630, för länkförhandsvisningar och miniatyrer.",
+  "content_brand_asset_stacked": "Staplad logotyp",
+  "content_brand_asset_stacked_hint": "För kvadratiska och höga ytor.",
+  "content_brand_asset_wordmark": "Ordmärke",
+  "content_brand_asset_wordmark_hint": "”SOTF MODS” utan nålen, för smala horisontella ytor.",
+  "content_brand_color_blueprint": "Blueprint (builds)",
+  "content_brand_color_bone": "Bone (text, Day-bakgrund)",
+  "content_brand_color_flare_day": "Flare på Day",
+  "content_brand_color_flare_night": "Flare på Night",
+  "content_brand_color_lichen": "Lichen (fungerar)",
+  "content_brand_color_night": "Night (bakgrund)",
+  "content_brand_color_signal": "Signal (live, info)",
+  "content_brand_color_solafite": "Solafite (utvald)",
+  "content_brand_colors_text": "Night och Bone är basen; Flare är den enda accenten. Statusfärgerna bär betydelse, de är inte dekoration.",
+  "content_brand_colors_title": "Färger",
+  "content_brand_description": "Ladda ner logotyp, symbol och färger för SOTF Mods och se hur du länkar till webbplatsen från din modd, video eller server.",
+  "content_brand_do_contrast": "Använd Night-filerna på mörka och Day-filerna på ljusa bakgrunder.",
+  "content_brand_do_link": "Länka logotypen till sotf-mods.com.",
+  "content_brand_do_size": "Använd hela symbolen i 24 px eller större (16 px för den förenklade).",
+  "content_brand_do_space": "Lämna fritt utrymme runt logotypen på minst en fjärdedel av dess höjd.",
+  "content_brand_do_title": "Gör så här",
+  "content_brand_dont_distort": "Att sträcka, rotera, beskära eller flytta om dess delar.",
+  "content_brand_dont_endorse": "Att antyda att SOTF Mods stöder, sponsrar eller har granskat ditt projekt.",
+  "content_brand_dont_game": "Att kombinera den med spelets officiella logotyp, grafik eller karaktärsnamn.",
+  "content_brand_dont_recolor": "Att färga om logotypen eller lägga till konturer och effekter.",
+  "content_brand_dont_title": "Undvik",
+  "content_brand_eyebrow": "Varumärkeskit",
+  "content_brand_font_display": "Display: rubriker och siffror, alltid med versaler.",
+  "content_brand_font_link": "Hämta {name}",
+  "content_brand_font_mono": "Avläsningar: versioner, id:n och kod.",
+  "content_brand_font_ui": "Gränssnitt och brödtext.",
+  "content_brand_lead": "Länkar du till SOTF Mods från din moddsida, en video eller din server? Använd de här filerna och följ reglerna nedan.",
+  "content_brand_legal_text": "Namnet och logotypen SOTF Mods identifierar den här gemenskapssajten. Du får använda dem för att hänvisa eller länka till sajten; all annan användning kräver vårt tillstånd.",
+  "content_brand_legal_title": "Varumärken",
+  "content_brand_link_text": "Kopiera koden till din README, webbplats eller moddbeskrivning. Den pekar på logotypen online, så den är alltid aktuell.",
+  "content_brand_link_title": "Länka till SOTF Mods",
+  "content_brand_logos_text": "Varje fil finns i en Night-version för mörka bakgrunder och en Day-version för ljusa. Använd helst SVG; PNG där SVG inte stöds.",
+  "content_brand_logos_title": "Logotyper",
+  "content_brand_on_day": "Ljusa bakgrunder",
+  "content_brand_on_night": "Mörka bakgrunder",
+  "content_brand_rules_title": "Så använder du logotypen",
+  "content_brand_snippet_label": "HTML-kod",
+  "content_brand_title": "Varumärket SOTF Mods",
+  "content_brand_type_title": "Typsnitt",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Läsningar i API v2",
+        "bucket=legacyRead": "Läsningar i äldre API",
+        "bucket=downloads": "Nedladdningar",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Kod",
+  "content_dev_col_limit": "Gräns",
+  "content_dev_col_meaning": "Betydelse",
+  "content_dev_col_method": "Metod",
+  "content_dev_col_notes": "Anteckningar",
+  "content_dev_col_path": "Sökväg",
+  "content_dev_col_scope": "Omfång",
+  "content_dev_col_status": "Status",
+  "content_dev_col_summary": "Vad den gör",
+  "content_dev_endpoints_caption": "Publika slutpunkter: {domain}",
+  "content_dev_endpoints_text": "Anonyma, cachebara och med CORS. Referensen dokumenterar parametrar, svar och fel för varje slutpunkt.",
+  "content_dev_endpoints_title": "Publika lässlutpunkter",
+  "content_dev_errors_text": "Fältet code i ett fel är ett av dessa. Varje problems type-URI pekar på dess rad här.",
+  "content_dev_errors_title": "Felkoder",
+  "content_dev_eyebrow": "Utvecklare",
+  "content_dev_legacy_deprecated": "Frysta och utfasade",
+  "content_dev_legacy_deprecated_text": "De här rutterna svarar till {date}, sedan stängs de. Deras svar har de här huvudena:",
+  "content_dev_legacy_deviations": "Avsiktliga skillnader mot det gamla beteendet",
+  "content_dev_legacy_retired": "Stängda",
+  "content_dev_legacy_retired_text": "Alla metoder på de här rutterna svarar 410 Gone med den här kroppen:",
+  "content_dev_legacy_stable": "Stöds (bytekompatibla)",
+  "content_dev_legacy_text": "API:t från sajtens första version svarar fortfarande på api.sotf-mods.com/api/* och sotf-mods.com/api/*, så att RedManager, UpdatesChecker och moddar i spelet fortsätter att fungera. Nya integrationer bör använda v2.",
+  "content_dev_legacy_title": "Äldre API och utfasning",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "per IP",
+        "key=user": "per konto",
+        "key=chat": "per spelare",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "Över en gräns svarar API:t 429 med huvudet Retry-After. Cacha svar och respektera ETags, så kommer du sällan i närheten.",
+  "content_dev_limits_title": "Hastighetsgränser",
+  "content_dev_link_docs_text": "Alla v2-slutpunkter med scheman och exempel, interaktivt.",
+  "content_dev_link_docs_title": "API-referens",
+  "content_dev_link_legacy_text": "Fortfarande i drift; frysta rutter stängs {date}.",
+  "content_dev_link_legacy_title": "Äldre API",
+  "content_dev_link_openapi_text": "Den maskinläsbara specifikationen, för att generera en klient.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Utkast",
+  "content_draft_text": "Den här texten beskriver hur SOTF Mods fungerar i dag, men den har ännu inte granskats av en jurist. Den kan ändras innan den blir slutgiltig; varje ändring dateras.",
+  "content_draft_title": "Utkast – väntar på juridisk granskning",
+  "content_error_ref": "Ref.: {ref}",
+  "content_fallback_binding": "För juridiska texter gäller den engelska versionen.",
+  "content_fallback_link": "Öppna sidan på {original}",
+  "content_fallback_text": "Den här sidan finns inte på {language} än, så du läser originalet på {original}.",
+  "content_install_eyebrow": "Installationsguide",
+  "content_install_faq_nav": "Vanliga frågor",
+  "content_install_faq_title": "Vanliga frågor",
+  "content_install_get_redmanager": "Hämta RedManager",
+  "content_install_help_discord": "Fråga på Discord",
+  "content_install_help_text": "Kolla om den aktuella spelpatchen har förstört dina moddar, eller fråga gemenskapen. Ange din spelversion, din RedLoader-version och vilka moddar du använder.",
+  "content_install_help_title": "Fortfarande fast?",
+  "content_install_kit_more": "Visa alla Kits",
+  "content_install_kit_nav": "Startkit",
+  "content_install_kit_text": "Ett urval från teamet med moddar som fungerar bra ihop. En bra första packning.",
+  "content_install_kit_title": "Startkit",
+  "content_install_manual": "Installera manuellt",
+  "content_install_progress": "Läsförlopp",
+  "content_install_rail_label": "Guidens avsnitt",
+  "content_install_rail_title": "Steg",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Steg {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "I korthet",
+  "content_install_verified": "Kontrollerad med spelet {game} · RedLoader {loader}",
+  "content_kelvin_by": "En modd av",
+  "content_kelvin_credit": "KelvinSeek skapas och underhålls av {author}; SOTF Mods kör bara API:t som den pratar med. Kelvin och Sons of the Forest tillhör Endnight Games; det här är ett fanprojekt.",
+  "content_kelvin_description": "Med KelvinSeek chattar du med Kelvin i Sons of the Forest och ger honom order med egna ord. Hur det fungerar, gränserna och vad som händer med dina meddelanden.",
+  "content_kelvin_dev_hint": "Bygger du något liknande? Slutpunkten ingår i det äldre API:t:",
+  "content_kelvin_eyebrow": "Gemenskapsmodd",
+  "content_kelvin_history_text": "Tidigare hette den Kelvin-GPT. Den gamla versionen som krävde din egen OpenAI-nyckel är stängd: den rutten visade nyckeln i adressen och svarar nu ”Gone”.",
+  "content_kelvin_how_1": "Installera RedLoader och modden KelvinSeek.",
+  "content_kelvin_how_2": "Gå fram till Kelvin i spelet och tryck E för att öppna anteckningsblocket.",
+  "content_kelvin_how_3": "Tryck T för att skriva, skriv ditt meddelande och tryck Enter.",
+  "content_kelvin_how_4": "Eller använd konsolen: ”askkelvin …” skickar ett meddelande och ”clearkelvinchathistory” startar en ny konversation.",
+  "content_kelvin_how_title": "Så använder du den",
+  "content_kelvin_install_hint": "Ny med moddar? Börja med guiden:",
+  "content_kelvin_lead": "Skriv till Kelvin med egna ord – han svarar och gör det du ber om, från att hämta stockar till att bygga ett skydd.",
+  "content_kelvin_limits_budget": "AI-tjänsten har en dagsbudget. När den tar slut förstår Kelvin dig ändå: han väljer utan AI den mest liknande kända ordern fram till nästa dag.",
+  "content_kelvin_limits_busy": "Skriver du för snabbt ber Kelvin om några sekunders paus. Inget går förlorat.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Upp till {perMinute__number} meddelanden per minut och {perDay__number} per dag och spelare."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Gränser",
+  "content_kelvin_open_mod": "Öppna moddsidan",
+  "content_kelvin_privacy_ai": "Texten i dina meddelanden skickas till AI-leverantören för att skapa svaret. Skriv inga personuppgifter.",
+  "content_kelvin_privacy_hash": "Chatt-id:t som modden skickar (det innehåller ditt Steam-id och namn) sparas bara som en oåterkallelig hash.",
+  "content_kelvin_privacy_link": "Läs integritetspolicyn",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "De senaste meddelandena i varje konversation sparas i {days__number} dag så att Kelvin minns sammanhanget, och raderas sedan.",
+        "days__plural=*": "De senaste meddelandena i varje konversation sparas i {days__number} dagar så att Kelvin minns sammanhanget, och raderas sedan."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Dina meddelanden",
+  "content_kelvin_status_compat": "På build {build}",
+  "content_kelvin_status_downloads": "Nedladdningar",
+  "content_kelvin_status_title": "Status på SOTF Mods",
+  "content_kelvin_status_unavailable": "Vi kunde inte läsa in moddens aktuella status. Moddsidan visar den senaste versionen.",
+  "content_kelvin_status_updated": "Senaste släpp",
+  "content_kelvin_status_version": "Senaste version",
+  "content_kelvin_title": "KelvinSeek: prata med Kelvin i spelet",
+  "content_kelvin_what_text": "KelvinSeek är en modd av {author}. Den skickar det du skriver till Kelvin till en AI-tjänst via SOTF Mods API och gör om svaret till Kelvins replik och, när du ber om något, till en av hans order i spelet. Du behöver ingen egen API-nyckel.",
+  "content_kelvin_what_title": "Vad det är",
+  "content_legal_eyebrow": "Juridik",
+  "content_legal_other": "Andra juridiska sidor",
+  "content_md_alert_caution": "Försiktigt",
+  "content_md_alert_important": "Viktigt",
+  "content_md_alert_note": "Obs",
+  "content_md_alert_tip": "Tips",
+  "content_md_alert_warning": "Varning",
+  "content_md_spoiler": "Spoiler",
+  "content_news_back": "Alla nyheter",
+  "content_news_byline": "av {author}",
+  "content_news_description": "Meddelanden från SOTF Mods-teamet: nya funktioner, ändringar på webbplatsen och i API:t och vad som är på gång.",
+  "content_news_empty": "Inga nyheter än. Allt är lugnt i skogen.",
+  "content_news_eyebrow": "Fältanteckningar",
+  "content_news_feed": "Prenumerera via RSS",
+  "content_news_feed_title": "SOTF Mods – Nyheter",
+  "content_news_read": "Läs",
+  "content_news_title": "Nyheter",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} fungerar, {broken__number} trasiga, {pending__number} väntar på rapporter"
+      }
+    }
+  ],
+  "content_radar_breaking": "Uppdatering som bryter moddar",
+  "content_radar_broken_empty": "Ingen av toppmoddarna är rapporterad som trasig på {build}.",
+  "content_radar_broken_title": "Rapporterade som trasiga",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} av toppmodden bekräftade på {build}",
+        "count__plural=*": "{share} av de {count__number} toppmoddarna bekräftade på {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} fungerar · {partial__number} delvis · {broken__number} trasig"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Moddar som väntar på rapporter",
+  "content_radar_cta_text": "Öppna modden, välj hur du spelade (solo, värd, klient eller dedikerad server) och säg om den fungerar. Varje fältrapport ger XP och besparar andra överlevare ett förstört sparspel.",
+  "content_radar_cta_title": "Testat någon av dessa på {build}?",
+  "content_radar_current": "Aktuell build",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Patch {build}: {share} av de 50 mest nedladdade Sons of the Forest-moddarna bekräftade av spelare – {works__number} fungerar, {broken__number} trasiga, {pending__number} väntar på rapporter."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Vilka Sons of the Forest-moddar som fungerar på den aktuella spelpatchen: RedLoaders status och fältrapporter från spelare för de 50 mest nedladdade moddarna.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} nedladdning på 30 dagar",
+        "count__plural=*": "{display} nedladdningar på 30 dagar"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Fungerar",
+        "status=partial": "Fungerar delvis",
+        "status=broken": "Trasig",
+        "status=*": "Okänd"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Ingen loaderstatus är registrerad för den här builden än.",
+  "content_radar_ecosystem_title": "Loader och hanterare på {build}",
+  "content_radar_empty_text": "Ingen spelbuild har registrerats än. Så snart rangers lägger in den aktuella patchen visar sidan vilka populära moddar som fungerar på den.",
+  "content_radar_empty_title": "Radarn värms upp",
+  "content_radar_error_text": "Vi kunde inte läsa in kompatibilitetsdatan. Försök igen om en minut; fortsätter det att strula, säg till på Discord med referensen nedan.",
+  "content_radar_error_title": "Ingen signal",
+  "content_radar_history_empty": "Det här är den första registrerade builden.",
+  "content_radar_history_title": "Buildhistorik",
+  "content_radar_install_link": "Så installerar du RedLoader",
+  "content_radar_legend_outdated": "”Kanske inaktuell” betyder att den senaste versionen är äldre än den senaste uppdateringen som bryter moddar och att ingen har bekräftat att den fungerar sedan dess.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Rapporter viktas: skaparens eget test räknas dubbelt, verifierade skapare 1,5×, helt nya konton hälften. Under {min__number} viktade rapporter är en modd otestad; vid {works} eller fler som fungerar fungerar den; vid {broken} eller fler trasiga är den trasig; allt annat är blandat."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Så bestäms statusen",
+  "content_radar_list_name": "Toppmoddar för Sons of the Forest på patch {build}",
+  "content_radar_notes": "Patchanteckningar",
+  "content_radar_outdated": "Kanske inaktuell",
+  "content_radar_past_link": "Se aktuell build",
+  "content_radar_past_notice": "Det här är en äldre build. Spelet är nu på {build}.",
+  "content_radar_pending_empty": "Varje toppmodd har ett tydligt utslag på den här builden.",
+  "content_radar_pending_hint": "Otestade eller blandade resultat",
+  "content_radar_pending_title": "Väntar på fältrapporter",
+  "content_radar_released": "Släppt {date}",
+  "content_radar_report": "Rapportera",
+  "content_radar_seo_title": "Fungerar SOTF-moddar på patch {build}? – Patch Radar",
+  "content_radar_seo_title_generic": "Fungerar SOTF-moddar på senaste patchen? – Patch Radar",
+  "content_radar_stat_broken": "Trasiga",
+  "content_radar_stat_pending": "Behöver rapporter",
+  "content_radar_stat_works": "Fungerar",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Fungerar",
+        "status=mixed": "Blandat",
+        "status=broken": "Trasig",
+        "status=*": "Inga data"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Sammanfattning",
+  "content_radar_title": "Fungerar SOTF-moddar på patch {build}?",
+  "content_radar_works_empty": "Ingen toppmodd är bekräftad på {build} än. Testat någon? Hör av dig.",
+  "content_radar_works_title": "Bekräftat fungerande",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} min läsning",
+        "minutes__plural=*": "{minutes__number} min läsning"
+      }
+    }
+  ],
+  "content_toc_title": "På den här sidan",
+  "content_updated_on": "Senast uppdaterad: {date}",
   "emails_auth_deleted_body": "Dina personuppgifter har raderats. Kommentarer och recensioner finns kvar som ”Raderad överlevare”. Tack för att du var en del av ön.",
   "emails_auth_deleted_heading": "Kontot raderat",
   "emails_auth_deleted_preview": "Dina personuppgifter har raderats.",
@@ -3569,6 +3988,199 @@
   "landing_trending_empty": "En lugn vecka på ön. Moddar dyker upp här när överlevare laddar ned dem.",
   "landing_trending_hint": "Efter nedladdningar de senaste 7 dagarna",
   "landing_trending_title": "Populärt den här veckan",
+  "me_action_download": "Ladda ned",
+  "me_action_failed": "Det fungerade inte",
+  "me_action_update": "Hämta uppdateringen",
+  "me_backpack_description": "Moddarna du följer, med deras uppdateringar och hur de fungerar på det aktuella bygget.",
+  "me_backpack_empty_text": "Tryck på ♥ på en modd för att lägga den här och få veta om uppdateringar.",
+  "me_backpack_empty_title": "Din ryggsäck är tom",
+  "me_backpack_list_label": "Följda moddar",
+  "me_backpack_no_broken_text": "Ingen av dina moddar rapporteras som trasig på det aktuella spelbygget.",
+  "me_backpack_no_broken_title": "Inget rapporterat trasigt",
+  "me_backpack_no_updates_text": "Ingen modd i ryggsäcken har en nyare version än den du laddade ned.",
+  "me_backpack_no_updates_title": "Allt är uppdaterat",
+  "me_backpack_notify_off": "Inga fler uppdateringssignaler för {mod}",
+  "me_backpack_notify_on": "Du får en signal när {mod} uppdateras",
+  "me_backpack_readout": "Din utrustning",
+  "me_backpack_removed": "{mod} togs ur ryggsäcken",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} modd i ryggsäcken · allt är uppdaterat",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} modd i ryggsäcken · {updates__number} uppdatering tillgänglig",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} modd i ryggsäcken · {updates__number} uppdateringar tillgängliga",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} moddar i ryggsäcken · allt är uppdaterat",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} moddar i ryggsäcken · {updates__number} uppdatering tillgänglig",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} moddar i ryggsäcken · {updates__number} uppdateringar tillgängliga"
+      }
+    }
+  ],
+  "me_backpack_title": "Ryggsäck",
+  "me_broken_on_current": "Trasig på {build}",
+  "me_browse_mods": "Bläddra bland moddar",
+  "me_by_author": "av {author}",
+  "me_cancel": "Avbryt",
+  "me_did_it_work": "Fungerade det?",
+  "me_downloads_clear": "Rensa historik",
+  "me_downloads_clear_confirm": "Rensa historik",
+  "me_downloads_clear_text": "Alla rader försvinner, liksom frågorna ”Fungerade det?” om tidigare nedladdningar. Moddarnas nedladdningsräknare påverkas inte. Det går inte att ångra.",
+  "me_downloads_clear_title": "Rensa din nedladdningshistorik?",
+  "me_downloads_cleared": "Nedladdningshistoriken är rensad",
+  "me_downloads_description": "Varje modd du laddat ned när du var inloggad, med uppdateringarna du saknar.",
+  "me_downloads_empty_off_text": "Din historik är avstängd, så inget nytt sparas här.",
+  "me_downloads_empty_text": "Ladda ned en modd när du är inloggad så syns den här, med en avisering när en ny version kommer.",
+  "me_downloads_empty_title": "Inga nedladdningar än",
+  "me_downloads_history_off": "Nedladdningshistoriken är av",
+  "me_downloads_history_on": "Nedladdningshistoriken är på",
+  "me_downloads_keep_history": "Spara nedladdningshistorik",
+  "me_downloads_last": "Du laddade ned {version} den {date}",
+  "me_downloads_list_label": "Nedladdade moddar",
+  "me_downloads_off_text": "Nya nedladdningar sparas inte, så uppdateringsaviseringarna här och i ryggsäcken kan inte jämföra versioner. Du kan slå på den igen när du vill.",
+  "me_downloads_off_title": "Din nedladdningshistorik är avstängd",
+  "me_downloads_readout": "Förrådslogg",
+  "me_downloads_remove": "Ta bort från listan",
+  "me_downloads_remove_label": "Ta bort {mod} från listan",
+  "me_downloads_removed": "{mod} togs bort från listan",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} modd nedladdad · allt är uppdaterat",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} modd nedladdad · {updates__number} uppdatering tillgänglig",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} modd nedladdad · {updates__number} uppdateringar tillgängliga",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} moddar nedladdade · allt är uppdaterat",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} moddar nedladdade · {updates__number} uppdatering tillgänglig",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} moddar nedladdade · {updates__number} uppdateringar tillgängliga"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nedladdning",
+        "count__plural=*": "{count__number} nedladdningar"
+      }
+    }
+  ],
+  "me_downloads_title": "Mina nedladdningar",
+  "me_filter_all": "Alla",
+  "me_filter_broken": "Trasiga på det här bygget",
+  "me_filter_label": "Visa",
+  "me_filter_updates": "Uppdatering finns",
+  "me_follow": "Följ",
+  "me_followed": "{mod} ligger i din ryggsäck",
+  "me_followed_on": "följd sedan {date}",
+  "me_latest_version": "Senaste: {version}",
+  "me_no_current_version": "Ingen version finns tillgänglig just nu",
+  "me_notify_off": "Uppdateringssignaler av",
+  "me_notify_on": "Uppdateringssignaler på",
+  "me_onboarding_completed": "Du överlevde första dagen — märke upplåst",
+  "me_onboarding_dismiss": "Dölj",
+  "me_onboarding_download_action": "Bläddra bland moddar",
+  "me_onboarding_download_hint": "Välj vilken som helst som fungerar på det aktuella bygget.",
+  "me_onboarding_download_title": "Ladda ned din första modd",
+  "me_onboarding_failed": "Det gick inte att uppdatera listan",
+  "me_onboarding_follow_action": "Hitta en modd att följa",
+  "me_onboarding_follow_hint": "Tryck på ♥ för att lägga den i ryggsäcken och få veta om uppdateringar.",
+  "me_onboarding_follow_title": "Följ en modd",
+  "me_onboarding_install_action": "Öppna installationsguiden",
+  "me_onboarding_install_done": "Jag har installerat den",
+  "me_onboarding_install_hint": "Modladdaren som alla moddar till Sons of the Forest behöver.",
+  "me_onboarding_install_title": "Installera RedLoader",
+  "me_onboarding_kit_action": "Skapa ett kit",
+  "me_onboarding_kit_hint": "Samla dina moddar i en loadout som du delar med en enda kod.",
+  "me_onboarding_kit_title": "Packa ett kit",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{done__number} av {total__number} klara"
+      }
+    }
+  ],
+  "me_onboarding_readout": "Dag 1 på ön",
+  "me_onboarding_report_action": "Till mina nedladdningar",
+  "me_onboarding_report_hint": "Svara på ”Fungerade det?” för en modd du laddat ned.",
+  "me_onboarding_report_title": "Berätta om det fungerade",
+  "me_onboarding_step_done": "Klart:",
+  "me_onboarding_step_todo": "Att göra:",
+  "me_onboarding_text": "Fem snabba steg för att komma i gång. Klara alla för att få märket ”Överlevde första dagen”.",
+  "me_onboarding_title": "Överlev din första dag",
+  "me_report_broken": "Det är trasigt",
+  "me_report_description": "Din fältrapport om version {version} på spelbygget {build} hjälper alla överlevare att välja moddar som fungerar.",
+  "me_report_mode_client": "Flerspelarklient",
+  "me_report_mode_dedicated": "Dedikerad server",
+  "me_report_mode_host": "Flerspelarvärd",
+  "me_report_mode_label": "Hur du spelade",
+  "me_report_mode_singleplayer": "Enspelarläge",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Krascher, konflikter med andra moddar… upp till {max__number} tecken."
+      }
+    }
+  ],
+  "me_report_note_label": "Vad hände",
+  "me_report_partial": "Delvis",
+  "me_report_pick_result": "Välj hur det gick.",
+  "me_report_result_legend": "Hur gick det?",
+  "me_report_submit": "Skicka rapport",
+  "me_report_thanks": "Tack — din rapport om {mod} finns på kartan",
+  "me_report_title": "Fungerade {mod}?",
+  "me_report_verify_email": "Bekräfta din e-postadress innan du skickar fältrapporter.",
+  "me_report_works": "Det fungerar",
+  "me_undo": "Ångra",
+  "me_unfollow": "Sluta följa",
+  "me_unfollowed": "{mod} togs ur ryggsäcken",
+  "me_up_to_date": "Uppdaterad ({version})",
+  "me_update_available": "Uppdatering tillgänglig",
+  "me_update_from_to": "Uppdatering: {from} → {to}",
   "meta_default_description": "Hemmet för modding av Sons of the Forest: moddar, byggen och kit för RedLoader, testade på varje patch. Gratis, direkta nedladdningar.",
   "meta_feed_description": "De senaste moddarna och uppdateringarna till Sons of the Forest på SOTF Mods.",
   "meta_feed_title": "SOTF Mods: nya och uppdaterade moddar",
@@ -3725,6 +4337,7 @@
   "mod_fact_updated": "Uppdaterad {date}",
   "mod_fact_updated_label": "Uppdaterad",
   "mod_fact_version": "Version",
+  "mod_feed_title": "Versioner av {name}",
   "mod_field_report_sign_in": "Logga in för att lägga till en fältrapport",
   "mod_field_report_text": "En fältrapport tar tio sekunder och visar alla om moden fungerar i den aktuella patchen.",
   "mod_field_report_title": "Fungerade det i ditt spel?",
@@ -4658,6 +5271,1312 @@
   "profile_xp_profile_completed": "Fyll i din profil",
   "profile_xp_review_helpful_vote": "En ”hjälpsam”-röst på din recension",
   "profile_xp_review_with_text": "Recension med minst 80 tecken text",
+  "ranger_action_approve": "Godkänn",
+  "ranger_action_mark_reviewed": "Markera som granskad",
+  "ranger_action_reject": "Avvisa",
+  "ranger_action_remove": "Ta bort",
+  "ranger_action_request_changes": "Begär ändringar",
+  "ranger_action_restore": "Återställ",
+  "ranger_action_unlist": "Ta bort ur listorna",
+  "ranger_assigned_short": "hos {name}",
+  "ranger_assigned_to": "Tilldelat",
+  "ranger_audit_action": "Åtgärd",
+  "ranger_audit_actor": "Utförarens användarnamn",
+  "ranger_audit_apply": "Filtrera",
+  "ranger_audit_changes": "Före och efter",
+  "ranger_audit_clear": "Rensa",
+  "ranger_audit_description": "Varje åtgärd av rangers och admins: vem, vad, före och efter och varför. Poster kan inte redigeras.",
+  "ranger_audit_empty_filtered": "Ingen post matchar filtren.",
+  "ranger_audit_empty_text": "Ingen ranger-åtgärd har loggats ännu.",
+  "ranger_audit_empty_title": "Inga poster",
+  "ranger_audit_reason_hint": "Sparas i granskningsloggen.",
+  "ranger_audit_reason_label": "Motivering",
+  "ranger_audit_system": "System",
+  "ranger_audit_target": "Mål",
+  "ranger_audit_target_hint": "typ:id, till exempel user:12 eller mod:312",
+  "ranger_audit_target_invalid": "Använd typ:id, till exempel user:12.",
+  "ranger_audit_title": "Granskningslogg",
+  "ranger_author_unknown": "Okänd skapare",
+  "ranger_back_to_list": "Tillbaka till listan",
+  "ranger_cancel": "Avbryt",
+  "ranger_changelog_none": "Ingen ändringslista för den här versionen.",
+  "ranger_checks_failed": "Kontrollerna misslyckades",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fil",
+        "count__plural=*": "{count__number} filer"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "Flaggat för granskning",
+  "ranger_checks_manifest_ok": "manifest.json giltig",
+  "ranger_checks_no_flags": "Ingen kontroll slog larm.",
+  "ranger_checks_none": "Ingen filinspektion för det här objektet.",
+  "ranger_checks_passed": "Kontrollerna godkända",
+  "ranger_checks_pending": "Kontrollerna pågår",
+  "ranger_checks_ratio": "Komprimeringsgrad {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "Uppackat {size}",
+  "ranger_checks_title": "Automatiska kontroller",
+  "ranger_comment_hidden": "Kommentaren doldes.",
+  "ranger_comment_hide": "Dölj",
+  "ranger_comment_publish": "Publicera",
+  "ranger_comment_published": "Kommentaren publicerades.",
+  "ranger_comment_reject_confirm": "Dölj kommentaren",
+  "ranger_comment_reject_reason": "Motivering",
+  "ranger_comment_reject_reason_hint": "Sparas i granskningsloggen.",
+  "ranger_comment_reject_title": "Dölj den här kommentaren",
+  "ranger_conflict_detail": "Någon ändrade objektet under tiden. Kön har uppdaterats; kontrollera det igen.",
+  "ranger_decided_approve": "Godkänd: {title}",
+  "ranger_decided_reject": "Avvisad: {title}",
+  "ranger_decided_remove": "Borttagen: {title}",
+  "ranger_decided_request_changes": "Ändringar begärda: {title}",
+  "ranger_decided_restore": "Återställd: {title}",
+  "ranger_decided_reviewed": "Markerad som granskad: {title}",
+  "ranger_decided_unlist": "Borttagen ur listorna: {title}",
+  "ranger_decision_failed": "Beslutet sparades inte",
+  "ranger_decision_no_template": "Ingen mall – bara min anteckning",
+  "ranger_decision_note_hint": "Markdown. Skickas med mallen; säg vad som ska rättas.",
+  "ranger_decision_note_label": "Anteckning till skaparen",
+  "ranger_decision_reason_required": "Skriv en motivering (minst 3 tecken).",
+  "ranger_decision_template_label": "Mall för motivering",
+  "ranger_decision_template_or_note": "Välj en mall eller skriv en anteckning.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Ingen text att visa.",
+  "ranger_diff_added": "Tillagd:",
+  "ranger_diff_changed": "Ändrad:",
+  "ranger_diff_content_changed": "innehållet ändrat",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Första versionen: inget att jämföra med. Zip-filen innehåller {count__number} fil.",
+        "count__plural=*": "Första versionen: inget att jämföra med. Zip-filen innehåller {count__number} filer."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "körbar",
+  "ranger_diff_identical": "Samma filer som i förra versionen.",
+  "ranger_diff_new_code": "ny kod",
+  "ranger_diff_removed": "Borttagen:",
+  "ranger_diff_summary": "Jämfört med förra versionen: {added} tillagda, {removed} borttagna, {changed} ändrade.",
+  "ranger_diff_truncated": "Visar de första {shown} av {total} filer.",
+  "ranger_diff_unavailable": "Ingen fillista att jämföra.",
+  "ranger_flag_absolute_path": "Absolut sökväg i zip-filen",
+  "ranger_flag_blueprint_invalid": "Byggfilen är ogiltig",
+  "ranger_flag_extension_flagged": "Körbar fil eller skript",
+  "ranger_flag_extension_not_allowed": "Filtypen är inte tillåten",
+  "ranger_flag_file_too_large": "Filen är för stor",
+  "ranger_flag_manifest_id_mismatch": "Manifestets id skiljer sig från modden",
+  "ranger_flag_manifest_invalid": "manifest.json är ogiltig",
+  "ranger_flag_manifest_missing": "manifest.json saknas",
+  "ranger_flag_scan_detections": "Träffar i säkerhetsskanningen",
+  "ranger_flag_version_not_greater": "Versionen är inte nyare än den förra",
+  "ranger_flag_version_not_semver": "Versionen är inte semantisk (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "För hög komprimeringsgrad (zipbomb)",
+  "ranger_flag_zip_invalid": "Inte en giltig zip",
+  "ranger_flag_zip_slip": "Sökväg lämnar moddmappen (zip slip)",
+  "ranger_flag_zip_too_many_entries": "För många filer i zip-filen",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} blockerande kontroll",
+        "count__plural=*": "{count__number} blockerande kontroller"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Kontots ålder",
+  "ranger_history_attention": "Den här skaparen har avvisade moddar eller aktiva sanktioner.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dag",
+        "count__plural=*": "{count__number} dagar"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Granskningsspåret",
+  "ranger_history_open_user": "Öppna användarkortet",
+  "ranger_history_published": "Publicerade moddar",
+  "ranger_history_rejected": "Avvisade moddar",
+  "ranger_history_sanctions": "Aktiva sanktioner",
+  "ranger_history_trust": "Förtroende",
+  "ranger_item_document_title": "Granskning: {title}",
+  "ranger_item_gone_text": "En annan ranger har redan beslutat om objektet, eller så har det lämnat kön.",
+  "ranger_item_gone_title": "Redan hanterat",
+  "ranger_item_next": "Nästa objekt",
+  "ranger_item_region": "Objekt under granskning",
+  "ranger_lane_builds": "Byggen",
+  "ranger_lane_builds_hint": "Byggen som väntar på godkännande eller granskning efter publicering.",
+  "ranger_lane_comments": "Kommentarer",
+  "ranger_lane_comments_hint": "Kommentarer som hålls kvar för granskning innan någon kan läsa dem.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} objekt väntar",
+        "count__plural=*": "{count__number} objekt väntar"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "Inga kommentarer väntar på granskning.",
+  "ranger_lane_empty_reports": "Inga öppna anmälningar. Communityn sköter sig.",
+  "ranger_lane_empty_text": "Inget väntar i den här filen. Nya objekt dyker upp här av sig själva.",
+  "ranger_lane_empty_title": "Fri stig",
+  "ranger_lane_new_mods": "Nya moddar",
+  "ranger_lane_new_mods_hint": "Första inskick och moddar som väntar på godkännande.",
+  "ranger_lane_post_review": "Efterhandsgranskning",
+  "ranger_lane_post_review_hint": "Redan publicerade versioner utan mänsklig granskning: granska dem inom 72 timmar.",
+  "ranger_lane_reports": "Anmälningar",
+  "ranger_lane_reports_hint": "Öppna anmälningar från communityn.",
+  "ranger_lane_versions": "Versioner",
+  "ranger_lane_versions_hint": "Versioner som hålls kvar av kontrollerna, säkerhetsskanningen eller en anmälan.",
+  "ranger_lanes_label": "Köns filer",
+  "ranger_live": "Live",
+  "ranger_live_off": "Uppdateringar pausade – listan uppdateras när anslutningen är tillbaka",
+  "ranger_load_more": "Läs in fler",
+  "ranger_loading": "Läser in …",
+  "ranger_manifest_after": "Efter",
+  "ranger_manifest_before": "Före",
+  "ranger_manifest_field": "Fält",
+  "ranger_manifest_identical": "Manifestet har inte ändrats.",
+  "ranger_media_alt": "Bild {index}",
+  "ranger_media_none": "Inga bilder.",
+  "ranger_more_actions": "Fler åtgärder",
+  "ranger_new_tab": "(öppnas i en ny flik)",
+  "ranger_next": "Nästa",
+  "ranger_no_actions": "Det finns inget mer att besluta här.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Öppna sidan",
+  "ranger_open_reports": "Alla anmälningar",
+  "ranger_page_of": "Sida {page} av {total}",
+  "ranger_pagination": "Sidor",
+  "ranger_panel_error_text": "Något gick fel hos oss. Försök igen om en stund.",
+  "ranger_panel_error_title": "Det här lästes inte in",
+  "ranger_previous": "Föregående",
+  "ranger_queue_description": "Äldst och mest riskfyllt först. Varje beslut loggas och skaparen meddelas.",
+  "ranger_queue_title": "Modereringskö",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Fungerar inte",
+  "ranger_reason_harassment": "Trakasserier",
+  "ranger_reason_illegal": "Olagligt innehåll",
+  "ranger_reason_malware": "Skadlig kod",
+  "ranger_reason_nsfw_unmarked": "NSFW inte markerat",
+  "ranger_reason_other": "Annat",
+  "ranger_reason_reupload": "Omuppladdning utan tillstånd",
+  "ranger_reason_spam": "Spam",
+  "ranger_reauth_action": "Logga in igen",
+  "ranger_reauth_text": "Ranger-åtgärder kräver en inloggning från de senaste 12 timmarna. Logga in igen för att fortsätta.",
+  "ranger_reauth_title": "Bekräfta att det är du",
+  "ranger_reference": "Ref: {reference}",
+  "ranger_report_by": "Anmäld av",
+  "ranger_report_by_unknown": "Anmälaren har raderat sitt konto",
+  "ranger_report_dismiss": "Avfärda",
+  "ranger_report_dismiss_text": "Anmälan var inget problem. Innehåll som dolts automatiskt av anmälningar blir synligt igen.",
+  "ranger_report_dismiss_title": "Avfärda anmälan",
+  "ranger_report_dismissed": "Anmälan avfärdad.",
+  "ranger_report_hide_hint": "Moddar och kit tas bort ur listorna, versioner hålls kvar, kommentarer och recensioner döljs.",
+  "ranger_report_hide_label": "Dölj innehållet",
+  "ranger_report_history": "Innehållets historik",
+  "ranger_report_no_details": "Inga detaljer angivna.",
+  "ranger_report_note_hint": "Sparas med anmälan och i granskningsloggen.",
+  "ranger_report_note_label": "Anteckning om lösningen",
+  "ranger_report_open_user": "Öppna användarkortet",
+  "ranger_report_resolution": "Lösning: {note}",
+  "ranger_report_resolve": "Lös",
+  "ranger_report_resolve_hide": "Lös och dölj",
+  "ranger_report_resolve_text": "Alla öppna anmälningar om innehållet stängs och varje anmälare får veta att det har hanterats.",
+  "ranger_report_resolve_title": "Lös anmälan",
+  "ranger_report_resolved": "Anmälan löst.",
+  "ranger_report_status_all": "Alla",
+  "ranger_report_status_dismissed": "Avfärdade",
+  "ranger_report_status_open": "Öppna",
+  "ranger_report_status_resolved": "Lösta",
+  "ranger_report_target_missing": "{type} nr {id} (finns inte längre)",
+  "ranger_reports_description": "Det communityn har anmält, med orsak och bevis. När en anmälan stängs meddelas den som skickade den.",
+  "ranger_reports_empty_open_text": "Inget att titta på. Nya anmälningar syns här och i kön.",
+  "ranger_reports_empty_open_title": "Inga öppna anmälningar",
+  "ranger_reports_empty_text": "Ingen anmälan matchar filtret.",
+  "ranger_reports_empty_title": "Inga anmälningar här",
+  "ranger_reports_filter": "Anmälans status",
+  "ranger_reports_title": "Anmälningar",
+  "ranger_retry": "Försök igen",
+  "ranger_risk_high": "Hög risk",
+  "ranger_risk_low": "Låg risk",
+  "ranger_risk_medium": "Medelhög risk",
+  "ranger_role_admin": "Admin",
+  "ranger_role_moderator": "Moderator",
+  "ranger_role_user": "Användare",
+  "ranger_sanction_ban": "Bannlys",
+  "ranger_sanction_ban_hint": "Permanent. Loggar ut överallt.",
+  "ranger_sanction_comment_mute": "Tysta kommentarer",
+  "ranger_sanction_comment_mute_hint": "Kan inte kommentera eller recensera – överallt eller på en modd.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dag",
+        "count__plural=*": "{count__number} dagar"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Längd",
+  "ranger_sanction_ended": "Avslutad",
+  "ranger_sanction_failed": "Sanktionen tillämpades inte",
+  "ranger_sanction_kind": "Sanktion",
+  "ranger_sanction_open": "Sanktionera",
+  "ranger_sanction_permanent": "Permanent",
+  "ranger_sanction_reason": "Motivering",
+  "ranger_sanction_reason_hint": "Användaren ser den. Håll dig till fakta.",
+  "ranger_sanction_revoke": "Återkalla",
+  "ranger_sanction_revoke_failed": "Sanktionen återkallades inte",
+  "ranger_sanction_revoke_title": "Återkalla sanktionen?",
+  "ranger_sanction_revoked": "Sanktionen återkallades.",
+  "ranger_sanction_revoked_on": "Återkallad {date}",
+  "ranger_sanction_scope": "Bara på en modd",
+  "ranger_sanction_scope_clear": "Tysta överallt i stället",
+  "ranger_sanction_scope_hint": "Lämna tomt för att tysta kommentarer överallt.",
+  "ranger_sanction_scope_none": "Ingen modd matchar.",
+  "ranger_sanction_scope_on": "på {mod}",
+  "ranger_sanction_scope_placeholder": "Sök en modd eller ett bygge",
+  "ranger_sanction_scope_results": "Matchande moddar",
+  "ranger_sanction_since": "Sedan {date}",
+  "ranger_sanction_suspend": "Stäng av",
+  "ranger_sanction_suspend_hint": "Kan inte logga in förrän slutdatumet.",
+  "ranger_sanction_title": "Sanktionera användaren",
+  "ranger_sanction_until": "till {date}",
+  "ranger_sanction_upload_mute": "Blockera uppladdningar",
+  "ranger_sanction_upload_mute_hint": "Kan inte publicera moddar, versioner eller byggen.",
+  "ranger_scan_clean": "Inga träffar",
+  "ranger_scan_engines": "{positives} av {total} motorer",
+  "ranger_scan_false_positive": "Verifierat falsklarm",
+  "ranger_scan_malicious": "Skadlig",
+  "ranger_scan_none": "Inte skannad",
+  "ranger_scan_override_confirm": "Spara utlåtande",
+  "ranger_scan_override_done": "Skanningens utlåtande: ”{verdict}”.",
+  "ranger_scan_override_failed": "Utlåtandet sparades inte",
+  "ranger_scan_override_false_positive_hint": "Du har kontrollerat filerna: träffarna är falsklarm. En version som skanningen höll kvar släpps.",
+  "ranger_scan_override_malicious_hint": "Filen är skadlig. Versionen dras tillbaka och förblir otillgänglig.",
+  "ranger_scan_override_note": "Varför (sparas i granskningsloggen)",
+  "ranger_scan_override_open": "Ändra utlåtande",
+  "ranger_scan_override_title": "Ändra skanningens utlåtande",
+  "ranger_scan_override_verdict": "Nytt utlåtande",
+  "ranger_scan_pending": "Skanning väntar",
+  "ranger_scan_report_link": "VirusTotal-rapport",
+  "ranger_scan_suspicious": "Misstänkt",
+  "ranger_scan_unknown": "Inte skannad (ingen skanner tillgänglig)",
+  "ranger_select_item": "Välj ett objekt i listan för att granska det.",
+  "ranger_severity_error": "blockerar publicering",
+  "ranger_severity_warning": "behöver en mänsklig blick",
+  "ranger_shortcut_next": "Nästa objekt",
+  "ranger_shortcut_previous": "Föregående objekt",
+  "ranger_sla_average": "Genomsnittlig väntetid",
+  "ranger_sla_due": "{time} · SLA löper snart ut",
+  "ranger_sla_oldest": "Äldst",
+  "ranger_sla_over": "Över {hours} h",
+  "ranger_sla_overdue": "{time} · SLA överskridet",
+  "ranger_sla_waiting": "Väntar i den här filen",
+  "ranger_staff": "Personal",
+  "ranger_submitted": "Inskickat {when}",
+  "ranger_tab_changelog": "Ändringar",
+  "ranger_tab_content": "Innehåll",
+  "ranger_tab_description": "Beskrivning",
+  "ranger_tab_files": "Filskillnader",
+  "ranger_tab_history": "Skaparens historik",
+  "ranger_tab_manifest": "Manifestskillnader",
+  "ranger_tab_media": "Media",
+  "ranger_tabs_label": "Objektets detaljer",
+  "ranger_target_comment": "Kommentar",
+  "ranger_target_compat_report": "Fältrapport",
+  "ranger_target_kit": "Kit",
+  "ranger_target_mod": "Modd",
+  "ranger_target_review": "Recension",
+  "ranger_target_user": "Användare",
+  "ranger_target_version": "Version",
+  "ranger_template_broken_or_empty": "Filen är trasig, tom eller laddar inte med RedLoader.",
+  "ranger_template_broken_or_empty_title": "Trasig eller tom",
+  "ranger_template_copyright_claim": "Borttagen efter ett giltigt upphovsrättsanspråk.",
+  "ranger_template_copyright_claim_title": "Upphovsrättsanspråk",
+  "ranger_template_credit_original_author": "Ange originalskaparen och länka till verket.",
+  "ranger_template_credit_original_author_title": "Ange originalskaparen",
+  "ranger_template_duplicate": "Det här dubblerar en modd som redan finns. Publicera en ny version av den i stället.",
+  "ranger_template_duplicate_title": "Dubblett",
+  "ranger_template_malware_confirmed": "Borttagen: filen är bekräftat skadlig.",
+  "ranger_template_malware_confirmed_title": "Skadlig kod bekräftad",
+  "ranger_template_malware_detected": "Säkerhetsskanningen flaggade filen som skadlig.",
+  "ranger_template_malware_detected_title": "Flaggad av skanningen",
+  "ranger_template_missing_description": "Beskriv vad modden gör, hur man installerar den och hur man använder den.",
+  "ranger_template_missing_description_title": "Beskrivning saknas",
+  "ranger_template_missing_screenshots": "Lägg till minst en skärmbild som visar modden i spelet.",
+  "ranger_template_missing_screenshots_title": "Skärmbilder saknas",
+  "ranger_template_not_a_mod": "Den här uppladdningen är varken en modd eller ett bygge för Sons of the Forest.",
+  "ranger_template_not_a_mod_title": "Inte en modd",
+  "ranger_template_nsfw_unmarked": "Modden innehåller vuxeninnehåll: markera den som NSFW.",
+  "ranger_template_nsfw_unmarked_title": "NSFW inte markerat",
+  "ranger_template_reupload_without_permission": "Det här ser ut som en omuppladdning av någon annans verk utan tillstånd.",
+  "ranger_template_reupload_without_permission_title": "Omuppladdning utan tillstånd",
+  "ranger_template_rules_violation": "Borttagen för brott mot sajtens regler.",
+  "ranger_template_rules_violation_title": "Regelbrott",
+  "ranger_template_spam": "Spam eller reklam.",
+  "ranger_template_spam_title": "Spam",
+  "ranger_template_wrong_category": "Flytta modden till den kategori som passar det den gör.",
+  "ranger_template_wrong_category_title": "Fel kategori",
+  "ranger_triage_note": "Mobilvy: bara snabb sortering. Fil- och manifestskillnaderna kräver en surfplatta eller dator.",
+  "ranger_trust_level": "Nivå {level}",
+  "ranger_user_account": "Konto",
+  "ranger_user_action_failed": "Ändringen sparades inte",
+  "ranger_user_actions": "Åtgärder",
+  "ranger_user_audit": "Granskningsspår",
+  "ranger_user_banned": "Bannlyst",
+  "ranger_user_banned_on": "Bannlyst {date}",
+  "ranger_user_comments": "Kommentarer",
+  "ranger_user_document_title": "{name} · Användare",
+  "ranger_user_email_unverified": "E-post inte verifierad",
+  "ranger_user_email_verified": "E-post verifierad",
+  "ranger_user_joined": "Gick med",
+  "ranger_user_last_seen": "Senast sedd",
+  "ranger_user_legacy_trusted": "Betrodd på den gamla sajten",
+  "ranger_user_mods": "Moddar",
+  "ranger_user_no_sanctions": "Aldrig några sanktioner.",
+  "ranger_user_outranked": "Rangers kan bara agera på konton med lägre roll än den egna.",
+  "ranger_user_public_profile": "Offentlig profil",
+  "ranger_user_reports_against": "Anmälningar mot",
+  "ranger_user_reviews": "Recensioner",
+  "ranger_user_revoke_sessions": "Logga ut överallt",
+  "ranger_user_revoke_sessions_text": "Alla sessioner för kontot avslutas nu. Personen kan logga in igen om kontot inte är avstängt eller bannlyst.",
+  "ranger_user_revoke_sessions_title": "Logga ut {name} överallt?",
+  "ranger_user_role": "Roll",
+  "ranger_user_role_confirm": "Ändra roll",
+  "ranger_user_role_done": "{name} är nu {role}.",
+  "ranger_user_role_hint": "Admins utses bara via kommandoraden.",
+  "ranger_user_role_title": "Ändra rollen för {name} till {role}?",
+  "ranger_user_sanctions": "Sanktioner",
+  "ranger_user_self": "Det här är ditt eget konto: en annan ranger måste agera.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Ingen session var öppen.",
+        "count__exact=*, count__plural=one": "{count__number} session avslutades.",
+        "count__exact=*, count__plural=*": "{count__number} sessioner avslutades."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Avstängd till {date}",
+  "ranger_user_unverified_done": "{name} är inte längre verifierad skapare.",
+  "ranger_user_unverify": "Ta bort markering",
+  "ranger_user_unverify_title": "Ta bort markeringen verifierad skapare från {name}?",
+  "ranger_user_verified_done": "{name} är nu verifierad skapare.",
+  "ranger_user_verified_hint": "Verifierade skapare publicerar direkt när kontrollerna går igenom och har högre gränser.",
+  "ranger_user_verify": "Verifiera skapare",
+  "ranger_user_verify_title": "Göra {name} till verifierad skapare?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} användare",
+        "count__plural=*": "{count__number} användare"
+      }
+    }
+  ],
+  "ranger_users_description": "Sök på användarnamn, namn eller e-post. Öppna en användare för att se historik och sanktioner.",
+  "ranger_users_empty_query": "Ingen matchar ”{query}”.",
+  "ranger_users_empty_text": "Inga träffar ännu.",
+  "ranger_users_empty_title": "Inga användare hittades",
+  "ranger_users_row_stats": "Moddar: {mods} · Anmälningar mot: {reports}",
+  "ranger_users_search_label": "Sök användare",
+  "ranger_users_search_placeholder": "Användarnamn, namn eller e-post",
+  "ranger_users_search_submit": "Sök",
+  "ranger_users_title": "Användare",
+  "ranger_verified_creator": "Verifierad skapare",
+  "ranger_waiting": "väntat {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} dag",
+        "count__plural=*": "{display} dagar"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} h",
+        "count__plural=*": "{count__number} h"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} min",
+        "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "settings_about_saved": "Profilen sparad",
+  "settings_about_text": "Hur du visas på din profil, dina moddar och i dina kommentarer.",
+  "settings_about_title": "Om dig",
+  "settings_account_hint": "Inloggningsadress och lösenord.",
+  "settings_account_overview_title": "Ditt konto",
+  "settings_account_title": "Konto",
+  "settings_appearance_saved": "Utseendet sparat",
+  "settings_appearance_text": "Hur SOTF Mods ser ut på den här och dina andra enheter.",
+  "settings_appearance_title": "Utseende",
+  "settings_avatar_change": "Byt foto",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG, JPEG, WebP, AVIF eller GIF upp till {max__number} MB. Du kan beskära det innan det sparas."
+      }
+    }
+  ],
+  "settings_avatar_label": "Avatar",
+  "settings_avatar_remove": "Ta bort foto",
+  "settings_avatar_removed": "Foto borttaget",
+  "settings_avatar_saved": "Nytt foto sparat",
+  "settings_avatar_upload": "Ladda upp ett foto",
+  "settings_avatar_uploading": "Laddar upp ditt foto…",
+  "settings_back": "Inställningar",
+  "settings_banner_custom_hint": "Du använder en egen bild. Slumpa en terräng för att gå tillbaka till en genererad banner.",
+  "settings_banner_label": "Banner",
+  "settings_banner_reroll": "Slumpa ny terräng",
+  "settings_banner_reroll_hint": "Förhandsvisning av ny terräng — välj ”Använd den här terrängen” för att behålla den.",
+  "settings_banner_saved": "Ny banner sparad",
+  "settings_banner_terrain_hint": "En karta ritad bara för dig. Slumpa om tills du gillar formen på din ö.",
+  "settings_banner_terrain_saved": "Terrängbanner sparad",
+  "settings_banner_upload": "Ladda upp en bild",
+  "settings_banner_uploading": "Laddar upp din banner…",
+  "settings_banner_use_terrain": "Använd den här terrängen",
+  "settings_behaviour_saved": "Preferenserna sparade",
+  "settings_behaviour_title": "Beteende",
+  "settings_bio": "Bio",
+  "settings_bio_hint": "Markdown fungerar: **fetstil**, _kursiv_ och länkar.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Håll din bio under {max__number} tecken."
+      }
+    }
+  ],
+  "settings_cancel": "Avbryt",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} tecken kvar",
+        "count__plural=*": "{count__number} tecken kvar"
+      }
+    }
+  ],
+  "settings_compat_prompts": "Fråga ”Fungerade det?” efter nedladdningar",
+  "settings_compat_prompts_hint": "Dina svar visar andra överlevare vilka moddar som fungerar på det aktuella bygget.",
+  "settings_creator_badges": "Dina märken",
+  "settings_creator_basecamp": "Öppna Basläger",
+  "settings_creator_hint": "Skaparstatus, stödlänkar, standardlicens och svarsmallar.",
+  "settings_creator_not_verified": "Inte verifierad än",
+  "settings_creator_not_verified_text": "Rangers verifierar skapare med en historik av säkra, underhållna moddar. Fortsätt publicera — det finns inget att ansöka om.",
+  "settings_creator_policy": "Allt du publicerar följer innehållspolicyn.",
+  "settings_creator_policy_link": "Läs innehållspolicyn",
+  "settings_creator_status_title": "Skaparstatus",
+  "settings_creator_title": "Skapare",
+  "settings_creator_verified": "Verifierad skapare",
+  "settings_creator_verified_text": "Dina moddar bär verifieringsmärket och du kan ladda upp större filer.",
+  "settings_crop_avatar_title": "Beskär ditt foto",
+  "settings_crop_banner_title": "Beskär din banner",
+  "settings_crop_failed": "Bilden kunde inte läsas. Prova en annan fil.",
+  "settings_crop_help": "Dra bilden eller flytta den med piltangenterna; zooma med reglaget eller + och −.",
+  "settings_crop_label": "Bildens beskärningsyta",
+  "settings_crop_roledescription": "beskärningsyta",
+  "settings_crop_use": "Använd bilden",
+  "settings_crop_zoom": "Zoom",
+  "settings_data_hint": "Exportera allt vi har om dig, eller radera ditt konto.",
+  "settings_data_title": "Dina data",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Dag {day__number} på ön"
+      }
+    }
+  ],
+  "settings_default_license": "Standardlicens",
+  "settings_default_license_hint": "Förvald när du publicerar en ny modd; kan ändras per modd.",
+  "settings_default_license_none": "Fråga varje gång",
+  "settings_defaults_local_note": "Standardvalen sparas bara i den här webbläsaren.",
+  "settings_defaults_saved": "Standardvalen sparade",
+  "settings_defaults_text": "Förifyll nya moddar och svara snabbare på vanliga frågor.",
+  "settings_defaults_title": "Standardval för publicering",
+  "settings_delete_already": "En radering är redan schemalagd för ditt konto.",
+  "settings_delete_cancel": "Avbryt raderingen",
+  "settings_delete_cancel_failed": "Det gick inte att avbryta raderingen",
+  "settings_delete_cancelled": "Raderingen avbruten — välkommen tillbaka",
+  "settings_delete_confirm": "Radera om 14 dagar",
+  "settings_delete_dialog_text": "Ditt konto raderas om 14 dagar. Fram till dess kan du avbryta på den här sidan.",
+  "settings_delete_dialog_title": "Radera ditt konto?",
+  "settings_delete_mode_archive": "Arkivera dem",
+  "settings_delete_mode_archive_hint": "De försvinner från listor och sök och tillskrivs inte längre dig.",
+  "settings_delete_mode_keep": "Behåll dem publicerade",
+  "settings_delete_mode_keep_hint": "Spelare hittar dem fortfarande, utan ditt namn.",
+  "settings_delete_mods_legend": "Vad som händer med dina moddar",
+  "settings_delete_open": "Radera mitt konto…",
+  "settings_delete_point_content": "Dina kommentarer och recensioner finns kvar, signerade ”Raderad överlevare”.",
+  "settings_delete_point_export": "Exportera dina data först om du vill ha en kopia.",
+  "settings_delete_point_grace": "Du har 14 dagar på dig att ångra dig; logga in och avbryt här för att stoppa det.",
+  "settings_delete_point_mods": "Dina moddar arkiveras eller förblir publicerade utan ditt namn — du väljer.",
+  "settings_delete_scheduled_text": "Ångrat dig? Avbryt nu så blir allt som förut.",
+  "settings_delete_scheduled_title": "Ditt konto raderas den {date}",
+  "settings_delete_scheduled_toast": "Ditt konto raderas den {date}",
+  "settings_delete_text": "Tar bort dina personuppgifter permanent efter en ångerfrist på 14 dagar.",
+  "settings_delete_title": "Radera ditt konto",
+  "settings_delete_type_handle": "Skriv ”{handle}” exakt för att bekräfta.",
+  "settings_delete_type_label": "Skriv ditt användarnamn ”{handle}” för att bekräfta",
+  "settings_density": "Täthet",
+  "settings_density_comfortable": "Luftig",
+  "settings_density_comfortable_hint": "Mer andrum.",
+  "settings_density_compact": "Kompakt",
+  "settings_density_compact_hint": "Mer på skärmen samtidigt.",
+  "settings_discard": "Förkasta ändringar",
+  "settings_display_name": "Visningsnamn",
+  "settings_display_name_hint": "På vilket språk och med vilka tecken som helst, 2–32 långt. Du kan ändra det när du vill.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Använd mellan {min__number} och {max__number} tecken."
+      }
+    }
+  ],
+  "settings_email_daily": "Daglig sammanfattning",
+  "settings_email_instant": "Direkt",
+  "settings_email_invalid": "Ange en giltig e-postadress.",
+  "settings_email_new": "Ny e-postadress",
+  "settings_email_off": "Av",
+  "settings_email_same": "Det är redan din e-postadress.",
+  "settings_email_sent_text": "Vi har skickat en bekräftelselänk till {email}. Adressen ändras när du öppnar den.",
+  "settings_email_sent_title": "Kolla din inkorg",
+  "settings_email_sent_toast": "Bekräftelselänk skickad",
+  "settings_email_submit": "Byt e-post",
+  "settings_email_taken": "Den adressen kan inte användas. Prova en annan.",
+  "settings_email_text": "Används för inloggning och för de mejl du väljer att få. För att byta bekräftar du den nya adressen från din inkorg; den gamla får ett meddelande.",
+  "settings_email_title": "E-postadress",
+  "settings_email_unverified": "Inte bekräftad",
+  "settings_email_verified": "Bekräftad",
+  "settings_email_weekly": "Veckosammanfattning",
+  "settings_export_again": "Förbered en ny export",
+  "settings_export_download": "Ladda ned ZIP",
+  "settings_export_email_note": "Vi mejlar dig också nedladdningslänken. Den fungerar i 24 timmar.",
+  "settings_export_expired": "Den här exportlänken har gått ut.",
+  "settings_export_expires": "länken gäller till {date}",
+  "settings_export_failed": "Det gick inte att starta exporten",
+  "settings_export_preparing": "Förbereder din export…",
+  "settings_export_rate_limited": "Du begärde en export nyligen — försök igen senare",
+  "settings_export_ready": "Din export är klar",
+  "settings_export_request": "Förbered min export",
+  "settings_export_requested": "Vi förbereder din export",
+  "settings_export_requested_at": "Begärd {date}",
+  "settings_export_status_failed": "Exporten misslyckades. Försök igen.",
+  "settings_export_text": "En ZIP med JSON-filer om ditt konto, din profil, dina moddar, kommentarer, recensioner, kit, följningar och inställningar.",
+  "settings_export_title": "Exportera dina data",
+  "settings_handle": "Användarnamn",
+  "settings_handle_hint": "Adressen till din profil. Den kan inte ändras än.",
+  "settings_history_link": "Öppna mina nedladdningar",
+  "settings_history_off_saved": "Nedladdningshistoriken är av",
+  "settings_history_on_saved": "Nedladdningshistoriken är på",
+  "settings_history_switch": "Spara nedladdningshistorik",
+  "settings_history_text": "När den är på visas dina nedladdningar som inloggad under ”Mina nedladdningar” så att vi kan berätta om uppdateringar.",
+  "settings_history_title": "Nedladdningshistorik",
+  "settings_image_processing": "Det tar för lång tid att bearbeta bilden. Försök igen om en stund.",
+  "settings_image_rejected": "Bilden avvisades. Prova en annan.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bilden är för stor. Gränsen är {max__number} MB."
+      }
+    }
+  ],
+  "settings_image_type": "Den filtypen stöds inte. Använd PNG, JPEG, WebP eller AVIF.",
+  "settings_index_title": "Inställningar",
+  "settings_language_browser": "Samma som min webbläsare",
+  "settings_language_label": "Språk",
+  "settings_language_saved": "Språket sparat",
+  "settings_language_text": "Språket i konsolen och i mejlen vi skickar till dig.",
+  "settings_language_title": "Språk och siffror",
+  "settings_link_add": "Lägg till en länk",
+  "settings_link_invalid": "Ange en fullständig webbadress som börjar med https://",
+  "settings_link_kind": "Typ",
+  "settings_link_label": "Etikett",
+  "settings_link_other": "Annat",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ta bort länk {n__number}"
+      }
+    }
+  ],
+  "settings_link_url": "Adress",
+  "settings_link_website": "Webbplats",
+  "settings_links_empty": "Inga länkar än.",
+  "settings_links_saved": "Länkarna sparade",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Upp till {max__number} länkar på profilen: din webbplats, dina kanaler och var folk kan stötta dig."
+      }
+    }
+  ],
+  "settings_links_title": "Länkar",
+  "settings_loading": "Laddar…",
+  "settings_member_since": "Överlevare sedan",
+  "settings_motion": "Animationer",
+  "settings_motion_full": "Alla",
+  "settings_motion_full_hint": "Alla animationer på.",
+  "settings_motion_reduce": "Minskade",
+  "settings_motion_reduce_hint": "Inga glidningar, zoomningar eller firanden.",
+  "settings_motion_system": "Som min enhet",
+  "settings_motion_system_hint": "Följer systemets inställning för minskad rörelse.",
+  "settings_notif_ack": "Dina fältrapporter",
+  "settings_notif_ack_hint": "En skapare har sett eller åtgärdat ett problem du rapporterade.",
+  "settings_notif_announcement": "Meddelanden",
+  "settings_notif_announcement_hint": "Nyheter från SOTF Mods-teamet.",
+  "settings_notif_award": "Priser",
+  "settings_notif_award_hint": "En av dina moddar blev veckans modd eller ett teamval.",
+  "settings_notif_badge": "Märken",
+  "settings_notif_badge_hint": "Du har låst upp ett märke.",
+  "settings_notif_broken": "Din modd rapporterad som trasig",
+  "settings_notif_broken_hint": "Fältrapporter säger att en av dina moddar har gått sönder på det aktuella bygget.",
+  "settings_notif_col_app": "I appen",
+  "settings_notif_col_email": "E-post",
+  "settings_notif_col_signal": "Signal",
+  "settings_notif_comment": "Kommentarer på dina moddar",
+  "settings_notif_comment_hint": "Samlade: flera kommentarer kommer som en signal.",
+  "settings_notif_creator": "Nya moddar från skapare",
+  "settings_notif_creator_hint": "En skapare du följer har publicerat något nytt.",
+  "settings_notif_defaults": "Återställ standard",
+  "settings_notif_email_only": "Bara e-post",
+  "settings_notif_group_community": "Community och rangers",
+  "settings_notif_group_conversations": "Samtal",
+  "settings_notif_group_follows": "Det du följer",
+  "settings_notif_group_my_mods": "Dina moddar",
+  "settings_notif_matrix_text": "Välj för varje typ av signal om den ska visas i appen och hur ofta den mejlas. Sammanfattningar samlar allt i ett mejl.",
+  "settings_notif_matrix_title": "Signaler och mejl",
+  "settings_notif_mention": "Omnämnanden",
+  "settings_notif_mention_hint": "Någon har @nämnt dig.",
+  "settings_notif_milestone": "Milstolpar för nedladdningar",
+  "settings_notif_milestone_hint": "En av dina moddar har passerat en nedladdningsmilstolpe.",
+  "settings_notif_patch": "Spelpatchar som förstör moddar",
+  "settings_notif_patch_hint": "Ett nytt spelbygge förstör troligen moddar (skickas till skapare).",
+  "settings_notif_removal_note": "Om en av dina moddar tas bort får du alltid ett mejl.",
+  "settings_notif_reply": "Svar",
+  "settings_notif_reply_hint": "Någon har svarat på din kommentar.",
+  "settings_notif_report": "Dina anmälningar",
+  "settings_notif_report_hint": "Rangers har granskat något du anmälde.",
+  "settings_notif_review": "Recensioner av dina moddar",
+  "settings_notif_review_hint": "Någon har betygsatt en av dina moddar.",
+  "settings_notif_review_reply": "Svar på dina recensioner",
+  "settings_notif_review_reply_hint": "En skapare har svarat på din recension.",
+  "settings_notif_saved": "Aviseringsinställningarna sparade",
+  "settings_notif_status": "Granskningsbeslut",
+  "settings_notif_status_hint": "En av dina moddar har godkänts, avvisats, behöver ändras eller har arkiverats.",
+  "settings_notif_version": "Nya versioner",
+  "settings_notif_version_hint": "En modd i din ryggsäck har släppt en uppdatering.",
+  "settings_notif_weekly": "Veckorapport för skapare",
+  "settings_notif_weekly_hint": "På måndagar: nedladdningar, följare och recensioner av dina moddar.",
+  "settings_notifications_hint": "Vilka signaler du får i appen och via e-post.",
+  "settings_notifications_title": "Aviseringar",
+  "settings_nsfw_adult": "Jag är 18 år eller äldre (eller myndig där jag bor)",
+  "settings_nsfw_confirm": "Visa",
+  "settings_nsfw_confirm_text": "NSFW-moddar kan innehålla nakenhet eller grafiskt innehåll. Du kan dölja dem igen när som helst.",
+  "settings_nsfw_confirm_title": "Visa vuxeninnehåll?",
+  "settings_nsfw_confirmed_on": "Bekräftat {date}",
+  "settings_nsfw_hide": "Dölj vuxeninnehåll",
+  "settings_nsfw_off_saved": "Vuxeninnehåll är dolt",
+  "settings_nsfw_on_saved": "Vuxeninnehåll visas nu",
+  "settings_nsfw_show": "Visa vuxeninnehåll",
+  "settings_nsfw_status_off": "Dolt",
+  "settings_nsfw_status_on": "Visas",
+  "settings_nsfw_text": "Moddar märkta NSFW är dolda i listor, sök och flöden och suddas ut överallt utom på sin egen sida. Slå på det här för att se dem.",
+  "settings_nsfw_title": "Vuxeninnehåll",
+  "settings_number_compact": "Förkortade",
+  "settings_number_compact_hint": "1,2 tn nedladdningar",
+  "settings_number_format": "Stora tal",
+  "settings_number_full": "Fullständiga",
+  "settings_number_full_hint": "1 234 nedladdningar",
+  "settings_password_changed": "Lösenordet har bytts",
+  "settings_password_changed_revoked": "Lösenordet har bytts och andra enheter har loggats ut",
+  "settings_password_confirm": "Upprepa det nya lösenordet",
+  "settings_password_current": "Nuvarande lösenord",
+  "settings_password_mismatch": "De två nya lösenorden stämmer inte överens.",
+  "settings_password_new": "Nytt lösenord",
+  "settings_password_rejected": "Det här lösenordet har förekommit i ett dataläckage. Välj ett annat.",
+  "settings_password_required": "Ange ditt nuvarande lösenord.",
+  "settings_password_revoke": "Logga ut mina andra enheter",
+  "settings_password_revoke_hint": "Rekommenderas om du tror att någon annan känner till ditt lösenord.",
+  "settings_password_same": "Välj ett annat lösenord än det nuvarande.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Använd minst {min__number} tecken."
+      }
+    }
+  ],
+  "settings_password_submit": "Byt lösenord",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Minst {min__number} tecken. En lång mening är lättare att komma ihåg och svårare att gissa."
+      }
+    }
+  ],
+  "settings_password_title": "Lösenord",
+  "settings_password_wrong": "Lösenordet stämmer inte.",
+  "settings_photos_text": "Din avatar och bannern högst upp på profilen. Ändringar sparas så fort uppladdningen är klar.",
+  "settings_photos_title": "Foto och banner",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} av {max__number} fästa"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nedladdning",
+        "count__plural=*": "{count__number} nedladdningar"
+      }
+    }
+  ],
+  "settings_pinned_empty": "När en av dina moddar är publicerad kan du fästa den här.",
+  "settings_pinned_failed": "Dina moddar kunde inte laddas.",
+  "settings_pinned_hidden": "Vissa fästa moddar är inte offentliga just nu; de förblir fästa och syns igen när de blir det.",
+  "settings_pinned_saved": "Fästa moddar sparade",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Välj upp till {max__number} av dina moddar som visas först på profilen, i den här ordningen."
+      }
+    }
+  ],
+  "settings_pinned_title": "Fästa moddar",
+  "settings_preferences_hint": "Språk, tema, animationer, kortkommandon och vuxeninnehåll.",
+  "settings_preferences_title": "Preferenser",
+  "settings_privacy_data_link": "Exportera eller radera mina data",
+  "settings_privacy_data_text": "Du kan exportera allt vi sparar om dig, eller radera ditt konto.",
+  "settings_privacy_data_title": "Dina data",
+  "settings_privacy_hint": "Vad andra ser på din profil, och din nedladdningshistorik.",
+  "settings_privacy_policy_link": "Integritetspolicy",
+  "settings_privacy_saved": "Integritetsinställningarna sparade",
+  "settings_privacy_title": "Integritet",
+  "settings_profile_hint": "Foto, banner, namn, bio, länkar och fästa moddar.",
+  "settings_profile_title": "Profil",
+  "settings_profile_view_public": "Visa din offentliga profil",
+  "settings_readout": "Lägerinställningar",
+  "settings_retry": "Försök igen",
+  "settings_save": "Spara",
+  "settings_save_failed": "Det gick inte att spara dina ändringar",
+  "settings_security_hint": "Var du är inloggad, och utloggning av andra enheter.",
+  "settings_security_tip_email": "Vi ber aldrig om ditt lösenord via e-post eller Discord.",
+  "settings_security_tip_password": "Använd ett lösenord som du inte använder någon annanstans.",
+  "settings_security_tip_sessions": "Logga ut från delade eller offentliga datorer när du är klar.",
+  "settings_security_tips_title": "Håll ditt läger säkert",
+  "settings_security_title": "Säkerhet",
+  "settings_sessions_active_now": "aktiv nu",
+  "settings_sessions_confirm_current_text": "Du hamnar på inloggningssidan.",
+  "settings_sessions_confirm_current_title": "Logga ut från den här webbläsaren?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} annan session avslutas. Den här webbläsaren förblir inloggad.",
+        "count__plural=*": "{count__number} andra sessioner avslutas. Den här webbläsaren förblir inloggad."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Logga ut överallt annars?",
+  "settings_sessions_confirm_text": "{device} måste logga in igen.",
+  "settings_sessions_confirm_title": "Logga ut den här enheten?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} aktiv session",
+        "count__plural=*": "{count__number} aktiva sessioner"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Det gick inte att logga ut den sessionen",
+  "settings_sessions_last_seen": "senast aktiv {when}",
+  "settings_sessions_revoked": "{device} utloggad",
+  "settings_sessions_revoked_others": "Andra enheter utloggade",
+  "settings_sessions_sign_out": "Logga ut",
+  "settings_sessions_sign_out_here": "Logga ut här",
+  "settings_sessions_sign_out_others": "Logga ut överallt annars",
+  "settings_sessions_started": "inloggad {date}",
+  "settings_sessions_text": "Varje webbläsare och enhet med en aktiv session. Logga ut dem du inte känner igen.",
+  "settings_sessions_this_device": "Den här enheten",
+  "settings_sessions_title": "Var du är inloggad",
+  "settings_sessions_unknown_device": "Okänd enhet",
+  "settings_shortcuts": "Kortkommandon",
+  "settings_shortcuts_hint": "Enkeltangentskommandon i konsolen. Stäng av dem om de stör ditt hjälpmedel.",
+  "settings_show_activity": "Visa min aktivitet",
+  "settings_show_activity_hint": "Värmekartan för 12 månader och din senaste aktivitet.",
+  "settings_show_kits": "Visa mina kit",
+  "settings_show_kits_hint": "Fliken Kit på din profil (privata kit visas aldrig).",
+  "settings_show_leaderboards": "Synas på topplistor",
+  "settings_show_leaderboards_hint": "Listor över toppskapare och toppöverlevare.",
+  "settings_show_rank": "Visa min överlevarrang och XP",
+  "settings_show_rank_hint": "Din rangstämpel bredvid ditt namn.",
+  "settings_support_edit": "Redigera länkar i din profil",
+  "settings_support_empty": "Du har inte lagt till någon Ko-fi- eller Patreon-länk än.",
+  "settings_support_text": "Ko-fi- och Patreon-länkar från din profil visas på profilen och bredvid nedladdningsknappen för dina moddar.",
+  "settings_support_title": "Stödlänkar",
+  "settings_template_add": "Lägg till en mall",
+  "settings_template_copied": "”{name}” kopierad",
+  "settings_template_copy": "Kopiera",
+  "settings_template_copy_failed": "Det gick inte att kopiera till urklipp",
+  "settings_template_delete": "Radera",
+  "settings_template_name": "Namn",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ge den ett namn (upp till {max__number} tecken)."
+      }
+    }
+  ],
+  "settings_template_text": "Text",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Skriv texten (upp till {max__number} tecken)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Inga mallar än.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Upp till {max__number} färdiga svar (installationssteg, kända konflikter…) att kopiera till kommentarer och svar på recensioner."
+      }
+    }
+  ],
+  "settings_templates_title": "Svarsmallar",
+  "settings_theme": "Tema",
+  "settings_theme_day": "Dag",
+  "settings_theme_night": "Natt",
+  "settings_theme_system": "Som min enhet",
+  "settings_verify_already": "Din e-postadress är redan bekräftad",
+  "settings_verify_resend": "Skicka länken igen",
+  "settings_verify_resend_failed": "Det gick inte att skicka länken",
+  "settings_verify_resent": "Vi har skickat en ny länk till {email}",
+  "settings_verify_text": "Fram till dess kan du bläddra och ladda ned, men inte kommentera, recensera eller publicera.",
+  "settings_verify_title": "Bekräfta din e-postadress",
+  "settings_visibility_text": "Stäng av det du hellre håller för dig själv.",
+  "settings_visibility_title": "På din profil",
+  "signals_action_download": "Ladda ned",
+  "signals_announcement": "Nytt meddelande från rangers",
+  "signals_announcement_titled": "Meddelande: {title}",
+  "signals_award_build_of_month": "{mod} är månadens bygge",
+  "signals_award_generic": "{mod} har vunnit ett pris",
+  "signals_award_mod_of_month": "{mod} är månadens modd",
+  "signals_award_mod_of_week": "{mod} är veckans modd",
+  "signals_award_staff_pick": "{mod} är ett teamval",
+  "signals_badge_awarded": "Märke upplåst: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Välkommen till nya SOTF Mods",
+        "count__exact=*, count__plural=one": "Välkommen till nya SOTF Mods — {count__number} märke väntar i din fältdagbok",
+        "count__exact=*, count__plural=*": "Välkommen till nya SOTF Mods — {count__number} märken väntar i din fältdagbok"
+      }
+    }
+  ],
+  "signals_bell_label": "Signaler",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Signaler: {count__number} oläst",
+        "count__plural=*": "Signaler: {count__number} olästa"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} rapporterade en bugg i {mod}",
+  "signals_comment_mention": "{actor} nämnde dig i kommentarerna på {mod}",
+  "signals_comment_on_mod": "{actor} kommenterade {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny kommentar på {mod}",
+        "count__plural=*": "{count__number} nya kommentarer på {mod}"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} svarade på din kommentar på {mod}",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} svar på din kommentar på {mod}",
+        "count__plural=*": "{count__number} svar på din kommentar på {mod}"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "Skaparen av {mod} har sett din fältrapport",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input status",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} rapporteras som trasig på {build}",
+        "status=*": "{mod} rapporteras som blandad på {build}"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "Din fältrapport om {mod} är åtgärdad i {version}",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} publicerade bygget {mod}",
+        "kind=*": "{actor} publicerade {mod}"
+      }
+    }
+  ],
+  "signals_current_build": "det aktuella bygget",
+  "signals_empty_filtered_text": "Ingen signal matchar det här filtret än. Prova ”Alla”.",
+  "signals_empty_filtered_title": "Inget på den här kanalen",
+  "signals_empty_text": "Följ moddar och skapare för att få veta när något ändras.",
+  "signals_empty_title": "Lugnt i skogen",
+  "signals_end": "Det var alla signaler för nu.",
+  "signals_error_text": "Något gick fel hos oss. Försök igen om en stund.",
+  "signals_error_title": "Signalerna kunde inte laddas.",
+  "signals_excerpt": "”{text}”",
+  "signals_filter_all": "Alla",
+  "signals_filter_label": "Filtrera signaler",
+  "signals_filter_mentions": "Omnämnanden",
+  "signals_filter_my_mods": "Mina moddar",
+  "signals_filter_ranger": "Rangers",
+  "signals_filter_updates": "Uppdateringar",
+  "signals_group_today": "I dag",
+  "signals_group_yesterday": "I går",
+  "signals_load_more": "Ladda äldre signaler",
+  "signals_loading": "Laddar signaler…",
+  "signals_loading_more": "Laddar…",
+  "signals_mark_all_read": "Markera allt som läst",
+  "signals_mark_failed": "Det gick inte att markera signalerna som lästa",
+  "signals_mark_read": "Markera som läst",
+  "signals_marked_all": "Alla signaler markerade som lästa",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} har passerat {threshold__number} nedladdningar"
+      }
+    }
+  ],
+  "signals_more_error": "Äldre signaler kunde inte laddas.",
+  "signals_page_description": "Uppdateringar från det du följer, svar, omnämnanden och nyheter om dina moddar.",
+  "signals_page_readout": "Radiologg",
+  "signals_page_title": "Signaler",
+  "signals_panel_title": "Signaler",
+  "signals_patch_breaking": "Spelbygget {build} kan förstöra moddar — kolla dina i Patch Radar",
+  "signals_preferences": "Aviseringsinställningar",
+  "signals_report_dismissed": "Din anmälan har granskats — ingen åtgärd behövdes",
+  "signals_report_resolved": "Din anmälan har granskats och åtgärder har vidtagits",
+  "signals_retry": "Försök igen",
+  "signals_review_on_mod": "{actor} gav {mod} en recension med {rating} stjärnor",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny recension av {mod}",
+        "count__plural=*": "{count__number} nya recensioner av {mod}"
+      }
+    }
+  ],
+  "signals_review_reply": "Skaparen av {mod} svarade på din recension",
+  "signals_see_all": "Visa alla signaler",
+  "signals_show_all": "Visa alla signaler",
+  "signals_someone": "Någon",
+  "signals_status_approved": "Din modd {mod} har godkänts och är publicerad",
+  "signals_status_archived": "Din modd {mod} har arkiverats",
+  "signals_status_changed": "Statusen för {mod} har ändrats",
+  "signals_status_changes_requested": "Rangers vill att du ändrar {mod}",
+  "signals_status_rejected": "Din modd {mod} har avvisats",
+  "signals_status_removed": "Din modd {mod} har tagits bort",
+  "signals_status_republished": "Din modd {mod} är offentlig igen",
+  "signals_status_unlisted": "Din modd {mod} har tagits bort från listorna",
+  "signals_unknown_mod": "en modd",
+  "signals_unread_prefix": "Oläst:",
+  "signals_version_published": "{mod} {version} är ute — du följer den",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny version av {mod}",
+        "count__plural=*": "{count__number} nya versioner av {mod}"
+      }
+    }
+  ],
+  "signals_weekly_report": "Din veckorapport som skapare är klar",
   "social_action_back": "Tillbaka",
   "social_action_cancel": "Avbryt",
   "social_action_close": "Stäng",
@@ -4992,5 +6911,578 @@
   "ui_theme_dark": "Natt",
   "ui_theme_light": "Dag",
   "ui_theme_system": "System",
-  "ui_type_to_confirm": "Skriv {text} för att bekräfta."
+  "ui_type_to_confirm": "Skriv {text} för att bekräfta.",
+  "upload_announce_group": "Testade versioner och meddelande",
+  "upload_autosave_error": "Kunde inte spara. Vi försöker igen strax – dina ändringar finns kvar här.",
+  "upload_autosave_idle": "Inget att spara än",
+  "upload_autosave_limit": "Gränsen för utkast är nådd: ta bort ett för att spara det här.",
+  "upload_autosave_offline": "Offline. Dina ändringar finns kvar här och sparas när du är tillbaka.",
+  "upload_autosave_pending": "Osparade ändringar",
+  "upload_autosave_saved": "Sparades automatiskt {when}",
+  "upload_autosave_saving": "Sparar…",
+  "upload_back": "Tillbaka",
+  "upload_block_empty": "Filen är tom.",
+  "upload_block_local_problems": "Kontrollerna nedan hittade fel. Rätta dem och välj filen igen.",
+  "upload_block_manifest_id_mismatch": "Den här filen är en annan mod: manifest-id är {found}, förväntat var {expected}.",
+  "upload_block_too_large": "Filen är större än {max}.",
+  "upload_block_unreadable": "Filen kunde inte läsas. Är den en giltig, komplett nedladdning?",
+  "upload_block_version_exists": "Version {version} finns redan. Höj versionen i manifest.json.",
+  "upload_block_version_not_greater": "Version {version} måste vara högre än {previous}. Höj versionen i manifest.json.",
+  "upload_block_version_not_semver": "Version {version} är ingen semantisk version (x.y.z).",
+  "upload_block_wrong_type": "Fel filtyp. Välj typen som visas i släppytan.",
+  "upload_blocked_title": "Den här filen kan inte laddas upp.",
+  "upload_build_buildshare_version": "BuildShare-version",
+  "upload_build_detected": "Ritning hittad",
+  "upload_build_elements": "Element",
+  "upload_build_guid": "Ritnings-id",
+  "upload_build_no_thumbnail": "Den här ritningen har ingen miniatyr. Lägg till ett omslag i mediesteget.",
+  "upload_build_size_class": "Storlek",
+  "upload_build_structures": "Konstruktioner",
+  "upload_build_thumbnail_alt": "Miniatyr av ritningen {name}",
+  "upload_cancel": "Avbryt",
+  "upload_category_label": "Kategori",
+  "upload_category_placeholder": "Välj en kategori",
+  "upload_changelog_group": "Ändringslogg",
+  "upload_changelog_hint_first": "Valfritt för en första release.",
+  "upload_changelog_hint_version": "Dina följare läser det här i sina Signaler.",
+  "upload_changelog_label": "Vad som ändrats (Markdown)",
+  "upload_changelog_placeholder": "Fixat…, lagt till…, ändrat…",
+  "upload_channel_beta": "Beta",
+  "upload_channel_beta_hint": "För testare som vill ha de senaste ändringarna.",
+  "upload_channel_label": "Kanal",
+  "upload_channel_release": "Stabil",
+  "upload_channel_release_hint": "För alla. Blir den senaste versionen.",
+  "upload_choose_other": "Välj en annan fil",
+  "upload_compat_game": "Spel och laddare",
+  "upload_compat_intro": "Berätta för spelarna var din mod fungerar. Överlevarnas fältrapporter fyller på senare.",
+  "upload_compat_title": "Kompatibilitet",
+  "upload_compat_where": "Var den fungerar",
+  "upload_counter": "{count} / {max}",
+  "upload_cover_build_fallback": "Utan omslag används ritningens miniatyr.",
+  "upload_cover_choose": "Välj en bild",
+  "upload_cover_description": "Visas på kort och högst upp på sidan, beskuren till 16:9.",
+  "upload_cover_drop": "Släpp en omslagsbild här",
+  "upload_cover_failed": "Omslaget kunde inte laddas upp.",
+  "upload_cover_hint": "PNG, JPEG, WebP, AVIF eller GIF · upp till 10 MB · ser bäst ut från 1280 × 720",
+  "upload_cover_label": "Omslag",
+  "upload_cover_preview_alt": "Förhandsvisning av omslaget",
+  "upload_cover_remove": "Ta bort omslag",
+  "upload_cover_replace": "Byt omslag",
+  "upload_cover_uploading": "Uppladdningsförlopp för omslaget",
+  "upload_crop_confirm": "Använd den här beskärningen",
+  "upload_crop_description": "Dra ramen, eller fokusera den och använd piltangenterna. + och − ändrar storleken.",
+  "upload_crop_frame": "Beskärningsram",
+  "upload_crop_keyboard": "Pilar flyttar · Skift går snabbare · + och − ändrar storlek",
+  "upload_crop_output": "Resultat {width} × {height}",
+  "upload_crop_position": "Vänster {x} px, överkant {y} px",
+  "upload_crop_size": "Ramens storlek",
+  "upload_crop_title": "Beskär omslaget",
+  "upload_dedicated_hint": "Fungerar den på en dedikerad server?",
+  "upload_dedicated_label": "Dedikerad server",
+  "upload_dedicated_no": "Nej",
+  "upload_dedicated_partial": "Delvis",
+  "upload_dedicated_unknown": "Vet inte",
+  "upload_dedicated_yes": "Ja",
+  "upload_dependencies_hint": "De i manifest.json krävs alltid. Lägg till valfria moddar och konflikter här.",
+  "upload_dependencies_label": "Beroenden",
+  "upload_dependencies_none": "Inga beroenden.",
+  "upload_dependency_add": "Lägg till",
+  "upload_dependency_add_as": "Lägg till {name} som {kind}",
+  "upload_dependency_conflicts": "Konflikt",
+  "upload_dependency_duplicate": "Det beroendet finns redan i listan.",
+  "upload_dependency_from_manifest": "Från manifest.json",
+  "upload_dependency_invalid_id": "Ett manifest-id består bara av bokstäver, siffror, ”.”, ”_” och ”-”.",
+  "upload_dependency_kind": "Relation till {id}",
+  "upload_dependency_manual": "Eller skriv ett manifest-id",
+  "upload_dependency_no_results": "Ingen mod matchar.",
+  "upload_dependency_optional": "Valfri",
+  "upload_dependency_range": "Versionsintervall för {id}",
+  "upload_dependency_range_placeholder": "Valfri version (t.ex. >=1.2.0)",
+  "upload_dependency_remove": "Ta bort {id}",
+  "upload_dependency_required": "Krävs",
+  "upload_dependency_search": "Sök moddar och bibliotek på SOTF Mods",
+  "upload_dependency_search_failed": "Sökningen misslyckades. Försök igen.",
+  "upload_description_group": "Beskrivning",
+  "upload_description_hint": "Vad den gör, hur man använder den, kända problem. Rubriker, listor, bilder och YouTube-länkar fungerar.",
+  "upload_description_label": "Beskrivning (Markdown)",
+  "upload_description_placeholder": "Vad din mod gör, hur man använder den, kända problem…",
+  "upload_details_discovery": "Kategori och taggar",
+  "upload_details_discovery_hint": "De avgör var överlevare hittar den i Utforska och sökningen.",
+  "upload_details_identity": "Namn och adress",
+  "upload_details_intro": "Så här läses din sida på webbplatsen. Vi har fyllt i det filen berättade.",
+  "upload_details_links": "Licens och länkar",
+  "upload_details_title": "Detaljer",
+  "upload_draft_limit_detail": "Ta bort ett utkast du inte längre behöver för att börja ett nytt.",
+  "upload_draft_limit_title": "Du har 20 utkast.",
+  "upload_draft_missing_detail": "Det har skickats in eller tagits bort. Dina andra utkast finns kvar i listan.",
+  "upload_draft_missing_title": "Det här utkastet finns inte längre.",
+  "upload_draft_other_flow_detail": "Öppna det där det påbörjades så att stegen behålls.",
+  "upload_draft_other_flow_title": "Det här utkastet hör till ett annat flöde.",
+  "upload_drafts_blockers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sak att åtgärda",
+        "count__plural=*": "{count__number} saker att åtgärda"
+      }
+    }
+  ],
+  "upload_drafts_counter": "{count} / {max}",
+  "upload_drafts_delete": "Ta bort",
+  "upload_drafts_delete_detail": "”{name}” och dess oskickade filer försvinner. Det går inte att ångra.",
+  "upload_drafts_delete_named": "Ta bort {name}",
+  "upload_drafts_delete_title": "Ta bort det här utkastet?",
+  "upload_drafts_deleted": "Utkastet togs bort",
+  "upload_drafts_empty_detail": "Allt du börjar publicera sparas här tills du skickar in det.",
+  "upload_drafts_empty_title": "Inga utkast",
+  "upload_drafts_intro": "Sparas automatiskt medan du arbetar. Upp till {max} utkast åt gången.",
+  "upload_drafts_loading": "Läser in utkast",
+  "upload_drafts_quality": "Kvalitet {score}",
+  "upload_drafts_ready": "Klart att skicka in",
+  "upload_drafts_resume": "Fortsätt",
+  "upload_drafts_start": "Börja publicera",
+  "upload_drafts_step": "Steg {current} av {total} · {label}",
+  "upload_drafts_title": "Utkast",
+  "upload_drafts_untitled": "Namnlöst utkast",
+  "upload_drafts_untitled_version": "Ny version",
+  "upload_drafts_updated": "Redigerat {when}",
+  "upload_drop_button": "Välj fil",
+  "upload_drop_hint": "{type} · upp till {max}",
+  "upload_drop_replace": "Släpp en annan fil för att ersätta den",
+  "upload_drop_title_build": "Släpp din ritnings-.json här",
+  "upload_drop_title_mod": "Släpp din .zip här",
+  "upload_entries_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Och {count__number} fil till",
+        "count__plural=*": "Och {count__number} filer till"
+      }
+    }
+  ],
+  "upload_entries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fil i zip-filen",
+        "count__plural=*": "{count__number} filer i zip-filen"
+      }
+    }
+  ],
+  "upload_entry_flagged": "Behöver granskas",
+  "upload_entry_not_allowed": "Ovanlig typ",
+  "upload_entry_unsafe": "Osäker sökväg",
+  "upload_error_loader_version": "Använd en version som 0.9.0.",
+  "upload_error_name": "Använd 2 till 80 tecken.",
+  "upload_error_slug": "Använd små bokstäver, siffror och bindestreck (2 till 80).",
+  "upload_error_title": "Uppladdningen avbröts.",
+  "upload_error_url": "Ange en fullständig adress som börjar med https://",
+  "upload_error_youtube": "Klistra in en länk till en YouTube-video (youtube.com/watch, youtu.be eller shorts).",
+  "upload_expired_detail": "Uppladdningen gick ut innan den användes. Ladda upp filen igen.",
+  "upload_failure_api": "Något gick fel hos oss. Försök igen om en stund.",
+  "upload_failure_expired": "Uppladdningslänken har gått ut. Försök igen för att få en ny.",
+  "upload_failure_forbidden": "Ditt konto kan inte ladda upp just nu (obekräftad e-post eller en begränsning).",
+  "upload_failure_network": "Anslutningen bröts. Förloppet sparas: återuppta när du är online igen.",
+  "upload_failure_rejected": "Kontrollerna avvisade filen.",
+  "upload_failure_too_large": "Filen är för stor för ditt konto.",
+  "upload_failure_unsupported": "Den här filtypen accepteras inte.",
+  "upload_file_intro_build": "Släpp ritnings-.json som BuildShare exporterade. Miniatyr, antal element och version läses automatiskt.",
+  "upload_file_intro_mod": "Släpp den .zip du skulle ge spelarna. Vi öppnar den först i din webbläsare och visar innehållet innan något laddas upp.",
+  "upload_file_intro_version": "Ladda upp den nya filen för {name}. Manifest-id måste vara {manifestId} och versionen högre än {version}.",
+  "upload_file_title_build": "Din BuildShare-ritning",
+  "upload_file_title_mod": "Din moddfil",
+  "upload_flag_absolute_path": "En fil använder en absolut sökväg.",
+  "upload_flag_blueprint_invalid": "Det här är ingen giltig BuildShare-ritning.",
+  "upload_flag_extension_flagged": "Program eller skript: en ranger måste granska det.",
+  "upload_flag_extension_not_allowed": "Ovanlig filtyp för en mod.",
+  "upload_flag_file_too_large": "Filen är för stor.",
+  "upload_flag_manifest_id_mismatch": "Manifest-id matchar inte den här modden.",
+  "upload_flag_manifest_invalid": "manifest.json innehåller fel.",
+  "upload_flag_manifest_missing": "Ingen manifest.json hittades (högst två mappar ner).",
+  "upload_flag_scan_detections": "Säkerhetsskanningen rapporterade fynd.",
+  "upload_flag_unknown": "Kontrollen misslyckades ({code}).",
+  "upload_flag_version_not_greater": "Versionen är inte högre än den senaste.",
+  "upload_flag_version_not_semver": "Versionen är ingen semantisk version (x.y.z).",
+  "upload_flag_zip_bomb_ratio": "Komprimeringsgraden är misstänkt hög.",
+  "upload_flag_zip_invalid": "Zip-filen är skadad eller krypterad.",
+  "upload_flag_zip_slip": "En sökväg lämnar moddens mapp (”..” eller en länk).",
+  "upload_flag_zip_too_many_entries": "Zip-filen har för många filer (högst 5 000).",
+  "upload_flagged_detail": "Något i den behöver granskas av en människa (se varningarna nedan). Du kan ändå skicka in; den publiceras när den godkänts.",
+  "upload_flagged_title": "En ranger tittar på den här filen.",
+  "upload_gallery_added": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bild tillagd",
+        "count__plural=*": "{count__number} bilder tillagda"
+      }
+    }
+  ],
+  "upload_gallery_alt": "Beskrivning av bild {n}",
+  "upload_gallery_alt_placeholder": "Vad visar den?",
+  "upload_gallery_choose": "Välj bilder",
+  "upload_gallery_counter": "{count} / {max}",
+  "upload_gallery_description": "Upp till 10 skärmbilder. Dra för att ordna dem och beskriv varje bild för skärmläsare.",
+  "upload_gallery_drop": "Släpp skärmbilder här",
+  "upload_gallery_full": "Galleriet är fullt ({max} bilder).",
+  "upload_gallery_hint": "Flera åt gången · PNG, JPEG, WebP, AVIF eller GIF · upp till 10 MB var · högst {max}",
+  "upload_gallery_image": "Skärmbild {n}",
+  "upload_gallery_label": "Galleri",
+  "upload_gallery_move_after": "Flytta bild {n} senare",
+  "upload_gallery_move_before": "Flytta bild {n} tidigare",
+  "upload_gallery_moved": "Bilden flyttades till plats {position} av {total}",
+  "upload_gallery_queued": "Väntar…",
+  "upload_gallery_remove": "Ta bort bild {n}",
+  "upload_gallery_removed": "Bilden togs bort",
+  "upload_gallery_reorder_hint": "Dra bilderna, eller använd pilarna, för att ändra ordningen.",
+  "upload_gallery_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fil hoppades över (fel typ, över 10 MB eller fullt galleri)",
+        "count__plural=*": "{count__number} filer hoppades över (fel typ, över 10 MB eller fullt galleri)"
+      }
+    }
+  ],
+  "upload_gallery_uploading": "Uppladdning av bild {n}",
+  "upload_game_build_current": "{label} (aktuell)",
+  "upload_game_builds_failed": "Spelversionerna kunde inte läsas in. Försök igen senare.",
+  "upload_game_builds_hint": "Kryssa bara i patcharna du faktiskt har spelat på.",
+  "upload_game_builds_label": "Spelversioner du har testat",
+  "upload_image_no_preview": "Uppladdad (förhandsvisning på sidan efter bearbetning)",
+  "upload_image_reading": "Läser bilden…",
+  "upload_image_too_large": "Bilder får vara upp till 10 MB.",
+  "upload_image_unreadable": "Bilden kunde inte öppnas.",
+  "upload_image_wrong_type": "Använd en PNG-, JPEG-, WebP-, AVIF- eller GIF-bild.",
+  "upload_inspecting_detail": "De automatiska kontrollerna körs hos oss. Du kan fylla i de andra stegen under tiden.",
+  "upload_inspecting_title": "Kontrollerar filen…",
+  "upload_issue_invalid_data": "Ritningens Data är ogiltig.",
+  "upload_issue_invalid_dependencies": "Listan över beroenden är ogiltig.",
+  "upload_issue_invalid_field": "Fältet ”{field}” saknas eller är ogiltigt.",
+  "upload_issue_invalid_id": "Id får bara innehålla bokstäver, siffror, ”.”, ”_” och ”-”.",
+  "upload_issue_invalid_json": "Filen är inte giltig JSON.",
+  "upload_issue_invalid_log_color": "Loggfärgen måste vara en hexfärg som #FF9900.",
+  "upload_issue_invalid_number_of_elements": "NumberOfElements måste vara ett heltal.",
+  "upload_issue_invalid_platform": "Plattformen måste vara Client, Server eller Universal.",
+  "upload_issue_invalid_priority": "Prioriteten måste vara ett heltal.",
+  "upload_issue_invalid_thumbnail": "Ritningens miniatyr går inte att läsa.",
+  "upload_issue_invalid_type": "Typen måste vara ”Mod” eller ”Library”.",
+  "upload_issue_invalid_url": "Url:en är ogiltig.",
+  "upload_issue_invalid_version": "Versionen måste se ut som 1.2.3.",
+  "upload_issue_missing_description": "Ritningen saknar Description.",
+  "upload_issue_missing_guid": "Ritningen saknar Guid.",
+  "upload_issue_missing_id": "Manifestet saknar id.",
+  "upload_issue_missing_name": "Ritningen saknar Name.",
+  "upload_issue_missing_version": "Manifestet saknar version.",
+  "upload_issue_not_an_object": "JSON måste vara ett objekt.",
+  "upload_kind_build": "Bygge",
+  "upload_kind_mod": "Mod",
+  "upload_kind_version": "Ny version",
+  "upload_license_all_rights_reserved": "Alla rättigheter förbehållna",
+  "upload_license_cc_by4": "CC BY 4.0",
+  "upload_license_gpl3": "GPL-3.0",
+  "upload_license_hint": "Vad andra får göra med dina filer.",
+  "upload_license_label": "Licens",
+  "upload_license_mit": "MIT",
+  "upload_license_other": "Annan (förklaras i beskrivningen)",
+  "upload_license_placeholder": "Välj en licens",
+  "upload_license_reupload_with_credit": "Återuppladdning tillåten med erkännande",
+  "upload_link_discord": "Discord",
+  "upload_link_github": "GitHub",
+  "upload_link_kofi": "Ko-fi",
+  "upload_link_other": "Annan",
+  "upload_link_patreon": "Patreon",
+  "upload_link_twitch": "Twitch",
+  "upload_link_website": "Webbplats",
+  "upload_link_youtube": "YouTube",
+  "upload_links_add": "Lägg till länk",
+  "upload_links_empty": "Inga länkar än.",
+  "upload_links_full": "Högst {max} länkar.",
+  "upload_links_kind": "Typ av länk {n}",
+  "upload_links_label": "Stödlänkar",
+  "upload_links_remove": "Ta bort länk {n}",
+  "upload_links_url": "Adress för länk {n}",
+  "upload_loader_hint": "Den äldsta RedLoader-versionen som din mod fungerar med.",
+  "upload_loader_label": "Lägsta RedLoader",
+  "upload_loading": "Läser in guiden…",
+  "upload_manifest_author": "Skapare",
+  "upload_manifest_dependencies": "Beroenden",
+  "upload_manifest_dependency_missing": "finns inte på SOTF Mods",
+  "upload_manifest_found": "manifest.json hittades",
+  "upload_manifest_game_version": "Spelversion",
+  "upload_manifest_id": "Manifest-id",
+  "upload_manifest_loader_version": "RedLoader-version",
+  "upload_manifest_log_color": "Loggfärg",
+  "upload_manifest_name": "Namn",
+  "upload_manifest_no_dependencies": "Inga angivna",
+  "upload_manifest_platform": "Plattform",
+  "upload_manifest_type": "Typ",
+  "upload_manifest_type_library": "Bibliotek",
+  "upload_manifest_type_mod": "Mod",
+  "upload_manifest_version": "Version",
+  "upload_markdown_help": "Markdown: **fet**, _kursiv_, listor, `kod`, > citat, ||spoilers||.",
+  "upload_markdown_preview": "Förhandsvisning",
+  "upload_markdown_preview_empty": "Förhandsvisningen visas här medan du skriver.",
+  "upload_markdown_recommended": "{min}+ rekommenderas",
+  "upload_markdown_view": "Redigerarvy",
+  "upload_markdown_write": "Skriv",
+  "upload_media_intro": "Bra bilder säljer en mod. Sidor med 3 eller fler bilder laddas ner betydligt oftare.",
+  "upload_media_title": "Media",
+  "upload_multiplayer_all_players": "Alla behöver den",
+  "upload_multiplayer_all_players_hint": "Varje spelare i sessionen måste installera den.",
+  "upload_multiplayer_client_side": "Klientsida",
+  "upload_multiplayer_client_side_hint": "Bara den som installerar den behöver den.",
+  "upload_multiplayer_host_only": "Bara värden",
+  "upload_multiplayer_host_only_hint": "Bara värden behöver den; gäster ansluter utan.",
+  "upload_multiplayer_label": "Flerspelare",
+  "upload_multiplayer_singleplayer_only": "Bara enspelare",
+  "upload_multiplayer_singleplayer_only_hint": "Inte tänkt för flerspelarsessioner.",
+  "upload_multiplayer_unknown": "Vet inte",
+  "upload_multiplayer_unknown_hint": "Överlevarnas fältrapporter kommer att visa det.",
+  "upload_my_drafts": "Mina utkast",
+  "upload_name_hint": "Som spelarna kallar den. 2 till 80 tecken.",
+  "upload_name_label": "Namn",
+  "upload_new_build": "Ett bygge",
+  "upload_new_build_detail": "En BuildShare-ritning (.json). Miniatyr och statistik läses åt dig.",
+  "upload_new_drafts_detail": "Fortsätt där du slutade, eller börja något nytt nedan.",
+  "upload_new_drafts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Du har {count__number} påbörjat utkast.",
+        "count__plural=*": "Du har {count__number} påbörjade utkast."
+      }
+    }
+  ],
+  "upload_new_intro": "Vad delar du med överlevarna i dag?",
+  "upload_new_mod": "En mod eller ett bibliotek",
+  "upload_new_mod_detail": "En RedLoader-.zip med sin manifest.json. Sex korta steg.",
+  "upload_new_title": "Publicera",
+  "upload_new_version_more": "Fler under Mina moddar: {count}",
+  "upload_new_version_none": "Dina publicerade moddar visas här så att du kan lägga till en ny version.",
+  "upload_new_version_title": "Uppdatera en av dina moddar",
+  "upload_next": "Nästa",
+  "upload_no_permission_detail": "En ranger har begränsat uppladdningar tills vidare. Se Signaler för detaljer eller kontakta teamet.",
+  "upload_no_permission_title": "Publicering är pausad för det här kontot.",
+  "upload_notify_hint": "Moddens följare får en signal om den här versionen.",
+  "upload_notify_label": "Meddela följare",
+  "upload_nsfw_hint": "Dold för dem som inte har aktiverat det.",
+  "upload_nsfw_label": "Vuxeninnehåll (NSFW)",
+  "upload_optional": "Valfritt",
+  "upload_platform_client": "Klient",
+  "upload_platform_client_hint": "Körs i spelet du spelar.",
+  "upload_platform_hint": "Var RedLoader laddar den.",
+  "upload_platform_label": "Plattform",
+  "upload_platform_server": "Server",
+  "upload_platform_server_hint": "Körs bara på en dedikerad server.",
+  "upload_platform_universal": "Universell",
+  "upload_platform_universal_hint": "Fungerar på båda.",
+  "upload_preflight_category_invalid": "Kategorin finns inte längre: välj en annan.",
+  "upload_preflight_category_missing": "Välj en kategori.",
+  "upload_preflight_category_ok": "Kategori vald.",
+  "upload_preflight_changelog_missing": "Ingen ändringslogg: följare vill veta vad som ändrats.",
+  "upload_preflight_changelog_ok": "Ändringslogg skriven.",
+  "upload_preflight_dependency_cycle": "Beroendena bildar en slinga.",
+  "upload_preflight_dependency_unknown": "Ett beroende finns inte på SOTF Mods: spelare får leta efter det någon annanstans.",
+  "upload_preflight_description_ok": "Beskrivningen är utförlig.",
+  "upload_preflight_description_raw_html": "Beskrivningen innehåller HTML: den visas som text.",
+  "upload_preflight_description_short": "Beskrivningen är kort (300 tecken eller mer rekommenderas).",
+  "upload_preflight_file_expired": "Uppladdningen har gått ut: ladda upp filen igen.",
+  "upload_preflight_file_failed": "Filen klarade inte de automatiska kontrollerna.",
+  "upload_preflight_file_flagged": "Filen måste granskas av en ranger innan den publiceras.",
+  "upload_preflight_file_inspecting": "Filen kontrolleras fortfarande.",
+  "upload_preflight_file_missing": "Ladda upp filen.",
+  "upload_preflight_file_ok": "Filen klarade de automatiska kontrollerna.",
+  "upload_preflight_fix": "Åtgärda",
+  "upload_preflight_gallery_below_3": "Färre än 3 bilder i galleriet.",
+  "upload_preflight_gallery_ok": "Galleriet har 3 eller fler bilder.",
+  "upload_preflight_license_missing": "Ingen licens vald.",
+  "upload_preflight_license_ok": "Licens vald.",
+  "upload_preflight_manifest_id_taken": "En annan mod använder redan detta manifest-id.",
+  "upload_preflight_media_invalid": "En bild misslyckades: ta bort den eller ladda upp den igen.",
+  "upload_preflight_media_processing": "Bilderna bearbetas fortfarande.",
+  "upload_preflight_name_missing": "Lägg till ett namn (minst 2 tecken).",
+  "upload_preflight_name_ok": "Namn angivet.",
+  "upload_preflight_platform_missing": "Ingen plattform angiven.",
+  "upload_preflight_platform_ok": "Plattform angiven.",
+  "upload_preflight_refreshing": "Uppdaterar…",
+  "upload_preflight_short_description_missing": "Lägg till en kort beskrivning.",
+  "upload_preflight_short_description_ok": "Kort beskrivning angiven.",
+  "upload_preflight_slug_invalid": "Adressen är ogiltig.",
+  "upload_preflight_slug_ok": "Adressen är ledig.",
+  "upload_preflight_slug_taken": "Du har redan en sida på den här adressen.",
+  "upload_preflight_source_missing": "Ingen länk till källkoden.",
+  "upload_preflight_source_ok": "Källkod länkad.",
+  "upload_preflight_tags_missing": "Inga taggar: de hjälper överlevare att hitta den.",
+  "upload_preflight_tags_ok": "Taggar valda.",
+  "upload_preflight_tags_unknown": "Vissa taggar finns inte längre.",
+  "upload_preflight_target_missing": "Modden för den här versionen finns inte längre.",
+  "upload_preflight_target_removed": "Modden för den här versionen har tagits bort.",
+  "upload_preflight_thumbnail_missing": "Ingen omslagsbild.",
+  "upload_preflight_thumbnail_ok": "Omslag valt.",
+  "upload_preflight_title": "Förhandskontroll",
+  "upload_preflight_waiting": "Kontrollerna visas när ditt utkast har sparats.",
+  "upload_problems_label": "Fel och varningar för filen",
+  "upload_progress_direct": "Skickas direkt till lagringen. Bryts anslutningen kan du återuppta.",
+  "upload_progress_finishing": "Slutför…",
+  "upload_progress_label": "Uppladdningsförlopp",
+  "upload_progress_value": "{percent} · {loaded} av {total}",
+  "upload_quality_description": "Beskrivning på 300 tecken eller mer",
+  "upload_quality_gallery": "3 eller fler bilder i galleriet",
+  "upload_quality_hint": "Kompletta sidor rankas högre i Utforska och laddas ner oftare.",
+  "upload_quality_license": "Licens",
+  "upload_quality_met": "klart",
+  "upload_quality_missing": "saknas",
+  "upload_quality_platform": "Plattform",
+  "upload_quality_source": "Länk till källkoden",
+  "upload_quality_tags": "Taggar",
+  "upload_quality_title": "Sidans kvalitet",
+  "upload_reading_build": "Läser ritningen…",
+  "upload_reading_zip": "Öppnar zip-filen i din webbläsare…",
+  "upload_ready_detail": "Allt som de automatiska kontrollerna tittar på är i ordning.",
+  "upload_ready_title": "Filen är kontrollerad.",
+  "upload_reference": "Ref: {ref}",
+  "upload_rejected_detail": "Rätta felen nedan och ladda upp den igen.",
+  "upload_rejected_title": "Filen avvisades.",
+  "upload_release_intro": "Versionen kommer från manifest.json. Berätta för spelarna vad som ändrats.",
+  "upload_release_title": "Release",
+  "upload_resume": "Återuppta uppladdningen",
+  "upload_retry": "Försök igen",
+  "upload_review_intro": "En sista titt innan en ranger ser den. Rätta felen; varningarna är tips.",
+  "upload_review_title": "Granskning",
+  "upload_safe_remove_label": "Kan den tas bort utan att förstöra en sparfil?",
+  "upload_safe_remove_no": "Nej",
+  "upload_safe_remove_no_hint": "Sparfiler som gjorts med den kan gå sönder utan den.",
+  "upload_safe_remove_unknown": "Vet inte",
+  "upload_safe_remove_unknown_hint": "Spelarna uppmanas att göra en säkerhetskopia först.",
+  "upload_safe_remove_yes": "Ja",
+  "upload_safe_remove_yes_hint": "Avinstallation lämnar sparfiler orörda.",
+  "upload_save_draft": "Spara utkast",
+  "upload_saved_toast": "Utkastet sparat",
+  "upload_select_placeholder": "Välj…",
+  "upload_severity_error": "Fel",
+  "upload_severity_ok": "OK",
+  "upload_severity_warning": "Varning",
+  "upload_short_description_label": "Kort beskrivning",
+  "upload_slug_label": "Adress",
+  "upload_slug_preview": "Din sida kommer att finnas på",
+  "upload_source_hint": "Ett publikt repo skapar förtroende och hjälper andra att lära sig.",
+  "upload_source_label": "Källkod",
+  "upload_step_compat": "Kompatibilitet",
+  "upload_step_compat_hint": "Spelversioner, flerspelare, beroenden",
+  "upload_step_details": "Detaljer",
+  "upload_step_details_hint": "Namn, beskrivning, taggar",
+  "upload_step_done": "klart",
+  "upload_step_file": "Fil",
+  "upload_step_file_hint": "Zip eller ritning",
+  "upload_step_media": "Media",
+  "upload_step_media_hint": "Omslag, galleri, video",
+  "upload_step_needs_attention": "behöver åtgärdas",
+  "upload_step_of": "Steg {current} av {total}",
+  "upload_step_release": "Release",
+  "upload_step_release_hint": "Version och ändringar",
+  "upload_step_review": "Granskning",
+  "upload_step_review_hint": "Kontroller och inskick",
+  "upload_steps_label": "Publiceringssteg",
+  "upload_submit": "Skicka till rangerstationen",
+  "upload_submit_blocked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fel kvar att rätta.",
+        "count__plural=*": "{count__number} fel kvar att rätta."
+      }
+    }
+  ],
+  "upload_submit_failed": "Det gick inte att skicka in.",
+  "upload_submit_ready": "Klart. En ranger granskar första publiceringar; verifierade skapare publiceras direkt.",
+  "upload_submit_ready_version": "Klart. Följarna meddelas när versionen publiceras.",
+  "upload_submit_version": "Publicera den här versionen",
+  "upload_success_another": "Publicera något annat",
+  "upload_success_basecamp": "Tillbaka till baslägret",
+  "upload_success_live_detail": "{name} är publicerad. Dela den med överlevarna.",
+  "upload_success_live_title": "Den är ute!",
+  "upload_success_live_version": "Den nya versionen av {name} är ute och följarna meddelas.",
+  "upload_success_preview": "Förhandsvisa sidan",
+  "upload_success_queued_detail": "{name} står i granskningskön. Du får en signal så snart en ranger har bestämt sig.",
+  "upload_success_queued_title": "Skickat till rangerstationen",
+  "upload_success_queued_version": "Den nya versionen av {name} väntar på en ranger. Du får en signal när den är publicerad.",
+  "upload_success_view": "Visa sidan",
+  "upload_summary_address": "Adress",
+  "upload_summary_name": "Namn",
+  "upload_summary_version": "Version",
+  "upload_summary_version_build": "Ny version av bygget",
+  "upload_tags_counter": "{count} / {max}",
+  "upload_tags_filter": "Filtrera taggar",
+  "upload_tags_full": "Det är {max} taggar: ta bort en för att välja en annan.",
+  "upload_tags_label": "Taggar",
+  "upload_tags_none": "Ingen tagg matchar.",
+  "upload_target_removed_detail": "Borttagna moddar kan inte få nya versioner.",
+  "upload_target_removed_title": "Den här modden har tagits bort.",
+  "upload_title_build": "Nytt bygge",
+  "upload_title_mod": "Ny mod",
+  "upload_title_version": "Ny version av {name}",
+  "upload_verify_email_detail": "Öppna länken vi skickade och kom tillbaka: ditt utkast väntar.",
+  "upload_verify_email_title": "Bekräfta din e-post för att publicera.",
+  "upload_version_build": "Byggen versioneras efter datum: varje uppladdning är en ny version.",
+  "upload_version_draft_exists_detail": "Fortsätt med det utkastet, eller fortsätt här för att börja om.",
+  "upload_version_draft_exists_title": "Du har redan påbörjat en version för den här modden.",
+  "upload_version_first": "Första release",
+  "upload_version_from_manifest": "Läst från manifest.json. Vill du ändra den, redigera manifestet och ladda upp filen igen.",
+  "upload_version_invalid_title": "Den här versionen kan inte publiceras.",
+  "upload_version_label": "Version",
+  "upload_version_pending": "Välj filen först: versionen läses från den.",
+  "upload_version_previous": "Föregående: v{version}",
+  "upload_video_group": "Video",
+  "upload_video_hint": "En presentation eller guide, som visas efter galleriet.",
+  "upload_video_label": "YouTube-video"
 }

@@ -1,0 +1,40 @@
+---
+/** A table of API routes (method, path, summary) for `/developers`. Summaries are English, like the API. */
+import { m } from '@sotf/i18n/messages';
+import type { EndpointRow } from './api-reference.ts';
+
+interface Props {
+  caption: string;
+  rows: readonly EndpointRow[];
+  /** Language of the summaries (the contracts are written in English). */
+  summaryLang?: string | undefined;
+}
+
+const { caption, rows, summaryLang } = Astro.props;
+---
+
+<div class="overflow-x-auto rounded-lg border border-border">
+  <table class="w-full min-w-[36rem] border-collapse text-sm">
+    <caption class="sr-only">{caption}</caption>
+    <thead class="bg-sunken text-start">
+      <tr>
+        <th scope="col" class="px-3 py-2 text-start font-semibold text-fg">{m.content_dev_col_method()}</th>
+        <th scope="col" class="px-3 py-2 text-start font-semibold text-fg">{m.content_dev_col_path()}</th>
+        <th scope="col" class="px-3 py-2 text-start font-semibold text-fg">{m.content_dev_col_summary()}</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border">
+      {
+        rows.map((row) => (
+          <tr>
+            <td class="px-3 py-2 align-top font-mono text-xs font-semibold text-signal">{row.method}</td>
+            <td class="px-3 py-2 align-top font-mono text-xs break-all text-fg">{row.path}</td>
+            <td class="px-3 py-2 align-top text-fg-muted" lang={summaryLang}>
+              {row.summary}
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

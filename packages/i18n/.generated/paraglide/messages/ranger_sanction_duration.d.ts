@@ -1,0 +1,16 @@
+export type LocalizedString = import('../runtime.js').LocalizedString;
+export type Ranger_Sanction_DurationInputs = {};
+/**
+* | output |
+* | --- |
+* | "Duration" |
+*
+* @param {Ranger_Sanction_DurationInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export declare const ranger_sanction_duration: ((inputs?: Ranger_Sanction_DurationInputs, options?: {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Ranger_Sanction_DurationInputs, {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}, {}>;

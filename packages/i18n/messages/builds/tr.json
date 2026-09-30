@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, one {# yanıt daha} other {# yanıt daha}}",
   "builds_related_title": "Daha fazla plan",
   "builds_related_all": "Tüm yapılar",
+  "builds_feed_title": "SOTF Mods: yeni ve güncellenen yapılar",
   "builds_banner_pending_title": "İncelemede",
   "builds_banner_pending_text": "Bir korucu bu yapıyı yakında inceleyecek. O zamana kadar listelerde ve aramada görünmez.",
   "builds_banner_unlisted_title": "Listelenmemiş",

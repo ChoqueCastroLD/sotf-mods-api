@@ -997,6 +997,7 @@
   "builds_copy_failed": "Kopiëren mislukt. Selecteer de tekst en kopieer hem handmatig.",
   "builds_description_empty": "De bouwer heeft nog geen beschrijving geschreven. De specificaties bevatten de feiten.",
   "builds_description_title": "Over deze build",
+  "builds_feed_title": "SOTF Mods: nieuwe en bijgewerkte builds",
   "builds_follow_error": "Je rugzak kon niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.",
   "builds_follow_hint": "Krijg een melding als deze build een nieuwe versie krijgt",
   "builds_followed": "Toegevoegd aan je rugzak.",
@@ -1763,6 +1764,424 @@
   "console_update_detail": "We hebben SOTF Mods bijgewerkt terwijl je hier was. Herlaad om de nieuwste versie te krijgen.",
   "console_update_reload": "Herladen",
   "console_update_title": "Er is een nieuwe versie",
+  "content_about_disclaimer_title": "Onofficiële fancommunity",
+  "content_about_eyebrow": "Over ons",
+  "content_about_links_title": "Rond het kamp",
+  "content_binding_note": "Deze vertaling is alleen ter informatie. Als ze afwijkt van de Engelse versie, geldt de Engelse versie.",
+  "content_brand_asset_app_icon": "App-pictogram",
+  "content_brand_asset_app_icon_hint": "De pin op een Night-vlak, voor avatars en snelkoppelingen.",
+  "content_brand_asset_horizontal": "Horizontaal logo",
+  "content_brand_asset_horizontal_hint": "De standaardversie: beeldmerk en woordmerk naast elkaar.",
+  "content_brand_asset_mark": "Beeldmerk (Contour Pin)",
+  "content_brand_asset_mark_hint": "Alleen de pin. Gebruik tussen 16 en 24 px de vereenvoudigde versie.",
+  "content_brand_asset_og": "Voorbeeldafbeelding voor sociale media",
+  "content_brand_asset_og_hint": "1200 × 630, voor linkvoorbeelden en thumbnails.",
+  "content_brand_asset_stacked": "Gestapeld logo",
+  "content_brand_asset_stacked_hint": "Voor vierkante en hoge ruimtes.",
+  "content_brand_asset_wordmark": "Woordmerk",
+  "content_brand_asset_wordmark_hint": "‘SOTF MODS’ zonder pin, voor smalle horizontale ruimtes.",
+  "content_brand_color_blueprint": "Blueprint (builds)",
+  "content_brand_color_bone": "Bone (tekst, Day-achtergrond)",
+  "content_brand_color_flare_day": "Flare op Day",
+  "content_brand_color_flare_night": "Flare op Night",
+  "content_brand_color_lichen": "Lichen (werkt)",
+  "content_brand_color_night": "Night (achtergrond)",
+  "content_brand_color_signal": "Signal (live, info)",
+  "content_brand_color_solafite": "Solafite (uitgelicht)",
+  "content_brand_colors_text": "Night en Bone vormen de basis; Flare is het enige accent. De statuskleuren dragen betekenis en zijn geen decoratie.",
+  "content_brand_colors_title": "Kleuren",
+  "content_brand_description": "Download het logo, beeldmerk en de kleuren van SOTF Mods en zie hoe je vanuit je mod, video of server naar de site linkt.",
+  "content_brand_do_contrast": "Gebruik de Night-bestanden op donkere en de Day-bestanden op lichte achtergronden.",
+  "content_brand_do_link": "Laat het logo naar sotf-mods.com linken.",
+  "content_brand_do_size": "Gebruik het volledige beeldmerk op 24 px of groter (16 px voor de vereenvoudigde versie).",
+  "content_brand_do_space": "Laat rond het logo minstens een kwart van zijn hoogte vrij.",
+  "content_brand_do_title": "Wel",
+  "content_brand_dont_distort": "Het niet uitrekken, draaien, bijsnijden of de onderdelen herschikken.",
+  "content_brand_dont_endorse": "Niet suggereren dat SOTF Mods je project steunt, sponsort of heeft gecontroleerd.",
+  "content_brand_dont_game": "Het niet combineren met het officiële gamelogo, artwork of namen van personages.",
+  "content_brand_dont_recolor": "Het logo niet herkleuren, omlijnen of voorzien van effecten.",
+  "content_brand_dont_title": "Niet",
+  "content_brand_eyebrow": "Merkkit",
+  "content_brand_font_display": "Display: titels en cijfers, altijd in hoofdletters.",
+  "content_brand_font_link": "{name} downloaden",
+  "content_brand_font_mono": "Uitlezingen: versies, id’s en code.",
+  "content_brand_font_ui": "Interface en leestekst.",
+  "content_brand_lead": "Link je naar SOTF Mods vanaf je modpagina, een video of je server? Gebruik deze bestanden en houd je aan de regels hieronder.",
+  "content_brand_legal_text": "De naam en het logo van SOTF Mods identificeren deze communitysite. Je mag ze gebruiken om naar de site te verwijzen of te linken; voor elk ander gebruik is onze toestemming nodig.",
+  "content_brand_legal_title": "Merken",
+  "content_brand_link_text": "Kopieer deze code naar je README, website of modbeschrijving. Hij verwijst naar het live logo en blijft dus altijd actueel.",
+  "content_brand_link_title": "Naar SOTF Mods linken",
+  "content_brand_logos_text": "Elk bestand heeft een Night-versie voor donkere achtergronden en een Day-versie voor lichte. Gebruik bij voorkeur SVG; PNG alleen waar SVG niet werkt.",
+  "content_brand_logos_title": "Logo’s",
+  "content_brand_on_day": "Lichte achtergronden",
+  "content_brand_on_night": "Donkere achtergronden",
+  "content_brand_rules_title": "Het logo gebruiken",
+  "content_brand_snippet_label": "HTML-code",
+  "content_brand_title": "Het merk SOTF Mods",
+  "content_brand_type_title": "Lettertypen",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Leesverzoeken API v2",
+        "bucket=legacyRead": "Leesverzoeken legacy-API",
+        "bucket=downloads": "Downloads",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Code",
+  "content_dev_col_limit": "Limiet",
+  "content_dev_col_meaning": "Betekenis",
+  "content_dev_col_method": "Methode",
+  "content_dev_col_notes": "Opmerkingen",
+  "content_dev_col_path": "Pad",
+  "content_dev_col_scope": "Bereik",
+  "content_dev_col_status": "Status",
+  "content_dev_col_summary": "Wat het doet",
+  "content_dev_endpoints_caption": "Openbare endpoints: {domain}",
+  "content_dev_endpoints_text": "Anoniem, cachebaar en met CORS. De referentie beschrijft parameters, antwoorden en fouten van elk endpoint.",
+  "content_dev_endpoints_title": "Openbare lees-endpoints",
+  "content_dev_errors_text": "Het veld code van een fout is een van deze waarden. De type-URI van elk probleem verwijst naar de bijbehorende rij hier.",
+  "content_dev_errors_title": "Foutcodes",
+  "content_dev_eyebrow": "Ontwikkelaars",
+  "content_dev_legacy_deprecated": "Bevroren en uitgefaseerd",
+  "content_dev_legacy_deprecated_text": "Deze routes blijven antwoorden tot {date}; daarna worden ze uitgeschakeld. Hun antwoorden bevatten deze headers:",
+  "content_dev_legacy_deviations": "Bewuste verschillen met het oude gedrag",
+  "content_dev_legacy_retired": "Uitgeschakeld",
+  "content_dev_legacy_retired_text": "Elke methode op deze routes antwoordt met 410 Gone en deze body:",
+  "content_dev_legacy_stable": "Ondersteund (byte voor byte compatibel)",
+  "content_dev_legacy_text": "De API van de eerste versie van de site antwoordt nog op api.sotf-mods.com/api/* en sotf-mods.com/api/*, zodat RedManager, UpdatesChecker en mods in de game blijven werken. Nieuwe integraties gebruiken beter v2.",
+  "content_dev_legacy_title": "Legacy-API en uitfasering",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "per IP",
+        "key=user": "per account",
+        "key=chat": "per speler",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "Boven een limiet antwoordt de API met 429 en een Retry-After-header. Cache antwoorden en respecteer ETags; dan kom je er zelden in de buurt.",
+  "content_dev_limits_title": "Rate limits",
+  "content_dev_link_docs_text": "Alle v2-endpoints met schema’s en voorbeelden, interactief.",
+  "content_dev_link_docs_title": "API-referentie",
+  "content_dev_link_legacy_text": "Nog in gebruik; bevroren routes stoppen op {date}.",
+  "content_dev_link_legacy_title": "Legacy-API",
+  "content_dev_link_openapi_text": "De machineleesbare specificatie, om een client te genereren.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Conceptmelding",
+  "content_draft_text": "Deze tekst beschrijft hoe SOTF Mods vandaag werkt, maar is nog niet door een jurist bekeken. Hij kan nog veranderen voordat hij definitief is; elke wijziging krijgt een datum.",
+  "content_draft_title": "Concept – juridische controle volgt nog",
+  "content_error_ref": "Ref.: {ref}",
+  "content_fallback_binding": "Voor juridische teksten geldt de Engelse versie.",
+  "content_fallback_link": "Pagina openen in het {original}",
+  "content_fallback_text": "Deze pagina is nog niet beschikbaar in het {language}, dus je leest het origineel in het {original}.",
+  "content_install_eyebrow": "Installatiegids",
+  "content_install_faq_nav": "FAQ",
+  "content_install_faq_title": "Veelgestelde vragen",
+  "content_install_get_redmanager": "RedManager downloaden",
+  "content_install_help_discord": "Vragen op Discord",
+  "content_install_help_text": "Kijk of de huidige gamepatch je mods heeft gebroken, of vraag het de community. Vermeld je gameversie, je RedLoader-versie en de mods die je gebruikt.",
+  "content_install_help_title": "Kom je er niet uit?",
+  "content_install_kit_more": "Alle Kits bekijken",
+  "content_install_kit_nav": "Starterskit",
+  "content_install_kit_text": "Een selectie van het team met mods die goed samenwerken. Een goede eerste uitrusting.",
+  "content_install_kit_title": "Starterskit",
+  "content_install_manual": "Handmatig installeren",
+  "content_install_progress": "Leesvoortgang",
+  "content_install_rail_label": "Onderdelen van de gids",
+  "content_install_rail_title": "Stappen",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Stap {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "In het kort",
+  "content_install_verified": "Gecontroleerd met game {game} · RedLoader {loader}",
+  "content_kelvin_by": "Een mod van",
+  "content_kelvin_credit": "KelvinSeek wordt gemaakt en onderhouden door {author}; SOTF Mods host alleen de API waarmee hij praat. Kelvin en Sons of the Forest zijn van Endnight Games; dit is een fanproject.",
+  "content_kelvin_description": "Met KelvinSeek chat je met Kelvin in Sons of the Forest en geef je hem opdrachten in je eigen woorden. Hoe het werkt, de limieten en wat er met je berichten gebeurt.",
+  "content_kelvin_dev_hint": "Bouw je iets vergelijkbaars? Het endpoint hoort bij de legacy-API:",
+  "content_kelvin_eyebrow": "Communitymod",
+  "content_kelvin_history_text": "Vroeger heette hij Kelvin-GPT. De oude versie die om je eigen OpenAI-sleutel vroeg, is uitgeschakeld: die route toonde de sleutel in het adres en antwoordt nu met ‘Gone’.",
+  "content_kelvin_how_1": "Installeer RedLoader en de mod KelvinSeek.",
+  "content_kelvin_how_2": "Loop in de game naar Kelvin en druk op E om het notitieblok te openen.",
+  "content_kelvin_how_3": "Druk op T om te typen, schrijf je bericht en druk op Enter.",
+  "content_kelvin_how_4": "Of gebruik de console: ‘askkelvin …’ stuurt een bericht, ‘clearkelvinchathistory’ begint een nieuw gesprek.",
+  "content_kelvin_how_title": "Zo gebruik je het",
+  "content_kelvin_install_hint": "Nieuw met mods? Begin met de gids:",
+  "content_kelvin_lead": "Schrijf Kelvin in je eigen woorden: hij antwoordt en doet wat je vraagt, van hout halen tot een schuilplaats bouwen.",
+  "content_kelvin_limits_budget": "De AI-dienst heeft een dagbudget. Is dat op, dan begrijpt Kelvin je nog steeds: hij kiest tot de volgende dag zonder AI de meest gelijkende bekende opdracht.",
+  "content_kelvin_limits_busy": "Schrijf je te snel, dan vraagt Kelvin om een paar seconden pauze. Er gaat niets verloren.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tot {perMinute__number} berichten per minuut en {perDay__number} per dag per speler."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Limieten",
+  "content_kelvin_open_mod": "Modpagina openen",
+  "content_kelvin_privacy_ai": "De tekst van je berichten wordt naar de AI-aanbieder gestuurd om het antwoord te maken. Schrijf geen persoonlijke gegevens.",
+  "content_kelvin_privacy_hash": "De chat-id die de mod verstuurt (met je Steam-id en -naam) wordt alleen als onomkeerbare hash opgeslagen.",
+  "content_kelvin_privacy_link": "Privacybeleid lezen",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "De laatste berichten van elk gesprek worden {days__number} dag bewaard zodat Kelvin de context kent, en daarna verwijderd.",
+        "days__plural=*": "De laatste berichten van elk gesprek worden {days__number} dagen bewaard zodat Kelvin de context kent, en daarna verwijderd."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Je berichten",
+  "content_kelvin_status_compat": "Op build {build}",
+  "content_kelvin_status_downloads": "Downloads",
+  "content_kelvin_status_title": "Status op SOTF Mods",
+  "content_kelvin_status_unavailable": "We konden de huidige status van de mod niet laden. De modpagina toont de nieuwste versie.",
+  "content_kelvin_status_updated": "Laatste release",
+  "content_kelvin_status_version": "Nieuwste versie",
+  "content_kelvin_title": "KelvinSeek: praat met Kelvin in de game",
+  "content_kelvin_what_text": "KelvinSeek is een mod van {author}. Hij stuurt wat je aan Kelvin schrijft via de SOTF Mods-API naar een AI-dienst en maakt van het antwoord Kelvins reactie en, als je iets vraagt, een van zijn opdrachten in de game. Je hebt geen eigen API-sleutel nodig.",
+  "content_kelvin_what_title": "Wat het is",
+  "content_legal_eyebrow": "Juridisch",
+  "content_legal_other": "Andere juridische pagina’s",
+  "content_md_alert_caution": "Voorzichtig",
+  "content_md_alert_important": "Belangrijk",
+  "content_md_alert_note": "Opmerking",
+  "content_md_alert_tip": "Tip",
+  "content_md_alert_warning": "Let op",
+  "content_md_spoiler": "Spoiler",
+  "content_news_back": "Al het nieuws",
+  "content_news_byline": "door {author}",
+  "content_news_description": "Aankondigingen van het SOTF Mods-team: nieuwe functies, wijzigingen aan de site en de API, en wat er nog komt.",
+  "content_news_empty": "Nog geen nieuws. Alles rustig in het bos.",
+  "content_news_eyebrow": "Veldnotities",
+  "content_news_feed": "Abonneren via RSS",
+  "content_news_feed_title": "SOTF Mods — Nieuws",
+  "content_news_read": "Lezen",
+  "content_news_title": "Nieuws",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} werken, {broken__number} kapot, {pending__number} wachten op meldingen"
+      }
+    }
+  ],
+  "content_radar_breaking": "Update die mods breekt",
+  "content_radar_broken_empty": "Geen van de topmods is gemeld als kapot op {build}.",
+  "content_radar_broken_title": "Gemeld als kapot",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} van de topmod bevestigd op {build}",
+        "count__plural=*": "{share} van de top {count__number} mods bevestigd op {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} werkt · {partial__number} deels · {broken__number} kapot"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Mods die op meldingen wachten",
+  "content_radar_cta_text": "Open de mod, kies hoe je speelde (solo, host, client of dedicated) en zeg of hij werkt. Elk veldrapport levert XP op en bespaart andere overlevenden een kapotte save.",
+  "content_radar_cta_title": "Een van deze geprobeerd op {build}?",
+  "content_radar_current": "Huidige build",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Patch {build}: {share} van de 50 meest gedownloade Sons of the Forest-mods bevestigd door spelers — {works__number} werken, {broken__number} kapot, {pending__number} wachten op meldingen."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Welke Sons of the Forest-mods werken op de huidige gamepatch: status van RedLoader en veldrapporten van spelers voor de 50 meest gedownloade mods.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download in 30 dagen",
+        "count__plural=*": "{display} downloads in 30 dagen"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Werkt",
+        "status=partial": "Werkt deels",
+        "status=broken": "Kapot",
+        "status=*": "Onbekend"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Voor deze build is nog geen loaderstatus vastgelegd.",
+  "content_radar_ecosystem_title": "Loader en manager op {build}",
+  "content_radar_empty_text": "Er is nog geen gamebuild geregistreerd. Zodra de rangers de huidige patch vastleggen, laat deze pagina zien welke populaire mods erop werken.",
+  "content_radar_empty_title": "De radar warmt op",
+  "content_radar_error_text": "We konden de compatibiliteitsgegevens niet laden. Probeer het over een minuut opnieuw; blijft het misgaan, laat het ons dan weten op Discord met de referentie hieronder.",
+  "content_radar_error_title": "Geen signaal",
+  "content_radar_history_empty": "Dit is de eerste geregistreerde build.",
+  "content_radar_history_title": "Buildgeschiedenis",
+  "content_radar_install_link": "Zo installeer je RedLoader",
+  "content_radar_legend_outdated": "‘Mogelijk verouderd’ betekent dat de nieuwste versie ouder is dan de laatste update die mods breekt en dat sindsdien niemand heeft bevestigd dat hij werkt.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Meldingen worden gewogen: de eigen test van de maker telt dubbel, geverifieerde makers 1,5×, gloednieuwe accounts de helft. Onder {min__number} gewogen meldingen blijft een mod ongetest; vanaf {works} werkend werkt hij; vanaf {broken} kapot is hij kapot; al het andere is gemengd."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Zo wordt de status bepaald",
+  "content_radar_list_name": "Topmods voor Sons of the Forest op patch {build}",
+  "content_radar_notes": "Patchnotes",
+  "content_radar_outdated": "Mogelijk verouderd",
+  "content_radar_past_link": "Huidige build bekijken",
+  "content_radar_past_notice": "Dit is een oudere build. De game staat nu op {build}.",
+  "content_radar_pending_empty": "Elke topmod heeft een duidelijk oordeel op deze build.",
+  "content_radar_pending_hint": "Niet getest of gemengde resultaten",
+  "content_radar_pending_title": "Wacht op veldrapporten",
+  "content_radar_released": "Uitgebracht op {date}",
+  "content_radar_report": "Melden",
+  "content_radar_seo_title": "Werken SOTF-mods op patch {build}? — Patch Radar",
+  "content_radar_seo_title_generic": "Werken SOTF-mods op de nieuwste patch? — Patch Radar",
+  "content_radar_stat_broken": "Kapot",
+  "content_radar_stat_pending": "Meldingen nodig",
+  "content_radar_stat_works": "Werken",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Werkt",
+        "status=mixed": "Gemengd",
+        "status=broken": "Kapot",
+        "status=*": "Geen gegevens"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Samenvatting",
+  "content_radar_title": "Werken SOTF-mods op patch {build}?",
+  "content_radar_works_empty": "Nog geen topmod is bevestigd op {build}. Er een geprobeerd? Laat het weten.",
+  "content_radar_works_title": "Bevestigd werkend",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} min lezen",
+        "minutes__plural=*": "{minutes__number} min lezen"
+      }
+    }
+  ],
+  "content_toc_title": "Op deze pagina",
+  "content_updated_on": "Laatst bijgewerkt: {date}",
   "emails_auth_deleted_body": "Je persoonsgegevens zijn gewist. Reacties en recensies blijven staan als ‘Verwijderde overlevende’. Bedankt dat je deel uitmaakte van het eiland.",
   "emails_auth_deleted_heading": "Account verwijderd",
   "emails_auth_deleted_preview": "Je persoonsgegevens zijn gewist.",
@@ -3569,6 +3988,199 @@
   "landing_trending_empty": "Een rustige week op het eiland. Mods verschijnen hier zodra overlevenden ze downloaden.",
   "landing_trending_hint": "Op basis van downloads in de laatste 7 dagen",
   "landing_trending_title": "Populair deze week",
+  "me_action_download": "Downloaden",
+  "me_action_failed": "Dat lukte niet",
+  "me_action_update": "Update ophalen",
+  "me_backpack_description": "De mods die je volgt, met hun updates en hoe ze werken op de huidige build.",
+  "me_backpack_empty_text": "Tik op ♥ bij een mod om hem hier op te bergen en over updates te horen.",
+  "me_backpack_empty_title": "Je rugzak is leeg",
+  "me_backpack_list_label": "Gevolgde mods",
+  "me_backpack_no_broken_text": "Geen van je mods wordt als kapot gemeld op de huidige game-build.",
+  "me_backpack_no_broken_title": "Niets als kapot gemeld",
+  "me_backpack_no_updates_text": "Geen enkele mod in je rugzak heeft een nieuwere versie dan die je hebt gedownload.",
+  "me_backpack_no_updates_title": "Alles is bijgewerkt",
+  "me_backpack_notify_off": "Geen updatesignalen meer voor {mod}",
+  "me_backpack_notify_on": "Je krijgt een signaal als {mod} wordt bijgewerkt",
+  "me_backpack_readout": "Je uitrusting",
+  "me_backpack_removed": "{mod} is uit je rugzak",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} mod in je rugzak · alles is bijgewerkt",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} mod in je rugzak · {updates__number} update beschikbaar",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} mod in je rugzak · {updates__number} updates beschikbaar",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} mods in je rugzak · alles is bijgewerkt",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} mods in je rugzak · {updates__number} update beschikbaar",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} mods in je rugzak · {updates__number} updates beschikbaar"
+      }
+    }
+  ],
+  "me_backpack_title": "Rugzak",
+  "me_broken_on_current": "Kapot op {build}",
+  "me_browse_mods": "Mods bekijken",
+  "me_by_author": "door {author}",
+  "me_cancel": "Annuleren",
+  "me_did_it_work": "Werkte het?",
+  "me_downloads_clear": "Geschiedenis wissen",
+  "me_downloads_clear_confirm": "Geschiedenis wissen",
+  "me_downloads_clear_text": "Alle regels verdwijnen, net als de vragen ‘Werkte het?’ over eerdere downloads. De downloadtellers van de mods veranderen niet. Dit kan niet ongedaan worden gemaakt.",
+  "me_downloads_clear_title": "Je downloadgeschiedenis wissen?",
+  "me_downloads_cleared": "Downloadgeschiedenis gewist",
+  "me_downloads_description": "Elke mod die je ingelogd hebt gedownload, met de updates die je mist.",
+  "me_downloads_empty_off_text": "Je geschiedenis staat uit, dus hier wordt niets nieuws vastgelegd.",
+  "me_downloads_empty_text": "Download ingelogd een mod en hij verschijnt hier, met een melding zodra er een nieuwe versie is.",
+  "me_downloads_empty_title": "Nog geen downloads",
+  "me_downloads_history_off": "Downloadgeschiedenis uitgeschakeld",
+  "me_downloads_history_on": "Downloadgeschiedenis ingeschakeld",
+  "me_downloads_keep_history": "Downloadgeschiedenis bijhouden",
+  "me_downloads_last": "Je hebt {version} gedownload op {date}",
+  "me_downloads_list_label": "Gedownloade mods",
+  "me_downloads_off_text": "Nieuwe downloads worden niet vastgelegd, dus de updatemeldingen hier en in je rugzak kunnen geen versies vergelijken. Je kunt hem altijd weer aanzetten.",
+  "me_downloads_off_title": "Je downloadgeschiedenis staat uit",
+  "me_downloads_readout": "Voorraadlogboek",
+  "me_downloads_remove": "Uit de lijst verwijderen",
+  "me_downloads_remove_label": "{mod} uit de lijst verwijderen",
+  "me_downloads_removed": "{mod} uit de lijst verwijderd",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} mod gedownload · alles is bijgewerkt",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} mod gedownload · {updates__number} update beschikbaar",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} mod gedownload · {updates__number} updates beschikbaar",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} mods gedownload · alles is bijgewerkt",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} mods gedownload · {updates__number} update beschikbaar",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} mods gedownload · {updates__number} updates beschikbaar"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "me_downloads_title": "Mijn downloads",
+  "me_filter_all": "Alles",
+  "me_filter_broken": "Kapot op deze build",
+  "me_filter_label": "Tonen",
+  "me_filter_updates": "Update beschikbaar",
+  "me_follow": "Volgen",
+  "me_followed": "{mod} zit in je rugzak",
+  "me_followed_on": "gevolgd op {date}",
+  "me_latest_version": "Nieuwste: {version}",
+  "me_no_current_version": "Er is nu geen versie beschikbaar",
+  "me_notify_off": "Updatesignalen uit",
+  "me_notify_on": "Updatesignalen aan",
+  "me_onboarding_completed": "Je hebt de eerste dag overleefd — badge ontgrendeld",
+  "me_onboarding_dismiss": "Verbergen",
+  "me_onboarding_download_action": "Mods bekijken",
+  "me_onboarding_download_hint": "Kies er een die werkt op de huidige build.",
+  "me_onboarding_download_title": "Download je eerste mod",
+  "me_onboarding_failed": "De checklist kon niet worden bijgewerkt",
+  "me_onboarding_follow_action": "Zoek een mod om te volgen",
+  "me_onboarding_follow_hint": "Tik op ♥ om hem in je rugzak op te bergen en over updates te horen.",
+  "me_onboarding_follow_title": "Volg een mod",
+  "me_onboarding_install_action": "Installatiegids openen",
+  "me_onboarding_install_done": "Ik heb hem geïnstalleerd",
+  "me_onboarding_install_hint": "De modloader die elke Sons of the Forest-mod nodig heeft.",
+  "me_onboarding_install_title": "RedLoader installeren",
+  "me_onboarding_kit_action": "Kit maken",
+  "me_onboarding_kit_hint": "Bundel je mods in een loadout die je met één code deelt.",
+  "me_onboarding_kit_title": "Stel een kit samen",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{done__number} van {total__number} klaar"
+      }
+    }
+  ],
+  "me_onboarding_readout": "Dag 1 op het eiland",
+  "me_onboarding_report_action": "Naar mijn downloads",
+  "me_onboarding_report_hint": "Beantwoord ‘Werkte het?’ voor een mod die je hebt gedownload.",
+  "me_onboarding_report_title": "Laat weten of het werkte",
+  "me_onboarding_step_done": "Klaar:",
+  "me_onboarding_step_todo": "Te doen:",
+  "me_onboarding_text": "Vijf snelle stappen om te beginnen. Rond ze allemaal af voor de badge ‘Eerste dag overleefd’.",
+  "me_onboarding_title": "Overleef je eerste dag",
+  "me_report_broken": "Het is kapot",
+  "me_report_description": "Je veldrapport over versie {version} op game-build {build} helpt alle overlevenden mods te kiezen die werken.",
+  "me_report_mode_client": "Multiplayer-client",
+  "me_report_mode_dedicated": "Dedicated server",
+  "me_report_mode_host": "Multiplayer-host",
+  "me_report_mode_label": "Hoe je speelde",
+  "me_report_mode_singleplayer": "Singleplayer",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Crashes, conflicten met andere mods… tot {max__number} tekens."
+      }
+    }
+  ],
+  "me_report_note_label": "Wat er gebeurde",
+  "me_report_partial": "Deels",
+  "me_report_pick_result": "Kies hoe het ging.",
+  "me_report_result_legend": "Hoe ging het?",
+  "me_report_submit": "Rapport versturen",
+  "me_report_thanks": "Bedankt — je rapport over {mod} staat op de kaart",
+  "me_report_title": "Werkte {mod}?",
+  "me_report_verify_email": "Bevestig je e-mailadres voordat je veldrapporten verstuurt.",
+  "me_report_works": "Het werkt",
+  "me_undo": "Ongedaan maken",
+  "me_unfollow": "Niet meer volgen",
+  "me_unfollowed": "{mod} is uit je rugzak",
+  "me_up_to_date": "Bijgewerkt ({version})",
+  "me_update_available": "Update beschikbaar",
+  "me_update_from_to": "Update: {from} → {to}",
   "meta_default_description": "Het thuis van Sons of the Forest-modding: mods, builds en kits voor RedLoader, getest op elke patch. Gratis, directe downloads.",
   "meta_feed_description": "De nieuwste mods en updates voor Sons of the Forest op SOTF Mods.",
   "meta_feed_title": "SOTF Mods: nieuwe en bijgewerkte mods",
@@ -3725,6 +4337,7 @@
   "mod_fact_updated": "Bijgewerkt op {date}",
   "mod_fact_updated_label": "Bijgewerkt",
   "mod_fact_version": "Versie",
+  "mod_feed_title": "Releases van {name}",
   "mod_field_report_sign_in": "Log in om een veldrapport toe te voegen",
   "mod_field_report_text": "Een veldrapport kost tien seconden en vertelt iedereen of deze mod op de huidige patch werkt.",
   "mod_field_report_title": "Werkte het in je game?",
@@ -4658,6 +5271,1312 @@
   "profile_xp_profile_completed": "Je profiel invullen",
   "profile_xp_review_helpful_vote": "Een ‘nuttig’-stem op je review",
   "profile_xp_review_with_text": "Review met minstens 80 tekens tekst",
+  "ranger_action_approve": "Goedkeuren",
+  "ranger_action_mark_reviewed": "Markeren als gecontroleerd",
+  "ranger_action_reject": "Afwijzen",
+  "ranger_action_remove": "Verwijderen",
+  "ranger_action_request_changes": "Wijzigingen vragen",
+  "ranger_action_restore": "Herstellen",
+  "ranger_action_unlist": "Uit de lijsten halen",
+  "ranger_assigned_short": "bij {name}",
+  "ranger_assigned_to": "Toegewezen aan",
+  "ranger_audit_action": "Actie",
+  "ranger_audit_actor": "Handle van de uitvoerder",
+  "ranger_audit_apply": "Filteren",
+  "ranger_audit_changes": "Voor en na",
+  "ranger_audit_clear": "Wissen",
+  "ranger_audit_description": "Elke actie van rangers en admins: wie, wat, voor en na, en waarom. Regels kunnen niet worden bewerkt.",
+  "ranger_audit_empty_filtered": "Geen regel past bij deze filters.",
+  "ranger_audit_empty_text": "Er is nog geen ranger-actie vastgelegd.",
+  "ranger_audit_empty_title": "Geen regels",
+  "ranger_audit_reason_hint": "Blijft in het auditlog.",
+  "ranger_audit_reason_label": "Reden",
+  "ranger_audit_system": "Systeem",
+  "ranger_audit_target": "Doel",
+  "ranger_audit_target_hint": "type:id, bijvoorbeeld user:12 of mod:312",
+  "ranger_audit_target_invalid": "Gebruik type:id, bijvoorbeeld user:12.",
+  "ranger_audit_title": "Auditlog",
+  "ranger_author_unknown": "Onbekende maker",
+  "ranger_back_to_list": "Terug naar de lijst",
+  "ranger_cancel": "Annuleren",
+  "ranger_changelog_none": "Geen wijzigingenlijst voor deze versie.",
+  "ranger_checks_failed": "Controles mislukt",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bestand",
+        "count__plural=*": "{count__number} bestanden"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "Gemarkeerd voor controle",
+  "ranger_checks_manifest_ok": "manifest.json geldig",
+  "ranger_checks_no_flags": "Geen enkele controle sloeg aan.",
+  "ranger_checks_none": "Geen bestandsinspectie voor dit item.",
+  "ranger_checks_passed": "Controles geslaagd",
+  "ranger_checks_pending": "Controles lopen nog",
+  "ranger_checks_ratio": "Compressieverhouding {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "Uitgepakt {size}",
+  "ranger_checks_title": "Automatische controles",
+  "ranger_comment_hidden": "Reactie verborgen.",
+  "ranger_comment_hide": "Verbergen",
+  "ranger_comment_publish": "Publiceren",
+  "ranger_comment_published": "Reactie gepubliceerd.",
+  "ranger_comment_reject_confirm": "Reactie verbergen",
+  "ranger_comment_reject_reason": "Reden",
+  "ranger_comment_reject_reason_hint": "Blijft in het auditlog.",
+  "ranger_comment_reject_title": "Deze reactie verbergen",
+  "ranger_conflict_detail": "Iemand heeft dit item intussen gewijzigd. De wachtrij is ververst; bekijk het opnieuw.",
+  "ranger_decided_approve": "Goedgekeurd: {title}",
+  "ranger_decided_reject": "Afgewezen: {title}",
+  "ranger_decided_remove": "Verwijderd: {title}",
+  "ranger_decided_request_changes": "Wijzigingen gevraagd: {title}",
+  "ranger_decided_restore": "Hersteld: {title}",
+  "ranger_decided_reviewed": "Gemarkeerd als gecontroleerd: {title}",
+  "ranger_decided_unlist": "Uit de lijsten gehaald: {title}",
+  "ranger_decision_failed": "De beslissing is niet opgeslagen",
+  "ranger_decision_no_template": "Geen sjabloon — alleen mijn notitie",
+  "ranger_decision_note_hint": "Markdown. Wordt met het sjabloon verstuurd; zeg wat er moet worden opgelost.",
+  "ranger_decision_note_label": "Notitie voor de maker",
+  "ranger_decision_reason_required": "Geef een reden (minstens 3 tekens).",
+  "ranger_decision_template_label": "Redensjabloon",
+  "ranger_decision_template_or_note": "Kies een sjabloon of schrijf een notitie.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Geen tekst om te tonen.",
+  "ranger_diff_added": "Toegevoegd:",
+  "ranger_diff_changed": "Gewijzigd:",
+  "ranger_diff_content_changed": "inhoud gewijzigd",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Eerste versie: niets om mee te vergelijken. De zip bevat {count__number} bestand.",
+        "count__plural=*": "Eerste versie: niets om mee te vergelijken. De zip bevat {count__number} bestanden."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "uitvoerbaar",
+  "ranger_diff_identical": "Dezelfde bestanden als de vorige versie.",
+  "ranger_diff_new_code": "nieuwe code",
+  "ranger_diff_removed": "Verwijderd:",
+  "ranger_diff_summary": "Vergeleken met de vorige versie: {added} toegevoegd, {removed} verwijderd, {changed} gewijzigd.",
+  "ranger_diff_truncated": "De eerste {shown} van {total} bestanden worden getoond.",
+  "ranger_diff_unavailable": "Geen bestandslijst om te vergelijken.",
+  "ranger_flag_absolute_path": "Absoluut pad in de zip",
+  "ranger_flag_blueprint_invalid": "Buildbestand is ongeldig",
+  "ranger_flag_extension_flagged": "Uitvoerbaar bestand of script",
+  "ranger_flag_extension_not_allowed": "Bestandstype niet toegestaan",
+  "ranger_flag_file_too_large": "Bestand te groot",
+  "ranger_flag_manifest_id_mismatch": "Manifest-id wijkt af van de mod",
+  "ranger_flag_manifest_invalid": "manifest.json is ongeldig",
+  "ranger_flag_manifest_missing": "manifest.json ontbreekt",
+  "ranger_flag_scan_detections": "Detecties van de beveiligingsscan",
+  "ranger_flag_version_not_greater": "Versie is niet nieuwer dan de vorige",
+  "ranger_flag_version_not_semver": "Versie is niet semantisch (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "Compressieverhouding te hoog (zipbom)",
+  "ranger_flag_zip_invalid": "Geen geldige zip",
+  "ranger_flag_zip_slip": "Pad verlaat de modmap (zip slip)",
+  "ranger_flag_zip_too_many_entries": "Te veel bestanden in de zip",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} blokkerende controle",
+        "count__plural=*": "{count__number} blokkerende controles"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Leeftijd van het account",
+  "ranger_history_attention": "Deze maker heeft afgewezen mods of actieve sancties.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dag",
+        "count__plural=*": "{count__number} dagen"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Zijn auditspoor",
+  "ranger_history_open_user": "Gebruikerskaart openen",
+  "ranger_history_published": "Gepubliceerde mods",
+  "ranger_history_rejected": "Afgewezen mods",
+  "ranger_history_sanctions": "Actieve sancties",
+  "ranger_history_trust": "Vertrouwen",
+  "ranger_item_document_title": "Beoordeling: {title}",
+  "ranger_item_gone_text": "Een andere ranger heeft al over dit item beslist, of het heeft de wachtrij verlaten.",
+  "ranger_item_gone_title": "Al afgehandeld",
+  "ranger_item_next": "Volgend item",
+  "ranger_item_region": "Item in beoordeling",
+  "ranger_lane_builds": "Builds",
+  "ranger_lane_builds_hint": "Builds die wachten op goedkeuring of een controle na publicatie.",
+  "ranger_lane_comments": "Reacties",
+  "ranger_lane_comments_hint": "Reacties die worden vastgehouden voor controle voordat iemand ze kan lezen.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} item wacht",
+        "count__plural=*": "{count__number} items wachten"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "Er wachten geen reacties op controle.",
+  "ranger_lane_empty_reports": "Geen open meldingen. De community gedraagt zich.",
+  "ranger_lane_empty_text": "Er wacht niets in deze baan. Nieuwe items verschijnen hier vanzelf.",
+  "ranger_lane_empty_title": "Alles vrij op dit pad",
+  "ranger_lane_new_mods": "Nieuwe mods",
+  "ranger_lane_new_mods_hint": "Eerste inzendingen en mods die op goedkeuring wachten.",
+  "ranger_lane_post_review": "Nacontrole",
+  "ranger_lane_post_review_hint": "Al gepubliceerde versies zonder menselijke blik: controleer ze binnen 72 uur.",
+  "ranger_lane_reports": "Meldingen",
+  "ranger_lane_reports_hint": "Open meldingen uit de community.",
+  "ranger_lane_versions": "Versies",
+  "ranger_lane_versions_hint": "Versies die zijn tegengehouden door de controles, de beveiligingsscan of een melding.",
+  "ranger_lanes_label": "Banen van de wachtrij",
+  "ranger_live": "Live",
+  "ranger_live_off": "Updates gepauzeerd — de lijst ververst zodra de verbinding terug is",
+  "ranger_load_more": "Meer laden",
+  "ranger_loading": "Laden…",
+  "ranger_manifest_after": "Na",
+  "ranger_manifest_before": "Voor",
+  "ranger_manifest_field": "Veld",
+  "ranger_manifest_identical": "Het manifest is niet veranderd.",
+  "ranger_media_alt": "Afbeelding {index}",
+  "ranger_media_none": "Geen afbeeldingen.",
+  "ranger_more_actions": "Meer acties",
+  "ranger_new_tab": "(opent in een nieuw tabblad)",
+  "ranger_next": "Volgende",
+  "ranger_no_actions": "Hier valt niets meer te beslissen.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Pagina openen",
+  "ranger_open_reports": "Alle meldingen",
+  "ranger_page_of": "Pagina {page} van {total}",
+  "ranger_pagination": "Pagina’s",
+  "ranger_panel_error_text": "Er ging iets mis aan onze kant. Probeer het zo opnieuw.",
+  "ranger_panel_error_title": "Dit is niet geladen",
+  "ranger_previous": "Vorige",
+  "ranger_queue_description": "Oudste en riskantste eerst. Elke beslissing wordt vastgelegd en de maker krijgt een melding.",
+  "ranger_queue_title": "Moderatiewachtrij",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Werkt niet",
+  "ranger_reason_harassment": "Intimidatie",
+  "ranger_reason_illegal": "Illegale inhoud",
+  "ranger_reason_malware": "Malware",
+  "ranger_reason_nsfw_unmarked": "NSFW niet gemarkeerd",
+  "ranger_reason_other": "Anders",
+  "ranger_reason_reupload": "Herupload zonder toestemming",
+  "ranger_reason_spam": "Spam",
+  "ranger_reauth_action": "Opnieuw aanmelden",
+  "ranger_reauth_text": "Ranger-acties vereisen een aanmelding van de afgelopen 12 uur. Meld je opnieuw aan om verder te gaan.",
+  "ranger_reauth_title": "Bevestig dat jij het bent",
+  "ranger_reference": "Ref.: {reference}",
+  "ranger_report_by": "Gemeld door",
+  "ranger_report_by_unknown": "De melder heeft zijn account verwijderd",
+  "ranger_report_dismiss": "Afwijzen",
+  "ranger_report_dismiss_text": "De melding was geen probleem. Inhoud die automatisch door meldingen werd verborgen, wordt weer zichtbaar.",
+  "ranger_report_dismiss_title": "De melding afwijzen",
+  "ranger_report_dismissed": "Melding afgewezen.",
+  "ranger_report_hide_hint": "Mods en kits worden uit de lijsten gehaald, versies tegengehouden, reacties en recensies verborgen.",
+  "ranger_report_hide_label": "De inhoud verbergen",
+  "ranger_report_history": "Geschiedenis van deze inhoud",
+  "ranger_report_no_details": "Geen details opgegeven.",
+  "ranger_report_note_hint": "Wordt bij de melding en in het auditlog bewaard.",
+  "ranger_report_note_label": "Notitie bij de afhandeling",
+  "ranger_report_open_user": "Gebruikerskaart openen",
+  "ranger_report_resolution": "Afhandeling: {note}",
+  "ranger_report_resolve": "Afhandelen",
+  "ranger_report_resolve_hide": "Afhandelen en verbergen",
+  "ranger_report_resolve_text": "Alle open meldingen over deze inhoud worden gesloten en elke melder krijgt bericht dat ze zijn afgehandeld.",
+  "ranger_report_resolve_title": "De melding afhandelen",
+  "ranger_report_resolved": "Melding afgehandeld.",
+  "ranger_report_status_all": "Alle",
+  "ranger_report_status_dismissed": "Afgewezen",
+  "ranger_report_status_open": "Open",
+  "ranger_report_status_resolved": "Afgehandeld",
+  "ranger_report_target_missing": "{type} nr. {id} (bestaat niet meer)",
+  "ranger_reports_description": "Wat de community heeft gemeld, met de reden en het bewijs. Bij het sluiten van een melding krijgt de melder bericht.",
+  "ranger_reports_empty_open_text": "Niets te bekijken. Nieuwe meldingen verschijnen hier en in de wachtrij.",
+  "ranger_reports_empty_open_title": "Geen open meldingen",
+  "ranger_reports_empty_text": "Geen melding past bij dit filter.",
+  "ranger_reports_empty_title": "Geen meldingen hier",
+  "ranger_reports_filter": "Status van de melding",
+  "ranger_reports_title": "Meldingen",
+  "ranger_retry": "Opnieuw proberen",
+  "ranger_risk_high": "Hoog risico",
+  "ranger_risk_low": "Laag risico",
+  "ranger_risk_medium": "Gemiddeld risico",
+  "ranger_role_admin": "Admin",
+  "ranger_role_moderator": "Moderator",
+  "ranger_role_user": "Gebruiker",
+  "ranger_sanction_ban": "Verbannen",
+  "ranger_sanction_ban_hint": "Permanent. Meldt overal af.",
+  "ranger_sanction_comment_mute": "Reacties dempen",
+  "ranger_sanction_comment_mute_hint": "Kan geen reacties of recensies plaatsen — overal of bij één mod.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dag",
+        "count__plural=*": "{count__number} dagen"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Duur",
+  "ranger_sanction_ended": "Afgelopen",
+  "ranger_sanction_failed": "De sanctie is niet toegepast",
+  "ranger_sanction_kind": "Sanctie",
+  "ranger_sanction_open": "Sanctioneren",
+  "ranger_sanction_permanent": "Permanent",
+  "ranger_sanction_reason": "Reden",
+  "ranger_sanction_reason_hint": "De gebruiker ziet dit. Houd het feitelijk.",
+  "ranger_sanction_revoke": "Intrekken",
+  "ranger_sanction_revoke_failed": "De sanctie is niet ingetrokken",
+  "ranger_sanction_revoke_title": "Deze sanctie intrekken?",
+  "ranger_sanction_revoked": "Sanctie ingetrokken.",
+  "ranger_sanction_revoked_on": "Ingetrokken op {date}",
+  "ranger_sanction_scope": "Alleen bij één mod",
+  "ranger_sanction_scope_clear": "In plaats daarvan overal dempen",
+  "ranger_sanction_scope_hint": "Laat leeg om reacties overal te dempen.",
+  "ranger_sanction_scope_none": "Geen mod komt overeen.",
+  "ranger_sanction_scope_on": "bij {mod}",
+  "ranger_sanction_scope_placeholder": "Zoek een mod of build",
+  "ranger_sanction_scope_results": "Overeenkomende mods",
+  "ranger_sanction_since": "Sinds {date}",
+  "ranger_sanction_suspend": "Schorsen",
+  "ranger_sanction_suspend_hint": "Kan zich tot de einddatum niet aanmelden.",
+  "ranger_sanction_title": "Deze gebruiker sanctioneren",
+  "ranger_sanction_until": "tot {date}",
+  "ranger_sanction_upload_mute": "Uploads blokkeren",
+  "ranger_sanction_upload_mute_hint": "Kan geen mods, versies of builds publiceren.",
+  "ranger_scan_clean": "Geen detecties",
+  "ranger_scan_engines": "{positives} van {total} engines",
+  "ranger_scan_false_positive": "Geverifieerd vals positief",
+  "ranger_scan_malicious": "Kwaadaardig",
+  "ranger_scan_none": "Niet gescand",
+  "ranger_scan_override_confirm": "Oordeel opslaan",
+  "ranger_scan_override_done": "Scanoordeel: ‘{verdict}’.",
+  "ranger_scan_override_failed": "Het oordeel is niet opgeslagen",
+  "ranger_scan_override_false_positive_hint": "Je hebt de bestanden gecontroleerd: de detecties zijn vals positief. Een door de scan tegengehouden versie wordt vrijgegeven.",
+  "ranger_scan_override_malicious_hint": "Het bestand is schadelijk. De versie wordt teruggetrokken en blijft onbeschikbaar.",
+  "ranger_scan_override_note": "Waarom (blijft in het auditlog)",
+  "ranger_scan_override_open": "Oordeel wijzigen",
+  "ranger_scan_override_title": "Het scanoordeel wijzigen",
+  "ranger_scan_override_verdict": "Nieuw oordeel",
+  "ranger_scan_pending": "Scan in afwachting",
+  "ranger_scan_report_link": "VirusTotal-rapport",
+  "ranger_scan_suspicious": "Verdacht",
+  "ranger_scan_unknown": "Niet gescand (geen scanner beschikbaar)",
+  "ranger_select_item": "Kies een item uit de lijst om het te beoordelen.",
+  "ranger_severity_error": "blokkeert publicatie",
+  "ranger_severity_warning": "vraagt een menselijke blik",
+  "ranger_shortcut_next": "Volgend item",
+  "ranger_shortcut_previous": "Vorig item",
+  "ranger_sla_average": "Gemiddelde wachttijd",
+  "ranger_sla_due": "{time} · SLA verloopt bijna",
+  "ranger_sla_oldest": "Oudste",
+  "ranger_sla_over": "Meer dan {hours} u",
+  "ranger_sla_overdue": "{time} · SLA verlopen",
+  "ranger_sla_waiting": "Wachtend in deze baan",
+  "ranger_staff": "Team",
+  "ranger_submitted": "Ingediend {when}",
+  "ranger_tab_changelog": "Wijzigingen",
+  "ranger_tab_content": "Inhoud",
+  "ranger_tab_description": "Beschrijving",
+  "ranger_tab_files": "Bestandsverschillen",
+  "ranger_tab_history": "Geschiedenis van de maker",
+  "ranger_tab_manifest": "Manifestverschillen",
+  "ranger_tab_media": "Media",
+  "ranger_tabs_label": "Details van het item",
+  "ranger_target_comment": "Reactie",
+  "ranger_target_compat_report": "Veldrapport",
+  "ranger_target_kit": "Kit",
+  "ranger_target_mod": "Mod",
+  "ranger_target_review": "Recensie",
+  "ranger_target_user": "Gebruiker",
+  "ranger_target_version": "Versie",
+  "ranger_template_broken_or_empty": "Het bestand is kapot, leeg of laadt niet met RedLoader.",
+  "ranger_template_broken_or_empty_title": "Kapot of leeg",
+  "ranger_template_copyright_claim": "Verwijderd na een geldige auteursrechtclaim.",
+  "ranger_template_copyright_claim_title": "Auteursrechtclaim",
+  "ranger_template_credit_original_author": "Vermeld de oorspronkelijke maker en link naar diens werk.",
+  "ranger_template_credit_original_author_title": "Vermeld de oorspronkelijke maker",
+  "ranger_template_duplicate": "Dit dupliceert een mod die al in de lijst staat. Publiceer in plaats daarvan een nieuwe versie ervan.",
+  "ranger_template_duplicate_title": "Duplicaat",
+  "ranger_template_malware_confirmed": "Verwijderd: het bestand is bevestigd kwaadaardig.",
+  "ranger_template_malware_confirmed_title": "Malware bevestigd",
+  "ranger_template_malware_detected": "De beveiligingsscan heeft het bestand als kwaadaardig gemarkeerd.",
+  "ranger_template_malware_detected_title": "Gemarkeerd door de scan",
+  "ranger_template_missing_description": "Beschrijf wat de mod doet, hoe je hem installeert en hoe je hem gebruikt.",
+  "ranger_template_missing_description_title": "Beschrijving ontbreekt",
+  "ranger_template_missing_screenshots": "Voeg minstens één screenshot toe die de mod in het spel laat zien.",
+  "ranger_template_missing_screenshots_title": "Screenshots ontbreken",
+  "ranger_template_not_a_mod": "Deze upload is geen mod of build voor Sons of the Forest.",
+  "ranger_template_not_a_mod_title": "Geen mod",
+  "ranger_template_nsfw_unmarked": "De mod bevat inhoud voor volwassenen: markeer hem als NSFW.",
+  "ranger_template_nsfw_unmarked_title": "NSFW niet gemarkeerd",
+  "ranger_template_reupload_without_permission": "Dit lijkt een herupload van andermans werk zonder toestemming.",
+  "ranger_template_reupload_without_permission_title": "Herupload zonder toestemming",
+  "ranger_template_rules_violation": "Verwijderd wegens overtreding van de siteregels.",
+  "ranger_template_rules_violation_title": "Regelovertreding",
+  "ranger_template_spam": "Spam of reclame.",
+  "ranger_template_spam_title": "Spam",
+  "ranger_template_wrong_category": "Zet de mod in de categorie die past bij wat hij doet.",
+  "ranger_template_wrong_category_title": "Verkeerde categorie",
+  "ranger_triage_note": "Telefoonweergave: alleen snelle triage. De bestands- en manifestverschillen vragen een tablet of computer.",
+  "ranger_trust_level": "Niveau {level}",
+  "ranger_user_account": "Account",
+  "ranger_user_action_failed": "De wijziging is niet opgeslagen",
+  "ranger_user_actions": "Acties",
+  "ranger_user_audit": "Auditspoor",
+  "ranger_user_banned": "Verbannen",
+  "ranger_user_banned_on": "Verbannen op {date}",
+  "ranger_user_comments": "Reacties",
+  "ranger_user_document_title": "{name} · Gebruikers",
+  "ranger_user_email_unverified": "E-mail niet geverifieerd",
+  "ranger_user_email_verified": "E-mail geverifieerd",
+  "ranger_user_joined": "Lid sinds",
+  "ranger_user_last_seen": "Laatst gezien",
+  "ranger_user_legacy_trusted": "Vertrouwd op de oude site",
+  "ranger_user_mods": "Mods",
+  "ranger_user_no_sanctions": "Nooit een sanctie gehad.",
+  "ranger_user_outranked": "Rangers kunnen alleen optreden tegen accounts met een lagere rol dan hun eigen rol.",
+  "ranger_user_public_profile": "Openbaar profiel",
+  "ranger_user_reports_against": "Meldingen tegen",
+  "ranger_user_reviews": "Recensies",
+  "ranger_user_revoke_sessions": "Overal afmelden",
+  "ranger_user_revoke_sessions_text": "Alle sessies van dit account eindigen nu. Opnieuw aanmelden kan, tenzij het account geschorst of verbannen is.",
+  "ranger_user_revoke_sessions_title": "{name} overal afmelden?",
+  "ranger_user_role": "Rol",
+  "ranger_user_role_confirm": "Rol wijzigen",
+  "ranger_user_role_done": "{name} is nu {role}.",
+  "ranger_user_role_hint": "Admins worden alleen via de opdrachtregel aangesteld.",
+  "ranger_user_role_title": "De rol van {name} wijzigen in {role}?",
+  "ranger_user_sanctions": "Sancties",
+  "ranger_user_self": "Dit is je eigen account: een andere ranger moet ingrijpen.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Er was geen sessie open.",
+        "count__exact=*, count__plural=one": "{count__number} sessie beëindigd.",
+        "count__exact=*, count__plural=*": "{count__number} sessies beëindigd."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Geschorst tot {date}",
+  "ranger_user_unverified_done": "{name} is geen geverifieerde maker meer.",
+  "ranger_user_unverify": "Markering intrekken",
+  "ranger_user_unverify_title": "De verificatie van {name} intrekken?",
+  "ranger_user_verified_done": "{name} is nu een geverifieerde maker.",
+  "ranger_user_verified_hint": "Geverifieerde makers publiceren direct als de controles slagen en hebben hogere limieten.",
+  "ranger_user_verify": "Maker verifiëren",
+  "ranger_user_verify_title": "{name} een geverifieerde maker maken?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} gebruiker",
+        "count__plural=*": "{count__number} gebruikers"
+      }
+    }
+  ],
+  "ranger_users_description": "Zoek op handle, naam of e-mail. Open een gebruiker om de geschiedenis en sancties te zien.",
+  "ranger_users_empty_query": "Niemand komt overeen met ‘{query}’.",
+  "ranger_users_empty_text": "Nog geen resultaten.",
+  "ranger_users_empty_title": "Geen gebruikers gevonden",
+  "ranger_users_row_stats": "Mods: {mods} · Meldingen tegen: {reports}",
+  "ranger_users_search_label": "Gebruikers zoeken",
+  "ranger_users_search_placeholder": "Handle, naam of e-mail",
+  "ranger_users_search_submit": "Zoeken",
+  "ranger_users_title": "Gebruikers",
+  "ranger_verified_creator": "Geverifieerde maker",
+  "ranger_waiting": "wacht {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} dag",
+        "count__plural=*": "{display} dagen"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} u",
+        "count__plural=*": "{count__number} u"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} min",
+        "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "settings_about_saved": "Profiel opgeslagen",
+  "settings_about_text": "Hoe je verschijnt op je profiel, bij je mods en in je reacties.",
+  "settings_about_title": "Over jou",
+  "settings_account_hint": "Inlog-e-mailadres en wachtwoord.",
+  "settings_account_overview_title": "Je account",
+  "settings_account_title": "Account",
+  "settings_appearance_saved": "Weergave opgeslagen",
+  "settings_appearance_text": "Hoe SOTF Mods eruitziet op dit en je andere apparaten.",
+  "settings_appearance_title": "Weergave",
+  "settings_avatar_change": "Foto wijzigen",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG, JPEG, WebP, AVIF of GIF tot {max__number} MB. Je kunt hem bijsnijden voordat hij wordt opgeslagen."
+      }
+    }
+  ],
+  "settings_avatar_label": "Avatar",
+  "settings_avatar_remove": "Foto verwijderen",
+  "settings_avatar_removed": "Foto verwijderd",
+  "settings_avatar_saved": "Nieuwe foto opgeslagen",
+  "settings_avatar_upload": "Foto uploaden",
+  "settings_avatar_uploading": "Je foto wordt geüpload…",
+  "settings_back": "Instellingen",
+  "settings_banner_custom_hint": "Je gebruikt een eigen afbeelding. Genereer een terrein om terug te gaan naar een gegenereerde banner.",
+  "settings_banner_label": "Banner",
+  "settings_banner_reroll": "Nieuw terrein genereren",
+  "settings_banner_reroll_hint": "Voorbeeld van nieuw terrein — kies ‘Dit terrein gebruiken’ om het te bewaren.",
+  "settings_banner_saved": "Nieuwe banner opgeslagen",
+  "settings_banner_terrain_hint": "Een kaart die speciaal voor jou is getekend. Genereer opnieuw tot je de vorm van je eiland mooi vindt.",
+  "settings_banner_terrain_saved": "Terreinbanner opgeslagen",
+  "settings_banner_upload": "Afbeelding uploaden",
+  "settings_banner_uploading": "Je banner wordt geüpload…",
+  "settings_banner_use_terrain": "Dit terrein gebruiken",
+  "settings_behaviour_saved": "Voorkeuren opgeslagen",
+  "settings_behaviour_title": "Gedrag",
+  "settings_bio": "Bio",
+  "settings_bio_hint": "Markdown werkt: **vet**, _cursief_ en links.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Houd je bio onder de {max__number} tekens."
+      }
+    }
+  ],
+  "settings_cancel": "Annuleren",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nog {count__number} teken",
+        "count__plural=*": "Nog {count__number} tekens"
+      }
+    }
+  ],
+  "settings_compat_prompts": "Na downloads ‘Werkte het?’ vragen",
+  "settings_compat_prompts_hint": "Je antwoorden vertellen andere overlevenden welke mods werken op de huidige build.",
+  "settings_creator_badges": "Je badges",
+  "settings_creator_basecamp": "Basiskamp openen",
+  "settings_creator_hint": "Makersstatus, steunlinks, standaardlicentie en antwoordsjablonen.",
+  "settings_creator_not_verified": "Nog niet geverifieerd",
+  "settings_creator_not_verified_text": "De rangers verifiëren makers met een staat van dienst van veilige, onderhouden mods. Blijf publiceren — je hoeft niets aan te vragen.",
+  "settings_creator_policy": "Alles wat je publiceert volgt het inhoudsbeleid.",
+  "settings_creator_policy_link": "Het inhoudsbeleid lezen",
+  "settings_creator_status_title": "Makersstatus",
+  "settings_creator_title": "Maker",
+  "settings_creator_verified": "Geverifieerde maker",
+  "settings_creator_verified_text": "Je mods dragen het verificatiekenmerk en je kunt grotere bestanden uploaden.",
+  "settings_crop_avatar_title": "Foto bijsnijden",
+  "settings_crop_banner_title": "Banner bijsnijden",
+  "settings_crop_failed": "Deze afbeelding kon niet worden gelezen. Probeer een ander bestand.",
+  "settings_crop_help": "Sleep de afbeelding of gebruik de pijltjestoetsen om hem te verplaatsen; gebruik de schuifregelaar of + en − om te zoomen.",
+  "settings_crop_label": "Bijsnijgebied van de afbeelding",
+  "settings_crop_roledescription": "bijsnijgebied",
+  "settings_crop_use": "Afbeelding gebruiken",
+  "settings_crop_zoom": "Zoom",
+  "settings_data_hint": "Exporteer alles wat we over je hebben, of verwijder je account.",
+  "settings_data_title": "Je gegevens",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Dag {day__number} op het eiland"
+      }
+    }
+  ],
+  "settings_default_license": "Standaardlicentie",
+  "settings_default_license_hint": "Vooraf geselecteerd als je een nieuwe mod publiceert; per mod te wijzigen.",
+  "settings_default_license_none": "Elke keer vragen",
+  "settings_defaults_local_note": "Deze standaardwaarden worden alleen in deze browser opgeslagen.",
+  "settings_defaults_saved": "Standaardwaarden opgeslagen",
+  "settings_defaults_text": "Vul nieuwe mods alvast in en beantwoord veelgestelde vragen sneller.",
+  "settings_defaults_title": "Standaardwaarden voor publiceren",
+  "settings_delete_already": "Voor je account staat al een verwijdering gepland.",
+  "settings_delete_cancel": "Verwijdering annuleren",
+  "settings_delete_cancel_failed": "De verwijdering kon niet worden geannuleerd",
+  "settings_delete_cancelled": "Verwijdering geannuleerd — welkom terug",
+  "settings_delete_confirm": "Over 14 dagen verwijderen",
+  "settings_delete_dialog_text": "Je account wordt over 14 dagen verwijderd. Tot die tijd kun je het op deze pagina annuleren.",
+  "settings_delete_dialog_title": "Je account verwijderen?",
+  "settings_delete_mode_archive": "Archiveren",
+  "settings_delete_mode_archive_hint": "Ze verdwijnen uit lijsten en zoekresultaten en worden niet meer aan jou toegeschreven.",
+  "settings_delete_mode_keep": "Gepubliceerd laten",
+  "settings_delete_mode_keep_hint": "Spelers vinden ze nog steeds, zonder jouw naam.",
+  "settings_delete_mods_legend": "Wat er met je mods gebeurt",
+  "settings_delete_open": "Mijn account verwijderen…",
+  "settings_delete_point_content": "Je reacties en reviews blijven staan, ondertekend als ‘Verwijderde overlevende’.",
+  "settings_delete_point_export": "Exporteer eerst je gegevens als je een kopie wilt.",
+  "settings_delete_point_grace": "Je hebt 14 dagen om je te bedenken; log in en annuleer hier om het te stoppen.",
+  "settings_delete_point_mods": "Je mods worden gearchiveerd of blijven gepubliceerd zonder je naam — jij kiest.",
+  "settings_delete_scheduled_text": "Toch bedacht? Annuleer nu en alles blijft zoals het is.",
+  "settings_delete_scheduled_title": "Je account wordt verwijderd op {date}",
+  "settings_delete_scheduled_toast": "Je account wordt verwijderd op {date}",
+  "settings_delete_text": "Verwijdert je persoonsgegevens definitief na een bedenktijd van 14 dagen.",
+  "settings_delete_title": "Je account verwijderen",
+  "settings_delete_type_handle": "Typ ‘{handle}’ precies zo om te bevestigen.",
+  "settings_delete_type_label": "Typ je handle ‘{handle}’ om te bevestigen",
+  "settings_density": "Dichtheid",
+  "settings_density_comfortable": "Ruim",
+  "settings_density_comfortable_hint": "Meer ademruimte.",
+  "settings_density_compact": "Compact",
+  "settings_density_compact_hint": "Meer tegelijk op het scherm.",
+  "settings_discard": "Wijzigingen negeren",
+  "settings_display_name": "Weergavenaam",
+  "settings_display_name_hint": "In elke taal en met elk teken, 2–32 lang. Je kunt hem altijd wijzigen.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Gebruik tussen {min__number} en {max__number} tekens."
+      }
+    }
+  ],
+  "settings_email_daily": "Dagelijkse samenvatting",
+  "settings_email_instant": "Direct",
+  "settings_email_invalid": "Voer een geldig e-mailadres in.",
+  "settings_email_new": "Nieuw e-mailadres",
+  "settings_email_off": "Uit",
+  "settings_email_same": "Dat is al je e-mailadres.",
+  "settings_email_sent_text": "We hebben een bevestigingslink naar {email} gestuurd. Je adres verandert zodra je hem opent.",
+  "settings_email_sent_title": "Kijk in je inbox",
+  "settings_email_sent_toast": "Bevestigingslink verstuurd",
+  "settings_email_submit": "E-mailadres wijzigen",
+  "settings_email_taken": "Dat adres kan niet worden gebruikt. Probeer een ander.",
+  "settings_email_text": "Gebruikt om in te loggen en voor de e-mails die je wilt ontvangen. Om het te wijzigen bevestig je het nieuwe adres vanuit je inbox; het oude adres krijgt een bericht.",
+  "settings_email_title": "E-mailadres",
+  "settings_email_unverified": "Niet bevestigd",
+  "settings_email_verified": "Bevestigd",
+  "settings_email_weekly": "Wekelijkse samenvatting",
+  "settings_export_again": "Nieuwe export voorbereiden",
+  "settings_export_download": "ZIP downloaden",
+  "settings_export_email_note": "We mailen je de downloadlink ook. Hij werkt 24 uur.",
+  "settings_export_expired": "Deze exportlink is verlopen.",
+  "settings_export_expires": "link geldig tot {date}",
+  "settings_export_failed": "De export kon niet worden gestart",
+  "settings_export_preparing": "Je export wordt voorbereid…",
+  "settings_export_rate_limited": "Je hebt onlangs een export aangevraagd — probeer het later opnieuw",
+  "settings_export_ready": "Je export staat klaar",
+  "settings_export_request": "Mijn export voorbereiden",
+  "settings_export_requested": "We bereiden je export voor",
+  "settings_export_requested_at": "Aangevraagd op {date}",
+  "settings_export_status_failed": "De export is mislukt. Probeer het opnieuw.",
+  "settings_export_text": "Een ZIP met JSON-bestanden over je account, profiel, mods, reacties, reviews, kits, gevolgde items en instellingen.",
+  "settings_export_title": "Je gegevens exporteren",
+  "settings_handle": "Handle",
+  "settings_handle_hint": "Het adres van je profiel. Handles kunnen nog niet worden gewijzigd.",
+  "settings_history_link": "Mijn downloads openen",
+  "settings_history_off_saved": "Downloadgeschiedenis uitgeschakeld",
+  "settings_history_on_saved": "Downloadgeschiedenis ingeschakeld",
+  "settings_history_switch": "Downloadgeschiedenis bijhouden",
+  "settings_history_text": "Als die aan staat, verschijnen je ingelogde downloads in ‘Mijn downloads’ zodat we je over updates kunnen vertellen.",
+  "settings_history_title": "Downloadgeschiedenis",
+  "settings_image_processing": "Het verwerken van de afbeelding duurt te lang. Probeer het zo opnieuw.",
+  "settings_image_rejected": "De afbeelding is afgewezen. Probeer een andere.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Die afbeelding is te groot. De limiet is {max__number} MB."
+      }
+    }
+  ],
+  "settings_image_type": "Dat bestandstype wordt niet ondersteund. Gebruik PNG, JPEG, WebP of AVIF.",
+  "settings_index_title": "Instellingen",
+  "settings_language_browser": "Zoals mijn browser",
+  "settings_language_label": "Taal",
+  "settings_language_saved": "Taal opgeslagen",
+  "settings_language_text": "De taal van de console en van de e-mails die we je sturen.",
+  "settings_language_title": "Taal en getallen",
+  "settings_link_add": "Link toevoegen",
+  "settings_link_invalid": "Voer een volledig webadres in dat begint met https://",
+  "settings_link_kind": "Soort",
+  "settings_link_label": "Label",
+  "settings_link_other": "Anders",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Link {n__number} verwijderen"
+      }
+    }
+  ],
+  "settings_link_url": "Adres",
+  "settings_link_website": "Website",
+  "settings_links_empty": "Nog geen links.",
+  "settings_links_saved": "Links opgeslagen",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tot {max__number} links op je profiel: je website, je kanalen en waar mensen je kunnen steunen."
+      }
+    }
+  ],
+  "settings_links_title": "Links",
+  "settings_loading": "Laden…",
+  "settings_member_since": "Overlevende sinds",
+  "settings_motion": "Animaties",
+  "settings_motion_full": "Alle",
+  "settings_motion_full_hint": "Alle animaties aan.",
+  "settings_motion_reduce": "Verminderd",
+  "settings_motion_reduce_hint": "Geen schuiven, zoomen of feestjes.",
+  "settings_motion_system": "Zoals mijn apparaat",
+  "settings_motion_system_hint": "Volgt de instelling voor minder beweging van je systeem.",
+  "settings_notif_ack": "Je veldrapporten",
+  "settings_notif_ack_hint": "Een maker heeft een probleem dat jij meldde gezien of opgelost.",
+  "settings_notif_announcement": "Mededelingen",
+  "settings_notif_announcement_hint": "Nieuws van het SOTF Mods-team.",
+  "settings_notif_award": "Prijzen",
+  "settings_notif_award_hint": "Een mod van jou werd Mod van de week of een Staff pick.",
+  "settings_notif_badge": "Badges",
+  "settings_notif_badge_hint": "Je hebt een badge ontgrendeld.",
+  "settings_notif_broken": "Je mod als kapot gemeld",
+  "settings_notif_broken_hint": "Veldrapporten zeggen dat een mod van jou kapot is op de huidige build.",
+  "settings_notif_col_app": "In de app",
+  "settings_notif_col_email": "E-mail",
+  "settings_notif_col_signal": "Signaal",
+  "settings_notif_comment": "Reacties op je mods",
+  "settings_notif_comment_hint": "Gebundeld: meerdere reacties komen binnen als één signaal.",
+  "settings_notif_creator": "Nieuwe mods van makers",
+  "settings_notif_creator_hint": "Een maker die je volgt heeft iets nieuws gepubliceerd.",
+  "settings_notif_defaults": "Standaardwaarden herstellen",
+  "settings_notif_email_only": "Alleen e-mail",
+  "settings_notif_group_community": "Community en rangers",
+  "settings_notif_group_conversations": "Gesprekken",
+  "settings_notif_group_follows": "Wat je volgt",
+  "settings_notif_group_my_mods": "Je mods",
+  "settings_notif_matrix_text": "Kies per soort signaal of het in de app verschijnt en hoe vaak het wordt gemaild. Samenvattingen bundelen alles in één e-mail.",
+  "settings_notif_matrix_title": "Signalen en e-mails",
+  "settings_notif_mention": "Vermeldingen",
+  "settings_notif_mention_hint": "Iemand heeft je @vermeld.",
+  "settings_notif_milestone": "Downloadmijlpalen",
+  "settings_notif_milestone_hint": "Een mod van jou heeft een downloadmijlpaal bereikt.",
+  "settings_notif_patch": "Game-patches die mods breken",
+  "settings_notif_patch_hint": "Een nieuwe game-build breekt waarschijnlijk mods (naar makers).",
+  "settings_notif_removal_note": "Als een mod van jou wordt verwijderd, krijg je altijd een e-mail.",
+  "settings_notif_reply": "Antwoorden",
+  "settings_notif_reply_hint": "Iemand heeft op je reactie geantwoord.",
+  "settings_notif_report": "Je meldingen",
+  "settings_notif_report_hint": "De rangers hebben iets bekeken dat jij hebt gemeld.",
+  "settings_notif_review": "Reviews van je mods",
+  "settings_notif_review_hint": "Iemand heeft een van je mods beoordeeld.",
+  "settings_notif_review_reply": "Antwoorden op je reviews",
+  "settings_notif_review_reply_hint": "Een maker heeft op je review gereageerd.",
+  "settings_notif_saved": "Meldingsinstellingen opgeslagen",
+  "settings_notif_status": "Beoordelingsbesluiten",
+  "settings_notif_status_hint": "Een mod van jou is goedgekeurd, afgewezen, heeft wijzigingen nodig of is gearchiveerd.",
+  "settings_notif_version": "Nieuwe versies",
+  "settings_notif_version_hint": "Een mod in je rugzak heeft een update uitgebracht.",
+  "settings_notif_weekly": "Wekelijks makersrapport",
+  "settings_notif_weekly_hint": "Op maandag: downloads, volgers en reviews van je mods.",
+  "settings_notifications_hint": "Welke signalen je in de app en per e-mail krijgt.",
+  "settings_notifications_title": "Meldingen",
+  "settings_nsfw_adult": "Ik ben 18 of ouder (of meerderjarig waar ik woon)",
+  "settings_nsfw_confirm": "Tonen",
+  "settings_nsfw_confirm_text": "NSFW-mods kunnen naakt of expliciete inhoud bevatten. Je kunt ze altijd weer verbergen.",
+  "settings_nsfw_confirm_title": "Inhoud voor volwassenen tonen?",
+  "settings_nsfw_confirmed_on": "Bevestigd op {date}",
+  "settings_nsfw_hide": "Inhoud voor volwassenen verbergen",
+  "settings_nsfw_off_saved": "Inhoud voor volwassenen is verborgen",
+  "settings_nsfw_on_saved": "Inhoud voor volwassenen wordt nu getoond",
+  "settings_nsfw_show": "Inhoud voor volwassenen tonen",
+  "settings_nsfw_status_off": "Verborgen",
+  "settings_nsfw_status_on": "Zichtbaar",
+  "settings_nsfw_text": "Als NSFW gemarkeerde mods zijn verborgen in lijsten, zoekresultaten en feeds, en overal vervaagd behalve op hun eigen pagina. Zet dit aan om ze te zien.",
+  "settings_nsfw_title": "Inhoud voor volwassenen",
+  "settings_number_compact": "Kort",
+  "settings_number_compact_hint": "1,2K downloads",
+  "settings_number_format": "Grote getallen",
+  "settings_number_full": "Volledig",
+  "settings_number_full_hint": "1.234 downloads",
+  "settings_password_changed": "Wachtwoord gewijzigd",
+  "settings_password_changed_revoked": "Wachtwoord gewijzigd en andere apparaten uitgelogd",
+  "settings_password_confirm": "Herhaal het nieuwe wachtwoord",
+  "settings_password_current": "Huidig wachtwoord",
+  "settings_password_mismatch": "De twee nieuwe wachtwoorden komen niet overeen.",
+  "settings_password_new": "Nieuw wachtwoord",
+  "settings_password_rejected": "Dit wachtwoord is opgedoken in een datalek. Kies een ander.",
+  "settings_password_required": "Voer je huidige wachtwoord in.",
+  "settings_password_revoke": "Mijn andere apparaten uitloggen",
+  "settings_password_revoke_hint": "Aanbevolen als je denkt dat iemand anders je wachtwoord kent.",
+  "settings_password_same": "Kies een ander wachtwoord dan je huidige.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Gebruik minstens {min__number} tekens."
+      }
+    }
+  ],
+  "settings_password_submit": "Wachtwoord wijzigen",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Minstens {min__number} tekens. Een lange zin is makkelijker te onthouden en moeilijker te raden."
+      }
+    }
+  ],
+  "settings_password_title": "Wachtwoord",
+  "settings_password_wrong": "Dat wachtwoord klopt niet.",
+  "settings_photos_text": "Je avatar en de banner boven aan je profiel. Wijzigingen worden opgeslagen zodra de upload klaar is.",
+  "settings_photos_title": "Foto en banner",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} van {max__number} vastgezet"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "settings_pinned_empty": "Zodra een van je mods is gepubliceerd, kun je hem hier vastzetten.",
+  "settings_pinned_failed": "Je mods konden niet worden geladen.",
+  "settings_pinned_hidden": "Sommige vastgezette mods zijn nu niet openbaar; ze blijven vastgezet en verschijnen weer zodra ze dat wel zijn.",
+  "settings_pinned_saved": "Vastgezette mods opgeslagen",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Kies tot {max__number} van je mods om als eerste op je profiel te tonen, in deze volgorde."
+      }
+    }
+  ],
+  "settings_pinned_title": "Vastgezette mods",
+  "settings_preferences_hint": "Taal, thema, animaties, sneltoetsen en inhoud voor volwassenen.",
+  "settings_preferences_title": "Voorkeuren",
+  "settings_privacy_data_link": "Mijn gegevens exporteren of verwijderen",
+  "settings_privacy_data_text": "Je kunt alles exporteren wat we over je bewaren, of je account verwijderen.",
+  "settings_privacy_data_title": "Je gegevens",
+  "settings_privacy_hint": "Wat anderen op je profiel zien, en je downloadgeschiedenis.",
+  "settings_privacy_policy_link": "Privacybeleid",
+  "settings_privacy_saved": "Privacy-instellingen opgeslagen",
+  "settings_privacy_title": "Privacy",
+  "settings_profile_hint": "Foto, banner, naam, bio, links en vastgezette mods.",
+  "settings_profile_title": "Profiel",
+  "settings_profile_view_public": "Je openbare profiel bekijken",
+  "settings_readout": "Kampinstellingen",
+  "settings_retry": "Opnieuw proberen",
+  "settings_save": "Opslaan",
+  "settings_save_failed": "Je wijzigingen konden niet worden opgeslagen",
+  "settings_security_hint": "Waar je bent ingelogd, en andere apparaten uitloggen.",
+  "settings_security_tip_email": "We vragen nooit om je wachtwoord via e-mail of Discord.",
+  "settings_security_tip_password": "Gebruik een wachtwoord dat je nergens anders gebruikt.",
+  "settings_security_tip_sessions": "Log uit op gedeelde of openbare computers als je klaar bent.",
+  "settings_security_tips_title": "Houd je kamp veilig",
+  "settings_security_title": "Beveiliging",
+  "settings_sessions_active_now": "nu actief",
+  "settings_sessions_confirm_current_text": "Je gaat naar de inlogpagina.",
+  "settings_sessions_confirm_current_title": "Uitloggen in deze browser?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} andere sessie wordt beëindigd. Deze browser blijft ingelogd.",
+        "count__plural=*": "{count__number} andere sessies worden beëindigd. Deze browser blijft ingelogd."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Overal elders uitloggen?",
+  "settings_sessions_confirm_text": "{device} moet opnieuw inloggen.",
+  "settings_sessions_confirm_title": "Dit apparaat uitloggen?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} actieve sessie",
+        "count__plural=*": "{count__number} actieve sessies"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Die sessie kon niet worden uitgelogd",
+  "settings_sessions_last_seen": "laatst actief {when}",
+  "settings_sessions_revoked": "{device} uitgelogd",
+  "settings_sessions_revoked_others": "Andere apparaten uitgelogd",
+  "settings_sessions_sign_out": "Uitloggen",
+  "settings_sessions_sign_out_here": "Hier uitloggen",
+  "settings_sessions_sign_out_others": "Overal elders uitloggen",
+  "settings_sessions_started": "ingelogd op {date}",
+  "settings_sessions_text": "Elke browser en elk apparaat met een actieve sessie. Log de sessies uit die je niet herkent.",
+  "settings_sessions_this_device": "Dit apparaat",
+  "settings_sessions_title": "Waar je bent ingelogd",
+  "settings_sessions_unknown_device": "Onbekend apparaat",
+  "settings_shortcuts": "Sneltoetsen",
+  "settings_shortcuts_hint": "Sneltoetsen van één toets in de console. Zet ze uit als ze je hulptechnologie in de weg zitten.",
+  "settings_show_activity": "Mijn activiteit tonen",
+  "settings_show_activity_hint": "De heatmap van 12 maanden en je recente activiteit.",
+  "settings_show_kits": "Mijn kits tonen",
+  "settings_show_kits_hint": "Het tabblad Kits op je profiel (privékits worden nooit getoond).",
+  "settings_show_leaderboards": "In ranglijsten verschijnen",
+  "settings_show_leaderboards_hint": "Lijsten met topmakers en topoverlevenden.",
+  "settings_show_rank": "Mijn overlevingsrang en XP tonen",
+  "settings_show_rank_hint": "Je rangstempel naast je naam.",
+  "settings_support_edit": "Links in je profiel bewerken",
+  "settings_support_empty": "Je hebt nog geen Ko-fi- of Patreon-link toegevoegd.",
+  "settings_support_text": "Ko-fi- en Patreon-links uit je profiel verschijnen op je profiel en naast de downloadknop van je mods.",
+  "settings_support_title": "Steunlinks",
+  "settings_template_add": "Sjabloon toevoegen",
+  "settings_template_copied": "‘{name}’ gekopieerd",
+  "settings_template_copy": "Kopiëren",
+  "settings_template_copy_failed": "Kopiëren naar het klembord is mislukt",
+  "settings_template_delete": "Verwijderen",
+  "settings_template_name": "Naam",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Geef het een naam (tot {max__number} tekens)."
+      }
+    }
+  ],
+  "settings_template_text": "Tekst",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Schrijf de tekst (tot {max__number} tekens)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Nog geen sjablonen.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tot {max__number} kant-en-klare antwoorden (installatiestappen, bekende conflicten…) om te kopiëren in reacties en antwoorden op reviews."
+      }
+    }
+  ],
+  "settings_templates_title": "Antwoordsjablonen",
+  "settings_theme": "Thema",
+  "settings_theme_day": "Dag",
+  "settings_theme_night": "Nacht",
+  "settings_theme_system": "Zoals mijn apparaat",
+  "settings_verify_already": "Je e-mailadres is al bevestigd",
+  "settings_verify_resend": "Link opnieuw sturen",
+  "settings_verify_resend_failed": "De link kon niet worden verstuurd",
+  "settings_verify_resent": "We hebben een nieuwe link naar {email} gestuurd",
+  "settings_verify_text": "Tot die tijd kun je rondkijken en downloaden, maar niet reageren, reviewen of publiceren.",
+  "settings_verify_title": "Bevestig je e-mailadres",
+  "settings_visibility_text": "Zet uit wat je liever voor jezelf houdt.",
+  "settings_visibility_title": "Op je profiel",
+  "signals_action_download": "Downloaden",
+  "signals_announcement": "Nieuwe mededeling van de rangers",
+  "signals_announcement_titled": "Mededeling: {title}",
+  "signals_award_build_of_month": "{mod} is Build van de maand",
+  "signals_award_generic": "{mod} heeft een prijs gewonnen",
+  "signals_award_mod_of_month": "{mod} is Mod van de maand",
+  "signals_award_mod_of_week": "{mod} is Mod van de week",
+  "signals_award_staff_pick": "{mod} is een Staff pick",
+  "signals_badge_awarded": "Badge ontgrendeld: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Welkom bij het nieuwe SOTF Mods",
+        "count__exact=*, count__plural=one": "Welkom bij het nieuwe SOTF Mods — er wacht {count__number} badge in je veldboek",
+        "count__exact=*, count__plural=*": "Welkom bij het nieuwe SOTF Mods — er wachten {count__number} badges in je veldboek"
+      }
+    }
+  ],
+  "signals_bell_label": "Signalen",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Signalen: {count__number} ongelezen",
+        "count__plural=*": "Signalen: {count__number} ongelezen"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} meldde een bug in {mod}",
+  "signals_comment_mention": "{actor} noemde je in de reacties bij {mod}",
+  "signals_comment_on_mod": "{actor} reageerde op {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe reactie op {mod}",
+        "count__plural=*": "{count__number} nieuwe reacties op {mod}"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} antwoordde op je reactie bij {mod}",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} antwoord op je reactie bij {mod}",
+        "count__plural=*": "{count__number} antwoorden op je reactie bij {mod}"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "De maker van {mod} heeft je veldrapport gezien",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input status",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} wordt als kapot gemeld op {build}",
+        "status=*": "{mod} wordt als wisselend gemeld op {build}"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "Je veldrapport over {mod} is opgelost in {version}",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} heeft de build {mod} gepubliceerd",
+        "kind=*": "{actor} heeft {mod} gepubliceerd"
+      }
+    }
+  ],
+  "signals_current_build": "de huidige build",
+  "signals_empty_filtered_text": "Er past nog geen signaal bij dit filter. Probeer ‘Alles’.",
+  "signals_empty_filtered_title": "Niets op dit kanaal",
+  "signals_empty_text": "Volg mods en makers om te horen wanneer er iets verandert.",
+  "signals_empty_title": "Alles rustig in het bos",
+  "signals_end": "Dat zijn alle signalen voor nu.",
+  "signals_error_text": "Er ging iets mis aan onze kant. Probeer het zo opnieuw.",
+  "signals_error_title": "De signalen konden niet worden geladen.",
+  "signals_excerpt": "‘{text}’",
+  "signals_filter_all": "Alles",
+  "signals_filter_label": "Signalen filteren",
+  "signals_filter_mentions": "Vermeldingen",
+  "signals_filter_my_mods": "Mijn mods",
+  "signals_filter_ranger": "Rangers",
+  "signals_filter_updates": "Updates",
+  "signals_group_today": "Vandaag",
+  "signals_group_yesterday": "Gisteren",
+  "signals_load_more": "Oudere signalen laden",
+  "signals_loading": "Signalen laden…",
+  "signals_loading_more": "Laden…",
+  "signals_mark_all_read": "Alles als gelezen markeren",
+  "signals_mark_failed": "De signalen konden niet als gelezen worden gemarkeerd",
+  "signals_mark_read": "Als gelezen markeren",
+  "signals_marked_all": "Alle signalen als gelezen gemarkeerd",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} is de {threshold__number} downloads gepasseerd"
+      }
+    }
+  ],
+  "signals_more_error": "Oudere signalen konden niet worden geladen.",
+  "signals_page_description": "Updates van wat je volgt, antwoorden, vermeldingen en nieuws over je mods.",
+  "signals_page_readout": "Radiologboek",
+  "signals_page_title": "Signalen",
+  "signals_panel_title": "Signalen",
+  "signals_patch_breaking": "Game-build {build} kan mods breken — controleer de jouwe in de Patch Radar",
+  "signals_preferences": "Meldingsinstellingen",
+  "signals_report_dismissed": "Je melding is bekeken — er was geen actie nodig",
+  "signals_report_resolved": "Je melding is bekeken en er is actie ondernomen",
+  "signals_retry": "Opnieuw proberen",
+  "signals_review_on_mod": "{actor} gaf {mod} een review met {rating} sterren",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe review van {mod}",
+        "count__plural=*": "{count__number} nieuwe reviews van {mod}"
+      }
+    }
+  ],
+  "signals_review_reply": "De maker van {mod} heeft op je review gereageerd",
+  "signals_see_all": "Alle signalen bekijken",
+  "signals_show_all": "Alle signalen tonen",
+  "signals_someone": "Iemand",
+  "signals_status_approved": "Je mod {mod} is goedgekeurd en staat online",
+  "signals_status_archived": "Je mod {mod} is gearchiveerd",
+  "signals_status_changed": "De status van {mod} is gewijzigd",
+  "signals_status_changes_requested": "De rangers vragen om wijzigingen aan {mod}",
+  "signals_status_rejected": "Je mod {mod} is afgewezen",
+  "signals_status_removed": "Je mod {mod} is verwijderd",
+  "signals_status_republished": "Je mod {mod} is weer openbaar",
+  "signals_status_unlisted": "Je mod {mod} staat niet meer in de lijsten",
+  "signals_unknown_mod": "een mod",
+  "signals_unread_prefix": "Ongelezen:",
+  "signals_version_published": "{mod} {version} is uit — je volgt deze mod",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe versie van {mod}",
+        "count__plural=*": "{count__number} nieuwe versies van {mod}"
+      }
+    }
+  ],
+  "signals_weekly_report": "Je wekelijkse makersrapport staat klaar",
   "social_action_back": "Terug",
   "social_action_cancel": "Annuleren",
   "social_action_close": "Sluiten",
@@ -4992,5 +6911,578 @@
   "ui_theme_dark": "Nacht",
   "ui_theme_light": "Dag",
   "ui_theme_system": "Systeem",
-  "ui_type_to_confirm": "Typ {text} om te bevestigen."
+  "ui_type_to_confirm": "Typ {text} om te bevestigen.",
+  "upload_announce_group": "Geteste builds en aankondiging",
+  "upload_autosave_error": "Opslaan mislukt. We proberen het zo opnieuw; je wijzigingen blijven hier.",
+  "upload_autosave_idle": "Nog niets om op te slaan",
+  "upload_autosave_limit": "Maximum aantal concepten bereikt: verwijder er een om dit op te slaan.",
+  "upload_autosave_offline": "Offline. Je wijzigingen blijven hier en worden opgeslagen zodra je terug bent.",
+  "upload_autosave_pending": "Niet-opgeslagen wijzigingen",
+  "upload_autosave_saved": "Automatisch opgeslagen {when}",
+  "upload_autosave_saving": "Opslaan…",
+  "upload_back": "Terug",
+  "upload_block_empty": "Het bestand is leeg.",
+  "upload_block_local_problems": "De checks hieronder vonden fouten. Los ze op en kies het bestand opnieuw.",
+  "upload_block_manifest_id_mismatch": "Dit bestand is een andere mod: het manifest-id is {found}, verwacht werd {expected}.",
+  "upload_block_too_large": "Het bestand is groter dan {max}.",
+  "upload_block_unreadable": "Het bestand kon niet worden gelezen. Is het een geldige, volledige download?",
+  "upload_block_version_exists": "Versie {version} bestaat al. Verhoog de versie in manifest.json.",
+  "upload_block_version_not_greater": "Versie {version} moet hoger zijn dan {previous}. Verhoog de versie in manifest.json.",
+  "upload_block_version_not_semver": "Versie {version} is geen semantische versie (x.y.z).",
+  "upload_block_wrong_type": "Verkeerd bestandstype. Kies het type dat in het sleepvak staat.",
+  "upload_blocked_title": "Dit bestand kan niet worden geüpload.",
+  "upload_build_buildshare_version": "BuildShare-versie",
+  "upload_build_detected": "Bouwtekening herkend",
+  "upload_build_elements": "Elementen",
+  "upload_build_guid": "Bouwtekening-id",
+  "upload_build_no_thumbnail": "Deze bouwtekening heeft geen miniatuur. Voeg een omslag toe bij de mediastap.",
+  "upload_build_size_class": "Grootte",
+  "upload_build_structures": "Constructies",
+  "upload_build_thumbnail_alt": "Miniatuur van de bouwtekening {name}",
+  "upload_cancel": "Annuleren",
+  "upload_category_label": "Categorie",
+  "upload_category_placeholder": "Kies een categorie",
+  "upload_changelog_group": "Wijzigingslog",
+  "upload_changelog_hint_first": "Optioneel bij een eerste release.",
+  "upload_changelog_hint_version": "Je volgers lezen dit in hun Signalen.",
+  "upload_changelog_label": "Wat er veranderd is (Markdown)",
+  "upload_changelog_placeholder": "Opgelost…, toegevoegd…, gewijzigd…",
+  "upload_channel_beta": "Bèta",
+  "upload_channel_beta_hint": "Voor testers die de nieuwste wijzigingen willen.",
+  "upload_channel_label": "Kanaal",
+  "upload_channel_release": "Stabiel",
+  "upload_channel_release_hint": "Voor iedereen. Wordt de nieuwste versie.",
+  "upload_choose_other": "Ander bestand kiezen",
+  "upload_compat_game": "Game en loader",
+  "upload_compat_intro": "Vertel spelers waar je mod werkt. Veldrapporten van overlevenden vullen het later aan.",
+  "upload_compat_title": "Compatibiliteit",
+  "upload_compat_where": "Waar hij werkt",
+  "upload_counter": "{count} / {max}",
+  "upload_cover_build_fallback": "Zonder omslag wordt de miniatuur van de bouwtekening gebruikt.",
+  "upload_cover_choose": "Afbeelding kiezen",
+  "upload_cover_description": "Getoond op kaarten en bovenaan de pagina, bijgesneden tot 16:9.",
+  "upload_cover_drop": "Sleep een omslagafbeelding hierheen",
+  "upload_cover_failed": "De omslag kon niet worden geüpload.",
+  "upload_cover_hint": "PNG, JPEG, WebP, AVIF of GIF · tot 10 MB · vanaf 1280 × 720 ziet het er het best uit",
+  "upload_cover_label": "Omslag",
+  "upload_cover_preview_alt": "Voorbeeld van de omslag",
+  "upload_cover_remove": "Omslag verwijderen",
+  "upload_cover_replace": "Omslag vervangen",
+  "upload_cover_uploading": "Uploadvoortgang van de omslag",
+  "upload_crop_confirm": "Deze uitsnede gebruiken",
+  "upload_crop_description": "Sleep het kader, of focus het en gebruik de pijltjestoetsen. + en − veranderen de grootte.",
+  "upload_crop_frame": "Bijsnijkader",
+  "upload_crop_keyboard": "Pijlen verplaatsen · Shift gaat sneller · + en − veranderen de grootte",
+  "upload_crop_output": "Resultaat {width} × {height}",
+  "upload_crop_position": "Links {x} px, boven {y} px",
+  "upload_crop_size": "Grootte van het kader",
+  "upload_crop_title": "Omslag bijsnijden",
+  "upload_dedicated_hint": "Werkt hij op een dedicated server?",
+  "upload_dedicated_label": "Dedicated server",
+  "upload_dedicated_no": "Nee",
+  "upload_dedicated_partial": "Gedeeltelijk",
+  "upload_dedicated_unknown": "Weet ik niet",
+  "upload_dedicated_yes": "Ja",
+  "upload_dependencies_hint": "Die uit manifest.json zijn altijd vereist. Voeg hier optionele mods en conflicten toe.",
+  "upload_dependencies_label": "Afhankelijkheden",
+  "upload_dependencies_none": "Geen afhankelijkheden.",
+  "upload_dependency_add": "Toevoegen",
+  "upload_dependency_add_as": "{name} toevoegen als {kind}",
+  "upload_dependency_conflicts": "Conflict",
+  "upload_dependency_duplicate": "Die afhankelijkheid staat al in de lijst.",
+  "upload_dependency_from_manifest": "Uit manifest.json",
+  "upload_dependency_invalid_id": "Een manifest-id bestaat alleen uit letters, cijfers, ‘.’, ‘_’ en ‘-’.",
+  "upload_dependency_kind": "Relatie met {id}",
+  "upload_dependency_manual": "Of typ een manifest-id",
+  "upload_dependency_no_results": "Geen mod komt overeen.",
+  "upload_dependency_optional": "Optioneel",
+  "upload_dependency_range": "Versiebereik van {id}",
+  "upload_dependency_range_placeholder": "Elke versie (bijv. >=1.2.0)",
+  "upload_dependency_remove": "{id} verwijderen",
+  "upload_dependency_required": "Vereist",
+  "upload_dependency_search": "Mods en bibliotheken zoeken op SOTF Mods",
+  "upload_dependency_search_failed": "Zoeken is mislukt. Probeer opnieuw.",
+  "upload_description_group": "Beschrijving",
+  "upload_description_hint": "Wat hij doet, hoe je hem gebruikt, bekende problemen. Koppen, lijsten, afbeeldingen en YouTube-links werken.",
+  "upload_description_label": "Beschrijving (Markdown)",
+  "upload_description_placeholder": "Wat je mod doet, hoe je hem gebruikt, bekende problemen…",
+  "upload_details_discovery": "Categorie en tags",
+  "upload_details_discovery_hint": "Ze bepalen waar overlevenden hem vinden in Verkennen en zoeken.",
+  "upload_details_identity": "Naam en adres",
+  "upload_details_intro": "Zo leest je vermelding op de site. Wat het bestand ons vertelde, is al ingevuld.",
+  "upload_details_links": "Licentie en links",
+  "upload_details_title": "Details",
+  "upload_draft_limit_detail": "Verwijder een concept dat je niet meer nodig hebt om een nieuw te beginnen.",
+  "upload_draft_limit_title": "Je hebt 20 concepten.",
+  "upload_draft_missing_detail": "Het is ingediend of verwijderd. Je andere concepten staan nog in de lijst.",
+  "upload_draft_missing_title": "Dit concept bestaat niet meer.",
+  "upload_draft_other_flow_detail": "Open het waar het begonnen is om de stappen te behouden.",
+  "upload_draft_other_flow_title": "Dit concept hoort bij een andere flow.",
+  "upload_drafts_blockers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} punt om op te lossen",
+        "count__plural=*": "{count__number} punten om op te lossen"
+      }
+    }
+  ],
+  "upload_drafts_counter": "{count} / {max}",
+  "upload_drafts_delete": "Verwijderen",
+  "upload_drafts_delete_detail": "‘{name}’ en de niet-verzonden bestanden verdwijnen. Dit kan niet ongedaan worden gemaakt.",
+  "upload_drafts_delete_named": "{name} verwijderen",
+  "upload_drafts_delete_title": "Dit concept verwijderen?",
+  "upload_drafts_deleted": "Concept verwijderd",
+  "upload_drafts_empty_detail": "Alles wat je begint te publiceren, wordt hier bewaard tot je het indient.",
+  "upload_drafts_empty_title": "Geen concepten",
+  "upload_drafts_intro": "Automatisch opgeslagen terwijl je werkt. Tot {max} concepten tegelijk.",
+  "upload_drafts_loading": "Concepten laden",
+  "upload_drafts_quality": "Kwaliteit {score}",
+  "upload_drafts_ready": "Klaar om in te dienen",
+  "upload_drafts_resume": "Verdergaan",
+  "upload_drafts_start": "Beginnen met publiceren",
+  "upload_drafts_step": "Stap {current} van {total} · {label}",
+  "upload_drafts_title": "Concepten",
+  "upload_drafts_untitled": "Concept zonder titel",
+  "upload_drafts_untitled_version": "Nieuwe versie",
+  "upload_drafts_updated": "Bewerkt {when}",
+  "upload_drop_button": "Bestand kiezen",
+  "upload_drop_hint": "{type} · tot {max}",
+  "upload_drop_replace": "Sleep een ander bestand hierheen om het te vervangen",
+  "upload_drop_title_build": "Sleep je bouwtekening-.json hierheen",
+  "upload_drop_title_mod": "Sleep je .zip hierheen",
+  "upload_entries_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "En nog {count__number} bestand",
+        "count__plural=*": "En nog {count__number} bestanden"
+      }
+    }
+  ],
+  "upload_entries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bestand in de zip",
+        "count__plural=*": "{count__number} bestanden in de zip"
+      }
+    }
+  ],
+  "upload_entry_flagged": "Controle nodig",
+  "upload_entry_not_allowed": "Ongebruikelijk type",
+  "upload_entry_unsafe": "Onveilig pad",
+  "upload_error_loader_version": "Gebruik een versie zoals 0.9.0.",
+  "upload_error_name": "Gebruik 2 tot 80 tekens.",
+  "upload_error_slug": "Gebruik kleine letters, cijfers en koppeltekens (2 tot 80).",
+  "upload_error_title": "De upload is gestopt.",
+  "upload_error_url": "Vul een volledig adres in dat begint met https://",
+  "upload_error_youtube": "Plak een link naar een YouTube-video (youtube.com/watch, youtu.be of shorts).",
+  "upload_expired_detail": "De upload is verlopen voordat hij werd gebruikt. Upload het bestand opnieuw.",
+  "upload_failure_api": "Er ging iets mis bij ons. Probeer het zo opnieuw.",
+  "upload_failure_expired": "De uploadlink is verlopen. Probeer opnieuw om een nieuwe te krijgen.",
+  "upload_failure_forbidden": "Je account kan nu niet uploaden (onbevestigd e-mailadres of een beperking).",
+  "upload_failure_network": "De verbinding viel weg. Je voortgang blijft bewaard: hervat zodra je weer online bent.",
+  "upload_failure_rejected": "De checks hebben het bestand geweigerd.",
+  "upload_failure_too_large": "Het bestand is te groot voor je account.",
+  "upload_failure_unsupported": "Dit bestandstype wordt niet geaccepteerd.",
+  "upload_file_intro_build": "Sleep de door BuildShare geëxporteerde bouwtekening-.json. Miniatuur, aantal elementen en versie worden automatisch gelezen.",
+  "upload_file_intro_mod": "Sleep de .zip die je aan spelers zou geven. We openen hem eerst in je browser en tonen de inhoud voordat er iets wordt geüpload.",
+  "upload_file_intro_version": "Upload het nieuwe bestand van {name}. Het manifest-id moet {manifestId} zijn en de versie hoger dan {version}.",
+  "upload_file_title_build": "Je BuildShare-bouwtekening",
+  "upload_file_title_mod": "Je modbestand",
+  "upload_flag_absolute_path": "Een bestand gebruikt een absoluut pad.",
+  "upload_flag_blueprint_invalid": "Dit is geen geldige BuildShare-bouwtekening.",
+  "upload_flag_extension_flagged": "Programma of script: een ranger moet het controleren.",
+  "upload_flag_extension_not_allowed": "Ongebruikelijk bestandstype voor een mod.",
+  "upload_flag_file_too_large": "Het bestand is te groot.",
+  "upload_flag_manifest_id_mismatch": "Het manifest-id past niet bij deze mod.",
+  "upload_flag_manifest_invalid": "manifest.json bevat fouten.",
+  "upload_flag_manifest_missing": "Geen manifest.json gevonden (hoogstens twee mappen diep).",
+  "upload_flag_scan_detections": "De beveiligingsscan meldde detecties.",
+  "upload_flag_unknown": "Check mislukt ({code}).",
+  "upload_flag_version_not_greater": "De versie is niet hoger dan de laatste.",
+  "upload_flag_version_not_semver": "De versie is geen semantische versie (x.y.z).",
+  "upload_flag_zip_bomb_ratio": "De compressieverhouding is verdacht hoog.",
+  "upload_flag_zip_invalid": "De zip is beschadigd of versleuteld.",
+  "upload_flag_zip_slip": "Een pad verlaat de modmap (‘..’ of een link).",
+  "upload_flag_zip_too_many_entries": "De zip bevat te veel bestanden (maximaal 5.000).",
+  "upload_flagged_detail": "Iets erin vraagt een menselijke controle (zie de waarschuwingen hieronder). Je kunt toch indienen; het gaat live na goedkeuring.",
+  "upload_flagged_title": "Een ranger bekijkt dit bestand.",
+  "upload_gallery_added": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} afbeelding toegevoegd",
+        "count__plural=*": "{count__number} afbeeldingen toegevoegd"
+      }
+    }
+  ],
+  "upload_gallery_alt": "Beschrijving van afbeelding {n}",
+  "upload_gallery_alt_placeholder": "Wat is er te zien?",
+  "upload_gallery_choose": "Afbeeldingen kiezen",
+  "upload_gallery_counter": "{count} / {max}",
+  "upload_gallery_description": "Tot 10 screenshots. Sleep ze in volgorde en beschrijf elke afbeelding voor schermlezers.",
+  "upload_gallery_drop": "Sleep screenshots hierheen",
+  "upload_gallery_full": "De galerij is vol ({max} afbeeldingen).",
+  "upload_gallery_hint": "Meerdere tegelijk · PNG, JPEG, WebP, AVIF of GIF · tot 10 MB per stuk · maximaal {max}",
+  "upload_gallery_image": "Screenshot {n}",
+  "upload_gallery_label": "Galerij",
+  "upload_gallery_move_after": "Afbeelding {n} naar achteren",
+  "upload_gallery_move_before": "Afbeelding {n} naar voren",
+  "upload_gallery_moved": "Afbeelding verplaatst naar positie {position} van {total}",
+  "upload_gallery_queued": "Wacht…",
+  "upload_gallery_remove": "Afbeelding {n} verwijderen",
+  "upload_gallery_removed": "Afbeelding verwijderd",
+  "upload_gallery_reorder_hint": "Sleep de afbeeldingen, of gebruik de pijlen, om de volgorde te wijzigen.",
+  "upload_gallery_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bestand overgeslagen (verkeerd type, groter dan 10 MB of galerij vol)",
+        "count__plural=*": "{count__number} bestanden overgeslagen (verkeerd type, groter dan 10 MB of galerij vol)"
+      }
+    }
+  ],
+  "upload_gallery_uploading": "Upload van afbeelding {n}",
+  "upload_game_build_current": "{label} (huidig)",
+  "upload_game_builds_failed": "De gamebuilds konden niet worden geladen. Probeer het later opnieuw.",
+  "upload_game_builds_hint": "Vink alleen de patches aan waarop je echt hebt gespeeld.",
+  "upload_game_builds_label": "Geteste gamebuilds",
+  "upload_image_no_preview": "Geüpload (voorbeeld op de pagina na verwerking)",
+  "upload_image_reading": "Afbeelding lezen…",
+  "upload_image_too_large": "Afbeeldingen mogen tot 10 MB zijn.",
+  "upload_image_unreadable": "Die afbeelding kon niet worden geopend.",
+  "upload_image_wrong_type": "Gebruik een PNG-, JPEG-, WebP-, AVIF- of GIF-afbeelding.",
+  "upload_inspecting_detail": "De automatische checks draaien bij ons. Je kunt de andere stappen alvast invullen.",
+  "upload_inspecting_title": "Bestand controleren…",
+  "upload_issue_invalid_data": "De Data van de bouwtekening is ongeldig.",
+  "upload_issue_invalid_dependencies": "De lijst met afhankelijkheden is ongeldig.",
+  "upload_issue_invalid_field": "Het veld ‘{field}’ ontbreekt of is ongeldig.",
+  "upload_issue_invalid_id": "Het id mag alleen letters, cijfers, ‘.’, ‘_’ en ‘-’ bevatten.",
+  "upload_issue_invalid_json": "Het bestand is geen geldige JSON.",
+  "upload_issue_invalid_log_color": "De logkleur moet een hexkleur zijn, zoals #FF9900.",
+  "upload_issue_invalid_number_of_elements": "NumberOfElements moet een geheel getal zijn.",
+  "upload_issue_invalid_platform": "Het platform moet Client, Server of Universal zijn.",
+  "upload_issue_invalid_priority": "De prioriteit moet een geheel getal zijn.",
+  "upload_issue_invalid_thumbnail": "De miniatuur van de bouwtekening is onleesbaar.",
+  "upload_issue_invalid_type": "Het type moet ‘Mod’ of ‘Library’ zijn.",
+  "upload_issue_invalid_url": "De url is ongeldig.",
+  "upload_issue_invalid_version": "De versie moet eruitzien als 1.2.3.",
+  "upload_issue_missing_description": "De bouwtekening heeft geen Description.",
+  "upload_issue_missing_guid": "De bouwtekening heeft geen Guid.",
+  "upload_issue_missing_id": "Het manifest heeft geen id.",
+  "upload_issue_missing_name": "De bouwtekening heeft geen Name.",
+  "upload_issue_missing_version": "Het manifest heeft geen versie.",
+  "upload_issue_not_an_object": "De JSON moet een object zijn.",
+  "upload_kind_build": "Build",
+  "upload_kind_mod": "Mod",
+  "upload_kind_version": "Nieuwe versie",
+  "upload_license_all_rights_reserved": "Alle rechten voorbehouden",
+  "upload_license_cc_by4": "CC BY 4.0",
+  "upload_license_gpl3": "GPL-3.0",
+  "upload_license_hint": "Wat anderen met je bestanden mogen doen.",
+  "upload_license_label": "Licentie",
+  "upload_license_mit": "MIT",
+  "upload_license_other": "Anders (uitgelegd in de beschrijving)",
+  "upload_license_placeholder": "Kies een licentie",
+  "upload_license_reupload_with_credit": "Opnieuw uploaden mag met naamsvermelding",
+  "upload_link_discord": "Discord",
+  "upload_link_github": "GitHub",
+  "upload_link_kofi": "Ko-fi",
+  "upload_link_other": "Anders",
+  "upload_link_patreon": "Patreon",
+  "upload_link_twitch": "Twitch",
+  "upload_link_website": "Website",
+  "upload_link_youtube": "YouTube",
+  "upload_links_add": "Link toevoegen",
+  "upload_links_empty": "Nog geen links.",
+  "upload_links_full": "Maximaal {max} links.",
+  "upload_links_kind": "Soort link {n}",
+  "upload_links_label": "Steunlinks",
+  "upload_links_remove": "Link {n} verwijderen",
+  "upload_links_url": "Adres van link {n}",
+  "upload_loader_hint": "De oudste RedLoader-versie waarmee je mod werkt.",
+  "upload_loader_label": "Minimale RedLoader",
+  "upload_loading": "Wizard laden…",
+  "upload_manifest_author": "Auteur",
+  "upload_manifest_dependencies": "Afhankelijkheden",
+  "upload_manifest_dependency_missing": "niet op SOTF Mods",
+  "upload_manifest_found": "manifest.json gevonden",
+  "upload_manifest_game_version": "Gameversie",
+  "upload_manifest_id": "Manifest-id",
+  "upload_manifest_loader_version": "RedLoader-versie",
+  "upload_manifest_log_color": "Logkleur",
+  "upload_manifest_name": "Naam",
+  "upload_manifest_no_dependencies": "Geen opgegeven",
+  "upload_manifest_platform": "Platform",
+  "upload_manifest_type": "Type",
+  "upload_manifest_type_library": "Bibliotheek",
+  "upload_manifest_type_mod": "Mod",
+  "upload_manifest_version": "Versie",
+  "upload_markdown_help": "Markdown: **vet**, _cursief_, lijsten, `code`, > citaten, ||spoilers||.",
+  "upload_markdown_preview": "Voorbeeld",
+  "upload_markdown_preview_empty": "Het voorbeeld verschijnt hier terwijl je typt.",
+  "upload_markdown_recommended": "{min}+ aanbevolen",
+  "upload_markdown_view": "Editorweergave",
+  "upload_markdown_write": "Schrijven",
+  "upload_media_intro": "Goede afbeeldingen verkopen een mod. Vermeldingen met 3 of meer afbeeldingen worden veel vaker gedownload.",
+  "upload_media_title": "Media",
+  "upload_multiplayer_all_players": "Iedereen heeft hem nodig",
+  "upload_multiplayer_all_players_hint": "Elke speler in de sessie moet hem installeren.",
+  "upload_multiplayer_client_side": "Clientzijde",
+  "upload_multiplayer_client_side_hint": "Alleen wie hem installeert, heeft hem nodig.",
+  "upload_multiplayer_host_only": "Alleen de host",
+  "upload_multiplayer_host_only_hint": "Alleen de host heeft hem nodig; gasten doen mee zonder.",
+  "upload_multiplayer_label": "Multiplayer",
+  "upload_multiplayer_singleplayer_only": "Alleen singleplayer",
+  "upload_multiplayer_singleplayer_only_hint": "Niet bedoeld voor multiplayersessies.",
+  "upload_multiplayer_unknown": "Weet ik niet",
+  "upload_multiplayer_unknown_hint": "De veldrapporten van overlevenden zullen het uitwijzen.",
+  "upload_my_drafts": "Mijn concepten",
+  "upload_name_hint": "Zoals spelers hem noemen. 2 tot 80 tekens.",
+  "upload_name_label": "Naam",
+  "upload_new_build": "Een build",
+  "upload_new_build_detail": "Een BuildShare-bouwtekening (.json). Miniatuur en statistieken worden voor je gelezen.",
+  "upload_new_drafts_detail": "Ga verder waar je gebleven was, of begin hieronder iets nieuws.",
+  "upload_new_drafts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Je hebt {count__number} concept in uitvoering.",
+        "count__plural=*": "Je hebt {count__number} concepten in uitvoering."
+      }
+    }
+  ],
+  "upload_new_intro": "Wat deel je vandaag met de overlevenden?",
+  "upload_new_mod": "Een mod of bibliotheek",
+  "upload_new_mod_detail": "Een RedLoader-.zip met zijn manifest.json. Zes korte stappen.",
+  "upload_new_title": "Publiceren",
+  "upload_new_version_more": "Meer in Mijn mods: {count}",
+  "upload_new_version_none": "Hier verschijnen je gepubliceerde mods om een nieuwe versie toe te voegen.",
+  "upload_new_version_title": "Een van je mods bijwerken",
+  "upload_next": "Volgende",
+  "upload_no_permission_detail": "Een ranger heeft uploads voorlopig beperkt. Bekijk je Signalen voor details of neem contact op met het team.",
+  "upload_no_permission_title": "Publiceren is gepauzeerd voor dit account.",
+  "upload_notify_hint": "Volgers van de mod krijgen een signaal over deze versie.",
+  "upload_notify_label": "Volgers informeren",
+  "upload_nsfw_hint": "Verborgen voor wie het niet heeft ingeschakeld.",
+  "upload_nsfw_label": "Inhoud voor volwassenen (NSFW)",
+  "upload_optional": "Optioneel",
+  "upload_platform_client": "Client",
+  "upload_platform_client_hint": "Draait in de game die je speelt.",
+  "upload_platform_hint": "Waar RedLoader hem laadt.",
+  "upload_platform_label": "Platform",
+  "upload_platform_server": "Server",
+  "upload_platform_server_hint": "Draait alleen op een dedicated server.",
+  "upload_platform_universal": "Universeel",
+  "upload_platform_universal_hint": "Werkt op allebei.",
+  "upload_preflight_category_invalid": "De categorie bestaat niet meer: kies een andere.",
+  "upload_preflight_category_missing": "Kies een categorie.",
+  "upload_preflight_category_ok": "Categorie gekozen.",
+  "upload_preflight_changelog_missing": "Geen wijzigingslog: volgers willen weten wat er veranderd is.",
+  "upload_preflight_changelog_ok": "Wijzigingslog geschreven.",
+  "upload_preflight_dependency_cycle": "De afhankelijkheden vormen een lus.",
+  "upload_preflight_dependency_unknown": "Een afhankelijkheid staat niet op SOTF Mods: spelers moeten hem elders zoeken.",
+  "upload_preflight_description_ok": "De beschrijving is uitgebreid.",
+  "upload_preflight_description_raw_html": "De beschrijving bevat HTML: het wordt als tekst getoond.",
+  "upload_preflight_description_short": "De beschrijving is kort (300 tekens of meer aanbevolen).",
+  "upload_preflight_file_expired": "De upload is verlopen: upload het bestand opnieuw.",
+  "upload_preflight_file_failed": "Het bestand haalde de automatische checks niet.",
+  "upload_preflight_file_flagged": "Een ranger moet het bestand controleren voordat het live gaat.",
+  "upload_preflight_file_inspecting": "Het bestand wordt nog gecontroleerd.",
+  "upload_preflight_file_missing": "Upload het bestand.",
+  "upload_preflight_file_ok": "Het bestand haalde de automatische checks.",
+  "upload_preflight_fix": "Oplossen",
+  "upload_preflight_gallery_below_3": "Minder dan 3 afbeeldingen in de galerij.",
+  "upload_preflight_gallery_ok": "De galerij heeft 3 of meer afbeeldingen.",
+  "upload_preflight_license_missing": "Geen licentie gekozen.",
+  "upload_preflight_license_ok": "Licentie gekozen.",
+  "upload_preflight_manifest_id_taken": "Een andere mod gebruikt dit manifest-id al.",
+  "upload_preflight_media_invalid": "Een afbeelding is mislukt: verwijder of upload hem opnieuw.",
+  "upload_preflight_media_processing": "De afbeeldingen worden nog verwerkt.",
+  "upload_preflight_name_missing": "Voeg een naam toe (minstens 2 tekens).",
+  "upload_preflight_name_ok": "Naam ingevuld.",
+  "upload_preflight_platform_missing": "Geen platform ingesteld.",
+  "upload_preflight_platform_ok": "Platform ingesteld.",
+  "upload_preflight_refreshing": "Bijwerken…",
+  "upload_preflight_short_description_missing": "Voeg een korte beschrijving toe.",
+  "upload_preflight_short_description_ok": "Korte beschrijving ingevuld.",
+  "upload_preflight_slug_invalid": "Het adres is ongeldig.",
+  "upload_preflight_slug_ok": "Adres beschikbaar.",
+  "upload_preflight_slug_taken": "Je hebt al een vermelding op dit adres.",
+  "upload_preflight_source_missing": "Geen link naar de broncode.",
+  "upload_preflight_source_ok": "Broncode gelinkt.",
+  "upload_preflight_tags_missing": "Geen tags: ze helpen overlevenden hem te vinden.",
+  "upload_preflight_tags_ok": "Tags gekozen.",
+  "upload_preflight_tags_unknown": "Sommige tags bestaan niet meer.",
+  "upload_preflight_target_missing": "De mod van deze versie bestaat niet meer.",
+  "upload_preflight_target_removed": "De mod van deze versie is verwijderd.",
+  "upload_preflight_thumbnail_missing": "Geen omslagafbeelding.",
+  "upload_preflight_thumbnail_ok": "Omslag ingesteld.",
+  "upload_preflight_title": "Voorcontrole",
+  "upload_preflight_waiting": "De checks verschijnen zodra je concept is opgeslagen.",
+  "upload_problems_label": "Fouten en waarschuwingen van het bestand",
+  "upload_progress_direct": "Gaat rechtstreeks naar de opslag. Valt de verbinding weg, dan kun je hervatten.",
+  "upload_progress_finishing": "Afronden…",
+  "upload_progress_label": "Uploadvoortgang",
+  "upload_progress_value": "{percent} · {loaded} van {total}",
+  "upload_quality_description": "Beschrijving van 300 tekens of meer",
+  "upload_quality_gallery": "3 of meer afbeeldingen in de galerij",
+  "upload_quality_hint": "Complete vermeldingen scoren hoger in Verkennen en worden vaker gedownload.",
+  "upload_quality_license": "Licentie",
+  "upload_quality_met": "klaar",
+  "upload_quality_missing": "ontbreekt",
+  "upload_quality_platform": "Platform",
+  "upload_quality_source": "Link naar de broncode",
+  "upload_quality_tags": "Tags",
+  "upload_quality_title": "Kwaliteit van de vermelding",
+  "upload_reading_build": "Bouwtekening lezen…",
+  "upload_reading_zip": "Zip openen in je browser…",
+  "upload_ready_detail": "Alles waar de automatische checks naar kijken is in orde.",
+  "upload_ready_title": "Bestand gecontroleerd.",
+  "upload_reference": "Ref.: {ref}",
+  "upload_rejected_detail": "Los de fouten hieronder op en upload het opnieuw.",
+  "upload_rejected_title": "Het bestand is geweigerd.",
+  "upload_release_intro": "De versie komt uit manifest.json. Vertel spelers wat er veranderd is.",
+  "upload_release_title": "Release",
+  "upload_resume": "Upload hervatten",
+  "upload_retry": "Opnieuw proberen",
+  "upload_review_intro": "Een laatste blik voordat een ranger het ziet. Los de fouten op; waarschuwingen zijn tips.",
+  "upload_review_title": "Controle",
+  "upload_safe_remove_label": "Kun je hem verwijderen zonder een save te breken?",
+  "upload_safe_remove_no": "Nee",
+  "upload_safe_remove_no_hint": "Saves die ermee gemaakt zijn, kunnen zonder hem breken.",
+  "upload_safe_remove_unknown": "Weet ik niet",
+  "upload_safe_remove_unknown_hint": "Spelers wordt aangeraden eerst een back-up te maken.",
+  "upload_safe_remove_yes": "Ja",
+  "upload_safe_remove_yes_hint": "Verwijderen laat saves intact.",
+  "upload_save_draft": "Concept opslaan",
+  "upload_saved_toast": "Concept opgeslagen",
+  "upload_select_placeholder": "Kies…",
+  "upload_severity_error": "Fout",
+  "upload_severity_ok": "OK",
+  "upload_severity_warning": "Waarschuwing",
+  "upload_short_description_label": "Korte beschrijving",
+  "upload_slug_label": "Adres",
+  "upload_slug_preview": "Je vermelding komt op",
+  "upload_source_hint": "Een openbare repository wekt vertrouwen en helpt anderen leren.",
+  "upload_source_label": "Broncode",
+  "upload_step_compat": "Compatibiliteit",
+  "upload_step_compat_hint": "Builds, multiplayer, afhankelijkheden",
+  "upload_step_details": "Details",
+  "upload_step_details_hint": "Naam, beschrijving, tags",
+  "upload_step_done": "klaar",
+  "upload_step_file": "Bestand",
+  "upload_step_file_hint": "Zip of bouwtekening",
+  "upload_step_media": "Media",
+  "upload_step_media_hint": "Omslag, galerij, video",
+  "upload_step_needs_attention": "vraagt aandacht",
+  "upload_step_of": "Stap {current} van {total}",
+  "upload_step_release": "Release",
+  "upload_step_release_hint": "Versie en wijzigingen",
+  "upload_step_review": "Controle",
+  "upload_step_review_hint": "Checks en indienen",
+  "upload_steps_label": "Publicatiestappen",
+  "upload_submit": "Naar de rangerpost sturen",
+  "upload_submit_blocked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nog {count__number} fout om op te lossen.",
+        "count__plural=*": "Nog {count__number} fouten om op te lossen."
+      }
+    }
+  ],
+  "upload_submit_failed": "Indienen is niet gelukt.",
+  "upload_submit_ready": "Klaar. Een ranger controleert eerste publicaties; geverifieerde makers gaan meteen live.",
+  "upload_submit_ready_version": "Klaar. Volgers krijgen bericht zodra de versie live is.",
+  "upload_submit_version": "Deze versie publiceren",
+  "upload_success_another": "Nog iets publiceren",
+  "upload_success_basecamp": "Terug naar het basiskamp",
+  "upload_success_live_detail": "{name} is gepubliceerd. Deel het met de overlevenden.",
+  "upload_success_live_title": "Hij staat live!",
+  "upload_success_live_version": "De nieuwe versie van {name} staat live en de volgers krijgen bericht.",
+  "upload_success_preview": "Voorbeeld van de pagina",
+  "upload_success_queued_detail": "{name} staat in de wachtrij. Je krijgt een signaal zodra een ranger beslist.",
+  "upload_success_queued_title": "Naar de rangerpost gestuurd",
+  "upload_success_queued_version": "De nieuwe versie van {name} wacht op een ranger. Je krijgt een signaal als hij live is.",
+  "upload_success_view": "Pagina bekijken",
+  "upload_summary_address": "Adres",
+  "upload_summary_name": "Naam",
+  "upload_summary_version": "Versie",
+  "upload_summary_version_build": "Nieuwe buildversie",
+  "upload_tags_counter": "{count} / {max}",
+  "upload_tags_filter": "Tags filteren",
+  "upload_tags_full": "Dat zijn {max} tags: haal er een weg om een andere te kiezen.",
+  "upload_tags_label": "Tags",
+  "upload_tags_none": "Geen tag komt overeen.",
+  "upload_target_removed_detail": "Verwijderde mods kunnen geen nieuwe versies krijgen.",
+  "upload_target_removed_title": "Deze mod is verwijderd.",
+  "upload_title_build": "Nieuwe build",
+  "upload_title_mod": "Nieuwe mod",
+  "upload_title_version": "Nieuwe versie van {name}",
+  "upload_verify_email_detail": "Open de link die we je stuurden en kom terug: je concept wacht op je.",
+  "upload_verify_email_title": "Bevestig je e-mailadres om te publiceren.",
+  "upload_version_build": "Builds krijgen een versie op datum: elke upload is een nieuwe versie.",
+  "upload_version_draft_exists_detail": "Ga verder met dat concept, of ga hier verder om opnieuw te beginnen.",
+  "upload_version_draft_exists_title": "Je bent al een versie voor deze mod begonnen.",
+  "upload_version_first": "Eerste release",
+  "upload_version_from_manifest": "Gelezen uit manifest.json. Wil je hem wijzigen, pas dan het manifest aan en upload het bestand opnieuw.",
+  "upload_version_invalid_title": "Deze versie kan niet worden gepubliceerd.",
+  "upload_version_label": "Versie",
+  "upload_version_pending": "Kies eerst het bestand: de versie wordt eruit gelezen.",
+  "upload_version_previous": "Vorige: v{version}",
+  "upload_video_group": "Video",
+  "upload_video_hint": "Een showcase of tutorial, getoond na de galerij.",
+  "upload_video_label": "YouTube-video"
 }

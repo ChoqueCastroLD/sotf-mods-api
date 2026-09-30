@@ -1,7 +1,7 @@
 {
   "install": {
     "question": "Jak zainstalować mody w Sons of the Forest?",
-    "answer": "Zainstaluj RedLoader, czyli loader modów, umieść każdy mod w folderze _RedLoader/Mods w katalogu gry i uruchom grę. RedManager może wykonać oba kroki za ciebie. Naciśnij F1 w grze, aby sprawdzić, czy mody się wczytały. Każda strona moda podaje jego zależności, a poradnik instalacji omawia każdy krok."
+    "answer": "Zainstaluj RedLoader, czyli loader modów, umieść każdy mod w folderze Mods w katalogu gry i uruchom grę. RedManager może wykonać oba kroki za ciebie. Naciśnij F1 w grze, aby sprawdzić, czy mody się wczytały. Każda strona moda podaje jego zależności, a poradnik instalacji omawia każdy krok."
   },
   "free": {
     "question": "Czy pobieranie jest darmowe?",

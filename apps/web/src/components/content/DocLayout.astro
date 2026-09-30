@@ -1,0 +1,104 @@
+---
+/**
+ * Page shell of the document pages (legal texts, about, developers): breadcrumbs, header with the
+ * «last updated» date, the draft and translation notices, the table of contents beside the text
+ * and optional blocks before (`before` slot) and after (default slot) the prose.
+ *
+ * SEO follows PLAN §4.5: a document translated into all 13 locales publishes the hreflang
+ * cluster; one that is not leaves it out and points the canonical of untranslated locales to the
+ * English original.
+ */
+import { formatDate, LOCALES } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import PageLayout, { type Crumb } from '../../layouts/PageLayout.astro';
+import type { JsonLd } from '../../lib/seo/jsonld.ts';
+import ContentHeader from './ContentHeader.astro';
+import DraftNotice from './DraftNotice.astro';
+import type { LocalizedDoc } from './docs.ts';
+import FallbackNotice from './FallbackNotice.astro';
+import type { DocHeading } from './markdown.ts';
+import Prose from './Prose.astro';
+import Toc from './Toc.astro';
+
+interface Props {
+  template: string;
+  /** Locale-less path of the page. */
+  path: string;
+  eyebrow: string;
+  doc: LocalizedDoc<{ title: string; description: string }>;
+  /** Locales that have their own translation of the document. */
+  translatedLocales: readonly string[];
+  /** ISO date of the last substantive change. */
+  updated: string;
+  breadcrumbs: readonly Crumb[];
+  jsonLd?: readonly JsonLd[];
+  /** Legal draft notice. */
+  draft?: boolean;
+  /** Legal text: the English original is binding. */
+  binding?: boolean;
+  /** `<title>` override (defaults to the document title). */
+  seoTitle?: string;
+  /** Sections rendered by the page after the prose (added to the table of contents). */
+  extraSections?: ReadonlyArray<{ id: string; text: string }>;
+}
+
+const {
+  template,
+  path,
+  eyebrow,
+  doc,
+  translatedLocales,
+  updated,
+  breadcrumbs,
+  jsonLd = [],
+  draft = false,
+  binding = false,
+  seoTitle,
+  extraSections = [],
+} = Astro.props;
+const locale = Astro.locals.locale;
+const complete = LOCALES.every((code) => translatedLocales.includes(code));
+const tocHeadings: DocHeading[] = [
+  ...doc.headings,
+  ...extraSections.map((section) => ({ level: 2, id: section.id, text: section.text })),
+];
+const DATE_SLOT = '';
+const [updatedBefore = '', updatedAfter = ''] = m.content_updated_on({ date: DATE_SLOT }).split(DATE_SLOT);
+---
+
+<PageLayout
+  template={template}
+  width="wide"
+  seo={{
+    title: seoTitle ?? doc.frontmatter.title,
+    description: doc.frontmatter.description,
+    path,
+    alternates: complete,
+    canonicalLocale: doc.locale,
+    og: { imageAlt: m.meta_og_default_alt(), type: 'article' },
+  }}
+  jsonLd={jsonLd}
+  breadcrumbs={breadcrumbs}
+>
+  <slot name="head" slot="head" />
+  <article class="flex flex-col gap-6" aria-labelledby="doc-title">
+    <ContentHeader eyebrow={eyebrow} title={doc.frontmatter.title} id="doc-title">
+      <span>
+        {updatedBefore}<time datetime={updated}>{formatDate(locale, updated, 'long')}</time>{updatedAfter}
+      </span>
+    </ContentHeader>
+    {draft && <DraftNotice />}
+    {!doc.translated && <FallbackNotice path={path} textLocale={doc.locale} binding={binding} />}
+    {binding && doc.translated && doc.locale !== 'en' && <p class="text-sm text-fg-muted">{m.content_binding_note()}</p>}
+    <slot name="before" />
+    <div class="grid gap-8 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+      <div class="lg:order-first">
+        <Toc headings={tocHeadings} />
+      </div>
+      <div class="flex min-w-0 flex-col gap-10">
+        <Prose html={doc.html} textLocale={doc.locale} />
+        <slot />
+      </div>
+    </div>
+  </article>
+</PageLayout>

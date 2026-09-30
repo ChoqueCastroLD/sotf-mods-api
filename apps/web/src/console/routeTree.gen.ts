@@ -15,7 +15,29 @@ import { Route as MeRouteImport } from './routes/me.tsx'
 import { Route as RangerRouteImport } from './routes/ranger.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as SignalsRouteImport } from './routes/signals.tsx'
+import { Route as MeIndexRouteImport } from './routes/me/index.tsx'
+import { Route as MeBackpackRouteImport } from './routes/me/backpack.tsx'
+import { Route as MeDownloadsRouteImport } from './routes/me/downloads.tsx'
+import { Route as RangerIndexRouteImport } from './routes/ranger/index.tsx'
 import { Route as RangerAdminRouteRouteImport } from './routes/ranger/admin/route.tsx'
+import { Route as RangerAuditRouteImport } from './routes/ranger/audit.tsx'
+import { Route as RangerCommentsRouteImport } from './routes/ranger/comments.tsx'
+import { Route as RangerReportsRouteImport } from './routes/ranger/reports.tsx'
+import { Route as SettingsIndexRouteImport } from './routes/settings/index.tsx'
+import { Route as SettingsAccountRouteImport } from './routes/settings/account.tsx'
+import { Route as SettingsCreatorRouteImport } from './routes/settings/creator.tsx'
+import { Route as SettingsDataRouteImport } from './routes/settings/data.tsx'
+import { Route as SettingsNotificationsRouteImport } from './routes/settings/notifications.tsx'
+import { Route as SettingsPreferencesRouteImport } from './routes/settings/preferences.tsx'
+import { Route as SettingsPrivacyRouteImport } from './routes/settings/privacy.tsx'
+import { Route as SettingsProfileRouteImport } from './routes/settings/profile.tsx'
+import { Route as SettingsSecurityRouteImport } from './routes/settings/security.tsx'
+import { Route as SignalsIndexRouteImport } from './routes/signals/index.tsx'
+import { Route as BasecampDraftsIndexRouteImport } from './routes/basecamp/drafts/index.tsx'
+import { Route as BasecampDraftsDraftIdRouteImport } from './routes/basecamp/drafts/$draftId.tsx'
+import { Route as BasecampNewIndexRouteImport } from './routes/basecamp/new/index.tsx'
+import { Route as BasecampNewBuildRouteImport } from './routes/basecamp/new/build.tsx'
+import { Route as BasecampNewModRouteImport } from './routes/basecamp/new/mod.tsx'
 import { Route as MeKitsIndexRouteImport } from './routes/me/kits/index.tsx'
 import { Route as MeKitsKitIdRouteImport } from './routes/me/kits/$kitId.tsx'
 import { Route as RangerAdminIndexRouteImport } from './routes/ranger/admin/index.tsx'
@@ -29,6 +51,9 @@ import { Route as RangerAdminPerformanceRouteImport } from './routes/ranger/admi
 import { Route as RangerAdminRecategorizeRouteImport } from './routes/ranger/admin/recategorize.tsx'
 import { Route as RangerAdminSettingsRouteImport } from './routes/ranger/admin/settings.tsx'
 import { Route as RangerAdminTaxonomyRouteImport } from './routes/ranger/admin/taxonomy.tsx'
+import { Route as RangerUsersIndexRouteImport } from './routes/ranger/users/index.tsx'
+import { Route as RangerUsersUserIdRouteImport } from './routes/ranger/users/$userId.tsx'
+import { Route as BasecampModsModIdNewVersionRouteImport } from './routes/basecamp/mods/$modId/new-version.tsx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -60,10 +85,120 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeIndexRoute = MeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MeRoute,
+} as any)
+const MeBackpackRoute = MeBackpackRouteImport.update({
+  id: '/backpack',
+  path: '/backpack',
+  getParentRoute: () => MeRoute,
+} as any)
+const MeDownloadsRoute = MeDownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
+  getParentRoute: () => MeRoute,
+} as any)
+const RangerIndexRoute = RangerIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RangerRoute,
+} as any)
 const RangerAdminRouteRoute = RangerAdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
   getParentRoute: () => RangerRoute,
+} as any)
+const RangerAuditRoute = RangerAuditRouteImport.update({
+  id: '/audit',
+  path: '/audit',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerCommentsRoute = RangerCommentsRouteImport.update({
+  id: '/comments',
+  path: '/comments',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerReportsRoute = RangerReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => RangerRoute,
+} as any)
+const SettingsIndexRoute = SettingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsAccountRoute = SettingsAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsCreatorRoute = SettingsCreatorRouteImport.update({
+  id: '/creator',
+  path: '/creator',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsDataRoute = SettingsDataRouteImport.update({
+  id: '/data',
+  path: '/data',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsNotificationsRoute = SettingsNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsPreferencesRoute = SettingsPreferencesRouteImport.update({
+  id: '/preferences',
+  path: '/preferences',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsPrivacyRoute = SettingsPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsProfileRoute = SettingsProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsSecurityRoute = SettingsSecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SignalsIndexRoute = SignalsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SignalsRoute,
+} as any)
+const BasecampDraftsIndexRoute = BasecampDraftsIndexRouteImport.update({
+  id: '/drafts/',
+  path: '/drafts/',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampDraftsDraftIdRoute = BasecampDraftsDraftIdRouteImport.update({
+  id: '/drafts/$draftId',
+  path: '/drafts/$draftId',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampNewIndexRoute = BasecampNewIndexRouteImport.update({
+  id: '/new/',
+  path: '/new/',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampNewBuildRoute = BasecampNewBuildRouteImport.update({
+  id: '/new/build',
+  path: '/new/build',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampNewModRoute = BasecampNewModRouteImport.update({
+  id: '/new/mod',
+  path: '/new/mod',
+  getParentRoute: () => BasecampRoute,
 } as any)
 const MeKitsIndexRoute = MeKitsIndexRouteImport.update({
   id: '/kits/',
@@ -131,15 +266,51 @@ const RangerAdminTaxonomyRoute = RangerAdminTaxonomyRouteImport.update({
   path: '/taxonomy',
   getParentRoute: () => RangerAdminRouteRoute,
 } as any)
+const RangerUsersIndexRoute = RangerUsersIndexRouteImport.update({
+  id: '/users/',
+  path: '/users/',
+  getParentRoute: () => RangerRoute,
+} as any)
+const RangerUsersUserIdRoute = RangerUsersUserIdRouteImport.update({
+  id: '/users/$userId',
+  path: '/users/$userId',
+  getParentRoute: () => RangerRoute,
+} as any)
+const BasecampModsModIdNewVersionRoute =
+  BasecampModsModIdNewVersionRouteImport.update({
+    id: '/mods/$modId/new-version',
+    path: '/mods/$modId/new-version',
+    getParentRoute: () => BasecampRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRoute
+  '/basecamp': typeof BasecampRouteWithChildren
   '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRouteWithChildren
-  '/settings': typeof SettingsRoute
-  '/signals': typeof SignalsRoute
+  '/settings': typeof SettingsRouteWithChildren
+  '/signals': typeof SignalsRouteWithChildren
   '/ranger/admin': typeof RangerAdminRouteRouteWithChildren
+  '/me/backpack': typeof MeBackpackRoute
+  '/me/downloads': typeof MeDownloadsRoute
+  '/ranger/audit': typeof RangerAuditRoute
+  '/ranger/comments': typeof RangerCommentsRoute
+  '/ranger/reports': typeof RangerReportsRoute
+  '/settings/account': typeof SettingsAccountRoute
+  '/settings/creator': typeof SettingsCreatorRoute
+  '/settings/data': typeof SettingsDataRoute
+  '/settings/notifications': typeof SettingsNotificationsRoute
+  '/settings/preferences': typeof SettingsPreferencesRoute
+  '/settings/privacy': typeof SettingsPrivacyRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/settings/security': typeof SettingsSecurityRoute
+  '/me/': typeof MeIndexRoute
+  '/ranger/': typeof RangerIndexRoute
+  '/settings/': typeof SettingsIndexRoute
+  '/signals/': typeof SignalsIndexRoute
+  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
+  '/basecamp/new/build': typeof BasecampNewBuildRoute
+  '/basecamp/new/mod': typeof BasecampNewModRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
   '/ranger/admin/awards': typeof RangerAdminAwardsRoute
@@ -151,16 +322,37 @@ export interface FileRoutesByFullPath {
   '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
   '/ranger/admin/settings': typeof RangerAdminSettingsRoute
   '/ranger/admin/taxonomy': typeof RangerAdminTaxonomyRoute
+  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
+  '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
+  '/basecamp/new/': typeof BasecampNewIndexRoute
   '/me/kits/': typeof MeKitsIndexRoute
   '/ranger/admin/': typeof RangerAdminIndexRoute
+  '/ranger/users/': typeof RangerUsersIndexRoute
+  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRoute
-  '/me': typeof MeRouteWithChildren
-  '/ranger': typeof RangerRouteWithChildren
-  '/settings': typeof SettingsRoute
-  '/signals': typeof SignalsRoute
+  '/basecamp': typeof BasecampRouteWithChildren
+  '/me/backpack': typeof MeBackpackRoute
+  '/me/downloads': typeof MeDownloadsRoute
+  '/ranger/audit': typeof RangerAuditRoute
+  '/ranger/comments': typeof RangerCommentsRoute
+  '/ranger/reports': typeof RangerReportsRoute
+  '/settings/account': typeof SettingsAccountRoute
+  '/settings/creator': typeof SettingsCreatorRoute
+  '/settings/data': typeof SettingsDataRoute
+  '/settings/notifications': typeof SettingsNotificationsRoute
+  '/settings/preferences': typeof SettingsPreferencesRoute
+  '/settings/privacy': typeof SettingsPrivacyRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/settings/security': typeof SettingsSecurityRoute
+  '/me': typeof MeIndexRoute
+  '/ranger': typeof RangerIndexRoute
+  '/settings': typeof SettingsIndexRoute
+  '/signals': typeof SignalsIndexRoute
+  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
+  '/basecamp/new/build': typeof BasecampNewBuildRoute
+  '/basecamp/new/mod': typeof BasecampNewModRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
   '/ranger/admin/awards': typeof RangerAdminAwardsRoute
@@ -172,18 +364,43 @@ export interface FileRoutesByTo {
   '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
   '/ranger/admin/settings': typeof RangerAdminSettingsRoute
   '/ranger/admin/taxonomy': typeof RangerAdminTaxonomyRoute
+  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
+  '/basecamp/drafts': typeof BasecampDraftsIndexRoute
+  '/basecamp/new': typeof BasecampNewIndexRoute
   '/me/kits': typeof MeKitsIndexRoute
   '/ranger/admin': typeof RangerAdminIndexRoute
+  '/ranger/users': typeof RangerUsersIndexRoute
+  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRoute
+  '/basecamp': typeof BasecampRouteWithChildren
   '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRouteWithChildren
-  '/settings': typeof SettingsRoute
-  '/signals': typeof SignalsRoute
+  '/settings': typeof SettingsRouteWithChildren
+  '/signals': typeof SignalsRouteWithChildren
   '/ranger/admin': typeof RangerAdminRouteRouteWithChildren
+  '/me/backpack': typeof MeBackpackRoute
+  '/me/downloads': typeof MeDownloadsRoute
+  '/ranger/audit': typeof RangerAuditRoute
+  '/ranger/comments': typeof RangerCommentsRoute
+  '/ranger/reports': typeof RangerReportsRoute
+  '/settings/account': typeof SettingsAccountRoute
+  '/settings/creator': typeof SettingsCreatorRoute
+  '/settings/data': typeof SettingsDataRoute
+  '/settings/notifications': typeof SettingsNotificationsRoute
+  '/settings/preferences': typeof SettingsPreferencesRoute
+  '/settings/privacy': typeof SettingsPrivacyRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/settings/security': typeof SettingsSecurityRoute
+  '/me/': typeof MeIndexRoute
+  '/ranger/': typeof RangerIndexRoute
+  '/settings/': typeof SettingsIndexRoute
+  '/signals/': typeof SignalsIndexRoute
+  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
+  '/basecamp/new/build': typeof BasecampNewBuildRoute
+  '/basecamp/new/mod': typeof BasecampNewModRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
   '/ranger/admin/awards': typeof RangerAdminAwardsRoute
@@ -195,8 +412,13 @@ export interface FileRoutesById {
   '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
   '/ranger/admin/settings': typeof RangerAdminSettingsRoute
   '/ranger/admin/taxonomy': typeof RangerAdminTaxonomyRoute
+  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
+  '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
+  '/basecamp/new/': typeof BasecampNewIndexRoute
   '/me/kits/': typeof MeKitsIndexRoute
   '/ranger/admin/': typeof RangerAdminIndexRoute
+  '/ranger/users/': typeof RangerUsersIndexRoute
+  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -208,6 +430,26 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signals'
     | '/ranger/admin'
+    | '/me/backpack'
+    | '/me/downloads'
+    | '/ranger/audit'
+    | '/ranger/comments'
+    | '/ranger/reports'
+    | '/settings/account'
+    | '/settings/creator'
+    | '/settings/data'
+    | '/settings/notifications'
+    | '/settings/preferences'
+    | '/settings/privacy'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/me/'
+    | '/ranger/'
+    | '/settings/'
+    | '/signals/'
+    | '/basecamp/drafts/$draftId'
+    | '/basecamp/new/build'
+    | '/basecamp/new/mod'
     | '/me/kits/$kitId'
     | '/ranger/admin/announcements'
     | '/ranger/admin/awards'
@@ -219,16 +461,37 @@ export interface FileRouteTypes {
     | '/ranger/admin/recategorize'
     | '/ranger/admin/settings'
     | '/ranger/admin/taxonomy'
+    | '/ranger/users/$userId'
+    | '/basecamp/drafts/'
+    | '/basecamp/new/'
     | '/me/kits/'
     | '/ranger/admin/'
+    | '/ranger/users/'
+    | '/basecamp/mods/$modId/new-version'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/basecamp'
+    | '/me/backpack'
+    | '/me/downloads'
+    | '/ranger/audit'
+    | '/ranger/comments'
+    | '/ranger/reports'
+    | '/settings/account'
+    | '/settings/creator'
+    | '/settings/data'
+    | '/settings/notifications'
+    | '/settings/preferences'
+    | '/settings/privacy'
+    | '/settings/profile'
+    | '/settings/security'
     | '/me'
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/basecamp/drafts/$draftId'
+    | '/basecamp/new/build'
+    | '/basecamp/new/mod'
     | '/me/kits/$kitId'
     | '/ranger/admin/announcements'
     | '/ranger/admin/awards'
@@ -240,8 +503,13 @@ export interface FileRouteTypes {
     | '/ranger/admin/recategorize'
     | '/ranger/admin/settings'
     | '/ranger/admin/taxonomy'
+    | '/ranger/users/$userId'
+    | '/basecamp/drafts'
+    | '/basecamp/new'
     | '/me/kits'
     | '/ranger/admin'
+    | '/ranger/users'
+    | '/basecamp/mods/$modId/new-version'
   id:
     | '__root__'
     | '/'
@@ -251,6 +519,26 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signals'
     | '/ranger/admin'
+    | '/me/backpack'
+    | '/me/downloads'
+    | '/ranger/audit'
+    | '/ranger/comments'
+    | '/ranger/reports'
+    | '/settings/account'
+    | '/settings/creator'
+    | '/settings/data'
+    | '/settings/notifications'
+    | '/settings/preferences'
+    | '/settings/privacy'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/me/'
+    | '/ranger/'
+    | '/settings/'
+    | '/signals/'
+    | '/basecamp/drafts/$draftId'
+    | '/basecamp/new/build'
+    | '/basecamp/new/mod'
     | '/me/kits/$kitId'
     | '/ranger/admin/announcements'
     | '/ranger/admin/awards'
@@ -262,17 +550,22 @@ export interface FileRouteTypes {
     | '/ranger/admin/recategorize'
     | '/ranger/admin/settings'
     | '/ranger/admin/taxonomy'
+    | '/ranger/users/$userId'
+    | '/basecamp/drafts/'
+    | '/basecamp/new/'
     | '/me/kits/'
     | '/ranger/admin/'
+    | '/ranger/users/'
+    | '/basecamp/mods/$modId/new-version'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BasecampRoute: typeof BasecampRoute
+  BasecampRoute: typeof BasecampRouteWithChildren
   MeRoute: typeof MeRouteWithChildren
   RangerRoute: typeof RangerRouteWithChildren
-  SettingsRoute: typeof SettingsRoute
-  SignalsRoute: typeof SignalsRoute
+  SettingsRoute: typeof SettingsRouteWithChildren
+  SignalsRoute: typeof SignalsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -319,12 +612,166 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/me/': {
+      id: '/me/'
+      path: '/'
+      fullPath: '/me/'
+      preLoaderRoute: typeof MeIndexRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/me/backpack': {
+      id: '/me/backpack'
+      path: '/backpack'
+      fullPath: '/me/backpack'
+      preLoaderRoute: typeof MeBackpackRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/me/downloads': {
+      id: '/me/downloads'
+      path: '/downloads'
+      fullPath: '/me/downloads'
+      preLoaderRoute: typeof MeDownloadsRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/ranger/': {
+      id: '/ranger/'
+      path: '/'
+      fullPath: '/ranger/'
+      preLoaderRoute: typeof RangerIndexRouteImport
+      parentRoute: typeof RangerRoute
+    }
     '/ranger/admin': {
       id: '/ranger/admin'
       path: '/admin'
       fullPath: '/ranger/admin'
       preLoaderRoute: typeof RangerAdminRouteRouteImport
       parentRoute: typeof RangerRoute
+    }
+    '/ranger/audit': {
+      id: '/ranger/audit'
+      path: '/audit'
+      fullPath: '/ranger/audit'
+      preLoaderRoute: typeof RangerAuditRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/comments': {
+      id: '/ranger/comments'
+      path: '/comments'
+      fullPath: '/ranger/comments'
+      preLoaderRoute: typeof RangerCommentsRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/reports': {
+      id: '/ranger/reports'
+      path: '/reports'
+      fullPath: '/ranger/reports'
+      preLoaderRoute: typeof RangerReportsRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/settings/': {
+      id: '/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof SettingsIndexRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/account': {
+      id: '/settings/account'
+      path: '/account'
+      fullPath: '/settings/account'
+      preLoaderRoute: typeof SettingsAccountRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/creator': {
+      id: '/settings/creator'
+      path: '/creator'
+      fullPath: '/settings/creator'
+      preLoaderRoute: typeof SettingsCreatorRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/data': {
+      id: '/settings/data'
+      path: '/data'
+      fullPath: '/settings/data'
+      preLoaderRoute: typeof SettingsDataRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/notifications': {
+      id: '/settings/notifications'
+      path: '/notifications'
+      fullPath: '/settings/notifications'
+      preLoaderRoute: typeof SettingsNotificationsRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/preferences': {
+      id: '/settings/preferences'
+      path: '/preferences'
+      fullPath: '/settings/preferences'
+      preLoaderRoute: typeof SettingsPreferencesRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/privacy': {
+      id: '/settings/privacy'
+      path: '/privacy'
+      fullPath: '/settings/privacy'
+      preLoaderRoute: typeof SettingsPrivacyRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/profile': {
+      id: '/settings/profile'
+      path: '/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof SettingsProfileRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/security': {
+      id: '/settings/security'
+      path: '/security'
+      fullPath: '/settings/security'
+      preLoaderRoute: typeof SettingsSecurityRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/signals/': {
+      id: '/signals/'
+      path: '/'
+      fullPath: '/signals/'
+      preLoaderRoute: typeof SignalsIndexRouteImport
+      parentRoute: typeof SignalsRoute
+    }
+    '/basecamp/drafts/': {
+      id: '/basecamp/drafts/'
+      path: '/drafts'
+      fullPath: '/basecamp/drafts/'
+      preLoaderRoute: typeof BasecampDraftsIndexRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/drafts/$draftId': {
+      id: '/basecamp/drafts/$draftId'
+      path: '/drafts/$draftId'
+      fullPath: '/basecamp/drafts/$draftId'
+      preLoaderRoute: typeof BasecampDraftsDraftIdRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/new/': {
+      id: '/basecamp/new/'
+      path: '/new'
+      fullPath: '/basecamp/new/'
+      preLoaderRoute: typeof BasecampNewIndexRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/new/build': {
+      id: '/basecamp/new/build'
+      path: '/new/build'
+      fullPath: '/basecamp/new/build'
+      preLoaderRoute: typeof BasecampNewBuildRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/new/mod': {
+      id: '/basecamp/new/mod'
+      path: '/new/mod'
+      fullPath: '/basecamp/new/mod'
+      preLoaderRoute: typeof BasecampNewModRouteImport
+      parentRoute: typeof BasecampRoute
     }
     '/me/kits/': {
       id: '/me/kits/'
@@ -417,15 +864,64 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RangerAdminTaxonomyRouteImport
       parentRoute: typeof RangerAdminRouteRoute
     }
+    '/ranger/users/': {
+      id: '/ranger/users/'
+      path: '/users'
+      fullPath: '/ranger/users/'
+      preLoaderRoute: typeof RangerUsersIndexRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/ranger/users/$userId': {
+      id: '/ranger/users/$userId'
+      path: '/users/$userId'
+      fullPath: '/ranger/users/$userId'
+      preLoaderRoute: typeof RangerUsersUserIdRouteImport
+      parentRoute: typeof RangerRoute
+    }
+    '/basecamp/mods/$modId/new-version': {
+      id: '/basecamp/mods/$modId/new-version'
+      path: '/mods/$modId/new-version'
+      fullPath: '/basecamp/mods/$modId/new-version'
+      preLoaderRoute: typeof BasecampModsModIdNewVersionRouteImport
+      parentRoute: typeof BasecampRoute
+    }
   }
 }
 
+interface BasecampRouteChildren {
+  BasecampDraftsDraftIdRoute: typeof BasecampDraftsDraftIdRoute
+  BasecampNewBuildRoute: typeof BasecampNewBuildRoute
+  BasecampNewModRoute: typeof BasecampNewModRoute
+  BasecampDraftsIndexRoute: typeof BasecampDraftsIndexRoute
+  BasecampNewIndexRoute: typeof BasecampNewIndexRoute
+  BasecampModsModIdNewVersionRoute: typeof BasecampModsModIdNewVersionRoute
+}
+
+const BasecampRouteChildren: BasecampRouteChildren = {
+  BasecampDraftsDraftIdRoute: BasecampDraftsDraftIdRoute,
+  BasecampNewBuildRoute: BasecampNewBuildRoute,
+  BasecampNewModRoute: BasecampNewModRoute,
+  BasecampDraftsIndexRoute: BasecampDraftsIndexRoute,
+  BasecampNewIndexRoute: BasecampNewIndexRoute,
+  BasecampModsModIdNewVersionRoute: BasecampModsModIdNewVersionRoute,
+}
+
+const BasecampRouteWithChildren = BasecampRoute._addFileChildren(
+  BasecampRouteChildren,
+)
+
 interface MeRouteChildren {
+  MeBackpackRoute: typeof MeBackpackRoute
+  MeDownloadsRoute: typeof MeDownloadsRoute
+  MeIndexRoute: typeof MeIndexRoute
   MeKitsKitIdRoute: typeof MeKitsKitIdRoute
   MeKitsIndexRoute: typeof MeKitsIndexRoute
 }
 
 const MeRouteChildren: MeRouteChildren = {
+  MeBackpackRoute: MeBackpackRoute,
+  MeDownloadsRoute: MeDownloadsRoute,
+  MeIndexRoute: MeIndexRoute,
   MeKitsKitIdRoute: MeKitsKitIdRoute,
   MeKitsIndexRoute: MeKitsIndexRoute,
 }
@@ -465,22 +961,73 @@ const RangerAdminRouteRouteWithChildren =
 
 interface RangerRouteChildren {
   RangerAdminRouteRoute: typeof RangerAdminRouteRouteWithChildren
+  RangerAuditRoute: typeof RangerAuditRoute
+  RangerCommentsRoute: typeof RangerCommentsRoute
+  RangerReportsRoute: typeof RangerReportsRoute
+  RangerIndexRoute: typeof RangerIndexRoute
+  RangerUsersUserIdRoute: typeof RangerUsersUserIdRoute
+  RangerUsersIndexRoute: typeof RangerUsersIndexRoute
 }
 
 const RangerRouteChildren: RangerRouteChildren = {
   RangerAdminRouteRoute: RangerAdminRouteRouteWithChildren,
+  RangerAuditRoute: RangerAuditRoute,
+  RangerCommentsRoute: RangerCommentsRoute,
+  RangerReportsRoute: RangerReportsRoute,
+  RangerIndexRoute: RangerIndexRoute,
+  RangerUsersUserIdRoute: RangerUsersUserIdRoute,
+  RangerUsersIndexRoute: RangerUsersIndexRoute,
 }
 
 const RangerRouteWithChildren =
   RangerRoute._addFileChildren(RangerRouteChildren)
 
+interface SettingsRouteChildren {
+  SettingsAccountRoute: typeof SettingsAccountRoute
+  SettingsCreatorRoute: typeof SettingsCreatorRoute
+  SettingsDataRoute: typeof SettingsDataRoute
+  SettingsNotificationsRoute: typeof SettingsNotificationsRoute
+  SettingsPreferencesRoute: typeof SettingsPreferencesRoute
+  SettingsPrivacyRoute: typeof SettingsPrivacyRoute
+  SettingsProfileRoute: typeof SettingsProfileRoute
+  SettingsSecurityRoute: typeof SettingsSecurityRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
+}
+
+const SettingsRouteChildren: SettingsRouteChildren = {
+  SettingsAccountRoute: SettingsAccountRoute,
+  SettingsCreatorRoute: SettingsCreatorRoute,
+  SettingsDataRoute: SettingsDataRoute,
+  SettingsNotificationsRoute: SettingsNotificationsRoute,
+  SettingsPreferencesRoute: SettingsPreferencesRoute,
+  SettingsPrivacyRoute: SettingsPrivacyRoute,
+  SettingsProfileRoute: SettingsProfileRoute,
+  SettingsSecurityRoute: SettingsSecurityRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
+}
+
+const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
+  SettingsRouteChildren,
+)
+
+interface SignalsRouteChildren {
+  SignalsIndexRoute: typeof SignalsIndexRoute
+}
+
+const SignalsRouteChildren: SignalsRouteChildren = {
+  SignalsIndexRoute: SignalsIndexRoute,
+}
+
+const SignalsRouteWithChildren =
+  SignalsRoute._addFileChildren(SignalsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BasecampRoute: BasecampRoute,
+  BasecampRoute: BasecampRouteWithChildren,
   MeRoute: MeRouteWithChildren,
   RangerRoute: RangerRouteWithChildren,
-  SettingsRoute: SettingsRoute,
-  SignalsRoute: SignalsRoute,
+  SettingsRoute: SettingsRouteWithChildren,
+  SignalsRoute: SignalsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -915,6 +915,7 @@
   "builds_copy_failed": "コピーできませんでした。テキストを選択して手動でコピーしてください。",
   "builds_description_empty": "建築者はまだ説明を書いていません。仕様書で詳細を確認できます。",
   "builds_description_title": "この建築について",
+  "builds_feed_title": "SOTF Mods：新しい建築と更新された建築",
   "builds_follow_error": "バックパックを更新できませんでした。接続を確認してもう一度お試しください。",
   "builds_follow_hint": "この建築の新しいバージョンが出たら通知を受け取る",
   "builds_followed": "バックパックに追加しました。",
@@ -1595,6 +1596,408 @@
   "console_update_detail": "閲覧中に SOTF Mods を更新しました。再読み込みして最新版を利用してください。",
   "console_update_reload": "再読み込み",
   "console_update_title": "新しいバージョンがあります",
+  "content_about_disclaimer_title": "非公式のファンコミュニティ",
+  "content_about_eyebrow": "概要",
+  "content_about_links_title": "キャンプの周辺",
+  "content_binding_note": "この翻訳は参考用です。英語版と異なる場合は英語版が優先されます。",
+  "content_brand_asset_app_icon": "アプリアイコン",
+  "content_brand_asset_app_icon_hint": "Night の背景にピン。アバターやショートカット向け。",
+  "content_brand_asset_horizontal": "横型ロゴ",
+  "content_brand_asset_horizontal_hint": "標準版：シンボルとロゴタイプを横に並べたもの。",
+  "content_brand_asset_mark": "シンボル（Contour Pin）",
+  "content_brand_asset_mark_hint": "ピンのみ。16〜24 px では簡易版を使ってください。",
+  "content_brand_asset_og": "SNS プレビュー画像",
+  "content_brand_asset_og_hint": "1200 × 630。リンクプレビューやサムネイル向け。",
+  "content_brand_asset_stacked": "縦型ロゴ",
+  "content_brand_asset_stacked_hint": "正方形や縦長のスペース向け。",
+  "content_brand_asset_wordmark": "ロゴタイプ",
+  "content_brand_asset_wordmark_hint": "ピンなしの「SOTF MODS」。細い横長のスペース向け。",
+  "content_brand_color_blueprint": "Blueprint（ビルド）",
+  "content_brand_color_bone": "Bone（文字、Day の背景）",
+  "content_brand_color_flare_day": "Day 上の Flare",
+  "content_brand_color_flare_night": "Night 上の Flare",
+  "content_brand_color_lichen": "Lichen（動作）",
+  "content_brand_color_night": "Night（背景）",
+  "content_brand_color_signal": "Signal（ライブ、情報）",
+  "content_brand_color_solafite": "Solafite（注目）",
+  "content_brand_colors_text": "Night と Bone が基本色で、Flare が唯一のアクセントです。状態を表す色は意味を伝えるためのもので、装飾には使いません。",
+  "content_brand_colors_title": "カラー",
+  "content_brand_description": "SOTF Mods のロゴ、シンボル、カラーをダウンロードし、Mod や動画、サーバーからサイトへリンクする方法を確認できます。",
+  "content_brand_do_contrast": "暗い背景には Night 版、明るい背景には Day 版のファイルを使ってください。",
+  "content_brand_do_link": "ロゴは sotf-mods.com にリンクしてください。",
+  "content_brand_do_size": "完全版のシンボルは 24 px 以上（簡易版は 16 px 以上）で使ってください。",
+  "content_brand_do_space": "ロゴの周囲には高さの 4 分の 1 以上の余白を取ってください。",
+  "content_brand_do_title": "推奨",
+  "content_brand_dont_distort": "引き伸ばし、回転、切り抜き、パーツの並べ替えをしないでください。",
+  "content_brand_dont_endorse": "SOTF Mods があなたのプロジェクトを支持・後援・審査したかのように示さないでください。",
+  "content_brand_dont_game": "ゲーム公式のロゴやアート、キャラクター名と組み合わせないでください。",
+  "content_brand_dont_recolor": "ロゴの色を変えたり、縁取りや効果を加えたりしないでください。",
+  "content_brand_dont_title": "禁止",
+  "content_brand_eyebrow": "ブランドキット",
+  "content_brand_font_display": "見出し用：タイトルと数字。常に大文字。",
+  "content_brand_font_link": "{name} を入手",
+  "content_brand_font_mono": "表示用：バージョン、ID、コード。",
+  "content_brand_font_ui": "インターフェースと本文。",
+  "content_brand_lead": "Mod のページや動画、サーバーから SOTF Mods にリンクしますか？これらのファイルを使い、下のルールを守ってください。",
+  "content_brand_legal_text": "SOTF Mods の名称とロゴはこのコミュニティサイトを示すものです。サイトへの言及やリンクには使用できますが、それ以外の用途には許可が必要です。",
+  "content_brand_legal_title": "商標",
+  "content_brand_link_text": "このコードを README、ウェブサイト、Mod の説明にコピーしてください。公開中のロゴを参照するので、常に最新の状態です。",
+  "content_brand_link_title": "SOTF Mods へのリンク",
+  "content_brand_logos_text": "各ファイルには暗い背景用の Night 版と明るい背景用の Day 版があります。SVG を推奨し、SVG が使えない場所では PNG を使ってください。",
+  "content_brand_logos_title": "ロゴ",
+  "content_brand_on_day": "明るい背景",
+  "content_brand_on_night": "暗い背景",
+  "content_brand_rules_title": "ロゴの使い方",
+  "content_brand_snippet_label": "HTML コード",
+  "content_brand_title": "SOTF Mods のブランド",
+  "content_brand_type_title": "書体",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "API v2 の読み取り",
+        "bucket=legacyRead": "旧 API の読み取り",
+        "bucket=downloads": "ダウンロード",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "コード",
+  "content_dev_col_limit": "上限",
+  "content_dev_col_meaning": "意味",
+  "content_dev_col_method": "メソッド",
+  "content_dev_col_notes": "備考",
+  "content_dev_col_path": "パス",
+  "content_dev_col_scope": "対象",
+  "content_dev_col_status": "ステータス",
+  "content_dev_col_summary": "内容",
+  "content_dev_endpoints_caption": "公開エンドポイント：{domain}",
+  "content_dev_endpoints_text": "匿名で利用でき、キャッシュ可能で CORS に対応しています。各エンドポイントのパラメーター、レスポンス、エラーはリファレンスを参照してください。",
+  "content_dev_endpoints_title": "公開読み取りエンドポイント",
+  "content_dev_errors_text": "エラーの code フィールドは次のいずれかです。各問題の type URI はここの該当行を指します。",
+  "content_dev_errors_title": "エラーコード",
+  "content_dev_eyebrow": "開発者向け",
+  "content_dev_legacy_deprecated": "凍結・非推奨",
+  "content_dev_legacy_deprecated_text": "これらのルートは {date} まで応答し、その後廃止されます。レスポンスには次のヘッダーが付きます：",
+  "content_dev_legacy_deviations": "旧動作との意図的な違い",
+  "content_dev_legacy_retired": "廃止済み",
+  "content_dev_legacy_retired_text": "これらのルートはどのメソッドでも、次の本文とともに 410 Gone を返します：",
+  "content_dev_legacy_stable": "サポート中（バイト単位で互換）",
+  "content_dev_legacy_text": "サイト初期版の API は、RedManager、UpdatesChecker、ゲーム内 Mod が動き続けるよう、api.sotf-mods.com/api/* と sotf-mods.com/api/* で引き続き応答します。新しい連携には v2 を使ってください。",
+  "content_dev_legacy_title": "旧 API と廃止予定",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "IP ごと",
+        "key=user": "アカウントごと",
+        "key=chat": "プレイヤーごと",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "上限を超えると API は Retry-After ヘッダー付きで 429 を返します。レスポンスをキャッシュし ETag を尊重すれば、上限に近づくことはほとんどありません。",
+  "content_dev_limits_title": "レート制限",
+  "content_dev_link_docs_text": "すべての v2 エンドポイントをスキーマと例つきで。インタラクティブ。",
+  "content_dev_link_docs_title": "API リファレンス",
+  "content_dev_link_legacy_text": "引き続き稼働中。凍結ルートは {date} に終了します。",
+  "content_dev_link_legacy_title": "旧 API",
+  "content_dev_link_openapi_text": "クライアント生成用の機械可読な仕様。",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "草案のお知らせ",
+  "content_draft_text": "この文章は SOTF Mods の現在の仕組みを説明したものですが、まだ弁護士の確認を受けていません。確定までに変更される可能性があり、変更のたびに日付を記載します。",
+  "content_draft_title": "草案：法務レビュー待ち",
+  "content_error_ref": "参照番号：{ref}",
+  "content_fallback_binding": "法的文書は英語版が優先されます。",
+  "content_fallback_link": "{original}のページを開く",
+  "content_fallback_text": "このページはまだ{language}に対応していないため、{original}の原文を表示しています。",
+  "content_install_eyebrow": "導入ガイド",
+  "content_install_faq_nav": "よくある質問",
+  "content_install_faq_title": "よくある質問",
+  "content_install_get_redmanager": "RedManager を入手",
+  "content_install_help_discord": "Discord で質問する",
+  "content_install_help_text": "現在のゲームパッチで Mod が動かなくなっていないか確認するか、コミュニティに質問してください。ゲームのバージョン、RedLoader のバージョン、使っている Mod を添えてください。",
+  "content_install_help_title": "まだうまくいかない？",
+  "content_install_kit_more": "すべての Kit を見る",
+  "content_install_kit_nav": "スターター Kit",
+  "content_install_kit_text": "一緒に使って問題のない Mod をスタッフが選んだセットです。最初の装備にぴったり。",
+  "content_install_kit_title": "スターター Kit",
+  "content_install_manual": "手動でインストール",
+  "content_install_progress": "読み進み具合",
+  "content_install_rail_label": "ガイドのセクション",
+  "content_install_rail_title": "手順",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "手順 {step__number}："
+      }
+    }
+  ],
+  "content_install_tldr": "要点",
+  "content_install_verified": "ゲーム {game} · RedLoader {loader} で確認済み",
+  "content_kelvin_by": "作者：",
+  "content_kelvin_credit": "KelvinSeek は {author} が制作・保守しています。SOTF Mods は通信先の API を運用しているだけです。ケルヴィンと Sons of the Forest は Endnight Games に帰属します。これはファンプロジェクトです。",
+  "content_kelvin_description": "KelvinSeek を使うと、Sons of the Forest でケルヴィンとチャットし、自分の言葉で指示を出せます。仕組み、制限、メッセージの扱いについて。",
+  "content_kelvin_dev_hint": "似たものを作っていますか？このエンドポイントは旧 API の一部です：",
+  "content_kelvin_eyebrow": "コミュニティ Mod",
+  "content_kelvin_history_text": "以前は Kelvin-GPT という名前でした。自分の OpenAI キーを必要とした旧版は廃止されました。そのルートはアドレスにキーが露出していたため、現在は「Gone」を返します。",
+  "content_kelvin_how_1": "RedLoader と KelvinSeek Mod をインストールします。",
+  "content_kelvin_how_2": "ゲーム内でケルヴィンに近づき、E キーでメモ帳を開きます。",
+  "content_kelvin_how_3": "T キーで入力を始め、メッセージを書いて Enter を押します。",
+  "content_kelvin_how_4": "またはコンソールで「askkelvin …」と入力するとメッセージを送信、「clearkelvinchathistory」で新しい会話を始めます。",
+  "content_kelvin_how_title": "使い方",
+  "content_kelvin_install_hint": "Mod は初めて？まずはガイドから：",
+  "content_kelvin_lead": "自分の言葉でケルヴィンに書けば、返事をして頼んだことをやってくれます。丸太集めからシェルター作りまで。",
+  "content_kelvin_limits_budget": "AI サービスには 1 日の予算があります。使い切っても、ケルヴィンは翌日まで AI を使わずに最も近い既知の指示を選ぶので、ちゃんと伝わります。",
+  "content_kelvin_limits_busy": "書き込みが速すぎると、ケルヴィンが数秒の休憩を求めます。内容が失われることはありません。",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "プレイヤーごとに 1 分あたり最大 {perMinute__number} 件、1 日あたり最大 {perDay__number} 件のメッセージ。"
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "制限",
+  "content_kelvin_open_mod": "Mod のページを開く",
+  "content_kelvin_privacy_ai": "返事を生成するため、メッセージの本文は AI プロバイダーに送信されます。個人情報は書かないでください。",
+  "content_kelvin_privacy_hash": "Mod が送信するチャット ID（Steam ID と名前を含む）は、元に戻せないハッシュとしてのみ保存されます。",
+  "content_kelvin_privacy_link": "プライバシーポリシーを読む",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ケルヴィンが文脈を覚えていられるよう、各会話の直近のメッセージは {days__number} 日間保存され、その後削除されます。"
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "メッセージの扱い",
+  "content_kelvin_status_compat": "ビルド {build}",
+  "content_kelvin_status_downloads": "ダウンロード数",
+  "content_kelvin_status_title": "SOTF Mods での状態",
+  "content_kelvin_status_unavailable": "Mod の現在の状態を読み込めませんでした。最新バージョンは Mod のページで確認できます。",
+  "content_kelvin_status_updated": "最終リリース",
+  "content_kelvin_status_version": "最新バージョン",
+  "content_kelvin_title": "KelvinSeek：ゲーム内でケルヴィンと話そう",
+  "content_kelvin_what_text": "KelvinSeek は {author} による Mod です。ケルヴィンに書いた内容を SOTF Mods の API 経由で AI サービスに送り、その答えをケルヴィンの返事に、頼みごとがあればゲーム内の指示の 1 つに変換します。自分の API キーは不要です。",
+  "content_kelvin_what_title": "KelvinSeek とは",
+  "content_legal_eyebrow": "法的情報",
+  "content_legal_other": "その他の法的ページ",
+  "content_md_alert_caution": "注意",
+  "content_md_alert_important": "重要",
+  "content_md_alert_note": "メモ",
+  "content_md_alert_tip": "ヒント",
+  "content_md_alert_warning": "警告",
+  "content_md_spoiler": "ネタバレ",
+  "content_news_back": "ニュース一覧",
+  "content_news_byline": "{author}",
+  "content_news_description": "SOTF Mods チームからのお知らせ：新機能、サイトと API の変更、今後の予定。",
+  "content_news_empty": "まだニュースはありません。森は静かです。",
+  "content_news_eyebrow": "フィールドノート",
+  "content_news_feed": "RSS で購読",
+  "content_news_feed_title": "SOTF Mods — ニュース",
+  "content_news_read": "読む",
+  "content_news_title": "ニュース",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "動作 {works__number}、不具合 {broken__number}、報告待ち {pending__number}"
+      }
+    }
+  ],
+  "content_radar_breaking": "互換性を壊すアップデート",
+  "content_radar_broken_empty": "{build} で不具合が報告されている上位 Mod はありません。",
+  "content_radar_broken_title": "不具合の報告あり",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input build",
+        "input count",
+        "input share",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} で上位 {count__number} 件の Mod のうち {share} を確認済み"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "動作 {works__number} · 一部 {partial__number} · 不具合 {broken__number}"
+      }
+    }
+  ],
+  "content_radar_cta_button": "報告待ちの Mod",
+  "content_radar_cta_text": "Mod を開いて、遊び方（ソロ、ホスト、クライアント、専用サーバー）を選び、動いたかどうか教えてください。フィールドレポートごとに XP がもらえ、ほかのサバイバーがセーブを壊さずに済みます。",
+  "content_radar_cta_title": "{build} でこれらを試しましたか？",
+  "content_radar_current": "現在のビルド",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "パッチ {build}：ダウンロード数上位 50 の Sons of the Forest Mod のうち {share} をプレイヤーが確認済み — 動作 {works__number}、不具合 {broken__number}、報告待ち {pending__number}。"
+      }
+    }
+  ],
+  "content_radar_description_generic": "現在のゲームパッチで動く Sons of the Forest Mod：RedLoader の状態と、ダウンロード数上位 50 の Mod に対するプレイヤーのフィールドレポート。",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "30 日間で {display} ダウンロード"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "動作",
+        "status=partial": "一部動作",
+        "status=broken": "不具合",
+        "status=*": "不明"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "このビルドのローダーの状態はまだ記録されていません。",
+  "content_radar_ecosystem_title": "{build} でのローダーとマネージャー",
+  "content_radar_empty_text": "ゲームのビルドはまだ登録されていません。レンジャーが現在のパッチを登録すると、このページに動作する人気 Mod が表示されます。",
+  "content_radar_empty_title": "レーダー準備中",
+  "content_radar_error_text": "互換性データを読み込めませんでした。1 分後にもう一度お試しください。問題が続く場合は、下の参照番号を添えて Discord でお知らせください。",
+  "content_radar_error_title": "信号が途絶えました",
+  "content_radar_history_empty": "これが最初に記録されたビルドです。",
+  "content_radar_history_title": "ビルド履歴",
+  "content_radar_install_link": "RedLoader のインストール方法",
+  "content_radar_legend_outdated": "「古い可能性あり」は、最新版が直近の互換性を壊すアップデートより前のもので、その後に動作を確認した人がいないことを意味します。",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "報告には重みがあります。作者本人のテストは 2 倍、認証クリエイターは 1.5 倍、作成直後のアカウントは半分です。重み付き報告が {min__number} 件未満なら未検証、動作が {works} 以上なら動作、不具合が {broken} 以上なら不具合、それ以外は「まちまち」になります。"
+      }
+    }
+  ],
+  "content_radar_legend_title": "状態の決まり方",
+  "content_radar_list_name": "パッチ {build} の人気 Sons of the Forest Mod",
+  "content_radar_notes": "パッチノート",
+  "content_radar_outdated": "古い可能性あり",
+  "content_radar_past_link": "現在のビルドを見る",
+  "content_radar_past_notice": "これは過去のビルドです。現在のゲームは {build} です。",
+  "content_radar_pending_empty": "このビルドでは上位 Mod すべてに明確な判定があります。",
+  "content_radar_pending_hint": "未検証または結果がまちまち",
+  "content_radar_pending_title": "フィールドレポート待ち",
+  "content_radar_released": "{date} リリース",
+  "content_radar_report": "報告",
+  "content_radar_seo_title": "SOTF の Mod はパッチ {build} で動く？ — Patch Radar",
+  "content_radar_seo_title_generic": "SOTF の Mod は最新パッチで動く？ — Patch Radar",
+  "content_radar_stat_broken": "不具合",
+  "content_radar_stat_pending": "報告が必要",
+  "content_radar_stat_works": "動作",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "動作",
+        "status=mixed": "まちまち",
+        "status=broken": "不具合",
+        "status=*": "データなし"
+      }
+    }
+  ],
+  "content_radar_summary_title": "概要",
+  "content_radar_title": "SOTF の Mod はパッチ {build} で動く？",
+  "content_radar_works_empty": "{build} で動作が確認された上位 Mod はまだありません。試したら報告してください。",
+  "content_radar_works_title": "動作確認済み",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "約 {minutes__number} 分で読めます"
+      }
+    }
+  ],
+  "content_toc_title": "このページの内容",
+  "content_updated_on": "最終更新：{date}",
   "emails_auth_deleted_body": "個人データは消去されました。コメントとレビューは「削除されたサバイバー」として残ります。島の一員でいてくれてありがとうございました。",
   "emails_auth_deleted_heading": "アカウントを削除しました",
   "emails_auth_deleted_preview": "個人データは消去されました。",
@@ -3178,6 +3581,179 @@
   "landing_trending_empty": "島は静かな一週間です。サバイバーがダウンロードすると、ここにMODが表示されます。",
   "landing_trending_hint": "直近7日間のダウンロード数順",
   "landing_trending_title": "今週の人気",
+  "me_action_download": "ダウンロード",
+  "me_action_failed": "うまくいきませんでした",
+  "me_action_update": "アップデートを入手",
+  "me_backpack_description": "フォロー中のMODと、そのアップデート、現在のビルドでの動作状況。",
+  "me_backpack_empty_text": "MODの ♥ をタップするとここにしまえて、アップデートのお知らせが届きます。",
+  "me_backpack_empty_title": "バックパックは空です",
+  "me_backpack_list_label": "フォロー中のMOD",
+  "me_backpack_no_broken_text": "あなたのMODはどれも現在のゲームビルドで動作しないとは報告されていません。",
+  "me_backpack_no_broken_title": "動作しない報告はありません",
+  "me_backpack_no_updates_text": "バックパックのMODに、ダウンロードしたものより新しいバージョンはありません。",
+  "me_backpack_no_updates_title": "すべて最新です",
+  "me_backpack_notify_off": "{mod} の更新シグナルを停止しました",
+  "me_backpack_notify_on": "{mod} が更新されたらシグナルが届きます",
+  "me_backpack_readout": "あなたの装備",
+  "me_backpack_removed": "{mod} をバックパックから外しました",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "updates__exact"
+      ],
+      "match": {
+        "updates__exact=0": "バックパックに {count__number} 個のMOD · すべて最新",
+        "updates__exact=*": "バックパックに {count__number} 個のMOD · アップデート {updates__number} 件"
+      }
+    }
+  ],
+  "me_backpack_title": "バックパック",
+  "me_broken_on_current": "{build} で動作しない",
+  "me_browse_mods": "MODを探す",
+  "me_by_author": "作者：{author}",
+  "me_cancel": "キャンセル",
+  "me_did_it_work": "動きましたか？",
+  "me_downloads_clear": "履歴を消去",
+  "me_downloads_clear_confirm": "履歴を消去",
+  "me_downloads_clear_text": "すべての行と、過去のダウンロードについての「動きましたか？」の質問が消えます。MODのダウンロード数は変わりません。この操作は元に戻せません。",
+  "me_downloads_clear_title": "ダウンロード履歴を消去しますか？",
+  "me_downloads_cleared": "ダウンロード履歴を消去しました",
+  "me_downloads_description": "ログイン中にダウンロードしたすべてのMODと、未入手のアップデート。",
+  "me_downloads_empty_off_text": "履歴がオフのため、ここには新しい記録が残りません。",
+  "me_downloads_empty_text": "ログインしてMODをダウンロードするとここに表示され、新しいバージョンが出たらお知らせします。",
+  "me_downloads_empty_title": "まだダウンロードはありません",
+  "me_downloads_history_off": "ダウンロード履歴をオフにしました",
+  "me_downloads_history_on": "ダウンロード履歴をオンにしました",
+  "me_downloads_keep_history": "ダウンロード履歴を保存する",
+  "me_downloads_last": "{date} に {version} をダウンロード",
+  "me_downloads_list_label": "ダウンロードしたMOD",
+  "me_downloads_off_text": "新しいダウンロードは記録されないため、ここやバックパックのアップデート通知でバージョンを比較できません。いつでもオンに戻せます。",
+  "me_downloads_off_title": "ダウンロード履歴はオフです",
+  "me_downloads_readout": "補給ログ",
+  "me_downloads_remove": "リストから削除",
+  "me_downloads_remove_label": "{mod} をリストから削除",
+  "me_downloads_removed": "{mod} をリストから削除しました",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "updates__exact"
+      ],
+      "match": {
+        "updates__exact=0": "{count__number} 個のMODをダウンロード · すべて最新",
+        "updates__exact=*": "{count__number} 個のMODをダウンロード · アップデート {updates__number} 件"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 回ダウンロード"
+      }
+    }
+  ],
+  "me_downloads_title": "ダウンロード履歴",
+  "me_filter_all": "すべて",
+  "me_filter_broken": "このビルドで動作しない",
+  "me_filter_label": "表示",
+  "me_filter_updates": "アップデートあり",
+  "me_follow": "フォロー",
+  "me_followed": "{mod} をバックパックに入れました",
+  "me_followed_on": "{date} にフォロー",
+  "me_latest_version": "最新：{version}",
+  "me_no_current_version": "現在利用できるバージョンはありません",
+  "me_notify_off": "更新シグナル オフ",
+  "me_notify_on": "更新シグナル オン",
+  "me_onboarding_completed": "1日目を生き延びました。バッジを獲得",
+  "me_onboarding_dismiss": "非表示",
+  "me_onboarding_download_action": "MODを探す",
+  "me_onboarding_download_hint": "現在のビルドで動くものならどれでもOK。",
+  "me_onboarding_download_title": "最初のMODをダウンロード",
+  "me_onboarding_failed": "チェックリストを更新できませんでした",
+  "me_onboarding_follow_action": "フォローするMODを探す",
+  "me_onboarding_follow_hint": "♥ をタップしてバックパックにしまい、アップデートを受け取りましょう。",
+  "me_onboarding_follow_title": "MODをフォロー",
+  "me_onboarding_install_action": "インストールガイドを開く",
+  "me_onboarding_install_done": "インストールした",
+  "me_onboarding_install_hint": "Sons of the Forest のすべてのMODに必要なMODローダーです。",
+  "me_onboarding_install_title": "RedLoader をインストール",
+  "me_onboarding_kit_action": "キットを作成",
+  "me_onboarding_kit_hint": "MODをまとめて、1つのコードで共有できるキットにしましょう。",
+  "me_onboarding_kit_title": "キットを組もう",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input total",
+        "input done",
+        "local total__number = total: number",
+        "local done__number = done: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{total__number} 件中 {done__number} 件完了"
+      }
+    }
+  ],
+  "me_onboarding_readout": "島での1日目",
+  "me_onboarding_report_action": "ダウンロード履歴へ",
+  "me_onboarding_report_hint": "ダウンロードしたMODについて「動きましたか？」に答えてください。",
+  "me_onboarding_report_title": "動いたか教えて",
+  "me_onboarding_step_done": "完了：",
+  "me_onboarding_step_todo": "未完了：",
+  "me_onboarding_text": "準備のための5つの簡単なステップ。すべて完了すると「1日目を生き延びた」バッジを獲得できます。",
+  "me_onboarding_title": "最初の1日を生き延びよう",
+  "me_report_broken": "動かない",
+  "me_report_description": "ゲームビルド {build} でのバージョン {version} についてのあなたの現地レポートは、すべてのサバイバーが動くMODを選ぶ助けになります。",
+  "me_report_mode_client": "マルチプレイ（クライアント）",
+  "me_report_mode_dedicated": "専用サーバー",
+  "me_report_mode_host": "マルチプレイ（ホスト）",
+  "me_report_mode_label": "プレイ方法",
+  "me_report_mode_singleplayer": "シングルプレイ",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "クラッシュ、他のMODとの競合など。最大 {max__number} 文字。"
+      }
+    }
+  ],
+  "me_report_note_label": "何が起きたか",
+  "me_report_partial": "一部だけ",
+  "me_report_pick_result": "結果を選んでください。",
+  "me_report_result_legend": "結果はどうでしたか？",
+  "me_report_submit": "レポートを送信",
+  "me_report_thanks": "ありがとうございます。{mod} についてのレポートが地図に載りました",
+  "me_report_title": "{mod} は動きましたか？",
+  "me_report_verify_email": "現地レポートを送る前にメールアドレスを確認してください。",
+  "me_report_works": "動いた",
+  "me_undo": "元に戻す",
+  "me_unfollow": "フォロー解除",
+  "me_unfollowed": "{mod} をバックパックから外しました",
+  "me_up_to_date": "最新（{version}）",
+  "me_update_available": "アップデートあり",
+  "me_update_from_to": "アップデート：{from} → {to}",
   "meta_default_description": "Sons of the Forest の MOD の拠点。RedLoader 向けの MOD・建築・キットをパッチごとにテスト。無料で直接ダウンロードできます。",
   "meta_feed_description": "SOTF Mods で公開された Sons of the Forest の最新の MOD とアップデート。",
   "meta_feed_title": "SOTF Mods：新着・更新された MOD",
@@ -3319,6 +3895,7 @@
   "mod_fact_updated": "{date} に更新",
   "mod_fact_updated_label": "更新日",
   "mod_fact_version": "バージョン",
+  "mod_feed_title": "{name} のリリース",
   "mod_field_report_sign_in": "ログインしてフィールドレポートを追加",
   "mod_field_report_text": "フィールドレポートは 10 秒。この MOD が現在のパッチで動くかどうかをみんなに伝えられます。",
   "mod_field_report_title": "ゲームで動きましたか？",
@@ -4133,6 +4710,1230 @@
   "profile_xp_profile_completed": "プロフィールを完成させる",
   "profile_xp_review_helpful_vote": "レビューへの「役に立った」票",
   "profile_xp_review_with_text": "80 文字以上のテキスト付きレビュー",
+  "ranger_action_approve": "承認",
+  "ranger_action_mark_reviewed": "レビュー済みにする",
+  "ranger_action_reject": "却下",
+  "ranger_action_remove": "削除",
+  "ranger_action_request_changes": "修正を依頼",
+  "ranger_action_restore": "復元",
+  "ranger_action_unlist": "一覧から外す",
+  "ranger_assigned_short": "{name} が担当",
+  "ranger_assigned_to": "担当",
+  "ranger_audit_action": "操作",
+  "ranger_audit_actor": "操作者のハンドル",
+  "ranger_audit_apply": "絞り込む",
+  "ranger_audit_changes": "変更前と変更後",
+  "ranger_audit_clear": "クリア",
+  "ranger_audit_description": "レンジャーと管理者のすべての操作：誰が、何を、変更前後、そして理由。記録は編集できません。",
+  "ranger_audit_empty_filtered": "このフィルターに一致する記録はありません。",
+  "ranger_audit_empty_text": "レンジャーの操作はまだ記録されていません。",
+  "ranger_audit_empty_title": "記録はありません",
+  "ranger_audit_reason_hint": "監査ログに残ります。",
+  "ranger_audit_reason_label": "理由",
+  "ranger_audit_system": "システム",
+  "ranger_audit_target": "対象",
+  "ranger_audit_target_hint": "種類:id（例：user:12、mod:312）",
+  "ranger_audit_target_invalid": "種類:id の形式で入力してください（例：user:12）。",
+  "ranger_audit_title": "監査ログ",
+  "ranger_author_unknown": "不明な作者",
+  "ranger_back_to_list": "リストに戻る",
+  "ranger_cancel": "キャンセル",
+  "ranger_changelog_none": "このバージョンには変更履歴がありません。",
+  "ranger_checks_failed": "チェック不合格",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} ファイル"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "レビュー対象としてフラグ",
+  "ranger_checks_manifest_ok": "manifest.json は有効",
+  "ranger_checks_no_flags": "警告を出したチェックはありません。",
+  "ranger_checks_none": "この項目にはファイル検査がありません。",
+  "ranger_checks_passed": "チェック合格",
+  "ranger_checks_pending": "チェック実行中",
+  "ranger_checks_ratio": "圧縮率 {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "展開後 {size}",
+  "ranger_checks_title": "自動チェック",
+  "ranger_comment_hidden": "コメントを非表示にしました。",
+  "ranger_comment_hide": "非表示",
+  "ranger_comment_publish": "公開",
+  "ranger_comment_published": "コメントを公開しました。",
+  "ranger_comment_reject_confirm": "コメントを非表示にする",
+  "ranger_comment_reject_reason": "理由",
+  "ranger_comment_reject_reason_hint": "監査ログに残ります。",
+  "ranger_comment_reject_title": "このコメントを非表示にする",
+  "ranger_conflict_detail": "その間に誰かがこの項目を変更しました。キューを更新したので、もう一度確認してください。",
+  "ranger_decided_approve": "承認しました：{title}",
+  "ranger_decided_reject": "却下しました：{title}",
+  "ranger_decided_remove": "削除しました：{title}",
+  "ranger_decided_request_changes": "修正を依頼しました：{title}",
+  "ranger_decided_restore": "復元しました：{title}",
+  "ranger_decided_reviewed": "レビュー済みにしました：{title}",
+  "ranger_decided_unlist": "一覧から外しました：{title}",
+  "ranger_decision_failed": "判断は保存されませんでした",
+  "ranger_decision_no_template": "テンプレートなし — メモのみ",
+  "ranger_decision_note_hint": "Markdown 対応。テンプレートと一緒に送信されます。何を直すべきか書いてください。",
+  "ranger_decision_note_label": "作者へのメモ",
+  "ranger_decision_reason_required": "理由を入力してください（3 文字以上）。",
+  "ranger_decision_template_label": "理由テンプレート",
+  "ranger_decision_template_or_note": "テンプレートを選ぶか、メモを書いてください。",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "表示するテキストがありません。",
+  "ranger_diff_added": "追加：",
+  "ranger_diff_changed": "変更：",
+  "ranger_diff_content_changed": "内容が変更されました",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最初のバージョン：比較対象がありません。zip には {count__number} ファイルが含まれています。"
+      }
+    }
+  ],
+  "ranger_diff_flagged": "実行ファイル",
+  "ranger_diff_identical": "前のバージョンと同じファイルです。",
+  "ranger_diff_new_code": "新しいコード",
+  "ranger_diff_removed": "削除：",
+  "ranger_diff_summary": "前のバージョンとの比較：追加 {added}、削除 {removed}、変更 {changed}。",
+  "ranger_diff_truncated": "{total} ファイル中、最初の {shown} ファイルを表示しています。",
+  "ranger_diff_unavailable": "比較するファイル一覧がありません。",
+  "ranger_flag_absolute_path": "zip 内に絶対パス",
+  "ranger_flag_blueprint_invalid": "建築ファイルが無効です",
+  "ranger_flag_extension_flagged": "実行ファイルまたはスクリプト",
+  "ranger_flag_extension_not_allowed": "許可されていないファイル形式",
+  "ranger_flag_file_too_large": "ファイルが大きすぎます",
+  "ranger_flag_manifest_id_mismatch": "マニフェストの ID がMODと一致しません",
+  "ranger_flag_manifest_invalid": "manifest.json が無効です",
+  "ranger_flag_manifest_missing": "manifest.json がありません",
+  "ranger_flag_scan_detections": "セキュリティスキャンの検出",
+  "ranger_flag_version_not_greater": "バージョンが前回より新しくありません",
+  "ranger_flag_version_not_semver": "バージョンがセマンティック形式（x.y.z）ではありません",
+  "ranger_flag_zip_bomb_ratio": "圧縮率が高すぎます（zip 爆弾）",
+  "ranger_flag_zip_invalid": "有効な zip ではありません",
+  "ranger_flag_zip_slip": "パスがMODフォルダーの外に出ています（zip slip）",
+  "ranger_flag_zip_too_many_entries": "zip 内のファイルが多すぎます",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ブロック中のチェック {count__number} 件"
+      }
+    }
+  ],
+  "ranger_history_account_age": "アカウント歴",
+  "ranger_history_attention": "この作者には却下されたMODか有効な制裁があります。",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 日"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "監査の記録",
+  "ranger_history_open_user": "ユーザーカードを開く",
+  "ranger_history_published": "公開したMOD",
+  "ranger_history_rejected": "却下されたMOD",
+  "ranger_history_sanctions": "有効な制裁",
+  "ranger_history_trust": "信頼",
+  "ranger_item_document_title": "レビュー：{title}",
+  "ranger_item_gone_text": "別のレンジャーが判断したか、項目がキューから外れました。",
+  "ranger_item_gone_title": "対応済み",
+  "ranger_item_next": "次の項目",
+  "ranger_item_region": "レビュー中の項目",
+  "ranger_lane_builds": "建築",
+  "ranger_lane_builds_hint": "承認待ち、または公開後のレビュー待ちの建築。",
+  "ranger_lane_comments": "コメント",
+  "ranger_lane_comments_hint": "誰かが読む前にレビューのため保留されたコメント。",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件が待機中"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "レビュー待ちのコメントはありません。",
+  "ranger_lane_empty_reports": "未対応の報告はありません。コミュニティは平穏です。",
+  "ranger_lane_empty_text": "このレーンに待機中の項目はありません。新しい項目は自動的にここに表示されます。",
+  "ranger_lane_empty_title": "この道は異常なし",
+  "ranger_lane_new_mods": "新しいMOD",
+  "ranger_lane_new_mods_hint": "初回投稿と承認待ちのMOD。",
+  "ranger_lane_post_review": "事後レビュー",
+  "ranger_lane_post_review_hint": "人の目を通さずに公開済みのバージョン：72 時間以内にレビューしてください。",
+  "ranger_lane_reports": "報告",
+  "ranger_lane_reports_hint": "コミュニティからの未対応の報告。",
+  "ranger_lane_versions": "バージョン",
+  "ranger_lane_versions_hint": "チェック、セキュリティスキャン、または報告で保留中のバージョン。",
+  "ranger_lanes_label": "キューのレーン",
+  "ranger_live": "ライブ",
+  "ranger_live_off": "更新を一時停止中 — 接続が戻るとリストが更新されます",
+  "ranger_load_more": "さらに読み込む",
+  "ranger_loading": "読み込み中…",
+  "ranger_manifest_after": "変更後",
+  "ranger_manifest_before": "変更前",
+  "ranger_manifest_field": "フィールド",
+  "ranger_manifest_identical": "マニフェストに変更はありません。",
+  "ranger_media_alt": "画像 {index}",
+  "ranger_media_none": "画像はありません。",
+  "ranger_more_actions": "その他の操作",
+  "ranger_new_tab": "（新しいタブで開きます）",
+  "ranger_next": "次へ",
+  "ranger_no_actions": "ここで判断することはもうありません。",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "ページを開く",
+  "ranger_open_reports": "すべての報告",
+  "ranger_page_of": "{total} ページ中 {page} ページ目",
+  "ranger_pagination": "ページ",
+  "ranger_panel_error_text": "こちら側で問題が発生しました。しばらくしてからもう一度お試しください。",
+  "ranger_panel_error_title": "読み込めませんでした",
+  "ranger_previous": "前へ",
+  "ranger_queue_description": "古いものとリスクの高いものから順に表示します。すべての判断は記録され、作者に通知されます。",
+  "ranger_queue_title": "モデレーションキュー",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "動作しない",
+  "ranger_reason_harassment": "嫌がらせ",
+  "ranger_reason_illegal": "違法なコンテンツ",
+  "ranger_reason_malware": "マルウェア",
+  "ranger_reason_nsfw_unmarked": "NSFW 未表示",
+  "ranger_reason_other": "その他",
+  "ranger_reason_reupload": "無断転載",
+  "ranger_reason_spam": "スパム",
+  "ranger_reauth_action": "もう一度ログイン",
+  "ranger_reauth_text": "レンジャーの操作には 12 時間以内のログインが必要です。続けるにはもう一度ログインしてください。",
+  "ranger_reauth_title": "本人確認",
+  "ranger_reference": "参照：{reference}",
+  "ranger_report_by": "報告者",
+  "ranger_report_by_unknown": "報告者はアカウントを削除しました",
+  "ranger_report_dismiss": "却下",
+  "ranger_report_dismiss_text": "報告は問題ではありませんでした。報告によって自動的に非表示になったコンテンツは再び表示されます。",
+  "ranger_report_dismiss_title": "報告を却下",
+  "ranger_report_dismissed": "報告を却下しました。",
+  "ranger_report_hide_hint": "MODとキットは一覧から外れ、バージョンは保留、コメントとレビューは非表示になります。",
+  "ranger_report_hide_label": "コンテンツを非表示にする",
+  "ranger_report_history": "このコンテンツの履歴",
+  "ranger_report_no_details": "詳細はありません。",
+  "ranger_report_note_hint": "報告と監査ログに保存されます。",
+  "ranger_report_note_label": "対応メモ",
+  "ranger_report_open_user": "ユーザーカードを開く",
+  "ranger_report_resolution": "対応内容：{note}",
+  "ranger_report_resolve": "解決",
+  "ranger_report_resolve_hide": "解決して非表示",
+  "ranger_report_resolve_text": "このコンテンツに関する未対応の報告はすべて閉じられ、各報告者に通知されます。",
+  "ranger_report_resolve_title": "報告を解決",
+  "ranger_report_resolved": "報告を解決しました。",
+  "ranger_report_status_all": "すべて",
+  "ranger_report_status_dismissed": "却下済み",
+  "ranger_report_status_open": "未対応",
+  "ranger_report_status_resolved": "解決済み",
+  "ranger_report_target_missing": "{type} #{id}（存在しません）",
+  "ranger_reports_description": "コミュニティが報告した内容を、理由と証拠とともに表示します。報告を閉じると送信者に通知されます。",
+  "ranger_reports_empty_open_text": "確認するものはありません。新しい報告はこことキューに表示されます。",
+  "ranger_reports_empty_open_title": "未対応の報告はありません",
+  "ranger_reports_empty_text": "このフィルターに一致する報告はありません。",
+  "ranger_reports_empty_title": "報告はありません",
+  "ranger_reports_filter": "報告の状態",
+  "ranger_reports_title": "報告",
+  "ranger_retry": "再試行",
+  "ranger_risk_high": "高リスク",
+  "ranger_risk_low": "低リスク",
+  "ranger_risk_medium": "中リスク",
+  "ranger_role_admin": "管理者",
+  "ranger_role_moderator": "モデレーター",
+  "ranger_role_user": "ユーザー",
+  "ranger_sanction_ban": "BAN",
+  "ranger_sanction_ban_hint": "永久。すべての端末からログアウトします。",
+  "ranger_sanction_comment_mute": "コメント禁止",
+  "ranger_sanction_comment_mute_hint": "コメントやレビューができません — 全体、または一つのMODのみ。",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 日"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}：{name}",
+  "ranger_sanction_duration": "期間",
+  "ranger_sanction_ended": "終了",
+  "ranger_sanction_failed": "制裁は適用されませんでした",
+  "ranger_sanction_kind": "制裁の種類",
+  "ranger_sanction_open": "制裁する",
+  "ranger_sanction_permanent": "永久",
+  "ranger_sanction_reason": "理由",
+  "ranger_sanction_reason_hint": "ユーザーに表示されます。事実のみを書いてください。",
+  "ranger_sanction_revoke": "解除",
+  "ranger_sanction_revoke_failed": "制裁は解除されませんでした",
+  "ranger_sanction_revoke_title": "この制裁を解除しますか？",
+  "ranger_sanction_revoked": "制裁を解除しました。",
+  "ranger_sanction_revoked_on": "{date} に解除",
+  "ranger_sanction_scope": "一つのMODのみ",
+  "ranger_sanction_scope_clear": "全体で禁止にする",
+  "ranger_sanction_scope_hint": "空欄にすると全体でコメント禁止になります。",
+  "ranger_sanction_scope_none": "一致するMODはありません。",
+  "ranger_sanction_scope_on": "{mod} で",
+  "ranger_sanction_scope_placeholder": "MODまたは建築を検索",
+  "ranger_sanction_scope_results": "一致するMOD",
+  "ranger_sanction_since": "{date} から",
+  "ranger_sanction_suspend": "一時停止",
+  "ranger_sanction_suspend_hint": "終了日までログインできません。",
+  "ranger_sanction_title": "このユーザーを制裁",
+  "ranger_sanction_until": "{date} まで",
+  "ranger_sanction_upload_mute": "アップロード禁止",
+  "ranger_sanction_upload_mute_hint": "MOD、バージョン、建築を公開できません。",
+  "ranger_scan_clean": "検出なし",
+  "ranger_scan_engines": "{total} エンジン中 {positives}",
+  "ranger_scan_false_positive": "確認済みの誤検出",
+  "ranger_scan_malicious": "悪意あり",
+  "ranger_scan_none": "未スキャン",
+  "ranger_scan_override_confirm": "判定を保存",
+  "ranger_scan_override_done": "スキャン判定：「{verdict}」。",
+  "ranger_scan_override_failed": "判定は保存されませんでした",
+  "ranger_scan_override_false_positive_hint": "ファイルを確認した結果、検出は誤検出です。スキャンで保留されたバージョンが解放されます。",
+  "ranger_scan_override_malicious_hint": "ファイルは有害です。バージョンは取り下げられ、利用できないままになります。",
+  "ranger_scan_override_note": "理由（監査ログに残ります）",
+  "ranger_scan_override_open": "判定を変更",
+  "ranger_scan_override_title": "スキャン判定を変更",
+  "ranger_scan_override_verdict": "新しい判定",
+  "ranger_scan_pending": "スキャン待ち",
+  "ranger_scan_report_link": "VirusTotal レポート",
+  "ranger_scan_suspicious": "疑わしい",
+  "ranger_scan_unknown": "未スキャン（利用できるスキャナーなし）",
+  "ranger_select_item": "リストから項目を選んでレビューしてください。",
+  "ranger_severity_error": "公開をブロック",
+  "ranger_severity_warning": "人による確認が必要",
+  "ranger_shortcut_next": "次の項目",
+  "ranger_shortcut_previous": "前の項目",
+  "ranger_sla_average": "平均待ち時間",
+  "ranger_sla_due": "{time} · SLA 期限間近",
+  "ranger_sla_oldest": "最長",
+  "ranger_sla_over": "{hours} 時間超過",
+  "ranger_sla_overdue": "{time} · SLA 超過",
+  "ranger_sla_waiting": "このレーンで待機中",
+  "ranger_staff": "スタッフ",
+  "ranger_submitted": "{when}に投稿",
+  "ranger_tab_changelog": "変更履歴",
+  "ranger_tab_content": "内容",
+  "ranger_tab_description": "説明",
+  "ranger_tab_files": "ファイル差分",
+  "ranger_tab_history": "作者の履歴",
+  "ranger_tab_manifest": "マニフェスト差分",
+  "ranger_tab_media": "メディア",
+  "ranger_tabs_label": "項目の詳細",
+  "ranger_target_comment": "コメント",
+  "ranger_target_compat_report": "動作報告",
+  "ranger_target_kit": "キット",
+  "ranger_target_mod": "MOD",
+  "ranger_target_review": "レビュー",
+  "ranger_target_user": "ユーザー",
+  "ranger_target_version": "バージョン",
+  "ranger_template_broken_or_empty": "ファイルが破損しているか、空か、RedLoader で読み込めません。",
+  "ranger_template_broken_or_empty_title": "破損または空",
+  "ranger_template_copyright_claim": "有効な著作権の申し立てにより削除されました。",
+  "ranger_template_copyright_claim_title": "著作権の申し立て",
+  "ranger_template_credit_original_author": "原作者をクレジットし、その作品へのリンクを載せてください。",
+  "ranger_template_credit_original_author_title": "原作者のクレジット",
+  "ranger_template_duplicate": "すでに公開されているMODと重複しています。代わりにそのMODの新しいバージョンを公開してください。",
+  "ranger_template_duplicate_title": "重複",
+  "ranger_template_malware_confirmed": "削除されました：ファイルが悪意あるものと確認されました。",
+  "ranger_template_malware_confirmed_title": "マルウェア確認済み",
+  "ranger_template_malware_detected": "セキュリティスキャンがファイルを悪意ありと判定しました。",
+  "ranger_template_malware_detected_title": "スキャンで検出",
+  "ranger_template_missing_description": "MODの機能、インストール方法、使い方を説明してください。",
+  "ranger_template_missing_description_title": "説明がない",
+  "ranger_template_missing_screenshots": "ゲーム内でMODが動いている様子のスクリーンショットを 1 枚以上追加してください。",
+  "ranger_template_missing_screenshots_title": "スクリーンショットがない",
+  "ranger_template_not_a_mod": "このアップロードは Sons of the Forest のMODでも建築でもありません。",
+  "ranger_template_not_a_mod_title": "MODではない",
+  "ranger_template_nsfw_unmarked": "このMODには成人向けコンテンツが含まれます。NSFW として設定してください。",
+  "ranger_template_nsfw_unmarked_title": "NSFW 未表示",
+  "ranger_template_reupload_without_permission": "他人の作品を許可なく再アップロードしたもののようです。",
+  "ranger_template_reupload_without_permission_title": "無断転載",
+  "ranger_template_rules_violation": "サイトの規約に違反したため削除されました。",
+  "ranger_template_rules_violation_title": "規約違反",
+  "ranger_template_spam": "スパムまたは広告です。",
+  "ranger_template_spam_title": "スパム",
+  "ranger_template_wrong_category": "MODの内容に合ったカテゴリーに移動してください。",
+  "ranger_template_wrong_category_title": "カテゴリーが違う",
+  "ranger_triage_note": "スマートフォン表示：簡易トリアージのみ。ファイルとマニフェストの差分はタブレットかパソコンで確認してください。",
+  "ranger_trust_level": "レベル {level}",
+  "ranger_user_account": "アカウント",
+  "ranger_user_action_failed": "変更は保存されませんでした",
+  "ranger_user_actions": "操作",
+  "ranger_user_audit": "監査の記録",
+  "ranger_user_banned": "BAN 済み",
+  "ranger_user_banned_on": "{date} に BAN",
+  "ranger_user_comments": "コメント",
+  "ranger_user_document_title": "{name} · ユーザー",
+  "ranger_user_email_unverified": "メール未確認",
+  "ranger_user_email_verified": "メール確認済み",
+  "ranger_user_joined": "登録日",
+  "ranger_user_last_seen": "最終アクセス",
+  "ranger_user_legacy_trusted": "旧サイトで信頼済み",
+  "ranger_user_mods": "MOD",
+  "ranger_user_no_sanctions": "制裁を受けたことはありません。",
+  "ranger_user_outranked": "レンジャーは自分より下のロールのアカウントにのみ操作できます。",
+  "ranger_user_public_profile": "公開プロフィール",
+  "ranger_user_reports_against": "被報告",
+  "ranger_user_reviews": "レビュー",
+  "ranger_user_revoke_sessions": "すべての端末からログアウト",
+  "ranger_user_revoke_sessions_text": "このアカウントのすべてのセッションが今すぐ終了します。停止中や BAN でなければ再ログインできます。",
+  "ranger_user_revoke_sessions_title": "{name} をすべての端末からログアウトしますか？",
+  "ranger_user_role": "ロール",
+  "ranger_user_role_confirm": "ロールを変更",
+  "ranger_user_role_done": "{name} は {role} になりました。",
+  "ranger_user_role_hint": "管理者ロールはコマンドラインからのみ付与できます。",
+  "ranger_user_role_title": "{name} のロールを {role} に変更しますか？",
+  "ranger_user_sanctions": "制裁",
+  "ranger_user_self": "あなた自身のアカウントです。別のレンジャーが対応する必要があります。",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "開いているセッションはありませんでした。",
+        "count__exact=*": "{count__number} 件のセッションを終了しました。"
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "{date} まで停止中",
+  "ranger_user_unverified_done": "{name} は認証済みクリエイターではなくなりました。",
+  "ranger_user_unverify": "認証を外す",
+  "ranger_user_unverify_title": "{name} の認証済みクリエイターを外しますか？",
+  "ranger_user_verified_done": "{name} は認証済みクリエイターになりました。",
+  "ranger_user_verified_hint": "認証済みクリエイターはチェックに合格するとすぐに公開でき、上限も高くなります。",
+  "ranger_user_verify": "クリエイターを認証",
+  "ranger_user_verify_title": "{name} を認証済みクリエイターにしますか？",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 人のユーザー"
+      }
+    }
+  ],
+  "ranger_users_description": "ハンドル、名前、メールアドレスで検索します。ユーザーを開くと履歴と制裁を確認できます。",
+  "ranger_users_empty_query": "「{query}」に一致するユーザーはいません。",
+  "ranger_users_empty_text": "まだ一致するユーザーはいません。",
+  "ranger_users_empty_title": "ユーザーが見つかりません",
+  "ranger_users_row_stats": "MOD：{mods} · 被報告：{reports}",
+  "ranger_users_search_label": "ユーザーを検索",
+  "ranger_users_search_placeholder": "ハンドル、名前、メールアドレス",
+  "ranger_users_search_submit": "検索",
+  "ranger_users_title": "ユーザー",
+  "ranger_verified_creator": "認証済みクリエイター",
+  "ranger_waiting": "{time} 待機",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 日"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 時間"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 分"
+      }
+    }
+  ],
+  "settings_about_saved": "プロフィールを保存しました",
+  "settings_about_text": "プロフィール、MOD、コメントでのあなたの見え方。",
+  "settings_about_title": "あなたについて",
+  "settings_account_hint": "ログイン用メールアドレスとパスワード。",
+  "settings_account_overview_title": "あなたのアカウント",
+  "settings_account_title": "アカウント",
+  "settings_appearance_saved": "外観を保存しました",
+  "settings_appearance_text": "このデバイスと他のデバイスでの SOTF Mods の見た目。",
+  "settings_appearance_title": "外観",
+  "settings_avatar_change": "写真を変更",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{max__number} MB までの PNG、JPEG、WebP、AVIF、GIF。保存前にトリミングできます。"
+      }
+    }
+  ],
+  "settings_avatar_label": "アバター",
+  "settings_avatar_remove": "写真を削除",
+  "settings_avatar_removed": "写真を削除しました",
+  "settings_avatar_saved": "新しい写真を保存しました",
+  "settings_avatar_upload": "写真をアップロード",
+  "settings_avatar_uploading": "写真をアップロード中…",
+  "settings_back": "設定",
+  "settings_banner_custom_hint": "自分の画像を使っています。地形を作り直すと生成バナーに戻せます。",
+  "settings_banner_label": "バナー",
+  "settings_banner_reroll": "地形を作り直す",
+  "settings_banner_reroll_hint": "新しい地形をプレビュー中です。残すには「この地形を使う」を選んでください。",
+  "settings_banner_saved": "新しいバナーを保存しました",
+  "settings_banner_terrain_hint": "あなただけのために描かれた地図です。島の形が気に入るまで作り直せます。",
+  "settings_banner_terrain_saved": "地形バナーを保存しました",
+  "settings_banner_upload": "画像をアップロード",
+  "settings_banner_uploading": "バナーをアップロード中…",
+  "settings_banner_use_terrain": "この地形を使う",
+  "settings_behaviour_saved": "環境設定を保存しました",
+  "settings_behaviour_title": "動作",
+  "settings_bio": "自己紹介",
+  "settings_bio_hint": "Markdown が使えます：**太字**、_斜体_、リンク。",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "自己紹介は {max__number} 文字以内にしてください。"
+      }
+    }
+  ],
+  "settings_cancel": "キャンセル",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "残り {count__number} 文字"
+      }
+    }
+  ],
+  "settings_compat_prompts": "ダウンロード後に「動きましたか？」と尋ねる",
+  "settings_compat_prompts_hint": "あなたの回答で、他のサバイバーが現在のビルドで動くMODを知ることができます。",
+  "settings_creator_badges": "あなたのバッジ",
+  "settings_creator_basecamp": "ベースキャンプを開く",
+  "settings_creator_hint": "クリエイターの状態、支援リンク、既定のライセンス、返信テンプレート。",
+  "settings_creator_not_verified": "未認証",
+  "settings_creator_not_verified_text": "レンジャーは、安全で手入れの行き届いたMODの実績があるクリエイターを認証します。公開を続けてください。申請は不要です。",
+  "settings_creator_policy": "公開するものはすべてコンテンツポリシーに従います。",
+  "settings_creator_policy_link": "コンテンツポリシーを読む",
+  "settings_creator_status_title": "クリエイターの状態",
+  "settings_creator_title": "クリエイター",
+  "settings_creator_verified": "認証済みクリエイター",
+  "settings_creator_verified_text": "あなたのMODには認証マークが付き、より大きなファイルをアップロードできます。",
+  "settings_crop_avatar_title": "写真をトリミング",
+  "settings_crop_banner_title": "バナーをトリミング",
+  "settings_crop_failed": "この画像を読み込めませんでした。別のファイルをお試しください。",
+  "settings_crop_help": "画像をドラッグするか矢印キーで移動し、スライダーまたは + と − で拡大縮小します。",
+  "settings_crop_label": "画像のトリミング範囲",
+  "settings_crop_roledescription": "トリミング範囲",
+  "settings_crop_use": "この画像を使う",
+  "settings_crop_zoom": "拡大",
+  "settings_data_hint": "保存しているすべてのデータをエクスポート、またはアカウントを削除。",
+  "settings_data_title": "あなたのデータ",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "島での {day__number} 日目"
+      }
+    }
+  ],
+  "settings_default_license": "既定のライセンス",
+  "settings_default_license_hint": "新しいMODを公開するときに事前選択されます。MODごとに変更できます。",
+  "settings_default_license_none": "毎回確認する",
+  "settings_defaults_local_note": "これらの既定値はこのブラウザーにのみ保存されます。",
+  "settings_defaults_saved": "既定値を保存しました",
+  "settings_defaults_text": "新しいMODを事前入力し、よくある質問にすばやく返信できます。",
+  "settings_defaults_title": "公開時の既定値",
+  "settings_delete_already": "このアカウントはすでに削除が予定されています。",
+  "settings_delete_cancel": "削除を取り消す",
+  "settings_delete_cancel_failed": "削除を取り消せませんでした",
+  "settings_delete_cancelled": "削除を取り消しました。おかえりなさい",
+  "settings_delete_confirm": "14 日後に削除",
+  "settings_delete_dialog_text": "アカウントは 14 日後に削除されます。それまではこのページから取り消せます。",
+  "settings_delete_dialog_title": "アカウントを削除しますか？",
+  "settings_delete_mode_archive": "アーカイブする",
+  "settings_delete_mode_archive_hint": "一覧と検索から消え、あなたの作品としては表示されなくなります。",
+  "settings_delete_mode_keep": "公開したままにする",
+  "settings_delete_mode_keep_hint": "プレイヤーは引き続き見つけられますが、あなたの名前は表示されません。",
+  "settings_delete_mods_legend": "あなたのMODの扱い",
+  "settings_delete_open": "アカウントを削除…",
+  "settings_delete_point_content": "コメントとレビューは「削除されたサバイバー」として残ります。",
+  "settings_delete_point_export": "コピーが必要な場合は、先にデータをエクスポートしてください。",
+  "settings_delete_point_grace": "14 日以内なら取り消せます。ログインしてこのページで取り消してください。",
+  "settings_delete_point_mods": "MODはアーカイブするか、あなたの名前なしで公開したままにするかを選べます。",
+  "settings_delete_scheduled_text": "気が変わりましたか？今取り消せば、すべてそのままです。",
+  "settings_delete_scheduled_title": "アカウントは {date} に削除されます",
+  "settings_delete_scheduled_toast": "アカウントは {date} に削除されます",
+  "settings_delete_text": "14 日間の猶予期間の後、個人データを完全に削除します。",
+  "settings_delete_title": "アカウントを削除",
+  "settings_delete_type_handle": "確認のため「{handle}」を正確に入力してください。",
+  "settings_delete_type_label": "確認のためユーザー名「{handle}」を入力してください",
+  "settings_density": "表示密度",
+  "settings_density_comfortable": "ゆったり",
+  "settings_density_comfortable_hint": "余白を多めに。",
+  "settings_density_compact": "コンパクト",
+  "settings_density_compact_hint": "一度に多くの情報を表示。",
+  "settings_discard": "変更を破棄",
+  "settings_display_name": "表示名",
+  "settings_display_name_hint": "どの言語・文字でも 2〜32 文字。いつでも変更できます。",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}〜{max__number} 文字で入力してください。"
+      }
+    }
+  ],
+  "settings_email_daily": "毎日のダイジェスト",
+  "settings_email_instant": "すぐに",
+  "settings_email_invalid": "有効なメールアドレスを入力してください。",
+  "settings_email_new": "新しいメールアドレス",
+  "settings_email_off": "オフ",
+  "settings_email_same": "すでにこのメールアドレスを使っています。",
+  "settings_email_sent_text": "{email} に確認リンクを送りました。リンクを開くとアドレスが変更されます。",
+  "settings_email_sent_title": "受信トレイを確認してください",
+  "settings_email_sent_toast": "確認リンクを送信しました",
+  "settings_email_submit": "メールアドレスを変更",
+  "settings_email_taken": "このアドレスは使用できません。別のアドレスをお試しください。",
+  "settings_email_text": "ログインと、受け取ることを選んだメールに使います。変更するには受信トレイから新しいアドレスを確認してください。古いアドレスにもお知らせします。",
+  "settings_email_title": "メールアドレス",
+  "settings_email_unverified": "未確認",
+  "settings_email_verified": "確認済み",
+  "settings_email_weekly": "毎週のダイジェスト",
+  "settings_export_again": "新しいエクスポートを準備",
+  "settings_export_download": "ZIP をダウンロード",
+  "settings_export_email_note": "ダウンロードリンクはメールでもお送りします。有効期間は 24 時間です。",
+  "settings_export_expired": "このエクスポートのリンクは期限切れです。",
+  "settings_export_expires": "リンクの有効期限：{date}",
+  "settings_export_failed": "エクスポートを開始できませんでした",
+  "settings_export_preparing": "エクスポートを準備中…",
+  "settings_export_rate_limited": "最近エクスポートをリクエストしています。しばらくしてからお試しください",
+  "settings_export_ready": "エクスポートの準備ができました",
+  "settings_export_request": "エクスポートを準備",
+  "settings_export_requested": "エクスポートを準備しています",
+  "settings_export_requested_at": "{date} にリクエスト",
+  "settings_export_status_failed": "エクスポートに失敗しました。もう一度お試しください。",
+  "settings_export_text": "アカウント、プロフィール、MOD、コメント、レビュー、キット、フォロー、設定を含む JSON ファイルの ZIP。",
+  "settings_export_title": "データをエクスポート",
+  "settings_handle": "ユーザー名",
+  "settings_handle_hint": "プロフィールのアドレスです。現在は変更できません。",
+  "settings_history_link": "ダウンロード履歴を開く",
+  "settings_history_off_saved": "ダウンロード履歴をオフにしました",
+  "settings_history_on_saved": "ダウンロード履歴をオンにしました",
+  "settings_history_switch": "ダウンロード履歴を保存する",
+  "settings_history_text": "オンにすると、ログイン中のダウンロードが「ダウンロード履歴」に表示され、アップデートをお知らせできます。",
+  "settings_history_title": "ダウンロード履歴",
+  "settings_image_processing": "画像の処理に時間がかかりすぎています。しばらくしてからもう一度お試しください。",
+  "settings_image_rejected": "画像が拒否されました。別の画像をお試しください。",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "画像が大きすぎます。上限は {max__number} MB です。"
+      }
+    }
+  ],
+  "settings_image_type": "このファイル形式には対応していません。PNG、JPEG、WebP、AVIF を使ってください。",
+  "settings_index_title": "設定",
+  "settings_language_browser": "ブラウザーと同じ",
+  "settings_language_label": "言語",
+  "settings_language_saved": "言語を保存しました",
+  "settings_language_text": "コンソールと、お送りするメールの言語です。",
+  "settings_language_title": "言語と数値",
+  "settings_link_add": "リンクを追加",
+  "settings_link_invalid": "https:// で始まる完全なウェブアドレスを入力してください",
+  "settings_link_kind": "種類",
+  "settings_link_label": "ラベル",
+  "settings_link_other": "その他",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "リンク {n__number} を削除"
+      }
+    }
+  ],
+  "settings_link_url": "アドレス",
+  "settings_link_website": "ウェブサイト",
+  "settings_links_empty": "まだリンクはありません。",
+  "settings_links_saved": "リンクを保存しました",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "プロフィールに最大 {max__number} 件のリンク：サイト、チャンネル、支援先など。"
+      }
+    }
+  ],
+  "settings_links_title": "リンク",
+  "settings_loading": "読み込み中…",
+  "settings_member_since": "サバイバー歴",
+  "settings_motion": "アニメーション",
+  "settings_motion_full": "すべて",
+  "settings_motion_full_hint": "すべてのアニメーションをオン。",
+  "settings_motion_reduce": "減らす",
+  "settings_motion_reduce_hint": "スライド、ズーム、お祝い演出なし。",
+  "settings_motion_system": "デバイスに合わせる",
+  "settings_motion_system_hint": "システムの「視差効果を減らす」設定に従います。",
+  "settings_notif_ack": "あなたの現地レポート",
+  "settings_notif_ack_hint": "あなたが報告した問題を作者が確認または修正しました。",
+  "settings_notif_announcement": "お知らせ",
+  "settings_notif_announcement_hint": "SOTF Mods チームからのニュース。",
+  "settings_notif_award": "受賞",
+  "settings_notif_award_hint": "あなたのMODが今週のMODやスタッフのおすすめに選ばれました。",
+  "settings_notif_badge": "バッジ",
+  "settings_notif_badge_hint": "バッジを獲得しました。",
+  "settings_notif_broken": "あなたのMODが動作しないと報告",
+  "settings_notif_broken_hint": "現地レポートによると、あなたのMODが現在のビルドで動作しなくなりました。",
+  "settings_notif_col_app": "アプリ内",
+  "settings_notif_col_email": "メール",
+  "settings_notif_col_signal": "シグナル",
+  "settings_notif_comment": "あなたのMODへのコメント",
+  "settings_notif_comment_hint": "まとめて通知：複数のコメントを1つのシグナルで届けます。",
+  "settings_notif_creator": "クリエイターの新作MOD",
+  "settings_notif_creator_hint": "フォロー中のクリエイターが新しいものを公開しました。",
+  "settings_notif_defaults": "既定に戻す",
+  "settings_notif_email_only": "メールのみ",
+  "settings_notif_group_community": "コミュニティとレンジャー",
+  "settings_notif_group_conversations": "会話",
+  "settings_notif_group_follows": "フォロー中",
+  "settings_notif_group_my_mods": "あなたのMOD",
+  "settings_notif_matrix_text": "シグナルの種類ごとに、アプリに表示するかどうかとメールの頻度を選べます。ダイジェストはすべてを1通のメールにまとめます。",
+  "settings_notif_matrix_title": "シグナルとメール",
+  "settings_notif_mention": "メンション",
+  "settings_notif_mention_hint": "誰かがあなたを @メンションしました。",
+  "settings_notif_milestone": "ダウンロードの節目",
+  "settings_notif_milestone_hint": "あなたのMODがダウンロード数の節目を超えました。",
+  "settings_notif_patch": "MODを壊すゲームパッチ",
+  "settings_notif_patch_hint": "新しいゲームビルドでMODが動かなくなる可能性があります（クリエイター向け）。",
+  "settings_notif_removal_note": "あなたのMODが削除された場合は、必ずメールでお知らせします。",
+  "settings_notif_reply": "返信",
+  "settings_notif_reply_hint": "あなたのコメントに返信がありました。",
+  "settings_notif_report": "あなたの通報",
+  "settings_notif_report_hint": "レンジャーがあなたの通報を確認しました。",
+  "settings_notif_review": "あなたのMODへのレビュー",
+  "settings_notif_review_hint": "あなたのMODが評価されました。",
+  "settings_notif_review_reply": "レビューへの返信",
+  "settings_notif_review_reply_hint": "作者があなたのレビューに返信しました。",
+  "settings_notif_saved": "通知設定を保存しました",
+  "settings_notif_status": "審査結果",
+  "settings_notif_status_hint": "あなたのMODが承認・却下・修正依頼・アーカイブされました。",
+  "settings_notif_version": "新しいバージョン",
+  "settings_notif_version_hint": "バックパックのMODがアップデートを公開しました。",
+  "settings_notif_weekly": "クリエイター週次レポート",
+  "settings_notif_weekly_hint": "毎週月曜：あなたのMODのダウンロード数、フォロワー、レビュー。",
+  "settings_notifications_hint": "アプリ内とメールで受け取るシグナル。",
+  "settings_notifications_title": "通知",
+  "settings_nsfw_adult": "18 歳以上です（または居住地の成人年齢に達しています）",
+  "settings_nsfw_confirm": "表示する",
+  "settings_nsfw_confirm_text": "NSFW のMODには裸や過激な内容が含まれる場合があります。いつでも再び非表示にできます。",
+  "settings_nsfw_confirm_title": "成人向けコンテンツを表示しますか？",
+  "settings_nsfw_confirmed_on": "{date} に確認済み",
+  "settings_nsfw_hide": "成人向けコンテンツを非表示",
+  "settings_nsfw_off_saved": "成人向けコンテンツを非表示にしました",
+  "settings_nsfw_on_saved": "成人向けコンテンツを表示するようにしました",
+  "settings_nsfw_show": "成人向けコンテンツを表示",
+  "settings_nsfw_status_off": "非表示",
+  "settings_nsfw_status_on": "表示",
+  "settings_nsfw_text": "NSFW に指定されたMODは一覧、検索、フィードで非表示になり、自身のページ以外ではぼかして表示されます。表示するにはオンにしてください。",
+  "settings_nsfw_title": "成人向けコンテンツ",
+  "settings_number_compact": "短縮",
+  "settings_number_compact_hint": "1.2千 ダウンロード",
+  "settings_number_format": "大きな数値",
+  "settings_number_full": "すべて表示",
+  "settings_number_full_hint": "1,234 ダウンロード",
+  "settings_password_changed": "パスワードを変更しました",
+  "settings_password_changed_revoked": "パスワードを変更し、他のデバイスからログアウトしました",
+  "settings_password_confirm": "新しいパスワード（確認）",
+  "settings_password_current": "現在のパスワード",
+  "settings_password_mismatch": "新しいパスワードが一致しません。",
+  "settings_password_new": "新しいパスワード",
+  "settings_password_rejected": "このパスワードはデータ漏えいで見つかっています。別のものを選んでください。",
+  "settings_password_required": "現在のパスワードを入力してください。",
+  "settings_password_revoke": "他のデバイスからログアウトする",
+  "settings_password_revoke_hint": "パスワードを他の人に知られたかもしれない場合におすすめです。",
+  "settings_password_same": "現在とは違うパスワードを選んでください。",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number} 文字以上にしてください。"
+      }
+    }
+  ],
+  "settings_password_submit": "パスワードを変更",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number} 文字以上。長いフレーズは覚えやすく、推測されにくくなります。"
+      }
+    }
+  ],
+  "settings_password_title": "パスワード",
+  "settings_password_wrong": "パスワードが正しくありません。",
+  "settings_photos_text": "アバターと、プロフィール上部のバナー。アップロードが終わるとすぐに保存されます。",
+  "settings_photos_title": "写真とバナー",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input max",
+        "input count",
+        "local max__number = max: number",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{max__number} 個中 {count__number} 個を固定"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} ダウンロード"
+      }
+    }
+  ],
+  "settings_pinned_empty": "MODを公開すると、ここで固定できます。",
+  "settings_pinned_failed": "MODを読み込めませんでした。",
+  "settings_pinned_hidden": "固定したMODの一部は現在非公開です。固定は維持され、公開されると再び表示されます。",
+  "settings_pinned_saved": "固定したMODを保存しました",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "プロフィールの先頭に表示するMODを最大 {max__number} 個、この順番で選んでください。"
+      }
+    }
+  ],
+  "settings_pinned_title": "固定したMOD",
+  "settings_preferences_hint": "言語、テーマ、アニメーション、ショートカット、成人向けコンテンツ。",
+  "settings_preferences_title": "環境設定",
+  "settings_privacy_data_link": "データをエクスポート・削除",
+  "settings_privacy_data_text": "保存しているすべてのデータのエクスポートや、アカウントの削除ができます。",
+  "settings_privacy_data_title": "あなたのデータ",
+  "settings_privacy_hint": "他の人がプロフィールで見られる内容と、ダウンロード履歴。",
+  "settings_privacy_policy_link": "プライバシーポリシー",
+  "settings_privacy_saved": "プライバシー設定を保存しました",
+  "settings_privacy_title": "プライバシー",
+  "settings_profile_hint": "写真、バナー、名前、自己紹介、リンク、固定したMOD。",
+  "settings_profile_title": "プロフィール",
+  "settings_profile_view_public": "公開プロフィールを見る",
+  "settings_readout": "キャンプの設定",
+  "settings_retry": "再試行",
+  "settings_save": "保存",
+  "settings_save_failed": "変更を保存できませんでした",
+  "settings_security_hint": "ログイン中の場所と、他のデバイスからのログアウト。",
+  "settings_security_tip_email": "メールや Discord でパスワードを尋ねることは絶対にありません。",
+  "settings_security_tip_password": "他では使っていないパスワードを使いましょう。",
+  "settings_security_tip_sessions": "共用・公共のコンピューターでは使い終わったらログアウトしましょう。",
+  "settings_security_tips_title": "キャンプを安全に保つために",
+  "settings_security_title": "セキュリティ",
+  "settings_sessions_active_now": "現在アクティブ",
+  "settings_sessions_confirm_current_text": "ログインページに移動します。",
+  "settings_sessions_confirm_current_title": "このブラウザーからログアウトしますか？",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "他の {count__number} 件のセッションが終了します。このブラウザーはログインしたままです。"
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "他のすべてからログアウトしますか？",
+  "settings_sessions_confirm_text": "{device} は再ログインが必要になります。",
+  "settings_sessions_confirm_title": "このデバイスをログアウトしますか？",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "アクティブなセッション {count__number} 件"
+      }
+    }
+  ],
+  "settings_sessions_failed": "このセッションをログアウトできませんでした",
+  "settings_sessions_last_seen": "最終アクティブ {when}",
+  "settings_sessions_revoked": "{device} をログアウトしました",
+  "settings_sessions_revoked_others": "他のデバイスをログアウトしました",
+  "settings_sessions_sign_out": "ログアウト",
+  "settings_sessions_sign_out_here": "ここでログアウト",
+  "settings_sessions_sign_out_others": "他のすべてからログアウト",
+  "settings_sessions_started": "{date} にログイン",
+  "settings_sessions_text": "アクティブなセッションがあるすべてのブラウザーとデバイス。心当たりのないものはログアウトしてください。",
+  "settings_sessions_this_device": "このデバイス",
+  "settings_sessions_title": "ログイン中の場所",
+  "settings_sessions_unknown_device": "不明なデバイス",
+  "settings_shortcuts": "キーボードショートカット",
+  "settings_shortcuts_hint": "コンソールの1キーショートカット。支援技術の妨げになる場合はオフにしてください。",
+  "settings_show_activity": "アクティビティを表示",
+  "settings_show_activity_hint": "12か月のヒートマップと最近のアクティビティ。",
+  "settings_show_kits": "キットを表示",
+  "settings_show_kits_hint": "プロフィールの「キット」タブ（非公開キットは表示されません）。",
+  "settings_show_leaderboards": "ランキングに表示",
+  "settings_show_leaderboards_hint": "トップクリエイターとトップサバイバーのリスト。",
+  "settings_show_rank": "サバイバーランクと XP を表示",
+  "settings_show_rank_hint": "名前の横のランクスタンプ。",
+  "settings_support_edit": "プロフィールのリンクを編集",
+  "settings_support_empty": "Ko-fi や Patreon のリンクはまだ追加されていません。",
+  "settings_support_text": "プロフィールの Ko-fi と Patreon のリンクは、プロフィールとMODのダウンロードボタンの横に表示されます。",
+  "settings_support_title": "支援リンク",
+  "settings_template_add": "テンプレートを追加",
+  "settings_template_copied": "「{name}」をコピーしました",
+  "settings_template_copy": "コピー",
+  "settings_template_copy_failed": "クリップボードにコピーできませんでした",
+  "settings_template_delete": "削除",
+  "settings_template_name": "名前",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "名前を入力してください（最大 {max__number} 文字）。"
+      }
+    }
+  ],
+  "settings_template_text": "本文",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "本文を入力してください（最大 {max__number} 文字）。"
+      }
+    }
+  ],
+  "settings_templates_empty": "テンプレートはまだありません。",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "コメントやレビューへの返信にコピーできる定型文（インストール手順、既知の競合など）を最大 {max__number} 件。"
+      }
+    }
+  ],
+  "settings_templates_title": "返信テンプレート",
+  "settings_theme": "テーマ",
+  "settings_theme_day": "昼",
+  "settings_theme_night": "夜",
+  "settings_theme_system": "デバイスに合わせる",
+  "settings_verify_already": "メールアドレスはすでに確認済みです",
+  "settings_verify_resend": "リンクを再送信",
+  "settings_verify_resend_failed": "リンクを送信できませんでした",
+  "settings_verify_resent": "{email} に新しいリンクを送りました",
+  "settings_verify_text": "確認するまでは閲覧とダウンロードはできますが、コメント、レビュー、公開はできません。",
+  "settings_verify_title": "メールアドレスを確認してください",
+  "settings_visibility_text": "公開したくないものはオフにしてください。",
+  "settings_visibility_title": "プロフィールに表示",
+  "signals_action_download": "ダウンロード",
+  "signals_announcement": "レンジャーからの新しいお知らせ",
+  "signals_announcement_titled": "お知らせ：{title}",
+  "signals_award_build_of_month": "{mod} が今月の建築に選ばれました",
+  "signals_award_generic": "{mod} が賞を獲得しました",
+  "signals_award_mod_of_month": "{mod} が今月のMODに選ばれました",
+  "signals_award_mod_of_week": "{mod} が今週のMODに選ばれました",
+  "signals_award_staff_pick": "{mod} がスタッフのおすすめに選ばれました",
+  "signals_badge_awarded": "バッジを獲得：{badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "新しい SOTF Mods へようこそ",
+        "count__exact=*": "新しい SOTF Mods へようこそ。フィールドノートで {count__number} 個のバッジがあなたを待っています"
+      }
+    }
+  ],
+  "signals_bell_label": "シグナル",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "シグナル：未読 {count__number} 件"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} が {mod} のバグを報告しました",
+  "signals_comment_mention": "{actor} が {mod} のコメントであなたをメンションしました",
+  "signals_comment_on_mod": "{actor} が {mod} にコメントしました",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} に新しいコメント {count__number} 件"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} が {mod} でのあなたのコメントに返信しました",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} でのあなたのコメントに返信 {count__number} 件"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "{mod} の作者があなたの現地レポートを確認しました",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input build",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} は {build} で動作しないと報告されています",
+        "status=*": "{mod} は {build} で動作が不安定と報告されています"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "{mod} についてのあなたの現地レポートは {version} で修正されました",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} が建築 {mod}を公開しました",
+        "kind=*": "{actor} が{mod}を公開しました"
+      }
+    }
+  ],
+  "signals_current_build": "現在のビルド",
+  "signals_empty_filtered_text": "このフィルターに一致するシグナルはまだありません。「すべて」を試してください。",
+  "signals_empty_filtered_title": "このチャンネルには何もありません",
+  "signals_empty_text": "MODやクリエイターをフォローすると、変化があったときにお知らせします。",
+  "signals_empty_title": "森は静かです",
+  "signals_end": "今のところシグナルはこれですべてです。",
+  "signals_error_text": "こちら側で問題が発生しました。しばらくしてからもう一度お試しください。",
+  "signals_error_title": "シグナルを読み込めませんでした。",
+  "signals_excerpt": "「{text}」",
+  "signals_filter_all": "すべて",
+  "signals_filter_label": "シグナルを絞り込む",
+  "signals_filter_mentions": "メンション",
+  "signals_filter_my_mods": "自分のMOD",
+  "signals_filter_ranger": "レンジャー",
+  "signals_filter_updates": "アップデート",
+  "signals_group_today": "今日",
+  "signals_group_yesterday": "昨日",
+  "signals_load_more": "以前のシグナルを読み込む",
+  "signals_loading": "シグナルを読み込み中…",
+  "signals_loading_more": "読み込み中…",
+  "signals_mark_all_read": "すべて既読にする",
+  "signals_mark_failed": "シグナルを既読にできませんでした",
+  "signals_mark_read": "既読にする",
+  "signals_marked_all": "すべてのシグナルを既読にしました",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} のダウンロード数が {threshold__number} を突破しました"
+      }
+    }
+  ],
+  "signals_more_error": "以前のシグナルを読み込めませんでした。",
+  "signals_page_description": "フォロー中の更新、返信、メンション、あなたのMODに関するニュース。",
+  "signals_page_readout": "無線ログ",
+  "signals_page_title": "シグナル",
+  "signals_panel_title": "シグナル",
+  "signals_patch_breaking": "ゲームビルド {build} でMODが動かなくなる可能性があります。Patch Radar で確認してください",
+  "signals_preferences": "通知設定",
+  "signals_report_dismissed": "あなたの通報は確認されました。対応の必要はありませんでした",
+  "signals_report_resolved": "あなたの通報は確認され、対応が行われました",
+  "signals_retry": "再試行",
+  "signals_review_on_mod": "{actor} が {mod} に星 {rating} のレビューを投稿しました",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} に新しいレビュー {count__number} 件"
+      }
+    }
+  ],
+  "signals_review_reply": "{mod} の作者があなたのレビューに返信しました",
+  "signals_see_all": "すべてのシグナルを見る",
+  "signals_show_all": "すべてのシグナルを表示",
+  "signals_someone": "誰か",
+  "signals_status_approved": "あなたのMOD {mod} が承認され、公開されました",
+  "signals_status_archived": "あなたのMOD {mod} はアーカイブされました",
+  "signals_status_changed": "{mod} のステータスが変わりました",
+  "signals_status_changes_requested": "レンジャーが {mod} の修正を求めています",
+  "signals_status_rejected": "あなたのMOD {mod} は却下されました",
+  "signals_status_removed": "あなたのMOD {mod} は削除されました",
+  "signals_status_republished": "あなたのMOD {mod} が再び公開されました",
+  "signals_status_unlisted": "あなたのMOD {mod} は一覧から外されました",
+  "signals_unknown_mod": "あるMOD",
+  "signals_unread_prefix": "未読：",
+  "signals_version_published": "{mod} {version} が公開されました（フォロー中）",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} の新バージョン {count__number} 件"
+      }
+    }
+  ],
+  "signals_weekly_report": "クリエイター週次レポートができました",
   "social_action_back": "戻る",
   "social_action_cancel": "キャンセル",
   "social_action_close": "閉じる",
@@ -4445,5 +6246,550 @@
   "ui_theme_dark": "ナイト",
   "ui_theme_light": "デイ",
   "ui_theme_system": "システム",
-  "ui_type_to_confirm": "確認するには {text} と入力してください。"
+  "ui_type_to_confirm": "確認するには {text} と入力してください。",
+  "upload_announce_group": "テストしたビルドとお知らせ",
+  "upload_autosave_error": "保存できませんでした。まもなく再試行します。変更はここに残っています。",
+  "upload_autosave_idle": "まだ保存する内容はありません",
+  "upload_autosave_limit": "下書きの上限に達しました。保存するには下書きを1つ削除してください。",
+  "upload_autosave_offline": "オフラインです。変更はここに残り、接続が戻ると保存されます。",
+  "upload_autosave_pending": "未保存の変更があります",
+  "upload_autosave_saved": "自動保存しました（{when}）",
+  "upload_autosave_saving": "保存中…",
+  "upload_back": "戻る",
+  "upload_block_empty": "ファイルが空です。",
+  "upload_block_local_problems": "下のチェックでエラーが見つかりました。修正してからもう一度ファイルを選んでください。",
+  "upload_block_manifest_id_mismatch": "これは別のMODです。マニフェストIDは {found} ですが、{expected} である必要があります。",
+  "upload_block_too_large": "ファイルが {max} を超えています。",
+  "upload_block_unreadable": "ファイルを読み込めませんでした。正しく完全にダウンロードされていますか？",
+  "upload_block_version_exists": "バージョン {version} はすでに存在します。manifest.json のバージョンを上げてください。",
+  "upload_block_version_not_greater": "バージョン {version} は {previous} より大きい必要があります。manifest.json のバージョンを上げてください。",
+  "upload_block_version_not_semver": "バージョン {version} はセマンティックバージョン（x.y.z）ではありません。",
+  "upload_block_wrong_type": "ファイル形式が違います。ドロップエリアに表示されている形式を選んでください。",
+  "upload_blocked_title": "このファイルはアップロードできません。",
+  "upload_build_buildshare_version": "BuildShareのバージョン",
+  "upload_build_detected": "設計図を検出",
+  "upload_build_elements": "要素数",
+  "upload_build_guid": "設計図ID",
+  "upload_build_no_thumbnail": "この設計図にはサムネイルがありません。メディアの手順でカバーを追加してください。",
+  "upload_build_size_class": "規模",
+  "upload_build_structures": "構造物",
+  "upload_build_thumbnail_alt": "設計図 {name} のサムネイル",
+  "upload_cancel": "キャンセル",
+  "upload_category_label": "カテゴリー",
+  "upload_category_placeholder": "カテゴリーを選択",
+  "upload_changelog_group": "変更履歴",
+  "upload_changelog_hint_first": "初回リリースでは任意です。",
+  "upload_changelog_hint_version": "フォロワーはシグナルでこれを読みます。",
+  "upload_changelog_label": "変更点（Markdown）",
+  "upload_changelog_placeholder": "修正…、追加…、変更…",
+  "upload_channel_beta": "ベータ",
+  "upload_channel_beta_hint": "最新の変更を試したいテスター向け。",
+  "upload_channel_label": "チャンネル",
+  "upload_channel_release": "安定版",
+  "upload_channel_release_hint": "全員向け。最新バージョンになります。",
+  "upload_choose_other": "別のファイルを選ぶ",
+  "upload_compat_game": "ゲームとローダー",
+  "upload_compat_intro": "MODが動く環境をプレイヤーに伝えましょう。あとからサバイバーのフィールドレポートで補われます。",
+  "upload_compat_title": "互換性",
+  "upload_compat_where": "動作環境",
+  "upload_counter": "{count} / {max}",
+  "upload_cover_build_fallback": "カバーがない場合は設計図のサムネイルを使います。",
+  "upload_cover_choose": "画像を選択",
+  "upload_cover_description": "カードやページ上部に16:9で切り抜いて表示されます。",
+  "upload_cover_drop": "ここにカバー画像をドロップ",
+  "upload_cover_failed": "カバーをアップロードできませんでした。",
+  "upload_cover_hint": "PNG、JPEG、WebP、AVIF、GIF · 最大 10 MB · 1280 × 720 以上がおすすめ",
+  "upload_cover_label": "カバー",
+  "upload_cover_preview_alt": "カバーのプレビュー",
+  "upload_cover_remove": "カバーを削除",
+  "upload_cover_replace": "カバーを差し替える",
+  "upload_cover_uploading": "カバーのアップロード状況",
+  "upload_crop_confirm": "この範囲を使う",
+  "upload_crop_description": "枠をドラッグするか、選択して矢印キーで動かします。＋と－でサイズを変えられます。",
+  "upload_crop_frame": "切り抜き枠",
+  "upload_crop_keyboard": "矢印で移動 · Shiftで速く · ＋と－でサイズ変更",
+  "upload_crop_output": "出力 {width} × {height}",
+  "upload_crop_position": "左 {x} px、上 {y} px",
+  "upload_crop_size": "枠のサイズ",
+  "upload_crop_title": "カバーを切り抜く",
+  "upload_dedicated_hint": "専用サーバーで動作しますか？",
+  "upload_dedicated_label": "専用サーバー",
+  "upload_dedicated_no": "いいえ",
+  "upload_dedicated_partial": "一部のみ",
+  "upload_dedicated_unknown": "わからない",
+  "upload_dedicated_yes": "はい",
+  "upload_dependencies_hint": "manifest.json の依存関係は常に必須です。任意のMODと競合はここで追加します。",
+  "upload_dependencies_label": "依存関係",
+  "upload_dependencies_none": "依存関係はありません。",
+  "upload_dependency_add": "追加",
+  "upload_dependency_add_as": "{name} を「{kind}」として追加",
+  "upload_dependency_conflicts": "競合",
+  "upload_dependency_duplicate": "その依存関係はすでにリストにあります。",
+  "upload_dependency_from_manifest": "manifest.json より",
+  "upload_dependency_invalid_id": "マニフェストIDに使えるのは英数字、「.」「_」「-」だけです。",
+  "upload_dependency_kind": "{id} との関係",
+  "upload_dependency_manual": "またはマニフェストIDを入力",
+  "upload_dependency_no_results": "一致するMODはありません。",
+  "upload_dependency_optional": "任意",
+  "upload_dependency_range": "{id} のバージョン範囲",
+  "upload_dependency_range_placeholder": "任意のバージョン（例：>=1.2.0）",
+  "upload_dependency_remove": "{id} を削除",
+  "upload_dependency_required": "必須",
+  "upload_dependency_search": "SOTF ModsでMODやライブラリを検索",
+  "upload_dependency_search_failed": "検索に失敗しました。もう一度お試しください。",
+  "upload_description_group": "説明",
+  "upload_description_hint": "機能、使い方、既知の問題など。見出し、リスト、画像、YouTubeリンクが使えます。",
+  "upload_description_label": "説明（Markdown）",
+  "upload_description_placeholder": "MODでできること、使い方、既知の問題…",
+  "upload_details_discovery": "カテゴリーとタグ",
+  "upload_details_discovery_hint": "サバイバーが探索や検索で見つける場所が決まります。",
+  "upload_details_identity": "名前とアドレス",
+  "upload_details_intro": "サイト上でのページの見え方です。ファイルから読み取れた内容は入力済みです。",
+  "upload_details_links": "ライセンスとリンク",
+  "upload_details_title": "詳細",
+  "upload_draft_limit_detail": "新しく始めるには、不要な下書きを削除してください。",
+  "upload_draft_limit_title": "下書きが20件あります。",
+  "upload_draft_missing_detail": "送信されたか削除されました。ほかの下書きは一覧に残っています。",
+  "upload_draft_missing_title": "この下書きはもう存在しません。",
+  "upload_draft_other_flow_detail": "手順を保つため、始めた場所で開いてください。",
+  "upload_draft_other_flow_title": "この下書きは別の手順のものです。",
+  "upload_drafts_blockers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "要修正 {count__number} 件"
+      }
+    }
+  ],
+  "upload_drafts_counter": "{count} / {max}",
+  "upload_drafts_delete": "削除",
+  "upload_drafts_delete_detail": "「{name}」と未送信のファイルが削除されます。元に戻せません。",
+  "upload_drafts_delete_named": "{name} を削除",
+  "upload_drafts_delete_title": "この下書きを削除しますか？",
+  "upload_drafts_deleted": "下書きを削除しました",
+  "upload_drafts_empty_detail": "公開を始めた内容は、送信するまでここに保存されます。",
+  "upload_drafts_empty_title": "下書きはありません",
+  "upload_drafts_intro": "作業中は自動で保存されます。同時に最大 {max} 件まで。",
+  "upload_drafts_loading": "下書きを読み込み中",
+  "upload_drafts_quality": "完成度 {score}",
+  "upload_drafts_ready": "送信できます",
+  "upload_drafts_resume": "再開",
+  "upload_drafts_start": "公開を始める",
+  "upload_drafts_step": "ステップ {current}/{total} · {label}",
+  "upload_drafts_title": "下書き",
+  "upload_drafts_untitled": "無題の下書き",
+  "upload_drafts_untitled_version": "新しいバージョン",
+  "upload_drafts_updated": "{when}に編集",
+  "upload_drop_button": "ファイルを選択",
+  "upload_drop_hint": "{type} · 最大 {max}",
+  "upload_drop_replace": "差し替えるには別のファイルをドロップ",
+  "upload_drop_title_build": "ここに設計図 .json をドロップ",
+  "upload_drop_title_mod": "ここに .zip をドロップ",
+  "upload_entries_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ほか {count__number} 件のファイル"
+      }
+    }
+  ],
+  "upload_entries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "zip 内のファイル：{count__number} 件"
+      }
+    }
+  ],
+  "upload_entry_flagged": "要確認",
+  "upload_entry_not_allowed": "珍しい形式",
+  "upload_entry_unsafe": "危険なパス",
+  "upload_error_loader_version": "0.9.0 のようなバージョンを入力してください。",
+  "upload_error_name": "2〜80文字で入力してください。",
+  "upload_error_slug": "小文字の英字、数字、ハイフンを使ってください（2〜80文字）。",
+  "upload_error_title": "アップロードが中断しました。",
+  "upload_error_url": "https:// で始まる完全なアドレスを入力してください",
+  "upload_error_youtube": "YouTube動画のリンクを貼り付けてください（youtube.com/watch、youtu.be、shorts）。",
+  "upload_expired_detail": "使用される前にアップロードの期限が切れました。もう一度アップロードしてください。",
+  "upload_failure_api": "サーバー側で問題が発生しました。少し待ってから再試行してください。",
+  "upload_failure_expired": "アップロード用リンクの期限が切れました。再試行すると新しいリンクを取得します。",
+  "upload_failure_forbidden": "現在このアカウントはアップロードできません（メール未確認または制限中）。",
+  "upload_failure_network": "接続が切れました。進行状況は保持されています。オンラインに戻ったら再開してください。",
+  "upload_failure_rejected": "チェックによってファイルが却下されました。",
+  "upload_failure_too_large": "このアカウントでアップロードできるサイズを超えています。",
+  "upload_failure_unsupported": "この形式のファイルは受け付けていません。",
+  "upload_file_intro_build": "BuildShareで書き出した設計図 .json をドロップしてください。サムネイル、要素数、バージョンは自動で読み取ります。",
+  "upload_file_intro_mod": "プレイヤーに配る .zip をドロップしてください。アップロード前にブラウザで開き、中身を表示します。",
+  "upload_file_intro_version": "{name} の新しいファイルをアップロードしてください。マニフェストIDは {manifestId}、バージョンは {version} より大きい必要があります。",
+  "upload_file_title_build": "BuildShareの設計図",
+  "upload_file_title_mod": "MODのファイル",
+  "upload_flag_absolute_path": "絶対パスを使っているファイルがあります。",
+  "upload_flag_blueprint_invalid": "有効なBuildShareの設計図ではありません。",
+  "upload_flag_extension_flagged": "実行ファイルまたはスクリプト：レンジャーの確認が必要です。",
+  "upload_flag_extension_not_allowed": "MODとしては珍しいファイル形式です。",
+  "upload_flag_file_too_large": "ファイルが大きすぎます。",
+  "upload_flag_manifest_id_mismatch": "マニフェストIDがこのMODと一致しません。",
+  "upload_flag_manifest_invalid": "manifest.json にエラーがあります。",
+  "upload_flag_manifest_missing": "manifest.json が見つかりません（フォルダー2階層まで）。",
+  "upload_flag_scan_detections": "セキュリティスキャンで検出がありました。",
+  "upload_flag_unknown": "チェックに失敗しました（{code}）。",
+  "upload_flag_version_not_greater": "バージョンが最新版より大きくありません。",
+  "upload_flag_version_not_semver": "バージョンがセマンティックバージョン（x.y.z）ではありません。",
+  "upload_flag_zip_bomb_ratio": "圧縮率が不自然に高すぎます。",
+  "upload_flag_zip_invalid": "zip が壊れているか暗号化されています。",
+  "upload_flag_zip_slip": "MODフォルダーの外を指すパスがあります（「..」またはリンク）。",
+  "upload_flag_zip_too_many_entries": "zip 内のファイルが多すぎます（最大 5,000 件）。",
+  "upload_flagged_detail": "人による確認が必要な内容があります（下の警告を参照）。このまま送信でき、承認されると公開されます。",
+  "upload_flagged_title": "レンジャーがこのファイルを確認します。",
+  "upload_gallery_added": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "画像を {count__number} 枚追加しました"
+      }
+    }
+  ],
+  "upload_gallery_alt": "画像 {n} の説明",
+  "upload_gallery_alt_placeholder": "何が写っていますか？",
+  "upload_gallery_choose": "画像を選択",
+  "upload_gallery_counter": "{count} / {max}",
+  "upload_gallery_description": "スクリーンショットは最大10枚。ドラッグで並べ替え、スクリーンリーダー向けに説明を付けましょう。",
+  "upload_gallery_drop": "ここにスクリーンショットをドロップ",
+  "upload_gallery_full": "ギャラリーがいっぱいです（{max} 枚）。",
+  "upload_gallery_hint": "複数同時に可 · PNG、JPEG、WebP、AVIF、GIF · 1枚 10 MB まで · 最大 {max} 枚",
+  "upload_gallery_image": "スクリーンショット {n}",
+  "upload_gallery_label": "ギャラリー",
+  "upload_gallery_move_after": "画像 {n} を後ろへ",
+  "upload_gallery_move_before": "画像 {n} を前へ",
+  "upload_gallery_moved": "画像を {total} 枚中 {position} 番目に移動しました",
+  "upload_gallery_queued": "待機中…",
+  "upload_gallery_remove": "画像 {n} を削除",
+  "upload_gallery_removed": "画像を削除しました",
+  "upload_gallery_reorder_hint": "画像をドラッグするか矢印ボタンで順番を変えられます。",
+  "upload_gallery_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のファイルをスキップしました（形式違い、10 MB 超過、またはギャラリー満杯）"
+      }
+    }
+  ],
+  "upload_gallery_uploading": "画像 {n} のアップロード",
+  "upload_game_build_current": "{label}（最新）",
+  "upload_game_builds_failed": "ゲームビルドを読み込めませんでした。あとでもう一度お試しください。",
+  "upload_game_builds_hint": "実際に遊んだパッチだけにチェックしてください。",
+  "upload_game_builds_label": "テストしたゲームビルド",
+  "upload_image_no_preview": "アップロード済み（処理後にページでプレビューできます）",
+  "upload_image_reading": "画像を読み込み中…",
+  "upload_image_too_large": "画像は最大 10 MB です。",
+  "upload_image_unreadable": "その画像を開けませんでした。",
+  "upload_image_wrong_type": "PNG、JPEG、WebP、AVIF、GIF の画像を使ってください。",
+  "upload_inspecting_detail": "自動チェックはサーバー側で行われます。その間にほかの手順を入力できます。",
+  "upload_inspecting_title": "ファイルを確認中…",
+  "upload_issue_invalid_data": "設計図の Data が無効です。",
+  "upload_issue_invalid_dependencies": "依存関係のリストが無効です。",
+  "upload_issue_invalid_field": "項目「{field}」がないか、無効です。",
+  "upload_issue_invalid_id": "id に使えるのは英数字、「.」「_」「-」だけです。",
+  "upload_issue_invalid_json": "ファイルが有効なJSONではありません。",
+  "upload_issue_invalid_log_color": "ログの色は #FF9900 のような16進カラーにしてください。",
+  "upload_issue_invalid_number_of_elements": "NumberOfElements は整数にしてください。",
+  "upload_issue_invalid_platform": "プラットフォームは Client、Server、Universal のいずれかにしてください。",
+  "upload_issue_invalid_priority": "優先度は整数にしてください。",
+  "upload_issue_invalid_thumbnail": "設計図のサムネイルを読み込めません。",
+  "upload_issue_invalid_type": "種類は「Mod」か「Library」にしてください。",
+  "upload_issue_invalid_url": "url が無効です。",
+  "upload_issue_invalid_version": "バージョンは 1.2.3 の形式にしてください。",
+  "upload_issue_missing_description": "設計図に Description がありません。",
+  "upload_issue_missing_guid": "設計図に Guid がありません。",
+  "upload_issue_missing_id": "マニフェストに id がありません。",
+  "upload_issue_missing_name": "設計図に Name がありません。",
+  "upload_issue_missing_version": "マニフェストにバージョンがありません。",
+  "upload_issue_not_an_object": "JSONはオブジェクトである必要があります。",
+  "upload_kind_build": "建築",
+  "upload_kind_mod": "MOD",
+  "upload_kind_version": "新しいバージョン",
+  "upload_license_all_rights_reserved": "すべての権利を保有",
+  "upload_license_cc_by4": "CC BY 4.0",
+  "upload_license_gpl3": "GPL-3.0",
+  "upload_license_hint": "ほかの人がファイルをどう扱えるか。",
+  "upload_license_label": "ライセンス",
+  "upload_license_mit": "MIT",
+  "upload_license_other": "その他（説明文に記載）",
+  "upload_license_placeholder": "ライセンスを選択",
+  "upload_license_reupload_with_credit": "クレジット表記で再配布可",
+  "upload_link_discord": "Discord",
+  "upload_link_github": "GitHub",
+  "upload_link_kofi": "Ko-fi",
+  "upload_link_other": "その他",
+  "upload_link_patreon": "Patreon",
+  "upload_link_twitch": "Twitch",
+  "upload_link_website": "ウェブサイト",
+  "upload_link_youtube": "YouTube",
+  "upload_links_add": "リンクを追加",
+  "upload_links_empty": "リンクはまだありません。",
+  "upload_links_full": "リンクは最大 {max} 件です。",
+  "upload_links_kind": "リンク {n} の種類",
+  "upload_links_label": "支援リンク",
+  "upload_links_remove": "リンク {n} を削除",
+  "upload_links_url": "リンク {n} のアドレス",
+  "upload_loader_hint": "MODが動く最も古いRedLoaderのバージョン。",
+  "upload_loader_label": "必要なRedLoaderの最低バージョン",
+  "upload_loading": "ウィザードを読み込み中…",
+  "upload_manifest_author": "作者",
+  "upload_manifest_dependencies": "依存関係",
+  "upload_manifest_dependency_missing": "SOTF Modsにありません",
+  "upload_manifest_found": "manifest.json を検出",
+  "upload_manifest_game_version": "ゲームバージョン",
+  "upload_manifest_id": "マニフェストID",
+  "upload_manifest_loader_version": "RedLoaderのバージョン",
+  "upload_manifest_log_color": "ログの色",
+  "upload_manifest_name": "名前",
+  "upload_manifest_no_dependencies": "指定なし",
+  "upload_manifest_platform": "プラットフォーム",
+  "upload_manifest_type": "種類",
+  "upload_manifest_type_library": "ライブラリ",
+  "upload_manifest_type_mod": "MOD",
+  "upload_manifest_version": "バージョン",
+  "upload_markdown_help": "Markdown：**太字**、_斜体_、リスト、`コード`、> 引用、||ネタバレ||。",
+  "upload_markdown_preview": "プレビュー",
+  "upload_markdown_preview_empty": "入力するとここにプレビューが表示されます。",
+  "upload_markdown_recommended": "{min}文字以上を推奨",
+  "upload_markdown_view": "エディターの表示",
+  "upload_markdown_write": "編集",
+  "upload_media_intro": "良い画像はMODの魅力を伝えます。画像が3枚以上あるページはダウンロード数が大きく伸びます。",
+  "upload_media_title": "メディア",
+  "upload_multiplayer_all_players": "全員が必要",
+  "upload_multiplayer_all_players_hint": "セッションの全プレイヤーが導入する必要があります。",
+  "upload_multiplayer_client_side": "クライアント側のみ",
+  "upload_multiplayer_client_side_hint": "導入した本人だけが必要です。",
+  "upload_multiplayer_host_only": "ホストのみ",
+  "upload_multiplayer_host_only_hint": "ホストだけが必要で、ゲストはなしで参加できます。",
+  "upload_multiplayer_label": "マルチプレイ",
+  "upload_multiplayer_singleplayer_only": "シングルプレイ専用",
+  "upload_multiplayer_singleplayer_only_hint": "マルチプレイでの使用は想定していません。",
+  "upload_multiplayer_unknown": "わからない",
+  "upload_multiplayer_unknown_hint": "サバイバーのフィールドレポートで明らかになります。",
+  "upload_my_drafts": "下書き一覧",
+  "upload_name_hint": "プレイヤーが呼ぶ名前。2〜80文字。",
+  "upload_name_label": "名前",
+  "upload_new_build": "建築",
+  "upload_new_build_detail": "BuildShareの設計図 .json。サムネイルと統計は自動で読み取ります。",
+  "upload_new_drafts_detail": "続きから再開するか、下で新しく始めましょう。",
+  "upload_new_drafts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "作成中の下書きが {count__number} 件あります。"
+      }
+    }
+  ],
+  "upload_new_intro": "今日はサバイバーに何を届けますか？",
+  "upload_new_mod": "MODまたはライブラリ",
+  "upload_new_mod_detail": "manifest.json を含む RedLoader 用 .zip。短い6ステップです。",
+  "upload_new_title": "公開する",
+  "upload_new_version_more": "「マイMOD」にほか {count} 件",
+  "upload_new_version_none": "公開済みのMODがここに表示され、新しいバージョンを追加できます。",
+  "upload_new_version_title": "自分のMODを更新する",
+  "upload_next": "次へ",
+  "upload_no_permission_detail": "レンジャーが一時的にアップロードを制限しています。詳しくはシグナルを確認するか、チームに連絡してください。",
+  "upload_no_permission_title": "このアカウントでは公開が一時停止されています。",
+  "upload_notify_hint": "MODのフォロワーにこのバージョンのシグナルが届きます。",
+  "upload_notify_label": "フォロワーに通知",
+  "upload_nsfw_hint": "設定を有効にしていない人には表示されません。",
+  "upload_nsfw_label": "成人向けコンテンツ（NSFW）",
+  "upload_optional": "任意",
+  "upload_platform_client": "クライアント",
+  "upload_platform_client_hint": "プレイ中のゲームで動作します。",
+  "upload_platform_hint": "RedLoaderが読み込む場所。",
+  "upload_platform_label": "プラットフォーム",
+  "upload_platform_server": "サーバー",
+  "upload_platform_server_hint": "専用サーバーでのみ動作します。",
+  "upload_platform_universal": "両対応",
+  "upload_platform_universal_hint": "どちらでも動作します。",
+  "upload_preflight_category_invalid": "そのカテゴリーはもうありません。別のものを選んでください。",
+  "upload_preflight_category_missing": "カテゴリーを選んでください。",
+  "upload_preflight_category_ok": "カテゴリーを選択済み。",
+  "upload_preflight_changelog_missing": "変更履歴がありません。フォロワーは何が変わったか知りたがっています。",
+  "upload_preflight_changelog_ok": "変更履歴を記入済み。",
+  "upload_preflight_dependency_cycle": "依存関係が循環しています。",
+  "upload_preflight_dependency_unknown": "SOTF Modsにない依存関係があります。プレイヤーはほかの場所で探す必要があります。",
+  "upload_preflight_description_ok": "説明は十分に詳しいです。",
+  "upload_preflight_description_raw_html": "説明にHTMLが含まれています。テキストとして表示されます。",
+  "upload_preflight_description_short": "説明が短めです（300文字以上を推奨）。",
+  "upload_preflight_file_expired": "アップロードの期限が切れました。もう一度アップロードしてください。",
+  "upload_preflight_file_failed": "ファイルが自動チェックに通りませんでした。",
+  "upload_preflight_file_flagged": "公開前にレンジャーによるファイルの確認が必要です。",
+  "upload_preflight_file_inspecting": "ファイルを確認中です。",
+  "upload_preflight_file_missing": "ファイルをアップロードしてください。",
+  "upload_preflight_file_ok": "ファイルは自動チェックに通りました。",
+  "upload_preflight_fix": "修正する",
+  "upload_preflight_gallery_below_3": "ギャラリーの画像が3枚未満です。",
+  "upload_preflight_gallery_ok": "ギャラリーに画像が3枚以上あります。",
+  "upload_preflight_license_missing": "ライセンスが未選択です。",
+  "upload_preflight_license_ok": "ライセンスを選択済み。",
+  "upload_preflight_manifest_id_taken": "このマニフェストIDはすでに別のMODが使っています。",
+  "upload_preflight_media_invalid": "処理に失敗した画像があります。削除するか再アップロードしてください。",
+  "upload_preflight_media_processing": "画像を処理中です。",
+  "upload_preflight_name_missing": "名前を入力してください（2文字以上）。",
+  "upload_preflight_name_ok": "名前が入力されています。",
+  "upload_preflight_platform_missing": "プラットフォームが未設定です。",
+  "upload_preflight_platform_ok": "プラットフォームを設定済み。",
+  "upload_preflight_refreshing": "更新中…",
+  "upload_preflight_short_description_missing": "短い説明を入力してください。",
+  "upload_preflight_short_description_ok": "短い説明が入力されています。",
+  "upload_preflight_slug_invalid": "アドレスが無効です。",
+  "upload_preflight_slug_ok": "アドレスは使用できます。",
+  "upload_preflight_slug_taken": "このアドレスのページはすでにあります。",
+  "upload_preflight_source_missing": "ソースコードへのリンクがありません。",
+  "upload_preflight_source_ok": "ソースコードへのリンクがあります。",
+  "upload_preflight_tags_missing": "タグがありません。タグはサバイバーが見つける手がかりになります。",
+  "upload_preflight_tags_ok": "タグを選択済み。",
+  "upload_preflight_tags_unknown": "一部のタグはもう存在しません。",
+  "upload_preflight_target_missing": "このバージョンのMODはもう存在しません。",
+  "upload_preflight_target_removed": "このバージョンのMODは削除されました。",
+  "upload_preflight_thumbnail_missing": "カバー画像がありません。",
+  "upload_preflight_thumbnail_ok": "カバーを設定済み。",
+  "upload_preflight_title": "事前チェック",
+  "upload_preflight_waiting": "下書きが保存されるとチェック結果が表示されます。",
+  "upload_problems_label": "ファイルのエラーと警告",
+  "upload_progress_direct": "ストレージに直接送信しています。接続が切れても再開できます。",
+  "upload_progress_finishing": "仕上げ中…",
+  "upload_progress_label": "アップロードの進行状況",
+  "upload_progress_value": "{percent} · {loaded} / {total}",
+  "upload_quality_description": "300文字以上の説明",
+  "upload_quality_gallery": "ギャラリー画像3枚以上",
+  "upload_quality_hint": "充実したページは探索で上位に表示され、ダウンロードも増えます。",
+  "upload_quality_license": "ライセンス",
+  "upload_quality_met": "完了",
+  "upload_quality_missing": "未設定",
+  "upload_quality_platform": "プラットフォーム",
+  "upload_quality_source": "ソースコードへのリンク",
+  "upload_quality_tags": "タグ",
+  "upload_quality_title": "ページの完成度",
+  "upload_reading_build": "設計図を読み込み中…",
+  "upload_reading_zip": "ブラウザで zip を開いています…",
+  "upload_ready_detail": "自動チェックの項目はすべて問題ありません。",
+  "upload_ready_title": "ファイルを確認しました。",
+  "upload_reference": "参照番号：{ref}",
+  "upload_rejected_detail": "下のエラーを修正して、もう一度アップロードしてください。",
+  "upload_rejected_title": "ファイルが却下されました。",
+  "upload_release_intro": "バージョンは manifest.json から取得します。変更点をプレイヤーに伝えましょう。",
+  "upload_release_title": "リリース",
+  "upload_resume": "アップロードを再開",
+  "upload_retry": "再試行",
+  "upload_review_intro": "レンジャーが見る前の最終確認です。エラーを直しましょう。警告はアドバイスです。",
+  "upload_review_title": "確認",
+  "upload_safe_remove_label": "セーブデータを壊さずに外せますか？",
+  "upload_safe_remove_no": "いいえ",
+  "upload_safe_remove_no_hint": "導入中に作ったセーブデータは、外すと壊れることがあります。",
+  "upload_safe_remove_unknown": "わからない",
+  "upload_safe_remove_unknown_hint": "プレイヤーには事前のバックアップを勧めます。",
+  "upload_safe_remove_yes": "はい",
+  "upload_safe_remove_yes_hint": "アンインストールしてもセーブデータは無事です。",
+  "upload_save_draft": "下書きを保存",
+  "upload_saved_toast": "下書きを保存しました",
+  "upload_select_placeholder": "選択…",
+  "upload_severity_error": "エラー",
+  "upload_severity_ok": "OK",
+  "upload_severity_warning": "警告",
+  "upload_short_description_label": "短い説明",
+  "upload_slug_label": "アドレス",
+  "upload_slug_preview": "ページのアドレス：",
+  "upload_source_hint": "公開リポジトリは信頼につながり、ほかの人の学びにもなります。",
+  "upload_source_label": "ソースコード",
+  "upload_step_compat": "互換性",
+  "upload_step_compat_hint": "ゲームビルド、マルチプレイ、依存関係",
+  "upload_step_details": "詳細",
+  "upload_step_details_hint": "名前、説明、タグ",
+  "upload_step_done": "完了",
+  "upload_step_file": "ファイル",
+  "upload_step_file_hint": "Zip または設計図",
+  "upload_step_media": "メディア",
+  "upload_step_media_hint": "カバー、ギャラリー、動画",
+  "upload_step_needs_attention": "要確認",
+  "upload_step_of": "ステップ {current}/{total}",
+  "upload_step_release": "リリース",
+  "upload_step_release_hint": "バージョンと変更点",
+  "upload_step_review": "確認",
+  "upload_step_review_hint": "チェックと送信",
+  "upload_steps_label": "公開の手順",
+  "upload_submit": "レンジャーステーションに送信",
+  "upload_submit_blocked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "修正が必要なエラーが {count__number} 件あります。"
+      }
+    }
+  ],
+  "upload_submit_failed": "送信できませんでした。",
+  "upload_submit_ready": "準備完了。初回の公開はレンジャーが確認します。認証済みクリエイターはすぐに公開されます。",
+  "upload_submit_ready_version": "準備完了。バージョンが公開されるとフォロワーに通知されます。",
+  "upload_submit_version": "このバージョンを公開",
+  "upload_success_another": "ほかにも公開する",
+  "upload_success_basecamp": "ベースキャンプに戻る",
+  "upload_success_live_detail": "{name} を公開しました。サバイバーにシェアしましょう。",
+  "upload_success_live_title": "公開されました！",
+  "upload_success_live_version": "{name} の新しいバージョンを公開し、フォロワーに通知しています。",
+  "upload_success_preview": "ページをプレビュー",
+  "upload_success_queued_detail": "{name} は確認待ちの列に入りました。レンジャーが判断したらシグナルでお知らせします。",
+  "upload_success_queued_title": "レンジャーステーションに送信しました",
+  "upload_success_queued_version": "{name} の新しいバージョンはレンジャーの確認待ちです。公開されたらシグナルでお知らせします。",
+  "upload_success_view": "ページを見る",
+  "upload_summary_address": "アドレス",
+  "upload_summary_name": "名前",
+  "upload_summary_version": "バージョン",
+  "upload_summary_version_build": "建築の新バージョン",
+  "upload_tags_counter": "{count} / {max}",
+  "upload_tags_filter": "タグを絞り込む",
+  "upload_tags_full": "タグは {max} 個までです。別のタグを選ぶには1つ外してください。",
+  "upload_tags_label": "タグ",
+  "upload_tags_none": "一致するタグはありません。",
+  "upload_target_removed_detail": "削除されたMODには新しいバージョンを追加できません。",
+  "upload_target_removed_title": "このMODは削除されました。",
+  "upload_title_build": "新しい建築",
+  "upload_title_mod": "新しいMOD",
+  "upload_title_version": "{name} の新バージョン",
+  "upload_verify_email_detail": "送信したリンクを開いてから戻ってきてください。下書きはそのまま残っています。",
+  "upload_verify_email_title": "公開するにはメールアドレスを確認してください。",
+  "upload_version_build": "建築は日付でバージョン管理され、アップロードごとに新しいバージョンになります。",
+  "upload_version_draft_exists_detail": "その下書きを再開するか、ここで最初からやり直してください。",
+  "upload_version_draft_exists_title": "このMODのバージョンはすでに作成中です。",
+  "upload_version_first": "初回リリース",
+  "upload_version_from_manifest": "manifest.json から読み取りました。変更するにはマニフェストを編集してファイルを再アップロードしてください。",
+  "upload_version_invalid_title": "このバージョンは公開できません。",
+  "upload_version_label": "バージョン",
+  "upload_version_pending": "先にファイルを選んでください。バージョンはファイルから読み取ります。",
+  "upload_version_previous": "前のバージョン：v{version}",
+  "upload_video_group": "動画",
+  "upload_video_hint": "紹介やチュートリアルの動画。ギャラリーの後に表示されます。",
+  "upload_video_label": "YouTube動画"
 }

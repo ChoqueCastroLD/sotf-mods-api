@@ -1041,6 +1041,7 @@
   "builds_copy_failed": "Не удалось скопировать. Выделите текст и скопируйте вручную.",
   "builds_description_empty": "Строитель ещё не написал описание. Все факты — в техническом паспорте.",
   "builds_description_title": "Об этой постройке",
+  "builds_feed_title": "SOTF Mods: новые и обновлённые постройки",
   "builds_follow_error": "Не удалось обновить рюкзак. Проверьте подключение и попробуйте ещё раз.",
   "builds_follow_hint": "Получать уведомление, когда у постройки выйдет новая версия",
   "builds_followed": "Добавлено в рюкзак.",
@@ -1859,6 +1860,432 @@
   "console_update_detail": "Мы обновили SOTF Mods, пока вы были здесь. Перезагрузите страницу, чтобы получить новую версию.",
   "console_update_reload": "Перезагрузить",
   "console_update_title": "Вышла новая версия",
+  "content_about_disclaimer_title": "Неофициальное фан-сообщество",
+  "content_about_eyebrow": "О проекте",
+  "content_about_links_title": "По лагерю",
+  "content_binding_note": "Этот перевод приведён для удобства. Если он расходится с английской версией, действует английская версия.",
+  "content_brand_asset_app_icon": "Иконка приложения",
+  "content_brand_asset_app_icon_hint": "Метка на фоне «Ночь», для аватаров и ярлыков.",
+  "content_brand_asset_horizontal": "Горизонтальный логотип",
+  "content_brand_asset_horizontal_hint": "Основная версия: знак и надпись рядом.",
+  "content_brand_asset_mark": "Знак (Contour Pin)",
+  "content_brand_asset_mark_hint": "Только метка. От 16 до 24 px используйте упрощённую версию.",
+  "content_brand_asset_og": "Картинка для превью в соцсетях",
+  "content_brand_asset_og_hint": "1200 × 630, для превью ссылок и миниатюр.",
+  "content_brand_asset_stacked": "Вертикальный логотип",
+  "content_brand_asset_stacked_hint": "Для квадратных и высоких мест.",
+  "content_brand_asset_wordmark": "Надпись",
+  "content_brand_asset_wordmark_hint": "«SOTF MODS» без метки, для узких горизонтальных мест.",
+  "content_brand_color_blueprint": "Чертёж (постройки)",
+  "content_brand_color_bone": "Кость (текст, фон «День»)",
+  "content_brand_color_flare_day": "Ракета на «Дне»",
+  "content_brand_color_flare_night": "Ракета на «Ночи»",
+  "content_brand_color_lichen": "Лишайник (работает)",
+  "content_brand_color_night": "Ночь (фон)",
+  "content_brand_color_signal": "Сигнал (онлайн, информация)",
+  "content_brand_color_solafite": "Солафит (избранное)",
+  "content_brand_colors_text": "Основа — «Ночь» и «Кость», единственный акцент — «Сигнальная ракета». Цвета статусов несут смысл, а не украшают.",
+  "content_brand_colors_title": "Цвета",
+  "content_brand_description": "Скачайте логотип, знак и цвета SOTF Mods и узнайте, как ставить ссылку на сайт из своего мода, видео или сервера.",
+  "content_brand_do_contrast": "Файлы «Ночь» — на тёмном фоне, файлы «День» — на светлом.",
+  "content_brand_do_link": "Делайте логотип ссылкой на sotf-mods.com.",
+  "content_brand_do_size": "Используйте полный знак от 24 px (упрощённый — от 16 px).",
+  "content_brand_do_space": "Оставляйте вокруг логотипа свободное поле не меньше четверти его высоты.",
+  "content_brand_do_title": "Можно",
+  "content_brand_dont_distort": "Растягивать, поворачивать, обрезать или переставлять его части.",
+  "content_brand_dont_endorse": "Намекать, что SOTF Mods поддерживает, спонсирует или проверил ваш проект.",
+  "content_brand_dont_game": "Сочетать его с официальным логотипом игры, её артом или именами персонажей.",
+  "content_brand_dont_recolor": "Перекрашивать логотип, обводить его или добавлять эффекты.",
+  "content_brand_dont_title": "Нельзя",
+  "content_brand_eyebrow": "Брендбук",
+  "content_brand_font_display": "Акцидентный: заголовки и цифры, всегда заглавными.",
+  "content_brand_font_link": "Скачать {name}",
+  "content_brand_font_mono": "Показания: версии, идентификаторы и код.",
+  "content_brand_font_ui": "Интерфейс и основной текст.",
+  "content_brand_lead": "Ставите ссылку на SOTF Mods на странице мода, в видео или на сервере? Используйте эти файлы и соблюдайте правила ниже.",
+  "content_brand_legal_text": "Название и логотип SOTF Mods обозначают этот сайт сообщества. Вы можете использовать их, чтобы упомянуть сайт или сослаться на него; для любого другого использования нужно наше разрешение.",
+  "content_brand_legal_title": "Товарные знаки",
+  "content_brand_link_text": "Скопируйте этот код в README, на свой сайт или в описание мода. Он ссылается на логотип на сайте, поэтому всегда актуален.",
+  "content_brand_link_title": "Ссылка на SOTF Mods",
+  "content_brand_logos_text": "У каждого файла есть версия «Ночь» для тёмного фона и «День» для светлого. Лучше SVG; PNG — там, где SVG не поддерживается.",
+  "content_brand_logos_title": "Логотипы",
+  "content_brand_on_day": "Светлый фон",
+  "content_brand_on_night": "Тёмный фон",
+  "content_brand_rules_title": "Как использовать логотип",
+  "content_brand_snippet_label": "HTML-код",
+  "content_brand_title": "Бренд SOTF Mods",
+  "content_brand_type_title": "Шрифты",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Чтение API v2",
+        "bucket=legacyRead": "Чтение старого API",
+        "bucket=downloads": "Скачивания",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Код",
+  "content_dev_col_limit": "Лимит",
+  "content_dev_col_meaning": "Значение",
+  "content_dev_col_method": "Метод",
+  "content_dev_col_notes": "Примечания",
+  "content_dev_col_path": "Путь",
+  "content_dev_col_scope": "Область",
+  "content_dev_col_status": "Статус",
+  "content_dev_col_summary": "Что делает",
+  "content_dev_endpoints_caption": "Публичные эндпоинты: {domain}",
+  "content_dev_endpoints_text": "Анонимные, кешируемые, с CORS. Справочник описывает параметры, ответы и ошибки каждого.",
+  "content_dev_endpoints_title": "Публичные эндпоинты для чтения",
+  "content_dev_errors_text": "Поле code ошибки принимает одно из этих значений. URI type каждой проблемы ведёт к её строке здесь.",
+  "content_dev_errors_title": "Коды ошибок",
+  "content_dev_eyebrow": "Разработчикам",
+  "content_dev_legacy_deprecated": "Заморожены и устарели",
+  "content_dev_legacy_deprecated_text": "Эти маршруты отвечают до {date}, затем будут отключены. Их ответы содержат такие заголовки:",
+  "content_dev_legacy_deviations": "Намеренные отличия от прежнего поведения",
+  "content_dev_legacy_retired": "Отключены",
+  "content_dev_legacy_retired_text": "Любой метод на этих маршрутах отвечает 410 Gone с таким телом:",
+  "content_dev_legacy_stable": "Поддерживаются (побайтово совместимы)",
+  "content_dev_legacy_text": "API первой версии сайта по-прежнему отвечает на api.sotf-mods.com/api/* и sotf-mods.com/api/*, чтобы RedManager, UpdatesChecker и моды в игре продолжали работать. Новым интеграциям стоит использовать v2.",
+  "content_dev_legacy_title": "Старый API и вывод из эксплуатации",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "на IP",
+        "key=user": "на аккаунт",
+        "key=chat": "на игрока",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "При превышении лимита API отвечает 429 с заголовком Retry-After. Кешируйте ответы и учитывайте ETag — тогда вы вряд ли к нему приблизитесь.",
+  "content_dev_limits_title": "Ограничения частоты запросов",
+  "content_dev_link_docs_text": "Все эндпоинты v2 со схемами и примерами, интерактивно.",
+  "content_dev_link_docs_title": "Справочник API",
+  "content_dev_link_legacy_text": "Всё ещё работает; замороженные маршруты отключатся {date}.",
+  "content_dev_link_legacy_title": "Старый API",
+  "content_dev_link_openapi_text": "Машиночитаемая спецификация для генерации клиента.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Черновик",
+  "content_draft_text": "Этот текст описывает, как SOTF Mods работает сегодня, но его ещё не проверил юрист. До окончательной версии он может измениться; каждое изменение будет датировано.",
+  "content_draft_title": "Черновик — ждёт юридической проверки",
+  "content_error_ref": "Код: {ref}",
+  "content_fallback_binding": "Для юридических текстов действует английская версия.",
+  "content_fallback_link": "Открыть страницу на языке «{original}»",
+  "content_fallback_text": "Эта страница пока недоступна на языке «{language}», поэтому вы читаете оригинал на языке «{original}».",
+  "content_install_eyebrow": "Руководство по установке",
+  "content_install_faq_nav": "Вопросы",
+  "content_install_faq_title": "Частые вопросы",
+  "content_install_get_redmanager": "Скачать RedManager",
+  "content_install_help_discord": "Спросить в Discord",
+  "content_install_help_text": "Проверьте, не сломал ли текущий патч игры ваши моды, или спросите сообщество. Укажите версию игры, версию RedLoader и моды, которые используете.",
+  "content_install_help_title": "Всё ещё не получается?",
+  "content_install_kit_more": "Все киты",
+  "content_install_kit_nav": "Стартовый кит",
+  "content_install_kit_text": "Подборка команды: моды, которые хорошо работают вместе. Хорошее первое снаряжение.",
+  "content_install_kit_title": "Стартовый кит",
+  "content_install_manual": "Установить вручную",
+  "content_install_progress": "Прогресс чтения",
+  "content_install_rail_label": "Разделы руководства",
+  "content_install_rail_title": "Шаги",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Шаг {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "Коротко",
+  "content_install_verified": "Проверено на игре {game} · RedLoader {loader}",
+  "content_kelvin_by": "Мод от",
+  "content_kelvin_credit": "KelvinSeek создаёт и поддерживает {author}; SOTF Mods только размещает API, с которым он общается. Кельвин и Sons of the Forest принадлежат Endnight Games; это фанатский проект.",
+  "content_kelvin_description": "KelvinSeek позволяет переписываться с Кельвином в Sons of the Forest и отдавать ему команды своими словами. Как это работает, какие есть ограничения и что происходит с вашими сообщениями.",
+  "content_kelvin_dev_hint": "Делаете что-то похожее? Эндпоинт входит в старый API:",
+  "content_kelvin_eyebrow": "Мод сообщества",
+  "content_kelvin_history_text": "Раньше он назывался Kelvin-GPT. Старая версия, которая просила ваш собственный ключ OpenAI, отключена: этот маршрут раскрывал ключ в адресе и теперь отвечает «Gone».",
+  "content_kelvin_how_1": "Установите RedLoader и мод KelvinSeek.",
+  "content_kelvin_how_2": "В игре подойдите к Кельвину и нажмите E, чтобы открыть блокнот.",
+  "content_kelvin_how_3": "Нажмите T, напишите сообщение и нажмите Enter.",
+  "content_kelvin_how_4": "Или используйте консоль: «askkelvin …» отправляет сообщение, «clearkelvinchathistory» начинает разговор заново.",
+  "content_kelvin_how_title": "Как пользоваться",
+  "content_kelvin_install_hint": "Впервые с модами? Начните с руководства:",
+  "content_kelvin_lead": "Напишите Кельвину своими словами — он ответит и сделает, что просите: от сбора брёвен до постройки укрытия.",
+  "content_kelvin_limits_budget": "У ИИ-сервиса есть дневной бюджет. Когда он заканчивается, Кельвин всё равно вас понимает: до следующего дня он без ИИ выбирает самую похожую известную команду.",
+  "content_kelvin_limits_busy": "Если писать слишком быстро, Кельвин попросит пару секунд перерыва. Ничего не потеряется.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "До {perMinute__number} сообщений в минуту и {perDay__number} в день на игрока."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Ограничения",
+  "content_kelvin_open_mod": "Открыть страницу мода",
+  "content_kelvin_privacy_ai": "Текст ваших сообщений отправляется ИИ-провайдеру, чтобы сгенерировать ответ. Не пишите личные данные.",
+  "content_kelvin_privacy_hash": "Идентификатор чата, который отправляет мод (в нём ваш Steam ID и имя), хранится только в виде необратимого хеша.",
+  "content_kelvin_privacy_link": "Политика конфиденциальности",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Последние сообщения каждого разговора хранятся {days__number} день, чтобы Кельвин помнил контекст, а затем удаляются.",
+        "days__plural=few": "Последние сообщения каждого разговора хранятся {days__number} дня, чтобы Кельвин помнил контекст, а затем удаляются.",
+        "days__plural=many": "Последние сообщения каждого разговора хранятся {days__number} дней, чтобы Кельвин помнил контекст, а затем удаляются.",
+        "days__plural=*": "Последние сообщения каждого разговора хранятся {days__number} дня, чтобы Кельвин помнил контекст, а затем удаляются."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Ваши сообщения",
+  "content_kelvin_status_compat": "На сборке {build}",
+  "content_kelvin_status_downloads": "Скачивания",
+  "content_kelvin_status_title": "Статус на SOTF Mods",
+  "content_kelvin_status_unavailable": "Не удалось загрузить текущий статус мода. Последняя версия есть на странице мода.",
+  "content_kelvin_status_updated": "Последний релиз",
+  "content_kelvin_status_version": "Последняя версия",
+  "content_kelvin_title": "KelvinSeek: говорите с Кельвином в игре",
+  "content_kelvin_what_text": "KelvinSeek — мод от {author}. Он отправляет то, что вы пишете Кельвину, в ИИ-сервис через API SOTF Mods и превращает ответ в реплику Кельвина, а если вы о чём-то просите — в одну из его игровых команд. Собственный ключ API не нужен.",
+  "content_kelvin_what_title": "Что это",
+  "content_legal_eyebrow": "Правовая информация",
+  "content_legal_other": "Другие правовые страницы",
+  "content_md_alert_caution": "Осторожно",
+  "content_md_alert_important": "Важно",
+  "content_md_alert_note": "Примечание",
+  "content_md_alert_tip": "Совет",
+  "content_md_alert_warning": "Внимание",
+  "content_md_spoiler": "Спойлер",
+  "content_news_back": "Все новости",
+  "content_news_byline": "автор: {author}",
+  "content_news_description": "Объявления команды SOTF Mods: новые функции, изменения сайта и API и планы на будущее.",
+  "content_news_empty": "Новостей пока нет. В лесу тихо.",
+  "content_news_eyebrow": "Полевые заметки",
+  "content_news_feed": "Подписаться через RSS",
+  "content_news_feed_title": "SOTF Mods — Новости",
+  "content_news_read": "Читать",
+  "content_news_title": "Новости",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Работают: {works__number}, сломаны: {broken__number}, ждут отчётов: {pending__number}"
+      }
+    }
+  ],
+  "content_radar_breaking": "Ломающее обновление",
+  "content_radar_broken_empty": "Ни один топ-мод не отмечен как сломанный на {build}.",
+  "content_radar_broken_title": "Отмечены как сломанные",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Подтверждено {share} из {count__number} топ-мода на {build}",
+        "count__plural=few": "Подтверждено {share} из {count__number} топ-модов на {build}",
+        "count__plural=many": "Подтверждено {share} из {count__number} топ-модов на {build}",
+        "count__plural=*": "Подтверждено {share} из {count__number} топ-мода на {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "работает: {works__number} · частично: {partial__number} · сломан: {broken__number}"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Моды, которые ждут отчётов",
+  "content_radar_cta_text": "Откройте мод, выберите, как вы играли (соло, хост, клиент или выделенный сервер), и скажите, работает ли он. Каждый полевой отчёт приносит XP и спасает других выживших от сломанного сохранения.",
+  "content_radar_cta_title": "Пробовали что-то из этого на {build}?",
+  "content_radar_current": "Текущая сборка",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Патч {build}: игроки подтвердили {share} из 50 самых скачиваемых модов Sons of the Forest — работают: {works__number}, сломаны: {broken__number}, ждут отчётов: {pending__number}."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Какие моды Sons of the Forest работают на текущем патче игры: статус RedLoader и полевые отчёты игроков по 50 самым скачиваемым модам.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} скачивание за 30 дней",
+        "count__plural=few": "{display} скачивания за 30 дней",
+        "count__plural=many": "{display} скачиваний за 30 дней",
+        "count__plural=*": "{display} скачивания за 30 дней"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Работает",
+        "status=partial": "Работает частично",
+        "status=broken": "Сломан",
+        "status=*": "Неизвестно"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Для этой сборки статус загрузчика ещё не записан.",
+  "content_radar_ecosystem_title": "Загрузчик и менеджер на {build}",
+  "content_radar_empty_text": "Ещё не зарегистрировано ни одной сборки игры. Как только рейнджеры внесут текущий патч, на этой странице появится, какие популярные моды на нём работают.",
+  "content_radar_empty_title": "Радар прогревается",
+  "content_radar_error_text": "Не удалось загрузить данные о совместимости. Попробуйте ещё раз через минуту; если ошибка повторяется, напишите нам в Discord и укажите код ниже.",
+  "content_radar_error_title": "Нет сигнала",
+  "content_radar_history_empty": "Это первая записанная сборка.",
+  "content_radar_history_title": "История сборок",
+  "content_radar_install_link": "Как установить RedLoader",
+  "content_radar_legend_outdated": "«Возможно, устарел» означает, что последняя версия вышла раньше последнего ломающего обновления и с тех пор никто не подтвердил, что она работает.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "У отчётов есть веса: собственный тест автора считается вдвойне, проверенных авторов — в 1,5 раза, совсем новых аккаунтов — наполовину. Меньше {min__number} взвешенных отчётов — мод не проверен; от {works} положительных — работает; от {broken} отрицательных — сломан; в остальных случаях — неоднозначно."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Как определяется статус",
+  "content_radar_list_name": "Топ модов Sons of the Forest на патче {build}",
+  "content_radar_notes": "Описание патча",
+  "content_radar_outdated": "Возможно, устарел",
+  "content_radar_past_link": "Смотреть текущую сборку",
+  "content_radar_past_notice": "Это старая сборка. Сейчас игра на {build}.",
+  "content_radar_pending_empty": "У каждого топ-мода есть чёткий вердикт на этой сборке.",
+  "content_radar_pending_hint": "Не проверены или результаты разные",
+  "content_radar_pending_title": "Ждут полевых отчётов",
+  "content_radar_released": "Выпущен {date}",
+  "content_radar_report": "Отчёт",
+  "content_radar_seo_title": "Работают ли моды SOTF на патче {build}? — Patch Radar",
+  "content_radar_seo_title_generic": "Работают ли моды SOTF на последнем патче? — Patch Radar",
+  "content_radar_stat_broken": "Сломаны",
+  "content_radar_stat_pending": "Нужны отчёты",
+  "content_radar_stat_works": "Работают",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Работает",
+        "status=mixed": "Неоднозначно",
+        "status=broken": "Сломан",
+        "status=*": "Нет данных"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Сводка",
+  "content_radar_title": "Работают ли моды SOTF на патче {build}?",
+  "content_radar_works_empty": "Пока ни один топ-мод не подтверждён на {build}. Пробовали какой-нибудь? Расскажите.",
+  "content_radar_works_title": "Подтверждено: работают",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} мин чтения",
+        "minutes__plural=few": "{minutes__number} мин чтения",
+        "minutes__plural=many": "{minutes__number} мин чтения",
+        "minutes__plural=*": "{minutes__number} мин чтения"
+      }
+    }
+  ],
+  "content_toc_title": "На этой странице",
+  "content_updated_on": "Обновлено: {date}",
   "emails_auth_deleted_body": "Ваши персональные данные стёрты. Комментарии и отзывы остаются под именем «Удалённый выживший». Спасибо, что были частью острова.",
   "emails_auth_deleted_heading": "Аккаунт удалён",
   "emails_auth_deleted_preview": "Ваши персональные данные стёрты.",
@@ -3795,6 +4222,229 @@
   "landing_trending_empty": "Тихая неделя на острове. Моды появятся здесь, когда выжившие начнут их скачивать.",
   "landing_trending_hint": "По загрузкам за последние 7 дней",
   "landing_trending_title": "Популярное за неделю",
+  "me_action_download": "Скачать",
+  "me_action_failed": "Не получилось",
+  "me_action_update": "Скачать обновление",
+  "me_backpack_description": "Моды, на которые вы подписаны, с их обновлениями и работой на текущей сборке.",
+  "me_backpack_empty_text": "Нажмите ♥ у мода, чтобы положить его сюда и узнавать об обновлениях.",
+  "me_backpack_empty_title": "Ваш рюкзак пуст",
+  "me_backpack_list_label": "Отслеживаемые моды",
+  "me_backpack_no_broken_text": "Ни один из ваших модов не отмечен как неработающий на текущей сборке игры.",
+  "me_backpack_no_broken_title": "Ничего не сломано",
+  "me_backpack_no_updates_text": "Ни у одного мода в рюкзаке нет версии новее той, что вы скачали.",
+  "me_backpack_no_updates_title": "Всё актуально",
+  "me_backpack_notify_off": "Больше никаких сигналов об обновлениях {mod}",
+  "me_backpack_notify_on": "Вы получите сигнал, когда {mod} обновится",
+  "me_backpack_readout": "Ваше снаряжение",
+  "me_backpack_removed": "{mod} убран из рюкзака",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} мод в рюкзаке · всё актуально",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} мод в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=one, updates__exact=*, updates__plural=few": "{count__number} мод в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=one, updates__exact=*, updates__plural=many": "{count__number} мод в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} мод в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=0, updates__plural=*": "{count__number} мода в рюкзаке · всё актуально",
+        "count__plural=few, updates__exact=*, updates__plural=one": "{count__number} мода в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=few, updates__exact=*, updates__plural=few": "{count__number} мода в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=*, updates__plural=many": "{count__number} мода в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=few, updates__exact=*, updates__plural=*": "{count__number} мода в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=0, updates__plural=*": "{count__number} модов в рюкзаке · всё актуально",
+        "count__plural=many, updates__exact=*, updates__plural=one": "{count__number} модов в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=many, updates__exact=*, updates__plural=few": "{count__number} модов в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=*, updates__plural=many": "{count__number} модов в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=many, updates__exact=*, updates__plural=*": "{count__number} модов в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} мода в рюкзаке · всё актуально",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} мода в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=*, updates__exact=*, updates__plural=few": "{count__number} мода в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=*, updates__plural=many": "{count__number} мода в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} мода в рюкзаке · доступно {updates__number} обновления"
+      }
+    }
+  ],
+  "me_backpack_title": "Рюкзак",
+  "me_broken_on_current": "Не работает на {build}",
+  "me_browse_mods": "Смотреть моды",
+  "me_by_author": "автор: {author}",
+  "me_cancel": "Отмена",
+  "me_did_it_work": "Заработало?",
+  "me_downloads_clear": "Очистить историю",
+  "me_downloads_clear_confirm": "Очистить историю",
+  "me_downloads_clear_text": "Все строки исчезнут, как и вопросы «Заработало?» о прошлых загрузках. Счётчики загрузок модов не изменятся. Это действие нельзя отменить.",
+  "me_downloads_clear_title": "Очистить историю загрузок?",
+  "me_downloads_cleared": "История загрузок очищена",
+  "me_downloads_description": "Все моды, скачанные вами после входа, и обновления, которых у вас нет.",
+  "me_downloads_empty_off_text": "История выключена, поэтому здесь ничего нового не записывается.",
+  "me_downloads_empty_text": "Скачайте мод после входа, и он появится здесь — с уведомлением, когда выйдет новая версия.",
+  "me_downloads_empty_title": "Загрузок пока нет",
+  "me_downloads_history_off": "История загрузок выключена",
+  "me_downloads_history_on": "История загрузок включена",
+  "me_downloads_keep_history": "Вести историю загрузок",
+  "me_downloads_last": "Вы скачали {version} {date}",
+  "me_downloads_list_label": "Скачанные моды",
+  "me_downloads_off_text": "Новые загрузки не записываются, поэтому уведомления об обновлениях здесь и в рюкзаке не могут сравнить версии. Её можно включить в любой момент.",
+  "me_downloads_off_title": "История загрузок выключена",
+  "me_downloads_readout": "Журнал припасов",
+  "me_downloads_remove": "Убрать из списка",
+  "me_downloads_remove_label": "Убрать {mod} из списка",
+  "me_downloads_removed": "{mod} убран из списка",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} мод скачан · всё актуально",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} мод скачан · доступно {updates__number} обновление",
+        "count__plural=one, updates__exact=*, updates__plural=few": "{count__number} мод скачан · доступно {updates__number} обновления",
+        "count__plural=one, updates__exact=*, updates__plural=many": "{count__number} мод скачан · доступно {updates__number} обновлений",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} мод скачан · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=0, updates__plural=*": "{count__number} мода скачано · всё актуально",
+        "count__plural=few, updates__exact=*, updates__plural=one": "{count__number} мода скачано · доступно {updates__number} обновление",
+        "count__plural=few, updates__exact=*, updates__plural=few": "{count__number} мода скачано · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=*, updates__plural=many": "{count__number} мода скачано · доступно {updates__number} обновлений",
+        "count__plural=few, updates__exact=*, updates__plural=*": "{count__number} мода скачано · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=0, updates__plural=*": "{count__number} модов скачано · всё актуально",
+        "count__plural=many, updates__exact=*, updates__plural=one": "{count__number} модов скачано · доступно {updates__number} обновление",
+        "count__plural=many, updates__exact=*, updates__plural=few": "{count__number} модов скачано · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=*, updates__plural=many": "{count__number} модов скачано · доступно {updates__number} обновлений",
+        "count__plural=many, updates__exact=*, updates__plural=*": "{count__number} модов скачано · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} мода скачано · всё актуально",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} мода скачано · доступно {updates__number} обновление",
+        "count__plural=*, updates__exact=*, updates__plural=few": "{count__number} мода скачано · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=*, updates__plural=many": "{count__number} мода скачано · доступно {updates__number} обновлений",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} мода скачано · доступно {updates__number} обновления"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} загрузка",
+        "count__plural=few": "{count__number} загрузки",
+        "count__plural=many": "{count__number} загрузок",
+        "count__plural=*": "{count__number} загрузки"
+      }
+    }
+  ],
+  "me_downloads_title": "Мои загрузки",
+  "me_filter_all": "Все",
+  "me_filter_broken": "Не работают на этой сборке",
+  "me_filter_label": "Показать",
+  "me_filter_updates": "С обновлением",
+  "me_follow": "Подписаться",
+  "me_followed": "{mod} в вашем рюкзаке",
+  "me_followed_on": "в рюкзаке с {date}",
+  "me_latest_version": "Последняя: {version}",
+  "me_no_current_version": "Сейчас нет доступной версии",
+  "me_notify_off": "Сигналы об обновлениях выключены",
+  "me_notify_on": "Сигналы об обновлениях включены",
+  "me_onboarding_completed": "Вы пережили первый день — значок получен",
+  "me_onboarding_dismiss": "Скрыть",
+  "me_onboarding_download_action": "Смотреть моды",
+  "me_onboarding_download_hint": "Выберите любой, который работает на текущей сборке.",
+  "me_onboarding_download_title": "Скачайте первый мод",
+  "me_onboarding_failed": "Не удалось обновить список",
+  "me_onboarding_follow_action": "Найти мод для подписки",
+  "me_onboarding_follow_hint": "Нажмите ♥, чтобы положить его в рюкзак и узнавать об обновлениях.",
+  "me_onboarding_follow_title": "Подпишитесь на мод",
+  "me_onboarding_install_action": "Открыть руководство по установке",
+  "me_onboarding_install_done": "Я его установил",
+  "me_onboarding_install_hint": "Загрузчик модов, который нужен любому моду для Sons of the Forest.",
+  "me_onboarding_install_title": "Установите RedLoader",
+  "me_onboarding_kit_action": "Создать набор",
+  "me_onboarding_kit_hint": "Объедините моды в набор, которым можно поделиться одним кодом.",
+  "me_onboarding_kit_title": "Соберите набор",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Выполнено {done__number} из {total__number}"
+      }
+    }
+  ],
+  "me_onboarding_readout": "День 1 на острове",
+  "me_onboarding_report_action": "К моим загрузкам",
+  "me_onboarding_report_hint": "Ответьте «Заработало?» о скачанном моде.",
+  "me_onboarding_report_title": "Расскажите, заработало ли",
+  "me_onboarding_step_done": "Готово:",
+  "me_onboarding_step_todo": "Сделать:",
+  "me_onboarding_text": "Пять быстрых шагов для старта. Выполните все, чтобы получить значок «Пережил первый день».",
+  "me_onboarding_title": "Переживите первый день",
+  "me_report_broken": "Не работает",
+  "me_report_description": "Ваш полевой отчёт о версии {version} на сборке игры {build} помогает всем выжившим выбирать рабочие моды.",
+  "me_report_mode_client": "Клиент мультиплеера",
+  "me_report_mode_dedicated": "Выделенный сервер",
+  "me_report_mode_host": "Хост мультиплеера",
+  "me_report_mode_label": "Как вы играли",
+  "me_report_mode_singleplayer": "Одиночная игра",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Вылеты, конфликты с другими модами… до {max__number} символов."
+      }
+    }
+  ],
+  "me_report_note_label": "Что произошло",
+  "me_report_partial": "Частично",
+  "me_report_pick_result": "Выберите, как прошло.",
+  "me_report_result_legend": "Как прошло?",
+  "me_report_submit": "Отправить отчёт",
+  "me_report_thanks": "Спасибо — ваш отчёт о {mod} уже на карте",
+  "me_report_title": "{mod} заработал?",
+  "me_report_verify_email": "Подтвердите адрес почты, прежде чем отправлять полевые отчёты.",
+  "me_report_works": "Работает",
+  "me_undo": "Отменить",
+  "me_unfollow": "Отписаться",
+  "me_unfollowed": "{mod} убран из рюкзака",
+  "me_up_to_date": "Актуально ({version})",
+  "me_update_available": "Доступно обновление",
+  "me_update_from_to": "Обновление: {from} → {to}",
   "meta_default_description": "Дом моддинга Sons of the Forest: моды, постройки и наборы для RedLoader, проверенные на каждом патче. Бесплатные прямые загрузки.",
   "meta_feed_description": "Свежие моды и обновления для Sons of the Forest на SOTF Mods.",
   "meta_feed_title": "SOTF Mods: новые и обновлённые моды",
@@ -3967,6 +4617,7 @@
   "mod_fact_updated": "Обновлён {date}",
   "mod_fact_updated_label": "Обновлён",
   "mod_fact_version": "Версия",
+  "mod_feed_title": "Релизы {name}",
   "mod_field_report_sign_in": "Войдите, чтобы добавить полевой отчёт",
   "mod_field_report_text": "Полевой отчёт занимает десять секунд и показывает всем, работает ли мод на текущем патче.",
   "mod_field_report_title": "Сработало в вашей игре?",
@@ -5038,6 +5689,1354 @@
   "profile_xp_profile_completed": "Заполнить профиль",
   "profile_xp_review_helpful_vote": "Голос «полезно» за ваш отзыв",
   "profile_xp_review_with_text": "Отзыв с текстом не короче 80 символов",
+  "ranger_action_approve": "Одобрить",
+  "ranger_action_mark_reviewed": "Отметить как проверенное",
+  "ranger_action_reject": "Отклонить",
+  "ranger_action_remove": "Удалить",
+  "ranger_action_request_changes": "Запросить изменения",
+  "ranger_action_restore": "Восстановить",
+  "ranger_action_unlist": "Убрать из списков",
+  "ranger_assigned_short": "у {name}",
+  "ranger_assigned_to": "Назначено",
+  "ranger_audit_action": "Действие",
+  "ranger_audit_actor": "Ник исполнителя",
+  "ranger_audit_apply": "Фильтровать",
+  "ranger_audit_changes": "До и после",
+  "ranger_audit_clear": "Сбросить",
+  "ranger_audit_description": "Каждое действие рейнджеров и администраторов: кто, что, до и после и почему. Записи нельзя изменить.",
+  "ranger_audit_empty_filtered": "Ни одна запись не подходит под эти фильтры.",
+  "ranger_audit_empty_text": "Пока не записано ни одного действия рейнджера.",
+  "ranger_audit_empty_title": "Записей нет",
+  "ranger_audit_reason_hint": "Сохраняется в журнале аудита.",
+  "ranger_audit_reason_label": "Причина",
+  "ranger_audit_system": "Система",
+  "ranger_audit_target": "Объект",
+  "ranger_audit_target_hint": "тип:id, например user:12 или mod:312",
+  "ranger_audit_target_invalid": "Используйте формат тип:id, например user:12.",
+  "ranger_audit_title": "Журнал аудита",
+  "ranger_author_unknown": "Неизвестный автор",
+  "ranger_back_to_list": "Назад к списку",
+  "ranger_cancel": "Отмена",
+  "ranger_changelog_none": "У этой версии нет списка изменений.",
+  "ranger_checks_failed": "Проверки не пройдены",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} файл",
+        "count__plural=few": "{count__number} файла",
+        "count__plural=many": "{count__number} файлов",
+        "count__plural=*": "{count__number} файла"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "Отмечено для проверки",
+  "ranger_checks_manifest_ok": "manifest.json корректен",
+  "ranger_checks_no_flags": "Ни одна проверка не сработала.",
+  "ranger_checks_none": "Для этого элемента нет проверки файлов.",
+  "ranger_checks_passed": "Проверки пройдены",
+  "ranger_checks_pending": "Проверки ещё идут",
+  "ranger_checks_ratio": "Степень сжатия {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "В распакованном виде {size}",
+  "ranger_checks_title": "Автоматические проверки",
+  "ranger_comment_hidden": "Комментарий скрыт.",
+  "ranger_comment_hide": "Скрыть",
+  "ranger_comment_publish": "Опубликовать",
+  "ranger_comment_published": "Комментарий опубликован.",
+  "ranger_comment_reject_confirm": "Скрыть комментарий",
+  "ranger_comment_reject_reason": "Причина",
+  "ranger_comment_reject_reason_hint": "Сохраняется в журнале аудита.",
+  "ranger_comment_reject_title": "Скрыть этот комментарий",
+  "ranger_conflict_detail": "Кто-то изменил этот элемент тем временем. Очередь обновлена; проверьте его ещё раз.",
+  "ranger_decided_approve": "Одобрено: {title}",
+  "ranger_decided_reject": "Отклонено: {title}",
+  "ranger_decided_remove": "Удалено: {title}",
+  "ranger_decided_request_changes": "Запрошены изменения: {title}",
+  "ranger_decided_restore": "Восстановлено: {title}",
+  "ranger_decided_reviewed": "Отмечено как проверенное: {title}",
+  "ranger_decided_unlist": "Убрано из списков: {title}",
+  "ranger_decision_failed": "Решение не сохранено",
+  "ranger_decision_no_template": "Без шаблона — только моя заметка",
+  "ranger_decision_note_hint": "Markdown. Отправляется вместе с шаблоном; напишите, что исправить.",
+  "ranger_decision_note_label": "Заметка для автора",
+  "ranger_decision_reason_required": "Укажите причину (не менее 3 символов).",
+  "ranger_decision_template_label": "Шаблон причины",
+  "ranger_decision_template_or_note": "Выберите шаблон или напишите заметку.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Нет текста для показа.",
+  "ranger_diff_added": "Добавлено:",
+  "ranger_diff_changed": "Изменено:",
+  "ranger_diff_content_changed": "содержимое изменилось",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Первая версия: сравнивать не с чем. В zip {count__number} файл.",
+        "count__plural=few": "Первая версия: сравнивать не с чем. В zip {count__number} файла.",
+        "count__plural=many": "Первая версия: сравнивать не с чем. В zip {count__number} файлов.",
+        "count__plural=*": "Первая версия: сравнивать не с чем. В zip {count__number} файла."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "исполняемый",
+  "ranger_diff_identical": "Те же файлы, что и в предыдущей версии.",
+  "ranger_diff_new_code": "новый код",
+  "ranger_diff_removed": "Удалено:",
+  "ranger_diff_summary": "По сравнению с предыдущей версией: добавлено {added}, удалено {removed}, изменено {changed}.",
+  "ranger_diff_truncated": "Показаны первые {shown} из {total} файлов.",
+  "ranger_diff_unavailable": "Нет списка файлов для сравнения.",
+  "ranger_flag_absolute_path": "Абсолютный путь внутри zip",
+  "ranger_flag_blueprint_invalid": "Файл постройки некорректен",
+  "ranger_flag_extension_flagged": "Исполняемый файл или скрипт",
+  "ranger_flag_extension_not_allowed": "Тип файла не разрешён",
+  "ranger_flag_file_too_large": "Файл слишком большой",
+  "ranger_flag_manifest_id_mismatch": "Id в манифесте не совпадает с модом",
+  "ranger_flag_manifest_invalid": "manifest.json некорректен",
+  "ranger_flag_manifest_missing": "Нет manifest.json",
+  "ranger_flag_scan_detections": "Срабатывания сканирования безопасности",
+  "ranger_flag_version_not_greater": "Версия не новее предыдущей",
+  "ranger_flag_version_not_semver": "Версия не семантическая (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "Слишком высокая степень сжатия (zip-бомба)",
+  "ranger_flag_zip_invalid": "Некорректный zip",
+  "ranger_flag_zip_slip": "Путь выходит за папку мода (zip slip)",
+  "ranger_flag_zip_too_many_entries": "Слишком много файлов в zip",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} блокирующая проверка",
+        "count__plural=few": "{count__number} блокирующие проверки",
+        "count__plural=many": "{count__number} блокирующих проверок",
+        "count__plural=*": "{count__number} блокирующей проверки"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Возраст аккаунта",
+  "ranger_history_attention": "У этого автора есть отклонённые моды или активные санкции.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} день",
+        "count__plural=few": "{count__number} дня",
+        "count__plural=many": "{count__number} дней",
+        "count__plural=*": "{count__number} дня"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Его след в аудите",
+  "ranger_history_open_user": "Открыть карточку пользователя",
+  "ranger_history_published": "Опубликовано модов",
+  "ranger_history_rejected": "Отклонено модов",
+  "ranger_history_sanctions": "Активные санкции",
+  "ranger_history_trust": "Доверие",
+  "ranger_item_document_title": "Проверка: {title}",
+  "ranger_item_gone_text": "Другой рейнджер уже принял решение, или элемент покинул очередь.",
+  "ranger_item_gone_title": "Уже обработано",
+  "ranger_item_next": "Следующий элемент",
+  "ranger_item_region": "Проверяемый элемент",
+  "ranger_lane_builds": "Постройки",
+  "ranger_lane_builds_hint": "Постройки, ожидающие одобрения или проверки после публикации.",
+  "ranger_lane_comments": "Комментарии",
+  "ranger_lane_comments_hint": "Комментарии, задержанные для проверки до того, как их кто-то прочтёт.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} элемент ждёт",
+        "count__plural=few": "{count__number} элемента ждут",
+        "count__plural=many": "{count__number} элементов ждут",
+        "count__plural=*": "{count__number} элемента ждут"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "Нет комментариев, ожидающих проверки.",
+  "ranger_lane_empty_reports": "Открытых жалоб нет. Сообщество ведёт себя хорошо.",
+  "ranger_lane_empty_text": "На этой дорожке ничего не ждёт. Новые элементы появятся здесь сами.",
+  "ranger_lane_empty_title": "На этой тропе чисто",
+  "ranger_lane_new_mods": "Новые моды",
+  "ranger_lane_new_mods_hint": "Первые публикации и моды, ожидающие одобрения.",
+  "ranger_lane_post_review": "Последующая проверка",
+  "ranger_lane_post_review_hint": "Версии, опубликованные без проверки человеком: проверьте их в течение 72 часов.",
+  "ranger_lane_reports": "Жалобы",
+  "ranger_lane_reports_hint": "Открытые жалобы от сообщества.",
+  "ranger_lane_versions": "Версии",
+  "ranger_lane_versions_hint": "Версии, задержанные проверками, сканированием безопасности или жалобой.",
+  "ranger_lanes_label": "Дорожки очереди",
+  "ranger_live": "В эфире",
+  "ranger_live_off": "Обновления приостановлены — список обновится, когда вернётся соединение",
+  "ranger_load_more": "Загрузить ещё",
+  "ranger_loading": "Загрузка…",
+  "ranger_manifest_after": "После",
+  "ranger_manifest_before": "До",
+  "ranger_manifest_field": "Поле",
+  "ranger_manifest_identical": "Манифест не изменился.",
+  "ranger_media_alt": "Изображение {index}",
+  "ranger_media_none": "Нет изображений.",
+  "ranger_more_actions": "Другие действия",
+  "ranger_new_tab": "(откроется в новой вкладке)",
+  "ranger_next": "Вперёд",
+  "ranger_no_actions": "Здесь больше нечего решать.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Открыть страницу",
+  "ranger_open_reports": "Все жалобы",
+  "ranger_page_of": "Страница {page} из {total}",
+  "ranger_pagination": "Страницы",
+  "ranger_panel_error_text": "У нас что-то пошло не так. Попробуйте ещё раз чуть позже.",
+  "ranger_panel_error_title": "Не удалось загрузить",
+  "ranger_previous": "Назад",
+  "ranger_queue_description": "Сначала самое старое и самое рискованное. Каждое решение записывается, автор получает уведомление.",
+  "ranger_queue_title": "Очередь модерации",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Не работает",
+  "ranger_reason_harassment": "Травля",
+  "ranger_reason_illegal": "Незаконное содержимое",
+  "ranger_reason_malware": "Вредоносное ПО",
+  "ranger_reason_nsfw_unmarked": "NSFW без пометки",
+  "ranger_reason_other": "Другое",
+  "ranger_reason_reupload": "Перезалив без разрешения",
+  "ranger_reason_spam": "Спам",
+  "ranger_reauth_action": "Войти снова",
+  "ranger_reauth_text": "Для действий рейнджера нужен вход не старше 12 часов. Войдите снова, чтобы продолжить.",
+  "ranger_reauth_title": "Подтвердите, что это вы",
+  "ranger_reference": "Код: {reference}",
+  "ranger_report_by": "Пожаловался",
+  "ranger_report_by_unknown": "Автор жалобы удалил аккаунт",
+  "ranger_report_dismiss": "Отклонить",
+  "ranger_report_dismiss_text": "Жалоба оказалась необоснованной. Содержимое, автоматически скрытое из-за жалоб, снова станет видимым.",
+  "ranger_report_dismiss_title": "Отклонить жалобу",
+  "ranger_report_dismissed": "Жалоба отклонена.",
+  "ranger_report_hide_hint": "Моды и киты убираются из списков, версии задерживаются, комментарии и отзывы скрываются.",
+  "ranger_report_hide_label": "Скрыть содержимое",
+  "ranger_report_history": "История этого содержимого",
+  "ranger_report_no_details": "Подробностей нет.",
+  "ranger_report_note_hint": "Сохраняется вместе с жалобой и в журнале аудита.",
+  "ranger_report_note_label": "Заметка к решению",
+  "ranger_report_open_user": "Открыть карточку пользователя",
+  "ranger_report_resolution": "Решение: {note}",
+  "ranger_report_resolve": "Решить",
+  "ranger_report_resolve_hide": "Решить и скрыть",
+  "ranger_report_resolve_text": "Все открытые жалобы на это содержимое закрываются, и каждый пожаловавшийся получает уведомление.",
+  "ranger_report_resolve_title": "Решить жалобу",
+  "ranger_report_resolved": "Жалоба решена.",
+  "ranger_report_status_all": "Все",
+  "ranger_report_status_dismissed": "Отклонённые",
+  "ranger_report_status_open": "Открытые",
+  "ranger_report_status_resolved": "Решённые",
+  "ranger_report_target_missing": "{type} № {id} (больше не существует)",
+  "ranger_reports_description": "То, на что пожаловалось сообщество, с причиной и доказательствами. При закрытии жалобы отправитель получает уведомление.",
+  "ranger_reports_empty_open_text": "Смотреть нечего. Новые жалобы появляются здесь и в очереди.",
+  "ranger_reports_empty_open_title": "Открытых жалоб нет",
+  "ranger_reports_empty_text": "Ни одна жалоба не подходит под этот фильтр.",
+  "ranger_reports_empty_title": "Здесь нет жалоб",
+  "ranger_reports_filter": "Статус жалобы",
+  "ranger_reports_title": "Жалобы",
+  "ranger_retry": "Повторить",
+  "ranger_risk_high": "Высокий риск",
+  "ranger_risk_low": "Низкий риск",
+  "ranger_risk_medium": "Средний риск",
+  "ranger_role_admin": "Администратор",
+  "ranger_role_moderator": "Модератор",
+  "ranger_role_user": "Пользователь",
+  "ranger_sanction_ban": "Заблокировать",
+  "ranger_sanction_ban_hint": "Навсегда. Завершает все сеансы.",
+  "ranger_sanction_comment_mute": "Запретить комментарии",
+  "ranger_sanction_comment_mute_hint": "Не сможет комментировать и писать отзывы — везде или у одного мода.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} день",
+        "count__plural=few": "{count__number} дня",
+        "count__plural=many": "{count__number} дней",
+        "count__plural=*": "{count__number} дня"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Срок",
+  "ranger_sanction_ended": "Завершена",
+  "ranger_sanction_failed": "Санкция не применена",
+  "ranger_sanction_kind": "Санкция",
+  "ranger_sanction_open": "Наложить санкцию",
+  "ranger_sanction_permanent": "Навсегда",
+  "ranger_sanction_reason": "Причина",
+  "ranger_sanction_reason_hint": "Пользователь её увидит. Придерживайтесь фактов.",
+  "ranger_sanction_revoke": "Снять",
+  "ranger_sanction_revoke_failed": "Санкция не снята",
+  "ranger_sanction_revoke_title": "Снять эту санкцию?",
+  "ranger_sanction_revoked": "Санкция снята.",
+  "ranger_sanction_revoked_on": "Снята {date}",
+  "ranger_sanction_scope": "Только у одного мода",
+  "ranger_sanction_scope_clear": "Запретить везде",
+  "ranger_sanction_scope_hint": "Оставьте пустым, чтобы запретить комментарии везде.",
+  "ranger_sanction_scope_none": "Подходящих модов нет.",
+  "ranger_sanction_scope_on": "у {mod}",
+  "ranger_sanction_scope_placeholder": "Найдите мод или постройку",
+  "ranger_sanction_scope_results": "Подходящие моды",
+  "ranger_sanction_since": "С {date}",
+  "ranger_sanction_suspend": "Приостановить",
+  "ranger_sanction_suspend_hint": "Не сможет войти до даты окончания.",
+  "ranger_sanction_title": "Наложить санкцию на пользователя",
+  "ranger_sanction_until": "до {date}",
+  "ranger_sanction_upload_mute": "Запретить загрузки",
+  "ranger_sanction_upload_mute_hint": "Не сможет публиковать моды, версии и постройки.",
+  "ranger_scan_clean": "Угроз не найдено",
+  "ranger_scan_engines": "{positives} из {total} движков",
+  "ranger_scan_false_positive": "Подтверждённое ложное срабатывание",
+  "ranger_scan_malicious": "Вредоносно",
+  "ranger_scan_none": "Не проверено",
+  "ranger_scan_override_confirm": "Сохранить вердикт",
+  "ranger_scan_override_done": "Вердикт сканирования: «{verdict}».",
+  "ranger_scan_override_failed": "Вердикт не сохранён",
+  "ranger_scan_override_false_positive_hint": "Вы проверили файлы: срабатывания ложные. Версия, задержанная сканированием, будет выпущена.",
+  "ranger_scan_override_malicious_hint": "Файл вредоносный. Версия отзывается и остаётся недоступной.",
+  "ranger_scan_override_note": "Причина (сохраняется в журнале аудита)",
+  "ranger_scan_override_open": "Изменить вердикт",
+  "ranger_scan_override_title": "Изменить вердикт сканирования",
+  "ranger_scan_override_verdict": "Новый вердикт",
+  "ranger_scan_pending": "Сканирование ожидается",
+  "ranger_scan_report_link": "Отчёт VirusTotal",
+  "ranger_scan_suspicious": "Подозрительно",
+  "ranger_scan_unknown": "Не проверено (нет доступного сканера)",
+  "ranger_select_item": "Выберите элемент в списке, чтобы проверить его.",
+  "ranger_severity_error": "блокирует публикацию",
+  "ranger_severity_warning": "нужен взгляд человека",
+  "ranger_shortcut_next": "Следующий элемент",
+  "ranger_shortcut_previous": "Предыдущий элемент",
+  "ranger_sla_average": "Среднее ожидание",
+  "ranger_sla_due": "{time} · SLA скоро истечёт",
+  "ranger_sla_oldest": "Самый старый",
+  "ranger_sla_over": "Больше {hours} ч",
+  "ranger_sla_overdue": "{time} · SLA нарушен",
+  "ranger_sla_waiting": "Ждут на этой дорожке",
+  "ranger_staff": "Команда",
+  "ranger_submitted": "Отправлено {when}",
+  "ranger_tab_changelog": "Изменения",
+  "ranger_tab_content": "Содержимое",
+  "ranger_tab_description": "Описание",
+  "ranger_tab_files": "Сравнение файлов",
+  "ranger_tab_history": "История автора",
+  "ranger_tab_manifest": "Сравнение манифеста",
+  "ranger_tab_media": "Медиа",
+  "ranger_tabs_label": "Подробности элемента",
+  "ranger_target_comment": "Комментарий",
+  "ranger_target_compat_report": "Полевой отчёт",
+  "ranger_target_kit": "Кит",
+  "ranger_target_mod": "Мод",
+  "ranger_target_review": "Отзыв",
+  "ranger_target_user": "Пользователь",
+  "ranger_target_version": "Версия",
+  "ranger_template_broken_or_empty": "Файл повреждён, пуст или не загружается через RedLoader.",
+  "ranger_template_broken_or_empty_title": "Сломан или пуст",
+  "ranger_template_copyright_claim": "Удалено по обоснованной жалобе правообладателя.",
+  "ranger_template_copyright_claim_title": "Жалоба правообладателя",
+  "ranger_template_credit_original_author": "Укажите автора оригинала и дайте ссылку на его работу.",
+  "ranger_template_credit_original_author_title": "Укажите автора оригинала",
+  "ranger_template_duplicate": "Это дубликат уже опубликованного мода. Опубликуйте вместо этого его новую версию.",
+  "ranger_template_duplicate_title": "Дубликат",
+  "ranger_template_malware_confirmed": "Удалено: подтверждено, что файл вредоносный.",
+  "ranger_template_malware_confirmed_title": "Вредоносное ПО подтверждено",
+  "ranger_template_malware_detected": "Сканирование безопасности отметило файл как вредоносный.",
+  "ranger_template_malware_detected_title": "Отмечено сканированием",
+  "ranger_template_missing_description": "Опишите, что делает мод, как его установить и как им пользоваться.",
+  "ranger_template_missing_description_title": "Нет описания",
+  "ranger_template_missing_screenshots": "Добавьте хотя бы один скриншот мода в игре.",
+  "ranger_template_missing_screenshots_title": "Нет скриншотов",
+  "ranger_template_not_a_mod": "Эта загрузка не является модом или постройкой для Sons of the Forest.",
+  "ranger_template_not_a_mod_title": "Это не мод",
+  "ranger_template_nsfw_unmarked": "Мод содержит контент для взрослых: отметьте его как NSFW.",
+  "ranger_template_nsfw_unmarked_title": "NSFW без пометки",
+  "ranger_template_reupload_without_permission": "Похоже на перезалив чужой работы без разрешения автора.",
+  "ranger_template_reupload_without_permission_title": "Перезалив без разрешения",
+  "ranger_template_rules_violation": "Удалено за нарушение правил сайта.",
+  "ranger_template_rules_violation_title": "Нарушение правил",
+  "ranger_template_spam": "Спам или реклама.",
+  "ranger_template_spam_title": "Спам",
+  "ranger_template_wrong_category": "Перенесите мод в категорию, соответствующую тому, что он делает.",
+  "ranger_template_wrong_category_title": "Не та категория",
+  "ranger_triage_note": "Вид для телефона: только быстрая сортировка. Для сравнения файлов и манифеста нужен планшет или компьютер.",
+  "ranger_trust_level": "Уровень {level}",
+  "ranger_user_account": "Аккаунт",
+  "ranger_user_action_failed": "Изменение не сохранено",
+  "ranger_user_actions": "Действия",
+  "ranger_user_audit": "След в аудите",
+  "ranger_user_banned": "Заблокирован",
+  "ranger_user_banned_on": "Заблокирован {date}",
+  "ranger_user_comments": "Комментарии",
+  "ranger_user_document_title": "{name} · Пользователи",
+  "ranger_user_email_unverified": "Email не подтверждён",
+  "ranger_user_email_verified": "Email подтверждён",
+  "ranger_user_joined": "Зарегистрирован",
+  "ranger_user_last_seen": "Был в сети",
+  "ranger_user_legacy_trusted": "Доверенный на старом сайте",
+  "ranger_user_mods": "Моды",
+  "ranger_user_no_sanctions": "Санкций никогда не было.",
+  "ranger_user_outranked": "Рейнджеры могут действовать только в отношении аккаунтов с ролью ниже своей.",
+  "ranger_user_public_profile": "Публичный профиль",
+  "ranger_user_reports_against": "Жалобы на него",
+  "ranger_user_reviews": "Отзывы",
+  "ranger_user_revoke_sessions": "Выйти везде",
+  "ranger_user_revoke_sessions_text": "Все сеансы этого аккаунта завершатся сейчас. Войти снова можно, если аккаунт не приостановлен и не заблокирован.",
+  "ranger_user_revoke_sessions_title": "Завершить все сеансы {name}?",
+  "ranger_user_role": "Роль",
+  "ranger_user_role_confirm": "Сменить роль",
+  "ranger_user_role_done": "Роль {name}: {role}.",
+  "ranger_user_role_hint": "Роль администратора выдаётся только из командной строки.",
+  "ranger_user_role_title": "Сменить роль {name} на «{role}»?",
+  "ranger_user_sanctions": "Санкции",
+  "ranger_user_self": "Это ваш собственный аккаунт: действовать должен другой рейнджер.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Открытых сеансов не было.",
+        "count__exact=*, count__plural=one": "Завершён {count__number} сеанс.",
+        "count__exact=*, count__plural=few": "Завершено {count__number} сеанса.",
+        "count__exact=*, count__plural=many": "Завершено {count__number} сеансов.",
+        "count__exact=*, count__plural=*": "Завершено {count__number} сеанса."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Приостановлен до {date}",
+  "ranger_user_unverified_done": "{name} больше не подтверждённый автор.",
+  "ranger_user_unverify": "Снять статус",
+  "ranger_user_unverify_title": "Снять с {name} статус подтверждённого автора?",
+  "ranger_user_verified_done": "{name} теперь подтверждённый автор.",
+  "ranger_user_verified_hint": "Подтверждённые авторы публикуют сразу, если проверки пройдены, и имеют повышенные лимиты.",
+  "ranger_user_verify": "Подтвердить автора",
+  "ranger_user_verify_title": "Сделать {name} подтверждённым автором?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} пользователь",
+        "count__plural=few": "{count__number} пользователя",
+        "count__plural=many": "{count__number} пользователей",
+        "count__plural=*": "{count__number} пользователя"
+      }
+    }
+  ],
+  "ranger_users_description": "Ищите по нику, имени или email. Откройте пользователя, чтобы увидеть историю и санкции.",
+  "ranger_users_empty_query": "Никто не подходит под «{query}».",
+  "ranger_users_empty_text": "Пока совпадений нет.",
+  "ranger_users_empty_title": "Пользователи не найдены",
+  "ranger_users_row_stats": "Моды: {mods} · Жалобы на него: {reports}",
+  "ranger_users_search_label": "Поиск пользователей",
+  "ranger_users_search_placeholder": "Ник, имя или email",
+  "ranger_users_search_submit": "Найти",
+  "ranger_users_title": "Пользователи",
+  "ranger_verified_creator": "Подтверждённый автор",
+  "ranger_waiting": "ждёт {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} день",
+        "count__plural=few": "{display} дня",
+        "count__plural=many": "{display} дней",
+        "count__plural=*": "{display} дня"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ч",
+        "count__plural=few": "{count__number} ч",
+        "count__plural=many": "{count__number} ч",
+        "count__plural=*": "{count__number} ч"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мин",
+        "count__plural=few": "{count__number} мин",
+        "count__plural=many": "{count__number} мин",
+        "count__plural=*": "{count__number} мин"
+      }
+    }
+  ],
+  "settings_about_saved": "Профиль сохранён",
+  "settings_about_text": "Как вы выглядите в профиле, у своих модов и в комментариях.",
+  "settings_about_title": "О вас",
+  "settings_account_hint": "Почта для входа и пароль.",
+  "settings_account_overview_title": "Ваш аккаунт",
+  "settings_account_title": "Аккаунт",
+  "settings_appearance_saved": "Внешний вид сохранён",
+  "settings_appearance_text": "Как SOTF Mods выглядит на этом и других ваших устройствах.",
+  "settings_appearance_title": "Внешний вид",
+  "settings_avatar_change": "Сменить фото",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG, JPEG, WebP, AVIF или GIF до {max__number} МБ. Перед сохранением его можно обрезать."
+      }
+    }
+  ],
+  "settings_avatar_label": "Аватар",
+  "settings_avatar_remove": "Удалить фото",
+  "settings_avatar_removed": "Фото удалено",
+  "settings_avatar_saved": "Новое фото сохранено",
+  "settings_avatar_upload": "Загрузить фото",
+  "settings_avatar_uploading": "Загрузка фото…",
+  "settings_back": "Настройки",
+  "settings_banner_custom_hint": "Сейчас используется ваше изображение. Сгенерируйте местность, чтобы вернуться к созданному баннеру.",
+  "settings_banner_label": "Баннер",
+  "settings_banner_reroll": "Сгенерировать другую местность",
+  "settings_banner_reroll_hint": "Предпросмотр новой местности — выберите «Использовать эту местность», чтобы сохранить её.",
+  "settings_banner_saved": "Новый баннер сохранён",
+  "settings_banner_terrain_hint": "Карта, нарисованная специально для вас. Генерируйте заново, пока форма острова не понравится.",
+  "settings_banner_terrain_saved": "Баннер с местностью сохранён",
+  "settings_banner_upload": "Загрузить изображение",
+  "settings_banner_uploading": "Загрузка баннера…",
+  "settings_banner_use_terrain": "Использовать эту местность",
+  "settings_behaviour_saved": "Предпочтения сохранены",
+  "settings_behaviour_title": "Поведение",
+  "settings_bio": "О себе",
+  "settings_bio_hint": "Поддерживается Markdown: **жирный**, _курсив_ и ссылки.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Текст «О себе» должен быть короче {max__number} символов."
+      }
+    }
+  ],
+  "settings_cancel": "Отмена",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Остался {count__number} символ",
+        "count__plural=few": "Осталось {count__number} символа",
+        "count__plural=many": "Осталось {count__number} символов",
+        "count__plural=*": "Осталось {count__number} символа"
+      }
+    }
+  ],
+  "settings_compat_prompts": "Спрашивать «Заработало?» после загрузок",
+  "settings_compat_prompts_hint": "Ваши ответы подсказывают другим выжившим, какие моды работают на текущей сборке.",
+  "settings_creator_badges": "Ваши значки",
+  "settings_creator_basecamp": "Открыть Лагерь",
+  "settings_creator_hint": "Статус автора, ссылки поддержки, лицензия по умолчанию и шаблоны ответов.",
+  "settings_creator_not_verified": "Пока не проверен",
+  "settings_creator_not_verified_text": "Рейнджеры проверяют авторов с историей безопасных и поддерживаемых модов. Продолжайте публиковать — подавать заявку не нужно.",
+  "settings_creator_policy": "Всё, что вы публикуете, подчиняется правилам контента.",
+  "settings_creator_policy_link": "Прочитать правила контента",
+  "settings_creator_status_title": "Статус автора",
+  "settings_creator_title": "Автор",
+  "settings_creator_verified": "Проверенный автор",
+  "settings_creator_verified_text": "На ваших модах стоит отметка проверки, и вы можете загружать файлы побольше.",
+  "settings_crop_avatar_title": "Обрезать фото",
+  "settings_crop_banner_title": "Обрезать баннер",
+  "settings_crop_failed": "Не удалось прочитать это изображение. Попробуйте другой файл.",
+  "settings_crop_help": "Перетащите изображение или двигайте его стрелками; масштабируйте ползунком или клавишами + и −.",
+  "settings_crop_label": "Область обрезки изображения",
+  "settings_crop_roledescription": "область обрезки",
+  "settings_crop_use": "Использовать изображение",
+  "settings_crop_zoom": "Масштаб",
+  "settings_data_hint": "Экспортируйте всё, что у нас о вас есть, или удалите аккаунт.",
+  "settings_data_title": "Ваши данные",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "День {day__number} на острове"
+      }
+    }
+  ],
+  "settings_default_license": "Лицензия по умолчанию",
+  "settings_default_license_hint": "Выбирается заранее при публикации нового мода; её можно изменить для каждого мода.",
+  "settings_default_license_none": "Спрашивать каждый раз",
+  "settings_defaults_local_note": "Эти настройки хранятся только в этом браузере.",
+  "settings_defaults_saved": "Настройки по умолчанию сохранены",
+  "settings_defaults_text": "Заранее заполняйте новые моды и быстрее отвечайте на частые вопросы.",
+  "settings_defaults_title": "Настройки публикации по умолчанию",
+  "settings_delete_already": "Удаление вашего аккаунта уже запланировано.",
+  "settings_delete_cancel": "Отменить удаление",
+  "settings_delete_cancel_failed": "Не удалось отменить удаление",
+  "settings_delete_cancelled": "Удаление отменено — с возвращением",
+  "settings_delete_confirm": "Удалить через 14 дней",
+  "settings_delete_dialog_text": "Аккаунт будет удалён через 14 дней. До этого удаление можно отменить на этой странице.",
+  "settings_delete_dialog_title": "Удалить аккаунт?",
+  "settings_delete_mode_archive": "Отправить в архив",
+  "settings_delete_mode_archive_hint": "Они исчезнут из списков и поиска и больше не будут приписаны вам.",
+  "settings_delete_mode_keep": "Оставить опубликованными",
+  "settings_delete_mode_keep_hint": "Игроки по-прежнему смогут их найти, но без вашего имени.",
+  "settings_delete_mods_legend": "Что будет с вашими модами",
+  "settings_delete_open": "Удалить мой аккаунт…",
+  "settings_delete_point_content": "Ваши комментарии и отзывы останутся с подписью «Удалённый выживший».",
+  "settings_delete_point_export": "Если нужна копия, сначала экспортируйте данные.",
+  "settings_delete_point_grace": "У вас есть 14 дней, чтобы передумать: войдите и отмените удаление здесь.",
+  "settings_delete_point_mods": "Ваши моды будут отправлены в архив или останутся опубликованными без вашего имени — выбирать вам.",
+  "settings_delete_scheduled_text": "Передумали? Отмените сейчас, и всё останется как есть.",
+  "settings_delete_scheduled_title": "Ваш аккаунт будет удалён {date}",
+  "settings_delete_scheduled_toast": "Ваш аккаунт будет удалён {date}",
+  "settings_delete_text": "Ваши личные данные будут безвозвратно удалены после 14-дневного льготного периода.",
+  "settings_delete_title": "Удаление аккаунта",
+  "settings_delete_type_handle": "Введите «{handle}» точно, чтобы подтвердить.",
+  "settings_delete_type_label": "Введите имя пользователя «{handle}» для подтверждения",
+  "settings_density": "Плотность",
+  "settings_density_comfortable": "Свободная",
+  "settings_density_comfortable_hint": "Больше воздуха.",
+  "settings_density_compact": "Компактная",
+  "settings_density_compact_hint": "Больше всего на экране сразу.",
+  "settings_discard": "Отменить изменения",
+  "settings_display_name": "Отображаемое имя",
+  "settings_display_name_hint": "На любом языке и с любыми символами, от 2 до 32. Его можно изменить в любой момент.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Используйте от {min__number} до {max__number} символов."
+      }
+    }
+  ],
+  "settings_email_daily": "Ежедневная сводка",
+  "settings_email_instant": "Сразу",
+  "settings_email_invalid": "Введите корректный адрес почты.",
+  "settings_email_new": "Новый адрес почты",
+  "settings_email_off": "Выкл.",
+  "settings_email_same": "Это уже ваш адрес почты.",
+  "settings_email_sent_text": "Мы отправили ссылку для подтверждения на {email}. Адрес сменится, как только вы её откроете.",
+  "settings_email_sent_title": "Проверьте почту",
+  "settings_email_sent_toast": "Ссылка для подтверждения отправлена",
+  "settings_email_submit": "Сменить почту",
+  "settings_email_taken": "Этот адрес нельзя использовать. Попробуйте другой.",
+  "settings_email_text": "Используется для входа и писем, которые вы решили получать. Чтобы сменить его, подтвердите новый адрес из почтового ящика; на старый придёт уведомление.",
+  "settings_email_title": "Адрес почты",
+  "settings_email_unverified": "Не подтверждён",
+  "settings_email_verified": "Подтверждён",
+  "settings_email_weekly": "Еженедельная сводка",
+  "settings_export_again": "Подготовить новый экспорт",
+  "settings_export_download": "Скачать ZIP",
+  "settings_export_email_note": "Мы также пришлём ссылку на почту. Она действует 24 часа.",
+  "settings_export_expired": "Срок действия этой ссылки истёк.",
+  "settings_export_expires": "ссылка действует до {date}",
+  "settings_export_failed": "Не удалось запустить экспорт",
+  "settings_export_preparing": "Готовим ваш экспорт…",
+  "settings_export_rate_limited": "Вы недавно запрашивали экспорт — попробуйте позже",
+  "settings_export_ready": "Ваш экспорт готов",
+  "settings_export_request": "Подготовить экспорт",
+  "settings_export_requested": "Мы готовим ваш экспорт",
+  "settings_export_requested_at": "Запрошен {date}",
+  "settings_export_status_failed": "Экспорт не удался. Попробуйте ещё раз.",
+  "settings_export_text": "ZIP с JSON-файлами: аккаунт, профиль, моды, комментарии, отзывы, наборы, подписки и настройки.",
+  "settings_export_title": "Экспорт данных",
+  "settings_handle": "Имя пользователя",
+  "settings_handle_hint": "Адрес вашего профиля. Пока его нельзя изменить.",
+  "settings_history_link": "Открыть мои загрузки",
+  "settings_history_off_saved": "История загрузок выключена",
+  "settings_history_on_saved": "История загрузок включена",
+  "settings_history_switch": "Вести историю загрузок",
+  "settings_history_text": "Когда она включена, загрузки после входа попадают в «Мои загрузки», чтобы мы могли сообщать об обновлениях.",
+  "settings_history_title": "История загрузок",
+  "settings_image_processing": "Обработка изображения занимает слишком много времени. Попробуйте чуть позже.",
+  "settings_image_rejected": "Изображение отклонено. Попробуйте другое.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Изображение слишком большое. Лимит — {max__number} МБ."
+      }
+    }
+  ],
+  "settings_image_type": "Этот тип файла не поддерживается. Используйте PNG, JPEG, WebP или AVIF.",
+  "settings_index_title": "Настройки",
+  "settings_language_browser": "Как в браузере",
+  "settings_language_label": "Язык",
+  "settings_language_saved": "Язык сохранён",
+  "settings_language_text": "Язык консоли и писем, которые мы вам отправляем.",
+  "settings_language_title": "Язык и числа",
+  "settings_link_add": "Добавить ссылку",
+  "settings_link_invalid": "Введите полный веб-адрес, начинающийся с https://",
+  "settings_link_kind": "Тип",
+  "settings_link_label": "Подпись",
+  "settings_link_other": "Другое",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Удалить ссылку {n__number}"
+      }
+    }
+  ],
+  "settings_link_url": "Адрес",
+  "settings_link_website": "Сайт",
+  "settings_links_empty": "Ссылок пока нет.",
+  "settings_links_saved": "Ссылки сохранены",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "До {max__number} ссылок в профиле: ваш сайт, каналы и где вас можно поддержать."
+      }
+    }
+  ],
+  "settings_links_title": "Ссылки",
+  "settings_loading": "Загрузка…",
+  "settings_member_since": "Выживает с",
+  "settings_motion": "Анимации",
+  "settings_motion_full": "Все",
+  "settings_motion_full_hint": "Все анимации включены.",
+  "settings_motion_reduce": "Уменьшенные",
+  "settings_motion_reduce_hint": "Без скольжения, масштабирования и празднований.",
+  "settings_motion_system": "Как на устройстве",
+  "settings_motion_system_hint": "Следует системной настройке уменьшения движения.",
+  "settings_notif_ack": "Ваши полевые отчёты",
+  "settings_notif_ack_hint": "Автор увидел или исправил проблему, о которой вы сообщили.",
+  "settings_notif_announcement": "Объявления",
+  "settings_notif_announcement_hint": "Новости от команды SOTF Mods.",
+  "settings_notif_award": "Награды",
+  "settings_notif_award_hint": "Ваш мод стал модом недели или выбором команды.",
+  "settings_notif_badge": "Значки",
+  "settings_notif_badge_hint": "Вы получили значок.",
+  "settings_notif_broken": "Ваш мод отмечен как неработающий",
+  "settings_notif_broken_hint": "Полевые отчёты говорят, что ваш мод сломался на текущей сборке.",
+  "settings_notif_col_app": "В приложении",
+  "settings_notif_col_email": "Почта",
+  "settings_notif_col_signal": "Сигнал",
+  "settings_notif_comment": "Комментарии к вашим модам",
+  "settings_notif_comment_hint": "Группируются: несколько комментариев приходят одним сигналом.",
+  "settings_notif_creator": "Новые моды авторов",
+  "settings_notif_creator_hint": "Автор, на которого вы подписаны, опубликовал что-то новое.",
+  "settings_notif_defaults": "Восстановить по умолчанию",
+  "settings_notif_email_only": "Только почта",
+  "settings_notif_group_community": "Сообщество и рейнджеры",
+  "settings_notif_group_conversations": "Обсуждения",
+  "settings_notif_group_follows": "На что вы подписаны",
+  "settings_notif_group_my_mods": "Ваши моды",
+  "settings_notif_matrix_text": "Для каждого типа сигнала выберите, показывать ли его в приложении и как часто присылать по почте. Сводки собирают всё в одно письмо.",
+  "settings_notif_matrix_title": "Сигналы и письма",
+  "settings_notif_mention": "Упоминания",
+  "settings_notif_mention_hint": "Кто-то @упомянул вас.",
+  "settings_notif_milestone": "Рубежи загрузок",
+  "settings_notif_milestone_hint": "Ваш мод преодолел рубеж загрузок.",
+  "settings_notif_patch": "Патчи игры, ломающие моды",
+  "settings_notif_patch_hint": "Новая сборка игры, вероятно, сломает моды (для авторов).",
+  "settings_notif_removal_note": "Если ваш мод удалят, мы всегда сообщим об этом по почте.",
+  "settings_notif_reply": "Ответы",
+  "settings_notif_reply_hint": "Кто-то ответил на ваш комментарий.",
+  "settings_notif_report": "Ваши жалобы",
+  "settings_notif_report_hint": "Рейнджеры рассмотрели вашу жалобу.",
+  "settings_notif_review": "Отзывы о ваших модах",
+  "settings_notif_review_hint": "Кто-то оценил один из ваших модов.",
+  "settings_notif_review_reply": "Ответы на ваши отзывы",
+  "settings_notif_review_reply_hint": "Автор ответил на ваш отзыв.",
+  "settings_notif_saved": "Настройки уведомлений сохранены",
+  "settings_notif_status": "Решения модерации",
+  "settings_notif_status_hint": "Ваш мод одобрен, отклонён, требует изменений или отправлен в архив.",
+  "settings_notif_version": "Новые версии",
+  "settings_notif_version_hint": "Мод из вашего рюкзака получил обновление.",
+  "settings_notif_weekly": "Еженедельный отчёт автора",
+  "settings_notif_weekly_hint": "По понедельникам: загрузки, подписчики и отзывы о ваших модах.",
+  "settings_notifications_hint": "Какие сигналы вы получаете в приложении и по почте.",
+  "settings_notifications_title": "Уведомления",
+  "settings_nsfw_adult": "Мне есть 18 лет (или я совершеннолетний там, где живу)",
+  "settings_nsfw_confirm": "Показывать",
+  "settings_nsfw_confirm_text": "Моды NSFW могут содержать наготу или откровенный контент. Их можно снова скрыть в любой момент.",
+  "settings_nsfw_confirm_title": "Показывать контент для взрослых?",
+  "settings_nsfw_confirmed_on": "Подтверждено {date}",
+  "settings_nsfw_hide": "Скрыть контент для взрослых",
+  "settings_nsfw_off_saved": "Контент для взрослых скрыт",
+  "settings_nsfw_on_saved": "Контент для взрослых теперь показывается",
+  "settings_nsfw_show": "Показывать контент для взрослых",
+  "settings_nsfw_status_off": "Скрыт",
+  "settings_nsfw_status_on": "Показывается",
+  "settings_nsfw_text": "Моды с пометкой NSFW скрыты в списках, поиске и лентах и размыты везде, кроме собственной страницы. Включите, чтобы их видеть.",
+  "settings_nsfw_title": "Контент для взрослых",
+  "settings_number_compact": "Сокращённо",
+  "settings_number_compact_hint": "1,2 тыс. загрузок",
+  "settings_number_format": "Большие числа",
+  "settings_number_full": "Полностью",
+  "settings_number_full_hint": "1234 загрузки",
+  "settings_password_changed": "Пароль изменён",
+  "settings_password_changed_revoked": "Пароль изменён, выполнен выход на других устройствах",
+  "settings_password_confirm": "Повторите новый пароль",
+  "settings_password_current": "Текущий пароль",
+  "settings_password_mismatch": "Новые пароли не совпадают.",
+  "settings_password_new": "Новый пароль",
+  "settings_password_rejected": "Этот пароль встречался в утечке данных. Выберите другой.",
+  "settings_password_required": "Введите текущий пароль.",
+  "settings_password_revoke": "Выйти на других моих устройствах",
+  "settings_password_revoke_hint": "Рекомендуется, если вы думаете, что ваш пароль знает кто-то ещё.",
+  "settings_password_same": "Выберите пароль, отличный от текущего.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Используйте не менее {min__number} символов."
+      }
+    }
+  ],
+  "settings_password_submit": "Сменить пароль",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Не менее {min__number} символов. Длинную фразу легче запомнить и труднее угадать."
+      }
+    }
+  ],
+  "settings_password_title": "Пароль",
+  "settings_password_wrong": "Неверный пароль.",
+  "settings_photos_text": "Ваш аватар и баннер в верхней части профиля. Изменения сохраняются сразу после загрузки.",
+  "settings_photos_title": "Фото и баннер",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Закреплено {count__number} из {max__number}"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} загрузка",
+        "count__plural=few": "{count__number} загрузки",
+        "count__plural=many": "{count__number} загрузок",
+        "count__plural=*": "{count__number} загрузки"
+      }
+    }
+  ],
+  "settings_pinned_empty": "Когда какой-нибудь ваш мод будет опубликован, его можно будет закрепить здесь.",
+  "settings_pinned_failed": "Не удалось загрузить ваши моды.",
+  "settings_pinned_hidden": "Некоторые закреплённые моды сейчас не публичны; они остаются закреплёнными и появятся снова, когда станут публичными.",
+  "settings_pinned_saved": "Закреплённые моды сохранены",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Выберите до {max__number} своих модов, которые будут показаны первыми в профиле, в этом порядке."
+      }
+    }
+  ],
+  "settings_pinned_title": "Закреплённые моды",
+  "settings_preferences_hint": "Язык, тема, анимации, горячие клавиши и контент для взрослых.",
+  "settings_preferences_title": "Предпочтения",
+  "settings_privacy_data_link": "Экспортировать или удалить мои данные",
+  "settings_privacy_data_text": "Вы можете экспортировать всё, что мы о вас храним, или удалить аккаунт.",
+  "settings_privacy_data_title": "Ваши данные",
+  "settings_privacy_hint": "Что другие видят в вашем профиле, и история загрузок.",
+  "settings_privacy_policy_link": "Политика конфиденциальности",
+  "settings_privacy_saved": "Настройки приватности сохранены",
+  "settings_privacy_title": "Приватность",
+  "settings_profile_hint": "Фото, баннер, имя, о себе, ссылки и закреплённые моды.",
+  "settings_profile_title": "Профиль",
+  "settings_profile_view_public": "Открыть публичный профиль",
+  "settings_readout": "Настройки лагеря",
+  "settings_retry": "Повторить",
+  "settings_save": "Сохранить",
+  "settings_save_failed": "Не удалось сохранить изменения",
+  "settings_security_hint": "Где выполнен вход и выход на других устройствах.",
+  "settings_security_tip_email": "Мы никогда не просим пароль по почте или в Discord.",
+  "settings_security_tip_password": "Используйте пароль, который больше нигде не используете.",
+  "settings_security_tip_sessions": "Выходите из аккаунта на общих и публичных компьютерах.",
+  "settings_security_tips_title": "Как защитить свой лагерь",
+  "settings_security_title": "Безопасность",
+  "settings_sessions_active_now": "активна сейчас",
+  "settings_sessions_confirm_current_text": "Вы перейдёте на страницу входа.",
+  "settings_sessions_confirm_current_title": "Выйти в этом браузере?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Будет завершена {count__number} другая сессия. В этом браузере вход сохранится.",
+        "count__plural=few": "Будут завершены {count__number} другие сессии. В этом браузере вход сохранится.",
+        "count__plural=many": "Будут завершены {count__number} других сессий. В этом браузере вход сохранится.",
+        "count__plural=*": "Будет завершено {count__number} другой сессии. В этом браузере вход сохранится."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Выйти на всех остальных?",
+  "settings_sessions_confirm_text": "На устройстве «{device}» потребуется войти снова.",
+  "settings_sessions_confirm_title": "Выйти на этом устройстве?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} активная сессия",
+        "count__plural=few": "{count__number} активные сессии",
+        "count__plural=many": "{count__number} активных сессий",
+        "count__plural=*": "{count__number} активной сессии"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Не удалось завершить эту сессию",
+  "settings_sessions_last_seen": "была активна {when}",
+  "settings_sessions_revoked": "Выполнен выход: {device}",
+  "settings_sessions_revoked_others": "Выполнен выход на других устройствах",
+  "settings_sessions_sign_out": "Выйти",
+  "settings_sessions_sign_out_here": "Выйти здесь",
+  "settings_sessions_sign_out_others": "Выйти на всех остальных",
+  "settings_sessions_started": "вход {date}",
+  "settings_sessions_text": "Все браузеры и устройства с активной сессией. Завершите те, которые не узнаёте.",
+  "settings_sessions_this_device": "Это устройство",
+  "settings_sessions_title": "Где выполнен вход",
+  "settings_sessions_unknown_device": "Неизвестное устройство",
+  "settings_shortcuts": "Горячие клавиши",
+  "settings_shortcuts_hint": "Однокнопочные сочетания в консоли. Выключите их, если они мешают вашим вспомогательным технологиям.",
+  "settings_show_activity": "Показывать мою активность",
+  "settings_show_activity_hint": "Тепловая карта за 12 месяцев и недавняя активность.",
+  "settings_show_kits": "Показывать мои наборы",
+  "settings_show_kits_hint": "Вкладка «Наборы» в профиле (приватные наборы не показываются никогда).",
+  "settings_show_leaderboards": "Участвовать в рейтингах",
+  "settings_show_leaderboards_hint": "Списки лучших авторов и выживших.",
+  "settings_show_rank": "Показывать мой ранг выжившего и XP",
+  "settings_show_rank_hint": "Печать ранга рядом с вашим именем.",
+  "settings_support_edit": "Изменить ссылки в профиле",
+  "settings_support_empty": "Вы ещё не добавили ссылку на Ko-fi или Patreon.",
+  "settings_support_text": "Ссылки на Ko-fi и Patreon из профиля показываются в профиле и рядом с кнопкой загрузки ваших модов.",
+  "settings_support_title": "Ссылки поддержки",
+  "settings_template_add": "Добавить шаблон",
+  "settings_template_copied": "«{name}» скопирован",
+  "settings_template_copy": "Копировать",
+  "settings_template_copy_failed": "Не удалось скопировать в буфер обмена",
+  "settings_template_delete": "Удалить",
+  "settings_template_name": "Название",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Дайте ему название (до {max__number} символов)."
+      }
+    }
+  ],
+  "settings_template_text": "Текст",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Напишите текст (до {max__number} символов)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Шаблонов пока нет.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "До {max__number} готовых ответов (шаги установки, известные конфликты…) для вставки в комментарии и ответы на отзывы."
+      }
+    }
+  ],
+  "settings_templates_title": "Шаблоны ответов",
+  "settings_theme": "Тема",
+  "settings_theme_day": "День",
+  "settings_theme_night": "Ночь",
+  "settings_theme_system": "Как на устройстве",
+  "settings_verify_already": "Ваш адрес почты уже подтверждён",
+  "settings_verify_resend": "Отправить ссылку ещё раз",
+  "settings_verify_resend_failed": "Не удалось отправить ссылку",
+  "settings_verify_resent": "Мы отправили новую ссылку на {email}",
+  "settings_verify_text": "До этого можно смотреть и скачивать, но нельзя комментировать, писать отзывы и публиковать.",
+  "settings_verify_title": "Подтвердите адрес почты",
+  "settings_visibility_text": "Выключите то, что предпочитаете держать при себе.",
+  "settings_visibility_title": "В вашем профиле",
+  "signals_action_download": "Скачать",
+  "signals_announcement": "Новое объявление от рейнджеров",
+  "signals_announcement_titled": "Объявление: {title}",
+  "signals_award_build_of_month": "{mod} — постройка месяца",
+  "signals_award_generic": "{mod} получил награду",
+  "signals_award_mod_of_month": "{mod} — мод месяца",
+  "signals_award_mod_of_week": "{mod} — мод недели",
+  "signals_award_staff_pick": "{mod} — выбор команды",
+  "signals_badge_awarded": "Получен значок: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Добро пожаловать в новый SOTF Mods",
+        "count__exact=*, count__plural=one": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждёт {count__number} значок",
+        "count__exact=*, count__plural=few": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждут {count__number} значка",
+        "count__exact=*, count__plural=many": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждут {count__number} значков",
+        "count__exact=*, count__plural=*": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждут {count__number} значка"
+      }
+    }
+  ],
+  "signals_bell_label": "Сигналы",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Сигналы: {count__number} непрочитанный",
+        "count__plural=few": "Сигналы: {count__number} непрочитанных",
+        "count__plural=many": "Сигналы: {count__number} непрочитанных",
+        "count__plural=*": "Сигналы: {count__number} непрочитанного"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} сообщил(а) об ошибке в {mod}",
+  "signals_comment_mention": "{actor} упомянул(а) вас в комментариях к {mod}",
+  "signals_comment_on_mod": "{actor} прокомментировал(а) {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый комментарий к {mod}",
+        "count__plural=few": "{count__number} новых комментария к {mod}",
+        "count__plural=many": "{count__number} новых комментариев к {mod}",
+        "count__plural=*": "{count__number} нового комментария к {mod}"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} ответил(а) на ваш комментарий к {mod}",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ответ на ваш комментарий к {mod}",
+        "count__plural=few": "{count__number} ответа на ваш комментарий к {mod}",
+        "count__plural=many": "{count__number} ответов на ваш комментарий к {mod}",
+        "count__plural=*": "{count__number} ответа на ваш комментарий к {mod}"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "Автор {mod} увидел ваш полевой отчёт",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input status",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} отмечен как неработающий на {build}",
+        "status=*": "{mod} отмечен как работающий частично на {build}"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "Проблема из вашего полевого отчёта о {mod} исправлена в {version}",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} опубликовал(а) постройку {mod}",
+        "kind=*": "{actor} опубликовал(а) {mod}"
+      }
+    }
+  ],
+  "signals_current_build": "текущей сборке",
+  "signals_empty_filtered_text": "Пока ни один сигнал не подходит под этот фильтр. Попробуйте «Все».",
+  "signals_empty_filtered_title": "На этом канале пусто",
+  "signals_empty_text": "Подписывайтесь на моды и авторов, чтобы узнавать об изменениях.",
+  "signals_empty_title": "В лесу всё спокойно",
+  "signals_end": "Пока это все сигналы.",
+  "signals_error_text": "Что-то пошло не так на нашей стороне. Попробуйте ещё раз чуть позже.",
+  "signals_error_title": "Не удалось загрузить сигналы.",
+  "signals_excerpt": "«{text}»",
+  "signals_filter_all": "Все",
+  "signals_filter_label": "Фильтр сигналов",
+  "signals_filter_mentions": "Упоминания",
+  "signals_filter_my_mods": "Мои моды",
+  "signals_filter_ranger": "Рейнджеры",
+  "signals_filter_updates": "Обновления",
+  "signals_group_today": "Сегодня",
+  "signals_group_yesterday": "Вчера",
+  "signals_load_more": "Загрузить более старые сигналы",
+  "signals_loading": "Загрузка сигналов…",
+  "signals_loading_more": "Загрузка…",
+  "signals_mark_all_read": "Отметить всё прочитанным",
+  "signals_mark_failed": "Не удалось отметить сигналы прочитанными",
+  "signals_mark_read": "Отметить прочитанным",
+  "signals_marked_all": "Все сигналы отмечены прочитанными",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} преодолел отметку в {threshold__number} загрузок"
+      }
+    }
+  ],
+  "signals_more_error": "Не удалось загрузить более старые сигналы.",
+  "signals_page_description": "Обновления того, на что вы подписаны, ответы, упоминания и новости о ваших модах.",
+  "signals_page_readout": "Радиожурнал",
+  "signals_page_title": "Сигналы",
+  "signals_panel_title": "Сигналы",
+  "signals_patch_breaking": "Сборка игры {build} может сломать моды — проверьте свои в Patch Radar",
+  "signals_preferences": "Настройки уведомлений",
+  "signals_report_dismissed": "Ваша жалоба рассмотрена — действий не потребовалось",
+  "signals_report_resolved": "Ваша жалоба рассмотрена, меры приняты",
+  "signals_retry": "Повторить",
+  "signals_review_on_mod": "{actor} оставил(а) отзыв на {rating} звёзд о {mod}",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый отзыв о {mod}",
+        "count__plural=few": "{count__number} новых отзыва о {mod}",
+        "count__plural=many": "{count__number} новых отзывов о {mod}",
+        "count__plural=*": "{count__number} нового отзыва о {mod}"
+      }
+    }
+  ],
+  "signals_review_reply": "Автор {mod} ответил на ваш отзыв",
+  "signals_see_all": "Все сигналы",
+  "signals_show_all": "Показать все сигналы",
+  "signals_someone": "Кто-то",
+  "signals_status_approved": "Ваш мод {mod} одобрен и опубликован",
+  "signals_status_archived": "Ваш мод {mod} отправлен в архив",
+  "signals_status_changed": "Статус {mod} изменился",
+  "signals_status_changes_requested": "Рейнджеры просят внести изменения в {mod}",
+  "signals_status_rejected": "Ваш мод {mod} отклонён",
+  "signals_status_removed": "Ваш мод {mod} удалён",
+  "signals_status_republished": "Ваш мод {mod} снова публичный",
+  "signals_status_unlisted": "Ваш мод {mod} убран из списков",
+  "signals_unknown_mod": "мод",
+  "signals_unread_prefix": "Не прочитано:",
+  "signals_version_published": "Вышел {mod} {version} — вы на него подписаны",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новая версия {mod}",
+        "count__plural=few": "{count__number} новые версии {mod}",
+        "count__plural=many": "{count__number} новых версий {mod}",
+        "count__plural=*": "{count__number} новой версии {mod}"
+      }
+    }
+  ],
+  "signals_weekly_report": "Ваш еженедельный отчёт автора готов",
   "social_action_back": "Назад",
   "social_action_cancel": "Отмена",
   "social_action_close": "Закрыть",
@@ -5384,5 +7383,592 @@
   "ui_theme_dark": "Ночь",
   "ui_theme_light": "День",
   "ui_theme_system": "Системная",
-  "ui_type_to_confirm": "Введи {text} для подтверждения."
+  "ui_type_to_confirm": "Введи {text} для подтверждения.",
+  "upload_announce_group": "Проверенные сборки и оповещение",
+  "upload_autosave_error": "Не удалось сохранить. Повторим через минуту — изменения остаются здесь.",
+  "upload_autosave_idle": "Пока нечего сохранять",
+  "upload_autosave_limit": "Достигнут лимит черновиков: удалите один, чтобы сохранить этот.",
+  "upload_autosave_offline": "Нет сети. Изменения остаются здесь и сохранятся, когда вы вернётесь.",
+  "upload_autosave_pending": "Есть несохранённые изменения",
+  "upload_autosave_saved": "Автосохранено {when}",
+  "upload_autosave_saving": "Сохраняем…",
+  "upload_back": "Назад",
+  "upload_block_empty": "Файл пустой.",
+  "upload_block_local_problems": "Проверки ниже нашли ошибки. Исправьте их и выберите файл снова.",
+  "upload_block_manifest_id_mismatch": "Это другой мод: его id в манифесте — {found}, а ожидался {expected}.",
+  "upload_block_too_large": "Файл больше {max}.",
+  "upload_block_unreadable": "Не удалось прочитать файл. Он скачан полностью и без ошибок?",
+  "upload_block_version_exists": "Версия {version} уже существует. Повысьте версию в manifest.json.",
+  "upload_block_version_not_greater": "Версия {version} должна быть выше {previous}. Повысьте версию в manifest.json.",
+  "upload_block_version_not_semver": "Версия {version} не является семантической версией (x.y.z).",
+  "upload_block_wrong_type": "Неверный тип файла. Выберите тип, указанный в области загрузки.",
+  "upload_blocked_title": "Этот файл нельзя загрузить.",
+  "upload_build_buildshare_version": "Версия BuildShare",
+  "upload_build_detected": "Чертёж распознан",
+  "upload_build_elements": "Элементы",
+  "upload_build_guid": "Id чертежа",
+  "upload_build_no_thumbnail": "У этого чертежа нет миниатюры. Добавьте обложку на шаге медиа.",
+  "upload_build_size_class": "Размер",
+  "upload_build_structures": "Конструкции",
+  "upload_build_thumbnail_alt": "Миниатюра чертежа {name}",
+  "upload_cancel": "Отмена",
+  "upload_category_label": "Категория",
+  "upload_category_placeholder": "Выберите категорию",
+  "upload_changelog_group": "Список изменений",
+  "upload_changelog_hint_first": "Для первого выпуска необязательно.",
+  "upload_changelog_hint_version": "Подписчики увидят это в своих Сигналах.",
+  "upload_changelog_label": "Что изменилось (Markdown)",
+  "upload_changelog_placeholder": "Исправлено…, добавлено…, изменено…",
+  "upload_channel_beta": "Бета",
+  "upload_channel_beta_hint": "Для тестировщиков, которым нужно самое новое.",
+  "upload_channel_label": "Канал",
+  "upload_channel_release": "Стабильный",
+  "upload_channel_release_hint": "Для всех. Становится последней версией.",
+  "upload_choose_other": "Выбрать другой файл",
+  "upload_compat_game": "Игра и загрузчик",
+  "upload_compat_intro": "Расскажите игрокам, где работает ваш мод. Полевые отчёты выживших дополнят это позже.",
+  "upload_compat_title": "Совместимость",
+  "upload_compat_where": "Где работает",
+  "upload_counter": "{count} / {max}",
+  "upload_cover_build_fallback": "Без обложки используется миниатюра чертежа.",
+  "upload_cover_choose": "Выбрать картинку",
+  "upload_cover_description": "Видна в карточках и вверху страницы, кадрируется в 16:9.",
+  "upload_cover_drop": "Перетащите сюда картинку для обложки",
+  "upload_cover_failed": "Не удалось загрузить обложку.",
+  "upload_cover_hint": "PNG, JPEG, WebP, AVIF или GIF · до 10 МБ · лучше от 1280 × 720",
+  "upload_cover_label": "Обложка",
+  "upload_cover_preview_alt": "Предпросмотр обложки",
+  "upload_cover_remove": "Убрать обложку",
+  "upload_cover_replace": "Заменить обложку",
+  "upload_cover_uploading": "Ход загрузки обложки",
+  "upload_crop_confirm": "Использовать этот кадр",
+  "upload_crop_description": "Перетащите рамку или выделите её и двигайте стрелками. + и − меняют размер.",
+  "upload_crop_frame": "Рамка кадрирования",
+  "upload_crop_keyboard": "Стрелки двигают · Shift — быстрее · + и − меняют размер",
+  "upload_crop_output": "Итог {width} × {height}",
+  "upload_crop_position": "Слева {x} px, сверху {y} px",
+  "upload_crop_size": "Размер рамки",
+  "upload_crop_title": "Кадрирование обложки",
+  "upload_dedicated_hint": "Работает ли он на выделенном сервере?",
+  "upload_dedicated_label": "Выделенный сервер",
+  "upload_dedicated_no": "Нет",
+  "upload_dedicated_partial": "Частично",
+  "upload_dedicated_unknown": "Не знаю",
+  "upload_dedicated_yes": "Да",
+  "upload_dependencies_hint": "Зависимости из manifest.json всегда обязательны. Здесь добавьте необязательные моды и конфликты.",
+  "upload_dependencies_label": "Зависимости",
+  "upload_dependencies_none": "Зависимостей нет.",
+  "upload_dependency_add": "Добавить",
+  "upload_dependency_add_as": "Добавить {name}: {kind}",
+  "upload_dependency_conflicts": "Конфликт",
+  "upload_dependency_duplicate": "Эта зависимость уже есть в списке.",
+  "upload_dependency_from_manifest": "Из manifest.json",
+  "upload_dependency_invalid_id": "Id в манифесте состоит только из букв, цифр, «.», «_» и «-».",
+  "upload_dependency_kind": "Связь с {id}",
+  "upload_dependency_manual": "Или введите id из манифеста",
+  "upload_dependency_no_results": "Подходящих модов нет.",
+  "upload_dependency_optional": "Необязательная",
+  "upload_dependency_range": "Диапазон версий {id}",
+  "upload_dependency_range_placeholder": "Любая версия (например, >=1.2.0)",
+  "upload_dependency_remove": "Удалить {id}",
+  "upload_dependency_required": "Обязательная",
+  "upload_dependency_search": "Искать моды и библиотеки на SOTF Mods",
+  "upload_dependency_search_failed": "Поиск не удался. Попробуйте ещё раз.",
+  "upload_description_group": "Описание",
+  "upload_description_hint": "Что он делает, как им пользоваться, известные проблемы. Работают заголовки, списки, картинки и ссылки на YouTube.",
+  "upload_description_label": "Описание (Markdown)",
+  "upload_description_placeholder": "Что делает ваш мод, как им пользоваться, известные проблемы…",
+  "upload_details_discovery": "Категория и теги",
+  "upload_details_discovery_hint": "От них зависит, где выжившие найдут его в Обзоре и поиске.",
+  "upload_details_identity": "Название и адрес",
+  "upload_details_intro": "Так ваша карточка будет выглядеть на сайте. Мы заполнили то, что узнали из файла.",
+  "upload_details_links": "Лицензия и ссылки",
+  "upload_details_title": "Описание",
+  "upload_draft_limit_detail": "Удалите ненужный черновик, чтобы начать новый.",
+  "upload_draft_limit_title": "У вас 20 черновиков.",
+  "upload_draft_missing_detail": "Его отправили или удалили. Остальные черновики по-прежнему в списке.",
+  "upload_draft_missing_title": "Этого черновика больше нет.",
+  "upload_draft_other_flow_detail": "Откройте его там, где он был начат, чтобы сохранить шаги.",
+  "upload_draft_other_flow_title": "Этот черновик относится к другому мастеру.",
+  "upload_drafts_blockers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} проблема",
+        "count__plural=few": "{count__number} проблемы",
+        "count__plural=many": "{count__number} проблем",
+        "count__plural=*": "{count__number} проблемы"
+      }
+    }
+  ],
+  "upload_drafts_counter": "{count} / {max}",
+  "upload_drafts_delete": "Удалить",
+  "upload_drafts_delete_detail": "«{name}» и его неотправленные файлы исчезнут. Отменить это нельзя.",
+  "upload_drafts_delete_named": "Удалить «{name}»",
+  "upload_drafts_delete_title": "Удалить этот черновик?",
+  "upload_drafts_deleted": "Черновик удалён",
+  "upload_drafts_empty_detail": "Всё, что вы начнёте публиковать, хранится здесь до отправки.",
+  "upload_drafts_empty_title": "Черновиков нет",
+  "upload_drafts_intro": "Сохраняются автоматически по ходу работы. Не больше {max} черновиков одновременно.",
+  "upload_drafts_loading": "Загружаем черновики",
+  "upload_drafts_quality": "Качество {score}",
+  "upload_drafts_ready": "Готов к отправке",
+  "upload_drafts_resume": "Продолжить",
+  "upload_drafts_start": "Начать публикацию",
+  "upload_drafts_step": "Шаг {current} из {total} · {label}",
+  "upload_drafts_title": "Черновики",
+  "upload_drafts_untitled": "Черновик без названия",
+  "upload_drafts_untitled_version": "Новая версия",
+  "upload_drafts_updated": "Изменён {when}",
+  "upload_drop_button": "Выбрать файл",
+  "upload_drop_hint": "{type} · до {max}",
+  "upload_drop_replace": "Перетащите другой файл, чтобы заменить",
+  "upload_drop_title_build": "Перетащите сюда чертёж .json",
+  "upload_drop_title_mod": "Перетащите сюда .zip",
+  "upload_entries_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "И ещё {count__number} файл",
+        "count__plural=few": "И ещё {count__number} файла",
+        "count__plural=many": "И ещё {count__number} файлов",
+        "count__plural=*": "И ещё {count__number} файла"
+      }
+    }
+  ],
+  "upload_entries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} файл в архиве",
+        "count__plural=few": "{count__number} файла в архиве",
+        "count__plural=many": "{count__number} файлов в архиве",
+        "count__plural=*": "{count__number} файла в архиве"
+      }
+    }
+  ],
+  "upload_entry_flagged": "Нужна проверка",
+  "upload_entry_not_allowed": "Необычный тип",
+  "upload_entry_unsafe": "Опасный путь",
+  "upload_error_loader_version": "Укажите версию вида 0.9.0.",
+  "upload_error_name": "Используйте от 2 до 80 символов.",
+  "upload_error_slug": "Используйте строчные латинские буквы, цифры и дефисы (от 2 до 80).",
+  "upload_error_title": "Загрузка прервалась.",
+  "upload_error_url": "Введите полный адрес, начинающийся с https://",
+  "upload_error_youtube": "Вставьте ссылку на видео YouTube (youtube.com/watch, youtu.be или shorts).",
+  "upload_expired_detail": "Срок загрузки истёк до её использования. Загрузите файл снова.",
+  "upload_failure_api": "Что-то пошло не так на нашей стороне. Попробуйте чуть позже.",
+  "upload_failure_expired": "Ссылка для загрузки устарела. Повторите, чтобы получить новую.",
+  "upload_failure_forbidden": "Ваш аккаунт сейчас не может загружать файлы (почта не подтверждена или действует ограничение).",
+  "upload_failure_network": "Связь оборвалась. Прогресс сохранён: продолжите, когда снова будете в сети.",
+  "upload_failure_rejected": "Проверки отклонили файл.",
+  "upload_failure_too_large": "Файл слишком большой для вашего аккаунта.",
+  "upload_failure_unsupported": "Такой тип файла не принимается.",
+  "upload_file_intro_build": "Перетащите чертёж .json, экспортированный из BuildShare. Миниатюра, число элементов и версия считываются автоматически.",
+  "upload_file_intro_mod": "Перетащите .zip, который вы отдали бы игрокам. Сначала мы откроем его в браузере и покажем содержимое — ещё до загрузки.",
+  "upload_file_intro_version": "Загрузите новый файл для «{name}». Его id в манифесте должен быть {manifestId}, а версия — выше {version}.",
+  "upload_file_title_build": "Ваш чертёж BuildShare",
+  "upload_file_title_mod": "Файл вашего мода",
+  "upload_flag_absolute_path": "Файл использует абсолютный путь.",
+  "upload_flag_blueprint_invalid": "Это не корректный чертёж BuildShare.",
+  "upload_flag_extension_flagged": "Исполняемый файл или скрипт: его должен проверить рейнджер.",
+  "upload_flag_extension_not_allowed": "Необычный для мода тип файла.",
+  "upload_flag_file_too_large": "Файл слишком большой.",
+  "upload_flag_manifest_id_mismatch": "Id в манифесте не совпадает с этим модом.",
+  "upload_flag_manifest_invalid": "В manifest.json есть ошибки.",
+  "upload_flag_manifest_missing": "manifest.json не найден (не глубже двух папок).",
+  "upload_flag_scan_detections": "Проверка безопасности нашла угрозы.",
+  "upload_flag_unknown": "Проверка не пройдена ({code}).",
+  "upload_flag_version_not_greater": "Версия не выше последней.",
+  "upload_flag_version_not_semver": "Версия не является семантической (x.y.z).",
+  "upload_flag_zip_bomb_ratio": "Подозрительно высокая степень сжатия.",
+  "upload_flag_zip_invalid": "Архив повреждён или зашифрован.",
+  "upload_flag_zip_slip": "Путь выходит за пределы папки мода («..» или ссылка).",
+  "upload_flag_zip_too_many_entries": "В архиве слишком много файлов (не больше 5000).",
+  "upload_flagged_detail": "Что-то в нём требует проверки человеком (см. предупреждения ниже). Отправить всё равно можно; публикация — после одобрения.",
+  "upload_flagged_title": "Рейнджер посмотрит этот файл.",
+  "upload_gallery_added": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Добавлено {count__number} изображение",
+        "count__plural=few": "Добавлено {count__number} изображения",
+        "count__plural=many": "Добавлено {count__number} изображений",
+        "count__plural=*": "Добавлено {count__number} изображения"
+      }
+    }
+  ],
+  "upload_gallery_alt": "Описание изображения {n}",
+  "upload_gallery_alt_placeholder": "Что на нём?",
+  "upload_gallery_choose": "Выбрать изображения",
+  "upload_gallery_counter": "{count} / {max}",
+  "upload_gallery_description": "До 10 скриншотов. Перетаскивайте их, чтобы задать порядок, и описывайте каждый для экранных чтецов.",
+  "upload_gallery_drop": "Перетащите сюда скриншоты",
+  "upload_gallery_full": "Галерея заполнена ({max} изображений).",
+  "upload_gallery_hint": "Можно несколько сразу · PNG, JPEG, WebP, AVIF или GIF · до 10 МБ каждый · максимум {max}",
+  "upload_gallery_image": "Скриншот {n}",
+  "upload_gallery_label": "Галерея",
+  "upload_gallery_move_after": "Переместить изображение {n} позже",
+  "upload_gallery_move_before": "Переместить изображение {n} раньше",
+  "upload_gallery_moved": "Изображение перемещено на позицию {position} из {total}",
+  "upload_gallery_queued": "В очереди…",
+  "upload_gallery_remove": "Удалить изображение {n}",
+  "upload_gallery_removed": "Изображение удалено",
+  "upload_gallery_reorder_hint": "Перетаскивайте изображения или используйте стрелки, чтобы изменить порядок.",
+  "upload_gallery_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Пропущен {count__number} файл (неверный тип, больше 10 МБ или галерея заполнена)",
+        "count__plural=few": "Пропущено {count__number} файла (неверный тип, больше 10 МБ или галерея заполнена)",
+        "count__plural=many": "Пропущено {count__number} файлов (неверный тип, больше 10 МБ или галерея заполнена)",
+        "count__plural=*": "Пропущено {count__number} файла (неверный тип, больше 10 МБ или галерея заполнена)"
+      }
+    }
+  ],
+  "upload_gallery_uploading": "Загрузка изображения {n}",
+  "upload_game_build_current": "{label} (текущая)",
+  "upload_game_builds_failed": "Не удалось загрузить сборки игры. Попробуйте позже.",
+  "upload_game_builds_hint": "Отмечайте только патчи, на которых вы действительно играли.",
+  "upload_game_builds_label": "Проверенные сборки игры",
+  "upload_image_no_preview": "Загружено (превью появится на странице после обработки)",
+  "upload_image_reading": "Читаем изображение…",
+  "upload_image_too_large": "Изображения — до 10 МБ.",
+  "upload_image_unreadable": "Не удалось открыть это изображение.",
+  "upload_image_wrong_type": "Используйте изображение PNG, JPEG, WebP, AVIF или GIF.",
+  "upload_inspecting_detail": "Автоматические проверки идут на нашей стороне. Можно пока заполнять другие шаги.",
+  "upload_inspecting_title": "Проверяем файл…",
+  "upload_issue_invalid_data": "Поле Data в чертеже некорректно.",
+  "upload_issue_invalid_dependencies": "Список зависимостей некорректен.",
+  "upload_issue_invalid_field": "Поле «{field}» отсутствует или некорректно.",
+  "upload_issue_invalid_id": "Id может содержать только буквы, цифры, «.», «_» и «-».",
+  "upload_issue_invalid_json": "Файл не является корректным JSON.",
+  "upload_issue_invalid_log_color": "Цвет лога должен быть в формате hex, например #FF9900.",
+  "upload_issue_invalid_number_of_elements": "NumberOfElements должно быть целым числом.",
+  "upload_issue_invalid_platform": "Платформа должна быть Client, Server или Universal.",
+  "upload_issue_invalid_priority": "Приоритет должен быть целым числом.",
+  "upload_issue_invalid_thumbnail": "Миниатюру чертежа не удаётся прочитать.",
+  "upload_issue_invalid_type": "Тип должен быть «Mod» или «Library».",
+  "upload_issue_invalid_url": "Некорректный url.",
+  "upload_issue_invalid_version": "Версия должна выглядеть как 1.2.3.",
+  "upload_issue_missing_description": "В чертеже нет Description.",
+  "upload_issue_missing_guid": "В чертеже нет Guid.",
+  "upload_issue_missing_id": "В манифесте нет id.",
+  "upload_issue_missing_name": "В чертеже нет Name.",
+  "upload_issue_missing_version": "В манифесте нет версии.",
+  "upload_issue_not_an_object": "JSON должен быть объектом.",
+  "upload_kind_build": "Постройка",
+  "upload_kind_mod": "Мод",
+  "upload_kind_version": "Новая версия",
+  "upload_license_all_rights_reserved": "Все права защищены",
+  "upload_license_cc_by4": "CC BY 4.0",
+  "upload_license_gpl3": "GPL-3.0",
+  "upload_license_hint": "Что другие могут делать с вашими файлами.",
+  "upload_license_label": "Лицензия",
+  "upload_license_mit": "MIT",
+  "upload_license_other": "Другая (пояснение в описании)",
+  "upload_license_placeholder": "Выберите лицензию",
+  "upload_license_reupload_with_credit": "Перезалив разрешён с указанием автора",
+  "upload_link_discord": "Discord",
+  "upload_link_github": "GitHub",
+  "upload_link_kofi": "Ko-fi",
+  "upload_link_other": "Другое",
+  "upload_link_patreon": "Patreon",
+  "upload_link_twitch": "Twitch",
+  "upload_link_website": "Сайт",
+  "upload_link_youtube": "YouTube",
+  "upload_links_add": "Добавить ссылку",
+  "upload_links_empty": "Ссылок пока нет.",
+  "upload_links_full": "Не больше {max} ссылок.",
+  "upload_links_kind": "Тип ссылки {n}",
+  "upload_links_label": "Ссылки для поддержки",
+  "upload_links_remove": "Удалить ссылку {n}",
+  "upload_links_url": "Адрес ссылки {n}",
+  "upload_loader_hint": "Самая старая версия RedLoader, с которой работает ваш мод.",
+  "upload_loader_label": "Минимальная версия RedLoader",
+  "upload_loading": "Загружаем мастер…",
+  "upload_manifest_author": "Автор",
+  "upload_manifest_dependencies": "Зависимости",
+  "upload_manifest_dependency_missing": "нет на SOTF Mods",
+  "upload_manifest_found": "manifest.json найден",
+  "upload_manifest_game_version": "Версия игры",
+  "upload_manifest_id": "Id в манифесте",
+  "upload_manifest_loader_version": "Версия RedLoader",
+  "upload_manifest_log_color": "Цвет лога",
+  "upload_manifest_name": "Название",
+  "upload_manifest_no_dependencies": "Не указаны",
+  "upload_manifest_platform": "Платформа",
+  "upload_manifest_type": "Тип",
+  "upload_manifest_type_library": "Библиотека",
+  "upload_manifest_type_mod": "Мод",
+  "upload_manifest_version": "Версия",
+  "upload_markdown_help": "Markdown: **жирный**, _курсив_, списки, `код`, > цитаты, ||спойлеры||.",
+  "upload_markdown_preview": "Предпросмотр",
+  "upload_markdown_preview_empty": "Предпросмотр появится здесь, пока вы пишете.",
+  "upload_markdown_recommended": "рекомендуется от {min}",
+  "upload_markdown_view": "Режим редактора",
+  "upload_markdown_write": "Текст",
+  "upload_media_intro": "Хорошие картинки продают мод. Карточки с 3 и более изображениями скачивают гораздо чаще.",
+  "upload_media_title": "Медиа",
+  "upload_multiplayer_all_players": "Нужен всем",
+  "upload_multiplayer_all_players_hint": "Его должен установить каждый игрок в сессии.",
+  "upload_multiplayer_client_side": "На стороне клиента",
+  "upload_multiplayer_client_side_hint": "Нужен только тому, кто его установил.",
+  "upload_multiplayer_host_only": "Только хосту",
+  "upload_multiplayer_host_only_hint": "Нужен только хосту; гости подключаются без него.",
+  "upload_multiplayer_label": "Мультиплеер",
+  "upload_multiplayer_singleplayer_only": "Только одиночная игра",
+  "upload_multiplayer_singleplayer_only_hint": "Не рассчитан на совместную игру.",
+  "upload_multiplayer_unknown": "Не знаю",
+  "upload_multiplayer_unknown_hint": "Это покажут полевые отчёты выживших.",
+  "upload_my_drafts": "Мои черновики",
+  "upload_name_hint": "Как его называют игроки. От 2 до 80 символов.",
+  "upload_name_label": "Название",
+  "upload_new_build": "Постройку",
+  "upload_new_build_detail": "Чертёж BuildShare в .json. Миниатюру и характеристики мы считаем сами.",
+  "upload_new_drafts_detail": "Продолжите с того места, где остановились, или начните новое ниже.",
+  "upload_new_drafts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "У вас {count__number} незаконченный черновик.",
+        "count__plural=few": "У вас {count__number} незаконченных черновика.",
+        "count__plural=many": "У вас {count__number} незаконченных черновиков.",
+        "count__plural=*": "У вас {count__number} незаконченного черновика."
+      }
+    }
+  ],
+  "upload_new_intro": "Чем вы поделитесь с выжившими сегодня?",
+  "upload_new_mod": "Мод или библиотеку",
+  "upload_new_mod_detail": ".zip для RedLoader с manifest.json. Шесть коротких шагов.",
+  "upload_new_title": "Публикация",
+  "upload_new_version_more": "Ещё в разделе «Мои моды»: {count}",
+  "upload_new_version_none": "Здесь появятся ваши опубликованные моды, чтобы добавить новую версию.",
+  "upload_new_version_title": "Обновить один из ваших модов",
+  "upload_next": "Далее",
+  "upload_no_permission_detail": "Рейнджер временно ограничил загрузки. Подробности — в Сигналах, или напишите команде.",
+  "upload_no_permission_title": "Публикация для этого аккаунта приостановлена.",
+  "upload_notify_hint": "Подписчики мода получат сигнал об этой версии.",
+  "upload_notify_label": "Оповестить подписчиков",
+  "upload_nsfw_hint": "Скрыт от тех, кто его не включил.",
+  "upload_nsfw_label": "Контент для взрослых (NSFW)",
+  "upload_optional": "Необязательно",
+  "upload_platform_client": "Клиент",
+  "upload_platform_client_hint": "Работает в игре, в которую вы играете.",
+  "upload_platform_hint": "Где его загружает RedLoader.",
+  "upload_platform_label": "Платформа",
+  "upload_platform_server": "Сервер",
+  "upload_platform_server_hint": "Работает только на выделенном сервере.",
+  "upload_platform_universal": "Универсальный",
+  "upload_platform_universal_hint": "Работает и там, и там.",
+  "upload_preflight_category_invalid": "Этой категории больше нет: выберите другую.",
+  "upload_preflight_category_missing": "Выберите категорию.",
+  "upload_preflight_category_ok": "Категория выбрана.",
+  "upload_preflight_changelog_missing": "Нет списка изменений: подписчикам интересно, что поменялось.",
+  "upload_preflight_changelog_ok": "Список изменений написан.",
+  "upload_preflight_dependency_cycle": "Зависимости образуют цикл.",
+  "upload_preflight_dependency_unknown": "Одной зависимости нет на SOTF Mods: игрокам придётся искать её в другом месте.",
+  "upload_preflight_description_ok": "Описание подробное.",
+  "upload_preflight_description_raw_html": "В описании есть HTML: он будет показан как текст.",
+  "upload_preflight_description_short": "Описание короткое (рекомендуется от 300 символов).",
+  "upload_preflight_file_expired": "Срок загрузки истёк: загрузите файл заново.",
+  "upload_preflight_file_failed": "Файл не прошёл автоматические проверки.",
+  "upload_preflight_file_flagged": "Перед публикацией файл должен проверить рейнджер.",
+  "upload_preflight_file_inspecting": "Файл ещё проверяется.",
+  "upload_preflight_file_missing": "Загрузите файл.",
+  "upload_preflight_file_ok": "Файл прошёл автоматические проверки.",
+  "upload_preflight_fix": "Исправить",
+  "upload_preflight_gallery_below_3": "В галерее меньше 3 изображений.",
+  "upload_preflight_gallery_ok": "В галерее 3 изображения или больше.",
+  "upload_preflight_license_missing": "Лицензия не выбрана.",
+  "upload_preflight_license_ok": "Лицензия выбрана.",
+  "upload_preflight_manifest_id_taken": "Этот id из манифеста уже занят другим модом.",
+  "upload_preflight_media_invalid": "Одно изображение не обработалось: удалите его или загрузите снова.",
+  "upload_preflight_media_processing": "Изображения ещё обрабатываются.",
+  "upload_preflight_name_missing": "Добавьте название (от 2 символов).",
+  "upload_preflight_name_ok": "Название указано.",
+  "upload_preflight_platform_missing": "Платформа не указана.",
+  "upload_preflight_platform_ok": "Платформа указана.",
+  "upload_preflight_refreshing": "Обновляем…",
+  "upload_preflight_short_description_missing": "Добавьте краткое описание.",
+  "upload_preflight_short_description_ok": "Краткое описание есть.",
+  "upload_preflight_slug_invalid": "Некорректный адрес.",
+  "upload_preflight_slug_ok": "Адрес свободен.",
+  "upload_preflight_slug_taken": "У вас уже есть карточка по этому адресу.",
+  "upload_preflight_source_missing": "Нет ссылки на исходный код.",
+  "upload_preflight_source_ok": "Ссылка на исходный код есть.",
+  "upload_preflight_tags_missing": "Нет тегов: они помогают выжившим найти мод.",
+  "upload_preflight_tags_ok": "Теги выбраны.",
+  "upload_preflight_tags_unknown": "Некоторых тегов больше нет.",
+  "upload_preflight_target_missing": "Мода для этой версии больше не существует.",
+  "upload_preflight_target_removed": "Мод этой версии удалён.",
+  "upload_preflight_thumbnail_missing": "Нет обложки.",
+  "upload_preflight_thumbnail_ok": "Обложка есть.",
+  "upload_preflight_title": "Предварительная проверка",
+  "upload_preflight_waiting": "Проверки появятся после сохранения черновика.",
+  "upload_problems_label": "Ошибки и предупреждения файла",
+  "upload_progress_direct": "Файл идёт напрямую в хранилище. Если связь оборвётся, загрузку можно продолжить.",
+  "upload_progress_finishing": "Завершаем…",
+  "upload_progress_label": "Ход загрузки",
+  "upload_progress_value": "{percent} · {loaded} из {total}",
+  "upload_quality_description": "Описание от 300 символов",
+  "upload_quality_gallery": "3 и больше изображений в галерее",
+  "upload_quality_hint": "Полные карточки выше в Обзоре и чаще скачиваются.",
+  "upload_quality_license": "Лицензия",
+  "upload_quality_met": "готово",
+  "upload_quality_missing": "не хватает",
+  "upload_quality_platform": "Платформа",
+  "upload_quality_source": "Ссылка на исходный код",
+  "upload_quality_tags": "Теги",
+  "upload_quality_title": "Качество карточки",
+  "upload_reading_build": "Читаем чертёж…",
+  "upload_reading_zip": "Открываем zip в браузере…",
+  "upload_ready_detail": "Всё, что смотрят автоматические проверки, в порядке.",
+  "upload_ready_title": "Файл проверен.",
+  "upload_reference": "Код: {ref}",
+  "upload_rejected_detail": "Исправьте ошибки ниже и загрузите его снова.",
+  "upload_rejected_title": "Файл отклонён.",
+  "upload_release_intro": "Версия берётся из manifest.json. Расскажите игрокам, что изменилось.",
+  "upload_release_title": "Выпуск",
+  "upload_resume": "Продолжить загрузку",
+  "upload_retry": "Повторить",
+  "upload_review_intro": "Последний взгляд перед тем, как это увидит рейнджер. Исправьте ошибки; предупреждения — это советы.",
+  "upload_review_title": "Проверка",
+  "upload_safe_remove_label": "Можно ли удалить его, не сломав сохранение?",
+  "upload_safe_remove_no": "Нет",
+  "upload_safe_remove_no_hint": "Сохранения, сделанные с ним, могут сломаться без него.",
+  "upload_safe_remove_unknown": "Не знаю",
+  "upload_safe_remove_unknown_hint": "Игрокам посоветуют сначала сделать резервную копию.",
+  "upload_safe_remove_yes": "Да",
+  "upload_safe_remove_yes_hint": "Удаление не затрагивает сохранения.",
+  "upload_save_draft": "Сохранить черновик",
+  "upload_saved_toast": "Черновик сохранён",
+  "upload_select_placeholder": "Выберите…",
+  "upload_severity_error": "Ошибка",
+  "upload_severity_ok": "Всё в порядке",
+  "upload_severity_warning": "Предупреждение",
+  "upload_short_description_label": "Краткое описание",
+  "upload_slug_label": "Адрес",
+  "upload_slug_preview": "Ваша карточка будет по адресу",
+  "upload_source_hint": "Открытый репозиторий вызывает доверие и помогает другим учиться.",
+  "upload_source_label": "Исходный код",
+  "upload_step_compat": "Совместимость",
+  "upload_step_compat_hint": "Сборки игры, мультиплеер, зависимости",
+  "upload_step_details": "Описание",
+  "upload_step_details_hint": "Название, описание, теги",
+  "upload_step_done": "готово",
+  "upload_step_file": "Файл",
+  "upload_step_file_hint": "Zip или чертёж",
+  "upload_step_media": "Медиа",
+  "upload_step_media_hint": "Обложка, галерея, видео",
+  "upload_step_needs_attention": "требует внимания",
+  "upload_step_of": "Шаг {current} из {total}",
+  "upload_step_release": "Выпуск",
+  "upload_step_release_hint": "Версия и изменения",
+  "upload_step_review": "Проверка",
+  "upload_step_review_hint": "Проверки и отправка",
+  "upload_steps_label": "Шаги публикации",
+  "upload_submit": "Отправить на пост рейнджеров",
+  "upload_submit_blocked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Осталась {count__number} ошибка.",
+        "count__plural=few": "Осталось {count__number} ошибки.",
+        "count__plural=many": "Осталось {count__number} ошибок.",
+        "count__plural=*": "Осталось {count__number} ошибки."
+      }
+    }
+  ],
+  "upload_submit_failed": "Не удалось отправить.",
+  "upload_submit_ready": "Готово. Первые публикации проверяет рейнджер; у проверенных авторов они выходят сразу.",
+  "upload_submit_ready_version": "Готово. Подписчики получат оповещение, когда версия выйдет.",
+  "upload_submit_version": "Опубликовать эту версию",
+  "upload_success_another": "Опубликовать что-то ещё",
+  "upload_success_basecamp": "Вернуться в лагерь",
+  "upload_success_live_detail": "«{name}» опубликован. Поделитесь им с выжившими.",
+  "upload_success_live_title": "Опубликовано!",
+  "upload_success_live_version": "Новая версия «{name}» вышла, подписчики получают оповещения.",
+  "upload_success_preview": "Предпросмотр страницы",
+  "upload_success_queued_detail": "«{name}» в очереди на проверку. Вы получите сигнал, как только рейнджер примет решение.",
+  "upload_success_queued_title": "Отправлено на пост рейнджеров",
+  "upload_success_queued_version": "Новая версия «{name}» ждёт рейнджера. Вы получите сигнал, когда она выйдет.",
+  "upload_success_view": "Открыть страницу",
+  "upload_summary_address": "Адрес",
+  "upload_summary_name": "Название",
+  "upload_summary_version": "Версия",
+  "upload_summary_version_build": "Новая версия постройки",
+  "upload_tags_counter": "{count} / {max}",
+  "upload_tags_filter": "Фильтр тегов",
+  "upload_tags_full": "Выбрано {max} тегов: уберите один, чтобы выбрать другой.",
+  "upload_tags_label": "Теги",
+  "upload_tags_none": "Подходящих тегов нет.",
+  "upload_target_removed_detail": "Удалённые моды не могут получать новые версии.",
+  "upload_target_removed_title": "Этот мод удалён.",
+  "upload_title_build": "Новая постройка",
+  "upload_title_mod": "Новый мод",
+  "upload_title_version": "Новая версия: {name}",
+  "upload_verify_email_detail": "Откройте ссылку из письма и возвращайтесь: черновик вас дождётся.",
+  "upload_verify_email_title": "Подтвердите почту, чтобы публиковать.",
+  "upload_version_build": "Версии построек задаются датой: каждая загрузка — новая версия.",
+  "upload_version_draft_exists_detail": "Вернитесь к тому черновику или продолжайте здесь, чтобы начать заново.",
+  "upload_version_draft_exists_title": "Вы уже начали версию для этого мода.",
+  "upload_version_first": "Первый выпуск",
+  "upload_version_from_manifest": "Считана из manifest.json. Чтобы изменить её, отредактируйте манифест и загрузите файл заново.",
+  "upload_version_invalid_title": "Эту версию нельзя опубликовать.",
+  "upload_version_label": "Версия",
+  "upload_version_pending": "Сначала выберите файл: версия считывается из него.",
+  "upload_version_previous": "Предыдущая: v{version}",
+  "upload_video_group": "Видео",
+  "upload_video_hint": "Обзор или инструкция, показывается после галереи.",
+  "upload_video_label": "Видео на YouTube"
 }

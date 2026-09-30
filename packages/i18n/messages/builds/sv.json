@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, one {# svar till} other {# svar till}}",
   "builds_related_title": "Fler ritningar",
   "builds_related_all": "Alla byggen",
+  "builds_feed_title": "SOTF Mods: nya och uppdaterade byggen",
   "builds_banner_pending_title": "Granskas",
   "builds_banner_pending_text": "En ranger granskar bygget snart. Tills dess syns det inte i listor och sökningar.",
   "builds_banner_unlisted_title": "Olistat",

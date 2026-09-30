@@ -1041,6 +1041,7 @@
   "builds_copy_failed": "Nie udało się skopiować. Zaznacz tekst i skopiuj go ręcznie.",
   "builds_description_empty": "Budowniczy nie napisał jeszcze opisu. Karta techniczna zawiera fakty.",
   "builds_description_title": "O tym buildzie",
+  "builds_feed_title": "SOTF Mods: nowe i zaktualizowane buildy",
   "builds_follow_error": "Nie udało się zaktualizować plecaka. Sprawdź połączenie i spróbuj ponownie.",
   "builds_follow_hint": "Otrzymuj powiadomienie, gdy ten build dostanie nową wersję",
   "builds_followed": "Dodano do plecaka.",
@@ -1859,6 +1860,432 @@
   "console_update_detail": "Zaktualizowaliśmy SOTF Mods, gdy tu byłeś. Odśwież, aby mieć najnowszą wersję.",
   "console_update_reload": "Odśwież",
   "console_update_title": "Jest nowa wersja",
+  "content_about_disclaimer_title": "Nieoficjalna społeczność fanów",
+  "content_about_eyebrow": "O nas",
+  "content_about_links_title": "Wokół obozu",
+  "content_binding_note": "To tłumaczenie ma charakter pomocniczy. Jeśli różni się od wersji angielskiej, obowiązuje wersja angielska.",
+  "content_brand_asset_app_icon": "Ikona aplikacji",
+  "content_brand_asset_app_icon_hint": "Pinezka na tle Noc, do awatarów i skrótów.",
+  "content_brand_asset_horizontal": "Logo poziome",
+  "content_brand_asset_horizontal_hint": "Wersja podstawowa: sygnet i logotyp obok siebie.",
+  "content_brand_asset_mark": "Sygnet (Contour Pin)",
+  "content_brand_asset_mark_hint": "Sama pinezka. Między 16 a 24 px używaj wersji uproszczonej.",
+  "content_brand_asset_og": "Obraz podglądu w mediach społecznościowych",
+  "content_brand_asset_og_hint": "1200 × 630, do podglądów linków i miniatur.",
+  "content_brand_asset_stacked": "Logo pionowe",
+  "content_brand_asset_stacked_hint": "Do kwadratowych i wysokich miejsc.",
+  "content_brand_asset_wordmark": "Logotyp",
+  "content_brand_asset_wordmark_hint": "„SOTF MODS” bez pinezki, do wąskich poziomych miejsc.",
+  "content_brand_color_blueprint": "Plan (buildy)",
+  "content_brand_color_bone": "Kość (tekst, tło Dzień)",
+  "content_brand_color_flare_day": "Raca na Dniu",
+  "content_brand_color_flare_night": "Raca na Nocy",
+  "content_brand_color_lichen": "Porost (działa)",
+  "content_brand_color_night": "Noc (tło)",
+  "content_brand_color_signal": "Sygnał (na żywo, informacje)",
+  "content_brand_color_solafite": "Solafit (wyróżnione)",
+  "content_brand_colors_text": "Noc i Kość to podstawa; Raca to jedyny akcent. Kolory stanów niosą znaczenie, nie służą do dekoracji.",
+  "content_brand_colors_title": "Kolory",
+  "content_brand_description": "Pobierz logo, sygnet i kolory SOTF Mods i zobacz, jak linkować do serwisu ze swojego moda, filmu lub serwera.",
+  "content_brand_do_contrast": "Pliki Noc stosuj na ciemnych tłach, a pliki Dzień na jasnych.",
+  "content_brand_do_link": "Linkuj logo do sotf-mods.com.",
+  "content_brand_do_size": "Używaj pełnego sygnetu w rozmiarze od 24 px (uproszczonego od 16 px).",
+  "content_brand_do_space": "Zostaw wokół logo wolne pole równe co najmniej ćwierci jego wysokości.",
+  "content_brand_do_title": "Rób tak",
+  "content_brand_dont_distort": "Nie rozciągaj, nie obracaj, nie przycinaj ani nie przestawiaj jego elementów.",
+  "content_brand_dont_endorse": "Nie sugeruj, że SOTF Mods popiera, sponsoruje lub zweryfikował twój projekt.",
+  "content_brand_dont_game": "Nie łącz go z oficjalnym logo gry, jej grafikami ani imionami postaci.",
+  "content_brand_dont_recolor": "Nie zmieniaj kolorów logo ani nie dodawaj obrysów i efektów.",
+  "content_brand_dont_title": "Unikaj",
+  "content_brand_eyebrow": "Materiały marki",
+  "content_brand_font_display": "Display: tytuły i liczby, zawsze wielkimi literami.",
+  "content_brand_font_link": "Pobierz {name}",
+  "content_brand_font_mono": "Odczyty: wersje, identyfikatory i kod.",
+  "content_brand_font_ui": "Interfejs i tekst do czytania.",
+  "content_brand_lead": "Linkujesz do SOTF Mods ze strony moda, filmu lub serwera? Użyj tych plików i trzymaj się poniższych zasad.",
+  "content_brand_legal_text": "Nazwa i logo SOTF Mods identyfikują ten serwis społeczności. Możesz ich używać, aby wspomnieć o serwisie lub do niego linkować; każde inne użycie wymaga naszej zgody.",
+  "content_brand_legal_title": "Znaki towarowe",
+  "content_brand_link_text": "Skopiuj ten kod do README, na swoją stronę lub do opisu moda. Wskazuje na logo online, więc zawsze jest aktualne.",
+  "content_brand_link_title": "Linkuj do SOTF Mods",
+  "content_brand_logos_text": "Każdy plik ma wersję Noc na ciemne tła i wersję Dzień na jasne. Najlepiej SVG; PNG tam, gdzie SVG nie jest obsługiwany.",
+  "content_brand_logos_title": "Loga",
+  "content_brand_on_day": "Jasne tła",
+  "content_brand_on_night": "Ciemne tła",
+  "content_brand_rules_title": "Używanie logo",
+  "content_brand_snippet_label": "Kod HTML",
+  "content_brand_title": "Marka SOTF Mods",
+  "content_brand_type_title": "Kroje pisma",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Odczyty API v2",
+        "bucket=legacyRead": "Odczyty starszego API",
+        "bucket=downloads": "Pobrania",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Kod",
+  "content_dev_col_limit": "Limit",
+  "content_dev_col_meaning": "Znaczenie",
+  "content_dev_col_method": "Metoda",
+  "content_dev_col_notes": "Uwagi",
+  "content_dev_col_path": "Ścieżka",
+  "content_dev_col_scope": "Zakres",
+  "content_dev_col_status": "Status",
+  "content_dev_col_summary": "Co robi",
+  "content_dev_endpoints_caption": "Publiczne endpointy: {domain}",
+  "content_dev_endpoints_text": "Anonimowe, z pamięcią podręczną i CORS. Dokumentacja opisuje parametry, odpowiedzi i błędy każdego z nich.",
+  "content_dev_endpoints_title": "Publiczne endpointy do odczytu",
+  "content_dev_errors_text": "Pole code błędu ma jedną z tych wartości. URI type każdego problemu wskazuje na jego wiersz tutaj.",
+  "content_dev_errors_title": "Kody błędów",
+  "content_dev_eyebrow": "Dla deweloperów",
+  "content_dev_legacy_deprecated": "Zamrożone i wycofywane",
+  "content_dev_legacy_deprecated_text": "Te trasy odpowiadają do {date}, potem zostaną wyłączone. Ich odpowiedzi zawierają te nagłówki:",
+  "content_dev_legacy_deviations": "Celowe różnice względem dawnego działania",
+  "content_dev_legacy_retired": "Wyłączone",
+  "content_dev_legacy_retired_text": "Każda metoda na tych trasach odpowiada 410 Gone z tą treścią:",
+  "content_dev_legacy_stable": "Obsługiwane (zgodne co do bajtu)",
+  "content_dev_legacy_text": "API pierwszej wersji serwisu nadal odpowiada pod api.sotf-mods.com/api/* i sotf-mods.com/api/*, aby RedManager, UpdatesChecker i mody w grze działały dalej. Nowe integracje powinny korzystać z v2.",
+  "content_dev_legacy_title": "Starsze API i wycofywanie",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "na IP",
+        "key=user": "na konto",
+        "key=chat": "na gracza",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "Po przekroczeniu limitu API odpowiada kodem 429 z nagłówkiem Retry-After. Buforuj odpowiedzi i respektuj ETagi, a rzadko się do niego zbliżysz.",
+  "content_dev_limits_title": "Limity zapytań",
+  "content_dev_link_docs_text": "Wszystkie endpointy v2 ze schematami i przykładami, interaktywnie.",
+  "content_dev_link_docs_title": "Dokumentacja API",
+  "content_dev_link_legacy_text": "Nadal działa; zamrożone trasy zostaną wyłączone {date}.",
+  "content_dev_link_legacy_title": "Starsze API",
+  "content_dev_link_openapi_text": "Specyfikacja do odczytu maszynowego, do wygenerowania klienta.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Informacja o wersji roboczej",
+  "content_draft_text": "Ten tekst opisuje, jak SOTF Mods działa dziś, ale nie sprawdził go jeszcze prawnik. Może się zmienić przed wersją ostateczną; każdą zmianę opatrzymy datą.",
+  "content_draft_title": "Wersja robocza – czeka na weryfikację prawną",
+  "content_error_ref": "Ref.: {ref}",
+  "content_fallback_binding": "W przypadku tekstów prawnych obowiązuje wersja angielska.",
+  "content_fallback_link": "Otwórz stronę w języku: {original}",
+  "content_fallback_text": "Ta strona nie jest jeszcze dostępna w języku: {language}, więc czytasz oryginał w języku: {original}.",
+  "content_install_eyebrow": "Poradnik instalacji",
+  "content_install_faq_nav": "FAQ",
+  "content_install_faq_title": "Najczęstsze pytania",
+  "content_install_get_redmanager": "Pobierz RedManager",
+  "content_install_help_discord": "Zapytaj na Discordzie",
+  "content_install_help_text": "Sprawdź, czy obecna łatka gry nie zepsuła twoich modów, albo zapytaj społeczność. Podaj wersję gry, wersję RedLoadera i mody, których używasz.",
+  "content_install_help_title": "Nadal utknąłeś?",
+  "content_install_kit_more": "Zobacz wszystkie Kity",
+  "content_install_kit_nav": "Kit startowy",
+  "content_install_kit_text": "Wybór zespołu: mody, które dobrze działają razem. Dobry pierwszy ekwipunek.",
+  "content_install_kit_title": "Kit startowy",
+  "content_install_manual": "Zainstaluj ręcznie",
+  "content_install_progress": "Postęp czytania",
+  "content_install_rail_label": "Sekcje poradnika",
+  "content_install_rail_title": "Kroki",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Krok {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "W skrócie",
+  "content_install_verified": "Sprawdzone z grą {game} · RedLoader {loader}",
+  "content_kelvin_by": "Mod autorstwa",
+  "content_kelvin_credit": "KelvinSeek tworzy i utrzymuje {author}; SOTF Mods obsługuje tylko API, z którym się komunikuje. Kelvin i Sons of the Forest należą do Endnight Games; to projekt fanowski.",
+  "content_kelvin_description": "KelvinSeek pozwala rozmawiać z Kelvinem w Sons of the Forest i wydawać mu polecenia własnymi słowami. Jak działa, jakie ma limity i co dzieje się z twoimi wiadomościami.",
+  "content_kelvin_dev_hint": "Budujesz coś podobnego? Endpoint jest częścią starszego API:",
+  "content_kelvin_eyebrow": "Mod społeczności",
+  "content_kelvin_history_text": "Wcześniej nazywał się Kelvin-GPT. Stara wersja, która wymagała twojego klucza OpenAI, została wyłączona: ta trasa ujawniała klucz w adresie i teraz odpowiada „Gone”.",
+  "content_kelvin_how_1": "Zainstaluj RedLoader i mod KelvinSeek.",
+  "content_kelvin_how_2": "W grze podejdź do Kelvina i naciśnij E, aby otworzyć notatnik.",
+  "content_kelvin_how_3": "Naciśnij T, aby pisać, wpisz wiadomość i naciśnij Enter.",
+  "content_kelvin_how_4": "Albo użyj konsoli: „askkelvin …” wysyła wiadomość, a „clearkelvinchathistory” rozpoczyna nową rozmowę.",
+  "content_kelvin_how_title": "Jak używać",
+  "content_kelvin_install_hint": "Pierwszy raz z modami? Zacznij od poradnika:",
+  "content_kelvin_lead": "Napisz do Kelvina własnymi słowami: odpowie i zrobi, o co prosisz, od przyniesienia drewna po zbudowanie schronienia.",
+  "content_kelvin_limits_budget": "Usługa AI ma dzienny budżet. Gdy się wyczerpie, Kelvin nadal cię rozumie: do następnego dnia wybiera bez AI najbardziej podobne znane polecenie.",
+  "content_kelvin_limits_busy": "Jeśli piszesz za szybko, Kelvin prosi o kilka sekund przerwy. Nic nie przepada.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Do {perMinute__number} wiadomości na minutę i {perDay__number} dziennie na gracza."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Limity",
+  "content_kelvin_open_mod": "Otwórz stronę moda",
+  "content_kelvin_privacy_ai": "Treść twoich wiadomości trafia do dostawcy AI, aby wygenerować odpowiedź. Nie wpisuj danych osobowych.",
+  "content_kelvin_privacy_hash": "Identyfikator czatu wysyłany przez mod (zawiera twoje ID i nazwę Steam) jest przechowywany tylko jako nieodwracalny skrót.",
+  "content_kelvin_privacy_link": "Przeczytaj politykę prywatności",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Ostatnie wiadomości każdej rozmowy są przechowywane przez {days__number} dzień, aby Kelvin pamiętał kontekst, a potem usuwane.",
+        "days__plural=few": "Ostatnie wiadomości każdej rozmowy są przechowywane przez {days__number} dni, aby Kelvin pamiętał kontekst, a potem usuwane.",
+        "days__plural=many": "Ostatnie wiadomości każdej rozmowy są przechowywane przez {days__number} dni, aby Kelvin pamiętał kontekst, a potem usuwane.",
+        "days__plural=*": "Ostatnie wiadomości każdej rozmowy są przechowywane przez {days__number} dnia, aby Kelvin pamiętał kontekst, a potem usuwane."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Twoje wiadomości",
+  "content_kelvin_status_compat": "Na buildzie {build}",
+  "content_kelvin_status_downloads": "Pobrania",
+  "content_kelvin_status_title": "Stan na SOTF Mods",
+  "content_kelvin_status_unavailable": "Nie udało się wczytać obecnego stanu moda. Najnowsza wersja jest na stronie moda.",
+  "content_kelvin_status_updated": "Ostatnie wydanie",
+  "content_kelvin_status_version": "Najnowsza wersja",
+  "content_kelvin_title": "KelvinSeek: rozmawiaj z Kelvinem w grze",
+  "content_kelvin_what_text": "KelvinSeek to mod autorstwa {author}. Wysyła to, co piszesz do Kelvina, do usługi AI przez API SOTF Mods i zamienia odpowiedź w wypowiedź Kelvina, a gdy o coś prosisz — w jedno z jego poleceń w grze. Nie potrzebujesz własnego klucza API.",
+  "content_kelvin_what_title": "Co to jest",
+  "content_legal_eyebrow": "Informacje prawne",
+  "content_legal_other": "Inne strony prawne",
+  "content_md_alert_caution": "Ostrożnie",
+  "content_md_alert_important": "Ważne",
+  "content_md_alert_note": "Uwaga",
+  "content_md_alert_tip": "Wskazówka",
+  "content_md_alert_warning": "Ostrzeżenie",
+  "content_md_spoiler": "Spoiler",
+  "content_news_back": "Wszystkie aktualności",
+  "content_news_byline": "autor: {author}",
+  "content_news_description": "Ogłoszenia zespołu SOTF Mods: nowe funkcje, zmiany w serwisie i API oraz plany na przyszłość.",
+  "content_news_empty": "Na razie brak aktualności. W lesie cisza.",
+  "content_news_eyebrow": "Notatki z terenu",
+  "content_news_feed": "Subskrybuj przez RSS",
+  "content_news_feed_title": "SOTF Mods — Aktualności",
+  "content_news_read": "Czytaj",
+  "content_news_title": "Aktualności",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Działa: {works__number}, zepsute: {broken__number}, czeka na zgłoszenia: {pending__number}"
+      }
+    }
+  ],
+  "content_radar_breaking": "Aktualizacja psująca mody",
+  "content_radar_broken_empty": "Żaden z czołowych modów nie jest zgłoszony jako zepsuty na {build}.",
+  "content_radar_broken_title": "Zgłoszone jako zepsute",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} czołowego moda potwierdzone na {build}",
+        "count__plural=few": "{share} z {count__number} czołowych modów potwierdzone na {build}",
+        "count__plural=many": "{share} z {count__number} czołowych modów potwierdzone na {build}",
+        "count__plural=*": "{share} z {count__number} czołowych modów potwierdzone na {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "działa: {works__number} · częściowo: {partial__number} · zepsuty: {broken__number}"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Mody czekające na zgłoszenia",
+  "content_radar_cta_text": "Otwórz mod, wybierz, jak grałeś (solo, host, klient lub serwer dedykowany) i powiedz, czy działa. Każde zgłoszenie terenowe daje XP i oszczędza innym ocalałym zepsutego zapisu.",
+  "content_radar_cta_title": "Sprawdziłeś któryś z nich na {build}?",
+  "content_radar_current": "Obecny build",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Łatka {build}: {share} z 50 najczęściej pobieranych modów do Sons of the Forest potwierdzonych przez graczy — działa: {works__number}, zepsute: {broken__number}, czeka na zgłoszenia: {pending__number}."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Które mody do Sons of the Forest działają na obecnej łatce gry: stan RedLoadera i zgłoszenia terenowe graczy dla 50 najczęściej pobieranych modów.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} pobranie w 30 dni",
+        "count__plural=few": "{display} pobrania w 30 dni",
+        "count__plural=many": "{display} pobrań w 30 dni",
+        "count__plural=*": "{display} pobrania w 30 dni"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Działa",
+        "status=partial": "Działa częściowo",
+        "status=broken": "Zepsuty",
+        "status=*": "Nieznany"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Dla tego buildu nie zapisano jeszcze stanu loadera.",
+  "content_radar_ecosystem_title": "Loader i menedżer na {build}",
+  "content_radar_empty_text": "Nie zarejestrowano jeszcze żadnego buildu gry. Gdy strażnicy zapiszą obecną łatkę, ta strona pokaże, które popularne mody na niej działają.",
+  "content_radar_empty_title": "Radar się rozgrzewa",
+  "content_radar_error_text": "Nie udało się wczytać danych o zgodności. Spróbuj ponownie za minutę; jeśli błąd się powtarza, daj nam znać na Discordzie, podając poniższy numer referencyjny.",
+  "content_radar_error_title": "Brak sygnału",
+  "content_radar_history_empty": "To pierwszy zapisany build.",
+  "content_radar_history_title": "Historia buildów",
+  "content_radar_install_link": "Jak zainstalować RedLoader",
+  "content_radar_legend_outdated": "„Możliwie nieaktualny” oznacza, że najnowsza wersja jest starsza niż ostatnia aktualizacja psująca mody i od tego czasu nikt nie potwierdził, że działa.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Zgłoszenia mają wagi: test samego autora liczy się podwójnie, zweryfikowanych twórców 1,5×, zupełnie nowych kont połowę. Poniżej {min__number} ważonych zgłoszeń mod pozostaje nieprzetestowany; od {works} działających uznaje się, że działa; od {broken} zepsutych — że jest zepsuty; w pozostałych przypadkach wynik jest mieszany."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Jak ustalany jest stan",
+  "content_radar_list_name": "Czołowe mody do Sons of the Forest na łatce {build}",
+  "content_radar_notes": "Informacje o łatce",
+  "content_radar_outdated": "Możliwie nieaktualny",
+  "content_radar_past_link": "Zobacz obecny build",
+  "content_radar_past_notice": "To starszy build. Gra jest teraz w wersji {build}.",
+  "content_radar_pending_empty": "Każdy czołowy mod ma na tym buildzie jasny werdykt.",
+  "content_radar_pending_hint": "Nieprzetestowane lub z mieszanymi wynikami",
+  "content_radar_pending_title": "Czekają na zgłoszenia terenowe",
+  "content_radar_released": "Wydano {date}",
+  "content_radar_report": "Zgłoś",
+  "content_radar_seo_title": "Czy mody do SOTF działają na łatce {build}? — Patch Radar",
+  "content_radar_seo_title_generic": "Czy mody do SOTF działają na najnowszej łatce? — Patch Radar",
+  "content_radar_stat_broken": "Zepsute",
+  "content_radar_stat_pending": "Brak zgłoszeń",
+  "content_radar_stat_works": "Działają",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Działa",
+        "status=mixed": "Mieszane",
+        "status=broken": "Zepsuty",
+        "status=*": "Brak danych"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Podsumowanie",
+  "content_radar_title": "Czy mody do SOTF działają na łatce {build}?",
+  "content_radar_works_empty": "Żaden czołowy mod nie jest jeszcze potwierdzony na {build}. Sprawdziłeś któryś? Daj znać.",
+  "content_radar_works_title": "Potwierdzone jako działające",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} min czytania",
+        "minutes__plural=few": "{minutes__number} min czytania",
+        "minutes__plural=many": "{minutes__number} min czytania",
+        "minutes__plural=*": "{minutes__number} min czytania"
+      }
+    }
+  ],
+  "content_toc_title": "Na tej stronie",
+  "content_updated_on": "Ostatnia aktualizacja: {date}",
   "emails_auth_deleted_body": "Twoje dane osobowe zostały usunięte. Komentarze i recenzje pozostają jako „Usunięty ocalały”. Dziękujemy, że byłeś częścią wyspy.",
   "emails_auth_deleted_heading": "Konto usunięte",
   "emails_auth_deleted_preview": "Twoje dane osobowe zostały usunięte.",
@@ -3795,6 +4222,229 @@
   "landing_trending_empty": "Spokojny tydzień na wyspie. Mody pojawią się tu, gdy ocaleni zaczną je pobierać.",
   "landing_trending_hint": "Według pobrań z ostatnich 7 dni",
   "landing_trending_title": "Popularne w tym tygodniu",
+  "me_action_download": "Pobierz",
+  "me_action_failed": "To się nie udało",
+  "me_action_update": "Pobierz aktualizację",
+  "me_backpack_description": "Mody, które obserwujesz, z ich aktualizacjami i działaniem na bieżącym buildzie.",
+  "me_backpack_empty_text": "Stuknij ♥ przy modzie, aby schować go tutaj i dowiadywać się o aktualizacjach.",
+  "me_backpack_empty_title": "Twój plecak jest pusty",
+  "me_backpack_list_label": "Obserwowane mody",
+  "me_backpack_no_broken_text": "Żaden z twoich modów nie jest zgłaszany jako niedziałający na bieżącym buildzie gry.",
+  "me_backpack_no_broken_title": "Nic nie zgłoszono jako zepsute",
+  "me_backpack_no_updates_text": "Żaden mod w plecaku nie ma nowszej wersji niż ta, którą pobrałeś.",
+  "me_backpack_no_updates_title": "Wszystko jest aktualne",
+  "me_backpack_notify_off": "Koniec sygnałów o aktualizacjach {mod}",
+  "me_backpack_notify_on": "Dostaniesz sygnał, gdy {mod} się zaktualizuje",
+  "me_backpack_readout": "Twój ekwipunek",
+  "me_backpack_removed": "{mod} wypadł z twojego plecaka",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} mod w plecaku · wszystko aktualne",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} mod w plecaku · {updates__number} aktualizacja dostępna",
+        "count__plural=one, updates__exact=*, updates__plural=few": "{count__number} mod w plecaku · {updates__number} aktualizacje dostępne",
+        "count__plural=one, updates__exact=*, updates__plural=many": "{count__number} mod w plecaku · {updates__number} aktualizacji dostępnych",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} mod w plecaku · {updates__number} aktualizacji dostępnej",
+        "count__plural=few, updates__exact=0, updates__plural=*": "{count__number} mody w plecaku · wszystko aktualne",
+        "count__plural=few, updates__exact=*, updates__plural=one": "{count__number} mody w plecaku · {updates__number} aktualizacja dostępna",
+        "count__plural=few, updates__exact=*, updates__plural=few": "{count__number} mody w plecaku · {updates__number} aktualizacje dostępne",
+        "count__plural=few, updates__exact=*, updates__plural=many": "{count__number} mody w plecaku · {updates__number} aktualizacji dostępnych",
+        "count__plural=few, updates__exact=*, updates__plural=*": "{count__number} mody w plecaku · {updates__number} aktualizacji dostępnej",
+        "count__plural=many, updates__exact=0, updates__plural=*": "{count__number} modów w plecaku · wszystko aktualne",
+        "count__plural=many, updates__exact=*, updates__plural=one": "{count__number} modów w plecaku · {updates__number} aktualizacja dostępna",
+        "count__plural=many, updates__exact=*, updates__plural=few": "{count__number} modów w plecaku · {updates__number} aktualizacje dostępne",
+        "count__plural=many, updates__exact=*, updates__plural=many": "{count__number} modów w plecaku · {updates__number} aktualizacji dostępnych",
+        "count__plural=many, updates__exact=*, updates__plural=*": "{count__number} modów w plecaku · {updates__number} aktualizacji dostępnej",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} moda w plecaku · wszystko aktualne",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} moda w plecaku · {updates__number} aktualizacja dostępna",
+        "count__plural=*, updates__exact=*, updates__plural=few": "{count__number} moda w plecaku · {updates__number} aktualizacje dostępne",
+        "count__plural=*, updates__exact=*, updates__plural=many": "{count__number} moda w plecaku · {updates__number} aktualizacji dostępnych",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} moda w plecaku · {updates__number} aktualizacji dostępnej"
+      }
+    }
+  ],
+  "me_backpack_title": "Plecak",
+  "me_broken_on_current": "Nie działa na {build}",
+  "me_browse_mods": "Przeglądaj mody",
+  "me_by_author": "autor: {author}",
+  "me_cancel": "Anuluj",
+  "me_did_it_work": "Zadziałało?",
+  "me_downloads_clear": "Wyczyść historię",
+  "me_downloads_clear_confirm": "Wyczyść historię",
+  "me_downloads_clear_text": "Znikną wszystkie wiersze i pytania „Zadziałało?” o wcześniejsze pobrania. Liczniki pobrań modów się nie zmienią. Tego nie można cofnąć.",
+  "me_downloads_clear_title": "Wyczyścić historię pobrań?",
+  "me_downloads_cleared": "Historia pobrań wyczyszczona",
+  "me_downloads_description": "Każdy mod pobrany po zalogowaniu, z aktualizacjami, których ci brakuje.",
+  "me_downloads_empty_off_text": "Twoja historia jest wyłączona, więc nic nowego nie jest tu zapisywane.",
+  "me_downloads_empty_text": "Pobierz mod po zalogowaniu, a pojawi się tutaj z powiadomieniem, gdy wyjdzie nowa wersja.",
+  "me_downloads_empty_title": "Jeszcze nic nie pobrano",
+  "me_downloads_history_off": "Historia pobrań wyłączona",
+  "me_downloads_history_on": "Historia pobrań włączona",
+  "me_downloads_keep_history": "Zapisuj historię pobrań",
+  "me_downloads_last": "Pobrano {version} dnia {date}",
+  "me_downloads_list_label": "Pobrane mody",
+  "me_downloads_off_text": "Nowe pobrania nie są zapisywane, więc powiadomienia o aktualizacjach tutaj i w plecaku nie mogą porównać wersji. Możesz ją włączyć w każdej chwili.",
+  "me_downloads_off_title": "Twoja historia pobrań jest wyłączona",
+  "me_downloads_readout": "Dziennik zapasów",
+  "me_downloads_remove": "Usuń z listy",
+  "me_downloads_remove_label": "Usuń {mod} z listy",
+  "me_downloads_removed": "Usunięto {mod} z listy",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} pobrany mod · wszystko aktualne",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} pobrany mod · {updates__number} aktualizacja dostępna",
+        "count__plural=one, updates__exact=*, updates__plural=few": "{count__number} pobrany mod · {updates__number} aktualizacje dostępne",
+        "count__plural=one, updates__exact=*, updates__plural=many": "{count__number} pobrany mod · {updates__number} aktualizacji dostępnych",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} pobrany mod · {updates__number} aktualizacji dostępnej",
+        "count__plural=few, updates__exact=0, updates__plural=*": "{count__number} pobrane mody · wszystko aktualne",
+        "count__plural=few, updates__exact=*, updates__plural=one": "{count__number} pobrane mody · {updates__number} aktualizacja dostępna",
+        "count__plural=few, updates__exact=*, updates__plural=few": "{count__number} pobrane mody · {updates__number} aktualizacje dostępne",
+        "count__plural=few, updates__exact=*, updates__plural=many": "{count__number} pobrane mody · {updates__number} aktualizacji dostępnych",
+        "count__plural=few, updates__exact=*, updates__plural=*": "{count__number} pobrane mody · {updates__number} aktualizacji dostępnej",
+        "count__plural=many, updates__exact=0, updates__plural=*": "{count__number} pobranych modów · wszystko aktualne",
+        "count__plural=many, updates__exact=*, updates__plural=one": "{count__number} pobranych modów · {updates__number} aktualizacja dostępna",
+        "count__plural=many, updates__exact=*, updates__plural=few": "{count__number} pobranych modów · {updates__number} aktualizacje dostępne",
+        "count__plural=many, updates__exact=*, updates__plural=many": "{count__number} pobranych modów · {updates__number} aktualizacji dostępnych",
+        "count__plural=many, updates__exact=*, updates__plural=*": "{count__number} pobranych modów · {updates__number} aktualizacji dostępnej",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} pobranego moda · wszystko aktualne",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} pobranego moda · {updates__number} aktualizacja dostępna",
+        "count__plural=*, updates__exact=*, updates__plural=few": "{count__number} pobranego moda · {updates__number} aktualizacje dostępne",
+        "count__plural=*, updates__exact=*, updates__plural=many": "{count__number} pobranego moda · {updates__number} aktualizacji dostępnych",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} pobranego moda · {updates__number} aktualizacji dostępnej"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} pobranie",
+        "count__plural=few": "{count__number} pobrania",
+        "count__plural=many": "{count__number} pobrań",
+        "count__plural=*": "{count__number} pobrania"
+      }
+    }
+  ],
+  "me_downloads_title": "Moje pobrania",
+  "me_filter_all": "Wszystkie",
+  "me_filter_broken": "Niedziałające na tym buildzie",
+  "me_filter_label": "Pokaż",
+  "me_filter_updates": "Z aktualizacją",
+  "me_follow": "Obserwuj",
+  "me_followed": "{mod} jest w twoim plecaku",
+  "me_followed_on": "obserwowany od {date}",
+  "me_latest_version": "Najnowsza: {version}",
+  "me_no_current_version": "Obecnie nie ma dostępnej wersji",
+  "me_notify_off": "Sygnały o aktualizacjach wyłączone",
+  "me_notify_on": "Sygnały o aktualizacjach włączone",
+  "me_onboarding_completed": "Przetrwałeś pierwszy dzień — odznaka odblokowana",
+  "me_onboarding_dismiss": "Ukryj",
+  "me_onboarding_download_action": "Przeglądaj mody",
+  "me_onboarding_download_hint": "Wybierz dowolny, który działa na bieżącym buildzie.",
+  "me_onboarding_download_title": "Pobierz pierwszy mod",
+  "me_onboarding_failed": "Nie udało się zaktualizować listy",
+  "me_onboarding_follow_action": "Znajdź mod do obserwowania",
+  "me_onboarding_follow_hint": "Stuknij ♥, aby schować go w plecaku i dowiadywać się o aktualizacjach.",
+  "me_onboarding_follow_title": "Obserwuj mod",
+  "me_onboarding_install_action": "Otwórz poradnik instalacji",
+  "me_onboarding_install_done": "Zainstalowałem go",
+  "me_onboarding_install_hint": "Loader modów, którego potrzebuje każdy mod do Sons of the Forest.",
+  "me_onboarding_install_title": "Zainstaluj RedLoader",
+  "me_onboarding_kit_action": "Utwórz zestaw",
+  "me_onboarding_kit_hint": "Zbierz mody w zestaw, który udostępnisz jednym kodem.",
+  "me_onboarding_kit_title": "Spakuj zestaw",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ukończono {done__number} z {total__number}"
+      }
+    }
+  ],
+  "me_onboarding_readout": "Dzień 1 na wyspie",
+  "me_onboarding_report_action": "Przejdź do moich pobrań",
+  "me_onboarding_report_hint": "Odpowiedz na „Zadziałało?” dla pobranego moda.",
+  "me_onboarding_report_title": "Daj znać, czy zadziałało",
+  "me_onboarding_step_done": "Zrobione:",
+  "me_onboarding_step_todo": "Do zrobienia:",
+  "me_onboarding_text": "Pięć szybkich kroków na start. Ukończ wszystkie, aby zdobyć odznakę „Pierwszy dzień przetrwany”.",
+  "me_onboarding_title": "Przetrwaj pierwszy dzień",
+  "me_report_broken": "Nie działa",
+  "me_report_description": "Twój raport terenowy o wersji {version} na buildzie gry {build} pomaga wszystkim ocalałym wybierać działające mody.",
+  "me_report_mode_client": "Klient gry wieloosobowej",
+  "me_report_mode_dedicated": "Serwer dedykowany",
+  "me_report_mode_host": "Host gry wieloosobowej",
+  "me_report_mode_label": "Jak grałeś",
+  "me_report_mode_singleplayer": "Gra jednoosobowa",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Awarie, konflikty z innymi modami… do {max__number} znaków."
+      }
+    }
+  ],
+  "me_report_note_label": "Co się stało",
+  "me_report_partial": "Częściowo",
+  "me_report_pick_result": "Wybierz, jak poszło.",
+  "me_report_result_legend": "Jak poszło?",
+  "me_report_submit": "Wyślij raport",
+  "me_report_thanks": "Dzięki — twój raport o {mod} jest na mapie",
+  "me_report_title": "Czy {mod} zadziałał?",
+  "me_report_verify_email": "Potwierdź adres e-mail, zanim wyślesz raporty terenowe.",
+  "me_report_works": "Działa",
+  "me_undo": "Cofnij",
+  "me_unfollow": "Przestań obserwować",
+  "me_unfollowed": "{mod} wypadł z twojego plecaka",
+  "me_up_to_date": "Aktualny ({version})",
+  "me_update_available": "Dostępna aktualizacja",
+  "me_update_from_to": "Aktualizacja: {from} → {to}",
   "meta_default_description": "Dom moddingu Sons of the Forest: mody, buildy i zestawy dla RedLoadera, testowane przy każdym patchu. Darmowe, bezpośrednie pobieranie.",
   "meta_feed_description": "Najnowsze mody i aktualizacje do Sons of the Forest opublikowane na SOTF Mods.",
   "meta_feed_title": "SOTF Mods: nowe i zaktualizowane mody",
@@ -3967,6 +4617,7 @@
   "mod_fact_updated": "Zaktualizowano {date}",
   "mod_fact_updated_label": "Zaktualizowano",
   "mod_fact_version": "Wersja",
+  "mod_feed_title": "Wydania {name}",
   "mod_field_report_sign_in": "Zaloguj się, aby dodać raport z terenu",
   "mod_field_report_text": "Raport z terenu zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.",
   "mod_field_report_title": "Czy działało w twojej grze?",
@@ -5038,6 +5689,1354 @@
   "profile_xp_profile_completed": "Uzupełnij profil",
   "profile_xp_review_helpful_vote": "Głos „pomocne” przy twojej recenzji",
   "profile_xp_review_with_text": "Recenzja z co najmniej 80 znakami tekstu",
+  "ranger_action_approve": "Zatwierdź",
+  "ranger_action_mark_reviewed": "Oznacz jako sprawdzone",
+  "ranger_action_reject": "Odrzuć",
+  "ranger_action_remove": "Usuń",
+  "ranger_action_request_changes": "Poproś o zmiany",
+  "ranger_action_restore": "Przywróć",
+  "ranger_action_unlist": "Usuń z list",
+  "ranger_assigned_short": "u {name}",
+  "ranger_assigned_to": "Przypisane do",
+  "ranger_audit_action": "Działanie",
+  "ranger_audit_actor": "Nazwa wykonawcy",
+  "ranger_audit_apply": "Filtruj",
+  "ranger_audit_changes": "Przed i po",
+  "ranger_audit_clear": "Wyczyść",
+  "ranger_audit_description": "Każde działanie rangerów i administratorów: kto, co, przed i po oraz dlaczego. Wpisów nie można edytować.",
+  "ranger_audit_empty_filtered": "Żaden wpis nie pasuje do tych filtrów.",
+  "ranger_audit_empty_text": "Nie zapisano jeszcze żadnego działania rangera.",
+  "ranger_audit_empty_title": "Brak wpisów",
+  "ranger_audit_reason_hint": "Zostaje w dzienniku audytu.",
+  "ranger_audit_reason_label": "Powód",
+  "ranger_audit_system": "System",
+  "ranger_audit_target": "Cel",
+  "ranger_audit_target_hint": "typ:id, na przykład user:12 lub mod:312",
+  "ranger_audit_target_invalid": "Użyj formatu typ:id, na przykład user:12.",
+  "ranger_audit_title": "Dziennik audytu",
+  "ranger_author_unknown": "Nieznany autor",
+  "ranger_back_to_list": "Wróć do listy",
+  "ranger_cancel": "Anuluj",
+  "ranger_changelog_none": "Ta wersja nie ma listy zmian.",
+  "ranger_checks_failed": "Kontrole niezaliczone",
+  "ranger_checks_files": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} plik",
+        "count__plural=few": "{count__number} pliki",
+        "count__plural=many": "{count__number} plików",
+        "count__plural=*": "{count__number} pliku"
+      }
+    }
+  ],
+  "ranger_checks_flagged": "Oznaczone do przeglądu",
+  "ranger_checks_manifest_ok": "manifest.json poprawny",
+  "ranger_checks_no_flags": "Żadna kontrola nie zgłosiła problemu.",
+  "ranger_checks_none": "Brak inspekcji plików dla tego elementu.",
+  "ranger_checks_passed": "Kontrole zaliczone",
+  "ranger_checks_pending": "Kontrole w toku",
+  "ranger_checks_ratio": "Współczynnik kompresji {ratio}",
+  "ranger_checks_sha256": "SHA-256 {hash}",
+  "ranger_checks_size": "Po rozpakowaniu {size}",
+  "ranger_checks_title": "Automatyczne kontrole",
+  "ranger_comment_hidden": "Komentarz ukryty.",
+  "ranger_comment_hide": "Ukryj",
+  "ranger_comment_publish": "Opublikuj",
+  "ranger_comment_published": "Komentarz opublikowany.",
+  "ranger_comment_reject_confirm": "Ukryj komentarz",
+  "ranger_comment_reject_reason": "Powód",
+  "ranger_comment_reject_reason_hint": "Zostaje w dzienniku audytu.",
+  "ranger_comment_reject_title": "Ukryj ten komentarz",
+  "ranger_conflict_detail": "Ktoś w międzyczasie zmienił ten element. Kolejka została odświeżona; sprawdź go ponownie.",
+  "ranger_decided_approve": "Zatwierdzono: {title}",
+  "ranger_decided_reject": "Odrzucono: {title}",
+  "ranger_decided_remove": "Usunięto: {title}",
+  "ranger_decided_request_changes": "Poproszono o zmiany: {title}",
+  "ranger_decided_restore": "Przywrócono: {title}",
+  "ranger_decided_reviewed": "Oznaczono jako sprawdzone: {title}",
+  "ranger_decided_unlist": "Usunięto z list: {title}",
+  "ranger_decision_failed": "Decyzja nie została zapisana",
+  "ranger_decision_no_template": "Bez szablonu — tylko moja notatka",
+  "ranger_decision_note_hint": "Markdown. Wysyłana z szablonem; napisz, co poprawić.",
+  "ranger_decision_note_label": "Notatka dla autora",
+  "ranger_decision_reason_required": "Podaj powód (co najmniej 3 znaki).",
+  "ranger_decision_template_label": "Szablon uzasadnienia",
+  "ranger_decision_template_or_note": "Wybierz szablon albo napisz notatkę.",
+  "ranger_decision_title": "{action}",
+  "ranger_description_none": "Brak tekstu do pokazania.",
+  "ranger_diff_added": "Dodano:",
+  "ranger_diff_changed": "Zmieniono:",
+  "ranger_diff_content_changed": "zmieniona zawartość",
+  "ranger_diff_first_version": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Pierwsza wersja: nie ma z czym porównać. Zip zawiera {count__number} plik.",
+        "count__plural=few": "Pierwsza wersja: nie ma z czym porównać. Zip zawiera {count__number} pliki.",
+        "count__plural=many": "Pierwsza wersja: nie ma z czym porównać. Zip zawiera {count__number} plików.",
+        "count__plural=*": "Pierwsza wersja: nie ma z czym porównać. Zip zawiera {count__number} pliku."
+      }
+    }
+  ],
+  "ranger_diff_flagged": "wykonywalny",
+  "ranger_diff_identical": "Te same pliki co w poprzedniej wersji.",
+  "ranger_diff_new_code": "nowy kod",
+  "ranger_diff_removed": "Usunięto:",
+  "ranger_diff_summary": "W porównaniu z poprzednią wersją: dodane {added}, usunięte {removed}, zmienione {changed}.",
+  "ranger_diff_truncated": "Pokazano pierwsze {shown} z {total} plików.",
+  "ranger_diff_unavailable": "Brak listy plików do porównania.",
+  "ranger_flag_absolute_path": "Ścieżka bezwzględna w zipie",
+  "ranger_flag_blueprint_invalid": "Plik buildu jest nieprawidłowy",
+  "ranger_flag_extension_flagged": "Plik wykonywalny lub skrypt",
+  "ranger_flag_extension_not_allowed": "Niedozwolony typ pliku",
+  "ranger_flag_file_too_large": "Plik za duży",
+  "ranger_flag_manifest_id_mismatch": "Id w manifeście różni się od moda",
+  "ranger_flag_manifest_invalid": "manifest.json jest nieprawidłowy",
+  "ranger_flag_manifest_missing": "Brak manifest.json",
+  "ranger_flag_scan_detections": "Wykrycia skanu bezpieczeństwa",
+  "ranger_flag_version_not_greater": "Wersja nie jest nowsza od poprzedniej",
+  "ranger_flag_version_not_semver": "Wersja nie jest semantyczna (x.y.z)",
+  "ranger_flag_zip_bomb_ratio": "Zbyt wysoki współczynnik kompresji (bomba zip)",
+  "ranger_flag_zip_invalid": "Nieprawidłowy zip",
+  "ranger_flag_zip_slip": "Ścieżka wychodzi poza folder moda (zip slip)",
+  "ranger_flag_zip_too_many_entries": "Za dużo plików w zipie",
+  "ranger_flags_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} blokująca kontrola",
+        "count__plural=few": "{count__number} blokujące kontrole",
+        "count__plural=many": "{count__number} blokujących kontroli",
+        "count__plural=*": "{count__number} blokującej kontroli"
+      }
+    }
+  ],
+  "ranger_history_account_age": "Wiek konta",
+  "ranger_history_attention": "Ten autor ma odrzucone mody lub aktywne sankcje.",
+  "ranger_history_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dzień",
+        "count__plural=few": "{count__number} dni",
+        "count__plural=many": "{count__number} dni",
+        "count__plural=*": "{count__number} dnia"
+      }
+    }
+  ],
+  "ranger_history_open_audit": "Jego ślad w audycie",
+  "ranger_history_open_user": "Otwórz kartę użytkownika",
+  "ranger_history_published": "Opublikowane mody",
+  "ranger_history_rejected": "Odrzucone mody",
+  "ranger_history_sanctions": "Aktywne sankcje",
+  "ranger_history_trust": "Zaufanie",
+  "ranger_item_document_title": "Przegląd: {title}",
+  "ranger_item_gone_text": "Inny ranger już zdecydował w tej sprawie albo element opuścił kolejkę.",
+  "ranger_item_gone_title": "Już załatwione",
+  "ranger_item_next": "Następny element",
+  "ranger_item_region": "Sprawdzany element",
+  "ranger_lane_builds": "Buildy",
+  "ranger_lane_builds_hint": "Buildy czekające na zatwierdzenie lub przegląd po publikacji.",
+  "ranger_lane_comments": "Komentarze",
+  "ranger_lane_comments_hint": "Komentarze wstrzymane do przeglądu, zanim ktokolwiek je przeczyta.",
+  "ranger_lane_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} element czeka",
+        "count__plural=few": "{count__number} elementy czekają",
+        "count__plural=many": "{count__number} elementów czeka",
+        "count__plural=*": "{count__number} elementu czeka"
+      }
+    }
+  ],
+  "ranger_lane_empty_comments": "Żaden komentarz nie czeka na przegląd.",
+  "ranger_lane_empty_reports": "Brak otwartych zgłoszeń. Społeczność się sprawuje.",
+  "ranger_lane_empty_text": "Na tym torze nic nie czeka. Nowe elementy pojawią się tu same.",
+  "ranger_lane_empty_title": "Szlak jest czysty",
+  "ranger_lane_new_mods": "Nowe mody",
+  "ranger_lane_new_mods_hint": "Pierwsze zgłoszenia i mody czekające na zatwierdzenie.",
+  "ranger_lane_post_review": "Przegląd po publikacji",
+  "ranger_lane_post_review_hint": "Wersje opublikowane bez ludzkiego przeglądu: sprawdź je w ciągu 72 godzin.",
+  "ranger_lane_reports": "Zgłoszenia",
+  "ranger_lane_reports_hint": "Otwarte zgłoszenia od społeczności.",
+  "ranger_lane_versions": "Wersje",
+  "ranger_lane_versions_hint": "Wersje wstrzymane przez kontrole, skan bezpieczeństwa lub zgłoszenie.",
+  "ranger_lanes_label": "Tory kolejki",
+  "ranger_live": "Na żywo",
+  "ranger_live_off": "Aktualizacje wstrzymane — lista odświeży się po powrocie połączenia",
+  "ranger_load_more": "Wczytaj więcej",
+  "ranger_loading": "Wczytywanie…",
+  "ranger_manifest_after": "Po",
+  "ranger_manifest_before": "Przed",
+  "ranger_manifest_field": "Pole",
+  "ranger_manifest_identical": "Manifest się nie zmienił.",
+  "ranger_media_alt": "Obraz {index}",
+  "ranger_media_none": "Brak obrazów.",
+  "ranger_more_actions": "Więcej działań",
+  "ranger_new_tab": "(otwiera się w nowej karcie)",
+  "ranger_next": "Następna",
+  "ranger_no_actions": "Nie ma tu już nic do zdecydowania.",
+  "ranger_nsfw": "NSFW",
+  "ranger_open_page": "Otwórz stronę",
+  "ranger_open_reports": "Wszystkie zgłoszenia",
+  "ranger_page_of": "Strona {page} z {total}",
+  "ranger_pagination": "Strony",
+  "ranger_panel_error_text": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie za chwilę.",
+  "ranger_panel_error_title": "To się nie wczytało",
+  "ranger_previous": "Poprzednia",
+  "ranger_queue_description": "Najpierw najstarsze i najbardziej ryzykowne. Każda decyzja trafia do dziennika, a autor dostaje powiadomienie.",
+  "ranger_queue_title": "Kolejka moderacji",
+  "ranger_readout": "Ranger Station",
+  "ranger_reason_broken": "Nie działa",
+  "ranger_reason_harassment": "Nękanie",
+  "ranger_reason_illegal": "Nielegalna treść",
+  "ranger_reason_malware": "Złośliwe oprogramowanie",
+  "ranger_reason_nsfw_unmarked": "Nieoznaczone NSFW",
+  "ranger_reason_other": "Inne",
+  "ranger_reason_reupload": "Ponowne wrzucenie bez zgody",
+  "ranger_reason_spam": "Spam",
+  "ranger_reauth_action": "Zaloguj się ponownie",
+  "ranger_reauth_text": "Działania rangera wymagają logowania z ostatnich 12 godzin. Zaloguj się ponownie, aby kontynuować.",
+  "ranger_reauth_title": "Potwierdź, że to ty",
+  "ranger_reference": "Ref.: {reference}",
+  "ranger_report_by": "Zgłoszone przez",
+  "ranger_report_by_unknown": "Zgłaszający usunął konto",
+  "ranger_report_dismiss": "Odrzuć",
+  "ranger_report_dismiss_text": "Zgłoszenie nie było problemem. Treść ukryta automatycznie przez zgłoszenia znów będzie widoczna.",
+  "ranger_report_dismiss_title": "Odrzuć zgłoszenie",
+  "ranger_report_dismissed": "Zgłoszenie odrzucone.",
+  "ranger_report_hide_hint": "Mody i kity znikają z list, wersje zostają wstrzymane, komentarze i recenzje ukryte.",
+  "ranger_report_hide_label": "Ukryj treść",
+  "ranger_report_history": "Historia tej treści",
+  "ranger_report_no_details": "Nie podano szczegółów.",
+  "ranger_report_note_hint": "Zapisywana przy zgłoszeniu i w dzienniku audytu.",
+  "ranger_report_note_label": "Notatka do rozwiązania",
+  "ranger_report_open_user": "Otwórz kartę użytkownika",
+  "ranger_report_resolution": "Rozwiązanie: {note}",
+  "ranger_report_resolve": "Rozwiąż",
+  "ranger_report_resolve_hide": "Rozwiąż i ukryj",
+  "ranger_report_resolve_text": "Wszystkie otwarte zgłoszenia tej treści zostają zamknięte, a każdy zgłaszający dostaje informację.",
+  "ranger_report_resolve_title": "Rozwiąż zgłoszenie",
+  "ranger_report_resolved": "Zgłoszenie rozwiązane.",
+  "ranger_report_status_all": "Wszystkie",
+  "ranger_report_status_dismissed": "Odrzucone",
+  "ranger_report_status_open": "Otwarte",
+  "ranger_report_status_resolved": "Rozwiązane",
+  "ranger_report_target_missing": "{type} nr {id} (już nie istnieje)",
+  "ranger_reports_description": "To, co zgłosiła społeczność, z powodem i dowodami. Zamknięcie zgłoszenia powiadamia jego autora.",
+  "ranger_reports_empty_open_text": "Nie ma czego sprawdzać. Nowe zgłoszenia pojawiają się tutaj i w kolejce.",
+  "ranger_reports_empty_open_title": "Brak otwartych zgłoszeń",
+  "ranger_reports_empty_text": "Żadne zgłoszenie nie pasuje do tego filtra.",
+  "ranger_reports_empty_title": "Brak zgłoszeń",
+  "ranger_reports_filter": "Stan zgłoszenia",
+  "ranger_reports_title": "Zgłoszenia",
+  "ranger_retry": "Spróbuj ponownie",
+  "ranger_risk_high": "Wysokie ryzyko",
+  "ranger_risk_low": "Niskie ryzyko",
+  "ranger_risk_medium": "Średnie ryzyko",
+  "ranger_role_admin": "Administrator",
+  "ranger_role_moderator": "Moderator",
+  "ranger_role_user": "Użytkownik",
+  "ranger_sanction_ban": "Zbanuj",
+  "ranger_sanction_ban_hint": "Na stałe. Wylogowuje wszędzie.",
+  "ranger_sanction_comment_mute": "Wycisz komentarze",
+  "ranger_sanction_comment_mute_hint": "Nie może komentować ani recenzować — wszędzie lub przy jednym modzie.",
+  "ranger_sanction_confirm": "{kind}",
+  "ranger_sanction_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dzień",
+        "count__plural=few": "{count__number} dni",
+        "count__plural=many": "{count__number} dni",
+        "count__plural=*": "{count__number} dnia"
+      }
+    }
+  ],
+  "ranger_sanction_done": "{kind}: {name}",
+  "ranger_sanction_duration": "Czas trwania",
+  "ranger_sanction_ended": "Zakończona",
+  "ranger_sanction_failed": "Sankcja nie została nałożona",
+  "ranger_sanction_kind": "Sankcja",
+  "ranger_sanction_open": "Nałóż sankcję",
+  "ranger_sanction_permanent": "Na stałe",
+  "ranger_sanction_reason": "Powód",
+  "ranger_sanction_reason_hint": "Użytkownik go zobaczy. Trzymaj się faktów.",
+  "ranger_sanction_revoke": "Cofnij",
+  "ranger_sanction_revoke_failed": "Sankcja nie została cofnięta",
+  "ranger_sanction_revoke_title": "Cofnąć tę sankcję?",
+  "ranger_sanction_revoked": "Sankcja cofnięta.",
+  "ranger_sanction_revoked_on": "Cofnięta {date}",
+  "ranger_sanction_scope": "Tylko przy jednym modzie",
+  "ranger_sanction_scope_clear": "Zamiast tego wycisz wszędzie",
+  "ranger_sanction_scope_hint": "Zostaw puste, aby wyciszyć komentarze wszędzie.",
+  "ranger_sanction_scope_none": "Żaden mod nie pasuje.",
+  "ranger_sanction_scope_on": "przy {mod}",
+  "ranger_sanction_scope_placeholder": "Szukaj moda lub buildu",
+  "ranger_sanction_scope_results": "Pasujące mody",
+  "ranger_sanction_since": "Od {date}",
+  "ranger_sanction_suspend": "Zawieś",
+  "ranger_sanction_suspend_hint": "Nie może się zalogować do daty końcowej.",
+  "ranger_sanction_title": "Nałóż sankcję na tego użytkownika",
+  "ranger_sanction_until": "do {date}",
+  "ranger_sanction_upload_mute": "Zablokuj przesyłanie",
+  "ranger_sanction_upload_mute_hint": "Nie może publikować modów, wersji ani buildów.",
+  "ranger_scan_clean": "Brak wykryć",
+  "ranger_scan_engines": "{positives} z {total} silników",
+  "ranger_scan_false_positive": "Potwierdzony fałszywy alarm",
+  "ranger_scan_malicious": "Złośliwe",
+  "ranger_scan_none": "Nieprzeskanowane",
+  "ranger_scan_override_confirm": "Zapisz werdykt",
+  "ranger_scan_override_done": "Werdykt skanu: „{verdict}”.",
+  "ranger_scan_override_failed": "Werdykt nie został zapisany",
+  "ranger_scan_override_false_positive_hint": "Sprawdziłeś pliki: wykrycia to fałszywe alarmy. Wersja wstrzymana przez skan zostaje zwolniona.",
+  "ranger_scan_override_malicious_hint": "Plik jest szkodliwy. Wersja zostaje wycofana i pozostaje niedostępna.",
+  "ranger_scan_override_note": "Dlaczego (zostaje w dzienniku audytu)",
+  "ranger_scan_override_open": "Zmień werdykt",
+  "ranger_scan_override_title": "Zmień werdykt skanu",
+  "ranger_scan_override_verdict": "Nowy werdykt",
+  "ranger_scan_pending": "Skan oczekuje",
+  "ranger_scan_report_link": "Raport VirusTotal",
+  "ranger_scan_suspicious": "Podejrzane",
+  "ranger_scan_unknown": "Nieprzeskanowane (brak skanera)",
+  "ranger_select_item": "Wybierz element z listy, aby go sprawdzić.",
+  "ranger_severity_error": "blokuje publikację",
+  "ranger_severity_warning": "wymaga ludzkiego oka",
+  "ranger_shortcut_next": "Następny element",
+  "ranger_shortcut_previous": "Poprzedni element",
+  "ranger_sla_average": "Średni czas oczekiwania",
+  "ranger_sla_due": "{time} · SLA wkrótce minie",
+  "ranger_sla_oldest": "Najstarszy",
+  "ranger_sla_over": "Ponad {hours} h",
+  "ranger_sla_overdue": "{time} · SLA przekroczone",
+  "ranger_sla_waiting": "Czeka na tym torze",
+  "ranger_staff": "Zespół",
+  "ranger_submitted": "Przesłano {when}",
+  "ranger_tab_changelog": "Zmiany",
+  "ranger_tab_content": "Treść",
+  "ranger_tab_description": "Opis",
+  "ranger_tab_files": "Różnice plików",
+  "ranger_tab_history": "Historia autora",
+  "ranger_tab_manifest": "Różnice manifestu",
+  "ranger_tab_media": "Multimedia",
+  "ranger_tabs_label": "Szczegóły elementu",
+  "ranger_target_comment": "Komentarz",
+  "ranger_target_compat_report": "Raport z terenu",
+  "ranger_target_kit": "Kit",
+  "ranger_target_mod": "Mod",
+  "ranger_target_review": "Recenzja",
+  "ranger_target_user": "Użytkownik",
+  "ranger_target_version": "Wersja",
+  "ranger_template_broken_or_empty": "Plik jest uszkodzony, pusty lub nie ładuje się z RedLoaderem.",
+  "ranger_template_broken_or_empty_title": "Uszkodzony lub pusty",
+  "ranger_template_copyright_claim": "Usunięto po zasadnym roszczeniu praw autorskich.",
+  "ranger_template_copyright_claim_title": "Roszczenie praw autorskich",
+  "ranger_template_credit_original_author": "Podaj autora oryginału i dodaj link do jego pracy.",
+  "ranger_template_credit_original_author_title": "Podaj autora oryginału",
+  "ranger_template_duplicate": "To duplikuje mod, który już jest na liście. Zamiast tego opublikuj jego nową wersję.",
+  "ranger_template_duplicate_title": "Duplikat",
+  "ranger_template_malware_confirmed": "Usunięto: potwierdzono, że plik jest złośliwy.",
+  "ranger_template_malware_confirmed_title": "Potwierdzone złośliwe oprogramowanie",
+  "ranger_template_malware_detected": "Skan bezpieczeństwa oznaczył plik jako złośliwy.",
+  "ranger_template_malware_detected_title": "Oznaczone przez skan",
+  "ranger_template_missing_description": "Opisz, co robi mod, jak go zainstalować i jak go używać.",
+  "ranger_template_missing_description_title": "Brak opisu",
+  "ranger_template_missing_screenshots": "Dodaj co najmniej jeden zrzut ekranu pokazujący mod w grze.",
+  "ranger_template_missing_screenshots_title": "Brak zrzutów ekranu",
+  "ranger_template_not_a_mod": "To przesłanie nie jest modem ani buildem do Sons of the Forest.",
+  "ranger_template_not_a_mod_title": "To nie mod",
+  "ranger_template_nsfw_unmarked": "Mod zawiera treści dla dorosłych: oznacz go jako NSFW.",
+  "ranger_template_nsfw_unmarked_title": "Nieoznaczone NSFW",
+  "ranger_template_reupload_without_permission": "To wygląda na ponowne wrzucenie cudzej pracy bez zgody autora.",
+  "ranger_template_reupload_without_permission_title": "Ponowne wrzucenie bez zgody",
+  "ranger_template_rules_violation": "Usunięto za naruszenie zasad strony.",
+  "ranger_template_rules_violation_title": "Naruszenie zasad",
+  "ranger_template_spam": "Spam lub reklama.",
+  "ranger_template_spam_title": "Spam",
+  "ranger_template_wrong_category": "Przenieś mod do kategorii, która pasuje do tego, co robi.",
+  "ranger_template_wrong_category_title": "Zła kategoria",
+  "ranger_triage_note": "Widok telefonu: tylko szybka selekcja. Różnice plików i manifestu wymagają tabletu lub komputera.",
+  "ranger_trust_level": "Poziom {level}",
+  "ranger_user_account": "Konto",
+  "ranger_user_action_failed": "Zmiana nie została zapisana",
+  "ranger_user_actions": "Działania",
+  "ranger_user_audit": "Ślad audytu",
+  "ranger_user_banned": "Zbanowany",
+  "ranger_user_banned_on": "Zbanowany {date}",
+  "ranger_user_comments": "Komentarze",
+  "ranger_user_document_title": "{name} · Użytkownicy",
+  "ranger_user_email_unverified": "E-mail niepotwierdzony",
+  "ranger_user_email_verified": "E-mail potwierdzony",
+  "ranger_user_joined": "Dołączył",
+  "ranger_user_last_seen": "Ostatnio widziany",
+  "ranger_user_legacy_trusted": "Zaufany na starej stronie",
+  "ranger_user_mods": "Mody",
+  "ranger_user_no_sanctions": "Nigdy nie miał sankcji.",
+  "ranger_user_outranked": "Rangerzy mogą działać tylko na kontach z niższą rolą niż ich własna.",
+  "ranger_user_public_profile": "Profil publiczny",
+  "ranger_user_reports_against": "Zgłoszenia przeciw",
+  "ranger_user_reviews": "Recenzje",
+  "ranger_user_revoke_sessions": "Wyloguj wszędzie",
+  "ranger_user_revoke_sessions_text": "Wszystkie sesje tego konta kończą się teraz. Ponowne logowanie jest możliwe, chyba że konto jest zawieszone lub zbanowane.",
+  "ranger_user_revoke_sessions_title": "Wylogować {name} wszędzie?",
+  "ranger_user_role": "Rola",
+  "ranger_user_role_confirm": "Zmień rolę",
+  "ranger_user_role_done": "Rola {name}: {role}.",
+  "ranger_user_role_hint": "Rolę administratora nadaje się tylko z wiersza poleceń.",
+  "ranger_user_role_title": "Zmienić rolę {name} na {role}?",
+  "ranger_user_sanctions": "Sankcje",
+  "ranger_user_self": "To twoje własne konto: musi zadziałać inny ranger.",
+  "ranger_user_sessions_revoked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Nie było otwartej sesji.",
+        "count__exact=*, count__plural=one": "Zakończono {count__number} sesję.",
+        "count__exact=*, count__plural=few": "Zakończono {count__number} sesje.",
+        "count__exact=*, count__plural=many": "Zakończono {count__number} sesji.",
+        "count__exact=*, count__plural=*": "Zakończono {count__number} sesji."
+      }
+    }
+  ],
+  "ranger_user_suspended_until": "Zawieszony do {date}",
+  "ranger_user_unverified_done": "{name} nie jest już zweryfikowanym twórcą.",
+  "ranger_user_unverify": "Odbierz status",
+  "ranger_user_unverify_title": "Odebrać {name} status zweryfikowanego twórcy?",
+  "ranger_user_verified_done": "{name} jest teraz zweryfikowanym twórcą.",
+  "ranger_user_verified_hint": "Zweryfikowani twórcy publikują od razu, gdy kontrole przejdą, i mają wyższe limity.",
+  "ranger_user_verify": "Zweryfikuj twórcę",
+  "ranger_user_verify_title": "Nadać {name} status zweryfikowanego twórcy?",
+  "ranger_users_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} użytkownik",
+        "count__plural=few": "{count__number} użytkowników",
+        "count__plural=many": "{count__number} użytkowników",
+        "count__plural=*": "{count__number} użytkownika"
+      }
+    }
+  ],
+  "ranger_users_description": "Szukaj po nazwie użytkownika, imieniu lub e-mailu. Otwórz użytkownika, aby zobaczyć historię i sankcje.",
+  "ranger_users_empty_query": "Nikt nie pasuje do „{query}”.",
+  "ranger_users_empty_text": "Na razie brak wyników.",
+  "ranger_users_empty_title": "Nie znaleziono użytkowników",
+  "ranger_users_row_stats": "Mody: {mods} · Zgłoszenia przeciw: {reports}",
+  "ranger_users_search_label": "Szukaj użytkowników",
+  "ranger_users_search_placeholder": "Nazwa użytkownika, imię lub e-mail",
+  "ranger_users_search_submit": "Szukaj",
+  "ranger_users_title": "Użytkownicy",
+  "ranger_verified_creator": "Zweryfikowany twórca",
+  "ranger_waiting": "czeka {time}",
+  "ranger_waiting_days": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} dzień",
+        "count__plural=few": "{display} dni",
+        "count__plural=many": "{display} dni",
+        "count__plural=*": "{display} dnia"
+      }
+    }
+  ],
+  "ranger_waiting_hours": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} h",
+        "count__plural=few": "{count__number} h",
+        "count__plural=many": "{count__number} h",
+        "count__plural=*": "{count__number} h"
+      }
+    }
+  ],
+  "ranger_waiting_minutes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} min",
+        "count__plural=few": "{count__number} min",
+        "count__plural=many": "{count__number} min",
+        "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "settings_about_saved": "Zapisano profil",
+  "settings_about_text": "Jak wyglądasz na profilu, przy modach i w komentarzach.",
+  "settings_about_title": "O tobie",
+  "settings_account_hint": "E-mail do logowania i hasło.",
+  "settings_account_overview_title": "Twoje konto",
+  "settings_account_title": "Konto",
+  "settings_appearance_saved": "Zapisano wygląd",
+  "settings_appearance_text": "Jak SOTF Mods wygląda na tym i innych twoich urządzeniach.",
+  "settings_appearance_title": "Wygląd",
+  "settings_avatar_change": "Zmień zdjęcie",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG, JPEG, WebP, AVIF lub GIF do {max__number} MB. Przed zapisaniem możesz je przyciąć."
+      }
+    }
+  ],
+  "settings_avatar_label": "Awatar",
+  "settings_avatar_remove": "Usuń zdjęcie",
+  "settings_avatar_removed": "Usunięto zdjęcie",
+  "settings_avatar_saved": "Zapisano nowe zdjęcie",
+  "settings_avatar_upload": "Prześlij zdjęcie",
+  "settings_avatar_uploading": "Przesyłanie zdjęcia…",
+  "settings_back": "Ustawienia",
+  "settings_banner_custom_hint": "Używasz własnego obrazu. Wylosuj teren, aby wrócić do generowanego banera.",
+  "settings_banner_label": "Baner",
+  "settings_banner_reroll": "Wylosuj nowy teren",
+  "settings_banner_reroll_hint": "Podgląd nowego terenu — wybierz „Użyj tego terenu”, aby go zachować.",
+  "settings_banner_saved": "Zapisano nowy baner",
+  "settings_banner_terrain_hint": "Mapa narysowana specjalnie dla ciebie. Losuj, aż spodoba ci się kształt twojej wyspy.",
+  "settings_banner_terrain_saved": "Zapisano baner z terenem",
+  "settings_banner_upload": "Prześlij obraz",
+  "settings_banner_uploading": "Przesyłanie banera…",
+  "settings_banner_use_terrain": "Użyj tego terenu",
+  "settings_behaviour_saved": "Zapisano preferencje",
+  "settings_behaviour_title": "Zachowanie",
+  "settings_bio": "Bio",
+  "settings_bio_hint": "Działa Markdown: **pogrubienie**, _kursywa_ i linki.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bio może mieć najwyżej {max__number} znaków."
+      }
+    }
+  ],
+  "settings_cancel": "Anuluj",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Został {count__number} znak",
+        "count__plural=few": "Zostały {count__number} znaki",
+        "count__plural=many": "Zostało {count__number} znaków",
+        "count__plural=*": "Zostało {count__number} znaku"
+      }
+    }
+  ],
+  "settings_compat_prompts": "Pytaj „Zadziałało?” po pobraniach",
+  "settings_compat_prompts_hint": "Twoje odpowiedzi mówią innym ocalałym, które mody działają na bieżącym buildzie.",
+  "settings_creator_badges": "Twoje odznaki",
+  "settings_creator_basecamp": "Otwórz Obóz",
+  "settings_creator_hint": "Status twórcy, linki wsparcia, domyślna licencja i szablony odpowiedzi.",
+  "settings_creator_not_verified": "Jeszcze niezweryfikowany",
+  "settings_creator_not_verified_text": "Strażnicy weryfikują twórców, którzy mają na koncie bezpieczne i utrzymywane mody. Publikuj dalej — nie trzeba o nic wnioskować.",
+  "settings_creator_policy": "Wszystko, co publikujesz, podlega zasadom dotyczącym treści.",
+  "settings_creator_policy_link": "Przeczytaj zasady dotyczące treści",
+  "settings_creator_status_title": "Status twórcy",
+  "settings_creator_title": "Twórca",
+  "settings_creator_verified": "Zweryfikowany twórca",
+  "settings_creator_verified_text": "Twoje mody mają znak weryfikacji i możesz przesyłać większe pliki.",
+  "settings_crop_avatar_title": "Przytnij zdjęcie",
+  "settings_crop_banner_title": "Przytnij baner",
+  "settings_crop_failed": "Nie udało się odczytać tego obrazu. Spróbuj innego pliku.",
+  "settings_crop_help": "Przeciągnij obraz lub przesuń go strzałkami; powiększaj suwakiem albo klawiszami + i −.",
+  "settings_crop_label": "Obszar przycinania obrazu",
+  "settings_crop_roledescription": "obszar przycinania",
+  "settings_crop_use": "Użyj obrazu",
+  "settings_crop_zoom": "Powiększenie",
+  "settings_data_hint": "Wyeksportuj wszystko, co o tobie mamy, albo usuń konto.",
+  "settings_data_title": "Twoje dane",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Dzień {day__number} na wyspie"
+      }
+    }
+  ],
+  "settings_default_license": "Domyślna licencja",
+  "settings_default_license_hint": "Wybrana z góry przy publikacji nowego moda; możesz ją zmienić dla każdego moda.",
+  "settings_default_license_none": "Pytaj za każdym razem",
+  "settings_defaults_local_note": "Te ustawienia są zapisane tylko w tej przeglądarce.",
+  "settings_defaults_saved": "Zapisano ustawienia domyślne",
+  "settings_defaults_text": "Wypełniaj z góry nowe mody i szybciej odpowiadaj na częste pytania.",
+  "settings_defaults_title": "Domyślne ustawienia publikacji",
+  "settings_delete_already": "Usunięcie twojego konta jest już zaplanowane.",
+  "settings_delete_cancel": "Anuluj usunięcie",
+  "settings_delete_cancel_failed": "Nie udało się anulować usunięcia",
+  "settings_delete_cancelled": "Anulowano usunięcie — witaj ponownie",
+  "settings_delete_confirm": "Usuń za 14 dni",
+  "settings_delete_dialog_text": "Twoje konto zostanie usunięte za 14 dni. Do tego czasu możesz to anulować na tej stronie.",
+  "settings_delete_dialog_title": "Usunąć konto?",
+  "settings_delete_mode_archive": "Zarchiwizuj je",
+  "settings_delete_mode_archive_hint": "Znikną z list i wyszukiwarki i nie będą już przypisane do ciebie.",
+  "settings_delete_mode_keep": "Zostaw je opublikowane",
+  "settings_delete_mode_keep_hint": "Gracze nadal je znajdą, ale bez twojego nazwiska.",
+  "settings_delete_mods_legend": "Co stanie się z twoimi modami",
+  "settings_delete_open": "Usuń moje konto…",
+  "settings_delete_point_content": "Twoje komentarze i recenzje zostają, podpisane jako „Usunięty ocalały”.",
+  "settings_delete_point_export": "Jeśli chcesz mieć kopię, najpierw wyeksportuj dane.",
+  "settings_delete_point_grace": "Masz 14 dni na zmianę zdania; zaloguj się i anuluj tutaj, aby to zatrzymać.",
+  "settings_delete_point_mods": "Twoje mody zostaną zarchiwizowane albo pozostaną opublikowane bez twojego nazwiska — ty wybierasz.",
+  "settings_delete_scheduled_text": "Zmieniłeś zdanie? Anuluj teraz, a wszystko zostanie po staremu.",
+  "settings_delete_scheduled_title": "Twoje konto zostanie usunięte {date}",
+  "settings_delete_scheduled_toast": "Twoje konto zostanie usunięte {date}",
+  "settings_delete_text": "Trwale usuwa twoje dane osobowe po 14-dniowym okresie karencji.",
+  "settings_delete_title": "Usuń konto",
+  "settings_delete_type_handle": "Wpisz dokładnie „{handle}”, aby potwierdzić.",
+  "settings_delete_type_label": "Wpisz swoją nazwę użytkownika „{handle}”, aby potwierdzić",
+  "settings_density": "Gęstość",
+  "settings_density_comfortable": "Wygodna",
+  "settings_density_comfortable_hint": "Więcej przestrzeni.",
+  "settings_density_compact": "Kompaktowa",
+  "settings_density_compact_hint": "Więcej naraz na ekranie.",
+  "settings_discard": "Odrzuć zmiany",
+  "settings_display_name": "Nazwa wyświetlana",
+  "settings_display_name_hint": "W dowolnym języku i z dowolnymi znakami, od 2 do 32. Możesz ją zmienić w każdej chwili.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Użyj od {min__number} do {max__number} znaków."
+      }
+    }
+  ],
+  "settings_email_daily": "Podsumowanie dzienne",
+  "settings_email_instant": "Od razu",
+  "settings_email_invalid": "Wpisz poprawny adres e-mail.",
+  "settings_email_new": "Nowy adres e-mail",
+  "settings_email_off": "Wyłączone",
+  "settings_email_same": "To już jest twój adres e-mail.",
+  "settings_email_sent_text": "Wysłaliśmy link potwierdzający na {email}. Twój adres zmieni się, gdy go otworzysz.",
+  "settings_email_sent_title": "Sprawdź skrzynkę",
+  "settings_email_sent_toast": "Wysłano link potwierdzający",
+  "settings_email_submit": "Zmień e-mail",
+  "settings_email_taken": "Tego adresu nie można użyć. Spróbuj innego.",
+  "settings_email_text": "Służy do logowania i wiadomości, które chcesz dostawać. Aby go zmienić, potwierdź nowy adres ze swojej skrzynki; stary adres dostanie powiadomienie.",
+  "settings_email_title": "Adres e-mail",
+  "settings_email_unverified": "Niepotwierdzony",
+  "settings_email_verified": "Potwierdzony",
+  "settings_email_weekly": "Podsumowanie tygodniowe",
+  "settings_export_again": "Przygotuj nowy eksport",
+  "settings_export_download": "Pobierz ZIP",
+  "settings_export_email_note": "Link do pobrania wyślemy ci też e-mailem. Działa przez 24 godziny.",
+  "settings_export_expired": "Ten link do eksportu wygasł.",
+  "settings_export_expires": "link ważny do {date}",
+  "settings_export_failed": "Nie udało się rozpocząć eksportu",
+  "settings_export_preparing": "Przygotowywanie eksportu…",
+  "settings_export_rate_limited": "Niedawno zamówiłeś eksport — spróbuj ponownie później",
+  "settings_export_ready": "Twój eksport jest gotowy",
+  "settings_export_request": "Przygotuj eksport",
+  "settings_export_requested": "Przygotowujemy twój eksport",
+  "settings_export_requested_at": "Zamówiono {date}",
+  "settings_export_status_failed": "Eksport się nie powiódł. Spróbuj ponownie.",
+  "settings_export_text": "ZIP z plikami JSON: konto, profil, mody, komentarze, recenzje, zestawy, obserwowane i ustawienia.",
+  "settings_export_title": "Wyeksportuj swoje dane",
+  "settings_handle": "Nazwa użytkownika",
+  "settings_handle_hint": "Adres twojego profilu. Na razie nie można go zmienić.",
+  "settings_history_link": "Otwórz moje pobrania",
+  "settings_history_off_saved": "Historia pobrań wyłączona",
+  "settings_history_on_saved": "Historia pobrań włączona",
+  "settings_history_switch": "Zapisuj historię pobrań",
+  "settings_history_text": "Gdy jest włączona, pobrania dokonane po zalogowaniu trafiają do „Moich pobrań”, abyśmy mogli informować cię o aktualizacjach.",
+  "settings_history_title": "Historia pobrań",
+  "settings_image_processing": "Przetwarzanie obrazu trwa zbyt długo. Spróbuj ponownie za chwilę.",
+  "settings_image_rejected": "Obraz został odrzucony. Spróbuj innego.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ten obraz jest za duży. Limit to {max__number} MB."
+      }
+    }
+  ],
+  "settings_image_type": "Ten typ pliku nie jest obsługiwany. Użyj PNG, JPEG, WebP lub AVIF.",
+  "settings_index_title": "Ustawienia",
+  "settings_language_browser": "Jak w mojej przeglądarce",
+  "settings_language_label": "Język",
+  "settings_language_saved": "Zapisano język",
+  "settings_language_text": "Język konsoli i e-maili, które do ciebie wysyłamy.",
+  "settings_language_title": "Język i liczby",
+  "settings_link_add": "Dodaj link",
+  "settings_link_invalid": "Wpisz pełny adres strony zaczynający się od https://",
+  "settings_link_kind": "Rodzaj",
+  "settings_link_label": "Etykieta",
+  "settings_link_other": "Inne",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Usuń link {n__number}"
+      }
+    }
+  ],
+  "settings_link_url": "Adres",
+  "settings_link_website": "Strona internetowa",
+  "settings_links_empty": "Jeszcze nie ma linków.",
+  "settings_links_saved": "Zapisano linki",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Do {max__number} linków na profilu: twoja strona, kanały i miejsca, gdzie można cię wesprzeć."
+      }
+    }
+  ],
+  "settings_links_title": "Linki",
+  "settings_loading": "Wczytywanie…",
+  "settings_member_since": "Ocalały od",
+  "settings_motion": "Animacje",
+  "settings_motion_full": "Wszystkie",
+  "settings_motion_full_hint": "Wszystkie animacje włączone.",
+  "settings_motion_reduce": "Ograniczone",
+  "settings_motion_reduce_hint": "Bez przesuwania, powiększania i fajerwerków.",
+  "settings_motion_system": "Jak na moim urządzeniu",
+  "settings_motion_system_hint": "Zgodnie z ustawieniem ograniczenia ruchu w systemie.",
+  "settings_notif_ack": "Twoje raporty terenowe",
+  "settings_notif_ack_hint": "Autor zobaczył lub naprawił zgłoszony przez ciebie problem.",
+  "settings_notif_announcement": "Ogłoszenia",
+  "settings_notif_announcement_hint": "Wiadomości od zespołu SOTF Mods.",
+  "settings_notif_award": "Nagrody",
+  "settings_notif_award_hint": "Twój mod został Modem tygodnia lub Wyborem zespołu.",
+  "settings_notif_badge": "Odznaki",
+  "settings_notif_badge_hint": "Odblokowałeś odznakę.",
+  "settings_notif_broken": "Twój mod zgłoszony jako niedziałający",
+  "settings_notif_broken_hint": "Raporty terenowe mówią, że twój mod nie działa na bieżącym buildzie.",
+  "settings_notif_col_app": "W aplikacji",
+  "settings_notif_col_email": "E-mail",
+  "settings_notif_col_signal": "Sygnał",
+  "settings_notif_comment": "Komentarze do twoich modów",
+  "settings_notif_comment_hint": "Zbiorczo: kilka komentarzy przychodzi jako jeden sygnał.",
+  "settings_notif_creator": "Nowe mody twórców",
+  "settings_notif_creator_hint": "Twórca, którego obserwujesz, opublikował coś nowego.",
+  "settings_notif_defaults": "Przywróć domyślne",
+  "settings_notif_email_only": "Tylko e-mail",
+  "settings_notif_group_community": "Społeczność i strażnicy",
+  "settings_notif_group_conversations": "Rozmowy",
+  "settings_notif_group_follows": "To, co obserwujesz",
+  "settings_notif_group_my_mods": "Twoje mody",
+  "settings_notif_matrix_text": "Dla każdego rodzaju sygnału wybierz, czy ma się pojawiać w aplikacji i jak często ma przychodzić e-mailem. Podsumowania łączą wszystko w jeden e-mail.",
+  "settings_notif_matrix_title": "Sygnały i e-maile",
+  "settings_notif_mention": "Wzmianki",
+  "settings_notif_mention_hint": "Ktoś cię @wspomniał.",
+  "settings_notif_milestone": "Progi pobrań",
+  "settings_notif_milestone_hint": "Twój mod przekroczył próg pobrań.",
+  "settings_notif_patch": "Łatki gry psujące mody",
+  "settings_notif_patch_hint": "Nowy build gry prawdopodobnie zepsuje mody (dla twórców).",
+  "settings_notif_removal_note": "Jeśli twój mod zostanie usunięty, zawsze powiadomimy cię e-mailem.",
+  "settings_notif_reply": "Odpowiedzi",
+  "settings_notif_reply_hint": "Ktoś odpowiedział na twój komentarz.",
+  "settings_notif_report": "Twoje zgłoszenia",
+  "settings_notif_report_hint": "Strażnicy rozpatrzyli coś, co zgłosiłeś.",
+  "settings_notif_review": "Recenzje twoich modów",
+  "settings_notif_review_hint": "Ktoś ocenił jeden z twoich modów.",
+  "settings_notif_review_reply": "Odpowiedzi na twoje recenzje",
+  "settings_notif_review_reply_hint": "Autor odpowiedział na twoją recenzję.",
+  "settings_notif_saved": "Zapisano ustawienia powiadomień",
+  "settings_notif_status": "Decyzje moderacji",
+  "settings_notif_status_hint": "Twój mod został zatwierdzony, odrzucony, wymaga zmian lub został zarchiwizowany.",
+  "settings_notif_version": "Nowe wersje",
+  "settings_notif_version_hint": "Mod z twojego plecaka dostał aktualizację.",
+  "settings_notif_weekly": "Tygodniowy raport twórcy",
+  "settings_notif_weekly_hint": "W poniedziałki: pobrania, obserwujący i recenzje twoich modów.",
+  "settings_notifications_hint": "Jakie sygnały dostajesz w aplikacji i e-mailem.",
+  "settings_notifications_title": "Powiadomienia",
+  "settings_nsfw_adult": "Mam co najmniej 18 lat (lub jestem pełnoletni tam, gdzie mieszkam)",
+  "settings_nsfw_confirm": "Pokaż",
+  "settings_nsfw_confirm_text": "Mody NSFW mogą zawierać nagość lub drastyczne treści. W każdej chwili możesz je znowu ukryć.",
+  "settings_nsfw_confirm_title": "Pokazywać treści dla dorosłych?",
+  "settings_nsfw_confirmed_on": "Potwierdzono {date}",
+  "settings_nsfw_hide": "Ukryj treści dla dorosłych",
+  "settings_nsfw_off_saved": "Treści dla dorosłych są ukryte",
+  "settings_nsfw_on_saved": "Treści dla dorosłych są teraz widoczne",
+  "settings_nsfw_show": "Pokazuj treści dla dorosłych",
+  "settings_nsfw_status_off": "Ukryte",
+  "settings_nsfw_status_on": "Widoczne",
+  "settings_nsfw_text": "Mody oznaczone jako NSFW są ukryte na listach, w wyszukiwarce i kanałach oraz rozmyte wszędzie poza własną stroną. Włącz tę opcję, aby je widzieć.",
+  "settings_nsfw_title": "Treści dla dorosłych",
+  "settings_number_compact": "Skrócone",
+  "settings_number_compact_hint": "1,2 tys. pobrań",
+  "settings_number_format": "Duże liczby",
+  "settings_number_full": "Pełne",
+  "settings_number_full_hint": "1234 pobrania",
+  "settings_password_changed": "Zmieniono hasło",
+  "settings_password_changed_revoked": "Zmieniono hasło i wylogowano pozostałe urządzenia",
+  "settings_password_confirm": "Powtórz nowe hasło",
+  "settings_password_current": "Obecne hasło",
+  "settings_password_mismatch": "Nowe hasła nie są takie same.",
+  "settings_password_new": "Nowe hasło",
+  "settings_password_rejected": "To hasło pojawiło się w wycieku danych. Wybierz inne.",
+  "settings_password_required": "Wpisz obecne hasło.",
+  "settings_password_revoke": "Wyloguj moje pozostałe urządzenia",
+  "settings_password_revoke_hint": "Zalecane, jeśli podejrzewasz, że ktoś inny zna twoje hasło.",
+  "settings_password_same": "Wybierz hasło inne niż obecne.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Użyj co najmniej {min__number} znaków."
+      }
+    }
+  ],
+  "settings_password_submit": "Zmień hasło",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Co najmniej {min__number} znaków. Długie zdanie łatwiej zapamiętać i trudniej odgadnąć."
+      }
+    }
+  ],
+  "settings_password_title": "Hasło",
+  "settings_password_wrong": "To hasło jest nieprawidłowe.",
+  "settings_photos_text": "Twój awatar i baner na górze profilu. Zmiany zapisują się, gdy tylko skończy się przesyłanie.",
+  "settings_photos_title": "Zdjęcie i baner",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Przypięto {count__number} z {max__number}"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} pobranie",
+        "count__plural=few": "{count__number} pobrania",
+        "count__plural=many": "{count__number} pobrań",
+        "count__plural=*": "{count__number} pobrania"
+      }
+    }
+  ],
+  "settings_pinned_empty": "Gdy któryś z twoich modów zostanie opublikowany, przypniesz go tutaj.",
+  "settings_pinned_failed": "Nie udało się wczytać twoich modów.",
+  "settings_pinned_hidden": "Niektóre przypięte mody nie są teraz publiczne; pozostają przypięte i pojawią się znów, gdy będą.",
+  "settings_pinned_saved": "Zapisano przypięte mody",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Wybierz do {max__number} swoich modów, które pojawią się pierwsze na profilu, w tej kolejności."
+      }
+    }
+  ],
+  "settings_pinned_title": "Przypięte mody",
+  "settings_preferences_hint": "Język, motyw, animacje, skróty i treści dla dorosłych.",
+  "settings_preferences_title": "Preferencje",
+  "settings_privacy_data_link": "Eksportuj lub usuń moje dane",
+  "settings_privacy_data_text": "Możesz wyeksportować wszystko, co o tobie przechowujemy, albo usunąć konto.",
+  "settings_privacy_data_title": "Twoje dane",
+  "settings_privacy_hint": "Co inni widzą na twoim profilu oraz historia pobrań.",
+  "settings_privacy_policy_link": "Polityka prywatności",
+  "settings_privacy_saved": "Zapisano ustawienia prywatności",
+  "settings_privacy_title": "Prywatność",
+  "settings_profile_hint": "Zdjęcie, baner, nazwa, bio, linki i przypięte mody.",
+  "settings_profile_title": "Profil",
+  "settings_profile_view_public": "Zobacz swój publiczny profil",
+  "settings_readout": "Ustawienia obozu",
+  "settings_retry": "Spróbuj ponownie",
+  "settings_save": "Zapisz",
+  "settings_save_failed": "Nie udało się zapisać zmian",
+  "settings_security_hint": "Gdzie jesteś zalogowany i wylogowywanie innych urządzeń.",
+  "settings_security_tip_email": "Nigdy nie prosimy o hasło e-mailem ani na Discordzie.",
+  "settings_security_tip_password": "Używaj hasła, którego nie używasz nigdzie indziej.",
+  "settings_security_tip_sessions": "Wylogowuj się z komputerów wspólnych lub publicznych, gdy skończysz.",
+  "settings_security_tips_title": "Jak dbać o bezpieczeństwo obozu",
+  "settings_security_title": "Bezpieczeństwo",
+  "settings_sessions_active_now": "aktywna teraz",
+  "settings_sessions_confirm_current_text": "Przejdziesz na stronę logowania.",
+  "settings_sessions_confirm_current_title": "Wylogować się w tej przeglądarce?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Zakończy się {count__number} inna sesja. Ta przeglądarka pozostanie zalogowana.",
+        "count__plural=few": "Zakończą się {count__number} inne sesje. Ta przeglądarka pozostanie zalogowana.",
+        "count__plural=many": "Zakończy się {count__number} innych sesji. Ta przeglądarka pozostanie zalogowana.",
+        "count__plural=*": "Zakończy się {count__number} innej sesji. Ta przeglądarka pozostanie zalogowana."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Wylogować wszędzie indziej?",
+  "settings_sessions_confirm_text": "{device} będzie musiało zalogować się ponownie.",
+  "settings_sessions_confirm_title": "Wylogować to urządzenie?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} aktywna sesja",
+        "count__plural=few": "{count__number} aktywne sesje",
+        "count__plural=many": "{count__number} aktywnych sesji",
+        "count__plural=*": "{count__number} aktywnej sesji"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Nie udało się wylogować tej sesji",
+  "settings_sessions_last_seen": "ostatnio aktywna {when}",
+  "settings_sessions_revoked": "Wylogowano: {device}",
+  "settings_sessions_revoked_others": "Wylogowano pozostałe urządzenia",
+  "settings_sessions_sign_out": "Wyloguj",
+  "settings_sessions_sign_out_here": "Wyloguj tutaj",
+  "settings_sessions_sign_out_others": "Wyloguj wszędzie indziej",
+  "settings_sessions_started": "zalogowano {date}",
+  "settings_sessions_text": "Każda przeglądarka i urządzenie z aktywną sesją. Wyloguj te, których nie rozpoznajesz.",
+  "settings_sessions_this_device": "To urządzenie",
+  "settings_sessions_title": "Gdzie jesteś zalogowany",
+  "settings_sessions_unknown_device": "Nieznane urządzenie",
+  "settings_shortcuts": "Skróty klawiszowe",
+  "settings_shortcuts_hint": "Jednoklawiszowe skróty w konsoli. Wyłącz je, jeśli przeszkadzają twojej technologii wspomagającej.",
+  "settings_show_activity": "Pokazuj moją aktywność",
+  "settings_show_activity_hint": "Mapa aktywności z 12 miesięcy i ostatnie działania.",
+  "settings_show_kits": "Pokazuj moje zestawy",
+  "settings_show_kits_hint": "Karta Zestawy na twoim profilu (prywatne zestawy nigdy nie są pokazywane).",
+  "settings_show_leaderboards": "Pojawiaj się w rankingach",
+  "settings_show_leaderboards_hint": "Listy najlepszych twórców i ocalałych.",
+  "settings_show_rank": "Pokazuj moją rangę ocalałego i XP",
+  "settings_show_rank_hint": "Pieczęć rangi obok twojej nazwy.",
+  "settings_support_edit": "Edytuj linki w profilu",
+  "settings_support_empty": "Nie dodałeś jeszcze linku do Ko-fi ani Patreona.",
+  "settings_support_text": "Linki do Ko-fi i Patreona z profilu pojawiają się na profilu i obok przycisku pobierania twoich modów.",
+  "settings_support_title": "Linki wsparcia",
+  "settings_template_add": "Dodaj szablon",
+  "settings_template_copied": "Skopiowano „{name}”",
+  "settings_template_copy": "Kopiuj",
+  "settings_template_copy_failed": "Nie udało się skopiować do schowka",
+  "settings_template_delete": "Usuń",
+  "settings_template_name": "Nazwa",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Nadaj mu nazwę (do {max__number} znaków)."
+      }
+    }
+  ],
+  "settings_template_text": "Treść",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Wpisz treść (do {max__number} znaków)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Jeszcze nie ma szablonów.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Do {max__number} gotowych odpowiedzi (kroki instalacji, znane konflikty…) do kopiowania do komentarzy i odpowiedzi na recenzje."
+      }
+    }
+  ],
+  "settings_templates_title": "Szablony odpowiedzi",
+  "settings_theme": "Motyw",
+  "settings_theme_day": "Dzień",
+  "settings_theme_night": "Noc",
+  "settings_theme_system": "Jak na moim urządzeniu",
+  "settings_verify_already": "Twój adres e-mail jest już potwierdzony",
+  "settings_verify_resend": "Wyślij link ponownie",
+  "settings_verify_resend_failed": "Nie udało się wysłać linku",
+  "settings_verify_resent": "Wysłaliśmy nowy link na {email}",
+  "settings_verify_text": "Do tego czasu możesz przeglądać i pobierać, ale nie komentować, recenzować ani publikować.",
+  "settings_verify_title": "Potwierdź adres e-mail",
+  "settings_visibility_text": "Wyłącz to, co wolisz zachować dla siebie.",
+  "settings_visibility_title": "Na twoim profilu",
+  "signals_action_download": "Pobierz",
+  "signals_announcement": "Nowe ogłoszenie od strażników",
+  "signals_announcement_titled": "Ogłoszenie: {title}",
+  "signals_award_build_of_month": "{mod} to Build miesiąca",
+  "signals_award_generic": "{mod} zdobył nagrodę",
+  "signals_award_mod_of_month": "{mod} to Mod miesiąca",
+  "signals_award_mod_of_week": "{mod} to Mod tygodnia",
+  "signals_award_staff_pick": "{mod} to Wybór zespołu",
+  "signals_badge_awarded": "Odblokowano odznakę: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Witaj w nowym SOTF Mods",
+        "count__exact=*, count__plural=one": "Witaj w nowym SOTF Mods — w twoim notatniku terenowym czeka {count__number} odznaka",
+        "count__exact=*, count__plural=few": "Witaj w nowym SOTF Mods — w twoim notatniku terenowym czekają {count__number} odznaki",
+        "count__exact=*, count__plural=many": "Witaj w nowym SOTF Mods — w twoim notatniku terenowym czeka {count__number} odznak",
+        "count__exact=*, count__plural=*": "Witaj w nowym SOTF Mods — w twoim notatniku terenowym czeka {count__number} odznaki"
+      }
+    }
+  ],
+  "signals_bell_label": "Sygnały",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Sygnały: {count__number} nieprzeczytany",
+        "count__plural=few": "Sygnały: {count__number} nieprzeczytane",
+        "count__plural=many": "Sygnały: {count__number} nieprzeczytanych",
+        "count__plural=*": "Sygnały: {count__number} nieprzeczytanego"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} zgłosił(a) błąd w {mod}",
+  "signals_comment_mention": "{actor} wspomniał(a) o tobie w komentarzach do {mod}",
+  "signals_comment_on_mod": "{actor} skomentował(a) {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nowy komentarz do {mod}",
+        "count__plural=few": "{count__number} nowe komentarze do {mod}",
+        "count__plural=many": "{count__number} nowych komentarzy do {mod}",
+        "count__plural=*": "{count__number} nowego komentarza do {mod}"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} odpowiedział(a) na twój komentarz do {mod}",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} odpowiedź na twój komentarz do {mod}",
+        "count__plural=few": "{count__number} odpowiedzi na twój komentarz do {mod}",
+        "count__plural=many": "{count__number} odpowiedzi na twój komentarz do {mod}",
+        "count__plural=*": "{count__number} odpowiedzi na twój komentarz do {mod}"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "Autor {mod} zobaczył twój raport terenowy",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input status",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} jest zgłaszany jako niedziałający na {build}",
+        "status=*": "{mod} jest zgłaszany jako działający różnie na {build}"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "Twój raport terenowy o {mod} został naprawiony w {version}",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} opublikował(a) build {mod}",
+        "kind=*": "{actor} opublikował(a) {mod}"
+      }
+    }
+  ],
+  "signals_current_build": "bieżącym buildzie",
+  "signals_empty_filtered_text": "Żaden sygnał nie pasuje jeszcze do tego filtra. Spróbuj „Wszystko”.",
+  "signals_empty_filtered_title": "Nic na tym kanale",
+  "signals_empty_text": "Obserwuj mody i twórców, aby wiedzieć, kiedy coś się zmienia.",
+  "signals_empty_title": "W lesie panuje cisza",
+  "signals_end": "To na razie wszystkie sygnały.",
+  "signals_error_text": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie za chwilę.",
+  "signals_error_title": "Nie udało się wczytać sygnałów.",
+  "signals_excerpt": "„{text}”",
+  "signals_filter_all": "Wszystko",
+  "signals_filter_label": "Filtruj sygnały",
+  "signals_filter_mentions": "Wzmianki",
+  "signals_filter_my_mods": "Moje mody",
+  "signals_filter_ranger": "Strażnicy",
+  "signals_filter_updates": "Aktualizacje",
+  "signals_group_today": "Dzisiaj",
+  "signals_group_yesterday": "Wczoraj",
+  "signals_load_more": "Wczytaj starsze sygnały",
+  "signals_loading": "Wczytywanie sygnałów…",
+  "signals_loading_more": "Wczytywanie…",
+  "signals_mark_all_read": "Oznacz wszystko jako przeczytane",
+  "signals_mark_failed": "Nie udało się oznaczyć sygnałów jako przeczytanych",
+  "signals_mark_read": "Oznacz jako przeczytane",
+  "signals_marked_all": "Wszystkie sygnały oznaczono jako przeczytane",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} przekroczył {threshold__number} pobrań"
+      }
+    }
+  ],
+  "signals_more_error": "Nie udało się wczytać starszych sygnałów.",
+  "signals_page_description": "Nowości z tego, co obserwujesz, odpowiedzi, wzmianki i wiadomości o twoich modach.",
+  "signals_page_readout": "Dziennik radiowy",
+  "signals_page_title": "Sygnały",
+  "signals_panel_title": "Sygnały",
+  "signals_patch_breaking": "Build gry {build} może psuć mody — sprawdź swoje w Patch Radar",
+  "signals_preferences": "Ustawienia powiadomień",
+  "signals_report_dismissed": "Twoje zgłoszenie zostało rozpatrzone — działania nie były potrzebne",
+  "signals_report_resolved": "Twoje zgłoszenie zostało rozpatrzone i podjęto działania",
+  "signals_retry": "Spróbuj ponownie",
+  "signals_review_on_mod": "{actor} wystawił(a) {mod} recenzję na {rating} gwiazdek",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nowa recenzja {mod}",
+        "count__plural=few": "{count__number} nowe recenzje {mod}",
+        "count__plural=many": "{count__number} nowych recenzji {mod}",
+        "count__plural=*": "{count__number} nowej recenzji {mod}"
+      }
+    }
+  ],
+  "signals_review_reply": "Autor {mod} odpowiedział na twoją recenzję",
+  "signals_see_all": "Zobacz wszystkie sygnały",
+  "signals_show_all": "Pokaż wszystkie sygnały",
+  "signals_someone": "Ktoś",
+  "signals_status_approved": "Twój mod {mod} został zatwierdzony i jest opublikowany",
+  "signals_status_archived": "Twój mod {mod} został zarchiwizowany",
+  "signals_status_changed": "Status {mod} się zmienił",
+  "signals_status_changes_requested": "Strażnicy proszą o zmiany w {mod}",
+  "signals_status_rejected": "Twój mod {mod} został odrzucony",
+  "signals_status_removed": "Twój mod {mod} został usunięty",
+  "signals_status_republished": "Twój mod {mod} jest znów publiczny",
+  "signals_status_unlisted": "Twój mod {mod} został usunięty z list",
+  "signals_unknown_mod": "mod",
+  "signals_unread_prefix": "Nieprzeczytane:",
+  "signals_version_published": "Wyszedł {mod} {version} — obserwujesz go",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nowa wersja {mod}",
+        "count__plural=few": "{count__number} nowe wersje {mod}",
+        "count__plural=many": "{count__number} nowych wersji {mod}",
+        "count__plural=*": "{count__number} nowej wersji {mod}"
+      }
+    }
+  ],
+  "signals_weekly_report": "Twój tygodniowy raport twórcy jest gotowy",
   "social_action_back": "Wstecz",
   "social_action_cancel": "Anuluj",
   "social_action_close": "Zamknij",
@@ -5384,5 +7383,592 @@
   "ui_theme_dark": "Noc",
   "ui_theme_light": "Dzień",
   "ui_theme_system": "Systemowy",
-  "ui_type_to_confirm": "Wpisz {text}, aby potwierdzić."
+  "ui_type_to_confirm": "Wpisz {text}, aby potwierdzić.",
+  "upload_announce_group": "Przetestowane buildy i ogłoszenie",
+  "upload_autosave_error": "Nie udało się zapisać. Za chwilę spróbujemy ponownie – twoje zmiany zostają tutaj.",
+  "upload_autosave_idle": "Na razie nie ma czego zapisać",
+  "upload_autosave_limit": "Osiągnięto limit szkiców: usuń jeden, aby zapisać ten.",
+  "upload_autosave_offline": "Brak połączenia. Zmiany zostają tutaj i zapiszą się po powrocie do sieci.",
+  "upload_autosave_pending": "Niezapisane zmiany",
+  "upload_autosave_saved": "Zapisano automatycznie {when}",
+  "upload_autosave_saving": "Zapisywanie…",
+  "upload_back": "Wstecz",
+  "upload_block_empty": "Plik jest pusty.",
+  "upload_block_local_problems": "Kontrole poniżej wykryły błędy. Popraw je i wybierz plik ponownie.",
+  "upload_block_manifest_id_mismatch": "To inny mod: jego identyfikator manifestu to {found}, a oczekiwano {expected}.",
+  "upload_block_too_large": "Plik jest większy niż {max}.",
+  "upload_block_unreadable": "Nie udało się odczytać pliku. Czy to poprawne i kompletne pobranie?",
+  "upload_block_version_exists": "Wersja {version} już istnieje. Podnieś wersję w manifest.json.",
+  "upload_block_version_not_greater": "Wersja {version} musi być wyższa niż {previous}. Podnieś wersję w manifest.json.",
+  "upload_block_version_not_semver": "Wersja {version} nie jest wersją semantyczną (x.y.z).",
+  "upload_block_wrong_type": "Zły typ pliku. Wybierz typ podany w polu upuszczania.",
+  "upload_blocked_title": "Tego pliku nie można wysłać.",
+  "upload_build_buildshare_version": "Wersja BuildShare",
+  "upload_build_detected": "Wykryto plan",
+  "upload_build_elements": "Elementy",
+  "upload_build_guid": "Identyfikator planu",
+  "upload_build_no_thumbnail": "Ten plan nie ma miniatury. Dodaj okładkę w kroku multimediów.",
+  "upload_build_size_class": "Rozmiar",
+  "upload_build_structures": "Konstrukcje",
+  "upload_build_thumbnail_alt": "Miniatura planu {name}",
+  "upload_cancel": "Anuluj",
+  "upload_category_label": "Kategoria",
+  "upload_category_placeholder": "Wybierz kategorię",
+  "upload_changelog_group": "Lista zmian",
+  "upload_changelog_hint_first": "Opcjonalne przy pierwszym wydaniu.",
+  "upload_changelog_hint_version": "Obserwujący przeczytają to w swoich Sygnałach.",
+  "upload_changelog_label": "Co się zmieniło (Markdown)",
+  "upload_changelog_placeholder": "Naprawiono…, dodano…, zmieniono…",
+  "upload_channel_beta": "Beta",
+  "upload_channel_beta_hint": "Dla testerów, którzy chcą najnowszych zmian.",
+  "upload_channel_label": "Kanał",
+  "upload_channel_release": "Stabilny",
+  "upload_channel_release_hint": "Dla wszystkich. Staje się najnowszą wersją.",
+  "upload_choose_other": "Wybierz inny plik",
+  "upload_compat_game": "Gra i loader",
+  "upload_compat_intro": "Powiedz graczom, gdzie działa twój mod. Raporty terenowe ocalałych uzupełnią to później.",
+  "upload_compat_title": "Zgodność",
+  "upload_compat_where": "Gdzie działa",
+  "upload_counter": "{count} / {max}",
+  "upload_cover_build_fallback": "Bez okładki zostanie użyta miniatura planu.",
+  "upload_cover_choose": "Wybierz obraz",
+  "upload_cover_description": "Widoczna na kartach i na górze strony, przycięta do 16:9.",
+  "upload_cover_drop": "Upuść tutaj obraz okładki",
+  "upload_cover_failed": "Nie udało się wysłać okładki.",
+  "upload_cover_hint": "PNG, JPEG, WebP, AVIF lub GIF · do 10 MB · najlepiej od 1280 × 720",
+  "upload_cover_label": "Okładka",
+  "upload_cover_preview_alt": "Podgląd okładki",
+  "upload_cover_remove": "Usuń okładkę",
+  "upload_cover_replace": "Zmień okładkę",
+  "upload_cover_uploading": "Postęp wysyłania okładki",
+  "upload_crop_confirm": "Użyj tego kadru",
+  "upload_crop_description": "Przeciągnij ramkę albo zaznacz ją i użyj strzałek. + i − zmieniają jej rozmiar.",
+  "upload_crop_frame": "Ramka kadrowania",
+  "upload_crop_keyboard": "Strzałki przesuwają · Shift przyspiesza · + i − zmieniają rozmiar",
+  "upload_crop_output": "Wynik {width} × {height}",
+  "upload_crop_position": "Od lewej {x} px, od góry {y} px",
+  "upload_crop_size": "Rozmiar ramki",
+  "upload_crop_title": "Przytnij okładkę",
+  "upload_dedicated_hint": "Czy działa na serwerze dedykowanym?",
+  "upload_dedicated_label": "Serwer dedykowany",
+  "upload_dedicated_no": "Nie",
+  "upload_dedicated_partial": "Częściowo",
+  "upload_dedicated_unknown": "Nie wiem",
+  "upload_dedicated_yes": "Tak",
+  "upload_dependencies_hint": "Te z manifest.json są zawsze wymagane. Tutaj dodaj mody opcjonalne i konflikty.",
+  "upload_dependencies_label": "Zależności",
+  "upload_dependencies_none": "Brak zależności.",
+  "upload_dependency_add": "Dodaj",
+  "upload_dependency_add_as": "Dodaj {name} jako: {kind}",
+  "upload_dependency_conflicts": "Konflikt",
+  "upload_dependency_duplicate": "Ta zależność jest już na liście.",
+  "upload_dependency_from_manifest": "Z manifest.json",
+  "upload_dependency_invalid_id": "Identyfikator manifestu zawiera tylko litery, cyfry, „.”, „_” i „-”.",
+  "upload_dependency_kind": "Relacja z {id}",
+  "upload_dependency_manual": "Albo wpisz identyfikator manifestu",
+  "upload_dependency_no_results": "Żaden mod nie pasuje.",
+  "upload_dependency_optional": "Opcjonalna",
+  "upload_dependency_range": "Zakres wersji {id}",
+  "upload_dependency_range_placeholder": "Dowolna wersja (np. >=1.2.0)",
+  "upload_dependency_remove": "Usuń {id}",
+  "upload_dependency_required": "Wymagana",
+  "upload_dependency_search": "Szukaj modów i bibliotek w SOTF Mods",
+  "upload_dependency_search_failed": "Wyszukiwanie się nie powiodło. Spróbuj ponownie.",
+  "upload_description_group": "Opis",
+  "upload_description_hint": "Co robi, jak go używać, znane problemy. Działają nagłówki, listy, obrazy i linki do YouTube.",
+  "upload_description_label": "Opis (Markdown)",
+  "upload_description_placeholder": "Co robi twój mod, jak go używać, znane problemy…",
+  "upload_details_discovery": "Kategoria i tagi",
+  "upload_details_discovery_hint": "Od nich zależy, gdzie ocaleni go znajdą w Odkrywaniu i wyszukiwarce.",
+  "upload_details_identity": "Nazwa i adres",
+  "upload_details_intro": "Tak twój wpis będzie wyglądał na stronie. Uzupełniliśmy to, co wyczytaliśmy z pliku.",
+  "upload_details_links": "Licencja i linki",
+  "upload_details_title": "Opis",
+  "upload_draft_limit_detail": "Usuń szkic, którego już nie potrzebujesz, aby zacząć nowy.",
+  "upload_draft_limit_title": "Masz 20 szkiców.",
+  "upload_draft_missing_detail": "Został wysłany lub usunięty. Pozostałe szkice nadal są na liście.",
+  "upload_draft_missing_title": "Ten szkic już nie istnieje.",
+  "upload_draft_other_flow_detail": "Otwórz go tam, gdzie został rozpoczęty, aby zachować jego kroki.",
+  "upload_draft_other_flow_title": "Ten szkic należy do innego kreatora.",
+  "upload_drafts_blockers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} rzecz do poprawy",
+        "count__plural=few": "{count__number} rzeczy do poprawy",
+        "count__plural=many": "{count__number} rzeczy do poprawy",
+        "count__plural=*": "{count__number} rzeczy do poprawy"
+      }
+    }
+  ],
+  "upload_drafts_counter": "{count} / {max}",
+  "upload_drafts_delete": "Usuń",
+  "upload_drafts_delete_detail": "„{name}” i jego niewysłane pliki znikną. Tego nie da się cofnąć.",
+  "upload_drafts_delete_named": "Usuń {name}",
+  "upload_drafts_delete_title": "Usunąć ten szkic?",
+  "upload_drafts_deleted": "Szkic usunięty",
+  "upload_drafts_empty_detail": "Wszystko, co zaczniesz publikować, zapisuje się tutaj do czasu wysłania.",
+  "upload_drafts_empty_title": "Brak szkiców",
+  "upload_drafts_intro": "Zapisywane automatycznie w trakcie pracy. Do {max} szkiców naraz.",
+  "upload_drafts_loading": "Wczytywanie szkiców",
+  "upload_drafts_quality": "Jakość {score}",
+  "upload_drafts_ready": "Gotowy do wysłania",
+  "upload_drafts_resume": "Wznów",
+  "upload_drafts_start": "Zacznij publikować",
+  "upload_drafts_step": "Krok {current} z {total} · {label}",
+  "upload_drafts_title": "Szkice",
+  "upload_drafts_untitled": "Szkic bez tytułu",
+  "upload_drafts_untitled_version": "Nowa wersja",
+  "upload_drafts_updated": "Edytowano {when}",
+  "upload_drop_button": "Wybierz plik",
+  "upload_drop_hint": "{type} · do {max}",
+  "upload_drop_replace": "Upuść inny plik, aby go zastąpić",
+  "upload_drop_title_build": "Upuść tutaj plan .json",
+  "upload_drop_title_mod": "Upuść tutaj plik .zip",
+  "upload_entries_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "I jeszcze {count__number} plik",
+        "count__plural=few": "I jeszcze {count__number} pliki",
+        "count__plural=many": "I jeszcze {count__number} plików",
+        "count__plural=*": "I jeszcze {count__number} pliku"
+      }
+    }
+  ],
+  "upload_entries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} plik w archiwum zip",
+        "count__plural=few": "{count__number} pliki w archiwum zip",
+        "count__plural=many": "{count__number} plików w archiwum zip",
+        "count__plural=*": "{count__number} pliku w archiwum zip"
+      }
+    }
+  ],
+  "upload_entry_flagged": "Wymaga przeglądu",
+  "upload_entry_not_allowed": "Nietypowy typ",
+  "upload_entry_unsafe": "Niebezpieczna ścieżka",
+  "upload_error_loader_version": "Użyj wersji w stylu 0.9.0.",
+  "upload_error_name": "Użyj od 2 do 80 znaków.",
+  "upload_error_slug": "Użyj małych liter, cyfr i łączników (od 2 do 80).",
+  "upload_error_title": "Wysyłanie zostało przerwane.",
+  "upload_error_url": "Wpisz pełny adres zaczynający się od https://",
+  "upload_error_youtube": "Wklej link do filmu na YouTube (youtube.com/watch, youtu.be lub shorts).",
+  "upload_expired_detail": "Przesyłka wygasła, zanim została użyta. Wyślij plik ponownie.",
+  "upload_failure_api": "Coś poszło nie tak po naszej stronie. Spróbuj za chwilę.",
+  "upload_failure_expired": "Link do wysyłki wygasł. Spróbuj ponownie, aby dostać nowy.",
+  "upload_failure_forbidden": "Twoje konto nie może teraz wysyłać plików (niepotwierdzony e-mail lub ograniczenie).",
+  "upload_failure_network": "Połączenie zostało przerwane. Postęp jest zachowany: wznów, gdy wrócisz do sieci.",
+  "upload_failure_rejected": "Kontrole odrzuciły plik.",
+  "upload_failure_too_large": "Plik jest za duży dla twojego konta.",
+  "upload_failure_unsupported": "Ten typ pliku nie jest akceptowany.",
+  "upload_file_intro_build": "Upuść plan .json wyeksportowany przez BuildShare. Miniatura, liczba elementów i wersja zostaną odczytane automatycznie.",
+  "upload_file_intro_mod": "Upuść plik .zip, który dałbyś graczom. Najpierw otwieramy go w przeglądarce i pokazujemy zawartość, zanim cokolwiek zostanie wysłane.",
+  "upload_file_intro_version": "Wyślij nowy plik moda {name}. Jego identyfikator manifestu musi być {manifestId}, a wersja wyższa niż {version}.",
+  "upload_file_title_build": "Twój plan BuildShare",
+  "upload_file_title_mod": "Plik twojego moda",
+  "upload_flag_absolute_path": "Plik używa ścieżki bezwzględnej.",
+  "upload_flag_blueprint_invalid": "To nie jest poprawny plan BuildShare.",
+  "upload_flag_extension_flagged": "Plik wykonywalny lub skrypt: musi go przejrzeć strażnik.",
+  "upload_flag_extension_not_allowed": "Nietypowy typ pliku dla moda.",
+  "upload_flag_file_too_large": "Plik jest za duży.",
+  "upload_flag_manifest_id_mismatch": "Identyfikator manifestu nie pasuje do tego moda.",
+  "upload_flag_manifest_invalid": "manifest.json zawiera błędy.",
+  "upload_flag_manifest_missing": "Nie znaleziono manifest.json (najwyżej dwa foldery w głąb).",
+  "upload_flag_scan_detections": "Skan bezpieczeństwa zgłosił wykrycia.",
+  "upload_flag_unknown": "Kontrola nieudana ({code}).",
+  "upload_flag_version_not_greater": "Wersja nie jest wyższa od najnowszej.",
+  "upload_flag_version_not_semver": "Wersja nie jest wersją semantyczną (x.y.z).",
+  "upload_flag_zip_bomb_ratio": "Stopień kompresji jest podejrzanie wysoki.",
+  "upload_flag_zip_invalid": "Plik zip jest uszkodzony lub zaszyfrowany.",
+  "upload_flag_zip_slip": "Ścieżka wychodzi poza folder moda („..” lub dowiązanie).",
+  "upload_flag_zip_too_many_entries": "Zip ma za dużo plików (maksymalnie 5000).",
+  "upload_flagged_detail": "Coś w nim wymaga sprawdzenia przez człowieka (zobacz ostrzeżenia poniżej). Nadal możesz go wysłać; zostanie opublikowany po zatwierdzeniu.",
+  "upload_flagged_title": "Strażnik przejrzy ten plik.",
+  "upload_gallery_added": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Dodano {count__number} obraz",
+        "count__plural=few": "Dodano {count__number} obrazy",
+        "count__plural=many": "Dodano {count__number} obrazów",
+        "count__plural=*": "Dodano {count__number} obrazu"
+      }
+    }
+  ],
+  "upload_gallery_alt": "Opis obrazu {n}",
+  "upload_gallery_alt_placeholder": "Co przedstawia?",
+  "upload_gallery_choose": "Wybierz obrazy",
+  "upload_gallery_counter": "{count} / {max}",
+  "upload_gallery_description": "Do 10 zrzutów ekranu. Przeciągnij, aby je uporządkować, i opisz każdy dla czytników ekranu.",
+  "upload_gallery_drop": "Upuść tutaj zrzuty ekranu",
+  "upload_gallery_full": "Galeria jest pełna ({max} obrazów).",
+  "upload_gallery_hint": "Kilka naraz · PNG, JPEG, WebP, AVIF lub GIF · do 10 MB każdy · maksymalnie {max}",
+  "upload_gallery_image": "Zrzut ekranu {n}",
+  "upload_gallery_label": "Galeria",
+  "upload_gallery_move_after": "Przesuń obraz {n} później",
+  "upload_gallery_move_before": "Przesuń obraz {n} wcześniej",
+  "upload_gallery_moved": "Obraz przeniesiony na pozycję {position} z {total}",
+  "upload_gallery_queued": "Oczekuje…",
+  "upload_gallery_remove": "Usuń obraz {n}",
+  "upload_gallery_removed": "Obraz usunięty",
+  "upload_gallery_reorder_hint": "Przeciągnij obrazy lub użyj strzałek, aby zmienić kolejność.",
+  "upload_gallery_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Pominięto {count__number} plik (zły typ, ponad 10 MB lub pełna galeria)",
+        "count__plural=few": "Pominięto {count__number} pliki (zły typ, ponad 10 MB lub pełna galeria)",
+        "count__plural=many": "Pominięto {count__number} plików (zły typ, ponad 10 MB lub pełna galeria)",
+        "count__plural=*": "Pominięto {count__number} pliku (zły typ, ponad 10 MB lub pełna galeria)"
+      }
+    }
+  ],
+  "upload_gallery_uploading": "Wysyłanie obrazu {n}",
+  "upload_game_build_current": "{label} (bieżący)",
+  "upload_game_builds_failed": "Nie udało się wczytać buildów gry. Spróbuj później.",
+  "upload_game_builds_hint": "Zaznacz tylko te łatki, na których naprawdę grałeś.",
+  "upload_game_builds_label": "Przetestowane buildy gry",
+  "upload_image_no_preview": "Wysłano (podgląd na stronie po przetworzeniu)",
+  "upload_image_reading": "Odczytywanie obrazu…",
+  "upload_image_too_large": "Obrazy mogą mieć do 10 MB.",
+  "upload_image_unreadable": "Nie udało się otworzyć tego obrazu.",
+  "upload_image_wrong_type": "Użyj obrazu PNG, JPEG, WebP, AVIF lub GIF.",
+  "upload_inspecting_detail": "Automatyczne kontrole działają po naszej stronie. Możesz w tym czasie wypełniać kolejne kroki.",
+  "upload_inspecting_title": "Sprawdzanie pliku…",
+  "upload_issue_invalid_data": "Pole Data planu jest niepoprawne.",
+  "upload_issue_invalid_dependencies": "Lista zależności jest niepoprawna.",
+  "upload_issue_invalid_field": "Brak pola „{field}” lub jest niepoprawne.",
+  "upload_issue_invalid_id": "Identyfikator może zawierać tylko litery, cyfry, „.”, „_” i „-”.",
+  "upload_issue_invalid_json": "Plik nie jest poprawnym JSON-em.",
+  "upload_issue_invalid_log_color": "Kolor logu musi być kolorem szesnastkowym, np. #FF9900.",
+  "upload_issue_invalid_number_of_elements": "NumberOfElements musi być liczbą całkowitą.",
+  "upload_issue_invalid_platform": "Platforma musi mieć wartość Client, Server lub Universal.",
+  "upload_issue_invalid_priority": "Priorytet musi być liczbą całkowitą.",
+  "upload_issue_invalid_thumbnail": "Miniatury planu nie da się odczytać.",
+  "upload_issue_invalid_type": "Typ musi mieć wartość „Mod” lub „Library”.",
+  "upload_issue_invalid_url": "Adres url jest niepoprawny.",
+  "upload_issue_invalid_version": "Wersja musi wyglądać jak 1.2.3.",
+  "upload_issue_missing_description": "Plan nie ma pola Description.",
+  "upload_issue_missing_guid": "Plan nie ma pola Guid.",
+  "upload_issue_missing_id": "Manifest nie ma identyfikatora.",
+  "upload_issue_missing_name": "Plan nie ma pola Name.",
+  "upload_issue_missing_version": "Manifest nie ma wersji.",
+  "upload_issue_not_an_object": "JSON musi być obiektem.",
+  "upload_kind_build": "Build",
+  "upload_kind_mod": "Mod",
+  "upload_kind_version": "Nowa wersja",
+  "upload_license_all_rights_reserved": "Wszelkie prawa zastrzeżone",
+  "upload_license_cc_by4": "CC BY 4.0",
+  "upload_license_gpl3": "GPL-3.0",
+  "upload_license_hint": "Co inni mogą robić z twoimi plikami.",
+  "upload_license_label": "Licencja",
+  "upload_license_mit": "MIT",
+  "upload_license_other": "Inna (wyjaśniona w opisie)",
+  "upload_license_placeholder": "Wybierz licencję",
+  "upload_license_reupload_with_credit": "Ponowne udostępnianie z podaniem autora",
+  "upload_link_discord": "Discord",
+  "upload_link_github": "GitHub",
+  "upload_link_kofi": "Ko-fi",
+  "upload_link_other": "Inny",
+  "upload_link_patreon": "Patreon",
+  "upload_link_twitch": "Twitch",
+  "upload_link_website": "Strona WWW",
+  "upload_link_youtube": "YouTube",
+  "upload_links_add": "Dodaj link",
+  "upload_links_empty": "Brak linków.",
+  "upload_links_full": "Maksymalnie {max} linków.",
+  "upload_links_kind": "Rodzaj linku {n}",
+  "upload_links_label": "Linki wsparcia",
+  "upload_links_remove": "Usuń link {n}",
+  "upload_links_url": "Adres linku {n}",
+  "upload_loader_hint": "Najstarsza wersja RedLoadera, z którą działa twój mod.",
+  "upload_loader_label": "Minimalny RedLoader",
+  "upload_loading": "Wczytywanie kreatora…",
+  "upload_manifest_author": "Autor",
+  "upload_manifest_dependencies": "Zależności",
+  "upload_manifest_dependency_missing": "nie ma w SOTF Mods",
+  "upload_manifest_found": "Znaleziono manifest.json",
+  "upload_manifest_game_version": "Wersja gry",
+  "upload_manifest_id": "Identyfikator manifestu",
+  "upload_manifest_loader_version": "Wersja RedLoadera",
+  "upload_manifest_log_color": "Kolor logu",
+  "upload_manifest_name": "Nazwa",
+  "upload_manifest_no_dependencies": "Brak zadeklarowanych",
+  "upload_manifest_platform": "Platforma",
+  "upload_manifest_type": "Typ",
+  "upload_manifest_type_library": "Biblioteka",
+  "upload_manifest_type_mod": "Mod",
+  "upload_manifest_version": "Wersja",
+  "upload_markdown_help": "Markdown: **pogrubienie**, _kursywa_, listy, `kod`, > cytaty, ||spoilery||.",
+  "upload_markdown_preview": "Podgląd",
+  "upload_markdown_preview_empty": "Podgląd pojawi się tutaj podczas pisania.",
+  "upload_markdown_recommended": "zalecane {min}+",
+  "upload_markdown_view": "Widok edytora",
+  "upload_markdown_write": "Pisz",
+  "upload_media_intro": "Dobre obrazy sprzedają moda. Wpisy z 3 lub więcej obrazami są pobierane znacznie częściej.",
+  "upload_media_title": "Multimedia",
+  "upload_multiplayer_all_players": "Potrzebują go wszyscy",
+  "upload_multiplayer_all_players_hint": "Każdy gracz w sesji musi go zainstalować.",
+  "upload_multiplayer_client_side": "Po stronie klienta",
+  "upload_multiplayer_client_side_hint": "Potrzebuje go tylko osoba, która go instaluje.",
+  "upload_multiplayer_host_only": "Tylko host",
+  "upload_multiplayer_host_only_hint": "Potrzebuje go tylko host; goście dołączają bez niego.",
+  "upload_multiplayer_label": "Tryb wieloosobowy",
+  "upload_multiplayer_singleplayer_only": "Tylko jeden gracz",
+  "upload_multiplayer_singleplayer_only_hint": "Nie jest przeznaczony do gry wieloosobowej.",
+  "upload_multiplayer_unknown": "Nie wiem",
+  "upload_multiplayer_unknown_hint": "Pokażą to raporty terenowe ocalałych.",
+  "upload_my_drafts": "Moje szkice",
+  "upload_name_hint": "Tak, jak nazywają go gracze. Od 2 do 80 znaków.",
+  "upload_name_label": "Nazwa",
+  "upload_new_build": "Build",
+  "upload_new_build_detail": "Plan .json z BuildShare. Miniaturę i statystyki odczytamy za ciebie.",
+  "upload_new_drafts_detail": "Wróć tam, gdzie skończyłeś, albo zacznij coś nowego poniżej.",
+  "upload_new_drafts_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Masz {count__number} rozpoczęty szkic.",
+        "count__plural=few": "Masz {count__number} rozpoczęte szkice.",
+        "count__plural=many": "Masz {count__number} rozpoczętych szkiców.",
+        "count__plural=*": "Masz {count__number} rozpoczętego szkicu."
+      }
+    }
+  ],
+  "upload_new_intro": "Czym dzisiaj podzielisz się z ocalałymi?",
+  "upload_new_mod": "Mod lub biblioteka",
+  "upload_new_mod_detail": "Plik .zip dla RedLoadera z manifest.json. Sześć krótkich kroków.",
+  "upload_new_title": "Publikuj",
+  "upload_new_version_more": "Więcej w Moich modach: {count}",
+  "upload_new_version_none": "Tutaj pojawią się twoje opublikowane mody, aby dodać nową wersję.",
+  "upload_new_version_title": "Zaktualizuj jeden ze swoich modów",
+  "upload_next": "Dalej",
+  "upload_no_permission_detail": "Strażnik tymczasowo ograniczył wysyłanie. Szczegóły znajdziesz w Sygnałach albo skontaktuj się z zespołem.",
+  "upload_no_permission_title": "Publikowanie na tym koncie jest wstrzymane.",
+  "upload_notify_hint": "Obserwujący moda dostaną sygnał o tej wersji.",
+  "upload_notify_label": "Powiadom obserwujących",
+  "upload_nsfw_hint": "Ukryte dla osób, które tego nie włączyły.",
+  "upload_nsfw_label": "Treści dla dorosłych (NSFW)",
+  "upload_optional": "Opcjonalne",
+  "upload_platform_client": "Klient",
+  "upload_platform_client_hint": "Działa w grze, w którą grasz.",
+  "upload_platform_hint": "Gdzie ładuje go RedLoader.",
+  "upload_platform_label": "Platforma",
+  "upload_platform_server": "Serwer",
+  "upload_platform_server_hint": "Działa tylko na serwerze dedykowanym.",
+  "upload_platform_universal": "Uniwersalny",
+  "upload_platform_universal_hint": "Działa w obu przypadkach.",
+  "upload_preflight_category_invalid": "Kategoria już nie istnieje: wybierz inną.",
+  "upload_preflight_category_missing": "Wybierz kategorię.",
+  "upload_preflight_category_ok": "Kategoria wybrana.",
+  "upload_preflight_changelog_missing": "Brak listy zmian: obserwujący chcą wiedzieć, co się zmieniło.",
+  "upload_preflight_changelog_ok": "Lista zmian napisana.",
+  "upload_preflight_dependency_cycle": "Zależności tworzą pętlę.",
+  "upload_preflight_dependency_unknown": "Jednej zależności nie ma w SOTF Mods: gracze będą musieli jej szukać gdzie indziej.",
+  "upload_preflight_description_ok": "Opis jest szczegółowy.",
+  "upload_preflight_description_raw_html": "Opis zawiera HTML: zostanie pokazany jako tekst.",
+  "upload_preflight_description_short": "Opis jest krótki (zalecane co najmniej 300 znaków).",
+  "upload_preflight_file_expired": "Przesyłka wygasła: wyślij plik ponownie.",
+  "upload_preflight_file_failed": "Plik nie przeszedł automatycznych kontroli.",
+  "upload_preflight_file_flagged": "Przed publikacją plik musi przejrzeć strażnik.",
+  "upload_preflight_file_inspecting": "Plik jest jeszcze sprawdzany.",
+  "upload_preflight_file_missing": "Wyślij plik.",
+  "upload_preflight_file_ok": "Plik przeszedł automatyczne kontrole.",
+  "upload_preflight_fix": "Popraw",
+  "upload_preflight_gallery_below_3": "Mniej niż 3 obrazy w galerii.",
+  "upload_preflight_gallery_ok": "Galeria ma co najmniej 3 obrazy.",
+  "upload_preflight_license_missing": "Nie wybrano licencji.",
+  "upload_preflight_license_ok": "Licencja wybrana.",
+  "upload_preflight_manifest_id_taken": "Inny mod używa już tego identyfikatora manifestu.",
+  "upload_preflight_media_invalid": "Jeden obraz się nie powiódł: usuń go lub wyślij ponownie.",
+  "upload_preflight_media_processing": "Obrazy są jeszcze przetwarzane.",
+  "upload_preflight_name_missing": "Dodaj nazwę (co najmniej 2 znaki).",
+  "upload_preflight_name_ok": "Nazwa ustawiona.",
+  "upload_preflight_platform_missing": "Nie ustawiono platformy.",
+  "upload_preflight_platform_ok": "Platforma ustawiona.",
+  "upload_preflight_refreshing": "Aktualizowanie…",
+  "upload_preflight_short_description_missing": "Dodaj krótki opis.",
+  "upload_preflight_short_description_ok": "Krótki opis ustawiony.",
+  "upload_preflight_slug_invalid": "Adres jest niepoprawny.",
+  "upload_preflight_slug_ok": "Adres dostępny.",
+  "upload_preflight_slug_taken": "Masz już wpis pod tym adresem.",
+  "upload_preflight_source_missing": "Brak linku do kodu źródłowego.",
+  "upload_preflight_source_ok": "Podlinkowano kod źródłowy.",
+  "upload_preflight_tags_missing": "Brak tagów: pomagają ocalałym go znaleźć.",
+  "upload_preflight_tags_ok": "Tagi wybrane.",
+  "upload_preflight_tags_unknown": "Niektóre tagi już nie istnieją.",
+  "upload_preflight_target_missing": "Mod tej wersji już nie istnieje.",
+  "upload_preflight_target_removed": "Mod tej wersji został usunięty.",
+  "upload_preflight_thumbnail_missing": "Brak obrazu okładki.",
+  "upload_preflight_thumbnail_ok": "Okładka ustawiona.",
+  "upload_preflight_title": "Kontrola przed wysyłką",
+  "upload_preflight_waiting": "Kontrole pojawią się po zapisaniu szkicu.",
+  "upload_problems_label": "Błędy i ostrzeżenia pliku",
+  "upload_progress_direct": "Wysyłane prosto do magazynu. Jeśli połączenie zostanie przerwane, możesz wznowić.",
+  "upload_progress_finishing": "Kończenie…",
+  "upload_progress_label": "Postęp wysyłania",
+  "upload_progress_value": "{percent} · {loaded} z {total}",
+  "upload_quality_description": "Opis ma co najmniej 300 znaków",
+  "upload_quality_gallery": "Co najmniej 3 obrazy w galerii",
+  "upload_quality_hint": "Kompletne wpisy są wyżej w Odkrywaniu i częściej pobierane.",
+  "upload_quality_license": "Licencja",
+  "upload_quality_met": "gotowe",
+  "upload_quality_missing": "brak",
+  "upload_quality_platform": "Platforma",
+  "upload_quality_source": "Link do kodu źródłowego",
+  "upload_quality_tags": "Tagi",
+  "upload_quality_title": "Jakość wpisu",
+  "upload_reading_build": "Odczytywanie planu…",
+  "upload_reading_zip": "Otwieranie pliku zip w przeglądarce…",
+  "upload_ready_detail": "Wszystko, co sprawdzają automatyczne kontrole, jest w porządku.",
+  "upload_ready_title": "Plik sprawdzony.",
+  "upload_reference": "Ref.: {ref}",
+  "upload_rejected_detail": "Popraw błędy poniżej i wyślij go ponownie.",
+  "upload_rejected_title": "Plik został odrzucony.",
+  "upload_release_intro": "Wersja pochodzi z manifest.json. Powiedz graczom, co się zmieniło.",
+  "upload_release_title": "Wydanie",
+  "upload_resume": "Wznów wysyłanie",
+  "upload_retry": "Spróbuj ponownie",
+  "upload_review_intro": "Ostatnie spojrzenie, zanim zobaczy to strażnik. Popraw błędy; ostrzeżenia to wskazówki.",
+  "upload_review_title": "Przegląd",
+  "upload_safe_remove_label": "Czy można go usunąć bez psucia zapisu gry?",
+  "upload_safe_remove_no": "Nie",
+  "upload_safe_remove_no_hint": "Zapisy zrobione z nim mogą się bez niego zepsuć.",
+  "upload_safe_remove_unknown": "Nie wiem",
+  "upload_safe_remove_unknown_hint": "Gracze dostaną radę, by najpierw zrobić kopię zapasową.",
+  "upload_safe_remove_yes": "Tak",
+  "upload_safe_remove_yes_hint": "Odinstalowanie nie narusza zapisów.",
+  "upload_save_draft": "Zapisz szkic",
+  "upload_saved_toast": "Szkic zapisany",
+  "upload_select_placeholder": "Wybierz…",
+  "upload_severity_error": "Błąd",
+  "upload_severity_ok": "OK",
+  "upload_severity_warning": "Ostrzeżenie",
+  "upload_short_description_label": "Krótki opis",
+  "upload_slug_label": "Adres",
+  "upload_slug_preview": "Twój wpis będzie pod adresem",
+  "upload_source_hint": "Publiczne repozytorium buduje zaufanie i pomaga innym się uczyć.",
+  "upload_source_label": "Kod źródłowy",
+  "upload_step_compat": "Zgodność",
+  "upload_step_compat_hint": "Buildy, tryb wieloosobowy, zależności",
+  "upload_step_details": "Opis",
+  "upload_step_details_hint": "Nazwa, opis, tagi",
+  "upload_step_done": "gotowe",
+  "upload_step_file": "Plik",
+  "upload_step_file_hint": "Zip lub plan",
+  "upload_step_media": "Multimedia",
+  "upload_step_media_hint": "Okładka, galeria, wideo",
+  "upload_step_needs_attention": "wymaga uwagi",
+  "upload_step_of": "Krok {current} z {total}",
+  "upload_step_release": "Wydanie",
+  "upload_step_release_hint": "Wersja i zmiany",
+  "upload_step_review": "Przegląd",
+  "upload_step_review_hint": "Kontrole i wysyłka",
+  "upload_steps_label": "Kroki publikacji",
+  "upload_submit": "Wyślij na posterunek strażników",
+  "upload_submit_blocked": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Został {count__number} błąd do poprawienia.",
+        "count__plural=few": "Zostały {count__number} błędy do poprawienia.",
+        "count__plural=many": "Zostało {count__number} błędów do poprawienia.",
+        "count__plural=*": "Zostało {count__number} błędu do poprawienia."
+      }
+    }
+  ],
+  "upload_submit_failed": "Nie udało się wysłać.",
+  "upload_submit_ready": "Gotowe. Pierwsze publikacje sprawdza strażnik; zweryfikowani twórcy publikują od razu.",
+  "upload_submit_ready_version": "Gotowe. Obserwujący zostaną powiadomieni, gdy wersja będzie dostępna.",
+  "upload_submit_version": "Opublikuj tę wersję",
+  "upload_success_another": "Opublikuj coś jeszcze",
+  "upload_success_basecamp": "Wróć do obozu",
+  "upload_success_live_detail": "{name} jest już dostępny. Podziel się nim z ocalałymi.",
+  "upload_success_live_title": "Opublikowano!",
+  "upload_success_live_version": "Nowa wersja {name} jest dostępna, a obserwujący dostają powiadomienia.",
+  "upload_success_preview": "Podgląd strony",
+  "upload_success_queued_detail": "{name} czeka w kolejce do przeglądu. Dostaniesz sygnał, gdy strażnik podejmie decyzję.",
+  "upload_success_queued_title": "Wysłano na posterunek strażników",
+  "upload_success_queued_version": "Nowa wersja {name} czeka na strażnika. Dostaniesz sygnał, gdy zostanie opublikowana.",
+  "upload_success_view": "Zobacz stronę",
+  "upload_summary_address": "Adres",
+  "upload_summary_name": "Nazwa",
+  "upload_summary_version": "Wersja",
+  "upload_summary_version_build": "Nowa wersja buildu",
+  "upload_tags_counter": "{count} / {max}",
+  "upload_tags_filter": "Filtruj tagi",
+  "upload_tags_full": "Masz już {max} tagów: usuń jeden, aby wybrać inny.",
+  "upload_tags_label": "Tagi",
+  "upload_tags_none": "Żaden tag nie pasuje.",
+  "upload_target_removed_detail": "Usunięte mody nie mogą otrzymywać nowych wersji.",
+  "upload_target_removed_title": "Ten mod został usunięty.",
+  "upload_title_build": "Nowy build",
+  "upload_title_mod": "Nowy mod",
+  "upload_title_version": "Nowa wersja: {name}",
+  "upload_verify_email_detail": "Otwórz link, który ci wysłaliśmy, i wróć: szkic będzie czekał.",
+  "upload_verify_email_title": "Potwierdź e-mail, aby publikować.",
+  "upload_version_build": "Buildy są wersjonowane datą: każda wysyłka to nowa wersja.",
+  "upload_version_draft_exists_detail": "Wróć do tamtego szkicu albo kontynuuj tutaj, aby zacząć od nowa.",
+  "upload_version_draft_exists_title": "Masz już rozpoczętą wersję tego moda.",
+  "upload_version_first": "Pierwsze wydanie",
+  "upload_version_from_manifest": "Odczytana z manifest.json. Aby ją zmienić, edytuj manifest i wyślij plik ponownie.",
+  "upload_version_invalid_title": "Tej wersji nie można opublikować.",
+  "upload_version_label": "Wersja",
+  "upload_version_pending": "Najpierw wybierz plik: wersja zostanie z niego odczytana.",
+  "upload_version_previous": "Poprzednia: v{version}",
+  "upload_video_group": "Wideo",
+  "upload_video_hint": "Prezentacja lub poradnik, widoczny pod galerią.",
+  "upload_video_label": "Film na YouTube"
 }

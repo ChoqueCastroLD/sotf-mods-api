@@ -15,6 +15,7 @@
   "mod_tab_reviews": "İncelemeler",
   "mod_tab_comments": "Yorumlar",
   "mod_sidebar_label": "Bu mod hakkında",
+  "mod_feed_title": "{name} sürümleri",
   "mod_banners_label": "Mod durumu",
   "mod_banner_pending_title": "İncelemede.",
   "mod_banner_pending_text": "Bir korucu bu modu kontrol ediyor. Henüz listelerde yok ve değişebilir.",

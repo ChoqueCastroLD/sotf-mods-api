@@ -1,0 +1,201 @@
+---
+/**
+ * `/install` — «How to install Sons of the Forest mods» (T0-33, research/03 §6.7, PLAN §4.2, §4.5).
+ *
+ * - Answer-first TL;DR, «Verified with game X · RedLoader Y · date», then the four numbered steps
+ *   (check the game → RedLoader → add mods → verify with F1) and the reference sections:
+ *   antivirus false positives (checksum + VirusTotal), BepInEx vs RedLoader, update/uninstall,
+ *   dedicated servers, troubleshooting (linked to Patch Radar) and `#oneclick` (the retired
+ *   one-click installer; its old download URL redirects here).
+ * - Sticky rail with reading progress (horizontal stepper on mobile), FAQ, the starter Kit.
+ * - The guide is Markdown per locale (`content/install/<locale>.md`, all 13, English
+ *   authoritative); anchors are identical in every language.
+ * - JSON-LD `TechArticle` (+ `dateModified` = the verification date) and `FAQPage`; no ads.
+ * - Edge-cached a day (purged on deploy) with `list:kits` for the starter Kit; 5 min while the
+ *   Kit is unavailable, so it heals quickly.
+ */
+import { formatDate, LOCALES, toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, Download, LifeBuoy, Radar, ShieldCheck } from 'lucide-react';
+import ContentHeader from '../components/content/ContentHeader.astro';
+import FallbackNotice from '../components/content/FallbackNotice.astro';
+import InstallFaq from '../components/content/InstallFaq.astro';
+import InstallRail, { type RailItem } from '../components/content/InstallRail.astro';
+import { faqPageJsonLd, techArticleJsonLd } from '../components/content/jsonld.ts';
+import { readingMinutes } from '../components/content/markdown.ts';
+import Prose from '../components/content/Prose.astro';
+import StarterKit from '../components/content/StarterKit.tsx';
+import {
+  INSTALL_PUBLISHED,
+  INSTALL_STEPS,
+  INSTALL_VERIFIED,
+  installGuide,
+  LOADER_LINKS,
+} from '../content/install/index.ts';
+import PageLayout from '../layouts/PageLayout.astro';
+import { optional, serverApi } from '../lib/api.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../lib/cache/policy.ts';
+import { loadEnv } from '../lib/env.ts';
+import { href, localizePath } from '../lib/i18n.ts';
+import { SOCIAL_LINKS } from '../lib/site.ts';
+
+const locale = Astro.locals.locale;
+const guide = installGuide.get(locale);
+if (!guide) throw new Error('install guide: the English text is missing');
+const { frontmatter } = guide;
+
+const kits = await optional(
+  (signal) => serverApi().kits.list({ query: { staffPick: true, sort: 'popular', page: 1, pageSize: 1 } }, { signal }),
+  1500,
+);
+const kit = kits?.items[0] ?? null;
+setPageCache(Astro, pageCache.custom(kits ? EDGE_TTL.static : EDGE_TTL.list, ['list:kits']));
+
+const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
+const path = '/install';
+const url = `${siteUrl}${localizePath(path, guide.locale)}`;
+const complete = LOCALES.every((code) => installGuide.locales().includes(code));
+
+const sections = guide.headings.filter((heading) => heading.level === 2);
+const railItems: RailItem[] = [
+  ...sections.map((section) => {
+    const stepIndex = INSTALL_STEPS.indexOf(section.id as (typeof INSTALL_STEPS)[number]);
+    const label = frontmatter.nav[section.id as keyof typeof frontmatter.nav] ?? section.text;
+    return stepIndex >= 0 ? { id: section.id, label, step: stepIndex + 1 } : { id: section.id, label };
+  }),
+  { id: 'faq', label: m.content_install_faq_nav() },
+  ...(kit ? [{ id: 'starter-kit', label: m.content_install_kit_nav() }] : []),
+];
+const minutes = readingMinutes(guide.text);
+const verifiedDate = formatDate(locale, INSTALL_VERIFIED.date, 'long');
+const faq = frontmatter.faq.map((item) => ({ question: item.q, answer: item.a }));
+
+const jsonLd = [
+  techArticleJsonLd({
+    siteUrl,
+    url,
+    locale: guide.locale,
+    headline: frontmatter.title,
+    description: frontmatter.description,
+    datePublished: INSTALL_PUBLISHED,
+    dateModified: INSTALL_VERIFIED.date,
+    proficiency: 'Beginner',
+    sections: sections.map((section) => section.text),
+  }),
+  faqPageJsonLd(faq, url, guide.locale),
+];
+const htmlLang = toHtmlLang(locale);
+---
+
+<PageLayout
+  template="install"
+  width="wide"
+  seo={{
+    title: frontmatter.seoTitle,
+    rawTitle: true,
+    description: frontmatter.description,
+    path,
+    alternates: complete,
+    canonicalLocale: guide.locale,
+    og: { imageAlt: m.meta_og_default_alt(), type: 'article' },
+  }}
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_nav_install() }]}
+>
+  <article id="install-guide" class="flex flex-col gap-8" aria-labelledby="install-title">
+    <ContentHeader eyebrow={m.content_install_eyebrow()} title={frontmatter.title} id="install-title">
+      <span class="inline-flex items-center gap-1.5">
+        <Icon icon={ShieldCheck} size={16} className="text-success" />
+        {m.content_install_verified({ game: INSTALL_VERIFIED.game, loader: INSTALL_VERIFIED.redLoader })}
+      </span>
+      <time datetime={INSTALL_VERIFIED.date}>{verifiedDate}</time>
+      <span>{m.content_reading_time({ minutes })}</span>
+    </ContentHeader>
+
+    {!guide.translated && <FallbackNotice path={path} textLocale={guide.locale} />}
+
+    <section
+      aria-labelledby="tldr-title"
+      class="flex flex-col gap-4 rounded-lg border border-border-strong bg-surface p-5 md:flex-row md:items-center md:gap-8 md:p-6"
+    >
+      <div class="grid flex-1 gap-2">
+        <h2 id="tldr-title" class="readout text-primary">{m.content_install_tldr()}</h2>
+        <p class="text-lg text-pretty text-fg" lang={guide.locale === locale ? undefined : toHtmlLang(guide.locale)}>
+          {frontmatter.tldr}
+        </p>
+      </div>
+      <div class="flex shrink-0 flex-col gap-2 sm:flex-row md:flex-col">
+        <a href={LOADER_LINKS.redManager} rel="noopener" class={buttonClasses({ variant: 'primary', size: 'lg' })}>
+          <Icon icon={Download} size={18} />
+          {m.content_install_get_redmanager()}
+        </a>
+        <a href="#redloader" class={buttonClasses({ variant: 'secondary', size: 'lg' })}>
+          {m.content_install_manual()}
+        </a>
+      </div>
+    </section>
+
+    <div class="grid gap-6 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-12">
+      <div class="lg:order-first">
+        <InstallRail items={railItems} target="#install-guide" />
+      </div>
+
+      <div class="flex min-w-0 flex-col gap-12">
+        <Prose
+          html={guide.html}
+          textLocale={guide.locale}
+          class="[&_h2]:scroll-mt-32 lg:[&_h2]:scroll-mt-20 [&_h3]:scroll-mt-32 lg:[&_h3]:scroll-mt-20"
+        />
+
+        <InstallFaq items={frontmatter.faq} />
+
+        {
+          kit && (
+            <section id="starter-kit" aria-labelledby="starter-kit-title" class="flex scroll-mt-32 flex-col gap-4 lg:scroll-mt-20">
+              <div class="flex flex-wrap items-end justify-between gap-3">
+                <div class="grid gap-1">
+                  <h2 id="starter-kit-title" class="font-display-caps text-display-xs text-fg">
+                    {m.content_install_kit_title()}
+                  </h2>
+                  <p class="text-fg-muted">{m.content_install_kit_text()}</p>
+                </div>
+                <a href={href('/kits', locale)} class="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-link hover:underline">
+                  {m.content_install_kit_more()}
+                  <Icon icon={ArrowRight} size={14} />
+                </a>
+              </div>
+              <div class="max-w-md">
+                <StarterKit kit={kit} lang={htmlLang} currentBuild={null} />
+              </div>
+            </section>
+          )
+        }
+
+        <section
+          aria-labelledby="install-help-title"
+          class="grid gap-4 rounded-lg border border-border bg-surface p-5 md:grid-cols-[1fr_auto] md:items-center md:p-6"
+        >
+          <div class="grid gap-1">
+            <h2 id="install-help-title" class="flex items-center gap-2 text-lg font-semibold text-fg">
+              <Icon icon={LifeBuoy} size={20} className="text-signal" />
+              {m.content_install_help_title()}
+            </h2>
+            <p class="text-fg-muted">{m.content_install_help_text()}</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <a href={href('/patch-radar', locale)} class={buttonClasses({ variant: 'secondary', size: 'md' })}>
+              <Icon icon={Radar} size={16} />
+              {m.common_term_patch_radar()}
+            </a>
+            <a href={SOCIAL_LINKS.discord} rel="noopener" class={buttonClasses({ variant: 'ghost', size: 'md' })}>
+              {m.content_install_help_discord()}
+            </a>
+          </div>
+        </section>
+      </div>
+    </div>
+  </article>
+</PageLayout>

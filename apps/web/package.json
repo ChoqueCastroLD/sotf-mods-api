@@ -20,6 +20,8 @@
   "dependencies": {
     "@astrojs/node": "catalog:",
     "@astrojs/react": "catalog:",
+    "@codemirror/lang-markdown": "catalog:",
+    "@codemirror/view": "catalog:",
     "@sotf/brand": "workspace:*",
     "@sotf/contracts": "workspace:*",
     "@sotf/i18n": "workspace:*",
@@ -28,7 +30,9 @@
     "@tailwindcss/vite": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "catalog:",
+    "@uiw/react-codemirror": "catalog:",
     "astro": "catalog:",
+    "fflate": "catalog:",
     "lru-cache": "catalog:",
     "lucide-react": "catalog:",
     "minisearch": "catalog:",

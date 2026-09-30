@@ -1,0 +1,24 @@
+---
+/**
+ * Editorial prose: HTML rendered by `@sotf/markdown` from the repository's own Markdown (see
+ * `markdown.ts`), styled like every other Markdown surface of the site (`ProseLocator` classes).
+ */
+
+import type { Locale } from '@sotf/i18n';
+import { toHtmlLang } from '@sotf/i18n';
+import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
+
+interface Props {
+  /** Sanitised HTML (closed-set serialiser of `@sotf/markdown`). */
+  html: string;
+  /** Language of the text when it differs from the page (untranslated fallback). */
+  textLocale?: Locale | undefined;
+  class?: string;
+}
+
+const { html, textLocale, class: className } = Astro.props;
+const pageLocale = Astro.locals.locale;
+const lang = textLocale && textLocale !== pageLocale ? toHtmlLang(textLocale) : undefined;
+---
+
+<div lang={lang} class:list={[PROSE_LOCATOR_CLASSES, 'prose-base', className]} set:html={html} />
