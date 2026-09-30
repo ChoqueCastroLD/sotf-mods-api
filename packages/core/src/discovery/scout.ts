@@ -24,7 +24,7 @@ import type { Database, Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { type CatalogEntry, type CatalogSnapshot, getSnapshot, isListable } from '../catalog/snapshot.ts';
-import { type KelvinModel, KelvinModelError, kelvinCostMicroUsd } from '../kelvinseek/model.ts';
+import { isModelAuthBlocked, type KelvinModel, KelvinModelError, kelvinCostMicroUsd } from '../kelvinseek/model.ts';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -283,7 +283,8 @@ export interface ScoutStatus {
 /** Whether Scout can answer now: model configured, enabled and today's cap not spent. */
 export async function scoutStatus(ctx: Pick<Ctx, 'db' | 'clock'>, deps: ScoutDeps): Promise<ScoutStatus> {
   const base = { maxQuestionLength: SCOUT_QUESTION_MAX };
-  if (!deps.model || !deps.config.enabled || deps.config.dailyBudgetUsd <= 0) return { available: false, ...base };
+  if (!deps.model || !deps.config.enabled || deps.config.dailyBudgetUsd <= 0 || isModelAuthBlocked())
+    return { available: false, ...base };
   const spent = await scoutSpentToday(ctx.db, utcDay(ctx.clock.now()));
   return { available: spent < budgetMicroUsd(deps.config), ...base };
 }

@@ -19,7 +19,7 @@ import {
   type TranslationLocale,
 } from '@sotf/contracts/translations';
 import { sql } from 'drizzle-orm';
-import { type KelvinModel, KelvinModelError, kelvinCostMicroUsd } from '../kelvinseek/model.ts';
+import { isModelAuthBlocked, type KelvinModel, KelvinModelError, kelvinCostMicroUsd } from '../kelvinseek/model.ts';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -134,7 +134,7 @@ export async function translateMod(
     return !have || (have.source === 'machine' && have.sourceHash !== hash);
   });
   if (needed.length === 0) return { status: 'skipped', reason: 'up_to_date' };
-  if (!deps.model) return { status: 'skipped', reason: 'no_model' };
+  if (!deps.model || isModelAuthBlocked()) return { status: 'skipped', reason: 'no_model' };
 
   const now = ctx.clock.now();
   const day = utcDay(now);
@@ -158,8 +158,11 @@ export async function translateMod(
     });
   } catch (error) {
     await recordUsage(ctx.db, day, { requests: 1, failures: 1, tokensIn: 0, tokensOut: 0, costMicroUsd: 0 });
-    if (error instanceof KelvinModelError)
+    if (error instanceof KelvinModelError) {
       ctx.log.warn({ modId: row.id, kind: error.kind }, 'translation model failed');
+      // A rejected key is not the mod's fault: skip, the sweep retries once the key works again.
+      if (error.kind === 'auth') return { status: 'skipped', reason: 'no_model' };
+    }
     throw error;
   }
   const costMicroUsd = kelvinCostMicroUsd(deps.config.model, answer.tokensIn, answer.tokensOut);

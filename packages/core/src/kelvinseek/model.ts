@@ -28,7 +28,7 @@ export type KelvinModel = (request: KelvinModelRequest) => Promise<KelvinModelRe
 
 export class KelvinModelError extends Error {
   override readonly name = 'KelvinModelError';
-  readonly kind: 'timeout' | 'http' | 'network' | 'invalid';
+  readonly kind: 'timeout' | 'http' | 'network' | 'invalid' | 'auth';
   readonly status: number | undefined;
   constructor(kind: KelvinModelError['kind'], message: string, status?: number) {
     super(message);
@@ -56,12 +56,25 @@ function count(value: unknown): number {
   return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.floor(value) : 0;
 }
 
+/** How long a rejected key (401/403) keeps every model call short-circuited. */
+const AUTH_BLOCK_MS = 60 * 60 * 1000;
+let authBlockedUntil = 0;
+
+/**
+ * True while the provider rejected our key: callers stop calling the model (no retries piling up in
+ * the queue, Scout hides itself) until the block expires or the process restarts with a new key.
+ */
+export function isModelAuthBlocked(now: number = Date.now()): boolean {
+  return authBlockedUntil > now;
+}
+
 /** OpenAI Chat Completions (`POST /chat/completions`), aborted after `timeoutMs`. */
 export function openAiModel(options: OpenAiModelOptions): KelvinModel {
   const baseUrl = (options.baseUrl ?? 'https://api.openai.com/v1').replace(/\/+$/, '');
   const doFetch = options.fetch ?? globalThis.fetch;
   const maxOutputTokens = options.maxOutputTokens ?? 150;
   return async (request) => {
+    if (isModelAuthBlocked()) throw new KelvinModelError('auth', 'model key rejected recently; calls paused');
     const signal = AbortSignal.timeout(request.timeoutMs);
     let response: Response;
     try {
@@ -89,6 +102,10 @@ export function openAiModel(options: OpenAiModelOptions): KelvinModel {
     } catch (error) {
       if (signal.aborted) throw new KelvinModelError('timeout', `no answer within ${request.timeoutMs} ms`);
       throw new KelvinModelError('invalid', `unreadable body (${(error as Error).message})`, response.status);
+    }
+    if (response.status === 401 || response.status === 403) {
+      authBlockedUntil = Date.now() + AUTH_BLOCK_MS;
+      throw new KelvinModelError('auth', `key rejected (status ${response.status})`, response.status);
     }
     if (!response.ok) throw new KelvinModelError('http', `status ${response.status}`, response.status);
     const text = body.choices?.[0]?.message?.content;
