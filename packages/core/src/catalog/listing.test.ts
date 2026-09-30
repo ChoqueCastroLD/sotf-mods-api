@@ -212,6 +212,43 @@ describe('Explore listing', () => {
     ]);
   });
 
+  it('counts freshness and rating facets ignoring their own filter', () => {
+    const rated = snapshotOf([
+      entry({ id: 21, ratingAvg: 4.6, ratingCount: 5, lastReleasedAt: day(5) }),
+      entry({ id: 22, ratingAvg: 3.2, ratingCount: 3, lastReleasedAt: day(60) }),
+      entry({ id: 23, ratingAvg: null, lastReleasedAt: day(200) }),
+      entry({ id: 24, ratingAvg: 5, ratingCount: 9, lastReleasedAt: day(800) }),
+    ]);
+    const r = runListQuery(rated, query({ type: 'mod', facets: '1', updatedWithin: '30d', minRating: '4' }), NOW);
+    expect(ids(r.items)).toEqual([21]);
+    // updatedWithin counts ignore the freshness filter but keep minRating ≥ 4 (ids 21, 24).
+    expect(r.facets?.updatedWithin).toEqual([
+      { value: '30d', count: 1 },
+      { value: '90d', count: 1 },
+      { value: '1y', count: 1 },
+    ]);
+    // minRating counts ignore the rating filter but keep the 30-day window (id 21 only).
+    expect(r.facets?.minRating).toEqual([
+      { value: '1', count: 1 },
+      { value: '2', count: 1 },
+      { value: '3', count: 1 },
+      { value: '4', count: 1 },
+    ]);
+    const all = runListQuery(rated, query({ type: 'mod', facets: '1' }), NOW);
+    expect(all.facets?.updatedWithin).toEqual([
+      { value: '30d', count: 1 },
+      { value: '90d', count: 2 },
+      { value: '1y', count: 3 },
+    ]);
+    expect(all.facets?.minRating).toEqual([
+      { value: '1', count: 3 },
+      { value: '2', count: 3 },
+      { value: '3', count: 3 },
+      { value: '4', count: 2 },
+      { value: '5', count: 1 },
+    ]);
+  });
+
   it('paginates', () => {
     const r = runListQuery(snapshot, query({ sort: 'downloads', pageSize: '3', page: '2' }), NOW);
     expect(ids(r.items)).toEqual([3]);

@@ -37,6 +37,7 @@ import { bayesianRating } from '@sotf/contracts/reviews';
 import { modPath } from '@sotf/contracts/seo';
 import type { LocalizedNames, MediaVariant, UserPrivacy } from '@sotf/db';
 import type { Ctx } from '../kernel/context.ts';
+import { buildCardFacts } from './build-facts.ts';
 import { type CatalogConfig, imageDto, type MediaRow, mediaUrlForWidth, safeHttpUrl, variantUrlOnly } from './media.ts';
 import { cached, num, numOrNull, rows } from './sql.ts';
 
@@ -326,6 +327,10 @@ interface ModRow {
   mKey: string | null;
   latestVersion: string | null;
   latestChecks: string | null;
+  latestBuildMeta: unknown;
+  buildGuid: string | null;
+  buildShareVersion: string | null;
+  numberOfElements: number | null;
 }
 
 const CATEGORIES_SQL = `
@@ -363,12 +368,14 @@ SELECT m."id", m."type", m."mod_id" AS "manifestId", m."name", m."slug", m."user
        coalesce(s."reviewsVisible", m."reviewsCount", 0) AS "ratingCount",
        coalesce(s."ratingAvg", m."averageRating") AS "ratingAvg",
        ${MEDIA_COLUMNS('med')},
-       lv."version" AS "latestVersion", lv."checksStatus" AS "latestChecks"
+       lv."version" AS "latestVersion", lv."checksStatus" AS "latestChecks",
+       CASE WHEN m."type" = 'Build' THEN lv."buildMeta" END AS "latestBuildMeta",
+       m."buildGuid", m."buildShareVersion", m."numberOfElements"
   FROM "Mod" m
   LEFT JOIN "ModStats" s ON s."modId" = m."id"
   LEFT JOIN "Media" med ON med."id" = m."thumbnailMediaId"
   LEFT JOIN LATERAL (
-    SELECT v."version", v."checksStatus" FROM "ModVersion" v
+    SELECT v."version", v."checksStatus", v."buildMeta" FROM "ModVersion" v
      WHERE v."modId" = m."id" AND v."isLatest" AND v."status" <> 'rejected'
      ORDER BY v."id" DESC LIMIT 1
   ) lv ON true
@@ -565,6 +572,7 @@ export async function loadSnapshot(ctx: Ctx, config: CatalogConfig): Promise<Cat
       lastReleasedAt: m.lastReleasedAt.toISOString(),
       nsfw: m.nsfw,
       status,
+      build: buildCardFacts(kind, m.latestBuildMeta, m),
     };
     entries.push({
       id: m.id,

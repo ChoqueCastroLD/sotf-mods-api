@@ -6,7 +6,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { ModCardDTO } from './catalog.ts';
+import { ModCardDTO, OgImageDTO } from './catalog.ts';
 import {
   Count,
   EntityId,
@@ -158,6 +158,7 @@ export const KitDTO = dto(
     ),
     noindex: z.boolean().describe(`true unless public with ≥ ${KIT_LIMITS.indexMinItems} items`),
     createdAt: IsoDateTime,
+    ogImage: OgImageDTO.nullable().describe('Generated knolling collage (null until rendered)'),
   }),
   {
     description: 'Kit detail with items and summaries.',
@@ -173,6 +174,7 @@ export const KitDTO = dto(
         recentRevisions: [{ revision: 7, summary: '+Cook Alert', createdAt: '2026-09-20T18:00:00.000Z' }],
         noindex: false,
         createdAt: '2026-06-01T12:00:00.000Z',
+        ogImage: { url: 'https://r2.sotf-mods.com/og/kit/5-81c2d0.png', width: 1200, height: 630 },
       },
     ],
   },

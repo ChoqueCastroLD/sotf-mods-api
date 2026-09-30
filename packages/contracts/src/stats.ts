@@ -44,6 +44,7 @@ export const LivePulseDTO = dto(
   z.object({
     downloadsToday: Count,
     downloadsLastHour: Count,
+    visitorsNow: Count.describe('Distinct visitors with a page view in the last 5 minutes'),
     recent: z.array(z.object({ mod: ModRefDTO, version: VersionString, at: IsoDateTime })).max(12),
     latestRelease: z.object({ mod: ModRefDTO, version: VersionString, at: IsoDateTime }).nullable(),
     generatedAt: IsoDateTime,
@@ -54,6 +55,7 @@ export const LivePulseDTO = dto(
       {
         downloadsToday: 1_720,
         downloadsLastHour: 94,
+        visitorsNow: 37,
         recent: [{ mod: exampleOf(ModRefDTO), version: '1.3.8', at: '2026-09-29T09:59:12.000Z' }],
         latestRelease: { mod: exampleOf(ModRefDTO), version: '1.3.8', at: '2026-09-26T21:33:31.396Z' },
         generatedAt: '2026-09-29T10:00:00.000Z',
