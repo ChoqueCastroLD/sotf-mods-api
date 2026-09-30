@@ -28,7 +28,7 @@ export interface RealtimeMessage<E extends SseEventName = SseEventName> {
   data: z.input<(typeof SSE_EVENTS)[E]>;
 }
 
-const SSE_CHANNEL = /^(?:user:[1-9]\d{0,15}|moderation|mod:[1-9]\d{0,15})$/;
+const SSE_CHANNEL = /^(?:user:[1-9]\d{0,15}|moderation|mod:[1-9]\d{0,15}|kit:[1-9]\d{0,15})$/;
 
 export function isSseChannel(value: string): value is SseChannel {
   return SSE_CHANNEL.test(value);

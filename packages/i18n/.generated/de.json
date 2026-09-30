@@ -2340,8 +2340,6 @@
   "console_area_admin": "Admin",
   "console_area_switcher": "Bereiche der Konsole",
   "console_back_to_site": "Zurück zur Website",
-  "console_empty_detail": "Dieser Teil des Lagers wird noch aufgebaut. Schau bald wieder vorbei.",
-  "console_empty_title": "Hier ist noch nichts",
   "console_error_detail": "Bei uns ist etwas schiefgelaufen. Versuch es noch einmal. Wenn es weiter passiert, schick uns die Referenz unten.",
   "console_error_title": "Diese Ansicht wurde nicht geladen",
   "console_forbidden_action": "Zum Basislager",

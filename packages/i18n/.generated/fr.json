@@ -2340,8 +2340,6 @@
   "console_area_admin": "Administration",
   "console_area_switcher": "Espaces de la console",
   "console_back_to_site": "Retour au site",
-  "console_empty_detail": "Cette partie du camp est encore en construction. Revenez bientôt.",
-  "console_empty_title": "Rien ici pour l’instant",
   "console_error_detail": "Un problème est survenu de notre côté. Réessayez et, si cela continue, envoyez-nous la référence ci-dessous.",
   "console_error_title": "Cet écran ne s’est pas chargé",
   "console_forbidden_action": "Aller au camp de base",

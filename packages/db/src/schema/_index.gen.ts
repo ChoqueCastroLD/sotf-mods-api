@@ -20,3 +20,4 @@ export * from './v2/notifications.ts';
 export * from './v2/relations.ts';
 export * from './v2/stats.ts';
 export * from './v2/urls.ts';
+export * from './ext/kit-social.ts';

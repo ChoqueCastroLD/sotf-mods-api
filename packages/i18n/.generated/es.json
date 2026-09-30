@@ -2340,8 +2340,6 @@
   "console_area_admin": "Administración",
   "console_area_switcher": "Áreas de la consola",
   "console_back_to_site": "Volver al sitio",
-  "console_empty_detail": "Esta parte del campamento todavía se está montando. Vuelve pronto.",
-  "console_empty_title": "Aún no hay nada aquí",
   "console_error_detail": "Algo falló por nuestra parte. Inténtalo de nuevo y, si sigue pasando, envíanos la referencia de abajo.",
   "console_error_title": "Esta pantalla no se cargó",
   "console_forbidden_action": "Ir al Campamento",

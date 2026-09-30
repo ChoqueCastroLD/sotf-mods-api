@@ -2340,8 +2340,6 @@
   "console_area_admin": "Yönetim",
   "console_area_switcher": "Konsol bölümleri",
   "console_back_to_site": "Siteye dön",
-  "console_empty_detail": "Kampın bu bölümü hâlâ kuruluyor. Yakında tekrar uğra.",
-  "console_empty_title": "Burada henüz bir şey yok",
   "console_error_detail": "Bizim tarafımızda bir şeyler bozuldu. Tekrar dene; sorun sürerse aşağıdaki referansı bize gönder.",
   "console_error_title": "Bu ekran yüklenmedi",
   "console_forbidden_action": "Ana Kamp’a git",

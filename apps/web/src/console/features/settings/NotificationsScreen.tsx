@@ -40,6 +40,9 @@ const DEFAULTS: Readonly<Record<NotificationType, { inApp: boolean; email: Email
   'compat.prompt': { inApp: true, email: 'off' },
   'review.update_prompt': { inApp: true, email: 'off' },
   'kit.added_my_mod': { inApp: true, email: 'off' },
+  'kit.updated_followed': { inApp: true, email: 'off' },
+  'kit.comment': { inApp: true, email: 'off' },
+  'kit.comment_reply': { inApp: true, email: 'off' },
   'patch.breaking_build': { inApp: true, email: 'instant' },
   'mod.status_changed': { inApp: true, email: 'instant' },
   'milestone.reached': { inApp: true, email: 'off' },
@@ -54,12 +57,12 @@ const GROUPS: readonly { id: string; title: () => string; types: readonly Notifi
   {
     id: 'follows',
     title: () => m.settings_notif_group_follows(),
-    types: ['mod.version_published', 'creator.mod_published', 'patch.breaking_build'],
+    types: ['mod.version_published', 'creator.mod_published', 'kit.updated_followed', 'patch.breaking_build'],
   },
   {
     id: 'conversations',
     title: () => m.settings_notif_group_conversations(),
-    types: ['comment.reply', 'comment.mention', 'review.reply'],
+    types: ['comment.reply', 'comment.mention', 'review.reply', 'kit.comment_reply'],
   },
   {
     id: 'my-mods',
@@ -69,6 +72,7 @@ const GROUPS: readonly { id: string; title: () => string; types: readonly Notifi
       'review.on_my_mod',
       'compat.broken_on_my_mod',
       'kit.added_my_mod',
+      'kit.comment',
       'mod.status_changed',
       'creator.weekly_report',
     ],
@@ -111,6 +115,15 @@ const COPY: Readonly<Record<NotificationType, { title: () => string; hint: () =>
     hint: () => m.settings_notif_review_update_hint(),
   },
   'kit.added_my_mod': { title: () => m.settings_notif_kit_added(), hint: () => m.settings_notif_kit_added_hint() },
+  'kit.updated_followed': {
+    title: () => m.settings_notif_kit_updated(),
+    hint: () => m.settings_notif_kit_updated_hint(),
+  },
+  'kit.comment': { title: () => m.settings_notif_kit_comment(), hint: () => m.settings_notif_kit_comment_hint() },
+  'kit.comment_reply': {
+    title: () => m.settings_notif_kit_reply(),
+    hint: () => m.settings_notif_kit_reply_hint(),
+  },
   'report.resolved': { title: () => m.settings_notif_report(), hint: () => m.settings_notif_report_hint() },
   'milestone.reached': { title: () => m.settings_notif_milestone(), hint: () => m.settings_notif_milestone_hint() },
   'badge.awarded': { title: () => m.settings_notif_badge(), hint: () => m.settings_notif_badge_hint() },

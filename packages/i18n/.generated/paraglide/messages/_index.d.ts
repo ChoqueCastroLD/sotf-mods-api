@@ -1396,8 +1396,6 @@ export * from './common_welcome.js';
 export * from './console_area_admin.js';
 export * from './console_area_switcher.js';
 export * from './console_back_to_site.js';
-export * from './console_empty_detail.js';
-export * from './console_empty_title.js';
 export * from './console_error_detail.js';
 export * from './console_error_title.js';
 export * from './console_forbidden_action.js';

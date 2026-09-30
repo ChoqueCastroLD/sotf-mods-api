@@ -2340,8 +2340,6 @@
   "console_area_admin": "Admin",
   "console_area_switcher": "Console areas",
   "console_back_to_site": "Back to the site",
-  "console_empty_detail": "This part of camp is still being set up. Check back soon.",
-  "console_empty_title": "Nothing here yet",
   "console_error_detail": "Something broke on our side. Try again, and if it keeps happening, send us the reference below.",
   "console_error_title": "This screen didn’t load",
   "console_forbidden_action": "Go to Basecamp",

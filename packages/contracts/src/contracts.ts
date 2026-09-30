@@ -14,6 +14,7 @@ import { eventsEndpoints } from './events.ts';
 import { followsEndpoints } from './follows.ts';
 import { gamificationEndpoints } from './gamification.ts';
 import { internalEndpoints } from './internal.ts';
+import { kitSocialEndpoints } from './kit-social.ts';
 import { kitsEndpoints } from './kits.ts';
 import { legacyEndpoints } from './legacy.ts';
 import { meEndpoints } from './me.ts';
@@ -39,6 +40,7 @@ export const apiContracts = {
   gamification: gamificationEndpoints,
   internal: internalEndpoints,
   kits: kitsEndpoints,
+  kitSocial: kitSocialEndpoints,
   legacy: legacyEndpoints,
   me: meEndpoints,
   moderation: moderationEndpoints,

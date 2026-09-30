@@ -20,6 +20,14 @@ import {
   SseModLivePushData,
   type SseModLiveEvent,
 } from '@sotf/contracts/events';
+import {
+  encodeKitLiveFrame,
+  SSE_KIT_LIVE_MAX_SECONDS,
+  kitSocialEndpoints,
+  SseKitLiveData,
+  type SseKitLiveEvent,
+} from '@sotf/contracts/kit-social';
+import { getKitLive } from '@sotf/core/kit-social/index';
 import { getModLive } from '@sotf/core/catalog/index';
 import { decodeRealtimeMessage, hasRole, type Logger, type PgListener, type RealtimeMessage } from '@sotf/core';
 import type { FastifyInstance, FastifyReply } from 'fastify';
@@ -334,6 +342,90 @@ export async function setupModLiveStream(app: FastifyInstance, hub: SseHub): Pro
       closers.add(close);
       context.onClose(release);
       // The first frame carries the current figures so the page can reconcile at once.
+      raw.write(`retry: 10000\n${frame(initial)}`);
+    },
+  });
+}
+
+const KIT_LIVE_STREAMS_PER_IP = 4;
+
+/**
+ * `GET /api/v2/kits/:id/live/stream`: the public, cookieless stream of a kit page. Sends
+ * `kit.live` (followers, visible comments) on connect and on every push of `kit:{id}` (published
+ * inside the transaction of each follow or comment change). Same limits and recycling as the mod
+ * live stream.
+ */
+export async function setupKitLiveStream(app: FastifyInstance, hub: SseHub): Promise<void> {
+  const endpoint = kitSocialEndpoints.liveStream;
+  const perIp = new Map<string, number>();
+  const closers = new Set<() => void>();
+  let anonymousId = 0;
+  hub.onClose(() => {
+    for (const close of [...closers]) close();
+  });
+  app.route({
+    method: endpoint.method,
+    url: endpoint.path,
+    config: { endpoint },
+    sse: { kind: 'manual', heartbeat: false },
+    handler: async (request, reply: FastifyReply) => {
+      const parsed = endpoint.params.safeParse(request.params);
+      if (!parsed.success) throw httpError('NOT_FOUND');
+      const kitId = parsed.data.id;
+      const ip = request.clientIp;
+      if ((perIp.get(ip) ?? 0) >= KIT_LIVE_STREAMS_PER_IP) throw httpError('RATE_LIMITED');
+      // Throws NOT_FOUND for a kit the public cannot see, before any byte is streamed.
+      const initial = await getKitLive(request.ctx, kitId);
+      const context = reply.sse;
+      if (!context) throw new Error('@fastify/sse did not decorate the reply');
+      reply.header('cache-control', 'no-store');
+      reply.header('x-accel-buffering', 'no');
+      context.keepAlive();
+      context.sendHeaders(200);
+      const raw = reply.raw;
+      perIp.set(ip, (perIp.get(ip) ?? 0) + 1);
+      let open = true;
+      let seq = 1;
+      const frame = (live: { followers: number; comments: number }): string => {
+        const event: SseKitLiveEvent = {
+          event: 'kit.live',
+          id: String(seq++),
+          data: { kitId, followers: live.followers, comments: live.comments },
+        };
+        return encodeKitLiveFrame(event);
+      };
+      const release = () => {
+        if (!open) return;
+        open = false;
+        clearTimeout(recycle);
+        unsubscribe();
+        closers.delete(close);
+        const left = (perIp.get(ip) ?? 1) - 1;
+        if (left <= 0) perIp.delete(ip);
+        else perIp.set(ip, left);
+      };
+      const close = () => {
+        if (!open) return;
+        release();
+        context.close();
+        raw.end();
+      };
+      const unsubscribe = hub.add(--anonymousId, [sseChannel.kit(kitId)], {
+        write: (chunk) => {
+          if (!open) return false;
+          if (chunk.startsWith(': ping')) return raw.write(chunk);
+          // Pushed frames carry the fresh counters of the kit.
+          const data = /\ndata: (.*)\n/.exec(chunk)?.[1];
+          const pushed = data ? SseKitLiveData.safeParse(JSON.parse(data)) : null;
+          if (pushed?.success) raw.write(frame(pushed.data));
+          return true;
+        },
+        close,
+      });
+      const recycle = setTimeout(close, SSE_KIT_LIVE_MAX_SECONDS * 1000);
+      recycle.unref();
+      closers.add(close);
+      context.onClose(release);
       raw.write(`retry: 10000\n${frame(initial)}`);
     },
   });

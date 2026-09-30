@@ -13,6 +13,7 @@ import { EntityId, Locale } from './common.ts';
 import { dto } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { ModerationLane } from './moderation.ts';
+import { SseKitLiveData } from './kit-social.ts';
 import { NotificationType } from './notifications.ts';
 
 // -----------------------------------------------------------------------------------------------
@@ -28,11 +29,12 @@ export const PG_EVENTS_CHANNEL = 'events';
 export const PG_CACHE_CHANNEL = 'cache';
 
 /** SSE channels: `user:{id}`, `moderation` and `mod:{id}` (public, read-only live counters). */
-export type SseChannel = `user:${number}` | 'moderation' | `mod:${number}`;
+export type SseChannel = `user:${number}` | 'moderation' | `mod:${number}` | `kit:${number}`;
 export const sseChannel = {
   user: (id: number): SseChannel => `user:${id}`,
   moderation: 'moderation' as SseChannel,
   mod: (id: number): SseChannel => `mod:${id}`,
+  kit: (id: number): SseChannel => `kit:${id}`,
 } as const;
 
 export const SseNotificationData = z.object({
@@ -51,6 +53,7 @@ export const SSE_EVENTS = {
   'mod.updated': SseModUpdatedData,
   'moderation.queue': SseModerationQueueData,
   'mod.live': SseModLivePushData,
+  'kit.live': SseKitLiveData,
 } as const;
 export type SseEventName = keyof typeof SSE_EVENTS;
 
@@ -87,6 +90,7 @@ export const SseEventDTO = dto(
     z.object({ event: z.literal('mod.updated'), id: z.string(), data: SseModUpdatedData }),
     z.object({ event: z.literal('moderation.queue'), id: z.string(), data: SseModerationQueueData }),
     z.object({ event: z.literal('mod.live'), id: z.string(), data: SseModLivePushData }),
+    z.object({ event: z.literal('kit.live'), id: z.string(), data: SseKitLiveData }),
   ]),
   {
     description: 'One server-sent event (`id:` enables `Last-Event-ID` resumption).',

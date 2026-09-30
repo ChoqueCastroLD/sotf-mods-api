@@ -149,6 +149,17 @@ export const DOMAIN_EVENT_PAYLOADS = {
     addedModIds: z.array(EntityId).optional(),
   }),
   'kit.deleted': z.object({ kitId: EntityId, ownerId: EntityId }),
+  'kit.followed': z.object({ kitId: EntityId, ownerId: EntityId, userId: EntityId, notify: z.boolean() }),
+  'kit.unfollowed': z.object({ kitId: EntityId, ownerId: EntityId, userId: EntityId }),
+  'kit.comment_created': z.object({
+    commentId: EntityId,
+    kitId: EntityId,
+    ownerId: EntityId,
+    authorId: EntityId,
+    parentId: EntityId.nullable(),
+    parentAuthorId: EntityId.nullable(),
+  }),
+  'kit.comment_deleted': z.object({ commentId: EntityId, kitId: EntityId, ownerId: EntityId, authorId: EntityId.nullable() }),
   // Compatibility
   'compat.report_created': z.object({
     reportId: EntityId,
@@ -350,6 +361,17 @@ export const DOMAIN_EVENT_EXAMPLES: { readonly [T in DomainEventType]: DomainEve
   'kit.created': { kitId: 5, ownerId: 12, visibility: 'public', forkedFromId: null },
   'kit.updated': { kitId: 5, ownerId: 12, visibility: 'public', revision: 8 },
   'kit.deleted': { kitId: 5, ownerId: 12 },
+  'kit.followed': { kitId: 5, ownerId: 12, userId: 301, notify: true },
+  'kit.unfollowed': { kitId: 5, ownerId: 12, userId: 301 },
+  'kit.comment_created': {
+    commentId: 81,
+    kitId: 5,
+    ownerId: 12,
+    authorId: 301,
+    parentId: null,
+    parentAuthorId: null,
+  },
+  'kit.comment_deleted': { commentId: 81, kitId: 5, ownerId: 12, authorId: 301 },
   'compat.report_created': {
     reportId: 9001,
     userId: 301,
