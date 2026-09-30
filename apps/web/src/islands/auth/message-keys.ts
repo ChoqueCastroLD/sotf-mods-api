@@ -80,6 +80,16 @@ export const LOGIN_KEYS = [
   'auth_flag_verified',
   'auth_flag_expired',
   'common_action_continue',
+  'oauth_discord_continue',
+  'oauth_divider',
+  'oauth_error_title',
+  'oauth_error_cancelled',
+  'oauth_error_failed',
+  'oauth_error_email_unverified',
+  'oauth_error_email_missing',
+  'oauth_error_banned',
+  'oauth_error_already_linked',
+  'oauth_error_unavailable',
 ] as const;
 
 export const REGISTER_KEYS = [
@@ -186,12 +196,28 @@ export const VERIFY_KEYS = [
   'common_action_retry',
 ] as const;
 
+export const OAUTH_LINK_KEYS = [
+  ...BASE_KEYS,
+  'auth_field_password',
+  'auth_error_required_password',
+  'auth_error_invalid_value',
+  'oauth_link_heading',
+  'oauth_link_text',
+  'oauth_link_password',
+  'oauth_link_submit',
+  'oauth_link_invalid_heading',
+  'oauth_link_invalid_text',
+  'auth_back_to_sign_in',
+  'auth_login_forgot',
+] as const;
+
 export type AuthMessageKey =
   | (typeof LOGIN_KEYS)[number]
   | (typeof REGISTER_KEYS)[number]
   | (typeof FORGOT_KEYS)[number]
   | (typeof RESET_KEYS)[number]
-  | (typeof VERIFY_KEYS)[number];
+  | (typeof VERIFY_KEYS)[number]
+  | (typeof OAUTH_LINK_KEYS)[number];
 
 /** Island → its keys (the unit test maps source files to these lists). */
 export const ISLAND_KEYS = {
@@ -200,6 +226,7 @@ export const ISLAND_KEYS = {
   ForgotPasswordForm: FORGOT_KEYS,
   ResetPasswordForm: RESET_KEYS,
   VerifyEmail: VERIFY_KEYS,
+  OAuthLink: OAUTH_LINK_KEYS,
 } as const;
 
 export type AuthIslandName = keyof typeof ISLAND_KEYS;

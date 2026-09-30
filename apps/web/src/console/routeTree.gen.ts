@@ -36,6 +36,7 @@ import { Route as SettingsPreferencesRouteImport } from './routes/settings/prefe
 import { Route as SettingsPrivacyRouteImport } from './routes/settings/privacy.tsx'
 import { Route as SettingsProfileRouteImport } from './routes/settings/profile.tsx'
 import { Route as SettingsSecurityRouteImport } from './routes/settings/security.tsx'
+import { Route as SettingsTokensRouteImport } from './routes/settings/tokens.tsx'
 import { Route as SignalsIndexRouteImport } from './routes/signals/index.tsx'
 import { Route as BasecampDraftsIndexRouteImport } from './routes/basecamp/drafts/index.tsx'
 import { Route as BasecampDraftsDraftIdRouteImport } from './routes/basecamp/drafts/$draftId.tsx'
@@ -197,6 +198,11 @@ const SettingsSecurityRoute = SettingsSecurityRouteImport.update({
   path: '/security',
   getParentRoute: () => SettingsRoute,
 } as any)
+const SettingsTokensRoute = SettingsTokensRouteImport.update({
+  id: '/tokens',
+  path: '/tokens',
+  getParentRoute: () => SettingsRoute,
+} as any)
 const SignalsIndexRoute = SignalsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -349,6 +355,7 @@ export interface FileRoutesByFullPath {
   '/settings/privacy': typeof SettingsPrivacyRoute
   '/settings/profile': typeof SettingsProfileRoute
   '/settings/security': typeof SettingsSecurityRoute
+  '/settings/tokens': typeof SettingsTokensRoute
   '/basecamp/': typeof BasecampIndexRoute
   '/me/': typeof MeIndexRoute
   '/ranger/': typeof RangerIndexRoute
@@ -397,6 +404,7 @@ export interface FileRoutesByTo {
   '/settings/privacy': typeof SettingsPrivacyRoute
   '/settings/profile': typeof SettingsProfileRoute
   '/settings/security': typeof SettingsSecurityRoute
+  '/settings/tokens': typeof SettingsTokensRoute
   '/basecamp': typeof BasecampIndexRoute
   '/me': typeof MeIndexRoute
   '/ranger': typeof RangerIndexRoute
@@ -452,6 +460,7 @@ export interface FileRoutesById {
   '/settings/privacy': typeof SettingsPrivacyRoute
   '/settings/profile': typeof SettingsProfileRoute
   '/settings/security': typeof SettingsSecurityRoute
+  '/settings/tokens': typeof SettingsTokensRoute
   '/basecamp/': typeof BasecampIndexRoute
   '/me/': typeof MeIndexRoute
   '/ranger/': typeof RangerIndexRoute
@@ -508,6 +517,7 @@ export interface FileRouteTypes {
     | '/settings/privacy'
     | '/settings/profile'
     | '/settings/security'
+    | '/settings/tokens'
     | '/basecamp/'
     | '/me/'
     | '/ranger/'
@@ -556,6 +566,7 @@ export interface FileRouteTypes {
     | '/settings/privacy'
     | '/settings/profile'
     | '/settings/security'
+    | '/settings/tokens'
     | '/basecamp'
     | '/me'
     | '/ranger'
@@ -610,6 +621,7 @@ export interface FileRouteTypes {
     | '/settings/privacy'
     | '/settings/profile'
     | '/settings/security'
+    | '/settings/tokens'
     | '/basecamp/'
     | '/me/'
     | '/ranger/'
@@ -839,6 +851,13 @@ declare module '@tanstack/react-router' {
       path: '/security'
       fullPath: '/settings/security'
       preLoaderRoute: typeof SettingsSecurityRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/tokens': {
+      id: '/settings/tokens'
+      path: '/tokens'
+      fullPath: '/settings/tokens'
+      preLoaderRoute: typeof SettingsTokensRouteImport
       parentRoute: typeof SettingsRoute
     }
     '/signals/': {
@@ -1136,6 +1155,7 @@ interface SettingsRouteChildren {
   SettingsPrivacyRoute: typeof SettingsPrivacyRoute
   SettingsProfileRoute: typeof SettingsProfileRoute
   SettingsSecurityRoute: typeof SettingsSecurityRoute
+  SettingsTokensRoute: typeof SettingsTokensRoute
   SettingsIndexRoute: typeof SettingsIndexRoute
 }
 
@@ -1148,6 +1168,7 @@ const SettingsRouteChildren: SettingsRouteChildren = {
   SettingsPrivacyRoute: SettingsPrivacyRoute,
   SettingsProfileRoute: SettingsProfileRoute,
   SettingsSecurityRoute: SettingsSecurityRoute,
+  SettingsTokensRoute: SettingsTokensRoute,
   SettingsIndexRoute: SettingsIndexRoute,
 }
 

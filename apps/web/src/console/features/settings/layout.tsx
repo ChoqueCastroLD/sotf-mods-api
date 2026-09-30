@@ -16,6 +16,7 @@ import {
   EyeOff,
   Hammer,
   KeyRound,
+  KeySquare,
   type LucideIcon,
   ShieldCheck,
   SlidersHorizontal,
@@ -28,6 +29,7 @@ export const SETTINGS_SECTIONS = [
   'profile',
   'account',
   'security',
+  'tokens',
   'notifications',
   'preferences',
   'privacy',
@@ -59,6 +61,12 @@ export const SECTION_META: Readonly<
     icon: ShieldCheck,
     title: () => m.settings_security_title(),
     hint: () => m.settings_security_hint(),
+  },
+  tokens: {
+    to: '/settings/tokens',
+    icon: KeySquare,
+    title: () => m.tokens_title(),
+    hint: () => m.tokens_hint(),
   },
   notifications: {
     to: '/settings/notifications',

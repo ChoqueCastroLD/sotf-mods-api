@@ -7,6 +7,8 @@
  * - Turnstile only after `TURNSTILE_REQUIRED` (3 recent failures): the widget appears, the user
  *   completes it and signs in again.
  * - `?next=` goes through the allowlist; legacy `?registered` / `?reset` flags become toasts.
+ * - «Continue with Discord» (T1-01) exists only when the server says the provider is configured
+ *   (`GET /auth/providers`); `?oauth_error=` from the callback becomes a toast.
  * - A visitor who is already signed in (hint cookie → `/me/summary`) is offered to continue.
  */
 import { type Locale, localizePath } from '@sotf/i18n';
@@ -17,7 +19,7 @@ import { Input } from '@sotf/ui/input';
 import { PasswordField } from '@sotf/ui/password-field';
 import { type FormEvent, useEffect, useRef, useState } from 'react';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
-import { authApi, type MeSummary } from './api.ts';
+import { type AuthProviders, authApi, type MeSummary } from './api.ts';
 import { flagToasts, stripUrlParams } from './flags.ts';
 import { useLang, useT } from './i18n.tsx';
 import { NEXT_PARAM, safeNext, withNext } from './next.ts';
@@ -37,6 +39,20 @@ import { checkCurrentPassword, checkIdentifier, type FieldErrors, withFieldError
 export interface LoginFormProps extends AuthIslandProps {
   locale: Locale;
   turnstileSiteKey?: string | undefined;
+}
+
+const OAUTH_ERRORS = {
+  cancelled: 'oauth_error_cancelled',
+  failed: 'oauth_error_failed',
+  email_unverified: 'oauth_error_email_unverified',
+  email_missing: 'oauth_error_email_missing',
+  banned: 'oauth_error_banned',
+  already_linked: 'oauth_error_already_linked',
+  unavailable: 'oauth_error_unavailable',
+} as const;
+
+function oauthErrorKey(code: string): (typeof OAUTH_ERRORS)[keyof typeof OAUTH_ERRORS] {
+  return OAUTH_ERRORS[code as keyof typeof OAUTH_ERRORS] ?? 'oauth_error_failed';
 }
 
 type LoginField = 'identifier' | 'password';
@@ -62,6 +78,7 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
   const [submitting, setSubmitting] = useState(false);
   const [needsTurnstile, setNeedsTurnstile] = useState(false);
   const [next, setNext] = useState<string | null>(null);
+  const [providers, setProviders] = useState<AuthProviders | null>(null);
   const [signedIn, setSignedIn] = useState<MeSummary | null>(null);
   const [retryIn, startRetry] = useCountdown();
   const alertRef = useRef<HTMLDivElement | null>(null);
@@ -77,13 +94,22 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
     const params = new URLSearchParams(window.location.search);
     setNext(params.get(NEXT_PARAM));
     for (const flag of flagToasts(params)) notify(flag.kind, t(flag.messageKey));
-    stripUrlParams();
-    if (!hasSignedInHint(document.cookie)) return;
+    const oauthError = params.get('oauth_error');
+    if (oauthError) notify('error', t('oauth_error_title'), t(oauthErrorKey(oauthError)));
+    stripUrlParams(['oauth_error']);
+    const providersRequest = new AbortController();
+    authApi.providers({ signal: providersRequest.signal }).then((result) => {
+      if (result.ok) setProviders(result.data);
+    });
+    if (!hasSignedInHint(document.cookie)) return () => providersRequest.abort();
     const controller = new AbortController();
     authApi.summary({ signal: controller.signal }).then((result) => {
       if (result.ok) setSignedIn(result.data);
     });
-    return () => controller.abort();
+    return () => {
+      providersRequest.abort();
+      controller.abort();
+    };
   }, []);
 
   const { prepare } = turnstile;
@@ -92,6 +118,11 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
   }, [needsTurnstile, prepare]);
 
   const destination = safeNext(next, locale);
+  const discordHref = `/api/v2/auth/oauth/discord/start?${new URLSearchParams({
+    intent: 'login',
+    locale,
+    ...(destination !== localizePath('/', locale) ? { next: destination } : {}),
+  })}`;
 
   function validate(): FieldErrors<LoginField> {
     const found: FieldErrors<LoginField> = {};
@@ -243,6 +274,16 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
       <Button type="submit" size="lg" block loading={submitting} disabled={retryIn > 0} glow>
         {retryIn > 0 ? t('auth_rate_limited_submit', { seconds: retryIn }) : t('auth_login_submit')}
       </Button>
+      {providers?.discord ? (
+        <div className="grid gap-4" data-auth-oauth="discord">
+          <p className="flex items-center gap-3 text-xs text-fg-subtle before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">
+            {t('oauth_divider')}
+          </p>
+          <ButtonLink href={discordHref} variant="outline" size="lg" block>
+            {t('oauth_discord_continue')}
+          </ButtonLink>
+        </div>
+      ) : null}
       <p className="text-center text-sm text-fg-muted">
         {t('auth_login_new_here')}{' '}
         <a

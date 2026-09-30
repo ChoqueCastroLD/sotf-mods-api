@@ -19,6 +19,8 @@ import { queryKeys } from '../../lib/query-keys.ts';
 
 export type { EmailFrequency, NotificationType };
 export type Session = Awaited<ReturnType<typeof api.me.sessions>>['items'][number];
+export type AccessToken = Awaited<ReturnType<typeof api.tokens.list>>['items'][number];
+export type ConnectionList = Awaited<ReturnType<typeof api.oauth.connections>>;
 export type DataExport = Awaited<ReturnType<typeof api.me.getExport>>;
 export type PublicProfile = Awaited<ReturnType<typeof api.catalog.getUser>>;
 export type SelfProfile = Awaited<ReturnType<typeof api.me.updateProfile>>;
@@ -32,6 +34,8 @@ export const settingsKeys = {
   profile: (handle: string) => ['settings', 'profile', handle] as const,
   profileMods: (handle: string) => ['settings', 'profile-mods', handle] as const,
   sessions: ['settings', 'sessions'] as const,
+  tokens: ['settings', 'tokens'] as const,
+  connections: ['settings', 'connections'] as const,
   preferences: ['settings', 'notification-preferences'] as const,
   export: (id: string) => ['settings', 'export', id] as const,
 } as const;
@@ -56,6 +60,18 @@ export const profileModsQuery = (handle: string) =>
 export const sessionsQuery = queryOptions({
   queryKey: settingsKeys.sessions,
   queryFn: async ({ signal }) => (await api.me.sessions({}, { signal })).items,
+  staleTime: 30_000,
+});
+
+export const tokensQuery = queryOptions({
+  queryKey: settingsKeys.tokens,
+  queryFn: ({ signal }) => api.tokens.list({}, { signal }),
+  staleTime: 15_000,
+});
+
+export const connectionsQuery = queryOptions({
+  queryKey: settingsKeys.connections,
+  queryFn: ({ signal }) => api.oauth.connections({}, { signal }),
   staleTime: 30_000,
 });
 
@@ -88,6 +104,10 @@ export const settingsApi = {
   revokeOthers: () => api.me.revokeOtherSessions({}),
   updatePreferences: (items: { type: NotificationType; inApp: boolean; email: EmailFrequency }[]) =>
     api.notifications.updatePreferences({ body: { items } }),
+  createToken: (body: BodyOf<typeof api.tokens.create>) => api.tokens.create({ body }),
+  revokeToken: (id: string) => api.tokens.revoke({ params: { id } }),
+  unlinkConnection: (provider: 'discord', password: string) =>
+    api.oauth.unlink({ params: { provider }, body: { password } }),
   requestExport: () => api.me.requestExport({}),
   requestDeletion: (password: string, mode: 'archive_mods' | 'keep_mods_anonymous') =>
     api.me.requestDeletion({ body: { password, mode } }),
