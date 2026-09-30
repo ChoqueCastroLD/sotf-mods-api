@@ -158,7 +158,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 - [x] resolved by wire-api (confirmed as delivered): **Umbrales de tamaño de builds** · `packages/contracts/src/manifest.ts` (WP-40/WP-63) ·
   S < 500 ≤ M < 2 000 ≤ L < 8 000 ≤ XL no están en el plan; el blueprint legacy guarda `Data` como
   cadena JSON. (WP-11.)
-- **Perfil de render persistido** · `packages/db/migrations/**` + publicación (WP-40) ·
+- [x] resolved by wire-api (core: see WP-15): **Perfil de render persistido** · `packages/db/migrations/**` + publicación (WP-40) ·
   `"Mod"."descriptionFormat"` `'legacy' | 'markdown'` para que una descripción legacy editada siga
   con `legacyHtml`; aviso si Markdown nuevo contiene HTML (`hasRawHtml`). (WP-15.) · **[partial] wire-data**: migration 2002 adds `"Mod"."descriptionFormat"` (NULL = infer) and B9 fills `legacy`; remaining: `packages/core` publishing must read/write it and warn with `hasRawHtml` (wire-api).
 - **Imágenes dentro de descripciones** · `apps/worker/src/jobs/media/**` (WP-40, B15) · replicar a
