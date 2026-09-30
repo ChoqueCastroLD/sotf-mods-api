@@ -20,14 +20,21 @@ import type { Fetchable } from 'astro';
 import { astro, FetchState } from 'astro/fetch';
 import { entryDecision } from '../../middleware/redirects.ts';
 import { loadEnv } from '../env.ts';
+import { archivedAsset, syncAssetArchive } from './asset-archive.ts';
 import { schedulePostDeployPurge } from './deploy-purge.ts';
 import { finalizeResponse, prepareRequest, redirectResponse } from './entry-utils.ts';
 
 const env = loadEnv();
 schedulePostDeployPurge(env);
+void syncAssetArchive();
 
 export async function handle(request: Request): Promise<Response> {
   const url = new URL(request.url);
+  // Hashed assets of previous builds (pages cached before a deploy), see asset-archive.ts.
+  if (url.pathname.startsWith('/_astro/')) {
+    const archived = await archivedAsset(url.pathname);
+    if (archived) return archived;
+  }
   const decision = entryDecision(url, request.method);
   if (decision.redirect) {
     return finalizeResponse(

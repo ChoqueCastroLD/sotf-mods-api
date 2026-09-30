@@ -33,11 +33,7 @@ const kinds = [
 {
   full.length > 0 && (
     <section class="island-map mx-auto w-full max-w-[34rem] lg:max-w-none" data-island-map aria-label={m.landing_map_label({ count: full.length })}>
-      <div class="mb-2 flex items-center justify-between gap-3">
-        <p class="readout flex items-center gap-2 text-signal">
-          <span class="size-2 rounded-full bg-signal" aria-hidden="true" />
-          {m.landing_map_title()}
-        </p>
+      <div class="mb-2 flex items-center justify-end gap-3">
         <p class="readout tabular-nums" aria-hidden="true" data-map-coords>N 47.2034 · W 122.4781</p>
       </div>
       <div class="hidden lg:block">
@@ -46,7 +42,7 @@ const kinds = [
       <div class="lg:hidden">
         <MapCanvas locale={locale} layout="compact" spec={COMPACT_MAP} cols={6} rows={7} waypoints={waypoints} placements={compact} categories={categories} />
       </div>
-      <ul class="readout mt-2 flex flex-wrap items-center gap-x-4 gap-y-1" aria-label={m.landing_map_legend_label()}>
+      <ul class="readout mt-2 flex flex-wrap items-center justify-end gap-x-4 gap-y-1" aria-label={m.landing_map_legend_label()}>
         {
           kinds.map((item) => (
             <li class="flex items-center gap-1.5">

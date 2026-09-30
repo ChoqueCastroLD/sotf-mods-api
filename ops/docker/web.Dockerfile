@@ -108,6 +108,9 @@ ENV NODE_ENV=production \
     PORT=4321
 WORKDIR /app
 COPY --from=deploy --chown=root:root /out/app/ ./
+# Persistent volume for hashed assets of previous builds (ASSET_ARCHIVE_DIR, asset-archive.ts);
+# created here so a fresh named volume inherits the node user's ownership.
+RUN mkdir -p /data/assets && chown node:node /data/assets
 USER node
 EXPOSE 4321
 HEALTHCHECK --interval=15s --timeout=5s --start-period=30s --retries=5 \

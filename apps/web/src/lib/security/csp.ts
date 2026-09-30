@@ -87,6 +87,9 @@ export const GOOGLE_ADS_ORIGINS = [
 ] as const;
 
 export const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com';
+/** Cloudflare Web Analytics beacon (injected by the edge) and its collector. */
+export const CF_INSIGHTS_SCRIPT_ORIGIN = 'https://static.cloudflareinsights.com';
+export const CF_INSIGHTS_CONNECT_ORIGIN = 'https://cloudflareinsights.com';
 export const YOUTUBE_EMBED_ORIGIN = 'https://www.youtube-nocookie.com';
 export const YOUTUBE_THUMBNAIL_ORIGIN = 'https://i.ytimg.com';
 
@@ -103,7 +106,7 @@ export const CSP_DIRECTIVES = [
   "worker-src 'self' blob:",
   `img-src ${uniq(["'self'", 'data:', 'blob:', R2_PUBLIC_ORIGIN, YOUTUBE_THUMBNAIL_ORIGIN, ...GOOGLE_ADS_ORIGINS]).join(' ')}`,
   `media-src 'self' blob: ${R2_PUBLIC_ORIGIN}`,
-  `connect-src ${uniq(["'self'", R2_PUBLIC_ORIGIN, R2_S3_ORIGIN, TURNSTILE_ORIGIN, ...GOOGLE_ADS_SCRIPT_ORIGINS, ...GOOGLE_ADS_ORIGINS]).join(' ')}`,
+  `connect-src ${uniq(["'self'", R2_PUBLIC_ORIGIN, R2_S3_ORIGIN, TURNSTILE_ORIGIN, CF_INSIGHTS_CONNECT_ORIGIN, ...GOOGLE_ADS_SCRIPT_ORIGINS, ...GOOGLE_ADS_ORIGINS]).join(' ')}`,
   `frame-src ${uniq(["'self'", YOUTUBE_EMBED_ORIGIN, TURNSTILE_ORIGIN, 'https://*.googlesyndication.com', 'https://*.doubleclick.net', 'https://www.google.com', 'https://fundingchoicesmessages.google.com']).join(' ')}`,
 ] as const;
 
@@ -152,7 +155,13 @@ export function cspConfig() {
     algorithm: 'SHA-256' as const,
     directives: [...CSP_DIRECTIVES],
     scriptDirective: {
-      resources: ["'self'", "'report-sample'", ...GOOGLE_ADS_SCRIPT_ORIGINS, TURNSTILE_ORIGIN],
+      resources: [
+        "'self'",
+        "'report-sample'",
+        ...GOOGLE_ADS_SCRIPT_ORIGINS,
+        TURNSTILE_ORIGIN,
+        CF_INSIGHTS_SCRIPT_ORIGIN,
+      ],
       hashes: INLINE_SCRIPTS.map(sha256Source),
     },
     styleDirective: {
@@ -243,6 +252,7 @@ export function fallbackPolicy(): string {
     "'report-sample'",
     ...GOOGLE_ADS_SCRIPT_ORIGINS,
     TURNSTILE_ORIGIN,
+    CF_INSIGHTS_SCRIPT_ORIGIN,
     ...INLINE_SCRIPTS.map((source) => `'${sha256Source(source)}'`),
   ];
   fallback = serializePolicy([
