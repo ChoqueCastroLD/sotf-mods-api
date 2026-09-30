@@ -4,8 +4,8 @@ Production images of SOTF Mods v2 (PLAN §11.1). The build context is always the
 
 | Image | Dockerfile / target | Contents | Budget | Measured (2026-09-30) |
 |---|---|---|---|---|
-| `sotf-node` | `node.Dockerfile` (default `runtime`) | `@sotf/api` + `@sotf/worker` bundles (`dist/server.js`, `worker.js`, `migrate.js`, `backfill.js`, `migrations/*.sql`) + pruned production `node_modules` | ≤ 230 MB | 228 MB |
-| `sotf-web` | `web.Dockerfile` | Astro build (`dist/server/entry.mjs`, `dist/client`) + pruned production `node_modules` | ≤ 180 MB | 173 MB |
+| `sotf-node` | `node.Dockerfile` (default `runtime`) | `@sotf/api` + `@sotf/worker` bundles (`dist/server.js`, `worker.js`, `migrate.js`, `backfill.js`, `migrations/*.sql`) + pruned production `node_modules` | ≤ 230 MB | 230 MB |
+| `sotf-web` | `web.Dockerfile` | Astro build (`dist/server/entry.mjs`, `dist/client`) + pruned production `node_modules` | ≤ 180 MB | 176 MB |
 | `sotf-tools` | `node.Dockerfile --target tools` | pruned workspace of `@sotf/migration-tools` (TypeScript run by Node) + `psql`/`pg_dump` | job image, no budget | 515 MB |
 
 ```bash
@@ -23,10 +23,14 @@ ops/docker/inspect-image.sh sotf-node 230 && ops/docker/inspect-image.sh sotf-we
 3. `pnpm deploy --prod` of each app; for `sotf-node` the two trees are merged
    (`runtime-deps.mjs merge`). Workspace packages are removed (they are bundled TypeScript).
 4. `runtime-deps.mjs prune` keeps only the packages the bundles import and what pnpm links from
-   them, and drops type declarations, TypeScript files, source maps, docs and React development
-   builds; `runtime-deps.mjs check` fails the build if a bundle import does not resolve, an
+   them, and drops type declarations, TypeScript files, source maps and docs. React development
+   builds become one-line re-exports of their production twin: deleting them broke Node's
+   named-export detection of React's CommonJS entry and both images crashed at start-up
+   (`'react' does not provide an export named 'createElement'`). `runtime-deps.mjs check` fails
+   the build if a bundle import does not resolve or lacks a named binding the bundle imports, an
    `@sotf/*` import is left, a native addon (sharp, @node-rs/*) does not load on musl, or the app
-   directory contains TypeScript, `.env` files, dumps or keys.
+   directory contains TypeScript, `.env` files, dumps or keys (tests:
+   `tooling/scripts/test/runtime-deps.test.ts`).
 5. Runtime: plain `alpine:3.23` + the `node` binary of `node:24.17.0-alpine3.23` + `tini`,
    `USER node` (uid 1000), `TZ=UTC`, `NODE_ENV=production`. npm, corepack, yarn and headers are
    not shipped. No `HEALTHCHECK` (Coolify checks `/healthz` with busybox `wget`).
