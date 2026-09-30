@@ -12,6 +12,7 @@
  * - Plurals: each plural provides every CLDR category the locale selects for integers 0–1000
  *   (e.g. `few` and `many` in ru/pl) and no category the locale never selects (e.g. `one` in ja).
  * - Hygiene: no empty messages, no leading/trailing whitespace, no control characters, no HTML.
+ * - Mirrors: the `common_*` texts copied into island namespaces stay identical (mirrors.ts).
  *
  * Warnings (reported, never fail)
  * - Three dots instead of the ellipsis character.
@@ -34,6 +35,7 @@ import {
   walkIcu,
 } from './icu.ts';
 import { toInlangMessage } from './inlang.ts';
+import { mirrorDiagnostics } from './mirrors.ts';
 import { frenchTypographyDiagnostics } from './style.ts';
 
 export interface ValidatedCatalog {
@@ -245,6 +247,7 @@ export function validateCatalog(catalog: Catalog): ValidatedCatalog {
     }
   }
 
+  diagnostics.push(...mirrorDiagnostics(catalog));
   diagnostics.push(...frenchTypographyDiagnostics(catalog));
 
   const order = { error: 0, warning: 1 } as const;

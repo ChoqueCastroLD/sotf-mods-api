@@ -23,6 +23,9 @@ file equals `packages/ui/src/domain/messages/en.json` (without `$schema`); edit 
 - **Same arguments** in every locale, used the same way (`{n, number}` stays a number).
 - **No HTML** and no leading/trailing spaces. Use `…`, typographic quotes and the punctuation
   rules of each language (French: non-breaking space before `: ; ? !` and inside `« »`).
+- **Mirrors**: a few `common_*` texts are copied into `cmdk` (the palette loads only its own
+  namespace). The copies must stay identical in every locale (`tools/mirrors.ts`): change the
+  `common` key and its mirror together.
 
 ## ICU syntax
 
