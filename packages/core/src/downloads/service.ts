@@ -23,6 +23,11 @@ export interface DownloadRequestInfo {
   secPurpose?: string | null | undefined;
   /** The per-IP soft limit was exceeded (redirect, but do not count). */
   overLimit: boolean;
+  /**
+   * Signed-in user behind a proxied request (the web route resolves the forwarded session cookie);
+   * defaults to `ctx.actor`.
+   */
+  userId?: number | null;
 }
 
 export interface DownloadOutcome extends ResolvedDownload {
@@ -103,7 +108,7 @@ export class DownloadsService {
         userAgent: normalizeUserAgent(ctx.userAgent),
         country: ctx.country,
         source: downloadSource(request.surface, ctx.userAgent),
-        userId: ctx.actor?.userId ?? null,
+        userId: request.userId !== undefined ? request.userId : (ctx.actor?.userId ?? null),
       });
     }
     ctx.log.debug(

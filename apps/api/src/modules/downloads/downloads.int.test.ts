@@ -4,7 +4,9 @@
  * request of a minute), the rows and aggregates written by the flush, 404/410, the legacy aliases,
  * the internal resolve of the web route and "My downloads" — against PostgreSQL 16.
  */
+import { SESSION_COOKIE } from '@sotf/contracts/auth';
 import { ipHash, utcDay } from '@sotf/core';
+import { createSession } from '@sotf/core/auth/index';
 import { createFactories, type Factories } from '@sotf/db/testing';
 import { sql } from 'drizzle-orm';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -329,6 +331,37 @@ describe('rows and aggregates written by the flush', () => {
       SELECT "downloads", "uniqueDownloads" FROM "ModVersionDownloadDaily"
        WHERE "modVersionId" = ${fx.versionId} AND "channel" = 'api'`);
     expect(api).toEqual({ downloads: 3, uniqueDownloads: 1 });
+  });
+
+  it('links web-route downloads to the user through the forwarded session cookie', async () => {
+    const fx = await modWithKey('mods/user/web-linked.zip');
+    const fan = await f.user();
+    const { token } = await createSession(t.db.db, {
+      userId: fan.id,
+      passwordHash: fan.password,
+      remember: true,
+      ipHash: null,
+      userAgent: null,
+      now: new Date(),
+    });
+    const url = `/internal/downloads/resolve?user=${fx.userSlug}&slug=${fx.modSlug}&version=latest`;
+    const signedIn = await t.app.inject({
+      method: 'GET',
+      url,
+      headers: { ...t.internal(), 'user-agent': CHROME, cookie: `${SESSION_COOKIE}=${token}` },
+    });
+    expect(signedIn.json()).toMatchObject({ status: 302, counted: true });
+    const bogus = await t.app.inject({
+      method: 'GET',
+      url,
+      headers: { ...t.internal(), 'user-agent': CHROME, cookie: `${SESSION_COOKIE}=not-a-real-token` },
+    });
+    expect(bogus.json()).toMatchObject({ status: 302, counted: true });
+    await flush();
+    const users = await rows<{ userId: number | null }>(
+      sql`SELECT "userId" FROM "ModDownload" WHERE "modVersionId" = ${fx.versionId} ORDER BY "id"`,
+    );
+    expect(users).toEqual([{ userId: fan.id }, { userId: null }]);
   });
 
   it('links signed-in downloads to the user unless the history is disabled', async () => {

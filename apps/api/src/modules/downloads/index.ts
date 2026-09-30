@@ -6,7 +6,8 @@
  * - `GET /internal/downloads/resolve?user=&slug=&version=&method=` (🔒 `X-Internal-Auth`): the web
  *   route `/mods/:user/:slug/download/:version` forwards `CF-Connecting-IP`, `User-Agent`,
  *   `CF-IPCountry`, `Range` and `Sec-Purpose`; the API resolves, counts and answers
- *   `{status, location, reason, counted}` so the web can send the 302 itself.
+ *   `{status, location, reason, counted}` so the web can send the 302 itself. The forwarded session
+ *   cookie (if any) links the download to the user.
  * - `GET|DELETE /api/v2/me/downloads`: "My downloads" and clearing it.
  * - The legacy aliases `/api/mods/:mod_id/download/:version` and
  *   `/api/mods/slug/:u/:s/download/:version` live in `src/legacy/downloads` and share this runtime.
@@ -14,7 +15,9 @@
  * Counting never blocks: over 60 downloads/min per IP (soft `downloads` bucket) the request still
  * redirects, it is only not counted. Events are flushed every 2 s and on shutdown.
  */
+import { SESSION_COOKIE } from '@sotf/contracts/auth';
 import { downloadsEndpoints } from '@sotf/contracts/downloads';
+import { resolveSession } from '@sotf/core/auth/index';
 import { clearDownloadHistory, getDownloadHistory, toResolveDTO } from '@sotf/core/downloads/index';
 import { registerLegacyDownloads } from '../../legacy/downloads/index.ts';
 import { defineModule } from '../../lib/define-module.ts';
@@ -40,10 +43,14 @@ export default defineModule({
       // Internal routes have no rate-limit bucket: count this download in the shared soft bucket,
       // keyed by the forwarded CF-Connecting-IP (request.clientIp).
       const overLimit = (await m.platform.rateLimiter.hit('downloads', request)) !== null;
+      // Internal routes skip the platform's session resolution; the web forwards the visitor's
+      // Cookie so a signed-in download is linked to "My downloads" (T0-02).
+      const token = request.cookies?.[SESSION_COOKIE];
+      const session = token ? await resolveSession(ctx.db, token, ctx.clock.now()) : null;
       const outcome = await service.handle(
         ctx,
         { by: 'slug', user: query.user, slug: query.slug, version: query.version },
-        { surface: 'web', method: query.method, ...requestHints(request), overLimit },
+        { surface: 'web', method: query.method, ...requestHints(request), overLimit, userId: session?.userId ?? null },
       );
       return toResolveDTO(outcome);
     });

@@ -15,6 +15,8 @@ Direct downloads and honest counting (PLAN §2.8 "Descarga", T0-02, T0-17).
   `downloads` bucket: the 302 is still sent).
 - **Channel** (`downloadSource`): `redmanager` (UA), `client` (no UA: mod managers and the in-game
   checker, like the legacy `ip='undefined'` rows), `web` (site route) or `api` (aliases).
+- **User**: the session of the v2 alias, or for the site route the session cookie the web forwards
+  (resolved in the internal endpoint), links the download to "My downloads".
 - **Buffer** (`DownloadCounter`): events flushed every 2 s and on shutdown in one transaction —
   `DownloadUnique` (`ON CONFLICT DO NOTHING` decides `isUnique`), one multi-row `INSERT` into
   `ModDownload` (`ip` = ipHash, daily salt; never the IP in clear), `ModVersionDownloadDaily` upsert,
