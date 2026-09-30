@@ -14,5 +14,7 @@ declare namespace App {
     pageCache?: import('./cache/policy.ts').PageCachePolicy | false;
     /** Set by the middleware for `/images/…` (410 instead of 404). */
     errorKind?: 'not-found' | 'gone';
+    /** Transient API failure caught by the middleware; `500.astro` answers 503 + Retry-After. */
+    upstreamError?: unknown;
   }
 }
