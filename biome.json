@@ -19,5 +19,10 @@
       "!pnpm-lock.yaml",
       "!tooling/scripts/ownership.json"
     ]
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
   }
 }
