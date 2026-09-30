@@ -26,7 +26,7 @@ import {
   Trophy,
   Wrench,
 } from 'lucide-react';
-import { st } from './i18n.ts';
+import { badgeName, st } from './i18n.ts';
 
 export type SignalTone = 'signal' | 'success' | 'warning' | 'danger' | 'neutral';
 
@@ -233,7 +233,7 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
       }
       const key = str(signal.data.badgeKey) ?? signal.target?.title ?? '';
       return {
-        text: st('signals_badge_awarded', { badge: humanizeKey(key) }),
+        text: st('signals_badge_awarded', { badge: badgeName(key) ?? humanizeKey(key) }),
         excerpt: null,
         icon: Award,
         tone: 'success',

@@ -4,8 +4,8 @@
  * `html` so deploys refresh them), plus the right content type.
  */
 import type { CacheTag } from '@sotf/contracts/cache';
-import { setPageCache } from '../../../lib/cache/page.ts';
-import { EDGE_TTL, pageCache } from '../../../lib/cache/policy.ts';
+import { setPageCache } from '../cache/page.ts';
+import { EDGE_TTL, pageCache } from '../cache/policy.ts';
 
 export type MachineContext = Parameters<typeof setPageCache>[0];
 

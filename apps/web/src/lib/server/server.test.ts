@@ -47,6 +47,22 @@ describe('environment (PLAN §11.4)', () => {
     expect(() => parseEnv({ PUBLIC_ADSENSE_CLIENT: 'pub-1' })).toThrow(/ca-pub/);
     expect(env().indexable).toBe(true);
   });
+
+  it('reads CSP_MODE, the upload endpoint and the ad units (WP-93, WP-70, WP-53/54/62)', () => {
+    const parsed = parseEnv({
+      CSP_MODE: 'report-only',
+      R2_ENDPOINT: 'http://seaweedfs:8333/some/path',
+      PUBLIC_ADSENSE_SLOT_HOME: '1234567890',
+      PUBLIC_ADSENSE_SLOT_FEED: '',
+    });
+    expect(parsed.cspMode).toBe('report-only');
+    expect(parsed.storageUploadOrigin).toBe('http://seaweedfs:8333');
+    expect(parsed.adSlots).toEqual({ home: '1234567890', feed: undefined, modSidebar: undefined });
+    expect(parseEnv({}).cspMode).toBeUndefined();
+    expect(parseEnv({}).storageUploadOrigin).toBeUndefined();
+    expect(() => parseEnv({ CSP_MODE: 'off' })).toThrow(/CSP_MODE/);
+    expect(() => parseEnv({ PUBLIC_ADSENSE_SLOT_FEED: 'slot-a' })).toThrow(/ad unit/);
+  });
 });
 
 describe('X-Internal-Auth', () => {
@@ -140,11 +156,31 @@ describe('server entry helpers', () => {
     expect(out.headers.has('x-sotf-cache-tags')).toBe(false);
     expect(out.headers.get('x-robots-tag')).toBe('noindex, nofollow');
     expect(out.headers.get('x-content-type-options')).toBe('nosniff');
-    expect(out.headers.get('x-frame-options')).toBe('SAMEORIGIN');
+    // WP-93: clickjacking protection is DENY; non-HTML responses get the strict document-less policy.
+    expect(out.headers.get('x-frame-options')).toBe('DENY');
+    expect(out.headers.get('content-security-policy')).toBe(
+      "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'",
+    );
     const embed = finalizeResponse(new Response('x'), 'production', '/embed/mods/a/b');
-    expect(embed.headers.get('content-security-policy')).toBe('frame-ancestors *');
+    expect(embed.headers.get('content-security-policy')).toBe("default-src 'none'; frame-ancestors *");
     expect(embed.headers.has('x-frame-options')).toBe(false);
     expect(embed.headers.has('x-robots-tag')).toBe(false);
+  });
+
+  it('sends the HTML policy enforcing or report-only per CSP_MODE', () => {
+    const html = () =>
+      new Response('<!doctype html>', {
+        headers: { 'content-type': 'text/html', 'content-security-policy': "script-src 'self'; default-src 'self'" },
+      });
+    const enforced = finalizeResponse(html(), 'staging', '/', { cspMode: 'enforce' });
+    expect(enforced.headers.get('content-security-policy')).toContain("script-src 'self'");
+    expect(enforced.headers.has('content-security-policy-report-only')).toBe(false);
+    const reported = finalizeResponse(html(), 'production', '/', { cspMode: 'report-only' });
+    expect(reported.headers.get('content-security-policy-report-only')).toContain("script-src 'self'");
+    expect(reported.headers.get('content-security-policy')).toBe("frame-ancestors 'none'");
+    // Default per environment: staging reports only.
+    const staging = finalizeResponse(html(), 'staging', '/');
+    expect(staging.headers.has('content-security-policy-report-only')).toBe(true);
   });
 
   it('copies immutable responses before touching headers', () => {

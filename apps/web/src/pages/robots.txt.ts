@@ -6,8 +6,8 @@
  */
 import type { APIRoute } from 'astro';
 import { loadEnv } from '../lib/env.ts';
+import { CONTENT_TYPES, machineResponse } from '../lib/seo/respond.ts';
 import { PRODUCTION_ORIGIN } from '../lib/site.ts';
-import { CONTENT_TYPES, machineResponse } from './sitemaps/_lib/respond.ts';
 
 export const prerender = false;
 

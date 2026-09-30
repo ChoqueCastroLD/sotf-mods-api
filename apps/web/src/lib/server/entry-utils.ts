@@ -4,6 +4,7 @@
  */
 import { publishCacheTags } from '../cache/policy.ts';
 import { LOCALE_HEADER } from '../cache/request-locale.ts';
+import type { CspMode } from '../security/csp.ts';
 import { applySecurityHeaders } from '../security/headers.ts';
 import { INTERNAL_HEADER_PREFIX } from './internal-headers.ts';
 
@@ -52,7 +53,12 @@ export function prepareRequest(request: Request, path: string, locale: string): 
 }
 
 /** Final touches on every response produced by Astro. */
-export function finalizeResponse(response: Response, siteEnv: string, pathname: string): Response {
+export function finalizeResponse(
+  response: Response,
+  siteEnv: string,
+  pathname: string,
+  options: { cspMode?: CspMode | undefined } = {},
+): Response {
   let out = response;
   try {
     publishCacheTags(out.headers);
@@ -61,6 +67,10 @@ export function finalizeResponse(response: Response, siteEnv: string, pathname: 
     out = new Response(response.body, response);
     publishCacheTags(out.headers);
   }
-  applySecurityHeaders(out.headers, { siteEnv }, pathname);
+  applySecurityHeaders(
+    out.headers,
+    options.cspMode === undefined ? { siteEnv } : { siteEnv, cspMode: options.cspMode },
+    pathname,
+  );
   return out;
 }

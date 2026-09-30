@@ -12,8 +12,8 @@ import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, type Locale, toHreflang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import type { FAQPage, SoftwareApplication, VideoObject, WithContext } from 'schema-dts';
+import type { FaqEntry } from '../../lib/seo/faq.ts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
-import type { FaqEntry } from '../../pages/sitemaps/_lib/faq.ts';
 import type { ModDetailDTO } from './data.ts';
 import { licenseHref } from './i18n.ts';
 

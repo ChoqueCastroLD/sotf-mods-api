@@ -3,7 +3,7 @@
  * builds with dates and figures).
  */
 import type { APIRoute } from 'astro';
-import { profileMarkdownRoute } from '../sitemaps/_lib/alternates.ts';
+import { profileMarkdownRoute } from '../../lib/seo/alternates.ts';
 
 export const prerender = false;
 

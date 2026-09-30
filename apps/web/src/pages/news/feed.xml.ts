@@ -8,9 +8,9 @@ import type { APIRoute } from 'astro';
 import { newsPosts } from '../../content/news/index.ts';
 import { EDGE_TTL } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
+import { CONTENT_TYPES, machineResponse } from '../../lib/seo/respond.ts';
+import { rss } from '../../lib/seo/xml.ts';
 import { LOGO_PATH } from '../../lib/site.ts';
-import { CONTENT_TYPES, machineResponse } from '../sitemaps/_lib/respond.ts';
-import { rss } from '../sitemaps/_lib/xml.ts';
 
 export const prerender = false;
 

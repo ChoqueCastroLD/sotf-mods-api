@@ -34,11 +34,12 @@ export async function handle(request: Request): Promise<Response> {
       redirectResponse(decision.redirect.status, decision.redirect.location),
       env.siteEnv,
       url.pathname,
+      { cspMode: env.cspMode },
     );
   }
   const prepared = prepareRequest(request, decision.path, decision.locale);
   const response = await astro(new FetchState(prepared));
-  return finalizeResponse(response, env.siteEnv, decision.path.split('?', 1)[0] ?? '/');
+  return finalizeResponse(response, env.siteEnv, decision.path.split('?', 1)[0] ?? '/', { cspMode: env.cspMode });
 }
 
 export default { fetch: handle } satisfies Fetchable;

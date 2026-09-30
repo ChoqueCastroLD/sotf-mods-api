@@ -8,6 +8,7 @@ import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { type Locale, localizePath } from '@sotf/i18n';
 import { cn } from '@sotf/ui/cn';
 import {
+  AdSlot,
   BuildCard,
   BuildCardSkeleton,
   type DomainI18n,
@@ -16,6 +17,8 @@ import {
   ModCardSkeleton,
   modDownloadHref,
 } from '@sotf/ui/domain';
+import { Fragment } from 'react';
+import { type AdUnit, feedAdAfter } from '../../lib/ads.ts';
 import type { ExploreView } from './state.ts';
 
 export const LIST_CLASSES: Record<ExploreView, string> = {
@@ -35,6 +38,12 @@ export interface ExploreResultsProps {
   priorityFirst?: boolean;
   /** Position offset of the first item (1-based positions for `ItemList`). */
   offset?: number;
+  /**
+   * In-feed ad unit for guests (PLAN §8.5: grid view, first page, after the 6th and 18th card).
+   * Null when ads are off. The `<li>` carries no `data-explore-item`, so «Load more», positions
+   * and JSON-LD ignore it.
+   */
+  ad?: AdUnit | null;
   className?: string;
 }
 
@@ -50,27 +59,37 @@ export function ExploreItems({
   headingLevel = 3,
   priorityFirst = false,
   offset = 0,
+  ad = null,
 }: Omit<ExploreResultsProps, 'i18n' | 'className'>) {
+  const withAds = ad !== null && view === 'grid' && offset === 0;
   return (
     <>
       {items.map((mod, index) => {
         const card = localized(mod, locale);
         const priority = priorityFirst && index === 0;
+        const adAfter = withAds && feedAdAfter(index + 1, items.length);
         return (
-          <li key={mod.id} data-explore-item="" data-position={offset + index + 1} className="min-w-0">
-            {view === 'grid' && mod.kind === 'build' ? (
-              <BuildCard build={card} headingLevel={headingLevel} priority={priority} className="h-full" />
-            ) : (
-              <ModCard
-                mod={card}
-                variant={view === 'grid' ? 'grid' : view === 'list' ? 'row' : 'compact'}
-                headingLevel={headingLevel}
-                priority={priority}
-                downloadHref={modDownloadHref(mod)}
-                className="h-full"
-              />
-            )}
-          </li>
+          <Fragment key={mod.id}>
+            <li data-explore-item="" data-position={offset + index + 1} className="min-w-0">
+              {view === 'grid' && mod.kind === 'build' ? (
+                <BuildCard build={card} headingLevel={headingLevel} priority={priority} className="h-full" />
+              ) : (
+                <ModCard
+                  mod={card}
+                  variant={view === 'grid' ? 'grid' : view === 'list' ? 'row' : 'compact'}
+                  headingLevel={headingLevel}
+                  priority={priority}
+                  downloadHref={modDownloadHref(mod)}
+                  className="h-full"
+                />
+              )}
+            </li>
+            {adAfter && ad ? (
+              <li data-explore-ad="" className="min-w-0">
+                <AdSlot format="in-feed" client={ad.client} slot={ad.slot} showNotice className="h-full" />
+              </li>
+            ) : null}
+          </Fragment>
         );
       })}
     </>

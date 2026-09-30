@@ -6,7 +6,7 @@
  */
 import type { ModKind } from '@sotf/contracts/common';
 import { modPath, profilePath } from '@sotf/contracts/seo';
-import { serverApi } from '../../../lib/api.ts';
+import { serverApi } from '../api.ts';
 
 export type Lookup =
   | { status: 200; id: number; kind: ModKind | 'user'; canonicalPath: string }
