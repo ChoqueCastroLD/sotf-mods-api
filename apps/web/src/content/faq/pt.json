@@ -1,0 +1,34 @@
+{
+  "install": {
+    "question": "Como instalo mods em Sons of the Forest?",
+    "answer": "Instale o RedLoader, o carregador de mods, coloque cada mod na pasta _RedLoader/Mods dentro do diretório do jogo e abra o jogo. O RedManager pode fazer as duas etapas por você. Aperte F1 no jogo para confirmar que os mods carregaram. Cada página de mod lista as dependências, e o guia de instalação explica cada etapa."
+  },
+  "free": {
+    "question": "Os downloads são gratuitos?",
+    "answer": "Sim. Todos os mods, builds e Kits do SOTF Mods são baixados de graça, direto do nosso armazenamento: sem conta, sem temporizador de espera e sem gerenciador de downloads. Os anúncios aparecem só para quem não entrou na conta e nunca ficam ao lado de um botão de download."
+  },
+  "multiplayer": {
+    "question": "Os mods funcionam no multijogador?",
+    "answer": "Muitos sim, mas depende do mod. Cada página informa se só o host precisa dele, se todos os jogadores precisam ou se é só para um jogador, e se roda em servidores dedicados. Na dúvida, todo o grupo deve instalar os mesmos mods nas mesmas versões."
+  },
+  "patch": {
+    "question": "Os mods continuam funcionando depois de uma atualização do jogo?",
+    "answer": "Nem sempre: os patches do jogo podem quebrar mods até que os criadores os atualizem. O Radar de patches acompanha a build atual do jogo, o status do RedLoader e quais dos 50 mods mais baixados os jogadores confirmaram como funcionando, quebrados ou não testados. Os relatórios de campo de cada mod mostram os resultados mais recentes."
+  },
+  "bepinex": {
+    "question": "Posso usar mods do BepInEx com o RedLoader?",
+    "answer": "Não. O SOTF Mods reúne mods para o RedLoader, o carregador feito para Sons of the Forest. Mods do BepInEx precisam de outro carregador: colocados nas pastas do RedLoader, eles simplesmente não fazem nada e não mostram erro. Confira se um mod foi feito para o RedLoader antes de instalar."
+  },
+  "safe": {
+    "question": "É seguro baixar os mods?",
+    "answer": "Cada mod novo é verificado pelo Posto dos guardas antes de ser publicado, e cada arquivo mostra o tamanho e o checksum SHA-256 para você conferir o que baixou. Alguns antivírus acusam carregadores de mods como falsos positivos; na dúvida, analise o arquivo ou pergunte no nosso Discord."
+  },
+  "kits": {
+    "question": "O que é um Kit?",
+    "answer": "Um Kit é uma coleção de mods que pode ser compartilhada, como um kit de sobrevivência: um criador ou jogador reúne mods que funcionam bem juntos, com anotações, e qualquer pessoa pode segui-lo, cloná-lo ou baixar tudo o que ele contém. Os guardas destacam Kits para novos jogadores e para servidores dedicados."
+  },
+  "catalog": {
+    "question": "Quantos mods de Sons of the Forest existem?",
+    "answer": "Em {date}, o SOTF Mods reúne {mods} mods e {builds} builds de {creators} criadores, com {downloads} downloads no total. É o maior catálogo de mods para RedLoader de Sons of the Forest, e os números desta página são atualizados a cada poucos minutos."
+  }
+}

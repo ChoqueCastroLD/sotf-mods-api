@@ -1,0 +1,9 @@
+---
+/** Empty state of a landing block: brand microcopy, no call to action needed. */
+interface Props {
+  text: string;
+}
+const { text } = Astro.props;
+---
+
+<p class="rounded-lg border border-dashed border-border bg-surface p-6 text-center text-sm text-fg-muted">{text}</p>

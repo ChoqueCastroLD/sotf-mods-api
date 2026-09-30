@@ -1,0 +1,45 @@
+---
+/**
+ * Citable FAQ (research/03 §6.1, PLAN §4.5): answer-first paragraphs, fully visible in the HTML
+ * (not collapsed) so readers and answer engines get the same text as the `FAQPage` JSON-LD.
+ */
+import type { Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import type { FaqItem } from '../../content/faq/index.ts';
+import { href } from '../../lib/i18n.ts';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  locale: Locale;
+  items: readonly FaqItem[];
+  /** Formatted date of the figures («as of»), when the catalogue answer is present. */
+  figuresDate: string | null;
+}
+
+const { locale, items, figuresDate } = Astro.props;
+---
+
+<section class="mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6 md:py-14" aria-labelledby="faq-title">
+  <SectionHeader id="faq-title" title={m.landing_faq_title()} hint={m.landing_faq_hint()} />
+  <div class="grid gap-4 md:grid-cols-2">
+    {
+      items.map((item) => (
+        <article id={`faq-${item.id}`} class="flex flex-col gap-2 rounded-lg border border-border bg-surface p-5">
+          <h3 class="text-lg font-semibold text-balance text-fg">{item.question}</h3>
+          <p class="text-pretty text-fg-muted">{item.answer}</p>
+          <a
+            href={href(item.path, locale)}
+            class="mt-auto inline-flex min-h-11 items-center gap-1.5 self-start rounded-md text-sm font-semibold text-link hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            {m.landing_faq_more()}
+            <span class="sr-only">: {item.question}</span>
+            <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+          </a>
+        </article>
+      ))
+    }
+  </div>
+  {figuresDate && <p class="readout mt-4">{m.landing_faq_figures({ date: figuresDate })}</p>}
+</section>
