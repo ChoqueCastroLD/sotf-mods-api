@@ -12,12 +12,12 @@
  *   shutdown so the server can drain.
  */
 import * as sseModule from '@fastify/sse';
-import { eventsEndpoints, SSE_HEARTBEAT_SECONDS, type SseChannel } from '@sotf/contracts';
+import { eventsEndpoints, SSE_HEARTBEAT_SECONDS, sseChannel, type SseChannel } from '@sotf/contracts';
 import {
   encodeModLiveFrame,
   PG_EVENTS_CHANNEL,
   SSE_MOD_LIVE_MAX_SECONDS,
-  SSE_MOD_LIVE_SECONDS,
+  SseModLivePushData,
   type SseModLiveEvent,
 } from '@sotf/contracts/events';
 import { getModLive } from '@sotf/core/catalog/index';
@@ -242,15 +242,18 @@ const MOD_LIVE_STREAMS_PER_IP = 4;
 
 /**
  * `GET /api/v2/mods/:id/live/stream` (public, cookieless): the live counters of one reachable mod.
- * Every stream re-reads the counters every 15 s (the `getModLive` LRU makes that one query per mod
- * per window however many tabs are open) and only writes a frame when a figure changed, so the
- * traffic is throttled by design. Streams are recycled every 10 minutes and closed on shutdown.
+ * Event-driven: the stream subscribes to the hub's `mod:{id}` channel (published on every flushed
+ * download) and, on connect and on each push, writes the full counters (downloads, downloads24h,
+ * followers; the 24 h and follower figures come from the `getModLive` LRU). Streams are recycled
+ * every 10 minutes and closed on shutdown; the hub heartbeat keeps proxies open.
  */
 export async function setupModLiveStream(app: FastifyInstance, hub: SseHub): Promise<void> {
   const endpoint = eventsEndpoints.modLiveStream;
   const config = catalogConfigOf(app.platform.env);
   const perIp = new Map<string, number>();
   const closers = new Set<() => void>();
+  // Anonymous streams get unique negative ids so the hub's per-user cap never applies to them.
+  let anonymousId = 0;
   hub.onClose(() => {
     for (const close of [...closers]) close();
   });
@@ -266,7 +269,7 @@ export async function setupModLiveStream(app: FastifyInstance, hub: SseHub): Pro
       const ip = request.clientIp;
       if ((perIp.get(ip) ?? 0) >= MOD_LIVE_STREAMS_PER_IP) throw httpError('RATE_LIMITED');
       // Throws NOT_FOUND for an unreachable mod before any byte is streamed.
-      let last = await getModLive(request.ctx, config, modId);
+      const initial = await getModLive(request.ctx, config, modId);
       const context = reply.sse;
       if (!context) throw new Error('@fastify/sse did not decorate the reply');
       reply.header('cache-control', 'no-store');
@@ -277,7 +280,7 @@ export async function setupModLiveStream(app: FastifyInstance, hub: SseHub): Pro
       perIp.set(ip, (perIp.get(ip) ?? 0) + 1);
       let open = true;
       let seq = 1;
-      const frame = (live: typeof last): string => {
+      const frame = (live: typeof initial): string => {
         const event: SseModLiveEvent = {
           event: 'mod.live',
           id: String(seq++),
@@ -285,50 +288,53 @@ export async function setupModLiveStream(app: FastifyInstance, hub: SseHub): Pro
         };
         return encodeModLiveFrame(event);
       };
-      const close = () => {
+      const release = () => {
         if (!open) return;
         open = false;
-        clearInterval(poll);
         clearTimeout(recycle);
+        unsubscribe();
         closers.delete(close);
         const left = (perIp.get(ip) ?? 1) - 1;
         if (left <= 0) perIp.delete(ip);
         else perIp.set(ip, left);
+      };
+      const close = () => {
+        if (!open) return;
+        release();
         context.close();
         raw.end();
       };
-      const poll = setInterval(() => {
-        void getModLive(request.ctx, config, modId).then(
-          (live) => {
-            if (!open) return;
-            if (
-              live.downloads !== last.downloads ||
-              live.downloads24h !== last.downloads24h ||
-              live.followers !== last.followers
-            ) {
-              last = live;
-              raw.write(frame(live));
-            } else raw.write(': ping\n\n');
-          },
-          () => close(),
-        );
-      }, SSE_MOD_LIVE_SECONDS * 1000);
+      // Pushes of the bus carry the fresh download total; the other counters come from the cache.
+      let pending: Promise<void> = Promise.resolve();
+      const onPush = (downloads: number) => {
+        pending = pending.then(async () => {
+          if (!open) return;
+          try {
+            const live = await getModLive(request.ctx, config, modId);
+            if (open) raw.write(frame({ ...live, downloads: Math.max(downloads, live.downloads) }));
+          } catch {
+            close();
+          }
+        });
+      };
+      const unsubscribe = hub.add(--anonymousId, [sseChannel.mod(modId)], {
+        write: (chunk) => {
+          if (!open) return false;
+          if (chunk.startsWith(': ping')) return raw.write(chunk);
+          // Only `mod.live` frames of this channel reach the stream; parse the pushed total.
+          const data = /\ndata: (.*)\n/.exec(chunk)?.[1];
+          const pushed = data ? SseModLivePushData.safeParse(JSON.parse(data)) : null;
+          if (pushed?.success) onPush(pushed.data.downloads);
+          return true;
+        },
+        close,
+      });
       const recycle = setTimeout(close, SSE_MOD_LIVE_MAX_SECONDS * 1000);
-      poll.unref();
       recycle.unref();
       closers.add(close);
-      context.onClose(() => {
-        if (!open) return;
-        open = false;
-        clearInterval(poll);
-        clearTimeout(recycle);
-        closers.delete(close);
-        const left = (perIp.get(ip) ?? 1) - 1;
-        if (left <= 0) perIp.delete(ip);
-        else perIp.set(ip, left);
-      });
+      context.onClose(release);
       // The first frame carries the current figures so the page can reconcile at once.
-      raw.write(`retry: 15000\n${frame(last)}`);
+      raw.write(`retry: 10000\n${frame(initial)}`);
     },
   });
 }

@@ -3,7 +3,7 @@ export type Mod_Stats_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Downloads, last 30 days" |
+* | "Downloads over time" |
 *
 * @param {Mod_Stats_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

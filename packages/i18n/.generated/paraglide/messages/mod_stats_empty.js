@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Stats_EmptyInputs */
 
 const en_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Not enough downloads yet to draw a trend.`)
+	return /** @type {LocalizedString} */ (`No downloads recorded in this period yet.`)
 };
 
 const es_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aún no hay descargas suficientes para dibujar una tendencia.`)
+	return /** @type {LocalizedString} */ (`Aún no hay descargas registradas en este periodo.`)
 };
 
 const de_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch nicht genug Downloads für einen Verlauf.`)
+	return /** @type {LocalizedString} */ (`In diesem Zeitraum wurden noch keine Downloads erfasst.`)
 };
 
 const fr_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas encore assez de téléchargements pour tracer une tendance.`)
+	return /** @type {LocalizedString} */ (`Aucun téléchargement enregistré sur cette période.`)
 };
 
 const it_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non ci sono ancora abbastanza download per tracciare un andamento.`)
+	return /** @type {LocalizedString} */ (`Nessun download registrato in questo periodo.`)
 };
 
 const nl_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog te weinig downloads voor een trend.`)
+	return /** @type {LocalizedString} */ (`Nog geen downloads geregistreerd in deze periode.`)
 };
 
 const pl_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Za mało pobrań, by narysować trend.`)
+	return /** @type {LocalizedString} */ (`W tym okresie nie zarejestrowano jeszcze pobrań.`)
 };
 
 const pt_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda não há downloads suficientes para traçar uma tendência.`)
+	return /** @type {LocalizedString} */ (`Ainda não há downloads registrados neste período.`)
 };
 
 const ru_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пока слишком мало загрузок для графика.`)
+	return /** @type {LocalizedString} */ (`За этот период загрузок пока нет.`)
 };
 
 const sv_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inte tillräckligt många nedladdningar för en trend än.`)
+	return /** @type {LocalizedString} */ (`Inga nedladdningar har registrerats under perioden än.`)
 };
 
 const tr_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bir eğilim çizmek için henüz yeterli indirme yok.`)
+	return /** @type {LocalizedString} */ (`Bu dönemde henüz indirme kaydedilmedi.`)
 };
 
 const zh_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`下载量还不足以绘制趋势。`)
+	return /** @type {LocalizedString} */ (`此时间段内暂无下载记录。`)
 };
 
 const ja_mod_stats_empty = /** @type {(inputs: Mod_Stats_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`推移を表示するにはダウンロード数がまだ足りません。`)
+	return /** @type {LocalizedString} */ (`この期間のダウンロードはまだありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Not enough downloads yet to draw a trend." |
+* | "No downloads recorded in this period yet." |
 *
 * @param {Mod_Stats_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

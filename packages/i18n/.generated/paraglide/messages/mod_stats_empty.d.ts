@@ -3,7 +3,7 @@ export type Mod_Stats_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Not enough downloads yet to draw a trend." |
+* | "No downloads recorded in this period yet." |
 *
 * @param {Mod_Stats_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

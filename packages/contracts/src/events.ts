@@ -42,7 +42,7 @@ export const SseNotificationData = z.object({
 });
 export const SseModUpdatedData = z.object({ modId: EntityId });
 /** Live total of a mod's downloads, pushed to `mod:{id}` (public stream `GET /mods/:id/live/stream`). */
-export const SseModLiveData = z.object({ modId: EntityId, downloads: z.number().int().nonnegative() });
+export const SseModLivePushData = z.object({ modId: EntityId, downloads: z.number().int().nonnegative() });
 export const SseModerationQueueData = z.object({ lane: ModerationLane, count: z.number().int().nonnegative() });
 
 /** Every SSE event: `event:` name → `data:` JSON. */
@@ -50,7 +50,7 @@ export const SSE_EVENTS = {
   notification: SseNotificationData,
   'mod.updated': SseModUpdatedData,
   'moderation.queue': SseModerationQueueData,
-  'mod.live': SseModLiveData,
+  'mod.live': SseModLivePushData,
 } as const;
 export type SseEventName = keyof typeof SSE_EVENTS;
 
@@ -65,15 +65,13 @@ export const SseModLiveEventDTO = dto(
   'SseModLiveEventDTO',
   z.object({ event: z.literal('mod.live'), id: z.string(), data: SseModLiveData }),
   {
-    description: 'Live counters pushed on the public mod stream (at most one per 15 s, only when they changed).',
+    description: 'Live counters of the public mod stream: sent on connect and on every counted download.',
     examples: [
       { event: 'mod.live', id: '1', data: { modId: 42, downloads: 117_812, downloads24h: 203, followers: 24 } },
     ],
   },
 );
 export type SseModLiveEvent = z.infer<typeof SseModLiveEventDTO>;
-/** Seconds between two counter checks of a public mod stream (equals the `mods/:id/live` TTL). */
-export const SSE_MOD_LIVE_SECONDS = 15;
 /** A public mod stream is closed after this long; the client's EventSource reconnects. */
 export const SSE_MOD_LIVE_MAX_SECONDS = 600;
 
@@ -88,7 +86,7 @@ export const SseEventDTO = dto(
     z.object({ event: z.literal('notification'), id: z.string(), data: SseNotificationData }),
     z.object({ event: z.literal('mod.updated'), id: z.string(), data: SseModUpdatedData }),
     z.object({ event: z.literal('moderation.queue'), id: z.string(), data: SseModerationQueueData }),
-    z.object({ event: z.literal('mod.live'), id: z.string(), data: SseModLiveData }),
+    z.object({ event: z.literal('mod.live'), id: z.string(), data: SseModLivePushData }),
   ]),
   {
     description: 'One server-sent event (`id:` enables `Last-Event-ID` resumption).',
@@ -238,7 +236,7 @@ export const eventsEndpoints = {
     summary: 'Live counters of a mod over server-sent events',
     description:
       'Public, cookieless stream of `mod.live` events (downloads, downloads in 24 h, followers) for one reachable mod. ' +
-      'The server checks the counters every 15 s and only sends changes; the stream is recycled every 10 min.',
+      'Sent on connect and pushed whenever downloads of the mod are counted (event-driven), always with the full counters; the stream is recycled every 10 min.',
     auth: 'public',
     params: z.object({ id: EntityId }),
     response: SseModLiveEventDTO,

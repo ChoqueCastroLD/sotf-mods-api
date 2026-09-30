@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Stats_TitleInputs */
 
 const en_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Downloads, last 30 days`)
+	return /** @type {LocalizedString} */ (`Downloads over time`)
 };
 
 const es_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Descargas, últimos 30 días`)
+	return /** @type {LocalizedString} */ (`Descargas en el tiempo`)
 };
 
 const de_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Downloads der letzten 30 Tage`)
+	return /** @type {LocalizedString} */ (`Downloads im Zeitverlauf`)
 };
 
 const fr_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Téléchargements, 30 derniers jours`)
+	return /** @type {LocalizedString} */ (`Téléchargements dans le temps`)
 };
 
 const it_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Download, ultimi 30 giorni`)
+	return /** @type {LocalizedString} */ (`Download nel tempo`)
 };
 
 const nl_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Downloads, laatste 30 dagen`)
+	return /** @type {LocalizedString} */ (`Downloads in de tijd`)
 };
 
 const pl_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pobrania z ostatnich 30 dni`)
+	return /** @type {LocalizedString} */ (`Pobrania w czasie`)
 };
 
 const pt_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Downloads, últimos 30 dias`)
+	return /** @type {LocalizedString} */ (`Downloads ao longo do tempo`)
 };
 
 const ru_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Загрузки за последние 30 дней`)
+	return /** @type {LocalizedString} */ (`Загрузки по времени`)
 };
 
 const sv_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nedladdningar, senaste 30 dagarna`)
+	return /** @type {LocalizedString} */ (`Nedladdningar över tid`)
 };
 
 const tr_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İndirmeler, son 30 gün`)
+	return /** @type {LocalizedString} */ (`Zaman içinde indirmeler`)
 };
 
 const zh_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`最近 30 天的下载量`)
+	return /** @type {LocalizedString} */ (`下载量趋势`)
 };
 
 const ja_mod_stats_title = /** @type {(inputs: Mod_Stats_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ダウンロード数（過去30日）`)
+	return /** @type {LocalizedString} */ (`ダウンロード数の推移`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Downloads, last 30 days" |
+* | "Downloads over time" |
 *
 * @param {Mod_Stats_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

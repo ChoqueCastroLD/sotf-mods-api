@@ -245,7 +245,6 @@ export const API_ROUTES = {
     site: { id: 'stats.site', method: 'GET', path: "/api/v2/site/stats", kind: 'json', bodyKind: null },
     livePulse: { id: 'stats.livePulse', method: 'GET', path: "/api/v2/live/pulse", kind: 'json', bodyKind: null },
     modLive: { id: 'stats.modLive', method: 'GET', path: "/api/v2/mods/:id/live", kind: 'json', bodyKind: null },
-    modLiveStream: { id: 'stats.modLiveStream', method: 'GET', path: "/api/v2/mods/:id/live/stream", kind: 'event-stream', bodyKind: null },
     modBadge: { id: 'stats.modBadge', method: 'GET', path: "/api/v2/mods/:id/badge/:kind", kind: 'text', bodyKind: null },
     modPublicStats: { id: 'stats.modPublicStats', method: 'GET', path: "/api/v2/mods/:id/stats/public", kind: 'json', bodyKind: null },
   },
