@@ -1105,6 +1105,514 @@
       }
     }
   ],
+  "explore_active_author": "Av @{handle}",
+  "explore_active_label": "Aktiva filter",
+  "explore_active_not": "Inte {label}",
+  "explore_active_query": "”{query}”",
+  "explore_active_remove": "Ta bort filter: {label}",
+  "explore_any": "Vilken som helst",
+  "explore_back_to_first": "Tillbaka till sida 1",
+  "explore_best_building_mods_description": "Byggmoddar till Sons of the Forest: bättre fästning, nya delar, ritningar och verktyg för större baser.",
+  "explore_best_building_mods_heading": "De bästa byggmoddarna",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bästa byggmoddarna till SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Moddar som körs på dedikerade servrar för Sons of the Forest: adminverktyg, serverinställningar och co-op-fixar.",
+  "explore_best_dedicated_server_mods_heading": "De bästa moddarna för dedikerade servrar",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bästa SOTF-moddarna för dedikerade servrar ({count__number})"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "De delade bibliotek som moddar till Sons of the Forest bygger på, efter nedladdningar. Installera dem en gång, före moddarna som använder dem.",
+  "explore_best_libraries_heading": "Nödvändiga moddbibliotek",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Moddbibliotek till SOTF som du behöver ({count__number})"
+      }
+    }
+  ],
+  "explore_best_mods_description": "De mest nedladdade moddarna till Sons of the Forest på SOTF Mods, med kompatibilitet på aktuell patch och direkt nedladdning för RedLoader.",
+  "explore_best_mods_heading": "De bästa moddarna till Sons of the Forest",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bästa moddarna till Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "Moddar till Sons of the Forest som fungerar i co-op, med vem som behöver installera dem: bara du, värden eller alla.",
+  "explore_best_multiplayer_mods_heading": "De bästa flerspelarmoddarna",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bästa flerspelarmoddarna till SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Livskvalitetsmoddar till Sons of the Forest som överlevare installerar först: större staplar, bättre menyer, färre sysslor.",
+  "explore_best_quality_of_life_mods_heading": "De bästa livskvalitetsmoddarna",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bästa livskvalitetsmoddarna till SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_categories_browse": "Bläddra",
+  "explore_categories_builds_heading": "Byggkategorier",
+  "explore_categories_description": "Alla kategorier av moddar och byggen till Sons of the Forest på SOTF Mods, med vad varje kategori omfattar och hur många objekt den har.",
+  "explore_categories_heading": "Kategorier",
+  "explore_categories_mods_heading": "Moddkategorier",
+  "explore_categories_title": "Kategorier för moddar och byggen till Sons of the Forest",
+  "explore_category_intro_building": "Verktyg och delar för byggare: fästning, ritningar, nya konstruktioner och fler sätt att forma basen.",
+  "explore_category_intro_builds_generic": "Byggen till Sons of the Forest i kategorin {category}: BuildShare-ritningar redo att placeras.",
+  "explore_category_intro_companions": "Kelvin, Virginia och andra allierade: smartare kommandon, nya beteenden och fler sätt att resa tillsammans.",
+  "explore_category_intro_gameplay": "Moddar som ändrar hur spelet spelas: svårighet, strid, fiender, överlevnadsregler och ny mekanik.",
+  "explore_category_intro_generic": "Moddar till Sons of the Forest i kategorin {category}, med kompatibilitet, betyg och direkt nedladdning.",
+  "explore_category_intro_library": "Delad kod som andra moddar bygger på. Installera den när en modd anger den som krav.",
+  "explore_category_intro_menus_sandbox": "Trainers, spawnmenyer och sandlådeverktyg för att experimentera fritt i enspelarläge eller som värd.",
+  "explore_category_intro_misc": "Moddar som inte passar någon annanstans: experiment, verktyg och enstaka idéer.",
+  "explore_category_intro_model_swap": "Byt ut modeller i spelet mot nya: karaktärer, varelser, vapen och föremål.",
+  "explore_category_intro_multiplayer_servers": "Moddar för co-op och dedikerade servrar: adminverktyg, synkfixar och spelarhantering.",
+  "explore_category_intro_quality_of_life": "Små fixar och bekvämligheter som gör vardagsöverlevnaden smidigare: större staplar, snabbare tillverkning, renare menyer och färre sysslor.",
+  "explore_category_intro_ui_hud": "Moddar för HUD, karta, minikarta och menyer som visar mer och är mindre i vägen.",
+  "explore_category_intro_vehicles_movement": "Golfbilar, glidflygplan, riddarrustningar och nya sätt att ta sig fram: fart, styrning och förflyttning.",
+  "explore_category_intro_weapons_gear": "Nya och justerade vapen, ammunition, rustningar och utrustning för strid och utforskning av ön.",
+  "explore_clear_all": "Rensa allt",
+  "explore_compat_untested": "Inte testad på den än",
+  "explore_compat_works": "Fungerar på aktuell patch",
+  "explore_dedicated": "Fungerar på dedikerade servrar",
+  "explore_empty_category_text": "Inga moddar i den här kategorin än. Bläddra bland alla moddar eller bli först med att publicera en.",
+  "explore_empty_category_title": "Den här delen av kartan är fortfarande tom",
+  "explore_empty_text": "Ingen modd matchar alla de här filtren. Ta bort ett och försök igen.",
+  "explore_empty_title": "Inget på den här stigen",
+  "explore_empty_try_removing": "Prova att ta bort:",
+  "explore_empty_unfiltered_text": "Inget har publicerats här än. Titta in snart igen.",
+  "explore_error_text": "Vi kunde inte ladda listan. Kontrollera anslutningen och försök igen.",
+  "explore_error_title": "Ingen signal",
+  "explore_facet_category": "Kategori",
+  "explore_facet_compat": "Kompatibilitet",
+  "explore_facet_more": "Mer",
+  "explore_facet_multiplayer": "Flerspelarläge",
+  "explore_facet_platform": "Plattform",
+  "explore_facet_rating": "Betyg",
+  "explore_facet_tags": "Taggar",
+  "explore_facet_tags_more": "Fler taggar",
+  "explore_facet_updated": "Uppdaterad",
+  "explore_failed": "Resultaten laddades inte. Laddar om sidan…",
+  "explore_filter_exclude": "Uteslut {label}",
+  "explore_filter_excluded": "utesluten",
+  "explore_filter_included": "inkluderad",
+  "explore_filter_search_label": "Filtrera",
+  "explore_filter_search_placeholder": "Namn, tagg eller skapare…",
+  "explore_filter_unexclude": "Sluta utesluta {label}",
+  "explore_filters_apply": "Använd filter",
+  "explore_filters_close": "Stäng filter",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Filter",
+        "count__exact=*, count__plural=one": "Filter ({count__number})",
+        "count__exact=*, count__plural=*": "Filter ({count__number})"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Inga resultat",
+        "count__exact=*, count__plural=one": "Visa {count__number} resultat",
+        "count__exact=*, count__plural=*": "Visa {count__number} resultat"
+      }
+    }
+  ],
+  "explore_filters_title": "Filter",
+  "explore_has_source": "Har källkod",
+  "explore_heading_all": "Utforska allt",
+  "explore_heading_builds": "Utforska byggen",
+  "explore_heading_libraries": "Utforska bibliotek",
+  "explore_heading_mods": "Utforska moddar",
+  "explore_heading_tag": "Taggat ”{tag}”",
+  "explore_hub_others": "Fler fälthandböcker",
+  "explore_hub_see_all": "Se alla i Utforska",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Listan",
+        "count__exact=*, count__plural=one": "Toppvalet",
+        "count__exact=*, count__plural=*": "Topp {count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "Uppdaterad {date}",
+  "explore_loading": "Laddar resultat…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Hela ön i en lista: {count__number} modd, bibliotek eller bygge till Sons of the Forest, med filter och sortering.",
+        "count__plural=*": "Hela ön i en lista: {count__number} moddar, bibliotek och byggen till Sons of the Forest, med filter och sortering."
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Alla moddar och byggen till Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} BuildShare-ritning till Sons of the Forest: baser, fort och trädkojor från communityn, redo att placeras.",
+        "count__plural=*": "{count__number} BuildShare-ritningar till Sons of the Forest: baser, fort och trädkojor från communityn, redo att placeras."
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Byggen till Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Byggen till Sons of the Forest: {category} ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Moddar till Sons of the Forest: {category} ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bibliotek som andra moddar till Sons of the Forest bygger på. Installera dem en gång så fungerar alla moddar som behöver dem.",
+        "count__plural=*": "{count__number} bibliotek som andra moddar till Sons of the Forest bygger på. Installera dem en gång så fungerar alla moddar som behöver dem."
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Moddbibliotek till Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Bläddra bland {count__number} modd till Sons of the Forest för RedLoader. Filtrera på kategori, kompatibilitet och flerspelarläge; sorterade efter veckans nedladdningar.",
+        "count__plural=*": "Bläddra bland {count__number} moddar till Sons of the Forest för RedLoader. Filtrera på kategori, kompatibilitet och flerspelarläge; sorterade efter veckans nedladdningar."
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Moddar till Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input count",
+        "input tag",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modd eller bygge till Sons of the Forest taggat ”{tag}”, med kompatibilitet, betyg och direkt nedladdning.",
+        "count__plural=*": "{count__number} moddar och byggen till Sons of the Forest taggade ”{tag}”, med kompatibilitet, betyg och direkt nedladdning."
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Moddar till Sons of the Forest taggade {tag} ({count__number})"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "Alla behöver den",
+  "explore_multiplayer_client_side": "Bara du behöver den",
+  "explore_multiplayer_host_only": "Bara värden",
+  "explore_multiplayer_singleplayer_only": "Bara enspelarläge",
+  "explore_offline": "Du är offline. Resultaten på skärmen kan vara inaktuella.",
+  "explore_order_reverse": "Vänd ordningen",
+  "explore_past_end_text": "Den här sidan ligger efter den sista. Listan kan ha krympt sedan länken delades.",
+  "explore_past_end_title": "Du har nått slutet av listan",
+  "explore_platform_client": "Klient",
+  "explore_platform_server": "Dedikerad server",
+  "explore_platform_universal": "Klient och server",
+  "explore_rating_any": "Alla betyg",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating__number}★ och uppåt"
+      }
+    }
+  ],
+  "explore_readout_build_category": "Byggkategori",
+  "explore_readout_category": "Kategori",
+  "explore_readout_explore": "Utforska",
+  "explore_readout_hub": "Fälthandbok",
+  "explore_readout_tag": "Tagg",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Inga resultat",
+        "count__exact=*, count__plural=one": "{count__number} resultat",
+        "count__exact=*, count__plural=*": "{count__number} resultat"
+      }
+    }
+  ],
+  "explore_results_heading": "Resultat",
+  "explore_search_browse": "Bläddra bland kategorier",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Inga resultat för ”{query}”",
+        "count__exact=*, count__plural=one": "{count__number} resultat för ”{query}”",
+        "count__exact=*, count__plural=*": "{count__number} resultat för ”{query}”"
+      }
+    }
+  ],
+  "explore_search_description": "Sök moddar, byggen, kit, skapare och guider till Sons of the Forest på SOTF Mods.",
+  "explore_search_empty_hint": "Kontrollera stavningen, prova färre ord eller moddens manifest-ID, eller bläddra per kategori.",
+  "explore_search_error_text": "Sökningen går inte att nå just nu. Försök igen om en stund.",
+  "explore_search_heading": "Sök på ön",
+  "explore_search_heading_query": "Resultat för ”{query}”",
+  "explore_search_in_explore": "Filtrera resultaten i Utforska",
+  "explore_search_prompt_text": "Sök moddar, byggen, kit, skapare och guider på namn, skapare eller manifest-ID.",
+  "explore_search_prompt_title": "Vad letar du efter?",
+  "explore_search_type_all": "Allt",
+  "explore_search_type_pages": "Sidor",
+  "explore_search_types_label": "Resultattyp",
+  "explore_sort_comments": "Mest diskuterade",
+  "explore_sort_downloads": "Mest nedladdade",
+  "explore_sort_follows": "Mest följda",
+  "explore_sort_label": "Sortera:",
+  "explore_sort_new": "Nyaste",
+  "explore_sort_rating": "Högst betyg",
+  "explore_sort_relevance": "Bäst matchning",
+  "explore_sort_reversed": "{sort} (omvänd)",
+  "explore_sort_trending": "Trendar",
+  "explore_sort_updated": "Nyligen uppdaterade",
+  "explore_tab_all": "Allt",
+  "explore_tabs_label": "Visa",
+  "explore_tag_group_audio": "Ljud",
+  "explore_tag_group_building": "Bygga",
+  "explore_tag_group_gameplay": "Spelmekanik",
+  "explore_tag_group_players": "Spelare",
+  "explore_tag_group_survival": "Överlevnad",
+  "explore_tag_group_tech": "Teknik",
+  "explore_tag_group_ui": "Gränssnitt",
+  "explore_tag_group_visuals": "Grafik",
+  "explore_tag_group_world": "Värld",
+  "explore_tags_description": "Hitta moddar till Sons of the Forest efter vad de påverkar: inventarie, byggverktyg, fiender, grafik med mera.",
+  "explore_tags_heading": "Taggar",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} tagg till",
+        "count__plural=*": "{count__number} taggar till"
+      }
+    }
+  ],
+  "explore_tags_other_group": "Övrigt",
+  "explore_tags_title": "Taggar för moddar till Sons of the Forest",
+  "explore_updated_1y": "Senaste 12 månaderna",
+  "explore_updated_30d": "Senaste 30 dagarna",
+  "explore_updated_90d": "Senaste 90 dagarna",
+  "explore_updated_any": "När som helst",
+  "explore_verified": "Bara verifierade skapare",
+  "explore_view_compact": "Kompakt",
+  "explore_view_grid": "Rutnät",
+  "explore_view_label": "Visning",
+  "explore_view_list": "Lista",
   "meta_default_description": "Hemmet för modding av Sons of the Forest: moddar, byggen och kit för RedLoader, testade på varje patch. Gratis, direkta nedladdningar.",
   "meta_feed_description": "De senaste moddarna och uppdateringarna till Sons of the Forest på SOTF Mods.",
   "meta_feed_title": "SOTF Mods: nya och uppdaterade moddar",

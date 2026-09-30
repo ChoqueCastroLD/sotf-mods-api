@@ -1,0 +1,94 @@
+---
+/**
+ * `/tags/:slug` — tag hub (PLAN §4.2): Explore with the tag fixed (mods, libraries and builds).
+ *
+ * - Other letter cases → 301 to the lower-case slug.
+ * - Tags outside the curated list render while they have items; an unknown tag without items → 404.
+ * - Indexable with ≥ 3 items and no filter (PLAN §4.2); `?page=N` self-canonical.
+ * - Cache: E(900) `tag:{slug}` + `list:mods`.
+ */
+import { cacheTag } from '@sotf/contracts/cache';
+import { m } from '@sotf/i18n/messages';
+import ExploreView from '../../components/explore/ExploreView.astro';
+import { loadListing } from '../../components/explore/load.ts';
+import { collectionJsonLd, latestRelease, listingSeo, pagedTitle } from '../../components/explore/seo.ts';
+import { tagScope } from '../../components/explore/state.ts';
+import { loadTaxonomy } from '../../components/explore/taxonomy.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+
+/** PLAN §4.2: a tag page is indexable from three items. */
+const MIN_INDEXABLE_ITEMS = 3;
+
+const locale = Astro.locals.locale;
+const raw = Astro.params.slug ?? '';
+const slug = raw.toLowerCase();
+if (!/^[a-z0-9][a-z0-9-]{0,59}$/.test(slug)) {
+  setPageCache(Astro, pageCache.notFound());
+  return new Response(null, { status: 404 });
+}
+if (slug !== raw) {
+  setPageCache(Astro, pageCache.custom(EDGE_TTL.hour, ['list:mods']));
+  return Astro.redirect(href(`/tags/${encodeURIComponent(slug)}`, locale) + Astro.url.search, 301);
+}
+
+const taxonomy = await loadTaxonomy(locale);
+const tag = taxonomy.tag(slug);
+setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, [cacheTag.tag(slug), 'list:mods']));
+
+const scope = tagScope(slug);
+const data = await loadListing({ url: Astro.url, locale, scope, taxonomy });
+if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
+
+const { state, list } = data;
+if (list === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+} else if (!tag && list.total === 0 && taxonomy.available) {
+  setPageCache(Astro, pageCache.notFound());
+  return new Response(null, { status: 404 });
+}
+const count = list?.total ?? tag?.count ?? 0;
+const name = taxonomy.tagName(slug);
+const description = m.explore_meta_tag_description({ tag: name, count });
+const title = pagedTitle(m.explore_meta_tag_title({ tag: name, count }), state.page);
+const seo = listingSeo(state, scope, list, { minItems: MIN_INDEXABLE_ITEMS });
+const siteUrl = loadEnv().siteUrl;
+const jsonLd = list
+  ? [
+      collectionJsonLd({
+        siteUrl,
+        locale,
+        path: seo.path,
+        name: m.explore_heading_tag({ tag: name }),
+        description,
+        items: list.items,
+        offset: (state.page - 1) * list.pageSize,
+        dateModified: latestRelease(list.items),
+      }),
+    ]
+  : [];
+---
+
+<PageLayout
+  template="tag"
+  width="wide"
+  seo={{ title, description, path: seo.path, noindex: seo.noindex }}
+  jsonLd={jsonLd}
+  breadcrumbs={[
+    { label: m.common_nav_home(), path: '/' },
+    { label: m.explore_tags_heading(), path: '/tags' },
+    { label: name },
+  ]}
+>
+  <ExploreView
+    data={data}
+    heading={m.explore_heading_tag({ tag: name })}
+    readout={m.explore_readout_tag()}
+    intro={description}
+    tabs={['mod', 'library', 'build', 'all']}
+  />
+</PageLayout>

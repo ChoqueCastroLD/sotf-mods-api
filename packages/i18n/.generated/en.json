@@ -1105,6 +1105,514 @@
       }
     }
   ],
+  "explore_active_author": "By @{handle}",
+  "explore_active_label": "Active filters",
+  "explore_active_not": "Not {label}",
+  "explore_active_query": "“{query}”",
+  "explore_active_remove": "Remove filter: {label}",
+  "explore_any": "Any",
+  "explore_back_to_first": "Back to page 1",
+  "explore_best_building_mods_description": "Building mods for Sons of the Forest: better snapping, new pieces, blueprints and tools for bigger bases.",
+  "explore_best_building_mods_heading": "The best building mods",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Best Sons of the Forest building mods ({count__number})"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Mods that run on Sons of the Forest dedicated servers: admin tools, server-side tweaks and co-op fixes.",
+  "explore_best_dedicated_server_mods_heading": "The best dedicated server mods",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Best SOTF dedicated server mods ({count__number})"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "The shared libraries Sons of the Forest mods depend on, ranked by downloads. Install them once, before the mods that need them.",
+  "explore_best_libraries_heading": "Essential mod libraries",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest mod libraries you need ({count__number})"
+      }
+    }
+  ],
+  "explore_best_mods_description": "The most downloaded Sons of the Forest mods on SOTF Mods, with compatibility on the current patch and direct downloads for RedLoader.",
+  "explore_best_mods_heading": "The best Sons of the Forest mods",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Best Sons of the Forest mods ({count__number} picks)"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "Sons of the Forest mods that work in co-op, with who needs to install them: only you, the host or every player.",
+  "explore_best_multiplayer_mods_heading": "The best multiplayer mods",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Best Sons of the Forest multiplayer mods ({count__number})"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Quality-of-life mods for Sons of the Forest that survivors install first: bigger stacks, better menus, fewer chores.",
+  "explore_best_quality_of_life_mods_heading": "The best quality-of-life mods",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Best Sons of the Forest QoL mods ({count__number} picks)"
+      }
+    }
+  ],
+  "explore_categories_browse": "Browse",
+  "explore_categories_builds_heading": "Build categories",
+  "explore_categories_description": "Every category of Sons of the Forest mods and builds on SOTF Mods, with what each one covers and how many items it holds.",
+  "explore_categories_heading": "Categories",
+  "explore_categories_mods_heading": "Mod categories",
+  "explore_categories_title": "Sons of the Forest mod and build categories",
+  "explore_category_intro_building": "Tools and pieces for builders: snapping, blueprints, new structures and ways to shape your base.",
+  "explore_category_intro_builds_generic": "Sons of the Forest builds in the {category} category: BuildShare blueprints ready to place.",
+  "explore_category_intro_companions": "Kelvin, Virginia and other allies: smarter commands, new behaviours and more ways to travel together.",
+  "explore_category_intro_gameplay": "Mods that change how the game plays: difficulty, combat, enemies, survival rules and new mechanics.",
+  "explore_category_intro_generic": "Sons of the Forest mods in the {category} category, with compatibility, ratings and direct downloads.",
+  "explore_category_intro_library": "Shared code other mods depend on. Install them when a mod lists them as a requirement.",
+  "explore_category_intro_menus_sandbox": "Trainers, spawn menus and sandbox tools to experiment freely in single-player or as host.",
+  "explore_category_intro_misc": "Mods that don’t fit anywhere else: experiments, utilities and one-off ideas.",
+  "explore_category_intro_model_swap": "Replace in-game models with new ones: characters, creatures, weapons and props.",
+  "explore_category_intro_multiplayer_servers": "Mods for co-op sessions and dedicated servers: admin tools, sync fixes and player management.",
+  "explore_category_intro_quality_of_life": "Small fixes and conveniences that smooth out everyday survival: bigger stacks, faster crafting, cleaner menus and fewer chores.",
+  "explore_category_intro_ui_hud": "HUD, map, minimap and menu mods that show you more and get in the way less.",
+  "explore_category_intro_vehicles_movement": "Golf carts, gliders, knight suits and new ways to get around: speed, handling and traversal.",
+  "explore_category_intro_weapons_gear": "New and tuned weapons, ammo, armour and gear for fighting and exploring the island.",
+  "explore_clear_all": "Clear all",
+  "explore_compat_untested": "Not tested on it yet",
+  "explore_compat_works": "Works on the current patch",
+  "explore_dedicated": "Works on dedicated servers",
+  "explore_empty_category_text": "No mods in this category yet. Browse all mods or be the first to publish one.",
+  "explore_empty_category_title": "This part of the map is still blank",
+  "explore_empty_text": "No mods match all of these filters. Remove one and try again.",
+  "explore_empty_title": "Nothing on this trail",
+  "explore_empty_try_removing": "Try removing:",
+  "explore_empty_unfiltered_text": "Nothing has been published here yet. Check back soon.",
+  "explore_error_text": "We couldn’t load this list. Check your connection and try again.",
+  "explore_error_title": "No signal",
+  "explore_facet_category": "Category",
+  "explore_facet_compat": "Compatibility",
+  "explore_facet_more": "More",
+  "explore_facet_multiplayer": "Multiplayer",
+  "explore_facet_platform": "Platform",
+  "explore_facet_rating": "Rating",
+  "explore_facet_tags": "Tags",
+  "explore_facet_tags_more": "More tags",
+  "explore_facet_updated": "Updated",
+  "explore_failed": "The results didn’t load. Reloading the page…",
+  "explore_filter_exclude": "Exclude {label}",
+  "explore_filter_excluded": "excluded",
+  "explore_filter_included": "included",
+  "explore_filter_search_label": "Filter",
+  "explore_filter_search_placeholder": "Name, tag or author…",
+  "explore_filter_unexclude": "Stop excluding {label}",
+  "explore_filters_apply": "Apply filters",
+  "explore_filters_close": "Close filters",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Filters",
+        "count__exact=*, count__plural=one": "Filters ({count__number})",
+        "count__exact=*, count__plural=*": "Filters ({count__number})"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "No results",
+        "count__exact=*, count__plural=one": "Show {count__number} result",
+        "count__exact=*, count__plural=*": "Show {count__number} results"
+      }
+    }
+  ],
+  "explore_filters_title": "Filters",
+  "explore_has_source": "Has source code",
+  "explore_heading_all": "Explore everything",
+  "explore_heading_builds": "Explore builds",
+  "explore_heading_libraries": "Explore libraries",
+  "explore_heading_mods": "Explore mods",
+  "explore_heading_tag": "Tagged “{tag}”",
+  "explore_hub_others": "More field guides",
+  "explore_hub_see_all": "See all in Explore",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "The list",
+        "count__exact=*, count__plural=one": "The top pick",
+        "count__exact=*, count__plural=*": "The top {count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "Updated {date}",
+  "explore_loading": "Loading results…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Everything on the island in one list: {count__number} mod, library or build for Sons of the Forest, filterable and sortable.",
+        "count__plural=*": "Everything on the island in one list: {count__number} mods, libraries and builds for Sons of the Forest, filterable and sortable."
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "All Sons of the Forest mods and builds ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} BuildShare blueprint for Sons of the Forest: bases, forts and treehouses shared by the community, ready to place.",
+        "count__plural=*": "{count__number} BuildShare blueprints for Sons of the Forest: bases, forts and treehouses shared by the community, ready to place."
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest builds ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest {category} builds ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest {category} mods ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} library that other Sons of the Forest mods depend on. Install them once and every mod that needs them just works.",
+        "count__plural=*": "{count__number} libraries that other Sons of the Forest mods depend on. Install them once and every mod that needs them just works."
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest mod libraries ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Browse {count__number} Sons of the Forest mod for RedLoader. Filter by category, compatibility and multiplayer; sorted by what survivors download this week.",
+        "count__plural=*": "Browse {count__number} Sons of the Forest mods for RedLoader. Filter by category, compatibility and multiplayer; sorted by what survivors download this week."
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest mods ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input count",
+        "input tag",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} Sons of the Forest mod or build tagged “{tag}”, with compatibility, ratings and direct downloads.",
+        "count__plural=*": "{count__number} Sons of the Forest mods and builds tagged “{tag}”, with compatibility, ratings and direct downloads."
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest mods tagged {tag} ({count__number})"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "Everyone needs it",
+  "explore_multiplayer_client_side": "Only you need it",
+  "explore_multiplayer_host_only": "Host only",
+  "explore_multiplayer_singleplayer_only": "Single-player only",
+  "explore_offline": "You’re offline. The results on screen may be out of date.",
+  "explore_order_reverse": "Reverse order",
+  "explore_past_end_text": "This page is past the last one. The list may have shrunk since the link was shared.",
+  "explore_past_end_title": "You reached the end of the list",
+  "explore_platform_client": "Client",
+  "explore_platform_server": "Dedicated server",
+  "explore_platform_universal": "Client and server",
+  "explore_rating_any": "Any rating",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating__number}★ and up"
+      }
+    }
+  ],
+  "explore_readout_build_category": "Build category",
+  "explore_readout_category": "Category",
+  "explore_readout_explore": "Explore",
+  "explore_readout_hub": "Field guide",
+  "explore_readout_tag": "Tag",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "No results",
+        "count__exact=*, count__plural=one": "{count__number} result",
+        "count__exact=*, count__plural=*": "{count__number} results"
+      }
+    }
+  ],
+  "explore_results_heading": "Results",
+  "explore_search_browse": "Browse categories",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "No results for “{query}”",
+        "count__exact=*, count__plural=one": "{count__number} result for “{query}”",
+        "count__exact=*, count__plural=*": "{count__number} results for “{query}”"
+      }
+    }
+  ],
+  "explore_search_description": "Search Sons of the Forest mods, builds, kits, creators and guides on SOTF Mods.",
+  "explore_search_empty_hint": "Check the spelling, try fewer words or the mod’s manifest ID, or browse by category.",
+  "explore_search_error_text": "Search is out of reach right now. Try again in a moment.",
+  "explore_search_heading": "Search the island",
+  "explore_search_heading_query": "Results for “{query}”",
+  "explore_search_in_explore": "Filter these results in Explore",
+  "explore_search_prompt_text": "Search mods, builds, kits, creators and guides by name, author or manifest ID.",
+  "explore_search_prompt_title": "What are you looking for?",
+  "explore_search_type_all": "All",
+  "explore_search_type_pages": "Pages",
+  "explore_search_types_label": "Result type",
+  "explore_sort_comments": "Most discussed",
+  "explore_sort_downloads": "Most downloaded",
+  "explore_sort_follows": "Most followed",
+  "explore_sort_label": "Sort:",
+  "explore_sort_new": "Newest",
+  "explore_sort_rating": "Top rated",
+  "explore_sort_relevance": "Best match",
+  "explore_sort_reversed": "{sort} (reversed)",
+  "explore_sort_trending": "Trending",
+  "explore_sort_updated": "Recently updated",
+  "explore_tab_all": "All",
+  "explore_tabs_label": "What to show",
+  "explore_tag_group_audio": "Audio",
+  "explore_tag_group_building": "Building",
+  "explore_tag_group_gameplay": "Gameplay",
+  "explore_tag_group_players": "Players",
+  "explore_tag_group_survival": "Survival",
+  "explore_tag_group_tech": "Technical",
+  "explore_tag_group_ui": "Interface",
+  "explore_tag_group_visuals": "Visuals",
+  "explore_tag_group_world": "World",
+  "explore_tags_description": "Find Sons of the Forest mods by what they touch: inventory, building tools, enemies, graphics and more.",
+  "explore_tags_heading": "Tags",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} more tag",
+        "count__plural=*": "{count__number} more tags"
+      }
+    }
+  ],
+  "explore_tags_other_group": "Other",
+  "explore_tags_title": "Sons of the Forest mod tags",
+  "explore_updated_1y": "Last 12 months",
+  "explore_updated_30d": "Last 30 days",
+  "explore_updated_90d": "Last 90 days",
+  "explore_updated_any": "Any time",
+  "explore_verified": "Verified creators only",
+  "explore_view_compact": "Compact",
+  "explore_view_grid": "Grid",
+  "explore_view_label": "View",
+  "explore_view_list": "List",
   "meta_default_description": "The home of Sons of the Forest modding: mods, builds and kits for RedLoader, tested on every patch. Free, direct downloads.",
   "meta_feed_description": "The latest Sons of the Forest mods and updates published on SOTF Mods.",
   "meta_feed_title": "SOTF Mods: new and updated mods",

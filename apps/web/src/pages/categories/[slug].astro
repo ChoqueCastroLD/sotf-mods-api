@@ -1,0 +1,111 @@
+---
+/**
+ * `/categories/:slug` — category hub (PLAN §4.2, T0-06): Explore with the category fixed, an
+ * editorial intro per locale and the full facet set (another category → back to `/mods`).
+ *
+ * - Retired or legacy slugs (`qol`) and other letter cases → 301 to the active slug.
+ * - Unknown slug → 404. Indexable unless filtered or empty; `?page=N` self-canonical.
+ * - Cache: E(900) `category:{slug}` + `list:mods|list:builds`.
+ */
+import { cacheTag } from '@sotf/contracts/cache';
+import { m } from '@sotf/i18n/messages';
+import { categoryIntro } from '../../components/explore/copy.ts';
+import ExploreView from '../../components/explore/ExploreView.astro';
+import { loadListing } from '../../components/explore/load.ts';
+import { collectionJsonLd, latestRelease, listingSeo, pagedTitle } from '../../components/explore/seo.ts';
+import { categoryScope } from '../../components/explore/state.ts';
+import { loadTaxonomy } from '../../components/explore/taxonomy.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+
+const locale = Astro.locals.locale;
+const raw = Astro.params.slug ?? '';
+const requested = raw.toLowerCase();
+const taxonomy = await loadTaxonomy(locale);
+
+if (!taxonomy.available) {
+  // Without the catalogue the slug cannot be verified: the 500 page (never cached).
+  setPageCache(Astro, false);
+  return new Response(null, { status: 500 });
+}
+
+const direct = taxonomy.category(requested);
+if (!direct) {
+  const resolved = taxonomy.resolveCategory(requested);
+  if (resolved && resolved.slug !== raw) {
+    setPageCache(Astro, pageCache.custom(EDGE_TTL.hour, ['list:mods']));
+    return Astro.redirect(href(`/categories/${encodeURIComponent(resolved.slug)}`, locale) + Astro.url.search, 301);
+  }
+  // Astro renders the 404 page for an empty 404 response (real status, short edge TTL).
+  setPageCache(Astro, pageCache.notFound());
+  return new Response(null, { status: 404 });
+}
+if (direct.slug !== raw) {
+  setPageCache(Astro, pageCache.custom(EDGE_TTL.hour, ['list:mods']));
+  return Astro.redirect(href(`/categories/${encodeURIComponent(direct.slug)}`, locale) + Astro.url.search, 301);
+}
+
+const category = direct;
+const listTag = category.kind === 'build' ? 'list:builds' : 'list:mods';
+setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, [cacheTag.category(category.slug), listTag]));
+
+const scope = categoryScope(category.slug, category.kind);
+const data = await loadListing({ url: Astro.url, locale, scope, taxonomy });
+if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
+
+const { state, list } = data;
+if (list === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const count = list?.total ?? category.count;
+const name = taxonomy.categoryName(category.slug, category.name);
+const intro = categoryIntro(category.slug, name, category.kind);
+const title = pagedTitle(
+  category.kind === 'build'
+    ? m.explore_meta_category_builds_title({ category: name, count })
+    : m.explore_meta_category_title({ category: name, count }),
+  state.page,
+);
+const seo = listingSeo(state, scope, list);
+const siteUrl = loadEnv().siteUrl;
+const jsonLd = list
+  ? [
+      collectionJsonLd({
+        siteUrl,
+        locale,
+        path: seo.path,
+        name,
+        description: intro,
+        items: list.items,
+        offset: (state.page - 1) * list.pageSize,
+        dateModified: latestRelease(list.items),
+      }),
+    ]
+  : [];
+---
+
+<PageLayout
+  template="category"
+  width="wide"
+  seo={{ title, description: intro, path: seo.path, noindex: seo.noindex }}
+  jsonLd={jsonLd}
+  breadcrumbs={[
+    { label: m.common_nav_home(), path: '/' },
+    { label: m.explore_categories_heading(), path: '/categories' },
+    { label: name },
+  ]}
+>
+  <ExploreView
+    data={data}
+    heading={name}
+    readout={category.kind === 'build' ? m.explore_readout_build_category() : m.explore_readout_category()}
+    intro={intro}
+    tabs={category.kind === 'build' ? [] : ['mod', 'library', 'all']}
+    emptyTitle={m.explore_empty_category_title()}
+    emptyText={m.explore_empty_category_text()}
+  />
+</PageLayout>
