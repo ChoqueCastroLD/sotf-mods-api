@@ -17,6 +17,7 @@ import { internalEndpoints } from './internal.ts';
 import { kitsEndpoints } from './kits.ts';
 import { legacyEndpoints } from './legacy.ts';
 import { meEndpoints } from './me.ts';
+import { modKnowledgeEndpoints } from './mod-knowledge.ts';
 import { moderationEndpoints } from './moderation.ts';
 import { notificationsEndpoints } from './notifications.ts';
 import { reviewsEndpoints } from './reviews.ts';
@@ -41,6 +42,7 @@ export const apiContracts = {
   kits: kitsEndpoints,
   legacy: legacyEndpoints,
   me: meEndpoints,
+  modKnowledge: modKnowledgeEndpoints,
   moderation: moderationEndpoints,
   notifications: notificationsEndpoints,
   reviews: reviewsEndpoints,

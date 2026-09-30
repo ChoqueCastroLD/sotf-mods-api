@@ -29,6 +29,7 @@ export * from './kits.ts';
 export * from './legacy.ts';
 export * from './manifest.ts';
 export * from './me.ts';
+export * from './mod-knowledge.ts';
 export * from './moderation.ts';
 export * from './notifications.ts';
 export * from './openapi.ts';

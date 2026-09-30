@@ -63,6 +63,35 @@ export async function lockOwnedMod(ctx: Ctx, exec: Executor, id: number): Promis
   return loadOwnedMod(ctx, id, exec);
 }
 
+/** True when the user is an accepted co-author of the mod (T1-12). */
+export async function isAcceptedCoAuthor(exec: Executor, modId: number, userId: number): Promise<boolean> {
+  const res = await exec.execute(sql`
+    SELECT 1 FROM "ModCoAuthor" WHERE "modId" = ${modId} AND "userId" = ${userId} AND "status" = 'accepted' LIMIT 1`);
+  return res.rows.length > 0;
+}
+
+/**
+ * A mod the actor maintains: their own, one they co-author (accepted invitation) or any mod for
+ * an admin. Co-authors release and edit versions and keep the known issues and FAQ; the listing,
+ * the status and the team stay with `loadOwnedMod`. Anyone else gets the `loadOwnedMod` errors.
+ */
+export async function loadManagedMod(ctx: Ctx, id: number, exec: Executor = ctx.db): Promise<Mod> {
+  const actor = actorOf(ctx);
+  const [row] = await exec.select().from(mod).where(eq(mod.id, id)).limit(1);
+  if (!row) throw errors.notFound('Mod');
+  if (row.userId === actor.userId || actor.role === 'admin' || (await isAcceptedCoAuthor(exec, id, actor.userId))) {
+    return row;
+  }
+  if (['published', 'unlisted', 'archived'].includes(row.status)) throw errors.forbidden('This is not your mod');
+  throw errors.notFound('Mod');
+}
+
+/** Same as `loadManagedMod`, locking the row for the rest of the transaction. */
+export async function lockManagedMod(ctx: Ctx, exec: Executor, id: number): Promise<Mod> {
+  await exec.execute(sql`SELECT 1 FROM "Mod" WHERE "id" = ${id} FOR UPDATE`);
+  return loadManagedMod(ctx, id, exec);
+}
+
 /** "Mod"."type" → publication kind of the contracts. */
 export function kindOfType(type: string | null): 'mod' | 'library' | 'build' {
   if (type === 'Build') return 'build';
