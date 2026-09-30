@@ -356,6 +356,36 @@ export const HideContentBody = dto('HideContentBody', z.strictObject({ reason: z
   examples: [{ reason: 'Spam link' }],
 });
 
+export const CommentsLockBody = dto(
+  'CommentsLockBody',
+  z
+    .strictObject({
+      locked: z.boolean(),
+      reason: z.string().trim().max(500).optional(),
+    })
+    .refine((body) => !body.locked || (body.reason?.length ?? 0) >= 3, {
+      message: 'a reason of at least 3 characters is required to lock a thread',
+      path: ['reason'],
+    }),
+  {
+    description: 'Lock (with a reason) or unlock the comment thread of a mod (PLAN §7.6 «bloquear el hilo»).',
+    examples: [{ locked: true, reason: 'Heated off-topic argument' }],
+  },
+);
+
+export const CommentsLockDTO = dto(
+  'CommentsLockDTO',
+  z.object({
+    modId: EntityId,
+    locked: z.boolean(),
+    lockedAt: IsoDateTime.nullable(),
+  }),
+  {
+    description: 'Comment thread lock state of a mod after the change.',
+    examples: [{ modId: 20, locked: true, lockedAt: '2026-09-30T12:00:00.000Z' }],
+  },
+);
+
 export const HiddenStateDTO = dto(
   'HiddenStateDTO',
   z.object({
@@ -819,6 +849,20 @@ export const moderationEndpoints = {
     requires: ['recent_auth_12h'],
     params: IdParams,
     response: HiddenStateDTO,
+    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    cache: cache.noStore,
+  }),
+  lockComments: defineEndpoint({
+    id: 'moderation.lockComments',
+    owner: 'WP-51',
+    method: 'POST',
+    path: `${ranger}/mods/:id/comments-lock`,
+    summary: 'Lock or unlock the comment thread of a mod',
+    auth: 'moderator',
+    requires: ['recent_auth_12h'],
+    params: IdParams,
+    body: CommentsLockBody,
+    response: CommentsLockDTO,
     errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
     cache: cache.noStore,
   }),

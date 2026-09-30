@@ -3,10 +3,10 @@
  * ítem", shortcut `e` "escalar", "Plantillas de motivo", "Métricas visibles: tiempo medio de
  * revisión y SLA").
  *
- * - Assignment and escalation are append-only facts in `AuditLog` (`queue.assign`,
- *   `queue.unassign`, `queue.escalate`, `queue.deescalate`); the lanes derive the current state
- *   from the latest entry of each target (`queueMarks`), so no column is needed on mods, versions
- *   or comments. Reports also keep `Report.assignedToId` up to date.
+ * - Assignment and escalation are stored per target in `"ModerationAssignment"` (migration 2004)
+ *   and every change is audited (`queue.assign`, `queue.unassign`, `queue.escalate`,
+ *   `queue.deescalate`); the lanes read the current state with `queueMarks`. Reports also keep
+ *   `Report.assignedToId` up to date.
  * - An escalated item sorts as high risk until the escalation is cleared or the item leaves its
  *   lane (a decision, or a resubmission that starts a new review).
  * - The review time is measured from the `mod.submit` / `version.submit` entry that put the item
@@ -77,6 +77,13 @@ export async function assignQueueItem(
     if (targetType === 'report') {
       await tx.execute(sql`UPDATE "Report" SET "assignedToId" = ${assigneeId} WHERE "id" = ${targetId}`);
     }
+    const at = ctx.clock.now().toISOString();
+    await tx.execute(
+      sql`INSERT INTO "ModerationAssignment" ("targetType", "targetId", "assigneeId", "assignedAt", "updatedAt")
+          VALUES (${targetType}, ${targetId}, ${assigneeId}, ${assigneeId === null ? null : at}::timestamptz, ${at}::timestamptz)
+          ON CONFLICT ("targetType", "targetId") DO UPDATE
+            SET "assigneeId" = EXCLUDED."assigneeId", "assignedAt" = EXCLUDED."assignedAt", "updatedAt" = EXCLUDED."updatedAt"`,
+    );
     await recordAudit(tx, ctx, {
       action: body.assign ? 'queue.assign' : 'queue.unassign',
       targetType,
@@ -98,7 +105,7 @@ export async function escalateQueueItem(
   itemId: string,
   body: z.output<typeof EscalateItemBody>,
 ): Promise<QueueItem> {
-  await assertStaff(ctx, 'moderation.queue');
+  const actor = await assertStaff(ctx, 'moderation.queue');
   const { lane, targetType, targetId } = parseItemId(itemId);
   const note = body.note?.trim() || null;
   if (body.escalate && (note === null || note.length < 3)) {
@@ -111,6 +118,18 @@ export async function escalateQueueItem(
     const row = await laneRowFor({ ...ctx, db: tx }, lane, targetType, targetId);
     if (!row) throw errors.notFound('Queue item');
     if (!body.escalate && !row.escalation) return;
+    const at = ctx.clock.now().toISOString();
+    const escalatedAt = body.escalate ? at : null;
+    const escalatedById = body.escalate ? actor.userId : null;
+    const reason = body.escalate ? note : null;
+    await tx.execute(
+      sql`INSERT INTO "ModerationAssignment"
+            ("targetType", "targetId", "escalatedAt", "escalatedById", "escalationReason", "updatedAt")
+          VALUES (${targetType}, ${targetId}, ${escalatedAt}::timestamptz, ${escalatedById}, ${reason}, ${at}::timestamptz)
+          ON CONFLICT ("targetType", "targetId") DO UPDATE
+            SET "escalatedAt" = EXCLUDED."escalatedAt", "escalatedById" = EXCLUDED."escalatedById",
+                "escalationReason" = EXCLUDED."escalationReason", "updatedAt" = EXCLUDED."updatedAt"`,
+    );
     await recordAudit(tx, ctx, {
       action: body.escalate ? 'queue.escalate' : 'queue.deescalate',
       targetType,

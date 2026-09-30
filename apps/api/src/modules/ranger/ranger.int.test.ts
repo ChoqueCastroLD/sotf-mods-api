@@ -137,6 +137,12 @@ describe('assignment', () => {
     const queue = await call('GET', '/api/v2/ranger/queue?lane=new_mods&limit=100', ranger);
     const listed = queue.body?.items.find((i: any) => i.id === pendingItem);
     expect(listed?.assignee?.handle).toBe('ranger-one');
+    const stored = await exec(
+      db,
+      `SELECT "assigneeId" FROM "ModerationAssignment" WHERE "targetType" = 'mod' AND "targetId" = $1`,
+      [pendingModId],
+    );
+    expect(stored.rows[0].assigneeId).toBe(ranger.userId);
 
     const released = await call('POST', `/api/v2/ranger/items/${pendingItem}/assign`, admin, { assign: false });
     expect(released.status).toBe(200);
@@ -278,5 +284,75 @@ describe('metrics', () => {
 
   it('validates the window', async () => {
     expect((await call('GET', '/api/v2/ranger/metrics?days=0', ranger)).status).toBe(422);
+  });
+});
+
+describe('comment thread lock', () => {
+  let modId: number;
+  const postComment = (who: Staff, bodyMd: string) =>
+    call('POST', `/api/v2/mods/${modId}/comments`, who, { bodyMd, turnstileToken: 'x' });
+
+  beforeAll(async () => {
+    const published = await exec(
+      db,
+      `SELECT "id" FROM "Mod" WHERE "status" = 'published' AND coalesce("type", 'Mod') <> 'Build' ORDER BY "id" LIMIT 1`,
+    );
+    modId = Number(published.rows[0].id);
+  });
+
+  it('requires a reason to lock and a ranger', async () => {
+    expect((await call('POST', `/api/v2/ranger/mods/${modId}/comments-lock`, ranger, { locked: true })).status).toBe(
+      422,
+    );
+    expect(
+      (await call('POST', `/api/v2/ranger/mods/${modId}/comments-lock`, reporter, { locked: true, reason: 'nope' }))
+        .status,
+    ).toBe(403);
+    expect(
+      (await call('POST', '/api/v2/ranger/mods/999999999/comments-lock', ranger, { locked: true, reason: 'Spam' }))
+        .status,
+    ).toBe(404);
+  });
+
+  it('refuses new comments from members while locked, lets staff answer, and unlocks', async () => {
+    expect((await postComment(reporter, 'Before the lock')).status).toBe(201);
+
+    const locked = await call('POST', `/api/v2/ranger/mods/${modId}/comments-lock`, ranger, {
+      locked: true,
+      reason: 'Heated off-topic argument',
+    });
+    expect(locked.status).toBe(200);
+    expect(locked.body).toMatchObject({ modId, locked: true });
+    expect(typeof locked.body?.lockedAt).toBe('string');
+    // Idempotent: locking again keeps the original time and writes no second audit row.
+    const again = await call('POST', `/api/v2/ranger/mods/${modId}/comments-lock`, ranger, {
+      locked: true,
+      reason: 'Still heated',
+    });
+    expect(again.body?.lockedAt).toBe(locked.body?.lockedAt);
+
+    const refused = await postComment(reporter, 'After the lock');
+    expect(refused.status).toBe(403);
+    const state = await call('GET', `/api/v2/me/social-state?modId=${modId}`, reporter);
+    expect(state.status).toBe(200);
+    expect(state.body?.commentsLocked).toBe(true);
+    expect((await postComment(ranger, 'Thread locked, please use Discord')).status).toBe(201);
+
+    const unlocked = await call('POST', `/api/v2/ranger/mods/${modId}/comments-lock`, ranger, { locked: false });
+    expect(unlocked.status).toBe(200);
+    expect(unlocked.body).toEqual({ modId, locked: false, lockedAt: null });
+    expect((await postComment(reporter, 'After the unlock')).status).toBe(201);
+    expect((await call('GET', `/api/v2/me/social-state?modId=${modId}`, reporter)).body?.commentsLocked).toBe(false);
+
+    const audit = await exec(
+      db,
+      `SELECT "action", "reason" FROM "AuditLog" WHERE "targetType" = 'mod' AND "targetId" = $1
+        AND "action" LIKE 'mod.comments_%' ORDER BY "id"`,
+      [modId],
+    );
+    expect(audit.rows).toEqual([
+      { action: 'mod.comments_lock', reason: 'Heated off-topic argument' },
+      { action: 'mod.comments_unlock', reason: null },
+    ]);
   });
 });

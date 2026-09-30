@@ -201,6 +201,7 @@ export const API_ROUTES = {
     resolveReport: { id: 'moderation.resolveReport', method: 'POST', path: "/api/v2/ranger/reports/:id/resolve", kind: 'json', bodyKind: 'json' },
     hideComment: { id: 'moderation.hideComment', method: 'POST', path: "/api/v2/ranger/comments/:id/hide", kind: 'json', bodyKind: 'json' },
     unhideComment: { id: 'moderation.unhideComment', method: 'POST', path: "/api/v2/ranger/comments/:id/unhide", kind: 'json', bodyKind: null },
+    lockComments: { id: 'moderation.lockComments', method: 'POST', path: "/api/v2/ranger/mods/:id/comments-lock", kind: 'json', bodyKind: 'json' },
     hideReview: { id: 'moderation.hideReview', method: 'POST', path: "/api/v2/ranger/reviews/:id/hide", kind: 'json', bodyKind: 'json' },
     unhideReview: { id: 'moderation.unhideReview', method: 'POST', path: "/api/v2/ranger/reviews/:id/unhide", kind: 'json', bodyKind: null },
     users: { id: 'moderation.users', method: 'GET', path: "/api/v2/ranger/users", kind: 'json', bodyKind: null },

@@ -126,11 +126,11 @@ export interface LaneRow {
   risk: Risk;
   flags: QueueItem['flags'];
   assigneeId: number | null;
-  /** Filled by `applyQueueMarks` (escalations live in `AuditLog`). */
+  /** Filled by `applyQueueMarks` (escalations live in `"ModerationAssignment"`). */
   escalation?: QueueMark['escalation'];
 }
 
-/** Assignment and escalation of one queue target, derived from `AuditLog`. */
+/** Assignment and escalation of one queue target (`"ModerationAssignment"`). */
 export interface QueueMark {
   assigneeId: number | null;
   escalation: { byId: number | null; at: Date; note: string | null } | null;
@@ -139,13 +139,12 @@ export interface QueueMark {
 /** Audit actions of the queue marks (`POST /ranger/items/:id/assign|escalate`). */
 export const QUEUE_MARK_ACTIONS = ['queue.assign', 'queue.unassign', 'queue.escalate', 'queue.deescalate'] as const;
 
-const MARK_ACTIONS = sql.raw(QUEUE_MARK_ACTIONS.map((a) => `'${a}'`).join(', '));
-
 /**
- * Assignment and escalation of queue targets (`AuditLog` is the state: the latest `queue.assign`/
- * `queue.unassign` and the latest `queue.escalate`/`queue.deescalate` of each target). Marks older
- * than `since` (the moment the target entered its lane) are ignored, so a resubmitted mod starts
- * unassigned. Reports keep their assignee in `Report.assignedToId` (the row value wins).
+ * Assignment and escalation of queue targets. The state lives in `"ModerationAssignment"` (one row
+ * per target, migration 2004); every change is also audited (`queue.assign`/`queue.unassign`/
+ * `queue.escalate`/`queue.deescalate`). Marks set before `since` (the moment the target entered
+ * its lane) are ignored, so a resubmitted mod starts unassigned and not escalated. Reports keep
+ * their assignee in `Report.assignedToId` as well (the row value wins for them).
  */
 export async function queueMarks(
   exec: Executor,
@@ -157,33 +156,37 @@ export async function queueMarks(
   const list = await query<{
     targetType: string;
     targetId: number;
-    action: string;
-    actorId: number | null;
-    after: Record<string, unknown> | null;
-    reason: string | null;
-    createdAt: Date | string;
+    assigneeId: number | null;
+    assignedAt: Date | string | null;
+    escalatedAt: Date | string | null;
+    escalatedById: number | null;
+    escalationReason: string | null;
   }>(
     exec,
-    sql`SELECT DISTINCT ON (a."targetType", a."targetId", (a."action" IN ('queue.assign', 'queue.unassign')))
-               a."targetType", a."targetId", a."action", a."actorId", a."after", a."reason", a."createdAt"
-          FROM "AuditLog" a
-         WHERE a."action" IN (${MARK_ACTIONS})
-           AND a."targetType" = ANY(${`{${types.join(',')}}`}::text[])
-           AND a."targetId" = ANY(${intArray(targets.map((t) => t.targetId))})
-         ORDER BY a."targetType", a."targetId", (a."action" IN ('queue.assign', 'queue.unassign')), a."createdAt" DESC, a."id" DESC`,
+    sql`SELECT a."targetType", a."targetId", a."assigneeId", a."assignedAt",
+               a."escalatedAt", a."escalatedById", a."escalationReason"
+          FROM "ModerationAssignment" a
+         WHERE a."targetType" = ANY(${`{${types.join(',')}}`}::text[])
+           AND a."targetId" = ANY(${intArray(targets.map((t) => t.targetId))})`,
   );
   const since = new Map(targets.map((t) => [`${t.targetType}:${t.targetId}`, t.since.getTime()]));
   for (const r of list) {
     const key = `${r.targetType}:${r.targetId}`;
-    const at = toDate(r.createdAt) ?? new Date(0);
     const from = since.get(key);
-    if (from === undefined || at.getTime() < from) continue;
-    const mark = out.get(key) ?? { assigneeId: null, escalation: null };
-    if (r.action === 'queue.assign') {
-      const assignee = Number(r.after?.assigneeId);
-      mark.assigneeId = Number.isSafeInteger(assignee) && assignee > 0 ? assignee : r.actorId;
+    if (from === undefined) continue;
+    const assignedAt = toDate(r.assignedAt);
+    const escalatedAt = toDate(r.escalatedAt);
+    const mark: QueueMark = { assigneeId: null, escalation: null };
+    if (r.assigneeId !== null && assignedAt !== null && assignedAt.getTime() >= from) {
+      mark.assigneeId = Number(r.assigneeId);
     }
-    if (r.action === 'queue.escalate') mark.escalation = { byId: r.actorId, at, note: r.reason };
+    if (escalatedAt !== null && escalatedAt.getTime() >= from) {
+      mark.escalation = {
+        byId: r.escalatedById === null ? null : Number(r.escalatedById),
+        at: escalatedAt,
+        note: r.escalationReason,
+      };
+    }
     out.set(key, mark);
   }
   return out;

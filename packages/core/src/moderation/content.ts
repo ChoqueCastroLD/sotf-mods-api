@@ -8,7 +8,7 @@
  * 12 h re-authentication, the `AuditLog` row with the reason, and the new counts of the
  * `comments` lane for the other rangers.
  */
-import type { HiddenStateDTO } from '@sotf/contracts/moderation';
+import type { CommentsLockDTO, HiddenStateDTO } from '@sotf/contracts/moderation';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { recordAudit } from '../audit/audit.ts';
@@ -16,6 +16,7 @@ import { setCommentVisibility } from '../comments/service.ts';
 import { queryOne } from '../follows/sql.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
+import { asDate } from '../legacy/db.ts';
 import { setReviewVisibility } from '../reviews/service.ts';
 import { assertStaff } from './guard.ts';
 import { publishLaneCounts } from './lanes.ts';
@@ -81,4 +82,46 @@ export async function setReviewHidden(
     });
   });
   return { targetType: 'review', targetId: id, status, hiddenReason: hidden ? reason : null };
+}
+
+type CommentsLock = z.infer<typeof CommentsLockDTO>;
+
+/**
+ * `POST /ranger/mods/:id/comments-lock` (PLAN §7.6 «bloquear el hilo»): while `"Mod"."commentsLockedAt"`
+ * is set, members cannot start comments or reply on the mod (staff still can); existing comments,
+ * reactions and edits are untouched. Idempotent: locking a locked thread keeps the original time.
+ */
+export async function setCommentsLocked(
+  ctx: Ctx,
+  modId: number,
+  locked: boolean,
+  reason: string | null,
+): Promise<CommentsLock> {
+  await assertStaff(ctx, 'moderation.hide_content');
+  return ctx.db.transaction(async (tx) => {
+    const before = await queryOne<{ commentsLockedAt: Date | string | null; status: string }>(
+      tx,
+      sql`SELECT "commentsLockedAt", "status" FROM "Mod" WHERE "id" = ${modId} FOR UPDATE`,
+    );
+    if (!before) throw errors.notFound('Mod');
+    const wasLocked = before.commentsLockedAt !== null;
+    const lockedAt = wasLocked ? asDate(before.commentsLockedAt) : locked ? ctx.clock.now() : null;
+    if (wasLocked !== locked) {
+      const next = locked ? lockedAt : null;
+      await tx.execute(
+        sql`UPDATE "Mod" SET "commentsLockedAt" = ${next === null ? null : next.toISOString()}::timestamptz AT TIME ZONE 'UTC'
+             WHERE "id" = ${modId}`,
+      );
+      await recordAudit(tx, ctx, {
+        action: locked ? 'mod.comments_lock' : 'mod.comments_unlock',
+        targetType: 'mod',
+        targetId: modId,
+        before: { commentsLocked: wasLocked },
+        after: { commentsLocked: locked },
+        reason,
+      });
+    }
+    const finalAt = locked ? lockedAt : null;
+    return { modId, locked, lockedAt: finalAt === null ? null : finalAt.toISOString() };
+  });
 }

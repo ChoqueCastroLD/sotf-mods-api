@@ -250,6 +250,10 @@ export const SocialStateDTO = dto(
     votes: z.array(z.object({ reviewId: EntityId, value: z.union([z.literal(1), z.literal(-1)]) })),
     review: MyReviewDTO.nullable(),
     compatReports: z.array(CompatReportDTO).describe('My field reports on the versions of the mod'),
+    commentsLocked: z
+      .boolean()
+      .default(false)
+      .describe('A ranger locked the comment thread: no new comments or replies (staff excepted)'),
   }),
   {
     description: 'What the signed-in viewer did on a mod page (reactions, votes, own review, comments and reports).',
@@ -261,6 +265,7 @@ export const SocialStateDTO = dto(
         votes: [{ reviewId: 77, value: 1 }],
         review: exampleOf(MyReviewDTO),
         compatReports: [exampleOf(CompatReportDTO)],
+        commentsLocked: false,
       },
     ],
   },

@@ -176,6 +176,9 @@ export async function createComment(
   const now = ctx.clock.now();
   assertCan(member.subject, 'comment.write', undefined, now);
   const mod = await loadThreadMod(ctx.db, modId);
+  if (mod.commentsLockedAt !== null && !isStaffRole(member.role)) {
+    throw errors.forbidden('This comment thread is locked');
+  }
   if (await isMuted(ctx.db, member.id, mod.id, now)) throw errors.forbidden('You cannot comment here right now');
 
   const newAccount = isNewAccount(member, now);

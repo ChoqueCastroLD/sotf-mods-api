@@ -24,6 +24,7 @@ import {
   type ModerationDeps,
   reviewMetrics,
   setCommentHidden,
+  setCommentsLocked,
   setReviewHidden,
 } from '@sotf/core/moderation/index';
 import { listReports, resolveReport } from '@sotf/core/reports/index';
@@ -90,6 +91,9 @@ export default defineModule({
     );
     m.implement(moderationEndpoints.unhideReview, async ({ params, ctx }) =>
       setReviewHidden(ctx, deps, params.id, false, null),
+    );
+    m.implement(moderationEndpoints.lockComments, async ({ params, body, ctx }) =>
+      setCommentsLocked(ctx, params.id, body.locked, body.reason ?? null),
     );
 
     // Users and sanctions.

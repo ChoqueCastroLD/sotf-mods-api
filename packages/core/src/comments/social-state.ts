@@ -31,7 +31,7 @@ const COMMENT_STATUSES = new Set<string>(['visible', 'hidden', 'pending']);
 export async function getSocialState(ctx: Ctx, deps: SocialStateDeps, modId: number): Promise<SocialState> {
   if (!ctx.actor) throw errors.unauthenticated();
   const userId = ctx.actor.userId;
-  const [reactions, comments, votes, review, compatReports] = await Promise.all([
+  const [reactions, comments, votes, review, compatReports, lock] = await Promise.all([
     rows<{ commentId: number; kinds: string[] }>(
       ctx.db,
       sql`SELECT r."commentId", array_agg(r."kind" ORDER BY r."kind") AS "kinds"
@@ -60,6 +60,10 @@ export async function getSocialState(ctx: Ctx, deps: SocialStateDeps, modId: num
     ),
     myReviewOf(ctx.db, deps.community, modId, userId),
     userCompatReports(ctx.db, { config: deps.catalog }, modId, userId),
+    rows<{ locked: boolean }>(
+      ctx.db,
+      sql`SELECT ("commentsLockedAt" IS NOT NULL) AS "locked" FROM "Mod" WHERE "id" = ${modId}`,
+    ),
   ]);
   return {
     modId,
@@ -81,5 +85,6 @@ export async function getSocialState(ctx: Ctx, deps: SocialStateDeps, modId: num
       .map((v) => ({ reviewId: Number(v.reviewId), value: v.value as 1 | -1 })),
     review,
     compatReports,
+    commentsLocked: lock[0]?.locked === true,
   };
 }

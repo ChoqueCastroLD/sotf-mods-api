@@ -296,12 +296,17 @@ describe('sessions and revocation', () => {
 
     const list = await get('/api/v2/me/sessions', newIp(), a);
     expect(list.statusCode).toBe(200);
-    const items = list.json().items as Array<{ id: string; current: boolean; deviceLabel: string }>;
+    const items = list.json().items as Array<{
+      id: string;
+      current: boolean;
+      deviceLabel: string;
+      country: string | null;
+    }>;
     expect(items).toHaveLength(3);
     expect(items.filter((s) => s.current)).toHaveLength(1);
     expect(items[0]?.deviceLabel).toBe('Firefox on Windows');
     // Sessions created without an edge country header carry none.
-    expect(items.every((s) => (s as { country: string | null }).country === null)).toBe(true);
+    expect(items.every((s) => s.country === null)).toBe(true);
     const current = items.find((s) => s.current)?.id as string;
     const others = items.filter((s) => !s.current).map((s) => s.id);
 

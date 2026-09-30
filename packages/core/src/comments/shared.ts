@@ -106,6 +106,8 @@ export interface ThreadMod {
   userId: number | null;
   status: string;
   name: string;
+  /** Set while a ranger keeps the thread locked (no new comments or replies, staff excepted). */
+  commentsLockedAt: Date | null;
 }
 
 /**
@@ -116,7 +118,7 @@ export interface ThreadMod {
 export async function loadThreadMod(db: Executor, modId: number, options: { lock?: boolean } = {}): Promise<ThreadMod> {
   const row = await firstRow<ThreadMod & { checksPassed: boolean }>(
     db,
-    sql`SELECT m."id", m."userId", m."status", m."name",
+    sql`SELECT m."id", m."userId", m."status", m."name", m."commentsLockedAt",
                EXISTS (SELECT 1 FROM "ModVersion" lv
                         WHERE lv."modId" = m."id" AND lv."isLatest" AND lv."checksStatus" = 'passed') AS "checksPassed"
           FROM "Mod" m WHERE m."id" = ${modId}${options.lock ? sql` FOR UPDATE OF m` : sql``}`,
@@ -124,7 +126,13 @@ export async function loadThreadMod(db: Executor, modId: number, options: { lock
   if (!row) throw errors.notFound('Mod');
   if (row.status === 'removed') throw errors.gone('This mod was removed');
   if (row.status === 'rejected' || (row.status === 'pending' && !row.checksPassed)) throw errors.notFound('Mod');
-  return { id: row.id, userId: row.userId, status: row.status, name: row.name };
+  return {
+    id: row.id,
+    userId: row.userId,
+    status: row.status,
+    name: row.name,
+    commentsLockedAt: row.commentsLockedAt === null ? null : asDate(row.commentsLockedAt),
+  };
 }
 
 /** Locks the mod row so per-mod counters are recomputed one writer at a time. */
