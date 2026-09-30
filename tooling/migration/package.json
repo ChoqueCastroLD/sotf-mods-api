@@ -22,9 +22,15 @@
     "db:anonymize": "node src/cli/anonymize.ts",
     "db:restore:prod-copy": "node src/cli/restore-prod-copy.ts",
     "admin:grant": "node src/cli/admin-grant.ts",
-    "replay-delta": "node replay-delta.ts"
+    "replay-delta": "node replay-delta.ts",
+    "r2:b17": "node backfills-r2/cli/b17-metadata.ts",
+    "r2:manifest-fixes": "node backfills-r2/cli/manifest-fixes.ts",
+    "r2:sample": "node backfills-r2/cli/copy-sample.ts",
+    "r2:suggest-categories": "node backfills-r2/suggest-categories.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "catalog:",
+    "@sotf/core": "workspace:*",
     "@sotf/db": "workspace:*",
     "@sotf/markdown": "workspace:*",
     "pg": "catalog:",
