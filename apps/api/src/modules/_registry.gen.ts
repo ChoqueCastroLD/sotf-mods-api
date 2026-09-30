@@ -7,6 +7,8 @@ import announcementsModule from './announcements/index.ts';
 import authModule from './auth/index.ts';
 import awardsModule from './awards/index.ts';
 import badgesModule from './badges/index.ts';
+import buildViewerModule from './build-viewer/index.ts';
+import bundlesModule from './bundles/index.ts';
 import catalogModule from './catalog/index.ts';
 import commentsModule from './comments/index.ts';
 import compatModule from './compat/index.ts';
@@ -40,6 +42,8 @@ export const modules = [
   authModule,
   awardsModule,
   badgesModule,
+  buildViewerModule,
+  bundlesModule,
   catalogModule,
   commentsModule,
   compatModule,

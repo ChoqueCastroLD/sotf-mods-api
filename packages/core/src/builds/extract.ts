@@ -107,6 +107,9 @@ export async function extractBuild(
   if (input.modVersionId !== null && meta) {
     await ctx.db.execute(sql`
       UPDATE "ModVersion" SET "buildMeta" = ${JSON.stringify(meta)}::jsonb WHERE "id" = ${input.modVersionId}`);
+    // T1-06: geometry and top-down preview of the build page (best effort: the page falls back to
+    // the thumbnail and `build.geometry` retries lazily).
+    await ctx.jobs.enqueue('build.geometry', { modVersionId: input.modVersionId }, { singletonKey: `geometry:${input.modVersionId}` });
     if (mediaId) {
       await ctx.db.execute(sql`
         UPDATE "Mod" SET "thumbnailMediaId" = ${mediaId}::uuid

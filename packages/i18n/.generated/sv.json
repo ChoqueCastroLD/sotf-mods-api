@@ -2340,8 +2340,6 @@
   "console_area_admin": "Administration",
   "console_area_switcher": "Konsolens delar",
   "console_back_to_site": "Tillbaka till webbplatsen",
-  "console_empty_detail": "Den här delen av lägret håller fortfarande på att byggas. Titta in snart igen.",
-  "console_empty_title": "Inget här än",
   "console_error_detail": "Något gick sönder hos oss. Försök igen, och skicka referensen nedan till oss om det fortsätter.",
   "console_error_title": "Den här vyn laddades inte",
   "console_forbidden_action": "Gå till baslägret",

@@ -2136,8 +2136,6 @@
   "console_area_admin": "管理",
   "console_area_switcher": "コンソールのエリア",
   "console_back_to_site": "サイトに戻る",
-  "console_empty_detail": "キャンプのこの場所はまだ準備中です。また後で来てください。",
-  "console_empty_title": "まだ何もありません",
   "console_error_detail": "こちら側で問題が起きました。もう一度お試しください。繰り返し起きる場合は、下の参照番号をお送りください。",
   "console_error_title": "この画面を読み込めませんでした",
   "console_forbidden_action": "ベースキャンプへ",

@@ -39,6 +39,8 @@ const DEFAULT_SERVERS = [
 export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   admin: 'Administration (game builds, taxonomy, awards, announcements, settings) and the public announcements banner.',
   auth: 'Registration, login, password reset and email verification. Sessions use the `__Host-sotf_sid` cookie.',
+  buildViewer: 'Build viewer: SVG preview and packed geometry of BuildShare blueprints.',
+  bundles: 'Official bundles: a creator\'s kit as one zip with every file in place.',
   catalog: 'Mods, libraries and builds: explore, details, dependencies, taxonomy, creators and public profiles.',
   comments: 'Comments v2: threads, reactions, pins, solutions and bug reports; markdown preview.',
   compat: 'Compatibility per game build: field reports, aggregates, ecosystem and Patch Radar.',

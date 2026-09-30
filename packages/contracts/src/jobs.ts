@@ -23,6 +23,12 @@ export const JOB_PAYLOADS = {
   'inspection.run': z.object({ uploadId: Uuid, purpose: UploadPurpose, modVersionId: EntityId.nullable() }),
   'security.scan': z.object({ modVersionId: EntityId, sha256: z.string().regex(/^[0-9a-f]{64}$/) }),
   'build.extract': z.object({ uploadId: Uuid, modVersionId: EntityId.nullable() }),
+  'build.geometry': z.object({ modVersionId: EntityId }),
+  'bundle.build': z.object({
+    bundleId: EntityId,
+    removeKey: z.string().regex(/^bundles\/[a-z0-9._/-]+$/).optional().describe('Deletes this zip instead (the bundle was detached)'),
+  }),
+  'bundle.sweep': z.object({}),
   'security.rescan': z.object({}),
   'markdown.rerender': z.object({
     batchSize: z.number().int().min(1).max(1000).default(200).describe('Mods re-rendered per run'),
@@ -116,6 +122,8 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'compat.reconcile', cron: '20 3 * * *', key: 'nightly', data: {} },
   // Re-enqueues scans left `pending` for 6 h (a lost or dropped job).
   { queue: 'security.rescan', cron: '35 * * * *', key: 'hourly', data: {} },
+  // Regenerates the official bundles whose items published a new version.
+  { queue: 'bundle.sweep', cron: '*/15 * * * *', key: 'every-15m', data: {} },
   // Descriptions rendered with an older `RENDER_VERSION` (a pipeline bump) are re-rendered.
   { queue: 'markdown.rerender', cron: '0 5 * * *', key: 'nightly', data: {} },
   { queue: 'ops.alerts', cron: '*/5 * * * *', key: 'every-5m', data: {} },
@@ -138,6 +146,9 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'inspection.run': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', purpose: 'mod_file', modVersionId: null },
   'security.scan': { modVersionId: 415, sha256: '9f2c0a4f1f0d6b1e2c3a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90' },
   'build.extract': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', modVersionId: 589 },
+  'build.geometry': { modVersionId: 589 },
+  'bundle.build': { bundleId: 3 },
+  'bundle.sweep': {},
   'security.rescan': {},
   'markdown.rerender': { batchSize: 200 },
   'cdn.purge': { tags: ['mod:20', 'home'], reason: 'event:mod.updated' },

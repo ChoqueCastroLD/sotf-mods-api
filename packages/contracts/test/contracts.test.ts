@@ -323,6 +323,8 @@ describe('endpoint contracts', () => {
       [
         'admin',
         'auth',
+        'buildViewer',
+        'bundles',
         'catalog',
         'comments',
         'compat',

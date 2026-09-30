@@ -46,6 +46,9 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'gamification.evaluate': { retryLimit: 3 },
   // Sweeps: one run at a time; the next schedule retries anyway.
   'compat.reconcile': { policy: 'singleton', retryLimit: 2 },
+  'build.geometry': { retryLimit: 2, expireInSeconds: 10 * 60 },
+  'bundle.build': { retryLimit: 2, expireInSeconds: 30 * 60 },
+  'bundle.sweep': { policy: 'singleton', retryLimit: 1 },
   'security.rescan': { policy: 'singleton', retryLimit: 1 },
   'markdown.rerender': { policy: 'singleton', retryLimit: 2, expireInSeconds: 60 * 60 },
   'ops.alerts': { policy: 'singleton', retryLimit: 1, expireInSeconds: 4 * 60 },

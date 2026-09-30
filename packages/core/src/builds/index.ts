@@ -4,3 +4,5 @@
  */
 export * from './blueprint.ts';
 export * from './extract.ts';
+export * from './geometry.ts';
+export * from './viewer.ts';

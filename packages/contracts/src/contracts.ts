@@ -5,6 +5,8 @@
  */
 import { adminEndpoints } from './admin.ts';
 import { authEndpoints } from './auth.ts';
+import { buildViewerEndpoints } from './build-viewer.ts';
+import { bundlesEndpoints } from './bundles.ts';
 import { catalogEndpoints } from './catalog.ts';
 import { commentsEndpoints } from './comments.ts';
 import { compatEndpoints } from './compat.ts';
@@ -30,6 +32,8 @@ import { versionsEndpoints } from './versions.ts';
 export const apiContracts = {
   admin: adminEndpoints,
   auth: authEndpoints,
+  buildViewer: buildViewerEndpoints,
+  bundles: bundlesEndpoints,
   catalog: catalogEndpoints,
   comments: commentsEndpoints,
   compat: compatEndpoints,
