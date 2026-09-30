@@ -429,6 +429,41 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
         })),
       );
     }
+    case 'jam.phase_changed': {
+      const p = event.payload;
+      if (!['announced', 'submissions', 'voting', 'results'].includes(p.phase)) return EMPTY;
+      const [jamRow] = (
+        await db.execute<{ slug: string; title: string }>(
+          sql`SELECT "slug", "title" FROM "Jam" WHERE "id" = ${p.jamId}`,
+        )
+      ).rows;
+      if (!jamRow) return EMPTY;
+      // Followers, everyone on an entry, and (when announced) everyone who took part before.
+      const recipientRows = await db.execute<{ userId: number }>(sql`
+        SELECT "userId" FROM "JamFollow" WHERE "jamId" = ${p.jamId}
+        UNION
+        SELECT a."userId" FROM "JamEntryAuthor" a JOIN "JamEntry" e ON e."id" = a."entryId"
+          WHERE e."jamId" = ${p.jamId} AND e."status" = 'active'
+        ${
+          p.phase === 'announced'
+            ? sql`UNION SELECT a."userId" FROM "JamEntryAuthor" a JOIN "JamEntry" e ON e."id" = a."entryId"
+                  WHERE e."jamId" <> ${p.jamId} AND e."status" = 'active'`
+            : sql``
+        }
+      `);
+      const list = recipientRows.rows;
+      return plan(
+        list.map((row) => ({
+          userId: row.userId,
+          type: 'jam.phase' as const,
+          actorId: null,
+          target: { type: 'jam' as const, id: p.jamId, title: jamRow.title, path: `/jams/${jamRow.slug}` },
+          groupKey: null,
+          data: { phase: p.phase, jamTitle: jamRow.title },
+          dedupeKey: `jam.phase:${p.jamId}:${p.phase}:${row.userId}`,
+        })),
+      );
+    }
     case 'comment.deleted':
       return plan([], [{ targetType: 'comment', targetId: event.payload.commentId }]);
     case 'comment.visibility_changed':

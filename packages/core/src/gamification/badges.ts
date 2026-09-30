@@ -155,6 +155,27 @@ function candidateQueries(options: CandidateOptions): SQL[] {
     SELECT m."userId", 'mod-of-the-week' AS "key", to_char(a."periodStart", 'IYYY-"W"IW') AS "contextKey"
       FROM "Award" a JOIN "Mod" m ON m."id" = a."modId"
      WHERE a."kind" = 'mod_of_week' AND m."userId" IS NOT NULL ${only(sql`m."userId"`, u)}`);
+  // Mod Jams: rewards exist only once the results of a jam are published.
+  queries.push(sql`
+    SELECT DISTINCT a."userId", 'jam-participant' AS "key", 'jam:' || e."jamId" AS "contextKey"
+      FROM "JamEntry" e
+      JOIN "Jam" j ON j."id" = e."jamId" AND j."resultsPublishedAt" IS NOT NULL
+      JOIN "JamEntryAuthor" a ON a."entryId" = e."id"
+     WHERE e."status" = 'active' ${only(sql`a."userId"`, u)}`);
+  queries.push(sql`
+    SELECT DISTINCT a."userId", 'jam-podium' AS "key", 'jam:' || e."jamId" || ':' || r."categoryKey" AS "contextKey"
+      FROM "JamResult" r
+      JOIN "Jam" j ON j."id" = r."jamId" AND j."resultsPublishedAt" IS NOT NULL
+      JOIN "JamEntry" e ON e."id" = r."entryId" AND e."status" = 'active'
+      JOIN "JamEntryAuthor" a ON a."entryId" = e."id"
+     WHERE r."categoryKey" <> '_overall' AND r."rank" <= 3 ${only(sql`a."userId"`, u)}`);
+  queries.push(sql`
+    SELECT DISTINCT a."userId", 'jam-champion' AS "key", 'jam:' || e."jamId" AS "contextKey"
+      FROM "JamResult" r
+      JOIN "Jam" j ON j."id" = r."jamId" AND j."resultsPublishedAt" IS NOT NULL
+      JOIN "JamEntry" e ON e."id" = r."entryId" AND e."status" = 'active'
+      JOIN "JamEntryAuthor" a ON a."entryId" = e."id"
+     WHERE r."categoryKey" = '_overall' AND r."rank" = 1 ${only(sql`a."userId"`, u)}`);
   queries.push(sql`
     SELECT DISTINCT m."userId", 'staff-pick' AS "key", 'mod:' || m."id" AS "contextKey"
       FROM "Award" a JOIN "Mod" m ON m."id" = a."modId"

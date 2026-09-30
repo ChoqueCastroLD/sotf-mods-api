@@ -72,6 +72,9 @@ export function tagsForEvent(event: DomainEvent): CacheTag[] {
       return [cacheTag.user(event.payload.userId)];
     case 'award.created':
       return ['home', cacheTag.mod(event.payload.modId)];
+    case 'jam.phase_changed':
+    case 'jam.changed':
+      return ['list:jams'];
     case 'request.created':
       return ['list:requests'];
     case 'request.commented':

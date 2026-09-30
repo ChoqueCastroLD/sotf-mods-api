@@ -73,6 +73,8 @@ export function signalText(item: SignalEmailItem, locale: Locale): string {
       return m.emails_notify_item_badge({}, o);
     case 'award.won':
       return m.emails_notify_item_award({ kind: item.awardKind ?? 'other', mod }, o);
+    case 'jam.phase':
+      return m.emails_notify_item_jam_phase({ phase: item.status ?? 'other', jam: mod }, o);
     case 'report.resolved':
       return m.emails_notify_item_report_resolved({ action: item.reportAction ?? 'dismiss' }, o);
     case 'system.announcement':

@@ -47,6 +47,9 @@ export function ogTargetsOf(event: DomainEvent): OgPayload[] {
     case 'kit.updated':
     case 'kit.deleted':
       return [{ entityType: 'kit', entityId: event.payload.kitId }];
+    case 'jam.phase_changed':
+    case 'jam.changed':
+      return [{ entityType: 'jam', entityId: event.payload.jamId }];
     case 'milestone.reached':
       return [{ entityType: 'milestone', entityId: `${event.payload.modId}-${event.payload.threshold}` }];
     case 'game_build.created':
@@ -104,6 +107,8 @@ export default defineJobGroup({
         'kit.updated',
         'kit.deleted',
         'milestone.reached',
+        'jam.phase_changed',
+        'jam.changed',
         'game_build.created',
       ],
       handler: async (event, { ctx }) => {
