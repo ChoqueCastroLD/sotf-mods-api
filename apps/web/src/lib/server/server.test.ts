@@ -140,9 +140,9 @@ describe('server entry helpers', () => {
     expect(out.headers.has('x-sotf-cache-tags')).toBe(false);
     expect(out.headers.get('x-robots-tag')).toBe('noindex, nofollow');
     expect(out.headers.get('x-content-type-options')).toBe('nosniff');
-    expect(out.headers.get('x-frame-options')).toBe('SAMEORIGIN');
+    expect(out.headers.get('x-frame-options')).toBe('DENY');
     const embed = finalizeResponse(new Response('x'), 'production', '/embed/mods/a/b');
-    expect(embed.headers.get('content-security-policy')).toBe('frame-ancestors *');
+    expect(embed.headers.get('content-security-policy')).toBe("default-src 'none'; frame-ancestors *");
     expect(embed.headers.has('x-frame-options')).toBe(false);
     expect(embed.headers.has('x-robots-tag')).toBe(false);
   });
