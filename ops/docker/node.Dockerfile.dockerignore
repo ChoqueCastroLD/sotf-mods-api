@@ -1,0 +1,45 @@
+# Build context of ops/docker/node.Dockerfile (BuildKit reads <Dockerfile>.dockerignore).
+# Nothing secret or bulky may reach the image layers (PLAN §9.4, §11.1).
+
+# VCS and editor state
+.git
+.github
+.idea
+.vscode
+
+# Dependencies and build outputs (rebuilt inside the image)
+**/node_modules
+**/dist
+**/.astro
+**/.turbo
+**/.vite
+**/.cache
+**/coverage
+**/*.tsbuildinfo
+
+# Environment files: never in an image (production values live in Coolify)
+**/.env
+**/.env.*
+
+# Dumps, backups and key material
+**/*.dump
+**/*.dmp
+**/*.sql.gz
+**/*.backup
+**/*.pem
+**/*.key
+tooling/migration/out
+tooling/migration/rehearsal/out
+
+# Test artefacts and unrelated trees
+**/playwright-report
+**/test-results
+**/blob-report
+**/.lighthouseci
+e2e
+docs
+ops
+!ops/docker/runtime-deps.mjs
+!ops/docker/node-entrypoint.sh
+!ops/docker/tools-entrypoint.sh
+**/*.log

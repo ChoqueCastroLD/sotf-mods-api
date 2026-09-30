@@ -1,0 +1,167 @@
+# Deploy to production (PLAN §10.2 deploy.yml, §11.3, §11.7): on a `v*` tag
+#
+#   retag the SAME images that release.yml built and staging ran (sha-<sha> → production + v*)
+#   → migrations on production (Coolify migrate task; additive only, guarded, PLAN §14.5)
+#   → deploy api + worker + web (Coolify, rolling) → smoke (GET/HEAD only)
+#
+# Nothing is rebuilt: a tag whose commit has no `sha-<sha>` images (release.yml did not run for it)
+# fails at the first step. The `html` purge is done by the new web container itself
+# (apps/web/src/lib/server/deploy-purge.ts).
+#
+# Configuration (GitHub → Settings → Environments → "production", with "Required reviewers" = the
+# owner so every production deploy waits for an explicit approval; see ops/coolify/README.md §7):
+#   vars.COOLIFY_URL                        https://<coolify host>
+#   vars.COOLIFY_PRODUCTION_MIGRATE_UUID    uuid of the production `sotf-v2-migrate` app
+#   vars.COOLIFY_PRODUCTION_APP_UUIDS       comma-separated uuids of the production api, worker, web
+#   secrets.COOLIFY_TOKEN                   Coolify API token with the "deploy" permission only
+name: deploy
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing release tag to (re)deploy, e.g. v2.0.1
+        required: true
+        type: string
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  retag:
+    name: retag images (production)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      sha: ${{ steps.meta.outputs.sha }}
+      tag: ${{ steps.meta.outputs.tag }}
+    steps:
+      - name: Checkout the tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+
+      - name: Release coordinates
+        id: meta
+        env:
+          OWNER: ${{ github.repository_owner }}
+          TAG: ${{ inputs.tag || github.ref_name }}
+        run: |
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+([.-][0-9A-Za-z.-]+)?$ ]]; then
+            echo "::error::'$TAG' is not a release tag (vMAJOR.MINOR.PATCH)"
+            exit 1
+          fi
+          {
+            echo "owner=${OWNER,,}"
+            echo "sha=$(git rev-parse HEAD)"
+            echo "tag=$TAG"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Retag sha-<sha> → production + tag (no rebuild)
+        env:
+          PREFIX: ${{ env.REGISTRY }}/${{ steps.meta.outputs.owner }}
+          SHA: ${{ steps.meta.outputs.sha }}
+          TAG: ${{ steps.meta.outputs.tag }}
+        run: |
+          for image in sotf-node sotf-tools sotf-web; do
+            if ! docker buildx imagetools inspect "$PREFIX/$image:sha-$SHA" > /dev/null; then
+              echo "::error::$PREFIX/$image:sha-$SHA does not exist: push the commit to the release branch and let release.yml (staging) finish first."
+              exit 1
+            fi
+            docker buildx imagetools create \
+              --tag "$PREFIX/$image:production" \
+              --tag "$PREFIX/$image:$TAG" \
+              "$PREFIX/$image:sha-$SHA"
+          done
+          {
+            echo "### Production images ($TAG)"
+            for image in sotf-node sotf-tools sotf-web; do echo "- \`$PREFIX/$image:sha-$SHA\` → \`production\`, \`$TAG\`"; done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  migrate-production:
+    name: migrations (production)
+    needs: retag
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Migrate task (Coolify)
+        if: vars.COOLIFY_URL != '' && vars.COOLIFY_PRODUCTION_MIGRATE_UUID != ''
+        env:
+          COOLIFY_URL: ${{ vars.COOLIFY_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          UUID: ${{ vars.COOLIFY_PRODUCTION_MIGRATE_UUID }}
+        run: ops/coolify/coolify-deploy.sh "$UUID" --timeout 1200
+
+      - name: Not configured
+        if: vars.COOLIFY_URL == '' || vars.COOLIFY_PRODUCTION_MIGRATE_UUID == ''
+        run: |
+          echo "::error::COOLIFY_URL / COOLIFY_PRODUCTION_MIGRATE_UUID are not set for the production environment."
+          exit 1
+
+  deploy-production:
+    name: deploy (production)
+    needs: migrate-production
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment:
+      name: production
+      url: https://sotf-mods.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy api, worker and web (Coolify, rolling)
+        if: vars.COOLIFY_URL != '' && vars.COOLIFY_PRODUCTION_APP_UUIDS != ''
+        env:
+          COOLIFY_URL: ${{ vars.COOLIFY_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          UUIDS: ${{ vars.COOLIFY_PRODUCTION_APP_UUIDS }}
+        run: ops/coolify/coolify-deploy.sh "$UUIDS" --timeout 1200
+
+      - name: Not configured
+        if: vars.COOLIFY_URL == '' || vars.COOLIFY_PRODUCTION_APP_UUIDS == ''
+        run: |
+          echo "::error::COOLIFY_URL / COOLIFY_PRODUCTION_APP_UUIDS are not set for the production environment."
+          exit 1
+
+  smoke-production:
+    name: smoke (production)
+    needs: [retag, deploy-production]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Smoke (GET/HEAD only; never downloads, favorites, approve or KelvinSeek)
+        env:
+          SMOKE_WAIT_FOR_SHA: ${{ needs.retag.outputs.sha }}
+          SMOKE_WAIT_SECONDS: '600'
+        run: ops/runbooks/deploy/smoke.sh production

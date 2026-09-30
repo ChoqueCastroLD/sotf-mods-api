@@ -2,8 +2,8 @@
 #
 # Stages owned by work packages that have not landed yet are skipped with a notice
 # (SOTF_OPTIONAL_TASKS=1 is the `--if-present` of PLAN §10.2); files that do not exist yet
-# (ops/compose/e2e.yml, ops/docker/*.Dockerfile) gate their steps with hashFiles().
-# release.yml and deploy.yml are delivered by WP-90.
+# (e2e/package.json, tooling/lhci) gate their steps with hashFiles().
+# Releases: release.yml (staging, on the release branch) and deploy.yml (production, v* tags).
 name: ci
 
 on:
@@ -71,6 +71,12 @@ jobs:
       - name: 1 · biome ci
         run: pnpm exec biome ci .
 
+      - name: 1b · actionlint (workflows) and shellcheck (ops scripts)
+        run: |
+          docker run --rm -v "$PWD:/repo" -w /repo rhysd/actionlint:1.7.7 -color
+          docker run --rm -v "$PWD:/repo" -w /repo koalaman/shellcheck:v0.10.0 -x \
+            ops/docker/*.sh ops/coolify/*.sh ops/runbooks/deploy/*.sh
+
       - name: 2 · check:forbidden
         run: pnpm check:forbidden
 
@@ -96,6 +102,9 @@ jobs:
 
       - name: 3 · i18n:check
         run: pnpm i18n:check
+
+      - name: 3b · brand assets are fresh
+        run: pnpm --filter @sotf/brand check:assets
 
       - name: 4 · typecheck
         run: pnpm exec turbo run typecheck
@@ -156,20 +165,79 @@ jobs:
       - name: Build
         run: pnpm exec turbo run build
 
-      - name: 10 · start e2e services (pg + seaweedfs + mailpit)
-        if: hashFiles('ops/compose/e2e.yml') != ''
-        run: docker compose -p sotfv2-e2e -f ops/compose/e2e.yml up --detach --wait --wait-timeout 180
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # The images come from the GitHub Actions cache the images job fills (same scopes); the stack
+      # reuses them: SOTF_*_IMAGE point ops/compose/e2e.yml at these tags.
+      - name: 10 · build node image for the e2e stack
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/node.Dockerfile
+          target: runtime
+          load: true
+          tags: sotfv2-e2e/sotf-node:ci
+          cache-from: type=gha,scope=sotf-node
+
+      - name: 10 · build tools image for the e2e stack (seed)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/node.Dockerfile
+          target: tools
+          load: true
+          tags: sotfv2-e2e/sotf-tools:ci
+          cache-from: |
+            type=gha,scope=sotf-node
+            type=gha,scope=sotf-tools
+
+      - name: 10 · build web image for the e2e stack
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/web.Dockerfile
+          load: true
+          tags: sotfv2-e2e/sotf-web:ci
+          cache-from: type=gha,scope=sotf-web
+
+      - name: 10 · start the e2e stack (pg + seaweedfs + mailpit + seed + migrate + api + worker + web + edge)
+        env:
+          SOTF_NODE_IMAGE: sotfv2-e2e/sotf-node:ci
+          SOTF_TOOLS_IMAGE: sotfv2-e2e/sotf-tools:ci
+          SOTF_WEB_IMAGE: sotfv2-e2e/sotf-web:ci
+        run: docker compose -p sotfv2-e2e -f ops/compose/e2e.yml up --no-build --detach --wait --wait-timeout 600
 
       - name: 10 · install Playwright browsers
         if: hashFiles('e2e/package.json') != ''
         run: pnpm --dir e2e exec playwright install --with-deps
 
       - name: 10 · e2e + axe + visual
-        if: hashFiles('ops/compose/e2e.yml') != ''
+        env:
+          SOTF_E2E_BASE_URL: http://127.0.0.1:47521
+          SOTF_E2E_API_URL: http://127.0.0.1:47501
+          SOTF_E2E_MAILPIT_URL: http://127.0.0.1:47580
         run: pnpm e2e
 
-      - name: 10 · stop e2e services
-        if: always() && hashFiles('ops/compose/e2e.yml') != ''
+      - name: 10b · legacy contract against the stack (shape mode on the dev seed)
+        run: >-
+          pnpm contract:legacy --base-url http://127.0.0.1:47501 --web-url http://127.0.0.1:47521
+          --mode shape --dotnet on
+
+      - name: 10 · stack logs
+        if: failure()
+        run: docker compose -p sotfv2-e2e -f ops/compose/e2e.yml logs --no-color --timestamps > e2e-stack.log || true
+
+      - name: Upload stack logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-stack-logs
+          path: e2e-stack.log
+          retention-days: 14
+
+      - name: 10 · stop the e2e stack
+        if: always()
         run: docker compose -p sotfv2-e2e -f ops/compose/e2e.yml down --volumes --remove-orphans
 
       - name: 11 · LHCI budgets
@@ -184,22 +252,77 @@ jobs:
           retention-days: 14
 
   images:
-    name: docker images (build only, no push)
+    name: docker images (build + inspection, no push)
     needs: verify
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 12 · skip notice
-        if: hashFiles('ops/docker/*.Dockerfile') == ''
-        run: echo "::notice::ops/docker/*.Dockerfile not delivered yet (WP-90); skipping image builds."
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: 12 · build node image (api + worker)
-        if: hashFiles('ops/docker/node.Dockerfile') != ''
-        run: docker build --file ops/docker/node.Dockerfile --tag sotf-node:ci .
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/node.Dockerfile
+          target: runtime
+          load: true
+          push: false
+          tags: sotfv2-ci/sotf-node:ci
+          build-args: GIT_SHA=${{ github.sha }}
+          cache-from: type=gha,scope=sotf-node
+          cache-to: type=gha,scope=sotf-node,mode=max
+
+      - name: 12 · build tools image (operator CLIs)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/node.Dockerfile
+          target: tools
+          load: false
+          push: false
+          cache-from: type=gha,scope=sotf-node
+          cache-to: type=gha,scope=sotf-tools,mode=max
 
       - name: 12 · build web image
-        if: hashFiles('ops/docker/web.Dockerfile') != ''
-        run: docker build --file ops/docker/web.Dockerfile --tag sotf-web:ci .
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/web.Dockerfile
+          load: true
+          push: false
+          tags: sotfv2-ci/sotf-web:ci
+          build-args: GIT_SHA=${{ github.sha }}
+          cache-from: type=gha,scope=sotf-web
+          cache-to: type=gha,scope=sotf-web,mode=max
+
+      - name: 12 · inspect (size budgets, non-root, no .env/dumps/TS sources)
+        run: |
+          ops/docker/inspect-image.sh sotfv2-ci/sotf-node:ci 230
+          ops/docker/inspect-image.sh sotfv2-ci/sotf-web:ci 180
+
+      - name: 12 · the images start and answer /healthz
+        run: |
+          set -euo pipefail
+          secret="ci-only-$(openssl rand -hex 24)"
+          docker run -d --name sotfv2-ci-web -p 127.0.0.1:47621:4321 \
+            -e PUBLIC_SITE_URL=http://127.0.0.1:47621 -e SITE_ENV=development \
+            -e INTERNAL_API_URL=http://127.0.0.1:9 sotfv2-ci/sotf-web:ci
+          docker run -d --name sotfv2-ci-api -p 127.0.0.1:47601:3001 \
+            -e PUBLIC_SITE_URL=http://127.0.0.1:47621 -e SITE_ENV=development \
+            -e INTERNAL_SECRET="$secret" -e APP_SECRET="$secret" \
+            -e DATABASE_URL=postgres://nobody:nothing@127.0.0.1:9/none sotfv2-ci/sotf-node:ci
+          for url in http://127.0.0.1:47621/healthz http://127.0.0.1:47601/healthz; do
+            for _ in $(seq 1 30); do curl --silent --fail "$url" && echo && continue 2; sleep 2; done
+            docker logs sotfv2-ci-web || true
+            docker logs sotfv2-ci-api || true
+            echo "::error::$url did not answer 200"
+            exit 1
+          done
+
+      - name: 12 · stop the containers
+        if: always()
+        run: docker rm -f sotfv2-ci-web sotfv2-ci-api || true

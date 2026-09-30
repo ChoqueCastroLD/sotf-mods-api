@@ -1,0 +1,168 @@
+# Nightly and weekly checks (PLAN §10.2 "nightly", §14.5).
+#
+#   daily   03:17 UTC  pnpm audit · Lighthouse CI against staging
+#   weekly  Sun 04:43  Unlighthouse over staging · the development dataset dump for the weekly
+#                      staging reset (PLAN §14.5: staging runs on the seed, never on a production
+#                      copy, and there are no backups to restore; ops/runbooks/deploy/06-staging.md)
+#
+# Everything here only reads staging over HTTPS (GET) and never touches production.
+name: nightly
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+    - cron: '43 4 * * 0'
+  workflow_dispatch:
+    inputs:
+      weekly:
+        description: Also run the weekly jobs (Unlighthouse, seed dump)
+        type: boolean
+        default: false
+
+concurrency:
+  group: nightly-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  TZ: UTC
+  CI: '1'
+  STAGING_URL: https://beta.sotf-mods.com
+
+jobs:
+  audit:
+    name: pnpm audit (production dependencies)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Enable pnpm
+        run: corepack enable pnpm
+
+      - name: Audit (high and critical fail)
+        run: pnpm audit --prod --audit-level high
+
+  lhci-staging:
+    name: Lighthouse CI (staging)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Staging is up
+        id: up
+        run: |
+          if curl --silent --fail --max-time 20 "$STAGING_URL/healthz" > /dev/null; then
+            echo "up=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::notice::$STAGING_URL is not reachable yet; skipping Lighthouse CI."
+            echo "up=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Collect (the templates of PLAN §8 on staging, mobile, 3 runs)
+        if: steps.up.outputs.up == 'true'
+        run: |
+          npx --yes @lhci/cli@0.15.1 collect \
+            --numberOfRuns=3 \
+            --url="$STAGING_URL/" \
+            --url="$STAGING_URL/mods" \
+            --url="$STAGING_URL/mods/imaxel/axel's-mod-menu" \
+            --url="$STAGING_URL/builds" \
+            --url="$STAGING_URL/es" \
+            --url="$STAGING_URL/this-page-does-not-exist"
+
+      - name: Assert (budgets of tooling/lhci when present)
+        if: steps.up.outputs.up == 'true' && hashFiles('tooling/lhci/lighthouserc.staging.json') != ''
+        run: npx --yes @lhci/cli@0.15.1 assert --config=tooling/lhci/lighthouserc.staging.json
+
+      - name: Store reports
+        if: always() && steps.up.outputs.up == 'true'
+        run: npx --yes @lhci/cli@0.15.1 upload --target=filesystem --outputDir=lhci-report
+
+      - name: Upload reports
+        if: always() && steps.up.outputs.up == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lhci-staging
+          path: lhci-report
+          retention-days: 30
+
+  unlighthouse:
+    name: Unlighthouse (staging, weekly)
+    if: github.event.schedule == '43 4 * * 0' || inputs.weekly
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Scan every page of staging
+        run: |
+          npx --yes -p @unlighthouse/cli@0.19.0 unlighthouse-ci \
+            --site "$STAGING_URL" \
+            --reporter jsonExpanded \
+            --build-static \
+            --output-path unlighthouse
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unlighthouse-staging
+          path: unlighthouse
+          retention-days: 30
+
+  seed-dump:
+    name: development dataset dump (weekly staging reset)
+    if: github.event.schedule == '43 4 * * 0' || inputs.weekly
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Enable pnpm
+        run: corepack enable pnpm
+
+      - name: Install (frozen lockfile)
+        run: pnpm install --frozen-lockfile
+
+      - name: Local infrastructure (compose project sotfv2)
+        run: pnpm infra:up
+
+      - name: Seed (public snapshot + synthetic data, migrations, backfills, verification) and dump
+        run: pnpm db:seed:dev --reset
+
+      - name: Upload tooling/migration/out/dev-seed.dump
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-seed-dump
+          path: tooling/migration/out/dev-seed.dump
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: Stop the infrastructure
+        if: always()
+        run: pnpm infra:down

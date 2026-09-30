@@ -1,0 +1,200 @@
+# Release to staging (PLAN §10.2 release.yml, §11.3, §11.7): on every push to the release branch
+#
+#   images (GHCR: sha-<sha> + staging) → migrations on staging (Coolify migrate task)
+#   → deploy api + worker + web on staging (Coolify, rolling) → smoke (GET/HEAD only)
+#
+# The `html` purge after the deploy is done by the web itself once it is healthy
+# (apps/web/src/lib/server/deploy-purge.ts → POST api:/internal/cdn/purge {tags:['html']}, one per
+# release sha), so this workflow needs no Cloudflare credentials.
+#
+# Configuration (GitHub → Settings → Environments → "staging"; see ops/coolify/README.md §7):
+#   vars.COOLIFY_URL                     https://<coolify host>
+#   vars.COOLIFY_STAGING_MIGRATE_UUID    uuid of the staging `sotf-v2-migrate` app (SOTF_ROLE=migrate-task)
+#   vars.COOLIFY_STAGING_APP_UUIDS       comma-separated uuids of the staging api, worker and web apps
+#   secrets.COOLIFY_TOKEN                Coolify API token with the "deploy" permission only
+# Images are pushed with the workflow's GITHUB_TOKEN (packages: write); Coolify pulls them with its
+# own read-only token (ops/coolify/README.md §2). Until the Coolify variables exist the deploy jobs
+# are skipped with a notice and only the images are published.
+name: release
+
+on:
+  push:
+    # `v2` is the pre-cutover branch of the published repository (PLAN §14.4); it becomes `main`.
+    branches: [main, v2]
+    paths-ignore:
+      - 'docs/**'
+      - '**/*.md'
+  workflow_dispatch:
+
+concurrency:
+  group: release-staging
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  images:
+    name: images (GHCR)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      owner: ${{ steps.meta.outputs.owner }}
+      sha: ${{ steps.meta.outputs.sha }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Image coordinates
+        id: meta
+        env:
+          OWNER: ${{ github.repository_owner }}
+          SHA: ${{ github.sha }}
+        run: |
+          {
+            echo "owner=${OWNER,,}"
+            echo "sha=${SHA}"
+            echo "created=$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build sotf-node (api + worker)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/node.Dockerfile
+          target: runtime
+          load: true
+          tags: ${{ env.REGISTRY }}/${{ steps.meta.outputs.owner }}/sotf-node:sha-${{ steps.meta.outputs.sha }}
+          build-args: |
+            GIT_SHA=${{ steps.meta.outputs.sha }}
+            BUILD_DATE=${{ steps.meta.outputs.created }}
+          cache-from: type=gha,scope=sotf-node
+          cache-to: type=gha,scope=sotf-node,mode=max
+
+      - name: Build sotf-tools (operator CLIs)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/node.Dockerfile
+          target: tools
+          load: true
+          tags: ${{ env.REGISTRY }}/${{ steps.meta.outputs.owner }}/sotf-tools:sha-${{ steps.meta.outputs.sha }}
+          build-args: |
+            GIT_SHA=${{ steps.meta.outputs.sha }}
+          cache-from: type=gha,scope=sotf-node
+          cache-to: type=gha,scope=sotf-tools,mode=max
+
+      - name: Build sotf-web
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ops/docker/web.Dockerfile
+          load: true
+          tags: ${{ env.REGISTRY }}/${{ steps.meta.outputs.owner }}/sotf-web:sha-${{ steps.meta.outputs.sha }}
+          build-args: |
+            GIT_SHA=${{ steps.meta.outputs.sha }}
+            BUILD_DATE=${{ steps.meta.outputs.created }}
+          cache-from: type=gha,scope=sotf-web
+          cache-to: type=gha,scope=sotf-web,mode=max
+
+      - name: Inspect images (size budgets, no .env/dumps/TS sources)
+        env:
+          PREFIX: ${{ env.REGISTRY }}/${{ steps.meta.outputs.owner }}
+          SHA: ${{ steps.meta.outputs.sha }}
+        run: |
+          ops/docker/inspect-image.sh "$PREFIX/sotf-node:sha-$SHA" 230
+          ops/docker/inspect-image.sh "$PREFIX/sotf-web:sha-$SHA" 180
+
+      - name: Push sha-<sha> and staging tags
+        env:
+          PREFIX: ${{ env.REGISTRY }}/${{ steps.meta.outputs.owner }}
+          SHA: ${{ steps.meta.outputs.sha }}
+        run: |
+          for image in sotf-node sotf-tools sotf-web; do
+            docker push "$PREFIX/$image:sha-$SHA"
+            docker tag "$PREFIX/$image:sha-$SHA" "$PREFIX/$image:staging"
+            docker push "$PREFIX/$image:staging"
+          done
+          {
+            echo "### Images"
+            for image in sotf-node sotf-tools sotf-web; do echo "- \`$PREFIX/$image:sha-$SHA\` (+ \`staging\`)"; done
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  migrate-staging:
+    name: migrations (staging)
+    needs: images
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Migrate task (Coolify)
+        if: vars.COOLIFY_URL != '' && vars.COOLIFY_STAGING_MIGRATE_UUID != ''
+        env:
+          COOLIFY_URL: ${{ vars.COOLIFY_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          UUID: ${{ vars.COOLIFY_STAGING_MIGRATE_UUID }}
+        run: ops/coolify/coolify-deploy.sh "$UUID" --timeout 1200
+
+      - name: Not configured
+        if: vars.COOLIFY_URL == '' || vars.COOLIFY_STAGING_MIGRATE_UUID == ''
+        run: echo "::notice::COOLIFY_URL / COOLIFY_STAGING_MIGRATE_UUID are not set for the staging environment; skipping the migrate task."
+
+  deploy-staging:
+    name: deploy (staging)
+    needs: migrate-staging
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    environment:
+      name: staging
+      url: https://beta.sotf-mods.com
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy api, worker and web (Coolify, rolling)
+        if: vars.COOLIFY_URL != '' && vars.COOLIFY_STAGING_APP_UUIDS != ''
+        env:
+          COOLIFY_URL: ${{ vars.COOLIFY_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          UUIDS: ${{ vars.COOLIFY_STAGING_APP_UUIDS }}
+        run: ops/coolify/coolify-deploy.sh "$UUIDS" --timeout 1200
+
+      - name: Not configured
+        if: vars.COOLIFY_URL == '' || vars.COOLIFY_STAGING_APP_UUIDS == ''
+        run: echo "::notice::COOLIFY_URL / COOLIFY_STAGING_APP_UUIDS are not set for the staging environment; skipping the deploy."
+
+  smoke-staging:
+    name: smoke (staging)
+    needs: [images, deploy-staging]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    environment: staging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Smoke (GET/HEAD only)
+        if: vars.COOLIFY_URL != '' && vars.COOLIFY_STAGING_APP_UUIDS != ''
+        env:
+          SMOKE_WAIT_FOR_SHA: ${{ needs.images.outputs.sha }}
+          SMOKE_WAIT_SECONDS: '600'
+        run: ops/runbooks/deploy/smoke.sh staging
