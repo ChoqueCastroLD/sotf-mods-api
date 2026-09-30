@@ -9,9 +9,10 @@ import { Banner } from '@sotf/ui/banner';
 import { SkipLink } from '@sotf/ui/skip-link';
 import { Outlet, useMatches, useRouterState } from '@tanstack/react-router';
 import { lazy, Suspense, useEffect, useState } from 'react';
+import { applyDisplayPreferences } from '../features/settings/display.ts';
 import { useConsoleLocale } from '../hooks/use-console-locale.ts';
 import { applyStaticTitle } from '../hooks/use-document-title.ts';
-import { isRanger, useMe } from '../hooks/use-me.ts';
+import { isRanger, type Me, useMe } from '../hooks/use-me.ts';
 import { useOnline } from '../hooks/use-online.ts';
 import { ShortcutsProvider } from '../hooks/use-shortcuts.tsx';
 import { useSidebar } from '../hooks/use-sidebar.ts';
@@ -54,6 +55,17 @@ function useUserLocale(me: Parameters<typeof userLocale>[0]): void {
   }, [preferred, locale, setLocale]);
 }
 
+/**
+ * Theme, density and the motion override follow the account on every device: applied once `/me`
+ * loads and again whenever it changes (another tab, Preferences saving).
+ */
+function useDisplayPreferences(settings: Me['settings']): void {
+  const { theme, density, reducedMotion } = settings;
+  useEffect(() => {
+    applyDisplayPreferences({ theme, density, reducedMotion });
+  }, [theme, density, reducedMotion]);
+}
+
 export function ConsoleLayout() {
   const me = useMe();
   const status = useStream();
@@ -64,6 +76,7 @@ export function ConsoleLayout() {
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
   const [shortcutsRequested, setShortcutsRequested] = useState(false);
   useUserLocale(me);
+  useDisplayPreferences(me.settings);
   useStaticTitle(pathname);
 
   const viewer: Viewer = { role: me.user.role };

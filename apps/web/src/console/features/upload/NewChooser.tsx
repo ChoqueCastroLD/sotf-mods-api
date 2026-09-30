@@ -4,6 +4,7 @@
  */
 import { buttonClasses } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
+import { ErrorState } from '@sotf/ui/error-state';
 import { Icon } from '@sotf/ui/icons';
 import { Skeleton } from '@sotf/ui/skeleton';
 import { useQuery } from '@tanstack/react-query';
@@ -11,6 +12,8 @@ import { Link } from '@tanstack/react-router';
 import { Blocks, FileArchive, History, NotebookPen } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { api } from '../../lib/api.ts';
+import { errorReference } from '../../lib/errors.ts';
+import { t } from '../../lib/messages.ts';
 import { queryKeys } from '../../lib/query-keys.ts';
 import { Callout } from './components/Callout.tsx';
 import { useUploadMessages, ut } from './i18n.ts';
@@ -87,6 +90,15 @@ export function NewChooser() {
         </div>
         {mods.isPending ? (
           <Skeleton className="h-20 w-full rounded-lg" />
+        ) : mods.isError ? (
+          <ErrorState
+            title={t('console_error_title')}
+            description={ut('upload_failure_api')}
+            headingLevel={3}
+            onRetry={() => void mods.refetch()}
+            retrying={mods.isFetching}
+            {...(errorReference(mods.error) ? { reference: errorReference(mods.error) } : {})}
+          />
         ) : updatable.length === 0 ? (
           <p className="text-sm text-fg-muted">{ut('upload_new_version_none')}</p>
         ) : (

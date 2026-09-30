@@ -12,3 +12,13 @@
 - `lib/` — HTTP client and errors, query client (401 → login), chunk-error reload, toasts (`notify`), i18n catalogs, storage.
 
 Messages live in `packages/i18n/messages/console/<locale>.json` (13 locales).
+
+Shell wiring (WP-A3):
+
+- `ConsoleApp.tsx` sets `zod` to `jitless` once (no `new Function` probe → no CSP `eval` reports) and
+  preloads the `ui-domain` catalogue of the active locale (`lib/domain-messages.ts`).
+- `components/DomainI18nBridge.tsx` gives `@sotf/ui/domain` components the localized `ui-domain`
+  texts, the console locale for `Intl` and the browser time zone; screens with domain components wrap
+  themselves in it (it suspends into the route's pending state until the catalogue chunk arrives).
+- `layout/ConsoleLayout.tsx` applies the account's display preferences (theme, density, motion) once
+  `/me` loads, so they follow the user on every device.
