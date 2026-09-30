@@ -372,17 +372,4 @@
   &, & * { animation-play-state: paused !important; }
 }
 
-/* Account display preferences on <html> (WP-81, apps/web console/features/settings/display.ts):
-   data-motion="reduce" applies the reduced-motion rule of section 1 whatever the OS says, and
-   data-density="compact" tightens the spacing scale (every spacing utility is a multiple of
-   --spacing). data-motion="full" cannot lift the OS reduction: the literal rule of section 1 is
-   !important and neither revert-layer nor a later layer can restore the utilities' values, so the
-   operating system's accessibility setting wins (the safe side). */
-@layer base {
-  :root[data-motion="reduce"] *, :root[data-motion="reduce"] ::before, :root[data-motion="reduce"] ::after {
-    animation-duration: 1ms !important; animation-iteration-count: 1 !important;
-    transition-duration: 1ms !important; scroll-behavior: auto !important;
-  }
-  :root[data-density="compact"] { --spacing: 0.21875rem; }
-}
 /* ===== End of section 2 ===== */
