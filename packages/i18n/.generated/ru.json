@@ -393,7 +393,7 @@
     }
   ],
   "admin_range_label": "Период",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Админ · Пост рейнджеров",
   "admin_reauth_action": "Войти снова",
   "admin_reauth_text": "Для инструментов администрирования нужен вход не старше 12 часов. Войдите снова, и вы сразу вернётесь сюда.",
   "admin_reauth_title": "Подтвердите, что это вы",
@@ -2608,10 +2608,10 @@
   "content_install_help_discord": "Спросить в Discord",
   "content_install_help_text": "Проверьте, не сломал ли текущий патч игры ваши моды, или спросите сообщество. Укажите версию игры, версию RedLoader и моды, которые используете.",
   "content_install_help_title": "Всё ещё не получается?",
-  "content_install_kit_more": "Все киты",
-  "content_install_kit_nav": "Стартовый кит",
+  "content_install_kit_more": "Все наборы",
+  "content_install_kit_nav": "Стартовый набор",
   "content_install_kit_text": "Подборка команды: моды, которые хорошо работают вместе. Хорошее первое снаряжение.",
-  "content_install_kit_title": "Стартовый кит",
+  "content_install_kit_title": "Стартовый набор",
   "content_install_manual": "Установить вручную",
   "content_install_progress": "Прогресс чтения",
   "content_install_rail_label": "Разделы руководства",
@@ -2856,8 +2856,8 @@
   "content_radar_pending_title": "Ждут полевых отчётов",
   "content_radar_released": "Выпущен {date}",
   "content_radar_report": "Отчёт",
-  "content_radar_seo_title": "Работают ли моды SOTF на патче {build}? — Patch Radar",
-  "content_radar_seo_title_generic": "Работают ли моды SOTF на последнем патче? — Patch Radar",
+  "content_radar_seo_title": "Работают ли моды SOTF на патче {build}? — Радар патчей",
+  "content_radar_seo_title_generic": "Работают ли моды SOTF на последнем патче? — Радар патчей",
   "content_radar_stat_broken": "Сломаны",
   "content_radar_stat_pending": "Нужны отчёты",
   "content_radar_stat_works": "Работают",
@@ -3294,6 +3294,11 @@
         "status=archived": "{mod} отправлен в архив",
         "status=unlisted": "{mod} больше не показывается в списках",
         "status=removed": "{mod} удалён с SOTF Mods",
+        "status=changes_requested": "Рейнджеры просят доработать {mod}",
+        "status=version_approved": "Новая версия {mod} одобрена и опубликована",
+        "status=version_rejected": "Новая версия {mod} не одобрена",
+        "status=version_changes_requested": "Рейнджеры просят доработать новую версию {mod}",
+        "status=version_held": "Новая версия {mod} ждёт проверки рейнджером",
         "status=*": "Статус {mod} изменился"
       }
     }
@@ -3484,6 +3489,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Тропа закрыта · Удалено навсегда",
   "errors_gone_text": "То, что было здесь, удалено навсегда. Загляните в другие моды.",
   "errors_gone_title": "Эта тропа закрыта.",
   "errors_login_mismatch": "E-mail и пароль не совпадают. Попробуйте снова или сбросьте пароль.",
@@ -3491,12 +3497,17 @@
   "errors_network_retrying": "Нет сигнала. Пробуем снова…",
   "errors_network_title": "Нет сигнала",
   "errors_not_found_home": "Вернуться на тропу",
+  "errors_not_found_install": "Как установить моды",
   "errors_not_found_popular": "Популярные моды",
+  "errors_not_found_readout": "Нет сигнала · За пределами карты",
   "errors_not_found_text": "Этой страницы нет на нашей карте. Кто-то наблюдает за вами из-за деревьев — давайте вернёмся.",
   "errors_not_found_title": "Вы сошли с тропы.",
   "errors_permission_detail": "Чтобы открыть эту страницу, нужна другая роль. Вернитесь назад или войдите в другой аккаунт.",
   "errors_permission_title": "Только для рейнджеров",
   "errors_reference": "Номер: {id}",
+  "errors_server_readout": "Костёр погас · Ошибка 500",
+  "errors_server_retry": "Повторить",
+  "errors_server_status": "Статус в Discord",
   "errors_server_text": "Мы уже чиним. Обновите страницу через минуту или вернитесь на главную.",
   "errors_server_title": "В лагере что-то сломалось.",
   "errors_validation_summary": [
@@ -6538,7 +6549,7 @@
   "ranger_previous": "Назад",
   "ranger_queue_description": "Сначала самое старое и самое рискованное. Каждое решение записывается, автор получает уведомление.",
   "ranger_queue_title": "Очередь модерации",
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "Пост рейнджеров",
   "ranger_reason_broken": "Не работает",
   "ranger_reason_harassment": "Травля",
   "ranger_reason_illegal": "Незаконное содержимое",
@@ -6557,7 +6568,7 @@
   "ranger_report_dismiss_text": "Жалоба оказалась необоснованной. Содержимое, автоматически скрытое из-за жалоб, снова станет видимым.",
   "ranger_report_dismiss_title": "Отклонить жалобу",
   "ranger_report_dismissed": "Жалоба отклонена.",
-  "ranger_report_hide_hint": "Моды и киты убираются из списков, версии задерживаются, комментарии и отзывы скрываются.",
+  "ranger_report_hide_hint": "Моды и наборы убираются из списков, версии задерживаются, комментарии и отзывы скрываются.",
   "ranger_report_hide_label": "Скрыть содержимое",
   "ranger_report_history": "История этого содержимого",
   "ranger_report_no_details": "Подробностей нет.",
@@ -6681,7 +6692,7 @@
   "ranger_tabs_label": "Подробности элемента",
   "ranger_target_comment": "Комментарий",
   "ranger_target_compat_report": "Полевой отчёт",
-  "ranger_target_kit": "Кит",
+  "ranger_target_kit": "Набор",
   "ranger_target_mod": "Мод",
   "ranger_target_review": "Отзыв",
   "ranger_target_user": "Пользователь",
@@ -7592,7 +7603,7 @@
   "signals_page_readout": "Радиожурнал",
   "signals_page_title": "Сигналы",
   "signals_panel_title": "Сигналы",
-  "signals_patch_breaking": "Сборка игры {build} может сломать моды — проверьте свои в Patch Radar",
+  "signals_patch_breaking": "Сборка игры {build} может сломать моды — проверьте свои в Радаре патчей",
   "signals_preferences": "Настройки уведомлений",
   "signals_report_dismissed": "Ваша жалоба рассмотрена — действий не потребовалось",
   "signals_report_resolved": "Ваша жалоба рассмотрена, меры приняты",
@@ -7629,6 +7640,10 @@
   "signals_status_removed": "Ваш мод {mod} удалён",
   "signals_status_republished": "Ваш мод {mod} снова публичный",
   "signals_status_unlisted": "Ваш мод {mod} убран из списков",
+  "signals_status_version_approved": "Версия {version} мода {mod} одобрена и опубликована",
+  "signals_status_version_changes_requested": "Рейнджеры просят доработать версию {version} мода {mod}",
+  "signals_status_version_held": "Версия {version} мода {mod} ждёт проверки рейнджером",
+  "signals_status_version_rejected": "Версия {version} мода {mod} не одобрена",
   "signals_unknown_mod": "мод",
   "signals_unread_prefix": "Не прочитано:",
   "signals_version_published": "Вышел {mod} {version} — вы на него подписаны",
@@ -7769,7 +7784,7 @@
   "social_compat_steps": "Шаги",
   "social_compat_submit": "Отправить отчёт",
   "social_compat_text": "Полевой отчёт занимает десять секунд и показывает всем, работает ли мод на текущем патче.",
-  "social_compat_thanks": "Спасибо, выживший! Ваш отчёт учтён в значке совместимости.",
+  "social_compat_thanks": "Спасибо, выживший! Ваш полевой отчёт учтён в значке совместимости.",
   "social_compat_title": "Полевой отчёт",
   "social_compat_version": "Версия мода",
   "social_compat_yours": "Вы отметили «{result}» на {build} ({mode}, v{version}).",
@@ -7967,6 +7982,481 @@
   "ui_clear": "Очистить",
   "ui_close": "Закрыть",
   "ui_dismiss": "Скрыть",
+  "ui_domain_ad_label": "Реклама",
+  "ui_domain_ad_notice": "Реклама помогает сохранять скачивание бесплатным. Войдите, чтобы скрыть её.",
+  "ui_domain_award_build_of_month": "Билд месяца",
+  "ui_domain_award_mod_of_month": "Мод месяца",
+  "ui_domain_award_mod_of_week": "Мод недели",
+  "ui_domain_award_staff_pick": "Выбор команды",
+  "ui_domain_badge_featured": "Избранный",
+  "ui_domain_badge_locked": "Закрыт",
+  "ui_domain_badge_new": "Новые",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Обновлён",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} деталь",
+        "count__plural=few": "{count__number} детали",
+        "count__plural=many": "{count__number} деталей",
+        "count__plural=*": "{count__number} детали"
+      }
+    }
+  ],
+  "ui_domain_by_author": "автор: {author}",
+  "ui_domain_capsule_conflicts": "Конфликты",
+  "ui_domain_capsule_dedicated": "Выделенный сервер",
+  "ui_domain_capsule_dependencies": "Зависимости",
+  "ui_domain_capsule_game_build": "Билд игры",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Мультиплеер",
+  "ui_domain_capsule_platform": "Платформа",
+  "ui_domain_capsule_safe_remove": "Удаление посреди игры",
+  "ui_domain_chart_view_table": "Показать таблицей",
+  "ui_domain_comment_badge_author": "Автор",
+  "ui_domain_comment_badge_ranger": "Рейнджер",
+  "ui_domain_comment_bug": "Сообщение об ошибке",
+  "ui_domain_comment_bug_fixed_in": "Исправлено в v{version}",
+  "ui_domain_comment_bug_on": "Сообщение об ошибке · v{version}",
+  "ui_domain_comment_deleted": "Этот комментарий удалён.",
+  "ui_domain_comment_image": "Изображение к комментарию",
+  "ui_domain_comment_pending": "Ждёт проверки рейнджером.",
+  "ui_domain_comment_pinned": "Закреплённые",
+  "ui_domain_comment_reactions": "Реакции",
+  "ui_domain_comment_solution": "Решение",
+  "ui_domain_compat_broken": "Не работает",
+  "ui_domain_compat_broken_on": "Не работает на {build}",
+  "ui_domain_compat_mixed": "Отзывы расходятся",
+  "ui_domain_compat_mixed_on": "Отчёты расходятся на {build}",
+  "ui_domain_compat_untested": "Не проверено",
+  "ui_domain_compat_untested_on": "Не проверено на {build}",
+  "ui_domain_compat_works": "Работает",
+  "ui_domain_compat_works_on": "Работает на {build}",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} конфликт",
+        "count__plural=few": "{count__number} конфликта",
+        "count__plural=many": "{count__number} конфликтов",
+        "count__plural=*": "{count__number} конфликта"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "Неизвестны",
+  "ui_domain_consent_accept": "Принять",
+  "ui_domain_consent_label": "Согласие на cookie",
+  "ui_domain_consent_policy": "Политика cookie",
+  "ui_domain_consent_preferences": "Настроить",
+  "ui_domain_consent_reject": "Отклонить",
+  "ui_domain_consent_text": "Мы используем файлы cookie для рекламы и анонимной статистики. Скачивание работает в любом случае.",
+  "ui_domain_creator_top_mod": "Главный мод: {mod}",
+  "ui_domain_curated_by": "собрал(а) {author}",
+  "ui_domain_dedicated_no": "Не поддерживается",
+  "ui_domain_dedicated_partial": "Частично",
+  "ui_domain_dedicated_yes": "Поддерживается",
+  "ui_domain_deleted_user": "Удалённый выживший",
+  "ui_domain_dependencies_conflicts_title": "Конфликтует с",
+  "ui_domain_dependencies_empty": "Зависимостей нет. Установите и играйте.",
+  "ui_domain_dependencies_none": "Нет",
+  "ui_domain_dependencies_optional_title": "Лучше работает с",
+  "ui_domain_dependencies_required_title": "Требует",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "обязательных: {required__number} · необязательных: {optional__number}"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "Конфликтует с",
+  "ui_domain_dependency_kind_optional": "Необязательно",
+  "ui_domain_dependency_kind_required": "Требует",
+  "ui_domain_dependency_state_archived": "В архиве",
+  "ui_domain_dependency_state_missing": "Нет на SOTF Mods",
+  "ui_domain_dependency_state_ok": "Доступна",
+  "ui_domain_dependency_state_removed": "Удалён",
+  "ui_domain_dependency_state_unlisted": "Скрыт из списков",
+  "ui_domain_download": "Скачать",
+  "ui_domain_download_all_versions": "Все версии",
+  "ui_domain_download_done_hint": "Положите его в папку Mods игры и запустите игру.",
+  "ui_domain_download_done_label": "Скачано",
+  "ui_domain_download_other_versions": "Другие версии",
+  "ui_domain_download_version": "Скачать v{version}",
+  "ui_domain_download_version_size": "Скачать v{version} · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} скачивание",
+        "count__plural=few": "{display} скачивания",
+        "count__plural=many": "{display} скачиваний",
+        "count__plural=*": "{display} скачивания"
+      }
+    }
+  ],
+  "ui_domain_edited": "изменено",
+  "ui_domain_feature_cta": "Посмотреть",
+  "ui_domain_filter_clear": "Сбросить фильтры",
+  "ui_domain_filter_exclude": "Исключить: {label}",
+  "ui_domain_filter_excluded": "исключено",
+  "ui_domain_filter_included": "включено",
+  "ui_domain_filter_unexclude": "Больше не исключать: {label}",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Скриншот {index__number} из {total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Галерея",
+  "ui_domain_gallery_video": "Видео",
+  "ui_domain_hidden_by_ranger": "Скрыто рейнджером. Видите только вы и рейнджеры.",
+  "ui_domain_hidden_by_ranger_reason": "Скрыто рейнджером: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод",
+        "count__plural=few": "{count__number} мода",
+        "count__plural=many": "{count__number} модов",
+        "count__plural=*": "{count__number} мода"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Нужен всем",
+  "ui_domain_multiplayer_client_side": "Нужен только вам",
+  "ui_domain_multiplayer_host_only": "Только хосту",
+  "ui_domain_multiplayer_singleplayer_only": "Только одиночная игра",
+  "ui_domain_platform_client": "Клиент",
+  "ui_domain_platform_server": "Сервер",
+  "ui_domain_platform_universal": "Универсальный",
+  "ui_domain_rank_builder": "Строитель",
+  "ui_domain_rank_castaway": "Потерпевший крушение",
+  "ui_domain_rank_forager": "Собиратель",
+  "ui_domain_rank_label": "Ранг выжившего",
+  "ui_domain_rank_legend": "Легенда",
+  "ui_domain_rank_pathfinder": "Следопыт",
+  "ui_domain_rank_scavenger": "Мародёр",
+  "ui_domain_rank_trapper": "Охотник-ловчий",
+  "ui_domain_rank_veteran": "Ветеран",
+  "ui_domain_rating_out_of": "Оценка {rating} из 5",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Оценка {rating} из 5 по {count__number} отзыву",
+        "count__plural=few": "Оценка {rating} из 5 по {count__number} отзывам",
+        "count__plural=many": "Оценка {rating} из 5 по {count__number} отзывам",
+        "count__plural=*": "Оценка {rating} из 5 по {count__number} отзыва"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Огонь",
+  "ui_domain_reaction_heart": "Сердце",
+  "ui_domain_reaction_laugh": "Смех",
+  "ui_domain_reaction_party": "Праздник",
+  "ui_domain_reaction_pray": "Спасибо",
+  "ui_domain_reaction_thumbs_up": "Палец вверх",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "не работает: {display}",
+        "count__plural=few": "не работает: {display}",
+        "count__plural=many": "не работает: {display}",
+        "count__plural=*": "не работает: {display}"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "По сборкам игры",
+  "ui_domain_reports_empty": "Полевых отчётов пока нет. Уже пробовали? Расскажите.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "частично: {display}",
+        "count__plural=few": "частично: {display}",
+        "count__plural=many": "частично: {display}",
+        "count__plural=*": "частично: {display}"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Сообщить",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Полевые отчёты: работает — {works__number}, частично — {partial__number}, не работает — {broken__number}"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Полевые отчёты",
+  "ui_domain_reports_title_on": "Полевые отчёты на {build}",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "работает: {display}",
+        "count__plural=few": "работает: {display}",
+        "count__plural=many": "работает: {display}",
+        "count__plural=*": "работает: {display}"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} выживший считает это полезным",
+        "count__plural=few": "{count__number} выживших считают это полезным",
+        "count__plural=many": "{count__number} выживших считают это полезным",
+        "count__plural=*": "{count__number} выжившего считают это полезным"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "Ответ автора",
+  "ui_domain_review_reply_from": "Ответ от {name}",
+  "ui_domain_review_used_version": "Использовал(а) v{version}",
+  "ui_domain_review_verified_download": "Скачал(а) этот мод",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} отзыв",
+        "count__plural=few": "{count__number} отзыва",
+        "count__plural=many": "{count__number} отзывов",
+        "count__plural=*": "{count__number} отзыва"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Распределение оценок",
+  "ui_domain_reviews_not_enough": "Пока мало отзывов для оценки.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} звезда",
+        "count__plural=few": "{count__number} звезды",
+        "count__plural=many": "{count__number} звёзд",
+        "count__plural=*": "{count__number} звезды"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "Нельзя удалять посреди игры",
+  "ui_domain_safe_remove_yes": "Можно удалить посреди игры",
+  "ui_domain_sort_label": "Сортировка:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Снижение на {percent} за {days__number} день",
+        "days__plural=few": "Снижение на {percent} за {days__number} дня",
+        "days__plural=many": "Снижение на {percent} за {days__number} дней",
+        "days__plural=*": "Снижение на {percent} за {days__number} дня"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Без изменений за {days__number} день",
+        "days__plural=few": "Без изменений за {days__number} дня",
+        "days__plural=many": "Без изменений за {days__number} дней",
+        "days__plural=*": "Без изменений за {days__number} дня"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Рост на {percent} за {days__number} день",
+        "days__plural=few": "Рост на {percent} за {days__number} дня",
+        "days__plural=many": "Рост на {percent} за {days__number} дней",
+        "days__plural=*": "Рост на {percent} за {days__number} дня"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "Загрузки",
+  "ui_domain_stat_followers": "Подписчики",
+  "ui_domain_stat_mods": "Моды",
+  "ui_domain_status_archived": "В архиве",
+  "ui_domain_status_pending": "Ожидает проверки",
+  "ui_domain_status_rejected": "Отклонён",
+  "ui_domain_status_removed": "Удалён",
+  "ui_domain_status_unlisted": "Скрыт из списков",
+  "ui_domain_tier_cabin": "Хижина",
+  "ui_domain_tier_campfire": "Костёр",
+  "ui_domain_tier_fortress": "Крепость",
+  "ui_domain_tier_label": "Ранг создателя",
+  "ui_domain_tier_landmark": "Достопримечательность",
+  "ui_domain_tier_lean_to": "Навес",
+  "ui_domain_tier_treehouse": "Дом на дереве",
+  "ui_domain_trusted_creator": "Проверенный автор",
+  "ui_domain_value_not_declared": "Не указано",
+  "ui_domain_value_unknown": "Неизвестно",
+  "ui_domain_version_beta": "Бета",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "Последняя",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "Новая с вашей последней загрузки",
+  "ui_domain_version_unavailable": "Файл недоступен",
+  "ui_domain_version_yanked": "Отозвана",
+  "ui_domain_versions_caption": "Версии",
+  "ui_domain_versions_col_date": "Выход",
+  "ui_domain_versions_col_download": "Скачать",
+  "ui_domain_versions_col_downloads": "Загрузки",
+  "ui_domain_versions_col_game": "Игра",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Отчёты",
+  "ui_domain_versions_col_size": "Размер",
+  "ui_domain_versions_col_version": "Версия",
+  "ui_domain_versions_empty": "Версий пока нет.",
+  "ui_domain_view_compact": "Компактный",
+  "ui_domain_view_grid": "Сетка",
+  "ui_domain_view_label": "Вид",
+  "ui_domain_view_list": "Список",
+  "ui_domain_visibility_private": "Скрытый",
+  "ui_domain_visibility_unlisted": "Скрыт из списков",
   "ui_error_reference": "Код: {id}",
   "ui_hide_password": "Скрыть пароль",
   "ui_language": "Язык",
@@ -8247,7 +8737,7 @@
   "upload_gallery_counter": "{count} / {max}",
   "upload_gallery_description": "До 10 скриншотов. Перетаскивайте их, чтобы задать порядок, и описывайте каждый для экранных чтецов.",
   "upload_gallery_drop": "Перетащите сюда скриншоты",
-  "upload_gallery_full": "Галерея заполнена ({max} изображений).",
+  "upload_gallery_full": "Галерея заполнена (максимум: {max}).",
   "upload_gallery_hint": "Можно несколько сразу · PNG, JPEG, WebP, AVIF или GIF · до 10 МБ каждый · максимум {max}",
   "upload_gallery_image": "Скриншот {n}",
   "upload_gallery_label": "Галерея",

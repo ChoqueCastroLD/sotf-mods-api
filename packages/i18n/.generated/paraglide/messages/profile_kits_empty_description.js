@@ -50,7 +50,7 @@ const tr_profile_kits_empty_description = /** @type {(inputs: Profile_Kits_Empty
 };
 
 const zh_profile_kits_empty_description = /** @type {(inputs: Profile_Kits_Empty_DescriptionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 还没有分享合集。合集是精选的模组组合，任何人都可以一次性安装。`)
+	return /** @type {LocalizedString} */ (`${i?.name} 还没有分享套装。套装是精选的模组组合，任何人都可以一次性安装。`)
 };
 
 const ja_profile_kits_empty_description = /** @type {(inputs: Profile_Kits_Empty_DescriptionInputs) => LocalizedString} */ (i) => {

@@ -10,7 +10,7 @@ const en_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_
 };
 
 const es_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un ranger revisará esta build pronto. Hasta entonces no aparece en listados ni búsquedas.`)
+	return /** @type {LocalizedString} */ (`Un guardabosques revisará esta build pronto. Hasta entonces no aparece en listados ni búsquedas.`)
 };
 
 const de_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_TextInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_
 };
 
 const pl_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger wkrótce sprawdzi ten build. Do tego czasu nie pojawia się na listach ani w wyszukiwarce.`)
+	return /** @type {LocalizedString} */ (`Strażnik wkrótce sprawdzi ten build. Do tego czasu nie pojawia się na listach ani w wyszukiwarce.`)
 };
 
 const pt_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Um ranger vai revisar esta build em breve. Até lá, ela não aparece em listas nem na busca.`)
+	return /** @type {LocalizedString} */ (`Um guarda vai revisar esta build em breve. Até lá, ela não aparece em listas nem na busca.`)
 };
 
 const ru_builds_banner_pending_text = /** @type {(inputs: Builds_Banner_Pending_TextInputs) => LocalizedString} */ () => {

@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Podaj pełny link zaczynający się od https://.",
   "errors_field_file_too_large": "Plik jest większy niż {limit}.",
   "errors_permission_title": "Tylko dla strażników",
-  "errors_permission_detail": "Aby otworzyć tę stronę, potrzebujesz innej roli. Wróć albo zaloguj się na inne konto."
+  "errors_permission_detail": "Aby otworzyć tę stronę, potrzebujesz innej roli. Wróć albo zaloguj się na inne konto.",
+  "errors_not_found_readout": "Brak sygnału · Poza mapą",
+  "errors_gone_readout": "Szlak zamknięty · Usunięto na dobre",
+  "errors_server_readout": "Ognisko zgasło · Błąd 500",
+  "errors_server_retry": "Spróbuj ponownie",
+  "errors_server_status": "Sprawdź status na Discordzie",
+  "errors_not_found_install": "Jak instalować mody"
 }

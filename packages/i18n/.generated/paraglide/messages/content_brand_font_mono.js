@@ -18,7 +18,7 @@ const de_content_brand_font_mono = /** @type {(inputs: Content_Brand_Font_MonoIn
 };
 
 const fr_content_brand_font_mono = /** @type {(inputs: Content_Brand_Font_MonoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Relevés : versions, identifiants et code.`)
+	return /** @type {LocalizedString} */ (`Relevés : versions, identifiants et code.`)
 };
 
 const it_content_brand_font_mono = /** @type {(inputs: Content_Brand_Font_MonoInputs) => LocalizedString} */ () => {

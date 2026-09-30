@@ -34,7 +34,7 @@
   "landing_radar_summary": "Gra {build} · {share} z top 50 modów potwierdzono na tym patchu",
   "landing_radar_breaking": "Aktualizacja psująca mody",
   "landing_radar_loader": "{loader} {version}: {status, select, works {działa} partial {działa częściowo} broken {nie działa} other {jeszcze nie przetestowano}}",
-  "landing_radar_empty": "Na radarze nie ma jeszcze żadnego patcha gry. Raporty z terenu ruszą przy następnej aktualizacji.",
+  "landing_radar_empty": "Na radarze nie ma jeszcze żadnego patcha gry. Raporty terenowe ruszą przy następnej aktualizacji.",
   "landing_radar_cta": "Zobacz, co nie działa",
   "landing_trending_title": "Popularne w tym tygodniu",
   "landing_trending_hint": "Według pobrań z ostatnich 7 dni",

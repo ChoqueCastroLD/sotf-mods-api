@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "https:// ile başlayan tam bir bağlantı gir.",
   "errors_field_file_too_large": "Dosya {limit} boyutundan büyük.",
   "errors_permission_title": "Yalnızca korucular için",
-  "errors_permission_detail": "Bu sayfayı açmak için farklı bir role ihtiyacın var. Geri dön ya da başka bir hesapla giriş yap."
+  "errors_permission_detail": "Bu sayfayı açmak için farklı bir role ihtiyacın var. Geri dön ya da başka bir hesapla giriş yap.",
+  "errors_not_found_readout": "Sinyal yok · Harita dışı",
+  "errors_gone_readout": "Patika kapalı · Kalıcı olarak kaldırıldı",
+  "errors_server_readout": "Kamp ateşi söndü · Hata 500",
+  "errors_server_retry": "Tekrar dene",
+  "errors_server_status": "Durumu Discord’da kontrol et",
+  "errors_not_found_install": "Mod nasıl kurulur"
 }

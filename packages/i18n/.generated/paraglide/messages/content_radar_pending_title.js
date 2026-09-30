@@ -22,7 +22,7 @@ const fr_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending
 };
 
 const it_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In attesa di segnalazioni sul campo`)
+	return /** @type {LocalizedString} */ (`In attesa di rapporti sul campo`)
 };
 
 const nl_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending_TitleInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending
 };
 
 const pl_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czekają na zgłoszenia terenowe`)
+	return /** @type {LocalizedString} */ (`Czekamy na raporty terenowe`)
 };
 
 const pt_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aguardando relatos de campo`)
+	return /** @type {LocalizedString} */ (`Aguardando relatórios de campo`)
 };
 
 const ru_content_radar_pending_title = /** @type {(inputs: Content_Radar_Pending_TitleInputs) => LocalizedString} */ () => {

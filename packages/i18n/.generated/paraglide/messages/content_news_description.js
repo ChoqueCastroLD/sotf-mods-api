@@ -18,7 +18,7 @@ const de_content_news_description = /** @type {(inputs: Content_News_Description
 };
 
 const fr_content_news_description = /** @type {(inputs: Content_News_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Annonces de l’équipe SOTF Mods : nouvelles fonctionnalités, changements du site et de l’API, et ce qui arrive ensuite.`)
+	return /** @type {LocalizedString} */ (`Annonces de l’équipe SOTF Mods : nouvelles fonctionnalités, changements du site et de l’API, et ce qui arrive ensuite.`)
 };
 
 const it_content_news_description = /** @type {(inputs: Content_News_DescriptionInputs) => LocalizedString} */ () => {

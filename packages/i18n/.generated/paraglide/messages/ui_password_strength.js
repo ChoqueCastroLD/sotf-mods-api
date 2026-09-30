@@ -18,7 +18,7 @@ const de_ui_password_strength = /** @type {(inputs: Ui_Password_StrengthInputs) 
 };
 
 const fr_ui_password_strength = /** @type {(inputs: Ui_Password_StrengthInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Robustesse du mot de passe : ${i?.level}`)
+	return /** @type {LocalizedString} */ (`Robustesse du mot de passe : ${i?.level}`)
 };
 
 const it_ui_password_strength = /** @type {(inputs: Ui_Password_StrengthInputs) => LocalizedString} */ (i) => {

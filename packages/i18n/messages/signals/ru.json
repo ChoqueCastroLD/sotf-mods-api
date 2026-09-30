@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} отмечен как {status, select, broken {неработающий} other {работающий частично}} на {build}",
   "signals_compat_fixed_in": "Проблема из вашего полевого отчёта о {mod} исправлена в {version}",
   "signals_compat_acknowledged": "Автор {mod} увидел ваш полевой отчёт",
-  "signals_patch_breaking": "Сборка игры {build} может сломать моды — проверьте свои в Patch Radar",
+  "signals_patch_breaking": "Сборка игры {build} может сломать моды — проверьте свои в Радаре патчей",
   "signals_status_approved": "Ваш мод {mod} одобрен и опубликован",
   "signals_status_republished": "Ваш мод {mod} снова публичный",
   "signals_status_rejected": "Ваш мод {mod} отклонён",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Пока ни один сигнал не подходит под этот фильтр. Попробуйте «Все».",
   "signals_show_all": "Показать все сигналы",
   "signals_error_text": "Что-то пошло не так на нашей стороне. Попробуйте ещё раз чуть позже.",
-  "signals_more_error": "Не удалось загрузить более старые сигналы."
+  "signals_more_error": "Не удалось загрузить более старые сигналы.",
+  "signals_status_version_approved": "Версия {version} мода {mod} одобрена и опубликована",
+  "signals_status_version_rejected": "Версия {version} мода {mod} не одобрена",
+  "signals_status_version_changes_requested": "Рейнджеры просят доработать версию {version} мода {mod}",
+  "signals_status_version_held": "Версия {version} мода {mod} ждёт проверки рейнджером"
 }

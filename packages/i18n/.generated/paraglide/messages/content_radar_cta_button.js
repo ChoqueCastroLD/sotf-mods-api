@@ -54,7 +54,7 @@ const zh_content_radar_cta_button = /** @type {(inputs: Content_Radar_Cta_Button
 };
 
 const ja_content_radar_cta_button = /** @type {(inputs: Content_Radar_Cta_ButtonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`報告待ちの Mod`)
+	return /** @type {LocalizedString} */ (`報告待ちの MOD`)
 };
 
 /**

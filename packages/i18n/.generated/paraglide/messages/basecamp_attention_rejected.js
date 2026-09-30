@@ -18,7 +18,7 @@ const de_basecamp_attention_rejected = /** @type {(inputs: Basecamp_Attention_Re
 };
 
 const fr_basecamp_attention_rejected = /** @type {(inputs: Basecamp_Attention_RejectedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} n’a pas été approuvé : consulte le motif et renvoie-le`)
+	return /** @type {LocalizedString} */ (`${i?.name} n’a pas été approuvé : consultez le motif et renvoyez-le`)
 };
 
 const it_basecamp_attention_rejected = /** @type {(inputs: Basecamp_Attention_RejectedInputs) => LocalizedString} */ (i) => {

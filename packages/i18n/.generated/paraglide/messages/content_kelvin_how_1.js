@@ -54,7 +54,7 @@ const zh_content_kelvin_how_1 = /** @type {(inputs: Content_Kelvin_How_1Inputs) 
 };
 
 const ja_content_kelvin_how_1 = /** @type {(inputs: Content_Kelvin_How_1Inputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader と KelvinSeek Mod をインストールします。`)
+	return /** @type {LocalizedString} */ (`RedLoader と KelvinSeek MOD をインストールします。`)
 };
 
 /**

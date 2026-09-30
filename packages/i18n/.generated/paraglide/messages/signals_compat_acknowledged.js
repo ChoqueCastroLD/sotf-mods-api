@@ -10,7 +10,7 @@ const en_signals_compat_acknowledged = /** @type {(inputs: Signals_Compat_Acknow
 };
 
 const es_signals_compat_acknowledged = /** @type {(inputs: Signals_Compat_AcknowledgedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`El autor de ${i?.mod} ha visto tu informe de campo`)
+	return /** @type {LocalizedString} */ (`El autor de ${i?.mod} ha visto tu reporte de campo`)
 };
 
 const de_signals_compat_acknowledged = /** @type {(inputs: Signals_Compat_AcknowledgedInputs) => LocalizedString} */ (i) => {
@@ -54,7 +54,7 @@ const zh_signals_compat_acknowledged = /** @type {(inputs: Signals_Compat_Acknow
 };
 
 const ja_signals_compat_acknowledged = /** @type {(inputs: Signals_Compat_AcknowledgedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} の作者があなたの現地レポートを確認しました`)
+	return /** @type {LocalizedString} */ (`${i?.mod} の作者があなたのフィールドレポートを確認しました`)
 };
 
 /**

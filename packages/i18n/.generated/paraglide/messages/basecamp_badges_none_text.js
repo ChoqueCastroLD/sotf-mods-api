@@ -18,7 +18,7 @@ const de_basecamp_badges_none_text = /** @type {(inputs: Basecamp_Badges_None_Te
 };
 
 const fr_basecamp_badges_none_text = /** @type {(inputs: Basecamp_Badges_None_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publier, répondre aux joueurs et garder tes mods fonctionnels après chaque patch rapporte des badges.`)
+	return /** @type {LocalizedString} */ (`Publier, répondre aux joueurs et garder vos mods fonctionnels après chaque patch rapporte des badges.`)
 };
 
 const it_basecamp_badges_none_text = /** @type {(inputs: Basecamp_Badges_None_TextInputs) => LocalizedString} */ () => {

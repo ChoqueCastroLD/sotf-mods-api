@@ -18,7 +18,7 @@ const de_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Update
 };
 
 const fr_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucun mod de votre sac n’a de version plus récente que celle que vous avez téléchargée.`)
+	return /** @type {LocalizedString} */ (`Aucun mod de votre sac à dos n’a de version plus récente que celle que vous avez téléchargée.`)
 };
 
 const it_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {

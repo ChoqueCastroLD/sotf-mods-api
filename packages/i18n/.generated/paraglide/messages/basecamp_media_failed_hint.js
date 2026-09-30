@@ -18,7 +18,7 @@ const de_basecamp_media_failed_hint = /** @type {(inputs: Basecamp_Media_Failed_
 };
 
 const fr_basecamp_media_failed_hint = /** @type {(inputs: Basecamp_Media_Failed_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retire les images en échec ou choisis-les à nouveau.`)
+	return /** @type {LocalizedString} */ (`Retirez les images en échec ou choisissez-les à nouveau.`)
 };
 
 const it_basecamp_media_failed_hint = /** @type {(inputs: Basecamp_Media_Failed_HintInputs) => LocalizedString} */ () => {

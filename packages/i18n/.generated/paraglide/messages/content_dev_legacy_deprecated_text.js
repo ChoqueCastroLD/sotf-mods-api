@@ -18,7 +18,7 @@ const de_content_dev_legacy_deprecated_text = /** @type {(inputs: Content_Dev_Le
 };
 
 const fr_content_dev_legacy_deprecated_text = /** @type {(inputs: Content_Dev_Legacy_Deprecated_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ces routes répondent jusqu’au ${i?.date}, puis elles seront retirées. Leurs réponses portent ces en-têtes :`)
+	return /** @type {LocalizedString} */ (`Ces routes répondent jusqu’au ${i?.date}, puis elles seront retirées. Leurs réponses portent ces en-têtes :`)
 };
 
 const it_content_dev_legacy_deprecated_text = /** @type {(inputs: Content_Dev_Legacy_Deprecated_TextInputs) => LocalizedString} */ (i) => {

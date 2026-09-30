@@ -137,7 +137,7 @@
   "profile_badge_staff_pick_hint": "Tenha um mod escolhido pela equipe. Pode ser conquistada várias vezes.",
   "profile_badge_verified_creator_name": "Criador verificado",
   "profile_badge_verified_creator_hint": "Criadores verificados pela equipe do SOTF Mods.",
-  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_ranger_name": "Guarda",
   "profile_badge_ranger_hint": "Moderadores que mantêm a ilha segura.",
   "profile_badge_translator_name": "Tradutor",
   "profile_badge_translator_hint": "Ajudou a traduzir o SOTF Mods para outro idioma.",
@@ -233,6 +233,6 @@
   "profile_achievements_fair_play_downloads": "Downloads nunca dão XP, então não há nada a ganhar inflando-os.",
   "profile_achievements_fair_play_same_network": "Votos e relatórios entre contas da mesma rede em 24 horas não contam.",
   "profile_achievements_fair_play_new_accounts": "Contas recém-criadas valem metade nas notas e na compatibilidade até ganharem confiança.",
-  "profile_achievements_fair_play_spikes": "Picos repentinos de downloads são revisados pelos Rangers.",
+  "profile_achievements_fair_play_spikes": "Picos repentinos de downloads são revisados pelos guardas.",
   "profile_achievements_fair_play_reversible": "Cada ponto de XP é registrado e pode ser revertido se vier de abuso."
 }

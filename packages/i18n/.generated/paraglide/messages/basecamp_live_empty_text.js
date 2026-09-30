@@ -18,7 +18,7 @@ const de_basecamp_live_empty_text = /** @type {(inputs: Basecamp_Live_Empty_Text
 };
 
 const fr_basecamp_live_empty_text = /** @type {(inputs: Basecamp_Live_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les téléchargements, avis, commentaires et rapports de terrain de tes mods s’affichent ici en temps réel.`)
+	return /** @type {LocalizedString} */ (`Les téléchargements, avis, commentaires et rapports de terrain de vos mods s’affichent ici en temps réel.`)
 };
 
 const it_basecamp_live_empty_text = /** @type {(inputs: Basecamp_Live_Empty_TextInputs) => LocalizedString} */ () => {

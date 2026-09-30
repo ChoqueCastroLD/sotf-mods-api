@@ -18,7 +18,7 @@ const de_basecamp_panel_error_text = /** @type {(inputs: Basecamp_Panel_Error_Te
 };
 
 const fr_basecamp_panel_error_text = /** @type {(inputs: Basecamp_Panel_Error_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le reste de la page fonctionne. Réessaie dans un instant.`)
+	return /** @type {LocalizedString} */ (`Le reste de la page fonctionne. Réessayez dans un instant.`)
 };
 
 const it_basecamp_panel_error_text = /** @type {(inputs: Basecamp_Panel_Error_TextInputs) => LocalizedString} */ () => {

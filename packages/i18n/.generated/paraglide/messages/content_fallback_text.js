@@ -46,7 +46,7 @@ const sv_content_fallback_text = /** @type {(inputs: Content_Fallback_TextInputs
 };
 
 const tr_content_fallback_text = /** @type {(inputs: Content_Fallback_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Bu sayfa henüz ${i?.language} dilinde yok, bu yüzden ${i?.original} aslını okuyorsunuz.`)
+	return /** @type {LocalizedString} */ (`Bu sayfa henüz ${i?.language} dilinde yok, bu yüzden ${i?.original} aslını okuyorsun.`)
 };
 
 const zh_content_fallback_text = /** @type {(inputs: Content_Fallback_TextInputs) => LocalizedString} */ (i) => {

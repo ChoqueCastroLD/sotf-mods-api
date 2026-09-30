@@ -18,7 +18,7 @@ const de_basecamp_listing_license_placeholder = /** @type {(inputs: Basecamp_Lis
 };
 
 const fr_basecamp_listing_license_placeholder = /** @type {(inputs: Basecamp_Listing_License_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Choisis une licence`)
+	return /** @type {LocalizedString} */ (`Choisissez une licence`)
 };
 
 const it_basecamp_listing_license_placeholder = /** @type {(inputs: Basecamp_Listing_License_PlaceholderInputs) => LocalizedString} */ () => {

@@ -54,7 +54,7 @@ const zh_mod_license_all_rights_reserved = /** @type {(inputs: Mod_License_All_R
 };
 
 const ja_mod_license_all_rights_reserved = /** @type {(inputs: Mod_License_All_Rights_ReservedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`All rights reserved`)
+	return /** @type {LocalizedString} */ (`無断転載・再配布禁止`)
 };
 
 /**

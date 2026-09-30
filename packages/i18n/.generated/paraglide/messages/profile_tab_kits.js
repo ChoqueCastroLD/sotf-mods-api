@@ -50,7 +50,7 @@ const tr_profile_tab_kits = /** @type {(inputs: Profile_Tab_KitsInputs) => Local
 };
 
 const zh_profile_tab_kits = /** @type {(inputs: Profile_Tab_KitsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`合集`)
+	return /** @type {LocalizedString} */ (`套装`)
 };
 
 const ja_profile_tab_kits = /** @type {(inputs: Profile_Tab_KitsInputs) => LocalizedString} */ () => {

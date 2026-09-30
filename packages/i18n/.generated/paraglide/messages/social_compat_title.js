@@ -30,11 +30,11 @@ const nl_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) =>
 };
 
 const pl_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raport z terenu`)
+	return /** @type {LocalizedString} */ (`Raport terenowy`)
 };
 
 const pt_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Relato de campo`)
+	return /** @type {LocalizedString} */ (`Relatório de campo`)
 };
 
 const ru_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) =>
 };
 
 const zh_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`实测报告`)
+	return /** @type {LocalizedString} */ (`实地报告`)
 };
 
 const ja_social_compat_title = /** @type {(inputs: Social_Compat_TitleInputs) => LocalizedString} */ () => {

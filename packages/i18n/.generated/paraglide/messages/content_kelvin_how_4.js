@@ -18,7 +18,7 @@ const de_content_kelvin_how_4 = /** @type {(inputs: Content_Kelvin_How_4Inputs) 
 };
 
 const fr_content_kelvin_how_4 = /** @type {(inputs: Content_Kelvin_How_4Inputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ou utilisez la console : « askkelvin … » envoie un message, « clearkelvinchathistory » démarre une nouvelle conversation.`)
+	return /** @type {LocalizedString} */ (`Ou utilisez la console : « askkelvin … » envoie un message, « clearkelvinchathistory » démarre une nouvelle conversation.`)
 };
 
 const it_content_kelvin_how_4 = /** @type {(inputs: Content_Kelvin_How_4Inputs) => LocalizedString} */ () => {

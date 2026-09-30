@@ -53,12 +53,12 @@ const fr_me_backpack_summary = /** @type {(inputs: Me_Backpack_SummaryInputs) =>
 	const updates__exact = registry.number("fr", i?.updates, { maximumFractionDigits: 20 });
 	const updates__plural = registry.plural("fr", i?.updates, {});
 	const updates__number = registry.number("fr", i?.updates, {});
-	if (count__plural === "one" && updates__exact === "0") return /** @type {LocalizedString} */ (`${count__number} mod dans votre sac · tout est à jour`);
-	if (count__plural === "one" && updates__plural === "one") return /** @type {LocalizedString} */ (`${count__number} mod dans votre sac · ${updates__number} mise à jour disponible`);
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} mod dans votre sac · ${updates__number} mises à jour disponibles`);
-	if (updates__exact === "0") return /** @type {LocalizedString} */ (`${count__number} mods dans votre sac · tout est à jour`);
-	if (updates__plural === "one") return /** @type {LocalizedString} */ (`${count__number} mods dans votre sac · ${updates__number} mise à jour disponible`);
-	return /** @type {LocalizedString} */ (`${count__number} mods dans votre sac · ${updates__number} mises à jour disponibles`)
+	if (count__plural === "one" && updates__exact === "0") return /** @type {LocalizedString} */ (`${count__number} mod dans votre sac à dos · tout est à jour`);
+	if (count__plural === "one" && updates__plural === "one") return /** @type {LocalizedString} */ (`${count__number} mod dans votre sac à dos · ${updates__number} mise à jour disponible`);
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} mod dans votre sac à dos · ${updates__number} mises à jour disponibles`);
+	if (updates__exact === "0") return /** @type {LocalizedString} */ (`${count__number} mods dans votre sac à dos · tout est à jour`);
+	if (updates__plural === "one") return /** @type {LocalizedString} */ (`${count__number} mods dans votre sac à dos · ${updates__number} mise à jour disponible`);
+	return /** @type {LocalizedString} */ (`${count__number} mods dans votre sac à dos · ${updates__number} mises à jour disponibles`)
 	
 };
 

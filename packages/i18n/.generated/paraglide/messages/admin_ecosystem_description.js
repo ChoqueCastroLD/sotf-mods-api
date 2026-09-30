@@ -30,7 +30,7 @@ const nl_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_Descr
 };
 
 const pl_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wydania RedLoadera i RedManagera i to, czy działają na każdym buildzie gry, tak jak na Radarze łatek.`)
+	return /** @type {LocalizedString} */ (`Wydania RedLoadera i RedManagera i to, czy działają na każdym buildzie gry, tak jak na Radarze patchy.`)
 };
 
 const pt_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {

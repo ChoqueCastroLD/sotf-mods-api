@@ -18,7 +18,7 @@ const de_basecamp_versions_yank_reason_error = /** @type {(inputs: Basecamp_Vers
 };
 
 const fr_basecamp_versions_yank_reason_error = /** @type {(inputs: Basecamp_Versions_Yank_Reason_ErrorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Écris au moins ${i?.min} caractères.`)
+	return /** @type {LocalizedString} */ (`Écrivez au moins ${i?.min} caractères.`)
 };
 
 const it_basecamp_versions_yank_reason_error = /** @type {(inputs: Basecamp_Versions_Yank_Reason_ErrorInputs) => LocalizedString} */ (i) => {

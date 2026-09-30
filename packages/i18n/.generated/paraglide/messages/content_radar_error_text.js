@@ -18,7 +18,7 @@ const de_content_radar_error_text = /** @type {(inputs: Content_Radar_Error_Text
 };
 
 const fr_content_radar_error_text = /** @type {(inputs: Content_Radar_Error_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Impossible de charger les données de compatibilité. Réessayez dans une minute ; si le problème persiste, prévenez-nous sur Discord avec la référence ci-dessous.`)
+	return /** @type {LocalizedString} */ (`Impossible de charger les données de compatibilité. Réessayez dans une minute ; si le problème persiste, prévenez-nous sur Discord avec la référence ci-dessous.`)
 };
 
 const it_content_radar_error_text = /** @type {(inputs: Content_Radar_Error_TextInputs) => LocalizedString} */ () => {

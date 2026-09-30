@@ -18,7 +18,7 @@ const de_me_downloads_off_text = /** @type {(inputs: Me_Downloads_Off_TextInputs
 };
 
 const fr_me_downloads_off_text = /** @type {(inputs: Me_Downloads_Off_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les nouveaux téléchargements ne sont pas enregistrés : les alertes de mise à jour ici et dans votre sac ne peuvent donc pas comparer les versions. Vous pouvez le réactiver à tout moment.`)
+	return /** @type {LocalizedString} */ (`Les nouveaux téléchargements ne sont pas enregistrés : les alertes de mise à jour ici et dans votre sac à dos ne peuvent donc pas comparer les versions. Vous pouvez le réactiver à tout moment.`)
 };
 
 const it_me_downloads_off_text = /** @type {(inputs: Me_Downloads_Off_TextInputs) => LocalizedString} */ () => {

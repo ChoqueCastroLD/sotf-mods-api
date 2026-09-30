@@ -54,7 +54,7 @@ const zh_content_radar_list_name = /** @type {(inputs: Content_Radar_List_NameIn
 };
 
 const ja_content_radar_list_name = /** @type {(inputs: Content_Radar_List_NameInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`パッチ ${i?.build} の人気 Sons of the Forest Mod`)
+	return /** @type {LocalizedString} */ (`パッチ ${i?.build} の人気 Sons of the Forest MOD`)
 };
 
 /**

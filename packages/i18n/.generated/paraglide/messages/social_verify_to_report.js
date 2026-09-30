@@ -30,11 +30,11 @@ const nl_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportIn
 };
 
 const pl_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zweryfikuj e-mail, aby wysyłać raporty z terenu.`)
+	return /** @type {LocalizedString} */ (`Zweryfikuj e-mail, aby wysyłać raporty terenowe.`)
 };
 
 const pt_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifique seu e-mail para enviar relatos de campo.`)
+	return /** @type {LocalizedString} */ (`Verifique seu e-mail para enviar relatórios de campo.`)
 };
 
 const ru_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportIn
 };
 
 const zh_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`验证邮箱后即可提交实测报告。`)
+	return /** @type {LocalizedString} */ (`验证邮箱后即可提交实地报告。`)
 };
 
 const ja_social_verify_to_report = /** @type {(inputs: Social_Verify_To_ReportInputs) => LocalizedString} */ () => {

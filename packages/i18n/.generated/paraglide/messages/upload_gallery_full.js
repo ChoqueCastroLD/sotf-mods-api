@@ -30,7 +30,7 @@ const nl_upload_gallery_full = /** @type {(inputs: Upload_Gallery_FullInputs) =>
 };
 
 const pl_upload_gallery_full = /** @type {(inputs: Upload_Gallery_FullInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Galeria jest pełna (${i?.max} obrazów).`)
+	return /** @type {LocalizedString} */ (`Galeria jest pełna (maksymalnie: ${i?.max}).`)
 };
 
 const pt_upload_gallery_full = /** @type {(inputs: Upload_Gallery_FullInputs) => LocalizedString} */ (i) => {
@@ -38,7 +38,7 @@ const pt_upload_gallery_full = /** @type {(inputs: Upload_Gallery_FullInputs) =>
 };
 
 const ru_upload_gallery_full = /** @type {(inputs: Upload_Gallery_FullInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Галерея заполнена (${i?.max} изображений).`)
+	return /** @type {LocalizedString} */ (`Галерея заполнена (максимум: ${i?.max}).`)
 };
 
 const sv_upload_gallery_full = /** @type {(inputs: Upload_Gallery_FullInputs) => LocalizedString} */ (i) => {

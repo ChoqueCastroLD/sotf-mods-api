@@ -18,7 +18,7 @@ const de_basecamp_compat_author_tested = /** @type {(inputs: Basecamp_Compat_Aut
 };
 
 const fr_basecamp_compat_author_tested = /** @type {(inputs: Basecamp_Compat_Author_TestedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`testé par toi`)
+	return /** @type {LocalizedString} */ (`testé par vous`)
 };
 
 const it_basecamp_compat_author_tested = /** @type {(inputs: Basecamp_Compat_Author_TestedInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_content_kelvin_credit = /** @type {(inputs: Content_Kelvin_CreditInputs
 };
 
 const fr_content_kelvin_credit = /** @type {(inputs: Content_Kelvin_CreditInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`KelvinSeek est créé et maintenu par ${i?.author} ; SOTF Mods héberge seulement l’API avec laquelle il communique. Kelvin et Sons of the Forest appartiennent à Endnight Games ; ceci est un projet de fans.`)
+	return /** @type {LocalizedString} */ (`KelvinSeek est créé et maintenu par ${i?.author} ; SOTF Mods héberge seulement l’API avec laquelle il communique. Kelvin et Sons of the Forest appartiennent à Endnight Games ; ceci est un projet de fans.`)
 };
 
 const it_content_kelvin_credit = /** @type {(inputs: Content_Kelvin_CreditInputs) => LocalizedString} */ (i) => {

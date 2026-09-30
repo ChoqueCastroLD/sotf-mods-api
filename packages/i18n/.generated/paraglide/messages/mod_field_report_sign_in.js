@@ -30,7 +30,7 @@ const nl_mod_field_report_sign_in = /** @type {(inputs: Mod_Field_Report_Sign_In
 };
 
 const pl_mod_field_report_sign_in = /** @type {(inputs: Mod_Field_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zaloguj się, aby dodać raport z terenu`)
+	return /** @type {LocalizedString} */ (`Zaloguj się, aby dodać raport terenowy`)
 };
 
 const pt_mod_field_report_sign_in = /** @type {(inputs: Mod_Field_Report_Sign_InInputs) => LocalizedString} */ () => {

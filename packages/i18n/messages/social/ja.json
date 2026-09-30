@@ -163,7 +163,7 @@
   "social_compat_missing_mode": "プレイ方法を選んでください。",
   "social_compat_missing_result": "結果を選んでください。",
   "social_compat_submit": "レポートを送信",
-  "social_compat_thanks": "ありがとう、サバイバー！あなたのレポートは互換性バッジに反映されます。",
+  "social_compat_thanks": "ありがとう、サバイバー！あなたのフィールドレポートは互換性バッジに反映されます。",
   "social_compat_deleted": "フィールドレポートを削除しました。",
   "social_compat_yours": "{build} で「{result}」と報告しました（{mode}、v{version}）。",
   "social_compat_prompt_label": "動きましたか？",

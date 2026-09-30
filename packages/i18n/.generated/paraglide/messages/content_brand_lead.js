@@ -18,7 +18,7 @@ const de_content_brand_lead = /** @type {(inputs: Content_Brand_LeadInputs) => L
 };
 
 const fr_content_brand_lead = /** @type {(inputs: Content_Brand_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous faites un lien vers SOTF Mods depuis la page de votre mod, une vidéo ou votre serveur ? Utilisez ces fichiers et respectez les règles ci-dessous.`)
+	return /** @type {LocalizedString} */ (`Vous faites un lien vers SOTF Mods depuis la page de votre mod, une vidéo ou votre serveur ? Utilisez ces fichiers et respectez les règles ci-dessous.`)
 };
 
 const it_content_brand_lead = /** @type {(inputs: Content_Brand_LeadInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_content_brand_lead = /** @type {(inputs: Content_Brand_LeadInputs) => L
 };
 
 const ja_content_brand_lead = /** @type {(inputs: Content_Brand_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod のページや動画、サーバーから SOTF Mods にリンクしますか？これらのファイルを使い、下のルールを守ってください。`)
+	return /** @type {LocalizedString} */ (`MOD のページや動画、サーバーから SOTF Mods にリンクしますか？これらのファイルを使い、下のルールを守ってください。`)
 };
 
 /**

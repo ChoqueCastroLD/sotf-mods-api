@@ -18,7 +18,7 @@ const de_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => L
 };
 
 const fr_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} est dans votre sac. Vous serez prévenu des mises à jour.`)
+	return /** @type {LocalizedString} */ (`${i?.name} est dans votre sac à dos. Vous serez prévenu des mises à jour.`)
 };
 
 const it_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {

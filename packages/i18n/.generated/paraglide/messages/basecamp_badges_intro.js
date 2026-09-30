@@ -18,7 +18,7 @@ const de_basecamp_badges_intro = /** @type {(inputs: Basecamp_Badges_IntroInputs
 };
 
 const fr_basecamp_badges_intro = /** @type {(inputs: Basecamp_Badges_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ton rang de créateur, les prochains paliers et les badges dont tu es le plus proche.`)
+	return /** @type {LocalizedString} */ (`Votre rang de créateur, les prochains paliers et les badges dont vous êtes le plus proche.`)
 };
 
 const it_basecamp_badges_intro = /** @type {(inputs: Basecamp_Badges_IntroInputs) => LocalizedString} */ () => {

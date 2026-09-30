@@ -18,7 +18,7 @@ const de_basecamp_milestone_none = /** @type {(inputs: Basecamp_Milestone_NoneIn
 };
 
 const fr_basecamp_milestone_none = /** @type {(inputs: Basecamp_Milestone_NoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tous les paliers à ta portée sont déjà à toi.`)
+	return /** @type {LocalizedString} */ (`Tous les paliers à votre portée sont déjà à vous.`)
 };
 
 const it_basecamp_milestone_none = /** @type {(inputs: Basecamp_Milestone_NoneInputs) => LocalizedString} */ () => {

@@ -54,7 +54,7 @@ const zh_content_brand_link_text = /** @type {(inputs: Content_Brand_Link_TextIn
 };
 
 const ja_content_brand_link_text = /** @type {(inputs: Content_Brand_Link_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このコードを README、ウェブサイト、Mod の説明にコピーしてください。公開中のロゴを参照するので、常に最新の状態です。`)
+	return /** @type {LocalizedString} */ (`このコードを README、ウェブサイト、MOD の説明にコピーしてください。公開中のロゴを参照するので、常に最新の状態です。`)
 };
 
 /**

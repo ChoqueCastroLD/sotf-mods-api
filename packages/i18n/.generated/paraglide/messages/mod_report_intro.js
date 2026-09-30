@@ -10,7 +10,7 @@ const en_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => Local
 };
 
 const es_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cuéntales a los rangers qué pasa. Las denuncias son privadas.`)
+	return /** @type {LocalizedString} */ (`Cuéntales a los guardabosques qué pasa. Las denuncias son privadas.`)
 };
 
 const de_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => Local
 };
 
 const pl_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Powiedz rangerom, co jest nie tak. Zgłoszenia są prywatne.`)
+	return /** @type {LocalizedString} */ (`Powiedz strażnikom, co jest nie tak. Zgłoszenia są prywatne.`)
 };
 
 const pt_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conte aos rangers o que está errado. Denúncias são privadas.`)
+	return /** @type {LocalizedString} */ (`Conte aos guardas o que está errado. Denúncias são privadas.`)
 };
 
 const ru_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {

@@ -22,7 +22,7 @@ const fr_admin_builds_description = /** @type {(inputs: Admin_Builds_Description
 };
 
 const it_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le patch di Sons of the Forest a cui si riferiscono i report sul campo, i badge di compatibilità e il Radar delle patch. Esattamente una è quella attuale.`)
+	return /** @type {LocalizedString} */ (`Le patch di Sons of the Forest a cui si riferiscono i rapporti sul campo, i badge di compatibilità e il Radar delle patch. Esattamente una è quella attuale.`)
 };
 
 const nl_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_admin_builds_description = /** @type {(inputs: Admin_Builds_Description
 };
 
 const pl_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Łatki Sons of the Forest, do których odnoszą się raporty z terenu, odznaki zgodności i Radar łatek. Dokładnie jedna jest aktualna.`)
+	return /** @type {LocalizedString} */ (`Łatki Sons of the Forest, do których odnoszą się raporty terenowe, odznaki zgodności i Radar patchy. Dokładnie jedna jest aktualna.`)
 };
 
 const pt_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os patches de Sons of the Forest a que se referem os relatos de campo, os selos de compatibilidade e o Radar de patches. Exatamente um é o atual.`)
+	return /** @type {LocalizedString} */ (`Os patches de Sons of the Forest a que se referem os relatórios de campo, os selos de compatibilidade e o Radar de patches. Exatamente um é o atual.`)
 };
 
 const ru_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {

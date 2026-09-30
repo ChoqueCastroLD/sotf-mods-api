@@ -10,7 +10,7 @@ const en_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => L
 };
 
 const es_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gracias. Los rangers lo revisarán.`)
+	return /** @type {LocalizedString} */ (`Gracias. Los guardabosques lo revisarán.`)
 };
 
 const de_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => L
 };
 
 const pl_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dzięki. Rangerzy to sprawdzą.`)
+	return /** @type {LocalizedString} */ (`Dzięki. Strażnicy to sprawdzą.`)
 };
 
 const pt_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Valeu. Os rangers vão dar uma olhada.`)
+	return /** @type {LocalizedString} */ (`Valeu. Os guardas vão dar uma olhada.`)
 };
 
 const ru_social_report_sent = /** @type {(inputs: Social_Report_SentInputs) => LocalizedString} */ () => {

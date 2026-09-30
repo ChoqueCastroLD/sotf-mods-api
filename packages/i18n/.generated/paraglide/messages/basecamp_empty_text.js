@@ -18,7 +18,7 @@ const de_basecamp_empty_text = /** @type {(inputs: Basecamp_Empty_TextInputs) =>
 };
 
 const fr_basecamp_empty_text = /** @type {(inputs: Basecamp_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publie ton premier mod ou build et suis ici ses téléchargements, avis et rapports de terrain.`)
+	return /** @type {LocalizedString} */ (`Publiez votre premier mod ou build et suivez ici ses téléchargements, avis et rapports de terrain.`)
 };
 
 const it_basecamp_empty_text = /** @type {(inputs: Basecamp_Empty_TextInputs) => LocalizedString} */ () => {

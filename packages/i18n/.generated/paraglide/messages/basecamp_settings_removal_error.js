@@ -18,7 +18,7 @@ const de_basecamp_settings_removal_error = /** @type {(inputs: Basecamp_Settings
 };
 
 const fr_basecamp_settings_removal_error = /** @type {(inputs: Basecamp_Settings_Removal_ErrorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Écris au moins ${i?.min} caractères.`)
+	return /** @type {LocalizedString} */ (`Écrivez au moins ${i?.min} caractères.`)
 };
 
 const it_basecamp_settings_removal_error = /** @type {(inputs: Basecamp_Settings_Removal_ErrorInputs) => LocalizedString} */ (i) => {

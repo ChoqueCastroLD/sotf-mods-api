@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "请输入以 https:// 开头的完整链接。",
   "errors_field_file_too_large": "文件超过 {limit}。",
   "errors_permission_title": "仅限护林员",
-  "errors_permission_detail": "你需要其他角色才能打开此页面。请返回，或使用其他账号登录。"
+  "errors_permission_detail": "你需要其他角色才能打开此页面。请返回，或使用其他账号登录。",
+  "errors_not_found_readout": "无信号 · 地图之外",
+  "errors_gone_readout": "小径已封闭 · 已永久移除",
+  "errors_server_readout": "篝火熄灭 · 错误 500",
+  "errors_server_retry": "重试",
+  "errors_server_status": "在 Discord 查看状态",
+  "errors_not_found_install": "如何安装模组"
 }

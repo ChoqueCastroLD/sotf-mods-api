@@ -10,7 +10,7 @@ const en_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_Na
 };
 
 const es_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Guardabosques`)
 };
 
 const de_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_Na
 };
 
 const pl_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Strażnik`)
 };
 
 const pt_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Guarda`)
 };
 
 const ru_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_Na
 };
 
 const tr_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Korucu`)
 };
 
 const zh_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`巡林员`)
+	return /** @type {LocalizedString} */ (`护林员`)
 };
 
 const ja_profile_badge_ranger_name = /** @type {(inputs: Profile_Badge_Ranger_NameInputs) => LocalizedString} */ () => {

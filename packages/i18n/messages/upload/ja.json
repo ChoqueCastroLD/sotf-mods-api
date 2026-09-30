@@ -150,7 +150,7 @@
   "upload_issue_invalid_id": "id に使えるのは英数字、「.」「_」「-」だけです。",
   "upload_issue_missing_version": "マニフェストにバージョンがありません。",
   "upload_issue_invalid_version": "バージョンは 1.2.3 の形式にしてください。",
-  "upload_issue_invalid_type": "種類は「Mod」か「Library」にしてください。",
+  "upload_issue_invalid_type": "種類は「MOD」か「Library」にしてください。",
   "upload_issue_invalid_platform": "プラットフォームは Client、Server、Universal のいずれかにしてください。",
   "upload_issue_invalid_dependencies": "依存関係のリストが無効です。",
   "upload_issue_invalid_log_color": "ログの色は #FF9900 のような16進カラーにしてください。",

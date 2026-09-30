@@ -10,7 +10,7 @@ const en_me_report_description = /** @type {(inputs: Me_Report_DescriptionInputs
 };
 
 const es_me_report_description = /** @type {(inputs: Me_Report_DescriptionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tu informe de campo sobre la versión ${i?.version} en la build ${i?.build} del juego ayuda a todos los supervivientes a elegir mods que funcionan.`)
+	return /** @type {LocalizedString} */ (`Tu reporte de campo sobre la versión ${i?.version} en la build ${i?.build} del juego ayuda a todos los supervivientes a elegir mods que funcionan.`)
 };
 
 const de_me_report_description = /** @type {(inputs: Me_Report_DescriptionInputs) => LocalizedString} */ (i) => {
@@ -54,7 +54,7 @@ const zh_me_report_description = /** @type {(inputs: Me_Report_DescriptionInputs
 };
 
 const ja_me_report_description = /** @type {(inputs: Me_Report_DescriptionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`ゲームビルド ${i?.build} でのバージョン ${i?.version} についてのあなたの現地レポートは、すべてのサバイバーが動くMODを選ぶ助けになります。`)
+	return /** @type {LocalizedString} */ (`ゲームビルド ${i?.build} でのバージョン ${i?.version} についてのあなたのフィールドレポートは、すべてのサバイバーが動くMODを選ぶ助けになります。`)
 };
 
 /**

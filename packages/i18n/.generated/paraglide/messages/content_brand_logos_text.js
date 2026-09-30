@@ -18,7 +18,7 @@ const de_content_brand_logos_text = /** @type {(inputs: Content_Brand_Logos_Text
 };
 
 const fr_content_brand_logos_text = /** @type {(inputs: Content_Brand_Logos_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chaque fichier existe en version Nuit pour les fonds sombres et en version Jour pour les fonds clairs. Préférez le SVG ; utilisez le PNG là où le SVG n’est pas accepté.`)
+	return /** @type {LocalizedString} */ (`Chaque fichier existe en version Nuit pour les fonds sombres et en version Jour pour les fonds clairs. Préférez le SVG ; utilisez le PNG là où le SVG n’est pas accepté.`)
 };
 
 const it_content_brand_logos_text = /** @type {(inputs: Content_Brand_Logos_TextInputs) => LocalizedString} */ () => {

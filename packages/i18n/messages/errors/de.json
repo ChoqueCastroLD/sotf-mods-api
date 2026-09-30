@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Gib einen vollständigen Link ein, der mit https:// beginnt.",
   "errors_field_file_too_large": "Die Datei ist größer als {limit}.",
   "errors_permission_title": "Nur für Ranger",
-  "errors_permission_detail": "Du brauchst eine andere Rolle, um diese Seite zu öffnen. Geh zurück oder melde dich mit einem anderen Konto an."
+  "errors_permission_detail": "Du brauchst eine andere Rolle, um diese Seite zu öffnen. Geh zurück oder melde dich mit einem anderen Konto an.",
+  "errors_not_found_readout": "Kein Signal · Nicht auf der Karte",
+  "errors_gone_readout": "Pfad gesperrt · Endgültig entfernt",
+  "errors_server_readout": "Lagerfeuer aus · Fehler 500",
+  "errors_server_retry": "Erneut versuchen",
+  "errors_server_status": "Status auf Discord prüfen",
+  "errors_not_found_install": "So installierst du Mods"
 }

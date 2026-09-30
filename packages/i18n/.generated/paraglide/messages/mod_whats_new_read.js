@@ -30,7 +30,7 @@ const nl_mod_whats_new_read = /** @type {(inputs: Mod_Whats_New_ReadInputs) => L
 };
 
 const pl_mod_whats_new_read = /** @type {(inputs: Mod_Whats_New_ReadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeczytaj notatki z terenu`)
+	return /** @type {LocalizedString} */ (`Przeczytaj notatki terenowe`)
 };
 
 const pt_mod_whats_new_read = /** @type {(inputs: Mod_Whats_New_ReadInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_mod_whats_new_read = /** @type {(inputs: Mod_Whats_New_ReadInputs) => L
 };
 
 const zh_mod_whats_new_read = /** @type {(inputs: Mod_Whats_New_ReadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`阅读实地笔记`)
+	return /** @type {LocalizedString} */ (`阅读野外笔记`)
 };
 
 const ja_mod_whats_new_read = /** @type {(inputs: Mod_Whats_New_ReadInputs) => LocalizedString} */ () => {

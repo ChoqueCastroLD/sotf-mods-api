@@ -50,7 +50,7 @@ const tr_profile_xp_kit_followers_10 = /** @type {(inputs: Profile_Xp_Kit_Follow
 };
 
 const zh_profile_xp_kit_followers_10 = /** @type {(inputs: Profile_Xp_Kit_Followers_10Inputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的合集每新增 10 位关注者`)
+	return /** @type {LocalizedString} */ (`你的套装每新增 10 位关注者`)
 };
 
 const ja_profile_xp_kit_followers_10 = /** @type {(inputs: Profile_Xp_Kit_Followers_10Inputs) => LocalizedString} */ () => {

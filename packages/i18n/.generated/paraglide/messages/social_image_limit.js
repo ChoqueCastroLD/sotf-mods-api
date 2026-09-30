@@ -30,7 +30,7 @@ const nl_social_image_limit = /** @type {(inputs: Social_Image_LimitInputs) => L
 };
 
 const pl_social_image_limit = /** @type {(inputs: Social_Image_LimitInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Maksymalnie ${i?.max} obrazy na komentarz.`)
+	return /** @type {LocalizedString} */ (`Maksymalna liczba obrazów w komentarzu: ${i?.max}.`)
 };
 
 const pt_social_image_limit = /** @type {(inputs: Social_Image_LimitInputs) => LocalizedString} */ (i) => {

@@ -18,7 +18,7 @@ const de_basecamp_inbox_intro = /** @type {(inputs: Basecamp_Inbox_IntroInputs) 
 };
 
 const fr_basecamp_inbox_intro = /** @type {(inputs: Basecamp_Inbox_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Commentaires, rapports de bug, avis et rapports de terrain sur tes mods. Réponds d’ici.`)
+	return /** @type {LocalizedString} */ (`Commentaires, rapports de bug, avis et rapports de terrain sur vos mods. Répondez d’ici.`)
 };
 
 const it_basecamp_inbox_intro = /** @type {(inputs: Basecamp_Inbox_IntroInputs) => LocalizedString} */ () => {

@@ -54,7 +54,7 @@ const zh_content_radar_broken_empty = /** @type {(inputs: Content_Radar_Broken_E
 };
 
 const ja_content_radar_broken_empty = /** @type {(inputs: Content_Radar_Broken_EmptyInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.build} で不具合が報告されている上位 Mod はありません。`)
+	return /** @type {LocalizedString} */ (`${i?.build} で不具合が報告されている上位 MOD はありません。`)
 };
 
 /**

@@ -1,0 +1,16 @@
+export type LocalizedString = import('../runtime.js').LocalizedString;
+export type Ui_Domain_View_GridInputs = {};
+/**
+* | output |
+* | --- |
+* | "Grid" |
+*
+* @param {Ui_Domain_View_GridInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export declare const ui_domain_view_grid: ((inputs?: Ui_Domain_View_GridInputs, options?: {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Ui_Domain_View_GridInputs, {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}, {}>;

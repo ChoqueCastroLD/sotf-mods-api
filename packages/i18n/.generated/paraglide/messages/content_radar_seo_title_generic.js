@@ -14,47 +14,47 @@ const es_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo
 };
 
 const de_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Funktionieren SOTF-Mods mit dem neuesten Patch? – Patch Radar`)
+	return /** @type {LocalizedString} */ (`Funktionieren SOTF-Mods mit dem neuesten Patch? – Patch-Radar`)
 };
 
 const fr_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les mods SOTF fonctionnent-ils sur le dernier patch ? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Les mods SOTF fonctionnent-ils sur le dernier patch ? — Radar des patchs`)
 };
 
 const it_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le mod di SOTF funzionano con l’ultima patch? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Le mod di SOTF funzionano con l’ultima patch? — Radar delle patch`)
 };
 
 const nl_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Werken SOTF-mods op de nieuwste patch? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Werken SOTF-mods op de nieuwste patch? — Patchradar`)
 };
 
 const pl_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czy mody do SOTF działają na najnowszej łatce? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Czy mody do SOTF działają na najnowszej łatce? — Radar patchy`)
 };
 
 const pt_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os mods de SOTF funcionam no último patch? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Os mods de SOTF funcionam no último patch? — Radar de patches`)
 };
 
 const ru_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Работают ли моды SOTF на последнем патче? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Работают ли моды SOTF на последнем патче? — Радар патчей`)
 };
 
 const sv_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fungerar SOTF-moddar på senaste patchen? – Patch Radar`)
+	return /** @type {LocalizedString} */ (`Fungerar SOTF-moddar på senaste patchen? – Patchradar`)
 };
 
 const tr_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF modları son yamada çalışıyor mu? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`SOTF modları son yamada çalışıyor mu? — Yama Radarı`)
 };
 
 const zh_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF 模组能在最新补丁上运行吗？— Patch Radar`)
+	return /** @type {LocalizedString} */ (`SOTF 模组能在最新补丁上运行吗？— 补丁雷达`)
 };
 
 const ja_content_radar_seo_title_generic = /** @type {(inputs: Content_Radar_Seo_Title_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF の Mod は最新パッチで動く？ — Patch Radar`)
+	return /** @type {LocalizedString} */ (`SOTF の MOD は最新パッチで動く？ — パッチレーダー`)
 };
 
 /**

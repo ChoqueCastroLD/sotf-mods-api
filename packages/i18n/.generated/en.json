@@ -3144,6 +3144,11 @@
         "status=archived": "{mod} was archived",
         "status=unlisted": "{mod} was unlisted",
         "status=removed": "{mod} was removed from SOTF Mods",
+        "status=changes_requested": "The Rangers asked for changes to {mod}",
+        "status=version_approved": "A new version of {mod} was approved and is live",
+        "status=version_rejected": "A new version of {mod} was not approved",
+        "status=version_changes_requested": "The Rangers asked for changes to a new version of {mod}",
+        "status=version_held": "A new version of {mod} is on hold for a ranger check",
         "status=*": "The status of {mod} changed"
       }
     }
@@ -3322,6 +3327,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Trail closed · Removed for good",
   "errors_gone_text": "What used to be here was removed for good. Try exploring other mods.",
   "errors_gone_title": "This trail is closed.",
   "errors_login_mismatch": "That email and password don’t match. Try again or reset your password.",
@@ -3329,12 +3335,17 @@
   "errors_network_retrying": "Lost signal. Retrying…",
   "errors_network_title": "Lost signal",
   "errors_not_found_home": "Back to the trail",
+  "errors_not_found_install": "How to install mods",
   "errors_not_found_popular": "Popular mods",
+  "errors_not_found_readout": "No signal · Off the map",
   "errors_not_found_text": "This page isn’t on our map. Something in the trees is watching — let’s get you back.",
   "errors_not_found_title": "You wandered off the trail.",
   "errors_permission_detail": "You need a different role to open this page. Go back or sign in with another account.",
   "errors_permission_title": "Rangers only",
   "errors_reference": "Ref: {id}",
+  "errors_server_readout": "Campfire out · Error 500",
+  "errors_server_retry": "Try again",
+  "errors_server_status": "Check the status on Discord",
   "errors_server_text": "We’re on it. Reload the page in a minute, or head back home.",
   "errors_server_title": "Something broke at base camp.",
   "errors_validation_summary": [
@@ -7151,6 +7162,10 @@
   "signals_status_removed": "Your mod {mod} was removed",
   "signals_status_republished": "Your mod {mod} is public again",
   "signals_status_unlisted": "Your mod {mod} was unlisted",
+  "signals_status_version_approved": "Version {version} of {mod} was approved and is live",
+  "signals_status_version_changes_requested": "The Rangers asked for changes to version {version} of {mod}",
+  "signals_status_version_held": "Version {version} of {mod} is on hold for a ranger check",
+  "signals_status_version_rejected": "Version {version} of {mod} was not approved",
   "signals_unknown_mod": "a mod",
   "signals_unread_prefix": "Unread:",
   "signals_version_published": "{mod} {version} is out — you follow it",
@@ -7475,6 +7490,453 @@
   "ui_clear": "Clear",
   "ui_close": "Close",
   "ui_dismiss": "Dismiss",
+  "ui_domain_ad_label": "Advertisement",
+  "ui_domain_ad_notice": "Ads keep downloads free. Sign in to hide them.",
+  "ui_domain_award_build_of_month": "Build of the Month",
+  "ui_domain_award_mod_of_month": "Mod of the Month",
+  "ui_domain_award_mod_of_week": "Mod of the Week",
+  "ui_domain_award_staff_pick": "Staff pick",
+  "ui_domain_badge_featured": "Featured",
+  "ui_domain_badge_locked": "Locked",
+  "ui_domain_badge_new": "New",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Updated",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} piece",
+        "count__plural=*": "{count__number} pieces"
+      }
+    }
+  ],
+  "ui_domain_by_author": "by {author}",
+  "ui_domain_capsule_conflicts": "Conflicts",
+  "ui_domain_capsule_dedicated": "Dedicated server",
+  "ui_domain_capsule_dependencies": "Dependencies",
+  "ui_domain_capsule_game_build": "Game build",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Multiplayer",
+  "ui_domain_capsule_platform": "Platform",
+  "ui_domain_capsule_safe_remove": "Remove mid-save",
+  "ui_domain_chart_view_table": "View as table",
+  "ui_domain_comment_badge_author": "Creator",
+  "ui_domain_comment_badge_ranger": "Ranger",
+  "ui_domain_comment_bug": "Bug report",
+  "ui_domain_comment_bug_fixed_in": "Fixed in v{version}",
+  "ui_domain_comment_bug_on": "Bug report · v{version}",
+  "ui_domain_comment_deleted": "This comment was deleted.",
+  "ui_domain_comment_image": "Image attached to the comment",
+  "ui_domain_comment_pending": "Waiting for a ranger to check it.",
+  "ui_domain_comment_pinned": "Pinned",
+  "ui_domain_comment_reactions": "Reactions",
+  "ui_domain_comment_solution": "Solution",
+  "ui_domain_compat_broken": "Broken",
+  "ui_domain_compat_broken_on": "Broken on {build}",
+  "ui_domain_compat_mixed": "Mixed reports",
+  "ui_domain_compat_mixed_on": "Mixed reports on {build}",
+  "ui_domain_compat_untested": "Not verified",
+  "ui_domain_compat_untested_on": "Not verified on {build}",
+  "ui_domain_compat_works": "Works",
+  "ui_domain_compat_works_on": "Works on {build}",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} conflict",
+        "count__plural=*": "{count__number} conflicts"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "None known",
+  "ui_domain_consent_accept": "Accept",
+  "ui_domain_consent_label": "Cookie consent",
+  "ui_domain_consent_policy": "Cookie policy",
+  "ui_domain_consent_preferences": "Preferences",
+  "ui_domain_consent_reject": "Reject",
+  "ui_domain_consent_text": "We use cookies for ads and anonymous stats. Downloads work either way.",
+  "ui_domain_creator_top_mod": "Top mod: {mod}",
+  "ui_domain_curated_by": "curated by {author}",
+  "ui_domain_dedicated_no": "Not supported",
+  "ui_domain_dedicated_partial": "Partly",
+  "ui_domain_dedicated_yes": "Supported",
+  "ui_domain_deleted_user": "Deleted survivor",
+  "ui_domain_dependencies_conflicts_title": "Conflicts with",
+  "ui_domain_dependencies_empty": "No dependencies. Drop it in and play.",
+  "ui_domain_dependencies_none": "None",
+  "ui_domain_dependencies_optional_title": "Works better with",
+  "ui_domain_dependencies_required_title": "Requires",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{required__number} required · {optional__number} optional"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "Conflicts with",
+  "ui_domain_dependency_kind_optional": "Optional",
+  "ui_domain_dependency_kind_required": "Requires",
+  "ui_domain_dependency_state_archived": "Archived",
+  "ui_domain_dependency_state_missing": "Not on SOTF Mods",
+  "ui_domain_dependency_state_ok": "Available",
+  "ui_domain_dependency_state_removed": "Removed",
+  "ui_domain_dependency_state_unlisted": "Unlisted",
+  "ui_domain_download": "Download",
+  "ui_domain_download_all_versions": "All versions",
+  "ui_domain_download_done_hint": "Drop it in your game’s Mods folder and launch the game.",
+  "ui_domain_download_done_label": "Downloaded",
+  "ui_domain_download_other_versions": "Other versions",
+  "ui_domain_download_version": "Download v{version}",
+  "ui_domain_download_version_size": "Download v{version} · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download",
+        "count__plural=*": "{display} downloads"
+      }
+    }
+  ],
+  "ui_domain_edited": "edited",
+  "ui_domain_feature_cta": "Take a look",
+  "ui_domain_filter_clear": "Clear filters",
+  "ui_domain_filter_exclude": "Exclude {label}",
+  "ui_domain_filter_excluded": "excluded",
+  "ui_domain_filter_included": "included",
+  "ui_domain_filter_unexclude": "Stop excluding {label}",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Screenshot {index__number} of {total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Gallery",
+  "ui_domain_gallery_video": "Video",
+  "ui_domain_hidden_by_ranger": "Hidden by a ranger. Only you and the rangers can see it.",
+  "ui_domain_hidden_by_ranger_reason": "Hidden by a ranger: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Everyone needs it",
+  "ui_domain_multiplayer_client_side": "Only you need it",
+  "ui_domain_multiplayer_host_only": "Host only",
+  "ui_domain_multiplayer_singleplayer_only": "Solo only",
+  "ui_domain_platform_client": "Client",
+  "ui_domain_platform_server": "Server",
+  "ui_domain_platform_universal": "Universal",
+  "ui_domain_rank_builder": "Builder",
+  "ui_domain_rank_castaway": "Castaway",
+  "ui_domain_rank_forager": "Forager",
+  "ui_domain_rank_label": "Survivor rank",
+  "ui_domain_rank_legend": "Legend",
+  "ui_domain_rank_pathfinder": "Pathfinder",
+  "ui_domain_rank_scavenger": "Scavenger",
+  "ui_domain_rank_trapper": "Trapper",
+  "ui_domain_rank_veteran": "Veteran",
+  "ui_domain_rating_out_of": "Rated {rating} out of 5",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Rated {rating} out of 5 from {count__number} review",
+        "count__plural=*": "Rated {rating} out of 5 from {count__number} reviews"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Fire",
+  "ui_domain_reaction_heart": "Heart",
+  "ui_domain_reaction_laugh": "Laugh",
+  "ui_domain_reaction_party": "Party",
+  "ui_domain_reaction_pray": "Thanks",
+  "ui_domain_reaction_thumbs_up": "Thumbs up",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} broken",
+        "count__plural=*": "{display} broken"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "By game build",
+  "ui_domain_reports_empty": "No field reports yet. Tried it? Report back.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} partly",
+        "count__plural=*": "{display} partly"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Report",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Field reports: {works__number} work, {partial__number} partly, {broken__number} broken"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Field reports",
+  "ui_domain_reports_title_on": "Field reports on {build}",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} works",
+        "count__plural=*": "{display} work"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} survivor found this helpful",
+        "count__plural=*": "{count__number} survivors found this helpful"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "Creator’s reply",
+  "ui_domain_review_reply_from": "Reply from {name}",
+  "ui_domain_review_used_version": "Used v{version}",
+  "ui_domain_review_verified_download": "Downloaded this mod",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} review",
+        "count__plural=*": "{count__number} reviews"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Rating distribution",
+  "ui_domain_reviews_not_enough": "Not enough reviews for a score yet.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} star",
+        "count__plural=*": "{count__number} stars"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "Not safe mid-save",
+  "ui_domain_safe_remove_yes": "Safe mid-save",
+  "ui_domain_sort_label": "Sort:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Down {percent} in {days__number} day",
+        "days__plural=*": "Down {percent} in {days__number} days"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "No change in {days__number} day",
+        "days__plural=*": "No change in {days__number} days"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Up {percent} in {days__number} day",
+        "days__plural=*": "Up {percent} in {days__number} days"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "Downloads",
+  "ui_domain_stat_followers": "Followers",
+  "ui_domain_stat_mods": "Mods",
+  "ui_domain_status_archived": "Archived",
+  "ui_domain_status_pending": "Pending review",
+  "ui_domain_status_rejected": "Rejected",
+  "ui_domain_status_removed": "Removed",
+  "ui_domain_status_unlisted": "Unlisted",
+  "ui_domain_tier_cabin": "Cabin",
+  "ui_domain_tier_campfire": "Campfire",
+  "ui_domain_tier_fortress": "Fortress",
+  "ui_domain_tier_label": "Creator tier",
+  "ui_domain_tier_landmark": "Landmark",
+  "ui_domain_tier_lean_to": "Lean-to",
+  "ui_domain_tier_treehouse": "Treehouse",
+  "ui_domain_trusted_creator": "Trusted creator",
+  "ui_domain_value_not_declared": "Not declared",
+  "ui_domain_value_unknown": "Unknown",
+  "ui_domain_version_beta": "Beta",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "Latest",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "New since your last download",
+  "ui_domain_version_unavailable": "File unavailable",
+  "ui_domain_version_yanked": "Yanked",
+  "ui_domain_versions_caption": "Versions",
+  "ui_domain_versions_col_date": "Released",
+  "ui_domain_versions_col_download": "Download",
+  "ui_domain_versions_col_downloads": "Downloads",
+  "ui_domain_versions_col_game": "Game",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Reports",
+  "ui_domain_versions_col_size": "Size",
+  "ui_domain_versions_col_version": "Version",
+  "ui_domain_versions_empty": "No versions published yet.",
+  "ui_domain_view_compact": "Compact",
+  "ui_domain_view_grid": "Grid",
+  "ui_domain_view_label": "View",
+  "ui_domain_view_list": "List",
+  "ui_domain_visibility_private": "Private",
+  "ui_domain_visibility_unlisted": "Unlisted",
   "ui_error_reference": "Ref: {id}",
   "ui_hide_password": "Hide password",
   "ui_language": "Language",

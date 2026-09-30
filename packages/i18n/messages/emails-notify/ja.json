@@ -31,7 +31,7 @@
   "emails_notify_item_compat_broken": "{status, select, broken {ゲームビルド {build} で {mod} が動かないという報告があります} other {ゲームビルド {build} での {mod} の動作について報告が分かれています}}",
   "emails_notify_item_compat_acknowledged": "{mod} の作者が、あなたの報告した問題を修正済みにしました",
   "emails_notify_item_patch_breaking": "ゲームビルド {build} で MOD が動かなくなる可能性があります。パッチレーダーで確認してください",
-  "emails_notify_item_status": "{status, select, published {{mod} が承認され、公開されました} rejected {{mod} は承認されませんでした} pending {{mod} は承認前に修正が必要です} archived {{mod} がアーカイブされました} unlisted {{mod} は一覧に表示されなくなりました} removed {{mod} は SOTF Mods から削除されました} other {{mod} のステータスが変わりました}}",
+  "emails_notify_item_status": "{status, select, published {{mod} が承認され、公開されました} rejected {{mod} は承認されませんでした} pending {{mod} は承認前に修正が必要です} archived {{mod} がアーカイブされました} unlisted {{mod} は一覧に表示されなくなりました} removed {{mod} は SOTF Mods から削除されました} changes_requested {レンジャーが {mod} の修正を求めています} version_approved {{mod} の新しいバージョンが承認され、公開されました} version_rejected {{mod} の新しいバージョンは承認されませんでした} version_changes_requested {レンジャーが {mod} の新しいバージョンの修正を求めています} version_held {{mod} の新しいバージョンはレンジャーの確認待ちです} other {{mod} のステータスが変わりました}}",
   "emails_notify_item_status_reason": "理由：{reason}",
   "emails_notify_item_milestone": "{mod} のダウンロード数が {threshold, number} を突破しました",
   "emails_notify_item_badge": "新しいバッジを獲得しました",

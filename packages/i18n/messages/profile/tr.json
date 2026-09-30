@@ -137,7 +137,7 @@
   "profile_badge_staff_pick_hint": "Modlarından biri ekip tarafından seçilsin. Birden çok kez kazanılabilir.",
   "profile_badge_verified_creator_name": "Doğrulanmış Üretici",
   "profile_badge_verified_creator_hint": "SOTF Mods ekibi tarafından doğrulanmış üreticiler.",
-  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_ranger_name": "Korucu",
   "profile_badge_ranger_hint": "Adayı güvende tutan moderatörler.",
   "profile_badge_translator_name": "Çevirmen",
   "profile_badge_translator_hint": "SOTF Mods’u başka bir dile çevirmeye yardım etti.",
@@ -233,6 +233,6 @@
   "profile_achievements_fair_play_downloads": "İndirmeler asla XP kazandırmaz; onları şişirmenin bir faydası yok.",
   "profile_achievements_fair_play_same_network": "Aynı ağdaki hesaplar arasında 24 saat içindeki oylar ve raporlar sayılmaz.",
   "profile_achievements_fair_play_new_accounts": "Yepyeni hesaplar güven kazanana kadar puanlarda ve uyumlulukta yarım ağırlıkla sayılır.",
-  "profile_achievements_fair_play_spikes": "Ani indirme artışları Ranger’lar tarafından incelenir.",
+  "profile_achievements_fair_play_spikes": "Ani indirme artışları korucular tarafından incelenir.",
   "profile_achievements_fair_play_reversible": "Her XP puanı kaydedilir ve kötüye kullanımdan geldiyse geri alınabilir."
 }

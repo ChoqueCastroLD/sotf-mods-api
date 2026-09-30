@@ -31,7 +31,7 @@
   "emails_notify_item_compat_broken": "{status, select, broken {Oyuncular {mod} modunun {build} oyun sürümünde çalışmadığını bildiriyor} other {Oyuncular {mod} için {build} oyun sürümünde karışık sonuçlar bildiriyor}}",
   "emails_notify_item_compat_acknowledged": "{mod} yapımcısı bildirdiğin sorunu düzeltildi olarak işaretledi",
   "emails_notify_item_patch_breaking": "{build} oyun sürümü modları bozabilir: kendi modlarını Yama Radarı’nda kontrol et",
-  "emails_notify_item_status": "{status, select, published {{mod} onaylandı ve yayında} rejected {{mod} onaylanmadı} pending {{mod} onaylanmadan önce değişiklik gerektiriyor} archived {{mod} arşivlendi} unlisted {{mod} artık listelerde görünmüyor} removed {{mod} SOTF Mods’tan kaldırıldı} other {{mod} modunun durumu değişti}}",
+  "emails_notify_item_status": "{status, select, published {{mod} onaylandı ve yayında} rejected {{mod} onaylanmadı} pending {{mod} onaylanmadan önce değişiklik gerektiriyor} archived {{mod} arşivlendi} unlisted {{mod} artık listelerde görünmüyor} removed {{mod} SOTF Mods’tan kaldırıldı} changes_requested {Korucular {mod} için değişiklik istedi} version_approved {{mod} modunun yeni sürümü onaylandı ve yayında} version_rejected {{mod} modunun yeni sürümü onaylanmadı} version_changes_requested {Korucular {mod} modunun yeni sürümünde değişiklik istedi} version_held {{mod} modunun yeni sürümü bir korucunun kontrolünü bekliyor} other {{mod} modunun durumu değişti}}",
   "emails_notify_item_status_reason": "Neden: {reason}",
   "emails_notify_item_milestone": "{mod} {threshold, number} indirmeyi geçti",
   "emails_notify_item_badge": "Yeni bir rozet kazandın",

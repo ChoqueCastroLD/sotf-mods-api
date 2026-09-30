@@ -10,7 +10,7 @@ const en_settings_notif_broken_hint = /** @type {(inputs: Settings_Notif_Broken_
 };
 
 const es_settings_notif_broken_hint = /** @type {(inputs: Settings_Notif_Broken_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los informes de campo dicen que un mod tuyo se ha roto en la build actual.`)
+	return /** @type {LocalizedString} */ (`Los reportes de campo dicen que un mod tuyo se ha roto en la build actual.`)
 };
 
 const de_settings_notif_broken_hint = /** @type {(inputs: Settings_Notif_Broken_HintInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_settings_notif_broken_hint = /** @type {(inputs: Settings_Notif_Broken_
 };
 
 const ja_settings_notif_broken_hint = /** @type {(inputs: Settings_Notif_Broken_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`現地レポートによると、あなたのMODが現在のビルドで動作しなくなりました。`)
+	return /** @type {LocalizedString} */ (`フィールドレポートによると、あなたのMODが現在のビルドで動作しなくなりました。`)
 };
 
 /**

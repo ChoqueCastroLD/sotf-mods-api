@@ -18,7 +18,7 @@ const de_basecamp_listing_error_url = /** @type {(inputs: Basecamp_Listing_Error
 };
 
 const fr_basecamp_listing_error_url = /** @type {(inputs: Basecamp_Listing_Error_UrlInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Saisis une adresse complète commençant par https://`)
+	return /** @type {LocalizedString} */ (`Saisissez une adresse complète commençant par https://`)
 };
 
 const it_basecamp_listing_error_url = /** @type {(inputs: Basecamp_Listing_Error_UrlInputs) => LocalizedString} */ () => {

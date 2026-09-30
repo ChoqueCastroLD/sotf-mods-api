@@ -28,9 +28,9 @@
   "signals_review_on_mod_grouped": "{count, plural, other {{mod} に新しいレビュー # 件}}",
   "signals_review_reply": "{mod} の作者があなたのレビューに返信しました",
   "signals_compat_broken": "{mod} は {build} で{status, select, broken {動作しない} other {動作が不安定}}と報告されています",
-  "signals_compat_fixed_in": "{mod} についてのあなたの現地レポートは {version} で修正されました",
-  "signals_compat_acknowledged": "{mod} の作者があなたの現地レポートを確認しました",
-  "signals_patch_breaking": "ゲームビルド {build} でMODが動かなくなる可能性があります。Patch Radar で確認してください",
+  "signals_compat_fixed_in": "{mod} についてのあなたのフィールドレポートは {version} で修正されました",
+  "signals_compat_acknowledged": "{mod} の作者があなたのフィールドレポートを確認しました",
+  "signals_patch_breaking": "ゲームビルド {build} でMODが動かなくなる可能性があります。パッチレーダーで確認してください",
   "signals_status_approved": "あなたのMOD {mod} が承認され、公開されました",
   "signals_status_republished": "あなたのMOD {mod} が再び公開されました",
   "signals_status_rejected": "あなたのMOD {mod} は却下されました",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "このフィルターに一致するシグナルはまだありません。「すべて」を試してください。",
   "signals_show_all": "すべてのシグナルを表示",
   "signals_error_text": "こちら側で問題が発生しました。しばらくしてからもう一度お試しください。",
-  "signals_more_error": "以前のシグナルを読み込めませんでした。"
+  "signals_more_error": "以前のシグナルを読み込めませんでした。",
+  "signals_status_version_approved": "{mod} のバージョン {version} が承認され、公開されました",
+  "signals_status_version_rejected": "{mod} のバージョン {version} は承認されませんでした",
+  "signals_status_version_changes_requested": "レンジャーが {mod} のバージョン {version} の修正を求めています",
+  "signals_status_version_held": "{mod} のバージョン {version} はレンジャーの確認待ちです"
 }

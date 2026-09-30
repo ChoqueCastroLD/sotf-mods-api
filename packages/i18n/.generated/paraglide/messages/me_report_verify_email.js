@@ -10,7 +10,7 @@ const en_me_report_verify_email = /** @type {(inputs: Me_Report_Verify_EmailInpu
 };
 
 const es_me_report_verify_email = /** @type {(inputs: Me_Report_Verify_EmailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifica tu correo electrónico antes de enviar informes de campo.`)
+	return /** @type {LocalizedString} */ (`Verifica tu correo electrónico antes de enviar reportes de campo.`)
 };
 
 const de_me_report_verify_email = /** @type {(inputs: Me_Report_Verify_EmailInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_me_report_verify_email = /** @type {(inputs: Me_Report_Verify_EmailInpu
 };
 
 const ja_me_report_verify_email = /** @type {(inputs: Me_Report_Verify_EmailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`現地レポートを送る前にメールアドレスを確認してください。`)
+	return /** @type {LocalizedString} */ (`フィールドレポートを送る前にメールアドレスを確認してください。`)
 };
 
 /**

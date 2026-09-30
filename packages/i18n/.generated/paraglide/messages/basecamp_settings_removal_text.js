@@ -18,7 +18,7 @@ const de_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_
 };
 
 const fr_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explique la raison aux rangers. Ils répondent via Signaux.`)
+	return /** @type {LocalizedString} */ (`Expliquez la raison aux rangers. Ils répondent via Signaux.`)
 };
 
 const it_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_content_kelvin_install_hint = /** @type {(inputs: Content_Kelvin_Instal
 };
 
 const fr_content_kelvin_install_hint = /** @type {(inputs: Content_Kelvin_Install_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nouveau dans les mods ? Commencez par le guide :`)
+	return /** @type {LocalizedString} */ (`Nouveau dans les mods ? Commencez par le guide :`)
 };
 
 const it_content_kelvin_install_hint = /** @type {(inputs: Content_Kelvin_Install_HintInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_content_kelvin_install_hint = /** @type {(inputs: Content_Kelvin_Instal
 };
 
 const ja_content_kelvin_install_hint = /** @type {(inputs: Content_Kelvin_Install_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod は初めて？まずはガイドから：`)
+	return /** @type {LocalizedString} */ (`MOD は初めて？まずはガイドから：`)
 };
 
 /**

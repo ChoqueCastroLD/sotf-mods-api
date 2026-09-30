@@ -10,7 +10,7 @@ const en_signals_compat_fixed_in = /** @type {(inputs: Signals_Compat_Fixed_InIn
 };
 
 const es_signals_compat_fixed_in = /** @type {(inputs: Signals_Compat_Fixed_InInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tu informe de campo sobre ${i?.mod} está arreglado en ${i?.version}`)
+	return /** @type {LocalizedString} */ (`Tu reporte de campo sobre ${i?.mod} está arreglado en ${i?.version}`)
 };
 
 const de_signals_compat_fixed_in = /** @type {(inputs: Signals_Compat_Fixed_InInputs) => LocalizedString} */ (i) => {
@@ -54,7 +54,7 @@ const zh_signals_compat_fixed_in = /** @type {(inputs: Signals_Compat_Fixed_InIn
 };
 
 const ja_signals_compat_fixed_in = /** @type {(inputs: Signals_Compat_Fixed_InInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} についてのあなたの現地レポートは ${i?.version} で修正されました`)
+	return /** @type {LocalizedString} */ (`${i?.mod} についてのあなたのフィールドレポートは ${i?.version} で修正されました`)
 };
 
 /**

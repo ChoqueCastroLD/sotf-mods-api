@@ -30,7 +30,7 @@ const nl_ranger_target_compat_report = /** @type {(inputs: Ranger_Target_Compat_
 };
 
 const pl_ranger_target_compat_report = /** @type {(inputs: Ranger_Target_Compat_ReportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raport z terenu`)
+	return /** @type {LocalizedString} */ (`Raport terenowy`)
 };
 
 const pt_ranger_target_compat_report = /** @type {(inputs: Ranger_Target_Compat_ReportInputs) => LocalizedString} */ () => {
@@ -50,11 +50,11 @@ const tr_ranger_target_compat_report = /** @type {(inputs: Ranger_Target_Compat_
 };
 
 const zh_ranger_target_compat_report = /** @type {(inputs: Ranger_Target_Compat_ReportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`实测报告`)
+	return /** @type {LocalizedString} */ (`实地报告`)
 };
 
 const ja_ranger_target_compat_report = /** @type {(inputs: Ranger_Target_Compat_ReportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`動作報告`)
+	return /** @type {LocalizedString} */ (`フィールドレポート`)
 };
 
 /**

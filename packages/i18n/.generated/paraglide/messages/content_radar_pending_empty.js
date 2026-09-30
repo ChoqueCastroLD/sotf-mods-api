@@ -54,7 +54,7 @@ const zh_content_radar_pending_empty = /** @type {(inputs: Content_Radar_Pending
 };
 
 const ja_content_radar_pending_empty = /** @type {(inputs: Content_Radar_Pending_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このビルドでは上位 Mod すべてに明確な判定があります。`)
+	return /** @type {LocalizedString} */ (`このビルドでは上位 MOD すべてに明確な判定があります。`)
 };
 
 /**

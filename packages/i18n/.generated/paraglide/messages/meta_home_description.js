@@ -35,10 +35,10 @@ const de_meta_home_description = /** @type {(inputs: Meta_Home_DescriptionInputs
 
 const fr_meta_home_description = /** @type {(inputs: Meta_Home_DescriptionInputs) => LocalizedString} */ (i) => {const modCount__plural = registry.plural("fr", i?.modCount, {});
 	const downloadCount__plural = registry.plural("fr", i?.downloadCount, {});
-	if (modCount__plural === "one" && downloadCount__plural === "one") return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mod, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargement au ${i?.date}.`);
-	if (modCount__plural === "one") return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mod, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargements au ${i?.date}.`);
-	if (downloadCount__plural === "one") return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mods, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargement au ${i?.date}.`);
-	return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mods, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargements au ${i?.date}.`)
+	if (modCount__plural === "one" && downloadCount__plural === "one") return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mod, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargement au ${i?.date}.`);
+	if (modCount__plural === "one") return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mod, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargements au ${i?.date}.`);
+	if (downloadCount__plural === "one") return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mods, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargement au ${i?.date}.`);
+	return /** @type {LocalizedString} */ (`Téléchargez ${i?.mods} mods, builds et kits pour Sons of the Forest avec RedLoader : gratuits, directs et testés par la communauté. ${i?.downloads} téléchargements au ${i?.date}.`)
 	
 };
 

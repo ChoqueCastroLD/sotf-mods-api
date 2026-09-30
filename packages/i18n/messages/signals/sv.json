@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} rapporteras som {status, select, broken {trasig} other {blandad}} på {build}",
   "signals_compat_fixed_in": "Din fältrapport om {mod} är åtgärdad i {version}",
   "signals_compat_acknowledged": "Skaparen av {mod} har sett din fältrapport",
-  "signals_patch_breaking": "Spelbygget {build} kan förstöra moddar — kolla dina i Patch Radar",
+  "signals_patch_breaking": "Spelbygget {build} kan förstöra moddar — kolla dina i Patchradarn",
   "signals_status_approved": "Din modd {mod} har godkänts och är publicerad",
   "signals_status_republished": "Din modd {mod} är offentlig igen",
   "signals_status_rejected": "Din modd {mod} har avvisats",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Ingen signal matchar det här filtret än. Prova ”Alla”.",
   "signals_show_all": "Visa alla signaler",
   "signals_error_text": "Något gick fel hos oss. Försök igen om en stund.",
-  "signals_more_error": "Äldre signaler kunde inte laddas."
+  "signals_more_error": "Äldre signaler kunde inte laddas.",
+  "signals_status_version_approved": "Version {version} av {mod} har godkänts och är publicerad",
+  "signals_status_version_rejected": "Version {version} av {mod} godkändes inte",
+  "signals_status_version_changes_requested": "Rangers vill ha ändringar i version {version} av {mod}",
+  "signals_status_version_held": "Version {version} av {mod} väntar på att en ranger ska kolla den"
 }

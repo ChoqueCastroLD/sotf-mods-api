@@ -30,11 +30,11 @@ const nl_social_report_field_report_title = /** @type {(inputs: Social_Report_Fi
 };
 
 const pl_social_report_field_report_title = /** @type {(inputs: Social_Report_Field_Report_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zgłoś ten raport z terenu`)
+	return /** @type {LocalizedString} */ (`Zgłoś ten raport terenowy`)
 };
 
 const pt_social_report_field_report_title = /** @type {(inputs: Social_Report_Field_Report_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Denunciar este relato de campo`)
+	return /** @type {LocalizedString} */ (`Denunciar este relatório de campo`)
 };
 
 const ru_social_report_field_report_title = /** @type {(inputs: Social_Report_Field_Report_TitleInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_social_report_field_report_title = /** @type {(inputs: Social_Report_Fi
 };
 
 const zh_social_report_field_report_title = /** @type {(inputs: Social_Report_Field_Report_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`举报这份实测报告`)
+	return /** @type {LocalizedString} */ (`举报这份实地报告`)
 };
 
 const ja_social_report_field_report_title = /** @type {(inputs: Social_Report_Field_Report_TitleInputs) => LocalizedString} */ () => {

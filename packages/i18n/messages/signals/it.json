@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} risulta {status, select, broken {non funzionante} other {con esiti misti}} su {build}",
   "signals_compat_fixed_in": "Il tuo rapporto sul campo su {mod} è stato risolto in {version}",
   "signals_compat_acknowledged": "L’autore di {mod} ha visto il tuo rapporto sul campo",
-  "signals_patch_breaking": "La build {build} del gioco potrebbe rompere delle mod: controlla le tue nel Patch Radar",
+  "signals_patch_breaking": "La build {build} del gioco potrebbe rompere delle mod: controlla le tue nel Radar delle patch",
   "signals_status_approved": "La tua mod {mod} è stata approvata ed è online",
   "signals_status_republished": "La tua mod {mod} è di nuovo pubblica",
   "signals_status_rejected": "La tua mod {mod} è stata rifiutata",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Nessun segnale corrisponde ancora a questo filtro. Prova con «Tutti».",
   "signals_show_all": "Mostra tutti i segnali",
   "signals_error_text": "Qualcosa è andato storto da parte nostra. Riprova tra un momento.",
-  "signals_more_error": "Non è stato possibile caricare i segnali precedenti."
+  "signals_more_error": "Non è stato possibile caricare i segnali precedenti.",
+  "signals_status_version_approved": "La versione {version} di {mod} è stata approvata ed è online",
+  "signals_status_version_rejected": "La versione {version} di {mod} non è stata approvata",
+  "signals_status_version_changes_requested": "I ranger chiedono modifiche alla versione {version} di {mod}",
+  "signals_status_version_held": "La versione {version} di {mod} è in attesa del controllo di un ranger"
 }

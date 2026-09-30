@@ -94,7 +94,7 @@ const zh_content_radar_confirmed = /** @type {(inputs: Content_Radar_ConfirmedIn
 
 const ja_content_radar_confirmed = /** @type {(inputs: Content_Radar_ConfirmedInputs) => LocalizedString} */ (i) => {
 	const count__plural = registry.plural("ja", i?.count, {});
-	const count__number = registry.number("ja", i?.count, {});return /** @type {LocalizedString} */ (`${i?.build} で上位 ${count__number} 件の Mod のうち ${i?.share} を確認済み`)
+	const count__number = registry.number("ja", i?.count, {});return /** @type {LocalizedString} */ (`${i?.build} で上位 ${count__number} 件の MOD のうち ${i?.share} を確認済み`)
 };
 
 /**

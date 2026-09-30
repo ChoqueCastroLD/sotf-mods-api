@@ -46,7 +46,7 @@ const sv_ranger_conflict_detail = /** @type {(inputs: Ranger_Conflict_DetailInpu
 };
 
 const tr_ranger_conflict_detail = /** @type {(inputs: Ranger_Conflict_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu arada biri öğeyi değiştirdi. Kuyruk yenilendi; tekrar kontrol edin.`)
+	return /** @type {LocalizedString} */ (`Bu arada biri öğeyi değiştirdi. Kuyruk yenilendi; tekrar kontrol et.`)
 };
 
 const zh_ranger_conflict_detail = /** @type {(inputs: Ranger_Conflict_DetailInputs) => LocalizedString} */ () => {

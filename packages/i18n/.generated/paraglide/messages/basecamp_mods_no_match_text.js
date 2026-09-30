@@ -18,7 +18,7 @@ const de_basecamp_mods_no_match_text = /** @type {(inputs: Basecamp_Mods_No_Matc
 };
 
 const fr_basecamp_mods_no_match_text = /** @type {(inputs: Basecamp_Mods_No_Match_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Essaie un autre nom ou un autre état.`)
+	return /** @type {LocalizedString} */ (`Essayez un autre nom ou un autre état.`)
 };
 
 const it_basecamp_mods_no_match_text = /** @type {(inputs: Basecamp_Mods_No_Match_TextInputs) => LocalizedString} */ () => {

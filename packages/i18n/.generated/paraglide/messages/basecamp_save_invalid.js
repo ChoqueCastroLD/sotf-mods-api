@@ -18,7 +18,7 @@ const de_basecamp_save_invalid = /** @type {(inputs: Basecamp_Save_InvalidInputs
 };
 
 const fr_basecamp_save_invalid = /** @type {(inputs: Basecamp_Save_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Corrige les champs signalés pour enregistrer.`)
+	return /** @type {LocalizedString} */ (`Corrigez les champs signalés pour enregistrer.`)
 };
 
 const it_basecamp_save_invalid = /** @type {(inputs: Basecamp_Save_InvalidInputs) => LocalizedString} */ () => {

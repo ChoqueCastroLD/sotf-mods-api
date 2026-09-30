@@ -18,7 +18,7 @@ const de_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rej
 };
 
 const fr_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rangers ont demandé des modifications. Corrige la fiche et renvoie-la depuis l’onglet État.`)
+	return /** @type {LocalizedString} */ (`Les rangers ont demandé des modifications. Corrigez la fiche et renvoyez-la depuis l’onglet État.`)
 };
 
 const it_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {

@@ -30,11 +30,11 @@ const nl_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs
 };
 
 const pl_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raport z terenu usunięty.`)
+	return /** @type {LocalizedString} */ (`Raport terenowy usunięty.`)
 };
 
 const pt_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Relato de campo excluído.`)
+	return /** @type {LocalizedString} */ (`Relatório de campo excluído.`)
 };
 
 const ru_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs
 };
 
 const zh_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`实测报告已删除。`)
+	return /** @type {LocalizedString} */ (`实地报告已删除。`)
 };
 
 const ja_social_compat_deleted = /** @type {(inputs: Social_Compat_DeletedInputs) => LocalizedString} */ () => {

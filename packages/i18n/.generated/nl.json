@@ -383,7 +383,7 @@
     }
   ],
   "admin_range_label": "Periode",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Admin · Rangerpost",
   "admin_reauth_action": "Opnieuw aanmelden",
   "admin_reauth_text": "De beheertools vragen een aanmelding van de afgelopen 12 uur. Meld je opnieuw aan en je komt meteen hier terug.",
   "admin_reauth_title": "Bevestig dat jij het bent",
@@ -2734,8 +2734,8 @@
   "content_radar_pending_title": "Wacht op veldrapporten",
   "content_radar_released": "Uitgebracht op {date}",
   "content_radar_report": "Melden",
-  "content_radar_seo_title": "Werken SOTF-mods op patch {build}? — Patch Radar",
-  "content_radar_seo_title_generic": "Werken SOTF-mods op de nieuwste patch? — Patch Radar",
+  "content_radar_seo_title": "Werken SOTF-mods op patch {build}? — Patchradar",
+  "content_radar_seo_title_generic": "Werken SOTF-mods op de nieuwste patch? — Patchradar",
   "content_radar_stat_broken": "Kapot",
   "content_radar_stat_pending": "Meldingen nodig",
   "content_radar_stat_works": "Werken",
@@ -3144,6 +3144,11 @@
         "status=archived": "{mod} is gearchiveerd",
         "status=unlisted": "{mod} staat niet meer in de lijsten",
         "status=removed": "{mod} is van SOTF Mods verwijderd",
+        "status=changes_requested": "De rangers vragen om wijzigingen in {mod}",
+        "status=version_approved": "Een nieuwe versie van {mod} is goedgekeurd en staat online",
+        "status=version_rejected": "Een nieuwe versie van {mod} is niet goedgekeurd",
+        "status=version_changes_requested": "De rangers vragen om wijzigingen in een nieuwe versie van {mod}",
+        "status=version_held": "Een nieuwe versie van {mod} wacht op controle door een ranger",
         "status=*": "De status van {mod} is gewijzigd"
       }
     }
@@ -3322,6 +3327,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Pad afgesloten · Definitief verwijderd",
   "errors_gone_text": "Wat hier stond, is definitief verwijderd. Verken andere mods.",
   "errors_gone_title": "Dit pad is afgesloten.",
   "errors_login_mismatch": "Dat e-mailadres en wachtwoord horen niet bij elkaar. Probeer het opnieuw of stel je wachtwoord opnieuw in.",
@@ -3329,12 +3335,17 @@
   "errors_network_retrying": "Geen signaal. Opnieuw proberen…",
   "errors_network_title": "Geen signaal",
   "errors_not_found_home": "Terug naar het pad",
+  "errors_not_found_install": "Zo installeer je mods",
   "errors_not_found_popular": "Populaire mods",
+  "errors_not_found_readout": "Geen signaal · Buiten de kaart",
   "errors_not_found_text": "Deze pagina staat niet op onze kaart. Iets tussen de bomen houdt je in de gaten — we brengen je terug.",
   "errors_not_found_title": "Je bent van het pad afgedwaald.",
   "errors_permission_detail": "Je hebt een andere rol nodig om deze pagina te openen. Ga terug of log in met een ander account.",
   "errors_permission_title": "Alleen voor rangers",
   "errors_reference": "Ref.: {id}",
+  "errors_server_readout": "Kampvuur uit · Fout 500",
+  "errors_server_retry": "Opnieuw proberen",
+  "errors_server_status": "Bekijk de status op Discord",
   "errors_server_text": "We zijn ermee bezig. Laad de pagina over een minuut opnieuw of ga terug naar de startpagina.",
   "errors_server_title": "Er ging iets kapot in het basiskamp.",
   "errors_validation_summary": [
@@ -4100,7 +4111,7 @@
   "kits_edit": "Kit bewerken",
   "kits_editor_empty_text": "Zoek hierboven een mod. De afhankelijkheden komen er vanzelf bij.",
   "kits_editor_empty_title": "Leg je eerste item neer",
-  "kits_editor_readout": "Blauwdruk",
+  "kits_editor_readout": "Bouwtekening",
   "kits_editor_static_title": "Kiteditor",
   "kits_editor_title": "{name} bewerken",
   "kits_empty_filtered_text": "Nog geen kit voldoet aan deze filters. Wis ze om alle kits te zien.",
@@ -6090,7 +6101,7 @@
   "ranger_previous": "Vorige",
   "ranger_queue_description": "Oudste en riskantste eerst. Elke beslissing wordt vastgelegd en de maker krijgt een melding.",
   "ranger_queue_title": "Moderatiewachtrij",
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "Rangerpost",
   "ranger_reason_broken": "Werkt niet",
   "ranger_reason_harassment": "Intimidatie",
   "ranger_reason_illegal": "Illegale inhoud",
@@ -7116,7 +7127,7 @@
   "signals_page_readout": "Radiologboek",
   "signals_page_title": "Signalen",
   "signals_panel_title": "Signalen",
-  "signals_patch_breaking": "Game-build {build} kan mods breken — controleer de jouwe in de Patch Radar",
+  "signals_patch_breaking": "Game-build {build} kan mods breken — controleer de jouwe in de Patchradar",
   "signals_preferences": "Meldingsinstellingen",
   "signals_report_dismissed": "Je melding is bekeken — er was geen actie nodig",
   "signals_report_resolved": "Je melding is bekeken en er is actie ondernomen",
@@ -7151,6 +7162,10 @@
   "signals_status_removed": "Je mod {mod} is verwijderd",
   "signals_status_republished": "Je mod {mod} is weer openbaar",
   "signals_status_unlisted": "Je mod {mod} staat niet meer in de lijsten",
+  "signals_status_version_approved": "Versie {version} van {mod} is goedgekeurd en staat online",
+  "signals_status_version_changes_requested": "De rangers vragen om wijzigingen in versie {version} van {mod}",
+  "signals_status_version_held": "Versie {version} van {mod} wacht op controle door een ranger",
+  "signals_status_version_rejected": "Versie {version} van {mod} is niet goedgekeurd",
   "signals_unknown_mod": "een mod",
   "signals_unread_prefix": "Ongelezen:",
   "signals_version_published": "{mod} {version} is uit — je volgt deze mod",
@@ -7475,6 +7490,453 @@
   "ui_clear": "Wissen",
   "ui_close": "Sluiten",
   "ui_dismiss": "Verbergen",
+  "ui_domain_ad_label": "Advertentie",
+  "ui_domain_ad_notice": "Advertenties houden downloads gratis. Log in om ze te verbergen.",
+  "ui_domain_award_build_of_month": "Build van de maand",
+  "ui_domain_award_mod_of_month": "Mod van de maand",
+  "ui_domain_award_mod_of_week": "Mod van de week",
+  "ui_domain_award_staff_pick": "Keuze van het team",
+  "ui_domain_badge_featured": "Uitgelicht",
+  "ui_domain_badge_locked": "Vergrendeld",
+  "ui_domain_badge_new": "Nieuw",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Bijgewerkt",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} onderdeel",
+        "count__plural=*": "{count__number} onderdelen"
+      }
+    }
+  ],
+  "ui_domain_by_author": "door {author}",
+  "ui_domain_capsule_conflicts": "Conflicten",
+  "ui_domain_capsule_dedicated": "Dedicated server",
+  "ui_domain_capsule_dependencies": "Afhankelijkheden",
+  "ui_domain_capsule_game_build": "Gamebuild",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Multiplayer",
+  "ui_domain_capsule_platform": "Platform",
+  "ui_domain_capsule_safe_remove": "Verwijderen midden in een save",
+  "ui_domain_chart_view_table": "Als tabel bekijken",
+  "ui_domain_comment_badge_author": "Maker",
+  "ui_domain_comment_badge_ranger": "Ranger",
+  "ui_domain_comment_bug": "Bugmelding",
+  "ui_domain_comment_bug_fixed_in": "Verholpen in v{version}",
+  "ui_domain_comment_bug_on": "Bugmelding · v{version}",
+  "ui_domain_comment_deleted": "Deze reactie is verwijderd.",
+  "ui_domain_comment_image": "Afbeelding bij de reactie",
+  "ui_domain_comment_pending": "Wacht tot een ranger het controleert.",
+  "ui_domain_comment_pinned": "Vastgezet",
+  "ui_domain_comment_reactions": "Reacties",
+  "ui_domain_comment_solution": "Oplossing",
+  "ui_domain_compat_broken": "Kapot",
+  "ui_domain_compat_broken_on": "Kapot op {build}",
+  "ui_domain_compat_mixed": "Wisselende meldingen",
+  "ui_domain_compat_mixed_on": "Wisselende rapporten op {build}",
+  "ui_domain_compat_untested": "Niet bevestigd",
+  "ui_domain_compat_untested_on": "Niet bevestigd op {build}",
+  "ui_domain_compat_works": "Werkt",
+  "ui_domain_compat_works_on": "Werkt op {build}",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} conflict",
+        "count__plural=*": "{count__number} conflicten"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "Geen bekend",
+  "ui_domain_consent_accept": "Accepteren",
+  "ui_domain_consent_label": "Cookietoestemming",
+  "ui_domain_consent_policy": "Cookiebeleid",
+  "ui_domain_consent_preferences": "Voorkeuren",
+  "ui_domain_consent_reject": "Weigeren",
+  "ui_domain_consent_text": "We gebruiken cookies voor advertenties en anonieme statistieken. Downloads werken hoe dan ook.",
+  "ui_domain_creator_top_mod": "Topmod: {mod}",
+  "ui_domain_curated_by": "samengesteld door {author}",
+  "ui_domain_dedicated_no": "Niet ondersteund",
+  "ui_domain_dedicated_partial": "Deels",
+  "ui_domain_dedicated_yes": "Ondersteund",
+  "ui_domain_deleted_user": "Verwijderde overlever",
+  "ui_domain_dependencies_conflicts_title": "Conflicteert met",
+  "ui_domain_dependencies_empty": "Geen afhankelijkheden. Erin zetten en spelen.",
+  "ui_domain_dependencies_none": "Geen",
+  "ui_domain_dependencies_optional_title": "Werkt beter met",
+  "ui_domain_dependencies_required_title": "Vereist",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{required__number} vereist · {optional__number} optioneel"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "Conflicteert met",
+  "ui_domain_dependency_kind_optional": "Optioneel",
+  "ui_domain_dependency_kind_required": "Vereist",
+  "ui_domain_dependency_state_archived": "Gearchiveerd",
+  "ui_domain_dependency_state_missing": "Niet op SOTF Mods",
+  "ui_domain_dependency_state_ok": "Beschikbaar",
+  "ui_domain_dependency_state_removed": "Verwijderd",
+  "ui_domain_dependency_state_unlisted": "Niet vermeld",
+  "ui_domain_download": "Downloaden",
+  "ui_domain_download_all_versions": "Alle versies",
+  "ui_domain_download_done_hint": "Zet hem in de Mods-map van je game en start de game.",
+  "ui_domain_download_done_label": "Gedownload",
+  "ui_domain_download_other_versions": "Andere versies",
+  "ui_domain_download_version": "v{version} downloaden",
+  "ui_domain_download_version_size": "v{version} downloaden · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download",
+        "count__plural=*": "{display} downloads"
+      }
+    }
+  ],
+  "ui_domain_edited": "bewerkt",
+  "ui_domain_feature_cta": "Bekijk het",
+  "ui_domain_filter_clear": "Filters wissen",
+  "ui_domain_filter_exclude": "{label} uitsluiten",
+  "ui_domain_filter_excluded": "uitgesloten",
+  "ui_domain_filter_included": "inbegrepen",
+  "ui_domain_filter_unexclude": "{label} niet meer uitsluiten",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Screenshot {index__number} van {total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Galerij",
+  "ui_domain_gallery_video": "Video",
+  "ui_domain_hidden_by_ranger": "Verborgen door een ranger. Alleen jij en de rangers kunnen het zien.",
+  "ui_domain_hidden_by_ranger_reason": "Verborgen door een ranger: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Iedereen heeft hem nodig",
+  "ui_domain_multiplayer_client_side": "Alleen jij hebt hem nodig",
+  "ui_domain_multiplayer_host_only": "Alleen de host",
+  "ui_domain_multiplayer_singleplayer_only": "Alleen singleplayer",
+  "ui_domain_platform_client": "Client",
+  "ui_domain_platform_server": "Server",
+  "ui_domain_platform_universal": "Universeel",
+  "ui_domain_rank_builder": "Bouwer",
+  "ui_domain_rank_castaway": "Schipbreukeling",
+  "ui_domain_rank_forager": "Verzamelaar",
+  "ui_domain_rank_label": "Overlevingsrang",
+  "ui_domain_rank_legend": "Legende",
+  "ui_domain_rank_pathfinder": "Padvinder",
+  "ui_domain_rank_scavenger": "Aaseter",
+  "ui_domain_rank_trapper": "Strikzetter",
+  "ui_domain_rank_veteran": "Veteraan",
+  "ui_domain_rating_out_of": "Beoordeeld met {rating} van de 5",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Beoordeeld met {rating} van 5 op basis van {count__number} review",
+        "count__plural=*": "Beoordeeld met {rating} van 5 op basis van {count__number} reviews"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Vuur",
+  "ui_domain_reaction_heart": "Hart",
+  "ui_domain_reaction_laugh": "Lach",
+  "ui_domain_reaction_party": "Feest",
+  "ui_domain_reaction_pray": "Bedankt",
+  "ui_domain_reaction_thumbs_up": "Duim omhoog",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} kapot",
+        "count__plural=*": "{display} kapot"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "Per game-build",
+  "ui_domain_reports_empty": "Nog geen veldrapporten. Uitgeprobeerd? Laat het weten.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} deels",
+        "count__plural=*": "{display} deels"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Melden",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Veldrapporten: {works__number} werkt, {partial__number} deels, {broken__number} kapot"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Veldrapporten",
+  "ui_domain_reports_title_on": "Veldrapporten op {build}",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} werkt",
+        "count__plural=*": "{display} werken"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} overlevende vond dit nuttig",
+        "count__plural=*": "{count__number} overlevenden vonden dit nuttig"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "Reactie van de maker",
+  "ui_domain_review_reply_from": "Reactie van {name}",
+  "ui_domain_review_used_version": "Gebruikte v{version}",
+  "ui_domain_review_verified_download": "Heeft deze mod gedownload",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} review",
+        "count__plural=*": "{count__number} reviews"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Verdeling van de beoordelingen",
+  "ui_domain_reviews_not_enough": "Nog niet genoeg reviews voor een score.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ster",
+        "count__plural=*": "{count__number} sterren"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "Niet veilig midden in een save",
+  "ui_domain_safe_remove_yes": "Veilig midden in een save",
+  "ui_domain_sort_label": "Sorteren:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "{percent} gedaald in {days__number} dag",
+        "days__plural=*": "{percent} gedaald in {days__number} dagen"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Geen verandering in {days__number} dag",
+        "days__plural=*": "Geen verandering in {days__number} dagen"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "{percent} gestegen in {days__number} dag",
+        "days__plural=*": "{percent} gestegen in {days__number} dagen"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "Downloads",
+  "ui_domain_stat_followers": "Volgers",
+  "ui_domain_stat_mods": "Mods",
+  "ui_domain_status_archived": "Gearchiveerd",
+  "ui_domain_status_pending": "Wacht op controle",
+  "ui_domain_status_rejected": "Afgewezen",
+  "ui_domain_status_removed": "Verwijderd",
+  "ui_domain_status_unlisted": "Niet vermeld",
+  "ui_domain_tier_cabin": "Blokhut",
+  "ui_domain_tier_campfire": "Kampvuur",
+  "ui_domain_tier_fortress": "Fort",
+  "ui_domain_tier_label": "Makersniveau",
+  "ui_domain_tier_landmark": "Monument",
+  "ui_domain_tier_lean_to": "Afdak",
+  "ui_domain_tier_treehouse": "Boomhut",
+  "ui_domain_trusted_creator": "Vertrouwde maker",
+  "ui_domain_value_not_declared": "Niet opgegeven",
+  "ui_domain_value_unknown": "Onbekend",
+  "ui_domain_version_beta": "Bèta",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "Nieuwste",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "Nieuw sinds je laatste download",
+  "ui_domain_version_unavailable": "Bestand niet beschikbaar",
+  "ui_domain_version_yanked": "Ingetrokken",
+  "ui_domain_versions_caption": "Versies",
+  "ui_domain_versions_col_date": "Uitgebracht",
+  "ui_domain_versions_col_download": "Downloaden",
+  "ui_domain_versions_col_downloads": "Downloads",
+  "ui_domain_versions_col_game": "Game",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Rapporten",
+  "ui_domain_versions_col_size": "Grootte",
+  "ui_domain_versions_col_version": "Versie",
+  "ui_domain_versions_empty": "Nog geen versies gepubliceerd.",
+  "ui_domain_view_compact": "Compact",
+  "ui_domain_view_grid": "Raster",
+  "ui_domain_view_label": "Weergave",
+  "ui_domain_view_list": "Lijst",
+  "ui_domain_visibility_private": "Privé",
+  "ui_domain_visibility_unlisted": "Niet vermeld",
   "ui_error_reference": "Ref.: {id}",
   "ui_hide_password": "Wachtwoord verbergen",
   "ui_language": "Taal",

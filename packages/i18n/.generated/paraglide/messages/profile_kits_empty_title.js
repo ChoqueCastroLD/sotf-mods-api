@@ -50,7 +50,7 @@ const tr_profile_kits_empty_title = /** @type {(inputs: Profile_Kits_Empty_Title
 };
 
 const zh_profile_kits_empty_title = /** @type {(inputs: Profile_Kits_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`没有公开的合集`)
+	return /** @type {LocalizedString} */ (`没有公开的套装`)
 };
 
 const ja_profile_kits_empty_title = /** @type {(inputs: Profile_Kits_Empty_TitleInputs) => LocalizedString} */ () => {

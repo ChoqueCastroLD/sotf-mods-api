@@ -10,7 +10,7 @@ const en_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) =>
 };
 
 const es_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publicado. Los comentarios con enlaces externos de cuentas nuevas esperan una revisión rápida de los rangers.`)
+	return /** @type {LocalizedString} */ (`Publicado. Los comentarios con enlaces externos de cuentas nuevas esperan una revisión rápida de los guardabosques.`)
 };
 
 const de_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) =>
 };
 
 const pl_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wysłano. Komentarze nowych kont z linkami zewnętrznymi czekają na szybką kontrolę rangerów.`)
+	return /** @type {LocalizedString} */ (`Wysłano. Komentarze nowych kont z linkami zewnętrznymi czekają na szybką kontrolę strażników.`)
 };
 
 const pt_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviado. Comentários com links externos de contas novas aguardam uma checagem rápida dos rangers.`)
+	return /** @type {LocalizedString} */ (`Enviado. Comentários com links externos de contas novas aguardam uma checagem rápida dos guardas.`)
 };
 
 const ru_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) =>
 };
 
 const zh_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已提交。新账号含外部链接的评论需等待巡林员快速审核。`)
+	return /** @type {LocalizedString} */ (`已提交。新账号含外部链接的评论需等待护林员快速审核。`)
 };
 
 const ja_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {

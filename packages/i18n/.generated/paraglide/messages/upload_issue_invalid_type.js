@@ -54,7 +54,7 @@ const zh_upload_issue_invalid_type = /** @type {(inputs: Upload_Issue_Invalid_Ty
 };
 
 const ja_upload_issue_invalid_type = /** @type {(inputs: Upload_Issue_Invalid_TypeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`種類は「Mod」か「Library」にしてください。`)
+	return /** @type {LocalizedString} */ (`種類は「MOD」か「Library」にしてください。`)
 };
 
 /**

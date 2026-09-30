@@ -54,7 +54,7 @@ const zh_content_install_help_text = /** @type {(inputs: Content_Install_Help_Te
 };
 
 const ja_content_install_help_text = /** @type {(inputs: Content_Install_Help_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`現在のゲームパッチで Mod が動かなくなっていないか確認するか、コミュニティに質問してください。ゲームのバージョン、RedLoader のバージョン、使っている Mod を添えてください。`)
+	return /** @type {LocalizedString} */ (`現在のゲームパッチで MOD が動かなくなっていないか確認するか、コミュニティに質問してください。ゲームのバージョン、RedLoader のバージョン、使っている MOD を添えてください。`)
 };
 
 /**

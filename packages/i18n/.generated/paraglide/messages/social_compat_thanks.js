@@ -10,7 +10,7 @@ const en_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) 
 };
 
 const es_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`¡Gracias, superviviente! Tu reporte cuenta para la insignia de compatibilidad.`)
+	return /** @type {LocalizedString} */ (`¡Gracias, superviviente! Tu reporte de campo cuenta para la insignia de compatibilidad.`)
 };
 
 const de_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
@@ -18,11 +18,11 @@ const de_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) 
 };
 
 const fr_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Merci, survivant ! Votre rapport compte pour le badge de compatibilité.`)
+	return /** @type {LocalizedString} */ (`Merci, survivant ! Votre rapport de terrain compte pour le badge de compatibilité.`)
 };
 
 const it_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Grazie, sopravvissuto! Il tuo rapporto conta per il badge di compatibilità.`)
+	return /** @type {LocalizedString} */ (`Grazie, sopravvissuto! Il tuo rapporto sul campo conta per il badge di compatibilità.`)
 };
 
 const nl_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
@@ -30,15 +30,15 @@ const nl_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) 
 };
 
 const pl_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dzięki, ocalały! Twój raport liczy się do odznaki zgodności.`)
+	return /** @type {LocalizedString} */ (`Dzięki, ocalały! Twój raport terenowy liczy się do odznaki zgodności.`)
 };
 
 const pt_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Valeu, sobrevivente! Seu relato conta para o selo de compatibilidade.`)
+	return /** @type {LocalizedString} */ (`Valeu, sobrevivente! Seu relatório de campo conta para o selo de compatibilidade.`)
 };
 
 const ru_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Спасибо, выживший! Ваш отчёт учтён в значке совместимости.`)
+	return /** @type {LocalizedString} */ (`Спасибо, выживший! Ваш полевой отчёт учтён в значке совместимости.`)
 };
 
 const sv_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
@@ -50,11 +50,11 @@ const tr_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) 
 };
 
 const zh_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`谢谢你，幸存者！你的报告会计入兼容性徽章。`)
+	return /** @type {LocalizedString} */ (`谢谢你，幸存者！你的实地报告会计入兼容性徽章。`)
 };
 
 const ja_social_compat_thanks = /** @type {(inputs: Social_Compat_ThanksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ありがとう、サバイバー！あなたのレポートは互換性バッジに反映されます。`)
+	return /** @type {LocalizedString} */ (`ありがとう、サバイバー！あなたのフィールドレポートは互換性バッジに反映されます。`)
 };
 
 /**

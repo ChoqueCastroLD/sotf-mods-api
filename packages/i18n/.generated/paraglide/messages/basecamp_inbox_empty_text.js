@@ -18,7 +18,7 @@ const de_basecamp_inbox_empty_text = /** @type {(inputs: Basecamp_Inbox_Empty_Te
 };
 
 const fr_basecamp_inbox_empty_text = /** @type {(inputs: Basecamp_Inbox_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les commentaires, rapports de bug, avis et rapports de terrain sur tes mods apparaîtront ici.`)
+	return /** @type {LocalizedString} */ (`Les commentaires, rapports de bug, avis et rapports de terrain sur vos mods apparaîtront ici.`)
 };
 
 const it_basecamp_inbox_empty_text = /** @type {(inputs: Basecamp_Inbox_Empty_TextInputs) => LocalizedString} */ () => {

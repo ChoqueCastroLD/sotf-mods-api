@@ -163,7 +163,7 @@
   "social_compat_missing_mode": "Выберите, как вы играете.",
   "social_compat_missing_result": "Выберите результат.",
   "social_compat_submit": "Отправить отчёт",
-  "social_compat_thanks": "Спасибо, выживший! Ваш отчёт учтён в значке совместимости.",
+  "social_compat_thanks": "Спасибо, выживший! Ваш полевой отчёт учтён в значке совместимости.",
   "social_compat_deleted": "Полевой отчёт удалён.",
   "social_compat_yours": "Вы отметили «{result}» на {build} ({mode}, v{version}).",
   "social_compat_prompt_label": "Сработало?",

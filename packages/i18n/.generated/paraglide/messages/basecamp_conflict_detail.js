@@ -18,7 +18,7 @@ const de_basecamp_conflict_detail = /** @type {(inputs: Basecamp_Conflict_Detail
 };
 
 const fr_basecamp_conflict_detail = /** @type {(inputs: Basecamp_Conflict_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quelqu’un l’a modifié entre-temps. La page affiche maintenant la dernière version : vérifie-la et réessaie.`)
+	return /** @type {LocalizedString} */ (`Quelqu’un l’a modifié entre-temps. La page affiche maintenant la dernière version : vérifiez-la et réessayez.`)
 };
 
 const it_basecamp_conflict_detail = /** @type {(inputs: Basecamp_Conflict_DetailInputs) => LocalizedString} */ () => {

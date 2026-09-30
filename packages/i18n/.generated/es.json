@@ -383,7 +383,7 @@
     }
   ],
   "admin_range_label": "Periodo",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Admin · Puesto de guardabosques",
   "admin_reauth_action": "Iniciar sesión de nuevo",
   "admin_reauth_text": "Las herramientas de administración necesitan un inicio de sesión de las últimas 12 horas. Vuelve a iniciar sesión y regresarás aquí directamente.",
   "admin_reauth_title": "Confirma que eres tú",
@@ -799,7 +799,7 @@
   "admin_tpl_action_restore": "Restaurar",
   "admin_tpl_action_unlist": "Ocultar",
   "admin_tpl_add": "Nueva plantilla",
-  "admin_tpl_description": "Los motivos que eligen los rangers al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.",
+  "admin_tpl_description": "Los motivos que eligen los guardabosques al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.",
   "admin_tpl_empty": "No hay plantillas para esta acción",
   "admin_tpl_error_key": "Clave no válida.",
   "admin_tpl_error_message": "El mensaje en inglés es obligatorio.",
@@ -1547,7 +1547,7 @@
   "builds_banner_broken_title": "Reportada como rota",
   "builds_banner_outdated_text": "Esta build lleva mucho tiempo sin actualizarse. Puede que no se coloque bien en el parche actual.",
   "builds_banner_outdated_title": "Posiblemente desactualizada",
-  "builds_banner_pending_text": "Un ranger revisará esta build pronto. Hasta entonces no aparece en listados ni búsquedas.",
+  "builds_banner_pending_text": "Un guardabosques revisará esta build pronto. Hasta entonces no aparece en listados ni búsquedas.",
   "builds_banner_pending_title": "En revisión",
   "builds_banner_unlisted_text": "Esta build no aparece en listados ni búsquedas. Cualquiera con el enlace puede abrirla.",
   "builds_banner_unlisted_title": "No listada",
@@ -3144,6 +3144,11 @@
         "status=archived": "{mod} se archivó",
         "status=unlisted": "{mod} dejó de aparecer en los listados",
         "status=removed": "{mod} se retiró de SOTF Mods",
+        "status=changes_requested": "Los guardabosques han pedido cambios en {mod}",
+        "status=version_approved": "Una nueva versión de {mod} se ha aprobado y ya está publicada",
+        "status=version_rejected": "Una nueva versión de {mod} no se ha aprobado",
+        "status=version_changes_requested": "Los guardabosques han pedido cambios en una nueva versión de {mod}",
+        "status=version_held": "Una nueva versión de {mod} está retenida hasta que la revise un guardabosques",
         "status=*": "El estado de {mod} cambió"
       }
     }
@@ -3322,6 +3327,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Sendero cerrado · Retirado para siempre",
   "errors_gone_text": "Lo que había aquí se eliminó para siempre. Prueba a explorar otros mods.",
   "errors_gone_title": "Este sendero está cerrado.",
   "errors_login_mismatch": "El email y la contraseña no coinciden. Inténtalo de nuevo o restablece tu contraseña.",
@@ -3329,12 +3335,17 @@
   "errors_network_retrying": "Sin señal. Reintentando…",
   "errors_network_title": "Sin señal",
   "errors_not_found_home": "Volver al sendero",
+  "errors_not_found_install": "Cómo instalar mods",
   "errors_not_found_popular": "Mods populares",
+  "errors_not_found_readout": "Sin señal · Fuera del mapa",
   "errors_not_found_text": "Esta página no está en nuestro mapa. Algo te observa entre los árboles; volvamos al camino.",
   "errors_not_found_title": "Te saliste del sendero.",
   "errors_permission_detail": "Necesitas otro rol para abrir esta página. Vuelve atrás o inicia sesión con otra cuenta.",
   "errors_permission_title": "Solo para guardabosques",
   "errors_reference": "Ref.: {id}",
+  "errors_server_readout": "Hoguera apagada · Error 500",
+  "errors_server_retry": "Reintentar",
+  "errors_server_status": "Consulta el estado en Discord",
   "errors_server_text": "Ya estamos en ello. Recarga la página en un minuto o vuelve al inicio.",
   "errors_server_title": "Algo se rompió en el campamento.",
   "errors_validation_summary": [
@@ -4743,7 +4754,7 @@
   "me_onboarding_text": "Cinco pasos rápidos para empezar. Complétalos todos para ganar la insignia «Sobreviviste al primer día».",
   "me_onboarding_title": "Sobrevive a tu primer día",
   "me_report_broken": "Está roto",
-  "me_report_description": "Tu informe de campo sobre la versión {version} en la build {build} del juego ayuda a todos los supervivientes a elegir mods que funcionan.",
+  "me_report_description": "Tu reporte de campo sobre la versión {version} en la build {build} del juego ayuda a todos los supervivientes a elegir mods que funcionan.",
   "me_report_mode_client": "Cliente multijugador",
   "me_report_mode_dedicated": "Servidor dedicado",
   "me_report_mode_host": "Anfitrión multijugador",
@@ -4768,7 +4779,7 @@
   "me_report_submit": "Enviar informe",
   "me_report_thanks": "Gracias: tu informe sobre {mod} ya está en el mapa",
   "me_report_title": "¿Funcionó {mod}?",
-  "me_report_verify_email": "Verifica tu correo electrónico antes de enviar informes de campo.",
+  "me_report_verify_email": "Verifica tu correo electrónico antes de enviar reportes de campo.",
   "me_report_works": "Funciona",
   "me_undo": "Deshacer",
   "me_unfollow": "Dejar de seguir",
@@ -4839,7 +4850,7 @@
   "mod_banner_outdated_action": "¿Lo probaste? Cuéntalo",
   "mod_banner_outdated_text": "No se ha actualizado ni confirmado desde el último parche que rompió mods.",
   "mod_banner_outdated_title": "Posiblemente desactualizado.",
-  "mod_banner_pending_text": "Un ranger está revisando este mod. Todavía no aparece en los listados y puede cambiar.",
+  "mod_banner_pending_text": "Un guardabosques está revisando este mod. Todavía no aparece en los listados y puede cambiar.",
   "mod_banner_pending_title": "En revisión.",
   "mod_banner_unlisted_text": "Solo quien tenga el enlace puede encontrar este mod.",
   "mod_banner_unlisted_title": "Oculto.",
@@ -5085,10 +5096,10 @@
   "mod_platform_universal": "Cliente y servidor",
   "mod_related_title": "Mods relacionados",
   "mod_report_choose_reason": "Elige un motivo.",
-  "mod_report_details_hint": "Enlaces, versiones o lo que ayude a los rangers. Hasta 2000 caracteres.",
+  "mod_report_details_hint": "Enlaces, versiones o lo que ayude a los guardabosques. Hasta 2000 caracteres.",
   "mod_report_details_label": "Detalles (opcional)",
-  "mod_report_duplicate": "Ya denunciaste este mod. Los rangers lo tienen.",
-  "mod_report_intro": "Cuéntales a los rangers qué pasa. Las denuncias son privadas.",
+  "mod_report_duplicate": "Ya denunciaste este mod. Los guardabosques lo tienen.",
+  "mod_report_intro": "Cuéntales a los guardabosques qué pasa. Las denuncias son privadas.",
   "mod_report_reason_broken": "Descarga rota o falsa",
   "mod_report_reason_harassment": "Acoso u odio",
   "mod_report_reason_illegal": "Contenido ilegal",
@@ -5098,7 +5109,7 @@
   "mod_report_reason_other": "Otra cosa",
   "mod_report_reason_reupload": "Resubida del trabajo de otra persona",
   "mod_report_reason_spam": "Spam o publicidad",
-  "mod_report_sent": "Gracias. Los rangers lo revisarán.",
+  "mod_report_sent": "Gracias. Los guardabosques lo revisarán.",
   "mod_report_sign_in": "Inicia sesión para denunciar un mod. Así las denuncias son honestas.",
   "mod_report_submit": "Enviar denuncia",
   "mod_report_title": "Denunciar {name}",
@@ -5209,12 +5220,12 @@
       }
     }
   ],
-  "mod_scan_false_positive": "Marcado por algunos motores, aprobado por un ranger",
+  "mod_scan_false_positive": "Marcado por algunos motores, aprobado por un guardabosques",
   "mod_scan_malicious": "Malicioso: no lo instales",
   "mod_scan_none": "Este archivo todavía no tiene informe de seguridad.",
   "mod_scan_pending": "Análisis en curso",
   "mod_scan_report": "Informe completo",
-  "mod_scan_suspicious": "Sospechoso: un ranger lo está revisando",
+  "mod_scan_suspicious": "Sospechoso: un guardabosques lo está revisando",
   "mod_scan_title": "Análisis de seguridad",
   "mod_scan_unknown": "Aún sin analizar",
   "mod_share_link_label": "Enlace",
@@ -5361,7 +5372,7 @@
   "profile_achievements_fair_play_new_accounts": "Las cuentas recién creadas pesan la mitad en valoraciones y compatibilidad hasta ganarse la confianza.",
   "profile_achievements_fair_play_reversible": "Cada punto de XP queda registrado y puede revertirse si viene de un abuso.",
   "profile_achievements_fair_play_same_network": "No cuentan los votos ni los reportes entre cuentas de la misma red en 24 horas.",
-  "profile_achievements_fair_play_spikes": "Los Rangers revisan los picos repentinos de descargas.",
+  "profile_achievements_fair_play_spikes": "Los guardabosques revisan los picos repentinos de descargas.",
   "profile_achievements_fair_play_title": "Juego limpio",
   "profile_achievements_intro": "Todas las reglas de las recompensas de la isla, a la vista. Reconocen la calidad y la ayuda, nunca el volumen.",
   "profile_achievements_meta_description": "Cómo funcionan los rangos de superviviente, la XP, los niveles de creador, las insignias y los hitos de los mods en SOTF Mods. Reglas públicas que premian la calidad y la ayuda, no el volumen.",
@@ -5556,7 +5567,7 @@
   "profile_badge_pillar_of_the_island_name": "Pilar de la isla",
   "profile_badge_progress": "{current} / {target}",
   "profile_badge_ranger_hint": "Moderadores que mantienen la isla a salvo.",
-  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_ranger_name": "Guardabosques",
   "profile_badge_secret_hint": "Sigue explorando. Algunas cosas de la isla solo se encuentran de noche.",
   "profile_badge_secret_name": "Insignia secreta",
   "profile_badge_staff_pick_hint": "Que el equipo elija uno de tus mods. Se puede ganar varias veces.",
@@ -5880,9 +5891,9 @@
   "ranger_audit_apply": "Filtrar",
   "ranger_audit_changes": "Antes y después",
   "ranger_audit_clear": "Limpiar",
-  "ranger_audit_description": "Cada acción de rangers y admins: quién, qué, antes y después, y por qué. Las entradas no se pueden editar.",
+  "ranger_audit_description": "Cada acción de guardabosques y admins: quién, qué, antes y después, y por qué. Las entradas no se pueden editar.",
   "ranger_audit_empty_filtered": "Ninguna entrada coincide con estos filtros.",
-  "ranger_audit_empty_text": "Todavía no se ha registrado ninguna acción de ranger.",
+  "ranger_audit_empty_text": "Todavía no se ha registrado ninguna acción de guardabosques.",
   "ranger_audit_empty_title": "Sin entradas",
   "ranger_audit_reason_hint": "Queda en el registro de auditoría.",
   "ranger_audit_reason_label": "Motivo",
@@ -6029,7 +6040,7 @@
   "ranger_history_sanctions": "Sanciones activas",
   "ranger_history_trust": "Confianza",
   "ranger_item_document_title": "Revisión: {title}",
-  "ranger_item_gone_text": "Otro ranger ya decidió sobre este elemento, o salió de la cola.",
+  "ranger_item_gone_text": "Otro guardabosques ya decidió sobre este elemento, o salió de la cola.",
   "ranger_item_gone_title": "Ya está resuelto",
   "ranger_item_next": "Siguiente elemento",
   "ranger_item_region": "Elemento en revisión",
@@ -6090,7 +6101,7 @@
   "ranger_previous": "Anterior",
   "ranger_queue_description": "Primero lo más antiguo y lo más arriesgado. Cada decisión queda registrada y se avisa al autor.",
   "ranger_queue_title": "Cola de moderación",
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "Puesto de guardabosques",
   "ranger_reason_broken": "No funciona",
   "ranger_reason_harassment": "Acoso",
   "ranger_reason_illegal": "Contenido ilegal",
@@ -6100,7 +6111,7 @@
   "ranger_reason_reupload": "Resubida sin permiso",
   "ranger_reason_spam": "Spam",
   "ranger_reauth_action": "Volver a iniciar sesión",
-  "ranger_reauth_text": "Las acciones de ranger necesitan un inicio de sesión de las últimas 12 horas. Vuelve a iniciar sesión para continuar.",
+  "ranger_reauth_text": "Las acciones de guardabosques necesitan un inicio de sesión de las últimas 12 horas. Vuelve a iniciar sesión para continuar.",
   "ranger_reauth_title": "Confirma que eres tú",
   "ranger_reference": "Ref.: {reference}",
   "ranger_report_by": "Reportado por",
@@ -6281,7 +6292,7 @@
   "ranger_user_legacy_trusted": "De confianza en la web antigua",
   "ranger_user_mods": "Mods",
   "ranger_user_no_sanctions": "Nunca ha tenido sanciones.",
-  "ranger_user_outranked": "Los rangers solo pueden actuar sobre cuentas con un rol inferior al suyo.",
+  "ranger_user_outranked": "Los guardabosques solo pueden actuar sobre cuentas con un rol inferior al suyo.",
   "ranger_user_public_profile": "Perfil público",
   "ranger_user_reports_against": "Reportes en contra",
   "ranger_user_reviews": "Reseñas",
@@ -6294,7 +6305,7 @@
   "ranger_user_role_hint": "El rol de admin solo se concede desde la línea de comandos.",
   "ranger_user_role_title": "¿Cambiar el rol de {name} a {role}?",
   "ranger_user_sanctions": "Sanciones",
-  "ranger_user_self": "Es tu propia cuenta: tiene que actuar otro ranger.",
+  "ranger_user_self": "Es tu propia cuenta: tiene que actuar otro guardabosques.",
   "ranger_user_sessions_revoked": [
     {
       "declarations": [
@@ -6660,7 +6671,7 @@
   "settings_motion_reduce_hint": "Sin deslizamientos, zooms ni celebraciones.",
   "settings_motion_system": "Como mi dispositivo",
   "settings_motion_system_hint": "Sigue el ajuste de movimiento reducido de tu sistema.",
-  "settings_notif_ack": "Tus informes de campo",
+  "settings_notif_ack": "Tus reportes de campo",
   "settings_notif_ack_hint": "Un autor ha visto o arreglado un problema que informaste.",
   "settings_notif_announcement": "Anuncios",
   "settings_notif_announcement_hint": "Noticias del equipo de SOTF Mods.",
@@ -6669,7 +6680,7 @@
   "settings_notif_badge": "Insignias",
   "settings_notif_badge_hint": "Has desbloqueado una insignia.",
   "settings_notif_broken": "Tu mod aparece roto",
-  "settings_notif_broken_hint": "Los informes de campo dicen que un mod tuyo se ha roto en la build actual.",
+  "settings_notif_broken_hint": "Los reportes de campo dicen que un mod tuyo se ha roto en la build actual.",
   "settings_notif_col_app": "En la app",
   "settings_notif_col_email": "Correo",
   "settings_notif_col_signal": "Señal",
@@ -7040,7 +7051,7 @@
       }
     }
   ],
-  "signals_compat_acknowledged": "El autor de {mod} ha visto tu informe de campo",
+  "signals_compat_acknowledged": "El autor de {mod} ha visto tu reporte de campo",
   "signals_compat_broken": [
     {
       "declarations": [
@@ -7057,7 +7068,7 @@
       }
     }
   ],
-  "signals_compat_fixed_in": "Tu informe de campo sobre {mod} está arreglado en {version}",
+  "signals_compat_fixed_in": "Tu reporte de campo sobre {mod} está arreglado en {version}",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7116,7 +7127,7 @@
   "signals_page_readout": "Registro de radio",
   "signals_page_title": "Señales",
   "signals_panel_title": "Señales",
-  "signals_patch_breaking": "La build {build} del juego puede romper mods: revisa los tuyos en el Patch Radar",
+  "signals_patch_breaking": "La build {build} del juego puede romper mods: revisa los tuyos en el Radar de parches",
   "signals_preferences": "Ajustes de notificaciones",
   "signals_report_dismissed": "Hemos revisado tu reporte: no hacía falta actuar",
   "signals_report_resolved": "Hemos revisado tu reporte y hemos tomado medidas",
@@ -7151,6 +7162,10 @@
   "signals_status_removed": "Tu mod {mod} ha sido retirado",
   "signals_status_republished": "Tu mod {mod} vuelve a ser público",
   "signals_status_unlisted": "Tu mod {mod} ya no aparece en los listados",
+  "signals_status_version_approved": "La versión {version} de {mod} se ha aprobado y ya está publicada",
+  "signals_status_version_changes_requested": "Los guardabosques han pedido cambios en la versión {version} de {mod}",
+  "signals_status_version_held": "La versión {version} de {mod} está retenida hasta que la revise un guardabosques",
+  "signals_status_version_rejected": "La versión {version} de {mod} no se ha aprobado",
   "signals_unknown_mod": "un mod",
   "signals_unread_prefix": "Sin leer:",
   "signals_version_published": "Ya está aquí {mod} {version}: lo sigues",
@@ -7195,7 +7210,7 @@
   "social_comment_edit_label": "Edita tu comentario",
   "social_comment_edited": "Comentario actualizado.",
   "social_comment_empty": "Escribe algo primero.",
-  "social_comment_held": "Publicado. Los comentarios con enlaces externos de cuentas nuevas esperan una revisión rápida de los rangers.",
+  "social_comment_held": "Publicado. Los comentarios con enlaces externos de cuentas nuevas esperan una revisión rápida de los guardabosques.",
   "social_comment_invalid": "Este texto no se puede guardar. Revísalo e inténtalo de nuevo.",
   "social_comment_label": "Tu comentario",
   "social_comment_placeholder": "Pregunta, comparte un truco o avisa de un problema…",
@@ -7285,7 +7300,7 @@
   "social_compat_steps": "Pasos",
   "social_compat_submit": "Enviar reporte",
   "social_compat_text": "Un reporte de campo lleva diez segundos y dice a todos si este mod funciona en el parche actual.",
-  "social_compat_thanks": "¡Gracias, superviviente! Tu reporte cuenta para la insignia de compatibilidad.",
+  "social_compat_thanks": "¡Gracias, superviviente! Tu reporte de campo cuenta para la insignia de compatibilidad.",
   "social_compat_title": "Reporte de campo",
   "social_compat_version": "Versión del mod",
   "social_compat_yours": "Reportaste «{result}» en {build} ({mode}, v{version}).",
@@ -7378,9 +7393,9 @@
   "social_report_choose_reason": "Elige un motivo.",
   "social_report_comment_title": "Reportar este comentario",
   "social_report_details_label": "Detalles (opcional)",
-  "social_report_duplicate": "Ya denunciaste este mod. Los rangers lo tienen.",
+  "social_report_duplicate": "Ya denunciaste este mod. Los guardabosques lo tienen.",
   "social_report_field_report_title": "Reportar este reporte de campo",
-  "social_report_intro": "Los rangers revisan cada reporte. Cuéntales qué pasa.",
+  "social_report_intro": "Los guardabosques revisan cada reporte. Cuéntales qué pasa.",
   "social_report_reason_harassment": "Acoso u odio",
   "social_report_reason_illegal": "Contenido ilegal",
   "social_report_reason_label": "Motivo",
@@ -7388,7 +7403,7 @@
   "social_report_reason_other": "Otra cosa",
   "social_report_reason_spam": "Spam o publicidad",
   "social_report_review_title": "Reportar esta reseña",
-  "social_report_sent": "Gracias. Los rangers lo revisarán.",
+  "social_report_sent": "Gracias. Los guardabosques lo revisarán.",
   "social_report_submit": "Enviar denuncia",
   "social_review_body_label": "Tu reseña",
   "social_review_body_placeholder": "¿Qué funcionó, qué no y para quién es?",
@@ -7475,6 +7490,453 @@
   "ui_clear": "Borrar",
   "ui_close": "Cerrar",
   "ui_dismiss": "Descartar",
+  "ui_domain_ad_label": "Publicidad",
+  "ui_domain_ad_notice": "Los anuncios mantienen gratis las descargas. Inicia sesión para ocultarlos.",
+  "ui_domain_award_build_of_month": "Build del mes",
+  "ui_domain_award_mod_of_month": "Mod del mes",
+  "ui_domain_award_mod_of_week": "Mod de la semana",
+  "ui_domain_award_staff_pick": "Selección del equipo",
+  "ui_domain_badge_featured": "Destacada",
+  "ui_domain_badge_locked": "Bloqueada",
+  "ui_domain_badge_new": "Nuevos",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Actualizado",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} pieza",
+        "count__plural=*": "{count__number} piezas"
+      }
+    }
+  ],
+  "ui_domain_by_author": "de {author}",
+  "ui_domain_capsule_conflicts": "Conflictos",
+  "ui_domain_capsule_dedicated": "Servidor dedicado",
+  "ui_domain_capsule_dependencies": "Dependencias",
+  "ui_domain_capsule_game_build": "Build del juego",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Multijugador",
+  "ui_domain_capsule_platform": "Plataforma",
+  "ui_domain_capsule_safe_remove": "Quitar a mitad de partida",
+  "ui_domain_chart_view_table": "Ver como tabla",
+  "ui_domain_comment_badge_author": "Creador",
+  "ui_domain_comment_badge_ranger": "Guardabosques",
+  "ui_domain_comment_bug": "Reporte de bug",
+  "ui_domain_comment_bug_fixed_in": "Arreglado en la v{version}",
+  "ui_domain_comment_bug_on": "Reporte de bug · v{version}",
+  "ui_domain_comment_deleted": "Este comentario se ha eliminado.",
+  "ui_domain_comment_image": "Imagen adjunta al comentario",
+  "ui_domain_comment_pending": "Esperando a que lo revise un guardabosques.",
+  "ui_domain_comment_pinned": "Fijados",
+  "ui_domain_comment_reactions": "Reacciones",
+  "ui_domain_comment_solution": "Solución",
+  "ui_domain_compat_broken": "Roto",
+  "ui_domain_compat_broken_on": "Roto en {build}",
+  "ui_domain_compat_mixed": "Reportes mixtos",
+  "ui_domain_compat_mixed_on": "Reportes mixtos en {build}",
+  "ui_domain_compat_untested": "Sin verificar",
+  "ui_domain_compat_untested_on": "Sin verificar en {build}",
+  "ui_domain_compat_works": "Funciona",
+  "ui_domain_compat_works_on": "Funciona en {build}",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} conflicto",
+        "count__plural=*": "{count__number} conflictos"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "Ninguno conocido",
+  "ui_domain_consent_accept": "Aceptar",
+  "ui_domain_consent_label": "Consentimiento de cookies",
+  "ui_domain_consent_policy": "Política de cookies",
+  "ui_domain_consent_preferences": "Preferencias",
+  "ui_domain_consent_reject": "Rechazar",
+  "ui_domain_consent_text": "Usamos cookies para anuncios y estadísticas anónimas. Las descargas funcionan igual.",
+  "ui_domain_creator_top_mod": "Mod más popular: {mod}",
+  "ui_domain_curated_by": "seleccionado por {author}",
+  "ui_domain_dedicated_no": "No compatible",
+  "ui_domain_dedicated_partial": "A medias",
+  "ui_domain_dedicated_yes": "Compatible",
+  "ui_domain_deleted_user": "Superviviente eliminado",
+  "ui_domain_dependencies_conflicts_title": "Choca con",
+  "ui_domain_dependencies_empty": "Sin dependencias. Ponlo y a jugar.",
+  "ui_domain_dependencies_none": "Ninguno",
+  "ui_domain_dependencies_optional_title": "Funciona mejor con",
+  "ui_domain_dependencies_required_title": "Necesita",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{required__number} obligatorias · {optional__number} opcionales"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "Choca con",
+  "ui_domain_dependency_kind_optional": "Opcional",
+  "ui_domain_dependency_kind_required": "Necesita",
+  "ui_domain_dependency_state_archived": "Archivado",
+  "ui_domain_dependency_state_missing": "No está en SOTF Mods",
+  "ui_domain_dependency_state_ok": "Disponible",
+  "ui_domain_dependency_state_removed": "Retirado",
+  "ui_domain_dependency_state_unlisted": "Oculto",
+  "ui_domain_download": "Descargar",
+  "ui_domain_download_all_versions": "Todas las versiones",
+  "ui_domain_download_done_hint": "Ponlo en la carpeta Mods del juego y ábrelo.",
+  "ui_domain_download_done_label": "Descargado",
+  "ui_domain_download_other_versions": "Otras versiones",
+  "ui_domain_download_version": "Descargar v{version}",
+  "ui_domain_download_version_size": "Descargar v{version} · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} descarga",
+        "count__plural=*": "{display} descargas"
+      }
+    }
+  ],
+  "ui_domain_edited": "editado",
+  "ui_domain_feature_cta": "Echa un vistazo",
+  "ui_domain_filter_clear": "Quitar filtros",
+  "ui_domain_filter_exclude": "Excluir {label}",
+  "ui_domain_filter_excluded": "excluido",
+  "ui_domain_filter_included": "incluido",
+  "ui_domain_filter_unexclude": "Dejar de excluir {label}",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Captura {index__number} de {total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Galería",
+  "ui_domain_gallery_video": "Vídeo",
+  "ui_domain_hidden_by_ranger": "Oculto por un guardabosques. Solo tú y los guardabosques podéis verlo.",
+  "ui_domain_hidden_by_ranger_reason": "Oculto por un guardabosques: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Todos lo necesitan",
+  "ui_domain_multiplayer_client_side": "Solo lo necesitas tú",
+  "ui_domain_multiplayer_host_only": "Solo el host",
+  "ui_domain_multiplayer_singleplayer_only": "Solo un jugador",
+  "ui_domain_platform_client": "Cliente",
+  "ui_domain_platform_server": "Servidor",
+  "ui_domain_platform_universal": "Universal",
+  "ui_domain_rank_builder": "Constructor",
+  "ui_domain_rank_castaway": "Náufrago",
+  "ui_domain_rank_forager": "Recolector",
+  "ui_domain_rank_label": "Rango de superviviente",
+  "ui_domain_rank_legend": "Leyenda",
+  "ui_domain_rank_pathfinder": "Pionero",
+  "ui_domain_rank_scavenger": "Carroñero",
+  "ui_domain_rank_trapper": "Trampero",
+  "ui_domain_rank_veteran": "Veterano",
+  "ui_domain_rating_out_of": "Valorado con {rating} de 5",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Valoración de {rating} sobre 5 con {count__number} reseña",
+        "count__plural=*": "Valoración de {rating} sobre 5 con {count__number} reseñas"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Fuego",
+  "ui_domain_reaction_heart": "Corazón",
+  "ui_domain_reaction_laugh": "Risa",
+  "ui_domain_reaction_party": "Fiesta",
+  "ui_domain_reaction_pray": "Gracias",
+  "ui_domain_reaction_thumbs_up": "Pulgar arriba",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} roto",
+        "count__plural=*": "{display} rotos"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "Por build del juego",
+  "ui_domain_reports_empty": "Aún no hay reportes de campo. ¿Lo has probado? Cuéntalo.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} en parte",
+        "count__plural=*": "{display} en parte"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Reportar",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Reportes de campo: {works__number} funciona, {partial__number} en parte, {broken__number} roto"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Reportes de campo",
+  "ui_domain_reports_title_on": "Reportes de campo en {build}",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} funciona",
+        "count__plural=*": "{display} funcionan"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "A {count__number} superviviente le resultó útil",
+        "count__plural=*": "A {count__number} supervivientes les resultó útil"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "Respuesta del creador",
+  "ui_domain_review_reply_from": "Respuesta de {name}",
+  "ui_domain_review_used_version": "Usó la v{version}",
+  "ui_domain_review_verified_download": "Descargó este mod",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} reseña",
+        "count__plural=*": "{count__number} reseñas"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Distribución de valoraciones",
+  "ui_domain_reviews_not_enough": "Aún no hay reseñas suficientes para una nota.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} estrella",
+        "count__plural=*": "{count__number} estrellas"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "No se puede quitar a mitad de partida",
+  "ui_domain_safe_remove_yes": "Se puede quitar a mitad de partida",
+  "ui_domain_sort_label": "Ordenar:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Baja {percent} en {days__number} día",
+        "days__plural=*": "Baja {percent} en {days__number} días"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Sin cambios en {days__number} día",
+        "days__plural=*": "Sin cambios en {days__number} días"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Sube {percent} en {days__number} día",
+        "days__plural=*": "Sube {percent} en {days__number} días"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "Descargas",
+  "ui_domain_stat_followers": "Seguidores",
+  "ui_domain_stat_mods": "Mods",
+  "ui_domain_status_archived": "Archivado",
+  "ui_domain_status_pending": "Pendiente de revisión",
+  "ui_domain_status_rejected": "Rechazado",
+  "ui_domain_status_removed": "Retirado",
+  "ui_domain_status_unlisted": "Oculto",
+  "ui_domain_tier_cabin": "Cabaña",
+  "ui_domain_tier_campfire": "Hoguera",
+  "ui_domain_tier_fortress": "Fortaleza",
+  "ui_domain_tier_label": "Rango de creador",
+  "ui_domain_tier_landmark": "Hito",
+  "ui_domain_tier_lean_to": "Refugio",
+  "ui_domain_tier_treehouse": "Casa del árbol",
+  "ui_domain_trusted_creator": "Creador de confianza",
+  "ui_domain_value_not_declared": "Sin declarar",
+  "ui_domain_value_unknown": "Desconocido",
+  "ui_domain_version_beta": "Beta",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "Última",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "Nueva desde tu última descarga",
+  "ui_domain_version_unavailable": "Archivo no disponible",
+  "ui_domain_version_yanked": "Retirada",
+  "ui_domain_versions_caption": "Versiones",
+  "ui_domain_versions_col_date": "Publicada",
+  "ui_domain_versions_col_download": "Descargar",
+  "ui_domain_versions_col_downloads": "Descargas",
+  "ui_domain_versions_col_game": "Juego",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Reportes",
+  "ui_domain_versions_col_size": "Tamaño",
+  "ui_domain_versions_col_version": "Versión",
+  "ui_domain_versions_empty": "Aún no hay versiones publicadas.",
+  "ui_domain_view_compact": "Compacta",
+  "ui_domain_view_grid": "Cuadrícula",
+  "ui_domain_view_label": "Vista",
+  "ui_domain_view_list": "Lista",
+  "ui_domain_visibility_private": "Privado",
+  "ui_domain_visibility_unlisted": "Oculto",
   "ui_error_reference": "Ref.: {id}",
   "ui_hide_password": "Ocultar contraseña",
   "ui_language": "Idioma",

@@ -18,7 +18,7 @@ const de_content_radar_cta_title = /** @type {(inputs: Content_Radar_Cta_TitleIn
 };
 
 const fr_content_radar_cta_title = /** @type {(inputs: Content_Radar_Cta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Vous en avez essayé un sur ${i?.build} ?`)
+	return /** @type {LocalizedString} */ (`Vous en avez essayé un sur ${i?.build} ?`)
 };
 
 const it_content_radar_cta_title = /** @type {(inputs: Content_Radar_Cta_TitleInputs) => LocalizedString} */ (i) => {

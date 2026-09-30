@@ -50,7 +50,7 @@ const tr_profile_kits_empty_action = /** @type {(inputs: Profile_Kits_Empty_Acti
 };
 
 const zh_profile_kits_empty_action = /** @type {(inputs: Profile_Kits_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`浏览合集`)
+	return /** @type {LocalizedString} */ (`浏览套装`)
 };
 
 const ja_profile_kits_empty_action = /** @type {(inputs: Profile_Kits_Empty_ActionInputs) => LocalizedString} */ () => {

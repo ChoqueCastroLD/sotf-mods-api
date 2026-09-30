@@ -18,7 +18,7 @@ const de_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_Pendi
 };
 
 const fr_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En attente des rangers. Toi seul peux le voir.`)
+	return /** @type {LocalizedString} */ (`En attente des rangers. Vous seul pouvez le voir.`)
 };
 
 const it_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {

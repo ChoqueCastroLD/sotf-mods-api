@@ -18,7 +18,7 @@ const de_content_kelvin_history_text = /** @type {(inputs: Content_Kelvin_Histor
 };
 
 const fr_content_kelvin_history_text = /** @type {(inputs: Content_Kelvin_History_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il s’appelait auparavant Kelvin-GPT. L’ancienne version qui demandait votre propre clé OpenAI est retirée : cette route exposait la clé dans l’adresse et répond désormais « Gone ».`)
+	return /** @type {LocalizedString} */ (`Il s’appelait auparavant Kelvin-GPT. L’ancienne version qui demandait votre propre clé OpenAI est retirée : cette route exposait la clé dans l’adresse et répond désormais « Gone ».`)
 };
 
 const it_content_kelvin_history_text = /** @type {(inputs: Content_Kelvin_History_TextInputs) => LocalizedString} */ () => {

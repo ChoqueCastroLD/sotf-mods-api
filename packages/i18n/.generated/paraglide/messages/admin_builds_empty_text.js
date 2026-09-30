@@ -22,7 +22,7 @@ const fr_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextIn
 };
 
 const it_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registra la patch che i giocatori usano oggi, così i report sul campo hanno un riferimento.`)
+	return /** @type {LocalizedString} */ (`Registra la patch che i giocatori usano oggi, così i rapporti sul campo hanno un riferimento.`)
 };
 
 const nl_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextIn
 };
 
 const pl_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zarejestruj łatkę, na której gracze są dziś, żeby raporty z terenu miały do czego się odnosić.`)
+	return /** @type {LocalizedString} */ (`Zarejestruj łatkę, na której gracze są dziś, żeby raporty terenowe miały do czego się odnosić.`)
 };
 
 const pt_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registre o patch que os jogadores usam hoje para que os relatos de campo tenham uma referência.`)
+	return /** @type {LocalizedString} */ (`Registre o patch que os jogadores usam hoje para que os relatórios de campo tenham uma referência.`)
 };
 
 const ru_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {

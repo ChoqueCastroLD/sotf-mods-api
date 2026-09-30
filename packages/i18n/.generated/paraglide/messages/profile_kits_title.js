@@ -50,7 +50,7 @@ const tr_profile_kits_title = /** @type {(inputs: Profile_Kits_TitleInputs) => L
 };
 
 const zh_profile_kits_title = /** @type {(inputs: Profile_Kits_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 的合集`)
+	return /** @type {LocalizedString} */ (`${i?.name} 的套装`)
 };
 
 const ja_profile_kits_title = /** @type {(inputs: Profile_Kits_TitleInputs) => LocalizedString} */ (i) => {

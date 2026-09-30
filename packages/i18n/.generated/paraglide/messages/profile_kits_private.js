@@ -50,7 +50,7 @@ const tr_profile_kits_private = /** @type {(inputs: Profile_Kits_PrivateInputs) 
 };
 
 const zh_profile_kits_private = /** @type {(inputs: Profile_Kits_PrivateInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 未公开其合集。`)
+	return /** @type {LocalizedString} */ (`${i?.name} 未公开其套装。`)
 };
 
 const ja_profile_kits_private = /** @type {(inputs: Profile_Kits_PrivateInputs) => LocalizedString} */ (i) => {

@@ -18,7 +18,7 @@ const de_content_dev_link_legacy_text = /** @type {(inputs: Content_Dev_Link_Leg
 };
 
 const fr_content_dev_link_legacy_text = /** @type {(inputs: Content_Dev_Link_Legacy_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Toujours en service ; les routes gelées s’arrêtent le ${i?.date}.`)
+	return /** @type {LocalizedString} */ (`Toujours en service ; les routes gelées s’arrêtent le ${i?.date}.`)
 };
 
 const it_content_dev_link_legacy_text = /** @type {(inputs: Content_Dev_Link_Legacy_TextInputs) => LocalizedString} */ (i) => {

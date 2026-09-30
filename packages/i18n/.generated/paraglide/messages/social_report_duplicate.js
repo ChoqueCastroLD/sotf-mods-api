@@ -10,7 +10,7 @@ const en_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateIn
 };
 
 const es_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ya denunciaste este mod. Los rangers lo tienen.`)
+	return /** @type {LocalizedString} */ (`Ya denunciaste este mod. Los guardabosques lo tienen.`)
 };
 
 const de_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateIn
 };
 
 const pl_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ten mod został już przez ciebie zgłoszony. Rangerzy się tym zajmują.`)
+	return /** @type {LocalizedString} */ (`Ten mod został już przez ciebie zgłoszony. Strażnicy się tym zajmują.`)
 };
 
 const pt_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você já denunciou este mod. Os rangers estão cuidando disso.`)
+	return /** @type {LocalizedString} */ (`Você já denunciou este mod. Os guardas estão cuidando disso.`)
 };
 
 const ru_social_report_duplicate = /** @type {(inputs: Social_Report_DuplicateInputs) => LocalizedString} */ () => {

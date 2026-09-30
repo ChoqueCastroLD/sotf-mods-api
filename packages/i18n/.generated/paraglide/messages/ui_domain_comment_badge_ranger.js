@@ -1,0 +1,84 @@
+/* eslint-disable */
+import { getLocale, experimentalStaticLocale } from '../runtime.js';
+
+/** @typedef {import('../runtime.js').LocalizedString} LocalizedString */
+
+/** @typedef {{}} Ui_Domain_Comment_Badge_RangerInputs */
+
+const en_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ranger`)
+};
+
+const es_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Guardabosques`)
+};
+
+const de_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ranger`)
+};
+
+const fr_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ranger`)
+};
+
+const it_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ranger`)
+};
+
+const nl_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ranger`)
+};
+
+const pl_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Strażnik`)
+};
+
+const pt_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Guarda`)
+};
+
+const ru_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Рейнджер`)
+};
+
+const sv_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ranger`)
+};
+
+const tr_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Korucu`)
+};
+
+const zh_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`护林员`)
+};
+
+const ja_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`レンジャー`)
+};
+
+/**
+* | output |
+* | --- |
+* | "Ranger" |
+*
+* @param {Ui_Domain_Comment_Badge_RangerInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export const ui_domain_comment_badge_ranger = /** @type {((inputs?: Ui_Domain_Comment_Badge_RangerInputs, options?: { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Ui_Domain_Comment_Badge_RangerInputs, { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "es") return es_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "de") return de_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "fr") return fr_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "it") return it_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "nl") return nl_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "pl") return pl_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "pt") return pt_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "ru") return ru_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "sv") return sv_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "tr") return tr_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "zh") return zh_ui_domain_comment_badge_ranger(inputs)
+	if (locale === "ja") return ja_ui_domain_comment_badge_ranger(inputs)
+	return en_ui_domain_comment_badge_ranger(inputs)
+});

@@ -18,7 +18,7 @@ const de_content_dev_legacy_retired_text = /** @type {(inputs: Content_Dev_Legac
 };
 
 const fr_content_dev_legacy_retired_text = /** @type {(inputs: Content_Dev_Legacy_Retired_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toute méthode sur ces routes répond 410 Gone avec ce corps :`)
+	return /** @type {LocalizedString} */ (`Toute méthode sur ces routes répond 410 Gone avec ce corps :`)
 };
 
 const it_content_dev_legacy_retired_text = /** @type {(inputs: Content_Dev_Legacy_Retired_TextInputs) => LocalizedString} */ () => {

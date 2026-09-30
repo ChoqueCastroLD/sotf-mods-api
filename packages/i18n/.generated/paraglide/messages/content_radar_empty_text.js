@@ -34,7 +34,7 @@ const pl_content_radar_empty_text = /** @type {(inputs: Content_Radar_Empty_Text
 };
 
 const pt_content_radar_empty_text = /** @type {(inputs: Content_Radar_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nenhuma build do jogo foi registrada ainda. Assim que os rangers registrarem o patch atual, esta página mostrará quais mods populares funcionam nele.`)
+	return /** @type {LocalizedString} */ (`Nenhuma build do jogo foi registrada ainda. Assim que os guardas registrarem o patch atual, esta página mostrará quais mods populares funcionam nele.`)
 };
 
 const ru_content_radar_empty_text = /** @type {(inputs: Content_Radar_Empty_TextInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_content_radar_empty_text = /** @type {(inputs: Content_Radar_Empty_Text
 };
 
 const ja_content_radar_empty_text = /** @type {(inputs: Content_Radar_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ゲームのビルドはまだ登録されていません。レンジャーが現在のパッチを登録すると、このページに動作する人気 Mod が表示されます。`)
+	return /** @type {LocalizedString} */ (`ゲームのビルドはまだ登録されていません。レンジャーが現在のパッチを登録すると、このページに動作する人気 MOD が表示されます。`)
 };
 
 /**

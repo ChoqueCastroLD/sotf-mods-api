@@ -18,7 +18,7 @@ const de_basecamp_analytics_empty_text = /** @type {(inputs: Basecamp_Analytics_
 };
 
 const fr_basecamp_analytics_empty_text = /** @type {(inputs: Basecamp_Analytics_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publie un mod et ses chiffres apparaîtront ici.`)
+	return /** @type {LocalizedString} */ (`Publiez un mod et ses chiffres apparaîtront ici.`)
 };
 
 const it_basecamp_analytics_empty_text = /** @type {(inputs: Basecamp_Analytics_Empty_TextInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_basecamp_empty_action = /** @type {(inputs: Basecamp_Empty_ActionInputs
 };
 
 const fr_basecamp_empty_action = /** @type {(inputs: Basecamp_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publier ton premier mod`)
+	return /** @type {LocalizedString} */ (`Publier votre premier mod`)
 };
 
 const it_basecamp_empty_action = /** @type {(inputs: Basecamp_Empty_ActionInputs) => LocalizedString} */ () => {

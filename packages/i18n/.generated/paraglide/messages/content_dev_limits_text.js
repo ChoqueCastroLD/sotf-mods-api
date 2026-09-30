@@ -18,7 +18,7 @@ const de_content_dev_limits_text = /** @type {(inputs: Content_Dev_Limits_TextIn
 };
 
 const fr_content_dev_limits_text = /** @type {(inputs: Content_Dev_Limits_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Au-delà d’une limite, l’API répond 429 avec un en-tête Retry-After. Mettez les réponses en cache et respectez les ETag : vous en approcherez rarement.`)
+	return /** @type {LocalizedString} */ (`Au-delà d’une limite, l’API répond 429 avec un en-tête Retry-After. Mettez les réponses en cache et respectez les ETag : vous en approcherez rarement.`)
 };
 
 const it_content_dev_limits_text = /** @type {(inputs: Content_Dev_Limits_TextInputs) => LocalizedString} */ () => {

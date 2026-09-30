@@ -10,7 +10,7 @@ const en_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs
 };
 
 const es_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otro ranger ya decidió sobre este elemento, o salió de la cola.`)
+	return /** @type {LocalizedString} */ (`Otro guardabosques ya decidió sobre este elemento, o salió de la cola.`)
 };
 
 const de_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs
 };
 
 const pl_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inny ranger już zdecydował w tej sprawie albo element opuścił kolejkę.`)
+	return /** @type {LocalizedString} */ (`Inny strażnik już zdecydował w tej sprawie albo element opuścił kolejkę.`)
 };
 
 const pt_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Outro ranger já decidiu sobre este item, ou ele saiu da fila.`)
+	return /** @type {LocalizedString} */ (`Outro guarda já decidiu sobre este item, ou ele saiu da fila.`)
 };
 
 const ru_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs
 };
 
 const tr_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu öğe hakkında başka bir ranger karar verdi ya da öğe kuyruktan çıktı.`)
+	return /** @type {LocalizedString} */ (`Bu öğe hakkında başka bir korucu karar verdi ya da öğe kuyruktan çıktı.`)
 };
 
 const zh_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`其他巡林员已对此作出决定，或它已离开队列。`)
+	return /** @type {LocalizedString} */ (`其他护林员已对此作出决定，或它已离开队列。`)
 };
 
 const ja_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {

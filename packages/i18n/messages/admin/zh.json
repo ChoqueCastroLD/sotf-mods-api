@@ -1,6 +1,6 @@
 {
   "admin_title": "管理",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "管理 · 护林站",
   "admin_action_add": "添加",
   "admin_action_cancel": "取消",
   "admin_action_delete": "删除",
@@ -366,7 +366,7 @@
   "admin_ads_add_slot": "添加广告位",
   "admin_ads_saved": "广告设置已保存",
   "admin_tpl_title": "审核模板",
-  "admin_tpl_description": "巡查员在批准、拒绝或要求修改时选用的理由。作者会以自己的语言看到它们。",
+  "admin_tpl_description": "护林员在批准、拒绝或要求修改时选用的理由。作者会以自己的语言看到它们。",
   "admin_tpl_add": "新建模板",
   "admin_tpl_filter": "操作",
   "admin_tpl_filter_all": "全部（{count}）",

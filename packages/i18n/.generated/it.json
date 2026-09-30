@@ -136,9 +136,9 @@
   "admin_builds_delete_text": "Si possono eliminare solo le build senza report.",
   "admin_builds_delete_title": "Eliminare {label}?",
   "admin_builds_deleted": "{label} eliminata",
-  "admin_builds_description": "Le patch di Sons of the Forest a cui si riferiscono i report sul campo, i badge di compatibilità e il Radar delle patch. Esattamente una è quella attuale.",
+  "admin_builds_description": "Le patch di Sons of the Forest a cui si riferiscono i rapporti sul campo, i badge di compatibilità e il Radar delle patch. Esattamente una è quella attuale.",
   "admin_builds_edit_title": "Modifica {label}",
-  "admin_builds_empty_text": "Registra la patch che i giocatori usano oggi, così i report sul campo hanno un riferimento.",
+  "admin_builds_empty_text": "Registra la patch che i giocatori usano oggi, così i rapporti sul campo hanno un riferimento.",
   "admin_builds_empty_title": "Ancora nessuna build del gioco",
   "admin_builds_error_steam": "Solo cifre, al massimo 12.",
   "admin_builds_field_breaking": "Aggiornamento che rompe le mod",
@@ -383,7 +383,7 @@
     }
   ],
   "admin_range_label": "Periodo",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Admin · Stazione dei ranger",
   "admin_reauth_action": "Accedi di nuovo",
   "admin_reauth_text": "Gli strumenti di amministrazione richiedono un accesso nelle ultime 12 ore. Accedi di nuovo e tornerai direttamente qui.",
   "admin_reauth_title": "Conferma che sei tu",
@@ -2586,7 +2586,7 @@
   "content_news_byline": "di {author}",
   "content_news_description": "Annunci del team di SOTF Mods: nuove funzioni, modifiche al sito e all’API e cosa arriverà.",
   "content_news_empty": "Ancora nessuna novità. Tutto tranquillo nel bosco.",
-  "content_news_eyebrow": "Note dal campo",
+  "content_news_eyebrow": "Note sul campo",
   "content_news_feed": "Iscriviti via RSS",
   "content_news_feed_title": "SOTF Mods — Novità",
   "content_news_read": "Leggi",
@@ -2645,7 +2645,7 @@
     }
   ],
   "content_radar_cta_button": "Mod in attesa di segnalazioni",
-  "content_radar_cta_text": "Apri la mod, scegli come hai giocato (da solo, host, client o dedicato) e di’ se funziona. Ogni segnalazione sul campo fa guadagnare XP e risparmia ad altri sopravvissuti un salvataggio rotto.",
+  "content_radar_cta_text": "Apri la mod, scegli come hai giocato (da solo, host, client o dedicato) e di’ se funziona. Ogni rapporto sul campo fa guadagnare XP e risparmia ad altri sopravvissuti un salvataggio rotto.",
   "content_radar_cta_title": "Ne hai provata qualcuna su {build}?",
   "content_radar_current": "Build attuale",
   "content_radar_description": [
@@ -2666,7 +2666,7 @@
       }
     }
   ],
-  "content_radar_description_generic": "Quali mod di Sons of the Forest funzionano con la patch attuale del gioco: stato di RedLoader e segnalazioni sul campo dei giocatori per le 50 mod più scaricate.",
+  "content_radar_description_generic": "Quali mod di Sons of the Forest funzionano con la patch attuale del gioco: stato di RedLoader e rapporti sul campo dei giocatori per le 50 mod più scaricate.",
   "content_radar_downloads_30d": [
     {
       "declarations": [
@@ -2731,11 +2731,11 @@
   "content_radar_past_notice": "Questa è una build precedente. Ora il gioco è alla {build}.",
   "content_radar_pending_empty": "Ogni mod principale ha un verdetto chiaro su questa build.",
   "content_radar_pending_hint": "Non testate o risultati misti",
-  "content_radar_pending_title": "In attesa di segnalazioni sul campo",
+  "content_radar_pending_title": "In attesa di rapporti sul campo",
   "content_radar_released": "Pubblicata il {date}",
   "content_radar_report": "Segnala",
-  "content_radar_seo_title": "Le mod di SOTF funzionano con la patch {build}? — Patch Radar",
-  "content_radar_seo_title_generic": "Le mod di SOTF funzionano con l’ultima patch? — Patch Radar",
+  "content_radar_seo_title": "Le mod di SOTF funzionano con la patch {build}? — Radar delle patch",
+  "content_radar_seo_title_generic": "Le mod di SOTF funzionano con l’ultima patch? — Radar delle patch",
   "content_radar_stat_broken": "Rotte",
   "content_radar_stat_pending": "Mancano segnalazioni",
   "content_radar_stat_works": "Funzionano",
@@ -3144,6 +3144,11 @@
         "status=archived": "{mod} è stato archiviato",
         "status=unlisted": "{mod} non compare più negli elenchi",
         "status=removed": "{mod} è stato rimosso da SOTF Mods",
+        "status=changes_requested": "I ranger chiedono modifiche a {mod}",
+        "status=version_approved": "Una nuova versione di {mod} è stata approvata ed è online",
+        "status=version_rejected": "Una nuova versione di {mod} non è stata approvata",
+        "status=version_changes_requested": "I ranger chiedono modifiche a una nuova versione di {mod}",
+        "status=version_held": "Una nuova versione di {mod} è in attesa del controllo di un ranger",
         "status=*": "Lo stato di {mod} è cambiato"
       }
     }
@@ -3322,6 +3327,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Sentiero chiuso · Rimosso per sempre",
   "errors_gone_text": "Ciò che c’era qui è stato rimosso per sempre. Prova a esplorare altre mod.",
   "errors_gone_title": "Questo sentiero è chiuso.",
   "errors_login_mismatch": "Email e password non corrispondono. Riprova o reimposta la password.",
@@ -3329,12 +3335,17 @@
   "errors_network_retrying": "Segnale perso. Nuovo tentativo…",
   "errors_network_title": "Segnale perso",
   "errors_not_found_home": "Torna al sentiero",
+  "errors_not_found_install": "Come installare le mod",
   "errors_not_found_popular": "Mod popolari",
+  "errors_not_found_readout": "Nessun segnale · Fuori mappa",
   "errors_not_found_text": "Questa pagina non è sulla nostra mappa. Qualcosa ti osserva tra gli alberi: torniamo sul sentiero.",
   "errors_not_found_title": "Ti sei allontanato dal sentiero.",
   "errors_permission_detail": "Ti serve un ruolo diverso per aprire questa pagina. Torna indietro o accedi con un altro account.",
   "errors_permission_title": "Solo per i ranger",
   "errors_reference": "Rif.: {id}",
+  "errors_server_readout": "Fuoco spento · Errore 500",
+  "errors_server_retry": "Riprova",
+  "errors_server_status": "Controlla lo stato su Discord",
   "errors_server_text": "Ci stiamo lavorando. Ricarica la pagina tra un minuto o torna alla home.",
   "errors_server_title": "Qualcosa si è rotto al campo base.",
   "errors_validation_summary": [
@@ -4524,7 +4535,7 @@
   "landing_pins_label": "In diretta sull’isola",
   "landing_radar_breaking": "Aggiornamento che rompe le mod",
   "landing_radar_cta": "Guarda cosa non funziona",
-  "landing_radar_empty": "Nessuna patch del gioco sul radar per ora. Le segnalazioni sul campo partono con il prossimo aggiornamento.",
+  "landing_radar_empty": "Nessuna patch del gioco sul radar per ora. I rapporti sul campo partono con il prossimo aggiornamento.",
   "landing_radar_loader": [
     {
       "declarations": [
@@ -6090,7 +6101,7 @@
   "ranger_previous": "Precedente",
   "ranger_queue_description": "Prima i più vecchi e i più rischiosi. Ogni decisione viene registrata e l’autore riceve un avviso.",
   "ranger_queue_title": "Coda di moderazione",
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "Stazione dei ranger",
   "ranger_reason_broken": "Non funziona",
   "ranger_reason_harassment": "Molestie",
   "ranger_reason_illegal": "Contenuto illegale",
@@ -7116,7 +7127,7 @@
   "signals_page_readout": "Registro radio",
   "signals_page_title": "Segnali",
   "signals_panel_title": "Segnali",
-  "signals_patch_breaking": "La build {build} del gioco potrebbe rompere delle mod: controlla le tue nel Patch Radar",
+  "signals_patch_breaking": "La build {build} del gioco potrebbe rompere delle mod: controlla le tue nel Radar delle patch",
   "signals_preferences": "Impostazioni delle notifiche",
   "signals_report_dismissed": "La tua segnalazione è stata esaminata: non serviva intervenire",
   "signals_report_resolved": "La tua segnalazione è stata esaminata e sono stati presi provvedimenti",
@@ -7151,6 +7162,10 @@
   "signals_status_removed": "La tua mod {mod} è stata rimossa",
   "signals_status_republished": "La tua mod {mod} è di nuovo pubblica",
   "signals_status_unlisted": "La tua mod {mod} è stata tolta dagli elenchi",
+  "signals_status_version_approved": "La versione {version} di {mod} è stata approvata ed è online",
+  "signals_status_version_changes_requested": "I ranger chiedono modifiche alla versione {version} di {mod}",
+  "signals_status_version_held": "La versione {version} di {mod} è in attesa del controllo di un ranger",
+  "signals_status_version_rejected": "La versione {version} di {mod} non è stata approvata",
   "signals_unknown_mod": "una mod",
   "signals_unread_prefix": "Da leggere:",
   "signals_version_published": "È uscita {mod} {version}: la segui",
@@ -7285,7 +7300,7 @@
   "social_compat_steps": "Passaggi",
   "social_compat_submit": "Invia rapporto",
   "social_compat_text": "Un rapporto sul campo richiede dieci secondi e dice a tutti se questa mod funziona con la patch attuale.",
-  "social_compat_thanks": "Grazie, sopravvissuto! Il tuo rapporto conta per il badge di compatibilità.",
+  "social_compat_thanks": "Grazie, sopravvissuto! Il tuo rapporto sul campo conta per il badge di compatibilità.",
   "social_compat_title": "Rapporto sul campo",
   "social_compat_version": "Versione della mod",
   "social_compat_yours": "Hai segnalato «{result}» su {build} ({mode}, v{version}).",
@@ -7475,6 +7490,453 @@
   "ui_clear": "Cancella",
   "ui_close": "Chiudi",
   "ui_dismiss": "Ignora",
+  "ui_domain_ad_label": "Pubblicità",
+  "ui_domain_ad_notice": "La pubblicità mantiene gratuiti i download. Accedi per nasconderla.",
+  "ui_domain_award_build_of_month": "Build del mese",
+  "ui_domain_award_mod_of_month": "Mod del mese",
+  "ui_domain_award_mod_of_week": "Mod della settimana",
+  "ui_domain_award_staff_pick": "Scelta dello staff",
+  "ui_domain_badge_featured": "In evidenza",
+  "ui_domain_badge_locked": "Bloccato",
+  "ui_domain_badge_new": "Nuovi",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Aggiornato",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} pezzo",
+        "count__plural=*": "{count__number} pezzi"
+      }
+    }
+  ],
+  "ui_domain_by_author": "di {author}",
+  "ui_domain_capsule_conflicts": "Conflitti",
+  "ui_domain_capsule_dedicated": "Server dedicato",
+  "ui_domain_capsule_dependencies": "Dipendenze",
+  "ui_domain_capsule_game_build": "Build del gioco",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Multigiocatore",
+  "ui_domain_capsule_platform": "Piattaforma",
+  "ui_domain_capsule_safe_remove": "Rimozione a partita in corso",
+  "ui_domain_chart_view_table": "Mostra come tabella",
+  "ui_domain_comment_badge_author": "Creatore",
+  "ui_domain_comment_badge_ranger": "Ranger",
+  "ui_domain_comment_bug": "Segnalazione di bug",
+  "ui_domain_comment_bug_fixed_in": "Corretto nella v{version}",
+  "ui_domain_comment_bug_on": "Segnalazione di bug · v{version}",
+  "ui_domain_comment_deleted": "Questo commento è stato eliminato.",
+  "ui_domain_comment_image": "Immagine allegata al commento",
+  "ui_domain_comment_pending": "In attesa che un ranger lo controlli.",
+  "ui_domain_comment_pinned": "In evidenza",
+  "ui_domain_comment_reactions": "Reazioni",
+  "ui_domain_comment_solution": "Soluzione",
+  "ui_domain_compat_broken": "Non funziona",
+  "ui_domain_compat_broken_on": "Non funziona su {build}",
+  "ui_domain_compat_mixed": "Segnalazioni contrastanti",
+  "ui_domain_compat_mixed_on": "Rapporti contrastanti su {build}",
+  "ui_domain_compat_untested": "Non verificato",
+  "ui_domain_compat_untested_on": "Non verificato su {build}",
+  "ui_domain_compat_works": "Funziona",
+  "ui_domain_compat_works_on": "Funziona con {build}",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} conflitto",
+        "count__plural=*": "{count__number} conflitti"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "Nessuno noto",
+  "ui_domain_consent_accept": "Accetta",
+  "ui_domain_consent_label": "Consenso ai cookie",
+  "ui_domain_consent_policy": "Informativa sui cookie",
+  "ui_domain_consent_preferences": "Preferenze",
+  "ui_domain_consent_reject": "Rifiuta",
+  "ui_domain_consent_text": "Usiamo i cookie per la pubblicità e per statistiche anonime. I download funzionano comunque.",
+  "ui_domain_creator_top_mod": "Mod di punta: {mod}",
+  "ui_domain_curated_by": "a cura di {author}",
+  "ui_domain_dedicated_no": "Non supportato",
+  "ui_domain_dedicated_partial": "In parte",
+  "ui_domain_dedicated_yes": "Supportato",
+  "ui_domain_deleted_user": "Sopravvissuto eliminato",
+  "ui_domain_dependencies_conflicts_title": "In conflitto con",
+  "ui_domain_dependencies_empty": "Nessuna dipendenza. Mettila e gioca.",
+  "ui_domain_dependencies_none": "Nessuno",
+  "ui_domain_dependencies_optional_title": "Funziona meglio con",
+  "ui_domain_dependencies_required_title": "Richiede",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{required__number} obbligatorie · {optional__number} facoltative"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "In conflitto con",
+  "ui_domain_dependency_kind_optional": "Facoltativo",
+  "ui_domain_dependency_kind_required": "Richiede",
+  "ui_domain_dependency_state_archived": "Archiviata",
+  "ui_domain_dependency_state_missing": "Non presente su SOTF Mods",
+  "ui_domain_dependency_state_ok": "Disponibile",
+  "ui_domain_dependency_state_removed": "Rimossa",
+  "ui_domain_dependency_state_unlisted": "Non elencata",
+  "ui_domain_download": "Scarica",
+  "ui_domain_download_all_versions": "Tutte le versioni",
+  "ui_domain_download_done_hint": "Mettila nella cartella Mods del gioco e avvia il gioco.",
+  "ui_domain_download_done_label": "Scaricato",
+  "ui_domain_download_other_versions": "Altre versioni",
+  "ui_domain_download_version": "Scarica v{version}",
+  "ui_domain_download_version_size": "Scarica v{version} · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download",
+        "count__plural=*": "{display} download"
+      }
+    }
+  ],
+  "ui_domain_edited": "modificato",
+  "ui_domain_feature_cta": "Dai un’occhiata",
+  "ui_domain_filter_clear": "Rimuovi i filtri",
+  "ui_domain_filter_exclude": "Escludi {label}",
+  "ui_domain_filter_excluded": "escluso",
+  "ui_domain_filter_included": "incluso",
+  "ui_domain_filter_unexclude": "Non escludere più {label}",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Screenshot {index__number} di {total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Galleria",
+  "ui_domain_gallery_video": "Video",
+  "ui_domain_hidden_by_ranger": "Nascosto da un ranger. Solo tu e i ranger potete vederlo.",
+  "ui_domain_hidden_by_ranger_reason": "Nascosto da un ranger: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Serve a tutti",
+  "ui_domain_multiplayer_client_side": "Serve solo a te",
+  "ui_domain_multiplayer_host_only": "Solo l’host",
+  "ui_domain_multiplayer_singleplayer_only": "Solo giocatore singolo",
+  "ui_domain_platform_client": "Client",
+  "ui_domain_platform_server": "Server",
+  "ui_domain_platform_universal": "Universale",
+  "ui_domain_rank_builder": "Costruttore",
+  "ui_domain_rank_castaway": "Naufrago",
+  "ui_domain_rank_forager": "Raccoglitore",
+  "ui_domain_rank_label": "Grado di sopravvissuto",
+  "ui_domain_rank_legend": "Leggenda",
+  "ui_domain_rank_pathfinder": "Pioniere",
+  "ui_domain_rank_scavenger": "Razziatore",
+  "ui_domain_rank_trapper": "Cacciatore di trappole",
+  "ui_domain_rank_veteran": "Veterano",
+  "ui_domain_rating_out_of": "Valutata {rating} su 5",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Valutazione {rating} su 5 da {count__number} recensione",
+        "count__plural=*": "Valutazione {rating} su 5 da {count__number} recensioni"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Fuoco",
+  "ui_domain_reaction_heart": "Cuore",
+  "ui_domain_reaction_laugh": "Risata",
+  "ui_domain_reaction_party": "Festa",
+  "ui_domain_reaction_pray": "Grazie",
+  "ui_domain_reaction_thumbs_up": "Pollice in su",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} non funziona",
+        "count__plural=*": "{display} non funzionano"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "Per build del gioco",
+  "ui_domain_reports_empty": "Ancora nessun rapporto sul campo. L’hai provata? Faccelo sapere.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} in parte",
+        "count__plural=*": "{display} in parte"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Segnala",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Rapporti sul campo: {works__number} funziona, {partial__number} in parte, {broken__number} non funziona"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Rapporti sul campo",
+  "ui_domain_reports_title_on": "Rapporti sul campo su {build}",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} funziona",
+        "count__plural=*": "{display} funzionano"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sopravvissuto l’ha trovata utile",
+        "count__plural=*": "{count__number} sopravvissuti l’hanno trovata utile"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "Risposta del creatore",
+  "ui_domain_review_reply_from": "Risposta di {name}",
+  "ui_domain_review_used_version": "Ha usato la v{version}",
+  "ui_domain_review_verified_download": "Ha scaricato questa mod",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} recensione",
+        "count__plural=*": "{count__number} recensioni"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Distribuzione dei voti",
+  "ui_domain_reviews_not_enough": "Non ci sono ancora abbastanza recensioni per un punteggio.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} stella",
+        "count__plural=*": "{count__number} stelle"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "Non rimuovere a partita in corso",
+  "ui_domain_safe_remove_yes": "Rimovibile a partita in corso",
+  "ui_domain_sort_label": "Ordina:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "In calo del {percent} in {days__number} giorno",
+        "days__plural=*": "In calo del {percent} in {days__number} giorni"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Nessuna variazione in {days__number} giorno",
+        "days__plural=*": "Nessuna variazione in {days__number} giorni"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "In aumento del {percent} in {days__number} giorno",
+        "days__plural=*": "In aumento del {percent} in {days__number} giorni"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "Download",
+  "ui_domain_stat_followers": "Follower",
+  "ui_domain_stat_mods": "Mod",
+  "ui_domain_status_archived": "Archiviata",
+  "ui_domain_status_pending": "In attesa di revisione",
+  "ui_domain_status_rejected": "Rifiutato",
+  "ui_domain_status_removed": "Rimossa",
+  "ui_domain_status_unlisted": "Non elencata",
+  "ui_domain_tier_cabin": "Capanna",
+  "ui_domain_tier_campfire": "Falò",
+  "ui_domain_tier_fortress": "Fortezza",
+  "ui_domain_tier_label": "Livello da creatore",
+  "ui_domain_tier_landmark": "Monumento",
+  "ui_domain_tier_lean_to": "Riparo",
+  "ui_domain_tier_treehouse": "Casa sull’albero",
+  "ui_domain_trusted_creator": "Creatore affidabile",
+  "ui_domain_value_not_declared": "Non dichiarato",
+  "ui_domain_value_unknown": "Sconosciuto",
+  "ui_domain_version_beta": "Beta",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "Ultima",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "Nuova dal tuo ultimo download",
+  "ui_domain_version_unavailable": "File non disponibile",
+  "ui_domain_version_yanked": "Ritirata",
+  "ui_domain_versions_caption": "Versioni",
+  "ui_domain_versions_col_date": "Uscita",
+  "ui_domain_versions_col_download": "Scarica",
+  "ui_domain_versions_col_downloads": "Download",
+  "ui_domain_versions_col_game": "Gioco",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Rapporti",
+  "ui_domain_versions_col_size": "Taglia",
+  "ui_domain_versions_col_version": "Versione",
+  "ui_domain_versions_empty": "Nessuna versione pubblicata finora.",
+  "ui_domain_view_compact": "Compatta",
+  "ui_domain_view_grid": "Griglia",
+  "ui_domain_view_label": "Vista",
+  "ui_domain_view_list": "Elenco",
+  "ui_domain_visibility_private": "Privato",
+  "ui_domain_visibility_unlisted": "Non elencata",
   "ui_error_reference": "Rif.: {id}",
   "ui_hide_password": "Nascondi password",
   "ui_language": "Lingua",

@@ -163,7 +163,7 @@
   "social_compat_missing_mode": "Choisissez comment vous jouez.",
   "social_compat_missing_result": "Choisissez un résultat.",
   "social_compat_submit": "Envoyer le rapport",
-  "social_compat_thanks": "Merci, survivant ! Votre rapport compte pour le badge de compatibilité.",
+  "social_compat_thanks": "Merci, survivant ! Votre rapport de terrain compte pour le badge de compatibilité.",
   "social_compat_deleted": "Rapport de terrain supprimé.",
   "social_compat_yours": "Vous avez signalé « {result} » sur {build} ({mode}, v{version}).",
   "social_compat_prompt_label": "Ça a marché ?",
