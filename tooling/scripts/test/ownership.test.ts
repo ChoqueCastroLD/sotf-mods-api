@@ -104,6 +104,18 @@ describe('checkPath', () => {
     expect(allowed('WP-13', 'docs/backlog/WP-12.md')).toBe(false);
   });
 
+  it('lets any WP declare additive columns next to an existing Drizzle table', () => {
+    expect(checkPath(ownership, 'WP-41', 'packages/db/src/schema/legacy/comment.ts')).toEqual({
+      allowed: true,
+      reason: 'shared',
+    });
+    expect(allowed('WP-51', 'packages/db/src/schema/v2/moderation.ts')).toBe(true);
+    // New tables still go to the WP's own ext file; other db files stay owned by WP-10.
+    expect(allowed('WP-51', 'packages/db/src/schema/ext/wp-41.ts')).toBe(false);
+    expect(allowed('WP-51', 'packages/db/src/schema/legacy/nested/x.ts')).toBe(false);
+    expect(allowed('WP-51', 'packages/db/src/client.ts')).toBe(false);
+  });
+
   it('allows dependency edits in the manifest of a package the WP owns files in', () => {
     expect(checkPath(ownership, 'WP-30', 'apps/api/package.json')).toEqual({ allowed: true, reason: 'manifest' });
     expect(checkPath(ownership, 'WP-30', 'packages/core/package.json')).toEqual({ allowed: true, reason: 'manifest' });

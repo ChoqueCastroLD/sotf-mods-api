@@ -22,9 +22,9 @@ npm dependencies external — list every runtime dependency in `package.json`).
   `process.env`); outside production it first loads the root `.env` without overriding variables
   already set (`SOTF_NO_DOTENV=1` disables it). `APP_SECRET` and `INTERNAL_SECRET` (≥ 32 chars),
   `PUBLIC_SITE_URL` and `DATABASE_URL` are required.
-- The web expects the API on `127.0.0.1:47301` (`INTERNAL_API_URL`), but `PORT` defaults to 3001
-  (the Coolify port): run `PORT=47301 pnpm --filter @sotf/api dev` until the dev script pins it
-  (`docs/backlog/WP-A4.md`).
+- The `dev` script listens on `127.0.0.1:47301`, where the web expects it (`INTERNAL_API_URL`);
+  `PORT`/`HOST` exported in the shell override it. Outside the dev script `PORT` defaults to 3001
+  (the Coolify port).
 - The database comes from `pnpm infra:up && pnpm db:seed:dev --small`; the API docs are served at
   `http://127.0.0.1:47301/api/docs`.
 - Environment reference per deployment: `ops/coolify/env/api.env.example`; operations:

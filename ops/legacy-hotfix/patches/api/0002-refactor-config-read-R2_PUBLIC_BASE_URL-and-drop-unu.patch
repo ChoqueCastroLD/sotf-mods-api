@@ -1,4 +1,4 @@
-From fff58edee3d75bf31a1d9baa4753da27c799cb92 Mon Sep 17 00:00:00 2001
+From 9b11c21291bad143c60e862e2cc4ee3ae825d91d Mon Sep 17 00:00:00 2001
 From: Luis Choque <luis.choque.castro@outlook.com>
 Date: Tue, 29 Sep 2026 14:07:26 +0200
 Subject: [PATCH 2/3] refactor(config): read R2_PUBLIC_BASE_URL and drop unused

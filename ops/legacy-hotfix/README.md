@@ -23,7 +23,7 @@ Los parches **no se han aplicado ni empujado** a ningún repositorio. Aplicarlos
    - Ya no hacen `fetch` + `blob` del fichero. Registran la descarga y responden **`302 Found`** con `Location: <R2_PUBLIC_BASE_URL>/<clave>`, donde cada segmento de la clave va codificado con `encodeURIComponent` (espacio → `%20`, nunca `+`). Ejemplo real: `https://r2.sotf-mods.com/1766549349465_Regi's%20Modding%20Library.zip`.
    - Cabeceras: `Cache-Control: no-store, private`, `X-Robots-Tag: noindex, nofollow`, `Referrer-Policy: no-referrer`.
    - La fila `ModDownload` guarda la **IP real** (`?ip=` del frontend → `CF-Connecting-IP` → primer salto de `X-Forwarded-For`; solo IPs válidas) y el user agent (`?agent=` → cabecera). Nunca vuelve a guardar el texto `"undefined"`: si no se conoce, queda vacío. `Mod.downloads` sube en la misma transacción.
-   - Solo cuentan los `GET`. `HEAD` y las peticiones `Range` que reanudan a partir de un byte distinto de 0 reciben el 302, pero no cuentan. Si falla la escritura en la BD, la descarga **no** se bloquea.
+   - Solo cuentan los `GET` sin `Range` o con exactamente `Range: bytes=0-`. `HEAD`, las sondas como `bytes=0-0` y las reanudaciones reciben el 302, pero no cuentan. Si falla la escritura en la BD, la descarga **no** se bloquea.
    - Versión inexistente → **404** con el sobre legacy de siempre (`{"status":false,"error":"NOT_FOUND",…}`).
    - Versión cuya URL guardada no está en el dominio de R2 (la única es CompanionWardrobe 0.0.3, en `files.sotf-mods.com`) → **410 Gone** (`{"status":false,"error":"GONE",…}`).
 2. **`refactor(config)`**: las URLs de ficheros nuevos se construyen con `R2_PUBLIC_BASE_URL` (si no existe, se sigue leyendo `FILE_DOWNLOAD_ENDPOINT`, así que el despliegue no exige tocar variables). El formato guardado en la BD no cambia. `.env.example` y el README dejan de listar las variables que ningún código lee y documentan las que sí se leen.
@@ -44,7 +44,7 @@ Antes, el API devolvía el fichero con `Content-Disposition: attachment; filenam
 
 ### Frontend (`sotf-mods-frontend`)
 
-1. **`fix(downloads)`**: `/mods/:user/:slug/download/:version` llama al API con `redirect: "manual"` (por `API_URL` si existe; si no, por `PUBLIC_API_URL`) y **reenvía el 302 tal cual**. Codifica los segmentos (slugs con apóstrofo), envía la IP real (`CF-Connecting-IP` o primer `X-Forwarded-For`) y el user agent, reenvía `HEAD` como `HEAD` y mantiene el código real de los errores (404/410) en lugar de un 200 con JSON que RedManager guardaba como `.zip`.
+1. **`fix(downloads)`**: `/mods/:user/:slug/download/:version` llama al API con `redirect: "manual"` (por `API_URL` si existe; si no, por `PUBLIC_API_URL`) y **reenvía el 302 tal cual**. Codifica los segmentos (slugs con apóstrofo), envía la IP real (`CF-Connecting-IP` o primer `X-Forwarded-For`) y el user agent (recortado a 512 caracteres, lo que guarda el API, para no provocar un 414/431), reenvía `HEAD` como `HEAD` y mantiene el código real de los errores (404/410) en lugar de un 200 con JSON que RedManager guardaba como `.zip`.
    - Los errores siguen siendo JSON para herramientas (RedManager, `curl`). Si la petición acepta `text/html` (un navegador que sigue un enlace muerto), responde una página HTML mínima con el mismo código (404 o 410), el motivo y un enlace de vuelta a la página del mod.
 2. **`fix(assets)`**:
    - El `og:image` y el `twitter:image` por defecto pasan a `https://sotf-mods.com/static/images/hd_thumbnail.png` (2560×1440, lo sirve la propia app).
@@ -214,11 +214,12 @@ El script:
 2. Ejecuta `bun build src/index.ts --target=bun` en ambos (bun 1.4 vía `npx`).
 3. Hace las comprobaciones estáticas: 0 apariciones de `files.sotf-mods.com`, sin `| safe`, sin `/preview` y sin variables sobrantes.
 4. Ejecuta los tests de XSS en jsdom ([`verify/xss`](verify/xss/)) con el mismo DOMPurify 3.0.5 y showdown 2.1.0 que carga el sitio: markdown, comentarios, tarjetas de mod de `profile.js` (con un mod no aprobado malicioso), `featured.js` y `upload-build.js`, y los avisos.
-5. Levanta un Postgres 16 desechable (proyecto compose `sotfv2-hotfix`, puerto 47440), aplica `prisma@6.19.0 db push`, siembra [`verify/seed.sql`](verify/seed.sql) (claves reales con espacios, apóstrofo y `+`) y arranca el API (47441) y el frontend (47442). Después comprueba:
+5. Levanta un Postgres 16 desechable (proyecto compose `sotfv2-hotfix`, puerto 27440, fuera del rango efímero del kernel; `HOTFIX_PG_PORT`/`HOTFIX_API_PORT`/`HOTFIX_FRONTEND_PORT` los cambian), aplica `prisma@6.19.0 db push`, siembra [`verify/seed.sql`](verify/seed.sql) (claves reales con espacios, apóstrofo y `+`) y arranca el API (27441) y el frontend (27442). Después comprueba:
    - el 302 y su `Location` exacto;
    - la fila `ModDownload` con la IP real (por `?ip=`, `CF-Connecting-IP` y `X-Forwarded-For`);
    - el 302 a través del frontend;
-   - que `HEAD` y `Range` no cuentan;
+   - que `HEAD`, `Range: bytes=100-` y `bytes=0-0` no cuentan y `bytes=0-` sí;
+   - que un User-Agent de 8000 caracteres a través del frontend sigue dando el 302 y se guarda recortado a 512;
    - el 404 y el 410 (JSON para herramientas y página HTML para navegadores);
    - el mensaje de `unapprove`;
    - el changelog escapado;

@@ -5,7 +5,7 @@
   "description": "Fastify 5 API: /api/v2, the legacy /api/* compatibility layer, SSE, downloads and KelvinSeek.",
   "type": "module",
   "scripts": {
-    "dev": "node --watch src/server.ts",
+    "dev": "PORT=${PORT:-47301} HOST=${HOST:-127.0.0.1} node --watch src/server.ts",
     "start": "node dist/server.js",
     "build": "tsdown",
     "migrate": "node src/migrate.ts",

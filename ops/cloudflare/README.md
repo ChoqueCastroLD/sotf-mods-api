@@ -16,8 +16,11 @@ legacy (no emite cabeceras de caché), así que se pueden crear en C3 antes del 
 - [ ] SSL/TLS → Overview → *Full (strict)*.
 - [ ] Edge Certificates → *Minimum TLS Version* **TLS 1.2** · *TLS 1.3* **On** · *Always Use HTTPS*
       **On** · *0-RTT* **Off**.
-- [ ] Edge Certificates → *HSTS* → Enable: `max-age` **6 months**, *includeSubDomains* **Off**,
-      *Preload* **Off**, *No-Sniff* **On**.
+- [ ] Edge Certificates → *HSTS*: **no activar** en el borde. HSTS lo envía el origen (web
+      `max-age=15552000`, 6 meses sin *includeSubDomains* ni *preload*; la api lo mismo para
+      `api.`, WP-93); una segunda cabecera del borde con otros valores dejaría dos políticas
+      distintas. Comprobación: `curl -sI https://sotf-mods.com/ | grep -ci '^strict-transport-security'`
+      → `1`.
 - [ ] Network → *HTTP/3 (with QUIC)* **On**.
 
 ## 3. Speed y optimizaciones
@@ -26,6 +29,9 @@ legacy (no emite cabeceras de caché), así que se pueden crear en C3 antes del 
       todo **Off**.
 - [ ] Scrape Shield → *Email Address Obfuscation* **Off**.
 - [ ] Zaraz: **desactivado** (no configurado).
+- [ ] Analytics & Logs → Web Analytics: sin *automatic setup* (inyección del *beacon*) para
+      `sotf-mods.com`. Rocket Loader, Email Obfuscation, la inyección de Web Analytics y Zaraz
+      insertan scripts inline que la CSP bloquea (WP-93); la analítica propia es el beacon `/api/v2/e`.
 - [ ] Caching → Tiered Cache → *Smart Tiered Caching Topology* **On**.
 - [ ] Caching → Configuration → *Crawler Hints* **Off**.
 
@@ -42,7 +48,9 @@ La última regla que coincide gana cada ajuste. Usa *Edit expression* y pega el 
 - Cache eligibility: **Eligible for cache**.
 - Edge TTL: **Use cache-control header if present, bypass cache if not**.
 - Browser TTL: **Respect origin TTL**.
-- Cache key: por defecto (incluye query string).
+- Cache key: por defecto (incluye **toda** la query string). No se excluye ningún parámetro:
+  `?adult=1` (confirmación NSFW sin JS de `/mods/*`) y `?nsfw=1` son variantes distintas de la
+  misma página y deben quedarse en la clave (WP-62, WP-93).
 - Serve stale content while revalidating: **On**.
 
 ### 4.2 `r2-immutable` (**crear desactivada; activar en D5**, tras B17)
