@@ -1,0 +1,63 @@
+---
+/**
+ * `/logout` (PLAN §4.2: «GET same-origin → sign out → 303 `/`; cross-site → page with a button»).
+ * `POST` comes from the account menu (hidden `next` and `locale`). The logic lives in
+ * `components/account/logout.ts`; this page only renders the confirmation for cross-site links.
+ */
+import { isLocale, type Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import AuthShell from '../components/account/AuthShell.astro';
+import { afterLogout, logoutDecision, revokeSession, signedOutResponse } from '../components/account/logout.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { loadEnv } from '../lib/env.ts';
+import { href } from '../lib/i18n.ts';
+
+setPageCache(Astro, false);
+const request = Astro.request;
+
+let next: unknown = Astro.url.searchParams.get('next');
+let locale: Locale = Astro.locals.locale;
+if (request.method === 'POST') {
+  const form = await request.formData().catch(() => null);
+  next = form?.get('next') ?? next;
+  const formLocale = form?.get('locale');
+  if (isLocale(formLocale)) locale = formLocale;
+} else if (request.method !== 'GET' && request.method !== 'HEAD') {
+  return new Response(null, { status: 405, headers: { allow: 'GET, HEAD, POST' } });
+}
+
+if (request.method !== 'HEAD' && logoutDecision(request.method, request.headers) === 'sign-out') {
+  await revokeSession({
+    apiUrl: loadEnv().internalApiUrl,
+    cookieHeader: request.headers.get('cookie'),
+    clientIp: request.headers.get('cf-connecting-ip'),
+    userAgent: request.headers.get('user-agent'),
+  });
+  return signedOutResponse(afterLogout(next, locale));
+}
+Astro.response.headers.set('cache-control', 'private, no-store');
+---
+
+<AuthShell
+  template="logout"
+  title={m.auth_meta_logout_title()}
+  description={m.auth_meta_logout_description()}
+  heading={m.auth_logout_heading()}
+  intro={m.auth_logout_text()}
+>
+  <form method="post" action="/logout" class="flex flex-wrap gap-3" data-logout-confirm>
+    <input type="hidden" name="locale" value={locale} />
+    <button
+      type="submit"
+      class="inline-flex h-12 items-center rounded-md bg-primary px-5 font-semibold text-primary-fg hover:bg-primary-hover"
+    >
+      {m.common_account_sign_out()}
+    </button>
+    <a
+      href={href('/', locale)}
+      class="inline-flex h-12 items-center rounded-md border border-border-strong px-5 font-semibold text-fg hover:bg-fg/6"
+    >
+      {m.common_action_cancel()}
+    </a>
+  </form>
+</AuthShell>

@@ -1,19 +1,26 @@
 ---
 /**
- * Account slot of the header — STUB created by WP-22, owned and completed by WP-44 (auth UI).
+ * Account slot of the header (WP-44; stub by WP-22).
  *
- * The server always renders the guest state (public HTML is identical for everyone, PLAN §2.5):
- * a «Sign in» link inside a slot with reserved width, so the upgrade causes no layout shift.
- * `scripts/account-hint.ts` reads the `sotf_li` hint cookie and, only then, calls
- * `/api/v2/me/summary` and swaps in the avatar link (and the Signals bell placeholder).
- * WP-44 replaces this with the full menu (profile, Basecamp, settings, sign out).
+ * Public HTML is identical for everyone (PLAN §2.5), so the server renders the guest state — a
+ * «Sign in» link that remembers the page (`?next=`) — plus the hidden signed-in markup: the avatar
+ * button and its menu (native `popover`, no framework: public pages stay within 15 KB of JS).
+ * `scripts/account-hint.ts` reads the `sotf_li` hint cookie and, only then, calls `/me/summary`,
+ * paints the avatar and emits `sotf:account`; `account-menu.ts` fills the menu from that event
+ * (profile link, Ranger Station for moderators, unread Signals, the «verify your email» reminder).
+ *
+ * Sign-out is a real form (`POST /logout`), so it works even if the script failed.
  */
 import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Backpack, Bell, LayoutDashboard, LogOut, MailWarning, Settings, ShieldCheck, UserRound } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 
 const locale = Astro.locals.locale;
 const next = Astro.locals.pagePath;
 const loginHref = `${href('/login', locale)}?next=${encodeURIComponent(next)}`;
+const itemClass =
+  'flex min-h-11 w-full items-center gap-3 rounded-md px-3 text-sm text-fg hover:bg-fg/8 focus-visible:bg-fg/8 md:min-h-10';
 ---
 
 <div data-account-slot class="flex min-w-24 shrink-0 items-center justify-end gap-1">
@@ -24,13 +31,113 @@ const loginHref = `${href('/login', locale)}?next=${encodeURIComponent(next)}`;
   >
     {m.common_account_sign_in()}
   </a>
-  <a
+  <button
+    type="button"
     data-account-user
     hidden
-    href={href('/basecamp', locale)}
-    class="inline-flex size-10 items-center justify-center overflow-hidden rounded-full border border-border-strong bg-raised text-sm font-semibold text-fg"
+    popovertarget="account-menu"
+    class="inline-flex size-10 items-center justify-center overflow-hidden rounded-full border border-border-strong bg-raised text-sm font-semibold text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
   >
     <span data-account-name class="sr-only">{m.common_account_menu()}</span>
     <span data-account-initials aria-hidden="true"></span>
-  </a>
+  </button>
+
+  <div
+    id="account-menu"
+    popover="auto"
+    data-account-menu
+    data-profile-base={href('/profile', locale)}
+    class="account-menu m-0 w-72 max-w-[calc(100vw-2rem)] rounded-lg border border-border bg-overlay p-2 text-fg shadow-lg"
+  >
+    <nav aria-label={m.common_account_menu()}>
+      <div class="grid gap-0.5 border-b border-border px-3 pt-1 pb-3">
+        <span class="text-xs text-fg-muted">{m.auth_menu_signed_in_as()}</span>
+        <span data-menu-name class="truncate font-semibold"></span>
+        <span data-menu-handle class="truncate text-sm text-fg-muted"></span>
+      </div>
+      <p data-menu-unverified hidden class="mt-2 grid gap-1 rounded-md bg-warning/10 p-3 text-sm">
+        <span class="flex items-start gap-2">
+          <Icon icon={MailWarning} size={16} className="mt-0.5 shrink-0 text-warning" />
+          {m.auth_menu_unverified()}
+        </span>
+        <button
+          type="button"
+          data-menu-resend
+          data-label-sent={m.auth_welcome_resent()}
+          data-label-failed={m.auth_menu_resend_failed()}
+          data-label-verified={m.auth_verify_already()}
+          class="justify-self-start text-sm font-semibold text-link underline underline-offset-3 disabled:no-underline disabled:opacity-70"
+        >
+          {m.auth_welcome_resend()}
+        </button>
+        <span data-menu-resend-status role="status" class="text-xs text-fg-muted"></span>
+      </p>
+      <ul class="mt-2 grid gap-0.5">
+        <li>
+          <a data-menu-profile href={href('/profile', locale)} class={itemClass}>
+            <Icon icon={UserRound} size={18} className="text-fg-muted" />
+            {m.common_account_profile()}
+          </a>
+        </li>
+        <li>
+          <a href="/basecamp" class={itemClass}>
+            <Icon icon={LayoutDashboard} size={18} className="text-fg-muted" />
+            {m.common_term_basecamp()}
+          </a>
+        </li>
+        <li>
+          <a href="/me/backpack" class={itemClass}>
+            <Icon icon={Backpack} size={18} className="text-fg-muted" />
+            {m.common_term_backpack()}
+          </a>
+        </li>
+        <li>
+          <a href="/signals" class={itemClass} data-menu-signals>
+            <Icon icon={Bell} size={18} className="text-fg-muted" />
+            <span class="flex-1">{m.common_term_signals()}</span>
+            <span data-menu-unread hidden class="rounded-full bg-primary px-2 text-2xs font-semibold text-primary-fg tabular-nums">
+              <span class="sr-only">{m.auth_menu_unread()}</span>
+              <span data-menu-unread-count></span>
+            </span>
+          </a>
+        </li>
+        <li data-menu-ranger hidden>
+          <a href="/ranger" class={itemClass}>
+            <Icon icon={ShieldCheck} size={18} className="text-fg-muted" />
+            {m.common_term_ranger_station()}
+          </a>
+        </li>
+        <li>
+          <a href="/settings/profile" class={itemClass}>
+            <Icon icon={Settings} size={18} className="text-fg-muted" />
+            {m.common_account_settings()}
+          </a>
+        </li>
+      </ul>
+      <form method="post" action="/logout" class="mt-2 border-t border-border pt-2" data-menu-logout>
+        <input type="hidden" name="next" value={next} />
+        <input type="hidden" name="locale" value={locale} />
+        <button type="submit" class={itemClass}>
+          <Icon icon={LogOut} size={18} className="text-fg-muted" />
+          {m.common_account_sign_out()}
+        </button>
+      </form>
+    </nav>
+  </div>
 </div>
+
+<script>
+  import { initAccountMenu } from './account-menu.ts';
+
+  initAccountMenu();
+</script>
+
+<style>
+  /* Anchored under the header, at the end of the bar (no anchor-positioning dependency). */
+  .account-menu:popover-open {
+    position: fixed;
+    inset: auto;
+    inset-block-start: calc(4rem + 0.25rem);
+    inset-inline-end: max(1rem, calc((100vw - var(--container-wide)) / 2 + 1.5rem));
+  }
+</style>

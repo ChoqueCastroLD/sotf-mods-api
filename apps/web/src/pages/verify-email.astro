@@ -1,0 +1,30 @@
+---
+/**
+ * `/verify-email?token=` (T0-13): confirms a new account or a changed address. The URL carries a
+ * secret, so the response is never cached and sends no `Referer`; the island confirms the link as
+ * soon as it runs and removes the token from the address bar.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import AuthShell from '../components/account/AuthShell.astro';
+import { islandMessages } from '../islands/auth/messages.server.ts';
+import VerifyEmail from '../islands/auth/VerifyEmail.tsx';
+import { setPageCache } from '../lib/cache/page.ts';
+
+setPageCache(Astro, false);
+Astro.response.headers.set('referrer-policy', 'no-referrer');
+const locale = Astro.locals.locale;
+---
+
+<AuthShell
+  template="verify-email"
+  title={m.auth_meta_verify_title()}
+  description={m.auth_meta_verify_description()}
+  heading={m.auth_verify_heading()}
+>
+  <VerifyEmail
+    client:load
+    locale={locale}
+    lang={toHtmlLang(locale)}
+    messages={islandMessages('VerifyEmail', locale)} />
+</AuthShell>

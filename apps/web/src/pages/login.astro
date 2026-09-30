@@ -1,0 +1,32 @@
+---
+/**
+ * `/login` (PLAN §4.2 «P + isla», research/03 §6.13). The HTML is the same for every visitor, so
+ * it is edge-cached like a static page (purged on deploy); the island reads `?next=` and the
+ * legacy flags (`?registered`, `?reset`) on the client.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import AuthShell from '../components/account/AuthShell.astro';
+import LoginForm from '../islands/auth/LoginForm.tsx';
+import { islandMessages } from '../islands/auth/messages.server.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { loadEnv } from '../lib/env.ts';
+
+setPageCache(Astro, pageCache.static());
+const locale = Astro.locals.locale;
+---
+
+<AuthShell
+  template="login"
+  title={m.auth_meta_login_title()}
+  description={m.auth_meta_login_description()}
+  heading={m.auth_login_heading()}
+  intro={m.auth_login_intro()}
+>
+  <LoginForm
+    client:load
+    locale={locale}
+    lang={toHtmlLang(locale)}
+    messages={islandMessages('LoginForm', locale)} turnstileSiteKey={loadEnv().turnstileSiteKey} />
+</AuthShell>
