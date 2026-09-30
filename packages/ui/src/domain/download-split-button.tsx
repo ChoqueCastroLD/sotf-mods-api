@@ -55,6 +55,8 @@ export interface DownloadSplitButtonProps {
   glow?: boolean;
   size?: 'md' | 'lg';
   className?: string;
+  /** Extra classes of the versions menu panel (e.g. to open upwards in a bottom bar). */
+  menuClassName?: string;
 }
 
 export function DownloadSplitButton({
@@ -66,6 +68,7 @@ export function DownloadSplitButton({
   glow = false,
   size = 'lg',
   className,
+  menuClassName,
 }: DownloadSplitButtonProps) {
   const { t, locale, timeZone } = useDomainI18n();
   const label =
@@ -103,7 +106,7 @@ export function DownloadSplitButton({
               className: 'rounded-s-none border-s border-primary-fg/25 px-2.5',
             })}
             summary={<span className="sr-only">{t('ui_domain_download_other_versions')}</span>}
-            panelClassName="w-72"
+            panelClassName={cn('w-72', menuClassName)}
           >
             <p className="px-2.5 pt-1.5 pb-1 readout">{t('ui_domain_download_other_versions')}</p>
             <ul>

@@ -240,5 +240,8 @@
   "mod_stats_loading": "Grafiek laden…",
   "mod_graph_title": "Afhankelijkheidsgrafiek",
   "mod_graph_label": "Afhankelijkheidsgrafiek van {name}",
-  "mod_graph_required_by": "Vereist door"
+  "mod_graph_required_by": "Vereist door",
+  "mod_compat_report_cta": "Meld of het werkt",
+  "mod_action_more": "Meer acties",
+  "mod_action_report_mod": "Deze mod melden"
 }
