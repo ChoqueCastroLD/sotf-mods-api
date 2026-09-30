@@ -993,6 +993,9 @@ importers:
       '@sotf/db':
         specifier: workspace:*
         version: link:../db
+      '@sotf/i18n':
+        specifier: workspace:*
+        version: link:../i18n
       '@sotf/markdown':
         specifier: workspace:*
         version: link:../markdown
