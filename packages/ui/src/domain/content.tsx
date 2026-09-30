@@ -155,12 +155,14 @@ export function AdSlot({ format, client, slot, showNotice = false, className }: 
         className={cn('overflow-hidden rounded-lg border border-border bg-surface', AD_HEIGHT_CLASS[format])}
         style={{ contain: 'layout paint' }}
       >
+        {/* The site's units are AdSense «in-article» (fluid) units, the same ones the legacy site used. */}
         <ins
           className="adsbygoogle block size-full"
+          style={{ display: 'block', textAlign: 'center' }}
           data-ad-client={client}
           data-ad-slot={slot}
-          data-ad-format={format === 'in-feed' ? 'fluid' : 'auto'}
-          data-full-width-responsive="false"
+          data-ad-layout="in-article"
+          data-ad-format="fluid"
         />
       </div>
       {showNotice ? <p className="text-xs text-fg-subtle">{t('ui_domain_ad_notice')}</p> : null}
