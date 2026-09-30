@@ -2938,6 +2938,229 @@
   "landing_trending_empty": "Тихая неделя на острове. Моды появятся здесь, когда выжившие начнут их скачивать.",
   "landing_trending_hint": "По загрузкам за последние 7 дней",
   "landing_trending_title": "Популярное за неделю",
+  "me_action_download": "Скачать",
+  "me_action_failed": "Не получилось",
+  "me_action_update": "Скачать обновление",
+  "me_backpack_description": "Моды, на которые вы подписаны, с их обновлениями и работой на текущей сборке.",
+  "me_backpack_empty_text": "Нажмите ♥ у мода, чтобы положить его сюда и узнавать об обновлениях.",
+  "me_backpack_empty_title": "Ваш рюкзак пуст",
+  "me_backpack_list_label": "Отслеживаемые моды",
+  "me_backpack_no_broken_text": "Ни один из ваших модов не отмечен как неработающий на текущей сборке игры.",
+  "me_backpack_no_broken_title": "Ничего не сломано",
+  "me_backpack_no_updates_text": "Ни у одного мода в рюкзаке нет версии новее той, что вы скачали.",
+  "me_backpack_no_updates_title": "Всё актуально",
+  "me_backpack_notify_off": "Больше никаких сигналов об обновлениях {mod}",
+  "me_backpack_notify_on": "Вы получите сигнал, когда {mod} обновится",
+  "me_backpack_readout": "Ваше снаряжение",
+  "me_backpack_removed": "{mod} убран из рюкзака",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} мод в рюкзаке · всё актуально",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} мод в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=one, updates__exact=*, updates__plural=few": "{count__number} мод в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=one, updates__exact=*, updates__plural=many": "{count__number} мод в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} мод в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=0, updates__plural=*": "{count__number} мода в рюкзаке · всё актуально",
+        "count__plural=few, updates__exact=*, updates__plural=one": "{count__number} мода в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=few, updates__exact=*, updates__plural=few": "{count__number} мода в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=*, updates__plural=many": "{count__number} мода в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=few, updates__exact=*, updates__plural=*": "{count__number} мода в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=0, updates__plural=*": "{count__number} модов в рюкзаке · всё актуально",
+        "count__plural=many, updates__exact=*, updates__plural=one": "{count__number} модов в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=many, updates__exact=*, updates__plural=few": "{count__number} модов в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=*, updates__plural=many": "{count__number} модов в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=many, updates__exact=*, updates__plural=*": "{count__number} модов в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} мода в рюкзаке · всё актуально",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} мода в рюкзаке · доступно {updates__number} обновление",
+        "count__plural=*, updates__exact=*, updates__plural=few": "{count__number} мода в рюкзаке · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=*, updates__plural=many": "{count__number} мода в рюкзаке · доступно {updates__number} обновлений",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} мода в рюкзаке · доступно {updates__number} обновления"
+      }
+    }
+  ],
+  "me_backpack_title": "Рюкзак",
+  "me_broken_on_current": "Не работает на {build}",
+  "me_browse_mods": "Смотреть моды",
+  "me_by_author": "автор: {author}",
+  "me_cancel": "Отмена",
+  "me_did_it_work": "Заработало?",
+  "me_downloads_clear": "Очистить историю",
+  "me_downloads_clear_confirm": "Очистить историю",
+  "me_downloads_clear_text": "Все строки исчезнут, как и вопросы «Заработало?» о прошлых загрузках. Счётчики загрузок модов не изменятся. Это действие нельзя отменить.",
+  "me_downloads_clear_title": "Очистить историю загрузок?",
+  "me_downloads_cleared": "История загрузок очищена",
+  "me_downloads_description": "Все моды, скачанные вами после входа, и обновления, которых у вас нет.",
+  "me_downloads_empty_off_text": "История выключена, поэтому здесь ничего нового не записывается.",
+  "me_downloads_empty_text": "Скачайте мод после входа, и он появится здесь — с уведомлением, когда выйдет новая версия.",
+  "me_downloads_empty_title": "Загрузок пока нет",
+  "me_downloads_history_off": "История загрузок выключена",
+  "me_downloads_history_on": "История загрузок включена",
+  "me_downloads_keep_history": "Вести историю загрузок",
+  "me_downloads_last": "Вы скачали {version} {date}",
+  "me_downloads_list_label": "Скачанные моды",
+  "me_downloads_off_text": "Новые загрузки не записываются, поэтому уведомления об обновлениях здесь и в рюкзаке не могут сравнить версии. Её можно включить в любой момент.",
+  "me_downloads_off_title": "История загрузок выключена",
+  "me_downloads_readout": "Журнал припасов",
+  "me_downloads_remove": "Убрать из списка",
+  "me_downloads_remove_label": "Убрать {mod} из списка",
+  "me_downloads_removed": "{mod} убран из списка",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} мод скачан · всё актуально",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} мод скачан · доступно {updates__number} обновление",
+        "count__plural=one, updates__exact=*, updates__plural=few": "{count__number} мод скачан · доступно {updates__number} обновления",
+        "count__plural=one, updates__exact=*, updates__plural=many": "{count__number} мод скачан · доступно {updates__number} обновлений",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} мод скачан · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=0, updates__plural=*": "{count__number} мода скачано · всё актуально",
+        "count__plural=few, updates__exact=*, updates__plural=one": "{count__number} мода скачано · доступно {updates__number} обновление",
+        "count__plural=few, updates__exact=*, updates__plural=few": "{count__number} мода скачано · доступно {updates__number} обновления",
+        "count__plural=few, updates__exact=*, updates__plural=many": "{count__number} мода скачано · доступно {updates__number} обновлений",
+        "count__plural=few, updates__exact=*, updates__plural=*": "{count__number} мода скачано · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=0, updates__plural=*": "{count__number} модов скачано · всё актуально",
+        "count__plural=many, updates__exact=*, updates__plural=one": "{count__number} модов скачано · доступно {updates__number} обновление",
+        "count__plural=many, updates__exact=*, updates__plural=few": "{count__number} модов скачано · доступно {updates__number} обновления",
+        "count__plural=many, updates__exact=*, updates__plural=many": "{count__number} модов скачано · доступно {updates__number} обновлений",
+        "count__plural=many, updates__exact=*, updates__plural=*": "{count__number} модов скачано · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} мода скачано · всё актуально",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} мода скачано · доступно {updates__number} обновление",
+        "count__plural=*, updates__exact=*, updates__plural=few": "{count__number} мода скачано · доступно {updates__number} обновления",
+        "count__plural=*, updates__exact=*, updates__plural=many": "{count__number} мода скачано · доступно {updates__number} обновлений",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} мода скачано · доступно {updates__number} обновления"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} загрузка",
+        "count__plural=few": "{count__number} загрузки",
+        "count__plural=many": "{count__number} загрузок",
+        "count__plural=*": "{count__number} загрузки"
+      }
+    }
+  ],
+  "me_downloads_title": "Мои загрузки",
+  "me_filter_all": "Все",
+  "me_filter_broken": "Не работают на этой сборке",
+  "me_filter_label": "Показать",
+  "me_filter_updates": "С обновлением",
+  "me_follow": "Подписаться",
+  "me_followed": "{mod} в вашем рюкзаке",
+  "me_followed_on": "в рюкзаке с {date}",
+  "me_latest_version": "Последняя: {version}",
+  "me_no_current_version": "Сейчас нет доступной версии",
+  "me_notify_off": "Сигналы об обновлениях выключены",
+  "me_notify_on": "Сигналы об обновлениях включены",
+  "me_onboarding_completed": "Вы пережили первый день — значок получен",
+  "me_onboarding_dismiss": "Скрыть",
+  "me_onboarding_download_action": "Смотреть моды",
+  "me_onboarding_download_hint": "Выберите любой, который работает на текущей сборке.",
+  "me_onboarding_download_title": "Скачайте первый мод",
+  "me_onboarding_failed": "Не удалось обновить список",
+  "me_onboarding_follow_action": "Найти мод для подписки",
+  "me_onboarding_follow_hint": "Нажмите ♥, чтобы положить его в рюкзак и узнавать об обновлениях.",
+  "me_onboarding_follow_title": "Подпишитесь на мод",
+  "me_onboarding_install_action": "Открыть руководство по установке",
+  "me_onboarding_install_done": "Я его установил",
+  "me_onboarding_install_hint": "Загрузчик модов, который нужен любому моду для Sons of the Forest.",
+  "me_onboarding_install_title": "Установите RedLoader",
+  "me_onboarding_kit_action": "Создать набор",
+  "me_onboarding_kit_hint": "Объедините моды в набор, которым можно поделиться одним кодом.",
+  "me_onboarding_kit_title": "Соберите набор",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Выполнено {done__number} из {total__number}"
+      }
+    }
+  ],
+  "me_onboarding_readout": "День 1 на острове",
+  "me_onboarding_report_action": "К моим загрузкам",
+  "me_onboarding_report_hint": "Ответьте «Заработало?» о скачанном моде.",
+  "me_onboarding_report_title": "Расскажите, заработало ли",
+  "me_onboarding_step_done": "Готово:",
+  "me_onboarding_step_todo": "Сделать:",
+  "me_onboarding_text": "Пять быстрых шагов для старта. Выполните все, чтобы получить значок «Пережил первый день».",
+  "me_onboarding_title": "Переживите первый день",
+  "me_report_broken": "Не работает",
+  "me_report_description": "Ваш полевой отчёт о версии {version} на сборке игры {build} помогает всем выжившим выбирать рабочие моды.",
+  "me_report_mode_client": "Клиент мультиплеера",
+  "me_report_mode_dedicated": "Выделенный сервер",
+  "me_report_mode_host": "Хост мультиплеера",
+  "me_report_mode_label": "Как вы играли",
+  "me_report_mode_singleplayer": "Одиночная игра",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Вылеты, конфликты с другими модами… до {max__number} символов."
+      }
+    }
+  ],
+  "me_report_note_label": "Что произошло",
+  "me_report_partial": "Частично",
+  "me_report_pick_result": "Выберите, как прошло.",
+  "me_report_result_legend": "Как прошло?",
+  "me_report_submit": "Отправить отчёт",
+  "me_report_thanks": "Спасибо — ваш отчёт о {mod} уже на карте",
+  "me_report_title": "{mod} заработал?",
+  "me_report_verify_email": "Подтвердите адрес почты, прежде чем отправлять полевые отчёты.",
+  "me_report_works": "Работает",
+  "me_undo": "Отменить",
+  "me_unfollow": "Отписаться",
+  "me_unfollowed": "{mod} убран из рюкзака",
+  "me_up_to_date": "Актуально ({version})",
+  "me_update_available": "Доступно обновление",
+  "me_update_from_to": "Обновление: {from} → {to}",
   "meta_default_description": "Дом моддинга Sons of the Forest: моды, постройки и наборы для RedLoader, проверенные на каждом патче. Бесплатные прямые загрузки.",
   "meta_feed_description": "Свежие моды и обновления для Sons of the Forest на SOTF Mods.",
   "meta_feed_title": "SOTF Mods: новые и обновлённые моды",
@@ -3534,6 +3757,801 @@
   "mod_whats_new_read": "Читать полевые заметки",
   "mod_whats_new_title": "Что нового с вашей последней загрузки (v{version})",
   "mod_whats_new_up_to_date": "У вас последняя версия (v{version}).",
+  "settings_about_saved": "Профиль сохранён",
+  "settings_about_text": "Как вы выглядите в профиле, у своих модов и в комментариях.",
+  "settings_about_title": "О вас",
+  "settings_account_hint": "Почта для входа и пароль.",
+  "settings_account_overview_title": "Ваш аккаунт",
+  "settings_account_title": "Аккаунт",
+  "settings_appearance_saved": "Внешний вид сохранён",
+  "settings_appearance_text": "Как SOTF Mods выглядит на этом и других ваших устройствах.",
+  "settings_appearance_title": "Внешний вид",
+  "settings_avatar_change": "Сменить фото",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG, JPEG, WebP, AVIF или GIF до {max__number} МБ. Перед сохранением его можно обрезать."
+      }
+    }
+  ],
+  "settings_avatar_label": "Аватар",
+  "settings_avatar_remove": "Удалить фото",
+  "settings_avatar_removed": "Фото удалено",
+  "settings_avatar_saved": "Новое фото сохранено",
+  "settings_avatar_upload": "Загрузить фото",
+  "settings_avatar_uploading": "Загрузка фото…",
+  "settings_back": "Настройки",
+  "settings_banner_custom_hint": "Сейчас используется ваше изображение. Сгенерируйте местность, чтобы вернуться к созданному баннеру.",
+  "settings_banner_label": "Баннер",
+  "settings_banner_reroll": "Сгенерировать другую местность",
+  "settings_banner_reroll_hint": "Предпросмотр новой местности — выберите «Использовать эту местность», чтобы сохранить её.",
+  "settings_banner_saved": "Новый баннер сохранён",
+  "settings_banner_terrain_hint": "Карта, нарисованная специально для вас. Генерируйте заново, пока форма острова не понравится.",
+  "settings_banner_terrain_saved": "Баннер с местностью сохранён",
+  "settings_banner_upload": "Загрузить изображение",
+  "settings_banner_uploading": "Загрузка баннера…",
+  "settings_banner_use_terrain": "Использовать эту местность",
+  "settings_behaviour_saved": "Предпочтения сохранены",
+  "settings_behaviour_title": "Поведение",
+  "settings_bio": "О себе",
+  "settings_bio_hint": "Поддерживается Markdown: **жирный**, _курсив_ и ссылки.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Текст «О себе» должен быть короче {max__number} символов."
+      }
+    }
+  ],
+  "settings_cancel": "Отмена",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Остался {count__number} символ",
+        "count__plural=few": "Осталось {count__number} символа",
+        "count__plural=many": "Осталось {count__number} символов",
+        "count__plural=*": "Осталось {count__number} символа"
+      }
+    }
+  ],
+  "settings_compat_prompts": "Спрашивать «Заработало?» после загрузок",
+  "settings_compat_prompts_hint": "Ваши ответы подсказывают другим выжившим, какие моды работают на текущей сборке.",
+  "settings_creator_badges": "Ваши значки",
+  "settings_creator_basecamp": "Открыть Лагерь",
+  "settings_creator_hint": "Статус автора, ссылки поддержки, лицензия по умолчанию и шаблоны ответов.",
+  "settings_creator_not_verified": "Пока не проверен",
+  "settings_creator_not_verified_text": "Рейнджеры проверяют авторов с историей безопасных и поддерживаемых модов. Продолжайте публиковать — подавать заявку не нужно.",
+  "settings_creator_policy": "Всё, что вы публикуете, подчиняется правилам контента.",
+  "settings_creator_policy_link": "Прочитать правила контента",
+  "settings_creator_status_title": "Статус автора",
+  "settings_creator_title": "Автор",
+  "settings_creator_verified": "Проверенный автор",
+  "settings_creator_verified_text": "На ваших модах стоит отметка проверки, и вы можете загружать файлы побольше.",
+  "settings_crop_avatar_title": "Обрезать фото",
+  "settings_crop_banner_title": "Обрезать баннер",
+  "settings_crop_failed": "Не удалось прочитать это изображение. Попробуйте другой файл.",
+  "settings_crop_help": "Перетащите изображение или двигайте его стрелками; масштабируйте ползунком или клавишами + и −.",
+  "settings_crop_label": "Область обрезки изображения",
+  "settings_crop_roledescription": "область обрезки",
+  "settings_crop_use": "Использовать изображение",
+  "settings_crop_zoom": "Масштаб",
+  "settings_data_hint": "Экспортируйте всё, что у нас о вас есть, или удалите аккаунт.",
+  "settings_data_title": "Ваши данные",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "День {day__number} на острове"
+      }
+    }
+  ],
+  "settings_default_license": "Лицензия по умолчанию",
+  "settings_default_license_hint": "Выбирается заранее при публикации нового мода; её можно изменить для каждого мода.",
+  "settings_default_license_none": "Спрашивать каждый раз",
+  "settings_defaults_local_note": "Эти настройки хранятся только в этом браузере.",
+  "settings_defaults_saved": "Настройки по умолчанию сохранены",
+  "settings_defaults_text": "Заранее заполняйте новые моды и быстрее отвечайте на частые вопросы.",
+  "settings_defaults_title": "Настройки публикации по умолчанию",
+  "settings_delete_already": "Удаление вашего аккаунта уже запланировано.",
+  "settings_delete_cancel": "Отменить удаление",
+  "settings_delete_cancel_failed": "Не удалось отменить удаление",
+  "settings_delete_cancelled": "Удаление отменено — с возвращением",
+  "settings_delete_confirm": "Удалить через 14 дней",
+  "settings_delete_dialog_text": "Аккаунт будет удалён через 14 дней. До этого удаление можно отменить на этой странице.",
+  "settings_delete_dialog_title": "Удалить аккаунт?",
+  "settings_delete_mode_archive": "Отправить в архив",
+  "settings_delete_mode_archive_hint": "Они исчезнут из списков и поиска и больше не будут приписаны вам.",
+  "settings_delete_mode_keep": "Оставить опубликованными",
+  "settings_delete_mode_keep_hint": "Игроки по-прежнему смогут их найти, но без вашего имени.",
+  "settings_delete_mods_legend": "Что будет с вашими модами",
+  "settings_delete_open": "Удалить мой аккаунт…",
+  "settings_delete_point_content": "Ваши комментарии и отзывы останутся с подписью «Удалённый выживший».",
+  "settings_delete_point_export": "Если нужна копия, сначала экспортируйте данные.",
+  "settings_delete_point_grace": "У вас есть 14 дней, чтобы передумать: войдите и отмените удаление здесь.",
+  "settings_delete_point_mods": "Ваши моды будут отправлены в архив или останутся опубликованными без вашего имени — выбирать вам.",
+  "settings_delete_scheduled_text": "Передумали? Отмените сейчас, и всё останется как есть.",
+  "settings_delete_scheduled_title": "Ваш аккаунт будет удалён {date}",
+  "settings_delete_scheduled_toast": "Ваш аккаунт будет удалён {date}",
+  "settings_delete_text": "Ваши личные данные будут безвозвратно удалены после 14-дневного льготного периода.",
+  "settings_delete_title": "Удаление аккаунта",
+  "settings_delete_type_handle": "Введите «{handle}» точно, чтобы подтвердить.",
+  "settings_delete_type_label": "Введите имя пользователя «{handle}» для подтверждения",
+  "settings_density": "Плотность",
+  "settings_density_comfortable": "Свободная",
+  "settings_density_comfortable_hint": "Больше воздуха.",
+  "settings_density_compact": "Компактная",
+  "settings_density_compact_hint": "Больше всего на экране сразу.",
+  "settings_discard": "Отменить изменения",
+  "settings_display_name": "Отображаемое имя",
+  "settings_display_name_hint": "На любом языке и с любыми символами, от 2 до 32. Его можно изменить в любой момент.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Используйте от {min__number} до {max__number} символов."
+      }
+    }
+  ],
+  "settings_email_daily": "Ежедневная сводка",
+  "settings_email_instant": "Сразу",
+  "settings_email_invalid": "Введите корректный адрес почты.",
+  "settings_email_new": "Новый адрес почты",
+  "settings_email_off": "Выкл.",
+  "settings_email_same": "Это уже ваш адрес почты.",
+  "settings_email_sent_text": "Мы отправили ссылку для подтверждения на {email}. Адрес сменится, как только вы её откроете.",
+  "settings_email_sent_title": "Проверьте почту",
+  "settings_email_sent_toast": "Ссылка для подтверждения отправлена",
+  "settings_email_submit": "Сменить почту",
+  "settings_email_taken": "Этот адрес нельзя использовать. Попробуйте другой.",
+  "settings_email_text": "Используется для входа и писем, которые вы решили получать. Чтобы сменить его, подтвердите новый адрес из почтового ящика; на старый придёт уведомление.",
+  "settings_email_title": "Адрес почты",
+  "settings_email_unverified": "Не подтверждён",
+  "settings_email_verified": "Подтверждён",
+  "settings_email_weekly": "Еженедельная сводка",
+  "settings_export_again": "Подготовить новый экспорт",
+  "settings_export_download": "Скачать ZIP",
+  "settings_export_email_note": "Мы также пришлём ссылку на почту. Она действует 24 часа.",
+  "settings_export_expired": "Срок действия этой ссылки истёк.",
+  "settings_export_expires": "ссылка действует до {date}",
+  "settings_export_failed": "Не удалось запустить экспорт",
+  "settings_export_preparing": "Готовим ваш экспорт…",
+  "settings_export_rate_limited": "Вы недавно запрашивали экспорт — попробуйте позже",
+  "settings_export_ready": "Ваш экспорт готов",
+  "settings_export_request": "Подготовить экспорт",
+  "settings_export_requested": "Мы готовим ваш экспорт",
+  "settings_export_requested_at": "Запрошен {date}",
+  "settings_export_status_failed": "Экспорт не удался. Попробуйте ещё раз.",
+  "settings_export_text": "ZIP с JSON-файлами: аккаунт, профиль, моды, комментарии, отзывы, наборы, подписки и настройки.",
+  "settings_export_title": "Экспорт данных",
+  "settings_handle": "Имя пользователя",
+  "settings_handle_hint": "Адрес вашего профиля. Пока его нельзя изменить.",
+  "settings_history_link": "Открыть мои загрузки",
+  "settings_history_off_saved": "История загрузок выключена",
+  "settings_history_on_saved": "История загрузок включена",
+  "settings_history_switch": "Вести историю загрузок",
+  "settings_history_text": "Когда она включена, загрузки после входа попадают в «Мои загрузки», чтобы мы могли сообщать об обновлениях.",
+  "settings_history_title": "История загрузок",
+  "settings_image_processing": "Обработка изображения занимает слишком много времени. Попробуйте чуть позже.",
+  "settings_image_rejected": "Изображение отклонено. Попробуйте другое.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Изображение слишком большое. Лимит — {max__number} МБ."
+      }
+    }
+  ],
+  "settings_image_type": "Этот тип файла не поддерживается. Используйте PNG, JPEG, WebP или AVIF.",
+  "settings_index_title": "Настройки",
+  "settings_language_browser": "Как в браузере",
+  "settings_language_label": "Язык",
+  "settings_language_saved": "Язык сохранён",
+  "settings_language_text": "Язык консоли и писем, которые мы вам отправляем.",
+  "settings_language_title": "Язык и числа",
+  "settings_link_add": "Добавить ссылку",
+  "settings_link_invalid": "Введите полный веб-адрес, начинающийся с https://",
+  "settings_link_kind": "Тип",
+  "settings_link_label": "Подпись",
+  "settings_link_other": "Другое",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Удалить ссылку {n__number}"
+      }
+    }
+  ],
+  "settings_link_url": "Адрес",
+  "settings_link_website": "Сайт",
+  "settings_links_empty": "Ссылок пока нет.",
+  "settings_links_saved": "Ссылки сохранены",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "До {max__number} ссылок в профиле: ваш сайт, каналы и где вас можно поддержать."
+      }
+    }
+  ],
+  "settings_links_title": "Ссылки",
+  "settings_loading": "Загрузка…",
+  "settings_member_since": "Выживает с",
+  "settings_motion": "Анимации",
+  "settings_motion_full": "Все",
+  "settings_motion_full_hint": "Все анимации включены.",
+  "settings_motion_reduce": "Уменьшенные",
+  "settings_motion_reduce_hint": "Без скольжения, масштабирования и празднований.",
+  "settings_motion_system": "Как на устройстве",
+  "settings_motion_system_hint": "Следует системной настройке уменьшения движения.",
+  "settings_notif_ack": "Ваши полевые отчёты",
+  "settings_notif_ack_hint": "Автор увидел или исправил проблему, о которой вы сообщили.",
+  "settings_notif_announcement": "Объявления",
+  "settings_notif_announcement_hint": "Новости от команды SOTF Mods.",
+  "settings_notif_award": "Награды",
+  "settings_notif_award_hint": "Ваш мод стал модом недели или выбором команды.",
+  "settings_notif_badge": "Значки",
+  "settings_notif_badge_hint": "Вы получили значок.",
+  "settings_notif_broken": "Ваш мод отмечен как неработающий",
+  "settings_notif_broken_hint": "Полевые отчёты говорят, что ваш мод сломался на текущей сборке.",
+  "settings_notif_col_app": "В приложении",
+  "settings_notif_col_email": "Почта",
+  "settings_notif_col_signal": "Сигнал",
+  "settings_notif_comment": "Комментарии к вашим модам",
+  "settings_notif_comment_hint": "Группируются: несколько комментариев приходят одним сигналом.",
+  "settings_notif_creator": "Новые моды авторов",
+  "settings_notif_creator_hint": "Автор, на которого вы подписаны, опубликовал что-то новое.",
+  "settings_notif_defaults": "Восстановить по умолчанию",
+  "settings_notif_email_only": "Только почта",
+  "settings_notif_group_community": "Сообщество и рейнджеры",
+  "settings_notif_group_conversations": "Обсуждения",
+  "settings_notif_group_follows": "На что вы подписаны",
+  "settings_notif_group_my_mods": "Ваши моды",
+  "settings_notif_matrix_text": "Для каждого типа сигнала выберите, показывать ли его в приложении и как часто присылать по почте. Сводки собирают всё в одно письмо.",
+  "settings_notif_matrix_title": "Сигналы и письма",
+  "settings_notif_mention": "Упоминания",
+  "settings_notif_mention_hint": "Кто-то @упомянул вас.",
+  "settings_notif_milestone": "Рубежи загрузок",
+  "settings_notif_milestone_hint": "Ваш мод преодолел рубеж загрузок.",
+  "settings_notif_patch": "Патчи игры, ломающие моды",
+  "settings_notif_patch_hint": "Новая сборка игры, вероятно, сломает моды (для авторов).",
+  "settings_notif_removal_note": "Если ваш мод удалят, мы всегда сообщим об этом по почте.",
+  "settings_notif_reply": "Ответы",
+  "settings_notif_reply_hint": "Кто-то ответил на ваш комментарий.",
+  "settings_notif_report": "Ваши жалобы",
+  "settings_notif_report_hint": "Рейнджеры рассмотрели вашу жалобу.",
+  "settings_notif_review": "Отзывы о ваших модах",
+  "settings_notif_review_hint": "Кто-то оценил один из ваших модов.",
+  "settings_notif_review_reply": "Ответы на ваши отзывы",
+  "settings_notif_review_reply_hint": "Автор ответил на ваш отзыв.",
+  "settings_notif_saved": "Настройки уведомлений сохранены",
+  "settings_notif_status": "Решения модерации",
+  "settings_notif_status_hint": "Ваш мод одобрен, отклонён, требует изменений или отправлен в архив.",
+  "settings_notif_version": "Новые версии",
+  "settings_notif_version_hint": "Мод из вашего рюкзака получил обновление.",
+  "settings_notif_weekly": "Еженедельный отчёт автора",
+  "settings_notif_weekly_hint": "По понедельникам: загрузки, подписчики и отзывы о ваших модах.",
+  "settings_notifications_hint": "Какие сигналы вы получаете в приложении и по почте.",
+  "settings_notifications_title": "Уведомления",
+  "settings_nsfw_adult": "Мне есть 18 лет (или я совершеннолетний там, где живу)",
+  "settings_nsfw_confirm": "Показывать",
+  "settings_nsfw_confirm_text": "Моды NSFW могут содержать наготу или откровенный контент. Их можно снова скрыть в любой момент.",
+  "settings_nsfw_confirm_title": "Показывать контент для взрослых?",
+  "settings_nsfw_confirmed_on": "Подтверждено {date}",
+  "settings_nsfw_hide": "Скрыть контент для взрослых",
+  "settings_nsfw_off_saved": "Контент для взрослых скрыт",
+  "settings_nsfw_on_saved": "Контент для взрослых теперь показывается",
+  "settings_nsfw_show": "Показывать контент для взрослых",
+  "settings_nsfw_status_off": "Скрыт",
+  "settings_nsfw_status_on": "Показывается",
+  "settings_nsfw_text": "Моды с пометкой NSFW скрыты в списках, поиске и лентах и размыты везде, кроме собственной страницы. Включите, чтобы их видеть.",
+  "settings_nsfw_title": "Контент для взрослых",
+  "settings_number_compact": "Сокращённо",
+  "settings_number_compact_hint": "1,2 тыс. загрузок",
+  "settings_number_format": "Большие числа",
+  "settings_number_full": "Полностью",
+  "settings_number_full_hint": "1234 загрузки",
+  "settings_password_changed": "Пароль изменён",
+  "settings_password_changed_revoked": "Пароль изменён, выполнен выход на других устройствах",
+  "settings_password_confirm": "Повторите новый пароль",
+  "settings_password_current": "Текущий пароль",
+  "settings_password_mismatch": "Новые пароли не совпадают.",
+  "settings_password_new": "Новый пароль",
+  "settings_password_rejected": "Этот пароль встречался в утечке данных. Выберите другой.",
+  "settings_password_required": "Введите текущий пароль.",
+  "settings_password_revoke": "Выйти на других моих устройствах",
+  "settings_password_revoke_hint": "Рекомендуется, если вы думаете, что ваш пароль знает кто-то ещё.",
+  "settings_password_same": "Выберите пароль, отличный от текущего.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Используйте не менее {min__number} символов."
+      }
+    }
+  ],
+  "settings_password_submit": "Сменить пароль",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Не менее {min__number} символов. Длинную фразу легче запомнить и труднее угадать."
+      }
+    }
+  ],
+  "settings_password_title": "Пароль",
+  "settings_password_wrong": "Неверный пароль.",
+  "settings_photos_text": "Ваш аватар и баннер в верхней части профиля. Изменения сохраняются сразу после загрузки.",
+  "settings_photos_title": "Фото и баннер",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Закреплено {count__number} из {max__number}"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} загрузка",
+        "count__plural=few": "{count__number} загрузки",
+        "count__plural=many": "{count__number} загрузок",
+        "count__plural=*": "{count__number} загрузки"
+      }
+    }
+  ],
+  "settings_pinned_empty": "Когда какой-нибудь ваш мод будет опубликован, его можно будет закрепить здесь.",
+  "settings_pinned_failed": "Не удалось загрузить ваши моды.",
+  "settings_pinned_hidden": "Некоторые закреплённые моды сейчас не публичны; они остаются закреплёнными и появятся снова, когда станут публичными.",
+  "settings_pinned_saved": "Закреплённые моды сохранены",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Выберите до {max__number} своих модов, которые будут показаны первыми в профиле, в этом порядке."
+      }
+    }
+  ],
+  "settings_pinned_title": "Закреплённые моды",
+  "settings_preferences_hint": "Язык, тема, анимации, горячие клавиши и контент для взрослых.",
+  "settings_preferences_title": "Предпочтения",
+  "settings_privacy_data_link": "Экспортировать или удалить мои данные",
+  "settings_privacy_data_text": "Вы можете экспортировать всё, что мы о вас храним, или удалить аккаунт.",
+  "settings_privacy_data_title": "Ваши данные",
+  "settings_privacy_hint": "Что другие видят в вашем профиле, и история загрузок.",
+  "settings_privacy_policy_link": "Политика конфиденциальности",
+  "settings_privacy_saved": "Настройки приватности сохранены",
+  "settings_privacy_title": "Приватность",
+  "settings_profile_hint": "Фото, баннер, имя, о себе, ссылки и закреплённые моды.",
+  "settings_profile_title": "Профиль",
+  "settings_profile_view_public": "Открыть публичный профиль",
+  "settings_readout": "Настройки лагеря",
+  "settings_retry": "Повторить",
+  "settings_save": "Сохранить",
+  "settings_save_failed": "Не удалось сохранить изменения",
+  "settings_security_hint": "Где выполнен вход и выход на других устройствах.",
+  "settings_security_tip_email": "Мы никогда не просим пароль по почте или в Discord.",
+  "settings_security_tip_password": "Используйте пароль, который больше нигде не используете.",
+  "settings_security_tip_sessions": "Выходите из аккаунта на общих и публичных компьютерах.",
+  "settings_security_tips_title": "Как защитить свой лагерь",
+  "settings_security_title": "Безопасность",
+  "settings_sessions_active_now": "активна сейчас",
+  "settings_sessions_confirm_current_text": "Вы перейдёте на страницу входа.",
+  "settings_sessions_confirm_current_title": "Выйти в этом браузере?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Будет завершена {count__number} другая сессия. В этом браузере вход сохранится.",
+        "count__plural=few": "Будут завершены {count__number} другие сессии. В этом браузере вход сохранится.",
+        "count__plural=many": "Будут завершены {count__number} других сессий. В этом браузере вход сохранится.",
+        "count__plural=*": "Будет завершено {count__number} другой сессии. В этом браузере вход сохранится."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Выйти на всех остальных?",
+  "settings_sessions_confirm_text": "На устройстве «{device}» потребуется войти снова.",
+  "settings_sessions_confirm_title": "Выйти на этом устройстве?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} активная сессия",
+        "count__plural=few": "{count__number} активные сессии",
+        "count__plural=many": "{count__number} активных сессий",
+        "count__plural=*": "{count__number} активной сессии"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Не удалось завершить эту сессию",
+  "settings_sessions_last_seen": "была активна {when}",
+  "settings_sessions_revoked": "Выполнен выход: {device}",
+  "settings_sessions_revoked_others": "Выполнен выход на других устройствах",
+  "settings_sessions_sign_out": "Выйти",
+  "settings_sessions_sign_out_here": "Выйти здесь",
+  "settings_sessions_sign_out_others": "Выйти на всех остальных",
+  "settings_sessions_started": "вход {date}",
+  "settings_sessions_text": "Все браузеры и устройства с активной сессией. Завершите те, которые не узнаёте.",
+  "settings_sessions_this_device": "Это устройство",
+  "settings_sessions_title": "Где выполнен вход",
+  "settings_sessions_unknown_device": "Неизвестное устройство",
+  "settings_shortcuts": "Горячие клавиши",
+  "settings_shortcuts_hint": "Однокнопочные сочетания в консоли. Выключите их, если они мешают вашим вспомогательным технологиям.",
+  "settings_show_activity": "Показывать мою активность",
+  "settings_show_activity_hint": "Тепловая карта за 12 месяцев и недавняя активность.",
+  "settings_show_kits": "Показывать мои наборы",
+  "settings_show_kits_hint": "Вкладка «Наборы» в профиле (приватные наборы не показываются никогда).",
+  "settings_show_leaderboards": "Участвовать в рейтингах",
+  "settings_show_leaderboards_hint": "Списки лучших авторов и выживших.",
+  "settings_show_rank": "Показывать мой ранг выжившего и XP",
+  "settings_show_rank_hint": "Печать ранга рядом с вашим именем.",
+  "settings_support_edit": "Изменить ссылки в профиле",
+  "settings_support_empty": "Вы ещё не добавили ссылку на Ko-fi или Patreon.",
+  "settings_support_text": "Ссылки на Ko-fi и Patreon из профиля показываются в профиле и рядом с кнопкой загрузки ваших модов.",
+  "settings_support_title": "Ссылки поддержки",
+  "settings_template_add": "Добавить шаблон",
+  "settings_template_copied": "«{name}» скопирован",
+  "settings_template_copy": "Копировать",
+  "settings_template_copy_failed": "Не удалось скопировать в буфер обмена",
+  "settings_template_delete": "Удалить",
+  "settings_template_name": "Название",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Дайте ему название (до {max__number} символов)."
+      }
+    }
+  ],
+  "settings_template_text": "Текст",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Напишите текст (до {max__number} символов)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Шаблонов пока нет.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "До {max__number} готовых ответов (шаги установки, известные конфликты…) для вставки в комментарии и ответы на отзывы."
+      }
+    }
+  ],
+  "settings_templates_title": "Шаблоны ответов",
+  "settings_theme": "Тема",
+  "settings_theme_day": "День",
+  "settings_theme_night": "Ночь",
+  "settings_theme_system": "Как на устройстве",
+  "settings_verify_already": "Ваш адрес почты уже подтверждён",
+  "settings_verify_resend": "Отправить ссылку ещё раз",
+  "settings_verify_resend_failed": "Не удалось отправить ссылку",
+  "settings_verify_resent": "Мы отправили новую ссылку на {email}",
+  "settings_verify_text": "До этого можно смотреть и скачивать, но нельзя комментировать, писать отзывы и публиковать.",
+  "settings_verify_title": "Подтвердите адрес почты",
+  "settings_visibility_text": "Выключите то, что предпочитаете держать при себе.",
+  "settings_visibility_title": "В вашем профиле",
+  "signals_action_download": "Скачать",
+  "signals_announcement": "Новое объявление от рейнджеров",
+  "signals_announcement_titled": "Объявление: {title}",
+  "signals_award_build_of_month": "{mod} — постройка месяца",
+  "signals_award_generic": "{mod} получил награду",
+  "signals_award_mod_of_month": "{mod} — мод месяца",
+  "signals_award_mod_of_week": "{mod} — мод недели",
+  "signals_award_staff_pick": "{mod} — выбор команды",
+  "signals_badge_awarded": "Получен значок: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Добро пожаловать в новый SOTF Mods",
+        "count__exact=*, count__plural=one": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждёт {count__number} значок",
+        "count__exact=*, count__plural=few": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждут {count__number} значка",
+        "count__exact=*, count__plural=many": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждут {count__number} значков",
+        "count__exact=*, count__plural=*": "Добро пожаловать в новый SOTF Mods — в полевом дневнике вас ждут {count__number} значка"
+      }
+    }
+  ],
+  "signals_bell_label": "Сигналы",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Сигналы: {count__number} непрочитанный",
+        "count__plural=few": "Сигналы: {count__number} непрочитанных",
+        "count__plural=many": "Сигналы: {count__number} непрочитанных",
+        "count__plural=*": "Сигналы: {count__number} непрочитанного"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} сообщил(а) об ошибке в {mod}",
+  "signals_comment_mention": "{actor} упомянул(а) вас в комментариях к {mod}",
+  "signals_comment_on_mod": "{actor} прокомментировал(а) {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый комментарий к {mod}",
+        "count__plural=few": "{count__number} новых комментария к {mod}",
+        "count__plural=many": "{count__number} новых комментариев к {mod}",
+        "count__plural=*": "{count__number} нового комментария к {mod}"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} ответил(а) на ваш комментарий к {mod}",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ответ на ваш комментарий к {mod}",
+        "count__plural=few": "{count__number} ответа на ваш комментарий к {mod}",
+        "count__plural=many": "{count__number} ответов на ваш комментарий к {mod}",
+        "count__plural=*": "{count__number} ответа на ваш комментарий к {mod}"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "Автор {mod} увидел ваш полевой отчёт",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input status",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} отмечен как неработающий на {build}",
+        "status=*": "{mod} отмечен как работающий частично на {build}"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "Проблема из вашего полевого отчёта о {mod} исправлена в {version}",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} опубликовал(а) постройку {mod}",
+        "kind=*": "{actor} опубликовал(а) {mod}"
+      }
+    }
+  ],
+  "signals_current_build": "текущей сборке",
+  "signals_empty_filtered_text": "Пока ни один сигнал не подходит под этот фильтр. Попробуйте «Все».",
+  "signals_empty_filtered_title": "На этом канале пусто",
+  "signals_empty_text": "Подписывайтесь на моды и авторов, чтобы узнавать об изменениях.",
+  "signals_empty_title": "В лесу всё спокойно",
+  "signals_end": "Пока это все сигналы.",
+  "signals_error_text": "Что-то пошло не так на нашей стороне. Попробуйте ещё раз чуть позже.",
+  "signals_error_title": "Не удалось загрузить сигналы.",
+  "signals_excerpt": "«{text}»",
+  "signals_filter_all": "Все",
+  "signals_filter_label": "Фильтр сигналов",
+  "signals_filter_mentions": "Упоминания",
+  "signals_filter_my_mods": "Мои моды",
+  "signals_filter_ranger": "Рейнджеры",
+  "signals_filter_updates": "Обновления",
+  "signals_group_today": "Сегодня",
+  "signals_group_yesterday": "Вчера",
+  "signals_load_more": "Загрузить более старые сигналы",
+  "signals_loading": "Загрузка сигналов…",
+  "signals_loading_more": "Загрузка…",
+  "signals_mark_all_read": "Отметить всё прочитанным",
+  "signals_mark_failed": "Не удалось отметить сигналы прочитанными",
+  "signals_mark_read": "Отметить прочитанным",
+  "signals_marked_all": "Все сигналы отмечены прочитанными",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} преодолел отметку в {threshold__number} загрузок"
+      }
+    }
+  ],
+  "signals_more_error": "Не удалось загрузить более старые сигналы.",
+  "signals_page_description": "Обновления того, на что вы подписаны, ответы, упоминания и новости о ваших модах.",
+  "signals_page_readout": "Радиожурнал",
+  "signals_page_title": "Сигналы",
+  "signals_panel_title": "Сигналы",
+  "signals_patch_breaking": "Сборка игры {build} может сломать моды — проверьте свои в Patch Radar",
+  "signals_preferences": "Настройки уведомлений",
+  "signals_report_dismissed": "Ваша жалоба рассмотрена — действий не потребовалось",
+  "signals_report_resolved": "Ваша жалоба рассмотрена, меры приняты",
+  "signals_retry": "Повторить",
+  "signals_review_on_mod": "{actor} оставил(а) отзыв на {rating} звёзд о {mod}",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый отзыв о {mod}",
+        "count__plural=few": "{count__number} новых отзыва о {mod}",
+        "count__plural=many": "{count__number} новых отзывов о {mod}",
+        "count__plural=*": "{count__number} нового отзыва о {mod}"
+      }
+    }
+  ],
+  "signals_review_reply": "Автор {mod} ответил на ваш отзыв",
+  "signals_see_all": "Все сигналы",
+  "signals_show_all": "Показать все сигналы",
+  "signals_someone": "Кто-то",
+  "signals_status_approved": "Ваш мод {mod} одобрен и опубликован",
+  "signals_status_archived": "Ваш мод {mod} отправлен в архив",
+  "signals_status_changed": "Статус {mod} изменился",
+  "signals_status_changes_requested": "Рейнджеры просят внести изменения в {mod}",
+  "signals_status_rejected": "Ваш мод {mod} отклонён",
+  "signals_status_removed": "Ваш мод {mod} удалён",
+  "signals_status_republished": "Ваш мод {mod} снова публичный",
+  "signals_status_unlisted": "Ваш мод {mod} убран из списков",
+  "signals_unknown_mod": "мод",
+  "signals_unread_prefix": "Не прочитано:",
+  "signals_version_published": "Вышел {mod} {version} — вы на него подписаны",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новая версия {mod}",
+        "count__plural=few": "{count__number} новые версии {mod}",
+        "count__plural=many": "{count__number} новых версий {mod}",
+        "count__plural=*": "{count__number} новой версии {mod}"
+      }
+    }
+  ],
+  "signals_weekly_report": "Ваш еженедельный отчёт автора готов",
   "ui_breadcrumbs": "Навигационная цепочка",
   "ui_cancel": "Отмена",
   "ui_choose": "Выбери…",

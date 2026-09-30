@@ -15,6 +15,19 @@ import { Route as MeRouteImport } from './routes/me.tsx'
 import { Route as RangerRouteImport } from './routes/ranger.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as SignalsRouteImport } from './routes/signals.tsx'
+import { Route as MeIndexRouteImport } from './routes/me/index.tsx'
+import { Route as MeBackpackRouteImport } from './routes/me/backpack.tsx'
+import { Route as MeDownloadsRouteImport } from './routes/me/downloads.tsx'
+import { Route as SettingsIndexRouteImport } from './routes/settings/index.tsx'
+import { Route as SettingsAccountRouteImport } from './routes/settings/account.tsx'
+import { Route as SettingsCreatorRouteImport } from './routes/settings/creator.tsx'
+import { Route as SettingsDataRouteImport } from './routes/settings/data.tsx'
+import { Route as SettingsNotificationsRouteImport } from './routes/settings/notifications.tsx'
+import { Route as SettingsPreferencesRouteImport } from './routes/settings/preferences.tsx'
+import { Route as SettingsPrivacyRouteImport } from './routes/settings/privacy.tsx'
+import { Route as SettingsProfileRouteImport } from './routes/settings/profile.tsx'
+import { Route as SettingsSecurityRouteImport } from './routes/settings/security.tsx'
+import { Route as SignalsIndexRouteImport } from './routes/signals/index.tsx'
 import { Route as MeKitsIndexRouteImport } from './routes/me/kits/index.tsx'
 import { Route as MeKitsKitIdRouteImport } from './routes/me/kits/$kitId.tsx'
 
@@ -48,6 +61,71 @@ const SignalsRoute = SignalsRouteImport.update({
   path: '/signals',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MeIndexRoute = MeIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MeRoute,
+} as any)
+const MeBackpackRoute = MeBackpackRouteImport.update({
+  id: '/backpack',
+  path: '/backpack',
+  getParentRoute: () => MeRoute,
+} as any)
+const MeDownloadsRoute = MeDownloadsRouteImport.update({
+  id: '/downloads',
+  path: '/downloads',
+  getParentRoute: () => MeRoute,
+} as any)
+const SettingsIndexRoute = SettingsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsAccountRoute = SettingsAccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsCreatorRoute = SettingsCreatorRouteImport.update({
+  id: '/creator',
+  path: '/creator',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsDataRoute = SettingsDataRouteImport.update({
+  id: '/data',
+  path: '/data',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsNotificationsRoute = SettingsNotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsPreferencesRoute = SettingsPreferencesRouteImport.update({
+  id: '/preferences',
+  path: '/preferences',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsPrivacyRoute = SettingsPrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsProfileRoute = SettingsProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SettingsSecurityRoute = SettingsSecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => SettingsRoute,
+} as any)
+const SignalsIndexRoute = SignalsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SignalsRoute,
+} as any)
 const MeKitsIndexRoute = MeKitsIndexRouteImport.update({
   id: '/kits/',
   path: '/kits/',
@@ -64,18 +142,41 @@ export interface FileRoutesByFullPath {
   '/basecamp': typeof BasecampRoute
   '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRoute
-  '/settings': typeof SettingsRoute
-  '/signals': typeof SignalsRoute
+  '/settings': typeof SettingsRouteWithChildren
+  '/signals': typeof SignalsRouteWithChildren
+  '/me/backpack': typeof MeBackpackRoute
+  '/me/downloads': typeof MeDownloadsRoute
+  '/settings/account': typeof SettingsAccountRoute
+  '/settings/creator': typeof SettingsCreatorRoute
+  '/settings/data': typeof SettingsDataRoute
+  '/settings/notifications': typeof SettingsNotificationsRoute
+  '/settings/preferences': typeof SettingsPreferencesRoute
+  '/settings/privacy': typeof SettingsPrivacyRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/settings/security': typeof SettingsSecurityRoute
+  '/me/': typeof MeIndexRoute
+  '/settings/': typeof SettingsIndexRoute
+  '/signals/': typeof SignalsIndexRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/me/kits/': typeof MeKitsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/basecamp': typeof BasecampRoute
-  '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRoute
-  '/settings': typeof SettingsRoute
-  '/signals': typeof SignalsRoute
+  '/me/backpack': typeof MeBackpackRoute
+  '/me/downloads': typeof MeDownloadsRoute
+  '/settings/account': typeof SettingsAccountRoute
+  '/settings/creator': typeof SettingsCreatorRoute
+  '/settings/data': typeof SettingsDataRoute
+  '/settings/notifications': typeof SettingsNotificationsRoute
+  '/settings/preferences': typeof SettingsPreferencesRoute
+  '/settings/privacy': typeof SettingsPrivacyRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/settings/security': typeof SettingsSecurityRoute
+  '/me': typeof MeIndexRoute
+  '/settings': typeof SettingsIndexRoute
+  '/signals': typeof SignalsIndexRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/me/kits': typeof MeKitsIndexRoute
 }
@@ -85,8 +186,21 @@ export interface FileRoutesById {
   '/basecamp': typeof BasecampRoute
   '/me': typeof MeRouteWithChildren
   '/ranger': typeof RangerRoute
-  '/settings': typeof SettingsRoute
-  '/signals': typeof SignalsRoute
+  '/settings': typeof SettingsRouteWithChildren
+  '/signals': typeof SignalsRouteWithChildren
+  '/me/backpack': typeof MeBackpackRoute
+  '/me/downloads': typeof MeDownloadsRoute
+  '/settings/account': typeof SettingsAccountRoute
+  '/settings/creator': typeof SettingsCreatorRoute
+  '/settings/data': typeof SettingsDataRoute
+  '/settings/notifications': typeof SettingsNotificationsRoute
+  '/settings/preferences': typeof SettingsPreferencesRoute
+  '/settings/privacy': typeof SettingsPrivacyRoute
+  '/settings/profile': typeof SettingsProfileRoute
+  '/settings/security': typeof SettingsSecurityRoute
+  '/me/': typeof MeIndexRoute
+  '/settings/': typeof SettingsIndexRoute
+  '/signals/': typeof SignalsIndexRoute
   '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/me/kits/': typeof MeKitsIndexRoute
 }
@@ -99,14 +213,37 @@ export interface FileRouteTypes {
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/me/backpack'
+    | '/me/downloads'
+    | '/settings/account'
+    | '/settings/creator'
+    | '/settings/data'
+    | '/settings/notifications'
+    | '/settings/preferences'
+    | '/settings/privacy'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/me/'
+    | '/settings/'
+    | '/signals/'
     | '/me/kits/$kitId'
     | '/me/kits/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/basecamp'
-    | '/me'
     | '/ranger'
+    | '/me/backpack'
+    | '/me/downloads'
+    | '/settings/account'
+    | '/settings/creator'
+    | '/settings/data'
+    | '/settings/notifications'
+    | '/settings/preferences'
+    | '/settings/privacy'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/me'
     | '/settings'
     | '/signals'
     | '/me/kits/$kitId'
@@ -119,6 +256,19 @@ export interface FileRouteTypes {
     | '/ranger'
     | '/settings'
     | '/signals'
+    | '/me/backpack'
+    | '/me/downloads'
+    | '/settings/account'
+    | '/settings/creator'
+    | '/settings/data'
+    | '/settings/notifications'
+    | '/settings/preferences'
+    | '/settings/privacy'
+    | '/settings/profile'
+    | '/settings/security'
+    | '/me/'
+    | '/settings/'
+    | '/signals/'
     | '/me/kits/$kitId'
     | '/me/kits/'
   fileRoutesById: FileRoutesById
@@ -128,8 +278,8 @@ export interface RootRouteChildren {
   BasecampRoute: typeof BasecampRoute
   MeRoute: typeof MeRouteWithChildren
   RangerRoute: typeof RangerRoute
-  SettingsRoute: typeof SettingsRoute
-  SignalsRoute: typeof SignalsRoute
+  SettingsRoute: typeof SettingsRouteWithChildren
+  SignalsRoute: typeof SignalsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -176,6 +326,97 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignalsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/me/': {
+      id: '/me/'
+      path: '/'
+      fullPath: '/me/'
+      preLoaderRoute: typeof MeIndexRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/me/backpack': {
+      id: '/me/backpack'
+      path: '/backpack'
+      fullPath: '/me/backpack'
+      preLoaderRoute: typeof MeBackpackRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/me/downloads': {
+      id: '/me/downloads'
+      path: '/downloads'
+      fullPath: '/me/downloads'
+      preLoaderRoute: typeof MeDownloadsRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/settings/': {
+      id: '/settings/'
+      path: '/'
+      fullPath: '/settings/'
+      preLoaderRoute: typeof SettingsIndexRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/account': {
+      id: '/settings/account'
+      path: '/account'
+      fullPath: '/settings/account'
+      preLoaderRoute: typeof SettingsAccountRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/creator': {
+      id: '/settings/creator'
+      path: '/creator'
+      fullPath: '/settings/creator'
+      preLoaderRoute: typeof SettingsCreatorRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/data': {
+      id: '/settings/data'
+      path: '/data'
+      fullPath: '/settings/data'
+      preLoaderRoute: typeof SettingsDataRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/notifications': {
+      id: '/settings/notifications'
+      path: '/notifications'
+      fullPath: '/settings/notifications'
+      preLoaderRoute: typeof SettingsNotificationsRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/preferences': {
+      id: '/settings/preferences'
+      path: '/preferences'
+      fullPath: '/settings/preferences'
+      preLoaderRoute: typeof SettingsPreferencesRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/privacy': {
+      id: '/settings/privacy'
+      path: '/privacy'
+      fullPath: '/settings/privacy'
+      preLoaderRoute: typeof SettingsPrivacyRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/profile': {
+      id: '/settings/profile'
+      path: '/profile'
+      fullPath: '/settings/profile'
+      preLoaderRoute: typeof SettingsProfileRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/settings/security': {
+      id: '/settings/security'
+      path: '/security'
+      fullPath: '/settings/security'
+      preLoaderRoute: typeof SettingsSecurityRouteImport
+      parentRoute: typeof SettingsRoute
+    }
+    '/signals/': {
+      id: '/signals/'
+      path: '/'
+      fullPath: '/signals/'
+      preLoaderRoute: typeof SignalsIndexRouteImport
+      parentRoute: typeof SignalsRoute
+    }
     '/me/kits/': {
       id: '/me/kits/'
       path: '/kits'
@@ -194,24 +435,69 @@ declare module '@tanstack/react-router' {
 }
 
 interface MeRouteChildren {
+  MeBackpackRoute: typeof MeBackpackRoute
+  MeDownloadsRoute: typeof MeDownloadsRoute
+  MeIndexRoute: typeof MeIndexRoute
   MeKitsKitIdRoute: typeof MeKitsKitIdRoute
   MeKitsIndexRoute: typeof MeKitsIndexRoute
 }
 
 const MeRouteChildren: MeRouteChildren = {
+  MeBackpackRoute: MeBackpackRoute,
+  MeDownloadsRoute: MeDownloadsRoute,
+  MeIndexRoute: MeIndexRoute,
   MeKitsKitIdRoute: MeKitsKitIdRoute,
   MeKitsIndexRoute: MeKitsIndexRoute,
 }
 
 const MeRouteWithChildren = MeRoute._addFileChildren(MeRouteChildren)
 
+interface SettingsRouteChildren {
+  SettingsAccountRoute: typeof SettingsAccountRoute
+  SettingsCreatorRoute: typeof SettingsCreatorRoute
+  SettingsDataRoute: typeof SettingsDataRoute
+  SettingsNotificationsRoute: typeof SettingsNotificationsRoute
+  SettingsPreferencesRoute: typeof SettingsPreferencesRoute
+  SettingsPrivacyRoute: typeof SettingsPrivacyRoute
+  SettingsProfileRoute: typeof SettingsProfileRoute
+  SettingsSecurityRoute: typeof SettingsSecurityRoute
+  SettingsIndexRoute: typeof SettingsIndexRoute
+}
+
+const SettingsRouteChildren: SettingsRouteChildren = {
+  SettingsAccountRoute: SettingsAccountRoute,
+  SettingsCreatorRoute: SettingsCreatorRoute,
+  SettingsDataRoute: SettingsDataRoute,
+  SettingsNotificationsRoute: SettingsNotificationsRoute,
+  SettingsPreferencesRoute: SettingsPreferencesRoute,
+  SettingsPrivacyRoute: SettingsPrivacyRoute,
+  SettingsProfileRoute: SettingsProfileRoute,
+  SettingsSecurityRoute: SettingsSecurityRoute,
+  SettingsIndexRoute: SettingsIndexRoute,
+}
+
+const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
+  SettingsRouteChildren,
+)
+
+interface SignalsRouteChildren {
+  SignalsIndexRoute: typeof SignalsIndexRoute
+}
+
+const SignalsRouteChildren: SignalsRouteChildren = {
+  SignalsIndexRoute: SignalsIndexRoute,
+}
+
+const SignalsRouteWithChildren =
+  SignalsRoute._addFileChildren(SignalsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BasecampRoute: BasecampRoute,
   MeRoute: MeRouteWithChildren,
   RangerRoute: RangerRoute,
-  SettingsRoute: SettingsRoute,
-  SignalsRoute: SignalsRoute,
+  SettingsRoute: SettingsRouteWithChildren,
+  SignalsRoute: SignalsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
