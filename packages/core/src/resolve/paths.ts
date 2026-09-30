@@ -18,14 +18,6 @@ import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import { findModBySlug, type ModMatch } from './mods.ts';
 
-/**
- * Paths of content deleted before v2 that external sites still link to (research/01 §4.4). They
- * answer 410 even when no `Tombstone` row exists yet.
- */
-export const KNOWN_TOMBSTONES: ReadonlyArray<{ path: string; status: 404 | 410; reason: string }> = [
-  { path: '/mods/aedev/gyrocopter', status: 410, reason: 'Deleted from the legacy site (tutorial links)' },
-];
-
 export interface ParsedPath {
   locale: string | null;
   section: string;
@@ -89,9 +81,9 @@ async function tombstoneFor(db: Executor, paths: readonly string[]): Promise<Res
     sql`SELECT "status" FROM "Tombstone" WHERE "path" = ANY(${sql.param(unique)}::text[]) ORDER BY "status" DESC LIMIT 1`,
   );
   const row = found.rows[0];
-  if (row) return result({ status: Number(row.status) === 404 ? 404 : 410, rule: 'tombstone' });
-  const known = KNOWN_TOMBSTONES.find((t) => unique.includes(t.path));
-  return known ? result({ status: known.status, rule: 'tombstone' }) : null;
+  // Content deleted before v2 (e.g. `/mods/aedev/gyrocopter`, research/01 §4.4) is a `Tombstone`
+  // row since migration 2006_known_tombstones.
+  return row ? result({ status: Number(row.status) === 404 ? 404 : 410, rule: 'tombstone' }) : null;
 }
 
 async function resolveMod(db: Executor, parsed: ParsedPath, prefix: 'mods' | 'builds'): Promise<ResolveDTO | null> {
