@@ -14,8 +14,10 @@ import kelvinseekJobs from './kelvinseek/index.ts';
 import legacyCountersJobs from './legacy-counters/index.ts';
 import legacyMentionsJobs from './legacy-mentions/index.ts';
 import mediaJobs from './media/index.ts';
+import moderationJobs from './moderation/index.ts';
 import notificationsJobs from './notifications/index.ts';
 import platformJobs from './platform/index.ts';
+import securityScanJobs from './security-scan/index.ts';
 import statsJobs from './stats/index.ts';
 import uploadsJobs from './uploads/index.ts';
 
@@ -33,8 +35,10 @@ export const jobGroups = [
   legacyCountersJobs,
   legacyMentionsJobs,
   mediaJobs,
+  moderationJobs,
   notificationsJobs,
   platformJobs,
+  securityScanJobs,
   statsJobs,
   uploadsJobs,
 ] as const;
