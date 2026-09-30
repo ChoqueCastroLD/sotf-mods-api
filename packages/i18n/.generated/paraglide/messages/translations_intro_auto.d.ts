@@ -3,7 +3,7 @@ export type Translations_Intro_AutoInputs = {};
 /**
 * | output |
 * | --- |
-* | "The short description is translated automatically into other languages when you publish or edit it. Write your own text to replace any translation; yours is ..." |
+* | "The name, short description and description are translated automatically into other languages when you publish or edit them. Write your own text to replace a..." |
 *
 * @param {Translations_Intro_AutoInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -14,9 +14,12 @@ import { profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
+import { displayName } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { BadgeCheck, ChevronDown, Download, Flag, Heart, Link2, ListOrdered, Plus, Star } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
+import { loadModTranslation } from '../../lib/mod-translation.ts';
+import TranslatedText from '../mod/TranslatedText.astro';
 import type { BuildSpec, ModDetailDTO, VersionDTO } from './data.ts';
 import { blueprintAuthorDiffers } from './data.ts';
 import { loginHrefFor, sizeRangeLabel } from './i18n.ts';
@@ -43,13 +46,28 @@ const downloadLabel = latest
     ? m.common_download_version({ version: latest.version, size: formatBytes(locale, latest.fileSize) })
     : m.common_download_version_short({ version: latest.version })
   : null;
+const shownName = displayName(build);
+const translation = locale !== 'en' && build.shortDescription ? await loadModTranslation(build, locale) : null;
 const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
 ---
 
 <header class="grid content-start gap-5" data-build-header>
   <div class="grid gap-2">
     <p class="readout text-blueprint">{m.builds_kind_label()}</p>
-    <h1 id="build-title" class="font-display-caps text-display-sm text-balance break-words text-fg">{build.name}</h1>
+    <h1
+      id="build-title"
+      class="font-display-caps text-display-sm text-balance break-words text-fg"
+      lang={shownName !== build.name ? locale : undefined}
+    >
+      {shownName}
+    </h1>
+    {
+      shownName !== build.name && (
+        <p class="break-words text-base text-fg-subtle" lang={build.contentLang ?? 'en'} translate="no" data-original-name>
+          {build.name}
+        </p>
+      )
+    }
     <p class="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-fg-muted">
       <span>
         {byParts[0]}<a
@@ -93,7 +111,20 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
     }
   </div>
 
-  {build.shortDescription && <p class="text-lg text-pretty text-fg">{build.shortDescription}</p>}
+  {
+    build.shortDescription && translation?.shortDescription ? (
+      <TranslatedText
+        translated={translation.shortDescription}
+        original={build.shortDescription}
+        locale={locale}
+        sourceLang={build.contentLang}
+        source={translation.sources.shortDescription ?? 'machine'}
+        class="text-lg text-pretty text-fg"
+      />
+    ) : (
+      build.shortDescription && <p class="text-lg text-pretty text-fg">{build.shortDescription}</p>
+    )
+  }
 
   <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-fg-muted" aria-label={m.builds_stats_label()}>
     <li class={statClass} title={formatNumber(locale, build.downloads)} data-live-downloads>

@@ -13,6 +13,7 @@ import type { CatalogConfig } from '../catalog/media.ts';
 import { compareCategories, getSnapshot, isListable } from '../catalog/snapshot.ts';
 import { cached, rows } from '../catalog/sql.ts';
 import type { Ctx } from '../kernel/context.ts';
+import { getCardTranslations } from '../translations/service.ts';
 import { SITE_PAGES } from './pages.ts';
 
 export const SEARCH_INDEX_TTL_MS = 60_000;
@@ -53,10 +54,23 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
         .filter((e) => isListable(snapshot, e))
         .sort((a, b) => b.downloads - a.downloads || a.id - b.id);
 
+      // Translated names for a visitor of another language; the original rides as the 16th element so
+      // the palette keeps matching (and can show) it.
+      const translated = new Map<number, string>();
+      if (locale !== 'en') {
+        for (let i = 0; i < listed.length; i += 100) {
+          const { items } = await getCardTranslations(
+            ctx,
+            listed.slice(i, i + 100).map((e) => e.id),
+            locale,
+          );
+          for (const t of items) if (t.name) translated.set(t.id, t.name);
+        }
+      }
       const mods: SearchIndexDTO['mods'] = listed.map((e) => [
         e.id,
         e.kind,
-        e.name,
+        translated.get(e.id) ?? e.name,
         e.userHandle,
         e.categoryId === null ? null : (snapshot.categories.get(e.categoryId)?.slug ?? null),
         e.tagSlugs.join(','),
@@ -69,6 +83,7 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
         Math.floor(e.createdAt.getTime() / DAY_MS),
         e.ratingAvg === null ? null : Math.round(e.ratingAvg * 10),
         Math.max(0, MULTIPLAYER_ROLES.indexOf(e.multiplayerRole ?? 'unknown')),
+        translated.has(e.id) ? e.name : null,
       ]);
 
       const creators = new Map<number, number>();

@@ -8,6 +8,7 @@
  * - Indexable: `/builds` and `/builds?page=N`; filters → `noindex, follow` + canonical to base.
  * - Cache: E(300) `list:builds`; the API failing → 503, not cached.
  */
+import { localizeCards } from '../../lib/localize.ts';
 import { m } from '@sotf/i18n/messages';
 import ExploreView from '../../components/explore/ExploreView.astro';
 import { loadListing } from '../../components/explore/load.ts';
@@ -22,6 +23,7 @@ const locale = Astro.locals.locale;
 setPageCache(Astro, pageCache.listBuilds());
 
 const data = await loadListing({ url: Astro.url, locale, scope: BUILDS_SCOPE });
+if (data.kind !== 'redirect') await localizeCards(data, locale);
 if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
 
 const { state, list } = data;

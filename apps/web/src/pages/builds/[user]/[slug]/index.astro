@@ -13,6 +13,9 @@
  * - JSON-LD `CreativeWork` (+ `BreadcrumbList` of the visible trail); `aggregateRating` only with ≥ 3
  *   visible reviews. Everything user-specific is filled in by `build-page.ts` after load.
  */
+import TranslatedText from '../../../../components/mod/TranslatedText.astro';
+import { localizeCards } from '../../../../lib/localize.ts';
+import { loadModTranslation } from '../../../../lib/mod-translation.ts';
 import { toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
@@ -57,13 +60,18 @@ if (resolved.rest.length > 0) return respondUnresolved(Astro, { kind: 'not-found
 
 const { build } = resolved;
 setPageCache(Astro, pageCache.mod(build.id, build.userId));
-const extras = await loadBuildExtras(build);
+const [extras, translation] = await Promise.all([
+  loadBuildExtras(build).then((value) => localizeCards(value, locale)),
+  loadModTranslation(build, locale),
+]);
 const { spec } = extras;
 const env = loadEnv();
 const lang = toHtmlLang(locale);
 const pageUrl = `${env.siteUrl}${href(build.canonicalPath, locale)}`;
 const labels = markdownLabels();
 const descriptionHtml = build.descriptionHtml.trim() ? localizeHtml(build.descriptionHtml, labels) : '';
+// T1-25: the description in the visitor's language (the original one click away).
+const translatedHtml = translation?.descriptionHtml?.trim() && descriptionHtml ? localizeHtml(translation.descriptionHtml, labels) : '';
 const otherDependencies = build.dependencies.filter((dependency) => dependency.manifestId !== BUILDSHARE_MANIFEST_ID);
 
 const hero = build.nsfw ? null : (build.thumbnail ?? build.gallery[0] ?? null);
@@ -152,7 +160,17 @@ const visibleCrumbs = trail.map((crumb) => ({
         <section aria-labelledby="about-title" class="grid gap-4">
           <h2 id="about-title" class={sectionTitle}>{m.builds_description_title()}</h2>
           {
-            descriptionHtml ? (
+            translatedHtml && translation ? (
+              <TranslatedText
+                html
+                translated={translatedHtml}
+                original={descriptionHtml}
+                locale={locale}
+                sourceLang={build.contentLang}
+                source={translation.sources.description ?? 'machine'}
+                class="max-w-(--container-prose)"
+              />
+            ) : descriptionHtml ? (
               <ProseLocator
                 html={descriptionHtml}
                 lang={build.contentLang ?? undefined}

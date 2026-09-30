@@ -20,7 +20,12 @@ export const SearchHitDTO = dto(
   z.object({
     type: SearchType,
     id: z.union([EntityId, z.string()]).describe('Entity id; page key for `page`'),
-    title: z.string(),
+    title: z.string().describe('Title in the requested locale: the translated name when the mod has one'),
+    titleOriginal: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Original name when `title` is a translation of it (null otherwise)'),
     subtitle: z.string().nullable().describe('Author handle, kit owner, page section…'),
     path: SitePath,
     thumbnailUrl: HttpUrl.nullable(),
@@ -37,6 +42,7 @@ export const SearchHitDTO = dto(
         type: 'mod',
         id: 45,
         title: 'StackMod',
+        titleOriginal: null,
         subtitle: '@someone',
         path: '/mods/someone/stackmod',
         thumbnailUrl: null,
@@ -64,6 +70,9 @@ export const SearchQuery = z.object({
   q: z.string().trim().min(1).max(100),
   types: wireList(SearchType, { max: SEARCH_TYPES.length, description: 'Default: all types' }),
   limit: wireInt({ min: 1, max: 50 }).optional(),
+  locale: Locale.optional().describe(
+    'Locale of the visitor: mods with a translation come back with the translated title',
+  ),
 });
 
 /** Version of the compact index layout (bump on incompatible tuple changes). */
@@ -71,7 +80,7 @@ export const SEARCH_INDEX_VERSION = 1;
 
 /**
  * Mod/build tuple: `[id, kind, name, userHandle, categorySlug, tagsCsv, manifestId, downloads,
- * compatStatus, thumbUrl | null, path, releasedDay, createdDay, ratingTenths | null, multiplayer]`.
+ * compatStatus, thumbUrl | null, path, releasedDay, createdDay, ratingTenths | null, multiplayer, originalName | null]`.
  *
  * - `thumbUrl` is the 64 px variant when the media is processed, else the legacy image (the
  *   smallest the API has; the palette renders it at 32–40 px, lazily).
@@ -79,7 +88,10 @@ export const SEARCH_INDEX_VERSION = 1;
  * - `ratingTenths`: average rating × 10 (`45` = 4.5), null without ratings.
  * - `multiplayer`: index in `MULTIPLAYER_ROLES` (`mp:yes` ⇒ 1 client_side, 2 host_only, 3 all_players).
  *
- * The palette reads the last four fields defensively, so an older cached index still works.
+ * - In a non-English index `name` is the translated name when the mod has one and `originalName`
+ *   (index 15, optional) the original.
+ *
+ * The palette reads the last five fields defensively, so an older cached index still works.
  */
 export const SearchIndexModTuple = z.tuple([
   EntityId,
@@ -97,6 +109,7 @@ export const SearchIndexModTuple = z.tuple([
   z.number().int().nonnegative(),
   z.number().int().min(0).max(50).nullable(),
   z.number().int().min(0).max(4),
+  z.string().nullable().optional(),
 ]);
 /** Kit tuple: `[id, name, ownerHandle, itemsCount, path, thumbUrl | null]` (first item's image). */
 export const SearchIndexKitTuple = z.tuple([

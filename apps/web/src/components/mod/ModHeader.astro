@@ -11,13 +11,14 @@ import { categoryPath, profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
-import { CompatBadge, Cover, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
+import { CompatBadge, Cover, displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { CalendarClock, Download, Heart, Languages, Scale, Star, TrendingUp } from 'lucide-react';
-import { optional, serverApi } from '../../lib/api.ts';
+import { CalendarClock, Download, Heart, Scale, Star, TrendingUp } from 'lucide-react';
+import { loadModTranslation } from '../../lib/mod-translation.ts';
 import { href } from '../../lib/i18n.ts';
 import Picture from '../layout/Picture.astro';
 import ActionBar from './ActionBar.astro';
+import TranslatedText from './TranslatedText.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { compatSentence, multiplayerLabel, platformLabel, reviewsPagePath } from './format.ts';
 import { licenseLabel, taxonomyName } from './i18n.ts';
@@ -48,15 +49,11 @@ const oneLine = [
   multiplayer,
   loader ? m.mod_capsule_loader_short({ version: loader }) : null,
 ].filter((part): part is string => Boolean(part));
-// T1-25: the visitor's language version of the short description (the original stays one click away).
-const translation =
-  !compact && locale !== 'en' && mod.shortDescription
-    ? ((
-        await optional((signal) =>
-          serverApi().translations.forMod({ params: { id: mod.id }, query: { locale } }, { signal }),
-        )
-      )?.translation ?? null)
-    : null;
+// T1-25: the visitor's language version of the title and short description (the original stays
+// one click away). `resolveModPage` already fetched it (memoized per mod).
+const translation = !compact && locale !== 'en' && mod.shortDescription ? await loadModTranslation(mod, locale) : null;
+const shownName = displayName(mod);
+const translatedName = shownName !== mod.name;
 const galleryLabel = m.mod_gallery_label({ name: mod.name });
 ---
 
@@ -120,47 +117,34 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
           'font-display-caps break-words text-fg',
           compact ? 'text-display-xs' : 'text-display-sm',
         ]}
-        lang={mod.contentLang ?? undefined}
+        lang={translatedName ? locale : (mod.contentLang ?? undefined)}
       >
-        {compact ? <a href={overviewHref} class="hover:underline underline-offset-4">{mod.name}</a> : mod.name}
+        {compact ? <a href={overviewHref} class="hover:underline underline-offset-4">{shownName}</a> : shownName}
       </h1>
       {
-        !compact && mod.shortDescription && !translation && (
+        translatedName && (
+          <p class="break-words text-base text-fg-subtle" lang={mod.contentLang ?? 'en'} translate="no" data-original-name>
+            {mod.name}
+          </p>
+        )
+      }
+      {
+        !compact && mod.shortDescription && !translation?.shortDescription && (
           <p class="text-lg text-fg-muted" lang={mod.contentLang ?? undefined}>
             {mod.shortDescription}
           </p>
         )
       }
       {
-        !compact && mod.shortDescription && translation && (
-          <div class="grid gap-1.5" data-translation>
-            <p class="text-lg text-fg-muted" lang={locale} data-translation-text="translated">
-              {translation.shortDescription}
-            </p>
-            <p class="text-lg text-fg-muted" lang={mod.contentLang ?? 'en'} data-translation-text="original" hidden>
-              {mod.shortDescription}
-            </p>
-            <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-fg-subtle">
-              <Icon icon={Languages} size={14} />
-              <span
-                data-translation-note
-                data-note-translated={translation.source === 'author' ? m.translations_badge_author() : m.translations_badge_machine()}
-                data-note-original={m.translations_original_note()}
-              >
-                {translation.source === 'author' ? m.translations_badge_author() : m.translations_badge_machine()}
-              </span>
-              <button
-                type="button"
-                data-translation-toggle
-                aria-pressed="false"
-                data-label-original={m.translations_show_original()}
-                data-label-translated={m.translations_show_translation()}
-                class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3"
-              >
-                {m.translations_show_original()}
-              </button>
-            </p>
-          </div>
+        !compact && mod.shortDescription && translation?.shortDescription && (
+          <TranslatedText
+            translated={translation.shortDescription}
+            original={mod.shortDescription}
+            locale={locale}
+            sourceLang={mod.contentLang}
+            source={translation.sources.shortDescription ?? 'machine'}
+            class="text-lg text-fg-muted"
+          />
         )
       }
     </div>

@@ -5,8 +5,8 @@
   "translations_show_translation": "Show translation",
   "translations_original_note": "Original text",
   "translations_title": "Translations",
-  "translations_intro_auto": "The short description is translated automatically into other languages when you publish or edit it. Write your own text to replace any translation; yours is never overwritten.",
-  "translations_intro_manual": "Write your own translation of the short description for any language. Automatic translation is not available on this server.",
+  "translations_intro_auto": "The name, short description and description are translated automatically into other languages when you publish or edit them. Write your own text to replace any translation; yours is never overwritten.",
+  "translations_intro_manual": "Write your own translation of the name, short description and description for any language. Automatic translation is not available on this server.",
   "translations_original_heading": "Original text",
   "translations_source_machine": "Automatic",
   "translations_source_author": "Yours",
@@ -24,5 +24,12 @@
   "translations_reverted": "Automatic translation requested",
   "translations_removed": "Translation removed",
   "translations_failed": "Could not update the translation. Try again.",
-  "translations_load_failed": "Could not load the translations."
+  "translations_load_failed": "Could not load the translations.",
+  "translations_field_name": "Title in {language}",
+  "translations_field_short": "Short description in {language}",
+  "translations_field_description": "Description in {language} (Markdown)",
+  "translations_empty_hint": "Clear a field to go back to its automatic translation.",
+  "translations_notice_machine": "Translated from {language}",
+  "translations_notice_author": "Translated from {language} by the creator",
+  "translations_notice_original": "Original text in {language}"
 }

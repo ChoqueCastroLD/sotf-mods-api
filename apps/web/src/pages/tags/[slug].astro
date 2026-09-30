@@ -7,6 +7,7 @@
  * - Indexable with ≥ 3 items and no filter (PLAN §4.2); `?page=N` self-canonical.
  * - Cache: E(900) `tag:{slug}` + `list:mods`.
  */
+import { localizeCards } from '../../lib/localize.ts';
 import { cacheTag } from '@sotf/contracts/cache';
 import { m } from '@sotf/i18n/messages';
 import ExploreView from '../../components/explore/ExploreView.astro';
@@ -41,6 +42,7 @@ setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, [cacheTag.tag(slug), 'list
 
 const scope = tagScope(slug);
 const data = await loadListing({ url: Astro.url, locale, scope, taxonomy });
+if (data.kind !== 'redirect') await localizeCards(data, locale);
 if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
 
 const { state, list } = data;

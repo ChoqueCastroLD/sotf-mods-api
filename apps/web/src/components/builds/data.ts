@@ -17,6 +17,7 @@ import { encodePathSegment, modPath } from '@sotf/contracts/seo';
 import type { VersionDTO } from '@sotf/contracts/versions';
 import { optional, serverApi } from '../../lib/api.ts';
 import { href } from '../../lib/i18n.ts';
+import { loadModTranslation } from '../../lib/mod-translation.ts';
 
 type Resolved<T> = T extends Promise<infer U> ? U : T;
 export type ReviewPage = Resolved<ReturnType<ApiClient['reviews']['list']>>;
@@ -96,6 +97,11 @@ export async function resolveBuildPage(context: BuildPageContext): Promise<Resol
   // A mod or library reached through `/builds` (the resolver answers 200 on exact paths only).
   if (build.kind !== 'build') {
     return { kind: 'redirect', location: `${href(`${build.canonicalPath}${suffix}`, locale)}${context.url.search}` };
+  }
+  // T1-25: the visitor's language version of the title and short description.
+  const translation = await loadModTranslation(build, locale);
+  if (translation && (translation.name || translation.shortDescription)) {
+    build.localized = { locale, name: translation.name, shortDescription: translation.shortDescription };
   }
   return { kind: 'ok', build, rest: parts.rest };
 }

@@ -18,6 +18,7 @@ import { Icon } from '../icons.tsx';
 import { CompatBadge } from './compat.tsx';
 import type { CompatStatus, CreatorCardDTO, KitCardDTO, ModCardDTO } from './contracts.ts';
 import { formatBytes, formatCompact, formatCount, SLOT, useDomainI18n, useProfileHref, withSlot } from './i18n.ts';
+import { displayName, OriginalName } from './mod-card.tsx';
 import { CardLink, Cover, cardClasses, cardControlClasses, generativeBannerUri, Placeholder } from './shared.tsx';
 import { TierStamp, TrustedMark } from './stamps.tsx';
 
@@ -104,7 +105,7 @@ export function BuildCard({
             <Cover
               image={build.thumbnail}
               seed={build.slug}
-              name={build.name}
+              name={displayName(build)}
               category={build.category}
               sizes="(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw"
               priority={priority}
@@ -120,8 +121,9 @@ export function BuildCard({
         {action ? <div className={cn('absolute z-10 end-5 top-5')}>{action}</div> : null}
         <div className="flex min-w-0 flex-1 flex-col gap-1 px-1">
           <Heading className="truncate text-base font-semibold">
-            <CardLink href={build.canonicalPath}>{build.name}</CardLink>
+            <CardLink href={build.canonicalPath}>{displayName(build)}</CardLink>
           </Heading>
+          <OriginalName card={build} />
           <p className="flex min-w-0 items-center gap-1 truncate text-xs text-fg-muted">
             <span className="truncate">
               {withSlot(

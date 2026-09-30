@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Translations_Intro_AutoInputs */
 
 const en_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The short description is translated automatically into other languages when you publish or edit it. Write your own text to replace any translation; yours is never overwritten.`)
+	return /** @type {LocalizedString} */ (`The name, short description and description are translated automatically into other languages when you publish or edit them. Write your own text to replace any translation; yours is never overwritten.`)
 };
 
 const es_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La descripción corta se traduce automáticamente a otros idiomas cuando publicas o la editas. Escribe tu propio texto para reemplazar cualquier traducción; el tuyo nunca se sobrescribe.`)
+	return /** @type {LocalizedString} */ (`El nombre, la descripción corta y la descripción se traducen automáticamente a otros idiomas al publicarlos o editarlos. Escribe tu propio texto para reemplazar cualquier traducción; el tuyo nunca se sobrescribe.`)
 };
 
 const de_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Kurzbeschreibung wird beim Veröffentlichen oder Bearbeiten automatisch in andere Sprachen übersetzt. Schreibe einen eigenen Text, um eine Übersetzung zu ersetzen; dein Text wird nie überschrieben.`)
+	return /** @type {LocalizedString} */ (`Name, Kurzbeschreibung und Beschreibung werden beim Veröffentlichen oder Bearbeiten automatisch in andere Sprachen übersetzt. Schreibe deinen eigenen Text, um eine Übersetzung zu ersetzen; deiner wird nie überschrieben.`)
 };
 
 const fr_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La description courte est traduite automatiquement dans d’autres langues quand vous la publiez ou la modifiez. Écrivez votre propre texte pour remplacer une traduction ; le vôtre n’est jamais écrasé.`)
+	return /** @type {LocalizedString} */ (`Le nom, la description courte et la description sont traduits automatiquement dans d'autres langues à la publication ou à la modification. Écrivez votre propre texte pour remplacer une traduction ; le vôtre n'est jamais écrasé.`)
 };
 
 const it_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La descrizione breve viene tradotta automaticamente in altre lingue quando la pubblichi o la modifichi. Scrivi il tuo testo per sostituire una traduzione; il tuo non viene mai sovrascritto.`)
+	return /** @type {LocalizedString} */ (`Il nome, la descrizione breve e la descrizione vengono tradotti automaticamente in altre lingue quando li pubblichi o li modifichi. Scrivi il tuo testo per sostituire una traduzione; il tuo non viene mai sovrascritto.`)
 };
 
 const nl_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De korte beschrijving wordt automatisch naar andere talen vertaald wanneer je hem publiceert of bewerkt. Schrijf je eigen tekst om een vertaling te vervangen; jouw tekst wordt nooit overschreven.`)
+	return /** @type {LocalizedString} */ (`De naam, de korte beschrijving en de beschrijving worden bij het publiceren of bewerken automatisch naar andere talen vertaald. Schrijf je eigen tekst om een vertaling te vervangen; die van jou wordt nooit overschreven.`)
 };
 
 const pl_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Krótki opis jest automatycznie tłumaczony na inne języki po opublikowaniu lub edycji. Wpisz własny tekst, aby zastąpić dowolne tłumaczenie; Twój tekst nigdy nie zostanie nadpisany.`)
+	return /** @type {LocalizedString} */ (`Nazwa, krótki opis i opis są automatycznie tłumaczone na inne języki przy publikacji lub edycji. Napisz własny tekst, aby zastąpić tłumaczenie; Twój nigdy nie zostanie nadpisany.`)
 };
 
 const pt_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A descrição curta é traduzida automaticamente para outros idiomas quando você publica ou edita. Escreva seu próprio texto para substituir qualquer tradução; o seu nunca é sobrescrito.`)
+	return /** @type {LocalizedString} */ (`O nome, a descrição curta e a descrição são traduzidos automaticamente para outros idiomas ao publicar ou editar. Escreva o seu próprio texto para substituir uma tradução; o seu nunca é sobrescrito.`)
 };
 
 const ru_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Краткое описание автоматически переводится на другие языки при публикации или редактировании. Напишите свой текст, чтобы заменить любой перевод; ваш текст никогда не перезаписывается.`)
+	return /** @type {LocalizedString} */ (`Название, краткое описание и описание автоматически переводятся на другие языки при публикации или редактировании. Напишите свой текст, чтобы заменить перевод; ваш текст никогда не перезаписывается.`)
 };
 
 const sv_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Den korta beskrivningen översätts automatiskt till andra språk när du publicerar eller redigerar den. Skriv din egen text för att ersätta en översättning; din text skrivs aldrig över.`)
+	return /** @type {LocalizedString} */ (`Namnet, den korta beskrivningen och beskrivningen översätts automatiskt till andra språk när du publicerar eller redigerar. Skriv din egen text för att ersätta en översättning; din skrivs aldrig över.`)
 };
 
 const tr_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kısa açıklama, yayımladığında veya düzenlediğinde otomatik olarak diğer dillere çevrilir. Bir çeviriyi değiştirmek için kendi metnini yaz; seninki asla üzerine yazılmaz.`)
+	return /** @type {LocalizedString} */ (`Ad, kısa açıklama ve açıklama, yayınladığınızda veya düzenlediğinizde otomatik olarak diğer dillere çevrilir. Bir çeviriyi değiştirmek için kendi metninizi yazın; sizinki asla üzerine yazılmaz.`)
 };
 
 const zh_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`发布或编辑时，简短描述会自动翻译成其他语言。你可以写下自己的文本来替换任何译文，你的文本不会被覆盖。`)
+	return /** @type {LocalizedString} */ (`名称、简短描述和详细描述会在你发布或编辑时自动翻译成其他语言。你可以写下自己的文本来替换任何翻译，你的文本永远不会被覆盖。`)
 };
 
 const ja_translations_intro_auto = /** @type {(inputs: Translations_Intro_AutoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`短い説明は、公開または編集すると他の言語に自動で翻訳されます。自分の文章を書けば、どの翻訳も置き換えられます。あなたの文章が上書きされることはありません。`)
+	return /** @type {LocalizedString} */ (`名前、短い説明、説明は、公開または編集すると自動的に他の言語へ翻訳されます。自分の文章を書けば翻訳を置き換えられ、あなたの文章が上書きされることはありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The short description is translated automatically into other languages when you publish or edit it. Write your own text to replace any translation; yours is ..." |
+* | "The name, short description and description are translated automatically into other languages when you publish or edit them. Write your own text to replace a..." |
 *
 * @param {Translations_Intro_AutoInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

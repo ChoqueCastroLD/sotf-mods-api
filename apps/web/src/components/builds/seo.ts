@@ -12,6 +12,7 @@ import { REVIEW_RULES } from '@sotf/contracts/reviews';
 import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, formatNumber, type Locale, toHreflang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
+import { displayName, displayShortDescription } from '@sotf/ui/domain';
 import type { CreativeWork, PropertyValue, WithContext } from 'schema-dts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
 import type { BuildSpec, ModDetailDTO } from './data.ts';
@@ -32,33 +33,31 @@ export function truncate(value: string, max: number): string {
 
 /** Page title without the site suffix (`SeoHead` adds it with the locale template). */
 export function buildTitle(build: ModDetailDTO): string {
+  const name = displayName(build);
   const full = (title: string) => m.meta_title_template({ title });
-  const candidates = [
-    m.builds_meta_title({ name: build.name }),
-    m.builds_meta_title_short({ name: build.name }),
-    build.name,
-  ];
+  const candidates = [m.builds_meta_title({ name }), m.builds_meta_title_short({ name }), name];
   for (const candidate of candidates) {
     if (Array.from(full(candidate)).length <= TITLE_MAX) return candidate;
   }
   const suffixLength = Array.from(full('')).length;
-  return truncate(build.name, Math.max(20, TITLE_MAX - suffixLength));
+  return truncate(name, Math.max(20, TITLE_MAX - suffixLength));
 }
 
 /** Meta description: the short description, or the facts. */
 export function buildDescription(build: ModDetailDTO, spec: BuildSpec, locale: Locale): string {
-  if (build.shortDescription.trim()) return truncate(build.shortDescription, DESCRIPTION_MAX);
+  const short = displayShortDescription(build);
+  if (short.trim()) return truncate(short, DESCRIPTION_MAX);
   const author = build.userDisplayName || build.userHandle;
   const facts =
     spec.elements === null
       ? m.builds_meta_description_fallback({
-          name: build.name,
+          name: displayName(build),
           author,
           count: build.downloads,
           downloads: formatCompactNumber(locale, build.downloads),
         })
       : m.builds_meta_description_facts({
-          name: build.name,
+          name: displayName(build),
           author,
           pieceCount: spec.elements,
           pieces: formatNumber(locale, spec.elements),
@@ -96,12 +95,14 @@ export function buildJsonLd({ build, spec, locale, siteUrl, pageUrl }: BuildJson
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
     '@id': `${pageUrl}#build`,
-    name: build.name,
+    name: displayName(build),
+    // The original title stays findable when the page is shown in another language.
+    ...(displayName(build) !== build.name ? { alternateName: build.name } : {}),
     url: pageUrl,
-    headline: build.name,
-    description: build.shortDescription || undefined,
+    headline: displayName(build),
+    description: displayShortDescription(build) || undefined,
     genre: 'BuildShare blueprint',
-    inLanguage: build.contentLang ?? toHreflang(locale),
+    inLanguage: build.localized ? toHreflang(locale) : (build.contentLang ?? toHreflang(locale)),
     isAccessibleForFree: true,
     ...(image ? { image, thumbnailUrl: image } : {}),
     ...(latest

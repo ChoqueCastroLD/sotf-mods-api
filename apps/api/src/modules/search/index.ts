@@ -15,7 +15,12 @@ export default defineModule({
     const config = catalogConfigOf(m.platform.env);
 
     m.implement(searchEndpoints.search, async ({ query, ctx, request, reply }) => {
-      const results = await search(ctx, config, { q: query.q, types: query.types, limit: query.limit });
+      const results = await search(ctx, config, {
+        q: query.q,
+        types: query.types,
+        limit: query.limit,
+        locale: query.locale,
+      });
       return encodedJson(searchEndpoints.search, request, reply, results);
     });
 

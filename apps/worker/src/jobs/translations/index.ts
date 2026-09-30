@@ -1,6 +1,6 @@
 /**
- * Translation jobs (T1-25, PLAN §7.13): automatic translation of the mod short description into the
- * 12 non-English locales with OpenAI.
+ * Translation jobs (T1-25, PLAN §7.13): automatic translation of the mod name, short description and
+ * full description into the 12 non-English locales with the configured model.
  *
  * - `translation.mod`: translates the missing or stale locales of one published mod (one model call,
  *   cached by the hash of the original, never over an author's text, charged to the daily budget).
@@ -57,7 +57,9 @@ export default defineJobGroup({
       handler: async (event, { ctx }) => {
         if (
           event.type === 'mod.updated' &&
-          !event.payload.fields.some((f) => f === 'shortDescription' || f === 'contentLang')
+          !event.payload.fields.some(
+            (f) => f === 'name' || f === 'shortDescription' || f === 'descriptionMd' || f === 'contentLang',
+          )
         ) {
           return;
         }

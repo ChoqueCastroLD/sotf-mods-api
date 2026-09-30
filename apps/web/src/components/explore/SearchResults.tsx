@@ -49,9 +49,14 @@ export function highlight(text: string): ReactNode[] {
 
 function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: DomainI18n }) {
   const TypeIcon = TYPE_ICON[hit.type];
-  const title =
-    hit.highlight && hit.highlight.replace(/[«»]/g, '') === hit.title ? highlight(hit.highlight) : hit.title;
-  const snippet = hit.highlight && hit.highlight.replace(/[«»]/g, '') !== hit.title ? highlight(hit.highlight) : null;
+  // The API may show a translated title and keep the original in `titleOriginal`; the highlight
+  // always marks the match in the original text.
+  const plain = hit.highlight?.replace(/[«»]/g, '');
+  const original = hit.titleOriginal ?? null;
+  const title = original === null && hit.highlight && plain === hit.title ? highlight(hit.highlight) : hit.title;
+  const snippet = hit.highlight && plain !== hit.title && plain !== original ? highlight(hit.highlight) : null;
+  const originalNode =
+    original !== null ? (hit.highlight && plain === original ? highlight(hit.highlight) : original) : null;
   return (
     <li className="relative flex min-h-16 items-center gap-3 rounded-lg border border-border bg-surface p-3 hover:border-border-strong hover:bg-raised">
       <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md bg-raised text-fg-muted">
@@ -76,6 +81,11 @@ function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: D
         >
           {title}
         </a>
+        {originalNode !== null ? (
+          <span translate="no" className="truncate text-xs text-fg-subtle">
+            {originalNode}
+          </span>
+        ) : null}
         {hit.subtitle ? <span className="truncate text-sm text-fg-muted">{hit.subtitle}</span> : null}
         {snippet ? <span className="line-clamp-1 text-sm text-fg-muted">{snippet}</span> : null}
       </span>

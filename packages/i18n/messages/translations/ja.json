@@ -5,8 +5,8 @@
   "translations_show_translation": "翻訳を表示",
   "translations_original_note": "原文",
   "translations_title": "翻訳",
-  "translations_intro_auto": "短い説明は、公開または編集すると他の言語に自動で翻訳されます。自分の文章を書けば、どの翻訳も置き換えられます。あなたの文章が上書きされることはありません。",
-  "translations_intro_manual": "短い説明の翻訳を、好きな言語で自分で書けます。このサーバーでは自動翻訳を利用できません。",
+  "translations_intro_auto": "名前、短い説明、説明は、公開または編集すると自動的に他の言語へ翻訳されます。自分の文章を書けば翻訳を置き換えられ、あなたの文章が上書きされることはありません。",
+  "translations_intro_manual": "名前、短い説明、説明の翻訳を任意の言語で自分で書けます。このサーバーでは自動翻訳を利用できません。",
   "translations_original_heading": "原文",
   "translations_source_machine": "自動",
   "translations_source_author": "自分",
@@ -24,5 +24,12 @@
   "translations_reverted": "自動翻訳をリクエストしました",
   "translations_removed": "翻訳を削除しました",
   "translations_failed": "翻訳を更新できませんでした。もう一度お試しください。",
-  "translations_load_failed": "翻訳を読み込めませんでした。"
+  "translations_load_failed": "翻訳を読み込めませんでした。",
+  "translations_field_name": "タイトル（{language}）",
+  "translations_field_short": "短い説明（{language}）",
+  "translations_field_description": "説明（{language}、Markdown）",
+  "translations_empty_hint": "フィールドを空にすると自動翻訳に戻ります。",
+  "translations_notice_machine": "{language}から翻訳",
+  "translations_notice_author": "作者が{language}から翻訳",
+  "translations_notice_original": "原文（{language}）"
 }

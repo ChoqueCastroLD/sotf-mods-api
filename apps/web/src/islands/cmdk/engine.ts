@@ -133,6 +133,8 @@ export class PaletteIndex {
       const createdDay = typeof tail[12] === 'number' ? tail[12] : undefined;
       const rating = typeof tail[13] === 'number' ? tail[13] / 10 : null;
       const mp = typeof tail[14] === 'number' ? tail[14] : undefined;
+      // Non-English indexes carry the original (English) name when `name` is a translation.
+      const originalName = typeof tail[15] === 'string' && tail[15] ? tail[15] : null;
       const type: EntryType = kind === 'build' ? 'build' : 'mod';
       const tags = tagsCsv ? tagsCsv.split(',').filter(Boolean) : [];
       const item: EntryItem = {
@@ -156,11 +158,11 @@ export class PaletteIndex {
         ...(mp !== undefined ? { mp } : {}),
       };
       this.add(item, downloads);
-      this.addExact(item.key, name, manifestId);
+      this.addExact(item.key, name, manifestId, ...(originalName ? [originalName] : []));
       docs.push({
         key: item.key,
         title: name,
-        alt: handle,
+        alt: originalName ? `${handle} ${originalName}` : handle,
         manifestId,
         tags: tags.join(' '),
         category: category ? `${category} ${this.categoryNames.get(category) ?? ''}` : '',

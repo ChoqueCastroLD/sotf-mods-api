@@ -363,6 +363,7 @@ export const API_ROUTES = {
   },
   translations: {
     forMod: { id: 'translations.forMod', method: 'GET', path: "/api/v2/mods/:id/translation", kind: 'json', bodyKind: null },
+    forMods: { id: 'translations.forMods', method: 'GET', path: "/api/v2/translations/mods", kind: 'json', bodyKind: null },
     studioList: { id: 'translations.studioList', method: 'GET', path: "/api/v2/studio/mods/:id/translations", kind: 'json', bodyKind: null },
     studioPut: { id: 'translations.studioPut', method: 'PUT', path: "/api/v2/studio/mods/:id/translations/:locale", kind: 'json', bodyKind: 'json' },
     studioRevert: { id: 'translations.studioRevert', method: 'DELETE', path: "/api/v2/studio/mods/:id/translations/:locale", kind: 'json', bodyKind: null },
