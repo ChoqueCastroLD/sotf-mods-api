@@ -17,17 +17,18 @@ import { cn } from '../cn.ts';
 import { Icon } from '../icons.tsx';
 import { CompatBadge } from './compat.tsx';
 import type { CompatStatus, CreatorCardDTO, KitCardDTO, ModCardDTO } from './contracts.ts';
-import { formatBytes, formatCompact, formatCount, SLOT, useDomainI18n, withSlot } from './i18n.ts';
+import { formatBytes, formatCompact, formatCount, SLOT, useDomainI18n, useProfileHref, withSlot } from './i18n.ts';
 import { CardLink, Cover, cardClasses, cardControlClasses, generativeBannerUri, Placeholder } from './shared.tsx';
 import { TierStamp, TrustedMark } from './stamps.tsx';
 
 type HeadingLevel = 2 | 3 | 4;
 
 function AuthorLink({ handle, name }: { handle: string; name: string }) {
+  const profileHref = useProfileHref();
   return (
     <a
       key="author"
-      href={`/profile/${encodeURIComponent(handle)}`}
+      href={profileHref(handle)}
       className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline')}
     >
       {name}
@@ -289,6 +290,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 export function CreatorCard({ creator, action, headingLevel = 3, iconMode, className }: CreatorCardProps) {
   const { t, locale } = useDomainI18n();
+  const profileHref = useProfileHref();
   const Heading = `h${headingLevel}` as const;
   const { user } = creator;
   return (
@@ -317,7 +319,7 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
           <div className="flex min-w-0 flex-col gap-1.5">
             <div className="flex min-w-0 items-center gap-1.5">
               <Heading className="truncate text-base font-semibold">
-                <CardLink href={`/profile/${encodeURIComponent(user.handle)}`}>{user.displayName}</CardLink>
+                <CardLink href={profileHref(user.handle)}>{user.displayName}</CardLink>
               </Heading>
               {user.verifiedCreator ? <TrustedMark size={16} className={cardControlClasses} /> : null}
             </div>

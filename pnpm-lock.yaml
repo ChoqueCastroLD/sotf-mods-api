@@ -1225,6 +1225,9 @@ importers:
       '@sotf/brand':
         specifier: workspace:*
         version: link:../brand
+      '@sotf/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       '@tailwindcss/typography':
         specifier: 'catalog:'
         version: 0.5.20(tailwindcss@4.3.3)
