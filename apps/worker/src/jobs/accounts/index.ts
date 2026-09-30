@@ -5,7 +5,8 @@
  *   presigned link (24 h). Idempotent; the last attempt marks the export failed.
  * - `account.delete`: daily sweep (or one user) of deletions past their 14-day grace period →
  *   anonymization (see @sotf/core accounts/deletion.ts).
- * - `accounts.trust-level`: nightly trust level recomputation.
+ * - `accounts.trust-level`: nightly trust level recomputation, followed by the compatibility
+ *   reconciliation (report weights follow the new levels; see `../compat/reconcile.ts`).
  * - `cleanup.sessions`: retention of sessions, one-time tokens, the security log, final outbox rows
  *   and expired exports.
  */
@@ -21,6 +22,7 @@ import {
 import { defineJob, defineJobGroup, type JobGroup } from '../../define-job.ts';
 import type { WorkerEnv } from '../../env.ts';
 import type { WorkerServices } from '../../services.ts';
+import { reconcileCompat } from '../compat/reconcile.ts';
 
 export interface AccountJobOptions {
   /** Private bucket of the exports; null disables exports (they fail and are marked failed). */
@@ -76,7 +78,9 @@ export function createAccountJobs(options?: AccountJobOptions | (() => AccountJo
         handler: async (_data, { ctx }) => {
           const changed = await recomputeTrustLevels(ctx.db);
           ctx.log.info({ changed }, 'trust levels recomputed');
-          return { changed };
+          const compat = await reconcileCompat(ctx);
+          ctx.log.info(compat, 'compat aggregates reconciled');
+          return { changed, compat };
         },
       }),
       defineJob({
