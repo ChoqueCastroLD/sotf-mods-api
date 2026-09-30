@@ -1274,6 +1274,11 @@
   "basecamp_kpis_label": "Key figures",
   "basecamp_listing_category": "Category",
   "basecamp_listing_category_placeholder": "Choose a category",
+  "basecamp_listing_convert": "Convert to Markdown",
+  "basecamp_listing_convert_body": "Raw HTML will show as plain text from now on. There is no way back.",
+  "basecamp_listing_convert_done": "Description converted to Markdown.",
+  "basecamp_listing_convert_save_first": "Save or discard your changes first.",
+  "basecamp_listing_convert_title": "Convert this description to Markdown?",
   "basecamp_listing_description": "Description",
   "basecamp_listing_description_group": "Description",
   "basecamp_listing_description_hint": "Markdown. What it does, how to use it, known issues. 300 characters or more help players decide.",
@@ -1286,6 +1291,8 @@
   "basecamp_listing_language": "Language of the listing",
   "basecamp_listing_language_hint": "The language you wrote the description in.",
   "basecamp_listing_language_placeholder": "Not set",
+  "basecamp_listing_legacy_body": "It was written on the old site, so its HTML still renders as formatting. Convert it to Markdown to edit it like any new description.",
+  "basecamp_listing_legacy_title": "This description keeps its old layout",
   "basecamp_listing_license": "Licence",
   "basecamp_listing_license_placeholder": "Choose a licence",
   "basecamp_listing_links_group": "Licence and links",
@@ -3117,6 +3124,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "Game build {build} is out: tell us if the mods you downloaded still work",
   "emails_notify_item_creator_mod_published": "{actor} published {mod}",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -3136,6 +3144,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} was added to a public kit",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -3183,6 +3192,7 @@
     }
   ],
   "emails_notify_item_review_reply": "The author of {mod} replied to your review",
+  "emails_notify_item_review_update_prompt": "{mod} released a new major version ({version}): update your review",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6773,6 +6783,8 @@
   "settings_notif_col_signal": "Signal",
   "settings_notif_comment": "Comments on your mods",
   "settings_notif_comment_hint": "Bundled: several comments arrive as one signal.",
+  "settings_notif_compat_prompt": "“Did it work?” prompts",
+  "settings_notif_compat_prompt_hint": "A new game build is out and you have downloads to report on.",
   "settings_notif_creator": "New mods from creators",
   "settings_notif_creator_hint": "A creator you follow published something new.",
   "settings_notif_defaults": "Restore defaults",
@@ -6781,6 +6793,8 @@
   "settings_notif_group_conversations": "Conversations",
   "settings_notif_group_follows": "What you follow",
   "settings_notif_group_my_mods": "Your mods",
+  "settings_notif_kit_added": "Kits with your mods",
+  "settings_notif_kit_added_hint": "Someone added a mod of yours to a public kit.",
   "settings_notif_matrix_text": "For each kind of signal, choose whether it shows in the app and how often it’s emailed. Digests bundle everything into one email.",
   "settings_notif_matrix_title": "Signals and emails",
   "settings_notif_mention": "Mentions",
@@ -6798,6 +6812,8 @@
   "settings_notif_review_hint": "Someone rated one of your mods.",
   "settings_notif_review_reply": "Replies to your reviews",
   "settings_notif_review_reply_hint": "An author answered your review.",
+  "settings_notif_review_update": "Review updates",
+  "settings_notif_review_update_hint": "A mod you reviewed released a new major version.",
   "settings_notif_saved": "Notification settings saved",
   "settings_notif_status": "Review decisions",
   "settings_notif_status_hint": "A mod of yours was approved, rejected, needs changes or was archived.",
@@ -7177,6 +7193,7 @@
     }
   ],
   "signals_compat_fixed_in": "Your field report on {mod} is fixed in {version}",
+  "signals_compat_prompt": "Game build {build} is out. Did the mods you downloaded still work? Tell us.",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7210,6 +7227,7 @@
   "signals_filter_updates": "Updates",
   "signals_group_today": "Today",
   "signals_group_yesterday": "Yesterday",
+  "signals_kit_added_my_mod": "{actor} added {mod} to the kit “{kit}”",
   "signals_load_more": "Load older signals",
   "signals_loading": "Loading signals…",
   "signals_loading_more": "Loading…",
@@ -7259,6 +7277,7 @@
     }
   ],
   "signals_review_reply": "The author of {mod} replied to your review",
+  "signals_review_update_prompt": "{mod} released version {version}. Want to update your review?",
   "signals_see_all": "See all signals",
   "signals_show_all": "Show all signals",
   "signals_someone": "Someone",

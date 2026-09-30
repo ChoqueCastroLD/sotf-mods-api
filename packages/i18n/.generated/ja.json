@@ -1180,6 +1180,11 @@
   "basecamp_kpis_label": "主な数値",
   "basecamp_listing_category": "カテゴリー",
   "basecamp_listing_category_placeholder": "カテゴリーを選択",
+  "basecamp_listing_convert": "Markdownに変換",
+  "basecamp_listing_convert_body": "生のHTMLは今後プレーンテキストとして表示されます。元には戻せません。",
+  "basecamp_listing_convert_done": "説明をMarkdownに変換しました。",
+  "basecamp_listing_convert_save_first": "先に変更を保存または破棄してください。",
+  "basecamp_listing_convert_title": "この説明をMarkdownに変換しますか？",
   "basecamp_listing_description": "説明",
   "basecamp_listing_description_group": "説明",
   "basecamp_listing_description_hint": "Markdown 対応。何ができるか、使い方、既知の問題。300 文字以上あるとプレイヤーが判断しやすくなります。",
@@ -1192,6 +1197,8 @@
   "basecamp_listing_language": "ページの言語",
   "basecamp_listing_language_hint": "説明を書いた言語。",
   "basecamp_listing_language_placeholder": "未設定",
+  "basecamp_listing_legacy_body": "旧サイトで書かれたため、HTMLは今も書式付きで表示されます。新しい説明と同じように編集するにはMarkdownに変換してください。",
+  "basecamp_listing_legacy_title": "この説明は旧レイアウトのままです",
   "basecamp_listing_license": "ライセンス",
   "basecamp_listing_license_placeholder": "ライセンスを選択",
   "basecamp_listing_links_group": "ライセンスとリンク",
@@ -2850,6 +2857,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "ゲームのビルド {build} が公開されました。ダウンロードしたMODが今も動作するか教えてください",
   "emails_notify_item_creator_mod_published": "{actor} さんが {mod} を公開しました",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -2865,6 +2873,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} が公開キットに追加されました",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -2908,6 +2917,7 @@
     }
   ],
   "emails_notify_item_review_reply": "{mod} の作者があなたのレビューに返信しました",
+  "emails_notify_item_review_update_prompt": "{mod} が新しいメジャーバージョン ({version}) を公開しました。レビューを更新してください",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6126,6 +6136,8 @@
   "settings_notif_col_signal": "シグナル",
   "settings_notif_comment": "あなたのMODへのコメント",
   "settings_notif_comment_hint": "まとめて通知：複数のコメントを1つのシグナルで届けます。",
+  "settings_notif_compat_prompt": "「動きましたか？」のお知らせ",
+  "settings_notif_compat_prompt_hint": "新しいゲームビルドが公開され、報告できるダウンロードがあります。",
   "settings_notif_creator": "クリエイターの新作MOD",
   "settings_notif_creator_hint": "フォロー中のクリエイターが新しいものを公開しました。",
   "settings_notif_defaults": "既定に戻す",
@@ -6134,6 +6146,8 @@
   "settings_notif_group_conversations": "会話",
   "settings_notif_group_follows": "フォロー中",
   "settings_notif_group_my_mods": "あなたのMOD",
+  "settings_notif_kit_added": "あなたのMODを含むキット",
+  "settings_notif_kit_added_hint": "誰かがあなたのMODを公開キットに追加しました。",
   "settings_notif_matrix_text": "シグナルの種類ごとに、アプリに表示するかどうかとメールの頻度を選べます。ダイジェストはすべてを1通のメールにまとめます。",
   "settings_notif_matrix_title": "シグナルとメール",
   "settings_notif_mention": "メンション",
@@ -6151,6 +6165,8 @@
   "settings_notif_review_hint": "あなたのMODが評価されました。",
   "settings_notif_review_reply": "レビューへの返信",
   "settings_notif_review_reply_hint": "作者があなたのレビューに返信しました。",
+  "settings_notif_review_update": "レビューの更新",
+  "settings_notif_review_update_hint": "レビューしたMODが新しいメジャーバージョンを公開しました。",
   "settings_notif_saved": "通知設定を保存しました",
   "settings_notif_status": "審査結果",
   "settings_notif_status_hint": "あなたのMODが承認・却下・修正依頼・アーカイブされました。",
@@ -6503,6 +6519,7 @@
     }
   ],
   "signals_compat_fixed_in": "{mod} についてのあなたのフィールドレポートは {version} で修正されました",
+  "signals_compat_prompt": "ゲームのビルド {build} が公開されました。ダウンロードしたMODは今も動作していますか？ ぜひ教えてください。",
   "signals_creator_published": [
     {
       "declarations": [
@@ -6536,6 +6553,7 @@
   "signals_filter_updates": "アップデート",
   "signals_group_today": "今日",
   "signals_group_yesterday": "昨日",
+  "signals_kit_added_my_mod": "{actor} さんが {mod} をキット「{kit}」に追加しました",
   "signals_load_more": "以前のシグナルを読み込む",
   "signals_loading": "シグナルを読み込み中…",
   "signals_loading_more": "読み込み中…",
@@ -6581,6 +6599,7 @@
     }
   ],
   "signals_review_reply": "{mod} の作者があなたのレビューに返信しました",
+  "signals_review_update_prompt": "{mod} がバージョン {version} を公開しました。レビューを更新しませんか？",
   "signals_see_all": "すべてのシグナルを見る",
   "signals_show_all": "すべてのシグナルを表示",
   "signals_someone": "誰か",

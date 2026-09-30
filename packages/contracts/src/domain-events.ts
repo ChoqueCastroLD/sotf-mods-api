@@ -137,12 +137,16 @@ export const DOMAIN_EVENT_PAYLOADS = {
     ownerId: EntityId,
     visibility: KitVisibility,
     forkedFromId: EntityId.nullable(),
+    /** Mods the new kit holds (forks copy the items); absent on events written before signals. */
+    modIds: z.array(EntityId).optional(),
   }),
   'kit.updated': z.object({
     kitId: EntityId,
     ownerId: EntityId,
     visibility: KitVisibility,
     revision: z.number().int().min(1),
+    /** Mods newly added as explicit items by this edit (drives `kit.added_my_mod`). */
+    addedModIds: z.array(EntityId).optional(),
   }),
   'kit.deleted': z.object({ kitId: EntityId, ownerId: EntityId }),
   // Compatibility

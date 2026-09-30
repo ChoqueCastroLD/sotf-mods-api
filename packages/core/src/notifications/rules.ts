@@ -8,13 +8,14 @@
  */
 import type { DomainEvent } from '@sotf/contracts/domain-events';
 import type { NOTIFICATION_TARGET_TYPES, NotificationType } from '@sotf/contracts/notifications';
-import { versionsPath } from '@sotf/contracts/seo';
+import { kitPath, versionsPath } from '@sotf/contracts/seo';
 import {
   announcement,
   badge,
   comment,
   type Executor,
   gameBuild,
+  kit,
   mod,
   modFavorite,
   modReview,
@@ -22,8 +23,9 @@ import {
   user,
   userFollow,
 } from '@sotf/db';
-import { and, eq, inArray, isNotNull, ne, sql } from 'drizzle-orm';
-import { loadModRef, type ModRef, plainExcerpt } from './refs.ts';
+import { and, eq, inArray, isNotNull, isNull, ne, sql } from 'drizzle-orm';
+import { COMPAT_PROMPT_LIMIT, COMPAT_PROMPT_WINDOW_DAYS } from '../compat/read.ts';
+import { loadModRef, loadModRefs, type ModRef, plainExcerpt } from './refs.ts';
 
 export type NotificationTargetType = (typeof NOTIFICATION_TARGET_TYPES)[number];
 export type NotificationDataValue = string | number | boolean | null;
@@ -102,6 +104,133 @@ async function reviewExcerpt(db: Executor, reviewId: number, reply = false): Pro
     .where(eq(modReview.id, reviewId));
   if (!row) return null;
   return plainExcerpt(reply ? row.replyMd : (row.bodyMd ?? row.message)) || null;
+}
+
+/** Leading integer of a version string (`3.1.0` → 3); null for non-semver labels. */
+export function majorOf(version: string | null | undefined): number | null {
+  const match = /^v?(\d+)/.exec((version ?? '').trim());
+  return match ? Number(match[1]) : null;
+}
+
+/** `kit.added_my_mod`: authors whose mods were added to a public kit they do not own. */
+async function kitAddedDrafts(
+  db: Executor,
+  kitId: number,
+  ownerId: number,
+  modIds: readonly number[],
+  actorId: number | null,
+): Promise<NotificationDraft[]> {
+  if (modIds.length === 0) return [];
+  const [row] = await db
+    .select({ name: kit.name, slug: kit.slug, visibility: kit.visibility, deletedAt: kit.deletedAt, handle: user.slug })
+    .from(kit)
+    .innerJoin(user, eq(user.id, kit.ownerId))
+    .where(eq(kit.id, kitId));
+  if (row?.visibility !== 'public' || row.deletedAt !== null || !row.handle) return [];
+  const refs = await loadModRefs(db, modIds);
+  const path = kitPath(row.handle, row.slug);
+  const drafts: NotificationDraft[] = [];
+  for (const modId of new Set(modIds)) {
+    const ref = refs.get(modId);
+    if (!ref || ref.status !== 'published' || ref.authorId === null || ref.authorId === ownerId) continue;
+    drafts.push({
+      userId: ref.authorId,
+      type: 'kit.added_my_mod',
+      actorId,
+      target: { type: 'kit', id: kitId, title: row.name, path },
+      groupKey: `kit.added_my_mod:${modId}`,
+      data: { modId: ref.id, modName: ref.name, kitName: row.name },
+      dedupeKey: `kit.added_my_mod:${kitId}:${modId}`,
+    });
+  }
+  return drafts;
+}
+
+/**
+ * `review.update_prompt`: a stable release of a new major version asks the reviewers of an older
+ * major to update their review. One signal per review and major (idempotent across retries).
+ */
+async function reviewUpdatePrompts(
+  db: Executor,
+  p: Extract<DomainEvent, { type: 'version.published' }>['payload'],
+  ref: ModRef,
+): Promise<NotificationDraft[]> {
+  const major = majorOf(p.version);
+  if (major === null || p.channel !== 'release' || ref.kind === 'build') return [];
+  const rows = await db
+    .select({
+      reviewId: modReview.id,
+      userId: modReview.userId,
+      reviewed: modVersion.version,
+      reviewedString: modReview.modVersionString,
+    })
+    .from(modReview)
+    .leftJoin(modVersion, eq(modVersion.id, modReview.modVersionId))
+    .where(
+      and(
+        eq(modReview.modId, p.modId),
+        eq(modReview.status, 'visible'),
+        isNull(modReview.deletedAt),
+        isNotNull(modReview.userId),
+        ne(modReview.userId, p.authorId),
+      ),
+    );
+  const drafts: NotificationDraft[] = [];
+  for (const r of rows) {
+    const reviewedVersion = r.reviewed ?? r.reviewedString;
+    const reviewedMajor = majorOf(reviewedVersion);
+    if (r.userId === null || reviewedMajor === null || reviewedMajor >= major) continue;
+    drafts.push({
+      userId: r.userId,
+      type: 'review.update_prompt',
+      actorId: null,
+      target: {
+        type: 'review',
+        id: r.reviewId,
+        title: ref.name,
+        path: ref.path ? `${ref.path}/reviews#r-${r.reviewId}` : null,
+      },
+      groupKey: null,
+      data: { modId: ref.id, modName: ref.name, version: p.version, reviewedVersion: reviewedVersion ?? null },
+      dedupeKey: `review.update_prompt:${r.reviewId}:${major}`,
+    });
+  }
+  return drafts;
+}
+
+/**
+ * `compat.prompt`: a new current game build asks the people who downloaded mods recently (signed
+ * in) whether they still work, the signal counterpart of `GET /me/compat-prompts`. One signal per
+ * user and build; people who turned the prompts off (`settings.compatPrompts = false`) are skipped.
+ */
+async function compatPromptDrafts(
+  db: Executor,
+  p: { gameBuildId: number; label: string },
+  occurredAt: string,
+): Promise<NotificationDraft[]> {
+  const since = new Date(new Date(occurredAt).getTime() - COMPAT_PROMPT_WINDOW_DAYS * 86_400_000);
+  const result = await db.execute<{ userId: number; count: number }>(
+    sql`SELECT d."userId" AS "userId", COUNT(DISTINCT v."modId")::int AS "count"
+          FROM "ModDownload" d
+          JOIN "ModVersion" v ON v."id" = d."modVersionId"
+          JOIN "Mod" m ON m."id" = v."modId"
+          JOIN "User" u ON u."id" = d."userId"
+         WHERE d."userId" IS NOT NULL
+           AND d."createdAt" >= ${since.toISOString()}::timestamptz
+           AND m."userId" IS DISTINCT FROM d."userId"
+           AND m."status" = 'published'
+           AND (u."settings"->>'compatPrompts') IS DISTINCT FROM 'false'
+         GROUP BY d."userId"`,
+  );
+  return result.rows.map((r) => ({
+    userId: r.userId,
+    type: 'compat.prompt' as const,
+    actorId: null,
+    target: { type: 'game_build' as const, id: p.gameBuildId, title: p.label, path: '/me/downloads' },
+    groupKey: null,
+    data: { build: p.label, count: Math.min(r.count, COMPAT_PROMPT_LIMIT) },
+    dedupeKey: `compat.prompt:${p.gameBuildId}`,
+  }));
 }
 
 /** Plans the signals of one domain event. Events that notify nobody return an empty plan. */
@@ -212,9 +341,10 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
       return event.payload.hidden ? plan([], [{ targetType: 'review', targetId: event.payload.reviewId }]) : EMPTY;
     case 'version.published': {
       const p = event.payload;
-      if (!p.notifyFollowers) return EMPTY;
       const ref = await loadModRef(db, p.modId);
       if (ref?.status !== 'published') return EMPTY;
+      const prompts = await reviewUpdatePrompts(db, p, ref);
+      if (!p.notifyFollowers) return plan(prompts);
       const rows = await db
         .selectDistinct({ userId: modFavorite.userId })
         .from(modFavorite)
@@ -232,8 +362,8 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
         followers = followers.filter((id) => allowed.has(id));
       }
       const path = ref.authorHandle ? versionsPath(ref.kind, ref.authorHandle, ref.slug, p.version) : null;
-      return plan(
-        followers.map((userId) => ({
+      return plan([
+        ...followers.map((userId) => ({
           userId,
           type: 'mod.version_published' as const,
           actorId: p.authorId,
@@ -241,7 +371,8 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
           groupKey: `mod.version_published:${p.modId}`,
           data: { modId: ref.id, modName: ref.name, version: p.version, channel: p.channel },
         })),
-      );
+        ...prompts,
+      ]);
     }
     case 'mod.published': {
       const p = event.payload;
@@ -355,13 +486,14 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
     }
     case 'game_build.created': {
       const p = event.payload;
-      if (!p.isBreaking) return EMPTY;
+      const prompts = p.isCurrent ? await compatPromptDrafts(db, p, event.occurredAt) : [];
+      if (!p.isBreaking) return plan(prompts);
       const creators = await db
         .selectDistinct({ userId: mod.userId })
         .from(mod)
         .where(and(eq(mod.status, 'published'), isNotNull(mod.userId)));
-      return plan(
-        creators.map((r) => ({
+      return plan([
+        ...creators.map((r) => ({
           userId: r.userId as number,
           type: 'patch.breaking_build' as const,
           actorId: null,
@@ -370,7 +502,16 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
           data: { build: p.label },
           dedupeKey: `patch.breaking_build:${p.gameBuildId}`,
         })),
-      );
+        ...prompts,
+      ]);
+    }
+    case 'kit.updated': {
+      const p = event.payload;
+      return plan(await kitAddedDrafts(db, p.kitId, p.ownerId, p.addedModIds ?? [], event.actorId));
+    }
+    case 'kit.created': {
+      const p = event.payload;
+      return plan(await kitAddedDrafts(db, p.kitId, p.ownerId, p.modIds ?? [], event.actorId));
     }
     case 'milestone.reached': {
       const p = event.payload;

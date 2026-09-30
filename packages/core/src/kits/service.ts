@@ -528,11 +528,12 @@ async function emitUpdated(
   ownerId: number,
   visibility: string,
   revision: number,
+  addedModIds?: number[],
 ) {
   await ctx.jobs.emitNew(
     tx,
     'kit.updated',
-    { kitId, ownerId, visibility: visibility as KitRow['visibility'], revision },
+    { kitId, ownerId, visibility: visibility as KitRow['visibility'], revision, addedModIds },
     { actorId: ctx.actor?.userId ?? null },
   );
 }
@@ -673,7 +674,16 @@ export async function putKitItems(ctx: Ctx, deps: KitsDeps, kitId: number, input
       sql`UPDATE "Kit" SET "revision" = ${revision}, "itemsCount" = ${next.length}, "updatedAt" = ${at(now)}
            WHERE "id" = ${kit.id}`,
     );
-    await emitUpdated(ctx, tx, kit.id, kit.ownerId, kit.visibility, revision);
+    const explicitAdded = new Set(next.filter((i) => !i.isAutoDependency).map((i) => i.modId));
+    await emitUpdated(
+      ctx,
+      tx,
+      kit.id,
+      kit.ownerId,
+      kit.visibility,
+      revision,
+      diff.added.filter((id) => explicitAdded.has(id)),
+    );
   });
   const kit = await loadKitRow(ctx.db, kitId);
   if (!kit) throw errors.notFound('Kit');
@@ -724,7 +734,13 @@ export async function forkKit(ctx: Ctx, deps: KitsDeps, kitId: number, input: Fo
     await ctx.jobs.emitNew(
       tx,
       'kit.created',
-      { kitId: id, ownerId: actor.userId, visibility: input.visibility, forkedFromId: source.id },
+      {
+        kitId: id,
+        ownerId: actor.userId,
+        visibility: input.visibility,
+        forkedFromId: source.id,
+        modIds: items.filter((i) => !i.isAutoDependency).map((i) => i.modId),
+      },
       { actorId: actor.userId },
     );
     return id;

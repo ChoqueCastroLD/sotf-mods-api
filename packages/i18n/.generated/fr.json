@@ -1274,6 +1274,11 @@
   "basecamp_kpis_label": "Chiffres clés",
   "basecamp_listing_category": "Catégorie",
   "basecamp_listing_category_placeholder": "Choisissez une catégorie",
+  "basecamp_listing_convert": "Convertir en Markdown",
+  "basecamp_listing_convert_body": "Le HTML brut s'affichera désormais comme du texte. Il n'y a pas de retour en arrière.",
+  "basecamp_listing_convert_done": "Description convertie en Markdown.",
+  "basecamp_listing_convert_save_first": "Enregistrez ou annulez d'abord vos modifications.",
+  "basecamp_listing_convert_title": "Convertir cette description en Markdown ?",
   "basecamp_listing_description": "Description",
   "basecamp_listing_description_group": "Description",
   "basecamp_listing_description_hint": "Markdown. Ce qu’il fait, comment l’utiliser, problèmes connus. À partir de 300 caractères, les joueurs se décident plus facilement.",
@@ -1286,6 +1291,8 @@
   "basecamp_listing_language": "Langue de la fiche",
   "basecamp_listing_language_hint": "La langue dans laquelle vous avez écrit la description.",
   "basecamp_listing_language_placeholder": "Non précisée",
+  "basecamp_listing_legacy_body": "Elle a été écrite sur l'ancien site, son HTML s'affiche donc encore avec sa mise en forme. Convertissez-la en Markdown pour la modifier comme une nouvelle description.",
+  "basecamp_listing_legacy_title": "Cette description garde son ancienne mise en forme",
   "basecamp_listing_license": "Licence",
   "basecamp_listing_license_placeholder": "Choisissez une licence",
   "basecamp_listing_links_group": "Licence et liens",
@@ -3117,6 +3124,7 @@
       }
     }
   ],
+  "emails_notify_item_compat_prompt": "La version {build} du jeu est sortie : dites-nous si les mods téléchargés fonctionnent toujours",
   "emails_notify_item_creator_mod_published": "{actor} a publié {mod}",
   "emails_notify_item_creator_mod_published_many": [
     {
@@ -3136,6 +3144,7 @@
       }
     }
   ],
+  "emails_notify_item_kit_added_my_mod": "{mod} a été ajouté à un kit public",
   "emails_notify_item_milestone": [
     {
       "declarations": [
@@ -3183,6 +3192,7 @@
     }
   ],
   "emails_notify_item_review_reply": "L’auteur de {mod} a répondu à votre avis",
+  "emails_notify_item_review_update_prompt": "{mod} a publié une nouvelle version majeure ({version}) : mettez à jour votre avis",
   "emails_notify_item_status": [
     {
       "declarations": [
@@ -6773,6 +6783,8 @@
   "settings_notif_col_signal": "Signal",
   "settings_notif_comment": "Commentaires sur vos mods",
   "settings_notif_comment_hint": "Regroupés : plusieurs commentaires arrivent en un seul signal.",
+  "settings_notif_compat_prompt": "Invitations « Ça a marché ? »",
+  "settings_notif_compat_prompt_hint": "Une nouvelle version du jeu est sortie et vous avez des téléchargements à signaler.",
   "settings_notif_creator": "Nouveaux mods des créateurs",
   "settings_notif_creator_hint": "Un créateur que vous suivez a publié quelque chose de nouveau.",
   "settings_notif_defaults": "Rétablir les valeurs par défaut",
@@ -6781,6 +6793,8 @@
   "settings_notif_group_conversations": "Conversations",
   "settings_notif_group_follows": "Ce que vous suivez",
   "settings_notif_group_my_mods": "Vos mods",
+  "settings_notif_kit_added": "Kits contenant vos mods",
+  "settings_notif_kit_added_hint": "Quelqu’un a ajouté un de vos mods à un kit public.",
   "settings_notif_matrix_text": "Pour chaque type de signal, choisissez s’il apparaît dans l’appli et à quelle fréquence il est envoyé par e-mail. Les résumés regroupent tout dans un seul e-mail.",
   "settings_notif_matrix_title": "Signaux et e-mails",
   "settings_notif_mention": "Mentions",
@@ -6798,6 +6812,8 @@
   "settings_notif_review_hint": "Quelqu’un a noté l’un de vos mods.",
   "settings_notif_review_reply": "Réponses à vos avis",
   "settings_notif_review_reply_hint": "Un auteur a répondu à votre avis.",
+  "settings_notif_review_update": "Mises à jour d’avis",
+  "settings_notif_review_update_hint": "Un mod que vous avez évalué a publié une nouvelle version majeure.",
   "settings_notif_saved": "Paramètres de notification enregistrés",
   "settings_notif_status": "Décisions de modération",
   "settings_notif_status_hint": "Un de vos mods a été approuvé, refusé, doit être modifié ou a été archivé.",
@@ -7177,6 +7193,7 @@
     }
   ],
   "signals_compat_fixed_in": "Votre rapport de terrain sur {mod} est corrigé dans {version}",
+  "signals_compat_prompt": "La version {build} du jeu est sortie. Les mods que vous avez téléchargés fonctionnent-ils toujours ? Dites-le-nous.",
   "signals_creator_published": [
     {
       "declarations": [
@@ -7210,6 +7227,7 @@
   "signals_filter_updates": "Mises à jour",
   "signals_group_today": "Aujourd’hui",
   "signals_group_yesterday": "Hier",
+  "signals_kit_added_my_mod": "{actor} a ajouté {mod} au kit « {kit} »",
   "signals_load_more": "Charger les signaux plus anciens",
   "signals_loading": "Chargement des signaux…",
   "signals_loading_more": "Chargement…",
@@ -7259,6 +7277,7 @@
     }
   ],
   "signals_review_reply": "L’auteur de {mod} a répondu à votre avis",
+  "signals_review_update_prompt": "{mod} a publié la version {version}. Voulez-vous mettre à jour votre avis ?",
   "signals_see_all": "Voir tous les signaux",
   "signals_show_all": "Afficher tous les signaux",
   "signals_someone": "Quelqu’un",
