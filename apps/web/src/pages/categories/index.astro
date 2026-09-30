@@ -1,0 +1,117 @@
+---
+/**
+ * `/categories` — directory of the category hubs (mods, then builds) with their intro and count:
+ * the parent crumb of every `/categories/:slug` and an internal-linking page for crawlers.
+ * Cache: E(900) `list:mods` + `list:builds`.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import type { ItemList, WithContext } from 'schema-dts';
+import { categoryIntro } from '../../components/explore/copy.ts';
+import { ListingError } from '../../components/explore/ExploreStates.tsx';
+import { loadTaxonomy } from '../../components/explore/taxonomy.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, ['list:mods', 'list:builds']));
+const taxonomy = await loadTaxonomy(locale);
+if (!taxonomy.available) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const groups = [
+  { key: 'mod' as const, title: m.explore_categories_mods_heading() },
+  { key: 'build' as const, title: m.explore_categories_builds_heading() },
+]
+  .map((group) => ({
+    ...group,
+    items: taxonomy.categories
+      .filter((category) => category.kind === group.key)
+      .map((category) => {
+        const name = taxonomy.categoryName(category.slug, category.name);
+        return {
+          slug: category.slug,
+          name,
+          intro: categoryIntro(category.slug, name, category.kind),
+          count: category.count,
+          href: href(`/categories/${encodeURIComponent(category.slug)}`, locale),
+        };
+      }),
+  }))
+  .filter((group) => group.items.length > 0);
+const siteUrl = loadEnv().siteUrl;
+const jsonLd: WithContext<ItemList>[] = taxonomy.available
+  ? [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: m.explore_categories_heading(),
+        itemListElement: groups
+          .flatMap((group) => group.items)
+          .map((item, index) => ({ '@type': 'ListItem', position: index + 1, name: item.name, url: `${siteUrl}${item.href}` })),
+      },
+    ]
+  : [];
+---
+
+<PageLayout
+  template="categories"
+  seo={{ title: m.explore_categories_title(), description: m.explore_categories_description(), path: '/categories', noindex: !taxonomy.available }}
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.explore_categories_heading() }]}
+>
+  <header class="mb-8 flex flex-col gap-2">
+    <p class="readout text-signal">{m.explore_readout_explore()}</p>
+    <h1 class="font-display-caps text-display-sm text-fg">{m.explore_categories_heading()}</h1>
+    <p class="max-w-(--container-prose) text-base text-fg-muted">{m.explore_categories_description()}</p>
+  </header>
+
+  {
+    !taxonomy.available ? (
+      <ListingError
+        title={m.explore_error_title()}
+        text={m.explore_error_text()}
+        retryHref={href(Astro.url.pathname, locale)}
+        reference={Astro.locals.requestId}
+        headingLevel={2}
+      />
+    ) : (
+      groups.map((group) => (
+        <section class="mb-10" aria-labelledby={`categories-${group.key}`}>
+          <h2 id={`categories-${group.key}`} class="font-display-caps mb-4 text-display-xs text-fg">
+            {group.title}
+          </h2>
+          <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {group.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="group flex h-full flex-col gap-2 rounded-lg border border-border bg-surface p-4 hover:border-border-strong hover:bg-raised"
+                >
+                  <span class="flex items-center justify-between gap-3">
+                    <span class="font-semibold text-fg group-hover:text-primary">{item.name}</span>
+                    <span class="font-mono text-xs text-fg-subtle tabular-nums">
+                      {group.key === 'build'
+                        ? m.common_builds_count({ count: item.count })
+                        : m.common_mods_count({ count: item.count })}
+                    </span>
+                  </span>
+                  <span class="line-clamp-3 text-sm text-fg-muted">{item.intro}</span>
+                  <span class="mt-auto inline-flex items-center gap-1 text-sm font-medium text-link" aria-hidden="true">
+                    {m.explore_categories_browse()}
+                    <Icon icon={ArrowRight} size={14} className="rtl:rotate-180" />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    )
+  }
+</PageLayout>

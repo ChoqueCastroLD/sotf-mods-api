@@ -1,0 +1,85 @@
+---
+/**
+ * `/mods` — Explore (PLAN §4.2, T0-06; research/03 §6.2). Tabs Mods · Libraries · Builds · All
+ * (`type`; Builds live on `/builds`), include/exclude facets with counts, sorts, views, real
+ * pagination + «Load more».
+ *
+ * - Legacy query parameters (`category`, `search`, `orderby`, `type=Mod|Build|Both|Library`,
+ *   `nsfw`, `showunapproved`, `page=1`) → 301 (PLAN §4.6), resolved here because categories
+ *   need the catalogue.
+ * - Indexable: `/mods` and `/mods?page=N`; any filter → `noindex, follow` + canonical to `/mods`.
+ * - Cache: E(300) `list:mods` (+ `html`, `locale:{lc}`); the API failing → 503, not cached.
+ */
+import { m } from '@sotf/i18n/messages';
+import ExploreView from '../../components/explore/ExploreView.astro';
+import { loadListing } from '../../components/explore/load.ts';
+import { typeLabel } from '../../components/explore/model.ts';
+import { collectionJsonLd, latestRelease, listingSeo, pagedTitle } from '../../components/explore/seo.ts';
+import { MODS_SCOPE } from '../../components/explore/state.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.listMods());
+
+const data = await loadListing({ url: Astro.url, locale, scope: MODS_SCOPE });
+if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
+
+const { state, list } = data;
+if (list === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const count = list?.total ?? 0;
+const copy = {
+  mod: {
+    heading: m.explore_heading_mods(),
+    title: m.explore_meta_mods_title({ count }),
+    description: m.explore_meta_mods_description({ count }),
+  },
+  library: {
+    heading: m.explore_heading_libraries(),
+    title: m.explore_meta_libraries_title({ count }),
+    description: m.explore_meta_libraries_description({ count }),
+  },
+  all: {
+    heading: m.explore_heading_all(),
+    title: m.explore_meta_all_title({ count }),
+    description: m.explore_meta_all_description({ count }),
+  },
+  build: {
+    heading: m.explore_heading_builds(),
+    title: m.explore_meta_builds_title({ count }),
+    description: m.explore_meta_builds_description({ count }),
+  },
+}[state.type];
+const seo = listingSeo(state, MODS_SCOPE, list);
+const title = pagedTitle(copy.title, state.page);
+const siteUrl = loadEnv().siteUrl;
+const jsonLd = list
+  ? [
+      collectionJsonLd({
+        siteUrl,
+        locale,
+        path: seo.path,
+        name: copy.heading,
+        description: copy.description,
+        items: list.items,
+        offset: (state.page - 1) * list.pageSize,
+        dateModified: latestRelease(list.items),
+      }),
+    ]
+  : [];
+---
+
+<PageLayout
+  template="explore"
+  width="wide"
+  seo={{ title, description: copy.description, path: seo.path, noindex: seo.noindex }}
+  jsonLd={jsonLd}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: typeLabel(state.type) }]}
+>
+  <ExploreView data={data} heading={copy.heading} readout={m.explore_readout_explore()} intro={copy.description} />
+</PageLayout>

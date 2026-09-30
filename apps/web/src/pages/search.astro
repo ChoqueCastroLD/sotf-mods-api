@@ -1,0 +1,179 @@
+---
+/**
+ * `/search?q=` (PLAN §4.2, §7.9; T0-07 «Ver todos»): full-text + fuzzy results across mods,
+ * builds, kits, creators and pages, grouped by type, with a type filter (`type=`), highlighted
+ * matches and a link to Explore with the same text filter. The legacy `/mods?search=` lands here.
+ *
+ * `noindex` (and out of the hreflang cluster), E(60) with no entity tags; the API failing →
+ * error state, 503, not cached.
+ */
+import type { SearchHitDTO } from '@sotf/contracts/search';
+import { m } from '@sotf/i18n/messages';
+import { exploreDomainI18n } from '../components/explore/domain-i18n.ts';
+import { ListingEmpty, ListingError } from '../components/explore/ExploreStates.tsx';
+import SearchResults, { type SearchGroup } from '../components/explore/SearchResults.tsx';
+import PageLayout from '../layouts/PageLayout.astro';
+import { serverApi } from '../lib/api.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { href } from '../lib/i18n.ts';
+
+const SEARCH_LIMIT = 50;
+const TYPES = ['mod', 'build', 'kit', 'user', 'page'] as const;
+type SearchType = (typeof TYPES)[number];
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.search());
+
+const q = (Astro.url.searchParams.get('q') ?? '').replace(/\s+/g, ' ').trim().slice(0, 100);
+const rawType = Astro.url.searchParams.get('type');
+const type: SearchType | null = (TYPES as readonly string[]).includes(rawType ?? '') ? (rawType as SearchType) : null;
+
+let hits: SearchHitDTO[] = [];
+let total = 0;
+let failed = false;
+if (q) {
+  try {
+    const result = await serverApi().search.search(
+      { query: { q, limit: SEARCH_LIMIT, ...(type ? { types: [type] } : {}) } },
+      { signal: AbortSignal.timeout(5000) },
+    );
+    hits = result.hits;
+    total = result.total;
+  } catch {
+    failed = true;
+    setPageCache(Astro, false);
+    Astro.response.status = 503;
+  }
+}
+
+const typeLabels: Record<SearchType, string> = {
+  mod: m.common_term_mods(),
+  build: m.common_term_builds(),
+  kit: m.common_term_kits(),
+  user: m.common_nav_creators(),
+  page: m.explore_search_type_pages(),
+};
+const groups: SearchGroup[] = TYPES.map((key) => ({
+  key,
+  title: typeLabels[key],
+  hits: hits.filter((hit) => hit.type === key),
+})).filter((group) => group.hits.length > 0);
+
+const searchHref = (next: SearchType | null) => {
+  const params = new URLSearchParams();
+  if (q) params.set('q', q);
+  if (next) params.set('type', next);
+  const query = params.toString();
+  return href(`/search${query ? `?${query}` : ''}`, locale);
+};
+const filters = [{ key: null, label: m.explore_search_type_all() }, ...TYPES.map((key) => ({ key, label: typeLabels[key] }))];
+const exploreHref = href(`/mods?${new URLSearchParams({ type: 'all', q }).toString()}`, locale);
+const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty();
+---
+
+<PageLayout
+  template="search"
+  seo={{
+    title,
+    description: m.explore_search_description(),
+    path: '/search',
+    noindex: true,
+    alternates: false,
+  }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_search_label() }]}
+>
+  <div class="flex flex-col gap-6" data-search-page="" data-search-query={q} data-search-total={total}>
+    <header class="flex flex-col gap-4">
+      <p class="readout text-signal">{m.common_search_label()}</p>
+      <h1 class="font-display-caps text-display-sm text-fg">
+        {q ? m.explore_search_heading_query({ query: q }) : m.explore_search_heading()}
+      </h1>
+      <search class="max-w-2xl">
+        <form method="get" action={href('/search', locale)} class="flex gap-2">
+          {type && <input type="hidden" name="type" value={type} />}
+          <label for="search-q" class="sr-only">{m.common_search_label()}</label>
+          <input
+            id="search-q"
+            name="q"
+            type="search"
+            value={q}
+            maxlength="100"
+            enterkeyhint="search"
+            autocomplete="off"
+            placeholder={m.common_search_placeholder()}
+            class="h-12 min-w-0 flex-1 rounded-md border border-border-strong bg-surface px-3 text-base text-fg placeholder:text-fg-subtle"
+          />
+          <button type="submit" class="inline-flex h-12 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow">
+            {m.common_search_label()}
+          </button>
+        </form>
+      </search>
+      {
+        q && !failed && (
+          <p class="font-mono text-sm text-fg-muted tabular-nums" aria-live="polite">
+            {m.explore_search_count({ count: total, query: q })}
+          </p>
+        )
+      }
+    </header>
+
+    {
+      q && (
+        <nav aria-label={m.explore_search_types_label()} class="-mx-1 overflow-x-auto">
+          <ul class="flex min-w-max gap-1 border-b border-border px-1">
+            {filters.map((filter) => (
+              <li>
+                <a
+                  href={searchHref(filter.key)}
+                  rel="nofollow"
+                  aria-current={filter.key === type ? 'page' : undefined}
+                  class:list={[
+                    'inline-flex h-11 items-center border-b-2 px-3 text-sm font-semibold',
+                    filter.key === type ? 'border-primary text-fg' : 'border-transparent text-fg-muted hover:text-fg',
+                  ]}
+                >
+                  {filter.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )
+    }
+
+    {
+      !q ? (
+        <ListingEmpty
+          title={m.explore_search_prompt_title()}
+          text={m.explore_search_prompt_text()}
+          action={{ label: m.explore_search_browse(), href: href('/categories', locale) }}
+          headingLevel={2}
+        />
+      ) : failed ? (
+        <ListingError
+          title={m.explore_error_title()}
+          text={m.explore_search_error_text()}
+          retryHref={href(Astro.url.pathname + Astro.url.search, locale)}
+          reference={Astro.locals.requestId}
+          headingLevel={2}
+        />
+      ) : groups.length === 0 ? (
+        <ListingEmpty
+          title={m.common_search_no_results({ query: q })}
+          text={m.explore_search_empty_hint()}
+          action={{ label: m.explore_search_browse(), href: href('/categories', locale) }}
+          headingLevel={2}
+        />
+      ) : (
+        <SearchResults groups={groups} locale={locale} i18n={exploreDomainI18n(locale, (_key: string, fallback: string) => fallback)} exploreHref={exploreHref} exploreLabel={m.explore_search_in_explore()} />
+      )
+    }
+  </div>
+
+  <script>
+    import { initSearchPage } from '../scripts/explore/search.ts';
+
+    initSearchPage();
+  </script>
+</PageLayout>

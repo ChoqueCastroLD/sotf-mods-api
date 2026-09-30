@@ -1105,6 +1105,514 @@
       }
     }
   ],
+  "explore_active_author": "@{handle} tarafından",
+  "explore_active_label": "Etkin filtreler",
+  "explore_active_not": "{label} hariç",
+  "explore_active_query": "“{query}”",
+  "explore_active_remove": "Filtreyi kaldır: {label}",
+  "explore_any": "Fark etmez",
+  "explore_back_to_first": "1. sayfaya dön",
+  "explore_best_building_mods_description": "Sons of the Forest için inşa modları: daha iyi yapıştırma, yeni parçalar, planlar ve büyük üsler için araçlar.",
+  "explore_best_building_mods_heading": "En iyi inşa modları",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En iyi SOTF inşa modları ({count__number})"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Sons of the Forest özel sunucularında çalışan modlar: yönetim araçları, sunucu ayarları ve ortak oyun düzeltmeleri.",
+  "explore_best_dedicated_server_mods_heading": "En iyi özel sunucu modları",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En iyi SOTF özel sunucu modları ({count__number})"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "Sons of the Forest modlarının ihtiyaç duyduğu ortak kütüphaneler, indirmeye göre. Onları kullanan modlardan önce bir kez kur.",
+  "explore_best_libraries_heading": "Vazgeçilmez mod kütüphaneleri",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "İhtiyacın olan SOTF mod kütüphaneleri ({count__number})"
+      }
+    }
+  ],
+  "explore_best_mods_description": "SOTF Mods’ta en çok indirilen Sons of the Forest modları; güncel yama uyumluluğu ve RedLoader için doğrudan indirme ile.",
+  "explore_best_mods_heading": "En iyi Sons of the Forest modları",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En iyi Sons of the Forest modları ({count__number})"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "Ortak oyunda çalışan Sons of the Forest modları ve kimin kurması gerektiği: yalnızca sen, sunucu sahibi ya da herkes.",
+  "explore_best_multiplayer_mods_heading": "En iyi çok oyunculu modlar",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En iyi SOTF çok oyunculu modları ({count__number})"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Sons of the Forest oyuncularının ilk kurduğu kolaylık modları: daha büyük yığınlar, daha iyi menüler, daha az angarya.",
+  "explore_best_quality_of_life_mods_heading": "En iyi kolaylık modları",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En iyi SOTF kolaylık modları ({count__number})"
+      }
+    }
+  ],
+  "explore_categories_browse": "Göz at",
+  "explore_categories_builds_heading": "Yapı kategorileri",
+  "explore_categories_description": "SOTF Mods’taki tüm Sons of the Forest mod ve yapı kategorileri; her birinin neyi kapsadığı ve kaç öğe içerdiği.",
+  "explore_categories_heading": "Kategoriler",
+  "explore_categories_mods_heading": "Mod kategorileri",
+  "explore_categories_title": "Sons of the Forest mod ve yapı kategorileri",
+  "explore_category_intro_building": "İnşaatçılar için araçlar ve parçalar: yapıştırma, planlar, yeni yapılar ve üssünü şekillendirmenin yeni yolları.",
+  "explore_category_intro_builds_generic": "{category} kategorisindeki Sons of the Forest yapıları: yerleştirmeye hazır BuildShare planları.",
+  "explore_category_intro_companions": "Kelvin, Virginia ve diğer müttefikler: daha akıllı komutlar, yeni davranışlar ve birlikte yolculuğun yeni yolları.",
+  "explore_category_intro_gameplay": "Oyunun oynanışını değiştiren modlar: zorluk, dövüş, düşmanlar, hayatta kalma kuralları ve yeni mekanikler.",
+  "explore_category_intro_generic": "{category} kategorisindeki Sons of the Forest modları; uyumluluk, puanlar ve doğrudan indirme ile.",
+  "explore_category_intro_library": "Diğer modların ihtiyaç duyduğu ortak kod. Bir mod gereksinim olarak belirttiğinde kur.",
+  "explore_category_intro_menus_sandbox": "Tek başına ya da sunucu sahibi olarak özgürce denemeler yapmak için trainer’lar, spawn menüleri ve sandbox araçları.",
+  "explore_category_intro_misc": "Başka hiçbir yere uymayan modlar: deneyler, araçlar ve tekil fikirler.",
+  "explore_category_intro_model_swap": "Oyundaki modelleri yenileriyle değiştir: karakterler, yaratıklar, silahlar ve nesneler.",
+  "explore_category_intro_multiplayer_servers": "Ortak oyun ve özel sunucular için modlar: yönetim araçları, senkronizasyon düzeltmeleri ve oyuncu yönetimi.",
+  "explore_category_intro_quality_of_life": "Günlük hayatta kalmayı kolaylaştıran küçük düzeltmeler ve kolaylıklar: daha büyük yığınlar, daha hızlı üretim, sade menüler ve daha az angarya.",
+  "explore_category_intro_ui_hud": "Daha çok gösteren, daha az engel olan HUD, harita, mini harita ve menü modları.",
+  "explore_category_intro_vehicles_movement": "Golf arabaları, planörler, şövalye zırhları ve yeni ulaşım yolları: hız, kontrol ve hareket.",
+  "explore_category_intro_weapons_gear": "Dövüşmek ve adayı keşfetmek için yeni ya da ayarlanmış silahlar, cephane, zırh ve ekipman.",
+  "explore_clear_all": "Tümünü temizle",
+  "explore_compat_untested": "Henüz test edilmedi",
+  "explore_compat_works": "Güncel yamada çalışıyor",
+  "explore_dedicated": "Özel sunucularda çalışır",
+  "explore_empty_category_text": "Bu kategoride henüz mod yok. Tüm modlara göz at ya da ilkini sen yayımla.",
+  "explore_empty_category_title": "Haritanın bu kısmı hâlâ boş",
+  "explore_empty_text": "Bu filtrelerin hepsine uyan mod yok. Birini kaldırıp yeniden dene.",
+  "explore_empty_title": "Bu patikada bir şey yok",
+  "explore_empty_try_removing": "Şunları kaldırmayı dene:",
+  "explore_empty_unfiltered_text": "Burada henüz bir şey yayımlanmadı. Yakında tekrar uğra.",
+  "explore_error_text": "Bu liste yüklenemedi. Bağlantını kontrol edip yeniden dene.",
+  "explore_error_title": "Sinyal yok",
+  "explore_facet_category": "Kategori",
+  "explore_facet_compat": "Uyumluluk",
+  "explore_facet_more": "Diğer",
+  "explore_facet_multiplayer": "Çok oyunculu",
+  "explore_facet_platform": "Platform",
+  "explore_facet_rating": "Puan",
+  "explore_facet_tags": "Etiketler",
+  "explore_facet_tags_more": "Diğer etiketler",
+  "explore_facet_updated": "Güncellenme",
+  "explore_failed": "Sonuçlar yüklenemedi. Sayfa yeniden yükleniyor…",
+  "explore_filter_exclude": "{label} hariç tut",
+  "explore_filter_excluded": "hariç",
+  "explore_filter_included": "dahil",
+  "explore_filter_search_label": "Filtrele",
+  "explore_filter_search_placeholder": "Ad, etiket veya üretici…",
+  "explore_filter_unexclude": "{label} artık hariç tutulmasın",
+  "explore_filters_apply": "Filtreleri uygula",
+  "explore_filters_close": "Filtreleri kapat",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Filtreler",
+        "count__exact=*, count__plural=one": "Filtreler ({count__number})",
+        "count__exact=*, count__plural=*": "Filtreler ({count__number})"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sonuç yok",
+        "count__exact=*, count__plural=one": "{count__number} sonucu göster",
+        "count__exact=*, count__plural=*": "{count__number} sonucu göster"
+      }
+    }
+  ],
+  "explore_filters_title": "Filtreler",
+  "explore_has_source": "Kaynak kodu var",
+  "explore_heading_all": "Her şeyi keşfet",
+  "explore_heading_builds": "Yapıları keşfet",
+  "explore_heading_libraries": "Kütüphaneleri keşfet",
+  "explore_heading_mods": "Modları keşfet",
+  "explore_heading_tag": "“{tag}” etiketli",
+  "explore_hub_others": "Diğer saha rehberleri",
+  "explore_hub_see_all": "Tümünü Keşfet’te gör",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Liste",
+        "count__exact=*, count__plural=one": "En iyi seçim",
+        "count__exact=*, count__plural=*": "En iyi {count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "Güncellenme: {date}",
+  "explore_loading": "Sonuçlar yükleniyor…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Adanın tamamı tek listede: Sons of the Forest için {count__number} mod, kütüphane veya yapı, filtrelenebilir ve sıralanabilir.",
+        "count__plural=*": "Adanın tamamı tek listede: Sons of the Forest için {count__number} mod, kütüphane ve yapı, filtrelenebilir ve sıralanabilir."
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tüm Sons of the Forest modları ve yapıları ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Sons of the Forest için {count__number} BuildShare planı: topluluğun paylaştığı üsler, kaleler ve ağaç evler, yerleştirmeye hazır.",
+        "count__plural=*": "Sons of the Forest için {count__number} BuildShare planı: topluluğun paylaştığı üsler, kaleler ve ağaç evler, yerleştirmeye hazır."
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest yapıları ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest {category} yapıları ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest {category} modları ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Diğer Sons of the Forest modlarının ihtiyaç duyduğu {count__number} kütüphane. Bir kez kur, onlara ihtiyaç duyan her mod çalışsın.",
+        "count__plural=*": "Diğer Sons of the Forest modlarının ihtiyaç duyduğu {count__number} kütüphane. Bir kez kur, onlara ihtiyaç duyan her mod çalışsın."
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest mod kütüphaneleri ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "RedLoader için {count__number} Sons of the Forest modunu incele. Kategoriye, uyumluluğa ve çok oyunculu desteğe göre filtrele; bu haftanın indirmelerine göre sıralı.",
+        "count__plural=*": "RedLoader için {count__number} Sons of the Forest modunu incele. Kategoriye, uyumluluğa ve çok oyunculu desteğe göre filtrele; bu haftanın indirmelerine göre sıralı."
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest modları ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "“{tag}” etiketli {count__number} Sons of the Forest modu veya yapısı; uyumluluk, puanlar ve doğrudan indirme ile.",
+        "count__plural=*": "“{tag}” etiketli {count__number} Sons of the Forest modu ve yapısı; uyumluluk, puanlar ve doğrudan indirme ile."
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{tag} etiketli Sons of the Forest modları ({count__number})"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "Herkesin kurması gerekir",
+  "explore_multiplayer_client_side": "Yalnızca senin kurman yeter",
+  "explore_multiplayer_host_only": "Yalnızca sunucu sahibi",
+  "explore_multiplayer_singleplayer_only": "Yalnızca tek oyunculu",
+  "explore_offline": "Çevrimdışısın. Ekrandaki sonuçlar güncel olmayabilir.",
+  "explore_order_reverse": "Sırayı ters çevir",
+  "explore_past_end_text": "Bu sayfa son sayfadan sonra geliyor. Bağlantı paylaşıldığından beri liste kısalmış olabilir.",
+  "explore_past_end_title": "Listenin sonuna geldin",
+  "explore_platform_client": "İstemci",
+  "explore_platform_server": "Özel sunucu",
+  "explore_platform_universal": "İstemci ve sunucu",
+  "explore_rating_any": "Tüm puanlar",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rating__number}★ ve üzeri"
+      }
+    }
+  ],
+  "explore_readout_build_category": "Yapı kategorisi",
+  "explore_readout_category": "Kategori",
+  "explore_readout_explore": "Keşfet",
+  "explore_readout_hub": "Saha rehberi",
+  "explore_readout_tag": "Etiket",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sonuç yok",
+        "count__exact=*, count__plural=one": "{count__number} sonuç",
+        "count__exact=*, count__plural=*": "{count__number} sonuç"
+      }
+    }
+  ],
+  "explore_results_heading": "Sonuçlar",
+  "explore_search_browse": "Kategorilere göz at",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "“{query}” için sonuç yok",
+        "count__exact=*, count__plural=one": "“{query}” için {count__number} sonuç",
+        "count__exact=*, count__plural=*": "“{query}” için {count__number} sonuç"
+      }
+    }
+  ],
+  "explore_search_description": "SOTF Mods’ta Sons of the Forest modlarını, yapılarını, kitlerini, üreticilerini ve rehberlerini ara.",
+  "explore_search_empty_hint": "Yazımı kontrol et, daha az kelime ya da modun manifest kimliğini dene veya kategorilere göz at.",
+  "explore_search_error_text": "Arama şu anda kullanılamıyor. Birazdan yeniden dene.",
+  "explore_search_heading": "Adada ara",
+  "explore_search_heading_query": "“{query}” için sonuçlar",
+  "explore_search_in_explore": "Bu sonuçları Keşfet’te filtrele",
+  "explore_search_prompt_text": "Modları, yapıları, kitleri, üreticileri ve rehberleri ada, üreticiye veya manifest kimliğine göre ara.",
+  "explore_search_prompt_title": "Ne arıyorsun?",
+  "explore_search_type_all": "Tümü",
+  "explore_search_type_pages": "Sayfalar",
+  "explore_search_types_label": "Sonuç türü",
+  "explore_sort_comments": "En çok konuşulan",
+  "explore_sort_downloads": "En çok indirilen",
+  "explore_sort_follows": "En çok takip edilen",
+  "explore_sort_label": "Sırala:",
+  "explore_sort_new": "En yeni",
+  "explore_sort_rating": "En yüksek puanlı",
+  "explore_sort_relevance": "En alakalı",
+  "explore_sort_reversed": "{sort} (ters)",
+  "explore_sort_trending": "Popüler",
+  "explore_sort_updated": "Yeni güncellenen",
+  "explore_tab_all": "Tümü",
+  "explore_tabs_label": "Gösterilecekler",
+  "explore_tag_group_audio": "Ses",
+  "explore_tag_group_building": "İnşa",
+  "explore_tag_group_gameplay": "Oynanış",
+  "explore_tag_group_players": "Oyuncular",
+  "explore_tag_group_survival": "Hayatta kalma",
+  "explore_tag_group_tech": "Teknik",
+  "explore_tag_group_ui": "Arayüz",
+  "explore_tag_group_visuals": "Görseller",
+  "explore_tag_group_world": "Dünya",
+  "explore_tags_description": "Sons of the Forest modlarını neyi değiştirdiklerine göre bul: envanter, inşa araçları, düşmanlar, grafikler ve daha fazlası.",
+  "explore_tags_heading": "Etiketler",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} etiket daha",
+        "count__plural=*": "{count__number} etiket daha"
+      }
+    }
+  ],
+  "explore_tags_other_group": "Diğer",
+  "explore_tags_title": "Sons of the Forest mod etiketleri",
+  "explore_updated_1y": "Son 12 ay",
+  "explore_updated_30d": "Son 30 gün",
+  "explore_updated_90d": "Son 90 gün",
+  "explore_updated_any": "Herhangi bir zaman",
+  "explore_verified": "Yalnızca doğrulanmış üreticiler",
+  "explore_view_compact": "Sıkışık",
+  "explore_view_grid": "Izgara",
+  "explore_view_label": "Görünüm",
+  "explore_view_list": "Liste",
   "landing_blueprints_all": "Tüm yapılar",
   "landing_blueprints_hint": "Topluluktan yeni yapılar",
   "landing_creators_all": "Tüm yapımcılar",

@@ -1165,6 +1165,536 @@
       }
     }
   ],
+  "explore_active_author": "Автор @{handle}",
+  "explore_active_label": "Активные фильтры",
+  "explore_active_not": "Без: {label}",
+  "explore_active_query": "«{query}»",
+  "explore_active_remove": "Убрать фильтр: {label}",
+  "explore_any": "Любое",
+  "explore_back_to_first": "На страницу 1",
+  "explore_best_building_mods_description": "Моды для строительства в Sons of the Forest: удобная привязка, новые детали, чертежи и инструменты для больших баз.",
+  "explore_best_building_mods_heading": "Лучшие моды для строительства",
+  "explore_best_building_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Лучшие моды для строительства в SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_dedicated_server_mods_description": "Моды для выделенных серверов Sons of the Forest: инструменты администрирования, серверные настройки и исправления кооператива.",
+  "explore_best_dedicated_server_mods_heading": "Лучшие моды для выделенных серверов",
+  "explore_best_dedicated_server_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Лучшие моды для серверов SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_libraries_description": "Общие библиотеки, от которых зависят моды для Sons of the Forest, по числу загрузок. Установите их один раз, до модов, которые их используют.",
+  "explore_best_libraries_heading": "Необходимые библиотеки модов",
+  "explore_best_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Нужные библиотеки модов для SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_mods_description": "Самые скачиваемые моды для Sons of the Forest на SOTF Mods с совместимостью на текущем патче и прямыми загрузками для RedLoader.",
+  "explore_best_mods_heading": "Лучшие моды для Sons of the Forest",
+  "explore_best_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Лучшие моды для Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_best_multiplayer_mods_description": "Моды для Sons of the Forest, работающие в кооперативе, с пометкой, кому их ставить: только вам, хосту или всем.",
+  "explore_best_multiplayer_mods_heading": "Лучшие моды для мультиплеера",
+  "explore_best_multiplayer_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Лучшие моды для мультиплеера SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_best_quality_of_life_mods_description": "Моды для удобства в Sons of the Forest, которые ставят первыми: большие стопки, удобные меню, меньше рутины.",
+  "explore_best_quality_of_life_mods_heading": "Лучшие моды для удобства",
+  "explore_best_quality_of_life_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Лучшие моды для удобства в SOTF ({count__number})"
+      }
+    }
+  ],
+  "explore_categories_browse": "Смотреть",
+  "explore_categories_builds_heading": "Категории построек",
+  "explore_categories_description": "Все категории модов и построек для Sons of the Forest на SOTF Mods: что в них входит и сколько в каждой элементов.",
+  "explore_categories_heading": "Категории",
+  "explore_categories_mods_heading": "Категории модов",
+  "explore_categories_title": "Категории модов и построек для Sons of the Forest",
+  "explore_category_intro_building": "Инструменты и детали для строителей: привязка, чертежи, новые конструкции и больше способов обустроить базу.",
+  "explore_category_intro_builds_generic": "Постройки для Sons of the Forest в категории {category}: чертежи BuildShare, готовые к установке.",
+  "explore_category_intro_companions": "Кельвин, Вирджиния и другие союзники: умные команды, новое поведение и больше способов путешествовать вместе.",
+  "explore_category_intro_gameplay": "Моды, меняющие сам игровой процесс: сложность, бой, враги, правила выживания и новые механики.",
+  "explore_category_intro_generic": "Моды для Sons of the Forest в категории {category}: совместимость, оценки и прямые загрузки.",
+  "explore_category_intro_library": "Общий код, от которого зависят другие моды. Устанавливайте, когда мод указывает его в требованиях.",
+  "explore_category_intro_menus_sandbox": "Трейнеры, меню спавна и инструменты песочницы для свободных экспериментов в одиночку или в роли хоста.",
+  "explore_category_intro_misc": "Моды, которые не подходят ни в одну категорию: эксперименты, утилиты и отдельные идеи.",
+  "explore_category_intro_model_swap": "Замените модели в игре на новые: персонажей, существ, оружие и предметы.",
+  "explore_category_intro_multiplayer_servers": "Моды для кооператива и выделенных серверов: инструменты администрирования, исправления синхронизации и управление игроками.",
+  "explore_category_intro_quality_of_life": "Небольшие исправления и удобства, которые облегчают повседневное выживание: большие стопки, быстрый крафт, понятные меню и меньше рутины.",
+  "explore_category_intro_ui_hud": "Моды для HUD, карты, мини-карты и меню, которые показывают больше и мешают меньше.",
+  "explore_category_intro_vehicles_movement": "Гольф-кары, дельтапланы, рыцарские доспехи и новые способы передвижения: скорость, управление и перемещение.",
+  "explore_category_intro_weapons_gear": "Новое и доработанное оружие, боеприпасы, броня и снаряжение для боя и исследования острова.",
+  "explore_clear_all": "Сбросить всё",
+  "explore_compat_untested": "На нём ещё не проверено",
+  "explore_compat_works": "Работает на текущем патче",
+  "explore_dedicated": "Работает на выделенных серверах",
+  "explore_empty_category_text": "В этой категории пока нет модов. Посмотрите все моды или опубликуйте первый.",
+  "explore_empty_category_title": "Эта часть карты пока пуста",
+  "explore_empty_text": "Ни один мод не подходит под все эти фильтры. Уберите какой-нибудь и попробуйте снова.",
+  "explore_empty_title": "На этой тропе пусто",
+  "explore_empty_try_removing": "Попробуйте убрать:",
+  "explore_empty_unfiltered_text": "Здесь пока ничего не опубликовано. Загляните позже.",
+  "explore_error_text": "Не удалось загрузить этот список. Проверьте подключение и попробуйте снова.",
+  "explore_error_title": "Нет сигнала",
+  "explore_facet_category": "Категория",
+  "explore_facet_compat": "Совместимость",
+  "explore_facet_more": "Ещё",
+  "explore_facet_multiplayer": "Мультиплеер",
+  "explore_facet_platform": "Платформа",
+  "explore_facet_rating": "Оценка",
+  "explore_facet_tags": "Теги",
+  "explore_facet_tags_more": "Другие теги",
+  "explore_facet_updated": "Обновлено",
+  "explore_failed": "Результаты не загрузились. Перезагружаем страницу…",
+  "explore_filter_exclude": "Исключить: {label}",
+  "explore_filter_excluded": "исключено",
+  "explore_filter_included": "включено",
+  "explore_filter_search_label": "Фильтр",
+  "explore_filter_search_placeholder": "Название, тег или автор…",
+  "explore_filter_unexclude": "Больше не исключать: {label}",
+  "explore_filters_apply": "Применить фильтры",
+  "explore_filters_close": "Закрыть фильтры",
+  "explore_filters_open": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Фильтры",
+        "count__exact=*, count__plural=one": "Фильтры ({count__number})",
+        "count__exact=*, count__plural=few": "Фильтры ({count__number})",
+        "count__exact=*, count__plural=many": "Фильтры ({count__number})",
+        "count__exact=*, count__plural=*": "Фильтры ({count__number})"
+      }
+    }
+  ],
+  "explore_filters_show_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Нет результатов",
+        "count__exact=*, count__plural=one": "Показать {count__number} результат",
+        "count__exact=*, count__plural=few": "Показать {count__number} результата",
+        "count__exact=*, count__plural=many": "Показать {count__number} результатов",
+        "count__exact=*, count__plural=*": "Показать {count__number} результата"
+      }
+    }
+  ],
+  "explore_filters_title": "Фильтры",
+  "explore_has_source": "С исходным кодом",
+  "explore_heading_all": "Обзор всего",
+  "explore_heading_builds": "Обзор построек",
+  "explore_heading_libraries": "Обзор библиотек",
+  "explore_heading_mods": "Обзор модов",
+  "explore_heading_tag": "С тегом «{tag}»",
+  "explore_hub_others": "Другие полевые справочники",
+  "explore_hub_see_all": "Смотреть все в обзоре",
+  "explore_hub_top": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Список",
+        "count__exact=*, count__plural=one": "Лучший выбор",
+        "count__exact=*, count__plural=few": "Топ-{count__number}",
+        "count__exact=*, count__plural=many": "Топ-{count__number}",
+        "count__exact=*, count__plural=*": "Топ-{count__number}"
+      }
+    }
+  ],
+  "explore_hub_updated": "Обновлено {date}",
+  "explore_loading": "Загружаем результаты…",
+  "explore_meta_all_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Весь остров в одном списке: {count__number} мод, библиотека или постройка для Sons of the Forest с фильтрами и сортировкой.",
+        "count__plural=few": "Весь остров в одном списке: {count__number} мода, библиотеки и постройки для Sons of the Forest с фильтрами и сортировкой.",
+        "count__plural=many": "Весь остров в одном списке: {count__number} модов, библиотек и построек для Sons of the Forest с фильтрами и сортировкой.",
+        "count__plural=*": "Весь остров в одном списке: {count__number} мода, библиотеки и постройки для Sons of the Forest с фильтрами и сортировкой."
+      }
+    }
+  ],
+  "explore_meta_all_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Все моды и постройки для Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_builds_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} чертёж BuildShare для Sons of the Forest: базы, форты и домики на деревьях от сообщества, готовые к установке.",
+        "count__plural=few": "{count__number} чертежа BuildShare для Sons of the Forest: базы, форты и домики на деревьях от сообщества, готовые к установке.",
+        "count__plural=many": "{count__number} чертежей BuildShare для Sons of the Forest: базы, форты и домики на деревьях от сообщества, готовые к установке.",
+        "count__plural=*": "{count__number} чертежа BuildShare для Sons of the Forest: базы, форты и домики на деревьях от сообщества, готовые к установке."
+      }
+    }
+  ],
+  "explore_meta_builds_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Постройки для Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_builds_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Постройки для Sons of the Forest: {category} ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_category_title": [
+    {
+      "declarations": [
+        "input category",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Моды для Sons of the Forest: {category} ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_libraries_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} библиотека, от которой зависят другие моды для Sons of the Forest. Установите их один раз — и все моды, которым они нужны, заработают.",
+        "count__plural=few": "{count__number} библиотеки, от которых зависят другие моды для Sons of the Forest. Установите их один раз — и все моды, которым они нужны, заработают.",
+        "count__plural=many": "{count__number} библиотек, от которых зависят другие моды для Sons of the Forest. Установите их один раз — и все моды, которым они нужны, заработают.",
+        "count__plural=*": "{count__number} библиотеки, от которых зависят другие моды для Sons of the Forest. Установите их один раз — и все моды, которым они нужны, заработают."
+      }
+    }
+  ],
+  "explore_meta_libraries_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Библиотеки модов для Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_mods_description": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод для Sons of the Forest под RedLoader. Фильтры по категории, совместимости и мультиплееру; сортировка по загрузкам за эту неделю.",
+        "count__plural=few": "{count__number} мода для Sons of the Forest под RedLoader. Фильтры по категории, совместимости и мультиплееру; сортировка по загрузкам за эту неделю.",
+        "count__plural=many": "{count__number} модов для Sons of the Forest под RedLoader. Фильтры по категории, совместимости и мультиплееру; сортировка по загрузкам за эту неделю.",
+        "count__plural=*": "{count__number} мода для Sons of the Forest под RedLoader. Фильтры по категории, совместимости и мультиплееру; сортировка по загрузкам за эту неделю."
+      }
+    }
+  ],
+  "explore_meta_mods_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Моды для Sons of the Forest ({count__number})"
+      }
+    }
+  ],
+  "explore_meta_tag_description": [
+    {
+      "declarations": [
+        "input count",
+        "input tag",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод или постройка для Sons of the Forest с тегом «{tag}»: совместимость, оценки и прямые загрузки.",
+        "count__plural=few": "{count__number} мода и постройки для Sons of the Forest с тегом «{tag}»: совместимость, оценки и прямые загрузки.",
+        "count__plural=many": "{count__number} модов и построек для Sons of the Forest с тегом «{tag}»: совместимость, оценки и прямые загрузки.",
+        "count__plural=*": "{count__number} мода и постройки для Sons of the Forest с тегом «{tag}»: совместимость, оценки и прямые загрузки."
+      }
+    }
+  ],
+  "explore_meta_tag_title": [
+    {
+      "declarations": [
+        "input tag",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Моды для Sons of the Forest с тегом {tag} ({count__number})"
+      }
+    }
+  ],
+  "explore_multiplayer_all_players": "Нужен всем",
+  "explore_multiplayer_client_side": "Нужен только вам",
+  "explore_multiplayer_host_only": "Только хосту",
+  "explore_multiplayer_singleplayer_only": "Только одиночная игра",
+  "explore_offline": "Вы офлайн. Результаты на экране могут быть устаревшими.",
+  "explore_order_reverse": "Обратный порядок",
+  "explore_past_end_text": "Эта страница дальше последней. Возможно, список стал короче с тех пор, как ссылкой поделились.",
+  "explore_past_end_title": "Вы дошли до конца списка",
+  "explore_platform_client": "Клиент",
+  "explore_platform_server": "Выделенный сервер",
+  "explore_platform_universal": "Клиент и сервер",
+  "explore_rating_any": "Любая оценка",
+  "explore_rating_min": [
+    {
+      "declarations": [
+        "input rating",
+        "local rating__number = rating: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "От {rating__number}★"
+      }
+    }
+  ],
+  "explore_readout_build_category": "Категория построек",
+  "explore_readout_category": "Категория",
+  "explore_readout_explore": "Обзор",
+  "explore_readout_hub": "Полевой справочник",
+  "explore_readout_tag": "Тег",
+  "explore_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Нет результатов",
+        "count__exact=*, count__plural=one": "{count__number} результат",
+        "count__exact=*, count__plural=few": "{count__number} результата",
+        "count__exact=*, count__plural=many": "{count__number} результатов",
+        "count__exact=*, count__plural=*": "{count__number} результата"
+      }
+    }
+  ],
+  "explore_results_heading": "Результаты",
+  "explore_search_browse": "Смотреть категории",
+  "explore_search_count": [
+    {
+      "declarations": [
+        "input count",
+        "input query",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Нет результатов по запросу «{query}»",
+        "count__exact=*, count__plural=one": "{count__number} результат по запросу «{query}»",
+        "count__exact=*, count__plural=few": "{count__number} результата по запросу «{query}»",
+        "count__exact=*, count__plural=many": "{count__number} результатов по запросу «{query}»",
+        "count__exact=*, count__plural=*": "{count__number} результата по запросу «{query}»"
+      }
+    }
+  ],
+  "explore_search_description": "Ищите моды, постройки, наборы, авторов и руководства для Sons of the Forest на SOTF Mods.",
+  "explore_search_empty_hint": "Проверьте написание, попробуйте меньше слов или ID манифеста мода либо посмотрите категории.",
+  "explore_search_error_text": "Поиск сейчас недоступен. Попробуйте через минуту.",
+  "explore_search_heading": "Поиск по острову",
+  "explore_search_heading_query": "Результаты по запросу «{query}»",
+  "explore_search_in_explore": "Отфильтровать эти результаты в обзоре",
+  "explore_search_prompt_text": "Ищите моды, постройки, наборы, авторов и руководства по названию, автору или ID манифеста.",
+  "explore_search_prompt_title": "Что вы ищете?",
+  "explore_search_type_all": "Всё",
+  "explore_search_type_pages": "Страницы",
+  "explore_search_types_label": "Тип результата",
+  "explore_sort_comments": "Больше обсуждений",
+  "explore_sort_downloads": "Больше загрузок",
+  "explore_sort_follows": "Больше подписчиков",
+  "explore_sort_label": "Сортировка:",
+  "explore_sort_new": "Новые",
+  "explore_sort_rating": "Лучшие оценки",
+  "explore_sort_relevance": "По релевантности",
+  "explore_sort_reversed": "{sort} (обратный порядок)",
+  "explore_sort_trending": "Популярное",
+  "explore_sort_updated": "Недавно обновлённые",
+  "explore_tab_all": "Всё",
+  "explore_tabs_label": "Что показать",
+  "explore_tag_group_audio": "Звук",
+  "explore_tag_group_building": "Строительство",
+  "explore_tag_group_gameplay": "Геймплей",
+  "explore_tag_group_players": "Игроки",
+  "explore_tag_group_survival": "Выживание",
+  "explore_tag_group_tech": "Техническое",
+  "explore_tag_group_ui": "Интерфейс",
+  "explore_tag_group_visuals": "Графика",
+  "explore_tag_group_world": "Мир",
+  "explore_tags_description": "Ищите моды для Sons of the Forest по тому, что они меняют: инвентарь, инструменты строительства, враги, графика и не только.",
+  "explore_tags_heading": "Теги",
+  "explore_tags_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ещё {count__number} тег",
+        "count__plural=few": "Ещё {count__number} тега",
+        "count__plural=many": "Ещё {count__number} тегов",
+        "count__plural=*": "Ещё {count__number} тега"
+      }
+    }
+  ],
+  "explore_tags_other_group": "Другое",
+  "explore_tags_title": "Теги модов для Sons of the Forest",
+  "explore_updated_1y": "За 12 месяцев",
+  "explore_updated_30d": "За 30 дней",
+  "explore_updated_90d": "За 90 дней",
+  "explore_updated_any": "Когда угодно",
+  "explore_verified": "Только проверенные авторы",
+  "explore_view_compact": "Компактный",
+  "explore_view_grid": "Сетка",
+  "explore_view_label": "Вид",
+  "explore_view_list": "Список",
   "landing_blueprints_all": "Все постройки",
   "landing_blueprints_hint": "Свежие постройки от сообщества",
   "landing_creators_all": "Все авторы",

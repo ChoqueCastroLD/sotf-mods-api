@@ -1,0 +1,99 @@
+---
+/**
+ * `/tags` — the curated tags (PLAN T0-06: ≈ 40 tags seeded by WP-10) grouped by theme, each
+ * with its item count; parent crumb of `/tags/:slug`. Tags with fewer than three items are
+ * listed without a link to keep crawlers on indexable pages.
+ * Cache: E(900) `list:mods`.
+ */
+import { m } from '@sotf/i18n/messages';
+import { ListingError } from '../../components/explore/ExploreStates.tsx';
+import { loadTaxonomy } from '../../components/explore/taxonomy.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
+import { href } from '../../lib/i18n.ts';
+
+/** Same threshold as the tag page's indexability (PLAN §4.2). */
+const MIN_LINKED_ITEMS = 3;
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, ['list:mods']));
+const taxonomy = await loadTaxonomy(locale);
+if (!taxonomy.available) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const collator = new Intl.Collator(locale);
+type MessageFn = () => string;
+/** Group names of the seeded tags (`explore_tag_group_<group>`); unknown groups → «Other». */
+function tagGroupLabel(key: string): string {
+  const fn = key ? (m as unknown as Record<string, MessageFn | undefined>)[`explore_tag_group_${key.replace(/[^a-z0-9]+/g, '_')}`] : undefined;
+  return fn ? fn() : m.explore_tags_other_group();
+}
+const byGroup = new Map<string, { slug: string; name: string; count: number }[]>();
+for (const tag of taxonomy.tags) {
+  const key = tag.group ?? '';
+  const list = byGroup.get(key) ?? [];
+  list.push({ slug: tag.slug, name: taxonomy.tagName(tag.slug), count: tag.count });
+  byGroup.set(key, list);
+}
+const groups = [...byGroup.entries()]
+  .map(([key, tags]) => ({
+    key,
+    title: tagGroupLabel(key),
+    tags: tags.sort((a, b) => b.count - a.count || collator.compare(a.name, b.name)),
+  }))
+  .sort((a, b) => (a.key === '' ? 1 : b.key === '' ? -1 : collator.compare(a.title, b.title)));
+---
+
+<PageLayout
+  template="tags"
+  seo={{ title: m.explore_tags_title(), description: m.explore_tags_description(), path: '/tags', noindex: !taxonomy.available }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.explore_tags_heading() }]}
+>
+  <header class="mb-8 flex flex-col gap-2">
+    <p class="readout text-signal">{m.explore_readout_explore()}</p>
+    <h1 class="font-display-caps text-display-sm text-fg">{m.explore_tags_heading()}</h1>
+    <p class="max-w-(--container-prose) text-base text-fg-muted">{m.explore_tags_description()}</p>
+  </header>
+
+  {
+    !taxonomy.available ? (
+      <ListingError
+        title={m.explore_error_title()}
+        text={m.explore_error_text()}
+        retryHref={href(Astro.url.pathname, locale)}
+        reference={Astro.locals.requestId}
+        headingLevel={2}
+      />
+    ) : (
+      groups.map((group) => (
+        <section class="mb-8" aria-labelledby={`tags-${group.key || 'other'}`}>
+          <h2 id={`tags-${group.key || 'other'}`} class="readout mb-3">
+            {group.title}
+          </h2>
+          <ul class="flex flex-wrap gap-2">
+            {group.tags.map((tag) => (
+              <li>
+                {tag.count >= MIN_LINKED_ITEMS ? (
+                  <a
+                    href={href(`/tags/${encodeURIComponent(tag.slug)}`, locale)}
+                    class="inline-flex h-9 items-center gap-2 rounded-full border border-border-strong px-3 text-sm text-fg hover:border-primary hover:bg-fg/6"
+                  >
+                    {tag.name}
+                    <span class="font-mono text-2xs text-fg-subtle tabular-nums">{tag.count}</span>
+                  </a>
+                ) : (
+                  <span class="inline-flex h-9 items-center gap-2 rounded-full border border-dashed border-border px-3 text-sm text-fg-muted">
+                    {tag.name}
+                    <span class="font-mono text-2xs text-fg-subtle tabular-nums">{tag.count}</span>
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    )
+  }
+</PageLayout>
