@@ -7,9 +7,13 @@
  *   only for `build_of_month`, mods and libraries for the other kinds. Emits `award.created`
  *   (winner signal, badge evaluation, Discord, home/mod purge).
  * - `DELETE /admin/awards/:id` removes it and purges the home page and the mod page.
+ * - When a replace or a delete takes an award away from an author, `gamification.evaluate
+ *   {userId}` is enqueued for that author so the award badge is revoked now rather than at the
+ *   nightly reconciliation.
  */
 import type { AwardInputBody, AwardListDTO } from '@sotf/contracts/admin';
 import type { AwardDTO } from '@sotf/contracts/gamification';
+import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { recordAudit } from '../audit/audit.ts';
@@ -38,6 +42,13 @@ interface AwardRow {
 const COLUMNS = sql.raw(
   `a."id", a."kind", a."modId", a."periodStart"::text AS "periodStart", a."periodEnd"::text AS "periodEnd", a."reason", a."createdAt"`,
 );
+
+/** Enqueues a badge re-evaluation of the author of `modId` (in `tx`); no-op for orphan mods. */
+async function reevaluateAuthorOf(ctx: Ctx, tx: Executor, modId: number): Promise<void> {
+  const owner = await queryOne<{ userId: number | null }>(tx, sql`SELECT "userId" FROM "Mod" WHERE "id" = ${modId}`);
+  if (owner?.userId == null) return;
+  await ctx.jobs.enqueue('gamification.evaluate', { userId: owner.userId, nightly: false }, { tx });
+}
 
 async function toDtos(ctx: Ctx, config: CatalogConfig, list: readonly AwardRow[]): Promise<Award[]> {
   const snapshot = await getSnapshot(ctx, config);
@@ -125,6 +136,7 @@ export async function createAward(ctx: Ctx, config: CatalogConfig, input: AwardI
       },
       { actorId: actor.userId },
     );
+    if (before && before.modId !== saved.modId) await reevaluateAuthorOf(ctx, tx, before.modId);
     const tags = [
       'home',
       `mod:${saved.modId}`,
@@ -151,6 +163,7 @@ export async function deleteAward(ctx: Ctx, id: number): Promise<void> {
       targetId: id,
       before: { kind: before.kind, modId: before.modId, periodStart: before.periodStart, periodEnd: before.periodEnd },
     });
+    await reevaluateAuthorOf(ctx, tx, before.modId);
     const tags = ['home', `mod:${before.modId}`];
     await publishCacheInvalidation(tx, tags);
     await purge(ctx.jobs, tags, 'award deleted', { tx });
