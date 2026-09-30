@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Analytics_Legacy_NoteInputs */
 
 const en_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Includes the complete history since 2023. Countries arrive in a later update.`)
+	return /** @type {LocalizedString} */ (`Includes the complete history since 2023.`)
 };
 
 const es_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Incluye el histórico completo desde 2023. Los países llegarán en una actualización posterior.`)
+	return /** @type {LocalizedString} */ (`Incluye el histórico completo desde 2023.`)
 };
 
 const de_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enthält den kompletten Verlauf seit 2023. Länder kommen mit einem späteren Update.`)
+	return /** @type {LocalizedString} */ (`Enthält den kompletten Verlauf seit 2023.`)
 };
 
 const fr_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Comprend tout l’historique depuis 2023. Les pays arriveront dans une mise à jour ultérieure.`)
+	return /** @type {LocalizedString} */ (`Comprend tout l’historique depuis 2023.`)
 };
 
 const it_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Include lo storico completo dal 2023. I paesi arriveranno con un aggiornamento successivo.`)
+	return /** @type {LocalizedString} */ (`Include lo storico completo dal 2023.`)
 };
 
 const nl_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bevat de volledige geschiedenis sinds 2023. Landen komen in een latere update.`)
+	return /** @type {LocalizedString} */ (`Bevat de volledige geschiedenis sinds 2023.`)
 };
 
 const pl_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Obejmuje pełną historię od 2023 roku. Kraje pojawią się w późniejszej aktualizacji.`)
+	return /** @type {LocalizedString} */ (`Obejmuje pełną historię od 2023 roku.`)
 };
 
 const pt_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inclui o histórico completo desde 2023. Os países chegarão em uma atualização futura.`)
+	return /** @type {LocalizedString} */ (`Inclui o histórico completo desde 2023.`)
 };
 
 const ru_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Включает всю историю с 2023 года. Страны появятся в одном из следующих обновлений.`)
+	return /** @type {LocalizedString} */ (`Включает всю историю с 2023 года.`)
 };
 
 const sv_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Innehåller hela historiken sedan 2023. Länder kommer i en senare uppdatering.`)
+	return /** @type {LocalizedString} */ (`Innehåller hela historiken sedan 2023.`)
 };
 
 const tr_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`2023'ten beri tüm geçmişi içerir. Ülkeler sonraki bir güncellemede gelecek.`)
+	return /** @type {LocalizedString} */ (`2023'ten beri tüm geçmişi içerir.`)
 };
 
 const zh_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`包含 2023 年以来的完整历史数据。国家/地区数据将在后续更新中推出。`)
+	return /** @type {LocalizedString} */ (`包含 2023 年以来的完整历史数据。`)
 };
 
 const ja_basecamp_analytics_legacy_note = /** @type {(inputs: Basecamp_Analytics_Legacy_NoteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`2023 年からの全履歴を含みます。国別データは今後のアップデートで追加されます。`)
+	return /** @type {LocalizedString} */ (`2023 年からの全履歴を含みます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Includes the complete history since 2023. Countries arrive in a later update." |
+* | "Includes the complete history since 2023." |
 *
 * @param {Basecamp_Analytics_Legacy_NoteInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

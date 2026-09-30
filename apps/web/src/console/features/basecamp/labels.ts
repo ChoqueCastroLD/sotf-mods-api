@@ -339,3 +339,13 @@ export function languageName(code: string, displayLocale: string): string {
     return code;
   }
 }
+
+/** Name of a country (ISO 3166-1 alpha-2) in the creator's language («Spain»), or the code itself. */
+export function countryName(code: string, displayLocale: string): string {
+  try {
+    const names = new Intl.DisplayNames([displayLocale], { type: 'region' });
+    return names.of(code) ?? code;
+  } catch {
+    return code;
+  }
+}

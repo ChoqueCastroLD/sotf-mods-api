@@ -562,6 +562,9 @@ export const AnalyticsDTO = dto(
     byChannel: z.partialRecord(z.enum(DOWNLOAD_CHANNELS), Count),
     referrers: z.array(z.object({ domain: z.string(), visits: Count })),
     locales: z.array(z.object({ locale: z.string(), visits: Count })),
+    countries: z
+      .array(z.object({ country: z.string().length(2), visits: Count }))
+      .describe('Visits by visitor country (ISO 3166-1 alpha-2), biggest first'),
     ratings: z.array(z.object({ day: IsoDate, average: z.number().nullable(), count: Count })),
     markers: z.object({
       versions: z.array(z.object({ day: IsoDate, version: VersionString })),
@@ -598,6 +601,7 @@ export const AnalyticsDTO = dto(
           { domain: 'chatgpt.com', visits: 12 },
         ],
         locales: [{ locale: 'en', visits: 700 }],
+        countries: [{ country: 'US', visits: 520 }],
         ratings: [{ day: '2026-09-27', average: 5, count: 1 }],
         markers: {
           versions: [{ day: '2026-09-26', version: '1.3.8' }],
