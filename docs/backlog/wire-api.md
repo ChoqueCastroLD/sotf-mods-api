@@ -12,8 +12,8 @@ it, and what is still open in this area. One line per item: what · where · why
 - **Comment thread lock UI** · Ranger item view / mod actions (wire-web-console) and the comments island (wire-web-public) · `POST /api/v2/ranger/mods/:id/comments-lock { locked, reason }` (`CommentsLockDTO`); `GET /me/social-state` returns `commentsLocked` so the composer can say the thread is locked (new comments answer 403).
 - **Convert a legacy description** · Basecamp mod editor (wire-web-console) · `StudioModDTO.descriptionFormat` (`legacy` | `markdown`); `PATCH /studio/mods/:id { descriptionFormat: 'markdown' }` converts (no way back); show the `description_raw_html` preflight warning next to the editor.
 - **Operations readout** · `/ranger/admin` (wire-web-console) · `OpsDTO.http` (`last5m`/`lastHour`: total, 404, 410, 4xx, 5xx) and `OpsDTO.alerts` (active alerts, same rules as the emails).
-- **Category share card** · category hubs (wire-web-public) · `CategoryDTO.ogImage` (null until `og.render` of the category ran) for `og:image`; `og-default` otherwise.
-- **One read for the multiplayer hub** · `apps/web/src/content/best/hubs.ts` (wire-web-public) · `GET /mods?multiplayer=host_only&multiplayer=all_players…` (OR) replaces the merged reads.
+- [x] resolved by final-web-discovery: **Category share card** · category hubs (wire-web-public) · `CategoryDTO.ogImage` (null until `og.render` of the category ran) for `og:image`; `og-default` otherwise.
+- [x] resolved by final-web-discovery: **One read for the multiplayer hub** · `apps/web/src/content/best/hubs.ts` (wire-web-public) · `GET /mods?multiplayer=host_only&multiplayer=all_players…` (OR) replaces the merged reads.
 - **Queue assignment table** · wire-web-console · assignment and escalation now live in `"ModerationAssignment"` (same endpoints and DTOs as before).
 - **Session country** · Settings › Security (wire-web-console) · `SessionDTO.country` is filled for sessions created behind Cloudflare.
 

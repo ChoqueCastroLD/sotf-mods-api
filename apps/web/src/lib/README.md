@@ -89,8 +89,7 @@ in the CSP placeholder (`lib/security/csp.ts`, finalized by WP-93).
 - Post-deploy purge: on boot (not in development) the web asks `POST api:/internal/cdn/purge
   {tags:['html'], reason:'deploy:<RELEASE_SHA|SOURCE_COMMIT>'}` with retries.
 
-## Stubs owned by later WPs
+## Former stubs
 
-`components/account/HeaderAccount.astro` (WP-44), `islands/signals/Bell.tsx` (WP-81),
-`islands/cmdk/Trigger.ts` (WP-72), `console/routes/{__root,index}.tsx` (WP-34),
-`layouts/ConsoleShell.astro` is ready for WP-34's `[...path].astro` shells.
+The WP-22 placeholders (`HeaderAccount`, the Signals bell, the Cmd+K trigger, the console shells) are real
+implementations now; nothing in `lib/` is a stub.
