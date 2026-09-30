@@ -3,7 +3,7 @@
  * or build, with changelogs. Cached 1 h with `mod:{id}` (purged by new versions).
  */
 import type { APIRoute } from 'astro';
-import { modFeedRoute } from '../../../sitemaps/_lib/feed-routes.ts';
+import { modFeedRoute } from '../../../../lib/seo/feed-routes.ts';
 
 export const prerender = false;
 

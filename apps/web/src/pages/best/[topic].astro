@@ -26,7 +26,7 @@ import { setPageCache } from '../../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
-import { BEST_INDEX_MIN_ITEMS } from '../sitemaps/_lib/sitemaps.ts';
+import { BEST_INDEX_MIN_ITEMS } from '../../lib/seo/sitemaps.ts';
 
 const locale = Astro.locals.locale;
 const raw = Astro.params.topic ?? '';

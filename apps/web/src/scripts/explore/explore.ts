@@ -18,9 +18,9 @@
  *
  * Any unexpected response falls back to a normal navigation, so the worst case is a reload.
  */
+
+import { accountSettings } from '../account-settings.ts';
 import { track } from '../beacon.ts';
-import { apiCall } from '../mod/api.ts';
-import { whenSession } from '../mod/session.ts';
 
 const ROOT = '[data-explore-root]';
 const SKELETON_DELAY_MS = 300;
@@ -227,6 +227,12 @@ interface NavigateOptions {
   quiet?: boolean;
 }
 
+/** In-feed units of a swapped-in listing (guests; `scripts/ads.ts` skips members and filled units). */
+function fillAds(root: Element): void {
+  if (!root.querySelector('ins.adsbygoogle[data-ad-slot]')) return;
+  void import('../ads.ts').then(({ initAds }) => initAds(root.ownerDocument)).catch(() => {});
+}
+
 async function navigate(win: Window, target: URL, options: NavigateOptions): Promise<void> {
   const doc = win.document;
   const current = rootOf(doc);
@@ -293,6 +299,7 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
     if (title) doc.title = title;
     syncHead(doc, fetched.doc);
     revealLoadMore(next);
+    fillAds(next);
   };
   const transition = !reducedMotion(win) && typeof doc.startViewTransition === 'function';
   if (transition) {
@@ -590,36 +597,11 @@ export function initExplore(win: Window = window): void {
 // 18+ opt-in of the account
 // ---------------------------------------------------------------------------------------------
 
-const NSFW_OPT_IN_KEY = 'sotf:nsfw-opt-in';
-
-function sessionStore(win: Window): Storage | null {
-  try {
-    return win.sessionStorage;
-  } catch {
-    return null;
-  }
-}
-
-/** The account's `settings.nsfwOptIn`, remembered for the browser session; false for guests. */
-async function nsfwOptIn(win: Window): Promise<boolean> {
-  const summary = await whenSession(win);
-  if (!summary) return false;
-  const store = sessionStore(win);
-  const key = `${NSFW_OPT_IN_KEY}:${summary.id}`;
-  const known = store?.getItem(key);
-  if (known === '1' || known === '0') return known === '1';
-  const me = await apiCall<{ settings?: { nsfwOptIn?: boolean } }>('GET', '/api/v2/me');
-  if (!me.ok) return false;
-  const optedIn = me.data.settings?.nsfwOptIn === true;
-  store?.setItem(key, optedIn ? '1' : '0');
-  return optedIn;
-}
-
 /** Reloads the listing in place with `?nsfw=1` for opted-in members (the URL keeps the choice). */
 async function applyNsfwOptIn(win: Window): Promise<void> {
   const start = win.location.pathname + win.location.search;
   if (new URLSearchParams(win.location.search).get('nsfw') === '1') return;
-  if (!(await nsfwOptIn(win))) return;
+  if ((await accountSettings(win))?.nsfwOptIn !== true) return;
   // The visitor moved on meanwhile: the next listing they open is handled by its own page load.
   if (win.location.pathname + win.location.search !== start || !rootOf(win.document)) return;
   const url = sameOriginUrl(win, win.location.href);

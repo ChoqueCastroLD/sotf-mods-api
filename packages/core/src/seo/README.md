@@ -9,4 +9,4 @@
   announced; deploy purges announce nothing.
 
 The web side of SEO/GEO (sitemaps, feeds, `llms.txt`, oEmbed, `.md` alternates, the per-mod FAQ)
-lives in `apps/web/src/pages/sitemaps/_lib/` (the web never imports `@sotf/core`).
+lives in `apps/web/src/lib/seo/` (the web never imports `@sotf/core`).

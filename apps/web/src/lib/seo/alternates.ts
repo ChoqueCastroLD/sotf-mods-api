@@ -6,8 +6,8 @@
 import { cacheTag } from '@sotf/contracts/cache';
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
-import { serverApi } from '../../../lib/api.ts';
-import { loadEnv } from '../../../lib/env.ts';
+import { serverApi } from '../api.ts';
+import { loadEnv } from '../env.ts';
 import { apiStatus } from './data.ts';
 import { handleOf, lookupMod, lookupProfile, rawSegments, stripSuffix } from './entities.ts';
 import { modMarkdown, profileMarkdown } from './markdown.ts';

@@ -9,9 +9,9 @@
 #   3. Static checks: no reference to the retired file host, no `| safe`,
 #      no "/preview", no unused legacy env vars.
 #   4. Runtime XSS checks of the patched browser scripts (jsdom, verify/xss).
-#   5. Starts a throwaway Postgres 16 (compose project "sotfv2-hotfix", port 47440),
+#   5. Starts a throwaway Postgres 16 (compose project "sotfv2-hotfix", port 27440),
 #      `prisma@6.19.0 db push`, seeds verify/seed.sql, runs the patched API
-#      (47441) and frontend (47442) and checks the 302 and its exact Location,
+#      (27441) and frontend (27442) and checks the 302 and its exact Location,
 #      counting (real IP, GET only), 404/410 (JSON for tools, HTML for
 #      browsers), the unapprove message, the escaped changelog and the default
 #      og:image.
@@ -35,9 +35,12 @@ FRONTEND_BASE_COMMIT="e8ba2dc"
 BUN_VERSION="${BUN_VERSION:-1.4}"
 PRISMA_VERSION="6.19.0"
 COMPOSE_PROJECT="sotfv2-hotfix"
-PG_PORT=47440
-API_PORT=47441
-FRONTEND_PORT=47442
+# Below the kernel's ephemeral range (ip_local_port_range, 32768-60999 by default): the former
+# 474xx ports could collide with outgoing connections and failed once with EADDRINUSE.
+# HOTFIX_{PG,API,FRONTEND}_PORT override them.
+PG_PORT="${HOTFIX_PG_PORT:-27440}"
+API_PORT="${HOTFIX_API_PORT:-27441}"
+FRONTEND_PORT="${HOTFIX_FRONTEND_PORT:-27442}"
 DATABASE_URL="postgresql://sotf@127.0.0.1:${PG_PORT}/sotf_hotfix?schema=public"
 
 R2_BASE="https://r2.sotf-mods.com"
@@ -230,6 +233,12 @@ check_eq "ModDownload row never stores \"undefined\"" "|" "$(last_row)"
 check_redirect "API resumed Range request" \
   "$API/api/mods/Regi_s_Modding_Library/download/1.0.0" -H 'Range: bytes=100-'
 check_eq "resumed Range request is not counted" "5" "$(rows_of 1)"
+check_redirect "API Range probe bytes=0-0" \
+  "$API/api/mods/Regi_s_Modding_Library/download/1.0.0" -H 'Range: bytes=0-0'
+check_eq "Range probe bytes=0-0 is not counted" "5" "$(rows_of 1)"
+check_redirect "API whole-file Range bytes=0-" \
+  "$API/api/mods/Regi_s_Modding_Library/download/1.0.0" -H 'Range: bytes=0-' -A 'verify-range0'
+check_eq "whole-file Range bytes=0- is counted" "6" "$(rows_of 1)"
 
 log "5b. Frontend download proxy"
 check_redirect "frontend /mods/:u/:s/download/:v (encoded apostrophe)" \
@@ -241,8 +250,13 @@ check_redirect "frontend /mods/:u/:s/download/:v (raw apostrophe)" \
 check_eq "ModDownload row through the frontend (X-Forwarded-For)" "192.0.2.99|curl/$(curl --version | awk 'NR==1{print $2}')" "$(last_row)"
 check_redirect "API HEAD request" "$API/api/mods/Regi_s_Modding_Library/download/1.0.0" -I
 check_redirect "frontend HEAD request" "$WEB/mods/regitoxic/regi%27s-modding-library/download/1.0.0" -I
-check_eq "Mod.downloads matches counted requests (HEAD and Range not counted)" "7" "$(downloads_of 1)"
-check_eq "ModDownload rows match counted requests" "7" "$(rows_of 1)"
+check_eq "Mod.downloads matches counted requests (HEAD and Range not counted)" "8" "$(downloads_of 1)"
+check_eq "ModDownload rows match counted requests" "8" "$(rows_of 1)"
+LONG_AGENT="$(printf 'L%.0s' $(seq 1 8000))"
+check_redirect "frontend with an 8000-character User-Agent" \
+  "$WEB/mods/regitoxic/regi%27s-modding-library/download/1.0.0" -A "$LONG_AGENT"
+check_eq "stored User-Agent is truncated to 512 characters" "512" \
+  "$(psql_q "SELECT length(\"userAgent\") FROM \"ModDownload\" ORDER BY id DESC LIMIT 1")"
 
 log "5c. Errors"
 check_eq "API unknown version -> 404" "404" "$(status_of "$API/api/mods/Regi_s_Modding_Library/download/9.9.9")"
@@ -267,7 +281,7 @@ for spec in "404|regi%27s-modding-library/download/9.9.9|Version not found" \
     fail "frontend $code for a browser: message and link back to the mod"
   fi
 done
-check_eq "errors are not counted (mod 1)" "7" "$(downloads_of 1)"
+check_eq "errors are not counted (mod 1)" "9" "$(downloads_of 1)"
 check_eq "errors are not counted (mod 2)" "0" "$(downloads_of 2)"
 check_eq "no ModDownload row stores \"undefined\" or \"null\"" "0" \
   "$(psql_q "SELECT count(*) FROM \"ModDownload\" WHERE ip IN ('undefined', 'null') OR \"userAgent\" IN ('undefined', 'null')")"

@@ -1,0 +1,27 @@
+---
+/**
+ * One manual AdSense unit (PLAN §8.5; docs/backlog/WP-53.md, WP-54.md, WP-62.md): the shared
+ * `AdSlot` (reserved `min-height`, «Advertisement» label) for a placement whose ad unit id is
+ * configured (`PUBLIC_ADSENSE_SLOT_*`) next to the publisher id. Renders nothing otherwise, so
+ * development and staging never reserve empty boxes.
+ *
+ * The HTML is the same for everyone (edge-cached): `scripts/ads.ts` fills the unit only for
+ * guests, and `global.css` hides the box once the page knows the visitor is signed in.
+ */
+import { type AdFormat, AdSlot } from '@sotf/ui/domain';
+import { type AdPlacement, adUnitFor } from '../../lib/ads.ts';
+import { loadEnv } from '../../lib/env.ts';
+
+interface Props {
+  placement: AdPlacement;
+  format: AdFormat;
+  /** Show «Ads keep downloads free. Sign in to hide them.» under the unit. */
+  notice?: boolean;
+  class?: string;
+}
+
+const { placement, format, notice = true, class: className } = Astro.props;
+const unit = adUnitFor(loadEnv(), placement);
+---
+
+{unit && <AdSlot format={format} client={unit.client} slot={unit.slot} showNotice={notice} className={className} />}

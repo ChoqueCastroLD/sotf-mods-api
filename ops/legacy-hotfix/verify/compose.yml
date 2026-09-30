@@ -12,7 +12,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
       TZ: UTC
     ports:
-      - "127.0.0.1:${HOTFIX_PG_PORT:-47440}:5432"
+      - "127.0.0.1:${HOTFIX_PG_PORT:-27440}:5432"
     tmpfs:
       - /var/lib/postgresql/data
     healthcheck:

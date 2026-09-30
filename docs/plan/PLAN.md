@@ -192,6 +192,8 @@ Toda feature T0 se entrega con:
 
 **Descartados** (y por qué): Prisma 7/8 (§0.2); Caddy (§0.2); Next.js 16 y TanStack Start (más JS en las páginas públicas; Start sigue en RC); SvelteKit (rompe el ecosistema React pedido); Monaco; Redis/BullMQ; Meilisearch/Typesense (con ~300 elementos, Postgres FTS responde en < 5 ms); better-auth (obliga a copiar los hashes a su esquema); transformaciones de imagen de Cloudflare (cuota); Auto Ads; Storybook (se usa un *playground* Vite + capturas Playwright).
 
+**Ajustes de implementación** (integración, 2026-09-30): el parser de Markdown es `markdown-it` con `rehype-raw` + `rehype-sanitize` y un serializador propio (ADR-0003), así que `remark-parse`, `remark-gfm` y `remark-rehype` salen del catálogo (`rehype-stringify` queda como oráculo de tests). `cmdk` y `vaul` tampoco se usan: la paleta implementa el mismo patrón combobox/listbox sin el Dialog de Radix (presupuesto de 25 KB br de WP-72) y el `Dialog` de `@sotf/ui` pasa a hoja inferior con el `Drawer` de Base UI. El árbol de rutas de la consola lo genera `pnpm gen` con `@tanstack/router-generator` (en lugar de `@tanstack/router-cli`).
+
 ### 2.3 Referencia del usuario frente a la decisión aquí
 
 | Referencia | Aquí | Motivo |
@@ -414,6 +416,7 @@ Las claves legacy (`<timestamp>_<nombre>`, con espacios o apóstrofos) **no se r
 
 - **Fuente de verdad**: `packages/ui/src/tokens.css` = **copia literal del bloque de research/03 §4.4** (Tailwind 4.3.3). Contiene las escalas `night`, `flare`, `signal`, `lichen`, `solafite`, `blood` y `blueprint`, los colores semánticos con `light-dark()`, las ranuras de gráficos, la tipografía fluida, radios, sombras, *motion*, z-index y las utilidades `font-display-caps`, `readout`, `tag-notch`, `texture-topo`, `texture-blueprint`, `skeleton` y `prose-locator`.
 - **Temas**: `data-theme="dark"` (por defecto), `"light"` o `"system"` en `<html>`. Un script inline de ≤ 200 B en `<head>` lo fija desde `localStorage` antes del primer pintado, sin FOUC.
+  - Los temas son de documento completo: Lightning CSS (objetivos de Vite/Tailwind) baja `light-dark()` a propiedades `--lightningcss-light/dark` resueltas en `:root`, así que un `[data-theme]` anidado **no** re-tematiza un subárbol. Una vista previa en el otro tema usa un `<iframe>` (así lo hace el *playground* de `@sotf/ui`).
 - **Reglas duras**:
   - `border` solo es decorativo; todo control usa `border-strong` (≥ 3:1).
   - El estado nunca se comunica solo con color (siempre icono + texto).
@@ -1130,7 +1133,7 @@ Los triggers **nunca hacen `RAISE`**; solo rellenan.
   - Revocar desde ajustes.
   - Al cambiar o restablecer la contraseña se revocan todas las demás.
   - `pwdFingerprint` protege frente a cambios de contraseña hechos por la legacy.
-- **Legacy**: **no se migran tokens**. En la primera carga de v2, un script inline de ≤ 150 B borra `localStorage.token` y la cookie `token` (`Max-Age=0; Path=/`) y muestra el banner «Hemos renovado SOTF Mods: inicia sesión de nuevo, tu contraseña es la misma». La tabla `Token` no se toca.
+- **Legacy**: **no se migran tokens**. En la primera carga de v2, un script inline de ≤ 170 B (medido: ≈ 165 B con su `try/catch`; el presupuesto original de 150 B obligaba a quitarlo) borra `localStorage.token` y la cookie `token` (`Max-Age=0; Path=/`) y muestra el banner «Hemos renovado SOTF Mods: inicia sesión de nuevo, tu contraseña es la misma». La tabla `Token` no se toca.
 - **Reset**: `AuthToken(kind='password_reset')`, hasheado, de 1 h y de un solo uso. Durante 24 h tras el corte, `/reset-password?token=` acepta también `PasswordResetToken` legacy no caducados y los borra al usarse (como hacía la legacy).
 
 ### 6.11 Verificación
@@ -2051,7 +2054,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 | Redirecciones abiertas (`?next=`) | Solo rutas relativas internas de una allowlist | WP-44 |
 | Fuerza bruta y *credential stuffing* | Límites por IP y cuenta, Turnstile, lista de contraseñas filtradas (HIBP) y alerta de login nuevo (T1) | WP-30 |
 | Fijación de sesión | Token nuevo al hacer login y revocación al cambiar la contraseña | WP-30 |
-| Cadena de suministro npm | pnpm con `minimumReleaseAge: 1440` (24 h) y `onlyBuiltDependencies` en allowlist (sharp, @node-rs/*, esbuild), lockfile congelado en CI y `pnpm audit` semanal | WP-00, WP-93 |
+| Cadena de suministro npm | pnpm con `minimumReleaseAge: 1440` (24 h) y scripts de build en allowlist (sharp, @node-rs/*, esbuild; pnpm 12 llama `allowBuilds` a lo que antes era `onlyBuiltDependencies`, ADR-0002), `overrides` para los transitivos vulnerables hasta que sus padres publiquen el arreglo, lockfile congelado en CI, `pnpm audit --prod --audit-level high` semanal y `secrets-scan --history` semanal y en cada PR | WP-00, WP-93 |
 | **BD pública en el puerto 5433 sin SSL y sin backups** | Cerrar la exposición pública; backups diarios a un R2 privado; restauración probada cada semana en staging | Usuario (A1, A2), WP-90 |
 | **Secretos de producción compartidos en un chat** | Rotación completa (§9.4) | Usuario |
 | `prisma db push` accidental (borraría las tablas v2) | Rol `sotf_legacy_app` sin DDL y rotación de la contraseña de *owner* | Usuario (B2), §6.7 |
@@ -2060,7 +2063,10 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 
 **Cabeceras** (web y API):
 
-- **CSP** de Astro (`security.csp`) con hashes y `strict-dynamic`. Una semana en *report-only* en staging y después se aplica.
+- **CSP** de Astro (`security.csp`) con hashes. Una semana en *report-only* en staging y después se aplica (`CSP_MODE=enforce`).
+  - **Sin `'strict-dynamic'`**: los scripts de módulo externos de Astro no llevan `integrity` (SRI), así que los navegadores CSP3 los bloquearían (verificado con Chromium). La política es `'self'` + hashes de los scripts inline + orígenes exactos de terceros (WP-93).
+  - Los informes van a `POST /api/v2/security/csp-report` (la API los agrega y los registra como `csp violation`).
+  - `img-src` admite además `https://*.gstatic.com`, `*.google.com`, `*.doubleclick.net`, `*.adtrafficquality.google` y `*.googleadservices.com` (píxeles de AdSense y del CMP).
   - `default-src 'self'`
   - `img-src 'self' data: https://r2.sotf-mods.com https://*.googlesyndication.com https://i.ytimg.com`
   - `connect-src 'self' https://*.r2.cloudflarestorage.com https://challenges.cloudflare.com https://*.google.com https://*.googlesyndication.com`
@@ -2096,7 +2102,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 | IPs en claro legacy | Se seudonimizan en la fase contract, con aprobación |
 
 - **Analítica propia sin cookies**: `visitorHash = HMAC(ip + UA, sal diaria rotativa)`, sin PII ni cruce de datos. Se respetan `Sec-GPC: 1` y DNT (sin beacon). Se documenta en `/privacy` como medición de audiencia (**revisión legal recomendada**).
-- **Cookies**: `__Host-sotf_sid` y `sotf_li` (estrictamente necesarias), `sotf_theme` y `sotf_consent` (preferencias). Anuncios y CMP solo para invitados que consienten.
+- **Cookies**: `__Host-sotf_sid` y `sotf_li` (estrictamente necesarias) y `sotf_theme` (preferencia). No hay cookie `sotf_consent` propia: el consentimiento lo gestiona el CMP de Google (TCF, solo EEE/Reino Unido/Suiza, §8.5), que guarda el suyo. Anuncios y CMP solo para invitados que consienten.
 - **Derechos**: exportación y borrado de autoservicio (T0-14), rectificación desde ajustes y contacto en `/privacy`.
 - **Encargados de tratamiento**: Cloudflare (CDN, R2 y Turnstile), Resend (email), OpenAI (KelvinSeek: solo el texto del chat, sin PII tras el hash), Google (AdSense y CMP), VirusTotal (ficheros de mods públicos) y Sentry (errores; si se activa, con PII desactivado). Se listan en `/privacy`.
 - **Menores y NSFW**: *opt-in* con confirmación de mayoría de edad. Nunca hay anuncios en NSFW.
@@ -2220,7 +2226,7 @@ nightly: LHCI contra staging, Unlighthouse semanal, pnpm audit, restauración de
 |---|---|---|---|---|
 | `NODE_ENV`, `TZ=UTC`, `LOG_LEVEL`, `SITE_ENV` (`production`/`staging`/`preflight`/`development`) | ✔ | ✔ | ✔ | `SITE_ENV≠production` → `noindex` + banner |
 | `PUBLIC_SITE_URL` (`https://sotf-mods.com`) | ✔ | ✔ | ✔ | |
-| `PORT` / `HOST` | 4321 / 0.0.0.0 | 3001 / 0.0.0.0 | 3002 (health) | |
+| `PORT` / `HOST` | 4321 / 0.0.0.0 | 3001 / 0.0.0.0 | 3002 (health) | en desarrollo los scripts `dev` usan 47321 / 47301 / 47302 en 127.0.0.1 (§11.2) |
 | `INTERNAL_API_URL` (`http://<contenedor-api>:3001`) | ✔ | | | |
 | `WEB_INTERNAL_URL` | | | ✔ | invalidación del LRU |
 | `INTERNAL_SECRET` | ✔ | ✔ | ✔ | cabecera `X-Internal-Auth` |
@@ -2238,13 +2244,20 @@ nightly: LHCI contra staging, Unlighthouse semanal, pnpm audit, restauración de
 | `SENTRY_DSN`, `PUBLIC_SENTRY_DSN_CONSOLE` | ✔ | ✔ | ✔ | opcionales |
 | `LEGACY_COEXIST`, `LEGACY_SNAKE_ALIASES` | | ✔ | ✔ | §2.9, §5.5 |
 | `ARGON2_CONCURRENCY=2` | | ✔ | | |
+| `GIT_SHA` | | ✔ | ✔ | commit desplegado (`/healthz`, logs, `info.version` de OpenAPI); lo fija la imagen (*build arg*) |
+| `RELEASE_SHA` / `SOURCE_COMMIT` | ✔ | | | commit servido (`/healthz`, motivo de la purga post-despliegue); CI fija el primero, Coolify inyecta el segundo |
+| `CSRF_TRUSTED_ORIGINS` | | ✔ | | orígenes extra (coma) para escrituras con cookie: hosts de staging/preflight; vacío en producción |
+| `WORKER_CONCURRENCY` (2) | | | ✔ | opcional |
+| `PGBOSS_SCHEMA` (`pgboss`) | | ✔ | ✔ | opcional |
+| `R2_ENDPOINT` | | ✔ | ✔ | solo emuladores S3 locales/tests; vacío en producción (se deriva de `R2_ACCOUNT_ID`) |
+| `SMTP_URL` | | | ✔ | transporte `mailpit` (desarrollo/CI) |
 
 **Se eliminan (legacy)**: `FILE_UPLOAD_ENDPOINT`, `FILE_UPLOAD_TOKEN`, `FILE_PREVIEW_ENDPOINT`, `KELVINGPT_API`, `KELVINGPT_API_AUTHORITY`, `FILE_DOWNLOAD_ENDPOINT`, `JWT_SECRET`, `BASE_URL`, `GPT_API_KEY`, `R2_CUSTOM_DOMAIN`, `R2_BUCKET_NAME`, `API_URL`, `PUBLIC_API_URL` y `PUBLIC_BASE_URL` (§2.8).
 
 ### 11.5 Cloudflare (runbook `ops/cloudflare/`; lo aplica el usuario)
 
 - **DNS**: `sotf-mods.com`, `www`, `api`, `beta` y `next` con proxy; `r2` como dominio propio de R2. `files` se borra en T+7.
-- **SSL/TLS**: Full (strict), TLS mínimo 1.2, TLS 1.3, HTTP/3, «Always Use HTTPS», HSTS de 6 meses (sin *preload*) y 0-RTT desactivado.
+- **SSL/TLS**: Full (strict), TLS mínimo 1.2, TLS 1.3, HTTP/3, «Always Use HTTPS» y 0-RTT desactivado. HSTS (6 meses, sin *preload*) lo envía el origen; no se activa también en el borde (WP-93).
 - **Speed**: Early Hints activado; Rocket Loader, Email Obfuscation, Zaraz y Auto Minify **desactivados**; Tiered Cache Smart Topology activado; Crawler Hints desactivado.
 - **Cache Rules** (en orden; la última que coincide gana cada ajuste):
   1. `sotf-cache-origin`: `http.host in {"sotf-mods.com" "api.sotf-mods.com" "beta.sotf-mods.com"}` → Eligible for cache. Edge TTL: «Use cache-control header if present, bypass cache if not». Browser TTL: respetar el origen. Cache key por defecto (con query string). Serve stale mientras revalida.
@@ -2349,7 +2362,7 @@ La secuencia de despliegue es la de CI del §10.2. El corte está detallado en e
 - **Depende de**: nada.
 - **Entradas**: §2.2, §2.4, §2.6, §10.2, §11.2 y §12.1.
 - **Entregables**:
-  - Workspace pnpm 12 con el catálogo completo de versiones, `minimumReleaseAge: 1440` y `onlyBuiltDependencies`.
+  - Workspace pnpm 12 con el catálogo completo de versiones, `minimumReleaseAge: 1440` y `allowBuilds` (el `onlyBuiltDependencies` de pnpm ≤ 10).
   - Turbo con las tareas `build`, `dev`, `typecheck`, `test`, `test:int` y `e2e`.
   - Biome (con `noDangerouslySetInnerHtml` como error) y tsconfig base (§2.6).
   - `ops/compose/dev.yml` (proyecto `sotfv2`: pg 47432, seaweedfs 47333 y mailpit 47025/47080, con healthchecks).

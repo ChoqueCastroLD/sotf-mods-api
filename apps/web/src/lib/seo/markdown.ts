@@ -7,7 +7,7 @@
  */
 import type { ModCardDTO, ModDetailDTO, UserPublicDTO } from '@sotf/contracts/catalog';
 import { absoluteUrl, profilePath, versionsPath } from '@sotf/contracts/seo';
-import { STEAM_APP_URL } from '../../../lib/site.ts';
+import { STEAM_APP_URL } from '../site.ts';
 import { buildModFaq } from './faq.ts';
 import { htmlToMarkdown } from './html-to-md.ts';
 

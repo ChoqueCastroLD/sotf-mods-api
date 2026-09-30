@@ -22,8 +22,9 @@ npm dependencies external — list every runtime dependency in `package.json`).
   `process.env`); outside production it first loads the root `.env` without overriding variables
   already set (`SOTF_NO_DOTENV=1` disables it). `APP_SECRET` and `INTERNAL_SECRET` (≥ 32 chars),
   `PUBLIC_SITE_URL` and `DATABASE_URL` are required.
-- The API listens on `127.0.0.1:47301` in development (the web's `INTERNAL_API_URL`): `PORT`
-  defaults to 47301 unless `NODE_ENV=production`, where Coolify sets it (3001). An explicit `PORT`
+- The API listens on `127.0.0.1:47301` in development (the web's `INTERNAL_API_URL`): the `dev`
+  script exports `PORT=47301`/`HOST=127.0.0.1` unless already set, and `PORT` also defaults to 47301
+  whenever `NODE_ENV` is not `production`. In production Coolify sets it (3001). An explicit `PORT`
   always wins.
 - Optional development/e2e variables: `R2_ENDPOINT` (S3 emulator seen by the API) and
   `R2_PUBLIC_ENDPOINT` (the same emulator as the browser reaches it, used only to sign upload

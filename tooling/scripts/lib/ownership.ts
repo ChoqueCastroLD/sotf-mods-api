@@ -17,12 +17,21 @@ export interface OwnershipFile {
   wps: Record<string, WpOwnership>;
 }
 
-/** Paths every WP may change regardless of ownership (PLAN §2.6, §12.1). */
+/**
+ * Paths every WP may change regardless of ownership (PLAN §2.6, §12.1).
+ *
+ * The Drizzle table files of `packages/db/src/schema/{legacy,v2}` are shared because Drizzle
+ * cannot add columns to a table declared in another file: a WP whose migration adds a column to
+ * an existing table must declare it next to the table (PLAN §12.1 puts new *tables* in
+ * `schema/ext/<wp-id>.ts`). The migration linter, `db:guard` and the Drizzle ↔ catalog test keep
+ * those edits additive (wave-1 backlog, WP-10).
+ */
 export const SHARED_PATTERNS: readonly string[] = [
   'pnpm-lock.yaml',
   '**/*.gen.ts',
   '**/.generated/**',
   'docs/backlog/{wp}.md',
+  'packages/db/src/schema/{legacy,v2}/*.ts',
 ];
 
 export type Verdict =

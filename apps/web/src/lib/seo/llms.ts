@@ -10,8 +10,8 @@
  */
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { absoluteUrl, categoryPath, profilePath } from '@sotf/contracts/seo';
-import { BEST_TOPICS, type BestTopic } from '../../../content/best/hubs.ts';
-import { SOCIAL_LINKS } from '../../../lib/site.ts';
+import { BEST_TOPICS, type BestTopic } from '../../content/best/hubs.ts';
+import { SOCIAL_LINKS } from '../site.ts';
 import type { CategoryDTO } from './data.ts';
 import { isoDay, mdInline } from './markdown.ts';
 

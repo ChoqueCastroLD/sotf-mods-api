@@ -63,23 +63,23 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
 
 ## Para W2 y siguientes
 
-- [x] resolved by wire-api (already adopted; R2_PUBLIC_ENDPOINT added for browser presigning): **Variable `R2_ENDPOINT`** · `apps/{api,worker}/src/env.ts` (WP-20) y cliente S3 (WP-31) ·
+- [x] resolved by wire-infra (adopted by WP-20 (optional in both apps); `.env.example` and PLAN §11.4 document it) · **Variable `R2_ENDPOINT`** · `apps/{api,worker}/src/env.ts` (WP-20) y cliente S3 (WP-31) ·
   `.env.example` la propone para SeaweedFS en local/tests; §11.4 solo deriva el endpoint de
   `R2_ACCOUNT_ID`. Adoptarla (opcional, vacía en producción) o renombrarla.
-- [x] resolved by wire-api (already in place in packages/core/src/email/transports.ts): **Variable `SMTP_URL`** · transporte `mailpit` de `EmailOutbox` (WP-30) · `.env.example` propone
+- [x] resolved by wire-infra (the worker reads `SMTP_URL` for the `mailpit` transport; PLAN §11.4 and `.env.example` document it) · **Variable `SMTP_URL`** · transporte `mailpit` de `EmailOutbox` (WP-30) · `.env.example` propone
   `smtp://127.0.0.1:47025`; §11.4 no fija cómo se configura.
 - **`e2e/package.json` antes de W9** · `e2e/**` es de WP-91, pero WP-22 (W2), WP-31, WP-34, WP-44,
   WP-53 exigen `pnpm e2e --grep @…` · asignar a WP-22 la creación del proyecto Playwright (script
   `e2e`) o adelantar esa parte de WP-91.
 - **`tooling/lhci` y `tooling/load` antes de W9** · son de WP-92, pero WP-22/WP-44/WP-53 piden
   `pnpm lhci` y WP-31/WP-33 `pnpm load` · asignar su creación al primer WP que los necesite.
-- **Assets de marca en la web** · `apps/web/public/**` (WP-22) · copiar tal cual
+- [x] resolved by WP-22 (verified by wire-web-public) (`apps/web/public` idéntico a `packages/brand/assets/public`) · **Assets de marca en la web** · `apps/web/public/**` (WP-22) · copiar tal cual
   `packages/brand/assets/public/**` (`/favicon.svg`, `/favicon.ico`, `/apple-touch-icon.png`,
   `/brand/*`); `assets/manifest.json` lista cada fichero con su SHA-256.
-- **Redirecciones de logos legacy** · `apps/web/src/middleware/**` (WP-22) ·
+- [x] resolved by WP-22 (verified by wire-web-public) (`middleware/redirects.ts`) · **Redirecciones de logos legacy** · `apps/web/src/middleware/**` (WP-22) ·
   `/static/images/logo*.png` → `/brand/logo-horizontal-night.png`, `favicon*` → `/favicon.svg`,
   `/static/images/hd_thumbnail.png` → `/brand/og-default.png` (tabla del §4.6).
-- **`/manifest.webmanifest`** · `apps/web/src/pages/**` (WP-22/WP-61) · generarlo con
+- [x] resolved by WP-22 (verified by wire-web-public) (`apps/web/public/manifest.webmanifest`) · **`/manifest.webmanifest`** · `apps/web/src/pages/**` (WP-22/WP-61) · generarlo con
   `manifestIcons()` y `themeColor` de `@sotf/brand`.
 - **Reutilizar los generativos de marca** · `apps/worker/src/jobs/og/**` (WP-61),
   `packages/ui/src/domain/**` (WP-25) · `topoLines` + `topoGroup`, `markPath`/`lockupBody` y
@@ -88,32 +88,32 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   descargas (WP-31: `ipHash`, `X-Internal-Auth`, límite sin conteo); tras el 302 el navegador guarda
   el fichero con la clave R2 con prefijo de timestamp (WP-84: `Content-Disposition` con `filename`,
   B17); token en `localStorage` y sin CSP (sesión por cookie + CSP en v2).
-- **Solapamiento WP-91 / WP-93** · `e2e/**` frente a `e2e/security/**` · resuelto en
+- [x] resolved by wire-infra (confirmed: `ownership.overrides.json` keeps `e2e/security/**` out of WP-91) · **Solapamiento WP-91 / WP-93** · `e2e/**` frente a `e2e/security/**` · resuelto en
   `tooling/scripts/ownership.overrides.json` (WP-91 excluye `e2e/security/**`); confirmar al
   planificar W9.
-- **Job manual opcional del hotfix** · `.github/workflows/` (WP-90) · `workflow_dispatch` que
+- [x] resolved by wire-infra (verified: `.github/workflows/legacy-hotfix.yml` (`workflow_dispatch`, WP-90)) · **Job manual opcional del hotfix** · `.github/workflows/` (WP-90) · `workflow_dispatch` que
   ejecute `ops/legacy-hotfix/verify.sh` mientras el legacy siga en producción (necesita Docker, red
   y los repos legacy locales vía `LEGACY_API_REPO` / `LEGACY_FRONTEND_REPO`).
-- **`check:assets` como paso propio de CI (opcional)** · `.github/workflows/ci.yml` (WP-90) · los
+- [x] resolved by wire-infra (stage 3b of `ci.yml` (WP-90) and now also of `pnpm ci:local`) · **`check:assets` como paso propio de CI (opcional)** · `.github/workflows/ci.yml` (WP-90) · los
   tests unitarios ya reconstruyen y comparan cada asset; solo aporta un log más claro.
-- **Puertos del hotfix en rango efímero** · `ops/legacy-hotfix/verify.sh` (WP-02 si se reabre, o
+- [x] resolved by wire-infra (`verify.sh` defaults to 27440-27442 (below `ip_local_port_range`), overridable with `HOTFIX_{PG,API,FRONTEND}_PORT`; `ops/compose/dev.yml` keeps the PLAN §11.2 ports) · **Puertos del hotfix en rango efímero** · `ops/legacy-hotfix/verify.sh` (WP-02 si se reabre, o
   WP-90) · 47440-47442 caen en `ip_local_port_range` (32768-60999); `verify.sh` falló una vez con
   `EADDRINUSE`. Reintentar el arranque o mover los puertos. Aplica también a los puertos de
   `ops/compose/dev.yml` (474xx) si se ven fallos similares.
 
 ## Mejoras menores de calidad (sin dueño urgente)
 
-- **Hotfix: regla de conteo más estricta** · `ops/legacy-hotfix/patches/api` · contar solo sin
+- [x] resolved by wire-infra (patch api/0001 counts only no `Range` or exactly `bytes=0-`; `verify.sh` covers `bytes=0-0` (not counted) and `bytes=0-` (counted), 87/87 green. If the hotfix was already deployed, redeploy the legacy API with the regenerated series) · **Hotfix: regla de conteo más estricta** · `ops/legacy-hotfix/patches/api` · contar solo sin
   `Range` o con `Range: bytes=0-` exacto (hoy `/^bytes=0-/` cuenta `bytes=0-0`); añadir el caso a
   `verify.sh`.
-- **Hotfix: truncar el User-Agent** · `download.util.ts` del parche frontend · limitar `?agent=` a
+- [x] resolved by wire-infra (patch frontend/0001 forwards `?agent=` cut to 512 characters; `verify.sh` sends an 8000-character UA through the frontend (302, stored 512)) · **Hotfix: truncar el User-Agent** · `download.util.ts` del parche frontend · limitar `?agent=` a
   512 caracteres antes de reenviarlo, para no provocar 414/431 y bloquear una descarga.
 - **`@sotf/brand`: comprobar el manifest en modo tolerante** · `packages/brand/test/assets.test.ts`
   (WP-01 si se reabre) · fuera de linux-x64/CI no se compara `manifest.json`; comparar al menos las
   entradas no raster (sha256 y bytes).
 - **`@sotf/brand`: `passWithNoTests: false`** · `packages/brand/vitest.config.ts` · el preset
   compartido pasa con cero tests; este paquete siempre tiene tests.
-- **Nota para PLAN §9.1** · `docs/plan/PLAN.md` · pnpm 12 llama `allowBuilds` a lo que el plan llama
+- [x] resolved by wire-infra (PLAN §9.1 and §12.3 WP-00 now say `allowBuilds`) · **Nota para PLAN §9.1** · `docs/plan/PLAN.md` · pnpm 12 llama `allowBuilds` a lo que el plan llama
   `onlyBuiltDependencies` (ADR-0002, ajuste 1).
 
 ## Acciones del usuario
