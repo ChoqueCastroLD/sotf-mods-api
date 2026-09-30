@@ -13,6 +13,8 @@
     "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "catalog:",
+    "@aws-sdk/s3-request-presigner": "catalog:",
     "@react-email/components": "catalog:",
     "@sotf/contracts": "workspace:*",
     "@sotf/core": "workspace:*",
@@ -20,6 +22,7 @@
     "@sotf/emails": "workspace:*",
     "close-with-grace": "catalog:",
     "drizzle-orm": "catalog:",
+    "isbot": "catalog:",
     "lru-cache": "catalog:",
     "pg": "catalog:",
     "pg-boss": "catalog:",

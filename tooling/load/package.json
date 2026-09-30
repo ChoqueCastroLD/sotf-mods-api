@@ -1,0 +1,19 @@
+{
+  "name": "@sotf/load",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Load tests (PLAN §8, §12.1 `pnpm load <scenario>`): each scenario is `<scenario>.ts` in this directory.",
+  "type": "module",
+  "scripts": {
+    "load": "sh -c 'test -n \"$0\" && test -f \"./$0.ts\" || { echo \"usage: pnpm load <scenario> (e.g. downloads)\" >&2; exit 2; }; exec node \"./$0.ts\" \"$@\"'"
+  },
+  "dependencies": {
+    "@sotf/db": "workspace:*",
+    "@sotf/migration-tools": "workspace:*",
+    "pg": "catalog:"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "@types/pg": "catalog:"
+  }
+}

@@ -14,9 +14,12 @@
     "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "catalog:",
+    "@aws-sdk/s3-request-presigner": "catalog:",
     "@sotf/contracts": "workspace:*",
     "@sotf/db": "workspace:*",
     "drizzle-orm": "catalog:",
+    "isbot": "catalog:",
     "lru-cache": "catalog:",
     "pg": "catalog:",
     "pg-boss": "catalog:",
@@ -29,6 +32,7 @@
     "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
     "@types/pg": "catalog:",
+    "testcontainers": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }
