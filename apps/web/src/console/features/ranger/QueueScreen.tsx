@@ -2,7 +2,9 @@
  * `/ranger` and `/ranger/comments` — the moderation queue (research/03 §6.10, PLAN §7.4 «Colas»).
  *
  * - Lane bar with live counts (`moderation.queue` stream events refetch every `['moderation']`
- *   query) and the SLA at a glance: waiting in the lane, over 72 h, oldest and average wait.
+ *   query) and the SLA at a glance: waiting in the lane, over 72 h, oldest and average wait, plus
+ *   the review time of the last 30 days (`GET /ranger/metrics`: mean, median, share decided
+ *   within the SLA, review lanes over the SLA).
  * - List (oldest and riskiest first) + item view side by side from `lg`; on phones the list and
  *   the item are two steps (triage only).
  * - `j`/`k` move through the lane; the item view adds `a`, `c` and `r`.
@@ -10,25 +12,28 @@
  * The selected lane and item live in the URL (`?lane=versions&item=versions:version:640`), so a
  * ranger can share an item and Back works.
  */
+import { formatPercent } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { useMediaQuery } from '@sotf/ui';
+import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { LiveDot } from '@sotf/ui/live-dot';
 import { Skeleton, SkeletonGroup } from '@sotf/ui/skeleton';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Binoculars, ShieldAlert } from 'lucide-react';
+import { Binoculars, ShieldAlert, Siren } from 'lucide-react';
 import { useEffect, useMemo, useRef } from 'react';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useShortcut } from '../../hooks/use-shortcuts.tsx';
 import { useStreamStatus } from '../../hooks/use-stream.ts';
-import { type Lane, laneQuery, type QueueItem, SLA_HOURS } from './api.ts';
+import { activeLocale } from '../../lib/messages.ts';
+import { type Lane, laneQuery, metricsQuery, type QueueItem, type ReviewMetrics, SLA_HOURS } from './api.ts';
 import { ItemView } from './ItemView.tsx';
 import { flagLabel, laneEmpty, laneHint, laneLabel } from './labels.ts';
-import { PanelError, RiskBadge, ScreenHeader, UserChip, WaitingBadge, waitingText } from './shared.tsx';
+import { number, PanelError, RiskBadge, ScreenHeader, UserChip, WaitingBadge, waitingText } from './shared.tsx';
 
 /** `lg` and up: list and item side by side. Below `md`: triage (phones). */
 const SPLIT_QUERY = '(min-width: 64rem)';
@@ -234,11 +239,12 @@ function SlaSummary({
   total: number | null;
   loading: boolean;
 }) {
+  const metrics = useQuery(metricsQuery());
   if (loading) return null;
   const overdue = items.filter((item) => item.waitingHours >= SLA_HOURS).length;
   const oldest = items.reduce((max, item) => Math.max(max, item.waitingHours), 0);
   const average = items.length > 0 ? items.reduce((sum, item) => sum + item.waitingHours, 0) / items.length : 0;
-  const tiles = [
+  const tiles: Array<{ label: string; value: string; tone: string }> = [
     { label: m.ranger_sla_waiting(), value: String(total ?? items.length), tone: '' },
     {
       label: m.ranger_sla_over({ hours: SLA_HOURS }),
@@ -248,6 +254,7 @@ function SlaSummary({
     { label: m.ranger_sla_oldest(), value: items.length > 0 ? waitingText(oldest) : '—', tone: '' },
     { label: m.ranger_sla_average(), value: items.length > 0 ? waitingText(average) : '—', tone: '' },
   ];
+  if (metrics.data) tiles.push(...metricTiles(metrics.data));
   return (
     <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
       {tiles.map((tile) => (
@@ -258,6 +265,34 @@ function SlaSummary({
       ))}
     </dl>
   );
+}
+
+/** Review time from submission to decision over the metrics window (all review lanes). */
+export function metricTiles(metrics: ReviewMetrics): Array<{ label: string; value: string; tone: string }> {
+  const { overall } = metrics;
+  const within = overall.reviewed > 0 ? overall.withinSla / overall.reviewed : null;
+  return [
+    {
+      label: m.ranger_metrics_mean({ days: metrics.windowDays }),
+      value: overall.meanHours === null ? '—' : waitingText(overall.meanHours),
+      tone: '',
+    },
+    {
+      label: m.ranger_metrics_median({ days: metrics.windowDays }),
+      value: overall.medianHours === null ? '—' : waitingText(overall.medianHours),
+      tone: '',
+    },
+    {
+      label: m.ranger_metrics_within_sla({ hours: metrics.slaHours }),
+      value: within === null ? '—' : formatPercent(activeLocale(), within),
+      tone: within !== null && within < 0.9 ? 'text-warning' : '',
+    },
+    {
+      label: m.ranger_metrics_open_over_sla({ hours: metrics.slaHours }),
+      value: number(metrics.openOverSla),
+      tone: metrics.openOverSla > 0 ? 'text-danger' : '',
+    },
+  ];
 }
 
 function QueueList({
@@ -297,6 +332,11 @@ function QueueList({
               </span>
               <span className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
                 {item.author ? <UserChip user={item.author} size={20} link={false} /> : null}
+                {item.escalation ? (
+                  <Badge variant="danger" size="sm" icon={<Icon icon={Siren} size={12} />}>
+                    {m.ranger_escalated()}
+                  </Badge>
+                ) : null}
                 {item.risk !== 'low' ? <RiskBadge risk={item.risk} /> : null}
                 {flagged > 0 ? (
                   <span className="inline-flex items-center gap-1 text-danger">

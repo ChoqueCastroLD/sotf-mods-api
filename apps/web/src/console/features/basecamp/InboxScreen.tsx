@@ -21,9 +21,13 @@ import { Icon } from '@sotf/ui/icons';
 import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
 import { type InfiniteData, useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
 import { Bug, CheckCheck, ExternalLink, Inbox, MessageSquare, Radar, Reply, Star } from 'lucide-react';
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
+import { useTurnstile } from '../../../islands/auth/turnstile.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { useMe } from '../../hooks/use-me.ts';
+import { problemCode } from '../../lib/errors.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
 import {
@@ -85,15 +89,29 @@ function Composer({
   submitLabel,
   onSubmit,
   onCancel,
+  children,
 }: {
   label: string;
   submitLabel: string;
   onSubmit: (body: string) => Promise<void>;
   onCancel: () => void;
+  /** Extra content under the field (the Turnstile widget host of comment replies). */
+  children?: ReactNode;
 }) {
   const id = useId();
   const field = useRef<HTMLTextAreaElement>(null);
   const [body, setBody] = useState('');
+  // Saved replies of Settings → Creator (`settings.replyTemplates`).
+  const templates = useMe().settings.replyTemplates;
+  const insertTemplate = (index: string | null) => {
+    const template = index === null ? undefined : templates[Number(index)];
+    if (!template) return;
+    setBody((current) => {
+      const joined = current.trim() ? `${current.trimEnd()}\n\n${template.text}` : template.text;
+      return joined.slice(0, LIMITS.replyMax);
+    });
+    field.current?.focus();
+  };
   useEffect(() => field.current?.focus(), []);
   const [busy, setBusy] = useState(false);
   const length = body.trim().length;
@@ -117,6 +135,21 @@ function Composer({
       <label htmlFor={id} className="text-sm font-medium text-fg">
         {label}
       </label>
+      {templates.length > 0 ? (
+        <div className="flex flex-wrap items-end gap-3">
+          <Select<string>
+            label={bt('basecamp_inbox_template_insert')}
+            value={null}
+            placeholder={bt('basecamp_inbox_template_insert')}
+            options={templates.map((template, index) => ({ value: String(index), label: template.name }))}
+            onValueChange={insertTemplate}
+            className="min-w-56"
+          />
+          <Link to={'/settings/creator' as '/'} hash="creator-defaults" className="pb-2 text-xs text-link">
+            {bt('basecamp_inbox_template_manage')}
+          </Link>
+        </div>
+      ) : null}
       <Textarea
         id={id}
         ref={field}
@@ -133,6 +166,7 @@ function Composer({
           if (event.key === 'Escape') onCancel();
         }}
       />
+      {children}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-xs text-fg-subtle">
           {bt('basecamp_counter', { count: number(body.length), max: number(LIMITS.replyMax) })} ·{' '}
@@ -208,12 +242,19 @@ function VersionAction({
 
 type Mode = 'idle' | 'reply' | 'resolve' | 'fixed';
 
+/** Build-time public site key (the same one the public comment form falls back to). */
+const TURNSTILE_SITE_KEY =
+  (import.meta.env as Record<string, string | undefined>).PUBLIC_TURNSTILE_SITE_KEY || undefined;
+
 function InboxRow({ item, now }: { item: InboxItem; now: number }) {
   const queryClient = useQueryClient();
   const [mode, setMode] = useState<Mode>('idle');
   const [busy, setBusy] = useState(false);
   const locale = activeLocale();
   const TypeIcon = typeIcon(item.type);
+  // Accounts younger than 24 h need a Turnstile token to comment (PLAN §9.1): the widget only
+  // loads when the API answers TURNSTILE_REQUIRED, as on the public comment form.
+  const turnstile = useTurnstile({ siteKey: TURNSTILE_SITE_KEY, action: 'comment', language: locale });
 
   const done = async (state: InboxItem['state'], message: string) => {
     setItemState(queryClient, item, state);
@@ -225,11 +266,28 @@ function InboxRow({ item, now }: { item: InboxItem; now: number }) {
   const reply = async (body: string) => {
     try {
       if (item.type === 'review') await basecampApi.replyToReview(item.id, body);
-      else await basecampApi.replyToComment(item.mod.id, item.id, body);
+      else await replyToComment(body);
       await done('answered', bt('basecamp_inbox_replied'));
     } catch (error) {
       reportFailure(error, bt('basecamp_inbox_reply_failed'));
       throw error;
+    }
+  };
+
+  const replyToComment = async (body: string) => {
+    try {
+      await basecampApi.replyToComment(item.mod.id, item.id, body);
+    } catch (error) {
+      if (problemCode(error) !== 'TURNSTILE_REQUIRED') throw error;
+      const token = await turnstile.getToken().catch(() => {
+        throw error;
+      });
+      try {
+        await basecampApi.replyToComment(item.mod.id, item.id, body, token);
+      } finally {
+        // Tokens are single use.
+        turnstile.reset();
+      }
     }
   };
 
@@ -320,7 +378,9 @@ function InboxRow({ item, now }: { item: InboxItem; now: number }) {
         submitLabel={bt('basecamp_inbox_send')}
         onSubmit={reply}
         onCancel={() => setMode('idle')}
-      />
+      >
+        {item.type === 'review' ? null : <div ref={turnstile.containerRef} />}
+      </Composer>
     );
   } else {
     actions = (
@@ -414,15 +474,18 @@ function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (t
 export function InboxScreen({
   type,
   state,
+  modId = null,
   onFilters,
 }: {
   type: InboxType | null;
   state: InboxState;
-  onFilters: (next: { type?: InboxType | null; state?: InboxState }) => void;
+  /** Only the items of one of my mods («Needs attention» links here). */
+  modId?: number | null;
+  onFilters: (next: { type?: InboxType | null; state?: InboxState; modId?: number | null }) => void;
 }) {
   useBasecampMessages();
   const types = type ? [type] : [];
-  const inbox = useInfiniteQuery(inboxQuery(types, state));
+  const inbox = useInfiniteQuery(inboxQuery(types, state, modId));
   const [now] = useState(() => Date.now());
   const items = inbox.data?.pages.flatMap((page) => page.items) ?? [];
 
@@ -435,7 +498,21 @@ export function InboxScreen({
           description={bt('basecamp_inbox_intro')}
         />
         <div className="flex flex-wrap items-end justify-between gap-3">
-          <TypeFilter value={type} onChange={(next) => onFilters({ type: next })} />
+          <div className="flex flex-wrap items-center gap-3">
+            <TypeFilter value={type} onChange={(next) => onFilters({ type: next })} />
+            {modId !== null ? (
+              <span className="inline-flex h-9 items-center gap-2 rounded-full border border-primary bg-primary-soft px-3 text-sm text-fg">
+                {bt('basecamp_inbox_filter_mod', { mod: items[0]?.mod.name ?? `#${modId}` })}
+                <button
+                  type="button"
+                  onClick={() => onFilters({ modId: null })}
+                  className="text-xs font-semibold text-link hover:underline"
+                >
+                  {bt('basecamp_inbox_filter_mod_clear')}
+                </button>
+              </span>
+            ) : null}
+          </div>
           <Select<InboxState>
             label={bt('basecamp_inbox_filter_state')}
             options={[

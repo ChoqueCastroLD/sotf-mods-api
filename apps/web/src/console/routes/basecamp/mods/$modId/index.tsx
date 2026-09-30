@@ -5,7 +5,8 @@
  */
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { studioModQuery } from '../../../../features/basecamp/api.ts';
-import { type EditorTab, isEditorTab, ModEditorScreen } from '../../../../features/basecamp/editor/ModEditorScreen.tsx';
+import { ModEditorScreen } from '../../../../features/basecamp/editor/ModEditorScreen.tsx';
+import { type EditorTab, isEditorTab } from '../../../../features/basecamp/editor/tabs.ts';
 import { bt, loadBasecampMessages } from '../../../../features/basecamp/i18n.ts';
 import { loadUploadMessages } from '../../../../features/upload/i18n.ts';
 

@@ -17,6 +17,7 @@
  *   ['admin', 'setting', key]           one `SiteSetting`
  *   ['admin', 'kelvinseek', days]       KelvinSeek usage
  *   ['admin', 'rum', range]             RUM p75 per template × country
+ *   ['admin', 'operations']             job queues, dead letters, downloads, CDN purges
  *   ['admin', 'search', types, q]       mod/build picker of the awards form
  */
 import { type QueryClient, queryOptions } from '@tanstack/react-query';
@@ -39,6 +40,7 @@ export type SiteSetting = Out<typeof api.admin.getSetting>;
 export type KelvinUsage = Out<typeof api.admin.kelvinseekUsage>;
 export type Rum = Out<typeof api.admin.rum>;
 export type RumRow = Rum['rows'][number];
+export type Operations = Out<typeof api.admin.operations>;
 export type SearchHit = Out<typeof api.search.search>['hits'][number];
 
 export type CreateGameBuildInput = In<typeof api.admin.createGameBuild>['body'];
@@ -53,23 +55,12 @@ export type AnnouncementInput = In<typeof api.admin.createAnnouncement>['body'];
 export type KelvinDays = NonNullable<NonNullable<In<typeof api.admin.kelvinseekUsage>['query']>['days']>;
 export type RumRange = NonNullable<NonNullable<In<typeof api.admin.rum>['query']>['range']>;
 
-/** Fields the admin taxonomy reads may carry beyond `CategoryDTO`/`TagDTO` (docs/backlog/WP-83.md). */
-export interface CategoryExtras {
-  retiredAt?: string | null;
-  hubIntro?: Partial<Record<string, string>>;
-}
-export interface TagExtras {
-  description?: string;
-  sortOrder?: number;
-}
-
 export const adminKeys = {
   all: ['admin'] as const,
   gameBuilds: ['admin', 'game-builds'] as const,
   loaders: ['admin', 'loader-releases'] as const,
   ecosystem: ['admin', 'ecosystem'] as const,
   categories: ['admin', 'categories'] as const,
-  activeCategories: ['admin', 'active-categories'] as const,
   tags: ['admin', 'tags'] as const,
   recategorize: ['admin', 'recategorize'] as const,
   awards: ['admin', 'awards'] as const,
@@ -77,7 +68,9 @@ export const adminKeys = {
   setting: (key: SiteSettingKey) => ['admin', 'setting', key] as const,
   kelvinseek: (days: KelvinDays) => ['admin', 'kelvinseek', days] as const,
   rum: (range: RumRange) => ['admin', 'rum', range] as const,
+  operations: ['admin', 'operations'] as const,
   search: (types: string, q: string) => ['admin', 'search', types, q] as const,
+  kitPicks: (page: number, onlyPicks: boolean) => ['admin', 'kit-picks', page, onlyPicks] as const,
 } as const;
 
 export const gameBuildsQuery = queryOptions({
@@ -97,20 +90,12 @@ export const ecosystemQuery = queryOptions({
 
 export const categoriesQuery = queryOptions({
   queryKey: adminKeys.categories,
-  queryFn: async ({ signal }) =>
-    (await api.admin.listCategories({}, { signal })).items as (Category & CategoryExtras)[],
-});
-
-/** Ids of the active categories (the public list never contains retired ones). */
-export const activeCategoryIdsQuery = queryOptions({
-  queryKey: adminKeys.activeCategories,
-  queryFn: async ({ signal }) =>
-    new Set((await api.catalog.categories({ query: { kind: 'all' } }, { signal })).items.map((c) => c.id)),
+  queryFn: async ({ signal }): Promise<Category[]> => (await api.admin.listCategories({}, { signal })).items,
 });
 
 export const tagsQuery = queryOptions({
   queryKey: adminKeys.tags,
-  queryFn: async ({ signal }) => (await api.admin.listTags({}, { signal })).items as (Tag & TagExtras)[],
+  queryFn: async ({ signal }): Promise<Tag[]> => (await api.admin.listTags({}, { signal })).items,
 });
 
 export const suggestionsQuery = queryOptions({
@@ -148,6 +133,15 @@ export const rumQuery = (range: RumRange) =>
     queryFn: ({ signal }) => api.admin.rum({ query: { range } }, { signal }),
     staleTime: 5 * 60_000,
   });
+
+/** Operational readout; the screen refreshes it every minute while it is open. */
+export const OPERATIONS_REFRESH_MS = 60_000;
+
+export const operationsQuery = queryOptions({
+  queryKey: adminKeys.operations,
+  queryFn: ({ signal }) => api.admin.operations({}, { signal }),
+  staleTime: 30_000,
+});
 
 /** Mods or builds matching `q` (awards form). */
 export const pickerSearchQuery = (types: 'mod' | 'build', q: string) =>
@@ -189,7 +183,23 @@ export const adminApi = {
   updateAnnouncement: (id: number, body: AnnouncementInput) => api.admin.updateAnnouncement({ params: { id }, body }),
   deleteAnnouncement: (id: number) => api.admin.deleteAnnouncement({ params: { id } }),
   putSetting: (key: SiteSettingKey, value: unknown) => api.admin.putSetting({ params: { key }, body: { value } }),
+  setKitStaffPick: (kitId: number, isStaffPick: boolean) =>
+    api.admin.setKitStaffPick({ params: { id: kitId }, body: { isStaffPick } }),
 };
+
+export type KitCard = Out<typeof api.kits.list>['items'][number];
+export const KIT_PICKS_PAGE_SIZE = 20;
+
+/** Public kits (most followed first) or only the current staff picks, one page at a time. */
+export const kitPicksQuery = (page: number, onlyPicks: boolean) =>
+  queryOptions({
+    queryKey: adminKeys.kitPicks(page, onlyPicks),
+    queryFn: ({ signal }) =>
+      api.kits.list(
+        { query: { page, pageSize: KIT_PICKS_PAGE_SIZE, sort: 'popular', ...(onlyPicks ? { staffPick: true } : {}) } },
+        { signal },
+      ),
+  });
 
 /** Stores a setting write response and returns it. */
 export function storeSetting(queryClient: QueryClient, setting: SiteSetting): SiteSetting {

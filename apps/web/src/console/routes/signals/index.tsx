@@ -4,8 +4,9 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
-import { isSignalFilter, type SignalFilter, signalsMessagesQuery, signalsQuery } from '../../features/signals/api.ts';
+import { signalsMessagesQuery, signalsQuery } from '../../features/signals/api.ts';
 import { SignalsScreen } from '../../features/signals/SignalsScreen.tsx';
+import { isSignalFilter, type SignalFilter } from '../../features/signals/search.ts';
 import { activeLocale } from '../../lib/messages.ts';
 
 interface SignalsSearch {

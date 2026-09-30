@@ -21,10 +21,8 @@ import type { ModCompatDTO } from '@sotf/contracts/compat';
 import type { BadgeCatalogDTO, UserBadgesDTO } from '@sotf/contracts/gamification';
 import type { ModLiveDTO } from '@sotf/contracts/stats';
 import type {
-  ANALYTICS_RANGES,
   AnalyticsDTO,
   DOWNLOAD_CHANNELS,
-  INBOX_TYPES,
   InboxItemDTO,
   InboxPageDTO,
   StudioModDTO,
@@ -35,11 +33,21 @@ import type {
   StudioTransition,
   UpdateStudioModBody,
 } from '@sotf/contracts/studio';
-import type { VersionDTO } from '@sotf/contracts/versions';
 import { infiniteQueryOptions, type QueryClient, queryOptions } from '@tanstack/react-query';
 import type { z } from 'zod';
 import { api } from '../../lib/api.ts';
 import { queryKeys } from '../../lib/query-keys.ts';
+import { type AnalyticsRange, INBOX_KINDS, type InboxType } from './search.ts';
+
+export {
+  type AnalyticsRange,
+  INBOX_KINDS,
+  type InboxType,
+  isInboxType,
+  isRange,
+  MOD_STATUS_VALUES,
+  RANGES,
+} from './search.ts';
 
 export type Overview = z.output<typeof StudioOverviewDTO>;
 export type Kpi = Overview['kpis']['downloads7d'];
@@ -50,13 +58,12 @@ export type ModRow = z.output<typeof StudioModRowDTO>;
 export type ModList = z.output<typeof StudioModListDTO>;
 export type StudioMod = z.output<typeof StudioModDTO>;
 export type ModState = z.output<typeof StudioModStateDTO>;
-export type Version = z.output<typeof VersionDTO>;
+/** A version as its author sees it (`OwnerVersionDTO`: with the changelog source). */
+export type Version = StudioMod['versions'][number];
 export type Analytics = z.output<typeof AnalyticsDTO>;
-export type AnalyticsRange = (typeof ANALYTICS_RANGES)[number];
 export type DownloadChannel = (typeof DOWNLOAD_CHANNELS)[number];
 export type InboxItem = z.output<typeof InboxItemDTO>;
 export type InboxPage = z.output<typeof InboxPageDTO>;
-export type InboxType = (typeof INBOX_TYPES)[number];
 export type InboxState = 'open' | 'all';
 export type ModCompat = z.output<typeof ModCompatDTO>;
 export type BadgeCatalog = z.output<typeof BadgeCatalogDTO>;
@@ -66,20 +73,8 @@ export type ListingPatch = z.input<typeof UpdateStudioModBody>;
 export type Transition = StudioTransition;
 export type { CompatStatus, ModStatus, VersionStatus };
 
-/** `ANALYTICS_RANGES` of the contracts, in the order of the range switch. */
-export const RANGES = ['7d', '30d', '90d', 'all'] as const satisfies readonly AnalyticsRange[];
-/** `INBOX_TYPES` of the contracts. */
-export const INBOX_KINDS = ['comment', 'bug', 'review', 'compat'] as const satisfies readonly InboxType[];
 /** `DOWNLOAD_CHANNELS` of the contracts. */
 export const CHANNELS = ['web', 'redmanager', 'client', 'api', 'unknown'] as const satisfies readonly DownloadChannel[];
-export const MOD_STATUS_VALUES = [
-  'published',
-  'pending',
-  'unlisted',
-  'rejected',
-  'archived',
-  'removed',
-] as const satisfies readonly ModStatus[];
 
 /** `STUDIO_LIMITS` of the contracts (kept Zod-free). */
 export const LIMITS = {
@@ -99,14 +94,6 @@ export const LIMITS = {
   replyMax: 2000,
 } as const;
 
-export function isRange(value: unknown): value is AnalyticsRange {
-  return typeof value === 'string' && (RANGES as readonly string[]).includes(value);
-}
-
-export function isInboxType(value: unknown): value is InboxType {
-  return typeof value === 'string' && (INBOX_KINDS as readonly string[]).includes(value);
-}
-
 /** Buckets of a range: days up to 90 days, weeks for the whole history. */
 export function granularityOf(range: AnalyticsRange): 'day' | 'week' {
   return range === 'all' ? 'week' : 'day';
@@ -121,7 +108,8 @@ export const basecampKeys = {
   mod: (modId: number) => queryKeys.studioMod(modId),
   compat: (modId: number) => [...queryKeys.studioMod(modId), 'compat'] as const,
   analytics: (modId: number | null, range: AnalyticsRange) => [...studio, 'analytics', modId ?? 'all', range] as const,
-  inbox: (types: readonly InboxType[], state: InboxState) => [...studio, 'inbox', types.join(','), state] as const,
+  inbox: (types: readonly InboxType[], state: InboxState, modId: number | null = null) =>
+    [...studio, 'inbox', types.join(','), state, modId ?? 'all'] as const,
   inboxAll: [...studio, 'inbox'] as const,
   live: (modId: number) => ['studio', 'live', modId] as const,
   badgeCatalog: ['gamification', 'badges'] as const,
@@ -175,9 +163,9 @@ export function analyticsQuery(modId: number | null, range: AnalyticsRange) {
 
 export const INBOX_PAGE_SIZE = 25;
 
-export function inboxQuery(types: readonly InboxType[], state: InboxState) {
+export function inboxQuery(types: readonly InboxType[], state: InboxState, modId: number | null = null) {
   return infiniteQueryOptions({
-    queryKey: basecampKeys.inbox(types, state),
+    queryKey: basecampKeys.inbox(types, state, modId),
     queryFn: ({ pageParam, signal }): Promise<InboxPage> =>
       api.studio.inbox(
         {
@@ -185,6 +173,7 @@ export function inboxQuery(types: readonly InboxType[], state: InboxState) {
             state,
             limit: INBOX_PAGE_SIZE,
             ...(types.length > 0 && types.length < INBOX_KINDS.length ? { type: [...types] } : {}),
+            ...(modId !== null ? { modId } : {}),
             ...(pageParam ? { cursor: pageParam } : {}),
           },
         },
@@ -253,8 +242,11 @@ export const basecampApi = {
     api.studio.requestRemoval({ params: { id: modId }, body: { reason: reason.trim() } }),
   replyToReview: (reviewId: number, bodyMd: string) =>
     api.reviews.reply({ params: { id: reviewId }, body: { bodyMd: bodyMd.trim() } }),
-  replyToComment: (modId: number, parentId: number, bodyMd: string) =>
-    api.comments.create({ params: { id: modId }, body: { bodyMd: bodyMd.trim(), parentId, isBugReport: false } }),
+  replyToComment: (modId: number, parentId: number, bodyMd: string, turnstileToken?: string) =>
+    api.comments.create({
+      params: { id: modId },
+      body: { bodyMd: bodyMd.trim(), parentId, isBugReport: false, ...(turnstileToken ? { turnstileToken } : {}) },
+    }),
   resolveBug: (commentId: number, versionId: number) =>
     api.comments.resolveBug({ params: { id: commentId }, body: { versionId } }),
   acknowledgeCompat: (reportId: number, fixedInVersionId?: number) =>
@@ -311,6 +303,20 @@ export function storeVersion(queryClient: QueryClient, modId: number, version: V
  * legacy images not adopted yet (they cannot be referenced by `PUT /media`).
  */
 const MEDIA_URL = /\/media\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\//i;
+
+/** Cover media id of the owner view (`media.thumbnailMediaId`; parsed from the URL as a fallback). */
+export function coverMediaIdOf(studio: Pick<StudioMod, 'mod' | 'media'>): string | null {
+  return studio.media?.thumbnailMediaId ?? mediaIdOf(studio.mod.thumbnail?.url);
+}
+
+/** Media id of each gallery image (`media.gallery[i].mediaId`, null for legacy images not processed yet). */
+export function galleryMediaIds(studio: Pick<StudioMod, 'mod' | 'media'>): Array<string | null> {
+  return studio.mod.gallery.map((image, index) => {
+    const entry = studio.media?.gallery[index];
+    if (entry && entry.url === image.url) return entry.mediaId;
+    return mediaIdOf(image.url);
+  });
+}
 
 export function mediaIdOf(url: string | null | undefined): string | null {
   if (!url) return null;

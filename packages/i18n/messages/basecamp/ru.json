@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Получены ({count})",
   "basecamp_badges_earned_on": "Получен {date}",
   "basecamp_badges_none_title": "Значков пока нет",
-  "basecamp_badges_none_text": "Публикация модов, ответы игрокам и поддержка модов после каждого патча приносят значки."
+  "basecamp_badges_none_text": "Публикация модов, ответы игрокам и поддержка модов после каждого патча приносят значки.",
+  "basecamp_inbox_template_insert": "Вставить сохранённый ответ",
+  "basecamp_inbox_template_manage": "Управлять сохранёнными ответами",
+  "basecamp_versions_changelog_edit": "Изменить список изменений",
+  "basecamp_versions_changelog_title": "Изменения в v{version}",
+  "basecamp_versions_changelog_text": "Поддерживается Markdown. Игроки видят это на странице мода и в сигнале об обновлении.",
+  "basecamp_versions_changelog_saved": "Изменения в v{version} сохранены.",
+  "basecamp_versions_changelog_failed": "Не удалось сохранить изменения",
+  "basecamp_versions_changelog_save": "Сохранить изменения",
+  "basecamp_analytics_versions_daily": "Загрузки по версиям во времени",
+  "basecamp_inbox_filter_mod": "Только {mod}",
+  "basecamp_inbox_filter_mod_clear": "Показать все моды"
 }

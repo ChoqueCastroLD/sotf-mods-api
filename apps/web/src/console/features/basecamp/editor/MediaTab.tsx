@@ -4,8 +4,9 @@
  * alt text, delete, add. Images already on the listing are never re-uploaded: the save sends their
  * media ids in the new order (`PUT /studio/mods/:id/media`).
  *
- * Legacy images that were not adopted as processed media yet have no id the API can reference;
- * they stay where they are (shown as «locked») until the media backfill processes them.
+ * The ids come from the owner view (`StudioModDTO.media`). Legacy images that were not adopted as
+ * processed media yet have no id (null) the API can reference; they stay where they are (shown as
+ * «locked») until the media backfill processes them.
  */
 import { isApiError } from '@sotf/contracts/client';
 import { Badge } from '@sotf/ui/badge';
@@ -23,7 +24,7 @@ import { failureLabel } from '../../upload/labels.ts';
 import { imageProblem, uploadImage } from '../../upload/lib/image-upload.ts';
 import { UploadError, waitForUpload } from '../../upload/lib/uploader.ts';
 import { FieldGroup } from '../../upload/steps/StepHeader.tsx';
-import { basecampApi, LIMITS, mediaIdOf, type StudioMod, storeStudioMod } from '../api.ts';
+import { basecampApi, coverMediaIdOf, galleryMediaIds, LIMITS, type StudioMod, storeStudioMod } from '../api.ts';
 import { number, percent } from '../format.ts';
 import { bt } from '../i18n.ts';
 import { reportFailure } from '../shared.tsx';
@@ -53,8 +54,9 @@ let counter = 0;
 const nextKey = () => `m${Date.now().toString(36)}${(counter++).toString(36)}`;
 
 function galleryOf(studio: StudioMod): GalleryItem[] {
-  return studio.mod.gallery.map((image) => {
-    const mediaId = mediaIdOf(image.url);
+  const ids = galleryMediaIds(studio);
+  return studio.mod.gallery.map((image, index) => {
+    const mediaId = ids[index] ?? null;
     return {
       key: mediaId ?? image.url,
       mediaId,
@@ -108,7 +110,7 @@ async function putWithRetry(run: () => Promise<StudioMod>, onWait: () => void): 
 
 export function MediaTab({ studio, onDirty }: { studio: StudioMod; onDirty: (dirty: boolean) => void }) {
   const queryClient = useQueryClient();
-  const currentCoverId = mediaIdOf(studio.mod.thumbnail?.url);
+  const currentCoverId = coverMediaIdOf(studio);
   const serverGallery = useMemo(() => galleryOf(studio), [studio]);
   const [items, setItems] = useState<GalleryItem[]>(serverGallery);
   const [cover, setCover] = useState<CoverValue | undefined>(undefined);
@@ -273,7 +275,7 @@ export function MediaTab({ studio, onDirty }: { studio: StudioMod; onDirty: (dir
       setItems(fresh);
       setCover(undefined);
       setCoverRemoved(false);
-      setBaseline(signatureOf(mediaIdOf(updated.mod.thumbnail?.url), undefined, fresh));
+      setBaseline(signatureOf(coverMediaIdOf(updated), undefined, fresh));
       notify.success(bt('basecamp_media_saved'));
     } catch (error) {
       if (error instanceof UploadError)

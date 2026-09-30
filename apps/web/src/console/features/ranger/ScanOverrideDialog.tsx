@@ -2,8 +2,7 @@
  * Override a security scan verdict (PLAN §7.4: «El moderador puede marcar "falso positivo
  * verificado"»). `false_positive` releases a version held by the scan; `malicious` pulls it.
  *
- * The scan id is not part of `ScanSummaryDTO` yet (docs/backlog/WP-82.md): the dialog is offered
- * only when the API includes it (`scanIdOf`).
+ * Offered when the item's scan has an id (`ScanSummaryDTO.id`; null for versions never scanned).
  */
 import { m } from '@sotf/i18n/messages';
 import { Button } from '@sotf/ui/button';
@@ -20,10 +19,9 @@ import { reportFailure } from './shared.tsx';
 
 type Verdict = 'false_positive' | 'malicious';
 
-/** The scan id when the API sends it (additive field of `ScanSummaryDTO`). */
+/** The scan to override, or null when there is none. */
 export function scanIdOf(scan: ScanSummary | null): number | null {
-  if (!scan) return null;
-  const id = (scan as ScanSummary & { id?: unknown }).id;
+  const id: unknown = scan?.id;
   return typeof id === 'number' && Number.isSafeInteger(id) && id > 0 ? id : null;
 }
 

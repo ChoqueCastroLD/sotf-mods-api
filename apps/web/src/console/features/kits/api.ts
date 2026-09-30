@@ -9,10 +9,9 @@
  *   ['kits', 'search', q]      mod/build search of the picker
  *
  * Owner read: the public `GET /kits/:id` is edge-cacheable and answers as for an anonymous
- * visitor (private kits are 404, no `descriptionMd`), so the editor reads its kit with
- * `GET /me/kits/:id` (docs/backlog/WP-42.md). Until that endpoint is deployed the loader falls
- * back to an empty `PATCH /kits/:id` — an owner-only call whose answer is the owner view — and
- * every write response refreshes the cache, so the fallback runs once per cold editor load.
+ * visitor (private kits are 404, no `descriptionMd`), so the editor reads its kit with the
+ * owner-only `GET /me/kits/:id` (any visibility, `descriptionMd` included); every write response
+ * refreshes the same cache entry.
  */
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import type { KitCardDTO, KitDTO, KitVisibility } from '@sotf/contracts/kits';
@@ -39,20 +38,9 @@ export const myKitsQuery = queryOptions({
   queryFn: async ({ signal }) => (await api.kits.myKits({}, { signal })).items,
 });
 
-/** Reads one of my kits in the owner view (see the module comment). */
-export async function fetchOwnKit(id: number, signal?: AbortSignal): Promise<KitDTO> {
-  try {
-    const response = await fetch(`/api/v2/me/kits/${id}`, {
-      credentials: 'same-origin',
-      headers: { accept: 'application/json' },
-      ...(signal ? { signal } : {}),
-    });
-    if (response.ok) return (await response.json()) as KitDTO;
-  } catch (error) {
-    if (error instanceof DOMException && error.name === 'AbortError') throw error;
-    // Network failure: the typed call below reports it with a proper ApiError.
-  }
-  return api.kits.update({ params: { id }, body: {} }, { signal });
+/** Reads one of my kits in the owner view (`GET /me/kits/:id`). */
+export function fetchOwnKit(id: number, signal?: AbortSignal): Promise<KitDTO> {
+  return api.kits.getOwn({ params: { id } }, { signal });
 }
 
 export const ownKitQuery = (id: number) =>

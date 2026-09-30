@@ -172,3 +172,77 @@ export function CategoryFigure({ title, rowHeader, valueLabel, rows, colorIndex,
     </ChartFigure>
   );
 }
+
+/**
+ * Daily (or weekly) downloads of each version as stacked bars (`seriesByVersion`: ≤ 8 versions +
+ * «other», buckets without downloads omitted → zero-filled on the buckets of `series`).
+ */
+export function versionSeries(
+  analytics: Pick<Analytics, 'series' | 'seriesByVersion'>,
+  otherLabel: string,
+): { data: Array<{ day: string } & Record<string, number | string>>; series: SeriesSpec[] } {
+  const versions: string[] = [];
+  for (const entry of analytics.seriesByVersion ?? [])
+    if (!versions.includes(entry.version)) versions.push(entry.version);
+  // «Other» last, like the totals chart.
+  versions.sort((a, b) => (a === 'other' ? 1 : b === 'other' ? -1 : 0));
+  const keyOf = (version: string) => `v${versions.indexOf(version)}`;
+  const byDay = new Map<string, Record<string, number>>();
+  for (const entry of analytics.seriesByVersion ?? []) {
+    const row = byDay.get(entry.day) ?? {};
+    row[keyOf(entry.version)] = (row[keyOf(entry.version)] ?? 0) + entry.downloads;
+    byDay.set(entry.day, row);
+  }
+  const days = analytics.series.length > 0 ? analytics.series.map((row) => row.day) : [...byDay.keys()].sort();
+  const data = days.map((day) => {
+    const row: { day: string } & Record<string, number | string> = { day };
+    const values = byDay.get(day) ?? {};
+    for (const version of versions) row[keyOf(version)] = values[keyOf(version)] ?? 0;
+    return row;
+  });
+  const series = versions.map((version) => ({
+    key: keyOf(version),
+    label: version === 'other' ? otherLabel : `v${version}`,
+  }));
+  return { data, series };
+}
+
+export function VersionSeriesFigure({
+  analytics,
+  range,
+  className,
+}: {
+  analytics: Analytics;
+  range: AnalyticsRange;
+  className?: string;
+}) {
+  const title = bt('basecamp_analytics_versions_daily');
+  const { data, series } = versionSeries(analytics, bt('basecamp_analytics_other_versions'));
+  if (series.length === 0) return null;
+  const rows = data.map(({ day, ...values }) => ({ label: dayLabel(day, true), ...values }));
+  return (
+    <ChartFigure
+      title={title}
+      series={series}
+      rows={rows}
+      rowHeader={analytics.granularity === 'day' ? bt('basecamp_chart_day') : bt('basecamp_chart_week')}
+      height={240}
+      {...(className ? { className } : {})}
+    >
+      <TimeSeriesChart
+        data={data}
+        series={series}
+        kind="bar"
+        title={title}
+        height={240}
+        formatDay={(day) => dayLabel(day, range === 'all')}
+        formatDayLong={(day) =>
+          analytics.granularity === 'day'
+            ? dayLabel(day, true)
+            : bt('basecamp_chart_week_of', { date: dayLabel(day, true) })
+        }
+        formatValue={number}
+      />
+    </ChartFigure>
+  );
+}

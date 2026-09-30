@@ -3,8 +3,11 @@
  * is, automated checks and scan, then tabs — files diff, manifest diff, description, media,
  * changelog, author history — and the decision bar with its shortcuts:
  *
- *   a approve · c request changes (template) · r reject (template)
+ *   a approve · c request changes (template) · r reject (template) · e escalate to the admins
  *
+ * Any ranger can take the item («Assign to me», released by the same button) or escalate it with
+ * a note; both update the row in the lane at once. Report items show what was reported (reason,
+ * target, details, reporter), and users cannot be «hidden».
  * Comments held for review are published (approve) or hidden with a reason (reject). Reports are
  * resolved (optionally hiding the content) or dismissed. `triage` is the phone layout (research/03
  * §6.10 «Móvil: solo triaje»): summary, checks and description with approve/reject; the diffs need
@@ -33,11 +36,16 @@ import {
   Monitor,
   MoreHorizontal,
   RotateCcw,
+  Siren,
   Trash2,
+  UserCheck,
+  UserMinus,
   X,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useMe } from '../../hooks/use-me.ts';
 import { useShortcut } from '../../hooks/use-shortcuts.tsx';
+import { problemCode } from '../../lib/errors.ts';
 import { notify } from '../../lib/notify.ts';
 import {
   dropFromLane,
@@ -47,10 +55,13 @@ import {
   type QueueItem,
   type QueueItemDetail,
   type ReasonAction,
+  type Report,
   rangerApi,
   refreshModeration,
+  storeQueueItem,
 } from './api.ts';
 import { DecisionDialog, type DecisionRequest } from './DecisionDialog.tsx';
+import { EscalateDialog } from './EscalateDialog.tsx';
 import {
   AuthorHistoryPanel,
   ChecksPanel,
@@ -59,7 +70,14 @@ import {
   ManifestDiffPanel,
   MediaPanel,
 } from './ItemPanels.tsx';
-import { actionLabel, approveLabel, decidedMessage, laneLabel } from './labels.ts';
+import {
+  actionLabel,
+  approveLabel,
+  decidedMessage,
+  laneLabel,
+  reportReasonLabel,
+  reportTargetLabel,
+} from './labels.ts';
 import { ReportDialog, type ReportResolution } from './ReportDialog.tsx';
 import { ScanOverrideDialog, scanIdOf } from './ScanOverrideDialog.tsx';
 import { dateTime, PanelError, publicHref, RiskBadge, reportFailure, UserChip, WaitingBadge } from './shared.tsx';
@@ -137,6 +155,7 @@ type Dialog =
   | { kind: 'comment-reject' }
   | { kind: 'report'; resolution: ReportResolution; hide: boolean }
   | { kind: 'scan' }
+  | { kind: 'escalate' }
   | null;
 
 function ItemDetail({
@@ -151,9 +170,14 @@ function ItemDetail({
   onBack?: () => void;
 }) {
   const queryClient = useQueryClient();
+  const me = useMe();
   const { item } = detail;
   const [dialog, setDialog] = useState<Dialog>(null);
   const [busy, setBusy] = useState<ModerationAction | null>(null);
+  const [working, setWorking] = useState<'assign' | 'escalate' | null>(null);
+  const mine = item.assignee?.id === me.user.id;
+  // Users can be reported but not hidden (sanctions live on the user card).
+  const canHideReport = detail.report ? detail.report.targetType !== 'user' : true;
   const [tab, setTab] = useState<TabValue>(
     triage ? 'description' : item.targetType === 'comment' ? 'description' : 'files',
   );
@@ -211,6 +235,41 @@ function ItemDetail({
     }
   };
 
+  /** Takes the item, or releases it when it is already yours. */
+  const toggleAssign = async () => {
+    if (working) return;
+    setWorking('assign');
+    try {
+      const updated = await rangerApi.assign(item.id, !mine);
+      storeQueueItem(queryClient, updated);
+      notify.success(mine ? m.ranger_assign_released() : m.ranger_assign_done());
+    } catch (error) {
+      if (problemCode(error) === 'CONFLICT') {
+        notify.error(m.ranger_assign_conflict());
+        void refreshModeration(queryClient);
+      } else {
+        reportFailure(error, m.ranger_assign_failed());
+      }
+    } finally {
+      setWorking(null);
+    }
+  };
+
+  /** Escalates with a note, or clears the escalation (`note = null`). Rethrows for the dialog. */
+  const escalate = async (note: string | null) => {
+    setWorking('escalate');
+    try {
+      const updated = await rangerApi.escalate(item.id, note !== null, note ?? undefined);
+      storeQueueItem(queryClient, updated);
+      notify.success(note !== null ? m.ranger_escalate_done() : m.ranger_escalate_cleared());
+    } catch (error) {
+      reportFailure(error, m.ranger_escalate_failed());
+      throw error;
+    } finally {
+      setWorking(null);
+    }
+  };
+
   const approve = () => {
     if (!can('approve') || dialog) return;
     void decide('approve').catch(() => {});
@@ -238,6 +297,10 @@ function ItemDetail({
       enabled: idle && (isReport || can('reject')),
     },
   );
+  useShortcut('e', () => setDialog({ kind: 'escalate' }), {
+    description: () => m.ranger_escalate(),
+    enabled: idle && working === null && item.escalation === null,
+  });
 
   const moreEntries: MenuEntry[] = [];
   if (can('unlist')) {
@@ -354,7 +417,58 @@ function ItemDetail({
             </Link>
           ) : null}
         </div>
+        {item.escalation ? (
+          <div className="flex flex-wrap items-start gap-2 rounded-md border border-danger/40 bg-danger/5 p-3 text-sm">
+            <Badge variant="danger" size="sm" icon={<Icon icon={Siren} size={12} />}>
+              {m.ranger_escalated()}
+            </Badge>
+            <span className="min-w-0 flex-1 text-fg-muted">
+              {item.escalation.by ? m.ranger_escalated_by({ name: item.escalation.by.displayName }) : null}
+              {item.escalation.by ? ' · ' : null}
+              {dateTime(item.escalation.at)}
+              {item.escalation.note ? (
+                <span className="mt-1 block whitespace-pre-wrap break-words text-fg">{item.escalation.note}</span>
+              ) : null}
+            </span>
+          </div>
+        ) : null}
+        <div className="flex flex-wrap items-center gap-2">
+          <Button
+            variant="secondary"
+            size="sm"
+            loading={working === 'assign'}
+            disabled={working !== null}
+            icon={<Icon icon={mine ? UserMinus : UserCheck} size={16} />}
+            onClick={() => void toggleAssign()}
+          >
+            {mine ? m.ranger_assign_release() : m.ranger_assign_me()}
+          </Button>
+          {item.escalation ? (
+            <Button
+              variant="ghost"
+              size="sm"
+              loading={working === 'escalate'}
+              disabled={working !== null}
+              onClick={() => void escalate(null).catch(() => {})}
+            >
+              {m.ranger_escalate_clear()}
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="sm"
+              disabled={working !== null}
+              icon={<Icon icon={Siren} size={16} />}
+              onClick={() => setDialog({ kind: 'escalate' })}
+            >
+              {m.ranger_escalate()}
+              {triage ? null : <Kbd className="ms-1">E</Kbd>}
+            </Button>
+          )}
+        </div>
       </header>
+
+      {detail.report ? <ReportSummary report={detail.report} /> : null}
 
       {hasFiles ? (
         <ChecksPanel
@@ -405,13 +519,15 @@ function ItemDetail({
               {m.ranger_report_resolve()}
               {triage ? null : <Kbd className="ms-1">A</Kbd>}
             </Button>
-            <Button
-              variant="danger"
-              onClick={() => setDialog({ kind: 'report', resolution: 'resolve', hide: true })}
-              icon={<Icon icon={EyeOff} size={16} />}
-            >
-              {m.ranger_report_resolve_hide()}
-            </Button>
+            {canHideReport ? (
+              <Button
+                variant="danger"
+                onClick={() => setDialog({ kind: 'report', resolution: 'resolve', hide: true })}
+                icon={<Icon icon={EyeOff} size={16} />}
+              >
+                {m.ranger_report_resolve_hide()}
+              </Button>
+            ) : null}
             <Button
               variant="secondary"
               onClick={() => setDialog({ kind: 'report', resolution: 'dismiss', hide: false })}
@@ -500,9 +616,19 @@ function ItemDetail({
           }}
           resolution={dialog.resolution}
           subject={item.title}
-          canHide
-          hideByDefault={dialog.hide}
+          canHide={canHideReport}
+          hideByDefault={dialog.hide && canHideReport}
           onSubmit={resolveReport}
+        />
+      ) : null}
+      {dialog?.kind === 'escalate' ? (
+        <EscalateDialog
+          open
+          onOpenChange={(open) => {
+            if (!open) setDialog(null);
+          }}
+          subject={item.title}
+          onSubmit={(note) => escalate(note)}
         />
       ) : null}
       {dialog?.kind === 'scan' && scanId !== null ? (
@@ -516,5 +642,64 @@ function ItemDetail({
         />
       ) : null}
     </article>
+  );
+}
+
+/** What a report item is about: reason, target (linked), the reporter's words and who sent it. */
+function ReportSummary({ report }: { report: Report }) {
+  const severe = report.reason === 'malware' || report.reason === 'illegal';
+  const subject =
+    report.target?.title ??
+    m.ranger_report_target_missing({ type: reportTargetLabel(report.targetType), id: report.targetId });
+  return (
+    <section className="grid gap-2 rounded-md border border-border bg-surface p-3 text-sm">
+      <p className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
+        <Badge variant={severe ? 'danger' : 'neutral'} size="sm">
+          {reportReasonLabel(report.reason)}
+        </Badge>
+        <span>{reportTargetLabel(report.targetType)}</span>
+        {report.targetType === 'user' ? (
+          <Link
+            to="/ranger/users/$userId"
+            params={{ userId: String(report.targetId) }}
+            className="text-link hover:underline"
+          >
+            {m.ranger_report_open_user()}
+          </Link>
+        ) : null}
+      </p>
+      <p className="font-medium break-words text-fg">
+        {report.target?.path ? (
+          <a
+            href={publicHref(report.target.path)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 hover:text-link"
+          >
+            {subject}
+            <Icon icon={ExternalLink} size={14} />
+            <span className="sr-only">{m.ranger_new_tab()}</span>
+          </a>
+        ) : (
+          subject
+        )}
+      </p>
+      {report.details ? (
+        <blockquote className="border-s-2 border-border-strong ps-3 whitespace-pre-wrap break-words text-fg">
+          {report.details}
+        </blockquote>
+      ) : (
+        <p className="text-fg-subtle">{m.ranger_report_no_details()}</p>
+      )}
+      <p className="text-xs text-fg-muted">
+        {report.reporter ? (
+          <span className="inline-flex items-center gap-1">
+            {m.ranger_report_by()} <UserChip user={report.reporter} size={20} />
+          </span>
+        ) : (
+          m.ranger_report_by_unknown()
+        )}
+      </p>
+    </section>
   );
 }

@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "已获得（{count}）",
   "basecamp_badges_earned_on": "获得于 {date}",
   "basecamp_badges_none_title": "还没有徽章",
-  "basecamp_badges_none_text": "发布模组、回复玩家、在每次补丁后保持模组可用，都能获得徽章。"
+  "basecamp_badges_none_text": "发布模组、回复玩家、在每次补丁后保持模组可用，都能获得徽章。",
+  "basecamp_inbox_template_insert": "插入已保存的回复",
+  "basecamp_inbox_template_manage": "管理已保存的回复",
+  "basecamp_versions_changelog_edit": "编辑更新日志",
+  "basecamp_versions_changelog_title": "v{version} 更新日志",
+  "basecamp_versions_changelog_text": "支持 Markdown。玩家会在模组页面和更新信号中看到。",
+  "basecamp_versions_changelog_saved": "已保存 v{version} 更新日志。",
+  "basecamp_versions_changelog_failed": "无法保存更新日志",
+  "basecamp_versions_changelog_save": "保存更新日志",
+  "basecamp_analytics_versions_daily": "各版本下载量趋势",
+  "basecamp_inbox_filter_mod": "仅 {mod}",
+  "basecamp_inbox_filter_mod_clear": "显示所有模组"
 }

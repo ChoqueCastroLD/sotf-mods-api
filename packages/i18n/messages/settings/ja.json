@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "気が変わりましたか？今取り消せば、すべてそのままです。",
   "settings_delete_cancel": "削除を取り消す",
   "settings_delete_cancelled": "削除を取り消しました。おかえりなさい",
-  "settings_delete_cancel_failed": "削除を取り消せませんでした"
+  "settings_delete_cancel_failed": "削除を取り消せませんでした",
+  "settings_featured_badges_title": "注目のバッジ",
+  "settings_featured_badges_text": "プロフィールのヘッダーに表示する獲得済みバッジを最大 {max} 個選べます。",
+  "settings_featured_badges_empty": "島でバッジを獲得すると、ここで選べます。",
+  "settings_featured_badges_count": "{max} 個中 {count} 個を選択",
+  "settings_featured_badges_saved": "注目のバッジを保存しました。"
 }

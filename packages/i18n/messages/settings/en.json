@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Changed your mind? Cancel now and everything stays as it is.",
   "settings_delete_cancel": "Cancel the deletion",
   "settings_delete_cancelled": "Deletion cancelled — welcome back",
-  "settings_delete_cancel_failed": "Couldn’t cancel the deletion"
+  "settings_delete_cancel_failed": "Couldn’t cancel the deletion",
+  "settings_featured_badges_title": "Featured badges",
+  "settings_featured_badges_text": "Choose up to {max} earned badges for the header of your profile.",
+  "settings_featured_badges_empty": "Earn badges on the island to feature them here.",
+  "settings_featured_badges_count": "{count} of {max} selected",
+  "settings_featured_badges_saved": "Featured badges saved."
 }

@@ -6,6 +6,8 @@
   "console_nav_my_mods": "Mes mods",
   "console_nav_new_mod": "Nouveau mod",
   "console_nav_new_build": "Nouveau build",
+  "console_nav_inbox": "Boîte de réception",
+  "console_nav_drafts": "Brouillons",
   "console_nav_analytics": "Statistiques",
   "console_nav_badges": "Badges",
   "console_nav_downloads": "Téléchargements",
@@ -67,6 +69,5 @@
   "console_shortcut_go_ranger": "Aller au poste des rangers",
   "console_shortcut_toggle_sidebar": "Réduire ou déployer la barre latérale",
   "console_noscript": "La console a besoin de JavaScript. Activez-le pour gérer vos mods, vos signaux et vos paramètres.",
-  "console_nav_inbox": "Boîte de réception",
-  "console_nav_drafts": "Brouillons"
+  "console_nav_operations": "Exploitation"
 }

@@ -60,9 +60,11 @@ export function st(key: SignalsMessageKey, params?: IcuParams): string {
   return formatIcu(template, params, lang);
 }
 
-// ── Badge names (lazy) ──────────────────────────────────────────────────────────────────────────
-// The names live in the `profile` namespace (`profile_badge_<snake_key>_name`, WP-64). That file is
-// only fetched when a list actually shows a «You earned …» signal (docs/backlog/WP-A2.md).
+// ── Badge names ─────────────────────────────────────────────────────────────────────────────────
+// The `signals` catalogue carries the names of the badges a signal can announce
+// (`signals_badge_name_<snake_key>`), so the usual case needs nothing else. A badge added later
+// without its signals copy falls back to the `profile` namespace (`profile_badge_<snake_key>_name`,
+// WP-64), fetched only when a list shows such a badge (docs/backlog/WP-A2.md).
 
 const PROFILE_CATALOGS = import.meta.glob<Catalog>('../../../../../packages/i18n/messages/profile/*.json', {
   import: 'default',
@@ -71,7 +73,7 @@ const PROFILE_CATALOGS = import.meta.glob<Catalog>('../../../../../packages/i18n
 let badgeNames: { locale: Locale; names: Catalog } | null = null;
 let badgeLoading: Promise<boolean> | null = null;
 
-/** Loads the badge names of the loaded locale (English fallback). Resolves false when unavailable. */
+/** Loads the profile badge names of the loaded locale (English fallback). Resolves false when unavailable. */
 export function ensureBadgeNames(): Promise<boolean> {
   const locale = loadedLocale ?? 'en';
   if (badgeNames?.locale === locale) return Promise.resolve(true);
@@ -96,20 +98,37 @@ export function ensureBadgeNames(): Promise<boolean> {
   return badgeLoading;
 }
 
-/** Localised name of a badge key (`first-blueprint`, `original-survivor-2024`), or null when unknown. */
-export function badgeName(key: string): string | null {
-  const names = badgeNames?.names;
-  if (!names) return null;
+/** `first-blueprint` → `first_blueprint`; `original-survivor-2024` → `original_survivor` + year. */
+function badgeParts(key: string): { snake: string; year: string | null } {
   const survivor = /^original-survivor-(\d{4})$/.exec(key);
-  if (survivor) {
-    const template = names.profile_badge_original_survivor_name;
-    return template ? formatIcu(template, { year: survivor[1] ?? '' }, lang) : null;
-  }
-  const template = names[`profile_badge_${key.replace(/-/g, '_')}_name`];
-  return template ? formatIcu(template, {}, lang) : null;
+  if (survivor) return { snake: 'original_survivor', year: survivor[1] ?? '' };
+  return { snake: key.replace(/-/g, '_'), year: null };
 }
 
-/** Whether a list shows «You earned …» signals (worth loading the badge names). */
+/** Localised name of a badge key (`first-blueprint`, `original-survivor-2024`), or null when unknown. */
+export function badgeName(key: string): string | null {
+  const { snake, year } = badgeParts(key);
+  const params: IcuParams = year === null ? {} : { year };
+  const own = messages[`signals_badge_name_${snake}`];
+  if (own !== undefined) return formatIcu(own, params, lang);
+  const template = badgeNames?.names[`profile_badge_${snake}_name`];
+  return template ? formatIcu(template, params, lang) : null;
+}
+
+/**
+ * Whether a list shows «You earned …» signals whose badge the `signals` catalogue cannot name
+ * (worth loading the profile badge names).
+ */
 export function needsBadgeNames(signals: ReadonlyArray<{ type: string; data: Record<string, unknown> }>): boolean {
-  return signals.some((signal) => signal.type === 'badge.awarded' && signal.data.welcome !== true);
+  return signals.some((signal) => {
+    if (signal.type !== 'badge.awarded' || signal.data.welcome === true) return false;
+    const key = typeof signal.data.badgeKey === 'string' ? signal.data.badgeKey : '';
+    return messages[`signals_badge_name_${badgeParts(key).snake}`] === undefined;
+  });
+}
+
+/** A message of the loaded catalogue by a dynamic key, or null when the catalogue has no such key. */
+export function stOptional(key: string, params?: IcuParams): string | null {
+  const template = messages[key];
+  return template === undefined ? null : formatIcu(template, params, lang);
 }

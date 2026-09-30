@@ -6,6 +6,8 @@
   "console_nav_my_mods": "Meine Mods",
   "console_nav_new_mod": "Neuer Mod",
   "console_nav_new_build": "Neuer Build",
+  "console_nav_inbox": "Posteingang",
+  "console_nav_drafts": "Entwürfe",
   "console_nav_analytics": "Statistiken",
   "console_nav_badges": "Abzeichen",
   "console_nav_downloads": "Downloads",
@@ -67,6 +69,5 @@
   "console_shortcut_go_ranger": "Zur Rangerstation",
   "console_shortcut_toggle_sidebar": "Seitenleiste ein- oder ausklappen",
   "console_noscript": "Die Konsole braucht JavaScript. Aktiviere es, um deine Mods, Signale und Einstellungen zu verwalten.",
-  "console_nav_inbox": "Posteingang",
-  "console_nav_drafts": "Entwürfe"
+  "console_nav_operations": "Betrieb"
 }

@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Kazanılanlar ({count})",
   "basecamp_badges_earned_on": "{date} tarihinde kazanıldı",
   "basecamp_badges_none_title": "Henüz rozet yok",
-  "basecamp_badges_none_text": "Yayınlamak, oyunculara yanıt vermek ve modları her yamadan sonra çalışır tutmak rozet kazandırır."
+  "basecamp_badges_none_text": "Yayınlamak, oyunculara yanıt vermek ve modları her yamadan sonra çalışır tutmak rozet kazandırır.",
+  "basecamp_inbox_template_insert": "Kayıtlı bir yanıt ekle",
+  "basecamp_inbox_template_manage": "Kayıtlı yanıtları yönet",
+  "basecamp_versions_changelog_edit": "Değişiklik günlüğünü düzenle",
+  "basecamp_versions_changelog_title": "v{version} değişiklik günlüğü",
+  "basecamp_versions_changelog_text": "Markdown kullanılabilir. Oyuncular bunu mod sayfasında ve güncelleme sinyalinde görür.",
+  "basecamp_versions_changelog_saved": "v{version} değişiklik günlüğü kaydedildi.",
+  "basecamp_versions_changelog_failed": "Değişiklik günlüğü kaydedilemedi",
+  "basecamp_versions_changelog_save": "Günlüğü kaydet",
+  "basecamp_analytics_versions_daily": "Zaman içinde sürüm başına indirmeler",
+  "basecamp_inbox_filter_mod": "Yalnızca {mod}",
+  "basecamp_inbox_filter_mod_clear": "Tüm modları göster"
 }

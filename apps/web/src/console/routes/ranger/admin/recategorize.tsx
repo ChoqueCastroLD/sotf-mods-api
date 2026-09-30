@@ -6,7 +6,7 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
-import { activeCategoryIdsQuery, categoriesQuery, tagsQuery } from '../../../features/admin/api.ts';
+import { categoriesQuery, tagsQuery } from '../../../features/admin/api.ts';
 import { RecategorizeScreen } from '../../../features/admin/RecategorizeScreen.tsx';
 import { AdminRouteError } from '../../../features/admin/shared.tsx';
 
@@ -15,11 +15,7 @@ export const Route = createFileRoute('/ranger/admin/recategorize')({
   validateSearch: (search: Record<string, unknown>): { from?: string } =>
     typeof search.from === 'string' && /^[a-z0-9-]{1,80}$/.test(search.from) ? { from: search.from } : {},
   loader: ({ context }) =>
-    Promise.all([
-      context.queryClient.ensureQueryData(categoriesQuery),
-      context.queryClient.ensureQueryData(tagsQuery),
-      context.queryClient.ensureQueryData(activeCategoryIdsQuery),
-    ]),
+    Promise.all([context.queryClient.ensureQueryData(categoriesQuery), context.queryClient.ensureQueryData(tagsQuery)]),
   errorComponent: AdminRouteError,
   component: RecategorizeRoute,
 });

@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Verdient ({count})",
   "basecamp_badges_earned_on": "Verdient am {date}",
   "basecamp_badges_none_title": "Noch keine Abzeichen",
-  "basecamp_badges_none_text": "Veröffentlichen, Spielern antworten und Mods nach jedem Patch am Laufen halten bringt Abzeichen."
+  "basecamp_badges_none_text": "Veröffentlichen, Spielern antworten und Mods nach jedem Patch am Laufen halten bringt Abzeichen.",
+  "basecamp_inbox_template_insert": "Gespeicherte Antwort einfügen",
+  "basecamp_inbox_template_manage": "Gespeicherte Antworten verwalten",
+  "basecamp_versions_changelog_edit": "Änderungen bearbeiten",
+  "basecamp_versions_changelog_title": "Änderungen von v{version}",
+  "basecamp_versions_changelog_text": "Markdown funktioniert. Spieler sehen es auf der Mod-Seite und im Update-Signal.",
+  "basecamp_versions_changelog_saved": "Änderungen von v{version} gespeichert.",
+  "basecamp_versions_changelog_failed": "Änderungen konnten nicht gespeichert werden",
+  "basecamp_versions_changelog_save": "Änderungen speichern",
+  "basecamp_analytics_versions_daily": "Downloads pro Version im Zeitverlauf",
+  "basecamp_inbox_filter_mod": "Nur {mod}",
+  "basecamp_inbox_filter_mod_clear": "Alle Mods zeigen"
 }

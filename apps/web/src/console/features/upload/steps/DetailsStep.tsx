@@ -2,7 +2,8 @@
  * Step ② «Details» (PLAN §7.5): name (prefilled), slug with a live URL preview, short description
  * (200 with counter), category, up to 5 tags, the Markdown description (CodeMirror on demand,
  * live preview through the same pipeline, 20 000 characters), licence, source code link, support
- * links and NSFW.
+ * links and NSFW. A new mod starts with the creator's default licence (Settings → Creator,
+ * `settings.defaultLicense`) until the creator picks another one or clears it.
  */
 import { STUDIO_LIMITS } from '@sotf/contracts/studio';
 import { Field } from '@sotf/ui/field';
@@ -12,7 +13,8 @@ import { Skeleton } from '@sotf/ui/skeleton';
 import { Switch } from '@sotf/ui/switch';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQuery } from '@tanstack/react-query';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useMe } from '../../../hooks/use-me.ts';
 import { activeLocale } from '../../../lib/messages.ts';
 import { MarkdownField } from '../components/MarkdownField.tsx';
 import { SupportLinksEditor } from '../components/SupportLinksEditor.tsx';
@@ -48,6 +50,13 @@ function localized(names: Partial<Record<string, string>>, fallback: string): st
 export function DetailsStep({ kind, data, update, preflight, handle, headingId }: DetailsStepProps) {
   const categories = useQuery(categoriesQuery(kind));
   const tags = useQuery(tagsQuery);
+  const defaultLicense = useMe().settings.defaultLicense;
+  // `undefined` = never chosen (`null` = cleared on purpose): only then the default applies.
+  const licenseUnset = data.license === undefined;
+  useEffect(() => {
+    if (kind !== 'mod' || !licenseUnset || !defaultLicense) return;
+    update((d) => (d.license === undefined ? { ...d, license: defaultLicense } : d));
+  }, [kind, licenseUnset, defaultLicense, update]);
   const [touched, setTouched] = useState<ReadonlySet<string>>(new Set());
   const touch = (field: string) => setTouched((set) => new Set(set).add(field));
 

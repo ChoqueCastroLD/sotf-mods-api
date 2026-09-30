@@ -3,10 +3,10 @@
  * CSV (WP-84) merged per mod, the admin's edits, and the confirmed changes sent to
  * `POST /admin/recategorize` in batches of ≤ 500.
  *
- * Tags: the API replaces the whole tag set of a mod when a change carries `tagSlugs`, and its
- * suggestions do not say which tags a mod has now. Chosen tags are therefore **added** to the
- * mod's current public tags (read before applying); when those cannot be read (the mod is not
- * public) the change keeps the tags untouched.
+ * Tags: the API replaces the whole tag set of a mod when a change carries `tagSlugs`, so chosen
+ * tags are **added** to the mod's current tags: `currentTags` of the API suggestion, or — for CSV
+ * lines about mods the rules did not flag — the public tags read before applying; when those cannot
+ * be read (the mod is not public) the change keeps the tags untouched.
  */
 import { currentTagsOf, type RecategorizeChange, type Suggestion } from './api.ts';
 import { ADMIN_LIMITS } from './constants.ts';
@@ -26,6 +26,8 @@ export interface RecatRow {
   category: string;
   /** Tags that will be added. */
   tags: string[];
+  /** Tags the mod has now (API suggestions), or null when unknown (CSV-only rows). */
+  currentTags: string[] | null;
   confidence: number | null;
   reason: string;
   source: 'rules' | 'csv';
@@ -40,6 +42,7 @@ export function rowsFromSuggestions(suggestions: readonly Suggestion[]): RecatRo
     suggestedCategory: suggestion.suggestedCategory,
     category: suggestion.suggestedCategory,
     tags: suggestion.suggestedTags.slice(0, ADMIN_LIMITS.recategorizeTagsMax),
+    currentTags: suggestion.currentTags,
     confidence: suggestion.confidence,
     reason: suggestion.reason,
     source: 'rules',
@@ -114,6 +117,7 @@ export function mergeCsv(
         suggestedCategory: line.categorySlug,
         category: line.categorySlug,
         tags: chosenTags,
+        currentTags: null,
         confidence: line.confidence,
         reason: line.reason ?? '',
         source: 'csv',
@@ -145,13 +149,13 @@ export interface PlannedChanges {
   tagsSkipped: number;
 }
 
-/** Turns the selected rows into API changes (reading current tags when tags are added). */
+/** Turns the selected rows into API changes (reading current tags only when a row lacks them). */
 export async function planChanges(rows: readonly RecatRow[], withTags: boolean): Promise<PlannedChanges> {
   let tagsSkipped = 0;
   const changes = await mapLimit(rows, 6, async (row): Promise<RecategorizeChange> => {
     const base = { modId: row.modId, categorySlug: row.category };
     if (!withTags || row.tags.length === 0) return base;
-    const current = await currentTagsOf(row.modId);
+    const current = row.currentTags ?? (await currentTagsOf(row.modId));
     if (current === null) {
       tagsSkipped += 1;
       return base;

@@ -26,6 +26,22 @@ import { CONSOLE_ROUTER_CONFIG } from './src/lib/tooling/router-config.ts';
 /** API origin for the dev proxy (same default as `src/lib/env.ts`). */
 const devApiOrigin = (process.env.INTERNAL_API_URL || 'http://127.0.0.1:47301').replace(/\/+$/, '');
 
+/**
+ * Browser build: island entries may gain exports, so Rolldown can merge modules shared by an entry
+ * and its lazy chunks into the entry chunk (`mergeCommonChunks`). Without it every console route
+ * file (imported by the route tree and by its lazily split screen) became its own tiny chunk with
+ * its own preload map: ~60 extra requests in the console shell (budget of PLAN §12.3 WP-34).
+ * @type {import('vite').Plugin}
+ */
+const mergeableIslandEntries = {
+  name: 'sotf:mergeable-island-entries',
+  apply: 'build',
+  configEnvironment(name) {
+    if (name !== 'client') return;
+    return { build: { rolldownOptions: { preserveEntrySignatures: 'allow-extension' } } };
+  },
+};
+
 /** Astro ignores `_`-prefixed files in `src/pages`, so the internal endpoint is injected. */
 const internalRoutes = {
   name: 'sotf:internal-routes',
@@ -71,7 +87,7 @@ export default defineConfig({
     csp: cspConfig(),
   },
   vite: {
-    plugins: [tanstackRouter({ ...CONSOLE_ROUTER_CONFIG }), tailwindcss()],
+    plugins: [tanstackRouter({ ...CONSOLE_ROUTER_CONFIG }), mergeableIslandEntries, tailwindcss()],
     build: { assetsInlineLimit: 0 },
     server: {
       proxy: {

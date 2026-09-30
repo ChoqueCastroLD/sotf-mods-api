@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Conquistadas ({count})",
   "basecamp_badges_earned_on": "Conquistada em {date}",
   "basecamp_badges_none_title": "Ainda não há insígnias",
-  "basecamp_badges_none_text": "Publicar, responder aos jogadores e manter os mods funcionando depois de cada patch rende insígnias."
+  "basecamp_badges_none_text": "Publicar, responder aos jogadores e manter os mods funcionando depois de cada patch rende insígnias.",
+  "basecamp_inbox_template_insert": "Inserir uma resposta salva",
+  "basecamp_inbox_template_manage": "Gerenciar respostas salvas",
+  "basecamp_versions_changelog_edit": "Editar novidades",
+  "basecamp_versions_changelog_title": "Novidades da v{version}",
+  "basecamp_versions_changelog_text": "Aceita Markdown. Os jogadores veem na página do mod e no sinal de atualização.",
+  "basecamp_versions_changelog_saved": "Novidades da v{version} salvas.",
+  "basecamp_versions_changelog_failed": "Não foi possível salvar as novidades",
+  "basecamp_versions_changelog_save": "Salvar novidades",
+  "basecamp_analytics_versions_daily": "Downloads por versão ao longo do tempo",
+  "basecamp_inbox_filter_mod": "Só {mod}",
+  "basecamp_inbox_filter_mod_clear": "Mostrar todos os mods"
 }

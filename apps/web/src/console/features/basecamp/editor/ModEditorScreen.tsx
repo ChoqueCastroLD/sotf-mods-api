@@ -24,15 +24,9 @@ import { CompatTab } from './CompatTab.tsx';
 import { ListingTab } from './ListingTab.tsx';
 import { MediaTab } from './MediaTab.tsx';
 import { SettingsTab } from './SettingsTab.tsx';
+import type { EditorTab } from './tabs.ts';
 import { UnsavedGuard } from './UnsavedGuard.tsx';
 import { VersionsTab } from './VersionsTab.tsx';
-
-export const EDITOR_TABS = ['listing', 'media', 'versions', 'compat', 'settings'] as const;
-export type EditorTab = (typeof EDITOR_TABS)[number];
-
-export function isEditorTab(value: unknown): value is EditorTab {
-  return typeof value === 'string' && (EDITOR_TABS as readonly string[]).includes(value);
-}
 
 function Quality({ studio }: { studio: StudioMod }) {
   const issues = studio.preflight.filter((row) => row.severity !== 'ok');

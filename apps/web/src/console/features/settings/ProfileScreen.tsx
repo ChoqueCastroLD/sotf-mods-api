@@ -1,7 +1,8 @@
 /**
  * Settings → Profile (T0-15, research/03 §6.11): avatar (crop → WebP), banner (generated terrain
  * with «Reroll terrain», or an own image with crop), display name, bio (Markdown, 500), links and
- * up to three pinned mods. Each card saves on its own (`PATCH /me/profile`) with a toast; photos
+ * up to three pinned mods, and the badges featured in the profile header (`PATCH /me/badges/featured`).
+ * Each card saves on its own (`PATCH /me/profile`) with a toast; photos
  * apply as soon as they are uploaded. The handle is shown read-only (immutable in T0).
  */
 
@@ -33,6 +34,7 @@ import {
   settingsKeys,
 } from './api.ts';
 import { failureDescription } from './errors.ts';
+import { FeaturedBadgesCard } from './FeaturedBadgesCard.tsx';
 import { type CropResult, ImageCropDialog } from './ImageCropDialog.tsx';
 import { SettingsCard, SettingsPage } from './layout.tsx';
 import { type ImagePurpose, ImageUploadFailure, SOURCE_LIMITS, uploadImage, validateSource } from './upload.ts';
@@ -68,24 +70,6 @@ function linkKindLabel(kind: LinkKind): string {
     default:
       return m.settings_link_other();
   }
-}
-
-/**
- * The bio source when only the public HTML is known: the API renders the bio as paragraphs with
- * escaped text and `<br>` (`textToHtml`), so reading it back recovers the text.
- */
-export function bioFromHtml(html: string | null): string {
-  if (!html) return '';
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-  const paragraphs = Array.from(doc.body.querySelectorAll('p'));
-  const blocks = paragraphs.length > 0 ? paragraphs : [doc.body];
-  return blocks
-    .map((block) => {
-      for (const br of Array.from(block.querySelectorAll('br'))) br.replaceWith('\n');
-      return block.textContent?.trim() ?? '';
-    })
-    .filter(Boolean)
-    .join('\n\n');
 }
 
 function isHttpUrl(value: string): boolean {
@@ -131,7 +115,6 @@ export function ProfileScreen() {
   const handle = me.user.handle;
   const { data: profile } = useSuspenseQuery(profileQuery(handle));
   const mods = useQuery(profileModsQuery(handle));
-  const self = profile as PublicProfile & Partial<Pick<SelfProfile, 'bioMd'>>;
 
   const store = (next: SelfProfile) => {
     queryClient.setQueryData(settingsKeys.profile(handle), next);
@@ -163,10 +146,10 @@ export function ProfileScreen() {
       </a>
       <PhotoCard profile={profile} userId={me.user.id} save={save} store={store} />
       <AboutCard
-        key={`about-${profile.displayName}-${self.bioMd ?? profile.bioHtml ?? ''}`}
+        key={`about-${profile.displayName}-${profile.bioMd ?? ''}`}
         handle={handle}
         displayName={profile.displayName}
-        bio={self.bioMd ?? bioFromHtml(profile.bioHtml)}
+        bio={profile.bioMd ?? ''}
         save={save}
       />
       <LinksCard key={`links-${JSON.stringify(profile.links)}`} links={profile.links} save={save} />
@@ -178,6 +161,16 @@ export function ProfileScreen() {
         failed={mods.isError}
         onRetry={() => void mods.refetch()}
         save={save}
+      />
+      <FeaturedBadgesCard
+        key={`badges-${profile.featuredBadgeKeys.join(',')}`}
+        handle={handle}
+        featured={profile.featuredBadgeKeys}
+        onSaved={(keys) =>
+          queryClient.setQueryData<SelfProfile>(settingsKeys.profile(handle), (current) =>
+            current ? { ...current, featuredBadgeKeys: keys } : current,
+          )
+        }
       />
     </SettingsPage>
   );

@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Vous avez changé d’avis ? Annulez maintenant et tout reste comme avant.",
   "settings_delete_cancel": "Annuler la suppression",
   "settings_delete_cancelled": "Suppression annulée — bon retour parmi nous",
-  "settings_delete_cancel_failed": "Impossible d’annuler la suppression"
+  "settings_delete_cancel_failed": "Impossible d’annuler la suppression",
+  "settings_featured_badges_title": "Badges mis en avant",
+  "settings_featured_badges_text": "Choisis jusqu’à {max} badges obtenus pour l’en-tête de ton profil.",
+  "settings_featured_badges_empty": "Obtiens des badges sur l’île pour les mettre en avant ici.",
+  "settings_featured_badges_count": "{count} sur {max} sélectionnés",
+  "settings_featured_badges_saved": "Badges mis en avant enregistrés."
 }

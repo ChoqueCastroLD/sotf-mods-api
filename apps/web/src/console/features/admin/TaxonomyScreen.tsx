@@ -4,9 +4,8 @@
  * at the bulk recategorisation); its slug keeps resolving through `legacySlugs` of its successor.
  * Tags can be deleted (they are detached from their mods).
  *
- * The admin list does not return every stored field yet (`retiredAt`, `hubIntro`, tag description
- * and order; docs/backlog/WP-83.md): retired categories are told apart with the public list, and
- * the forms prefill those fields when the API sends them.
+ * The admin reads return every stored field (`retiredAt`, `hubIntro`, tag description and order),
+ * so the forms edit what is stored instead of replacing it with defaults.
  */
 import { isApiError } from '@sotf/contracts/client';
 import { LOCALES, type Locale } from '@sotf/i18n';
@@ -28,17 +27,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { Archive, MoreHorizontal, Pencil, Plus, Shuffle, Tags, Trash2 } from 'lucide-react';
 import { type FormEvent, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
-import {
-  activeCategoryIdsQuery,
-  adminApi,
-  adminKeys,
-  type Category,
-  type CategoryExtras,
-  categoriesQuery,
-  type Tag,
-  type TagExtras,
-  tagsQuery,
-} from './api.ts';
+import { adminApi, adminKeys, type Category, categoriesQuery, type Tag, tagsQuery } from './api.ts';
 import { ADMIN_LIMITS } from './constants.ts';
 import {
   AdminHeader,
@@ -53,8 +42,8 @@ import {
   thClasses,
 } from './shared.tsx';
 
-type AdminCategory = Category & CategoryExtras;
-type AdminTag = Tag & TagExtras;
+type AdminCategory = Category;
+type AdminTag = Tag;
 type TabValue = 'categories' | 'tags';
 
 export function TaxonomyScreen() {
@@ -86,23 +75,20 @@ export function TaxonomyScreen() {
 // Categories
 // -----------------------------------------------------------------------------------------------
 
-function isRetired(category: AdminCategory, active: ReadonlySet<number>): boolean {
-  if (category.retiredAt !== undefined) return category.retiredAt !== null;
-  return !active.has(category.id);
+function isRetired(category: AdminCategory): boolean {
+  return category.retiredAt !== null;
 }
 
 function CategoriesPanel() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { data: categories } = useSuspenseQuery(categoriesQuery);
-  const { data: active } = useSuspenseQuery(activeCategoryIdsQuery);
   const [editing, setEditing] = useState<AdminCategory | 'new' | null>(null);
   const [retiring, setRetiring] = useState<AdminCategory | null>(null);
 
   const refresh = () =>
     Promise.all([
       queryClient.invalidateQueries({ queryKey: adminKeys.categories }),
-      queryClient.invalidateQueries({ queryKey: adminKeys.activeCategories }),
       queryClient.invalidateQueries({ queryKey: adminKeys.recategorize }),
     ]);
 
@@ -170,7 +156,7 @@ function CategoriesPanel() {
             </thead>
             <tbody>
               {categories.map((category) => {
-                const retired = isRetired(category, active);
+                const retired = isRetired(category);
                 return (
                   <tr key={category.id} className="border-t border-border">
                     <th scope="row" className={`${tdClasses} text-start font-semibold text-fg`}>
@@ -352,7 +338,6 @@ function CategoryForm({
   const [errors, setErrors] = useState<Partial<Record<'name' | 'slug' | 'sortOrder' | 'legacySlugs', string>>>({});
   const [saving, setSaving] = useState(false);
   const isNew = category === 'new';
-  const hubIntroUnknown = !isNew && category.hubIntro === undefined;
   const set = <K extends keyof CategoryValues>(key: K, value: CategoryValues[K]) =>
     setValues((previous) => ({ ...previous, [key]: value }));
 
@@ -486,11 +471,6 @@ function CategoryForm({
         exclude={[] as Locale[]}
         onChange={(hubIntro) => set('hubIntro', hubIntro)}
       />
-      {hubIntroUnknown ? (
-        <Banner tone="warning" title={m.admin_tax_hub_intro_unknown_title()}>
-          {m.admin_tax_hub_intro_unknown_text()}
-        </Banner>
-      ) : null}
       <div className="flex flex-wrap justify-end gap-2">
         <DialogClose render={<Button variant="secondary" disabled={saving} />}>{m.admin_action_cancel()}</DialogClose>
         <Button type="submit" loading={saving}>
@@ -679,8 +659,8 @@ function tagValues(tag: AdminTag | 'new'): TagValues {
     slug: tag.slug,
     slugTouched: true,
     group: tag.group ?? '',
-    description: tag.description ?? '',
-    sortOrder: String(tag.sortOrder ?? 0),
+    description: tag.description,
+    sortOrder: String(tag.sortOrder),
     names: pickTexts(tag.names),
   };
 }

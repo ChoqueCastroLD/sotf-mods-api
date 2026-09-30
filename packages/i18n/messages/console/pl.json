@@ -6,6 +6,8 @@
   "console_nav_my_mods": "Moje mody",
   "console_nav_new_mod": "Nowy mod",
   "console_nav_new_build": "Nowa budowla",
+  "console_nav_inbox": "Skrzynka",
+  "console_nav_drafts": "Szkice",
   "console_nav_analytics": "Statystyki",
   "console_nav_badges": "Odznaki",
   "console_nav_downloads": "Pobrania",
@@ -67,6 +69,5 @@
   "console_shortcut_go_ranger": "Przejdź do posterunku strażników",
   "console_shortcut_toggle_sidebar": "Zwiń lub rozwiń pasek boczny",
   "console_noscript": "Konsola wymaga JavaScriptu. Włącz go, aby zarządzać modami, sygnałami i ustawieniami.",
-  "console_nav_inbox": "Skrzynka",
-  "console_nav_drafts": "Szkice"
+  "console_nav_operations": "Operacje"
 }

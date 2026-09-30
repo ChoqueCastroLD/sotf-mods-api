@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Zdobyte ({count})",
   "basecamp_badges_earned_on": "Zdobyta {date}",
   "basecamp_badges_none_title": "Na razie brak odznak",
-  "basecamp_badges_none_text": "Publikowanie, odpowiadanie graczom i utrzymywanie modów po każdej łatce daje odznaki."
+  "basecamp_badges_none_text": "Publikowanie, odpowiadanie graczom i utrzymywanie modów po każdej łatce daje odznaki.",
+  "basecamp_inbox_template_insert": "Wstaw zapisaną odpowiedź",
+  "basecamp_inbox_template_manage": "Zarządzaj zapisanymi odpowiedziami",
+  "basecamp_versions_changelog_edit": "Edytuj listę zmian",
+  "basecamp_versions_changelog_title": "Lista zmian v{version}",
+  "basecamp_versions_changelog_text": "Działa Markdown. Gracze widzą to na stronie moda i w sygnale aktualizacji.",
+  "basecamp_versions_changelog_saved": "Zapisano listę zmian v{version}.",
+  "basecamp_versions_changelog_failed": "Nie udało się zapisać listy zmian",
+  "basecamp_versions_changelog_save": "Zapisz listę zmian",
+  "basecamp_analytics_versions_daily": "Pobrania według wersji w czasie",
+  "basecamp_inbox_filter_mod": "Tylko {mod}",
+  "basecamp_inbox_filter_mod_clear": "Pokaż wszystkie mody"
 }

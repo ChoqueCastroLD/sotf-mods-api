@@ -6,6 +6,8 @@
   "console_nav_my_mods": "Modlarım",
   "console_nav_new_mod": "Yeni mod",
   "console_nav_new_build": "Yeni yapı",
+  "console_nav_inbox": "Gelen kutusu",
+  "console_nav_drafts": "Taslaklar",
   "console_nav_analytics": "İstatistikler",
   "console_nav_badges": "Rozetler",
   "console_nav_downloads": "İndirmeler",
@@ -67,6 +69,5 @@
   "console_shortcut_go_ranger": "Korucu İstasyonu’na git",
   "console_shortcut_toggle_sidebar": "Kenar çubuğunu daralt veya genişlet",
   "console_noscript": "Konsol için JavaScript gerekiyor. Modlarını, sinyallerini ve ayarlarını yönetmek için JavaScript’i aç.",
-  "console_nav_inbox": "Gelen kutusu",
-  "console_nav_drafts": "Taslaklar"
+  "console_nav_operations": "Operasyon"
 }

@@ -7,8 +7,8 @@
  * shows its empty state (`components/AreaPlaceholder.tsx`) or «not on the map».
  */
 
-import { m } from '@sotf/i18n/messages';
 import {
+  Activity,
   Award,
   Backpack,
   BellRing,
@@ -94,10 +94,10 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/basecamp', label: () => t('console_nav_overview'), icon: LayoutDashboard, exact: true },
           { to: '/basecamp/mods', label: () => t('console_nav_my_mods'), icon: Package },
           // Paraglide (the two labels live in the `basecamp` namespace, not in the shell catalogue).
-          { to: '/basecamp/inbox', label: () => m.basecamp_action_inbox(), icon: Inbox },
+          { to: '/basecamp/inbox', label: () => t('console_nav_inbox'), icon: Inbox },
           { to: '/basecamp/new/mod', label: () => t('console_nav_new_mod'), icon: Plus },
           { to: '/basecamp/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass },
-          { to: '/basecamp/drafts', label: () => m.basecamp_action_drafts(), icon: NotebookPen },
+          { to: '/basecamp/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
           { to: '/basecamp/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
           { to: '/basecamp/badges', label: () => t('console_nav_badges'), icon: Award },
         ],
@@ -180,6 +180,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/ranger/admin/integrations', label: () => t('console_nav_integrations'), icon: Plug },
           { to: '/ranger/admin/kelvinseek', label: () => t('console_nav_kelvinseek'), icon: Bot },
           { to: '/ranger/admin/performance', label: () => t('console_nav_performance'), icon: Gauge },
+          { to: '/ranger/admin/operations', label: () => t('console_nav_operations'), icon: Activity },
         ],
       },
     ],

@@ -25,7 +25,7 @@ import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-quer
 import { CheckCheck, Download, ExternalLink, FileUp, RefreshCw, Shuffle, Tag as TagIcon, X } from 'lucide-react';
 import { type ChangeEvent, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
-import { activeCategoryIdsQuery, adminApi, adminKeys, categoriesQuery, suggestionsQuery, tagsQuery } from './api.ts';
+import { adminApi, adminKeys, categoriesQuery, suggestionsQuery, tagsQuery } from './api.ts';
 import { ADMIN_LIMITS } from './constants.ts';
 import { downloadText, readRecategorizeCsv, toCsv } from './csv.ts';
 import {
@@ -62,7 +62,6 @@ export interface RecategorizeScreenProps {
 export function RecategorizeScreen({ from }: RecategorizeScreenProps) {
   const queryClient = useQueryClient();
   const { data: categories } = useSuspenseQuery(categoriesQuery);
-  const { data: active } = useSuspenseQuery(activeCategoryIdsQuery);
   const { data: tags } = useSuspenseQuery(tagsQuery);
   const suggestions = useQuery(suggestionsQuery);
 
@@ -84,9 +83,9 @@ export function RecategorizeScreen({ from }: RecategorizeScreenProps) {
   const targets = useMemo(
     () =>
       categories
-        .filter((category) => category.kind === 'mod' && active.has(category.id))
+        .filter((category) => category.kind === 'mod' && category.retiredAt === null)
         .sort((a, b) => a.sortOrder - b.sortOrder || a.name.localeCompare(b.name)),
-    [categories, active],
+    [categories],
   );
   const targetSlugs = useMemo(() => new Set(targets.map((category) => category.slug)), [targets]);
   const nameOf = useMemo(() => {

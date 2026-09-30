@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Ottenuti ({count})",
   "basecamp_badges_earned_on": "Ottenuto il {date}",
   "basecamp_badges_none_title": "Ancora nessun distintivo",
-  "basecamp_badges_none_text": "Pubblicare, rispondere ai giocatori e mantenere le mod funzionanti dopo ogni patch fa guadagnare distintivi."
+  "basecamp_badges_none_text": "Pubblicare, rispondere ai giocatori e mantenere le mod funzionanti dopo ogni patch fa guadagnare distintivi.",
+  "basecamp_inbox_template_insert": "Inserisci una risposta salvata",
+  "basecamp_inbox_template_manage": "Gestisci le risposte salvate",
+  "basecamp_versions_changelog_edit": "Modifica le novità",
+  "basecamp_versions_changelog_title": "Novità della v{version}",
+  "basecamp_versions_changelog_text": "Supporta Markdown. I giocatori lo vedono nella pagina della mod e nel segnale di aggiornamento.",
+  "basecamp_versions_changelog_saved": "Novità della v{version} salvate.",
+  "basecamp_versions_changelog_failed": "Impossibile salvare le novità",
+  "basecamp_versions_changelog_save": "Salva novità",
+  "basecamp_analytics_versions_daily": "Download per versione nel tempo",
+  "basecamp_inbox_filter_mod": "Solo {mod}",
+  "basecamp_inbox_filter_mod_clear": "Mostra tutte le mod"
 }

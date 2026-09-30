@@ -4,8 +4,8 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
-import { isItemId } from '../../features/ranger/api.ts';
 import { QueueScreen } from '../../features/ranger/QueueScreen.tsx';
+import { isItemId } from '../../features/ranger/search.ts';
 import { RangerRouteError } from '../../features/ranger/shared.tsx';
 
 const LANES = ['comments'] as const;

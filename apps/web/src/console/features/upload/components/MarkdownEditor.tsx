@@ -3,8 +3,8 @@
  * highlighting and a live preview rendered by `@sotf/markdown` — the same pipeline the API uses
  * when it saves, so what the creator sees is what the page will show.
  */
-import { markdown } from '@codemirror/lang-markdown';
-import { EditorView } from '@codemirror/view';
+import { markdownKeymap, markdownLanguage, pasteURLAsLink } from '@codemirror/lang-markdown';
+import { EditorView, keymap } from '@codemirror/view';
 import { cn } from '@sotf/ui/cn';
 import { ProseLocator } from '@sotf/ui/domain/content';
 import CodeMirror from '@uiw/react-codemirror';
@@ -24,6 +24,14 @@ export interface MarkdownEditorProps {
   /** Heading-id prefix of the preview (`md-desc-`, `md-cl-`). */
   idPrefix: string;
 }
+
+/**
+ * Markdown support without `markdown()`: that helper wires `@codemirror/lang-html` (HTML tag
+ * completion and embedded HTML/CSS/JS highlighting), which tripled the chunk. The GFM language,
+ * list/quote continuation on Enter and URL-paste-as-link are all the editor needs; tree-shaking
+ * drops lang-html/css/javascript because nothing here references them.
+ */
+const markdownSupport = [markdownLanguage.extension, keymap.of(markdownKeymap), pasteURLAsLink];
 
 const theme = EditorView.theme({
   '&': {
@@ -57,10 +65,11 @@ export default function MarkdownEditor({
 }: MarkdownEditorProps) {
   const deferred = useDeferredValue(value);
   // The rendering pipeline is its own chunk: the editor is usable before it arrives.
-  const [render, setRender] = useState<typeof import('@sotf/markdown').renderMarkdown | null>(null);
+  // `@sotf/markdown/lite` is the pipeline without rehype-raw/parse5 (never needed for `full`).
+  const [render, setRender] = useState<typeof import('@sotf/markdown/lite').renderMarkdown | null>(null);
   useEffect(() => {
     let alive = true;
-    import('@sotf/markdown').then(
+    import('@sotf/markdown/lite').then(
       (mod) => {
         if (alive) setRender(() => mod.renderMarkdown);
       },
@@ -82,7 +91,7 @@ export default function MarkdownEditor({
 
   const extensions = useMemo(
     () => [
-      markdown(),
+      markdownSupport,
       EditorView.lineWrapping,
       theme,
       EditorView.contentAttributes.of({

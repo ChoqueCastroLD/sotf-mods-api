@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Mudou de ideia? Cancele agora e tudo continua como está.",
   "settings_delete_cancel": "Cancelar a exclusão",
   "settings_delete_cancelled": "Exclusão cancelada — que bom ter você de volta",
-  "settings_delete_cancel_failed": "Não foi possível cancelar a exclusão"
+  "settings_delete_cancel_failed": "Não foi possível cancelar a exclusão",
+  "settings_featured_badges_title": "Insígnias em destaque",
+  "settings_featured_badges_text": "Escolha até {max} insígnias conquistadas para o cabeçalho do seu perfil.",
+  "settings_featured_badges_empty": "Conquiste insígnias na ilha para destacá-las aqui.",
+  "settings_featured_badges_count": "{count} de {max} selecionadas",
+  "settings_featured_badges_saved": "Insígnias em destaque salvas."
 }

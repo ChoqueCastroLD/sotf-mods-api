@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Intjänade ({count})",
   "basecamp_badges_earned_on": "Intjänat {date}",
   "basecamp_badges_none_title": "Inga märken än",
-  "basecamp_badges_none_text": "Att publicera, svara spelare och hålla moddar igång efter varje patch ger märken."
+  "basecamp_badges_none_text": "Att publicera, svara spelare och hålla moddar igång efter varje patch ger märken.",
+  "basecamp_inbox_template_insert": "Infoga ett sparat svar",
+  "basecamp_inbox_template_manage": "Hantera sparade svar",
+  "basecamp_versions_changelog_edit": "Redigera ändringslogg",
+  "basecamp_versions_changelog_title": "Ändringslogg för v{version}",
+  "basecamp_versions_changelog_text": "Markdown fungerar. Spelarna ser det på moddsidan och i uppdateringssignalen.",
+  "basecamp_versions_changelog_saved": "Ändringsloggen för v{version} sparades.",
+  "basecamp_versions_changelog_failed": "Kunde inte spara ändringsloggen",
+  "basecamp_versions_changelog_save": "Spara ändringslogg",
+  "basecamp_analytics_versions_daily": "Nedladdningar per version över tid",
+  "basecamp_inbox_filter_mod": "Bara {mod}",
+  "basecamp_inbox_filter_mod_clear": "Visa alla moddar"
 }

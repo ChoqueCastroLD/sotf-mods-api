@@ -6,6 +6,8 @@
   "console_nav_my_mods": "Mijn mods",
   "console_nav_new_mod": "Nieuwe mod",
   "console_nav_new_build": "Nieuwe build",
+  "console_nav_inbox": "Inbox",
+  "console_nav_drafts": "Concepten",
   "console_nav_analytics": "Statistieken",
   "console_nav_badges": "Badges",
   "console_nav_downloads": "Downloads",
@@ -67,6 +69,5 @@
   "console_shortcut_go_ranger": "Naar de rangerpost",
   "console_shortcut_toggle_sidebar": "Zijbalk in- of uitklappen",
   "console_noscript": "De console heeft JavaScript nodig. Zet het aan om je mods, signalen en instellingen te beheren.",
-  "console_nav_inbox": "Inbox",
-  "console_nav_drafts": "Concepten"
+  "console_nav_operations": "Beheer"
 }

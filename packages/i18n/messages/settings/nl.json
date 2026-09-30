@@ -340,5 +340,10 @@
   "settings_delete_scheduled_text": "Toch bedacht? Annuleer nu en alles blijft zoals het is.",
   "settings_delete_cancel": "Verwijdering annuleren",
   "settings_delete_cancelled": "Verwijdering geannuleerd — welkom terug",
-  "settings_delete_cancel_failed": "De verwijdering kon niet worden geannuleerd"
+  "settings_delete_cancel_failed": "De verwijdering kon niet worden geannuleerd",
+  "settings_featured_badges_title": "Uitgelichte badges",
+  "settings_featured_badges_text": "Kies tot {max} verdiende badges voor de kop van je profiel.",
+  "settings_featured_badges_empty": "Verdien badges op het eiland om ze hier uit te lichten.",
+  "settings_featured_badges_count": "{count} van {max} gekozen",
+  "settings_featured_badges_saved": "Uitgelichte badges opgeslagen."
 }

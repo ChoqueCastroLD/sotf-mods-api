@@ -101,6 +101,7 @@ export function EcosystemScreen() {
         gameBuild: { id: build.id, label: build.label, isCurrent: build.isCurrent, isBreaking: build.isBreaking },
         loader,
         status,
+        noteMd: noteMd !== undefined ? noteMd : (current?.noteMd ?? null),
         noteHtml: current?.noteHtml ?? null,
         updatedAt: new Date().toISOString(),
       };
@@ -355,12 +356,15 @@ function CellNoteForm({
   onDone,
 }: {
   entry: EcosystemEntry | null;
-  onSubmit: (status: EcosystemStatus, note: string | null) => Promise<void>;
+  /** `note`: undefined keeps the stored note, null removes it. */
+  onSubmit: (status: EcosystemStatus, note: string | null | undefined) => Promise<void>;
   onDone: () => void;
 }) {
   const [status, setStatus] = useState<EcosystemStatus>(entry?.status ?? 'unknown');
   const current = htmlToText(entry?.noteHtml);
-  const [note, setNote] = useState('');
+  // The Markdown source (`noteMd`) is prefilled; emptying the field removes the note.
+  const original = (entry?.noteMd ?? '').trim();
+  const [note, setNote] = useState(entry?.noteMd ?? '');
   const [saving, setSaving] = useState(false);
 
   const submit = async (event: Pick<FormEvent, 'preventDefault'>, clear = false) => {
@@ -368,7 +372,8 @@ function CellNoteForm({
     if (saving) return;
     setSaving(true);
     try {
-      await onSubmit(status, clear ? null : note.trim() || null);
+      const next = clear ? '' : note.trim();
+      await onSubmit(status, next === original ? undefined : next || null);
       onDone();
     } catch {
       // Reported by `save`.
@@ -389,7 +394,7 @@ function CellNoteForm({
         }))}
         onValueChange={(next) => next && setStatus(next)}
       />
-      {current ? (
+      {current && entry?.noteMd == null ? (
         <div className="grid gap-1 rounded-md border border-border bg-sunken p-3 text-sm">
           <p className="readout">{m.admin_eco_current_note()}</p>
           <p className="text-fg-muted">{current}</p>
@@ -410,7 +415,11 @@ function CellNoteForm({
           </Button>
         ) : null}
         <DialogClose render={<Button variant="secondary" disabled={saving} />}>{m.admin_action_cancel()}</DialogClose>
-        <Button type="submit" loading={saving} disabled={!note.trim() && status === (entry?.status ?? 'unknown')}>
+        <Button
+          type="submit"
+          loading={saving}
+          disabled={note.trim() === original && status === (entry?.status ?? 'unknown')}
+        >
           {m.admin_action_save()}
         </Button>
       </div>

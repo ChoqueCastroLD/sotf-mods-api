@@ -3,8 +3,8 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
-import { REPORT_STATUSES, type ReportFilter } from '../../features/ranger/api.ts';
 import { ReportsScreen } from '../../features/ranger/ReportsScreen.tsx';
+import { REPORT_STATUSES, type ReportFilter } from '../../features/ranger/search.ts';
 import { RangerRouteError } from '../../features/ranger/shared.tsx';
 
 interface ReportsSearch {

@@ -435,5 +435,16 @@
   "basecamp_badges_earned_title": "Verdiend ({count})",
   "basecamp_badges_earned_on": "Verdiend op {date}",
   "basecamp_badges_none_title": "Nog geen badges",
-  "basecamp_badges_none_text": "Publiceren, spelers antwoorden en mods na elke patch werkend houden leveren badges op."
+  "basecamp_badges_none_text": "Publiceren, spelers antwoorden en mods na elke patch werkend houden leveren badges op.",
+  "basecamp_inbox_template_insert": "Opgeslagen antwoord invoegen",
+  "basecamp_inbox_template_manage": "Opgeslagen antwoorden beheren",
+  "basecamp_versions_changelog_edit": "Wijzigingen bewerken",
+  "basecamp_versions_changelog_title": "Wijzigingen van v{version}",
+  "basecamp_versions_changelog_text": "Markdown werkt. Spelers zien het op de modpagina en in het updatesignaal.",
+  "basecamp_versions_changelog_saved": "Wijzigingen van v{version} opgeslagen.",
+  "basecamp_versions_changelog_failed": "Wijzigingen konden niet worden opgeslagen",
+  "basecamp_versions_changelog_save": "Wijzigingen opslaan",
+  "basecamp_analytics_versions_daily": "Downloads per versie door de tijd",
+  "basecamp_inbox_filter_mod": "Alleen {mod}",
+  "basecamp_inbox_filter_mod_clear": "Alle mods tonen"
 }

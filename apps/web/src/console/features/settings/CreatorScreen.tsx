@@ -3,9 +3,10 @@
  * support links (Ko-fi, Patreon… from the profile links, shown on the profile and next to each
  * mod), the default license for new mods and reply templates for comments and reviews.
  *
- * The license default and the templates have no server field yet (docs/backlog/WP-81.md): they
- * are kept in this browser under `CREATOR_DEFAULTS_KEY` (read by the publishing wizard) and the
- * card says so.
+ * The license default and the templates live in the account (`settings.defaultLicense`,
+ * `settings.replyTemplates`): the publishing wizard preselects the licence and the Basecamp inbox
+ * offers the templates. Defaults an earlier version kept in this browser (`CREATOR_DEFAULTS_KEY`)
+ * are offered once for saving to the account, then forgotten.
  */
 import { localizePath } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -17,7 +18,7 @@ import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { BadgeCheck, Copy, ExternalLink, Plus, Trash2 } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -26,10 +27,11 @@ import { useMe } from '../../hooks/use-me.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
 import { storage } from '../../lib/storage.ts';
-import { profileQuery } from './api.ts';
+import { patchMe, profileQuery, settingsApi } from './api.ts';
+import { failureDescription } from './errors.ts';
 import { SettingsCard, SettingsPage } from './layout.tsx';
 
-/** `localStorage` key of the creator defaults (shared with the publishing wizard). */
+/** `localStorage` key where an earlier version kept the creator defaults (migrated to the account). */
 export const CREATOR_DEFAULTS_KEY = 'sotf_creator_defaults';
 
 /** `MOD_LICENSES` of `@sotf/contracts/common` (mirrored: no Zod in the chunk). */
@@ -37,6 +39,7 @@ const LICENSES = ['all-rights-reserved', 'reupload-with-credit', 'mit', 'gpl-3.0
 type License = (typeof LICENSES)[number];
 const NONE = 'none';
 
+/** `REPLY_TEMPLATE_LIMITS` of `@sotf/contracts/me` (mirrored: no Zod in the chunk). */
 const TEMPLATE_LIMITS = { max: 10, nameMax: 40, textMax: 1000 } as const;
 
 export interface ReplyTemplate {
@@ -54,7 +57,7 @@ function isLicense(value: unknown): value is License {
   return typeof value === 'string' && (LICENSES as readonly string[]).includes(value);
 }
 
-/** Reads the creator defaults of this browser (tolerates missing or malformed data). */
+/** Reads the defaults an earlier version kept in this browser (tolerates missing or malformed data). */
 export function readCreatorDefaults(): CreatorDefaults {
   try {
     const raw = JSON.parse(storage.get(CREATOR_DEFAULTS_KEY) ?? '{}') as Partial<CreatorDefaults>;
@@ -75,8 +78,22 @@ export function readCreatorDefaults(): CreatorDefaults {
   }
 }
 
-function writeCreatorDefaults(defaults: CreatorDefaults): void {
-  storage.set(CREATOR_DEFAULTS_KEY, JSON.stringify(defaults));
+/** The account's defaults, or — while the account has none — the ones left in this browser. */
+export function initialCreatorDefaults(
+  settings: { defaultLicense: string | null; replyTemplates: ReadonlyArray<{ name: string; text: string }> },
+  local: CreatorDefaults = readCreatorDefaults(),
+): { saved: CreatorDefaults; draft: CreatorDefaults } {
+  const saved: CreatorDefaults = {
+    license: isLicense(settings.defaultLicense) ? settings.defaultLicense : null,
+    templates: settings.replyTemplates.map((template, index) => ({
+      id: `saved-${index}`,
+      name: template.name,
+      text: template.text,
+    })),
+  };
+  const accountEmpty = saved.license === null && saved.templates.length === 0;
+  const localUseful = local.license !== null || local.templates.length > 0;
+  return { saved, draft: accountEmpty && localUseful ? local : saved };
 }
 
 function licenseLabel(license: License): string {
@@ -178,10 +195,14 @@ export function CreatorScreen() {
 }
 
 function DefaultsCard() {
-  const [saved, setSaved] = useState<CreatorDefaults>(() => readCreatorDefaults());
-  const [license, setLicense] = useState<string>(saved.license ?? NONE);
-  const [templates, setTemplates] = useState<ReplyTemplate[]>(saved.templates);
+  const me = useMe();
+  const queryClient = useQueryClient();
+  const [initial] = useState(() => initialCreatorDefaults(me.settings));
+  const [saved, setSaved] = useState<CreatorDefaults>(initial.saved);
+  const [license, setLicense] = useState<string>(initial.draft.license ?? NONE);
+  const [templates, setTemplates] = useState<ReplyTemplate[]>(initial.draft.templates);
   const [submitted, setSubmitted] = useState(false);
+  const [saving, setSaving] = useState(false);
   const firstNew = useRef<string | null>(null);
 
   const dirty =
@@ -193,18 +214,31 @@ function DefaultsCard() {
     text: t.text.trim() === '' || t.text.length > TEMPLATE_LIMITS.textMax,
   }));
 
-  const submit = () => {
+  const submit = async () => {
     setSubmitted(true);
-    if (invalid.some((entry) => entry.name || entry.text)) return;
+    if (saving || invalid.some((entry) => entry.name || entry.text)) return;
     const next: CreatorDefaults = {
       license: isLicense(license) ? license : null,
       templates: templates.map((t) => ({ id: t.id, name: t.name.trim(), text: t.text.trim() })),
     };
-    writeCreatorDefaults(next);
-    setSaved(next);
-    setTemplates(next.templates);
-    setSubmitted(false);
-    notify.success(m.settings_defaults_saved());
+    setSaving(true);
+    try {
+      const settings = await settingsApi.updateSettings({
+        defaultLicense: next.license,
+        replyTemplates: next.templates.map(({ name, text }) => ({ name, text })),
+      });
+      patchMe(queryClient, (current) => ({ ...current, settings }));
+      // The account holds them now: the copy of this browser is no longer needed.
+      storage.remove(CREATOR_DEFAULTS_KEY);
+      setSaved(next);
+      setTemplates(next.templates);
+      setSubmitted(false);
+      notify.success(m.settings_defaults_saved());
+    } catch (failure) {
+      notify.error(m.settings_save_failed(), { description: failureDescription(failure) });
+    } finally {
+      setSaving(false);
+    }
   };
 
   const copy = async (template: ReplyTemplate) => {
@@ -225,6 +259,7 @@ function DefaultsCard() {
       title={m.settings_defaults_title()}
       description={m.settings_defaults_text()}
       onSubmit={submit}
+      saving={saving}
       dirty={dirty}
       onReset={() => {
         setLicense(saved.license ?? NONE);
@@ -320,7 +355,6 @@ function DefaultsCard() {
           </Button>
         ) : null}
       </fieldset>
-      <p className="text-xs text-fg-subtle">{m.settings_defaults_local_note()}</p>
     </SettingsCard>
   );
 }
