@@ -50,6 +50,7 @@ import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { BuildMetaDTO } from './manifest.ts';
 import { CursorQuery, cursorPageOf, PageQuery, pageOf } from './pagination.ts';
 import { ReviewDTO, ReviewsSummaryDTO } from './reviews.ts';
+import { CardLocalizedDTO } from './translations.ts';
 import { DependencyDTO, VersionDTO } from './versions.ts';
 
 // -----------------------------------------------------------------------------------------------
@@ -110,6 +111,9 @@ export const ModCardDTO = dto(
     nsfw: z.boolean(),
     status: ModStatus,
     build: BuildCardFactsDTO.nullable().describe('Builds only'),
+    localized: CardLocalizedDTO.optional().describe(
+      'Translated name and short description for the visitor’s locale. Never set by the API: the web attaches it to the cards of a page before rendering (see `translations.forMods`).',
+    ),
   }),
   {
     description: 'Mod/build card used in listings, search and kits.',

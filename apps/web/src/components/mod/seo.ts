@@ -11,6 +11,7 @@ import { REVIEW_RULES } from '@sotf/contracts/reviews';
 import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, type Locale, toHreflang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
+import { displayName, displayShortDescription } from '@sotf/ui/domain';
 import type { FAQPage, SoftwareApplication, VideoObject, WithContext } from 'schema-dts';
 import type { FaqEntry } from '../../lib/seo/faq.ts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
@@ -33,24 +34,25 @@ export function truncate(text: string, max: number): string {
 
 /** Page title (without the site suffix, which `SeoHead` adds with the locale template). */
 export function modTitle(mod: ModDetailDTO): string {
+  const name = displayName(mod);
   const author = mod.userDisplayName || mod.userHandle;
   const full = (title: string) => m.meta_title_template({ title });
   const candidates = [
-    m.mod_meta_title({ name: mod.name, author, kind: mod.kind }),
-    m.mod_meta_title_short({ name: mod.name, kind: mod.kind }),
-    mod.name,
+    m.mod_meta_title({ name, author, kind: mod.kind }),
+    m.mod_meta_title_short({ name, kind: mod.kind }),
+    name,
   ];
   for (const candidate of candidates) {
     if (Array.from(full(candidate)).length <= TITLE_MAX) return candidate;
   }
   const suffixLength = Array.from(full('')).length;
-  return truncate(mod.name, Math.max(20, TITLE_MAX - suffixLength));
+  return truncate(name, Math.max(20, TITLE_MAX - suffixLength));
 }
 
 /** Title of a sub-page («Versions of X», «Reviews of X»). */
 export function subpageTitle(label: string, mod: ModDetailDTO): string {
   const full = (title: string) => m.meta_title_template({ title });
-  const title = m.mod_meta_subpage_title({ page: label, name: mod.name });
+  const title = m.mod_meta_subpage_title({ page: label, name: displayName(mod) });
   if (Array.from(full(title)).length <= TITLE_MAX) return title;
   const suffixLength = Array.from(full('')).length;
   return truncate(title, Math.max(20, TITLE_MAX - suffixLength));
@@ -58,9 +60,10 @@ export function subpageTitle(label: string, mod: ModDetailDTO): string {
 
 /** Meta description: the short description, or the facts. */
 export function modDescription(mod: ModDetailDTO, locale: Locale): string {
-  if (mod.shortDescription.trim()) return truncate(mod.shortDescription, DESCRIPTION_MAX);
+  const short = displayShortDescription(mod);
+  if (short.trim()) return truncate(short, DESCRIPTION_MAX);
   const facts = m.mod_meta_description_facts({
-    name: mod.name,
+    name: displayName(mod),
     author: mod.userDisplayName || mod.userHandle,
     kind: mod.kind,
     downloads: formatCompactNumber(locale, mod.downloads),
@@ -87,13 +90,15 @@ export function modJsonLd({ mod, locale, siteUrl, pageUrl }: ModJsonLdInput): Js
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
     '@id': `${pageUrl}#software`,
-    name: mod.name,
+    name: displayName(mod),
+    // The original title stays findable when the page is shown in another language.
+    ...(displayName(mod) !== mod.name ? { alternateName: mod.name } : {}),
     url: pageUrl,
-    description: mod.shortDescription || undefined,
+    description: displayShortDescription(mod) || undefined,
     applicationCategory: 'GameApplication',
     applicationSubCategory: mod.category?.name ?? (mod.kind === 'library' ? 'Library' : 'Mod'),
     operatingSystem: 'Windows',
-    inLanguage: mod.contentLang ?? toHreflang(locale),
+    inLanguage: mod.localized ? toHreflang(locale) : (mod.contentLang ?? toHreflang(locale)),
     ...(image ? { image } : {}),
     ...(latest
       ? {
@@ -153,8 +158,8 @@ export function modJsonLd({ mod, locale, siteUrl, pageUrl }: ModJsonLdInput): Js
     const video: WithContext<VideoObject> = {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
-      name: m.mod_video_title({ name: mod.name }),
-      description: mod.shortDescription || m.mod_video_title({ name: mod.name }),
+      name: m.mod_video_title({ name: displayName(mod) }),
+      description: displayShortDescription(mod) || m.mod_video_title({ name: displayName(mod) }),
       thumbnailUrl: `https://i.ytimg.com/vi/${encodeURIComponent(mod.video.id)}/hqdefault.jpg`,
       uploadDate: mod.publishedAt ?? mod.createdAt,
       contentUrl: mod.video.url,

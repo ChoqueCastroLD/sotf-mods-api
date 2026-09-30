@@ -35,7 +35,7 @@ let failed = false;
 if (q) {
   try {
     const result = await serverApi().search.search(
-      { query: { q, limit: SEARCH_LIMIT, ...(type ? { types: [type] } : {}) } },
+      { query: { q, limit: SEARCH_LIMIT, locale, ...(type ? { types: [type] } : {}) } },
       { signal: AbortSignal.timeout(5000) },
     );
     hits = result.hits;

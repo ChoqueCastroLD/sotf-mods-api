@@ -10,6 +10,7 @@
  * Secondary blocks (dependents, related, first reviews and comments, per-build compatibility) are
  * optional: each has an 800 ms budget and the page renders without it when the API is slow.
  */
+
 import type { ModBundleDTO } from '@sotf/contracts/bundles';
 import type { ModCardDTO, ModDetailDTO } from '@sotf/contracts/catalog';
 import { type ApiClient, isApiError } from '@sotf/contracts/client';
@@ -18,6 +19,7 @@ import { encodePathSegment, modPath } from '@sotf/contracts/seo';
 import type { VersionDTO } from '@sotf/contracts/versions';
 import { optional, serverApi } from '../../lib/api.ts';
 import { href } from '../../lib/i18n.ts';
+import { loadModTranslation } from '../../lib/mod-translation.ts';
 
 type Awaited2<T> = T extends Promise<infer U> ? U : T;
 export type ReviewPage = Awaited2<ReturnType<ApiClient['reviews']['list']>>;
@@ -99,6 +101,11 @@ export async function resolveModPage(context: ModPageContext): Promise<ResolvedM
   if (mod.kind === 'build') {
     const target = `${mod.canonicalPath}${suffix}`;
     return { kind: 'redirect', location: `${href(target, locale)}${context.url.search}` };
+  }
+  // T1-25: the visitor's language version of the title and short description (SEO, header, cards).
+  const translation = await loadModTranslation(mod, locale);
+  if (translation && (translation.name || translation.shortDescription)) {
+    mod.localized = { locale, name: translation.name, shortDescription: translation.shortDescription };
   }
   return { kind: 'ok', mod, rest: parts.rest };
 }

@@ -5,8 +5,8 @@
   "translations_show_translation": "显示译文",
   "translations_original_note": "原文",
   "translations_title": "翻译",
-  "translations_intro_auto": "发布或编辑时，简短描述会自动翻译成其他语言。你可以写下自己的文本来替换任何译文，你的文本不会被覆盖。",
-  "translations_intro_manual": "为任意语言撰写简短描述的译文。此服务器不提供自动翻译。",
+  "translations_intro_auto": "名称、简短描述和详细描述会在你发布或编辑时自动翻译成其他语言。你可以写下自己的文本来替换任何翻译，你的文本永远不会被覆盖。",
+  "translations_intro_manual": "你可以为任何语言撰写名称、简短描述和详细描述的译文。此服务器不提供自动翻译。",
   "translations_original_heading": "原文",
   "translations_source_machine": "自动",
   "translations_source_author": "你的",
@@ -24,5 +24,12 @@
   "translations_reverted": "已请求自动翻译",
   "translations_removed": "译文已移除",
   "translations_failed": "无法更新译文，请重试。",
-  "translations_load_failed": "无法加载译文。"
+  "translations_load_failed": "无法加载译文。",
+  "translations_field_name": "标题（{language}）",
+  "translations_field_short": "简短描述（{language}）",
+  "translations_field_description": "详细描述（{language}，Markdown）",
+  "translations_empty_hint": "清空某个字段即可恢复为自动翻译。",
+  "translations_notice_machine": "译自{language}",
+  "translations_notice_author": "由作者译自{language}",
+  "translations_notice_original": "原文（{language}）"
 }

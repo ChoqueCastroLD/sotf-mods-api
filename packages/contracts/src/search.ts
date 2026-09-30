@@ -20,7 +20,12 @@ export const SearchHitDTO = dto(
   z.object({
     type: SearchType,
     id: z.union([EntityId, z.string()]).describe('Entity id; page key for `page`'),
-    title: z.string(),
+    title: z.string().describe('Title in the requested locale: the translated name when the mod has one'),
+    titleOriginal: z
+      .string()
+      .nullable()
+      .optional()
+      .describe('Original name when `title` is a translation of it (null otherwise)'),
     subtitle: z.string().nullable().describe('Author handle, kit owner, page section…'),
     path: SitePath,
     thumbnailUrl: HttpUrl.nullable(),
@@ -37,6 +42,7 @@ export const SearchHitDTO = dto(
         type: 'mod',
         id: 45,
         title: 'StackMod',
+        titleOriginal: null,
         subtitle: '@someone',
         path: '/mods/someone/stackmod',
         thumbnailUrl: null,
@@ -64,6 +70,9 @@ export const SearchQuery = z.object({
   q: z.string().trim().min(1).max(100),
   types: wireList(SearchType, { max: SEARCH_TYPES.length, description: 'Default: all types' }),
   limit: wireInt({ min: 1, max: 50 }).optional(),
+  locale: Locale.optional().describe(
+    'Locale of the visitor: mods with a translation come back with the translated title',
+  ),
 });
 
 /** Version of the compact index layout (bump on incompatible tuple changes). */
@@ -71,7 +80,8 @@ export const SEARCH_INDEX_VERSION = 1;
 
 /**
  * Mod/build tuple: `[id, kind, name, userHandle, categorySlug, tagsCsv, manifestId, downloads,
- * compatStatus, thumb64Url | null, path]`.
+ * compatStatus, thumb64Url | null, path, originalName | null]`. In a non-English index `name` is the
+ * translated name when the mod has one and `originalName` (index 11, optional) the original.
  */
 export const SearchIndexModTuple = z.tuple([
   EntityId,
@@ -85,6 +95,7 @@ export const SearchIndexModTuple = z.tuple([
   CompatStatus,
   z.string().nullable(),
   SitePath,
+  z.string().nullable().optional(),
 ]);
 /** Kit tuple: `[id, name, ownerHandle, itemsCount, path]`. */
 export const SearchIndexKitTuple = z.tuple([EntityId, z.string(), Handle, z.number().int().nonnegative(), SitePath]);

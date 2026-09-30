@@ -27,6 +27,7 @@ import RelatedMods from '../../../../components/mod/RelatedMods.astro';
 import RequiredBy from '../../../../components/mod/RequiredBy.astro';
 import ReviewsPreview from '../../../../components/mod/ReviewsPreview.astro';
 import { respondUnresolved } from '../../../../components/mod/responses.ts';
+import TranslatedText from '../../../../components/mod/TranslatedText.astro';
 import StatsPanel from '../../../../components/mod/StatsPanel.astro';
 import { modDescription, modFaqJsonLd, modJsonLd, modTitle } from '../../../../components/mod/seo.ts';
 import { SECTION_TITLE_CLASSES } from '../../../../components/mod/styles.ts';
@@ -35,6 +36,8 @@ import WhatsNew from '../../../../components/mod/WhatsNew.astro';
 import { setPageCache } from '../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../lib/cache/policy.ts';
 import { loadEnv } from '../../../../lib/env.ts';
+import { localizeCards } from '../../../../lib/localize.ts';
+import { loadModTranslation } from '../../../../lib/mod-translation.ts';
 import { href } from '../../../../lib/i18n.ts';
 import { pictureSources } from '../../../../lib/images.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
@@ -49,12 +52,17 @@ if (resolved.rest.length > 0) return respondUnresolved(Astro, { kind: 'not-found
 
 const { mod } = resolved;
 setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
-const extras = await loadOverviewExtras(mod);
+const [extras, translation] = await Promise.all([
+  loadOverviewExtras(mod).then((value) => localizeCards(value, locale)),
+  loadModTranslation(mod, locale),
+]);
 const env = loadEnv();
 const pageUrl = `${env.siteUrl}${href(mod.canonicalPath, locale)}`;
 const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale));
 const labels = markdownLabels();
 const descriptionHtml = mod.descriptionHtml.trim() ? localizeHtml(mod.descriptionHtml, labels) : '';
+// T1-25: the description in the visitor's language (the original one click away).
+const translatedHtml = translation?.descriptionHtml?.trim() && descriptionHtml ? localizeHtml(translation.descriptionHtml, labels) : '';
 const recentVersions = (extras.versions ?? (mod.latestVersion ? [mod.latestVersion] : [])).slice(0, 3);
 const versionsCount = extras.versions?.length ?? null;
 const hero = mod.thumbnail ?? mod.gallery[0] ?? null;
@@ -110,7 +118,17 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
   <section aria-labelledby="overview-title" class="grid gap-4">
     <h2 id="overview-title" class="sr-only">{m.mod_tab_overview()}</h2>
     {
-      descriptionHtml ? (
+      translatedHtml && translation ? (
+        <TranslatedText
+          html
+          translated={translatedHtml}
+          original={descriptionHtml}
+          locale={locale}
+          sourceLang={mod.contentLang}
+          source={translation.sources.description ?? 'machine'}
+          class="max-w-(--container-prose)"
+        />
+      ) : descriptionHtml ? (
         <ProseLocator html={descriptionHtml} lang={mod.contentLang ?? undefined} className="max-w-(--container-prose)" />
       ) : (
         <p class="text-fg-muted">{m.mod_description_empty()}</p>

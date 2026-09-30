@@ -57,7 +57,7 @@ export const JOB_PAYLOADS = {
       .describe('Omit to translate every missing or stale locale'),
   }),
   'translation.sweep': z.object({
-    batchSize: z.number().int().min(1).max(200).default(40).describe('Mods queued per run'),
+    batchSize: z.number().int().min(1).max(200).default(100).describe('Mods queued per run'),
   }),
   // Cache and indexing
   'cdn.purge': z.object({ tags: z.array(CacheTagSchema).min(1), reason: z.string().max(120) }),

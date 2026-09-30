@@ -7,6 +7,7 @@
  * - Unknown slug → 404. Indexable unless filtered or empty; `?page=N` self-canonical.
  * - Cache: E(900) `category:{slug}` + `list:mods|list:builds`.
  */
+import { localizeCards } from '../../lib/localize.ts';
 import { cacheTag } from '@sotf/contracts/cache';
 import { m } from '@sotf/i18n/messages';
 import { categoryIntro } from '../../components/explore/copy.ts';
@@ -56,6 +57,7 @@ setPageCache(Astro, pageCache.custom(EDGE_TTL.detail, [cacheTag.category(categor
 
 const scope = categoryScope(category.slug, category.kind);
 const data = await loadListing({ url: Astro.url, locale, scope, taxonomy });
+if (data.kind !== 'redirect') await localizeCards(data, locale);
 if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
 
 const { state, list } = data;

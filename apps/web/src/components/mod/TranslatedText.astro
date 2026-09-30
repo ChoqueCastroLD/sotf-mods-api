@@ -1,0 +1,70 @@
+---
+/**
+ * A translated text with its original one click away (T1-25): «Translated from Spanish · Show
+ * original». Both versions are in the page, stacked in the same grid cell, so swapping them never
+ * moves the content around (the block is as tall as the taller version); the hidden one is
+ * `inert` and `aria-hidden`. The toggle script (`scripts/mod/translation.ts`) flips them.
+ *
+ * `html`: the texts are rendered Markdown (prose); otherwise plain text.
+ */
+import { ProseLocator } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { Languages } from 'lucide-react';
+import { m } from '@sotf/i18n/messages';
+import { languageName } from '../../lib/mod-translation.ts';
+
+interface Props {
+  translated: string;
+  original: string;
+  /** Page locale (language of the translation). */
+  locale: string;
+  /** Language of the original text. */
+  sourceLang: string | null;
+  source: 'machine' | 'author';
+  html?: boolean;
+  /** Classes of the text (plain) or of the prose wrapper (html). */
+  class?: string;
+}
+
+const { translated, original, locale, sourceLang, source, html = false, class: className = '' } = Astro.props;
+const language = languageName(sourceLang, locale as Parameters<typeof languageName>[1]);
+const noteTranslated =
+  source === 'author' ? m.translations_notice_author({ language }) : m.translations_notice_machine({ language });
+const noteOriginal = m.translations_notice_original({ language });
+const originalLang = sourceLang ?? 'en';
+---
+
+<div class="grid gap-1.5" data-translation>
+  <div class="grid">
+    <div data-translation-text="translated" lang={locale} class="col-start-1 row-start-1 min-w-0">
+      {html ? <ProseLocator html={translated} className={className} /> : <p class={className}>{translated}</p>}
+    </div>
+    <div
+      data-translation-text="original"
+      lang={originalLang}
+      class="invisible col-start-1 row-start-1 min-w-0"
+      aria-hidden="true"
+      inert
+      data-nosnippet
+    >
+      {html ? <ProseLocator html={original} className={className} /> : <p class={className}>{original}</p>}
+    </div>
+  </div>
+  <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-fg-subtle">
+    <Icon icon={Languages} size={14} />
+    <span aria-live="polite" data-translation-note data-note-translated={noteTranslated} data-note-original={noteOriginal}>
+      {noteTranslated}
+    </span>
+    <span aria-hidden="true">·</span>
+    <button
+      type="button"
+      data-translation-toggle
+      aria-pressed="false"
+      data-label-original={m.translations_show_original()}
+      data-label-translated={m.translations_show_translation()}
+      class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3"
+    >
+      {m.translations_show_original()}
+    </button>
+  </p>
+</div>

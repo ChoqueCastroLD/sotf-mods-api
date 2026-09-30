@@ -104,6 +104,8 @@ export {
 } from './i18n.ts';
 export { formatIcu, type IcuParams, parseIcu } from './icu.ts';
 export {
+  displayName,
+  displayShortDescription,
   MOD_CARD_COMPACT_BELOW,
   MOD_CARD_VARIANTS,
   ModCard,
@@ -112,6 +114,7 @@ export {
   type ModCardSkeletonProps,
   type ModCardVariant,
   modDownloadHref,
+  OriginalName,
   RATING_MIN_REVIEWS,
   UPDATED_WINDOW_DAYS,
 } from './mod-card.tsx';

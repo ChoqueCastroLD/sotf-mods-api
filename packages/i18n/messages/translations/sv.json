@@ -5,8 +5,8 @@
   "translations_show_translation": "Visa översättningen",
   "translations_original_note": "Originaltext",
   "translations_title": "Översättningar",
-  "translations_intro_auto": "Den korta beskrivningen översätts automatiskt till andra språk när du publicerar eller redigerar den. Skriv din egen text för att ersätta en översättning; din text skrivs aldrig över.",
-  "translations_intro_manual": "Skriv din egen översättning av den korta beskrivningen för valfritt språk. Automatisk översättning är inte tillgänglig på den här servern.",
+  "translations_intro_auto": "Namnet, den korta beskrivningen och beskrivningen översätts automatiskt till andra språk när du publicerar eller redigerar. Skriv din egen text för att ersätta en översättning; din skrivs aldrig över.",
+  "translations_intro_manual": "Skriv din egen översättning av namnet, den korta beskrivningen och beskrivningen för valfritt språk. Automatisk översättning är inte tillgänglig på den här servern.",
   "translations_original_heading": "Originaltext",
   "translations_source_machine": "Automatisk",
   "translations_source_author": "Din",
@@ -24,5 +24,12 @@
   "translations_reverted": "Automatisk översättning begärd",
   "translations_removed": "Översättningen togs bort",
   "translations_failed": "Det gick inte att uppdatera översättningen. Försök igen.",
-  "translations_load_failed": "Det gick inte att läsa in översättningarna."
+  "translations_load_failed": "Det gick inte att läsa in översättningarna.",
+  "translations_field_name": "Titel på {language}",
+  "translations_field_short": "Kort beskrivning på {language}",
+  "translations_field_description": "Beskrivning på {language} (Markdown)",
+  "translations_empty_hint": "Töm ett fält för att gå tillbaka till den automatiska översättningen.",
+  "translations_notice_machine": "Översatt från originalet ({language})",
+  "translations_notice_author": "Översatt av skaparen från originalet ({language})",
+  "translations_notice_original": "Originaltext på {language}"
 }

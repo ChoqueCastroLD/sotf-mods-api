@@ -5,8 +5,8 @@
   "translations_show_translation": "Übersetzung anzeigen",
   "translations_original_note": "Originaltext",
   "translations_title": "Übersetzungen",
-  "translations_intro_auto": "Die Kurzbeschreibung wird beim Veröffentlichen oder Bearbeiten automatisch in andere Sprachen übersetzt. Schreibe einen eigenen Text, um eine Übersetzung zu ersetzen; dein Text wird nie überschrieben.",
-  "translations_intro_manual": "Schreibe deine eigene Übersetzung der Kurzbeschreibung für jede Sprache. Die automatische Übersetzung ist auf diesem Server nicht verfügbar.",
+  "translations_intro_auto": "Name, Kurzbeschreibung und Beschreibung werden beim Veröffentlichen oder Bearbeiten automatisch in andere Sprachen übersetzt. Schreibe deinen eigenen Text, um eine Übersetzung zu ersetzen; deiner wird nie überschrieben.",
+  "translations_intro_manual": "Schreibe deine eigene Übersetzung von Name, Kurzbeschreibung und Beschreibung für jede Sprache. Die automatische Übersetzung ist auf diesem Server nicht verfügbar.",
   "translations_original_heading": "Originaltext",
   "translations_source_machine": "Automatisch",
   "translations_source_author": "Von dir",
@@ -24,5 +24,12 @@
   "translations_reverted": "Automatische Übersetzung angefordert",
   "translations_removed": "Übersetzung entfernt",
   "translations_failed": "Die Übersetzung konnte nicht aktualisiert werden. Versuche es erneut.",
-  "translations_load_failed": "Die Übersetzungen konnten nicht geladen werden."
+  "translations_load_failed": "Die Übersetzungen konnten nicht geladen werden.",
+  "translations_field_name": "Titel auf {language}",
+  "translations_field_short": "Kurzbeschreibung auf {language}",
+  "translations_field_description": "Beschreibung auf {language} (Markdown)",
+  "translations_empty_hint": "Leere ein Feld, um zur automatischen Übersetzung zurückzukehren.",
+  "translations_notice_machine": "Übersetzt aus dem Original ({language})",
+  "translations_notice_author": "Vom Ersteller übersetzt aus dem Original ({language})",
+  "translations_notice_original": "Originaltext auf {language}"
 }

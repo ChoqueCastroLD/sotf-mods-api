@@ -10,6 +10,7 @@
  * more kits of the curator). Everything user-specific (the owner's «Edit», fork) is resolved by
  * the page script after load; the HTML is the same for every visitor.
  */
+import { localizeCards } from '../../../lib/localize.ts';
 import { kitShortPath } from '@sotf/contracts/kits';
 import { profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber } from '@sotf/i18n';
@@ -76,6 +77,7 @@ const { kit } = resolved;
 setPageCache(Astro, pageCache.kit(kit.id));
 const [currentBuild, moreKits] = await Promise.all([loadCurrentBuild(), loadMoreFromCurator(kit)]);
 
+await localizeCards([kit, moreKits], locale);
 const env = loadEnv();
 const url = kitUrl(kit, locale, env.siteUrl);
 const login = loginHref(locale, kit.canonicalPath);

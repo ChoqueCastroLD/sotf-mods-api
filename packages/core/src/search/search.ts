@@ -24,6 +24,7 @@ import { getSnapshot, isListable } from '../catalog/snapshot.ts';
 import { cached, num, row, rows } from '../catalog/sql.ts';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
+import { getCardTranslations } from '../translations/service.ts';
 import { SITE_PAGES } from './pages.ts';
 import { highlight, normalizeQuery } from './text.ts';
 
@@ -358,8 +359,10 @@ export async function search(ctx: Ctx, config: CatalogConfig, input: SearchInput
           (b.downloads ?? 0) - (a.downloads ?? 0) ||
           String(a.id).localeCompare(String(b.id)),
       );
+      const top = hits.slice(0, limit);
+      await localizeHits(ctx, top, locale);
       return {
-        value: { q, total: hits.length, hits: hits.slice(0, limit) },
+        value: { q, total: hits.length, hits: top },
         tags: ['list:mods', 'list:builds', 'list:kits'],
       };
     },
@@ -367,6 +370,27 @@ export async function search(ctx: Ctx, config: CatalogConfig, input: SearchInput
 
   logSearch(ctx, q, result.total);
   return result;
+}
+
+/** Shows the translated name of mods and builds to a visitor of another language (original kept aside). */
+async function localizeHits(ctx: Ctx, hits: SearchHitDTO[], locale: Locale): Promise<void> {
+  if (locale === 'en' && !hits.some((h) => h.type === 'mod' || h.type === 'build')) return;
+  const ids = hits.filter((h) => h.type === 'mod' || h.type === 'build').map((h) => Number(h.id));
+  if (ids.length === 0) return;
+  try {
+    const { items } = await getCardTranslations(ctx, ids, locale);
+    const byId = new Map(items.map((t) => [t.id, t]));
+    for (const hit of hits) {
+      const name = byId.get(Number(hit.id))?.name;
+      if (hit.type !== 'mod' && hit.type !== 'build') continue;
+      if (name && name !== hit.title) {
+        hit.titleOriginal = hit.title;
+        hit.title = name;
+      }
+    }
+  } catch (error) {
+    ctx.log.warn({ err: error }, 'search hits could not be localized');
+  }
 }
 
 /** Raw evidence rows of the mod search (cached per normalised query). */

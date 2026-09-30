@@ -1,4 +1,4 @@
-/** Automatic translation of the mod short description (PLAN §7.13 T1-25, migration 2180). */
+/** Automatic translation of the mod short description (PLAN §7.13 T1-25, migrations 2180 and 2230: name, short description and description). */
 import { bigint, date, integer, pgTable, primaryKey, text } from 'drizzle-orm/pg-core';
 import { tstz } from '../_columns.ts';
 import { mod } from '../legacy/mod.ts';
@@ -27,10 +27,20 @@ export const modTranslation = pgTable(
       .notNull()
       .references(() => mod.id, { onDelete: 'cascade', onUpdate: 'cascade' }),
     locale: text('locale').$type<ModTranslationLocale>().notNull(),
-    shortDescription: text('shortDescription').notNull(),
+    /** Translated short description (null: not translated yet or empty original). */
+    shortDescription: text('shortDescription'),
+    /** Provenance of `shortDescription`. */
     source: text('source').$type<ModTranslationSource>().notNull().default('machine'),
-    /** Hash of the original text the row was made from (staleness check). */
-    sourceHash: text('sourceHash').notNull(),
+    /** Hash of the original short description the row was made from (staleness check). */
+    sourceHash: text('sourceHash'),
+    /** Translated mod name (migration 2230) and its provenance / original hash. */
+    name: text('name'),
+    nameSource: text('nameSource').$type<ModTranslationSource>(),
+    nameHash: text('nameHash'),
+    /** Translated full description, Markdown (migration 2230) and its provenance / original hash. */
+    description: text('description'),
+    descriptionSource: text('descriptionSource').$type<ModTranslationSource>(),
+    descriptionHash: text('descriptionHash'),
     model: text('model'),
     createdAt: tstz('createdAt').notNull().defaultNow(),
     updatedAt: tstz('updatedAt')

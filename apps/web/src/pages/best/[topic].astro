@@ -7,6 +7,7 @@
  *
  * Indexable from 5 items (the same threshold as the best sitemap); E(3600) `list:mods`. Unknown topic → 404; other letter cases → 301.
  */
+import { localizeCards } from '../../lib/localize.ts';
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { formatDate, toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -61,6 +62,7 @@ for (const result of results) {
   for (const item of result.value.items) if (!merged.has(item.id)) merged.set(item.id, item);
 }
 const items = [...merged.values()].sort((a, b) => b.downloads - a.downloads).slice(0, hub.limit);
+await localizeCards(items, locale);
 if (failed) {
   setPageCache(Astro, false);
   Astro.response.status = 503;

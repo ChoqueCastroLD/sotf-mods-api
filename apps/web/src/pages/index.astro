@@ -14,6 +14,7 @@
  *   docs/backlog/WP-53.md).
  * - JSON-LD: `WebSite` + `SearchAction`, `Organization` and `FAQPage` (the visible FAQ).
  */
+import { localizeCards } from '../lib/localize.ts';
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import AdUnit from '../components/ads/AdUnit.astro';
@@ -51,7 +52,7 @@ const DEGRADED_TTL_SECONDS = 60;
 
 const locale = ensureLocals(Astro).locale;
 const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
-const data = await loadLanding();
+const data = await localizeCards(await loadLanding(), locale);
 
 setPageCache(
   Astro,

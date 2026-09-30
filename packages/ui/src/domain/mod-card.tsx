@@ -178,6 +178,39 @@ function Rating({ mod, className }: { mod: ModCardDTO; className?: string }) {
   );
 }
 
+/** The name to show: the visitor's translation when the web attached one, else the original. */
+export function displayName(card: { name: string; localized?: { name: string | null } | undefined }): string {
+  return card.localized?.name || card.name;
+}
+
+/** The short description to show (translated when available). */
+export function displayShortDescription(card: {
+  shortDescription: string;
+  localized?: { shortDescription: string | null } | undefined;
+}): string {
+  return card.localized?.shortDescription || card.shortDescription;
+}
+
+/**
+ * The original title, small and grey, under a translated one. Renders nothing when the card is not
+ * translated (or the translation equals the original).
+ */
+export function OriginalName({
+  card,
+  className,
+}: {
+  card: { name: string; localized?: { name: string | null } | undefined };
+  className?: string;
+}) {
+  const shown = displayName(card);
+  if (shown === card.name) return null;
+  return (
+    <p translate="no" className={cn('truncate text-xs text-fg-subtle', className)} data-original-name="">
+      {card.name}
+    </p>
+  );
+}
+
 function Byline({ mod, className }: { mod: ModCardDTO; className?: string }) {
   const { t, taxonomy } = useDomainI18n();
   const profileHref = useProfileHref();
@@ -235,7 +268,7 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
           <Cover
             image={mod.thumbnail}
             seed={mod.slug}
-            name={mod.name}
+            name={displayName(mod)}
             category={mod.category}
             sizes="(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw"
             priority={priority}
@@ -252,10 +285,11 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
         {action ? <div className={cn('absolute z-10 end-2 top-2', CQ.hide)}>{action}</div> : null}
         <div className={cn('flex min-w-0 flex-1 flex-col gap-1.5 p-4', CQ.body)}>
           <Heading className="truncate text-base font-semibold">
-            <CardLink href={mod.canonicalPath}>{mod.name}</CardLink>
+            <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
           </Heading>
+          <OriginalName card={mod} className={CQ.hide} />
           <Byline mod={mod} className={CQ.hide} />
-          <p className={cn('line-clamp-2 text-sm text-fg-muted', CQ.hide)}>{mod.shortDescription}</p>
+          <p className={cn('line-clamp-2 text-sm text-fg-muted', CQ.hide)}>{displayShortDescription(mod)}</p>
           <div
             className={cn('mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-xs text-fg-muted', CQ.footer)}
           >
@@ -289,16 +323,17 @@ function RowCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
     <article data-variant="row" data-mod-id={mod.id} className={cn('@container/row', className)}>
       <div className={cn(cardClasses, 'flex items-center gap-3 p-3 @min-[36rem]/row:gap-4')}>
         <div className="size-12 shrink-0 overflow-hidden rounded-md bg-raised">
-          <Cover image={mod.thumbnail} seed={mod.slug} name={mod.name} category={mod.category} sizes="48px" />
+          <Cover image={mod.thumbnail} seed={mod.slug} name={displayName(mod)} category={mod.category} sizes="48px" />
         </div>
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <div className="flex min-w-0 items-center gap-2">
             <Heading className="truncate text-sm font-semibold">
-              <CardLink href={mod.canonicalPath}>{mod.name}</CardLink>
+              <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
             </Heading>
             {badges.length > 0 ? <span className="hidden gap-1 @min-[28rem]/row:flex">{badges}</span> : null}
           </div>
-          <p className="line-clamp-1 text-xs text-fg-muted">{mod.shortDescription}</p>
+          <OriginalName card={mod} className="text-2xs" />
+          <p className="line-clamp-1 text-xs text-fg-muted">{displayShortDescription(mod)}</p>
           <Byline mod={mod} className="@min-[36rem]/row:hidden" />
         </div>
         <div className="hidden shrink-0 items-center gap-5 text-xs text-fg-muted @min-[36rem]/row:flex">
@@ -319,7 +354,7 @@ function RowCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
           >
             <Icon icon={Download} size={16} />
             <span className="hidden @min-[28rem]/row:inline">{t('ui_domain_download')}</span>
-            <span className="sr-only">{mod.name}</span>
+            <span className="sr-only">{displayName(mod)}</span>
           </a>
         ) : null}
         {action ? <div className={cardControlClasses}>{action}</div> : null}
@@ -334,12 +369,13 @@ function CompactCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
     <article data-variant="compact" data-mod-id={mod.id} className={className}>
       <div className={cn(cardClasses, 'flex items-center gap-3 p-2')}>
         <div className="size-10 shrink-0 overflow-hidden rounded-sm bg-raised">
-          <Cover image={mod.thumbnail} seed={mod.slug} name={mod.name} category={mod.category} sizes="40px" />
+          <Cover image={mod.thumbnail} seed={mod.slug} name={displayName(mod)} category={mod.category} sizes="40px" />
         </div>
         <div className="flex min-w-0 flex-1 flex-col">
           <Heading className="truncate text-sm font-semibold">
-            <CardLink href={mod.canonicalPath}>{mod.name}</CardLink>
+            <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
           </Heading>
+          <OriginalName card={mod} className="text-2xs" />
           <Downloads value={mod.downloads} className="text-xs text-fg-muted" />
         </div>
       </div>
@@ -358,7 +394,7 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
           <Cover
             image={mod.thumbnail}
             seed={mod.slug}
-            name={mod.name}
+            name={displayName(mod)}
             category={mod.category}
             sizes="(min-width: 64rem) 40rem, 100vw"
             priority={priority}
@@ -371,15 +407,16 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             {award ? t(AWARD_KEY[award.kind]) : t('ui_domain_badge_featured')}
           </Badge>
           <Heading className="font-display-caps text-display-sm text-balance">
-            <CardLink href={mod.canonicalPath}>{mod.name}</CardLink>
+            <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
           </Heading>
+          <OriginalName card={mod} className="-mt-2 text-sm" />
           <Byline mod={mod} />
           {quote ? (
             <blockquote className="border-s-2 border-primary ps-3 text-base text-fg">
               <p className="line-clamp-4">“{quote}”</p>
             </blockquote>
           ) : (
-            <p className="line-clamp-3 text-sm text-fg-muted">{mod.shortDescription}</p>
+            <p className="line-clamp-3 text-sm text-fg-muted">{displayShortDescription(mod)}</p>
           )}
           <div className="flex flex-wrap items-center gap-3 text-xs text-fg-muted">
             <Downloads value={mod.downloads} />

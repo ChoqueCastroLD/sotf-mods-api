@@ -14,6 +14,7 @@
  *   `noindex`. Markdown and RSS alternates in the head.
  */
 
+import { localizeCards } from '../../../lib/localize.ts';
 import { cacheTag } from '@sotf/contracts/cache';
 import { BADGES, nextSurvivorRank } from '@sotf/contracts/gamification';
 import type { CoAuthoredModListDTO } from '@sotf/contracts/mod-knowledge';
@@ -88,6 +89,7 @@ const [content, coAuthored]: [TabContent, CoAuthoredModListDTO | null] = await P
     : Promise.resolve(null),
 ]);
 
+await localizeCards([content, coAuthored], locale);
 setPageCache(
   Astro,
   content.state === 'error'

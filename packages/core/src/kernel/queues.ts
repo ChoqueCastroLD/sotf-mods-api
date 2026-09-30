@@ -29,7 +29,7 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'domain.event': { retryLimit: 8, retryDelay: 5, warningQueueSize: 5000 },
   'media.process': { expireInSeconds: 30 * 60 },
   'og.render': { retryLimit: 3 },
-  'translation.mod': { retryLimit: 3, retryDelay: 60, expireInSeconds: 5 * 60 },
+  'translation.mod': { retryLimit: 3, retryDelay: 60, expireInSeconds: 20 * 60 },
   'translation.sweep': { policy: 'singleton', retryLimit: 1, expireInSeconds: 10 * 60 },
   'inspection.run': { expireInSeconds: 30 * 60 },
   'security.scan': { retryLimit: 10, retryDelay: 60, retryDelayMax: 6 * 3600 },

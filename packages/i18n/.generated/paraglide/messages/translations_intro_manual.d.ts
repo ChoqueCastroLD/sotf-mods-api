@@ -3,7 +3,7 @@ export type Translations_Intro_ManualInputs = {};
 /**
 * | output |
 * | --- |
-* | "Write your own translation of the short description for any language. Automatic translation is not available on this server." |
+* | "Write your own translation of the name, short description and description for any language. Automatic translation is not available on this server." |
 *
 * @param {Translations_Intro_ManualInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
