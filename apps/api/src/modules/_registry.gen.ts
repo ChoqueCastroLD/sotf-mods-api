@@ -17,6 +17,7 @@ import eventsModule from './events/index.ts';
 import followsModule from './follows/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
+import markdownPreviewModule from './markdown-preview/index.ts';
 import meModule from './me/index.ts';
 import notificationsModule from './notifications/index.ts';
 import onboardingModule from './onboarding/index.ts';
@@ -49,6 +50,7 @@ export const modules = [
   followsModule,
   kitsModule,
   legacyModule,
+  markdownPreviewModule,
   meModule,
   notificationsModule,
   onboardingModule,

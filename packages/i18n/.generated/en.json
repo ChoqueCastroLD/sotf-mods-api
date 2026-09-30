@@ -2315,6 +2315,303 @@
   "mod_whats_new_read": "Read the field notes",
   "mod_whats_new_title": "What’s new since your last download (v{version})",
   "mod_whats_new_up_to_date": "You have the latest version (v{version}).",
+  "social_action_back": "Back",
+  "social_action_cancel": "Cancel",
+  "social_action_close": "Close",
+  "social_action_continue": "Continue",
+  "social_action_delete": "Delete",
+  "social_action_edit": "Edit",
+  "social_action_load_more": "Load more",
+  "social_action_retry": "Try again",
+  "social_action_save": "Save",
+  "social_action_undo": "Undo",
+  "social_bug_resolve": "Mark as fixed in a version",
+  "social_bug_resolve_intro": "The reporter gets a signal and the comment shows «Fixed in vX».",
+  "social_bug_resolve_submit": "Mark as fixed",
+  "social_bug_resolve_title": "Fixed in which version?",
+  "social_bug_resolve_version": "Version",
+  "social_bug_resolved_done": "Marked as fixed in {version}.",
+  "social_comment_bug_hint": "Bug reports go to the creator’s inbox. Say what you did, what happened and what you expected.",
+  "social_comment_bug_label": "This is a bug report",
+  "social_comment_bug_version": "Version with the bug",
+  "social_comment_deleted": "Comment deleted.",
+  "social_comment_edit_label": "Edit your comment",
+  "social_comment_edited": "Comment updated.",
+  "social_comment_empty": "Write something first.",
+  "social_comment_held": "Posted. Comments with outside links from new accounts wait for a quick Ranger check.",
+  "social_comment_invalid": "This text can’t be saved. Check it and try again.",
+  "social_comment_label": "Your comment",
+  "social_comment_placeholder": "Ask, share a tip or report a problem…",
+  "social_comment_posted": "Comment posted.",
+  "social_comment_reply_label": "Your reply",
+  "social_comment_reply_submit": "Reply",
+  "social_comment_reply_to": "Replying to @{handle}",
+  "social_comment_sign_in": "Sign in to comment",
+  "social_comment_submit": "Post comment",
+  "social_comment_too_long": "Keep it under {max} characters.",
+  "social_comments_empty": "No comments yet. Questions, tips and bug reports go here.",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "No more comments.",
+        "count__exact=*, count__plural=one": "{count__number} more comment loaded.",
+        "count__exact=*, count__plural=*": "{count__number} more comments loaded."
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} more reply",
+        "count__plural=*": "{count__number} more replies"
+      }
+    }
+  ],
+  "social_comments_sort": "Sort comments",
+  "social_comments_sort_new": "Newest",
+  "social_comments_sort_top": "Top",
+  "social_comments_sorted": "Comments sorted.",
+  "social_compat_build": "Game build",
+  "social_compat_build_current": "{label} (current)",
+  "social_compat_deleted": "Field report deleted.",
+  "social_compat_heading": "Did it work in your game?",
+  "social_compat_intro": "Tell other survivors whether this mod works on your setup. It takes 20 seconds.",
+  "social_compat_missing_mode": "Choose how you play.",
+  "social_compat_missing_result": "Choose a result.",
+  "social_compat_missing_setup": "Choose the version and the game build.",
+  "social_compat_mode": "How do you play?",
+  "social_compat_mode_client": "Multiplayer client",
+  "social_compat_mode_client_hint": "You join someone else’s game.",
+  "social_compat_mode_dedicated": "Dedicated server",
+  "social_compat_mode_dedicated_hint": "Installed on a dedicated server.",
+  "social_compat_mode_host": "Multiplayer host",
+  "social_compat_mode_host_hint": "You host the game for friends.",
+  "social_compat_mode_singleplayer": "Singleplayer",
+  "social_compat_mode_singleplayer_hint": "Playing alone.",
+  "social_compat_note": "Note",
+  "social_compat_note_placeholder": "What works, what doesn’t, any error message…",
+  "social_compat_open": "Report compatibility",
+  "social_compat_other_mods": "Other mods installed",
+  "social_compat_other_mods_placeholder": "SonsAxLib, StackMod…",
+  "social_compat_prompt": "You downloaded v{version}. Did it work on {build}?",
+  "social_compat_prompt_label": "Did it work?",
+  "social_compat_prompt_later": "Not now",
+  "social_compat_report_another": "Report another setup",
+  "social_compat_result": "Did it work?",
+  "social_compat_result_broken": "Broken",
+  "social_compat_result_broken_hint": "It doesn’t load or it crashes.",
+  "social_compat_result_partial": "Partly",
+  "social_compat_result_partial_hint": "It loads, but something is broken.",
+  "social_compat_result_works": "Works",
+  "social_compat_result_works_hint": "Everything I tried works.",
+  "social_compat_step_of": "Step {step} of {total}: {title}",
+  "social_compat_step_result": "Result",
+  "social_compat_step_setup": "Your setup",
+  "social_compat_steps": "Steps",
+  "social_compat_submit": "Send report",
+  "social_compat_text": "A field report takes ten seconds and tells everyone whether this mod works on the current patch.",
+  "social_compat_thanks": "Thanks, survivor! Your field report counts toward the compatibility badge.",
+  "social_compat_title": "Field report",
+  "social_compat_version": "Mod version",
+  "social_compat_yours": "You reported «{result}» on {build} ({mode}, v{version}).",
+  "social_deleted_user": "Deleted survivor",
+  "social_editor_bold": "Bold",
+  "social_editor_code": "Code",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown: **bold**, *italic*, `code`, [link](url), ||spoiler||, @mentions · {modifier}+Enter to send",
+  "social_editor_italic": "Italic",
+  "social_editor_link": "Link",
+  "social_editor_link_text": "link text",
+  "social_editor_list": "List",
+  "social_editor_mentions": "People to mention",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "No suggestions",
+        "count__exact=*, count__plural=one": "{count__number} suggestion, use the arrow keys",
+        "count__exact=*, count__plural=*": "{count__number} suggestions, use the arrow keys"
+      }
+    }
+  ],
+  "social_editor_mode": "Editor view",
+  "social_editor_preview": "Preview",
+  "social_editor_preview_empty": "Nothing to preview yet.",
+  "social_editor_preview_loading": "Rendering the preview…",
+  "social_editor_quote": "Quote",
+  "social_editor_sample": "text",
+  "social_editor_spoiler": "Spoiler",
+  "social_editor_toolbar": "Formatting",
+  "social_editor_write": "Write",
+  "social_image_add": "Add image ({count}/{max})",
+  "social_image_failed": "The image couldn’t be uploaded. Remove it and try again.",
+  "social_image_failed_short": "Failed",
+  "social_image_limit": "Up to {max} images per comment.",
+  "social_image_remove": "Remove {name}",
+  "social_image_size": "Images can be up to 5 MB.",
+  "social_image_type": "Use a PNG, JPEG, WebP, AVIF or GIF image.",
+  "social_image_uploading": "Uploading…",
+  "social_image_wait": "Wait until the images finish uploading.",
+  "social_loading": "Loading…",
+  "social_md_spoiler": "Spoiler",
+  "social_more_actions": "More actions for {name}’s post",
+  "social_offline": "You’re offline. What you see may be out of date.",
+  "social_optional": "(optional)",
+  "social_pin": "Pin",
+  "social_pin_limit": "You can pin up to 3 comments. Unpin one first.",
+  "social_pinned": "Comment pinned.",
+  "social_reaction_add": "Add a reaction",
+  "social_reaction_added": "Reaction added: {reaction}.",
+  "social_reaction_fire": "Fire",
+  "social_reaction_heart": "Heart",
+  "social_reaction_laugh": "Laugh",
+  "social_reaction_party": "Celebrate",
+  "social_reaction_pray": "Thanks",
+  "social_reaction_removed": "Reaction removed: {reaction}.",
+  "social_reaction_thumbs_up": "Thumbs up",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{reaction}: {count__number} person",
+        "count__plural=*": "{reaction}: {count__number} people"
+      }
+    }
+  ],
+  "social_reactions": "Reactions",
+  "social_replies_failed": "Couldn’t load the replies. Try again.",
+  "social_reply": "Reply",
+  "social_reply_to_label": "Reply to {name}",
+  "social_report": "Report",
+  "social_report_choose_reason": "Choose a reason.",
+  "social_report_comment_title": "Report this comment",
+  "social_report_details_label": "Details (optional)",
+  "social_report_duplicate": "You already reported this mod. The rangers have it.",
+  "social_report_field_report_title": "Report this field report",
+  "social_report_intro": "Rangers review every report. Tell them what’s wrong.",
+  "social_report_reason_harassment": "Harassment or hate",
+  "social_report_reason_illegal": "Illegal content",
+  "social_report_reason_label": "Reason",
+  "social_report_reason_nsfw_unmarked": "Adult content not marked 18+",
+  "social_report_reason_other": "Something else",
+  "social_report_reason_spam": "Spam or advertising",
+  "social_report_review_title": "Report this review",
+  "social_report_sent": "Thanks. The rangers will take a look.",
+  "social_report_submit": "Send report",
+  "social_review_body_label": "Your review",
+  "social_review_body_placeholder": "What worked, what didn’t, and who is it for?",
+  "social_review_conflict": "You already reviewed this mod. Edit your review instead.",
+  "social_review_deleted": "Review deleted.",
+  "social_review_edit": "Edit your review",
+  "social_review_forbidden": "You can’t review this mod yet: reviews need a verified e-mail and an account at least 24 hours old, and creators can’t review their own mods.",
+  "social_review_own_mod": "This is your mod: you can reply to each review once.",
+  "social_review_posted": "Thanks! Your review is live.",
+  "social_review_rating_label": "Your rating",
+  "social_review_rating_required": "Choose from 1 to 5 stars.",
+  "social_review_reply": "Reply publicly",
+  "social_review_reply_delete": "Delete your reply",
+  "social_review_reply_deleted": "Reply deleted.",
+  "social_review_reply_edit": "Edit your reply",
+  "social_review_reply_label": "Your public reply",
+  "social_review_reply_saved": "Reply published.",
+  "social_review_reply_submit": "Publish reply",
+  "social_review_rules": "One review per survivor. Be specific: version, what worked, what didn’t.",
+  "social_review_see_all": "See all reviews",
+  "social_review_star_1": "Doesn’t work for me",
+  "social_review_star_2": "Needs work",
+  "social_review_star_3": "Okay",
+  "social_review_star_4": "Great",
+  "social_review_star_5": "Essential",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} star",
+        "count__plural=*": "{count__number} stars"
+      }
+    }
+  ],
+  "social_review_submit": "Publish review",
+  "social_review_title_label": "Title",
+  "social_review_title_too_long": "The title can have up to {max} characters.",
+  "social_review_update": "Update review",
+  "social_review_updated": "Review updated.",
+  "social_review_version_auto": "The last one I downloaded",
+  "social_review_version_label": "Version you used",
+  "social_review_write": "Write a review",
+  "social_review_yours": "Your review",
+  "social_solution_mark": "Mark as solution",
+  "social_solution_marked": "Marked as the solution.",
+  "social_solution_unmark": "Remove solution mark",
+  "social_solution_unmarked": "Solution mark removed.",
+  "social_unpin": "Unpin",
+  "social_unpinned": "Comment unpinned.",
+  "social_verify_action": "Verify e-mail",
+  "social_verify_to_comment": "Verify your e-mail to comment.",
+  "social_verify_to_report": "Verify your e-mail to send field reports.",
+  "social_verify_to_review": "Verify your e-mail to write a review.",
+  "social_vote_label": "Helpful?",
+  "social_vote_no": "Not helpful",
+  "social_vote_removed": "Vote removed.",
+  "social_vote_saved": "Vote saved.",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Yes, helpful ({count__number} vote)",
+        "count__plural=*": "Yes, helpful ({count__number} votes)"
+      }
+    }
+  ],
   "ui_breadcrumbs": "Breadcrumb",
   "ui_cancel": "Cancel",
   "ui_choose": "Choose…",

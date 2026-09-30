@@ -2315,6 +2315,303 @@
   "mod_whats_new_read": "Saha notlarını oku",
   "mod_whats_new_title": "Son indirmenden (v{version}) bu yana yenilikler",
   "mod_whats_new_up_to_date": "En yeni sürüme sahipsin (v{version}).",
+  "social_action_back": "Geri",
+  "social_action_cancel": "İptal",
+  "social_action_close": "Kapat",
+  "social_action_continue": "Devam et",
+  "social_action_delete": "Sil",
+  "social_action_edit": "Düzenle",
+  "social_action_load_more": "Daha fazla yükle",
+  "social_action_retry": "Tekrar dene",
+  "social_action_save": "Kaydet",
+  "social_action_undo": "Geri al",
+  "social_bug_resolve": "Bir sürümde düzeltildi olarak işaretle",
+  "social_bug_resolve_intro": "Bildiren kişiye sinyal gider ve yorumda “vX sürümünde düzeltildi” görünür.",
+  "social_bug_resolve_submit": "Düzeltildi olarak işaretle",
+  "social_bug_resolve_title": "Hangi sürümde düzeltildi?",
+  "social_bug_resolve_version": "Sürüm",
+  "social_bug_resolved_done": "{version} sürümünde düzeltildi olarak işaretlendi.",
+  "social_comment_bug_hint": "Hata bildirimleri yapımcının gelen kutusuna gider. Ne yaptığını, ne olduğunu ve ne beklediğini yaz.",
+  "social_comment_bug_label": "Bu bir hata bildirimi",
+  "social_comment_bug_version": "Hatalı sürüm",
+  "social_comment_deleted": "Yorum silindi.",
+  "social_comment_edit_label": "Yorumunu düzenle",
+  "social_comment_edited": "Yorum güncellendi.",
+  "social_comment_empty": "Önce bir şeyler yaz.",
+  "social_comment_held": "Gönderildi. Yeni hesaplardan gelen dış bağlantılı yorumlar kısa bir korucu kontrolü bekler.",
+  "social_comment_invalid": "Bu metin kaydedilemiyor. Kontrol edip tekrar dene.",
+  "social_comment_label": "Yorumun",
+  "social_comment_placeholder": "Soru sor, ipucu paylaş ya da bir sorun bildir…",
+  "social_comment_posted": "Yorum gönderildi.",
+  "social_comment_reply_label": "Yanıtın",
+  "social_comment_reply_submit": "Yanıtla",
+  "social_comment_reply_to": "@{handle} kullanıcısına yanıt",
+  "social_comment_sign_in": "Yorum yapmak için giriş yap",
+  "social_comment_submit": "Yorumu gönder",
+  "social_comment_too_long": "En fazla {max} karakter.",
+  "social_comments_empty": "Henüz yorum yok. Sorular, ipuçları ve hatalar buraya.",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Başka yorum yok.",
+        "count__exact=*, count__plural=one": "{count__number} yorum daha yüklendi.",
+        "count__exact=*, count__plural=*": "{count__number} yorum daha yüklendi."
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yanıt daha",
+        "count__plural=*": "{count__number} yanıt daha"
+      }
+    }
+  ],
+  "social_comments_sort": "Yorumları sırala",
+  "social_comments_sort_new": "En yeni",
+  "social_comments_sort_top": "En iyi",
+  "social_comments_sorted": "Yorumlar sıralandı.",
+  "social_compat_build": "Oyun sürümü",
+  "social_compat_build_current": "{label} (güncel)",
+  "social_compat_deleted": "Saha raporu silindi.",
+  "social_compat_heading": "Oyununda çalıştı mı?",
+  "social_compat_intro": "Diğer hayatta kalanlara bu modun sende çalışıp çalışmadığını söyle. 20 saniye sürer.",
+  "social_compat_missing_mode": "Nasıl oynadığını seç.",
+  "social_compat_missing_result": "Bir sonuç seç.",
+  "social_compat_missing_setup": "Sürümü ve oyun sürümünü seç.",
+  "social_compat_mode": "Nasıl oynuyorsun?",
+  "social_compat_mode_client": "Çok oyunculu istemci",
+  "social_compat_mode_client_hint": "Başkasının oyununa katılıyorsun.",
+  "social_compat_mode_dedicated": "Özel sunucu",
+  "social_compat_mode_dedicated_hint": "Özel bir sunucuya kurulu.",
+  "social_compat_mode_host": "Çok oyunculu sunucu sahibi",
+  "social_compat_mode_host_hint": "Oyunu arkadaşların için sen kuruyorsun.",
+  "social_compat_mode_singleplayer": "Tek oyunculu",
+  "social_compat_mode_singleplayer_hint": "Tek başına oynuyorsun.",
+  "social_compat_note": "Not",
+  "social_compat_note_placeholder": "Ne çalışıyor, ne çalışmıyor, hata mesajı…",
+  "social_compat_open": "Uyumluluk bildir",
+  "social_compat_other_mods": "Kurulu diğer modlar",
+  "social_compat_other_mods_placeholder": "SonsAxLib, StackMod…",
+  "social_compat_prompt": "v{version} sürümünü indirdin. {build} üzerinde çalıştı mı?",
+  "social_compat_prompt_label": "Çalıştı mı?",
+  "social_compat_prompt_later": "Şimdi değil",
+  "social_compat_report_another": "Başka bir kurulum bildir",
+  "social_compat_result": "Çalıştı mı?",
+  "social_compat_result_broken": "Bozuk",
+  "social_compat_result_broken_hint": "Yüklenmiyor ya da çöküyor.",
+  "social_compat_result_partial": "Kısmen",
+  "social_compat_result_partial_hint": "Yükleniyor ama bir şey bozuk.",
+  "social_compat_result_works": "Çalışıyor",
+  "social_compat_result_works_hint": "Denediğim her şey çalışıyor.",
+  "social_compat_step_of": "Adım {step}/{total}: {title}",
+  "social_compat_step_result": "Sonuç",
+  "social_compat_step_setup": "Kurulumun",
+  "social_compat_steps": "Adımlar",
+  "social_compat_submit": "Raporu gönder",
+  "social_compat_text": "Bir saha raporu on saniye sürer ve herkese bu modun güncel yamada çalışıp çalışmadığını gösterir.",
+  "social_compat_thanks": "Teşekkürler! Saha raporun uyumluluk rozetine sayılır.",
+  "social_compat_title": "Saha raporu",
+  "social_compat_version": "Mod sürümü",
+  "social_compat_yours": "{build} üzerinde “{result}” bildirdin ({mode}, v{version}).",
+  "social_deleted_user": "Silinmiş hayatta kalan",
+  "social_editor_bold": "Kalın",
+  "social_editor_code": "Kod",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown: **kalın**, *italik*, `kod`, [bağlantı](url), ||spoiler||, @bahsetmeler · göndermek için {modifier}+Enter",
+  "social_editor_italic": "İtalik",
+  "social_editor_link": "Bağlantı",
+  "social_editor_link_text": "bağlantı metni",
+  "social_editor_list": "Liste",
+  "social_editor_mentions": "Bahsedilecek kişiler",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Öneri yok",
+        "count__exact=*, count__plural=one": "{count__number} öneri, ok tuşlarını kullan",
+        "count__exact=*, count__plural=*": "{count__number} öneri, ok tuşlarını kullan"
+      }
+    }
+  ],
+  "social_editor_mode": "Düzenleyici görünümü",
+  "social_editor_preview": "Önizleme",
+  "social_editor_preview_empty": "Henüz önizlenecek bir şey yok.",
+  "social_editor_preview_loading": "Önizleme hazırlanıyor…",
+  "social_editor_quote": "Alıntı",
+  "social_editor_sample": "metin",
+  "social_editor_spoiler": "Spoiler",
+  "social_editor_toolbar": "Biçimlendirme",
+  "social_editor_write": "Yaz",
+  "social_image_add": "Görsel ekle ({count}/{max})",
+  "social_image_failed": "Görsel yüklenemedi. Kaldırıp tekrar dene.",
+  "social_image_failed_short": "Başarısız",
+  "social_image_limit": "Yorum başına en fazla {max} görsel.",
+  "social_image_remove": "{name} öğesini kaldır",
+  "social_image_size": "Görseller en fazla 5 MB olabilir.",
+  "social_image_type": "PNG, JPEG, WebP, AVIF veya GIF görseli kullan.",
+  "social_image_uploading": "Yükleniyor…",
+  "social_image_wait": "Görsellerin yüklenmesini bekle.",
+  "social_loading": "Yükleniyor…",
+  "social_md_spoiler": "Spoiler",
+  "social_more_actions": "{name} gönderisi için diğer işlemler",
+  "social_offline": "Çevrimdışısın. Gördüklerin güncel olmayabilir.",
+  "social_optional": "(isteğe bağlı)",
+  "social_pin": "Sabitle",
+  "social_pin_limit": "En fazla 3 yorum sabitleyebilirsin. Önce birini kaldır.",
+  "social_pinned": "Yorum sabitlendi.",
+  "social_reaction_add": "Tepki ekle",
+  "social_reaction_added": "Tepki eklendi: {reaction}.",
+  "social_reaction_fire": "Ateş",
+  "social_reaction_heart": "Kalp",
+  "social_reaction_laugh": "Gülme",
+  "social_reaction_party": "Kutlama",
+  "social_reaction_pray": "Teşekkürler",
+  "social_reaction_removed": "Tepki kaldırıldı: {reaction}.",
+  "social_reaction_thumbs_up": "Beğen",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{reaction}: {count__number} kişi",
+        "count__plural=*": "{reaction}: {count__number} kişi"
+      }
+    }
+  ],
+  "social_reactions": "Tepkiler",
+  "social_replies_failed": "Yanıtlar yüklenemedi. Tekrar dene.",
+  "social_reply": "Yanıtla",
+  "social_reply_to_label": "{name} kullanıcısını yanıtla",
+  "social_report": "Şikâyet et",
+  "social_report_choose_reason": "Bir neden seç.",
+  "social_report_comment_title": "Bu yorumu şikâyet et",
+  "social_report_details_label": "Ayrıntılar (isteğe bağlı)",
+  "social_report_duplicate": "Bu modu zaten şikâyet ettin. Korucular ilgileniyor.",
+  "social_report_field_report_title": "Bu saha raporunu şikâyet et",
+  "social_report_intro": "Korucular her şikâyeti inceler. Sorunun ne olduğunu anlat.",
+  "social_report_reason_harassment": "Taciz veya nefret",
+  "social_report_reason_illegal": "Yasa dışı içerik",
+  "social_report_reason_label": "Neden",
+  "social_report_reason_nsfw_unmarked": "18+ olarak işaretlenmemiş yetişkin içerik",
+  "social_report_reason_other": "Başka bir şey",
+  "social_report_reason_spam": "Spam veya reklam",
+  "social_report_review_title": "Bu incelemeyi şikâyet et",
+  "social_report_sent": "Teşekkürler. Korucular inceleyecek.",
+  "social_report_submit": "Şikâyeti gönder",
+  "social_review_body_label": "İncelemen",
+  "social_review_body_placeholder": "Ne işe yaradı, ne yaramadı ve kimin için uygun?",
+  "social_review_conflict": "Bu modu zaten inceledin. Bunun yerine incelemeni düzenle.",
+  "social_review_deleted": "İnceleme silindi.",
+  "social_review_edit": "İncelemeni düzenle",
+  "social_review_forbidden": "Bu modu henüz inceleyemezsin: doğrulanmış bir e-posta ve en az 24 saatlik bir hesap gerekir; yapımcılar kendi modlarını inceleyemez.",
+  "social_review_own_mod": "Bu senin modun: her incelemeye bir kez yanıt verebilirsin.",
+  "social_review_posted": "Teşekkürler! İncelemen yayında.",
+  "social_review_rating_label": "Puanın",
+  "social_review_rating_required": "1 ile 5 yıldız arasında seç.",
+  "social_review_reply": "Herkese açık yanıtla",
+  "social_review_reply_delete": "Yanıtını sil",
+  "social_review_reply_deleted": "Yanıt silindi.",
+  "social_review_reply_edit": "Yanıtını düzenle",
+  "social_review_reply_label": "Herkese açık yanıtın",
+  "social_review_reply_saved": "Yanıt yayınlandı.",
+  "social_review_reply_submit": "Yanıtı yayınla",
+  "social_review_rules": "Hayatta kalan başına bir inceleme. Net ol: sürüm, neyin çalıştığı, neyin çalışmadığı.",
+  "social_review_see_all": "Tüm incelemeleri gör",
+  "social_review_star_1": "Bende çalışmıyor",
+  "social_review_star_2": "Geliştirilmeli",
+  "social_review_star_3": "İdare eder",
+  "social_review_star_4": "Harika",
+  "social_review_star_5": "Olmazsa olmaz",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yıldız",
+        "count__plural=*": "{count__number} yıldız"
+      }
+    }
+  ],
+  "social_review_submit": "İncelemeyi yayınla",
+  "social_review_title_label": "Başlık",
+  "social_review_title_too_long": "Başlık en fazla {max} karakter olabilir.",
+  "social_review_update": "İncelemeyi güncelle",
+  "social_review_updated": "İnceleme güncellendi.",
+  "social_review_version_auto": "Son indirdiğim",
+  "social_review_version_label": "Kullandığın sürüm",
+  "social_review_write": "İnceleme yaz",
+  "social_review_yours": "İncelemen",
+  "social_solution_mark": "Çözüm olarak işaretle",
+  "social_solution_marked": "Çözüm olarak işaretlendi.",
+  "social_solution_unmark": "Çözüm işaretini kaldır",
+  "social_solution_unmarked": "Çözüm işareti kaldırıldı.",
+  "social_unpin": "Sabitlemeyi kaldır",
+  "social_unpinned": "Yorumun sabitlemesi kaldırıldı.",
+  "social_verify_action": "E-postayı doğrula",
+  "social_verify_to_comment": "Yorum yapmak için e-postanı doğrula.",
+  "social_verify_to_report": "Saha raporu göndermek için e-postanı doğrula.",
+  "social_verify_to_review": "İnceleme yazmak için e-postanı doğrula.",
+  "social_vote_label": "Faydalı mı?",
+  "social_vote_no": "Faydalı değil",
+  "social_vote_removed": "Oy kaldırıldı.",
+  "social_vote_saved": "Oy kaydedildi.",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Evet, faydalı ({count__number} oy)",
+        "count__plural=*": "Evet, faydalı ({count__number} oy)"
+      }
+    }
+  ],
   "ui_breadcrumbs": "Gezinme yolu",
   "ui_cancel": "İptal",
   "ui_choose": "Seç…",
