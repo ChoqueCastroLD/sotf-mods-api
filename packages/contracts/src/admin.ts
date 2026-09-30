@@ -552,6 +552,62 @@ export const RumDTO = dto(
 );
 
 // -----------------------------------------------------------------------------------------------
+// Operations (PLAN §10.3 "Métricas operativas")
+// -----------------------------------------------------------------------------------------------
+
+export const OpsQueueDTO = dto(
+  'OpsQueueDTO',
+  z.object({
+    name: z.string(),
+    queued: Count.describe('Waiting to run (created + retry)'),
+    active: Count,
+    failed24h: Count,
+    completed1h: Count,
+    oldestQueuedAt: IsoDateTime.nullable(),
+  }),
+  {
+    description: 'Depth and recent outcome of one pg-boss queue.',
+    examples: [
+      {
+        name: 'cdn.purge',
+        queued: 2,
+        active: 0,
+        failed24h: 0,
+        completed1h: 41,
+        oldestQueuedAt: '2026-09-29T09:59:40.000Z',
+      },
+    ],
+  },
+);
+
+export const OpsDTO = dto(
+  'OpsDTO',
+  z.object({
+    generatedAt: IsoDateTime,
+    queues: z.array(OpsQueueDTO).describe('Queues with any job in the last 24 h, busiest first'),
+    deadLetter: Count.describe('Jobs whose retries are exhausted and not handled yet (alert when > 0)'),
+    downloads: z.object({ lastHour: Count, last24h: Count }),
+    purge: z.object({
+      lastCompletedAt: IsoDateTime.nullable(),
+      queued: Count,
+      failed24h: Count,
+    }),
+  }),
+  {
+    description: 'Operational readout of Ranger Station › Admin: job queues, dead letters, downloads and CDN purges.',
+    examples: [
+      {
+        generatedAt: '2026-09-29T10:00:00.000Z',
+        queues: [exampleOf(OpsQueueDTO)],
+        deadLetter: 0,
+        downloads: { lastHour: 94, last24h: 1_720 },
+        purge: { lastCompletedAt: '2026-09-29T09:58:12.000Z', queued: 2, failed24h: 0 },
+      },
+    ],
+  },
+);
+
+// -----------------------------------------------------------------------------------------------
 // Endpoints
 // -----------------------------------------------------------------------------------------------
 
@@ -896,6 +952,16 @@ export const adminEndpoints = {
     summary: 'KelvinSeek usage and budget',
     query: z.object({ days: z.enum(['7', '30', '90']).default('30') }),
     response: KelvinUsageDTO,
+    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+  }),
+  operations: defineEndpoint({
+    ...adminRead,
+    id: 'admin.operations',
+    owner: 'WP-51',
+    method: 'GET',
+    path: `${admin}/ops`,
+    summary: 'Job queues, dead letters, downloads per hour and CDN purges',
+    response: OpsDTO,
     errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
   }),
   rum: defineEndpoint({

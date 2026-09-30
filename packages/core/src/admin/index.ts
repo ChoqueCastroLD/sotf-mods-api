@@ -5,6 +5,7 @@
  */
 export * from './awards.ts';
 export * from './curation.ts';
+export * from './operations.ts';
 export * from './recategorize.ts';
 export * from './taxonomy.ts';
 export * from './usage.ts';

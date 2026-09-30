@@ -190,3 +190,25 @@ describe('game build notes', () => {
     expect(row.notesMd).toBe(created.body.notesMd);
   });
 });
+
+describe('operations', () => {
+  it('reports queue depth, dead letters, downloads and purges to admins only', async () => {
+    expect((await call('GET', '/api/v2/admin/ops', ranger)).status).toBe(403);
+    await exec(
+      db,
+      `INSERT INTO "ModDownload" ("ip", "userAgent", "modVersionId", "createdAt", "updatedAt")
+       SELECT '0.0.0.0', 'ops-test', v."id", now() AT TIME ZONE 'UTC', now() AT TIME ZONE 'UTC'
+         FROM "ModVersion" v ORDER BY v."id" LIMIT 1`,
+    );
+    const res = await call('GET', '/api/v2/admin/ops', admin);
+    expect(res.status).toBe(200);
+    expect(res.body.downloads.lastHour).toBeGreaterThanOrEqual(1);
+    expect(res.body.downloads.last24h).toBeGreaterThanOrEqual(res.body.downloads.lastHour);
+    // No worker runs in the test: the domain events of the kit writes above are still queued.
+    const events = res.body.queues.find((q: any) => q.name === 'domain.event');
+    expect(events?.queued).toBeGreaterThan(0);
+    expect(typeof events?.oldestQueuedAt).toBe('string');
+    expect(res.body.deadLetter).toBe(0);
+    expect(res.body.purge).toMatchObject({ failed24h: 0 });
+  });
+});
