@@ -23,7 +23,8 @@ describe('message catalog', () => {
     for (const locale of LOCALES) expect(validated.messages.get(locale)?.size, locale).toBe(size);
   });
 
-  it('keeps .generated/ in sync with the sources', async () => {
+  // Compiles ~9 000 files (≈ 30 s of CPU): on a busy shared host it needs more than 60 s.
+  it('keeps .generated/ in sync with the sources', { timeout: 240_000 }, async () => {
     const files = await buildGenerated(process.cwd(), validated.messages);
     expect(diffGenerated(process.cwd(), files)).toEqual([]);
   });
