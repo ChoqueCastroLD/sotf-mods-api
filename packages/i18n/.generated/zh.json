@@ -124,6 +124,128 @@
   "auth_welcome_resend": "重新发送链接",
   "auth_welcome_resent": "已发送。请查看收件箱和垃圾邮件文件夹。",
   "auth_welcome_verify": "我们已向 {email} 发送验证链接。打开链接后即可评论、写评测和上传模组。",
+  "cmdk_action_backpack": "打开背包",
+  "cmdk_action_basecamp": "前往营地",
+  "cmdk_action_current": "当前",
+  "cmdk_action_language": "语言：{language}",
+  "cmdk_action_signals": "打开信号",
+  "cmdk_action_theme": "主题：{theme}",
+  "cmdk_action_upload": "上传模组",
+  "cmdk_action_upload_build": "分享建筑",
+  "cmdk_close": "关闭",
+  "cmdk_compat_broken": "失效",
+  "cmdk_compat_mixed": "反馈不一",
+  "cmdk_compat_untested": "未测试",
+  "cmdk_compat_works": "可用",
+  "cmdk_dialog_label": "搜索与命令",
+  "cmdk_download_started": "已开始下载：{title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 次下载"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "没有与“{query}”匹配的命令。",
+  "cmdk_empty_hint": "试试更少的关键词，或用 mods:、builds:、kits:、@创作者 或 >（命令）缩小范围。",
+  "cmdk_error_hint": "请检查网络连接后重试。操作和最近记录仍可使用。",
+  "cmdk_error_ref": "参考编号：{ref}",
+  "cmdk_error_title": "搜索索引加载失败。",
+  "cmdk_fact_compat": "兼容性",
+  "cmdk_fact_contents": "内容",
+  "cmdk_fact_downloads": "下载量",
+  "cmdk_fact_manifest_id": "模组 ID",
+  "cmdk_fact_published": "已发布",
+  "cmdk_group_actions": "操作",
+  "cmdk_group_categories": "分类",
+  "cmdk_group_pages": "页面",
+  "cmdk_group_recent": "最近打开",
+  "cmdk_group_server": "来自完整搜索",
+  "cmdk_group_trending": "本周热门",
+  "cmdk_hint_close": "关闭",
+  "cmdk_hint_download": "下载",
+  "cmdk_hint_move": "移动",
+  "cmdk_hint_new_tab": "新标签页",
+  "cmdk_hint_open": "打开",
+  "cmdk_hint_scope": "范围",
+  "cmdk_input_label": "搜索模组、建筑、套装、创作者和命令",
+  "cmdk_kind_build": "建筑",
+  "cmdk_kind_category": "分类",
+  "cmdk_kind_creator": "创作者",
+  "cmdk_kind_kit": "套装",
+  "cmdk_kind_library": "前置库",
+  "cmdk_kind_mod": "模组",
+  "cmdk_kind_page": "页面",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 项"
+      }
+    }
+  ],
+  "cmdk_loading": "正在展开地图…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组"
+      }
+    }
+  ],
+  "cmdk_no_results": "地图上没有“{query}”的相关结果。试试更少的关键词。",
+  "cmdk_offline": "你已离线，看到的内容可能不是最新的。",
+  "cmdk_placeholder": "搜索模组、建筑、套装、创作者…",
+  "cmdk_placeholder_actions": "输入命令…",
+  "cmdk_preview_download": "下载最新版",
+  "cmdk_preview_empty": "在结果间移动即可在此预览。",
+  "cmdk_preview_hint": "按 Enter 打开。",
+  "cmdk_preview_label": "预览",
+  "cmdk_preview_open": "打开页面",
+  "cmdk_recent_clear": "清除最近记录",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "没有结果",
+        "count__exact=*": "{count__number} 个结果"
+      }
+    }
+  ],
+  "cmdk_retry": "重试",
+  "cmdk_scope_all": "全部",
+  "cmdk_scope_label": "搜索范围",
+  "cmdk_scope_remove": "重新搜索全部（移除“{scope}”）",
+  "cmdk_searching": "正在搜索整座岛…",
+  "cmdk_see_all": "查看“{query}”的全部结果",
+  "cmdk_start_hint": "从这里打开的页面会显示在此列表中。",
+  "cmdk_term_builds": "建筑",
+  "cmdk_term_creators": "创作者",
+  "cmdk_term_kits": "套装",
+  "cmdk_term_mods": "模组",
+  "cmdk_theme_day": "日间",
+  "cmdk_theme_night": "夜间",
+  "cmdk_theme_system": "跟随系统",
   "common_account_menu": "账号菜单",
   "common_account_profile": "你的主页",
   "common_account_settings": "设置",

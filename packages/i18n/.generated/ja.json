@@ -124,6 +124,128 @@
   "auth_welcome_resend": "リンクを再送する",
   "auth_welcome_resent": "送信しました。受信トレイと迷惑メールフォルダを確認してください。",
   "auth_welcome_verify": "{email} に確認用リンクを送りました。リンクを開くと、コメント、レビュー、アップロードができるようになります。",
+  "cmdk_action_backpack": "バックパックを開く",
+  "cmdk_action_basecamp": "ベースキャンプへ移動",
+  "cmdk_action_current": "現在",
+  "cmdk_action_language": "言語：{language}",
+  "cmdk_action_signals": "シグナルを開く",
+  "cmdk_action_theme": "テーマ：{theme}",
+  "cmdk_action_upload": "MODをアップロード",
+  "cmdk_action_upload_build": "建築を共有",
+  "cmdk_close": "閉じる",
+  "cmdk_compat_broken": "動作不可",
+  "cmdk_compat_mixed": "報告が割れています",
+  "cmdk_compat_untested": "未検証",
+  "cmdk_compat_works": "動作",
+  "cmdk_dialog_label": "検索とコマンド",
+  "cmdk_download_started": "ダウンロードを開始しました：{title}",
+  "cmdk_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{display} 回ダウンロード"
+      }
+    }
+  ],
+  "cmdk_empty_actions": "「{query}」に一致するコマンドはありません。",
+  "cmdk_empty_hint": "キーワードを減らすか、mods:、builds:、kits:、@クリエイター、コマンドは > で絞り込んでください。",
+  "cmdk_error_hint": "接続を確認してもう一度お試しください。アクションと履歴は引き続き使えます。",
+  "cmdk_error_ref": "参照番号：{ref}",
+  "cmdk_error_title": "検索インデックスを読み込めませんでした。",
+  "cmdk_fact_compat": "互換性",
+  "cmdk_fact_contents": "内容",
+  "cmdk_fact_downloads": "ダウンロード数",
+  "cmdk_fact_manifest_id": "MOD ID",
+  "cmdk_fact_published": "公開数",
+  "cmdk_group_actions": "アクション",
+  "cmdk_group_categories": "カテゴリー",
+  "cmdk_group_pages": "ページ",
+  "cmdk_group_recent": "最近開いたもの",
+  "cmdk_group_server": "全文検索から",
+  "cmdk_group_trending": "今週のトレンド",
+  "cmdk_hint_close": "閉じる",
+  "cmdk_hint_download": "ダウンロード",
+  "cmdk_hint_move": "移動",
+  "cmdk_hint_new_tab": "新しいタブ",
+  "cmdk_hint_open": "開く",
+  "cmdk_hint_scope": "範囲",
+  "cmdk_input_label": "MOD、建築、キット、クリエイター、コマンドを検索",
+  "cmdk_kind_build": "建築",
+  "cmdk_kind_category": "カテゴリー",
+  "cmdk_kind_creator": "クリエイター",
+  "cmdk_kind_kit": "キット",
+  "cmdk_kind_library": "ライブラリ",
+  "cmdk_kind_mod": "MOD",
+  "cmdk_kind_page": "ページ",
+  "cmdk_kit_items": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のアイテム"
+      }
+    }
+  ],
+  "cmdk_loading": "地図を広げています…",
+  "cmdk_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件の MOD"
+      }
+    }
+  ],
+  "cmdk_no_results": "「{query}」は地図に見つかりませんでした。キーワードを減らしてみてください。",
+  "cmdk_offline": "オフラインです。表示中の内容は最新でない可能性があります。",
+  "cmdk_placeholder": "MOD、建築、キット、クリエイターを検索…",
+  "cmdk_placeholder_actions": "コマンドを入力…",
+  "cmdk_preview_download": "最新版をダウンロード",
+  "cmdk_preview_empty": "結果を移動すると、ここにプレビューが表示されます。",
+  "cmdk_preview_hint": "Enter で開きます。",
+  "cmdk_preview_label": "プレビュー",
+  "cmdk_preview_open": "ページを開く",
+  "cmdk_recent_clear": "履歴を消去",
+  "cmdk_results_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "結果なし",
+        "count__exact=*": "{count__number} 件"
+      }
+    }
+  ],
+  "cmdk_retry": "再試行",
+  "cmdk_scope_all": "すべて",
+  "cmdk_scope_label": "検索対象",
+  "cmdk_scope_remove": "すべてを再検索（「{scope}」を解除）",
+  "cmdk_searching": "島じゅうを探しています…",
+  "cmdk_see_all": "「{query}」の結果をすべて表示",
+  "cmdk_start_hint": "ここから開いたページがこのリストに表示されます。",
+  "cmdk_term_builds": "建築",
+  "cmdk_term_creators": "クリエイター",
+  "cmdk_term_kits": "キット",
+  "cmdk_term_mods": "MOD",
+  "cmdk_theme_day": "昼",
+  "cmdk_theme_night": "夜",
+  "cmdk_theme_system": "システム",
   "common_account_menu": "アカウントメニュー",
   "common_account_profile": "プロフィール",
   "common_account_settings": "設定",
