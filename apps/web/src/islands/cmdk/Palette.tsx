@@ -14,7 +14,7 @@
 import { type Locale, localizePath, matchLocale } from '@sotf/i18n';
 import { Kbd } from '@sotf/ui/kbd';
 import { onThemeChange } from '@sotf/ui/theme';
-import { Eraser, RotateCw, Search, WifiOff, X } from 'lucide-react';
+import { Eraser, RotateCw, Search, Sparkles, WifiOff, X } from 'lucide-react';
 import {
   type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -43,6 +43,7 @@ import { t } from './i18n.ts';
 import { Glyph, latestDownloadPath, Preview, RowContent } from './present.tsx';
 import { clearRecents, readRecents, rememberRecent } from './recents.ts';
 import { cycleScope, parseQuery, SCOPES, type Scope } from './scope.ts';
+import { askScout, loadScoutAvailable, SCOUT_MAX_LENGTH, SCOUT_MIN_LENGTH, type ScoutResult } from './scout.ts';
 import type { EntryItem, GroupId, PaletteItem, ResultGroup, ResultItem } from './types.ts';
 
 export type OpenSource = 'shortcut' | 'header' | 'tab-bar' | 'landing-hero' | 'link';
@@ -55,6 +56,7 @@ export interface OpenRequest {
 }
 
 const NO_ITEMS: ResultItem[] = [];
+const NO_ENTRIES: EntryItem[] = [];
 const SEE_ALL = '__see_all';
 const CLEAR_RECENT = '__clear_recent';
 const SERVER_DEBOUNCE_MS = 350;
@@ -67,6 +69,11 @@ type IndexState =
   | { status: 'ready'; index: PaletteIndex }
   | { status: 'error'; ref: string | null; offline: boolean };
 
+type ScoutState =
+  | { status: 'loading'; question: string }
+  | { status: 'done'; question: string; answer: string; items: EntryItem[] }
+  | { status: 'error'; question: string; reason: 'rate' | 'unavailable' | 'error' };
+
 type ServerState = { key: string; status: 'loading' | 'done'; items: ResultItem[] } | null;
 
 const SCOPE_TYPE_PARAM: Record<Scope, string | null> = {
@@ -76,6 +83,7 @@ const SCOPE_TYPE_PARAM: Record<Scope, string | null> = {
   kits: 'kit',
   creators: 'user',
   actions: null,
+  scout: null,
 };
 
 function scopeLabel(scope: Scope): string {
@@ -90,6 +98,8 @@ function scopeLabel(scope: Scope): string {
       return t('cmdk_term_kits');
     case 'creators':
       return t('cmdk_term_creators');
+    case 'scout':
+      return t('cmdk_scout_scope');
     default:
       return t('cmdk_group_actions');
   }
@@ -115,6 +125,8 @@ function groupLabel(id: GroupId): string {
       return t('cmdk_group_pages');
     case 'actions':
       return t('cmdk_group_actions');
+    case 'scout':
+      return t('cmdk_scout_group');
     default:
       return t('cmdk_group_server');
   }
@@ -166,9 +178,16 @@ export interface PaletteProps {
 export function Palette({ request, host, onClose }: PaletteProps) {
   const locale = useMemo(pageLocale, []);
   const modKey = useMemo(() => (isApple() ? '⌘' : 'Ctrl'), []);
-  const initial = useMemo(() => parseQuery(request.query), [request.query]);
+  const initial = useMemo(() => {
+    const parsed = parseQuery(request.query);
+    // Scout is offered only once the status call says so: until then its prefix is plain text.
+    return parsed.scope === 'scout' ? { scope: null, text: request.query } : parsed;
+  }, [request.query]);
   const [search, setSearch] = useState(initial.text);
   const [scope, setScope] = useState<Scope>(initial.scope ?? 'all');
+  const [scoutAvailable, setScoutAvailable] = useState(false);
+  const [scoutState, setScoutState] = useState<ScoutState | null>(null);
+  const scoutRequest = useRef<AbortController | null>(null);
   const [indexState, setIndexState] = useState<IndexState>({ status: 'loading' });
   const [attempt, setAttempt] = useState(0);
   const [online, setOnline] = useState(() => navigator.onLine !== false);
@@ -189,6 +208,20 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
   // Modal plumbing: inert background + scroll lock for the palette's lifetime.
   useLayoutEffect(() => isolate(host), [host]);
+
+  // Scout: offered only while the API reports it available; a pending question dies with the palette.
+  useEffect(() => {
+    let alive = true;
+    loadScoutAvailable().then((available) => {
+      if (alive) setScoutAvailable(available);
+    });
+    return () => {
+      alive = false;
+      scoutRequest.current?.abort();
+    };
+  }, []);
+
+  const scopes = useMemo(() => SCOPES.filter((value) => value !== 'scout' || scoutAvailable), [scoutAvailable]);
 
   useEffect(() => {
     track('cmdk_open', { props: { source: request.source } });
@@ -250,6 +283,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     const wrap = (items: readonly PaletteItem[]): ResultItem[] => items.map((item) => ({ item, terms: [] }));
     if (text === '') {
       const groups: ResultGroup[] = [];
+      if (scope === 'scout') return { groups, contentHits: 0 };
       if (scope === 'all') {
         if (recents.length > 0) groups.push({ id: 'recent', items: wrap(recents.slice(0, 5)) });
         if (index && index.trending.length > 0)
@@ -267,6 +301,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       }
       return { groups, contentHits: 0 };
     }
+    if (scope === 'scout') return { groups: [], contentHits: 0 };
     const scored = index && scope !== 'actions' ? index.query(text, scope) : [];
     const actionHits = scope === 'all' || scope === 'actions' ? actionSearch.query(text) : [];
     return { groups: groupResults(scored, actionHits, scope), contentHits: scored.length };
@@ -277,6 +312,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   const wantsServer =
     text.length >= 2 &&
     scope !== 'actions' &&
+    scope !== 'scout' &&
     online &&
     (indexState.status === 'error' || (indexState.status === 'ready' && local.contentHits === 0));
   useEffect(() => {
@@ -300,11 +336,16 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   const serverItems = server?.key === serverKey && server.status === 'done' ? server.items : NO_ITEMS;
   const serverLoading = wantsServer && (server?.key !== serverKey || server.status === 'loading');
 
+  // Scout's answer belongs to the question it was asked for; editing the text hides it.
+  const scoutView = scope === 'scout' && scoutState?.question === text ? scoutState : null;
+  const scoutItems = scoutView?.status === 'done' ? scoutView.items : NO_ENTRIES;
+
   const groups = useMemo(() => {
     const list = [...local.groups];
     if (serverItems.length > 0) list.push({ id: 'server', items: serverItems });
+    if (scoutItems.length > 0) list.push({ id: 'scout', items: scoutItems.map((item) => ({ item, terms: [] })) });
     return list;
-  }, [local.groups, serverItems]);
+  }, [local.groups, serverItems, scoutItems]);
 
   const lookup = useMemo(() => {
     const map = new Map<string, PaletteItem>();
@@ -313,10 +354,11 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   }, [groups]);
 
   const resultCount = groups.reduce((sum, group) => sum + group.items.length, 0);
-  const showSeeAll = text !== '' && scope !== 'actions';
-  const indexLoading = indexState.status === 'loading' && scope !== 'actions' && (text !== '' || scope !== 'all');
-  const busy = indexLoading || serverLoading;
-  const isEmpty = text !== '' && resultCount === 0 && !busy;
+  const showSeeAll = text !== '' && scope !== 'actions' && scope !== 'scout';
+  const indexLoading =
+    indexState.status === 'loading' && scope !== 'actions' && scope !== 'scout' && (text !== '' || scope !== 'all');
+  const busy = indexLoading || serverLoading || scoutView?.status === 'loading';
+  const isEmpty = text !== '' && scope !== 'scout' && resultCount === 0 && !busy;
 
   // Every selectable row, in visual order (arrow keys, `aria-activedescendant`).
   const options = useMemo(() => {
@@ -333,8 +375,9 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   // The first row is active after every change of the results (as in any combobox).
   const optionsKey = options.join('\n');
   useEffect(() => {
-    setActive(options[0] ?? '');
-  }, [optionsKey]);
+    // In Scout mode Enter asks: no row is active until the arrows pick a cited mod.
+    setActive(scope === 'scout' ? '' : (options[0] ?? ''));
+  }, [optionsKey, scope]);
 
   // Scroll back to the top when the query or scope changes.
   useEffect(() => {
@@ -343,11 +386,16 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
   const status = useMemo(() => {
     if (announcement) return announcement;
+    if (scoutView?.status === 'loading') return t('cmdk_scout_thinking');
+    if (scoutView?.status === 'done')
+      return `${scoutView.answer} ${t('cmdk_results_count', { count: scoutView.items.length })}`;
+    if (scoutView?.status === 'error') return t('cmdk_scout_error_title');
+    if (scope === 'scout') return '';
     if (indexLoading) return t('cmdk_loading');
     if (serverLoading && resultCount === 0) return t('cmdk_searching');
     if (text === '') return '';
     return t('cmdk_results_count', { count: resultCount });
-  }, [announcement, indexLoading, serverLoading, resultCount, text]);
+  }, [announcement, scoutView, scope, indexLoading, serverLoading, resultCount, text]);
 
   // ---------------------------------------------------------------------------------------------
   // Commands
@@ -411,6 +459,29 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     [lookup, scope, text, seeAllUrl, groupOf, hrefOf, go, openInNewTab, close],
   );
 
+  const ask = useCallback(() => {
+    const question = text;
+    if (question.length < SCOUT_MIN_LENGTH) return;
+    scoutRequest.current?.abort();
+    const controller = new AbortController();
+    scoutRequest.current = controller;
+    setScoutState({ status: 'loading', question });
+    track('cmdk_select', { props: { group: 'scout_ask', scope: 'scout', queryLength: question.length } });
+    askScout(question, locale, controller.signal).then((result: ScoutResult) => {
+      if (controller.signal.aborted) return;
+      setScoutState(
+        result.ok
+          ? { status: 'done', question, answer: result.answer, items: result.items }
+          : { status: 'error', question, reason: result.reason },
+      );
+      if (!result.ok && result.reason === 'unavailable') {
+        // The daily cap may be spent: the next open asks the status again.
+        setScoutAvailable(false);
+        setScope('all');
+      }
+    });
+  }, [text, locale]);
+
   const download = useCallback((item: EntryItem) => {
     const path = latestDownloadPath(item);
     if (!path) return;
@@ -446,7 +517,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       case 'Tab':
         event.preventDefault();
         if (!inInput) inputRef.current?.focus();
-        else setScope((current) => cycleScope(current, event.shiftKey ? -1 : 1));
+        else setScope((current) => cycleScope(current, event.shiftKey ? -1 : 1, scopes));
         return;
       case 'ArrowDown':
       case 'ArrowUp': {
@@ -471,6 +542,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         if (!inInput) return;
         event.preventDefault();
         if (active) select(active, mod);
+        else if (scope === 'scout') ask();
         return;
       case 'Backspace':
         if (inInput && search === '' && scope !== 'all') {
@@ -488,16 +560,18 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
   const onInput = (raw: string) => {
     const parsed = parseQuery(raw);
-    if (parsed.scope) {
+    if (parsed.scope && (parsed.scope !== 'scout' || scoutAvailable)) {
       setScope(parsed.scope);
       setSearch(parsed.text);
     } else {
       setSearch(raw);
     }
+    if (scope === 'scout' || parsed.scope === 'scout') setActive('');
   };
 
   const pickScope = (next: Scope) => {
     setScope(next);
+    setActive('');
     inputRef.current?.focus();
   };
 
@@ -561,7 +635,12 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     );
   }
 
-  const placeholder = scope === 'actions' ? t('cmdk_placeholder_actions') : t('cmdk_placeholder');
+  const placeholder =
+    scope === 'actions'
+      ? t('cmdk_placeholder_actions')
+      : scope === 'scout'
+        ? t('cmdk_scout_placeholder')
+        : t('cmdk_placeholder');
   const activeIndex = optionIndex.get(active);
   const listId = `${ids}-list`;
   const hasList = options.length > 0;
@@ -620,7 +699,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
             // biome-ignore lint/a11y/noAutofocus: the palette is a modal opened on purpose; its field takes focus
             autoFocus
             placeholder={placeholder}
-            maxLength={100}
+            maxLength={scope === 'scout' ? SCOUT_MAX_LENGTH : 100}
             enterKeyHint="go"
             autoComplete="off"
             autoCorrect="off"
@@ -646,7 +725,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
         <fieldset className="flex min-w-0 shrink-0 gap-1 overflow-x-auto border-b border-border px-3 py-2 md:px-4">
           <legend className="sr-only">{t('cmdk_scope_label')}</legend>
-          {SCOPES.map((value) => (
+          {scopes.map((value) => (
             <button
               key={value}
               type="button"
@@ -690,6 +769,17 @@ export function Palette({ request, host, onClose }: PaletteProps) {
                   </div>
                 ))}
               </div>
+            ) : null}
+
+            {scope === 'scout' ? (
+              <ScoutPanel
+                text={text}
+                view={scoutView}
+                onRetry={() => {
+                  ask();
+                  inputRef.current?.focus();
+                }}
+              />
             ) : null}
 
             {isEmpty ? (
@@ -765,7 +855,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
           className="hidden shrink-0 flex-wrap items-center gap-x-4 gap-y-1 border-t border-border px-4 py-2 text-2xs text-fg-subtle md:flex"
         >
           <Hint keys={['↑', '↓']} label={t('cmdk_hint_move')} />
-          <Hint keys={['↵']} label={t('cmdk_hint_open')} />
+          <Hint keys={['↵']} label={scope === 'scout' && !active ? t('cmdk_scout_hint_ask') : t('cmdk_hint_open')} />
           <Hint keys={[modKey, '↵']} label={t('cmdk_hint_new_tab')} />
           <Hint keys={[modKey, 'D']} label={t('cmdk_hint_download')} />
           <Hint keys={['Tab']} label={t('cmdk_hint_scope')} />
@@ -784,5 +874,61 @@ function Hint({ keys, label }: { keys: readonly string[]; label: string }) {
       ))}
       <span>{label}</span>
     </span>
+  );
+}
+
+function ScoutPanel({ text, view, onRetry }: { text: string; view: ScoutState | null; onRetry: () => void }) {
+  if (view?.status === 'loading') {
+    return (
+      <div aria-hidden="true" className="flex flex-col gap-2 px-4 py-4">
+        <p className="flex items-center gap-2 text-sm text-fg-muted">
+          <span className="text-primary">
+            <Glyph icon={Sparkles} size={16} />
+          </span>
+          {t('cmdk_scout_thinking')}
+        </p>
+        <span className={`${SKELETON} w-4/5`} />
+        <span className={`${SKELETON} w-3/5`} />
+      </div>
+    );
+  }
+  if (view?.status === 'error') {
+    return (
+      <div role="alert" className="flex flex-col items-start gap-2 border-b border-border px-4 py-3 text-sm">
+        <p className="font-medium text-fg">
+          {view.reason === 'rate' ? t('cmdk_scout_error_rate') : t('cmdk_scout_error_title')}
+        </p>
+        <p className="text-fg-muted">
+          {view.reason === 'rate' ? t('cmdk_scout_error_rate_hint') : t('cmdk_scout_error_hint')}
+        </p>
+        <button
+          type="button"
+          onClick={onRetry}
+          className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-2 text-sm font-medium text-link hover:bg-fg/8 md:min-h-8"
+        >
+          <Glyph icon={RotateCw} size={14} />
+          {t('cmdk_retry')}
+        </button>
+      </div>
+    );
+  }
+  if (view?.status === 'done') {
+    return (
+      <div className="flex flex-col gap-1 border-b border-border px-4 py-3">
+        <p className="flex items-center gap-1.5 font-mono text-2xs tracking-wide text-fg-subtle uppercase">
+          <span className="text-primary">
+            <Glyph icon={Sparkles} size={12} />
+          </span>
+          {t('cmdk_scout_answer_label')}
+        </p>
+        <p className="text-sm text-fg">{view.answer === '' ? t('cmdk_scout_no_picks') : view.answer}</p>
+        <p className="text-2xs text-fg-subtle">{t('cmdk_scout_ai_note')}</p>
+      </div>
+    );
+  }
+  return (
+    <p className="px-4 py-4 text-sm text-fg-muted">
+      {text.length >= SCOUT_MIN_LENGTH ? t('cmdk_scout_press_enter') : t('cmdk_scout_intro')}
+    </p>
   );
 }

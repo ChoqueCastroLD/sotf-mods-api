@@ -119,6 +119,8 @@ export interface OverviewExtras {
   versions: VersionDTO[] | null;
   dependents: ModCardDTO[];
   related: ModCardDTO[];
+  /** Nightly recommendations (T1-15); both empty when the API is slow. */
+  recommendations: { alsoDownloaded: ModCardDTO[]; similar: ModCardDTO[] };
   reviews: ReviewPage | null;
   comments: CommentPage | null;
   compat: ModCompat | null;
@@ -132,12 +134,14 @@ export interface OverviewExtras {
 export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExtras> {
   const api = serverApi();
   const id = mod.id;
-  const [versions, dependents, related, reviews, comments, compat, stats, knowledge] = await Promise.all([
+  const [versions, dependents, related, recommendations, reviews, comments, compat, stats, knowledge] =
+    await Promise.all([
     loadVersionsOptional(id),
     mod.dependentsCount > 0
       ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
       : Promise.resolve(null),
     optional((signal) => api.catalog.related({ params: { id } }, { signal })),
+    optional((signal) => api.discovery.recommendations({ params: { id } }, { signal })),
     mod.reviewsSummary.count > 0
       ? optional((signal) => api.reviews.list({ params: { id }, query: { sort: 'helpful', limit: 3 } }, { signal }))
       : Promise.resolve(null),
@@ -152,6 +156,10 @@ export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExt
     versions,
     dependents: dependents?.items ?? [],
     related: (related?.items ?? []).filter((card) => card.id !== id).slice(0, 4),
+    recommendations: {
+      alsoDownloaded: (recommendations?.alsoDownloaded ?? []).filter((card) => card.id !== id),
+      similar: (recommendations?.similar ?? []).filter((card) => card.id !== id),
+    },
     reviews,
     comments,
     compat,

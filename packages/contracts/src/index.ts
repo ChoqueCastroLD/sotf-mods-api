@@ -15,6 +15,7 @@ export * from './comments.ts';
 export * from './common.ts';
 export * from './compat.ts';
 export * from './contracts.ts';
+export * from './discovery.ts';
 export * from './domain-events.ts';
 export * from './downloads.ts';
 export * from './dto.ts';

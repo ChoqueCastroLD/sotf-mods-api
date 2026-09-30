@@ -72,5 +72,19 @@
   "cmdk_no_results": "Niets op de kaart voor ‘{query}’. Probeer minder woorden.",
   "cmdk_offline": "Je bent offline. Wat je ziet is misschien niet actueel.",
   "cmdk_retry": "Opnieuw proberen",
-  "cmdk_close": "Sluiten"
+  "cmdk_close": "Sluiten",
+  "cmdk_scout_scope": "Vraag het Scout",
+  "cmdk_scout_group": "Suggesties van Scout",
+  "cmdk_scout_placeholder": "Beschrijf de mod die je nodig hebt…",
+  "cmdk_scout_intro": "Beschrijf wat je in het spel wilt doen en Scout zoekt er mods voor.",
+  "cmdk_scout_press_enter": "Druk op Enter om Scout te vragen.",
+  "cmdk_scout_thinking": "Scout doorzoekt de catalogus…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "Door AI geschreven op basis van de catalogus. Bekijk de pagina van elke mod voor je installeert.",
+  "cmdk_scout_no_picks": "Scout vond geen passende mod. Probeer het anders te omschrijven.",
+  "cmdk_scout_error_title": "Scout kon niet antwoorden.",
+  "cmdk_scout_error_hint": "Probeer het zo opnieuw of zoek in de catalogus.",
+  "cmdk_scout_error_rate": "Te veel vragen.",
+  "cmdk_scout_error_rate_hint": "Wacht een minuut en vraag opnieuw.",
+  "cmdk_scout_hint_ask": "Vragen"
 }

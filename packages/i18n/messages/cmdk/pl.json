@@ -72,5 +72,19 @@
   "cmdk_no_results": "Nic na mapie dla „{query}”. Spróbuj użyć mniej słów.",
   "cmdk_offline": "Jesteś offline. To, co widzisz, może być nieaktualne.",
   "cmdk_retry": "Spróbuj ponownie",
-  "cmdk_close": "Zamknij"
+  "cmdk_close": "Zamknij",
+  "cmdk_scout_scope": "Zapytaj Scouta",
+  "cmdk_scout_group": "Propozycje Scouta",
+  "cmdk_scout_placeholder": "Opisz moda, którego potrzebujesz…",
+  "cmdk_scout_intro": "Opisz, co chcesz robić w grze, a Scout znajdzie pasujące mody.",
+  "cmdk_scout_press_enter": "Naciśnij Enter, aby zapytać Scouta.",
+  "cmdk_scout_thinking": "Scout przeszukuje katalog…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "Napisane przez AI na podstawie katalogu. Przed instalacją sprawdź stronę każdego moda.",
+  "cmdk_scout_no_picks": "Scout nie znalazł pasującego moda. Spróbuj opisać go inaczej.",
+  "cmdk_scout_error_title": "Scout nie mógł odpowiedzieć.",
+  "cmdk_scout_error_hint": "Spróbuj ponownie za chwilę albo przeszukaj katalog.",
+  "cmdk_scout_error_rate": "Zbyt wiele pytań.",
+  "cmdk_scout_error_rate_hint": "Poczekaj minutę i zapytaj ponownie.",
+  "cmdk_scout_hint_ask": "Zapytaj"
 }

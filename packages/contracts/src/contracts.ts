@@ -8,6 +8,7 @@ import { authEndpoints } from './auth.ts';
 import { catalogEndpoints } from './catalog.ts';
 import { commentsEndpoints } from './comments.ts';
 import { compatEndpoints } from './compat.ts';
+import { discoveryEndpoints } from './discovery.ts';
 import { downloadsEndpoints } from './downloads.ts';
 import type { Endpoint } from './endpoint.ts';
 import { eventsEndpoints } from './events.ts';
@@ -38,6 +39,7 @@ export const apiContracts = {
   catalog: catalogEndpoints,
   comments: commentsEndpoints,
   compat: compatEndpoints,
+  discovery: discoveryEndpoints,
   downloads: downloadsEndpoints,
   events: eventsEndpoints,
   follows: followsEndpoints,

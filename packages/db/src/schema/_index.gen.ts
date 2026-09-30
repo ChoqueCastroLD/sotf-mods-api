@@ -24,3 +24,4 @@ export * from './ext/security.ts';
 export * from './ext/auth-tokens-oauth.ts';
 export * from './ext/kit-social.ts';
 export * from './ext/mod-knowledge.ts';
+export * from './ext/discovery.ts';

@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS "ScoutUsageDaily";
+DROP TABLE IF EXISTS "ScoutCache";

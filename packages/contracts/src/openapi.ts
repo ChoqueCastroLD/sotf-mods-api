@@ -42,6 +42,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   catalog: 'Mods, libraries and builds: explore, details, dependencies, taxonomy, creators and public profiles.',
   comments: 'Comments v2: threads, reactions, pins, solutions and bug reports; markdown preview.',
   compat: 'Compatibility per game build: field reports, aggregates, ecosystem and Patch Radar.',
+  discovery: 'Scout (AI mod finder with citations) and the recommendations of the mod page.',
   downloads: 'Downloads (302 to R2) and the download history.',
   events: 'Server-sent events and the analytics/RUM beacons.',
   follows: 'Follow mods (Backpack) and creators.',

@@ -72,5 +72,19 @@
   "cmdk_no_results": "Inget på kartan för ”{query}”. Prova med färre ord.",
   "cmdk_offline": "Du är offline. Det du ser kanske inte är aktuellt.",
   "cmdk_retry": "Försök igen",
-  "cmdk_close": "Stäng"
+  "cmdk_close": "Stäng",
+  "cmdk_scout_scope": "Fråga Scout",
+  "cmdk_scout_group": "Scouts förslag",
+  "cmdk_scout_placeholder": "Beskriv modden du behöver…",
+  "cmdk_scout_intro": "Beskriv vad du vill göra i spelet så hittar Scout moddar för det.",
+  "cmdk_scout_press_enter": "Tryck på Enter för att fråga Scout.",
+  "cmdk_scout_thinking": "Scout söker i katalogen…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "Skrivet av AI utifrån katalogen. Kontrollera varje modds sida innan du installerar.",
+  "cmdk_scout_no_picks": "Scout hittade ingen modd som passar. Försök beskriva den på ett annat sätt.",
+  "cmdk_scout_error_title": "Scout kunde inte svara.",
+  "cmdk_scout_error_hint": "Försök igen om en stund eller sök i katalogen.",
+  "cmdk_scout_error_rate": "För många frågor.",
+  "cmdk_scout_error_rate_hint": "Vänta en minut och fråga igen.",
+  "cmdk_scout_hint_ask": "Fråga"
 }

@@ -59,6 +59,7 @@ const SCOPE_TYPES: Record<Scope, ReadonlySet<EntryType>> = {
   kits: new Set(['kit']),
   creators: new Set(['user']),
   actions: new Set(),
+  scout: new Set(),
 };
 
 const GROUP_OF: Record<EntryType, GroupId> = {
@@ -393,6 +394,7 @@ const SERVER_TYPES: Record<Scope, readonly string[]> = {
   kits: ['kit'],
   creators: ['user'],
   actions: [],
+  scout: [],
 };
 
 /**

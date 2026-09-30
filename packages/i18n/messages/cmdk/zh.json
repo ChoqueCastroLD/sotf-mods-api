@@ -72,5 +72,19 @@
   "cmdk_no_results": "地图上没有“{query}”的相关结果。试试更少的关键词。",
   "cmdk_offline": "你已离线，看到的内容可能不是最新的。",
   "cmdk_retry": "重试",
-  "cmdk_close": "关闭"
+  "cmdk_close": "关闭",
+  "cmdk_scout_scope": "询问 Scout",
+  "cmdk_scout_group": "Scout 的推荐",
+  "cmdk_scout_placeholder": "描述你需要的模组…",
+  "cmdk_scout_intro": "描述你想在游戏里做什么，Scout 会为你找到合适的模组。",
+  "cmdk_scout_press_enter": "按 Enter 询问 Scout。",
+  "cmdk_scout_thinking": "Scout 正在搜索目录…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "由 AI 根据目录撰写。安装前请查看每个模组的页面。",
+  "cmdk_scout_no_picks": "Scout 没有找到合适的模组。换种说法试试。",
+  "cmdk_scout_error_title": "Scout 无法回答。",
+  "cmdk_scout_error_hint": "请稍后重试，或直接搜索目录。",
+  "cmdk_scout_error_rate": "提问过多。",
+  "cmdk_scout_error_rate_hint": "请等待一分钟后再问。",
+  "cmdk_scout_hint_ask": "提问"
 }

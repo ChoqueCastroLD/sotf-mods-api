@@ -72,5 +72,19 @@
   "cmdk_no_results": "Niente sulla mappa per «{query}». Prova con meno parole.",
   "cmdk_offline": "Sei offline. Quello che vedi potrebbe non essere aggiornato.",
   "cmdk_retry": "Riprova",
-  "cmdk_close": "Chiudi"
+  "cmdk_close": "Chiudi",
+  "cmdk_scout_scope": "Chiedi a Scout",
+  "cmdk_scout_group": "Suggerimenti di Scout",
+  "cmdk_scout_placeholder": "Descrivi la mod che ti serve…",
+  "cmdk_scout_intro": "Descrivi cosa vuoi fare nel gioco e Scout troverà le mod adatte.",
+  "cmdk_scout_press_enter": "Premi Invio per chiedere a Scout.",
+  "cmdk_scout_thinking": "Scout sta cercando nel catalogo…",
+  "cmdk_scout_answer_label": "Scout",
+  "cmdk_scout_ai_note": "Scritto da un’IA a partire dal catalogo. Controlla la pagina di ogni mod prima di installarla.",
+  "cmdk_scout_no_picks": "Scout non ha trovato nessuna mod adatta. Prova a descriverla in modo diverso.",
+  "cmdk_scout_error_title": "Scout non è riuscito a rispondere.",
+  "cmdk_scout_error_hint": "Riprova tra un momento oppure cerca nel catalogo.",
+  "cmdk_scout_error_rate": "Troppe domande.",
+  "cmdk_scout_error_rate_hint": "Aspetta un minuto e chiedi di nuovo.",
+  "cmdk_scout_hint_ask": "Chiedi"
 }
