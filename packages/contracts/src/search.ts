@@ -71,7 +71,15 @@ export const SEARCH_INDEX_VERSION = 1;
 
 /**
  * Mod/build tuple: `[id, kind, name, userHandle, categorySlug, tagsCsv, manifestId, downloads,
- * compatStatus, thumb64Url | null, path]`.
+ * compatStatus, thumbUrl | null, path, releasedDay, createdDay, ratingTenths | null, multiplayer]`.
+ *
+ * - `thumbUrl` is the 64 px variant when the media is processed, else the legacy image (the
+ *   smallest the API has; the palette renders it at 32–40 px, lazily).
+ * - `releasedDay` / `createdDay`: days since the Unix epoch (sorting by updated / new).
+ * - `ratingTenths`: average rating × 10 (`45` = 4.5), null without ratings.
+ * - `multiplayer`: index in `MULTIPLAYER_ROLES` (`mp:yes` ⇒ 1 client_side, 2 host_only, 3 all_players).
+ *
+ * The palette reads the last four fields defensively, so an older cached index still works.
  */
 export const SearchIndexModTuple = z.tuple([
   EntityId,
@@ -85,11 +93,29 @@ export const SearchIndexModTuple = z.tuple([
   CompatStatus,
   z.string().nullable(),
   SitePath,
+  z.number().int().nonnegative(),
+  z.number().int().nonnegative(),
+  z.number().int().min(0).max(50).nullable(),
+  z.number().int().min(0).max(4),
 ]);
-/** Kit tuple: `[id, name, ownerHandle, itemsCount, path]`. */
-export const SearchIndexKitTuple = z.tuple([EntityId, z.string(), Handle, z.number().int().nonnegative(), SitePath]);
-/** Creator tuple: `[id, handle, displayName, modsCount, path]`. */
-export const SearchIndexUserTuple = z.tuple([EntityId, Handle, z.string(), z.number().int().nonnegative(), SitePath]);
+/** Kit tuple: `[id, name, ownerHandle, itemsCount, path, thumbUrl | null]` (first item's image). */
+export const SearchIndexKitTuple = z.tuple([
+  EntityId,
+  z.string(),
+  Handle,
+  z.number().int().nonnegative(),
+  SitePath,
+  z.string().nullable(),
+]);
+/** Creator tuple: `[id, handle, displayName, modsCount, path, avatarUrl | null]`. */
+export const SearchIndexUserTuple = z.tuple([
+  EntityId,
+  Handle,
+  z.string(),
+  z.number().int().nonnegative(),
+  SitePath,
+  z.string().nullable(),
+]);
 /** Category tuple: `[slug, localisedName, path]`. */
 export const SearchIndexCategoryTuple = z.tuple([z.string(), z.string(), SitePath]);
 /** Page tuple: `[key, localisedTitle, path]` (install, patch radar, legal…). */
@@ -128,10 +154,14 @@ export const SearchIndexDTO = dto(
             'works',
             'https://r2.sotf-mods.com/media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/64.webp',
             "/mods/imaxel/axel's-mod-menu",
+            20_548,
+            19_640,
+            45,
+            0,
           ],
         ],
-        kits: [[5, 'Starter essentials', 'imaxel', 12, '/kits/imaxel/starter-essentials']],
-        users: [[12, 'imaxel', 'ImAxel', 16, '/profile/imaxel']],
+        kits: [[5, 'Starter essentials', 'imaxel', 12, '/kits/imaxel/starter-essentials', null]],
+        users: [[12, 'imaxel', 'ImAxel', 16, '/profile/imaxel', null]],
         categories: [['quality-of-life', 'Quality of Life', '/categories/quality-of-life']],
         pages: [['install', 'How to install mods', '/install']],
         trending: [20],
