@@ -104,5 +104,10 @@
   "builds_md_alert_important": "Belangrijk",
   "builds_md_alert_warning": "Waarschuwing",
   "builds_md_alert_caution": "Let op",
-  "builds_md_spoiler": "Spoiler"
+  "builds_md_spoiler": "Spoiler",
+  "builds_kit_popover_title": "Aan een Kit toevoegen",
+  "builds_kit_popover_empty": "Je hebt nog geen Kits.",
+  "builds_kit_popover_create": "Kit maken",
+  "builds_kit_added": "Toegevoegd aan {kit}",
+  "builds_kit_already": "Al in {kit}"
 }

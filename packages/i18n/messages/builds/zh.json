@@ -104,5 +104,10 @@
   "builds_md_alert_important": "重要",
   "builds_md_alert_warning": "警告",
   "builds_md_alert_caution": "小心",
-  "builds_md_spoiler": "剧透"
+  "builds_md_spoiler": "剧透",
+  "builds_kit_popover_title": "添加到套件",
+  "builds_kit_popover_empty": "你还没有套件。",
+  "builds_kit_popover_create": "创建套件",
+  "builds_kit_added": "已添加到 {kit}",
+  "builds_kit_already": "已在 {kit} 中"
 }

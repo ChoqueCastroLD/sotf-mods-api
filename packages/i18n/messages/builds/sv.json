@@ -104,5 +104,10 @@
   "builds_md_alert_important": "Viktigt",
   "builds_md_alert_warning": "Varning",
   "builds_md_alert_caution": "Försiktighet",
-  "builds_md_spoiler": "Spoiler"
+  "builds_md_spoiler": "Spoiler",
+  "builds_kit_popover_title": "Lägg till i ett Kit",
+  "builds_kit_popover_empty": "Du har inga Kits än.",
+  "builds_kit_popover_create": "Skapa ett Kit",
+  "builds_kit_added": "Tillagd i {kit}",
+  "builds_kit_already": "Finns redan i {kit}"
 }

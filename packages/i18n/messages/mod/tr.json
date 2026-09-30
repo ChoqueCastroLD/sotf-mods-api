@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "Uyarı",
   "mod_md_alert_caution": "Dikkat",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Sık sorulan sorular"
+  "mod_faq_title": "Sık sorulan sorular",
+  "mod_stats_title": "İndirmeler, son 30 gün",
+  "mod_stats_series": "Günlük indirme",
+  "mod_stats_day": "Gün",
+  "mod_stats_empty": "Bir eğilim çizmek için henüz yeterli indirme yok."
 }

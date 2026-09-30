@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "警告",
   "mod_md_alert_caution": "注意",
   "mod_md_spoiler": "ネタバレ",
-  "mod_faq_title": "よくある質問"
+  "mod_faq_title": "よくある質問",
+  "mod_stats_title": "ダウンロード数（過去30日）",
+  "mod_stats_series": "1日あたりのダウンロード数",
+  "mod_stats_day": "日付",
+  "mod_stats_empty": "推移を表示するにはダウンロード数がまだ足りません。"
 }

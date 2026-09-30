@@ -104,5 +104,10 @@
   "builds_md_alert_important": "Önemli",
   "builds_md_alert_warning": "Uyarı",
   "builds_md_alert_caution": "Dikkat",
-  "builds_md_spoiler": "Spoiler"
+  "builds_md_spoiler": "Spoiler",
+  "builds_kit_popover_title": "Bir Kit’e ekle",
+  "builds_kit_popover_empty": "Henüz Kit’in yok.",
+  "builds_kit_popover_create": "Kit oluştur",
+  "builds_kit_added": "{kit} içine eklendi",
+  "builds_kit_already": "Zaten {kit} içinde"
 }

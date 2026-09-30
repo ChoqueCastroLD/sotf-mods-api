@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "Waarschuwing",
   "mod_md_alert_caution": "Let op",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Veelgestelde vragen"
+  "mod_faq_title": "Veelgestelde vragen",
+  "mod_stats_title": "Downloads, laatste 30 dagen",
+  "mod_stats_series": "Downloads per dag",
+  "mod_stats_day": "Dag",
+  "mod_stats_empty": "Nog te weinig downloads voor een trend."
 }

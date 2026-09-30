@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "Varning",
   "mod_md_alert_caution": "Försiktighet",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Vanliga frågor"
+  "mod_faq_title": "Vanliga frågor",
+  "mod_stats_title": "Nedladdningar, senaste 30 dagarna",
+  "mod_stats_series": "Nedladdningar per dag",
+  "mod_stats_day": "Dag",
+  "mod_stats_empty": "Inte tillräckligt många nedladdningar för en trend än."
 }

@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "Ostrzeżenie",
   "mod_md_alert_caution": "Ostrożnie",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Najczęstsze pytania"
+  "mod_faq_title": "Najczęstsze pytania",
+  "mod_stats_title": "Pobrania z ostatnich 30 dni",
+  "mod_stats_series": "Pobrania dziennie",
+  "mod_stats_day": "Dzień",
+  "mod_stats_empty": "Za mało pobrań, by narysować trend."
 }

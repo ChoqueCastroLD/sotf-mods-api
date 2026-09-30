@@ -221,5 +221,9 @@
   "mod_md_alert_warning": "Предупреждение",
   "mod_md_alert_caution": "Осторожно",
   "mod_md_spoiler": "Спойлер",
-  "mod_faq_title": "Частые вопросы"
+  "mod_faq_title": "Частые вопросы",
+  "mod_stats_title": "Загрузки за последние 30 дней",
+  "mod_stats_series": "Загрузок в день",
+  "mod_stats_day": "День",
+  "mod_stats_empty": "Пока слишком мало загрузок для графика."
 }

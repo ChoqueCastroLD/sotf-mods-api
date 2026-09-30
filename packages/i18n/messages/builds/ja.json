@@ -104,5 +104,10 @@
   "builds_md_alert_important": "重要",
   "builds_md_alert_warning": "警告",
   "builds_md_alert_caution": "注意",
-  "builds_md_spoiler": "ネタバレ"
+  "builds_md_spoiler": "ネタバレ",
+  "builds_kit_popover_title": "キットに追加",
+  "builds_kit_popover_empty": "キットはまだありません。",
+  "builds_kit_popover_create": "キットを作成",
+  "builds_kit_added": "{kit} に追加しました",
+  "builds_kit_already": "{kit} に追加済み"
 }
