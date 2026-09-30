@@ -8,7 +8,7 @@ reference. Business logic lives in `@sotf/core`; this app only adapts HTTP to it
 
 | File | Run | What |
 |---|---|---|
-| `src/server.ts` | `pnpm --filter @sotf/api dev` · `node dist/server.js` | HTTP server (PORT 3001), graceful shutdown on SIGTERM |
+| `src/server.ts` | `pnpm --filter @sotf/api dev` · `node dist/server.js` | HTTP server (`PORT`: 3001 with `NODE_ENV=production`, 47301 otherwise), graceful shutdown on SIGTERM |
 | `src/migrate.ts` | `node dist/migrate.js [up\|status\|down …]` | One-off migrate task: `@sotf/db` runner + pg-boss schema + guard, with `MIGRATIONS_DATABASE_URL`; the SQL files ship in `dist/migrations` |
 | `src/backfill.ts` | `node dist/backfill.js B7 [--apply] [--batch-size 2000] [--wait]` | Enqueues `backfill.run` for the worker (dry run unless `--apply`) |
 
@@ -22,9 +22,13 @@ npm dependencies external — list every runtime dependency in `package.json`).
   `process.env`); outside production it first loads the root `.env` without overriding variables
   already set (`SOTF_NO_DOTENV=1` disables it). `APP_SECRET` and `INTERNAL_SECRET` (≥ 32 chars),
   `PUBLIC_SITE_URL` and `DATABASE_URL` are required.
-- The web expects the API on `127.0.0.1:47301` (`INTERNAL_API_URL`), but `PORT` defaults to 3001
-  (the Coolify port): run `PORT=47301 pnpm --filter @sotf/api dev` until the dev script pins it
-  (`docs/backlog/WP-A4.md`).
+- The API listens on `127.0.0.1:47301` in development (the web's `INTERNAL_API_URL`): `PORT`
+  defaults to 47301 unless `NODE_ENV=production`, where Coolify sets it (3001). An explicit `PORT`
+  always wins.
+- Optional development/e2e variables: `R2_ENDPOINT` (S3 emulator seen by the API) and
+  `R2_PUBLIC_ENDPOINT` (the same emulator as the browser reaches it, used only to sign upload
+  URLs); `LEGACY_SUNSET_AT` (ISO date) moves the `Sunset` header of the Tier 2 legacy routes
+  (default `LEGACY_SUNSET_DATE` of `@sotf/contracts/legacy`).
 - The database comes from `pnpm infra:up && pnpm db:seed:dev --small`; the API docs are served at
   `http://127.0.0.1:47301/api/docs`.
 - Environment reference per deployment: `ops/coolify/env/api.env.example`; operations:

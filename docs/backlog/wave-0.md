@@ -63,10 +63,10 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
 
 ## Para W2 y siguientes
 
-- **Variable `R2_ENDPOINT`** · `apps/{api,worker}/src/env.ts` (WP-20) y cliente S3 (WP-31) ·
+- [x] resolved by wire-api (already adopted; R2_PUBLIC_ENDPOINT added for browser presigning): **Variable `R2_ENDPOINT`** · `apps/{api,worker}/src/env.ts` (WP-20) y cliente S3 (WP-31) ·
   `.env.example` la propone para SeaweedFS en local/tests; §11.4 solo deriva el endpoint de
   `R2_ACCOUNT_ID`. Adoptarla (opcional, vacía en producción) o renombrarla.
-- **Variable `SMTP_URL`** · transporte `mailpit` de `EmailOutbox` (WP-30) · `.env.example` propone
+- [x] resolved by wire-api (already in place in packages/core/src/email/transports.ts): **Variable `SMTP_URL`** · transporte `mailpit` de `EmailOutbox` (WP-30) · `.env.example` propone
   `smtp://127.0.0.1:47025`; §11.4 no fija cómo se configura.
 - **`e2e/package.json` antes de W9** · `e2e/**` es de WP-91, pero WP-22 (W2), WP-31, WP-34, WP-44,
   WP-53 exigen `pnpm e2e --grep @…` · asignar a WP-22 la creación del proyecto Playwright (script
