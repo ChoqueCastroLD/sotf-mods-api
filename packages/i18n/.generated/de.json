@@ -3310,6 +3310,303 @@
   "mod_whats_new_read": "Feldnotizen lesen",
   "mod_whats_new_title": "Neu seit deinem letzten Download (v{version})",
   "mod_whats_new_up_to_date": "Du hast die neueste Version (v{version}).",
+  "social_action_back": "Zurück",
+  "social_action_cancel": "Abbrechen",
+  "social_action_close": "Schließen",
+  "social_action_continue": "Weiter",
+  "social_action_delete": "Löschen",
+  "social_action_edit": "Bearbeiten",
+  "social_action_load_more": "Mehr laden",
+  "social_action_retry": "Erneut versuchen",
+  "social_action_save": "Speichern",
+  "social_action_undo": "Rückgängig",
+  "social_bug_resolve": "Als in einer Version behoben markieren",
+  "social_bug_resolve_intro": "Die meldende Person erhält ein Signal und der Kommentar zeigt «Behoben in vX».",
+  "social_bug_resolve_submit": "Als behoben markieren",
+  "social_bug_resolve_title": "In welcher Version behoben?",
+  "social_bug_resolve_version": "Version",
+  "social_bug_resolved_done": "Als in {version} behoben markiert.",
+  "social_comment_bug_hint": "Fehlerberichte landen im Posteingang des Erstellers. Beschreib, was du getan hast, was passiert ist und was du erwartet hast.",
+  "social_comment_bug_label": "Das ist ein Fehlerbericht",
+  "social_comment_bug_version": "Version mit dem Fehler",
+  "social_comment_deleted": "Kommentar gelöscht.",
+  "social_comment_edit_label": "Kommentar bearbeiten",
+  "social_comment_edited": "Kommentar aktualisiert.",
+  "social_comment_empty": "Schreib zuerst etwas.",
+  "social_comment_held": "Gesendet. Kommentare neuer Konten mit externen Links warten auf eine kurze Prüfung durch die Ranger.",
+  "social_comment_invalid": "Dieser Text kann nicht gespeichert werden. Prüfe ihn und versuch es erneut.",
+  "social_comment_label": "Dein Kommentar",
+  "social_comment_placeholder": "Frag nach, teile einen Tipp oder melde ein Problem…",
+  "social_comment_posted": "Kommentar veröffentlicht.",
+  "social_comment_reply_label": "Deine Antwort",
+  "social_comment_reply_submit": "Antworten",
+  "social_comment_reply_to": "Antwort an @{handle}",
+  "social_comment_sign_in": "Melde dich an, um zu kommentieren",
+  "social_comment_submit": "Kommentar senden",
+  "social_comment_too_long": "Höchstens {max} Zeichen.",
+  "social_comments_empty": "Noch keine Kommentare. Fragen, Tipps und Fehlerberichte gehören hierher.",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Keine weiteren Kommentare.",
+        "count__exact=*, count__plural=one": "{count__number} weiterer Kommentar geladen.",
+        "count__exact=*, count__plural=*": "{count__number} weitere Kommentare geladen."
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} weitere Antwort",
+        "count__plural=*": "{count__number} weitere Antworten"
+      }
+    }
+  ],
+  "social_comments_sort": "Kommentare sortieren",
+  "social_comments_sort_new": "Neueste",
+  "social_comments_sort_top": "Top",
+  "social_comments_sorted": "Kommentare sortiert.",
+  "social_compat_build": "Spiel-Build",
+  "social_compat_build_current": "{label} (aktuell)",
+  "social_compat_deleted": "Feldbericht gelöscht.",
+  "social_compat_heading": "Hat es in deinem Spiel funktioniert?",
+  "social_compat_intro": "Sag anderen Überlebenden, ob dieser Mod bei dir funktioniert. Dauert 20 Sekunden.",
+  "social_compat_missing_mode": "Wähle, wie du spielst.",
+  "social_compat_missing_result": "Wähle ein Ergebnis.",
+  "social_compat_missing_setup": "Wähle die Version und den Spiel-Build.",
+  "social_compat_mode": "Wie spielst du?",
+  "social_compat_mode_client": "Multiplayer-Client",
+  "social_compat_mode_client_hint": "Du trittst dem Spiel eines anderen bei.",
+  "social_compat_mode_dedicated": "Dedizierter Server",
+  "social_compat_mode_dedicated_hint": "Auf einem dedizierten Server installiert.",
+  "social_compat_mode_host": "Multiplayer-Host",
+  "social_compat_mode_host_hint": "Du hostest das Spiel für Freunde.",
+  "social_compat_mode_singleplayer": "Einzelspieler",
+  "social_compat_mode_singleplayer_hint": "Du spielst allein.",
+  "social_compat_note": "Notiz",
+  "social_compat_note_placeholder": "Was geht, was nicht, eine Fehlermeldung…",
+  "social_compat_open": "Kompatibilität melden",
+  "social_compat_other_mods": "Andere installierte Mods",
+  "social_compat_other_mods_placeholder": "SonsAxLib, StackMod…",
+  "social_compat_prompt": "Du hast v{version} heruntergeladen. Hat es auf {build} funktioniert?",
+  "social_compat_prompt_label": "Hat es funktioniert?",
+  "social_compat_prompt_later": "Nicht jetzt",
+  "social_compat_report_another": "Anderes Setup melden",
+  "social_compat_result": "Hat es funktioniert?",
+  "social_compat_result_broken": "Kaputt",
+  "social_compat_result_broken_hint": "Es lädt nicht oder stürzt ab.",
+  "social_compat_result_partial": "Teilweise",
+  "social_compat_result_partial_hint": "Es lädt, aber etwas ist kaputt.",
+  "social_compat_result_works": "Funktioniert",
+  "social_compat_result_works_hint": "Alles, was ich probiert habe, funktioniert.",
+  "social_compat_step_of": "Schritt {step} von {total}: {title}",
+  "social_compat_step_result": "Ergebnis",
+  "social_compat_step_setup": "Dein Setup",
+  "social_compat_steps": "Schritte",
+  "social_compat_submit": "Bericht senden",
+  "social_compat_text": "Ein Feldbericht dauert zehn Sekunden und zeigt allen, ob dieser Mod mit dem aktuellen Patch läuft.",
+  "social_compat_thanks": "Danke, Überlebender! Dein Feldbericht zählt für das Kompatibilitätsabzeichen.",
+  "social_compat_title": "Feldbericht",
+  "social_compat_version": "Mod-Version",
+  "social_compat_yours": "Du hast «{result}» auf {build} gemeldet ({mode}, v{version}).",
+  "social_deleted_user": "Gelöschter Überlebender",
+  "social_editor_bold": "Fett",
+  "social_editor_code": "Code",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown: **fett**, *kursiv*, `Code`, [Link](URL), ||Spoiler||, @Erwähnungen · {modifier}+Enter zum Senden",
+  "social_editor_italic": "Kursiv",
+  "social_editor_link": "Link",
+  "social_editor_link_text": "Linktext",
+  "social_editor_list": "Liste",
+  "social_editor_mentions": "Personen zum Erwähnen",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Keine Vorschläge",
+        "count__exact=*, count__plural=one": "{count__number} Vorschlag, Pfeiltasten verwenden",
+        "count__exact=*, count__plural=*": "{count__number} Vorschläge, Pfeiltasten verwenden"
+      }
+    }
+  ],
+  "social_editor_mode": "Editoransicht",
+  "social_editor_preview": "Vorschau",
+  "social_editor_preview_empty": "Noch nichts für die Vorschau.",
+  "social_editor_preview_loading": "Vorschau wird erstellt…",
+  "social_editor_quote": "Zitat",
+  "social_editor_sample": "Text",
+  "social_editor_spoiler": "Spoiler",
+  "social_editor_toolbar": "Formatierung",
+  "social_editor_write": "Schreiben",
+  "social_image_add": "Bild hinzufügen ({count}/{max})",
+  "social_image_failed": "Das Bild konnte nicht hochgeladen werden. Entferne es und versuch es erneut.",
+  "social_image_failed_short": "Fehler",
+  "social_image_limit": "Bis zu {max} Bilder pro Kommentar.",
+  "social_image_remove": "{name} entfernen",
+  "social_image_size": "Bilder dürfen höchstens 5 MB groß sein.",
+  "social_image_type": "Verwende ein PNG-, JPEG-, WebP-, AVIF- oder GIF-Bild.",
+  "social_image_uploading": "Wird hochgeladen…",
+  "social_image_wait": "Warte, bis die Bilder hochgeladen sind.",
+  "social_loading": "Wird geladen…",
+  "social_md_spoiler": "Spoiler",
+  "social_more_actions": "Weitere Aktionen für den Beitrag von {name}",
+  "social_offline": "Du bist offline. Was du siehst, ist vielleicht nicht aktuell.",
+  "social_optional": "(optional)",
+  "social_pin": "Anheften",
+  "social_pin_limit": "Du kannst bis zu 3 Kommentare anheften. Löse zuerst einen.",
+  "social_pinned": "Kommentar angeheftet.",
+  "social_reaction_add": "Reaktion hinzufügen",
+  "social_reaction_added": "Reaktion hinzugefügt: {reaction}.",
+  "social_reaction_fire": "Feuer",
+  "social_reaction_heart": "Herz",
+  "social_reaction_laugh": "Lachen",
+  "social_reaction_party": "Feiern",
+  "social_reaction_pray": "Danke",
+  "social_reaction_removed": "Reaktion entfernt: {reaction}.",
+  "social_reaction_thumbs_up": "Daumen hoch",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{reaction}: {count__number} Person",
+        "count__plural=*": "{reaction}: {count__number} Personen"
+      }
+    }
+  ],
+  "social_reactions": "Reaktionen",
+  "social_replies_failed": "Die Antworten konnten nicht geladen werden. Versuch es erneut.",
+  "social_reply": "Antworten",
+  "social_reply_to_label": "{name} antworten",
+  "social_report": "Melden",
+  "social_report_choose_reason": "Wähle einen Grund.",
+  "social_report_comment_title": "Diesen Kommentar melden",
+  "social_report_details_label": "Details (optional)",
+  "social_report_duplicate": "Du hast diesen Mod schon gemeldet. Die Ranger kümmern sich darum.",
+  "social_report_field_report_title": "Diesen Feldbericht melden",
+  "social_report_intro": "Die Ranger prüfen jede Meldung. Sag ihnen, was nicht stimmt.",
+  "social_report_reason_harassment": "Belästigung oder Hass",
+  "social_report_reason_illegal": "Illegale Inhalte",
+  "social_report_reason_label": "Grund",
+  "social_report_reason_nsfw_unmarked": "Erwachseneninhalt ohne Ab-18-Markierung",
+  "social_report_reason_other": "Etwas anderes",
+  "social_report_reason_spam": "Spam oder Werbung",
+  "social_report_review_title": "Diese Bewertung melden",
+  "social_report_sent": "Danke. Die Ranger sehen es sich an.",
+  "social_report_submit": "Meldung senden",
+  "social_review_body_label": "Deine Bewertung",
+  "social_review_body_placeholder": "Was hat funktioniert, was nicht, und für wen ist es?",
+  "social_review_conflict": "Du hast diesen Mod schon bewertet. Bearbeite stattdessen deine Bewertung.",
+  "social_review_deleted": "Bewertung gelöscht.",
+  "social_review_edit": "Bewertung bearbeiten",
+  "social_review_forbidden": "Du kannst diesen Mod noch nicht bewerten: Dafür brauchst du eine bestätigte E-Mail-Adresse und ein mindestens 24 Stunden altes Konto, und Ersteller können ihre eigenen Mods nicht bewerten.",
+  "social_review_own_mod": "Das ist dein Mod: Du kannst auf jede Bewertung einmal antworten.",
+  "social_review_posted": "Danke! Deine Bewertung ist online.",
+  "social_review_rating_label": "Deine Bewertung",
+  "social_review_rating_required": "Wähle 1 bis 5 Sterne.",
+  "social_review_reply": "Öffentlich antworten",
+  "social_review_reply_delete": "Antwort löschen",
+  "social_review_reply_deleted": "Antwort gelöscht.",
+  "social_review_reply_edit": "Antwort bearbeiten",
+  "social_review_reply_label": "Deine öffentliche Antwort",
+  "social_review_reply_saved": "Antwort veröffentlicht.",
+  "social_review_reply_submit": "Antwort veröffentlichen",
+  "social_review_rules": "Eine Bewertung pro Überlebendem. Sei konkret: Version, was lief, was nicht.",
+  "social_review_see_all": "Alle Bewertungen ansehen",
+  "social_review_star_1": "Funktioniert bei mir nicht",
+  "social_review_star_2": "Ausbaufähig",
+  "social_review_star_3": "Okay",
+  "social_review_star_4": "Sehr gut",
+  "social_review_star_5": "Unverzichtbar",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} Stern",
+        "count__plural=*": "{count__number} Sterne"
+      }
+    }
+  ],
+  "social_review_submit": "Bewertung veröffentlichen",
+  "social_review_title_label": "Titel",
+  "social_review_title_too_long": "Der Titel darf höchstens {max} Zeichen haben.",
+  "social_review_update": "Bewertung aktualisieren",
+  "social_review_updated": "Bewertung aktualisiert.",
+  "social_review_version_auto": "Die zuletzt heruntergeladene",
+  "social_review_version_label": "Verwendete Version",
+  "social_review_write": "Bewertung schreiben",
+  "social_review_yours": "Deine Bewertung",
+  "social_solution_mark": "Als Lösung markieren",
+  "social_solution_marked": "Als Lösung markiert.",
+  "social_solution_unmark": "Lösungsmarkierung entfernen",
+  "social_solution_unmarked": "Lösungsmarkierung entfernt.",
+  "social_unpin": "Lösen",
+  "social_unpinned": "Kommentar gelöst.",
+  "social_verify_action": "E-Mail bestätigen",
+  "social_verify_to_comment": "Bestätige deine E-Mail-Adresse, um zu kommentieren.",
+  "social_verify_to_report": "Bestätige deine E-Mail-Adresse, um Feldberichte zu senden.",
+  "social_verify_to_review": "Bestätige deine E-Mail-Adresse, um eine Bewertung zu schreiben.",
+  "social_vote_label": "Hilfreich?",
+  "social_vote_no": "Nicht hilfreich",
+  "social_vote_removed": "Stimme entfernt.",
+  "social_vote_saved": "Stimme gespeichert.",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ja, hilfreich ({count__number} Stimme)",
+        "count__plural=*": "Ja, hilfreich ({count__number} Stimmen)"
+      }
+    }
+  ],
   "ui_breadcrumbs": "Brotkrümelnavigation",
   "ui_cancel": "Abbrechen",
   "ui_choose": "Auswählen…",

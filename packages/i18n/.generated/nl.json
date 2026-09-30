@@ -3310,6 +3310,303 @@
   "mod_whats_new_read": "Lees de veldnotities",
   "mod_whats_new_title": "Nieuw sinds je laatste download (v{version})",
   "mod_whats_new_up_to_date": "Je hebt de nieuwste versie (v{version}).",
+  "social_action_back": "Terug",
+  "social_action_cancel": "Annuleren",
+  "social_action_close": "Sluiten",
+  "social_action_continue": "Doorgaan",
+  "social_action_delete": "Verwijderen",
+  "social_action_edit": "Bewerken",
+  "social_action_load_more": "Meer laden",
+  "social_action_retry": "Opnieuw proberen",
+  "social_action_save": "Opslaan",
+  "social_action_undo": "Ongedaan maken",
+  "social_bug_resolve": "Markeren als opgelost in een versie",
+  "social_bug_resolve_intro": "De melder krijgt een signaal en de reactie toont «Opgelost in vX».",
+  "social_bug_resolve_submit": "Markeren als opgelost",
+  "social_bug_resolve_title": "Opgelost in welke versie?",
+  "social_bug_resolve_version": "Versie",
+  "social_bug_resolved_done": "Gemarkeerd als opgelost in {version}.",
+  "social_comment_bug_hint": "Bugmeldingen komen in de inbox van de maker. Vertel wat je deed, wat er gebeurde en wat je verwachtte.",
+  "social_comment_bug_label": "Dit is een bugmelding",
+  "social_comment_bug_version": "Versie met de bug",
+  "social_comment_deleted": "Reactie verwijderd.",
+  "social_comment_edit_label": "Je reactie bewerken",
+  "social_comment_edited": "Reactie bijgewerkt.",
+  "social_comment_empty": "Schrijf eerst iets.",
+  "social_comment_held": "Geplaatst. Reacties met externe links van nieuwe accounts wachten op een snelle controle door de rangers.",
+  "social_comment_invalid": "Deze tekst kan niet worden opgeslagen. Controleer hem en probeer het opnieuw.",
+  "social_comment_label": "Je reactie",
+  "social_comment_placeholder": "Stel een vraag, deel een tip of meld een probleem…",
+  "social_comment_posted": "Reactie geplaatst.",
+  "social_comment_reply_label": "Je antwoord",
+  "social_comment_reply_submit": "Beantwoorden",
+  "social_comment_reply_to": "Antwoord aan @{handle}",
+  "social_comment_sign_in": "Log in om te reageren",
+  "social_comment_submit": "Reactie plaatsen",
+  "social_comment_too_long": "Maximaal {max} tekens.",
+  "social_comments_empty": "Nog geen reacties. Vragen, tips en bugs horen hier.",
+  "social_comments_loaded": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Geen reacties meer.",
+        "count__exact=*, count__plural=one": "{count__number} extra reactie geladen.",
+        "count__exact=*, count__plural=*": "{count__number} extra reacties geladen."
+      }
+    }
+  ],
+  "social_comments_more_replies": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nog {count__number} antwoord",
+        "count__plural=*": "Nog {count__number} antwoorden"
+      }
+    }
+  ],
+  "social_comments_sort": "Reacties sorteren",
+  "social_comments_sort_new": "Nieuwste",
+  "social_comments_sort_top": "Top",
+  "social_comments_sorted": "Reacties gesorteerd.",
+  "social_compat_build": "Gamebuild",
+  "social_compat_build_current": "{label} (huidig)",
+  "social_compat_deleted": "Veldrapport verwijderd.",
+  "social_compat_heading": "Werkte het in je game?",
+  "social_compat_intro": "Laat andere overlevers weten of deze mod werkt bij jou. Het kost 20 seconden.",
+  "social_compat_missing_mode": "Kies hoe je speelt.",
+  "social_compat_missing_result": "Kies een resultaat.",
+  "social_compat_missing_setup": "Kies de versie en de gamebuild.",
+  "social_compat_mode": "Hoe speel je?",
+  "social_compat_mode_client": "Multiplayer-client",
+  "social_compat_mode_client_hint": "Je doet mee met het spel van een ander.",
+  "social_compat_mode_dedicated": "Dedicated server",
+  "social_compat_mode_dedicated_hint": "Geïnstalleerd op een dedicated server.",
+  "social_compat_mode_host": "Multiplayer-host",
+  "social_compat_mode_host_hint": "Jij host het spel voor vrienden.",
+  "social_compat_mode_singleplayer": "Singleplayer",
+  "social_compat_mode_singleplayer_hint": "Je speelt alleen.",
+  "social_compat_note": "Notitie",
+  "social_compat_note_placeholder": "Wat werkt, wat niet, een foutmelding…",
+  "social_compat_open": "Compatibiliteit melden",
+  "social_compat_other_mods": "Andere geïnstalleerde mods",
+  "social_compat_other_mods_placeholder": "SonsAxLib, StackMod…",
+  "social_compat_prompt": "Je hebt v{version} gedownload. Werkte het op {build}?",
+  "social_compat_prompt_label": "Werkte het?",
+  "social_compat_prompt_later": "Niet nu",
+  "social_compat_report_another": "Andere opstelling melden",
+  "social_compat_result": "Werkte het?",
+  "social_compat_result_broken": "Kapot",
+  "social_compat_result_broken_hint": "Het laadt niet of crasht.",
+  "social_compat_result_partial": "Gedeeltelijk",
+  "social_compat_result_partial_hint": "Het laadt, maar er is iets stuk.",
+  "social_compat_result_works": "Werkt",
+  "social_compat_result_works_hint": "Alles wat ik probeerde werkt.",
+  "social_compat_step_of": "Stap {step} van {total}: {title}",
+  "social_compat_step_result": "Resultaat",
+  "social_compat_step_setup": "Jouw opstelling",
+  "social_compat_steps": "Stappen",
+  "social_compat_submit": "Rapport versturen",
+  "social_compat_text": "Een veldrapport kost tien seconden en vertelt iedereen of deze mod op de huidige patch werkt.",
+  "social_compat_thanks": "Bedankt, overlever! Je veldrapport telt mee voor de compatibiliteitsbadge.",
+  "social_compat_title": "Veldrapport",
+  "social_compat_version": "Modversie",
+  "social_compat_yours": "Je meldde «{result}» op {build} ({mode}, v{version}).",
+  "social_deleted_user": "Verwijderde overlever",
+  "social_editor_bold": "Vet",
+  "social_editor_code": "Code",
+  "social_editor_counter": "{count} / {max}",
+  "social_editor_hint": "Markdown: **vet**, *cursief*, `code`, [link](url), ||spoiler||, @vermeldingen · {modifier}+Enter om te versturen",
+  "social_editor_italic": "Cursief",
+  "social_editor_link": "Link",
+  "social_editor_link_text": "linktekst",
+  "social_editor_list": "Lijst",
+  "social_editor_mentions": "Mensen om te noemen",
+  "social_editor_mentions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Geen suggesties",
+        "count__exact=*, count__plural=one": "{count__number} suggestie, gebruik de pijltjestoetsen",
+        "count__exact=*, count__plural=*": "{count__number} suggesties, gebruik de pijltjestoetsen"
+      }
+    }
+  ],
+  "social_editor_mode": "Editorweergave",
+  "social_editor_preview": "Voorbeeld",
+  "social_editor_preview_empty": "Nog niets om te tonen.",
+  "social_editor_preview_loading": "Voorbeeld wordt gemaakt…",
+  "social_editor_quote": "Citaat",
+  "social_editor_sample": "tekst",
+  "social_editor_spoiler": "Spoiler",
+  "social_editor_toolbar": "Opmaak",
+  "social_editor_write": "Schrijven",
+  "social_image_add": "Afbeelding toevoegen ({count}/{max})",
+  "social_image_failed": "De afbeelding kon niet worden geüpload. Verwijder hem en probeer het opnieuw.",
+  "social_image_failed_short": "Mislukt",
+  "social_image_limit": "Maximaal {max} afbeeldingen per reactie.",
+  "social_image_remove": "{name} verwijderen",
+  "social_image_size": "Afbeeldingen mogen maximaal 5 MB zijn.",
+  "social_image_type": "Gebruik een PNG-, JPEG-, WebP-, AVIF- of GIF-afbeelding.",
+  "social_image_uploading": "Uploaden…",
+  "social_image_wait": "Wacht tot de afbeeldingen zijn geüpload.",
+  "social_loading": "Laden…",
+  "social_md_spoiler": "Spoiler",
+  "social_more_actions": "Meer acties voor het bericht van {name}",
+  "social_offline": "Je bent offline. Wat je ziet is misschien niet actueel.",
+  "social_optional": "(optioneel)",
+  "social_pin": "Vastzetten",
+  "social_pin_limit": "Je kunt maximaal 3 reacties vastzetten. Maak er eerst een los.",
+  "social_pinned": "Reactie vastgezet.",
+  "social_reaction_add": "Reactie toevoegen",
+  "social_reaction_added": "Reactie toegevoegd: {reaction}.",
+  "social_reaction_fire": "Vuur",
+  "social_reaction_heart": "Hart",
+  "social_reaction_laugh": "Lach",
+  "social_reaction_party": "Feest",
+  "social_reaction_pray": "Bedankt",
+  "social_reaction_removed": "Reactie verwijderd: {reaction}.",
+  "social_reaction_thumbs_up": "Duim omhoog",
+  "social_reaction_toggle": [
+    {
+      "declarations": [
+        "input reaction",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{reaction}: {count__number} persoon",
+        "count__plural=*": "{reaction}: {count__number} personen"
+      }
+    }
+  ],
+  "social_reactions": "Reacties",
+  "social_replies_failed": "De antwoorden konden niet worden geladen. Probeer het opnieuw.",
+  "social_reply": "Beantwoorden",
+  "social_reply_to_label": "Beantwoord {name}",
+  "social_report": "Melden",
+  "social_report_choose_reason": "Kies een reden.",
+  "social_report_comment_title": "Deze reactie melden",
+  "social_report_details_label": "Details (optioneel)",
+  "social_report_duplicate": "Je hebt deze mod al gerapporteerd. De rangers zijn ermee bezig.",
+  "social_report_field_report_title": "Dit veldrapport melden",
+  "social_report_intro": "De rangers bekijken elke melding. Vertel wat er mis is.",
+  "social_report_reason_harassment": "Intimidatie of haat",
+  "social_report_reason_illegal": "Illegale inhoud",
+  "social_report_reason_label": "Reden",
+  "social_report_reason_nsfw_unmarked": "Inhoud voor volwassenen zonder 18+-markering",
+  "social_report_reason_other": "Iets anders",
+  "social_report_reason_spam": "Spam of reclame",
+  "social_report_review_title": "Deze review melden",
+  "social_report_sent": "Bedankt. De rangers kijken ernaar.",
+  "social_report_submit": "Melding versturen",
+  "social_review_body_label": "Je review",
+  "social_review_body_placeholder": "Wat werkte, wat niet, en voor wie is het?",
+  "social_review_conflict": "Je hebt deze mod al gereviewd. Bewerk je review.",
+  "social_review_deleted": "Review verwijderd.",
+  "social_review_edit": "Je review bewerken",
+  "social_review_forbidden": "Je kunt deze mod nog niet reviewen: daarvoor heb je een bevestigd e-mailadres en een account van minstens 24 uur nodig, en makers kunnen hun eigen mods niet reviewen.",
+  "social_review_own_mod": "Dit is jouw mod: je kunt één keer op elke review reageren.",
+  "social_review_posted": "Bedankt! Je review staat online.",
+  "social_review_rating_label": "Jouw beoordeling",
+  "social_review_rating_required": "Kies 1 tot 5 sterren.",
+  "social_review_reply": "Openbaar reageren",
+  "social_review_reply_delete": "Je antwoord verwijderen",
+  "social_review_reply_deleted": "Antwoord verwijderd.",
+  "social_review_reply_edit": "Je antwoord bewerken",
+  "social_review_reply_label": "Je openbare antwoord",
+  "social_review_reply_saved": "Antwoord gepubliceerd.",
+  "social_review_reply_submit": "Antwoord publiceren",
+  "social_review_rules": "Eén review per overlevende. Wees concreet: versie, wat werkte en wat niet.",
+  "social_review_see_all": "Alle reviews bekijken",
+  "social_review_star_1": "Werkt niet bij mij",
+  "social_review_star_2": "Kan beter",
+  "social_review_star_3": "Oké",
+  "social_review_star_4": "Erg goed",
+  "social_review_star_5": "Onmisbaar",
+  "social_review_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ster",
+        "count__plural=*": "{count__number} sterren"
+      }
+    }
+  ],
+  "social_review_submit": "Review publiceren",
+  "social_review_title_label": "Titel",
+  "social_review_title_too_long": "De titel mag maximaal {max} tekens hebben.",
+  "social_review_update": "Review bijwerken",
+  "social_review_updated": "Review bijgewerkt.",
+  "social_review_version_auto": "De laatste die ik heb gedownload",
+  "social_review_version_label": "Gebruikte versie",
+  "social_review_write": "Schrijf een review",
+  "social_review_yours": "Je review",
+  "social_solution_mark": "Markeren als oplossing",
+  "social_solution_marked": "Gemarkeerd als oplossing.",
+  "social_solution_unmark": "Oplossingsmarkering verwijderen",
+  "social_solution_unmarked": "Oplossingsmarkering verwijderd.",
+  "social_unpin": "Losmaken",
+  "social_unpinned": "Reactie losgemaakt.",
+  "social_verify_action": "E-mail bevestigen",
+  "social_verify_to_comment": "Bevestig je e-mailadres om te reageren.",
+  "social_verify_to_report": "Bevestig je e-mailadres om veldrapporten te sturen.",
+  "social_verify_to_review": "Bevestig je e-mailadres om een review te schrijven.",
+  "social_vote_label": "Nuttig?",
+  "social_vote_no": "Niet nuttig",
+  "social_vote_removed": "Stem verwijderd.",
+  "social_vote_saved": "Stem opgeslagen.",
+  "social_vote_yes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ja, nuttig ({count__number} stem)",
+        "count__plural=*": "Ja, nuttig ({count__number} stemmen)"
+      }
+    }
+  ],
   "ui_breadcrumbs": "Kruimelpad",
   "ui_cancel": "Annuleren",
   "ui_choose": "Kies…",
