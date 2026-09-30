@@ -4997,6 +4997,8 @@
   "landing_faq_hint": "Короткие ответы, сверенные с каталогом.",
   "landing_faq_more": "Подробнее",
   "landing_faq_title": "Вопросы выживших",
+  "landing_hall_hint": "Самые скачиваемые моды за всё время",
+  "landing_hall_title": "Легенды острова",
   "landing_hero_cta_explore": "Смотреть моды",
   "landing_hero_cta_install": "Как установить (3 мин)",
   "landing_hero_lead": [
@@ -5063,6 +5065,10 @@
   "landing_personal_step_follow_mod": "Подписаться на мод",
   "landing_personal_step_install_redloader": "Установить RedLoader",
   "landing_personal_title": "Ваши обновления",
+  "landing_picks_cta": "Все моды: {count}",
+  "landing_picks_cta_hint": "Фильтры по категории, совместимости, версии игры и другие",
+  "landing_picks_tabs_label": "Сортировка модов",
+  "landing_picks_title": "Найдите свой следующий мод",
   "landing_pin_build": "Популярная постройка",
   "landing_pin_download": "Скачивают · v{version}",
   "landing_pin_kit": [
@@ -5109,7 +5115,6 @@
   "landing_radar_summary": "Игра {build} · подтверждено {share} из топ-50 модов на этом патче",
   "landing_readout_game": "Игра {build}",
   "landing_readout_hour": "За последний час",
-  "landing_readout_live": "В эфире",
   "landing_readout_offline": "Сигнал потерян: показаны последние данные",
   "landing_readout_today": "Загрузок сегодня",
   "landing_regions_empty": "Карта ещё рисуется. Регионы появятся по мере публикации модов.",

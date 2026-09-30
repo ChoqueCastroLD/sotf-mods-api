@@ -28,12 +28,19 @@ export type { CompatStatus, KitCardDTO, ModCardDTO };
 /** Sizes of the landing blocks (research/03 §6.1). */
 export const LANDING_LIMITS = {
   trending: 8,
+  /** Extra sorts of the quick-filter tabs (same size as trending). */
+  picks: 8,
+  /** Hall of fame: all-time most downloaded. */
+  legends: 24,
   notes: 6,
   builds: 4,
   creators: 3,
   regions: 12,
   pulsePins: 3,
 } as const;
+
+export const PICK_SORTS = ['trending', 'downloads', 'new', 'updated', 'rating'] as const;
+export type PickSort = (typeof PICK_SORTS)[number];
 
 /** The landing renders fine with any of these missing; `null` = the call failed or timed out. */
 export interface LandingData {
@@ -42,6 +49,10 @@ export interface LandingData {
   ecosystem: Ecosystem | null;
   radar: PatchRadar | null;
   trending: ModCardDTO[] | null;
+  /** Quick-filter tabs of the picks grid (`trending` mirrors `trending`). `null` = failed. */
+  picks: Record<PickSort, ModCardDTO[] | null>;
+  /** All-time most downloaded (hall of fame); the `downloads` tab is its first items. */
+  legends: ModCardDTO[] | null;
   notes: ModCardDTO[] | null;
   builds: ModCardDTO[] | null;
   categories: Category[] | null;
@@ -63,48 +74,86 @@ function items<T>(page: { items: T[] } | null): T[] | null {
 export async function loadLanding(): Promise<LandingData> {
   const api = serverApi();
   const budget = OPTIONAL_CALL_TIMEOUT_MS;
-  const [stats, pulse, ecosystem, radar, trending, notes, builds, categories, kits, awards, creators] =
-    await Promise.all([
-      optional((signal) => api.stats.site(undefined, { signal }), budget),
-      optional((signal) => api.stats.livePulse(undefined, { signal }), budget),
-      optional((signal) => api.compat.ecosystem(undefined, { signal }), budget),
-      optional((signal) => api.compat.patchRadar({ query: {} }, { signal }), budget),
-      optional(
-        (signal) =>
-          api.catalog.listMods(
-            { query: { type: 'mod', sort: 'trending', pageSize: LANDING_LIMITS.trending } },
-            { signal },
-          ),
-        budget,
-      ),
-      optional(
-        (signal) =>
-          api.catalog.listMods({ query: { type: 'all', sort: 'updated', pageSize: LANDING_LIMITS.notes } }, { signal }),
-        budget,
-      ),
-      optional(
-        (signal) =>
-          api.catalog.listMods(
-            { query: { type: 'build', sort: 'trending', pageSize: LANDING_LIMITS.builds } },
-            { signal },
-          ),
-        budget,
-      ),
-      optional((signal) => api.catalog.categories({ query: { kind: 'mod' } }, { signal }), budget),
-      optional(
-        (signal) => api.kits.list({ query: { staffPick: true, sort: 'popular', pageSize: 1 } }, { signal }),
-        budget,
-      ),
-      optional((signal) => api.gamification.currentAwards(undefined, { signal }), budget),
-      optional(
-        (signal) =>
-          api.catalog.creators({ query: { sort: 'spotlight', pageSize: LANDING_LIMITS.creators } }, { signal }),
-        budget,
-      ),
-    ]);
+  const [
+    stats,
+    pulse,
+    ecosystem,
+    radar,
+    trending,
+    notes,
+    builds,
+    categories,
+    kits,
+    awards,
+    creators,
+    legends,
+    newest,
+    rated,
+    updated,
+  ] = await Promise.all([
+    optional((signal) => api.stats.site(undefined, { signal }), budget),
+    optional((signal) => api.stats.livePulse(undefined, { signal }), budget),
+    optional((signal) => api.compat.ecosystem(undefined, { signal }), budget),
+    optional((signal) => api.compat.patchRadar({ query: {} }, { signal }), budget),
+    optional(
+      (signal) =>
+        api.catalog.listMods(
+          { query: { type: 'mod', sort: 'trending', pageSize: LANDING_LIMITS.trending } },
+          { signal },
+        ),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.listMods({ query: { type: 'all', sort: 'updated', pageSize: LANDING_LIMITS.notes } }, { signal }),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.listMods(
+          { query: { type: 'build', sort: 'trending', pageSize: LANDING_LIMITS.builds } },
+          { signal },
+        ),
+      budget,
+    ),
+    optional((signal) => api.catalog.categories({ query: { kind: 'mod' } }, { signal }), budget),
+    optional(
+      (signal) => api.kits.list({ query: { staffPick: true, sort: 'popular', pageSize: 1 } }, { signal }),
+      budget,
+    ),
+    optional((signal) => api.gamification.currentAwards(undefined, { signal }), budget),
+    optional(
+      (signal) => api.catalog.creators({ query: { sort: 'spotlight', pageSize: LANDING_LIMITS.creators } }, { signal }),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.listMods(
+          { query: { type: 'mod', sort: 'downloads', pageSize: LANDING_LIMITS.legends } },
+          { signal },
+        ),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.listMods({ query: { type: 'mod', sort: 'new', pageSize: LANDING_LIMITS.picks } }, { signal }),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.listMods({ query: { type: 'mod', sort: 'rating', pageSize: LANDING_LIMITS.picks } }, { signal }),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.listMods({ query: { type: 'mod', sort: 'updated', pageSize: LANDING_LIMITS.picks } }, { signal }),
+      budget,
+    ),
+  ]);
 
   const trendingItems = items(trending);
   const notesItems = items(notes);
+  const legendItems = items(legends);
   const buildItems = items(builds);
   const categoryItems = categories
     ? categories.items.filter((category) => category.count > 0).slice(0, LANDING_LIMITS.regions)
@@ -115,6 +164,14 @@ export async function loadLanding(): Promise<LandingData> {
     ecosystem,
     radar,
     trending: trendingItems,
+    picks: {
+      trending: trendingItems,
+      downloads: legendItems ? legendItems.slice(0, LANDING_LIMITS.picks) : null,
+      new: items(newest),
+      updated: items(updated),
+      rating: items(rated),
+    },
+    legends: legendItems,
     notes: notesItems,
     builds: buildItems,
     categories: categoryItems,

@@ -10,9 +10,11 @@
  */
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { initCountUp } from './count-up.ts';
+import { initHall } from './hall.ts';
 import { initPulse } from './pulse.ts';
 import { relativize } from './relative-time.ts';
 import { initHeroSearch } from './search.ts';
+import { initPicks } from './tabs.ts';
 
 function safely(task: () => unknown): void {
   try {
@@ -32,6 +34,8 @@ export function initLanding(doc: Document = document): void {
   safely(() => initHeroSearch(doc));
   safely(() => initCountUp(doc));
   safely(() => initPulse(doc));
+  safely(() => initPicks(doc));
+  safely(() => initHall(doc));
   if (hasSignedInHint(doc.cookie)) {
     safely(() => import('./personal.ts').then(({ initPersonal }) => initPersonal(doc)));
   }

@@ -1,0 +1,115 @@
+---
+/**
+ * «Find your next mod» (research/03 §6.1): quick sort filters over the mod grid.
+ *
+ * All tabs are pre-rendered on the server (`type=mod`, 8 cards each, one shared API fan-out) and
+ * only the active panel is visible; `islands/landing/tabs.ts` just toggles `hidden`, so switching
+ * is instant, costs no request and cannot shift the layout (panels share the same grid; the
+ * hidden ones are `display: none`, so their lazy images are not fetched). Without JS the first tab
+ * stays usable and the CTA leads to the full catalogue.
+ * The CTA at the end of the grid keeps the active sort (`/mods?sort=…`).
+ */
+import { formatNumber, type Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import { type ModCardDTO, PICK_SORTS, type PickSort } from './data.ts';
+import type { DomainScopeProps } from './domain.tsx';
+import SectionHeader from './SectionHeader.astro';
+import TrendingCards from './TrendingCards.tsx';
+
+interface Props {
+  locale: Locale;
+  scope: DomainScopeProps;
+  picks: Record<PickSort, ModCardDTO[] | null>;
+  currentBuild: string | null;
+  modCount: number | null;
+}
+
+const { locale, scope, picks, currentBuild, modCount } = Astro.props;
+
+const labels: Record<PickSort, string> = {
+  trending: m.landing_trending_title(),
+  downloads: m.explore_sort_downloads(),
+  new: m.explore_sort_new(),
+  updated: m.explore_sort_updated(),
+  rating: m.explore_sort_rating(),
+};
+
+const tabs = PICK_SORTS.filter((sort) => (picks[sort]?.length ?? 0) > 0);
+const modsHref = href('/mods', locale);
+const ctaLabel = modCount === null ? m.landing_trending_all() : m.landing_picks_cta({ count: formatNumber(locale, modCount) });
+---
+
+<section
+  class="mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6 md:py-14"
+  aria-labelledby="picks-title"
+  data-picks
+  data-href={modsHref}
+>
+  <SectionHeader id="picks-title" title={m.landing_picks_title()} />
+
+  <div class="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+    <div
+      role="tablist"
+      aria-label={m.landing_picks_tabs_label()}
+      class="-mx-4 flex gap-2 overflow-x-auto px-4 py-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0"
+    >
+      {
+        tabs.map((sort, index) => (
+          <button
+            type="button"
+            role="tab"
+            id={`picks-tab-${sort}`}
+            aria-controls={`picks-panel-${sort}`}
+            aria-selected={index === 0 ? 'true' : 'false'}
+            tabindex={index === 0 ? 0 : -1}
+            data-pick-tab={sort}
+            class="inline-flex min-h-11 shrink-0 items-center rounded-full border border-border-strong px-4 text-sm font-semibold whitespace-nowrap text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-selected:border-primary aria-selected:bg-primary aria-selected:text-primary-fg"
+          >
+            {labels[sort]}
+          </button>
+        ))
+      }
+    </div>
+    <p
+      data-pick-hint
+      class:list={['text-sm text-fg-muted', tabs[0] === 'trending' ? '' : 'invisible']}
+      aria-live="polite"
+    >
+      {m.landing_trending_hint()}
+    </p>
+  </div>
+
+  {
+    tabs.map((sort, index) => (
+      <div
+        role="tabpanel"
+        id={`picks-panel-${sort}`}
+        aria-labelledby={`picks-tab-${sort}`}
+        data-pick-panel={sort}
+        hidden={index !== 0}
+      >
+        <TrendingCards scope={scope} mods={picks[sort] ?? []} currentBuild={currentBuild} label={labels[sort]} />
+      </div>
+    ))
+  }
+
+  <a
+    href={`${modsHref}?sort=${tabs[0] ?? 'trending'}`}
+    data-picks-cta
+    class="group mt-6 flex items-center justify-between gap-4 rounded-lg border border-primary/50 bg-surface p-4 shadow-glow transition-colors duration-(--dur-fast) hover:border-primary hover:bg-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus md:p-5"
+  >
+    <span class="grid min-w-0 gap-1">
+      <span class="font-display-caps text-display-xs text-balance text-fg group-hover:text-primary">{ctaLabel}</span>
+      <span class="text-sm text-fg-muted">{m.landing_picks_cta_hint()}</span>
+    </span>
+    <span
+      aria-hidden="true"
+      class="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-primary text-primary-fg transition-transform duration-(--dur-fast) motion-safe:group-hover:translate-x-1 rtl:motion-safe:group-hover:-translate-x-1"
+    >
+      <Icon icon={ArrowRight} size={22} className="rtl:rotate-180" />
+    </span>
+  </a>
+</section>

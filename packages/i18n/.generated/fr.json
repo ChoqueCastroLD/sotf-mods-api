@@ -4753,6 +4753,8 @@
   "landing_faq_hint": "Des réponses courtes, vérifiées sur le catalogue.",
   "landing_faq_more": "En savoir plus",
   "landing_faq_title": "Les questions des survivants",
+  "landing_hall_hint": "Les mods les plus téléchargés de tous les temps",
+  "landing_hall_title": "Légendes de l’île",
   "landing_hero_cta_explore": "Explorer les mods",
   "landing_hero_cta_install": "Comment installer (3 min)",
   "landing_hero_lead": [
@@ -4807,6 +4809,10 @@
   "landing_personal_step_follow_mod": "Suivre un mod",
   "landing_personal_step_install_redloader": "Installer RedLoader",
   "landing_personal_title": "Vos mises à jour",
+  "landing_picks_cta": "Parcourir les {count} mods",
+  "landing_picks_cta_hint": "Filtrez par catégorie, compatibilité, version du jeu et plus encore",
+  "landing_picks_tabs_label": "Trier les mods",
+  "landing_picks_title": "Trouvez votre prochain mod",
   "landing_pin_build": "Build tendance",
   "landing_pin_download": "En téléchargement · v{version}",
   "landing_pin_kit": [
@@ -4851,7 +4857,6 @@
   "landing_radar_summary": "Jeu {build} · {share} du top 50 des mods confirmés sur ce patch",
   "landing_readout_game": "Jeu {build}",
   "landing_readout_hour": "Dernière heure",
-  "landing_readout_live": "En direct",
   "landing_readout_offline": "Signal perdu : dernier relevé affiché",
   "landing_readout_today": "Téléchargements aujourd’hui",
   "landing_regions_empty": "La carte est encore en cours de tracé. Les régions apparaissent au fil des publications.",

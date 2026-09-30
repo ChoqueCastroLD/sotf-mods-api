@@ -4753,6 +4753,8 @@
   "landing_faq_hint": "Short answers, checked against the catalog.",
   "landing_faq_more": "Read more",
   "landing_faq_title": "Questions survivors ask",
+  "landing_hall_hint": "The most downloaded mods of all time",
+  "landing_hall_title": "Legends of the island",
   "landing_hero_cta_explore": "Explore mods",
   "landing_hero_cta_install": "How to install (3 min)",
   "landing_hero_lead": [
@@ -4807,6 +4809,10 @@
   "landing_personal_step_follow_mod": "Follow a mod",
   "landing_personal_step_install_redloader": "Install RedLoader",
   "landing_personal_title": "Your updates",
+  "landing_picks_cta": "Browse all {count} mods",
+  "landing_picks_cta_hint": "Filter by category, compatibility, game build and more",
+  "landing_picks_tabs_label": "Sort mods",
+  "landing_picks_title": "Find your next mod",
   "landing_pin_build": "Trending build",
   "landing_pin_download": "Being downloaded · v{version}",
   "landing_pin_kit": [
@@ -4851,7 +4857,6 @@
   "landing_radar_summary": "Game {build} · {share} of the top 50 mods confirmed on this patch",
   "landing_readout_game": "Game {build}",
   "landing_readout_hour": "Last hour",
-  "landing_readout_live": "Live",
   "landing_readout_offline": "Signal lost: showing the last readout",
   "landing_readout_today": "Downloads today",
   "landing_regions_empty": "The map is still being drawn. Regions appear as mods are published.",

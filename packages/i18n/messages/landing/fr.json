@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "En direct",
   "landing_readout_today": "Téléchargements aujourd’hui",
   "landing_readout_hour": "Dernière heure",
   "landing_readout_game": "Jeu {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "Selon les téléchargements des 7 derniers jours",
   "landing_trending_all": "Tous les mods",
   "landing_trending_empty": "Semaine calme sur l’île. Les mods apparaissent ici à mesure que les survivants les téléchargent.",
+  "landing_picks_title": "Trouvez votre prochain mod",
+  "landing_picks_tabs_label": "Trier les mods",
+  "landing_picks_cta": "Parcourir les {count} mods",
+  "landing_picks_cta_hint": "Filtrez par catégorie, compatibilité, version du jeu et plus encore",
+  "landing_hall_title": "Légendes de l’île",
+  "landing_hall_hint": "Les mods les plus téléchargés de tous les temps",
   "landing_section_error": "Impossible d’atteindre cette partie de la carte. Rechargez la page dans une minute.",
   "landing_regions_title": "Régions",
   "landing_regions_hint": "Parcourez l’île par catégorie",

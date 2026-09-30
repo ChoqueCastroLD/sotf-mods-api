@@ -4753,6 +4753,8 @@
   "landing_faq_hint": "Kurze Antworten, mit dem Katalog abgeglichen.",
   "landing_faq_more": "Mehr lesen",
   "landing_faq_title": "Was Überlebende fragen",
+  "landing_hall_hint": "Die meistgeladenen Mods aller Zeiten",
+  "landing_hall_title": "Legenden der Insel",
   "landing_hero_cta_explore": "Mods entdecken",
   "landing_hero_cta_install": "So installierst du (3 Min.)",
   "landing_hero_lead": [
@@ -4807,6 +4809,10 @@
   "landing_personal_step_follow_mod": "Einem Mod folgen",
   "landing_personal_step_install_redloader": "RedLoader installieren",
   "landing_personal_title": "Deine Updates",
+  "landing_picks_cta": "Alle {count} Mods durchstöbern",
+  "landing_picks_cta_hint": "Filtere nach Kategorie, Kompatibilität, Spielversion und mehr",
+  "landing_picks_tabs_label": "Mods sortieren",
+  "landing_picks_title": "Finde deinen nächsten Mod",
   "landing_pin_build": "Angesagter Build",
   "landing_pin_download": "Wird heruntergeladen · v{version}",
   "landing_pin_kit": [
@@ -4851,7 +4857,6 @@
   "landing_radar_summary": "Spiel {build} · {share} der Top-50-Mods auf diesem Patch bestätigt",
   "landing_readout_game": "Spiel {build}",
   "landing_readout_hour": "Letzte Stunde",
-  "landing_readout_live": "Live",
   "landing_readout_offline": "Signal verloren: letzte Messung wird angezeigt",
   "landing_readout_today": "Downloads heute",
   "landing_regions_empty": "Die Karte wird noch gezeichnet. Regionen erscheinen, sobald Mods veröffentlicht werden.",

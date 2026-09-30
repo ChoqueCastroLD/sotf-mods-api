@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "ライブ",
   "landing_readout_today": "今日のダウンロード",
   "landing_readout_hour": "直近1時間",
   "landing_readout_game": "ゲーム {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "直近7日間のダウンロード数順",
   "landing_trending_all": "すべてのMOD",
   "landing_trending_empty": "島は静かな一週間です。サバイバーがダウンロードすると、ここにMODが表示されます。",
+  "landing_picks_title": "次のMODを見つけよう",
+  "landing_picks_tabs_label": "MODの並べ替え",
+  "landing_picks_cta": "{count}件のMODをすべて見る",
+  "landing_picks_cta_hint": "カテゴリ、互換性、ゲームバージョンなどで絞り込み",
+  "landing_hall_title": "島のレジェンド",
+  "landing_hall_hint": "歴代ダウンロード数トップのMOD",
   "landing_section_error": "地図のこの部分に到達できませんでした。1分後にページを再読み込みしてください。",
   "landing_regions_title": "地域",
   "landing_regions_hint": "カテゴリ別に島を探索",

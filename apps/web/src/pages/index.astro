@@ -3,8 +3,8 @@
  * Landing `/` (T0-05, research/03 §5.10 and §6.1, PLAN §4.2, §4.5).
  *
  * Sections: hero «The living island» (live readout + pins) · personal block (island, signed-in
- * only) · Start here · Patch Radar band · Trending this week · Regions · Field notes · Featured
- * Kit · Mod of the Week · Blueprints · Creator spotlight · FAQ · footer (layout).
+ * only) · Start here · Patch Radar band · Find your next mod (sort tabs) · Legends (hall of fame) · Field notes + Regions ·
+ * Featured Kit + Mod of the Week · Blueprints · Creator spotlight · FAQ · footer (layout).
  *
  * - SSR, edge-cached 300 s with tags `home`, `list:*`, `compat` (60 s when a block failed, so
  *   it heals quickly). The HTML never depends on the visitor: the live figures are polled by
@@ -25,17 +25,18 @@ import EmptyNote from '../components/landing/EmptyNote.astro';
 import Faq from '../components/landing/Faq.astro';
 import FeaturedKitCard from '../components/landing/FeaturedKitCard.tsx';
 import FieldNotes from '../components/landing/FieldNotes.astro';
+import HallOfFame from '../components/landing/HallOfFame.astro';
 import Hero from '../components/landing/Hero.astro';
 import { faqPageJsonLd } from '../components/landing/jsonld.ts';
 import ModOfWeekCard from '../components/landing/ModOfWeekCard.tsx';
 import PatchRadarBand from '../components/landing/PatchRadarBand.astro';
 import PersonalBlock from '../components/landing/PersonalBlock.astro';
+import PicksTabs from '../components/landing/PicksTabs.astro';
 import { catalogPins, pulsePins } from '../components/landing/pins.ts';
 import Regions from '../components/landing/Regions.astro';
 import SectionError from '../components/landing/SectionError.astro';
 import SectionHeader from '../components/landing/SectionHeader.astro';
 import StartHere from '../components/landing/StartHere.astro';
-import TrendingCards from '../components/landing/TrendingCards.tsx';
 import { faqFor } from '../content/faq/index.ts';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { setPageCache } from '../lib/cache/page.ts';
@@ -124,66 +125,75 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6
 
   <PatchRadarBand locale={locale} radar={data.radar} ecosystem={data.ecosystem} loader={loader} />
 
-  <section class={sectionClass} aria-labelledby="trending-title">
-    <SectionHeader
-      id="trending-title"
-      title={m.landing_trending_title()}
-      hint={m.landing_trending_hint()}
-      link={{ href: `${href('/mods', locale)}?sort=trending`, label: m.landing_trending_all() }}
-    />
-    {
-      data.trending === null ? (
+  {
+    data.trending === null ? (
+      <section class={sectionClass} aria-labelledby="picks-title">
+        <SectionHeader id="picks-title" title={m.landing_picks_title()} />
         <SectionError />
-      ) : data.trending.length === 0 ? (
+      </section>
+    ) : data.trending.length === 0 ? (
+      <section class={sectionClass} aria-labelledby="picks-title">
+        <SectionHeader id="picks-title" title={m.landing_picks_title()} />
         <EmptyNote text={m.landing_trending_empty()} />
-      ) : (
-        <TrendingCards
-          scope={scope}
-          mods={data.trending}
-          currentBuild={currentBuild}
-          label={m.landing_trending_title()}
-        />
-      )
-    }
-  </section>
+      </section>
+    ) : (
+      <PicksTabs
+        locale={locale}
+        scope={scope}
+        picks={data.picks}
+        currentBuild={currentBuild}
+        modCount={data.stats?.mods ?? null}
+      />
+    )
+  }
 
-  <Regions locale={locale} categories={data.categories} />
+  <HallOfFame locale={locale} mods={data.legends} categories={data.categories} />
 
-  <div class:list={[sectionClass, 'grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-12']}>
-    <FieldNotes locale={locale} notes={data.notes} />
-    <div class="grid content-start gap-10">
-      {
-        data.kit && (
-          <section aria-labelledby="kit-title">
-            <SectionHeader
-              id="kit-title"
-              title={m.landing_kit_title()}
-              hint={m.landing_kit_hint()}
-              link={{ href: href('/kits', locale), label: m.landing_kit_all() }}
-            />
-            <FeaturedKitCard scope={scope} kit={data.kit} currentBuild={currentBuild} />
-          </section>
-        )
-      }
-      {
-        modOfWeek && (
-          <section aria-labelledby="motw-title">
-            <SectionHeader
-              id="motw-title"
-              title={m.landing_motw_title()}
-              hint={m.landing_motw_period({ start: formatDate(locale, modOfWeek.periodStart, 'long') })}
-            />
-            <ModOfWeekCard
-              scope={scope}
-              mod={modOfWeek.mod}
-              reason={modOfWeek.reason}
-              currentBuild={currentBuild}
-            />
-          </section>
-        )
-      }
+  <div class:list={[sectionClass, 'grid gap-10 lg:grid-cols-12 lg:gap-12']}>
+    <div class="min-w-0 lg:col-span-7">
+      <FieldNotes locale={locale} notes={data.notes} />
+    </div>
+    <div class="min-w-0 lg:col-span-5 lg:flex lg:flex-col">
+      <Regions locale={locale} categories={data.categories} />
     </div>
   </div>
+
+  {
+    (data.kit || modOfWeek) && (
+      <div class:list={[sectionClass, 'grid gap-10 pt-0 md:grid-cols-2 md:gap-8 md:pt-0']}>
+        {
+          data.kit && (
+            <section aria-labelledby="kit-title" class="min-w-0">
+              <SectionHeader
+                id="kit-title"
+                title={m.landing_kit_title()}
+                hint={m.landing_kit_hint()}
+                link={{ href: href('/kits', locale), label: m.landing_kit_all() }}
+              />
+              <FeaturedKitCard scope={scope} kit={data.kit} currentBuild={currentBuild} />
+            </section>
+          )
+        }
+        {
+          modOfWeek && (
+            <section aria-labelledby="motw-title" class="min-w-0">
+              <SectionHeader
+                id="motw-title"
+                title={m.landing_motw_title()}
+                hint={m.landing_motw_period({ start: formatDate(locale, modOfWeek.periodStart, 'long') })}
+              />
+              <ModOfWeekCard
+                scope={scope}
+                mod={modOfWeek.mod}
+                reason={modOfWeek.reason}
+                currentBuild={currentBuild}
+              />
+            </section>
+          )
+        }
+      </div>
+    )
+  }
 
   {
     data.builds !== null && data.builds.length > 0 && (

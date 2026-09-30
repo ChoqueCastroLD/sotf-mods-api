@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "Live",
   "landing_readout_today": "Downloads vandaag",
   "landing_readout_hour": "Afgelopen uur",
   "landing_readout_game": "Game {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "Op basis van downloads in de laatste 7 dagen",
   "landing_trending_all": "Alle mods",
   "landing_trending_empty": "Een rustige week op het eiland. Mods verschijnen hier zodra overlevenden ze downloaden.",
+  "landing_picks_title": "Vind je volgende mod",
+  "landing_picks_tabs_label": "Mods sorteren",
+  "landing_picks_cta": "Bekijk alle {count} mods",
+  "landing_picks_cta_hint": "Filter op categorie, compatibiliteit, gameversie en meer",
+  "landing_hall_title": "Legendes van het eiland",
+  "landing_hall_hint": "De meest gedownloade mods aller tijden",
   "landing_section_error": "We konden dit deel van de kaart niet bereiken. Laad de pagina over een minuut opnieuw.",
   "landing_regions_title": "Regio’s",
   "landing_regions_hint": "Verken het eiland per categorie",

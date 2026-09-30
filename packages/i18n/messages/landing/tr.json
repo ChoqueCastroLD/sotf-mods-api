@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "Canlı",
   "landing_readout_today": "Bugünkü indirmeler",
   "landing_readout_hour": "Son bir saat",
   "landing_readout_game": "Oyun {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "Son 7 günün indirmelerine göre",
   "landing_trending_all": "Tüm modlar",
   "landing_trending_empty": "Adada sakin bir hafta. Hayatta kalanlar indirdikçe modlar burada görünecek.",
+  "landing_picks_title": "Bir sonraki modunu bul",
+  "landing_picks_tabs_label": "Modları sırala",
+  "landing_picks_cta": "{count} modun tümüne göz at",
+  "landing_picks_cta_hint": "Kategori, uyumluluk, oyun sürümü ve daha fazlasına göre filtrele",
+  "landing_hall_title": "Adanın efsaneleri",
+  "landing_hall_hint": "Tüm zamanların en çok indirilen modları",
   "landing_section_error": "Haritanın bu kısmına ulaşamadık. Bir dakika sonra sayfayı yenile.",
   "landing_regions_title": "Bölgeler",
   "landing_regions_hint": "Adayı kategorilere göre gez",

@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "Live",
   "landing_readout_today": "Downloads today",
   "landing_readout_hour": "Last hour",
   "landing_readout_game": "Game {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "By downloads in the last 7 days",
   "landing_trending_all": "All mods",
   "landing_trending_empty": "A quiet week on the island. Mods show up here as survivors download them.",
+  "landing_picks_title": "Find your next mod",
+  "landing_picks_tabs_label": "Sort mods",
+  "landing_picks_cta": "Browse all {count} mods",
+  "landing_picks_cta_hint": "Filter by category, compatibility, game build and more",
+  "landing_hall_title": "Legends of the island",
+  "landing_hall_hint": "The most downloaded mods of all time",
   "landing_section_error": "We couldn’t reach this part of the map. Reload the page in a minute.",
   "landing_regions_title": "Regions",
   "landing_regions_hint": "Browse the island by category",

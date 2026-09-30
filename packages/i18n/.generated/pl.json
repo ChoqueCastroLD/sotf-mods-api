@@ -4997,6 +4997,8 @@
   "landing_faq_hint": "Krótkie odpowiedzi sprawdzone w katalogu.",
   "landing_faq_more": "Czytaj dalej",
   "landing_faq_title": "Pytania ocalałych",
+  "landing_hall_hint": "Najczęściej pobierane mody wszech czasów",
+  "landing_hall_title": "Legendy wyspy",
   "landing_hero_cta_explore": "Przeglądaj mody",
   "landing_hero_cta_install": "Jak zainstalować (3 min)",
   "landing_hero_lead": [
@@ -5063,6 +5065,10 @@
   "landing_personal_step_follow_mod": "Obserwuj mod",
   "landing_personal_step_install_redloader": "Zainstaluj RedLoader",
   "landing_personal_title": "Twoje aktualizacje",
+  "landing_picks_cta": "Przeglądaj wszystkie mody ({count})",
+  "landing_picks_cta_hint": "Filtruj według kategorii, zgodności, wersji gry i nie tylko",
+  "landing_picks_tabs_label": "Sortuj mody",
+  "landing_picks_title": "Znajdź swój następny mod",
   "landing_pin_build": "Popularny build",
   "landing_pin_download": "Właśnie pobierany · v{version}",
   "landing_pin_kit": [
@@ -5109,7 +5115,6 @@
   "landing_radar_summary": "Gra {build} · {share} z top 50 modów potwierdzono na tym patchu",
   "landing_readout_game": "Gra {build}",
   "landing_readout_hour": "Ostatnia godzina",
-  "landing_readout_live": "Na żywo",
   "landing_readout_offline": "Utracono sygnał: pokazujemy ostatni odczyt",
   "landing_readout_today": "Pobrania dziś",
   "landing_regions_empty": "Mapa jest wciąż rysowana. Regiony pojawią się wraz z publikacją modów.",

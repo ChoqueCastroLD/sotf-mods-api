@@ -4753,6 +4753,8 @@
   "landing_faq_hint": "Katalogla doğrulanmış kısa yanıtlar.",
   "landing_faq_more": "Devamını oku",
   "landing_faq_title": "Hayatta kalanların soruları",
+  "landing_hall_hint": "Tüm zamanların en çok indirilen modları",
+  "landing_hall_title": "Adanın efsaneleri",
   "landing_hero_cta_explore": "Modları keşfet",
   "landing_hero_cta_install": "Nasıl kurulur (3 dk)",
   "landing_hero_lead": [
@@ -4807,6 +4809,10 @@
   "landing_personal_step_follow_mod": "Bir modu takip et",
   "landing_personal_step_install_redloader": "RedLoader’ı kur",
   "landing_personal_title": "Güncellemelerin",
+  "landing_picks_cta": "{count} modun tümüne göz at",
+  "landing_picks_cta_hint": "Kategori, uyumluluk, oyun sürümü ve daha fazlasına göre filtrele",
+  "landing_picks_tabs_label": "Modları sırala",
+  "landing_picks_title": "Bir sonraki modunu bul",
   "landing_pin_build": "Popüler yapı",
   "landing_pin_download": "İndiriliyor · v{version}",
   "landing_pin_kit": [
@@ -4851,7 +4857,6 @@
   "landing_radar_summary": "Oyun {build} · en popüler 50 modun {share} kadarı bu yamada doğrulandı",
   "landing_readout_game": "Oyun {build}",
   "landing_readout_hour": "Son bir saat",
-  "landing_readout_live": "Canlı",
   "landing_readout_offline": "Sinyal kayboldu: son okuma gösteriliyor",
   "landing_readout_today": "Bugünkü indirmeler",
   "landing_regions_empty": "Harita hâlâ çiziliyor. Modlar yayımlandıkça bölgeler görünecek.",

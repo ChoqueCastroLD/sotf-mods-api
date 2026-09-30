@@ -3,7 +3,7 @@
  * Hero «The living island» (research/03 §5.10, §6.1; T0-05).
  *
  * - Full-bleed `texture-topo`; no image, so the LCP is the `h1` (text, preloaded display font).
- * - Mono readout: live dot · downloads today / last hour (from `live/pulse`, refreshed every
+ * - Mono readout: downloads today / last hour (from `live/pulse`, refreshed every
  *   60 s by `islands/landing/pulse.ts`) · current game build · RedLoader.
  * - Headline (second sentence in Flare), lead with dated catalogue figures, primary and secondary
  *   CTAs, the search field (a real GET form; with JS it opens Cmd+K) and four stat tiles with a
@@ -73,15 +73,7 @@ const secondaryCta =
   >
     <div class="grid content-start gap-5 lg:col-start-1 lg:row-start-1">
       <p class="readout flex flex-wrap items-center gap-x-2 gap-y-1 text-signal" data-pulse-readout>
-        <span data-live-dot class="inline-flex items-center gap-2 data-offscreen:ping-paused">
-          <span class="relative inline-flex size-2.5" aria-hidden="true">
-            <span class="absolute inset-0 rounded-full bg-signal opacity-60 motion-safe:animate-ping-locator"></span>
-            <span class="relative size-2.5 rounded-full bg-signal"></span>
-          </span>
-          <span class="text-signal">{m.landing_readout_live()}</span>
-        </span>
         <span data-pulse-group hidden={pulse === null} class="contents">
-          <span aria-hidden="true">·</span>
           <span>
             {m.landing_readout_today()}{' '}
             <span data-pulse-field="downloadsToday" class="tabular-nums text-fg">
@@ -95,19 +87,13 @@ const secondaryCta =
               {pulse ? formatNumber(locale, pulse.downloadsLastHour) : ''}
             </span>
           </span>
+          {(currentBuild || loader) && <span aria-hidden="true">·</span>}
         </span>
-        {
-          currentBuild && (
-            <>
-              <span aria-hidden="true">·</span>
-              <span>{m.landing_readout_game({ build: currentBuild })}</span>
-            </>
-          )
-        }
+        {currentBuild && <span>{m.landing_readout_game({ build: currentBuild })}</span>}
         {
           loader && (
             <>
-              <span aria-hidden="true">·</span>
+              {currentBuild && <span aria-hidden="true">·</span>}
               <span>
                 {loader.loader.name} {loader.loader.version}
               </span>

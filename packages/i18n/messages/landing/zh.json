@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "实时",
   "landing_readout_today": "今日下载",
   "landing_readout_hour": "最近一小时",
   "landing_readout_game": "游戏 {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "按最近 7 天的下载量",
   "landing_trending_all": "全部模组",
   "landing_trending_empty": "岛上这周很安静。幸存者下载模组后，它们会出现在这里。",
+  "landing_picks_title": "发现你的下一个模组",
+  "landing_picks_tabs_label": "模组排序",
+  "landing_picks_cta": "浏览全部 {count} 个模组",
+  "landing_picks_cta_hint": "按分类、兼容性、游戏版本等筛选",
+  "landing_hall_title": "岛上传奇",
+  "landing_hall_hint": "有史以来下载量最高的模组",
   "landing_section_error": "暂时无法到达地图的这一部分。请过一分钟再刷新页面。",
   "landing_regions_title": "区域",
   "landing_regions_hint": "按分类探索这座岛",

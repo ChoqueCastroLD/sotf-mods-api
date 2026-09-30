@@ -1,5 +1,6 @@
 ---
 /**
+ * (Shares a row with «Field notes» from `lg`: two-column list; 3 columns on tablet.)
  * «Regions» (research/03 §6.1): the categories as map regions — localised name, published count
  * and the category's accent as a survey mark. Links go to the category hubs.
  */
@@ -20,7 +21,7 @@ interface Props {
 const { locale, categories } = Astro.props;
 ---
 
-<section class="mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6 md:py-14" aria-labelledby="regions-title">
+<section class="flex h-full min-w-0 flex-col" aria-labelledby="regions-title">
   <SectionHeader
     id="regions-title"
     title={m.landing_regions_title()}
@@ -33,12 +34,14 @@ const { locale, categories } = Astro.props;
     ) : categories.length === 0 ? (
       <EmptyNote text={m.landing_regions_empty()} />
     ) : (
-      <ul class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <ul
+        class:list={['grid grid-cols-2 gap-3 sm:grid-cols-3 lg:flex-1 lg:auto-rows-fr', categories.length > 6 ? 'lg:grid-cols-2' : 'lg:grid-cols-1']}
+      >
         {categories.map((category) => (
           <li>
             <a
               href={href(`/categories/${encodeURIComponent(category.slug)}`, locale)}
-              class="group flex min-h-16 items-center gap-3 rounded-lg border border-border bg-surface p-3 transition-colors duration-(--dur-fast) hover:border-border-strong hover:bg-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              class="group flex h-full min-h-16 items-center gap-3 rounded-lg border border-border bg-surface p-3 transition-colors duration-(--dur-fast) hover:border-border-strong hover:bg-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
             >
               <span
                 aria-hidden="true"

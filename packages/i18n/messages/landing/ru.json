@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "В эфире",
   "landing_readout_today": "Загрузок сегодня",
   "landing_readout_hour": "За последний час",
   "landing_readout_game": "Игра {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "По загрузкам за последние 7 дней",
   "landing_trending_all": "Все моды",
   "landing_trending_empty": "Тихая неделя на острове. Моды появятся здесь, когда выжившие начнут их скачивать.",
+  "landing_picks_title": "Найдите свой следующий мод",
+  "landing_picks_tabs_label": "Сортировка модов",
+  "landing_picks_cta": "Все моды: {count}",
+  "landing_picks_cta_hint": "Фильтры по категории, совместимости, версии игры и другие",
+  "landing_hall_title": "Легенды острова",
+  "landing_hall_hint": "Самые скачиваемые моды за всё время",
   "landing_section_error": "Не удалось добраться до этой части карты. Обновите страницу через минуту.",
   "landing_regions_title": "Регионы",
   "landing_regions_hint": "Исследуйте остров по категориям",

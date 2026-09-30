@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "Live",
   "landing_readout_today": "Downloads heute",
   "landing_readout_hour": "Letzte Stunde",
   "landing_readout_game": "Spiel {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "Nach Downloads der letzten 7 Tage",
   "landing_trending_all": "Alle Mods",
   "landing_trending_empty": "Eine ruhige Woche auf der Insel. Mods erscheinen hier, sobald Überlebende sie herunterladen.",
+  "landing_picks_title": "Finde deinen nächsten Mod",
+  "landing_picks_tabs_label": "Mods sortieren",
+  "landing_picks_cta": "Alle {count} Mods durchstöbern",
+  "landing_picks_cta_hint": "Filtere nach Kategorie, Kompatibilität, Spielversion und mehr",
+  "landing_hall_title": "Legenden der Insel",
+  "landing_hall_hint": "Die meistgeladenen Mods aller Zeiten",
   "landing_section_error": "Dieser Teil der Karte ist gerade nicht erreichbar. Lade die Seite in einer Minute neu.",
   "landing_regions_title": "Regionen",
   "landing_regions_hint": "Erkunde die Insel nach Kategorien",

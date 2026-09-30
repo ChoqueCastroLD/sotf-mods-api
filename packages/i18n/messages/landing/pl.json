@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "Na żywo",
   "landing_readout_today": "Pobrania dziś",
   "landing_readout_hour": "Ostatnia godzina",
   "landing_readout_game": "Gra {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "Według pobrań z ostatnich 7 dni",
   "landing_trending_all": "Wszystkie mody",
   "landing_trending_empty": "Spokojny tydzień na wyspie. Mody pojawią się tu, gdy ocaleni zaczną je pobierać.",
+  "landing_picks_title": "Znajdź swój następny mod",
+  "landing_picks_tabs_label": "Sortuj mody",
+  "landing_picks_cta": "Przeglądaj wszystkie mody ({count})",
+  "landing_picks_cta_hint": "Filtruj według kategorii, zgodności, wersji gry i nie tylko",
+  "landing_hall_title": "Legendy wyspy",
+  "landing_hall_hint": "Najczęściej pobierane mody wszech czasów",
   "landing_section_error": "Nie udało się dotrzeć do tej części mapy. Odśwież stronę za minutę.",
   "landing_regions_title": "Regiony",
   "landing_regions_hint": "Przeglądaj wyspę według kategorii",

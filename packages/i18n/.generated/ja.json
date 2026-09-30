@@ -4311,6 +4311,8 @@
   "landing_faq_hint": "カタログで確認した短い回答です。",
   "landing_faq_more": "詳しく見る",
   "landing_faq_title": "サバイバーからのよくある質問",
+  "landing_hall_hint": "歴代ダウンロード数トップのMOD",
+  "landing_hall_title": "島のレジェンド",
   "landing_hero_cta_explore": "MODを探す",
   "landing_hero_cta_install": "インストール方法（3分）",
   "landing_hero_lead": [
@@ -4357,6 +4359,10 @@
   "landing_personal_step_follow_mod": "MODをフォロー",
   "landing_personal_step_install_redloader": "RedLoader をインストール",
   "landing_personal_title": "あなたのアップデート",
+  "landing_picks_cta": "{count}件のMODをすべて見る",
+  "landing_picks_cta_hint": "カテゴリ、互換性、ゲームバージョンなどで絞り込み",
+  "landing_picks_tabs_label": "MODの並べ替え",
+  "landing_picks_title": "次のMODを見つけよう",
   "landing_pin_build": "人気の建築",
   "landing_pin_download": "ダウンロード中 · v{version}",
   "landing_pin_kit": [
@@ -4397,7 +4403,6 @@
   "landing_radar_summary": "ゲーム {build} · 上位50件のMODのうち {share} がこのパッチで確認済み",
   "landing_readout_game": "ゲーム {build}",
   "landing_readout_hour": "直近1時間",
-  "landing_readout_live": "ライブ",
   "landing_readout_offline": "信号が途切れました：前回の値を表示中",
   "landing_readout_today": "今日のダウンロード",
   "landing_regions_empty": "地図はまだ作成中です。MODが公開されると地域が表示されます。",

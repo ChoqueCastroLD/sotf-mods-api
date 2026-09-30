@@ -1,5 +1,4 @@
 {
-  "landing_readout_live": "Live",
   "landing_readout_today": "Nedladdningar i dag",
   "landing_readout_hour": "Senaste timmen",
   "landing_readout_game": "Spel {build}",
@@ -40,6 +39,12 @@
   "landing_trending_hint": "Efter nedladdningar de senaste 7 dagarna",
   "landing_trending_all": "Alla moddar",
   "landing_trending_empty": "En lugn vecka på ön. Moddar dyker upp här när överlevare laddar ned dem.",
+  "landing_picks_title": "Hitta din nästa mod",
+  "landing_picks_tabs_label": "Sortera moddar",
+  "landing_picks_cta": "Bläddra bland alla {count} moddar",
+  "landing_picks_cta_hint": "Filtrera på kategori, kompatibilitet, spelversion och mer",
+  "landing_hall_title": "Öns legender",
+  "landing_hall_hint": "De mest nedladdade moddarna genom tiderna",
   "landing_section_error": "Vi nådde inte den här delen av kartan. Ladda om sidan om en minut.",
   "landing_regions_title": "Regioner",
   "landing_regions_hint": "Utforska ön per kategori",

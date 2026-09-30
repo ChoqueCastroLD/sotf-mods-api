@@ -4753,6 +4753,8 @@
   "landing_faq_hint": "Risposte brevi, verificate sul catalogo.",
   "landing_faq_more": "Leggi di più",
   "landing_faq_title": "Le domande dei sopravvissuti",
+  "landing_hall_hint": "Le mod più scaricate di sempre",
+  "landing_hall_title": "Leggende dell’isola",
   "landing_hero_cta_explore": "Esplora le mod",
   "landing_hero_cta_install": "Come installare (3 min)",
   "landing_hero_lead": [
@@ -4807,6 +4809,10 @@
   "landing_personal_step_follow_mod": "Segui una mod",
   "landing_personal_step_install_redloader": "Installa RedLoader",
   "landing_personal_title": "I tuoi aggiornamenti",
+  "landing_picks_cta": "Sfoglia tutte le {count} mod",
+  "landing_picks_cta_hint": "Filtra per categoria, compatibilità, versione del gioco e altro",
+  "landing_picks_tabs_label": "Ordina le mod",
+  "landing_picks_title": "Trova la tua prossima mod",
   "landing_pin_build": "Build di tendenza",
   "landing_pin_download": "In download · v{version}",
   "landing_pin_kit": [
@@ -4851,7 +4857,6 @@
   "landing_radar_summary": "Gioco {build} · {share} delle 50 mod più scaricate confermate su questa patch",
   "landing_readout_game": "Gioco {build}",
   "landing_readout_hour": "Ultima ora",
-  "landing_readout_live": "In diretta",
   "landing_readout_offline": "Segnale perso: ultima lettura mostrata",
   "landing_readout_today": "Download oggi",
   "landing_regions_empty": "La mappa è ancora in fase di disegno. Le regioni compaiono man mano che vengono pubblicate mod.",
