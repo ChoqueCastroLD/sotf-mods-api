@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_DetailInputs = {};
+export type Basecamp_Analytics_CountryInputs = {};
 /**
 * | output |
 * | --- |
-* | "This part of camp is still being set up. Check back soon." |
+* | "Country" |
 *
-* @param {Console_Empty_DetailInputs} inputs
+* @param {Basecamp_Analytics_CountryInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_detail: ((inputs?: Console_Empty_DetailInputs, options?: {
+export declare const basecamp_analytics_country: ((inputs?: Basecamp_Analytics_CountryInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_DetailInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Basecamp_Analytics_CountryInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

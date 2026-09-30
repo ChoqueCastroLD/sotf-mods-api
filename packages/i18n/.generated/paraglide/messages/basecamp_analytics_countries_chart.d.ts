@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_TitleInputs = {};
+export type Basecamp_Analytics_Countries_ChartInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing here yet" |
+* | "Visits by country" |
 *
-* @param {Console_Empty_TitleInputs} inputs
+* @param {Basecamp_Analytics_Countries_ChartInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_title: ((inputs?: Console_Empty_TitleInputs, options?: {
+export declare const basecamp_analytics_countries_chart: ((inputs?: Basecamp_Analytics_Countries_ChartInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_TitleInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Basecamp_Analytics_Countries_ChartInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

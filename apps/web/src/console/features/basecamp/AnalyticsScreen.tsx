@@ -3,7 +3,7 @@
  * daily downloads (zero-filled) total and unique with release and patch markers, views and the
  * view → download conversion, downloads by version (≤ 8 + «Other»: stacked daily bars and totals) and by channel (web, RedManager,
  * client), referrers grouped (Google, Discord, YouTube, GitHub, AI assistants, internal, direct),
- * visitor language, followers gained, ratings over time, compatibility by build and CSV export.
+ * visitor language and country, followers gained, ratings over time, compatibility by build and CSV export.
  * The whole legacy history since 2023 is included in «All». Every chart has «View as table».
  */
 import { buttonClasses } from '@sotf/ui/button';
@@ -23,7 +23,7 @@ import { CategoryFigure, RatingsFigure, SeriesFigure, VersionSeriesFigure } from
 import { prefetchCharts } from './charts/lazy.tsx';
 import { number, percent } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
-import { channelLabel, languageName, REFERRER_GROUPS, referrerGroup, referrerGroupLabel } from './labels.ts';
+import { channelLabel, countryName, languageName, REFERRER_GROUPS, referrerGroup, referrerGroupLabel } from './labels.ts';
 import { Panel, PanelError, PanelSkeleton, RangeSwitch, ScreenHeader } from './shared.tsx';
 
 /** Referrers grouped by source, biggest first (every group, zeros dropped). */
@@ -57,6 +57,13 @@ function localeRows(analytics: Analytics): Array<{ label: string; value: number 
   return [...analytics.locales]
     .sort((a, b) => b.visits - a.visits)
     .map((entry) => ({ label: languageName(entry.locale, display), value: entry.visits }));
+}
+
+function countryRows(analytics: Analytics): Array<{ label: string; value: number }> {
+  const display = activeLocale();
+  return [...analytics.countries]
+    .sort((a, b) => b.visits - a.visits)
+    .map((entry) => ({ label: countryName(entry.country, display), value: entry.visits }));
 }
 
 function Totals({ analytics }: { analytics: Analytics }) {
@@ -296,6 +303,16 @@ export function AnalyticsScreen({
                 />
               </Panel>
             </div>
+
+            <Panel title={bt('basecamp_analytics_countries_title')}>
+              <CategoryFigure
+                title={bt('basecamp_analytics_countries_chart')}
+                rowHeader={bt('basecamp_analytics_country')}
+                valueLabel={bt('basecamp_analytics_visits')}
+                rows={countryRows(analytics.data)}
+                colorIndex={4}
+              />
+            </Panel>
 
             <Panel title={bt('basecamp_analytics_ratings_title')}>
               <RatingsFigure analytics={analytics.data} range={range} />

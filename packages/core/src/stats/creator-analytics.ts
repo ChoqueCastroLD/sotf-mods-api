@@ -5,7 +5,7 @@
  * - Downloads and unique downloads come from `ModVersionDownloadDaily`: exact and live (the flush
  *   writes it every 2 s) and with the **complete legacy history since 2023** (B1). Unique
  *   downloads exist since v2 (legacy rows have none).
- * - Views, referrers and visitor locales come from the hourly `ModStatsDaily` rollup.
+ * - Views, referrers and visitor locales and countries come from the hourly `ModStatsDaily` rollup.
  * - Follows gained per day from `ModFavorite.createdAt`; ratings from the visible reviews.
  * - Every series is zero-filled and bucketed by day, ISO week (Monday) or month; a bucket is
  *   labelled with its first day inside the range.
@@ -31,6 +31,7 @@ export const HISTORY_START = '2023-01-01';
 export const MAX_VERSIONS = 8;
 export const MAX_REFERRERS = 20;
 export const MAX_LOCALES = 20;
+export const MAX_COUNTRIES = 50;
 export const MAX_VERSION_MARKERS = 200;
 
 const RANGE_DAYS: Record<Exclude<Query['range'], 'all'>, number> = { '7d': 7, '30d': 30, '90d': 90 };
@@ -148,7 +149,7 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
   const labels = bucketLabels(from, to, g);
   const empty = () => new Map(labels.map((l) => [l, 0]));
 
-  const [dl, views, follows, referrers, locales, ratings, versionMarkers, buildMarkers] = await Promise.all([
+  const [dl, views, follows, referrers, locales, countries, ratings, versionMarkers, buildMarkers] = await Promise.all([
     downloadRows(ctx, scope),
     viewRows(ctx, scope),
     rows<{ day: string; n: string }>(
@@ -170,6 +171,13 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
       `SELECT e.key, sum(e.value::bigint) AS n
          FROM "ModStatsDaily" s, jsonb_each_text(s."byLocale") e
         WHERE s."modId" = ANY($1::int[]) AND s."day" BETWEEN $2::date AND $3::date GROUP BY 1`,
+      [modIds, from, to],
+    ),
+    rows<{ key: string; n: string }>(
+      ctx.db,
+      `SELECT upper(e.key) AS key, sum(e.value::bigint) AS n
+         FROM "ModStatsDaily" s, jsonb_each_text(s."byCountry") e
+        WHERE s."modId" = ANY($1::int[]) AND s."day" BETWEEN $2::date AND $3::date AND e.key ~ '^[A-Za-z]{2}$' GROUP BY 1`,
       [modIds, from, to],
     ),
     rows<{ day: string; total: string; n: string }>(
@@ -283,6 +291,7 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
     byChannel,
     referrers: topEntries(referrers, MAX_REFERRERS).map((r) => ({ domain: r.key, visits: r.n })),
     locales: topEntries(locales, MAX_LOCALES).map((r) => ({ locale: r.key, visits: r.n })),
+    countries: topEntries(countries, MAX_COUNTRIES).map((r) => ({ country: r.key, visits: r.n })),
     ratings: labels.map((day) => {
       const count = ratingCount.get(day) ?? 0;
       return { day, average: count > 0 ? Math.round(((ratingSum.get(day) ?? 0) / count) * 100) / 100 : null, count };
