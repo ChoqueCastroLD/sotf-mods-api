@@ -50,7 +50,7 @@ const tr_mod_action_add_to_kit = /** @type {(inputs: Mod_Action_Add_To_KitInputs
 };
 
 const zh_mod_action_add_to_kit = /** @type {(inputs: Mod_Action_Add_To_KitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`加入合集`)
+	return /** @type {LocalizedString} */ (`加入套装`)
 };
 
 const ja_mod_action_add_to_kit = /** @type {(inputs: Mod_Action_Add_To_KitInputs) => LocalizedString} */ () => {

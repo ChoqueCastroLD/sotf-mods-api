@@ -318,7 +318,7 @@
   "upload_gallery_drop": "Upuść tutaj zrzuty ekranu",
   "upload_gallery_hint": "Kilka naraz · PNG, JPEG, WebP, AVIF lub GIF · do 10 MB każdy · maksymalnie {max}",
   "upload_gallery_choose": "Wybierz obrazy",
-  "upload_gallery_full": "Galeria jest pełna ({max} obrazów).",
+  "upload_gallery_full": "Galeria jest pełna (maksymalnie: {max}).",
   "upload_gallery_image": "Zrzut ekranu {n}",
   "upload_gallery_alt": "Opis obrazu {n}",
   "upload_gallery_alt_placeholder": "Co przedstawia?",

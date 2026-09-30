@@ -30,7 +30,7 @@ const nl_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintIn
 };
 
 const pl_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mody i kity znikają z list, wersje zostają wstrzymane, komentarze i recenzje ukryte.`)
+	return /** @type {LocalizedString} */ (`Mody i zestawy znikają z list, wersje zostają wstrzymane, komentarze i recenzje ukryte.`)
 };
 
 const pt_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
@@ -38,7 +38,7 @@ const pt_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintIn
 };
 
 const ru_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Моды и киты убираются из списков, версии задерживаются, комментарии и отзывы скрываются.`)
+	return /** @type {LocalizedString} */ (`Моды и наборы убираются из списков, версии задерживаются, комментарии и отзывы скрываются.`)
 };
 
 const sv_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintIn
 };
 
 const zh_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`模组和合集从列表隐藏，版本被暂扣，评论和评价被隐藏。`)
+	return /** @type {LocalizedString} */ (`模组和套装从列表隐藏，版本被暂扣，评论和评价被隐藏。`)
 };
 
 const ja_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {

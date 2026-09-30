@@ -28,9 +28,9 @@
   "signals_review_on_mod_grouped": "{count, plural, one {# reseña nueva en {mod}} other {# reseñas nuevas en {mod}}}",
   "signals_review_reply": "El autor de {mod} ha respondido a tu reseña",
   "signals_compat_broken": "{mod} aparece {status, select, broken {roto} other {con resultados mixtos}} en {build}",
-  "signals_compat_fixed_in": "Tu informe de campo sobre {mod} está arreglado en {version}",
-  "signals_compat_acknowledged": "El autor de {mod} ha visto tu informe de campo",
-  "signals_patch_breaking": "La build {build} del juego puede romper mods: revisa los tuyos en el Patch Radar",
+  "signals_compat_fixed_in": "Tu reporte de campo sobre {mod} está arreglado en {version}",
+  "signals_compat_acknowledged": "El autor de {mod} ha visto tu reporte de campo",
+  "signals_patch_breaking": "La build {build} del juego puede romper mods: revisa los tuyos en el Radar de parches",
   "signals_status_approved": "Tu mod {mod} ha sido aprobado y ya está publicado",
   "signals_status_republished": "Tu mod {mod} vuelve a ser público",
   "signals_status_rejected": "Tu mod {mod} ha sido rechazado",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Ninguna señal coincide con este filtro todavía. Prueba con «Todo».",
   "signals_show_all": "Ver todas las señales",
   "signals_error_text": "Algo ha fallado por nuestra parte. Inténtalo de nuevo en un momento.",
-  "signals_more_error": "Las señales anteriores no se han cargado."
+  "signals_more_error": "Las señales anteriores no se han cargado.",
+  "signals_status_version_approved": "La versión {version} de {mod} se ha aprobado y ya está publicada",
+  "signals_status_version_rejected": "La versión {version} de {mod} no se ha aprobado",
+  "signals_status_version_changes_requested": "Los guardabosques han pedido cambios en la versión {version} de {mod}",
+  "signals_status_version_held": "La versión {version} de {mod} está retenida hasta que la revise un guardabosques"
 }

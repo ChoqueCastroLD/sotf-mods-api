@@ -18,7 +18,7 @@ const de_content_brand_legal_text = /** @type {(inputs: Content_Brand_Legal_Text
 };
 
 const fr_content_brand_legal_text = /** @type {(inputs: Content_Brand_Legal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le nom et le logo SOTF Mods identifient ce site communautaire. Vous pouvez les utiliser pour mentionner le site ou faire un lien vers lui ; tout autre usage nécessite notre accord.`)
+	return /** @type {LocalizedString} */ (`Le nom et le logo SOTF Mods identifient ce site communautaire. Vous pouvez les utiliser pour mentionner le site ou faire un lien vers lui ; tout autre usage nécessite notre accord.`)
 };
 
 const it_content_brand_legal_text = /** @type {(inputs: Content_Brand_Legal_TextInputs) => LocalizedString} */ () => {

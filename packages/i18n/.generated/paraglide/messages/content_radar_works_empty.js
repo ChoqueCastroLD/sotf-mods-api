@@ -18,7 +18,7 @@ const de_content_radar_works_empty = /** @type {(inputs: Content_Radar_Works_Emp
 };
 
 const fr_content_radar_works_empty = /** @type {(inputs: Content_Radar_Works_EmptyInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Aucun mod principal n’est encore confirmé sur ${i?.build}. Vous en avez testé un ? Faites-nous signe.`)
+	return /** @type {LocalizedString} */ (`Aucun mod principal n’est encore confirmé sur ${i?.build}. Vous en avez testé un ? Faites-nous signe.`)
 };
 
 const it_content_radar_works_empty = /** @type {(inputs: Content_Radar_Works_EmptyInputs) => LocalizedString} */ (i) => {
@@ -54,7 +54,7 @@ const zh_content_radar_works_empty = /** @type {(inputs: Content_Radar_Works_Emp
 };
 
 const ja_content_radar_works_empty = /** @type {(inputs: Content_Radar_Works_EmptyInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.build} で動作が確認された上位 Mod はまだありません。試したら報告してください。`)
+	return /** @type {LocalizedString} */ (`${i?.build} で動作が確認された上位 MOD はまだありません。試したら報告してください。`)
 };
 
 /**

@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Digite um link completo que comece com https://.",
   "errors_field_file_too_large": "O arquivo tem mais de {limit}.",
   "errors_permission_title": "Só para guardas",
-  "errors_permission_detail": "Você precisa de outra função para abrir esta página. Volte ou entre com outra conta."
+  "errors_permission_detail": "Você precisa de outra função para abrir esta página. Volte ou entre com outra conta.",
+  "errors_not_found_readout": "Sem sinal · Fora do mapa",
+  "errors_gone_readout": "Trilha fechada · Removido de vez",
+  "errors_server_readout": "Fogueira apagada · Erro 500",
+  "errors_server_retry": "Tentar de novo",
+  "errors_server_status": "Veja o status no Discord",
+  "errors_not_found_install": "Como instalar mods"
 }

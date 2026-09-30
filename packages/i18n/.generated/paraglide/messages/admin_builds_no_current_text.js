@@ -30,7 +30,7 @@ const nl_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Curr
 };
 
 const pl_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oznacz najnowszą łatkę jako aktualną: potrzebują jej odznaki zgodności i Radar łatek.`)
+	return /** @type {LocalizedString} */ (`Oznacz najnowszą łatkę jako aktualną: potrzebują jej odznaki zgodności i Radar patchy.`)
 };
 
 const pt_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {

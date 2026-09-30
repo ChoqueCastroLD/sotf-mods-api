@@ -18,7 +18,7 @@ const de_basecamp_settings_archive_text = /** @type {(inputs: Basecamp_Settings_
 };
 
 const fr_basecamp_settings_archive_text = /** @type {(inputs: Basecamp_Settings_Archive_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il reste accessible avec une mention « archivé ». Choisis un successeur pour envoyer les joueurs vers ton nouveau mod.`)
+	return /** @type {LocalizedString} */ (`Il reste accessible avec une mention « archivé ». Choisissez un successeur pour envoyer les joueurs vers votre nouveau mod.`)
 };
 
 const it_basecamp_settings_archive_text = /** @type {(inputs: Basecamp_Settings_Archive_TextInputs) => LocalizedString} */ () => {

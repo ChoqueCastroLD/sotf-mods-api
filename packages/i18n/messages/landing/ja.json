@@ -34,7 +34,7 @@
   "landing_radar_summary": "ゲーム {build} · 上位50件のMODのうち {share} がこのパッチで確認済み",
   "landing_radar_breaking": "MODが壊れる更新",
   "landing_radar_loader": "{loader} {version}：{status, select, works {動作} partial {一部動作} broken {動作しない} other {未テスト}}",
-  "landing_radar_empty": "レーダーにはまだゲームパッチがありません。現地レポートは次の更新から始まります。",
+  "landing_radar_empty": "レーダーにはまだゲームパッチがありません。フィールドレポートは次の更新から始まります。",
   "landing_radar_cta": "動かないものを見る",
   "landing_trending_title": "今週の人気",
   "landing_trending_hint": "直近7日間のダウンロード数順",

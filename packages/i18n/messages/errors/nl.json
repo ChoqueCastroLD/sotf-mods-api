@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Vul een volledige link in die begint met https://.",
   "errors_field_file_too_large": "Het bestand is groter dan {limit}.",
   "errors_permission_title": "Alleen voor rangers",
-  "errors_permission_detail": "Je hebt een andere rol nodig om deze pagina te openen. Ga terug of log in met een ander account."
+  "errors_permission_detail": "Je hebt een andere rol nodig om deze pagina te openen. Ga terug of log in met een ander account.",
+  "errors_not_found_readout": "Geen signaal · Buiten de kaart",
+  "errors_gone_readout": "Pad afgesloten · Definitief verwijderd",
+  "errors_server_readout": "Kampvuur uit · Fout 500",
+  "errors_server_retry": "Opnieuw proberen",
+  "errors_server_status": "Bekijk de status op Discord",
+  "errors_not_found_install": "Zo installeer je mods"
 }

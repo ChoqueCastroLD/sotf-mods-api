@@ -18,7 +18,7 @@ const de_basecamp_settings_actions = /** @type {(inputs: Basecamp_Settings_Actio
 };
 
 const fr_basecamp_settings_actions = /** @type {(inputs: Basecamp_Settings_ActionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce que tu peux faire`)
+	return /** @type {LocalizedString} */ (`Ce que vous pouvez faire`)
 };
 
 const it_basecamp_settings_actions = /** @type {(inputs: Basecamp_Settings_ActionsInputs) => LocalizedString} */ () => {

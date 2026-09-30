@@ -18,7 +18,7 @@ const de_basecamp_editor_pending_text = /** @type {(inputs: Basecamp_Editor_Pend
 };
 
 const fr_basecamp_editor_pending_text = /** @type {(inputs: Basecamp_Editor_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rangers décident en général sous 72 heures. En attendant, tu peux continuer à améliorer la fiche.`)
+	return /** @type {LocalizedString} */ (`Les rangers décident en général sous 72 heures. En attendant, vous pouvez continuer à améliorer la fiche.`)
 };
 
 const it_basecamp_editor_pending_text = /** @type {(inputs: Basecamp_Editor_Pending_TextInputs) => LocalizedString} */ () => {

@@ -27,7 +27,7 @@ const de_content_radar_description = /** @type {(inputs: Content_Radar_Descripti
 const fr_content_radar_description = /** @type {(inputs: Content_Radar_DescriptionInputs) => LocalizedString} */ (i) => {
 	const works__number = registry.number("fr", i?.works, {});
 	const broken__number = registry.number("fr", i?.broken, {});
-	const pending__number = registry.number("fr", i?.pending, {});return /** @type {LocalizedString} */ (`Patch ${i?.build} : ${i?.share} des 50 mods Sons of the Forest les plus téléchargés confirmés par les joueurs — ${works__number} fonctionnent, ${broken__number} cassés, ${pending__number} en attente de rapports.`)
+	const pending__number = registry.number("fr", i?.pending, {});return /** @type {LocalizedString} */ (`Patch ${i?.build} : ${i?.share} des 50 mods Sons of the Forest les plus téléchargés confirmés par les joueurs — ${works__number} fonctionnent, ${broken__number} cassés, ${pending__number} en attente de rapports.`)
 };
 
 const it_content_radar_description = /** @type {(inputs: Content_Radar_DescriptionInputs) => LocalizedString} */ (i) => {
@@ -81,7 +81,7 @@ const zh_content_radar_description = /** @type {(inputs: Content_Radar_Descripti
 const ja_content_radar_description = /** @type {(inputs: Content_Radar_DescriptionInputs) => LocalizedString} */ (i) => {
 	const works__number = registry.number("ja", i?.works, {});
 	const broken__number = registry.number("ja", i?.broken, {});
-	const pending__number = registry.number("ja", i?.pending, {});return /** @type {LocalizedString} */ (`パッチ ${i?.build}：ダウンロード数上位 50 の Sons of the Forest Mod のうち ${i?.share} をプレイヤーが確認済み — 動作 ${works__number}、不具合 ${broken__number}、報告待ち ${pending__number}。`)
+	const pending__number = registry.number("ja", i?.pending, {});return /** @type {LocalizedString} */ (`パッチ ${i?.build}：ダウンロード数上位 50 の Sons of the Forest MOD のうち ${i?.share} をプレイヤーが確認済み — 動作 ${works__number}、不具合 ${broken__number}、報告待ち ${pending__number}。`)
 };
 
 /**

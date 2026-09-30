@@ -30,7 +30,7 @@ const nl_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_More
 };
 
 const pl_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zobacz wszystkie Kity`)
+	return /** @type {LocalizedString} */ (`Zobacz wszystkie zestawy`)
 };
 
 const pt_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_MoreInputs) => LocalizedString} */ () => {
@@ -38,7 +38,7 @@ const pt_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_More
 };
 
 const ru_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Все киты`)
+	return /** @type {LocalizedString} */ (`Все наборы`)
 };
 
 const sv_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_MoreInputs) => LocalizedString} */ () => {
@@ -50,11 +50,11 @@ const tr_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_More
 };
 
 const zh_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`浏览所有 Kit`)
+	return /** @type {LocalizedString} */ (`浏览所有套装`)
 };
 
 const ja_content_install_kit_more = /** @type {(inputs: Content_Install_Kit_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`すべての Kit を見る`)
+	return /** @type {LocalizedString} */ (`すべてのキットを見る`)
 };
 
 /**

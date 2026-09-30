@@ -18,7 +18,7 @@ const de_basecamp_media_cover_current = /** @type {(inputs: Basecamp_Media_Cover
 };
 
 const fr_basecamp_media_cover_current = /** @type {(inputs: Basecamp_Media_Cover_CurrentInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Couverture actuelle. Choisis une nouvelle image ci-dessous pour la remplacer.`)
+	return /** @type {LocalizedString} */ (`Couverture actuelle. Choisissez une nouvelle image ci-dessous pour la remplacer.`)
 };
 
 const it_basecamp_media_cover_current = /** @type {(inputs: Basecamp_Media_Cover_CurrentInputs) => LocalizedString} */ () => {

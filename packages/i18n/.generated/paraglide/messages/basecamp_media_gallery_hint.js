@@ -18,7 +18,7 @@ const de_basecamp_media_gallery_hint = /** @type {(inputs: Basecamp_Media_Galler
 };
 
 const fr_basecamp_media_gallery_hint = /** @type {(inputs: Basecamp_Media_Gallery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fais glisser pour réordonner ou utilise les flèches. Décris chaque image pour ceux qui ne peuvent pas la voir.`)
+	return /** @type {LocalizedString} */ (`Faites glisser pour réordonner ou utilisez les flèches. Décrivez chaque image pour ceux qui ne peuvent pas la voir.`)
 };
 
 const it_basecamp_media_gallery_hint = /** @type {(inputs: Basecamp_Media_Gallery_HintInputs) => LocalizedString} */ () => {

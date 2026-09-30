@@ -1,5 +1,5 @@
 {
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "レンジャーステーション",
   "ranger_queue_title": "モデレーションキュー",
   "ranger_queue_description": "古いものとリスクの高いものから順に表示します。すべての判断は記録され、作者に通知されます。",
   "ranger_live": "ライブ",
@@ -226,7 +226,7 @@
   "ranger_target_review": "レビュー",
   "ranger_target_user": "ユーザー",
   "ranger_target_kit": "キット",
-  "ranger_target_compat_report": "動作報告",
+  "ranger_target_compat_report": "フィールドレポート",
   "ranger_users_title": "ユーザー",
   "ranger_users_description": "ハンドル、名前、メールアドレスで検索します。ユーザーを開くと履歴と制裁を確認できます。",
   "ranger_users_search_label": "ユーザーを検索",

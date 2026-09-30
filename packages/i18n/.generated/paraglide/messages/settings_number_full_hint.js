@@ -18,7 +18,7 @@ const de_settings_number_full_hint = /** @type {(inputs: Settings_Number_Full_Hi
 };
 
 const fr_settings_number_full_hint = /** @type {(inputs: Settings_Number_Full_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`1 234 téléchargements`)
+	return /** @type {LocalizedString} */ (`1 234 téléchargements`)
 };
 
 const it_settings_number_full_hint = /** @type {(inputs: Settings_Number_Full_HintInputs) => LocalizedString} */ () => {

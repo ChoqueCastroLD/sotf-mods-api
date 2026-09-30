@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Saisissez un lien complet commençant par https://.",
   "errors_field_file_too_large": "Le fichier dépasse {limit}.",
   "errors_permission_title": "Réservé aux rangers",
-  "errors_permission_detail": "Il vous faut un autre rôle pour ouvrir cette page. Revenez en arrière ou connectez-vous avec un autre compte."
+  "errors_permission_detail": "Il vous faut un autre rôle pour ouvrir cette page. Revenez en arrière ou connectez-vous avec un autre compte.",
+  "errors_not_found_readout": "Pas de signal · Hors de la carte",
+  "errors_gone_readout": "Sentier fermé · Retiré pour de bon",
+  "errors_server_readout": "Feu de camp éteint · Erreur 500",
+  "errors_server_retry": "Réessayer",
+  "errors_server_status": "Voir l’état sur Discord",
+  "errors_not_found_install": "Comment installer des mods"
 }

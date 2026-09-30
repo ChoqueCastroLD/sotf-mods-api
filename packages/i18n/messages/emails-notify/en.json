@@ -31,7 +31,7 @@
   "emails_notify_item_compat_broken": "{status, select, broken {Players report that {mod} is broken on game build {build}} other {Players report mixed results for {mod} on game build {build}}}",
   "emails_notify_item_compat_acknowledged": "The author of {mod} marked the problem you reported as fixed",
   "emails_notify_item_patch_breaking": "Game build {build} may break mods: check yours on Patch Radar",
-  "emails_notify_item_status": "{status, select, published {{mod} was approved and is live} rejected {{mod} was not approved} pending {{mod} needs changes before it can be approved} archived {{mod} was archived} unlisted {{mod} was unlisted} removed {{mod} was removed from SOTF Mods} other {The status of {mod} changed}}",
+  "emails_notify_item_status": "{status, select, published {{mod} was approved and is live} rejected {{mod} was not approved} pending {{mod} needs changes before it can be approved} archived {{mod} was archived} unlisted {{mod} was unlisted} removed {{mod} was removed from SOTF Mods} changes_requested {The Rangers asked for changes to {mod}} version_approved {A new version of {mod} was approved and is live} version_rejected {A new version of {mod} was not approved} version_changes_requested {The Rangers asked for changes to a new version of {mod}} version_held {A new version of {mod} is on hold for a ranger check} other {The status of {mod} changed}}",
   "emails_notify_item_status_reason": "Reason: {reason}",
   "emails_notify_item_milestone": "{mod} passed {threshold, number} downloads",
   "emails_notify_item_badge": "You earned a new badge",

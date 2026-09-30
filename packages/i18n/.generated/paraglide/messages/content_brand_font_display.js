@@ -18,7 +18,7 @@ const de_content_brand_font_display = /** @type {(inputs: Content_Brand_Font_Dis
 };
 
 const fr_content_brand_font_display = /** @type {(inputs: Content_Brand_Font_DisplayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Titrage : titres et chiffres, toujours en capitales.`)
+	return /** @type {LocalizedString} */ (`Titrage : titres et chiffres, toujours en capitales.`)
 };
 
 const it_content_brand_font_display = /** @type {(inputs: Content_Brand_Font_DisplayInputs) => LocalizedString} */ () => {

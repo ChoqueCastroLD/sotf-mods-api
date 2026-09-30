@@ -18,7 +18,7 @@ const de_content_brand_asset_horizontal_hint = /** @type {(inputs: Content_Brand
 };
 
 const fr_content_brand_asset_horizontal_hint = /** @type {(inputs: Content_Brand_Asset_Horizontal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La version par défaut : symbole et logotype côte à côte.`)
+	return /** @type {LocalizedString} */ (`La version par défaut : symbole et logotype côte à côte.`)
 };
 
 const it_content_brand_asset_horizontal_hint = /** @type {(inputs: Content_Brand_Asset_Horizontal_HintInputs) => LocalizedString} */ () => {

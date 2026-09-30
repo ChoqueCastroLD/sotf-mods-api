@@ -50,7 +50,7 @@ const tr_mod_in_kits_browse = /** @type {(inputs: Mod_In_Kits_BrowseInputs) => L
 };
 
 const zh_mod_in_kits_browse = /** @type {(inputs: Mod_In_Kits_BrowseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`浏览合集`)
+	return /** @type {LocalizedString} */ (`浏览套装`)
 };
 
 const ja_mod_in_kits_browse = /** @type {(inputs: Mod_In_Kits_BrowseInputs) => LocalizedString} */ () => {

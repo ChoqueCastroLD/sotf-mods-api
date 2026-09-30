@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Enter a full link starting with https://.",
   "errors_field_file_too_large": "The file is larger than {limit}.",
   "errors_permission_title": "Rangers only",
-  "errors_permission_detail": "You need a different role to open this page. Go back or sign in with another account."
+  "errors_permission_detail": "You need a different role to open this page. Go back or sign in with another account.",
+  "errors_not_found_readout": "No signal · Off the map",
+  "errors_gone_readout": "Trail closed · Removed for good",
+  "errors_server_readout": "Campfire out · Error 500",
+  "errors_server_retry": "Try again",
+  "errors_server_status": "Check the status on Discord",
+  "errors_not_found_install": "How to install mods"
 }

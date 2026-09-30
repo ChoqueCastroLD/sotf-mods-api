@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} wird auf {build} als {status, select, broken {kaputt} other {gemischt}} gemeldet",
   "signals_compat_fixed_in": "Dein Feldbericht zu {mod} ist in {version} behoben",
   "signals_compat_acknowledged": "Der Autor von {mod} hat deinen Feldbericht gesehen",
-  "signals_patch_breaking": "Spiel-Build {build} könnte Mods kaputt machen – prüfe deine im Patch Radar",
+  "signals_patch_breaking": "Spiel-Build {build} könnte Mods kaputt machen – prüfe deine im Patch-Radar",
   "signals_status_approved": "Dein Mod {mod} wurde freigegeben und ist online",
   "signals_status_republished": "Dein Mod {mod} ist wieder öffentlich",
   "signals_status_rejected": "Dein Mod {mod} wurde abgelehnt",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Noch kein Signal passt zu diesem Filter. Versuch es mit „Alle“.",
   "signals_show_all": "Alle Signale anzeigen",
   "signals_error_text": "Bei uns ist etwas schiefgelaufen. Versuch es gleich noch einmal.",
-  "signals_more_error": "Ältere Signale konnten nicht geladen werden."
+  "signals_more_error": "Ältere Signale konnten nicht geladen werden.",
+  "signals_status_version_approved": "Version {version} von {mod} wurde freigegeben und ist online",
+  "signals_status_version_rejected": "Version {version} von {mod} wurde nicht freigegeben",
+  "signals_status_version_changes_requested": "Die Ranger wünschen Änderungen an Version {version} von {mod}",
+  "signals_status_version_held": "Version {version} von {mod} wartet auf die Prüfung durch einen Ranger"
 }

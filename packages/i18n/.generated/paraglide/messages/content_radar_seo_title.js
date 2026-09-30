@@ -14,47 +14,47 @@ const es_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleIn
 };
 
 const de_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Funktionieren SOTF-Mods mit Patch ${i?.build}? – Patch Radar`)
+	return /** @type {LocalizedString} */ (`Funktionieren SOTF-Mods mit Patch ${i?.build}? – Patch-Radar`)
 };
 
 const fr_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Les mods SOTF fonctionnent-ils sur le patch ${i?.build} ? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Les mods SOTF fonctionnent-ils sur le patch ${i?.build} ? — Radar des patchs`)
 };
 
 const it_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Le mod di SOTF funzionano con la patch ${i?.build}? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Le mod di SOTF funzionano con la patch ${i?.build}? — Radar delle patch`)
 };
 
 const nl_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Werken SOTF-mods op patch ${i?.build}? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Werken SOTF-mods op patch ${i?.build}? — Patchradar`)
 };
 
 const pl_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Czy mody do SOTF działają na łatce ${i?.build}? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Czy mody do SOTF działają na łatce ${i?.build}? — Radar patchy`)
 };
 
 const pt_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Os mods de SOTF funcionam no patch ${i?.build}? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Os mods de SOTF funcionam no patch ${i?.build}? — Radar de patches`)
 };
 
 const ru_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Работают ли моды SOTF на патче ${i?.build}? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`Работают ли моды SOTF на патче ${i?.build}? — Радар патчей`)
 };
 
 const sv_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Fungerar SOTF-moddar på patch ${i?.build}? – Patch Radar`)
+	return /** @type {LocalizedString} */ (`Fungerar SOTF-moddar på patch ${i?.build}? – Patchradar`)
 };
 
 const tr_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`SOTF modları ${i?.build} yamasında çalışıyor mu? — Patch Radar`)
+	return /** @type {LocalizedString} */ (`SOTF modları ${i?.build} yamasında çalışıyor mu? — Yama Radarı`)
 };
 
 const zh_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`SOTF 模组能在 ${i?.build} 补丁上运行吗？— Patch Radar`)
+	return /** @type {LocalizedString} */ (`SOTF 模组能在 ${i?.build} 补丁上运行吗？— 补丁雷达`)
 };
 
 const ja_content_radar_seo_title = /** @type {(inputs: Content_Radar_Seo_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`SOTF の Mod はパッチ ${i?.build} で動く？ — Patch Radar`)
+	return /** @type {LocalizedString} */ (`SOTF の MOD はパッチ ${i?.build} で動く？ — パッチレーダー`)
 };
 
 /**

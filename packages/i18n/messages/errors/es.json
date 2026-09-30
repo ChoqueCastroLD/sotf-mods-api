@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Escribe un enlace completo que empiece por https://.",
   "errors_field_file_too_large": "El archivo pesa más de {limit}.",
   "errors_permission_title": "Solo para guardabosques",
-  "errors_permission_detail": "Necesitas otro rol para abrir esta página. Vuelve atrás o inicia sesión con otra cuenta."
+  "errors_permission_detail": "Necesitas otro rol para abrir esta página. Vuelve atrás o inicia sesión con otra cuenta.",
+  "errors_not_found_readout": "Sin señal · Fuera del mapa",
+  "errors_gone_readout": "Sendero cerrado · Retirado para siempre",
+  "errors_server_readout": "Hoguera apagada · Error 500",
+  "errors_server_retry": "Reintentar",
+  "errors_server_status": "Consulta el estado en Discord",
+  "errors_not_found_install": "Cómo instalar mods"
 }

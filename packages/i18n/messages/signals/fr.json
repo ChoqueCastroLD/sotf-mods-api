@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} est signalé {status, select, broken {cassé} other {mitigé}} sur {build}",
   "signals_compat_fixed_in": "Votre rapport de terrain sur {mod} est corrigé dans {version}",
   "signals_compat_acknowledged": "L’auteur de {mod} a vu votre rapport de terrain",
-  "signals_patch_breaking": "La build {build} du jeu peut casser des mods — vérifiez les vôtres dans le Patch Radar",
+  "signals_patch_breaking": "La build {build} du jeu peut casser des mods — vérifiez les vôtres dans le Radar des patchs",
   "signals_status_approved": "Votre mod {mod} a été approuvé et est en ligne",
   "signals_status_republished": "Votre mod {mod} est de nouveau public",
   "signals_status_rejected": "Votre mod {mod} a été refusé",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Aucun signal ne correspond encore à ce filtre. Essayez « Tout ».",
   "signals_show_all": "Afficher tous les signaux",
   "signals_error_text": "Un problème est survenu de notre côté. Réessayez dans un instant.",
-  "signals_more_error": "Les signaux plus anciens n’ont pas pu être chargés."
+  "signals_more_error": "Les signaux plus anciens n’ont pas pu être chargés.",
+  "signals_status_version_approved": "La version {version} de {mod} a été approuvée et est en ligne",
+  "signals_status_version_rejected": "La version {version} de {mod} n’a pas été approuvée",
+  "signals_status_version_changes_requested": "Les rangers demandent des modifications sur la version {version} de {mod}",
+  "signals_status_version_held": "La version {version} de {mod} est en attente de la vérification d’un ranger"
 }

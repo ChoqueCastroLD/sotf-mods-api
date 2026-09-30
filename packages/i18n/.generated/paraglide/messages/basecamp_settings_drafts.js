@@ -18,7 +18,7 @@ const de_basecamp_settings_drafts = /** @type {(inputs: Basecamp_Settings_Drafts
 };
 
 const fr_basecamp_settings_drafts = /** @type {(inputs: Basecamp_Settings_DraftsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les envois et versions inachevés restent en brouillon jusqu’à ce que tu les reprennes ou les supprimes.`)
+	return /** @type {LocalizedString} */ (`Les envois et versions inachevés restent en brouillon jusqu’à ce que vous les repreniez ou les supprimiez.`)
 };
 
 const it_basecamp_settings_drafts = /** @type {(inputs: Basecamp_Settings_DraftsInputs) => LocalizedString} */ () => {

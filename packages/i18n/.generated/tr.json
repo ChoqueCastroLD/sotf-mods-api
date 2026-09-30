@@ -383,7 +383,7 @@
     }
   ],
   "admin_range_label": "Zaman aralığı",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Yönetim · Korucu İstasyonu",
   "admin_reauth_action": "Yeniden giriş yap",
   "admin_reauth_text": "Yönetim araçları son 12 saat içinde yapılmış bir giriş ister. Yeniden giriş yap, doğrudan buraya dönersin.",
   "admin_reauth_title": "Sen olduğunu doğrula",
@@ -2484,7 +2484,7 @@
   "content_error_ref": "Ref.: {ref}",
   "content_fallback_binding": "Hukuki metinlerde İngilizce sürüm geçerlidir.",
   "content_fallback_link": "Sayfayı {original} dilinde aç",
-  "content_fallback_text": "Bu sayfa henüz {language} dilinde yok, bu yüzden {original} aslını okuyorsunuz.",
+  "content_fallback_text": "Bu sayfa henüz {language} dilinde yok, bu yüzden {original} aslını okuyorsun.",
   "content_install_eyebrow": "Kurulum rehberi",
   "content_install_faq_nav": "SSS",
   "content_install_faq_title": "Sık sorulan sorular",
@@ -2734,8 +2734,8 @@
   "content_radar_pending_title": "Saha raporu bekleyenler",
   "content_radar_released": "Yayın tarihi: {date}",
   "content_radar_report": "Bildir",
-  "content_radar_seo_title": "SOTF modları {build} yamasında çalışıyor mu? — Patch Radar",
-  "content_radar_seo_title_generic": "SOTF modları son yamada çalışıyor mu? — Patch Radar",
+  "content_radar_seo_title": "SOTF modları {build} yamasında çalışıyor mu? — Yama Radarı",
+  "content_radar_seo_title_generic": "SOTF modları son yamada çalışıyor mu? — Yama Radarı",
   "content_radar_stat_broken": "Bozuk",
   "content_radar_stat_pending": "Rapor gerekli",
   "content_radar_stat_works": "Çalışıyor",
@@ -3144,6 +3144,11 @@
         "status=archived": "{mod} arşivlendi",
         "status=unlisted": "{mod} artık listelerde görünmüyor",
         "status=removed": "{mod} SOTF Mods’tan kaldırıldı",
+        "status=changes_requested": "Korucular {mod} için değişiklik istedi",
+        "status=version_approved": "{mod} modunun yeni sürümü onaylandı ve yayında",
+        "status=version_rejected": "{mod} modunun yeni sürümü onaylanmadı",
+        "status=version_changes_requested": "Korucular {mod} modunun yeni sürümünde değişiklik istedi",
+        "status=version_held": "{mod} modunun yeni sürümü bir korucunun kontrolünü bekliyor",
         "status=*": "{mod} modunun durumu değişti"
       }
     }
@@ -3322,6 +3327,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Patika kapalı · Kalıcı olarak kaldırıldı",
   "errors_gone_text": "Burada olan şey kalıcı olarak kaldırıldı. Başka modları keşfetmeyi dene.",
   "errors_gone_title": "Bu patika kapalı.",
   "errors_login_mismatch": "E-posta ve şifre eşleşmiyor. Tekrar dene ya da şifreni sıfırla.",
@@ -3329,12 +3335,17 @@
   "errors_network_retrying": "Sinyal yok. Yeniden deneniyor…",
   "errors_network_title": "Sinyal yok",
   "errors_not_found_home": "Patikaya dön",
+  "errors_not_found_install": "Mod nasıl kurulur",
   "errors_not_found_popular": "Popüler modlar",
+  "errors_not_found_readout": "Sinyal yok · Harita dışı",
   "errors_not_found_text": "Bu sayfa haritamızda yok. Ağaçların arasından bir şey seni izliyor; hadi geri dönelim.",
   "errors_not_found_title": "Patikadan saptın.",
   "errors_permission_detail": "Bu sayfayı açmak için farklı bir role ihtiyacın var. Geri dön ya da başka bir hesapla giriş yap.",
   "errors_permission_title": "Yalnızca korucular için",
   "errors_reference": "Ref.: {id}",
+  "errors_server_readout": "Kamp ateşi söndü · Hata 500",
+  "errors_server_retry": "Tekrar dene",
+  "errors_server_status": "Durumu Discord’da kontrol et",
   "errors_server_text": "Üzerinde çalışıyoruz. Bir dakika sonra sayfayı yenile ya da ana sayfaya dön.",
   "errors_server_title": "Ana kampta bir şey bozuldu.",
   "errors_validation_summary": [
@@ -5361,7 +5372,7 @@
   "profile_achievements_fair_play_new_accounts": "Yepyeni hesaplar güven kazanana kadar puanlarda ve uyumlulukta yarım ağırlıkla sayılır.",
   "profile_achievements_fair_play_reversible": "Her XP puanı kaydedilir ve kötüye kullanımdan geldiyse geri alınabilir.",
   "profile_achievements_fair_play_same_network": "Aynı ağdaki hesaplar arasında 24 saat içindeki oylar ve raporlar sayılmaz.",
-  "profile_achievements_fair_play_spikes": "Ani indirme artışları Ranger’lar tarafından incelenir.",
+  "profile_achievements_fair_play_spikes": "Ani indirme artışları korucular tarafından incelenir.",
   "profile_achievements_fair_play_title": "Adil oyun",
   "profile_achievements_intro": "Adanın ödüllerinin tüm kuralları, açıkça. Hacmi değil, kaliteyi ve yardımı takdir ederler.",
   "profile_achievements_meta_description": "SOTF Mods’ta hayatta kalan rütbeleri, XP, üretici seviyeleri, rozetler ve mod kilometre taşları nasıl çalışır. Hacmi değil kaliteyi ve yardımı ödüllendiren herkese açık kurallar.",
@@ -5556,7 +5567,7 @@
   "profile_badge_pillar_of_the_island_name": "Adanın Direği",
   "profile_badge_progress": "{current} / {target}",
   "profile_badge_ranger_hint": "Adayı güvende tutan moderatörler.",
-  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_ranger_name": "Korucu",
   "profile_badge_secret_hint": "Keşfetmeye devam et. Adadaki bazı şeyler yalnızca gece bulunur.",
   "profile_badge_secret_name": "Gizli rozet",
   "profile_badge_staff_pick_hint": "Modlarından biri ekip tarafından seçilsin. Birden çok kez kazanılabilir.",
@@ -5880,9 +5891,9 @@
   "ranger_audit_apply": "Filtrele",
   "ranger_audit_changes": "Önce ve sonra",
   "ranger_audit_clear": "Temizle",
-  "ranger_audit_description": "Ranger ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.",
+  "ranger_audit_description": "Korucuların ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.",
   "ranger_audit_empty_filtered": "Bu filtrelere uyan kayıt yok.",
-  "ranger_audit_empty_text": "Henüz hiçbir ranger işlemi kaydedilmedi.",
+  "ranger_audit_empty_text": "Henüz hiçbir korucu işlemi kaydedilmedi.",
   "ranger_audit_empty_title": "Kayıt yok",
   "ranger_audit_reason_hint": "Denetim kaydında kalır.",
   "ranger_audit_reason_label": "Gerekçe",
@@ -5930,7 +5941,7 @@
   "ranger_comment_reject_reason": "Gerekçe",
   "ranger_comment_reject_reason_hint": "Denetim kaydında kalır.",
   "ranger_comment_reject_title": "Bu yorumu gizle",
-  "ranger_conflict_detail": "Bu arada biri öğeyi değiştirdi. Kuyruk yenilendi; tekrar kontrol edin.",
+  "ranger_conflict_detail": "Bu arada biri öğeyi değiştirdi. Kuyruk yenilendi; tekrar kontrol et.",
   "ranger_decided_approve": "Onaylandı: {title}",
   "ranger_decided_reject": "Reddedildi: {title}",
   "ranger_decided_remove": "Kaldırıldı: {title}",
@@ -6029,7 +6040,7 @@
   "ranger_history_sanctions": "Etkin yaptırımlar",
   "ranger_history_trust": "Güven",
   "ranger_item_document_title": "İnceleme: {title}",
-  "ranger_item_gone_text": "Bu öğe hakkında başka bir ranger karar verdi ya da öğe kuyruktan çıktı.",
+  "ranger_item_gone_text": "Bu öğe hakkında başka bir korucu karar verdi ya da öğe kuyruktan çıktı.",
   "ranger_item_gone_title": "Zaten ele alındı",
   "ranger_item_next": "Sonraki öğe",
   "ranger_item_region": "İncelenen öğe",
@@ -6085,12 +6096,12 @@
   "ranger_open_reports": "Tüm şikâyetler",
   "ranger_page_of": "Sayfa {page}/{total}",
   "ranger_pagination": "Sayfalar",
-  "ranger_panel_error_text": "Bizim tarafımızda bir sorun oluştu. Birazdan tekrar deneyin.",
+  "ranger_panel_error_text": "Bizim tarafımızda bir sorun oluştu. Birazdan tekrar dene.",
   "ranger_panel_error_title": "Bu yüklenemedi",
   "ranger_previous": "Önceki",
   "ranger_queue_description": "Önce en eski ve en riskli olanlar. Her karar kayda geçer ve yazara bildirilir.",
   "ranger_queue_title": "Moderasyon kuyruğu",
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "Korucu İstasyonu",
   "ranger_reason_broken": "Çalışmıyor",
   "ranger_reason_harassment": "Taciz",
   "ranger_reason_illegal": "Yasa dışı içerik",
@@ -6100,7 +6111,7 @@
   "ranger_reason_reupload": "İzinsiz yeniden yükleme",
   "ranger_reason_spam": "Spam",
   "ranger_reauth_action": "Yeniden giriş yap",
-  "ranger_reauth_text": "Ranger işlemleri son 12 saat içinde yapılmış bir giriş gerektirir. Devam etmek için yeniden giriş yapın.",
+  "ranger_reauth_text": "Korucu işlemleri son 12 saat içinde yapılmış bir giriş gerektirir. Devam etmek için yeniden giriş yap.",
   "ranger_reauth_title": "Siz olduğunuzu doğrulayın",
   "ranger_reference": "Ref: {reference}",
   "ranger_report_by": "Şikâyet eden",
@@ -6198,7 +6209,7 @@
   "ranger_scan_override_confirm": "Kararı kaydet",
   "ranger_scan_override_done": "Tarama kararı: “{verdict}”.",
   "ranger_scan_override_failed": "Karar kaydedilmedi",
-  "ranger_scan_override_false_positive_hint": "Dosyaları kontrol ettiniz: tespitler yanlış pozitif. Taramanın beklettiği sürüm serbest bırakılır.",
+  "ranger_scan_override_false_positive_hint": "Dosyaları kontrol ettin: tespitler yanlış pozitif. Taramanın beklettiği sürüm serbest bırakılır.",
   "ranger_scan_override_malicious_hint": "Dosya zararlı. Sürüm geri çekilir ve erişilemez kalır.",
   "ranger_scan_override_note": "Neden (denetim kaydında kalır)",
   "ranger_scan_override_open": "Kararı değiştir",
@@ -6281,7 +6292,7 @@
   "ranger_user_legacy_trusted": "Eski sitede güvenilir",
   "ranger_user_mods": "Modlar",
   "ranger_user_no_sanctions": "Hiç yaptırım almamış.",
-  "ranger_user_outranked": "Ranger’lar yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.",
+  "ranger_user_outranked": "Korucular yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.",
   "ranger_user_public_profile": "Herkese açık profil",
   "ranger_user_reports_against": "Aleyhine şikâyetler",
   "ranger_user_reviews": "İncelemeler",
@@ -6294,7 +6305,7 @@
   "ranger_user_role_hint": "Yönetici rolü yalnızca komut satırından verilir.",
   "ranger_user_role_title": "{name} kullanıcısının rolü {role} olarak değiştirilsin mi?",
   "ranger_user_sanctions": "Yaptırımlar",
-  "ranger_user_self": "Bu sizin hesabınız: başka bir ranger işlem yapmalı.",
+  "ranger_user_self": "Bu senin hesabın: başka bir korucu işlem yapmalı.",
   "ranger_user_sessions_revoked": [
     {
       "declarations": [
@@ -7116,7 +7127,7 @@
   "signals_page_readout": "Telsiz kaydı",
   "signals_page_title": "Sinyaller",
   "signals_panel_title": "Sinyaller",
-  "signals_patch_breaking": "{build} oyun sürümü modları bozabilir — kendi modlarını Patch Radar’da kontrol et",
+  "signals_patch_breaking": "{build} oyun sürümü modları bozabilir — kendi modlarını Yama Radarı’nda kontrol et",
   "signals_preferences": "Bildirim ayarları",
   "signals_report_dismissed": "Bildirimin incelendi — işlem gerekmedi",
   "signals_report_resolved": "Bildirimin incelendi ve işlem yapıldı",
@@ -7151,6 +7162,10 @@
   "signals_status_removed": "{mod} modun kaldırıldı",
   "signals_status_republished": "{mod} modun yeniden herkese açık",
   "signals_status_unlisted": "{mod} modun listelerden kaldırıldı",
+  "signals_status_version_approved": "{mod} modunun {version} sürümü onaylandı ve yayında",
+  "signals_status_version_changes_requested": "Korucular {mod} modunun {version} sürümünde değişiklik istedi",
+  "signals_status_version_held": "{mod} modunun {version} sürümü bir korucunun kontrolünü bekliyor",
+  "signals_status_version_rejected": "{mod} modunun {version} sürümü onaylanmadı",
   "signals_unknown_mod": "bir mod",
   "signals_unread_prefix": "Okunmamış:",
   "signals_version_published": "{mod} {version} çıktı — bu modu takip ediyorsun",
@@ -7475,6 +7490,453 @@
   "ui_clear": "Temizle",
   "ui_close": "Kapat",
   "ui_dismiss": "Gizle",
+  "ui_domain_ad_label": "Reklam",
+  "ui_domain_ad_notice": "Reklamlar indirmeleri ücretsiz tutar. Gizlemek için giriş yap.",
+  "ui_domain_award_build_of_month": "Ayın Yapısı",
+  "ui_domain_award_mod_of_month": "Ayın Modu",
+  "ui_domain_award_mod_of_week": "Haftanın Modu",
+  "ui_domain_award_staff_pick": "Ekibin seçimi",
+  "ui_domain_badge_featured": "Öne çıkan",
+  "ui_domain_badge_locked": "Kilitli",
+  "ui_domain_badge_new": "Yeni",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Güncellendi",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} parça",
+        "count__plural=*": "{count__number} parça"
+      }
+    }
+  ],
+  "ui_domain_by_author": "{author} tarafından",
+  "ui_domain_capsule_conflicts": "Çakışmalar",
+  "ui_domain_capsule_dedicated": "Özel sunucu",
+  "ui_domain_capsule_dependencies": "Bağımlılıklar",
+  "ui_domain_capsule_game_build": "Oyun sürümü",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Çok oyunculu",
+  "ui_domain_capsule_platform": "Platform",
+  "ui_domain_capsule_safe_remove": "Kayıt ortasında kaldırma",
+  "ui_domain_chart_view_table": "Tablo olarak göster",
+  "ui_domain_comment_badge_author": "Yapımcı",
+  "ui_domain_comment_badge_ranger": "Korucu",
+  "ui_domain_comment_bug": "Hata bildirimi",
+  "ui_domain_comment_bug_fixed_in": "v{version} sürümünde düzeltildi",
+  "ui_domain_comment_bug_on": "Hata bildirimi · v{version}",
+  "ui_domain_comment_deleted": "Bu yorum silindi.",
+  "ui_domain_comment_image": "Yoruma eklenen görsel",
+  "ui_domain_comment_pending": "Bir korucunun kontrol etmesi bekleniyor.",
+  "ui_domain_comment_pinned": "Sabitlenenler",
+  "ui_domain_comment_reactions": "Tepkiler",
+  "ui_domain_comment_solution": "Çözüm",
+  "ui_domain_compat_broken": "Bozuk",
+  "ui_domain_compat_broken_on": "{build} üzerinde bozuk",
+  "ui_domain_compat_mixed": "Karışık raporlar",
+  "ui_domain_compat_mixed_on": "{build} için karışık raporlar",
+  "ui_domain_compat_untested": "Doğrulanmadı",
+  "ui_domain_compat_untested_on": "{build} üzerinde doğrulanmadı",
+  "ui_domain_compat_works": "Çalışıyor",
+  "ui_domain_compat_works_on": "{build} ile çalışıyor",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} çakışma",
+        "count__plural=*": "{count__number} çakışma"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "Bilinen yok",
+  "ui_domain_consent_accept": "Kabul et",
+  "ui_domain_consent_label": "Çerez onayı",
+  "ui_domain_consent_policy": "Çerez politikası",
+  "ui_domain_consent_preferences": "Tercihler",
+  "ui_domain_consent_reject": "Reddet",
+  "ui_domain_consent_text": "Reklamlar ve anonim istatistikler için çerez kullanıyoruz. İndirmeler her durumda çalışır.",
+  "ui_domain_creator_top_mod": "En popüler mod: {mod}",
+  "ui_domain_curated_by": "derleyen: {author}",
+  "ui_domain_dedicated_no": "Desteklenmiyor",
+  "ui_domain_dedicated_partial": "Kısmen",
+  "ui_domain_dedicated_yes": "Destekleniyor",
+  "ui_domain_deleted_user": "Silinmiş hayatta kalan",
+  "ui_domain_dependencies_conflicts_title": "Şununla çakışır",
+  "ui_domain_dependencies_empty": "Bağımlılık yok. At ve oyna.",
+  "ui_domain_dependencies_none": "Yok",
+  "ui_domain_dependencies_optional_title": "Şununla daha iyi çalışır",
+  "ui_domain_dependencies_required_title": "Gerektirir",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{required__number} zorunlu · {optional__number} isteğe bağlı"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "Şununla çakışır",
+  "ui_domain_dependency_kind_optional": "İsteğe bağlı",
+  "ui_domain_dependency_kind_required": "Gerektirir",
+  "ui_domain_dependency_state_archived": "Arşivlendi",
+  "ui_domain_dependency_state_missing": "SOTF Mods’ta yok",
+  "ui_domain_dependency_state_ok": "Kullanılabilir",
+  "ui_domain_dependency_state_removed": "Kaldırıldı",
+  "ui_domain_dependency_state_unlisted": "Listelenmiyor",
+  "ui_domain_download": "İndir",
+  "ui_domain_download_all_versions": "Tüm sürümler",
+  "ui_domain_download_done_hint": "Oyunun Mods klasörüne at ve oyunu başlat.",
+  "ui_domain_download_done_label": "İndirildi",
+  "ui_domain_download_other_versions": "Diğer sürümler",
+  "ui_domain_download_version": "v{version} indir",
+  "ui_domain_download_version_size": "v{version} indir · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} indirme",
+        "count__plural=*": "{display} indirme"
+      }
+    }
+  ],
+  "ui_domain_edited": "düzenlendi",
+  "ui_domain_feature_cta": "Göz at",
+  "ui_domain_filter_clear": "Filtreleri temizle",
+  "ui_domain_filter_exclude": "{label} hariç tut",
+  "ui_domain_filter_excluded": "hariç",
+  "ui_domain_filter_included": "dahil",
+  "ui_domain_filter_unexclude": "{label} artık hariç tutulmasın",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ekran görüntüsü {index__number}/{total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Galeri",
+  "ui_domain_gallery_video": "Video",
+  "ui_domain_hidden_by_ranger": "Bir korucu tarafından gizlendi. Yalnızca sen ve korucular görebilirsiniz.",
+  "ui_domain_hidden_by_ranger_reason": "Bir korucu tarafından gizlendi: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Herkeste olmalı",
+  "ui_domain_multiplayer_client_side": "Yalnızca sende olması yeterli",
+  "ui_domain_multiplayer_host_only": "Yalnızca sunucu sahibi",
+  "ui_domain_multiplayer_singleplayer_only": "Yalnızca tek oyunculu",
+  "ui_domain_platform_client": "İstemci",
+  "ui_domain_platform_server": "Sunucu",
+  "ui_domain_platform_universal": "Evrensel",
+  "ui_domain_rank_builder": "İnşaatçı",
+  "ui_domain_rank_castaway": "Kazazede",
+  "ui_domain_rank_forager": "Toplayıcı",
+  "ui_domain_rank_label": "Hayatta kalan rütbesi",
+  "ui_domain_rank_legend": "Efsane",
+  "ui_domain_rank_pathfinder": "İzci",
+  "ui_domain_rank_scavenger": "Leşçi",
+  "ui_domain_rank_trapper": "Tuzakçı",
+  "ui_domain_rank_veteran": "Kıdemli",
+  "ui_domain_rating_out_of": "5 üzerinden {rating} puan",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input rating",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} incelemeye göre 5 üzerinden {rating}",
+        "count__plural=*": "{count__number} incelemeye göre 5 üzerinden {rating}"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Ateş",
+  "ui_domain_reaction_heart": "Kalp",
+  "ui_domain_reaction_laugh": "Gülme",
+  "ui_domain_reaction_party": "Kutlama",
+  "ui_domain_reaction_pray": "Teşekkürler",
+  "ui_domain_reaction_thumbs_up": "Beğen",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} bozuk",
+        "count__plural=*": "{display} bozuk"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "Oyun sürümüne göre",
+  "ui_domain_reports_empty": "Henüz saha raporu yok. Denedin mi? Anlat.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} kısmen",
+        "count__plural=*": "{display} kısmen"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Bildir",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Saha raporları: {works__number} çalışıyor, {partial__number} kısmen, {broken__number} bozuk"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Saha Raporları",
+  "ui_domain_reports_title_on": "{build} için saha raporları",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} çalışıyor",
+        "count__plural=*": "{display} çalışıyor"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} hayatta kalan bunu faydalı buldu",
+        "count__plural=*": "{count__number} hayatta kalan bunu faydalı buldu"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "İçerik üreticinin yanıtı",
+  "ui_domain_review_reply_from": "{name} yanıtladı",
+  "ui_domain_review_used_version": "v{version} kullandı",
+  "ui_domain_review_verified_download": "Bu modu indirdi",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} inceleme",
+        "count__plural=*": "{count__number} inceleme"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Puan dağılımı",
+  "ui_domain_reviews_not_enough": "Puan için henüz yeterli inceleme yok.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yıldız",
+        "count__plural=*": "{count__number} yıldız"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "Kayıt ortasında kaldırılmamalı",
+  "ui_domain_safe_remove_yes": "Kayıt ortasında güvenle kaldırılabilir",
+  "ui_domain_sort_label": "Sırala:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input days",
+        "input percent",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "{days__number} günde {percent} düşüş",
+        "days__plural=*": "{days__number} günde {percent} düşüş"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "{days__number} günde değişiklik yok",
+        "days__plural=*": "{days__number} günde değişiklik yok"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input days",
+        "input percent",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "{days__number} günde {percent} artış",
+        "days__plural=*": "{days__number} günde {percent} artış"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "İndirmeler",
+  "ui_domain_stat_followers": "Takipçiler",
+  "ui_domain_stat_mods": "Modlar",
+  "ui_domain_status_archived": "Arşivlendi",
+  "ui_domain_status_pending": "İnceleme bekliyor",
+  "ui_domain_status_rejected": "Reddedildi",
+  "ui_domain_status_removed": "Kaldırıldı",
+  "ui_domain_status_unlisted": "Listelenmiyor",
+  "ui_domain_tier_cabin": "Kulübe",
+  "ui_domain_tier_campfire": "Kamp ateşi",
+  "ui_domain_tier_fortress": "Kale",
+  "ui_domain_tier_label": "Yapımcı seviyesi",
+  "ui_domain_tier_landmark": "Simge yapı",
+  "ui_domain_tier_lean_to": "Sundurma",
+  "ui_domain_tier_treehouse": "Ağaç ev",
+  "ui_domain_trusted_creator": "Güvenilir içerik üretici",
+  "ui_domain_value_not_declared": "Belirtilmemiş",
+  "ui_domain_value_unknown": "Bilinmiyor",
+  "ui_domain_version_beta": "Beta",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "En yeni",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "Son indirmenden beri yeni",
+  "ui_domain_version_unavailable": "Dosya kullanılamıyor",
+  "ui_domain_version_yanked": "Geri çekildi",
+  "ui_domain_versions_caption": "Sürümler",
+  "ui_domain_versions_col_date": "Çıkış",
+  "ui_domain_versions_col_download": "İndir",
+  "ui_domain_versions_col_downloads": "İndirmeler",
+  "ui_domain_versions_col_game": "Oyun",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Raporlar",
+  "ui_domain_versions_col_size": "Boyut",
+  "ui_domain_versions_col_version": "Sürüm",
+  "ui_domain_versions_empty": "Henüz yayımlanmış sürüm yok.",
+  "ui_domain_view_compact": "Sıkışık",
+  "ui_domain_view_grid": "Izgara",
+  "ui_domain_view_label": "Görünüm",
+  "ui_domain_view_list": "Liste",
+  "ui_domain_visibility_private": "Gizli",
+  "ui_domain_visibility_unlisted": "Listelenmiyor",
   "ui_error_reference": "Ref: {id}",
   "ui_hide_password": "Şifreyi gizle",
   "ui_language": "Dil",

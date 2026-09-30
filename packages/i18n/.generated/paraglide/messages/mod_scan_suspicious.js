@@ -10,7 +10,7 @@ const en_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) =>
 };
 
 const es_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sospechoso: un ranger lo está revisando`)
+	return /** @type {LocalizedString} */ (`Sospechoso: un guardabosques lo está revisando`)
 };
 
 const de_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) =>
 };
 
 const pl_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podejrzany: ranger go sprawdza`)
+	return /** @type {LocalizedString} */ (`Podejrzany: strażnik go sprawdza`)
 };
 
 const pt_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suspeito: um ranger está analisando`)
+	return /** @type {LocalizedString} */ (`Suspeito: um guarda está analisando`)
 };
 
 const ru_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {

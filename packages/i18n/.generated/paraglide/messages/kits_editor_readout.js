@@ -26,7 +26,7 @@ const it_kits_editor_readout = /** @type {(inputs: Kits_Editor_ReadoutInputs) =>
 };
 
 const nl_kits_editor_readout = /** @type {(inputs: Kits_Editor_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Blauwdruk`)
+	return /** @type {LocalizedString} */ (`Bouwtekening`)
 };
 
 const pl_kits_editor_readout = /** @type {(inputs: Kits_Editor_ReadoutInputs) => LocalizedString} */ () => {

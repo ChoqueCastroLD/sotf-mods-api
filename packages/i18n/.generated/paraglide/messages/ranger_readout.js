@@ -10,51 +10,51 @@ const en_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => Localized
 };
 
 const es_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Puesto de guardabosques`)
 };
 
 const de_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Rangerstation`)
 };
 
 const fr_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Poste des rangers`)
 };
 
 const it_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Stazione dei ranger`)
 };
 
 const nl_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Rangerpost`)
 };
 
 const pl_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Posterunek strażników`)
 };
 
 const pt_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Posto dos guardas`)
 };
 
 const ru_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Пост рейнджеров`)
 };
 
 const sv_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Rangerstation`)
 };
 
 const tr_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Korucu İstasyonu`)
 };
 
 const zh_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`护林站`)
 };
 
 const ja_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`レンジャーステーション`)
 };
 
 /**

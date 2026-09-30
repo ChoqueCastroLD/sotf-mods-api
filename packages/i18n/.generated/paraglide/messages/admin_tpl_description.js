@@ -10,7 +10,7 @@ const en_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs
 };
 
 const es_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los motivos que eligen los rangers al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.`)
+	return /** @type {LocalizedString} */ (`Los motivos que eligen los guardabosques al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.`)
 };
 
 const de_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs
 };
 
 const pl_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Powody, które rangerzy wybierają przy zatwierdzaniu, odrzucaniu lub prośbie o zmiany. Autorzy czytają je w swoim języku.`)
+	return /** @type {LocalizedString} */ (`Powody, które strażnicy wybierają przy zatwierdzaniu, odrzucaniu lub prośbie o zmiany. Autorzy czytają je w swoim języku.`)
 };
 
 const pt_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os motivos que os rangers escolhem ao aprovar, rejeitar ou pedir alterações. Os autores os leem no próprio idioma.`)
+	return /** @type {LocalizedString} */ (`Os motivos que os guardas escolhem ao aprovar, rejeitar ou pedir alterações. Os autores os leem no próprio idioma.`)
 };
 
 const ru_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs
 };
 
 const zh_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`巡查员在批准、拒绝或要求修改时选用的理由。作者会以自己的语言看到它们。`)
+	return /** @type {LocalizedString} */ (`护林员在批准、拒绝或要求修改时选用的理由。作者会以自己的语言看到它们。`)
 };
 
 const ja_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {

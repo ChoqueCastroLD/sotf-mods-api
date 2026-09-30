@@ -31,7 +31,7 @@
   "emails_notify_item_compat_broken": "{status, select, broken {Gracze zgłaszają, że {mod} nie działa na buildzie gry {build}} other {Gracze zgłaszają mieszane wyniki dla {mod} na buildzie gry {build}}}",
   "emails_notify_item_compat_acknowledged": "Autor {mod} oznaczył zgłoszony przez Ciebie problem jako naprawiony",
   "emails_notify_item_patch_breaking": "Build gry {build} może psuć mody: sprawdź swoje w Radarze patchy",
-  "emails_notify_item_status": "{status, select, published {{mod} został zatwierdzony i jest już dostępny} rejected {{mod} nie został zatwierdzony} pending {{mod} wymaga zmian przed zatwierdzeniem} archived {{mod} został zarchiwizowany} unlisted {{mod} nie jest już widoczny na listach} removed {{mod} został usunięty z SOTF Mods} other {Status {mod} się zmienił}}",
+  "emails_notify_item_status": "{status, select, published {{mod} został zatwierdzony i jest już dostępny} rejected {{mod} nie został zatwierdzony} pending {{mod} wymaga zmian przed zatwierdzeniem} archived {{mod} został zarchiwizowany} unlisted {{mod} nie jest już widoczny na listach} removed {{mod} został usunięty z SOTF Mods} changes_requested {Strażnicy proszą o zmiany w {mod}} version_approved {Nowa wersja {mod} została zatwierdzona i jest dostępna} version_rejected {Nowa wersja {mod} nie została zatwierdzona} version_changes_requested {Strażnicy proszą o zmiany w nowej wersji {mod}} version_held {Nowa wersja {mod} czeka na sprawdzenie przez strażnika} other {Status {mod} się zmienił}}",
   "emails_notify_item_status_reason": "Powód: {reason}",
   "emails_notify_item_milestone": "{mod} przekroczył {threshold, number} pobrań",
   "emails_notify_item_badge": "Zdobywasz nową odznakę",

@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "No signal matches this filter yet. Try “All”.",
   "signals_show_all": "Show all signals",
   "signals_error_text": "Something went wrong on our side. Try again in a moment.",
-  "signals_more_error": "Older signals didn’t load."
+  "signals_more_error": "Older signals didn’t load.",
+  "signals_status_version_approved": "Version {version} of {mod} was approved and is live",
+  "signals_status_version_rejected": "Version {version} of {mod} was not approved",
+  "signals_status_version_changes_requested": "The Rangers asked for changes to version {version} of {mod}",
+  "signals_status_version_held": "Version {version} of {mod} is on hold for a ranger check"
 }

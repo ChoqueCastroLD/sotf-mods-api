@@ -18,7 +18,7 @@ const de_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) 
 };
 
 const fr_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} a quitté votre sac.`)
+	return /** @type {LocalizedString} */ (`${i?.name} a quitté votre sac à dos.`)
 };
 
 const it_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {

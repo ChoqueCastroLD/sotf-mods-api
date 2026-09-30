@@ -30,7 +30,7 @@ const nl_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavIn
 };
 
 const pl_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kit startowy`)
+	return /** @type {LocalizedString} */ (`Zestaw startowy`)
 };
 
 const pt_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavInputs) => LocalizedString} */ () => {
@@ -38,7 +38,7 @@ const pt_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavIn
 };
 
 const ru_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Стартовый кит`)
+	return /** @type {LocalizedString} */ (`Стартовый набор`)
 };
 
 const sv_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavInputs) => LocalizedString} */ () => {
@@ -50,11 +50,11 @@ const tr_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavIn
 };
 
 const zh_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`新手 Kit`)
+	return /** @type {LocalizedString} */ (`新手套装`)
 };
 
 const ja_content_install_kit_nav = /** @type {(inputs: Content_Install_Kit_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`スターター Kit`)
+	return /** @type {LocalizedString} */ (`スターターキット`)
 };
 
 /**

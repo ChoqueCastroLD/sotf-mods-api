@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} está sendo relatado como {status, select, broken {quebrado} other {instável}} em {build}",
   "signals_compat_fixed_in": "Seu relatório de campo sobre {mod} foi corrigido em {version}",
   "signals_compat_acknowledged": "O autor de {mod} viu seu relatório de campo",
-  "signals_patch_breaking": "A build {build} do jogo pode quebrar mods — confira os seus no Patch Radar",
+  "signals_patch_breaking": "A build {build} do jogo pode quebrar mods — confira os seus no Radar de patches",
   "signals_status_approved": "Seu mod {mod} foi aprovado e está no ar",
   "signals_status_republished": "Seu mod {mod} está público de novo",
   "signals_status_rejected": "Seu mod {mod} foi rejeitado",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Nenhum sinal corresponde a este filtro ainda. Tente “Tudo”.",
   "signals_show_all": "Mostrar todos os sinais",
   "signals_error_text": "Algo deu errado do nosso lado. Tente de novo daqui a pouco.",
-  "signals_more_error": "Não foi possível carregar os sinais anteriores."
+  "signals_more_error": "Não foi possível carregar os sinais anteriores.",
+  "signals_status_version_approved": "A versão {version} de {mod} foi aprovada e já está no ar",
+  "signals_status_version_rejected": "A versão {version} de {mod} não foi aprovada",
+  "signals_status_version_changes_requested": "Os guardas pediram alterações na versão {version} de {mod}",
+  "signals_status_version_held": "A versão {version} de {mod} está retida até a checagem de um guarda"
 }

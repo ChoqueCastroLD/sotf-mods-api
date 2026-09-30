@@ -31,7 +31,7 @@
   "emails_notify_item_compat_broken": "{status, select, broken {Игроки сообщают, что {mod} не работает на сборке игры {build}} other {Игроки сообщают о противоречивых результатах {mod} на сборке игры {build}}}",
   "emails_notify_item_compat_acknowledged": "Автор {mod} отметил проблему, о которой вы сообщили, как исправленную",
   "emails_notify_item_patch_breaking": "Сборка игры {build} может сломать моды: проверьте свои в Радаре патчей",
-  "emails_notify_item_status": "{status, select, published {{mod} одобрен и опубликован} rejected {{mod} не одобрен} pending {{mod} нужно доработать перед одобрением} archived {{mod} отправлен в архив} unlisted {{mod} больше не показывается в списках} removed {{mod} удалён с SOTF Mods} other {Статус {mod} изменился}}",
+  "emails_notify_item_status": "{status, select, published {{mod} одобрен и опубликован} rejected {{mod} не одобрен} pending {{mod} нужно доработать перед одобрением} archived {{mod} отправлен в архив} unlisted {{mod} больше не показывается в списках} removed {{mod} удалён с SOTF Mods} changes_requested {Рейнджеры просят доработать {mod}} version_approved {Новая версия {mod} одобрена и опубликована} version_rejected {Новая версия {mod} не одобрена} version_changes_requested {Рейнджеры просят доработать новую версию {mod}} version_held {Новая версия {mod} ждёт проверки рейнджером} other {Статус {mod} изменился}}",
   "emails_notify_item_status_reason": "Причина: {reason}",
   "emails_notify_item_milestone": "{mod} превысил {threshold, number} скачиваний",
   "emails_notify_item_badge": "Вы получили новый значок",

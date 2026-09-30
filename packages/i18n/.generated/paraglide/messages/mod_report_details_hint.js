@@ -10,7 +10,7 @@ const en_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintIn
 };
 
 const es_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enlaces, versiones o lo que ayude a los rangers. Hasta 2000 caracteres.`)
+	return /** @type {LocalizedString} */ (`Enlaces, versiones o lo que ayude a los guardabosques. Hasta 2000 caracteres.`)
 };
 
 const de_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintIn
 };
 
 const pl_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Linki, wersje lub cokolwiek, co pomoże rangerom. Do 2000 znaków.`)
+	return /** @type {LocalizedString} */ (`Linki, wersje lub cokolwiek, co pomoże strażnikom. Do 2000 znaków.`)
 };
 
 const pt_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Links, versões ou o que ajudar os rangers. Até 2.000 caracteres.`)
+	return /** @type {LocalizedString} */ (`Links, versões ou o que ajudar os guardas. Até 2.000 caracteres.`)
 };
 
 const ru_mod_report_details_hint = /** @type {(inputs: Mod_Report_Details_HintInputs) => LocalizedString} */ () => {

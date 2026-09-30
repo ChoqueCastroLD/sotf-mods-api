@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Inserisci un link completo che inizi con https://.",
   "errors_field_file_too_large": "Il file supera {limit}.",
   "errors_permission_title": "Solo per i ranger",
-  "errors_permission_detail": "Ti serve un ruolo diverso per aprire questa pagina. Torna indietro o accedi con un altro account."
+  "errors_permission_detail": "Ti serve un ruolo diverso per aprire questa pagina. Torna indietro o accedi con un altro account.",
+  "errors_not_found_readout": "Nessun segnale · Fuori mappa",
+  "errors_gone_readout": "Sentiero chiuso · Rimosso per sempre",
+  "errors_server_readout": "Fuoco spento · Errore 500",
+  "errors_server_retry": "Riprova",
+  "errors_server_status": "Controlla lo stato su Discord",
+  "errors_not_found_install": "Come installare le mod"
 }

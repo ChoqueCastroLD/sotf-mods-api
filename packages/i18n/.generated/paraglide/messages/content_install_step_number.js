@@ -19,7 +19,7 @@ const de_content_install_step_number = /** @type {(inputs: Content_Install_Step_
 };
 
 const fr_content_install_step_number = /** @type {(inputs: Content_Install_Step_NumberInputs) => LocalizedString} */ (i) => {
-	const step__number = registry.number("fr", i?.step, {});return /** @type {LocalizedString} */ (`Étape ${step__number} :`)
+	const step__number = registry.number("fr", i?.step, {});return /** @type {LocalizedString} */ (`Étape ${step__number} :`)
 };
 
 const it_content_install_step_number = /** @type {(inputs: Content_Install_Step_NumberInputs) => LocalizedString} */ (i) => {

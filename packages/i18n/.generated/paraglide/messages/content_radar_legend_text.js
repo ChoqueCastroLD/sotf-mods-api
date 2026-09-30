@@ -19,7 +19,7 @@ const de_content_radar_legend_text = /** @type {(inputs: Content_Radar_Legend_Te
 };
 
 const fr_content_radar_legend_text = /** @type {(inputs: Content_Radar_Legend_TextInputs) => LocalizedString} */ (i) => {
-	const min__number = registry.number("fr", i?.min, {});return /** @type {LocalizedString} */ (`Les rapports sont pondérés : le test de l’auteur compte double, les créateurs vérifiés 1,5×, les comptes tout neufs la moitié. Sous ${min__number} rapports pondérés, un mod reste non testé ; à partir de ${i?.works} de rapports positifs, il fonctionne ; à partir de ${i?.broken} de rapports négatifs, il est cassé ; sinon, c’est mitigé.`)
+	const min__number = registry.number("fr", i?.min, {});return /** @type {LocalizedString} */ (`Les rapports sont pondérés : le test de l’auteur compte double, les créateurs vérifiés 1,5×, les comptes tout neufs la moitié. Sous ${min__number} rapports pondérés, un mod reste non testé ; à partir de ${i?.works} de rapports positifs, il fonctionne ; à partir de ${i?.broken} de rapports négatifs, il est cassé ; sinon, c’est mitigé.`)
 };
 
 const it_content_radar_legend_text = /** @type {(inputs: Content_Radar_Legend_TextInputs) => LocalizedString} */ (i) => {

@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Введите полную ссылку, начинающуюся с https://.",
   "errors_field_file_too_large": "Файл больше {limit}.",
   "errors_permission_title": "Только для рейнджеров",
-  "errors_permission_detail": "Чтобы открыть эту страницу, нужна другая роль. Вернитесь назад или войдите в другой аккаунт."
+  "errors_permission_detail": "Чтобы открыть эту страницу, нужна другая роль. Вернитесь назад или войдите в другой аккаунт.",
+  "errors_not_found_readout": "Нет сигнала · За пределами карты",
+  "errors_gone_readout": "Тропа закрыта · Удалено навсегда",
+  "errors_server_readout": "Костёр погас · Ошибка 500",
+  "errors_server_retry": "Повторить",
+  "errors_server_status": "Статус в Discord",
+  "errors_not_found_install": "Как установить моды"
 }

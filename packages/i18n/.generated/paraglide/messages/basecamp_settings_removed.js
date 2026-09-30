@@ -18,7 +18,7 @@ const de_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_Remov
 };
 
 const fr_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retiré par les rangers. Contacte-les si tu penses qu’il s’agit d’une erreur.`)
+	return /** @type {LocalizedString} */ (`Retiré par les rangers. Contactez-les si vous pensez qu’il s’agit d’une erreur.`)
 };
 
 const it_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {

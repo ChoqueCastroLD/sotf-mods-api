@@ -18,7 +18,7 @@ const de_basecamp_listing_language_hint = /** @type {(inputs: Basecamp_Listing_L
 };
 
 const fr_basecamp_listing_language_hint = /** @type {(inputs: Basecamp_Listing_Language_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La langue dans laquelle tu as écrit la description.`)
+	return /** @type {LocalizedString} */ (`La langue dans laquelle vous avez écrit la description.`)
 };
 
 const it_basecamp_listing_language_hint = /** @type {(inputs: Basecamp_Listing_Language_HintInputs) => LocalizedString} */ () => {

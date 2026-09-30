@@ -31,7 +31,7 @@
   "emails_notify_item_compat_broken": "{status, select, broken {Spelare rapporterar att {mod} inte fungerar på spelbygget {build}} other {Spelare rapporterar blandade resultat för {mod} på spelbygget {build}}}",
   "emails_notify_item_compat_acknowledged": "Skaparen av {mod} markerade problemet du rapporterade som åtgärdat",
   "emails_notify_item_patch_breaking": "Spelbygget {build} kan förstöra moddar: kolla dina i Patchradarn",
-  "emails_notify_item_status": "{status, select, published {{mod} har godkänts och är publicerad} rejected {{mod} godkändes inte} pending {{mod} behöver ändras innan den kan godkännas} archived {{mod} har arkiverats} unlisted {{mod} visas inte längre i listorna} removed {{mod} har tagits bort från SOTF Mods} other {Statusen för {mod} har ändrats}}",
+  "emails_notify_item_status": "{status, select, published {{mod} har godkänts och är publicerad} rejected {{mod} godkändes inte} pending {{mod} behöver ändras innan den kan godkännas} archived {{mod} har arkiverats} unlisted {{mod} visas inte längre i listorna} removed {{mod} har tagits bort från SOTF Mods} changes_requested {Rangers vill att du ändrar {mod}} version_approved {En ny version av {mod} har godkänts och är publicerad} version_rejected {En ny version av {mod} godkändes inte} version_changes_requested {Rangers vill ha ändringar i en ny version av {mod}} version_held {En ny version av {mod} väntar på att en ranger ska kolla den} other {Statusen för {mod} har ändrats}}",
   "emails_notify_item_status_reason": "Anledning: {reason}",
   "emails_notify_item_milestone": "{mod} har passerat {threshold, number} nedladdningar",
   "emails_notify_item_badge": "Du har fått ett nytt märke",

@@ -383,7 +383,7 @@
     }
   ],
   "admin_range_label": "Tidsperiod",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Admin · Rangerstation",
   "admin_reauth_action": "Logga in igen",
   "admin_reauth_text": "Adminverktygen kräver en inloggning från de senaste 12 timmarna. Logga in igen så kommer du direkt tillbaka hit.",
   "admin_reauth_title": "Bekräfta att det är du",
@@ -2734,8 +2734,8 @@
   "content_radar_pending_title": "Väntar på fältrapporter",
   "content_radar_released": "Släppt {date}",
   "content_radar_report": "Rapportera",
-  "content_radar_seo_title": "Fungerar SOTF-moddar på patch {build}? – Patch Radar",
-  "content_radar_seo_title_generic": "Fungerar SOTF-moddar på senaste patchen? – Patch Radar",
+  "content_radar_seo_title": "Fungerar SOTF-moddar på patch {build}? – Patchradar",
+  "content_radar_seo_title_generic": "Fungerar SOTF-moddar på senaste patchen? – Patchradar",
   "content_radar_stat_broken": "Trasiga",
   "content_radar_stat_pending": "Behöver rapporter",
   "content_radar_stat_works": "Fungerar",
@@ -3144,6 +3144,11 @@
         "status=archived": "{mod} har arkiverats",
         "status=unlisted": "{mod} visas inte längre i listorna",
         "status=removed": "{mod} har tagits bort från SOTF Mods",
+        "status=changes_requested": "Rangers vill att du ändrar {mod}",
+        "status=version_approved": "En ny version av {mod} har godkänts och är publicerad",
+        "status=version_rejected": "En ny version av {mod} godkändes inte",
+        "status=version_changes_requested": "Rangers vill ha ändringar i en ny version av {mod}",
+        "status=version_held": "En ny version av {mod} väntar på att en ranger ska kolla den",
         "status=*": "Statusen för {mod} har ändrats"
       }
     }
@@ -3322,6 +3327,7 @@
       }
     }
   ],
+  "errors_gone_readout": "Leden stängd · Borttaget för gott",
   "errors_gone_text": "Det som fanns här har tagits bort för gott. Utforska andra moddar.",
   "errors_gone_title": "Den här stigen är stängd.",
   "errors_login_mismatch": "E-postadressen och lösenordet stämmer inte. Försök igen eller återställ ditt lösenord.",
@@ -3329,12 +3335,17 @@
   "errors_network_retrying": "Ingen signal. Försöker igen…",
   "errors_network_title": "Ingen signal",
   "errors_not_found_home": "Tillbaka till stigen",
+  "errors_not_found_install": "Så installerar du moddar",
   "errors_not_found_popular": "Populära moddar",
+  "errors_not_found_readout": "Ingen signal · Utanför kartan",
   "errors_not_found_text": "Den här sidan finns inte på vår karta. Något bland träden iakttar dig – vi tar oss tillbaka.",
   "errors_not_found_title": "Du har gått vilse från stigen.",
   "errors_permission_detail": "Du behöver en annan roll för att öppna den här sidan. Gå tillbaka eller logga in med ett annat konto.",
   "errors_permission_title": "Endast för rangers",
   "errors_reference": "Ref.: {id}",
+  "errors_server_readout": "Lägerelden slocknad · Fel 500",
+  "errors_server_retry": "Försök igen",
+  "errors_server_status": "Se status på Discord",
   "errors_server_text": "Vi jobbar på det. Ladda om sidan om en minut eller gå tillbaka till startsidan.",
   "errors_server_title": "Något gick sönder i baslägret.",
   "errors_validation_summary": [
@@ -6090,7 +6101,7 @@
   "ranger_previous": "Föregående",
   "ranger_queue_description": "Äldst och mest riskfyllt först. Varje beslut loggas och skaparen meddelas.",
   "ranger_queue_title": "Modereringskö",
-  "ranger_readout": "Ranger Station",
+  "ranger_readout": "Rangerstation",
   "ranger_reason_broken": "Fungerar inte",
   "ranger_reason_harassment": "Trakasserier",
   "ranger_reason_illegal": "Olagligt innehåll",
@@ -7116,7 +7127,7 @@
   "signals_page_readout": "Radiologg",
   "signals_page_title": "Signaler",
   "signals_panel_title": "Signaler",
-  "signals_patch_breaking": "Spelbygget {build} kan förstöra moddar — kolla dina i Patch Radar",
+  "signals_patch_breaking": "Spelbygget {build} kan förstöra moddar — kolla dina i Patchradarn",
   "signals_preferences": "Aviseringsinställningar",
   "signals_report_dismissed": "Din anmälan har granskats — ingen åtgärd behövdes",
   "signals_report_resolved": "Din anmälan har granskats och åtgärder har vidtagits",
@@ -7151,6 +7162,10 @@
   "signals_status_removed": "Din modd {mod} har tagits bort",
   "signals_status_republished": "Din modd {mod} är offentlig igen",
   "signals_status_unlisted": "Din modd {mod} har tagits bort från listorna",
+  "signals_status_version_approved": "Version {version} av {mod} har godkänts och är publicerad",
+  "signals_status_version_changes_requested": "Rangers vill ha ändringar i version {version} av {mod}",
+  "signals_status_version_held": "Version {version} av {mod} väntar på att en ranger ska kolla den",
+  "signals_status_version_rejected": "Version {version} av {mod} godkändes inte",
   "signals_unknown_mod": "en modd",
   "signals_unread_prefix": "Oläst:",
   "signals_version_published": "{mod} {version} är ute — du följer den",
@@ -7475,6 +7490,453 @@
   "ui_clear": "Rensa",
   "ui_close": "Stäng",
   "ui_dismiss": "Avfärda",
+  "ui_domain_ad_label": "Annons",
+  "ui_domain_ad_notice": "Annonser håller nedladdningarna gratis. Logga in för att dölja dem.",
+  "ui_domain_award_build_of_month": "Månadens bygge",
+  "ui_domain_award_mod_of_month": "Månadens modd",
+  "ui_domain_award_mod_of_week": "Veckans modd",
+  "ui_domain_award_staff_pick": "Teamets val",
+  "ui_domain_badge_featured": "Utvalt",
+  "ui_domain_badge_locked": "Låst",
+  "ui_domain_badge_new": "Nya",
+  "ui_domain_badge_nsfw": "18+",
+  "ui_domain_badge_progress": "{current} / {target}",
+  "ui_domain_badge_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "×{count__number}"
+      }
+    }
+  ],
+  "ui_domain_badge_updated": "Uppdaterad",
+  "ui_domain_build_buildshare": "BuildShare {version}",
+  "ui_domain_build_pieces": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} del",
+        "count__plural=*": "{count__number} delar"
+      }
+    }
+  ],
+  "ui_domain_by_author": "av {author}",
+  "ui_domain_capsule_conflicts": "Konflikter",
+  "ui_domain_capsule_dedicated": "Dedikerad server",
+  "ui_domain_capsule_dependencies": "Beroenden",
+  "ui_domain_capsule_game_build": "Spelbuild",
+  "ui_domain_capsule_loader": "RedLoader",
+  "ui_domain_capsule_multiplayer": "Flerspelare",
+  "ui_domain_capsule_platform": "Plattform",
+  "ui_domain_capsule_safe_remove": "Ta bort mitt i en sparfil",
+  "ui_domain_chart_view_table": "Visa som tabell",
+  "ui_domain_comment_badge_author": "Skapare",
+  "ui_domain_comment_badge_ranger": "Ranger",
+  "ui_domain_comment_bug": "Felrapport",
+  "ui_domain_comment_bug_fixed_in": "Åtgärdat i v{version}",
+  "ui_domain_comment_bug_on": "Buggrapport · v{version}",
+  "ui_domain_comment_deleted": "Den här kommentaren har tagits bort.",
+  "ui_domain_comment_image": "Bild bifogad till kommentaren",
+  "ui_domain_comment_pending": "Väntar på att en ranger ska kolla det.",
+  "ui_domain_comment_pinned": "Fästa",
+  "ui_domain_comment_reactions": "Reaktioner",
+  "ui_domain_comment_solution": "Lösning",
+  "ui_domain_compat_broken": "Trasig",
+  "ui_domain_compat_broken_on": "Trasig på {build}",
+  "ui_domain_compat_mixed": "Blandade rapporter",
+  "ui_domain_compat_mixed_on": "Blandade rapporter på {build}",
+  "ui_domain_compat_untested": "Inte verifierad",
+  "ui_domain_compat_untested_on": "Inte verifierad på {build}",
+  "ui_domain_compat_works": "Fungerar",
+  "ui_domain_compat_works_on": "Fungerar på {build}",
+  "ui_domain_conflicts_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} konflikt",
+        "count__plural=*": "{count__number} konflikter"
+      }
+    }
+  ],
+  "ui_domain_conflicts_none": "Inga kända",
+  "ui_domain_consent_accept": "Godkänn",
+  "ui_domain_consent_label": "Samtycke till cookies",
+  "ui_domain_consent_policy": "Cookiepolicy",
+  "ui_domain_consent_preferences": "Inställningar",
+  "ui_domain_consent_reject": "Avvisa",
+  "ui_domain_consent_text": "Vi använder cookies för annonser och anonym statistik. Nedladdningar fungerar oavsett.",
+  "ui_domain_creator_top_mod": "Toppmodd: {mod}",
+  "ui_domain_curated_by": "sammanställt av {author}",
+  "ui_domain_dedicated_no": "Stöds inte",
+  "ui_domain_dedicated_partial": "Delvis",
+  "ui_domain_dedicated_yes": "Stöds",
+  "ui_domain_deleted_user": "Raderad överlevare",
+  "ui_domain_dependencies_conflicts_title": "Krockar med",
+  "ui_domain_dependencies_empty": "Inga beroenden. Släpp in den och spela.",
+  "ui_domain_dependencies_none": "Inga",
+  "ui_domain_dependencies_optional_title": "Fungerar bättre med",
+  "ui_domain_dependencies_required_title": "Kräver",
+  "ui_domain_dependencies_summary": [
+    {
+      "declarations": [
+        "input required",
+        "input optional",
+        "local required__number = required: number",
+        "local optional__number = optional: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{required__number} krävs · {optional__number} valfria"
+      }
+    }
+  ],
+  "ui_domain_dependency_kind_conflicts": "Krockar med",
+  "ui_domain_dependency_kind_optional": "Valfritt",
+  "ui_domain_dependency_kind_required": "Kräver",
+  "ui_domain_dependency_state_archived": "Arkiverad",
+  "ui_domain_dependency_state_missing": "Finns inte på SOTF Mods",
+  "ui_domain_dependency_state_ok": "Tillgänglig",
+  "ui_domain_dependency_state_removed": "Borttagen",
+  "ui_domain_dependency_state_unlisted": "Olistad",
+  "ui_domain_download": "Ladda ner",
+  "ui_domain_download_all_versions": "Alla versioner",
+  "ui_domain_download_done_hint": "Lägg den i spelets Mods-mapp och starta spelet.",
+  "ui_domain_download_done_label": "Nedladdad",
+  "ui_domain_download_other_versions": "Andra versioner",
+  "ui_domain_download_version": "Ladda ner v{version}",
+  "ui_domain_download_version_size": "Ladda ner v{version} · {size}",
+  "ui_domain_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} nedladdning",
+        "count__plural=*": "{display} nedladdningar"
+      }
+    }
+  ],
+  "ui_domain_edited": "redigerad",
+  "ui_domain_feature_cta": "Ta en titt",
+  "ui_domain_filter_clear": "Rensa filter",
+  "ui_domain_filter_exclude": "Uteslut {label}",
+  "ui_domain_filter_excluded": "utesluten",
+  "ui_domain_filter_included": "inkluderad",
+  "ui_domain_filter_unexclude": "Sluta utesluta {label}",
+  "ui_domain_gallery_image": [
+    {
+      "declarations": [
+        "input index",
+        "input total",
+        "local index__number = index: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Skärmbild {index__number} av {total__number}"
+      }
+    }
+  ],
+  "ui_domain_gallery_label": "Galleri",
+  "ui_domain_gallery_video": "Video",
+  "ui_domain_hidden_by_ranger": "Dold av en ranger. Bara du och rangers kan se det.",
+  "ui_domain_hidden_by_ranger_reason": "Dold av en ranger: {reason}",
+  "ui_domain_kit_mods": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modd",
+        "count__plural=*": "{count__number} moddar"
+      }
+    }
+  ],
+  "ui_domain_multiplayer_all_players": "Alla behöver den",
+  "ui_domain_multiplayer_client_side": "Bara du behöver den",
+  "ui_domain_multiplayer_host_only": "Endast värden",
+  "ui_domain_multiplayer_singleplayer_only": "Endast solo",
+  "ui_domain_platform_client": "Klient",
+  "ui_domain_platform_server": "Server",
+  "ui_domain_platform_universal": "Universell",
+  "ui_domain_rank_builder": "Byggare",
+  "ui_domain_rank_castaway": "Skeppsbruten",
+  "ui_domain_rank_forager": "Samlare",
+  "ui_domain_rank_label": "Överlevarrang",
+  "ui_domain_rank_legend": "Legend",
+  "ui_domain_rank_pathfinder": "Stigfinnare",
+  "ui_domain_rank_scavenger": "Asätare",
+  "ui_domain_rank_trapper": "Pälsjägare",
+  "ui_domain_rank_veteran": "Veteran",
+  "ui_domain_rating_out_of": "Betyg {rating} av 5",
+  "ui_domain_rating_summary": [
+    {
+      "declarations": [
+        "input rating",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Betyg {rating} av 5 från {count__number} recension",
+        "count__plural=*": "Betyg {rating} av 5 från {count__number} recensioner"
+      }
+    }
+  ],
+  "ui_domain_reaction_fire": "Eld",
+  "ui_domain_reaction_heart": "Hjärta",
+  "ui_domain_reaction_laugh": "Skratt",
+  "ui_domain_reaction_party": "Fest",
+  "ui_domain_reaction_pray": "Tack",
+  "ui_domain_reaction_thumbs_up": "Tummen upp",
+  "ui_domain_reports_broken": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} trasig",
+        "count__plural=*": "{display} trasiga"
+      }
+    }
+  ],
+  "ui_domain_reports_by_build": "Per spelbygge",
+  "ui_domain_reports_empty": "Inga fältrapporter än. Har du testat? Rapportera.",
+  "ui_domain_reports_partial": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} delvis",
+        "count__plural=*": "{display} delvis"
+      }
+    }
+  ],
+  "ui_domain_reports_report": "Rapportera",
+  "ui_domain_reports_summary": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Fältrapporter: {works__number} fungerar, {partial__number} delvis, {broken__number} trasig"
+      }
+    }
+  ],
+  "ui_domain_reports_title": "Fältrapporter",
+  "ui_domain_reports_title_on": "Fältrapporter på {build}",
+  "ui_domain_reports_works": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} fungerar",
+        "count__plural=*": "{display} fungerar"
+      }
+    }
+  ],
+  "ui_domain_review_helpful_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} överlevare tyckte att detta var till hjälp",
+        "count__plural=*": "{count__number} överlevare tyckte att detta var till hjälp"
+      }
+    }
+  ],
+  "ui_domain_review_reply": "Skaparens svar",
+  "ui_domain_review_reply_from": "Svar från {name}",
+  "ui_domain_review_used_version": "Använde v{version}",
+  "ui_domain_review_verified_download": "Har laddat ner moddet",
+  "ui_domain_reviews_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} recension",
+        "count__plural=*": "{count__number} recensioner"
+      }
+    }
+  ],
+  "ui_domain_reviews_histogram": "Fördelning av betyg",
+  "ui_domain_reviews_not_enough": "Inte tillräckligt många recensioner för ett betyg än.",
+  "ui_domain_reviews_stars": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} stjärna",
+        "count__plural=*": "{count__number} stjärnor"
+      }
+    }
+  ],
+  "ui_domain_safe_remove_no": "Inte säker att ta bort mitt i en sparfil",
+  "ui_domain_safe_remove_yes": "Säker att ta bort mitt i en sparfil",
+  "ui_domain_sort_label": "Sortera:",
+  "ui_domain_stat_delta_down": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Ned {percent} på {days__number} dag",
+        "days__plural=*": "Ned {percent} på {days__number} dagar"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_flat": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Oförändrat på {days__number} dag",
+        "days__plural=*": "Oförändrat på {days__number} dagar"
+      }
+    }
+  ],
+  "ui_domain_stat_delta_up": [
+    {
+      "declarations": [
+        "input percent",
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "Upp {percent} på {days__number} dag",
+        "days__plural=*": "Upp {percent} på {days__number} dagar"
+      }
+    }
+  ],
+  "ui_domain_stat_downloads": "Nedladdningar",
+  "ui_domain_stat_followers": "Följare",
+  "ui_domain_stat_mods": "Moddar",
+  "ui_domain_status_archived": "Arkiverad",
+  "ui_domain_status_pending": "Väntar på granskning",
+  "ui_domain_status_rejected": "Avvisad",
+  "ui_domain_status_removed": "Borttagen",
+  "ui_domain_status_unlisted": "Olistad",
+  "ui_domain_tier_cabin": "Stuga",
+  "ui_domain_tier_campfire": "Lägereld",
+  "ui_domain_tier_fortress": "Fästning",
+  "ui_domain_tier_label": "Skaparnivå",
+  "ui_domain_tier_landmark": "Landmärke",
+  "ui_domain_tier_lean_to": "Vindskydd",
+  "ui_domain_tier_treehouse": "Trädkoja",
+  "ui_domain_trusted_creator": "Betrodd skapare",
+  "ui_domain_value_not_declared": "Inte angivet",
+  "ui_domain_value_unknown": "Okänd",
+  "ui_domain_version_beta": "Beta",
+  "ui_domain_version_label": "v{version}",
+  "ui_domain_version_latest": "Senaste",
+  "ui_domain_version_min": "{version}+",
+  "ui_domain_version_new_since": "Ny sedan din senaste nedladdning",
+  "ui_domain_version_unavailable": "Filen är inte tillgänglig",
+  "ui_domain_version_yanked": "Tillbakadragen",
+  "ui_domain_versions_caption": "Versioner",
+  "ui_domain_versions_col_date": "Släppt",
+  "ui_domain_versions_col_download": "Ladda ner",
+  "ui_domain_versions_col_downloads": "Nedladdningar",
+  "ui_domain_versions_col_game": "Spel",
+  "ui_domain_versions_col_loader": "RedLoader",
+  "ui_domain_versions_col_reports": "Rapporter",
+  "ui_domain_versions_col_size": "Storlek",
+  "ui_domain_versions_col_version": "Version",
+  "ui_domain_versions_empty": "Inga versioner publicerade än.",
+  "ui_domain_view_compact": "Kompakt",
+  "ui_domain_view_grid": "Rutnät",
+  "ui_domain_view_label": "Visning",
+  "ui_domain_view_list": "Lista",
+  "ui_domain_visibility_private": "Privat",
+  "ui_domain_visibility_unlisted": "Olistad",
   "ui_error_reference": "Ref: {id}",
   "ui_hide_password": "Dölj lösenord",
   "ui_language": "Språk",

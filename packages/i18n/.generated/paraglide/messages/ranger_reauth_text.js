@@ -10,7 +10,7 @@ const en_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => L
 };
 
 const es_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Las acciones de ranger necesitan un inicio de sesión de las últimas 12 horas. Vuelve a iniciar sesión para continuar.`)
+	return /** @type {LocalizedString} */ (`Las acciones de guardabosques necesitan un inicio de sesión de las últimas 12 horas. Vuelve a iniciar sesión para continuar.`)
 };
 
 const de_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => L
 };
 
 const pl_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Działania rangera wymagają logowania z ostatnich 12 godzin. Zaloguj się ponownie, aby kontynuować.`)
+	return /** @type {LocalizedString} */ (`Działania strażnika wymagają logowania z ostatnich 12 godzin. Zaloguj się ponownie, aby kontynuować.`)
 };
 
 const pt_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ações de ranger exigem um login feito nas últimas 12 horas. Entre de novo para continuar.`)
+	return /** @type {LocalizedString} */ (`Ações de guarda exigem um login feito nas últimas 12 horas. Entre de novo para continuar.`)
 };
 
 const ru_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => L
 };
 
 const tr_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger işlemleri son 12 saat içinde yapılmış bir giriş gerektirir. Devam etmek için yeniden giriş yapın.`)
+	return /** @type {LocalizedString} */ (`Korucu işlemleri son 12 saat içinde yapılmış bir giriş gerektirir. Devam etmek için yeniden giriş yap.`)
 };
 
 const zh_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`巡林员操作需要 12 小时内的登录。请重新登录后继续。`)
+	return /** @type {LocalizedString} */ (`护林员操作需要 12 小时内的登录。请重新登录后继续。`)
 };
 
 const ja_ranger_reauth_text = /** @type {(inputs: Ranger_Reauth_TextInputs) => LocalizedString} */ () => {

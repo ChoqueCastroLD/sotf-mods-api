@@ -22,7 +22,7 @@ const fr_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) =>
 };
 
 const it_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessuna patch del gioco sul radar per ora. Le segnalazioni sul campo partono con il prossimo aggiornamento.`)
+	return /** @type {LocalizedString} */ (`Nessuna patch del gioco sul radar per ora. I rapporti sul campo partono con il prossimo aggiornamento.`)
 };
 
 const nl_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) => LocalizedString} */ () => {
@@ -30,7 +30,7 @@ const nl_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) =>
 };
 
 const pl_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Na radarze nie ma jeszcze żadnego patcha gry. Raporty z terenu ruszą przy następnej aktualizacji.`)
+	return /** @type {LocalizedString} */ (`Na radarze nie ma jeszcze żadnego patcha gry. Raporty terenowe ruszą przy następnej aktualizacji.`)
 };
 
 const pt_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) =>
 };
 
 const ja_landing_radar_empty = /** @type {(inputs: Landing_Radar_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レーダーにはまだゲームパッチがありません。現地レポートは次の更新から始まります。`)
+	return /** @type {LocalizedString} */ (`レーダーにはまだゲームパッチがありません。フィールドレポートは次の更新から始まります。`)
 };
 
 /**

@@ -10,7 +10,7 @@ const en_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs
 };
 
 const es_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los rangers solo pueden actuar sobre cuentas con un rol inferior al suyo.`)
+	return /** @type {LocalizedString} */ (`Los guardabosques solo pueden actuar sobre cuentas con un rol inferior al suyo.`)
 };
 
 const de_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs
 };
 
 const pl_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerzy mogą działać tylko na kontach z niższą rolą niż ich własna.`)
+	return /** @type {LocalizedString} */ (`Strażnicy mogą działać tylko na kontach z niższą rolą niż ich własna.`)
 };
 
 const pt_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers só podem agir sobre contas com papel abaixo do seu.`)
+	return /** @type {LocalizedString} */ (`Guardas só podem agir sobre contas com papel abaixo do seu.`)
 };
 
 const ru_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs
 };
 
 const tr_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger’lar yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.`)
+	return /** @type {LocalizedString} */ (`Korucular yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.`)
 };
 
 const zh_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`巡林员只能处理角色低于自己的账号。`)
+	return /** @type {LocalizedString} */ (`护林员只能处理角色低于自己的账号。`)
 };
 
 const ja_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {

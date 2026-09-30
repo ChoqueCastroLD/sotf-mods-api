@@ -18,11 +18,11 @@ const de_content_radar_description_generic = /** @type {(inputs: Content_Radar_D
 };
 
 const fr_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quels mods Sons of the Forest fonctionnent sur le patch actuel du jeu : état de RedLoader et rapports de terrain des joueurs pour les 50 mods les plus téléchargés.`)
+	return /** @type {LocalizedString} */ (`Quels mods Sons of the Forest fonctionnent sur le patch actuel du jeu : état de RedLoader et rapports de terrain des joueurs pour les 50 mods les plus téléchargés.`)
 };
 
 const it_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quali mod di Sons of the Forest funzionano con la patch attuale del gioco: stato di RedLoader e segnalazioni sul campo dei giocatori per le 50 mod più scaricate.`)
+	return /** @type {LocalizedString} */ (`Quali mod di Sons of the Forest funzionano con la patch attuale del gioco: stato di RedLoader e rapporti sul campo dei giocatori per le 50 mod più scaricate.`)
 };
 
 const nl_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_content_radar_description_generic = /** @type {(inputs: Content_Radar_D
 };
 
 const pl_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Które mody do Sons of the Forest działają na obecnej łatce gry: stan RedLoadera i zgłoszenia terenowe graczy dla 50 najczęściej pobieranych modów.`)
+	return /** @type {LocalizedString} */ (`Które mody do Sons of the Forest działają na obecnej łatce gry: stan RedLoadera i raporty terenowe graczy dla 50 najczęściej pobieranych modów.`)
 };
 
 const pt_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quais mods de Sons of the Forest funcionam no patch atual do jogo: status do RedLoader e relatos de campo dos jogadores para os 50 mods mais baixados.`)
+	return /** @type {LocalizedString} */ (`Quais mods de Sons of the Forest funcionam no patch atual do jogo: status do RedLoader e relatórios de campo dos jogadores para os 50 mods mais baixados.`)
 };
 
 const ru_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_content_radar_description_generic = /** @type {(inputs: Content_Radar_D
 };
 
 const ja_content_radar_description_generic = /** @type {(inputs: Content_Radar_Description_GenericInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`現在のゲームパッチで動く Sons of the Forest Mod：RedLoader の状態と、ダウンロード数上位 50 の Mod に対するプレイヤーのフィールドレポート。`)
+	return /** @type {LocalizedString} */ (`現在のゲームパッチで動く Sons of the Forest MOD：RedLoader の状態と、ダウンロード数上位 50 の MOD に対するプレイヤーのフィールドレポート。`)
 };
 
 /**

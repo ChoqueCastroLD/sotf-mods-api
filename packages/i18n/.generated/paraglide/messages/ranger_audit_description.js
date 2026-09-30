@@ -10,7 +10,7 @@ const en_ranger_audit_description = /** @type {(inputs: Ranger_Audit_Description
 };
 
 const es_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cada acción de rangers y admins: quién, qué, antes y después, y por qué. Las entradas no se pueden editar.`)
+	return /** @type {LocalizedString} */ (`Cada acción de guardabosques y admins: quién, qué, antes y después, y por qué. Las entradas no se pueden editar.`)
 };
 
 const de_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_ranger_audit_description = /** @type {(inputs: Ranger_Audit_Description
 };
 
 const pl_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Każde działanie rangerów i administratorów: kto, co, przed i po oraz dlaczego. Wpisów nie można edytować.`)
+	return /** @type {LocalizedString} */ (`Każde działanie strażników i administratorów: kto, co, przed i po oraz dlaczego. Wpisów nie można edytować.`)
 };
 
 const pt_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cada ação de rangers e admins: quem, o quê, antes e depois, e por quê. As entradas não podem ser editadas.`)
+	return /** @type {LocalizedString} */ (`Cada ação de guardas e admins: quem, o quê, antes e depois, e por quê. As entradas não podem ser editadas.`)
 };
 
 const ru_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_ranger_audit_description = /** @type {(inputs: Ranger_Audit_Description
 };
 
 const tr_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.`)
+	return /** @type {LocalizedString} */ (`Korucuların ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.`)
 };
 
 const zh_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`巡林员和管理员的每项操作：谁、做了什么、前后变化以及原因。记录不可编辑。`)
+	return /** @type {LocalizedString} */ (`护林员和管理员的每项操作：谁、做了什么、前后变化以及原因。记录不可编辑。`)
 };
 
 const ja_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_basecamp_inbox_state_filter_open = /** @type {(inputs: Basecamp_Inbox_S
 };
 
 const fr_basecamp_inbox_state_filter_open = /** @type {(inputs: Basecamp_Inbox_State_Filter_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En attente de toi`)
+	return /** @type {LocalizedString} */ (`En attente de vous`)
 };
 
 const it_basecamp_inbox_state_filter_open = /** @type {(inputs: Basecamp_Inbox_State_Filter_OpenInputs) => LocalizedString} */ () => {

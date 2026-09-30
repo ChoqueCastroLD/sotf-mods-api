@@ -30,7 +30,7 @@ const nl_mod_banner_broken_action = /** @type {(inputs: Mod_Banner_Broken_Action
 };
 
 const pl_mod_banner_broken_action = /** @type {(inputs: Mod_Banner_Broken_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dodaj swój raport z terenu`)
+	return /** @type {LocalizedString} */ (`Dodaj swój raport terenowy`)
 };
 
 const pt_mod_banner_broken_action = /** @type {(inputs: Mod_Banner_Broken_ActionInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_me_onboarding_follow_hint = /** @type {(inputs: Me_Onboarding_Follow_Hi
 };
 
 const fr_me_onboarding_follow_hint = /** @type {(inputs: Me_Onboarding_Follow_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Touchez ♥ pour le ranger dans votre sac et être prévenu de ses mises à jour.`)
+	return /** @type {LocalizedString} */ (`Touchez ♥ pour le ranger dans votre sac à dos et être prévenu de ses mises à jour.`)
 };
 
 const it_me_onboarding_follow_hint = /** @type {(inputs: Me_Onboarding_Follow_HintInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_ui_error_reference = /** @type {(inputs: Ui_Error_ReferenceInputs) => L
 };
 
 const fr_ui_error_reference = /** @type {(inputs: Ui_Error_ReferenceInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Réf. : ${i?.id}`)
+	return /** @type {LocalizedString} */ (`Réf. : ${i?.id}`)
 };
 
 const it_ui_error_reference = /** @type {(inputs: Ui_Error_ReferenceInputs) => LocalizedString} */ (i) => {

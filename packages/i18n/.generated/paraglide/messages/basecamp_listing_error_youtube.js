@@ -18,7 +18,7 @@ const de_basecamp_listing_error_youtube = /** @type {(inputs: Basecamp_Listing_E
 };
 
 const fr_basecamp_listing_error_youtube = /** @type {(inputs: Basecamp_Listing_Error_YoutubeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Saisis le lien d’une vidéo YouTube.`)
+	return /** @type {LocalizedString} */ (`Saisissez le lien d’une vidéo YouTube.`)
 };
 
 const it_basecamp_listing_error_youtube = /** @type {(inputs: Basecamp_Listing_Error_YoutubeInputs) => LocalizedString} */ () => {

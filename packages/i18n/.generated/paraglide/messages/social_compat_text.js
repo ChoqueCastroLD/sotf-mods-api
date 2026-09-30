@@ -30,7 +30,7 @@ const nl_social_compat_text = /** @type {(inputs: Social_Compat_TextInputs) => L
 };
 
 const pl_social_compat_text = /** @type {(inputs: Social_Compat_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raport z terenu zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.`)
+	return /** @type {LocalizedString} */ (`Raport terenowy zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.`)
 };
 
 const pt_social_compat_text = /** @type {(inputs: Social_Compat_TextInputs) => LocalizedString} */ () => {

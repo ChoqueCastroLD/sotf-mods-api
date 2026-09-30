@@ -18,7 +18,7 @@ const de_content_draft_text = /** @type {(inputs: Content_Draft_TextInputs) => L
 };
 
 const fr_content_draft_text = /** @type {(inputs: Content_Draft_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce texte décrit le fonctionnement actuel de SOTF Mods, mais aucun avocat ne l’a encore relu. Il peut changer avant sa version définitive ; chaque modification sera datée.`)
+	return /** @type {LocalizedString} */ (`Ce texte décrit le fonctionnement actuel de SOTF Mods, mais aucun avocat ne l’a encore relu. Il peut changer avant sa version définitive ; chaque modification sera datée.`)
 };
 
 const it_content_draft_text = /** @type {(inputs: Content_Draft_TextInputs) => LocalizedString} */ () => {

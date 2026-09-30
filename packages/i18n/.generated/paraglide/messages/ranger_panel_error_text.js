@@ -46,7 +46,7 @@ const sv_ranger_panel_error_text = /** @type {(inputs: Ranger_Panel_Error_TextIn
 };
 
 const tr_ranger_panel_error_text = /** @type {(inputs: Ranger_Panel_Error_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bizim tarafımızda bir sorun oluştu. Birazdan tekrar deneyin.`)
+	return /** @type {LocalizedString} */ (`Bizim tarafımızda bir sorun oluştu. Birazdan tekrar dene.`)
 };
 
 const zh_ranger_panel_error_text = /** @type {(inputs: Ranger_Panel_Error_TextInputs) => LocalizedString} */ () => {

@@ -18,7 +18,7 @@ const de_content_radar_title = /** @type {(inputs: Content_Radar_TitleInputs) =>
 };
 
 const fr_content_radar_title = /** @type {(inputs: Content_Radar_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Les mods SOTF fonctionnent-ils sur le patch ${i?.build} ?`)
+	return /** @type {LocalizedString} */ (`Les mods SOTF fonctionnent-ils sur le patch ${i?.build} ?`)
 };
 
 const it_content_radar_title = /** @type {(inputs: Content_Radar_TitleInputs) => LocalizedString} */ (i) => {
@@ -54,7 +54,7 @@ const zh_content_radar_title = /** @type {(inputs: Content_Radar_TitleInputs) =>
 };
 
 const ja_content_radar_title = /** @type {(inputs: Content_Radar_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`SOTF の Mod はパッチ ${i?.build} で動く？`)
+	return /** @type {LocalizedString} */ (`SOTF の MOD はパッチ ${i?.build} で動く？`)
 };
 
 /**

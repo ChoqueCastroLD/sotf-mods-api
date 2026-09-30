@@ -18,7 +18,7 @@ const de_basecamp_analytics_compat_pick = /** @type {(inputs: Basecamp_Analytics
 };
 
 const fr_basecamp_analytics_compat_pick = /** @type {(inputs: Basecamp_Analytics_Compat_PickInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Choisis un mod pour voir ses rapports de terrain par build du jeu.`)
+	return /** @type {LocalizedString} */ (`Choisissez un mod pour voir ses rapports de terrain par build du jeu.`)
 };
 
 const it_basecamp_analytics_compat_pick = /** @type {(inputs: Basecamp_Analytics_Compat_PickInputs) => LocalizedString} */ () => {

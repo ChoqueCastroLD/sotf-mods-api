@@ -1,6 +1,6 @@
 {
   "admin_title": "Administración",
-  "admin_readout": "Admin · Ranger Station",
+  "admin_readout": "Admin · Puesto de guardabosques",
   "admin_action_add": "Añadir",
   "admin_action_cancel": "Cancelar",
   "admin_action_delete": "Eliminar",
@@ -366,7 +366,7 @@
   "admin_ads_add_slot": "Añadir bloque",
   "admin_ads_saved": "Ajustes de publicidad guardados",
   "admin_tpl_title": "Plantillas de moderación",
-  "admin_tpl_description": "Los motivos que eligen los rangers al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.",
+  "admin_tpl_description": "Los motivos que eligen los guardabosques al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.",
   "admin_tpl_add": "Nueva plantilla",
   "admin_tpl_filter": "Acción",
   "admin_tpl_filter_all": "Todas ({count})",

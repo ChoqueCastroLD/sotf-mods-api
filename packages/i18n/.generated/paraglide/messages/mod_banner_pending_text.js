@@ -10,7 +10,7 @@ const en_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextIn
 };
 
 const es_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un ranger está revisando este mod. Todavía no aparece en los listados y puede cambiar.`)
+	return /** @type {LocalizedString} */ (`Un guardabosques está revisando este mod. Todavía no aparece en los listados y puede cambiar.`)
 };
 
 const de_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextIn
 };
 
 const pl_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger sprawdza ten mod. Nie ma go jeszcze na listach i może się zmienić.`)
+	return /** @type {LocalizedString} */ (`Strażnik sprawdza ten mod. Nie ma go jeszcze na listach i może się zmienić.`)
 };
 
 const pt_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Um ranger está verificando este mod. Ele ainda não aparece nas listas e pode mudar.`)
+	return /** @type {LocalizedString} */ (`Um guarda está verificando este mod. Ele ainda não aparece nas listas e pode mudar.`)
 };
 
 const ru_mod_banner_pending_text = /** @type {(inputs: Mod_Banner_Pending_TextInputs) => LocalizedString} */ () => {

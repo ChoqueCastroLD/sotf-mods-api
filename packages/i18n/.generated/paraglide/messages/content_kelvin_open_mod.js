@@ -54,7 +54,7 @@ const zh_content_kelvin_open_mod = /** @type {(inputs: Content_Kelvin_Open_ModIn
 };
 
 const ja_content_kelvin_open_mod = /** @type {(inputs: Content_Kelvin_Open_ModInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod のページを開く`)
+	return /** @type {LocalizedString} */ (`MOD のページを開く`)
 };
 
 /**

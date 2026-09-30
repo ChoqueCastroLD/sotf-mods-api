@@ -12,6 +12,11 @@ export type Emails_Notify_Item_StatusInputs = {
 * | "archived" | "{mod} was archived" |
 * | "unlisted" | "{mod} was unlisted" |
 * | "removed" | "{mod} was removed from SOTF Mods" |
+* | "changes_requested" | "The Rangers asked for changes to {mod}" |
+* | "version_approved" | "A new version of {mod} was approved and is live" |
+* | "version_rejected" | "A new version of {mod} was not approved" |
+* | "version_changes_requested" | "The Rangers asked for changes to a new version of {mod}" |
+* | "version_held" | "A new version of {mod} is on hold for a ranger check" |
 * | * | "The status of {mod} changed" |
 *
 * @param {Emails_Notify_Item_StatusInputs} inputs

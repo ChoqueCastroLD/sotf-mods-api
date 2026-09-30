@@ -318,7 +318,7 @@
   "upload_gallery_drop": "Перетащите сюда скриншоты",
   "upload_gallery_hint": "Можно несколько сразу · PNG, JPEG, WebP, AVIF или GIF · до 10 МБ каждый · максимум {max}",
   "upload_gallery_choose": "Выбрать изображения",
-  "upload_gallery_full": "Галерея заполнена ({max} изображений).",
+  "upload_gallery_full": "Галерея заполнена (максимум: {max}).",
   "upload_gallery_image": "Скриншот {n}",
   "upload_gallery_alt": "Описание изображения {n}",
   "upload_gallery_alt_placeholder": "Что на нём?",

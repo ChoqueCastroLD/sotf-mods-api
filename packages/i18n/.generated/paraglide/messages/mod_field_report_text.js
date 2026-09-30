@@ -30,7 +30,7 @@ const nl_mod_field_report_text = /** @type {(inputs: Mod_Field_Report_TextInputs
 };
 
 const pl_mod_field_report_text = /** @type {(inputs: Mod_Field_Report_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raport z terenu zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.`)
+	return /** @type {LocalizedString} */ (`Raport terenowy zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.`)
 };
 
 const pt_mod_field_report_text = /** @type {(inputs: Mod_Field_Report_TextInputs) => LocalizedString} */ () => {

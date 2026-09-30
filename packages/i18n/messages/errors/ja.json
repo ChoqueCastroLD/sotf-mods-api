@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "https:// で始まる完全なリンクを入力してください。",
   "errors_field_file_too_large": "ファイルが {limit} を超えています。",
   "errors_permission_title": "レンジャー専用",
-  "errors_permission_detail": "このページを開くには別の権限が必要です。前のページに戻るか、別のアカウントでログインしてください。"
+  "errors_permission_detail": "このページを開くには別の権限が必要です。前のページに戻るか、別のアカウントでログインしてください。",
+  "errors_not_found_readout": "圏外 · 地図の外",
+  "errors_gone_readout": "通行止め · 完全に削除済み",
+  "errors_server_readout": "焚き火が消えた · エラー 500",
+  "errors_server_retry": "再試行",
+  "errors_server_status": "Discord で状況を確認",
+  "errors_not_found_install": "MOD の導入方法"
 }

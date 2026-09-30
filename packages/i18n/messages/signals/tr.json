@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod}, {build} üzerinde {status, select, broken {bozuk} other {karışık}} olarak bildiriliyor",
   "signals_compat_fixed_in": "{mod} hakkındaki saha raporun {version} sürümünde düzeltildi",
   "signals_compat_acknowledged": "{mod} yapımcısı saha raporunu gördü",
-  "signals_patch_breaking": "{build} oyun sürümü modları bozabilir — kendi modlarını Patch Radar’da kontrol et",
+  "signals_patch_breaking": "{build} oyun sürümü modları bozabilir — kendi modlarını Yama Radarı’nda kontrol et",
   "signals_status_approved": "{mod} modun onaylandı ve yayında",
   "signals_status_republished": "{mod} modun yeniden herkese açık",
   "signals_status_rejected": "{mod} modun reddedildi",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Henüz bu filtreye uyan sinyal yok. “Tümü”nü dene.",
   "signals_show_all": "Tüm sinyalleri göster",
   "signals_error_text": "Bizim tarafımızda bir sorun oluştu. Birazdan tekrar dene.",
-  "signals_more_error": "Daha eski sinyaller yüklenemedi."
+  "signals_more_error": "Daha eski sinyaller yüklenemedi.",
+  "signals_status_version_approved": "{mod} modunun {version} sürümü onaylandı ve yayında",
+  "signals_status_version_rejected": "{mod} modunun {version} sürümü onaylanmadı",
+  "signals_status_version_changes_requested": "Korucular {mod} modunun {version} sürümünde değişiklik istedi",
+  "signals_status_version_held": "{mod} modunun {version} sürümü bir korucunun kontrolünü bekliyor"
 }

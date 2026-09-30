@@ -165,7 +165,7 @@
   "kits_error_validation": "Er klopt iets niet in de kit. Controleer de velden en probeer het opnieuw.",
   "kits_editor_title": "{name} bewerken",
   "kits_editor_static_title": "Kiteditor",
-  "kits_editor_readout": "Blauwdruk",
+  "kits_editor_readout": "Bouwtekening",
   "kits_back_to_list": "Mijn kits",
   "kits_updated_on": "bijgewerkt op {date}",
   "kits_saving": "Opslaan…",

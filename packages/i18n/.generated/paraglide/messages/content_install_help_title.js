@@ -18,7 +18,7 @@ const de_content_install_help_title = /** @type {(inputs: Content_Install_Help_T
 };
 
 const fr_content_install_help_title = /** @type {(inputs: Content_Install_Help_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toujours bloqué ?`)
+	return /** @type {LocalizedString} */ (`Toujours bloqué ?`)
 };
 
 const it_content_install_help_title = /** @type {(inputs: Content_Install_Help_TitleInputs) => LocalizedString} */ () => {

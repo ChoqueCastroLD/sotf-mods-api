@@ -11,6 +11,8 @@ belong to WP-13 and cover the site chrome (header, footer, consent, language and
 pagination, 404/500, API problem codes and generic SEO metadata): reuse them before adding keys.
 `ui` belongs to WP-12 (labels of the `@sotf/ui` primitives); `packages/ui/messages/en.json` is its
 bundled English copy and a `@sotf/ui` unit test keeps both equal, so edit the two together.
+`ui-domain` (`ui_domain_*`) is the same for the domain components of `@sotf/ui/domain`: its English
+file equals `packages/ui/src/domain/messages/en.json` (without `$schema`); edit both together.
 
 ## Rules (enforced by `pnpm i18n:check`)
 
@@ -55,4 +57,78 @@ pnpm --filter @sotf/i18n i18n:glossary download   # how the community already sa
 pnpm i18n:check                                   # validate everything
 pnpm gen                                          # regenerate .generated/ (commit the result)
 pnpm i18n:pseudo                                  # pseudo-locale for hard-coded text / overflow; pnpm gen restores
+```
+
+## Glossary and house style (13 locales)
+
+The brand vocabulary of PLAN §3.8, fixed per locale. The source of truth is the `common_term_*`
+keys of `common/<locale>.json`; this table mirrors them. Use the same word (inflected as the
+grammar needs) in every namespace: navigation, readouts, SEO titles, emails and signals. When a
+term changes, change `common_term_*`, then every message that uses it, then this table.
+
+| Term | en | es | de | fr | it | nl | pl | pt | ru | sv | tr | zh | ja |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `mods` | Mods | Mods | Mods | Mods | Mod | Mods | Mody | Mods | Моды | Moddar | Modlar | 模组 | MOD |
+| `libraries` | Libraries | Librerías | Bibliotheken | Bibliothèques | Librerie | Bibliotheken | Biblioteki | Bibliotecas | Библиотеки | Bibliotek | Kütüphaneler | 前置库 | ライブラリ |
+| `builds` | Builds | Builds | Builds | Builds | Build | Builds | Buildy | Builds | Постройки | Byggen | Yapılar | 建筑 | 建築 |
+| `blueprints` | Blueprints | Planos | Baupläne | Plans | Progetti | Bouwtekeningen | Plany | Plantas | Чертежи | Ritningar | Planlar | 蓝图 | 設計図 |
+| `kits` | Kits | Kits | Kits | Kits | Kit | Kits | Zestawy | Kits | Наборы | Kit | Kitler | 套装 | キット |
+| `basecamp` | Basecamp | Campamento | Basislager | Camp de base | Campo base | Basiskamp | Obóz | Acampamento | Лагерь | Basläger | Ana Kamp | 营地 | ベースキャンプ |
+| `ranger_station` | Ranger Station | Puesto de guardabosques | Rangerstation | Poste des rangers | Stazione dei ranger | Rangerpost | Posterunek strażników | Posto dos guardas | Пост рейнджеров | Rangerstation | Korucu İstasyonu | 护林站 | レンジャーステーション |
+| `signals` | Signals | Señales | Signale | Signaux | Segnali | Signalen | Sygnały | Sinais | Сигналы | Signaler | Sinyaller | 信号 | シグナル |
+| `notifications` | Notifications | Notificaciones | Benachrichtigungen | Notifications | Notifiche | Meldingen | Powiadomienia | Notificações | Уведомления | Aviseringar | Bildirimler | 通知 | 通知 |
+| `backpack` | Backpack | Mochila | Rucksack | Sac à dos | Zaino | Rugzak | Plecak | Mochila | Рюкзак | Ryggsäck | Sırt Çantası | 背包 | バックパック |
+| `field_notes` | Field notes | Notas de campo | Feldnotizen | Notes de terrain | Note sul campo | Veldnotities | Notatki terenowe | Notas de campo | Полевые заметки | Fältanteckningar | Saha Notları | 野外笔记 | フィールドノート |
+| `field_reports` | Field reports | Reportes de campo | Feldberichte | Rapports de terrain | Rapporti sul campo | Veldrapporten | Raporty terenowe | Relatórios de campo | Полевые отчёты | Fältrapporter | Saha Raporları | 实地报告 | フィールドレポート |
+| `patch_radar` | Patch Radar | Radar de parches | Patch-Radar | Radar des patchs | Radar delle patch | Patchradar | Radar patchy | Radar de patches | Радар патчей | Patchradar | Yama Radarı | 补丁雷达 | パッチレーダー |
+| ranger (person) | ranger | guardabosques | Ranger | ranger | ranger | ranger | strażnik | guarda | рейнджер | ranger | korucu | 护林员 | レンジャー |
+
+Notes:
+
+- **Game build** (the Sons of the Forest patch, `{build}`) is a different concept from a player
+  **build** (BuildShare blueprint). Keep the game sense as «build del juego», «Spiel-Build»,
+  «build du jeu», «build gry», «сборка игры», «ゲームビルド»…
+- **Kits** keep the English word where the community uses it (es, de, fr, it, nl, pt, sv, tr);
+  pl «zestaw», ru «набор», zh «套装», ja «キット». SEO copy may add «mod collections».
+- **Mods**: ja writes «MOD» (upper case, never «Mod»); zh «模组». The game folder is always
+  `Mods` (literal).
+- Brand names are never translated: SOTF Mods, RedLoader, RedManager, BuildShare, Sons of the
+  Forest, Kelvin/KelvinSeek, Discord, Steam.
+- Readouts (mono, upper-cased by CSS) are written in sentence case and translated like any other
+  text: «Admin · Ranger Station» → «Admin · Puesto de guardabosques».
+
+### Tone per locale (PLAN §3.8: calm veteran ranger, verb first, short sentences)
+
+| Locale | Address | Notes |
+|---|---|---|
+| en | second person | Imperatives: «Download», «Try again» |
+| es | tú (Spain) | Plural «vosotros» only when addressing the reader plus others |
+| de | du | Capitalised nouns; «Mods», «Builds» stay |
+| fr | vous | Never «tu» (including the creator console) |
+| it | tu | «la mod» (feminine), as the Italian community says |
+| nl | je/jij | Never «u» |
+| pl | ty | Neutral forms where gender is unknown («Pobrał(a)») |
+| pt | você (pt-BR) | Brazilian spelling and vocabulary («arquivo», «tela») |
+| ru | вы (lower case) | Genitive after «до/не больше» avoids number agreement |
+| sv | du | |
+| tr | sen (UI), siz only in legal/formal text | Suffixes with an apostrophe after names: «Discord’da» |
+| zh | 你 | Simplified Chinese; full-width punctuation |
+| ja | です・ます | Full-width punctuation 「」：、。 |
+
+### Typography
+
+- Apostrophes and quotes: typographic (`’`, `“ ”` en; `« »` es/fr/it/pt/ru/tr; `„ “` de/pl;
+  `” ”` sv; `‘ ’`/`“ ”` nl; `「 」` ja; `“ ”` zh). Ellipsis is `…`.
+- **French**: a non-breaking space (U+00A0) before `: ; ? !` and inside `« »`.
+- Numbers never carry grammar in ru/pl: a count followed by a noun uses an ICU plural with
+  `one/few/many/other`, or the noun goes before a colon («Pobrania: {downloads}»).
+- Expansion: write for +35 % (de, ru, fr). Prefer the shorter synonym in buttons, readouts
+  and table headers.
+
+### Checking
+
+```bash
+pnpm i18n:check                                 # completeness, ICU, plurals, arguments
+pnpm --filter @sotf/i18n i18n:glossary backpack # one term in every locale (legacy + v2)
+pnpm i18n:pseudo                                # pseudo-locale: hard-coded text and overflow; pnpm gen restores
 ```

@@ -18,7 +18,7 @@ const de_content_kelvin_lead = /** @type {(inputs: Content_Kelvin_LeadInputs) =>
 };
 
 const fr_content_kelvin_lead = /** @type {(inputs: Content_Kelvin_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Écrivez à Kelvin avec vos propres mots : il répond, et fait ce que vous demandez, de la récolte de bûches à la construction d’un abri.`)
+	return /** @type {LocalizedString} */ (`Écrivez à Kelvin avec vos propres mots : il répond, et fait ce que vous demandez, de la récolte de bûches à la construction d’un abri.`)
 };
 
 const it_content_kelvin_lead = /** @type {(inputs: Content_Kelvin_LeadInputs) => LocalizedString} */ () => {

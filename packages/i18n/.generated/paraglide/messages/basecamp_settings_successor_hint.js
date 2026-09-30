@@ -18,7 +18,7 @@ const de_basecamp_settings_successor_hint = /** @type {(inputs: Basecamp_Setting
 };
 
 const fr_basecamp_settings_successor_hint = /** @type {(inputs: Basecamp_Settings_Successor_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`L’un de tes mods publiés.`)
+	return /** @type {LocalizedString} */ (`L’un de vos mods publiés.`)
 };
 
 const it_basecamp_settings_successor_hint = /** @type {(inputs: Basecamp_Settings_Successor_HintInputs) => LocalizedString} */ () => {

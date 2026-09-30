@@ -18,7 +18,7 @@ const de_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Emp
 };
 
 const fr_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rien n’attend de réponse. Les nouveaux commentaires et rapports sur tes mods arrivent ici.`)
+	return /** @type {LocalizedString} */ (`Rien n’attend de réponse. Les nouveaux commentaires et rapports sur vos mods arrivent ici.`)
 };
 
 const it_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {

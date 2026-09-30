@@ -58,5 +58,11 @@
   "errors_field_invalid_url": "Ange en fullständig länk som börjar med https://.",
   "errors_field_file_too_large": "Filen är större än {limit}.",
   "errors_permission_title": "Endast för rangers",
-  "errors_permission_detail": "Du behöver en annan roll för att öppna den här sidan. Gå tillbaka eller logga in med ett annat konto."
+  "errors_permission_detail": "Du behöver en annan roll för att öppna den här sidan. Gå tillbaka eller logga in med ett annat konto.",
+  "errors_not_found_readout": "Ingen signal · Utanför kartan",
+  "errors_gone_readout": "Leden stängd · Borttaget för gott",
+  "errors_server_readout": "Lägerelden slocknad · Fel 500",
+  "errors_server_retry": "Försök igen",
+  "errors_server_status": "Se status på Discord",
+  "errors_not_found_install": "Så installerar du moddar"
 }

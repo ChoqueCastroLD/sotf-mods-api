@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} wordt als {status, select, broken {kapot} other {wisselend}} gemeld op {build}",
   "signals_compat_fixed_in": "Je veldrapport over {mod} is opgelost in {version}",
   "signals_compat_acknowledged": "De maker van {mod} heeft je veldrapport gezien",
-  "signals_patch_breaking": "Game-build {build} kan mods breken — controleer de jouwe in de Patch Radar",
+  "signals_patch_breaking": "Game-build {build} kan mods breken — controleer de jouwe in de Patchradar",
   "signals_status_approved": "Je mod {mod} is goedgekeurd en staat online",
   "signals_status_republished": "Je mod {mod} is weer openbaar",
   "signals_status_rejected": "Je mod {mod} is afgewezen",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Er past nog geen signaal bij dit filter. Probeer ‘Alles’.",
   "signals_show_all": "Alle signalen tonen",
   "signals_error_text": "Er ging iets mis aan onze kant. Probeer het zo opnieuw.",
-  "signals_more_error": "Oudere signalen konden niet worden geladen."
+  "signals_more_error": "Oudere signalen konden niet worden geladen.",
+  "signals_status_version_approved": "Versie {version} van {mod} is goedgekeurd en staat online",
+  "signals_status_version_rejected": "Versie {version} van {mod} is niet goedgekeurd",
+  "signals_status_version_changes_requested": "De rangers vragen om wijzigingen in versie {version} van {mod}",
+  "signals_status_version_held": "Versie {version} van {mod} wacht op controle door een ranger"
 }

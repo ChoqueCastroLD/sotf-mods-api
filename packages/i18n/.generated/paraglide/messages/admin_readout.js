@@ -10,51 +10,51 @@ const en_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedSt
 };
 
 const es_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Puesto de guardabosques`)
 };
 
 const de_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Rangerstation`)
 };
 
 const fr_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Poste des rangers`)
 };
 
 const it_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Stazione dei ranger`)
 };
 
 const nl_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Rangerpost`)
 };
 
 const pl_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Posterunek strażników`)
 };
 
 const pt_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Posto dos guardas`)
 };
 
 const ru_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Админ · Пост рейнджеров`)
 };
 
 const sv_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Admin · Rangerstation`)
 };
 
 const tr_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`Yönetim · Korucu İstasyonu`)
 };
 
 const zh_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`管理 · 护林站`)
 };
 
 const ja_admin_readout = /** @type {(inputs: Admin_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admin · Ranger Station`)
+	return /** @type {LocalizedString} */ (`管理 · レンジャーステーション`)
 };
 
 /**

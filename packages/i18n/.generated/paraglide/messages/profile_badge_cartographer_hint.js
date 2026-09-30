@@ -50,7 +50,7 @@ const tr_profile_badge_cartographer_hint = /** @type {(inputs: Profile_Badge_Car
 };
 
 const zh_profile_badge_cartographer_hint = /** @type {(inputs: Profile_Badge_Cartographer_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建一个关注者达到 10 人的公开合集。`)
+	return /** @type {LocalizedString} */ (`创建一个关注者达到 10 人的公开套装。`)
 };
 
 const ja_profile_badge_cartographer_hint = /** @type {(inputs: Profile_Badge_Cartographer_HintInputs) => LocalizedString} */ () => {

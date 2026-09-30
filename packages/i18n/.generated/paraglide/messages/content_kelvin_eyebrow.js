@@ -54,7 +54,7 @@ const zh_content_kelvin_eyebrow = /** @type {(inputs: Content_Kelvin_EyebrowInpu
 };
 
 const ja_content_kelvin_eyebrow = /** @type {(inputs: Content_Kelvin_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`コミュニティ Mod`)
+	return /** @type {LocalizedString} */ (`コミュニティ MOD`)
 };
 
 /**

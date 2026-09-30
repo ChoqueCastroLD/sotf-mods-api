@@ -10,7 +10,7 @@ const en_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Ach
 };
 
 const es_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los Rangers revisan los picos repentinos de descargas.`)
+	return /** @type {LocalizedString} */ (`Los guardabosques revisan los picos repentinos de descargas.`)
 };
 
 const de_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Ach
 };
 
 const pl_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nagłe skoki pobrań sprawdzają Rangerzy.`)
+	return /** @type {LocalizedString} */ (`Nagłe skoki pobrań sprawdzają strażnicy.`)
 };
 
 const pt_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Picos repentinos de downloads são revisados pelos Rangers.`)
+	return /** @type {LocalizedString} */ (`Picos repentinos de downloads são revisados pelos guardas.`)
 };
 
 const ru_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Ach
 };
 
 const tr_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ani indirme artışları Ranger’lar tarafından incelenir.`)
+	return /** @type {LocalizedString} */ (`Ani indirme artışları korucular tarafından incelenir.`)
 };
 
 const zh_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`下载量的异常激增会由巡林员审查。`)
+	return /** @type {LocalizedString} */ (`下载量的异常激增会由护林员审查。`)
 };
 
 const ja_profile_achievements_fair_play_spikes = /** @type {(inputs: Profile_Achievements_Fair_Play_SpikesInputs) => LocalizedString} */ () => {

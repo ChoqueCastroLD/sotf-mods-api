@@ -18,7 +18,7 @@ const de_basecamp_mods_intro = /** @type {(inputs: Basecamp_Mods_IntroInputs) =>
 };
 
 const fr_basecamp_mods_intro = /** @type {(inputs: Basecamp_Mods_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tout ce que tu as publié, quel que soit l’état. Modifie une fiche, sors une version ou vois ce qui demande ton attention.`)
+	return /** @type {LocalizedString} */ (`Tout ce que vous avez publié, quel que soit l’état. Modifiez une fiche, sortez une version ou voyez ce qui demande votre attention.`)
 };
 
 const it_basecamp_mods_intro = /** @type {(inputs: Basecamp_Mods_IntroInputs) => LocalizedString} */ () => {

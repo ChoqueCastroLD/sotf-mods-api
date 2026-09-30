@@ -10,7 +10,7 @@ const en_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveIn
 };
 
 const es_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marcado por algunos motores, aprobado por un ranger`)
+	return /** @type {LocalizedString} */ (`Marcado por algunos motores, aprobado por un guardabosques`)
 };
 
 const de_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveIn
 };
 
 const pl_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oznaczony przez niektóre silniki, zatwierdzony przez rangera`)
+	return /** @type {LocalizedString} */ (`Oznaczony przez niektóre silniki, zatwierdzony przez strażnika`)
 };
 
 const pt_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marcado por alguns antivírus, liberado por um ranger`)
+	return /** @type {LocalizedString} */ (`Marcado por alguns antivírus, liberado por um guarda`)
 };
 
 const ru_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {

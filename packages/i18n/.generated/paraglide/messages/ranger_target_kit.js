@@ -30,7 +30,7 @@ const nl_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => Loc
 };
 
 const pl_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kit`)
+	return /** @type {LocalizedString} */ (`Zestaw`)
 };
 
 const pt_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => LocalizedString} */ () => {
@@ -38,7 +38,7 @@ const pt_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => Loc
 };
 
 const ru_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Кит`)
+	return /** @type {LocalizedString} */ (`Набор`)
 };
 
 const sv_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => Loc
 };
 
 const zh_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`合集`)
+	return /** @type {LocalizedString} */ (`套装`)
 };
 
 const ja_ranger_target_kit = /** @type {(inputs: Ranger_Target_KitInputs) => LocalizedString} */ () => {

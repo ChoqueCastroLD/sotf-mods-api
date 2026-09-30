@@ -22,7 +22,7 @@ const fr_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) 
 };
 
 const it_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Note dal campo`)
+	return /** @type {LocalizedString} */ (`Note sul campo`)
 };
 
 const nl_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) => LocalizedString} */ () => {
@@ -30,7 +30,7 @@ const nl_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) 
 };
 
 const pl_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Notatki z terenu`)
+	return /** @type {LocalizedString} */ (`Notatki terenowe`)
 };
 
 const pt_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) 
 };
 
 const zh_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`实地笔记`)
+	return /** @type {LocalizedString} */ (`野外笔记`)
 };
 
 const ja_content_news_eyebrow = /** @type {(inputs: Content_News_EyebrowInputs) => LocalizedString} */ () => {

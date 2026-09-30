@@ -18,7 +18,7 @@ const de_content_kelvin_title = /** @type {(inputs: Content_Kelvin_TitleInputs) 
 };
 
 const fr_content_kelvin_title = /** @type {(inputs: Content_Kelvin_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`KelvinSeek : parlez à Kelvin en jeu`)
+	return /** @type {LocalizedString} */ (`KelvinSeek : parlez à Kelvin en jeu`)
 };
 
 const it_content_kelvin_title = /** @type {(inputs: Content_Kelvin_TitleInputs) => LocalizedString} */ () => {

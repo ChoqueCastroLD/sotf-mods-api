@@ -10,7 +10,7 @@ const en_settings_notif_ack = /** @type {(inputs: Settings_Notif_AckInputs) => L
 };
 
 const es_settings_notif_ack = /** @type {(inputs: Settings_Notif_AckInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tus informes de campo`)
+	return /** @type {LocalizedString} */ (`Tus reportes de campo`)
 };
 
 const de_settings_notif_ack = /** @type {(inputs: Settings_Notif_AckInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_settings_notif_ack = /** @type {(inputs: Settings_Notif_AckInputs) => L
 };
 
 const ja_settings_notif_ack = /** @type {(inputs: Settings_Notif_AckInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`あなたの現地レポート`)
+	return /** @type {LocalizedString} */ (`あなたのフィールドレポート`)
 };
 
 /**

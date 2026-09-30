@@ -18,7 +18,7 @@ const de_basecamp_compat_tested_hint = /** @type {(inputs: Basecamp_Compat_Teste
 };
 
 const fr_basecamp_compat_tested_hint = /** @type {(inputs: Basecamp_Compat_Tested_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les builds sur lesquels tu as testé chaque version. Les joueurs les voient à côté des rapports de terrain.`)
+	return /** @type {LocalizedString} */ (`Les builds sur lesquels vous avez testé chaque version. Les joueurs les voient à côté des rapports de terrain.`)
 };
 
 const it_basecamp_compat_tested_hint = /** @type {(inputs: Basecamp_Compat_Tested_HintInputs) => LocalizedString} */ () => {

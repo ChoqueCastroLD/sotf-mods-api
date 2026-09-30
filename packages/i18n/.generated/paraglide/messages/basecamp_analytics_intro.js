@@ -18,7 +18,7 @@ const de_basecamp_analytics_intro = /** @type {(inputs: Basecamp_Analytics_Intro
 };
 
 const fr_basecamp_analytics_intro = /** @type {(inputs: Basecamp_Analytics_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Téléchargements, vues, sources et notes de tes mods, historique depuis 2023 compris.`)
+	return /** @type {LocalizedString} */ (`Téléchargements, vues, sources et notes de vos mods, historique depuis 2023 compris.`)
 };
 
 const it_basecamp_analytics_intro = /** @type {(inputs: Basecamp_Analytics_IntroInputs) => LocalizedString} */ () => {

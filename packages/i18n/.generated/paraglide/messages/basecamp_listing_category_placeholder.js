@@ -18,7 +18,7 @@ const de_basecamp_listing_category_placeholder = /** @type {(inputs: Basecamp_Li
 };
 
 const fr_basecamp_listing_category_placeholder = /** @type {(inputs: Basecamp_Listing_Category_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Choisis une catégorie`)
+	return /** @type {LocalizedString} */ (`Choisissez une catégorie`)
 };
 
 const it_basecamp_listing_category_placeholder = /** @type {(inputs: Basecamp_Listing_Category_PlaceholderInputs) => LocalizedString} */ () => {

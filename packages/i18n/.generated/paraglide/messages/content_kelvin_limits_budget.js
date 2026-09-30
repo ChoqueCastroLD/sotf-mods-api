@@ -18,7 +18,7 @@ const de_content_kelvin_limits_budget = /** @type {(inputs: Content_Kelvin_Limit
 };
 
 const fr_content_kelvin_limits_budget = /** @type {(inputs: Content_Kelvin_Limits_BudgetInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le service d’IA dispose d’un budget quotidien. Une fois épuisé, Kelvin vous comprend toujours : il choisit sans IA l’ordre connu le plus proche jusqu’au lendemain.`)
+	return /** @type {LocalizedString} */ (`Le service d’IA dispose d’un budget quotidien. Une fois épuisé, Kelvin vous comprend toujours : il choisit sans IA l’ordre connu le plus proche jusqu’au lendemain.`)
 };
 
 const it_content_kelvin_limits_budget = /** @type {(inputs: Content_Kelvin_Limits_BudgetInputs) => LocalizedString} */ () => {

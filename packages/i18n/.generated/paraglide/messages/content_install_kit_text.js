@@ -54,7 +54,7 @@ const zh_content_install_kit_text = /** @type {(inputs: Content_Install_Kit_Text
 };
 
 const ja_content_install_kit_text = /** @type {(inputs: Content_Install_Kit_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`一緒に使って問題のない Mod をスタッフが選んだセットです。最初の装備にぴったり。`)
+	return /** @type {LocalizedString} */ (`一緒に使って問題のない MOD をスタッフが選んだセットです。最初の装備にぴったり。`)
 };
 
 /**

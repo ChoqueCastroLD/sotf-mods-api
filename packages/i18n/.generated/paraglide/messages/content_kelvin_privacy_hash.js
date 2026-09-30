@@ -54,7 +54,7 @@ const zh_content_kelvin_privacy_hash = /** @type {(inputs: Content_Kelvin_Privac
 };
 
 const ja_content_kelvin_privacy_hash = /** @type {(inputs: Content_Kelvin_Privacy_HashInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod が送信するチャット ID（Steam ID と名前を含む）は、元に戻せないハッシュとしてのみ保存されます。`)
+	return /** @type {LocalizedString} */ (`MOD が送信するチャット ID（Steam ID と名前を含む）は、元に戻せないハッシュとしてのみ保存されます。`)
 };
 
 /**

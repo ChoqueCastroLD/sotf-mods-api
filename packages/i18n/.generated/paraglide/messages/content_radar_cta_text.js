@@ -22,7 +22,7 @@ const fr_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInpu
 };
 
 const it_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Apri la mod, scegli come hai giocato (da solo, host, client o dedicato) e di’ se funziona. Ogni segnalazione sul campo fa guadagnare XP e risparmia ad altri sopravvissuti un salvataggio rotto.`)
+	return /** @type {LocalizedString} */ (`Apri la mod, scegli come hai giocato (da solo, host, client o dedicato) e di’ se funziona. Ogni rapporto sul campo fa guadagnare XP e risparmia ad altri sopravvissuti un salvataggio rotto.`)
 };
 
 const nl_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInpu
 };
 
 const pl_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otwórz mod, wybierz, jak grałeś (solo, host, klient lub serwer dedykowany) i powiedz, czy działa. Każde zgłoszenie terenowe daje XP i oszczędza innym ocalałym zepsutego zapisu.`)
+	return /** @type {LocalizedString} */ (`Otwórz mod, wybierz, jak grałeś (solo, host, klient lub serwer dedykowany) i powiedz, czy działa. Każdy raport terenowy daje XP i oszczędza innym ocalałym zepsutego zapisu.`)
 };
 
 const pt_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abra o mod, escolha como você jogou (solo, host, cliente ou dedicado) e diga se funciona. Cada relato de campo rende XP e poupa outros sobreviventes de um save quebrado.`)
+	return /** @type {LocalizedString} */ (`Abra o mod, escolha como você jogou (solo, host, cliente ou dedicado) e diga se funciona. Cada relatório de campo rende XP e poupa outros sobreviventes de um save quebrado.`)
 };
 
 const ru_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInputs) => LocalizedString} */ () => {
@@ -54,7 +54,7 @@ const zh_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInpu
 };
 
 const ja_content_radar_cta_text = /** @type {(inputs: Content_Radar_Cta_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod を開いて、遊び方（ソロ、ホスト、クライアント、専用サーバー）を選び、動いたかどうか教えてください。フィールドレポートごとに XP がもらえ、ほかのサバイバーがセーブを壊さずに済みます。`)
+	return /** @type {LocalizedString} */ (`MOD を開いて、遊び方（ソロ、ホスト、クライアント、専用サーバー）を選び、動いたかどうか教えてください。フィールドレポートごとに XP がもらえ、ほかのサバイバーがセーブを壊さずに済みます。`)
 };
 
 /**

@@ -46,7 +46,7 @@ const sv_ranger_scan_override_false_positive_hint = /** @type {(inputs: Ranger_S
 };
 
 const tr_ranger_scan_override_false_positive_hint = /** @type {(inputs: Ranger_Scan_Override_False_Positive_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dosyaları kontrol ettiniz: tespitler yanlış pozitif. Taramanın beklettiği sürüm serbest bırakılır.`)
+	return /** @type {LocalizedString} */ (`Dosyaları kontrol ettin: tespitler yanlış pozitif. Taramanın beklettiği sürüm serbest bırakılır.`)
 };
 
 const zh_ranger_scan_override_false_positive_hint = /** @type {(inputs: Ranger_Scan_Override_False_Positive_HintInputs) => LocalizedString} */ () => {

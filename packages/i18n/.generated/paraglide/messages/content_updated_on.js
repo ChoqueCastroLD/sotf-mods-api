@@ -18,7 +18,7 @@ const de_content_updated_on = /** @type {(inputs: Content_Updated_OnInputs) => L
 };
 
 const fr_content_updated_on = /** @type {(inputs: Content_Updated_OnInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Dernière mise à jour : ${i?.date}`)
+	return /** @type {LocalizedString} */ (`Dernière mise à jour : ${i?.date}`)
 };
 
 const it_content_updated_on = /** @type {(inputs: Content_Updated_OnInputs) => LocalizedString} */ (i) => {

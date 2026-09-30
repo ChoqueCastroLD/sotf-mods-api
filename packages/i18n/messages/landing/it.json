@@ -34,7 +34,7 @@
   "landing_radar_summary": "Gioco {build} · {share} delle 50 mod più scaricate confermate su questa patch",
   "landing_radar_breaking": "Aggiornamento che rompe le mod",
   "landing_radar_loader": "{loader} {version}: {status, select, works {funziona} partial {funziona in parte} broken {non funziona} other {non ancora testato}}",
-  "landing_radar_empty": "Nessuna patch del gioco sul radar per ora. Le segnalazioni sul campo partono con il prossimo aggiornamento.",
+  "landing_radar_empty": "Nessuna patch del gioco sul radar per ora. I rapporti sul campo partono con il prossimo aggiornamento.",
   "landing_radar_cta": "Guarda cosa non funziona",
   "landing_trending_title": "Di tendenza questa settimana",
   "landing_trending_hint": "In base ai download degli ultimi 7 giorni",

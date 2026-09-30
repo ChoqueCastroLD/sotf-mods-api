@@ -18,7 +18,7 @@ const de_content_dev_endpoints_caption = /** @type {(inputs: Content_Dev_Endpoin
 };
 
 const fr_content_dev_endpoints_caption = /** @type {(inputs: Content_Dev_Endpoints_CaptionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Endpoints publics : ${i?.domain}`)
+	return /** @type {LocalizedString} */ (`Endpoints publics : ${i?.domain}`)
 };
 
 const it_content_dev_endpoints_caption = /** @type {(inputs: Content_Dev_Endpoints_CaptionInputs) => LocalizedString} */ (i) => {

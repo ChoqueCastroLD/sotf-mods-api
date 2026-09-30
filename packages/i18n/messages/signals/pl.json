@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} jest zgłaszany jako {status, select, broken {niedziałający} other {działający różnie}} na {build}",
   "signals_compat_fixed_in": "Twój raport terenowy o {mod} został naprawiony w {version}",
   "signals_compat_acknowledged": "Autor {mod} zobaczył twój raport terenowy",
-  "signals_patch_breaking": "Build gry {build} może psuć mody — sprawdź swoje w Patch Radar",
+  "signals_patch_breaking": "Build gry {build} może psuć mody — sprawdź swoje w Radarze patchy",
   "signals_status_approved": "Twój mod {mod} został zatwierdzony i jest opublikowany",
   "signals_status_republished": "Twój mod {mod} jest znów publiczny",
   "signals_status_rejected": "Twój mod {mod} został odrzucony",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "Żaden sygnał nie pasuje jeszcze do tego filtra. Spróbuj „Wszystko”.",
   "signals_show_all": "Pokaż wszystkie sygnały",
   "signals_error_text": "Coś poszło nie tak po naszej stronie. Spróbuj ponownie za chwilę.",
-  "signals_more_error": "Nie udało się wczytać starszych sygnałów."
+  "signals_more_error": "Nie udało się wczytać starszych sygnałów.",
+  "signals_status_version_approved": "Wersja {version} ({mod}) została zatwierdzona i jest dostępna",
+  "signals_status_version_rejected": "Wersja {version} ({mod}) nie została zatwierdzona",
+  "signals_status_version_changes_requested": "Strażnicy proszą o zmiany w wersji {version} ({mod})",
+  "signals_status_version_held": "Wersja {version} ({mod}) czeka na sprawdzenie przez strażnika"
 }

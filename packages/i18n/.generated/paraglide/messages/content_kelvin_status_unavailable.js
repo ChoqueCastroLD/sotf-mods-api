@@ -54,7 +54,7 @@ const zh_content_kelvin_status_unavailable = /** @type {(inputs: Content_Kelvin_
 };
 
 const ja_content_kelvin_status_unavailable = /** @type {(inputs: Content_Kelvin_Status_UnavailableInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod の現在の状態を読み込めませんでした。最新バージョンは Mod のページで確認できます。`)
+	return /** @type {LocalizedString} */ (`MOD の現在の状態を読み込めませんでした。最新バージョンは MOD のページで確認できます。`)
 };
 
 /**

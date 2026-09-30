@@ -18,7 +18,7 @@ const de_basecamp_versions_intro = /** @type {(inputs: Basecamp_Versions_IntroIn
 };
 
 const fr_basecamp_versions_intro = /** @type {(inputs: Basecamp_Versions_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toutes les versions que tu as sorties, y compris celles en revue. Retire une version pour prévenir les joueurs : son lien reste valable, avec un avertissement.`)
+	return /** @type {LocalizedString} */ (`Toutes les versions que vous avez sorties, y compris celles en revue. Retirez une version pour prévenir les joueurs : son lien reste valable, avec un avertissement.`)
 };
 
 const it_basecamp_versions_intro = /** @type {(inputs: Basecamp_Versions_IntroInputs) => LocalizedString} */ () => {

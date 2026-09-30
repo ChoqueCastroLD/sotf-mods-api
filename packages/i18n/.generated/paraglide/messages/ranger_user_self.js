@@ -10,7 +10,7 @@ const en_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => Local
 };
 
 const es_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Es tu propia cuenta: tiene que actuar otro ranger.`)
+	return /** @type {LocalizedString} */ (`Es tu propia cuenta: tiene que actuar otro guardabosques.`)
 };
 
 const de_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => Local
 };
 
 const pl_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`To twoje własne konto: musi zadziałać inny ranger.`)
+	return /** @type {LocalizedString} */ (`To twoje własne konto: musi zadziałać inny strażnik.`)
 };
 
 const pt_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esta é a sua própria conta: outro ranger precisa agir.`)
+	return /** @type {LocalizedString} */ (`Esta é a sua própria conta: outro guarda precisa agir.`)
 };
 
 const ru_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => Local
 };
 
 const tr_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu sizin hesabınız: başka bir ranger işlem yapmalı.`)
+	return /** @type {LocalizedString} */ (`Bu senin hesabın: başka bir korucu işlem yapmalı.`)
 };
 
 const zh_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`这是你自己的账号：需要由其他巡林员处理。`)
+	return /** @type {LocalizedString} */ (`这是你自己的账号：需要由其他护林员处理。`)
 };
 
 const ja_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {

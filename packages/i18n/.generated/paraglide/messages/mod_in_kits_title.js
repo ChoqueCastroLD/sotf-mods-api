@@ -89,7 +89,7 @@ const tr_mod_in_kits_title = /** @type {(inputs: Mod_In_Kits_TitleInputs) => Loc
 
 const zh_mod_in_kits_title = /** @type {(inputs: Mod_In_Kits_TitleInputs) => LocalizedString} */ (i) => {
 	const count__plural = registry.plural("zh", i?.count, {});
-	const count__number = registry.number("zh", i?.count, {});return /** @type {LocalizedString} */ (`收录于 ${count__number} 个合集`)
+	const count__number = registry.number("zh", i?.count, {});return /** @type {LocalizedString} */ (`收录于 ${count__number} 个套装`)
 };
 
 const ja_mod_in_kits_title = /** @type {(inputs: Mod_In_Kits_TitleInputs) => LocalizedString} */ (i) => {

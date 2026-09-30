@@ -54,7 +54,7 @@ const zh_content_brand_description = /** @type {(inputs: Content_Brand_Descripti
 };
 
 const ja_content_brand_description = /** @type {(inputs: Content_Brand_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods のロゴ、シンボル、カラーをダウンロードし、Mod や動画、サーバーからサイトへリンクする方法を確認できます。`)
+	return /** @type {LocalizedString} */ (`SOTF Mods のロゴ、シンボル、カラーをダウンロードし、MOD や動画、サーバーからサイトへリンクする方法を確認できます。`)
 };
 
 /**

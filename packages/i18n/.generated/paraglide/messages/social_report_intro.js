@@ -10,7 +10,7 @@ const en_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) =>
 };
 
 const es_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los rangers revisan cada reporte. Cuéntales qué pasa.`)
+	return /** @type {LocalizedString} */ (`Los guardabosques revisan cada reporte. Cuéntales qué pasa.`)
 };
 
 const de_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) =>
 };
 
 const pl_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerzy sprawdzają każde zgłoszenie. Napisz, co jest nie tak.`)
+	return /** @type {LocalizedString} */ (`Strażnicy sprawdzają każde zgłoszenie. Napisz, co jest nie tak.`)
 };
 
 const pt_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os rangers analisam cada denúncia. Conte o que há de errado.`)
+	return /** @type {LocalizedString} */ (`Os guardas analisam cada denúncia. Conte o que há de errado.`)
 };
 
 const ru_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) =>
 };
 
 const zh_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`巡林员会审核每一条举报。请说明问题所在。`)
+	return /** @type {LocalizedString} */ (`护林员会审核每一条举报。请说明问题所在。`)
 };
 
 const ja_social_report_intro = /** @type {(inputs: Social_Report_IntroInputs) => LocalizedString} */ () => {

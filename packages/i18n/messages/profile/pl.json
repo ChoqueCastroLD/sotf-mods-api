@@ -137,7 +137,7 @@
   "profile_badge_staff_pick_hint": "Zespół wybiera jeden z twoich modów. Można zdobyć wielokrotnie.",
   "profile_badge_verified_creator_name": "Zweryfikowany twórca",
   "profile_badge_verified_creator_hint": "Twórcy zweryfikowani przez zespół SOTF Mods.",
-  "profile_badge_ranger_name": "Ranger",
+  "profile_badge_ranger_name": "Strażnik",
   "profile_badge_ranger_hint": "Moderatorzy, którzy dbają o bezpieczeństwo wyspy.",
   "profile_badge_translator_name": "Tłumacz",
   "profile_badge_translator_hint": "Pomógł(a) przetłumaczyć SOTF Mods na inny język.",
@@ -233,6 +233,6 @@
   "profile_achievements_fair_play_downloads": "Pobrania nigdy nie dają XP, więc nie ma sensu ich sztucznie pompować.",
   "profile_achievements_fair_play_same_network": "Głosy i raporty między kontami z tej samej sieci w ciągu 24 godzin się nie liczą.",
   "profile_achievements_fair_play_new_accounts": "Zupełnie nowe konta ważą połowę w ocenach i zgodności, dopóki nie zdobędą zaufania.",
-  "profile_achievements_fair_play_spikes": "Nagłe skoki pobrań sprawdzają Rangerzy.",
+  "profile_achievements_fair_play_spikes": "Nagłe skoki pobrań sprawdzają strażnicy.",
   "profile_achievements_fair_play_reversible": "Każdy punkt XP jest rejestrowany i może zostać cofnięty w razie nadużycia."
 }

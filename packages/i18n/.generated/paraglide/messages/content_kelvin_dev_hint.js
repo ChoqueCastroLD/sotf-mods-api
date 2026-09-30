@@ -18,7 +18,7 @@ const de_content_kelvin_dev_hint = /** @type {(inputs: Content_Kelvin_Dev_HintIn
 };
 
 const fr_content_kelvin_dev_hint = /** @type {(inputs: Content_Kelvin_Dev_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous construisez quelque chose de similaire ? L’endpoint fait partie de l’API historique :`)
+	return /** @type {LocalizedString} */ (`Vous construisez quelque chose de similaire ? L’endpoint fait partie de l’API historique :`)
 };
 
 const it_content_kelvin_dev_hint = /** @type {(inputs: Content_Kelvin_Dev_HintInputs) => LocalizedString} */ () => {

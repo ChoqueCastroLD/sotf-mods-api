@@ -18,7 +18,7 @@ const de_content_error_ref = /** @type {(inputs: Content_Error_RefInputs) => Loc
 };
 
 const fr_content_error_ref = /** @type {(inputs: Content_Error_RefInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Réf. : ${i?.ref}`)
+	return /** @type {LocalizedString} */ (`Réf. : ${i?.ref}`)
 };
 
 const it_content_error_ref = /** @type {(inputs: Content_Error_RefInputs) => LocalizedString} */ (i) => {

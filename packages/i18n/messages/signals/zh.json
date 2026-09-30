@@ -30,7 +30,7 @@
   "signals_compat_broken": "{mod} 在 {build} 上被报告为{status, select, broken {失效} other {部分可用}}",
   "signals_compat_fixed_in": "你关于 {mod} 的实地报告已在 {version} 中修复",
   "signals_compat_acknowledged": "{mod} 的作者已看到你的实地报告",
-  "signals_patch_breaking": "游戏版本 {build} 可能导致模组失效——在 Patch Radar 中检查你的模组",
+  "signals_patch_breaking": "游戏版本 {build} 可能导致模组失效——在补丁雷达中检查你的模组",
   "signals_status_approved": "你的模组 {mod} 已通过审核并上线",
   "signals_status_republished": "你的模组 {mod} 已重新公开",
   "signals_status_rejected": "你的模组 {mod} 未通过审核",
@@ -74,5 +74,9 @@
   "signals_empty_filtered_text": "暂时没有符合此筛选条件的信号。试试“全部”。",
   "signals_show_all": "显示全部信号",
   "signals_error_text": "我们这边出了点问题，请稍后再试。",
-  "signals_more_error": "更早的信号加载失败。"
+  "signals_more_error": "更早的信号加载失败。",
+  "signals_status_version_approved": "{mod} 的 {version} 版本已通过审核并上线",
+  "signals_status_version_rejected": "{mod} 的 {version} 版本未通过审核",
+  "signals_status_version_changes_requested": "护林员要求修改 {mod} 的 {version} 版本",
+  "signals_status_version_held": "{mod} 的 {version} 版本正在等待护林员审核"
 }

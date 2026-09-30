@@ -18,7 +18,7 @@ const de_content_brand_colors_text = /** @type {(inputs: Content_Brand_Colors_Te
 };
 
 const fr_content_brand_colors_text = /** @type {(inputs: Content_Brand_Colors_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nuit et Os forment la base ; Fusée est le seul accent. Les couleurs d’état servent à donner du sens, pas à décorer.`)
+	return /** @type {LocalizedString} */ (`Nuit et Os forment la base ; Fusée est le seul accent. Les couleurs d’état servent à donner du sens, pas à décorer.`)
 };
 
 const it_content_brand_colors_text = /** @type {(inputs: Content_Brand_Colors_TextInputs) => LocalizedString} */ () => {

@@ -54,7 +54,7 @@ const zh_content_kelvin_what_text = /** @type {(inputs: Content_Kelvin_What_Text
 };
 
 const ja_content_kelvin_what_text = /** @type {(inputs: Content_Kelvin_What_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`KelvinSeek は ${i?.author} による Mod です。ケルヴィンに書いた内容を SOTF Mods の API 経由で AI サービスに送り、その答えをケルヴィンの返事に、頼みごとがあればゲーム内の指示の 1 つに変換します。自分の API キーは不要です。`)
+	return /** @type {LocalizedString} */ (`KelvinSeek は ${i?.author} による MOD です。ケルヴィンに書いた内容を SOTF Mods の API 経由で AI サービスに送り、その答えをケルヴィンの返事に、頼みごとがあればゲーム内の指示の 1 つに変換します。自分の API キーは不要です。`)
 };
 
 /**

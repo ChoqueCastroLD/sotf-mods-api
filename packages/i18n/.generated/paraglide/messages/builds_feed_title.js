@@ -18,7 +18,7 @@ const de_builds_feed_title = /** @type {(inputs: Builds_Feed_TitleInputs) => Loc
 };
 
 const fr_builds_feed_title = /** @type {(inputs: Builds_Feed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods : builds nouvelles et mises à jour`)
+	return /** @type {LocalizedString} */ (`SOTF Mods : builds nouvelles et mises à jour`)
 };
 
 const it_builds_feed_title = /** @type {(inputs: Builds_Feed_TitleInputs) => LocalizedString} */ () => {

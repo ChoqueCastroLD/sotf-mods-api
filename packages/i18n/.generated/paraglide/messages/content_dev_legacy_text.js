@@ -54,7 +54,7 @@ const zh_content_dev_legacy_text = /** @type {(inputs: Content_Dev_Legacy_TextIn
 };
 
 const ja_content_dev_legacy_text = /** @type {(inputs: Content_Dev_Legacy_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`サイト初期版の API は、RedManager、UpdatesChecker、ゲーム内 Mod が動き続けるよう、api.sotf-mods.com/api/* と sotf-mods.com/api/* で引き続き応答します。新しい連携には v2 を使ってください。`)
+	return /** @type {LocalizedString} */ (`サイト初期版の API は、RedManager、UpdatesChecker、ゲーム内 MOD が動き続けるよう、api.sotf-mods.com/api/* と sotf-mods.com/api/* で引き続き応答します。新しい連携には v2 を使ってください。`)
 };
 
 /**
