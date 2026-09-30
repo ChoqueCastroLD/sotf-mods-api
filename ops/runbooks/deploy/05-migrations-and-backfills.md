@@ -25,7 +25,7 @@ Arranca `sotf-v2-tools` (*Start*), abre su *Terminal* (directorio `tooling/migra
 node src/cli/backfill.ts --list
 node src/cli/backfill.ts --all --dry-run                 # ensayo: cuentas reales, nada se guarda
 node src/cli/backfill.ts --all --confirm sotf_mods       # B5
-node src/cli/invariants.ts
+node src/cli/invariants.ts                                # ensayo manual
 node src/cli/verify-snapshot.ts
 # D4, tras el corte:
 node src/cli/backfill.ts --delta --since-watermarks --confirm sotf_mods
@@ -35,6 +35,19 @@ node src/cli/admin-grant.ts --email luis.choque.castro@outlook.com --role admin 
 
 Los informes quedan en `out/` del contenedor (se pierden al pararlo: copia lo que necesites de la
 salida). **Para** `sotf-v2-tools` al terminar.
+
+## 2b. Invariantes nocturnas
+
+Programa en Coolify, en `sotf-v2-tools`, una *Scheduled Task* diaria (p. ej. `15 3 * * *`, directorio
+`tooling/migration`) con:
+
+```bash
+node src/cli/invariants.ts --record
+```
+
+`--record` escribe la fila `MigrationRun` que lee la cola `ops.alerts` del worker: si alguna
+invariante está en rojo, los admins reciben un aviso. El worker ya no tiene intervalo propio de
+alertas (la variable `ALERT_INTERVAL_SECONDS` no existe).
 
 ## 3. Backfills del worker (B15, B16)
 

@@ -4,8 +4,8 @@
  * entity has no public OG image: missing, not public, or NSFW («sin OG explícita», PLAN §4.5).
  */
 import type { OG_ENTITY_TYPES } from '@sotf/contracts/jobs';
-import { mod, user } from '@sotf/db';
-import { eq } from 'drizzle-orm';
+import { mod, modMilestone, user } from '@sotf/db';
+import { and, eq } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { getSnapshot } from '../catalog/snapshot.ts';
 import { getUserProfile } from '../catalog/users.ts';
@@ -208,6 +208,41 @@ function guideCard(slug: string): OgCard {
   };
 }
 
+/** `{modId}-{threshold}` of a milestone card, or null when malformed. */
+export function parseMilestoneId(value: string): { modId: number; threshold: number } | null {
+  const match = /^(\d{1,9})-(\d{1,9})$/.exec(value);
+  if (!match) return null;
+  const modId = Number(match[1]);
+  const threshold = Number(match[2]);
+  return modId > 0 && threshold > 0 ? { modId, threshold } : null;
+}
+
+async function milestoneCard(ctx: Ctx, config: CatalogConfig, id: string): Promise<OgCard | null> {
+  const parsed = parseMilestoneId(id);
+  if (!parsed) return null;
+  const [reached] = await ctx.db
+    .select({ threshold: modMilestone.threshold })
+    .from(modMilestone)
+    .where(and(eq(modMilestone.modId, parsed.modId), eq(modMilestone.threshold, parsed.threshold)))
+    .limit(1);
+  if (!reached) return null;
+  const snapshot = await getSnapshot(ctx, config);
+  const entry = snapshot.byId.get(parsed.modId);
+  if (!entry || entry.nsfw || !PUBLIC_MOD_STATUSES.has(entry.status)) return null;
+  const card = entry.card;
+  const accentRows = await ctx.db.select({ logColor: mod.logColor }).from(mod).where(eq(mod.id, parsed.modId)).limit(1);
+  return {
+    type: 'milestone',
+    seed: `milestone:${parsed.modId}-${parsed.threshold}`,
+    kicker: `Milestone · ${compact(parsed.threshold)} downloads`,
+    title: card.name,
+    fallbackTitle: card.slug,
+    byline: `by ${card.userDisplayName}`,
+    stats: [{ icon: 'download', text: `${compact(parsed.threshold)} downloads` }],
+    accent: accentRows[0]?.logColor ?? null,
+  };
+}
+
 /** The card of an entity, or null when it must not have a public OG image. */
 export async function loadOgCard(
   ctx: Ctx,
@@ -228,6 +263,8 @@ export async function loadOgCard(
       return categoryCard(ctx, config, String(entityId).toLowerCase());
     case 'patch-radar':
       return patchRadarCard(ctx, config, String(entityId));
+    case 'milestone':
+      return milestoneCard(ctx, config, String(entityId));
     case 'guide':
       return guideCard(String(entityId).toLowerCase());
   }

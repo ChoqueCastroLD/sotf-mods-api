@@ -66,6 +66,8 @@ export const modMilestone = pgTable(
     threshold: integer('threshold').notNull(),
     reachedAt: tstz('reachedAt').notNull(),
     notifiedAt: tstz('notifiedAt'),
+    /** Share card rendered by `og.render` (`milestone` entity), null until rendered. */
+    ogImageKey: text('ogImageKey'),
   },
   (t) => [primaryKey({ name: 'ModMilestone_pkey', columns: [t.modId, t.threshold] })],
 );

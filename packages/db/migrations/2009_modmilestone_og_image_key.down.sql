@@ -1,0 +1,1 @@
+ALTER TABLE "ModMilestone" DROP COLUMN IF EXISTS "ogImageKey";

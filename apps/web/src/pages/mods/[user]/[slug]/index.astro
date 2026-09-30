@@ -64,8 +64,14 @@ const preloadImage = hero
       }
     : { href: hero.url }
   : undefined;
-const ogImage = mod.nsfw ? undefined : (mod.ogImage?.url ?? mod.thumbnail?.url ?? mod.gallery[0]?.url);
-const ogSized = mod.ogImage !== null && ogImage === mod.ogImage?.url;
+// `?milestone=10000` shares the milestone card (PLAN §7.2) when it was rendered.
+const milestoneParam = Number(Astro.url.searchParams.get('milestone'));
+const milestoneOg = Number.isSafeInteger(milestoneParam)
+  ? (mod.milestones.find((x) => x.threshold === milestoneParam)?.ogImageUrl ?? null)
+  : null;
+const sharedOg = milestoneOg ?? mod.ogImage?.url ?? null;
+const ogImage = mod.nsfw ? undefined : (sharedOg ?? mod.thumbnail?.url ?? mod.gallery[0]?.url);
+const ogSized = sharedOg !== null && ogImage === sharedOg;
 const tags = mod.tags;
 const faq = buildModFaq(mod, locale);
 const jsonLd = modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl });

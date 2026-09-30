@@ -11,7 +11,7 @@ import { DomainEventSchema } from './domain-events.ts';
 import { CacheTagSchema } from './internal.ts';
 import { UploadPurpose } from './uploads.ts';
 
-export const OG_ENTITY_TYPES = ['mod', 'build', 'user', 'kit', 'category', 'patch-radar', 'guide'] as const;
+export const OG_ENTITY_TYPES = ['mod', 'build', 'user', 'kit', 'category', 'patch-radar', 'guide', 'milestone'] as const;
 
 /** Payload schema of every queue. */
 export const JOB_PAYLOADS = {

@@ -484,10 +484,14 @@ export const MOD_MILESTONES = [1_000, 5_000, 10_000, 25_000, 50_000, 100_000, 25
 
 export const MilestoneDTO = dto(
   'MilestoneDTO',
-  z.object({ threshold: z.number().int().positive(), reachedAt: IsoDateTime }),
+  z.object({
+    threshold: z.number().int().positive(),
+    reachedAt: IsoDateTime,
+    ogImageUrl: z.string().nullable().describe('Share card of the milestone (null until rendered)'),
+  }),
   {
     description: 'A download milestone reached by a mod (retroactive from the daily series).',
-    examples: [{ threshold: 100_000, reachedAt: '2026-03-14T00:00:00.000Z' }],
+    examples: [{ threshold: 100_000, reachedAt: '2026-03-14T00:00:00.000Z', ogImageUrl: null }],
   },
 );
 export type MilestoneDTO = z.infer<typeof MilestoneDTO>;

@@ -14,15 +14,15 @@
  *   fetched over HTTP: only URLs under `R2_PUBLIC_BASE_URL` are used.
  */
 import { cacheTag } from '@sotf/contracts/cache';
-import { category, kit, mod, user } from '@sotf/db';
-import { eq, sql } from 'drizzle-orm';
+import { category, kit, mod, modMilestone, user } from '@sotf/db';
+import { and, eq, sql } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { purge } from '../kernel/cache-tags.ts';
 import type { Ctx } from '../kernel/context.ts';
 import type { ObjectStorage } from '../storage/client.ts';
 import { IMMUTABLE_CACHE_CONTROL } from '../storage/disposition.ts';
 import { ogImageKey } from '../storage/keys.ts';
-import { loadOgCard, type OgEntityType } from './data.ts';
+import { loadOgCard, type OgEntityType, parseMilestoneId } from './data.ts';
 import { ogCardHash, renderOgPng } from './render.ts';
 
 /** Largest collage source read (thumbnails are ~20 KB, covers a few hundred KB). */
@@ -86,13 +86,14 @@ export interface OgRenderResult {
   bytes?: number;
 }
 
-type StoredColumn = 'mod' | 'user' | 'kit' | 'category';
+type StoredColumn = 'mod' | 'user' | 'kit' | 'category' | 'milestone';
 
 function columnOf(type: OgEntityType): StoredColumn | null {
   if (type === 'mod' || type === 'build') return 'mod';
   if (type === 'user') return 'user';
   if (type === 'kit') return 'kit';
   if (type === 'category') return 'category';
+  if (type === 'milestone') return 'milestone';
   return null;
 }
 
@@ -105,6 +106,16 @@ async function readStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId): Prom
       .select({ key: category.ogImageKey })
       .from(category)
       .where(eq(category.slug, String(id)))
+      .limit(1);
+    return row ? row.key : undefined;
+  }
+  if (column === 'milestone') {
+    const parsed = parseMilestoneId(String(id));
+    if (!parsed) return undefined;
+    const [row] = await ctx.db
+      .select({ key: modMilestone.ogImageKey })
+      .from(modMilestone)
+      .where(and(eq(modMilestone.modId, parsed.modId), eq(modMilestone.threshold, parsed.threshold)))
       .limit(1);
     return row ? row.key : undefined;
   }
@@ -128,6 +139,12 @@ async function readStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId): Prom
 async function writeStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId, key: string | null): Promise<void> {
   if (column === 'category') {
     await ctx.db.execute(sql`UPDATE "Category" SET "ogImageKey" = ${key} WHERE "slug" = ${String(id)}`);
+  } else if (column === 'milestone') {
+    const parsed = parseMilestoneId(String(id));
+    if (!parsed) return;
+    await ctx.db.execute(
+      sql`UPDATE "ModMilestone" SET "ogImageKey" = ${key} WHERE "modId" = ${parsed.modId} AND "threshold" = ${parsed.threshold}`,
+    );
   } else if (column === 'mod') await ctx.db.execute(sql`UPDATE "Mod" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
   else if (column === 'user') await ctx.db.execute(sql`UPDATE "User" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
   else await ctx.db.execute(sql`UPDATE "Kit" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
@@ -135,6 +152,7 @@ async function writeStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId, key:
 
 function tagOf(column: StoredColumn, id: StoredId) {
   if (column === 'category') return cacheTag.category(String(id));
+  if (column === 'milestone') return cacheTag.mod(parseMilestoneId(String(id))?.modId ?? 0);
   if (column === 'mod') return cacheTag.mod(Number(id));
   if (column === 'user') return cacheTag.user(Number(id));
   return cacheTag.kit(Number(id));
@@ -147,7 +165,7 @@ export async function renderEntityOg(
 ): Promise<OgRenderResult> {
   const column = columnOf(input.entityType);
   let storedId: StoredId;
-  if (column === 'category') {
+  if (column === 'category' || column === 'milestone') {
     storedId = String(input.entityId).toLowerCase();
   } else {
     storedId = typeof input.entityId === 'number' ? input.entityId : Number(input.entityId);
@@ -167,7 +185,7 @@ export async function renderEntityOg(
     return { status: 'skipped', key: null, url: null };
   }
 
-  const entityKey = column && column !== 'category' ? Number(storedId) : String(input.entityId).toLowerCase();
+  const entityKey = column && column !== 'category' && column !== 'milestone' ? Number(storedId) : String(input.entityId).toLowerCase();
   const key = ogImageKey(card.type, entityKey, ogCardHash(card));
   const bucket = deps.storage.config.publicBucket;
   const url = deps.storage.publicUrl(key);
