@@ -18,6 +18,7 @@ import type { EmailFrequency, NotificationType } from '@sotf/contracts/notificat
 import { emailOutbox, notification, user, withTx } from '@sotf/db';
 import { and, asc, eq, gt, inArray, isNull } from 'drizzle-orm';
 import { displayNameOf, localeOf } from '../auth/users.ts';
+import { loadModerationTemplates, type ModerationTemplate } from '../settings/templates.ts';
 import {
   deliverNotificationEmail,
   type NotificationEmailPayload,
@@ -78,7 +79,39 @@ interface PendingRow {
   createdAt: Date;
 }
 
-function toItem(row: PendingRow, locale: string, siteUrl: string, actorName: string | null): SignalEmailItem {
+/**
+ * The reason of a moderation signal in the recipient's locale: `statusReason` stores the English
+ * text of the template followed by the ranger's note, and the signal carries `templateKey`. When the
+ * template has a wording for the locale, it replaces the English part (the note stays as written).
+ */
+export function localizedReason(
+  reason: string | null,
+  templateKey: string | null,
+  locale: string,
+  templates: readonly ModerationTemplate[],
+): string | null {
+  if (!templateKey) return reason;
+  const template = templates.find((t) => t.key === templateKey);
+  const messages = (template?.messages ?? {}) as Record<string, string | undefined>;
+  const wording = messages[locale]?.trim();
+  if (!template || !wording) return reason;
+  const english = messages.en?.trim() ?? '';
+  const note =
+    reason && english && reason.startsWith(english)
+      ? reason.slice(english.length).trim()
+      : reason && !english
+        ? reason
+        : null;
+  return [wording, note].filter((part): part is string => Boolean(part)).join('\n\n');
+}
+
+function toItem(
+  row: PendingRow,
+  locale: string,
+  siteUrl: string,
+  actorName: string | null,
+  templates: readonly ModerationTemplate[] = [],
+): SignalEmailItem {
   const d = row.data;
   const path = str(d.targetPath);
   const rating = int(d.rating);
@@ -92,7 +125,7 @@ function toItem(row: PendingRow, locale: string, siteUrl: string, actorName: str
     version: str(d.version),
     rating: rating !== null && rating >= 1 && rating <= 5 ? rating : null,
     status: str(d.status),
-    reason: str(d.reason)?.slice(0, 500) ?? null,
+    reason: localizedReason(str(d.reason), str(d.templateKey), locale, templates)?.slice(0, 500) ?? null,
     build: str(d.build),
     threshold: int(d.threshold),
     awardKind: str(d.awardKind),
@@ -180,6 +213,9 @@ export async function sendSignalEmails(deps: DigestDeps, cadence: DigestCadence)
       if (send.length === 0 || !account) return null;
 
       const locale = localeOf(account);
+      const templates = send.some((r) => typeof r.data.templateKey === 'string')
+        ? await loadModerationTemplates(tx)
+        : [];
       const actors = await loadUserRefs(
         tx,
         send.map((r) => r.actorId).filter((id): id is number => id !== null),
@@ -189,7 +225,13 @@ export async function sendSignalEmails(deps: DigestDeps, cadence: DigestCadence)
       const items = ordered
         .slice(0, MAX_EMAIL_ITEMS)
         .map((row) =>
-          toItem(row, locale, deps.siteUrl, row.actorId !== null ? (actors.get(row.actorId)?.name ?? null) : null),
+          toItem(
+            row,
+            locale,
+            deps.siteUrl,
+            row.actorId !== null ? (actors.get(row.actorId)?.name ?? null) : null,
+            templates,
+          ),
         );
       const types = new Set(send.map((r) => r.type));
       const scope: UnsubscribeScope =

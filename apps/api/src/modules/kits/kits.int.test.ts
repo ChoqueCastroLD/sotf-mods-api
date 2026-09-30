@@ -147,6 +147,7 @@ describe('create', () => {
     });
     expect(kit.descriptionHtml).not.toContain('<script');
     expect(kit.descriptionHtml).toContain('&lt;script&gt;');
+    expect(kit.descriptionHtml).toContain('<strong>bold</strong>');
     expect(await events('kit.created', kit.id)).toBe(1);
   });
 
@@ -326,7 +327,8 @@ describe('visibility and caching', () => {
     expect(res.headers['cache-tag']).toContain(`kit:${publicKit.id}`);
     expect(res.headers['cache-tag']).toContain(`user:${owner}`);
     expect(res.body).not.toHaveProperty('descriptionMd');
-    expect(res.body?.descriptionHtml).toBe('<p>Hello</p>');
+    // Descriptions are Markdown lite (the `@sotf/markdown` pipeline, same as comments and reviews).
+    expect(res.body?.descriptionHtml?.trim()).toBe('<p>Hello</p>');
     const bySlug = await call('GET', `/api/v2/kits/by-slug/KIT-OWNER/visible-kit`, other);
     expect(bySlug.status).toBe(200);
     expect(bySlug.body?.id).toBe(publicKit.id);
