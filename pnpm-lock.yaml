@@ -311,6 +311,9 @@ catalogs:
     fastify-type-provider-zod:
       specifier: 7.0.0
       version: 7.0.0
+    fflate:
+      specifier: 0.8.3
+      version: 0.8.3
     fontaine:
       specifier: 1.0.0
       version: 1.0.0
@@ -504,6 +507,9 @@ importers:
       '@sotf/config':
         specifier: workspace:*
         version: link:../../packages/config
+      '@sotf/emails':
+        specifier: workspace:*
+        version: link:../../packages/emails
       '@sotf/migration-tools':
         specifier: workspace:*
         version: link:../../tooling/migration
@@ -516,6 +522,12 @@ importers:
       '@types/pg':
         specifier: 'catalog:'
         version: 8.23.1
+      fflate:
+        specifier: 'catalog:'
+        version: 0.8.3
+      testcontainers:
+        specifier: 'catalog:'
+        version: 12.2.0
       tsdown:
         specifier: 'catalog:'
         version: 0.23.0(typescript@7.0.2)
@@ -620,6 +632,9 @@ importers:
       '@types/pg':
         specifier: 'catalog:'
         version: 8.23.1
+      testcontainers:
+        specifier: 'catalog:'
+        version: 12.2.0
       tsdown:
         specifier: 'catalog:'
         version: 0.23.0(typescript@7.0.2)
@@ -705,6 +720,12 @@ importers:
       '@aws-sdk/s3-request-presigner':
         specifier: 'catalog:'
         version: 3.1142.0
+      '@node-rs/argon2':
+        specifier: 'catalog:'
+        version: 2.2.1
+      '@node-rs/bcrypt':
+        specifier: 'catalog:'
+        version: 1.10.9
       '@sotf/contracts':
         specifier: workspace:*
         version: link:../contracts
@@ -714,6 +735,9 @@ importers:
       drizzle-orm:
         specifier: 'catalog:'
         version: 0.45.3(@types/pg@8.23.1)(kysely@0.28.17)(pg@8.23.0)
+      fflate:
+        specifier: 'catalog:'
+        version: 0.8.3
       isbot:
         specifier: 'catalog:'
         version: 5.2.2

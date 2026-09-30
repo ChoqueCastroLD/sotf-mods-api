@@ -16,9 +16,12 @@
   "dependencies": {
     "@aws-sdk/client-s3": "catalog:",
     "@aws-sdk/s3-request-presigner": "catalog:",
+    "@node-rs/argon2": "catalog:",
+    "@node-rs/bcrypt": "catalog:",
     "@sotf/contracts": "workspace:*",
     "@sotf/db": "workspace:*",
     "drizzle-orm": "catalog:",
+    "fflate": "catalog:",
     "isbot": "catalog:",
     "lru-cache": "catalog:",
     "pg": "catalog:",

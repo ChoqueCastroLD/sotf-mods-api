@@ -37,6 +37,7 @@
     "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
     "@types/pg": "catalog:",
+    "testcontainers": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"

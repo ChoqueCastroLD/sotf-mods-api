@@ -337,6 +337,95 @@
   "common_theme_system": "Systemowy",
   "common_updated_ago": "Zaktualizowano {when}",
   "common_welcome": "Dzień 1 na wyspie. Witaj, ocalały.",
+  "emails_auth_deleted_body": "Twoje dane osobowe zostały usunięte. Komentarze i recenzje pozostają jako „Usunięty ocalały”. Dziękujemy, że byłeś częścią wyspy.",
+  "emails_auth_deleted_heading": "Konto usunięte",
+  "emails_auth_deleted_preview": "Twoje dane osobowe zostały usunięte.",
+  "emails_auth_deleted_subject": "Twoje konto SOTF Mods zostało usunięte",
+  "emails_auth_deletion_body": "Twoje konto zostanie usunięte {when} (UTC). Do tego czasu możesz to anulować w ustawieniach i wszystko zostanie bez zmian.",
+  "emails_auth_deletion_button": "Anuluj usunięcie",
+  "emails_auth_deletion_cancelled_body": "Cieszymy się, że zostajesz. Usunięcie anulowano {when} (UTC), a Twoje konto pozostaje bez zmian.",
+  "emails_auth_deletion_cancelled_heading": "Usunięcie anulowane",
+  "emails_auth_deletion_cancelled_preview": "Zaplanowane usunięcie zostało anulowane.",
+  "emails_auth_deletion_cancelled_subject": "Twoje konto SOTF Mods nie zostanie usunięte",
+  "emails_auth_deletion_heading": "Zaplanowano usunięcie konta",
+  "emails_auth_deletion_mode_archive": "Twoje mody zostaną zarchiwizowane.",
+  "emails_auth_deletion_mode_keep": "Twoje mody pozostaną opublikowane bez Twojego imienia.",
+  "emails_auth_deletion_preview": "Nadal możesz zmienić zdanie.",
+  "emails_auth_deletion_subject": "Twoje konto SOTF Mods zostanie usunięte",
+  "emails_auth_email_change_body": "Poprosiłeś o użycie adresu {email} dla konta SOTF Mods. Potwierdź go, aby dokończyć zmianę.",
+  "emails_auth_email_change_button": "Potwierdź nowy e-mail",
+  "emails_auth_email_change_heading": "Potwierdź nowy e-mail",
+  "emails_auth_email_change_preview": "Potwierdź nowy adres, aby dokończyć zmianę.",
+  "emails_auth_email_change_subject": "Potwierdź nowy e-mail w SOTF Mods",
+  "emails_auth_email_notice_body": "{when} (UTC) ktoś poprosił o zmianę e-maila Twojego konta na {email}. Nic się nie zmieni, dopóki nowy adres nie zostanie potwierdzony.",
+  "emails_auth_email_notice_button": "Sprawdź bezpieczeństwo",
+  "emails_auth_email_notice_heading": "Prośba o zmianę e-maila",
+  "emails_auth_email_notice_not_you": "To nie Ty? Zmień teraz hasło i sprawdź sesje.",
+  "emails_auth_email_notice_preview": "Zmiana nastąpi dopiero po potwierdzeniu nowego adresu.",
+  "emails_auth_email_notice_subject": "E-mail Twojego konta SOTF Mods jest zmieniany",
+  "emails_auth_export_body": "Eksport to plik ZIP z każdym rekordem powiązanym z Twoim kontem, w formacie JSON.",
+  "emails_auth_export_button": "Pobierz moje dane",
+  "emails_auth_export_expiry": "Link wygasa {when} (UTC). Potem możesz poprosić o nowy eksport.",
+  "emails_auth_export_heading": "Twoje dane są gotowe",
+  "emails_auth_export_preview": "Pobierz kopię wszystkiego, co jest powiązane z Twoim kontem.",
+  "emails_auth_export_subject": "Eksport Twoich danych z SOTF Mods jest gotowy",
+  "emails_auth_greeting": "Cześć {name},",
+  "emails_auth_ignore": "Jeśli to nie Ty, możesz zignorować tę wiadomość.",
+  "emails_auth_link_expiry_hours": [
+    {
+      "declarations": [
+        "input hours",
+        "local hours__plural = hours: plural",
+        "local hours__number = hours: number"
+      ],
+      "selectors": [
+        "hours__plural"
+      ],
+      "match": {
+        "hours__plural=one": "Ten link działa tylko raz i wygasa za {hours__number} godzinę.",
+        "hours__plural=few": "Ten link działa tylko raz i wygasa za {hours__number} godziny.",
+        "hours__plural=many": "Ten link działa tylko raz i wygasa za {hours__number} godzin.",
+        "hours__plural=*": "Ten link działa tylko raz i wygasa za {hours__number} godziny."
+      }
+    }
+  ],
+  "emails_auth_link_fallback": "Jeśli przycisk nie działa, skopiuj ten link do przeglądarki:",
+  "emails_auth_password_changed_body": "Hasło do Twojego konta zostało zmienione {when} (UTC).",
+  "emails_auth_password_changed_button": "Zresetuj hasło",
+  "emails_auth_password_changed_heading": "Hasło zmienione",
+  "emails_auth_password_changed_not_you": "To nie Ty? Natychmiast zresetuj hasło i sprawdź aktywne sesje.",
+  "emails_auth_password_changed_preview": "Jeśli to nie Ty, działaj teraz.",
+  "emails_auth_password_changed_subject": "Hasło do SOTF Mods zostało zmienione",
+  "emails_auth_reason_account": "Otrzymujesz tę wiadomość z powodu aktywności na Twoim koncie SOTF Mods.",
+  "emails_auth_reset_body": "Ktoś, mamy nadzieję, że Ty, poprosił o zresetowanie hasła do Twojego konta.",
+  "emails_auth_reset_button": "Wybierz nowe hasło",
+  "emails_auth_reset_expiry": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "Ten link działa tylko raz i wygasa za {minutes__number} minutę.",
+        "minutes__plural=few": "Ten link działa tylko raz i wygasa za {minutes__number} minuty.",
+        "minutes__plural=many": "Ten link działa tylko raz i wygasa za {minutes__number} minut.",
+        "minutes__plural=*": "Ten link działa tylko raz i wygasa za {minutes__number} minuty."
+      }
+    }
+  ],
+  "emails_auth_reset_heading": "Zresetuj hasło",
+  "emails_auth_reset_preview": "Użyj tego linku, aby wybrać nowe hasło.",
+  "emails_auth_reset_subject": "Zresetuj hasło do SOTF Mods",
+  "emails_auth_review_sessions": "Sprawdź sesje",
+  "emails_auth_verify_body": "Witaj na wyspie. Potwierdź ten adres, aby publikować mody, komentować, pisać recenzje i zgłaszać kompatybilność.",
+  "emails_auth_verify_button": "Potwierdź e-mail",
+  "emails_auth_verify_heading": "Potwierdź swój e-mail",
+  "emails_auth_verify_preview": "Jedno kliknięcie i możesz publikować, komentować i recenzować.",
+  "emails_auth_verify_subject": "Potwierdź swój e-mail w SOTF Mods",
   "errors_boundary_detail": "Reszta strony nadal działa. Spróbuj ponownie wczytać tę sekcję.",
   "errors_boundary_title": "Ta część strony się nie wczytała",
   "errors_code_conflict_detail": "To zmieniło się, gdy nad tym pracowałeś. Odśwież, aby zobaczyć najnowszą wersję, i spróbuj ponownie.",

@@ -319,6 +319,91 @@
   "common_theme_system": "System",
   "common_updated_ago": "Uppdaterad {when}",
   "common_welcome": "Dag 1 på ön. Välkommen, överlevare.",
+  "emails_auth_deleted_body": "Dina personuppgifter har raderats. Kommentarer och recensioner finns kvar som ”Raderad överlevare”. Tack för att du var en del av ön.",
+  "emails_auth_deleted_heading": "Kontot raderat",
+  "emails_auth_deleted_preview": "Dina personuppgifter har raderats.",
+  "emails_auth_deleted_subject": "Ditt SOTF Mods-konto har raderats",
+  "emails_auth_deletion_body": "Ditt konto raderas {when} (UTC). Fram till dess kan du avbryta i inställningarna och allt förblir som det är.",
+  "emails_auth_deletion_button": "Avbryt raderingen",
+  "emails_auth_deletion_cancelled_body": "Kul att du stannar. Raderingen avbröts {when} (UTC) och ditt konto förblir som det är.",
+  "emails_auth_deletion_cancelled_heading": "Raderingen avbruten",
+  "emails_auth_deletion_cancelled_preview": "Den schemalagda raderingen har avbrutits.",
+  "emails_auth_deletion_cancelled_subject": "Ditt SOTF Mods-konto kommer inte att raderas",
+  "emails_auth_deletion_heading": "Radering av konto schemalagd",
+  "emails_auth_deletion_mode_archive": "Dina moddar arkiveras.",
+  "emails_auth_deletion_mode_keep": "Dina moddar förblir publicerade utan ditt namn.",
+  "emails_auth_deletion_preview": "Du kan fortfarande ångra dig.",
+  "emails_auth_deletion_subject": "Ditt SOTF Mods-konto kommer att raderas",
+  "emails_auth_email_change_body": "Du vill använda {email} för ditt SOTF Mods-konto. Bekräfta den för att slutföra ändringen.",
+  "emails_auth_email_change_button": "Bekräfta ny e-post",
+  "emails_auth_email_change_heading": "Bekräfta din nya e-postadress",
+  "emails_auth_email_change_preview": "Bekräfta den nya adressen för att slutföra ändringen.",
+  "emails_auth_email_change_subject": "Bekräfta din nya e-postadress för SOTF Mods",
+  "emails_auth_email_notice_body": "{when} (UTC) bad någon om att ändra ditt kontos e-postadress till {email}. Inget ändras förrän den nya adressen har bekräftats.",
+  "emails_auth_email_notice_button": "Granska säkerheten",
+  "emails_auth_email_notice_heading": "Byte av e-postadress begärt",
+  "emails_auth_email_notice_not_you": "Var det inte du? Byt lösenord nu och granska dina sessioner.",
+  "emails_auth_email_notice_preview": "Ändringen sker först när den nya adressen har bekräftats.",
+  "emails_auth_email_notice_subject": "E-postadressen för ditt SOTF Mods-konto håller på att ändras",
+  "emails_auth_export_body": "Exporten är en ZIP-fil med varje post som är kopplad till ditt konto, i JSON.",
+  "emails_auth_export_button": "Ladda ner mina data",
+  "emails_auth_export_expiry": "Länken går ut {when} (UTC). Därefter kan du begära en ny export.",
+  "emails_auth_export_heading": "Dina data är klara",
+  "emails_auth_export_preview": "Ladda ner en kopia av allt som är kopplat till ditt konto.",
+  "emails_auth_export_subject": "Din dataexport från SOTF Mods är klar",
+  "emails_auth_greeting": "Hej {name},",
+  "emails_auth_ignore": "Om det inte var du som bad om detta kan du ignorera mejlet.",
+  "emails_auth_link_expiry_hours": [
+    {
+      "declarations": [
+        "input hours",
+        "local hours__plural = hours: plural",
+        "local hours__number = hours: number"
+      ],
+      "selectors": [
+        "hours__plural"
+      ],
+      "match": {
+        "hours__plural=one": "Länken fungerar en gång och går ut om {hours__number} timme.",
+        "hours__plural=*": "Länken fungerar en gång och går ut om {hours__number} timmar."
+      }
+    }
+  ],
+  "emails_auth_link_fallback": "Om knappen inte fungerar kopierar du den här länken till webbläsaren:",
+  "emails_auth_password_changed_body": "Lösenordet för ditt konto ändrades {when} (UTC).",
+  "emails_auth_password_changed_button": "Återställ lösenord",
+  "emails_auth_password_changed_heading": "Lösenordet har ändrats",
+  "emails_auth_password_changed_not_you": "Var det inte du? Återställ lösenordet direkt och granska dina aktiva sessioner.",
+  "emails_auth_password_changed_preview": "Om det inte var du, agera nu.",
+  "emails_auth_password_changed_subject": "Ditt lösenord för SOTF Mods har ändrats",
+  "emails_auth_reason_account": "Du får det här mejlet på grund av aktivitet på ditt SOTF Mods-konto.",
+  "emails_auth_reset_body": "Någon, förhoppningsvis du, har bett om att återställa lösenordet för ditt konto.",
+  "emails_auth_reset_button": "Välj ett nytt lösenord",
+  "emails_auth_reset_expiry": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "Länken fungerar en gång och går ut om {minutes__number} minut.",
+        "minutes__plural=*": "Länken fungerar en gång och går ut om {minutes__number} minuter."
+      }
+    }
+  ],
+  "emails_auth_reset_heading": "Återställ ditt lösenord",
+  "emails_auth_reset_preview": "Använd länken för att välja ett nytt lösenord.",
+  "emails_auth_reset_subject": "Återställ ditt lösenord för SOTF Mods",
+  "emails_auth_review_sessions": "Granska sessioner",
+  "emails_auth_verify_body": "Välkommen till ön. Bekräfta adressen för att publicera moddar, kommentera, skriva recensioner och rapportera kompatibilitet.",
+  "emails_auth_verify_button": "Bekräfta e-post",
+  "emails_auth_verify_heading": "Bekräfta din e-postadress",
+  "emails_auth_verify_preview": "Ett klick så kan du publicera, kommentera och recensera.",
+  "emails_auth_verify_subject": "Bekräfta din e-postadress för SOTF Mods",
   "errors_boundary_detail": "Resten av sidan fungerar fortfarande. Försök ladda det här avsnittet igen.",
   "errors_boundary_title": "Den här delen av sidan laddades inte",
   "errors_code_conflict_detail": "Det här ändrades medan du arbetade med det. Ladda om för att se den senaste versionen och försök igen.",

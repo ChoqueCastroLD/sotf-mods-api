@@ -319,6 +319,91 @@
   "common_theme_system": "Système",
   "common_updated_ago": "Mis à jour {when}",
   "common_welcome": "Jour 1 sur l’île. Bienvenue, survivant.",
+  "emails_auth_deleted_body": "Vos données personnelles ont été effacées. Les commentaires et avis restent sous « Survivant supprimé ». Merci d’avoir fait partie de l’île.",
+  "emails_auth_deleted_heading": "Compte supprimé",
+  "emails_auth_deleted_preview": "Vos données personnelles ont été effacées.",
+  "emails_auth_deleted_subject": "Votre compte SOTF Mods a été supprimé",
+  "emails_auth_deletion_body": "Votre compte sera supprimé le {when} (UTC). D’ici là, vous pouvez annuler depuis vos paramètres et rien ne change.",
+  "emails_auth_deletion_button": "Annuler la suppression",
+  "emails_auth_deletion_cancelled_body": "Content de vous revoir. La suppression a été annulée le {when} (UTC) et votre compte reste tel quel.",
+  "emails_auth_deletion_cancelled_heading": "Suppression annulée",
+  "emails_auth_deletion_cancelled_preview": "La suppression programmée a été annulée.",
+  "emails_auth_deletion_cancelled_subject": "Votre compte SOTF Mods ne sera pas supprimé",
+  "emails_auth_deletion_heading": "Suppression du compte programmée",
+  "emails_auth_deletion_mode_archive": "Vos mods seront archivés.",
+  "emails_auth_deletion_mode_keep": "Vos mods resteront publiés sans votre nom.",
+  "emails_auth_deletion_preview": "Vous pouvez encore changer d’avis.",
+  "emails_auth_deletion_subject": "Votre compte SOTF Mods va être supprimé",
+  "emails_auth_email_change_body": "Vous avez demandé à utiliser {email} pour votre compte SOTF Mods. Confirmez-la pour terminer le changement.",
+  "emails_auth_email_change_button": "Confirmer la nouvelle adresse",
+  "emails_auth_email_change_heading": "Confirmez votre nouvelle adresse",
+  "emails_auth_email_change_preview": "Confirmez la nouvelle adresse pour terminer le changement.",
+  "emails_auth_email_change_subject": "Confirmez votre nouvelle adresse e-mail pour SOTF Mods",
+  "emails_auth_email_notice_body": "Le {when} (UTC), quelqu’un a demandé à remplacer l’adresse e-mail de votre compte par {email}. Rien ne change tant que la nouvelle adresse n’est pas confirmée.",
+  "emails_auth_email_notice_button": "Vérifier la sécurité",
+  "emails_auth_email_notice_heading": "Changement d’adresse demandé",
+  "emails_auth_email_notice_not_you": "Ce n’était pas vous ? Changez votre mot de passe maintenant et vérifiez vos sessions.",
+  "emails_auth_email_notice_preview": "Le changement n’a lieu qu’une fois la nouvelle adresse confirmée.",
+  "emails_auth_email_notice_subject": "L’adresse e-mail de votre compte SOTF Mods est en cours de modification",
+  "emails_auth_export_body": "Votre export est un fichier ZIP contenant chaque enregistrement lié à votre compte, au format JSON.",
+  "emails_auth_export_button": "Télécharger mes données",
+  "emails_auth_export_expiry": "Le lien expire le {when} (UTC). Vous pourrez ensuite demander un nouvel export.",
+  "emails_auth_export_heading": "Vos données sont prêtes",
+  "emails_auth_export_preview": "Téléchargez une copie de tout ce qui est lié à votre compte.",
+  "emails_auth_export_subject": "Votre export de données SOTF Mods est prêt",
+  "emails_auth_greeting": "Bonjour {name},",
+  "emails_auth_ignore": "Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet e-mail.",
+  "emails_auth_link_expiry_hours": [
+    {
+      "declarations": [
+        "input hours",
+        "local hours__plural = hours: plural",
+        "local hours__number = hours: number"
+      ],
+      "selectors": [
+        "hours__plural"
+      ],
+      "match": {
+        "hours__plural=one": "Ce lien ne fonctionne qu’une fois et expire dans {hours__number} heure.",
+        "hours__plural=*": "Ce lien ne fonctionne qu’une fois et expire dans {hours__number} heures."
+      }
+    }
+  ],
+  "emails_auth_link_fallback": "Si le bouton ne fonctionne pas, copiez ce lien dans votre navigateur :",
+  "emails_auth_password_changed_body": "Le mot de passe de votre compte a été modifié le {when} (UTC).",
+  "emails_auth_password_changed_button": "Réinitialiser le mot de passe",
+  "emails_auth_password_changed_heading": "Mot de passe modifié",
+  "emails_auth_password_changed_not_you": "Ce n’était pas vous ? Réinitialisez votre mot de passe tout de suite et vérifiez vos sessions actives.",
+  "emails_auth_password_changed_preview": "Si ce n’était pas vous, agissez maintenant.",
+  "emails_auth_password_changed_subject": "Votre mot de passe SOTF Mods a été modifié",
+  "emails_auth_reason_account": "Vous recevez cet e-mail en raison d’une activité sur votre compte SOTF Mods.",
+  "emails_auth_reset_body": "Quelqu’un, vous espérons-le, a demandé à réinitialiser le mot de passe de votre compte.",
+  "emails_auth_reset_button": "Choisir un nouveau mot de passe",
+  "emails_auth_reset_expiry": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "Ce lien ne fonctionne qu’une fois et expire dans {minutes__number} minute.",
+        "minutes__plural=*": "Ce lien ne fonctionne qu’une fois et expire dans {minutes__number} minutes."
+      }
+    }
+  ],
+  "emails_auth_reset_heading": "Réinitialisez votre mot de passe",
+  "emails_auth_reset_preview": "Utilisez ce lien pour choisir un nouveau mot de passe.",
+  "emails_auth_reset_subject": "Réinitialisez votre mot de passe SOTF Mods",
+  "emails_auth_review_sessions": "Vérifier vos sessions",
+  "emails_auth_verify_body": "Bienvenue sur l’île. Confirmez cette adresse pour publier des mods, commenter, écrire des avis et signaler la compatibilité.",
+  "emails_auth_verify_button": "Confirmer l’adresse",
+  "emails_auth_verify_heading": "Confirmez votre adresse e-mail",
+  "emails_auth_verify_preview": "Un clic et vous pourrez publier, commenter et donner votre avis.",
+  "emails_auth_verify_subject": "Confirmez votre adresse e-mail pour SOTF Mods",
   "errors_boundary_detail": "Le reste de la page fonctionne toujours. Essayez de recharger cette section.",
   "errors_boundary_title": "Cette partie de la page ne s’est pas chargée",
   "errors_code_conflict_detail": "Ce contenu a changé pendant que vous travailliez dessus. Rechargez pour voir la dernière version, puis réessayez.",
