@@ -17,6 +17,7 @@
  * | `user.onboarding_completed` | +10 once (+ `survived-day-one`) |
  * | `kit.created/updated` | +10 for every 10 followers; onboarding step |
  * | `mod.*`, `version.*` | badge evaluation of the author (and of the libraries it requires) |
+ * | `jam.phase_changed`, `jam.changed` | badge evaluation of the entry authors of a jam with published results (`jam-*`) |
  * | `award.created` | badge evaluation of the winner's author (`mod-of-the-week`, `staff-pick`) |
  */
 import type { DomainEvent } from '@sotf/contracts/domain-events';
@@ -60,6 +61,8 @@ export const GAMIFICATION_EVENT_TYPES = [
   'user.onboarding_completed',
   'user.email_verified',
   'award.created',
+  'jam.phase_changed',
+  'jam.changed',
 ] as const satisfies ReadonlyArray<DomainEvent['type']>;
 
 export type GamificationEventType = (typeof GAMIFICATION_EVENT_TYPES)[number];
@@ -296,6 +299,17 @@ async function applyEvent(tx: Executor, ctx: Ctx, event: DomainEvent): Promise<n
     case 'award.created':
       // Mod of the Week / staff pick badge of the winner's author (derived from the award rows).
       return [event.payload.authorId];
+    case 'jam.phase_changed':
+    case 'jam.changed': {
+      // Jam badges exist once the results are published: evaluate every entry author of that jam.
+      const authors = await query<{ userId: number }>(
+        tx,
+        sql`SELECT DISTINCT a."userId" FROM "JamEntry" e JOIN "JamEntryAuthor" a ON a."entryId" = e."id"
+             JOIN "Jam" j ON j."id" = e."jamId" AND j."resultsPublishedAt" IS NOT NULL
+            WHERE e."jamId" = ${event.payload.jamId}`,
+      );
+      return authors.map((r) => Number(r.userId));
+    }
     case 'mod.published':
     case 'mod.updated':
     case 'mod.status_changed':

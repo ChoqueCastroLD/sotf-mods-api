@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Votos e relatórios entre contas da mesma rede em 24 horas não contam.",
   "profile_achievements_fair_play_new_accounts": "Contas recém-criadas valem metade nas notas e na compatibilidade até ganharem confiança.",
   "profile_achievements_fair_play_spikes": "Picos repentinos de downloads são revisados pelos guardas.",
-  "profile_achievements_fair_play_reversible": "Cada ponto de XP é registrado e pode ser revertido se vier de abuso."
+  "profile_achievements_fair_play_reversible": "Cada ponto de XP é registrado e pode ser revertido se vier de abuso.",
+  "profile_badge_jam_participant_name": "Jammer",
+  "profile_badge_jam_participant_hint": "Inscreva um mod numa Mod Jam depois de os resultados serem publicados. Pode ser ganho várias vezes.",
+  "profile_badge_jam_podium_name": "Pódio da Jam",
+  "profile_badge_jam_podium_hint": "Termine no top 3 de uma categoria numa Mod Jam. Pode ser ganho várias vezes.",
+  "profile_badge_jam_champion_name": "Campeão da Jam",
+  "profile_badge_jam_champion_hint": "Vença uma Mod Jam na classificação geral. Pode ser ganho várias vezes."
 }

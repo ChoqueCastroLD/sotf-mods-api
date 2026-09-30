@@ -4,8 +4,8 @@
  * entity has no public OG image: missing, not public, or NSFW («sin OG explícita», PLAN §4.5).
  */
 import type { OG_ENTITY_TYPES } from '@sotf/contracts/jobs';
-import { mod, modMilestone, user } from '@sotf/db';
-import { and, eq } from 'drizzle-orm';
+import { jam, jamEntry, mod, modMilestone, user } from '@sotf/db';
+import { and, count, eq } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { getSnapshot } from '../catalog/snapshot.ts';
 import { getUserProfile } from '../catalog/users.ts';
@@ -242,6 +242,39 @@ async function milestoneCard(ctx: Ctx, config: CatalogConfig, id: string): Promi
   };
 }
 
+const JAM_ACCENT_HEX: Readonly<Record<string, string>> = {
+  signal: '#F2A93B',
+  forest: '#4FA36B',
+  ember: '#E8643C',
+  ocean: '#3B9AD9',
+  violet: '#8E6BD8',
+};
+
+async function jamCard(ctx: Ctx, id: number): Promise<OgCard | null> {
+  const [row] = await ctx.db.select().from(jam).where(eq(jam.id, id)).limit(1);
+  if (!row || row.phase === 'draft') return null;
+  const [entries] = await ctx.db
+    .select({ n: count() })
+    .from(jamEntry)
+    .where(and(eq(jamEntry.jamId, id), eq(jamEntry.status, 'active')));
+  const stats: OgStat[] = [{ icon: 'box', text: plural(entries?.n ?? 0, 'entry', 'entries') }];
+  return {
+    type: 'jam',
+    seed: `jam:${row.id}`,
+    kicker: row.phase === 'results' || row.phase === 'archived' ? 'Mod Jam · Results' : 'Mod Jam',
+    title: row.title,
+    fallbackTitle: row.slug,
+    byline:
+      row.themeHidden && ['announced', 'draft'].includes(row.phase)
+        ? 'Theme: secret'
+        : row.theme
+          ? `Theme: ${row.theme}`
+          : null,
+    stats,
+    accent: JAM_ACCENT_HEX[row.accent] ?? null,
+  };
+}
+
 /** The card of an entity, or null when it must not have a public OG image. */
 export async function loadOgCard(
   ctx: Ctx,
@@ -262,6 +295,8 @@ export async function loadOgCard(
       return categoryCard(ctx, config, String(entityId).toLowerCase());
     case 'patch-radar':
       return patchRadarCard(ctx, config, String(entityId));
+    case 'jam':
+      return numericId === null ? null : jamCard(ctx, numericId);
     case 'milestone':
       return milestoneCard(ctx, config, String(entityId));
     case 'guide':

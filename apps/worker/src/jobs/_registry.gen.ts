@@ -16,6 +16,7 @@ import emailJobs from './email/index.ts';
 import gamificationJobs from './gamification/index.ts';
 import indexnowJobs from './indexnow/index.ts';
 import inspectionJobs from './inspection/index.ts';
+import jamsJobs from './jams/index.ts';
 import kelvinseekJobs from './kelvinseek/index.ts';
 import legacyCountersJobs from './legacy-counters/index.ts';
 import legacyMentionsJobs from './legacy-mentions/index.ts';
@@ -46,6 +47,7 @@ export const jobGroups = [
   gamificationJobs,
   indexnowJobs,
   inspectionJobs,
+  jamsJobs,
   kelvinseekJobs,
   legacyCountersJobs,
   legacyMentionsJobs,

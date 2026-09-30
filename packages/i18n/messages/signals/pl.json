@@ -124,5 +124,6 @@
   "signals_request_comment": "{actor} skomentował(a) prośbę „{request}”",
   "signals_request_comment_grouped": "{count, plural, one {# nowy komentarz do prośby „{request}”} few {# nowe komentarze do prośby „{request}”} many {# nowych komentarzy do prośby „{request}”} other {# nowego komentarza do prośby „{request}”}}",
   "signals_request_adopted": "{actor} pracuje nad Twoją prośbą „{request}”",
-  "signals_request_fulfilled": "{mod} jest już dostępny i spełnia prośbę „{request}”"
+  "signals_request_fulfilled": "{mod} jest już dostępny i spełnia prośbę „{request}”",
+  "signals_jam_phase": "{phase, select, announced {Ogłoszono Mod Jam: {jam}} submissions {Zgłoszenia do {jam} są otwarte} voting {Głosowanie w {jam} trwa} results {Są wyniki {jam}} other {Nowości w {jam}}}"
 }

@@ -63,5 +63,6 @@
   "emails_notify_item_request_comment": "{actor} прокомментировал(а) запрос «{request}»",
   "emails_notify_item_request_comment_many": "{count, plural, one {# новый комментарий к запросу «{request}»} few {# новых комментария к запросу «{request}»} many {# новых комментариев к запросу «{request}»} other {# нового комментария к запросу «{request}»}}",
   "emails_notify_item_request_adopted": "{actor} взялся(-ась) за ваш запрос «{request}»",
-  "emails_notify_item_request_fulfilled": "Вышел мод, который вы запрашивали или за который голосовали: {mod}"
+  "emails_notify_item_request_fulfilled": "Вышел мод, который вы запрашивали или за который голосовали: {mod}",
+  "emails_notify_item_jam_phase": "{phase, select, announced {Анонсирован Mod Jam: {jam}} submissions {Открыт приём работ на {jam}} voting {Открыто голосование в {jam}} results {Опубликованы результаты {jam}} other {Новости {jam}}}"
 }

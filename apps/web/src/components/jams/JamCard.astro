@@ -1,0 +1,80 @@
+---
+/**
+ * A jam in the hub: banner (or accent gradient), phase, title, tagline, entries and the next
+ * milestone. The whole card is one link (the title), the rest is text.
+ */
+import { formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Trophy, Users } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import { accentHex, deadlineLabel, nextDeadline, PHASE_TONE_CLASSES, phaseLabel, phaseTone } from './phase.ts';
+import type { JamSummaryDTO } from './data.ts';
+
+interface Props {
+  jam: JamSummaryDTO;
+  headingLevel?: 2 | 3;
+}
+
+const { jam, headingLevel = 3 } = Astro.props;
+const locale = Astro.locals.locale;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const accent = accentHex(jam.accent);
+const deadline = nextDeadline(jam);
+---
+
+<article
+  class="group relative flex h-full flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-border-strong focus-within:border-border-strong"
+>
+  <div
+    class="relative h-28 w-full"
+    style={`background: linear-gradient(135deg, ${accent}55, ${accent}10 70%);`}
+    aria-hidden="true"
+  >
+    {
+      jam.bannerUrl && (
+        <img src={jam.bannerUrl} alt="" loading="lazy" decoding="async" class="absolute inset-0 size-full object-cover" />
+      )
+    }
+    <span class="absolute start-3 top-3">
+      <span class:list={['rounded-sm px-2 py-1 text-xs font-semibold', PHASE_TONE_CLASSES[phaseTone(jam.phase)]]}>
+        {phaseLabel(jam.phase)}
+      </span>
+    </span>
+  </div>
+  <div class="flex flex-1 flex-col gap-2 p-4">
+    <Heading class="font-display-caps text-lg text-fg">
+      <a
+        href={href(`/jams/${jam.slug}`, locale)}
+        class="outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-focus"
+        >{jam.title}</a
+      >
+    </Heading>
+    {
+      jam.theme ? (
+        <p class="text-sm font-semibold text-fg">{m.jams_theme_label({ theme: jam.theme })}</p>
+      ) : jam.themeHidden ? (
+        <p class="text-sm font-semibold text-fg-muted">{m.jams_theme_hidden_short()}</p>
+      ) : null
+    }
+    {jam.tagline && <p class="line-clamp-2 text-sm text-fg-muted">{jam.tagline}</p>}
+    <p class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-2 text-xs text-fg-muted">
+      <span class="inline-flex items-center gap-1 font-mono tabular-nums">
+        <Icon icon={Users} size={14} />
+        {m.jams_entries_count({ count: jam.entryCount })}
+      </span>
+      {
+        deadline ? (
+          <span>
+            {deadlineLabel(deadline.kind)}: <time datetime={deadline.at}>{formatDate(locale, deadline.at, 'medium')}</time>
+          </span>
+        ) : jam.resultsPublishedAt ? (
+          <span class="inline-flex items-center gap-1">
+            <Icon icon={Trophy} size={14} />
+            <time datetime={jam.resultsPublishedAt}>{formatDate(locale, jam.resultsPublishedAt, 'medium')}</time>
+          </span>
+        ) : null
+      }
+    </p>
+  </div>
+</article>

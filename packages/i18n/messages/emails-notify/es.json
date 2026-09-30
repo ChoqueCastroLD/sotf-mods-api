@@ -63,5 +63,6 @@
   "emails_notify_item_request_comment": "{actor} comentó la petición «{request}»",
   "emails_notify_item_request_comment_many": "{count, plural, one {# comentario nuevo en la petición «{request}»} other {# comentarios nuevos en la petición «{request}»}}",
   "emails_notify_item_request_adopted": "{actor} está trabajando en tu petición «{request}»",
-  "emails_notify_item_request_fulfilled": "Ya está publicado un mod que pediste o votaste: {mod}"
+  "emails_notify_item_request_fulfilled": "Ya está publicado un mod que pediste o votaste: {mod}",
+  "emails_notify_item_jam_phase": "{phase, select, announced {Mod Jam anunciada: {jam}} submissions {Ya se pueden enviar entradas a {jam}} voting {La votación de {jam} está abierta} results {Ya están los resultados de {jam}} other {{jam} tiene novedades}}"
 }

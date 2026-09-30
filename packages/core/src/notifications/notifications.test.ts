@@ -46,7 +46,11 @@ describe('unsubscribe tokens', () => {
 
   it('maps a cadence scope to the types currently mailed with it', () => {
     const matrix = new Map(NOTIFICATION_TYPES.map((type) => [type, { email: NOTIFICATION_DEFAULTS[type].email }]));
-    expect(typesForScope('cadence:daily', matrix).sort()).toEqual(['mod.version_published', 'review.on_my_mod']);
+    expect(typesForScope('cadence:daily', matrix).sort()).toEqual([
+      'jam.phase',
+      'mod.version_published',
+      'review.on_my_mod',
+    ]);
     expect(typesForScope('type:comment.reply', matrix)).toEqual(['comment.reply']);
   });
 

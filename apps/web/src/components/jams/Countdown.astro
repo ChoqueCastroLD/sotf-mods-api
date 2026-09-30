@@ -1,0 +1,29 @@
+---
+/**
+ * Countdown to the next milestone of a jam. Server-rendered as the absolute date (works without
+ * JavaScript and for crawlers); `islands/jams/countdown.ts` replaces the text with the remaining
+ * time and keeps it ticking (paused for assistive tech: only the visible text updates, no live region).
+ */
+import { formatDateTime } from '@sotf/i18n';
+import { deadlineLabel, type JamDeadline } from './phase.ts';
+
+interface Props {
+  deadline: JamDeadline;
+  class?: string;
+}
+
+const { deadline, class: className } = Astro.props;
+const locale = Astro.locals.locale;
+---
+
+<p class:list={['flex flex-wrap items-baseline gap-x-2 gap-y-1', className]}>
+  <span class="readout text-fg-muted">{deadlineLabel(deadline.kind)}</span>
+  <time
+    datetime={deadline.at}
+    data-jam-countdown={deadline.at}
+    data-locale={locale}
+    class="font-mono text-lg font-semibold text-fg tabular-nums"
+  >
+    {formatDateTime(locale, deadline.at, 'medium', 'short')} UTC
+  </time>
+</p>

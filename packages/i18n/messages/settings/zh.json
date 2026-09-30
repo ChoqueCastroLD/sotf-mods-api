@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "请求已被认领",
   "settings_notif_request_adopted_hint": "一位创作者开始处理你的请求。",
   "settings_notif_request_fulfilled": "请求已完成",
-  "settings_notif_request_fulfilled_hint": "你请求或投票支持的模组已发布。"
+  "settings_notif_request_fulfilled_hint": "你请求或投票支持的模组已发布。",
+  "settings_notif_jam": "Mod Jam",
+  "settings_notif_jam_hint": "你关注或参加的 jam 开放投稿、开放投票或公布结果时。"
 }

@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "Richiesta adottata",
   "settings_notif_request_adopted_hint": "Un creator ha iniziato a lavorare alla tua richiesta.",
   "settings_notif_request_fulfilled": "Richiesta soddisfatta",
-  "settings_notif_request_fulfilled_hint": "È stato pubblicato un mod che hai richiesto o votato."
+  "settings_notif_request_fulfilled_hint": "È stato pubblicato un mod che hai richiesto o votato.",
+  "settings_notif_jam": "Mod Jam",
+  "settings_notif_jam_hint": "Una jam che segui o a cui partecipi apre le iscrizioni, apre le votazioni o pubblica i risultati."
 }

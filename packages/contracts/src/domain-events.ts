@@ -144,6 +144,13 @@ export const DOMAIN_EVENT_PAYLOADS = {
     voterIds: z.array(EntityId).max(200).describe('Members who voted (first 200), told once'),
   }),
   'request.changed': z.object({ requestId: EntityId }).describe('Any other change: only purges the caches'),
+  // Mod jams
+  'jam.phase_changed': z.object({
+    jamId: EntityId,
+    phase: z.enum(['draft', 'announced', 'submissions', 'submissions_closed', 'voting', 'results', 'archived']),
+    previous: z.enum(['draft', 'announced', 'submissions', 'submissions_closed', 'voting', 'results', 'archived']),
+  }),
+  'jam.changed': z.object({ jamId: EntityId }).describe('Any other change (entries, edits): purges the caches'),
   // Follows
   'follow.mod_created': z.object({ modId: EntityId, userId: EntityId, notify: z.boolean() }),
   'follow.mod_deleted': z.object({ modId: EntityId, userId: EntityId }),
@@ -382,6 +389,8 @@ export const DOMAIN_EVENT_EXAMPLES: { readonly [T in DomainEventType]: DomainEve
   'request.adopted': { requestId: 31, requestAuthorId: 301, adopterId: 12 },
   'request.fulfilled': { requestId: 31, modId: 20, requestAuthorId: 301, fulfillerId: 12, voterIds: [390, 411] },
   'request.changed': { requestId: 31 },
+  'jam.phase_changed': { jamId: 1, phase: 'voting', previous: 'submissions_closed' },
+  'jam.changed': { jamId: 1 },
   'follow.mod_created': { modId: 20, userId: 301, notify: true },
   'follow.mod_deleted': { modId: 20, userId: 301 },
   'follow.user_created': { followerId: 301, followeeId: 12 },

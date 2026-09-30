@@ -66,5 +66,6 @@
   "console_shortcut_go_ranger": "Gå till rangerstationen",
   "console_shortcut_toggle_sidebar": "Fäll ihop eller ut sidofältet",
   "console_noscript": "Konsolen behöver JavaScript. Slå på det för att hantera dina moddar, signaler och inställningar.",
-  "console_nav_operations": "Drift"
+  "console_nav_operations": "Drift",
+  "console_nav_jams": "Mod Jams"
 }

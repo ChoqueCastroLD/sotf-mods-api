@@ -124,7 +124,7 @@ function toItem(
     excerpt: str(d.excerpt)?.slice(0, 400) ?? null,
     version: str(d.version),
     rating: rating !== null && rating >= 1 && rating <= 5 ? rating : null,
-    status: str(d.status),
+    status: str(d.status) ?? str(d.phase),
     reason: localizedReason(str(d.reason), str(d.templateKey), locale, templates)?.slice(0, 500) ?? null,
     build: str(d.build),
     threshold: int(d.threshold),

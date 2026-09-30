@@ -124,5 +124,6 @@
   "signals_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
   "signals_request_comment_grouped": "{count, plural, one {“{request}” isteğinde # yeni yorum} other {“{request}” isteğinde # yeni yorum}}",
   "signals_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
-  "signals_request_fulfilled": "{mod} yayında ve “{request}” isteğini karşılıyor"
+  "signals_request_fulfilled": "{mod} yayında ve “{request}” isteğini karşılıyor",
+  "signals_jam_phase": "{phase, select, announced {Mod Jam duyuruldu: {jam}} submissions {{jam} için katılımlar açıldı} voting {{jam} için oylama açıldı} results {{jam} sonuçları açıklandı} other {{jam} ile ilgili yenilik var}}"
 }

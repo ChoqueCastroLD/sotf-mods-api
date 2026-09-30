@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Aynı ağdaki hesaplar arasında 24 saat içindeki oylar ve raporlar sayılmaz.",
   "profile_achievements_fair_play_new_accounts": "Yepyeni hesaplar güven kazanana kadar puanlarda ve uyumlulukta yarım ağırlıkla sayılır.",
   "profile_achievements_fair_play_spikes": "Ani indirme artışları korucular tarafından incelenir.",
-  "profile_achievements_fair_play_reversible": "Her XP puanı kaydedilir ve kötüye kullanımdan geldiyse geri alınabilir."
+  "profile_achievements_fair_play_reversible": "Her XP puanı kaydedilir ve kötüye kullanımdan geldiyse geri alınabilir.",
+  "profile_badge_jam_participant_name": "Jam katılımcısı",
+  "profile_badge_jam_participant_hint": "Sonuçları yayımlanan bir Mod Jam'e mod gönder. Birden çok kez kazanılabilir.",
+  "profile_badge_jam_podium_name": "Jam Podyumu",
+  "profile_badge_jam_podium_hint": "Bir Mod Jam'de bir kategoride ilk 3'e gir. Birden çok kez kazanılabilir.",
+  "profile_badge_jam_champion_name": "Jam Şampiyonu",
+  "profile_badge_jam_champion_hint": "Bir Mod Jam'i genel klasmanda kazan. Birden çok kez kazanılabilir."
 }

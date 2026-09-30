@@ -66,5 +66,6 @@
   "console_shortcut_go_ranger": "前往护林站",
   "console_shortcut_toggle_sidebar": "收起或展开侧边栏",
   "console_noscript": "控制台需要 JavaScript。请开启它来管理你的模组、信号和设置。",
-  "console_nav_operations": "运维"
+  "console_nav_operations": "运维",
+  "console_nav_jams": "模组 Jam"
 }

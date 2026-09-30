@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Голоса и отчёты между аккаунтами из одной сети в течение 24 часов не учитываются.",
   "profile_achievements_fair_play_new_accounts": "Совсем новые аккаунты весят вдвое меньше в оценках и совместимости, пока не заслужат доверие.",
   "profile_achievements_fair_play_spikes": "Резкие всплески скачиваний проверяют рейнджеры.",
-  "profile_achievements_fair_play_reversible": "Каждое очко XP записывается и может быть отменено, если получено нечестно."
+  "profile_achievements_fair_play_reversible": "Каждое очко XP записывается и может быть отменено, если получено нечестно.",
+  "profile_badge_jam_participant_name": "Джемер",
+  "profile_badge_jam_participant_hint": "Отправьте мод на Mod Jam после публикации результатов. Можно получить несколько раз.",
+  "profile_badge_jam_podium_name": "Пьедестал джема",
+  "profile_badge_jam_podium_hint": "Займите место в тройке лучших в категории Mod Jam. Можно получить несколько раз.",
+  "profile_badge_jam_champion_name": "Чемпион джема",
+  "profile_badge_jam_champion_hint": "Выиграйте Mod Jam в общем зачёте. Можно получить несколько раз."
 }

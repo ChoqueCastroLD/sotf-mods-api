@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Stimmen und Berichte zwischen Konten aus demselben Netzwerk innerhalb von 24 Stunden zählen nicht.",
   "profile_achievements_fair_play_new_accounts": "Ganz neue Konten zählen bei Bewertungen und Kompatibilität nur halb, bis sie Vertrauen aufgebaut haben.",
   "profile_achievements_fair_play_spikes": "Plötzliche Download-Spitzen werden von den Rangern geprüft.",
-  "profile_achievements_fair_play_reversible": "Jeder XP-Punkt wird protokolliert und kann bei Missbrauch zurückgenommen werden."
+  "profile_achievements_fair_play_reversible": "Jeder XP-Punkt wird protokolliert und kann bei Missbrauch zurückgenommen werden.",
+  "profile_badge_jam_participant_name": "Jammer",
+  "profile_badge_jam_participant_hint": "Reiche einen Mod bei einer Mod Jam ein, sobald die Ergebnisse veröffentlicht sind. Kann mehrfach verdient werden.",
+  "profile_badge_jam_podium_name": "Jam-Podium",
+  "profile_badge_jam_podium_hint": "Landen in einer Kategorie einer Mod Jam unter den Top 3. Kann mehrfach verdient werden.",
+  "profile_badge_jam_champion_name": "Jam-Champion",
+  "profile_badge_jam_champion_hint": "Gewinne eine Mod Jam in der Gesamtwertung. Kann mehrfach verdient werden."
 }

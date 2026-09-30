@@ -66,5 +66,6 @@
   "console_shortcut_go_ranger": "Przejdź do posterunku strażników",
   "console_shortcut_toggle_sidebar": "Zwiń lub rozwiń pasek boczny",
   "console_noscript": "Konsola wymaga JavaScriptu. Włącz go, aby zarządzać modami, sygnałami i ustawieniami.",
-  "console_nav_operations": "Operacje"
+  "console_nav_operations": "Operacje",
+  "console_nav_jams": "Mod Jamy"
 }

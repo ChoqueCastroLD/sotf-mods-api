@@ -63,6 +63,7 @@ export const pageCache = {
   listBuilds: () => policy(EDGE_TTL.list, ['list:builds']),
   listKits: () => policy(EDGE_TTL.list, ['list:kits']),
   listRequests: () => policy(EDGE_TTL.list, ['list:requests']),
+  listJams: () => policy(EDGE_TTL.list, ['list:jams']),
   request: (requestId: number) => policy(EDGE_TTL.detail, [cacheTag.request(requestId)]),
   mod: (modId: number, userId: number) => policy(EDGE_TTL.detail, [cacheTag.mod(modId), cacheTag.user(userId)]),
   profile: (userId: number) => policy(EDGE_TTL.detail, [cacheTag.user(userId)]),

@@ -63,5 +63,6 @@
   "emails_notify_item_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
   "emails_notify_item_request_comment_many": "{count, plural, one {“{request}” isteğinde # yeni yorum} other {“{request}” isteğinde # yeni yorum}}",
   "emails_notify_item_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
-  "emails_notify_item_request_fulfilled": "İstediğin veya oy verdiğin bir mod yayında: {mod}"
+  "emails_notify_item_request_fulfilled": "İstediğin veya oy verdiğin bir mod yayında: {mod}",
+  "emails_notify_item_jam_phase": "{phase, select, announced {Mod Jam duyuruldu: {jam}} submissions {{jam} için katılımlar açıldı} voting {{jam} için oylama açıldı} results {{jam} sonuçları açıklandı} other {{jam} ile ilgili yenilik var}}"
 }

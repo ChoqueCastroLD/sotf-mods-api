@@ -1,0 +1,61 @@
+---
+/**
+ * Podium of one category (top 3, ties included): rank medal, the entry as a compact mod card,
+ * the team, the average stars and the number of votes. Ranks are also text, never only colour.
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { profilePath } from '@sotf/contracts/seo';
+import { ModCard } from '@sotf/ui/domain';
+import { href } from '../../lib/i18n.ts';
+import type { JamResultsDTO } from './data.ts';
+
+type Placement = JamResultsDTO['overall'][number];
+
+interface Props {
+  placements: readonly Placement[];
+  headingLevel?: 3 | 4;
+}
+
+const { placements } = Astro.props;
+const locale = Astro.locals.locale;
+const MEDAL = ['bg-featured-soft text-featured', 'bg-fg/10 text-fg', 'bg-primary-soft text-primary'];
+---
+
+<ol class="grid gap-3 md:grid-cols-3">
+  {
+    placements.map((placement) => (
+      <li class="flex min-w-0 flex-col gap-2 rounded-lg border border-border bg-surface p-3">
+        <div class="flex items-center justify-between gap-2">
+          <span
+            class:list={[
+              'inline-flex min-w-16 items-center justify-center rounded-md px-2 py-1 font-display-caps text-sm',
+              MEDAL[Math.min(placement.rank, 3) - 1],
+            ]}
+          >
+            {m.jams_rank({ rank: placement.rank })}
+          </span>
+          <span class="font-mono text-xs text-fg-muted tabular-nums">
+            {formatNumber(locale, placement.average, { maximumFractionDigits: 2, minimumFractionDigits: 2 })} ★ · {m.jams_votes_count({ count: placement.votes })}
+          </span>
+        </div>
+        <ModCard
+          mod={{ ...placement.entry.mod, canonicalPath: href(placement.entry.mod.canonicalPath, locale) }}
+          variant="compact"
+          headingLevel={4}
+          viewTransition={false}
+        />
+        <p class="text-xs text-fg-muted">
+          {placement.entry.authors.map((author, index) => (
+            <>
+              {index > 0 && ', '}
+              <a href={href(profilePath(author.handle), locale)} class="font-semibold text-fg hover:underline">
+                {author.displayName || author.handle}
+              </a>
+            </>
+          ))}
+        </p>
+      </li>
+    ))
+  }
+</ol>

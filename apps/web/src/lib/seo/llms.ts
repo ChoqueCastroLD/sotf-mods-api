@@ -64,6 +64,7 @@ export function llmsTxt(input: {
     ...BEST_TOPICS.map((topic) => link(BEST_TITLES[topic], url(`/best/${topic}`))),
     link('Mod Kits', url('/kits'), 'curated collections of mods that work together'),
     link('Mod requests', url('/requests'), 'what players ask modders to build, most voted first'),
+    link('Mod Jams', url('/jams'), 'community mod-making events with themes, voting and public results'),
     link('Creators', url('/creators')),
     '',
     '## Categories',

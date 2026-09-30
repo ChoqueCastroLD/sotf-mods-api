@@ -16,6 +16,7 @@ import type {
 } from '@sotf/contracts/catalog';
 import type { ApiClient } from '@sotf/contracts/client';
 import { isApiError } from '@sotf/contracts/client';
+import type { JamSummaryDTO } from '@sotf/contracts/jams';
 import type { KitCardDTO } from '@sotf/contracts/kits';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
 import type { RequestDTO } from '@sotf/contracts/requests';
@@ -124,6 +125,10 @@ export function allRequests(): Promise<RequestDTO[]> {
   return memoized('requests', () =>
     allPages((page) => api().requests.list({ query: { status: 'all', sort: 'new', page, pageSize: 50 } })),
   );
+}
+
+export function allJams(): Promise<JamSummaryDTO[]> {
+  return memoized('jams', async () => (await api().jams.list({})).items);
 }
 
 /** Classifies an API failure: 404/410 of the entity, or anything else (→ 503). */

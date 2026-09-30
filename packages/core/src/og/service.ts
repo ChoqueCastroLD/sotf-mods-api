@@ -14,7 +14,7 @@
  *   fetched over HTTP: only URLs under `R2_PUBLIC_BASE_URL` are used.
  */
 import { cacheTag } from '@sotf/contracts/cache';
-import { category, kit, mod, modMilestone, user } from '@sotf/db';
+import { category, jam, kit, mod, modMilestone, user } from '@sotf/db';
 import { and, eq, sql } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { purge } from '../kernel/cache-tags.ts';
@@ -86,7 +86,7 @@ export interface OgRenderResult {
   bytes?: number;
 }
 
-type StoredColumn = 'mod' | 'user' | 'kit' | 'category' | 'milestone';
+type StoredColumn = 'mod' | 'user' | 'kit' | 'category' | 'milestone' | 'jam';
 
 function columnOf(type: OgEntityType): StoredColumn | null {
   if (type === 'mod' || type === 'build') return 'mod';
@@ -94,6 +94,7 @@ function columnOf(type: OgEntityType): StoredColumn | null {
   if (type === 'kit') return 'kit';
   if (type === 'category') return 'category';
   if (type === 'milestone') return 'milestone';
+  if (type === 'jam') return 'jam';
   return null;
 }
 
@@ -120,6 +121,10 @@ async function readStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId): Prom
     return row ? row.key : undefined;
   }
   const numericId = Number(id);
+  if (column === 'jam') {
+    const [row] = await ctx.db.select({ key: jam.ogImageKey }).from(jam).where(eq(jam.id, numericId)).limit(1);
+    return row ? row.key : undefined;
+  }
   if (column === 'mod') {
     const [row] = await ctx.db.select({ key: mod.ogImageKey }).from(mod).where(eq(mod.id, numericId)).limit(1);
     return row ? row.key : undefined;
@@ -145,7 +150,8 @@ async function writeStoredKey(ctx: Ctx, column: StoredColumn, id: StoredId, key:
     await ctx.db.execute(
       sql`UPDATE "ModMilestone" SET "ogImageKey" = ${key} WHERE "modId" = ${parsed.modId} AND "threshold" = ${parsed.threshold}`,
     );
-  } else if (column === 'mod') await ctx.db.execute(sql`UPDATE "Mod" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
+  } else if (column === 'jam') await ctx.db.execute(sql`UPDATE "Jam" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
+  else if (column === 'mod') await ctx.db.execute(sql`UPDATE "Mod" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
   else if (column === 'user') await ctx.db.execute(sql`UPDATE "User" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
   else await ctx.db.execute(sql`UPDATE "Kit" SET "ogImageKey" = ${key} WHERE "id" = ${id}`);
 }
@@ -155,6 +161,7 @@ function tagOf(column: StoredColumn, id: StoredId) {
   if (column === 'milestone') return cacheTag.mod(parseMilestoneId(String(id))?.modId ?? 0);
   if (column === 'mod') return cacheTag.mod(Number(id));
   if (column === 'user') return cacheTag.user(Number(id));
+  if (column === 'jam') return 'list:jams';
   return cacheTag.kit(Number(id));
 }
 

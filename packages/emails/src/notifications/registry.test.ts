@@ -53,6 +53,7 @@ const TYPES = [
   'milestone.reached',
   'badge.awarded',
   'award.won',
+  'jam.phase',
   'report.resolved',
   'system.announcement',
 ];

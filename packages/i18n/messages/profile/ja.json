@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "同じネットワークのアカウント間で 24 時間以内に行われた投票やレポートはカウントされません。",
   "profile_achievements_fair_play_new_accounts": "作成されたばかりのアカウントは、信頼を得るまで評価と互換性で半分の重みになります。",
   "profile_achievements_fair_play_spikes": "急激なダウンロード増加はレンジャーが確認します。",
-  "profile_achievements_fair_play_reversible": "XP はすべて記録され、不正によるものは取り消されることがあります。"
+  "profile_achievements_fair_play_reversible": "XP はすべて記録され、不正によるものは取り消されることがあります。",
+  "profile_badge_jam_participant_name": "ジャム参加者",
+  "profile_badge_jam_participant_hint": "結果が公開された Mod Jam にエントリーする。複数回獲得できます。",
+  "profile_badge_jam_podium_name": "ジャム表彰台",
+  "profile_badge_jam_podium_hint": "Mod Jam のカテゴリで上位3位に入る。複数回獲得できます。",
+  "profile_badge_jam_champion_name": "ジャムチャンピオン",
+  "profile_badge_jam_champion_hint": "Mod Jam の総合で優勝する。複数回獲得できます。"
 }

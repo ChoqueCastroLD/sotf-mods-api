@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "Verzoek geadopteerd",
   "settings_notif_request_adopted_hint": "Een maker is aan je verzoek begonnen.",
   "settings_notif_request_fulfilled": "Verzoek vervuld",
-  "settings_notif_request_fulfilled_hint": "Een mod waar je om vroeg of op stemde is gepubliceerd."
+  "settings_notif_request_fulfilled_hint": "Een mod waar je om vroeg of op stemde is gepubliceerd.",
+  "settings_notif_jam": "Mod Jams",
+  "settings_notif_jam_hint": "Een jam die je volgt of waaraan je meedoet opent inzendingen, opent het stemmen of publiceert de resultaten."
 }

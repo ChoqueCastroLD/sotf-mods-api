@@ -14,6 +14,7 @@ export type CacheTag =
   | 'list:builds'
   | 'list:kits'
   | 'list:requests'
+  | 'list:jams'
   | 'compat'
   | 'sitemap'
   | 'feed'
@@ -50,6 +51,7 @@ const STATIC_TAGS = new Set<string>([
   'list:builds',
   'list:kits',
   'list:requests',
+  'list:jams',
   'compat',
   'sitemap',
   'feed',
