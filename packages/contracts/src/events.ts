@@ -51,6 +51,34 @@ export const SSE_EVENTS = {
 } as const;
 export type SseEventName = keyof typeof SSE_EVENTS;
 
+/** `mod.live` on the public per-mod stream (`GET /mods/:id/live/stream`): absolute live counters. */
+export const SseModLiveData = z.object({
+  modId: EntityId,
+  downloads: z.number().int().nonnegative(),
+  downloads24h: z.number().int().nonnegative(),
+  followers: z.number().int().nonnegative(),
+});
+export const SseModLiveEventDTO = dto(
+  'SseModLiveEventDTO',
+  z.object({ event: z.literal('mod.live'), id: z.string(), data: SseModLiveData }),
+  {
+    description: 'Live counters pushed on the public mod stream (at most one per 15 s, only when they changed).',
+    examples: [
+      { event: 'mod.live', id: '1', data: { modId: 42, downloads: 117_812, downloads24h: 203, followers: 24 } },
+    ],
+  },
+);
+export type SseModLiveEvent = z.infer<typeof SseModLiveEventDTO>;
+/** Seconds between two counter checks of a public mod stream (equals the `mods/:id/live` TTL). */
+export const SSE_MOD_LIVE_SECONDS = 15;
+/** A public mod stream is closed after this long; the client's EventSource reconnects. */
+export const SSE_MOD_LIVE_MAX_SECONDS = 600;
+
+/** Encodes a `mod.live` frame. */
+export function encodeModLiveFrame(event: SseModLiveEvent): string {
+  return `id: ${event.id}\nevent: ${event.event}\ndata: ${JSON.stringify(event.data)}\n\n`;
+}
+
 export const SseEventDTO = dto(
   'SseEventDTO',
   z.discriminatedUnion('event', [
@@ -198,6 +226,22 @@ export const VitalsBody = dto(
 );
 
 export const eventsEndpoints = {
+  modLiveStream: defineEndpoint({
+    id: 'events.modLiveStream',
+    owner: 'WP-20',
+    method: 'GET',
+    path: `${API_V2_PREFIX}/mods/:id/live/stream`,
+    summary: 'Live counters of a mod over server-sent events',
+    description:
+      'Public, cookieless stream of `mod.live` events (downloads, downloads in 24 h, followers) for one reachable mod. ' +
+      'The server checks the counters every 15 s and only sends changes; the stream is recycled every 10 min.',
+    auth: 'public',
+    params: z.object({ id: EntityId }),
+    response: SseModLiveEventDTO,
+    responseKind: 'event-stream',
+    errors: ['NOT_FOUND', 'RATE_LIMITED'],
+    cache: cache.noStore,
+  }),
   stream: defineEndpoint({
     id: 'events.stream',
     owner: 'WP-20',
