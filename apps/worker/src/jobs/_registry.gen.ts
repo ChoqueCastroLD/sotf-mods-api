@@ -4,6 +4,7 @@
 import accountsJobs from './accounts/index.ts';
 import backfillJobs from './backfill/index.ts';
 import buildsJobs from './builds/index.ts';
+import bundlesJobs from './bundles/index.ts';
 import cdnJobs from './cdn/index.ts';
 import cleanupJobs from './cleanup/index.ts';
 import compatJobs from './compat/index.ts';
@@ -33,6 +34,7 @@ export const jobGroups = [
   accountsJobs,
   backfillJobs,
   buildsJobs,
+  bundlesJobs,
   cdnJobs,
   cleanupJobs,
   compatJobs,

@@ -1,0 +1,57 @@
+---
+/**
+ * «Official bundle» (T1-04): kits the creator attached to the mod, each one zip with every file in
+ * the folders RedLoader expects. The link is the API redirect (counts the download, then serves the
+ * zip from the CDN), so it works without JavaScript. Hidden when the mod has no ready bundle.
+ */
+import { formatBytes, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { PackageOpen } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModBundleDTO } from '@sotf/contracts/bundles';
+import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+
+interface Props {
+  bundles: ModBundleDTO[];
+}
+
+const { bundles } = Astro.props;
+const locale = Astro.locals.locale;
+const ready = bundles.filter((bundle) => bundle.status === 'ready' && bundle.downloadPath);
+---
+
+{
+  ready.length > 0 && (
+    <section aria-labelledby="bundle-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
+      <h2 id="bundle-title" class={READOUT_CLASSES}>
+        {m.bundles_title()}
+      </h2>
+      <p class="text-sm text-fg-muted">{m.bundles_intro()}</p>
+      <ul class="grid gap-3">
+        {ready.map((bundle) => (
+          <li class="grid gap-2">
+            <a href={href(bundle.kit.canonicalPath, locale)} class="text-sm text-fg underline-offset-2 hover:underline">
+              {m.bundles_summary({
+                kit: bundle.kit.name,
+                files: formatNumber(locale, bundle.filesCount),
+                size: bundle.bytes === null ? '' : formatBytes(locale, bundle.bytes),
+              })}
+            </a>
+            <a
+              href={bundle.downloadPath!}
+              class={buttonClasses({ variant: 'primary', size: 'sm' })}
+              download
+              rel="nofollow"
+              aria-label={m.bundles_download_label({ kit: bundle.kit.name })}
+            >
+              <Icon icon={PackageOpen} size={16} />
+              {m.bundles_download_all()}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

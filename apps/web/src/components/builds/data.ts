@@ -9,6 +9,7 @@
  * - Secondary blocks (versions, related builds, first reviews and comments, blueprint facts) are
  *   optional: each has an 800 ms budget and the page renders without it when the API is slow.
  */
+import type { BuildPreviewDTO } from '@sotf/contracts/build-viewer';
 import type { ModCardDTO, ModDetailDTO } from '@sotf/contracts/catalog';
 import { type ApiClient, isApiError } from '@sotf/contracts/client';
 import { BUILD_SIZE_CLASSES, type BuildMetaDTO, type BuildSizeClass, buildSizeClass } from '@sotf/contracts/manifest';
@@ -206,6 +207,8 @@ export interface BuildExtras {
   related: ModCardDTO[];
   reviews: ReviewPage | null;
   comments: CommentPage | null;
+  /** Top-down preview of the blueprint (T1-06); null when the API did not answer in time. */
+  preview: BuildPreviewDTO | null;
 }
 
 /** Number of related builds shown under the page. */
@@ -218,7 +221,7 @@ export const COMMENTS_PREVIEW = 10;
 export async function loadBuildExtras(build: ModDetailDTO): Promise<BuildExtras> {
   const api = serverApi();
   const id = build.id;
-  const [spec, versions, related, reviews, comments] = await Promise.all([
+  const [spec, versions, related, reviews, comments, preview] = await Promise.all([
     loadBuildSpec(build),
     optional((signal) => api.versions.list({ params: { id } }, { signal })),
     optional((signal) => api.catalog.related({ params: { id } }, { signal })),
@@ -232,6 +235,7 @@ export async function loadBuildExtras(build: ModDetailDTO): Promise<BuildExtras>
           api.comments.list({ params: { id }, query: { sort: 'top', limit: COMMENTS_PREVIEW } }, { signal }),
         )
       : Promise.resolve(null),
+    optional((signal) => api.buildViewer.preview({ params: { id } }, { signal })),
   ]);
   const relatedItems = related?.items ?? [];
   // Builds first (same kind), then whatever else the API found related.
@@ -247,6 +251,7 @@ export async function loadBuildExtras(build: ModDetailDTO): Promise<BuildExtras>
     related: relatedBuilds,
     reviews,
     comments,
+    preview,
   };
 }
 

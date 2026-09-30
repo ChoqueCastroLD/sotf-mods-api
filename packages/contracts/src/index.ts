@@ -8,6 +8,8 @@
  */
 export * from './admin.ts';
 export * from './auth.ts';
+export * from './build-viewer.ts';
+export * from './bundles.ts';
 export * from './cache.ts';
 export * from './catalog.ts';
 export * from './client.ts';

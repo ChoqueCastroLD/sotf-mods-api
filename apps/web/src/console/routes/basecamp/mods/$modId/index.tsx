@@ -9,6 +9,7 @@ import { ModEditorScreen } from '../../../../features/basecamp/editor/ModEditorS
 import { type EditorTab, isEditorTab } from '../../../../features/basecamp/editor/tabs.ts';
 import { bt, loadBasecampMessages } from '../../../../features/basecamp/i18n.ts';
 import { loadKnowledgeMessages } from '../../../../features/basecamp/knowledge-i18n.ts';
+import { loadBundlesMessages } from '../../../../features/bundles/i18n.ts';
 import { loadUploadMessages } from '../../../../features/upload/i18n.ts';
 
 interface EditorSearch {
@@ -30,6 +31,7 @@ export const Route = createFileRoute('/basecamp/mods/$modId/')({
       loadBasecampMessages(),
       loadKnowledgeMessages(),
       loadUploadMessages(),
+      loadBundlesMessages(),
       context.queryClient.ensureQueryData(studioModQuery(modId)),
       context.queryClient.ensureQueryData(teamQuery(modId)),
       context.queryClient.ensureQueryData(knowledgeQuery(modId)),

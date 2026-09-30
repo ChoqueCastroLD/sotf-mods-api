@@ -11,6 +11,7 @@ import { localizeHtml } from '@sotf/markdown/labels';
 import { DependencyList, ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
+import BundlePanel from '../../../../components/mod/BundlePanel.astro';
 import AtAGlance from '../../../../components/mod/AtAGlance.astro';
 import CommentsPreview from '../../../../components/mod/CommentsPreview.astro';
 import DependencyGraph from '../../../../components/mod/DependencyGraph.astro';
@@ -173,6 +174,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
 
   <Fragment slot="sidebar">
     <CreatorCard mod={mod} loginHref={loginHref} coAuthors={extras.knowledge?.coAuthors ?? []} />
+    <BundlePanel bundles={extras.bundles} />
     <RequiredBy mod={mod} dependents={extras.dependents} />
     <StatsPanel mod={mod} stats={extras.stats} />
     {

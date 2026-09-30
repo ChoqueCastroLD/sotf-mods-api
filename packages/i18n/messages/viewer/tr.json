@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "Yukarıdan görünüm",
+  "viewer_alt": "{name} için yukarıdan önizleme: {pieces} parça, {width} x {depth} x {height} metre.",
+  "viewer_stats": "{width} × {depth} × {height} m · {pieces} parça",
+  "viewer_explore": "3B olarak incele",
+  "viewer_back": "Önizlemeye dön",
+  "viewer_loading": "3B görünüm yükleniyor…",
+  "viewer_pending": "Önizleme hazırlanıyor. Bir dakika sonra tekrar gel.",
+  "viewer_unavailable": "Bu yapı için önizleme yok.",
+  "viewer_no_webgl": "Tarayıcın 3B görünümü gösteremiyor, bu yüzden yukarıdan görünüm kalıyor.",
+  "viewer_failed": "3B görünüm yüklenemedi.",
+  "viewer_sampled": "{total} parçadan {shown} tanesi gösteriliyor.",
+  "viewer_controls": "Döndürmek için sürükle, yakınlaştırmak için kaydır veya sıkıştır, yön tuşlarıyla dön, artı ve eksi ile yakınlaştır.",
+  "viewer_canvas_label": "{name} için etkileşimli 3B görünüm"
+}

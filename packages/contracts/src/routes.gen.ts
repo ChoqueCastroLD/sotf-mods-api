@@ -57,6 +57,18 @@ export const API_ROUTES = {
     verifyEmail: { id: 'auth.verifyEmail', method: 'POST', path: "/api/v2/auth/email/verify", kind: 'empty', bodyKind: 'json' },
     resendVerification: { id: 'auth.resendVerification', method: 'POST', path: "/api/v2/auth/email/resend", kind: 'empty', bodyKind: null },
   },
+  buildViewer: {
+    preview: { id: 'buildViewer.preview', method: 'GET', path: "/api/v2/builds/:id/preview", kind: 'json', bodyKind: null },
+    geometry: { id: 'buildViewer.geometry', method: 'GET', path: "/api/v2/builds/:id/geometry", kind: 'json', bodyKind: null },
+  },
+  bundles: {
+    forMod: { id: 'bundles.forMod', method: 'GET', path: "/api/v2/mods/:id/bundles", kind: 'json', bodyKind: null },
+    manage: { id: 'bundles.manage', method: 'GET', path: "/api/v2/me/mods/:id/bundles", kind: 'json', bodyKind: null },
+    create: { id: 'bundles.create', method: 'POST', path: "/api/v2/mods/:id/bundles", kind: 'json', bodyKind: 'json' },
+    rebuild: { id: 'bundles.rebuild', method: 'POST', path: "/api/v2/mods/:id/bundles/:bundleId/rebuild", kind: 'json', bodyKind: null },
+    remove: { id: 'bundles.remove', method: 'DELETE', path: "/api/v2/mods/:id/bundles/:bundleId", kind: 'empty', bodyKind: null },
+    download: { id: 'bundles.download', method: 'GET', path: "/api/v2/bundles/:id/download", kind: 'redirect', bodyKind: null },
+  },
   catalog: {
     listMods: { id: 'catalog.listMods', method: 'GET', path: "/api/v2/mods", kind: 'json', bodyKind: null },
     getMod: { id: 'catalog.getMod', method: 'GET', path: "/api/v2/mods/:id", kind: 'json', bodyKind: null },

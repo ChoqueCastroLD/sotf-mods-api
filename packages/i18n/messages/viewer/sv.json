@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "Vy uppifrån",
+  "viewer_alt": "Vy uppifrån av {name}: {pieces} delar, {width} gånger {depth} gånger {height} meter.",
+  "viewer_stats": "{width} × {depth} × {height} m · {pieces} delar",
+  "viewer_explore": "Utforska i 3D",
+  "viewer_back": "Tillbaka till förhandsvisningen",
+  "viewer_loading": "Laddar 3D-vyn …",
+  "viewer_pending": "Förhandsvisningen skapas. Kom tillbaka om en minut.",
+  "viewer_unavailable": "Ingen förhandsvisning finns för bygget.",
+  "viewer_no_webgl": "Din webbläsare kan inte visa 3D-vyn, så vyn uppifrån ligger kvar.",
+  "viewer_failed": "3D-vyn kunde inte laddas.",
+  "viewer_sampled": "Visar {shown} av {total} delar.",
+  "viewer_controls": "Dra för att rotera, scrolla eller nyp för att zooma, piltangenter för att kretsa, plus och minus för zoom.",
+  "viewer_canvas_label": "Interaktiv 3D-vy av {name}"
+}

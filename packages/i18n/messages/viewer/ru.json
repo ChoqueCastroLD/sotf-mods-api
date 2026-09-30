@@ -1,0 +1,15 @@
+{
+  "viewer_heading": "Вид сверху",
+  "viewer_alt": "Вид сверху на {name}: деталей {pieces}, {width} на {depth} на {height} м.",
+  "viewer_stats": "{width} × {depth} × {height} м · деталей {pieces}",
+  "viewer_explore": "Посмотреть в 3D",
+  "viewer_back": "Назад к превью",
+  "viewer_loading": "Загрузка 3D-вида…",
+  "viewer_pending": "Превью создаётся. Загляните через минуту.",
+  "viewer_unavailable": "Для этой постройки нет превью.",
+  "viewer_no_webgl": "Ваш браузер не может показать 3D, поэтому остаётся вид сверху.",
+  "viewer_failed": "Не удалось загрузить 3D-вид.",
+  "viewer_sampled": "Показано {shown} из {total} деталей.",
+  "viewer_controls": "Перетаскивайте, чтобы вращать, колесо или щипок для масштаба, стрелки для облёта, плюс и минус для масштаба.",
+  "viewer_canvas_label": "Интерактивный 3D-вид: {name}"
+}
