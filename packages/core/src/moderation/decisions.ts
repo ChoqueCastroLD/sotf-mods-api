@@ -42,7 +42,12 @@ import { writeNotificationDrafts } from '../notifications/service.ts';
 import { modRouting } from '../publishing/context.ts';
 import { recomputeLatest } from '../publishing/versions.ts';
 import { loadModerationTemplates, resolveReason } from '../settings/templates.ts';
-import { attachmentDisposition, IMMUTABLE_CACHE_CONTROL, versionDownloadName } from '../storage/disposition.ts';
+import {
+  attachmentDisposition,
+  buildDownloadName,
+  IMMUTABLE_CACHE_CONTROL,
+  versionDownloadName,
+} from '../storage/disposition.ts';
 import { finalizeUpload } from '../uploads/service.ts';
 import { assertStaff } from './guard.ts';
 import { publishLaneCounts } from './lanes.ts';
@@ -213,7 +218,8 @@ export async function releaseHeldFile(
   if (!storage) throw errors.unavailable('File storage is not configured');
   const extension = kind === 'build' ? 'json' : 'zip';
   const contentType = version.contentType ?? (kind === 'build' ? 'application/json' : 'application/zip');
-  const downloadName = versionDownloadName(modName, kind === 'build' ? modName : version.version, extension);
+  const downloadName =
+    kind === 'build' ? buildDownloadName(modName) : versionDownloadName(modName, version.version, extension);
   if (ref.quarantine) {
     const bucket = storage.config.publicBucket;
     await storage.copy(

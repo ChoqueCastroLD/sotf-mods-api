@@ -116,7 +116,7 @@ export const EcosystemEntryDTO = dto(
     gameBuild: GameBuildRefDTO,
     loader: LoaderReleaseDTO,
     status: EcosystemStatusValue,
-    noteMd: z.string().nullable().describe('Markdown source of the note'),
+    noteMd: z.string().nullable().optional().describe('Markdown source of the note (always sent by the API)'),
     noteHtml: z.string().nullable(),
     updatedAt: IsoDateTime,
   }),

@@ -212,7 +212,15 @@ export async function executeDeletion(deps: DeletionJobDeps, userId: number): Pr
     await tx.execute(sql`UPDATE "Notification" SET "actorId" = NULL WHERE "actorId" = ${userId}`);
     await tx.execute(sql`DELETE FROM "NotificationPreference" WHERE "userId" = ${userId}`);
     await tx.execute(sql`DELETE FROM "UserFollow" WHERE "followerId" = ${userId} OR "followeeId" = ${userId}`);
-    await tx.execute(sql`DELETE FROM "ModFavorite" WHERE "userId" = ${userId}`);
+    // Follows are archived without the user (only the ids stay, for the migration invariant).
+    await tx.execute(sql`
+      WITH gone AS (
+        DELETE FROM "ModFavorite" WHERE "userId" = ${userId}
+        RETURNING "id", "createdAt", "updatedAt", "modId", "notify"
+      )
+      INSERT INTO "ModFavoriteArchive" ("id", "createdAt", "updatedAt", "userId", "modId", "notify", "reason")
+      SELECT "id", "createdAt", "updatedAt", NULL, "modId", "notify", 'account_deleted' FROM gone
+      ON CONFLICT ("id") DO NOTHING`);
     await tx.execute(sql`DELETE FROM "Kit" WHERE "ownerId" = ${userId}`);
     await tx.execute(sql`UPDATE "ModDownload" SET "userId" = NULL WHERE "userId" = ${userId}`);
     await tx.execute(

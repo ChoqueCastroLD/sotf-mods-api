@@ -155,9 +155,19 @@ export async function unfollowMod(ctx: Ctx, modId: number): Promise<FollowStateD
   if (!exists) throw errors.notFound('Mod');
   return withTx(ctx.db, async (tx) => {
     await tx.execute(modFollowLock(actor.userId, modId));
+    // The row is archived, not lost: follows that predate the migration are counted by the
+    // invariant "favorites preserved" (ModFavorite + ModFavoriteArchive, PLAN §14.5).
     const deleted = await query<{ id: number }>(
       tx,
-      sql`DELETE FROM "ModFavorite" WHERE "userId" = ${actor.userId} AND "modId" = ${modId} RETURNING "id"`,
+      sql`WITH gone AS (
+            DELETE FROM "ModFavorite" WHERE "userId" = ${actor.userId} AND "modId" = ${modId}
+            RETURNING "id", "createdAt", "updatedAt", "userId", "modId", "notify"
+          ), archived AS (
+            INSERT INTO "ModFavoriteArchive" ("id", "createdAt", "updatedAt", "userId", "modId", "notify", "reason")
+            SELECT "id", "createdAt", "updatedAt", "userId", "modId", "notify", 'unfollow' FROM gone
+            ON CONFLICT ("id") DO NOTHING
+          )
+          SELECT "id" FROM gone`,
     );
     if (deleted.length > 0) {
       await adjustModFollowers(tx, modId, -deleted.length);

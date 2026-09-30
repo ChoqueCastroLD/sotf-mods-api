@@ -300,6 +300,9 @@ describe('kits', () => {
 describe('users', () => {
   it('validates handles and display names', () => {
     expect(HandleInput.parse(' New-Survivor ')).toBe('new-survivor');
+    // `deleted-<id>` belongs to anonymised accounts.
+    expect(HandleInput.safeParse('deleted-42').success).toBe(false);
+    expect(HandleInput.safeParse('undeleted-42').success).toBe(true);
     for (const bad of ['ab', 'a--b', '-abc', 'abc-', 'über', 'basecamp', 'x'.repeat(25)]) {
       expect(HandleInput.safeParse(bad).success, bad).toBe(false);
     }

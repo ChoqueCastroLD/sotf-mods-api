@@ -11,6 +11,7 @@ import { uploadsEndpoints } from '@sotf/contracts/uploads';
 import { createStorage, type ObjectStorage, storageConfigFromEnv } from '@sotf/core/storage/index';
 import { completeUpload, createUpload, getUpload } from '@sotf/core/uploads/index';
 import { defineModule } from '../../lib/define-module.ts';
+import { catalogConfigOf } from '../catalog/index.ts';
 
 export default defineModule({
   name: 'uploads',
@@ -30,6 +31,7 @@ export default defineModule({
       completeUpload(ctx, storage, params.id, body),
     );
 
-    m.implement(uploadsEndpoints.get, async ({ params, ctx }) => getUpload(ctx, params.id));
+    const catalog = catalogConfigOf(m.platform.env);
+    m.implement(uploadsEndpoints.get, async ({ params, ctx }) => getUpload(ctx, params.id, catalog));
   },
 });

@@ -8,9 +8,8 @@
  * - The decoded PNG is stored privately as `incoming/{userId}/{uploadId}-thumbnail` and a pending
  *   `Media` + `media.process` job are created in one transaction.
  * - `Upload.resultRef.buildThumbnail = { mediaId }` makes the job idempotent.
- * - With `modVersionId` (a published version), `ModVersion.buildMeta` is filled, the legacy mirror
- *   columns of the mod (`buildGuid`, `buildShareVersion`, `numberOfElements`) follow the latest
- *   version, and the mod gets the thumbnail as cover when it has none.
+ * - With `modVersionId` (a published version), `ModVersion.buildMeta` is filled and the mod gets the
+ *   thumbnail as cover when it has none.
  */
 import { FILE_CHECKS } from '@sotf/contracts/manifest';
 import { type JsonObject, media, type Transaction, upload } from '@sotf/db';
@@ -108,15 +107,6 @@ export async function extractBuild(
   if (input.modVersionId !== null && meta) {
     await ctx.db.execute(sql`
       UPDATE "ModVersion" SET "buildMeta" = ${JSON.stringify(meta)}::jsonb WHERE "id" = ${input.modVersionId}`);
-    // Legacy mirror of the latest blueprint (what the legacy site wrote on publish), so `/api/mods`
-    // clients see v2 builds too. Only the latest version writes it; "updatedAt" is left alone.
-    await ctx.db.execute(sql`
-      UPDATE "Mod" m SET "buildGuid" = ${meta.guid}, "buildShareVersion" = ${meta.buildshareVersion},
-                         "numberOfElements" = ${meta.elements}
-        FROM "ModVersion" v
-       WHERE v."id" = ${input.modVersionId} AND m."id" = v."modId" AND v."isLatest" AND m."type" = 'Build'
-         AND (m."buildGuid", m."buildShareVersion", m."numberOfElements")
-             IS DISTINCT FROM (${meta.guid}::text, ${meta.buildshareVersion}::text, ${meta.elements}::int)`);
     if (mediaId) {
       await ctx.db.execute(sql`
         UPDATE "Mod" SET "thumbnailMediaId" = ${mediaId}::uuid
