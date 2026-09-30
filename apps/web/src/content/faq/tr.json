@@ -1,7 +1,7 @@
 {
   "install": {
     "question": "Sons of the Forest’a nasıl mod kurarım?",
-    "answer": "Mod yükleyici RedLoader’ı kur, ardından her modu oyun dizinindeki _RedLoader/Mods klasörüne koy ve oyunu başlat. RedManager bu iki adımı senin yerine yapabilir. Modların yüklendiğini görmek için oyunda F1’e bas. Her mod sayfası bağımlılıklarını listeler ve kurulum rehberi her adımı anlatır."
+    "answer": "Mod yükleyici RedLoader’ı kur, ardından her modu oyun dizinindeki Mods klasörüne koy ve oyunu başlat. RedManager bu iki adımı senin yerine yapabilir. Modların yüklendiğini görmek için oyunda F1’e bas. Her mod sayfası bağımlılıklarını listeler ve kurulum rehberi her adımı anlatır."
   },
   "free": {
     "question": "İndirmeler ücretsiz mi?",
