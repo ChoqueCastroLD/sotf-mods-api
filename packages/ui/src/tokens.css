@@ -350,7 +350,6 @@
     animation-duration: 1ms !important; animation-iteration-count: 1 !important;
     transition-duration: 1ms !important; scroll-behavior: auto !important;
   }
-  }
 
   /* Compact density (User.settings.density → <html data-density="compact">, WP-81): spacing
      utilities are calc(var(--spacing) * n), so a smaller base tightens paddings, gaps and margins. */
