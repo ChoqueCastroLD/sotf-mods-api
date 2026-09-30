@@ -11,6 +11,26 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   Every queue of `JOB_PAYLOADS` exists with retries, exponential backoff and the shared
   `dead-letter` queue (`@sotf/core` `ensureQueues`).
 - SIGTERM stops fetching, waits up to 30 s for active jobs and exits.
+- Environment: `src/env.ts` (Zod). Outside production the root `.env` is loaded first (never
+  overriding set variables; `SOTF_NO_DOTENV=1` disables it). Locally, e-mails go to Mailpit
+  (`EMAIL_TRANSPORT=mailpit`, UI `http://127.0.0.1:47080`) and the CDN purge is a no-op without
+  `CF_ZONE_ID`/`CF_API_TOKEN`.
+- `PORT` defaults to 3002 (the Coolify port); the development port is 47302:
+  `PORT=47302 pnpm --filter @sotf/worker dev` until the dev script pins it (`docs/backlog/WP-A4.md`).
+- Deployment variables: `ops/coolify/env/worker.env.example`.
+
+## Backfills run by the worker (B15, B16…)
+
+Worker-side backfills are the `backfill.run` job. They are enqueued with the API image's
+`backfill` entry, from the Coolify terminal of `sotf-v2-api` (or `sotf-v2-worker`):
+
+```bash
+node dist/backfill.js B15                  # dry run: reports what would change
+node dist/backfill.js B15 --apply --wait   # applies; --wait blocks and exits 1 if the job failed
+```
+
+Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
+`ops/runbooks/migration/r2-pass.md`.
 
 ## Writing jobs
 
