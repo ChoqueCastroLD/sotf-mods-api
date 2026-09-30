@@ -63,6 +63,7 @@ export function llmsTxt(input: {
     link('Patch Radar', url('/patch-radar'), 'which popular mods work on the current game patch'),
     ...BEST_TOPICS.map((topic) => link(BEST_TITLES[topic], url(`/best/${topic}`))),
     link('Mod Kits', url('/kits'), 'curated collections of mods that work together'),
+    link('Mod requests', url('/requests'), 'what players ask modders to build, most voted first'),
     link('Creators', url('/creators')),
     '',
     '## Categories',

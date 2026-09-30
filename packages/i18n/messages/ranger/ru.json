@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Для тех, кто переводит сайт. Выдают только администраторы.",
   "ranger_user_translator_on": "Значок переводчика выдан.",
   "ranger_user_translator_off": "Значок переводчика снят.",
-  "ranger_user_translator_failed": "Не удалось изменить значок переводчика"
+  "ranger_user_translator_failed": "Не удалось изменить значок переводчика",
+  "ranger_target_request": "Запрос",
+  "ranger_target_request_comment": "Комментарий к запросу"
 }

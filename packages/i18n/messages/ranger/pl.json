@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Dla osób, które tłumaczą stronę. Przyznają ją tylko administratorzy.",
   "ranger_user_translator_on": "Przyznano odznakę tłumacza.",
   "ranger_user_translator_off": "Usunięto odznakę tłumacza.",
-  "ranger_user_translator_failed": "Nie udało się zmienić odznaki tłumacza"
+  "ranger_user_translator_failed": "Nie udało się zmienić odznaki tłumacza",
+  "ranger_target_request": "Prośba",
+  "ranger_target_request_comment": "Komentarz do prośby"
 }

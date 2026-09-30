@@ -198,5 +198,7 @@
   "social_md_spoiler": "ネタバレ",
   "social_comment_sign_in": "ログインしてコメントする",
   "social_comments_more_replies": "{count, plural, other {ほか # 件の返信}}",
-  "social_comments_empty": "まだコメントはありません。質問、コツ、バグ報告はこちらへ。"
+  "social_comments_empty": "まだコメントはありません。質問、コツ、バグ報告はこちらへ。",
+  "social_report_request_title": "このリクエストを通報",
+  "social_report_request_comment_title": "このコメントを通報"
 }

@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Wybierz do {max} zdobytych odznak do nagłówka profilu.",
   "settings_featured_badges_empty": "Zdobywaj odznaki na wyspie, aby je tu wyróżnić.",
   "settings_featured_badges_count": "Wybrano {count} z {max}",
-  "settings_featured_badges_saved": "Zapisano wyróżnione odznaki."
+  "settings_featured_badges_saved": "Zapisano wyróżnione odznaki.",
+  "settings_notif_request_comment": "Komentarze do próśb",
+  "settings_notif_request_comment_hint": "Ktoś skomentował prośbę, którą złożyłeś(-aś) lub którą przejąłeś(-ęłaś).",
+  "settings_notif_request_adopted": "Prośba przejęta",
+  "settings_notif_request_adopted_hint": "Twórca zaczął pracować nad Twoją prośbą.",
+  "settings_notif_request_fulfilled": "Prośba spełniona",
+  "settings_notif_request_fulfilled_hint": "Opublikowano mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś)."
 }

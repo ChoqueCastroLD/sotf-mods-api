@@ -2330,6 +2330,7 @@
   "common_term_notifications": "Bildirimler",
   "common_term_patch_radar": "Yama Radarı",
   "common_term_ranger_station": "Korucu İstasyonu",
+  "common_term_requests": "İstekler",
   "common_term_signals": "Sinyaller",
   "common_theme_day": "Gündüz",
   "common_theme_label": "Tema",
@@ -2340,8 +2341,6 @@
   "console_area_admin": "Yönetim",
   "console_area_switcher": "Konsol bölümleri",
   "console_back_to_site": "Siteye dön",
-  "console_empty_detail": "Kampın bu bölümü hâlâ kuruluyor. Yakında tekrar uğra.",
-  "console_empty_title": "Burada henüz bir şey yok",
   "console_error_detail": "Bizim tarafımızda bir şeyler bozuldu. Tekrar dene; sorun sürerse aşağıdaki referansı bize gönder.",
   "console_error_title": "Bu ekran yüklenmedi",
   "console_forbidden_action": "Ana Kamp’a git",
@@ -2827,6 +2826,44 @@
   ],
   "content_radar_summary_title": "Özet",
   "content_radar_title": "SOTF modları {build} yamasında çalışıyor mu?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "{component} günlük çalışma süresi, eskiden yeniye",
+  "content_radar_uptime_database": "Veritabanı",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Site, API, indirmeler ve veritabanı her 5 dakikada bir denetlenir. Son {days__number} gün, UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "ortalama {avg__number} ms · p95 {p95__number} ms"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "İndirmeler ve medya",
+  "content_radar_uptime_no_data": "Veri yok",
+  "content_radar_uptime_now_down": "Şu an kapalı",
+  "content_radar_uptime_now_ok": "Çalışıyor",
+  "content_radar_uptime_overall": "Denetimlerin {share} oranında her şey çalışıyordu.",
+  "content_radar_uptime_percent": "{share} çalışma süresi",
+  "content_radar_uptime_title": "Platform çalışma süresi",
+  "content_radar_uptime_web": "Web sitesi",
   "content_radar_works_empty": "{build} sürümünde henüz doğrulanmış popüler mod yok. Birini denedin mi? Haber ver.",
   "content_radar_works_title": "Çalıştığı doğrulananlar",
   "content_reading_time": [
@@ -3181,6 +3218,26 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
+  "emails_notify_item_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "“{request}” isteğinde {count__number} yeni yorum",
+        "count__plural=*": "“{request}” isteğinde {count__number} yeni yorum"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "İstediğin veya oy verdiğin bir mod yayında: {mod}",
   "emails_notify_item_review_on_my_mod": "{actor}, {mod} için inceleme yazdı: {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6374,6 +6431,8 @@
   "ranger_target_compat_report": "Saha raporu",
   "ranger_target_kit": "Kit",
   "ranger_target_mod": "Mod",
+  "ranger_target_request": "İstek",
+  "ranger_target_request_comment": "İstek yorumu",
   "ranger_target_review": "İnceleme",
   "ranger_target_user": "Kullanıcı",
   "ranger_target_version": "Sürüm",
@@ -6540,6 +6599,191 @@
       "match": {
         "count__plural=one": "{count__number} dk",
         "count__plural=*": "{count__number} dk"
+      }
+    }
+  ],
+  "requests_action_new": "Mod iste",
+  "requests_adopt": "Üzerinde çalışıyorum",
+  "requests_adopt_done": "Artık bu istek üzerinde çalışıyorsunuz.",
+  "requests_adopted_by": "{name} üzerinde çalışıyor",
+  "requests_asked_on": "{date} tarihinde istendi",
+  "requests_back": "Tüm istekler",
+  "requests_back_to_first": "İlk sayfaya dön",
+  "requests_badge_adopter": "Üzerinde çalışıyor",
+  "requests_badge_author": "İstek sahibi",
+  "requests_body_placeholder": "Ne yapmalı? Neden faydalı? Hangi modlarla çalışmalı?",
+  "requests_by": "{name} tarafından",
+  "requests_clear_filters": "Tüm istekleri göster",
+  "requests_close": "İsteği kapat",
+  "requests_close_done": "İstek kapatıldı.",
+  "requests_closed_banner": "Bu istek kapatıldı.",
+  "requests_comment_delete_text": "Bu geri alınamaz.",
+  "requests_comment_delete_title": "Bu yorum silinsin mi?",
+  "requests_comment_edit_label": "Yorumu düzenle",
+  "requests_comment_label": "Yorumunuz",
+  "requests_comment_placeholder": "Ayrıntı ekleyin, soru sorun veya yardım önerin…",
+  "requests_comment_submit": "Yorum yap",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yorum",
+        "count__plural=*": "{count__number} yorum"
+      }
+    }
+  ],
+  "requests_comments_empty": "Henüz yorum yok.",
+  "requests_comments_title": "Yorumlar",
+  "requests_created_done": "İstek yayımlandı.",
+  "requests_delete": "İsteği sil",
+  "requests_delete_text": "İstek ve oyları panodan kalkar. Bu geri alınamaz.",
+  "requests_delete_title": "Bu istek silinsin mi?",
+  "requests_deleted_done": "İstek silindi.",
+  "requests_detail_description": "{author} tarafından mod isteği: {title}",
+  "requests_detail_title": "{title} — Mod isteği",
+  "requests_edit": "İsteği düzenle",
+  "requests_edited": "düzenlendi",
+  "requests_empty_filtered_text": "Başka bir durum deneyin veya tüm istekleri gösterin.",
+  "requests_empty_filtered_title": "Eşleşen istek yok",
+  "requests_empty_text": "Burada henüz kimse mod istemedi. Eksik olan modu ilk anlatan siz olun.",
+  "requests_empty_title": "Henüz istek yok",
+  "requests_error_text": "İstekler yüklenemedi. Biraz sonra tekrar deneyin.",
+  "requests_error_title": "İstek panosu yanıt vermiyor",
+  "requests_field_body": "Ayrıntılar (isteğe bağlı)",
+  "requests_field_title": "Başlık",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} karakter. Modun ne yapması gerektiğini yazın."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Durum",
+  "requests_fulfill": "Modumu bağla",
+  "requests_fulfill_done": "İstek tamamlandı. Teşekkürler!",
+  "requests_fulfill_help": "Yayımlanmış modlarınızdan birini seçin. İstek tamamlandı olarak işaretlenir ve ona işaret eder.",
+  "requests_fulfill_label": "Yayımlanmış modunuz",
+  "requests_fulfill_none": "Henüz yayımlanmış modunuz yok. Önce modu yayımlayın, sonra gelip bağlayın.",
+  "requests_fulfill_submit": "Tamamlandı olarak işaretle",
+  "requests_fulfill_title": "Bu isteği karşılayan modu bağlayın",
+  "requests_fulfilled_banner": "Tamamlandı: mod yayımlandı.",
+  "requests_fulfilled_by": "{mod} ile tamamlandı",
+  "requests_guest_hint": "Oy vermek, yorum yapmak veya mod istemek için giriş yapın.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En fazla {open__number} açık isteğiniz olabilir ve günde {perDay__number} istek yayımlayabilirsiniz."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} istek",
+        "count__plural=*": "{count__number} istek"
+      }
+    }
+  ],
+  "requests_list_description": "Sons of the Forest’ta eksik olan modu isteyin, istediklerinize oy verin ve onları üstlenen geliştiricileri takip edin.",
+  "requests_list_readout": "İstek panosu",
+  "requests_list_title": "Mod istekleri",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — sayfa {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "İstek eylemleri",
+  "requests_new_description": "Sons of the Forest için bir mod isteği yayımlayın, geliştiriciler üstlensin.",
+  "requests_new_guest_title": "Mod istemek için giriş yapın",
+  "requests_new_intro": "Olmasını istediğiniz modu anlatın. Geliştiriciler bu panoya göz atar ve isteğinizi üstlenebilir.",
+  "requests_new_title": "Mod iste",
+  "requests_past_end_text": "Bundan daha az istek var.",
+  "requests_past_end_title": "Bu sayfa boş",
+  "requests_release": "Geri bırak",
+  "requests_release_done": "İstek yeniden açık.",
+  "requests_reopen": "İsteği yeniden aç",
+  "requests_reopen_done": "İstek yeniden açıldı.",
+  "requests_report": "Bildir",
+  "requests_saved": "İstek güncellendi.",
+  "requests_sign_in": "Giriş yap",
+  "requests_sort_label": "Sıralama",
+  "requests_sort_new": "En yeni",
+  "requests_sort_top": "En çok oy alan",
+  "requests_status_adopted": "Devam ediyor",
+  "requests_status_all": "Tümü",
+  "requests_status_closed": "Kapalı",
+  "requests_status_fulfilled": "Tamamlandı",
+  "requests_status_open": "Açık",
+  "requests_submit_create": "İsteği yayımla",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Başlık en az {min__number} karakter olmalı."
+      }
+    }
+  ],
+  "requests_verify_hint": "Oy vermek, yorum yapmak veya mod istemek için e-postanızı doğrulayın.",
+  "requests_view_mod": "Moda git",
+  "requests_vote": "Oy ver",
+  "requests_vote_aria_add": "Bu isteğe oy ver",
+  "requests_vote_aria_remove": "Oyunu geri al",
+  "requests_vote_own": "Kendi isteğinize oy veremezsiniz.",
+  "requests_voted": "Oy verildi",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} oy",
+        "count__plural=*": "{count__number} oy"
       }
     }
   ],
@@ -6868,6 +7112,12 @@
   "settings_notif_reply_hint": "Biri yorumunu yanıtladı.",
   "settings_notif_report": "Bildirimlerin",
   "settings_notif_report_hint": "Korucular bildirdiğin bir şeyi inceledi.",
+  "settings_notif_request_adopted": "İstek üstlenildi",
+  "settings_notif_request_adopted_hint": "Bir geliştirici isteğin üzerinde çalışmaya başladı.",
+  "settings_notif_request_comment": "İsteklerdeki yorumlar",
+  "settings_notif_request_comment_hint": "Birisi oluşturduğun veya üstlendiğin bir isteğe yorum yaptı.",
+  "settings_notif_request_fulfilled": "İstek karşılandı",
+  "settings_notif_request_fulfilled_hint": "İstediğin veya oy verdiğin bir mod yayınlandı.",
   "settings_notif_review": "Modlarına incelemeler",
   "settings_notif_review_hint": "Biri modlarından birini puanladı.",
   "settings_notif_review_reply": "İncelemelerine yanıtlar",
@@ -7317,6 +7567,26 @@
   "signals_preferences": "Bildirim ayarları",
   "signals_report_dismissed": "Bildirimin incelendi — işlem gerekmedi",
   "signals_report_resolved": "Bildirimin incelendi ve işlem yapıldı",
+  "signals_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
+  "signals_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "“{request}” isteğinde {count__number} yeni yorum",
+        "count__plural=*": "“{request}” isteğinde {count__number} yeni yorum"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} yayında ve “{request}” isteğini karşılıyor",
   "signals_retry": "Tekrar dene",
   "signals_review_on_mod": "{actor}, {mod} için {rating} yıldızlı bir inceleme bıraktı",
   "signals_review_on_mod_grouped": [
@@ -7603,6 +7873,8 @@
   "social_report_reason_nsfw_unmarked": "18+ olarak işaretlenmemiş yetişkin içerik",
   "social_report_reason_other": "Başka bir şey",
   "social_report_reason_spam": "Spam veya reklam",
+  "social_report_request_comment_title": "Bu yorumu bildir",
+  "social_report_request_title": "Bu isteği bildir",
   "social_report_review_title": "Bu incelemeyi şikâyet et",
   "social_report_sent": "Teşekkürler. Korucular inceleyecek.",
   "social_report_submit": "Şikâyeti gönder",

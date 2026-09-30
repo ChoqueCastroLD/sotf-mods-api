@@ -212,5 +212,19 @@
   "content_dev_errors_text": "Das Feld code eines Fehlers ist einer dieser Werte. Die type-URI jedes Problems verweist auf seine Zeile hier.",
   "content_dev_col_code": "Code",
   "content_dev_col_status": "Status",
-  "content_dev_col_meaning": "Bedeutung"
+  "content_dev_col_meaning": "Bedeutung",
+  "content_radar_uptime_title": "Verfügbarkeit der Plattform",
+  "content_radar_uptime_intro": "Website, API, Downloads und Datenbank werden alle 5 Minuten geprüft. Letzte {days, number} Tage, UTC.",
+  "content_radar_uptime_overall": "Bei {share} der Prüfungen lief alles.",
+  "content_radar_uptime_web": "Website",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Downloads und Medien",
+  "content_radar_uptime_database": "Datenbank",
+  "content_radar_uptime_now_ok": "In Betrieb",
+  "content_radar_uptime_now_down": "Gerade ausgefallen",
+  "content_radar_uptime_percent": "{share} Verfügbarkeit",
+  "content_radar_uptime_latency": "Ø {avg, number} ms · {p95, number} ms p95",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Keine Daten",
+  "content_radar_uptime_bars_label": "Tägliche Verfügbarkeit von {component}, von alt nach neu"
 }

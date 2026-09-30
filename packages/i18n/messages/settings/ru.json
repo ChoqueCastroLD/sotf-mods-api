@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Выберите до {max} полученных значков для шапки профиля.",
   "settings_featured_badges_empty": "Получайте значки на острове, чтобы выбрать их здесь.",
   "settings_featured_badges_count": "Выбрано {count} из {max}",
-  "settings_featured_badges_saved": "Избранные значки сохранены."
+  "settings_featured_badges_saved": "Избранные значки сохранены.",
+  "settings_notif_request_comment": "Комментарии к запросам",
+  "settings_notif_request_comment_hint": "Кто-то прокомментировал запрос, который вы создали или взяли в работу.",
+  "settings_notif_request_adopted": "Запрос взят в работу",
+  "settings_notif_request_adopted_hint": "Автор начал работать над вашим запросом.",
+  "settings_notif_request_fulfilled": "Запрос выполнен",
+  "settings_notif_request_fulfilled_hint": "Опубликован мод, который вы запрашивали или за который голосовали."
 }

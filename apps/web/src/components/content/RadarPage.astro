@@ -14,6 +14,7 @@ import { loadEnv } from '../../lib/env.ts';
 import { href, localizePath } from '../../lib/i18n.ts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
 import { articleJsonLd, itemListJsonLd } from './jsonld.ts';
+import RadarUptime from './RadarUptime.astro';
 import RadarView from './RadarView.astro';
 import { type PatchRadar, radarModified } from './radar.ts';
 
@@ -84,6 +85,7 @@ const crumbs =
   breadcrumbs={crumbs}
 >
   {state.kind === 'ok' && <RadarView radar={state.radar} />}
+  {state.kind === 'ok' && <RadarUptime />}
   {
     state.kind === 'empty' && (
       <section aria-labelledby="radar-title" class="mx-auto flex max-w-(--container-prose) flex-col items-center gap-4 py-10 text-center">

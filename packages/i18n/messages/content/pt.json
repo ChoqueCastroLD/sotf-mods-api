@@ -212,5 +212,19 @@
   "content_dev_errors_text": "O campo code de um erro é um destes. A URI type de cada problema aponta para a linha dele aqui.",
   "content_dev_col_code": "Código",
   "content_dev_col_status": "Status",
-  "content_dev_col_meaning": "Significado"
+  "content_dev_col_meaning": "Significado",
+  "content_radar_uptime_title": "Disponibilidade da plataforma",
+  "content_radar_uptime_intro": "O site, a API, os downloads e o banco de dados são verificados a cada 5 minutos. Últimos {days, number} dias, UTC.",
+  "content_radar_uptime_overall": "{share} das verificações tinha tudo no ar.",
+  "content_radar_uptime_web": "Site",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Downloads e mídia",
+  "content_radar_uptime_database": "Banco de dados",
+  "content_radar_uptime_now_ok": "Operacional",
+  "content_radar_uptime_now_down": "Fora do ar agora",
+  "content_radar_uptime_percent": "{share} de disponibilidade",
+  "content_radar_uptime_latency": "{avg, number} ms em média · {p95, number} ms p95",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Sem dados",
+  "content_radar_uptime_bars_label": "Disponibilidade diária de {component}, da mais antiga à mais recente"
 }

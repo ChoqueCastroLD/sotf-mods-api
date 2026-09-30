@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "Verifizierter Ersteller",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Übersetzer",
-  "signals_badge_name_night_owl": "Nachteule"
+  "signals_badge_name_night_owl": "Nachteule",
+  "signals_request_comment": "{actor} hat die Anfrage „{request}“ kommentiert",
+  "signals_request_comment_grouped": "{count, plural, one {# neuer Kommentar zur Anfrage „{request}“} other {# neue Kommentare zur Anfrage „{request}“}}",
+  "signals_request_adopted": "{actor} arbeitet an deiner Anfrage „{request}“",
+  "signals_request_fulfilled": "{mod} ist erschienen und erfüllt die Anfrage „{request}“"
 }

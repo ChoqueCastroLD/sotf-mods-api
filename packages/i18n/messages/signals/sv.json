@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "Verifierad skapare",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Översättare",
-  "signals_badge_name_night_owl": "Nattuggla"
+  "signals_badge_name_night_owl": "Nattuggla",
+  "signals_request_comment": "{actor} kommenterade förfrågan ”{request}”",
+  "signals_request_comment_grouped": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
+  "signals_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
+  "signals_request_fulfilled": "{mod} är ute och uppfyller förfrågan ”{request}”"
 }

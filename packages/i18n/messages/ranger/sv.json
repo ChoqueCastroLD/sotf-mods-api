@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "För dem som översätter webbplatsen. Bara administratörer delar ut det.",
   "ranger_user_translator_on": "Översättarmärket delades ut.",
   "ranger_user_translator_off": "Översättarmärket togs bort.",
-  "ranger_user_translator_failed": "Kunde inte ändra översättarmärket"
+  "ranger_user_translator_failed": "Kunde inte ändra översättarmärket",
+  "ranger_target_request": "Önskemål",
+  "ranger_target_request_comment": "Önskemålskommentar"
 }

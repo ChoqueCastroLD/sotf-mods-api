@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Siteyi çevirenler için. Yalnızca yöneticiler verir.",
   "ranger_user_translator_on": "Çevirmen rozeti verildi.",
   "ranger_user_translator_off": "Çevirmen rozeti kaldırıldı.",
-  "ranger_user_translator_failed": "Çevirmen rozeti değiştirilemedi"
+  "ranger_user_translator_failed": "Çevirmen rozeti değiştirilemedi",
+  "ranger_target_request": "İstek",
+  "ranger_target_request_comment": "İstek yorumu"
 }

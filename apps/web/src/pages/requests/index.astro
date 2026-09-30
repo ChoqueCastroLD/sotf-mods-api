@@ -1,0 +1,181 @@
+---
+/**
+ * `/requests` — the mod request board: what players ask for, most voted first.
+ *
+ * - Status and sort as plain links (work without JavaScript), page-based pagination with real URLs.
+ * - Indexable: `/requests` and `/requests?page=N`; filtered or re-sorted views are `noindex, follow`
+ *   and point their canonical to the base listing.
+ * - Cache: E(300) `list:requests`; the API failing gives 503 with an error state, never cached.
+ */
+import { REQUEST_LIST_STATUSES } from '@sotf/contracts/requests';
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { Pagination } from '@sotf/ui/pagination';
+import { Plus } from 'lucide-react';
+import { KitsEmpty, KitsError } from '../../components/kits/KitStates.tsx';
+import { configureModDomainI18n } from '../../components/mod/i18n.ts';
+import { isFiltered, loadRequestList, requestListHref, requestListQuery } from '../../components/requests/data.ts';
+import RequestCard from '../../components/requests/RequestCard.astro';
+import { statusLabel } from '../../components/requests/status.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+configureModDomainI18n();
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.listRequests());
+
+const data = await loadRequestList(Astro.url, locale);
+if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
+
+const { state, list } = data;
+if (list === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
+const items = list?.items ?? [];
+const total = list?.total ?? null;
+const totalPages = list?.totalPages ?? 0;
+const pastEnd = list !== null && list.total > 0 && state.page > list.totalPages;
+const filtered = isFiltered(state);
+const heading = m.requests_list_title();
+const description = m.requests_list_description();
+const title = state.page > 1 ? m.requests_list_title_page({ title: heading, page: state.page }) : heading;
+const seoPath = filtered ? '/requests' : `/requests${requestListQuery({ ...state })}`;
+const pageHref = (page: number) => requestListHref(state, { page }, locale);
+const sorts = [
+  { key: 'top', label: m.requests_sort_top() },
+  { key: 'new', label: m.requests_sort_new() },
+] as const;
+---
+
+<PageLayout
+  template="requests"
+  width="wide"
+  seo={{ title, description, path: seoPath, noindex: filtered }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_term_requests() }]}
+>
+  <div class="flex flex-col gap-6">
+    <header class="flex flex-col gap-3">
+      <p class="readout text-signal">{m.requests_list_readout()}</p>
+      <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div class="flex flex-col gap-2">
+          <h1 class="font-display-caps text-display-sm text-fg">{heading}</h1>
+          <p class="max-w-(--container-prose) text-base text-fg-muted">{description}</p>
+        </div>
+        <a href={href('/requests/new', locale)} class={buttonClasses({ variant: 'primary' })} rel="nofollow">
+          <Icon icon={Plus} size={18} />
+          {m.requests_action_new()}
+        </a>
+      </div>
+    </header>
+
+    <div class="flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
+      <nav aria-label={m.requests_filter_status_label()}>
+        <ul class="flex flex-wrap gap-1">
+          {
+            REQUEST_LIST_STATUSES.map((status) => (
+              <li>
+                <a
+                  href={requestListHref(state, { status }, locale)}
+                  rel="nofollow"
+                  aria-current={state.status === status ? 'true' : undefined}
+                  class:list={[
+                    'inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold md:min-h-9',
+                    state.status === status ? 'bg-fg/8 text-fg' : 'text-fg-muted hover:text-fg',
+                  ]}
+                >
+                  {statusLabel(status)}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <nav aria-label={m.requests_sort_label()}>
+        <ul class="flex flex-wrap gap-1">
+          {
+            sorts.map((sort) => (
+              <li>
+                <a
+                  href={requestListHref(state, { sort: sort.key }, locale)}
+                  rel="nofollow"
+                  aria-current={state.sort === sort.key ? 'true' : undefined}
+                  class:list={[
+                    'inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold md:min-h-9',
+                    state.sort === sort.key ? 'bg-fg/8 text-fg' : 'text-fg-muted hover:text-fg',
+                  ]}
+                >
+                  {sort.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      {
+        total !== null && (
+          <p class="w-full font-mono text-sm text-fg-muted tabular-nums sm:w-auto">
+            {m.requests_list_count({ count: total })}
+          </p>
+        )
+      }
+    </div>
+
+    <section aria-label={heading}>
+      {
+        list === null ? (
+          <KitsError
+            title={m.requests_error_title()}
+            text={m.requests_error_text()}
+            retryHref={href(Astro.url.pathname + Astro.url.search, locale)}
+            reference={Astro.locals.requestId}
+          />
+        ) : pastEnd ? (
+          <KitsEmpty
+            title={m.requests_past_end_title()}
+            text={m.requests_past_end_text()}
+            action={{ label: m.requests_back_to_first(), href: pageHref(1) }}
+          />
+        ) : items.length === 0 ? (
+          filtered ? (
+            <KitsEmpty
+              title={m.requests_empty_filtered_title()}
+              text={m.requests_empty_filtered_text()}
+              action={{ label: m.requests_clear_filters(), href: href('/requests', locale), nofollow: true }}
+            />
+          ) : (
+            <KitsEmpty
+              title={m.requests_empty_title()}
+              text={m.requests_empty_text()}
+              action={{ label: m.requests_action_new(), href: href('/requests/new', locale), nofollow: true }}
+            />
+          )
+        ) : (
+          <ul class="grid grid-cols-1 gap-3">
+            {items.map((request) => (
+              <li class="min-w-0">
+                <RequestCard request={request} />
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </section>
+
+    {
+      list !== null && items.length > 0 && (
+        <div class="mt-4 flex flex-col items-center gap-4">
+          <p class="font-mono text-xs text-fg-subtle tabular-nums">
+            {m.common_pagination_page_of({ page: state.page, total: Math.max(1, totalPages) })}
+          </p>
+          <Pagination page={state.page} totalPages={totalPages} hrefFor={pageHref} />
+        </div>
+      )
+    }
+  </div>
+</PageLayout>

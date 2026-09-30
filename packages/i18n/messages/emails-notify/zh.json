@@ -55,5 +55,9 @@
   "emails_notify_creator_top_heading": "你的模组本周表现",
   "emails_notify_creator_highlights_heading": "亮点",
   "emails_notify_creator_button": "打开你的数据分析",
-  "emails_notify_creator_reason": "你收到此报告，是因为你在 SOTF Mods 上发布内容。"
+  "emails_notify_creator_reason": "你收到此报告，是因为你在 SOTF Mods 上发布内容。",
+  "emails_notify_item_request_comment": "{actor} 评论了请求“{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, other {请求“{request}”有 # 条新评论}}",
+  "emails_notify_item_request_adopted": "{actor} 正在处理你的请求“{request}”",
+  "emails_notify_item_request_fulfilled": "你请求或投票支持的模组已发布：{mod}"
 }

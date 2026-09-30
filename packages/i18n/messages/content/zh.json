@@ -212,5 +212,19 @@
   "content_dev_errors_text": "错误的 code 字段取以下值之一。每个问题的 type URI 都指向这里对应的行。",
   "content_dev_col_code": "代码",
   "content_dev_col_status": "状态",
-  "content_dev_col_meaning": "含义"
+  "content_dev_col_meaning": "含义",
+  "content_radar_uptime_title": "平台可用性",
+  "content_radar_uptime_intro": "站点、API、下载和数据库每 5 分钟检测一次。最近 {days, number} 天（UTC）。",
+  "content_radar_uptime_overall": "{share} 的检测中所有组件均正常。",
+  "content_radar_uptime_web": "网站",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "下载与媒体",
+  "content_radar_uptime_database": "数据库",
+  "content_radar_uptime_now_ok": "运行正常",
+  "content_radar_uptime_now_down": "当前不可用",
+  "content_radar_uptime_percent": "可用性 {share}",
+  "content_radar_uptime_latency": "平均 {avg, number} 毫秒 · p95 {p95, number} 毫秒",
+  "content_radar_uptime_day": "{date}：{state}",
+  "content_radar_uptime_no_data": "无数据",
+  "content_radar_uptime_bars_label": "{component} 每日可用性，从旧到新"
 }

@@ -198,5 +198,7 @@
   "social_md_spoiler": "剧透",
   "social_comment_sign_in": "登录后发表评论",
   "social_comments_more_replies": "{count, plural, other {还有 # 条回复}}",
-  "social_comments_empty": "还没有评论。提问、技巧和 bug 反馈都可以写在这里。"
+  "social_comments_empty": "还没有评论。提问、技巧和 bug 反馈都可以写在这里。",
+  "social_report_request_title": "举报此请求",
+  "social_report_request_comment_title": "举报此评论"
 }

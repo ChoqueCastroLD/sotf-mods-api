@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Wähle bis zu {max} verdiente Abzeichen für den Kopf deines Profils.",
   "settings_featured_badges_empty": "Verdiene Abzeichen auf der Insel, um sie hier hervorzuheben.",
   "settings_featured_badges_count": "{count} von {max} ausgewählt",
-  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert."
+  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert.",
+  "settings_notif_request_comment": "Kommentare zu Anfragen",
+  "settings_notif_request_comment_hint": "Jemand hat eine Anfrage kommentiert, die du gestellt oder übernommen hast.",
+  "settings_notif_request_adopted": "Anfrage übernommen",
+  "settings_notif_request_adopted_hint": "Ein Creator arbeitet jetzt an deiner Anfrage.",
+  "settings_notif_request_fulfilled": "Anfrage erfüllt",
+  "settings_notif_request_fulfilled_hint": "Ein Mod, den du angefragt oder unterstützt hast, wurde veröffentlicht."
 }

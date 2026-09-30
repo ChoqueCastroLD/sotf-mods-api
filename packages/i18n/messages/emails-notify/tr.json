@@ -55,5 +55,9 @@
   "emails_notify_creator_top_heading": "Bu hafta modların",
   "emails_notify_creator_highlights_heading": "Öne çıkanlar",
   "emails_notify_creator_button": "İstatistiklerini aç",
-  "emails_notify_creator_reason": "SOTF Mods’ta içerik yayımladığın için bu raporu alıyorsun."
+  "emails_notify_creator_reason": "SOTF Mods’ta içerik yayımladığın için bu raporu alıyorsun.",
+  "emails_notify_item_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
+  "emails_notify_item_request_comment_many": "{count, plural, one {“{request}” isteğinde # yeni yorum} other {“{request}” isteğinde # yeni yorum}}",
+  "emails_notify_item_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
+  "emails_notify_item_request_fulfilled": "İstediğin veya oy verdiğin bir mod yayında: {mod}"
 }

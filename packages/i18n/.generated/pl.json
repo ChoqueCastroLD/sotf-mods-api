@@ -2444,6 +2444,7 @@
   "common_term_notifications": "Powiadomienia",
   "common_term_patch_radar": "Radar patchy",
   "common_term_ranger_station": "Posterunek strażników",
+  "common_term_requests": "Prośby",
   "common_term_signals": "Sygnały",
   "common_theme_day": "Dzień",
   "common_theme_label": "Motyw",
@@ -2454,8 +2455,6 @@
   "console_area_admin": "Administracja",
   "console_area_switcher": "Obszary konsoli",
   "console_back_to_site": "Wróć na stronę",
-  "console_empty_detail": "Ta część obozu jest jeszcze w budowie. Zajrzyj wkrótce.",
-  "console_empty_title": "Jeszcze nic tu nie ma",
   "console_error_detail": "Coś się zepsuło po naszej stronie. Spróbuj ponownie, a jeśli to się powtarza, wyślij nam poniższy identyfikator.",
   "console_error_title": "Ten ekran się nie wczytał",
   "console_forbidden_action": "Przejdź do obozu",
@@ -2949,6 +2948,44 @@
   ],
   "content_radar_summary_title": "Podsumowanie",
   "content_radar_title": "Czy mody do SOTF działają na łatce {build}?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "Dzienna dostępność: {component}, od najstarszej do najnowszej",
+  "content_radar_uptime_database": "Baza danych",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Strona, API, pobieranie i baza danych są sprawdzane co 5 minut. Ostatnie {days__number} dni, UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "średnio {avg__number} ms · p95 {p95__number} ms"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "Pobieranie i media",
+  "content_radar_uptime_no_data": "Brak danych",
+  "content_radar_uptime_now_down": "Nie działa",
+  "content_radar_uptime_now_ok": "Działa",
+  "content_radar_uptime_overall": "{share} sprawdzeń zakończyło się pełnym powodzeniem.",
+  "content_radar_uptime_percent": "{share} dostępności",
+  "content_radar_uptime_title": "Dostępność platformy",
+  "content_radar_uptime_web": "Strona",
   "content_radar_works_empty": "Żaden czołowy mod nie jest jeszcze potwierdzony na {build}. Sprawdziłeś któryś? Daj znać.",
   "content_radar_works_title": "Potwierdzone jako działające",
   "content_reading_time": [
@@ -3329,6 +3366,28 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} pracuje nad Twoją prośbą „{request}”",
+  "emails_notify_item_request_comment": "{actor} skomentował(a) prośbę „{request}”",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nowy komentarz do prośby „{request}”",
+        "count__plural=few": "{count__number} nowe komentarze do prośby „{request}”",
+        "count__plural=many": "{count__number} nowych komentarzy do prośby „{request}”",
+        "count__plural=*": "{count__number} nowego komentarza do prośby „{request}”"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "Mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś), jest już dostępny: {mod}",
   "emails_notify_item_review_on_my_mod": "{actor} ocenił(a) {mod}: {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6824,6 +6883,8 @@
   "ranger_target_compat_report": "Raport terenowy",
   "ranger_target_kit": "Zestaw",
   "ranger_target_mod": "Mod",
+  "ranger_target_request": "Prośba",
+  "ranger_target_request_comment": "Komentarz do prośby",
   "ranger_target_review": "Recenzja",
   "ranger_target_user": "Użytkownik",
   "ranger_target_version": "Wersja",
@@ -7000,6 +7061,197 @@
         "count__plural=few": "{count__number} min",
         "count__plural=many": "{count__number} min",
         "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "requests_action_new": "Poproś o moda",
+  "requests_adopt": "Pracuję nad tym",
+  "requests_adopt_done": "Pracujesz teraz nad tą prośbą.",
+  "requests_adopted_by": "{name} nad tym pracuje",
+  "requests_asked_on": "Dodano {date}",
+  "requests_back": "Wszystkie prośby",
+  "requests_back_to_first": "Wróć na pierwszą stronę",
+  "requests_badge_adopter": "Pracuje nad tym",
+  "requests_badge_author": "Autor prośby",
+  "requests_body_placeholder": "Co ma robić? Dlaczego jest przydatny? Z jakimi modami ma działać?",
+  "requests_by": "od {name}",
+  "requests_clear_filters": "Pokaż wszystkie prośby",
+  "requests_close": "Zamknij prośbę",
+  "requests_close_done": "Prośba zamknięta.",
+  "requests_closed_banner": "Ta prośba jest zamknięta.",
+  "requests_comment_delete_text": "Nie można tego cofnąć.",
+  "requests_comment_delete_title": "Usunąć ten komentarz?",
+  "requests_comment_edit_label": "Edytuj komentarz",
+  "requests_comment_label": "Twój komentarz",
+  "requests_comment_placeholder": "Dodaj szczegóły, zadaj pytanie lub zaoferuj pomoc…",
+  "requests_comment_submit": "Skomentuj",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} komentarz",
+        "count__plural=few": "{count__number} komentarze",
+        "count__plural=many": "{count__number} komentarzy",
+        "count__plural=*": "{count__number} komentarza"
+      }
+    }
+  ],
+  "requests_comments_empty": "Brak komentarzy.",
+  "requests_comments_title": "Komentarze",
+  "requests_created_done": "Prośba opublikowana.",
+  "requests_delete": "Usuń prośbę",
+  "requests_delete_text": "Prośba i jej głosy znikną z tablicy. Nie można tego cofnąć.",
+  "requests_delete_title": "Usunąć tę prośbę?",
+  "requests_deleted_done": "Prośba usunięta.",
+  "requests_detail_description": "Prośba o moda od {author}: {title}",
+  "requests_detail_title": "{title} — Prośba o moda",
+  "requests_edit": "Edytuj prośbę",
+  "requests_edited": "edytowano",
+  "requests_empty_filtered_text": "Wybierz inny status lub pokaż wszystkie prośby.",
+  "requests_empty_filtered_title": "Brak pasujących próśb",
+  "requests_empty_text": "Nikt jeszcze o nic tu nie poprosił. Opisz jako pierwszy moda, którego ci brakuje.",
+  "requests_empty_title": "Brak próśb",
+  "requests_error_text": "Nie udało się wczytać próśb. Spróbuj ponownie za chwilę.",
+  "requests_error_title": "Tablica próśb nie odpowiada",
+  "requests_field_body": "Szczegóły (opcjonalnie)",
+  "requests_field_title": "Tytuł",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} znaków. Napisz, co ma robić mod."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Status",
+  "requests_fulfill": "Powiąż mojego moda",
+  "requests_fulfill_done": "Prośba zrealizowana. Dziękujemy!",
+  "requests_fulfill_help": "Wybierz jednego ze swoich opublikowanych modów. Prośba zostanie oznaczona jako zrealizowana i będzie do niego prowadzić.",
+  "requests_fulfill_label": "Twój opublikowany mod",
+  "requests_fulfill_none": "Nie masz jeszcze opublikowanych modów. Najpierw opublikuj moda, potem wróć, by go powiązać.",
+  "requests_fulfill_submit": "Oznacz jako zrealizowane",
+  "requests_fulfill_title": "Powiąż moda, który realizuje tę prośbę",
+  "requests_fulfilled_banner": "Zrealizowane: mod został opublikowany.",
+  "requests_fulfilled_by": "Zrealizowane przez {mod}",
+  "requests_guest_hint": "Zaloguj się, aby głosować, komentować lub prosić o moda.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Możesz mieć do {open__number} otwartych próśb i dodawać {perDay__number} dziennie."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} prośba",
+        "count__plural=few": "{count__number} prośby",
+        "count__plural=many": "{count__number} próśb",
+        "count__plural=*": "{count__number} prośby"
+      }
+    }
+  ],
+  "requests_list_description": "Poproś o moda, którego brakuje w Sons of the Forest, głosuj na te, które chcesz, i obserwuj twórców, którzy się ich podejmują.",
+  "requests_list_readout": "Tablica próśb",
+  "requests_list_title": "Prośby o mody",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — strona {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "Działania dla prośby",
+  "requests_new_description": "Dodaj prośbę o moda do Sons of the Forest i pozwól twórcom ją podjąć.",
+  "requests_new_guest_title": "Zaloguj się, aby poprosić o moda",
+  "requests_new_intro": "Opisz moda, którego ci brakuje. Twórcy przeglądają tę tablicę i mogą podjąć się twojej prośby.",
+  "requests_new_title": "Poproś o moda",
+  "requests_past_end_text": "Jest mniej próśb niż tyle.",
+  "requests_past_end_title": "Ta strona jest pusta",
+  "requests_release": "Oddaj",
+  "requests_release_done": "Prośba jest znowu otwarta.",
+  "requests_reopen": "Otwórz prośbę ponownie",
+  "requests_reopen_done": "Prośba otwarta ponownie.",
+  "requests_report": "Zgłoś",
+  "requests_saved": "Prośba zaktualizowana.",
+  "requests_sign_in": "Zaloguj się",
+  "requests_sort_label": "Sortowanie",
+  "requests_sort_new": "Najnowsze",
+  "requests_sort_top": "Najczęściej głosowane",
+  "requests_status_adopted": "W toku",
+  "requests_status_all": "Wszystkie",
+  "requests_status_closed": "Zamknięte",
+  "requests_status_fulfilled": "Zrealizowane",
+  "requests_status_open": "Otwarte",
+  "requests_submit_create": "Opublikuj prośbę",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tytuł musi mieć co najmniej {min__number} znaków."
+      }
+    }
+  ],
+  "requests_verify_hint": "Zweryfikuj e-mail, aby głosować, komentować lub prosić o moda.",
+  "requests_view_mod": "Zobacz moda",
+  "requests_vote": "Głosuj",
+  "requests_vote_aria_add": "Zagłosuj na tę prośbę",
+  "requests_vote_aria_remove": "Cofnij głos",
+  "requests_vote_own": "Nie możesz głosować na własną prośbę.",
+  "requests_voted": "Zagłosowano",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} głos",
+        "count__plural=few": "{count__number} głosy",
+        "count__plural=many": "{count__number} głosów",
+        "count__plural=*": "{count__number} głosu"
       }
     }
   ],
@@ -7330,6 +7582,12 @@
   "settings_notif_reply_hint": "Ktoś odpowiedział na twój komentarz.",
   "settings_notif_report": "Twoje zgłoszenia",
   "settings_notif_report_hint": "Strażnicy rozpatrzyli coś, co zgłosiłeś.",
+  "settings_notif_request_adopted": "Prośba przejęta",
+  "settings_notif_request_adopted_hint": "Twórca zaczął pracować nad Twoją prośbą.",
+  "settings_notif_request_comment": "Komentarze do próśb",
+  "settings_notif_request_comment_hint": "Ktoś skomentował prośbę, którą złożyłeś(-aś) lub którą przejąłeś(-ęłaś).",
+  "settings_notif_request_fulfilled": "Prośba spełniona",
+  "settings_notif_request_fulfilled_hint": "Opublikowano mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś).",
   "settings_notif_review": "Recenzje twoich modów",
   "settings_notif_review_hint": "Ktoś ocenił jeden z twoich modów.",
   "settings_notif_review_reply": "Odpowiedzi na twoje recenzje",
@@ -7793,6 +8051,28 @@
   "signals_preferences": "Ustawienia powiadomień",
   "signals_report_dismissed": "Twoje zgłoszenie zostało rozpatrzone — działania nie były potrzebne",
   "signals_report_resolved": "Twoje zgłoszenie zostało rozpatrzone i podjęto działania",
+  "signals_request_adopted": "{actor} pracuje nad Twoją prośbą „{request}”",
+  "signals_request_comment": "{actor} skomentował(a) prośbę „{request}”",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nowy komentarz do prośby „{request}”",
+        "count__plural=few": "{count__number} nowe komentarze do prośby „{request}”",
+        "count__plural=many": "{count__number} nowych komentarzy do prośby „{request}”",
+        "count__plural=*": "{count__number} nowego komentarza do prośby „{request}”"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} jest już dostępny i spełnia prośbę „{request}”",
   "signals_retry": "Spróbuj ponownie",
   "signals_review_on_mod": "{actor} wystawił(a) {mod} recenzję na {rating} gwiazdek",
   "signals_review_on_mod_grouped": [
@@ -8091,6 +8371,8 @@
   "social_report_reason_nsfw_unmarked": "Treści dla dorosłych bez oznaczenia 18+",
   "social_report_reason_other": "Coś innego",
   "social_report_reason_spam": "Spam lub reklama",
+  "social_report_request_comment_title": "Zgłoś ten komentarz",
+  "social_report_request_title": "Zgłoś tę prośbę",
   "social_report_review_title": "Zgłoś tę recenzję",
   "social_report_sent": "Dzięki. Strażnicy to sprawdzą.",
   "social_report_submit": "Wyślij zgłoszenie",

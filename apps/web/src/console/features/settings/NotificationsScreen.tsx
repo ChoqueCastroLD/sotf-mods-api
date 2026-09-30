@@ -40,6 +40,9 @@ const DEFAULTS: Readonly<Record<NotificationType, { inApp: boolean; email: Email
   'compat.prompt': { inApp: true, email: 'off' },
   'review.update_prompt': { inApp: true, email: 'off' },
   'kit.added_my_mod': { inApp: true, email: 'off' },
+  'request.comment': { inApp: true, email: 'off' },
+  'request.adopted': { inApp: true, email: 'off' },
+  'request.fulfilled': { inApp: true, email: 'instant' },
   'patch.breaking_build': { inApp: true, email: 'instant' },
   'mod.status_changed': { inApp: true, email: 'instant' },
   'milestone.reached': { inApp: true, email: 'off' },
@@ -59,7 +62,14 @@ const GROUPS: readonly { id: string; title: () => string; types: readonly Notifi
   {
     id: 'conversations',
     title: () => m.settings_notif_group_conversations(),
-    types: ['comment.reply', 'comment.mention', 'review.reply'],
+    types: [
+      'comment.reply',
+      'comment.mention',
+      'review.reply',
+      'request.comment',
+      'request.adopted',
+      'request.fulfilled',
+    ],
   },
   {
     id: 'my-mods',
@@ -111,6 +121,18 @@ const COPY: Readonly<Record<NotificationType, { title: () => string; hint: () =>
     hint: () => m.settings_notif_review_update_hint(),
   },
   'kit.added_my_mod': { title: () => m.settings_notif_kit_added(), hint: () => m.settings_notif_kit_added_hint() },
+  'request.comment': {
+    title: () => m.settings_notif_request_comment(),
+    hint: () => m.settings_notif_request_comment_hint(),
+  },
+  'request.adopted': {
+    title: () => m.settings_notif_request_adopted(),
+    hint: () => m.settings_notif_request_adopted_hint(),
+  },
+  'request.fulfilled': {
+    title: () => m.settings_notif_request_fulfilled(),
+    hint: () => m.settings_notif_request_fulfilled_hint(),
+  },
   'report.resolved': { title: () => m.settings_notif_report(), hint: () => m.settings_notif_report_hint() },
   'milestone.reached': { title: () => m.settings_notif_milestone(), hint: () => m.settings_notif_milestone_hint() },
   'badge.awarded': { title: () => m.settings_notif_badge(), hint: () => m.settings_notif_badge_hint() },

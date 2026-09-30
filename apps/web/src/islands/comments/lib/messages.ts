@@ -17,10 +17,11 @@
 import { type Locale, matchLocale, toHtmlLang } from '@sotf/i18n';
 import { formatIcu, type IcuParams } from '@sotf/ui/domain';
 import type errors from '../../../../../../packages/i18n/messages/errors/en.json';
+import type requests from '../../../../../../packages/i18n/messages/requests/en.json';
 import type social from '../../../../../../packages/i18n/messages/social/en.json';
 
 type Keys<T> = Exclude<keyof T, '$schema'>;
-export type SocialMessageKey = Keys<typeof social> | Keys<typeof errors>;
+export type SocialMessageKey = Keys<typeof social> | Keys<typeof errors> | Keys<typeof requests>;
 
 type Catalog = Readonly<Record<string, string>>;
 type CatalogModule = { default: Catalog };
@@ -29,7 +30,7 @@ type CatalogModule = { default: Catalog };
 // `ui-domain` catalogue (texts of the `@sotf/ui/domain` components the islands render) is fetched
 // for non-English pages only: its English source ships with `@sotf/ui/domain` already.
 const LOADERS = import.meta.glob<CatalogModule>(
-  '../../../../../../packages/i18n/messages/{social,errors,ui-domain}/*.json',
+  '../../../../../../packages/i18n/messages/{social,errors,requests,ui-domain}/*.json',
 );
 
 const NAMESPACES = ['social', 'errors'] as const;
@@ -79,6 +80,29 @@ export function domainCatalog(): Catalog {
 /** BCP-47 language of the loaded catalogue (`en` before loading). */
 export function activeLang(): string {
   return active?.lang ?? 'en';
+}
+
+/**
+ * Adds the catalogue of another namespace (the request board island) to the loaded one. Call it
+ * after {@link loadSocialMessages}; resolves false when it could not be fetched.
+ */
+export async function loadExtraMessages(namespace: 'requests'): Promise<boolean> {
+  if (!active) return false;
+  const current = active;
+  const locales = pageLocale() === 'en' ? (['en'] as const) : ([pageLocale(), 'en'] as const);
+  for (const candidate of locales) {
+    const loader = loaderFor(namespace, candidate);
+    if (!loader) continue;
+    try {
+      const extra = (await loader()).default;
+      // English fills in whatever the page locale misses (never the case with `pnpm i18n:check`).
+      active = { ...current, catalog: Object.freeze({ ...current.catalog, ...extra }) };
+      return true;
+    } catch {
+      // Try the next candidate.
+    }
+  }
+  return false;
 }
 
 /**

@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Profil başlığın için kazandığın en fazla {max} rozeti seç.",
   "settings_featured_badges_empty": "Burada öne çıkarmak için adada rozet kazan.",
   "settings_featured_badges_count": "{max} içinden {count} seçildi",
-  "settings_featured_badges_saved": "Öne çıkan rozetler kaydedildi."
+  "settings_featured_badges_saved": "Öne çıkan rozetler kaydedildi.",
+  "settings_notif_request_comment": "İsteklerdeki yorumlar",
+  "settings_notif_request_comment_hint": "Birisi oluşturduğun veya üstlendiğin bir isteğe yorum yaptı.",
+  "settings_notif_request_adopted": "İstek üstlenildi",
+  "settings_notif_request_adopted_hint": "Bir geliştirici isteğin üzerinde çalışmaya başladı.",
+  "settings_notif_request_fulfilled": "İstek karşılandı",
+  "settings_notif_request_fulfilled_hint": "İstediğin veya oy verdiğin bir mod yayınlandı."
 }

@@ -198,5 +198,7 @@
   "social_md_spoiler": "Спойлер",
   "social_comment_sign_in": "Войдите, чтобы комментировать",
   "social_comments_more_replies": "{count, plural, one {Ещё # ответ} few {Ещё # ответа} many {Ещё # ответов} other {Ещё # ответа}}",
-  "social_comments_empty": "Комментариев пока нет. Вопросы, советы и баги — сюда."
+  "social_comments_empty": "Комментариев пока нет. Вопросы, советы и баги — сюда.",
+  "social_report_request_title": "Пожаловаться на этот запрос",
+  "social_report_request_comment_title": "Пожаловаться на этот комментарий"
 }

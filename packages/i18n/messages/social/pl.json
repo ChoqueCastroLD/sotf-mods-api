@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Zaloguj się, aby skomentować",
   "social_comments_more_replies": "{count, plural, one {Jeszcze # odpowiedź} few {Jeszcze # odpowiedzi} many {Jeszcze # odpowiedzi} other {Jeszcze # odpowiedzi}}",
-  "social_comments_empty": "Brak komentarzy. Pytania, porady i błędy zgłaszaj tutaj."
+  "social_comments_empty": "Brak komentarzy. Pytania, porady i błędy zgłaszaj tutaj.",
+  "social_report_request_title": "Zgłoś tę prośbę",
+  "social_report_request_comment_title": "Zgłoś ten komentarz"
 }

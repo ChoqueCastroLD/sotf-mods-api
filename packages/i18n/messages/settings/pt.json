@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Escolha até {max} insígnias conquistadas para o cabeçalho do seu perfil.",
   "settings_featured_badges_empty": "Conquiste insígnias na ilha para destacá-las aqui.",
   "settings_featured_badges_count": "{count} de {max} selecionadas",
-  "settings_featured_badges_saved": "Insígnias em destaque salvas."
+  "settings_featured_badges_saved": "Insígnias em destaque salvas.",
+  "settings_notif_request_comment": "Comentários em pedidos",
+  "settings_notif_request_comment_hint": "Alguém comentou um pedido que fizeste ou adotaste.",
+  "settings_notif_request_adopted": "Pedido adotado",
+  "settings_notif_request_adopted_hint": "Um criador começou a trabalhar no teu pedido.",
+  "settings_notif_request_fulfilled": "Pedido cumprido",
+  "settings_notif_request_fulfilled_hint": "Foi publicado um mod que pediste ou votaste."
 }

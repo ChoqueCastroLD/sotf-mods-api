@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "Проверенный автор",
   "signals_badge_name_ranger": "Рейнджер",
   "signals_badge_name_translator": "Переводчик",
-  "signals_badge_name_night_owl": "Ночная сова"
+  "signals_badge_name_night_owl": "Ночная сова",
+  "signals_request_comment": "{actor} прокомментировал(а) запрос «{request}»",
+  "signals_request_comment_grouped": "{count, plural, one {# новый комментарий к запросу «{request}»} few {# новых комментария к запросу «{request}»} many {# новых комментариев к запросу «{request}»} other {# нового комментария к запросу «{request}»}}",
+  "signals_request_adopted": "{actor} взялся(-ась) за ваш запрос «{request}»",
+  "signals_request_fulfilled": "{mod} вышел и выполняет запрос «{request}»"
 }

@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Para quem traduz o site. Só os administradores a concedem.",
   "ranger_user_translator_on": "Insígnia de tradutor concedida.",
   "ranger_user_translator_off": "Insígnia de tradutor removida.",
-  "ranger_user_translator_failed": "Não foi possível alterar a insígnia de tradutor"
+  "ranger_user_translator_failed": "Não foi possível alterar a insígnia de tradutor",
+  "ranger_target_request": "Pedido",
+  "ranger_target_request_comment": "Comentário de pedido"
 }

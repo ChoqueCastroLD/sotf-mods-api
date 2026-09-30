@@ -1,0 +1,219 @@
+---
+/**
+ * `/requests/:id` — one mod request: who asked, what for, its status, the votes, who is working on
+ * it, the published mod once fulfilled, and the comments.
+ *
+ * - Cache: E(900) tagged `request:{id}` (purged by every vote, comment and status change); hidden
+ *   and deleted requests are 404. The HTML is shared: nothing user specific is rendered here.
+ * - Signed-in members get the island (vote, adopt, link the mod, close, edit, delete, report and
+ *   the comment thread); guests and crawlers keep the server-rendered article and comments.
+ */
+import { profilePath } from '@sotf/contracts/seo';
+import { formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { buttonClasses } from '@sotf/ui/button';
+import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowLeft, ChevronUp, Package } from 'lucide-react';
+import { KitsError } from '../../components/kits/KitStates.tsx';
+import { loginHrefFor } from '../../components/mod/format.ts';
+import { configureModDomainI18n, markdownLabels } from '../../components/mod/i18n.ts';
+import { respondNotFound } from '../../components/mod/responses.ts';
+import { loadRequestPage } from '../../components/requests/data.ts';
+import { STATUS_CLASSES, statusLabel } from '../../components/requests/status.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+configureModDomainI18n();
+const locale = Astro.locals.locale;
+const id = /^[1-9]\d{0,15}$/.test(Astro.params.id ?? '') ? Number(Astro.params.id) : null;
+if (id === null) return respondNotFound(Astro);
+
+const data = await loadRequestPage(id);
+if (data.kind === 'not-found') return respondNotFound(Astro);
+if (data.kind === 'error') {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+} else {
+  setPageCache(Astro, pageCache.request(id));
+}
+
+const labels = markdownLabels();
+const request = data.kind === 'ok' ? data.request : null;
+const comments = data.kind === 'ok' ? data.comments : [];
+const path = `/requests/${id}`;
+const loginHref = loginHrefFor(href('/login', locale), href(path, locale));
+const author = request?.author ?? null;
+const authorName = author ? author.displayName || author.handle : null;
+const title = request ? m.requests_detail_title({ title: request.title }) : m.requests_error_title();
+const description = request
+  ? m.requests_detail_description({ author: authorName ?? m.social_deleted_user(), title: request.title })
+  : m.requests_error_text();
+---
+
+<PageLayout
+  template="request"
+  width="content"
+  seo={{ title, rawTitle: true, description, path, noindex: request === null }}
+  breadcrumbs={[
+    { label: m.common_nav_home(), path: '/' },
+    { label: m.common_term_requests(), path: '/requests' },
+    { label: request?.title ?? m.common_term_requests() },
+  ]}
+>
+  {
+    request === null ? (
+      <KitsError
+        title={m.requests_error_title()}
+        text={m.requests_error_text()}
+        retryHref={href(path, locale)}
+        reference={Astro.locals.requestId}
+      />
+    ) : (
+      <article class="flex flex-col gap-6" aria-labelledby="request-title">
+        <a
+          href={href('/requests', locale)}
+          class="inline-flex min-h-11 items-center gap-1.5 self-start text-sm font-medium text-link md:min-h-9"
+        >
+          <Icon icon={ArrowLeft} size={16} />
+          {m.requests_back()}
+        </a>
+        <header class="flex flex-col gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class={`inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
+              {statusLabel(request.status)}
+            </span>
+            {request.adopter && request.status === 'adopted' && (
+              <a href={href(profilePath(request.adopter.handle), locale)} class="text-sm text-warning hover:underline">
+                {m.requests_adopted_by({ name: request.adopter.displayName || request.adopter.handle })}
+              </a>
+            )}
+          </div>
+          <h1 id="request-title" class="font-display-caps text-display-sm text-balance text-fg">{request.title}</h1>
+          <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-fg-muted">
+            {
+              author ? (
+                <a href={href(profilePath(author.handle), locale)} class="font-medium text-fg hover:underline">
+                  {m.requests_by({ name: authorName ?? author.handle })}
+                </a>
+              ) : (
+                <span>{m.requests_by({ name: m.social_deleted_user() })}</span>
+              )
+            }
+            <time datetime={request.createdAt}>{m.requests_asked_on({ date: formatDate(locale, request.createdAt, 'long') })}</time>
+            {request.editedAt && <span>({m.requests_edited()})</span>}
+          </p>
+        </header>
+
+        {
+          request.bodyHtml && (
+            <div class:list={[PROSE_LOCATOR_CLASSES, 'prose-base']} set:html={localizeHtml(request.bodyHtml, labels)} />
+          )
+        }
+
+        {
+          request.status === 'fulfilled' && request.mod && (
+            <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-success/40 bg-success/10 p-4">
+              <p class="flex items-center gap-2 text-sm text-fg">
+                <Icon icon={Package} size={18} className="text-success" />
+                {m.requests_fulfilled_banner()} <strong>{request.mod.name}</strong>
+              </p>
+              <a href={href(request.mod.canonicalPath, locale)} class={buttonClasses({ variant: 'secondary' })}>
+                {m.requests_view_mod()}
+              </a>
+            </div>
+          )
+        }
+        {
+          request.status === 'closed' && (
+            <p class="rounded-lg border border-border bg-surface p-3 text-sm text-fg-muted">{m.requests_closed_banner()}</p>
+          )
+        }
+
+        <div
+          data-island="request"
+          data-request-id={request.id}
+          data-request-author-id={request.author?.id ?? ''}
+          data-request-status={request.status}
+          class="flex flex-col gap-6"
+        >
+          <div class="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-surface p-3">
+            <span class="inline-flex items-center gap-1 rounded-md bg-raised px-3 py-2 font-mono font-semibold text-fg tabular-nums">
+              <Icon icon={ChevronUp} size={18} className="text-signal" />
+              {request.voteCount}
+            </span>
+            <span class="text-sm text-fg-muted">{m.requests_votes({ count: request.voteCount })}</span>
+            <p class="text-sm text-fg-muted" data-request-guest-hint>
+              {m.requests_guest_hint()}
+              <a href={loginHref} class="font-semibold text-link underline underline-offset-3" rel="nofollow">
+                {m.requests_sign_in()}
+              </a>
+            </p>
+          </div>
+
+          <section aria-labelledby="request-comments-title" class="flex flex-col gap-4">
+            <h2 id="request-comments-title" class="text-lg font-semibold text-fg">
+              {m.requests_comments_title()}
+              <span class="ms-1 font-mono text-sm font-normal text-fg-muted">{request.commentCount}</span>
+            </h2>
+            {
+              comments.length === 0 ? (
+                <p class="text-sm text-fg-muted">{m.requests_comments_empty()}</p>
+              ) : (
+                <ol class="flex flex-col gap-3">
+                  {comments.map((comment) => (
+                    <li id={`c-${comment.id}`} class="flex flex-col gap-2 rounded-lg border border-border bg-surface p-4">
+                      <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                        {comment.author ? (
+                          <a href={href(profilePath(comment.author.handle), locale)} class="font-semibold text-fg hover:underline">
+                            {comment.author.displayName || comment.author.handle}
+                          </a>
+                        ) : (
+                          <span class="font-semibold text-fg">{m.social_deleted_user()}</span>
+                        )}
+                        {comment.isAdopter && (
+                          <span class="rounded-sm bg-warning-soft px-1.5 py-0.5 text-xs font-semibold text-warning">
+                            {m.requests_badge_adopter()}
+                          </span>
+                        )}
+                        {comment.isRequestAuthor && (
+                          <span class="rounded-sm bg-fg/8 px-1.5 py-0.5 text-xs font-semibold text-fg-muted">
+                            {m.requests_badge_author()}
+                          </span>
+                        )}
+                        <time datetime={comment.createdAt} class="text-fg-muted">
+                          {formatDate(locale, comment.createdAt, 'medium')}
+                        </time>
+                        {comment.editedAt && <span class="text-fg-muted">({m.requests_edited()})</span>}
+                      </p>
+                      <div class:list={[PROSE_LOCATOR_CLASSES, 'prose-sm']} set:html={localizeHtml(comment.bodyHtml, labels)} />
+                    </li>
+                  ))}
+                </ol>
+              )
+            }
+          </section>
+        </div>
+      </article>
+    )
+  }
+  <div
+    data-mod-toast
+    role="status"
+    aria-live="polite"
+    class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
+  >
+  </div>
+</PageLayout>
+
+<script>
+  import { bootRequestPage } from '../../islands/requests/boot.ts';
+  import { whenSession } from '../../scripts/mod/session.ts';
+
+  void bootRequestPage(document, whenSession()).catch(() => {});
+</script>

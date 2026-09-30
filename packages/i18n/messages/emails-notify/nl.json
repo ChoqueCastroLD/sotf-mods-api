@@ -55,5 +55,9 @@
   "emails_notify_creator_top_heading": "Je mods deze week",
   "emails_notify_creator_highlights_heading": "Hoogtepunten",
   "emails_notify_creator_button": "Je statistieken openen",
-  "emails_notify_creator_reason": "Je krijgt dit rapport omdat je op SOTF Mods publiceert."
+  "emails_notify_creator_reason": "Je krijgt dit rapport omdat je op SOTF Mods publiceert.",
+  "emails_notify_item_request_comment": "{actor} heeft gereageerd op het verzoek “{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# nieuwe reactie op het verzoek “{request}”} other {# nieuwe reacties op het verzoek “{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} werkt aan je verzoek “{request}”",
+  "emails_notify_item_request_fulfilled": "Een mod waar je om vroeg of op stemde is uit: {mod}"
 }

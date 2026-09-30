@@ -2444,6 +2444,7 @@
   "common_term_notifications": "Уведомления",
   "common_term_patch_radar": "Радар патчей",
   "common_term_ranger_station": "Пост рейнджеров",
+  "common_term_requests": "Запросы",
   "common_term_signals": "Сигналы",
   "common_theme_day": "День",
   "common_theme_label": "Тема",
@@ -2454,8 +2455,6 @@
   "console_area_admin": "Администрирование",
   "console_area_switcher": "Разделы консоли",
   "console_back_to_site": "Вернуться на сайт",
-  "console_empty_detail": "Эта часть лагеря ещё обустраивается. Загляните позже.",
-  "console_empty_title": "Здесь пока пусто",
   "console_error_detail": "У нас что-то сломалось. Попробуйте ещё раз, а если ошибка повторяется, пришлите нам код ниже.",
   "console_error_title": "Экран не загрузился",
   "console_forbidden_action": "В лагерь",
@@ -2949,6 +2948,44 @@
   ],
   "content_radar_summary_title": "Сводка",
   "content_radar_title": "Работают ли моды SOTF на патче {build}?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "Доступность {component} по дням, от старых к новым",
+  "content_radar_uptime_database": "База данных",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Сайт, API, загрузки и база данных проверяются каждые 5 минут. Последние {days__number} дн., UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "в среднем {avg__number} мс · p95 {p95__number} мс"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "Загрузки и медиа",
+  "content_radar_uptime_no_data": "Нет данных",
+  "content_radar_uptime_now_down": "Сейчас недоступно",
+  "content_radar_uptime_now_ok": "Работает",
+  "content_radar_uptime_overall": "В {share} проверок всё работало.",
+  "content_radar_uptime_percent": "{share} доступности",
+  "content_radar_uptime_title": "Доступность платформы",
+  "content_radar_uptime_web": "Сайт",
   "content_radar_works_empty": "Пока ни один топ-мод не подтверждён на {build}. Пробовали какой-нибудь? Расскажите.",
   "content_radar_works_title": "Подтверждено: работают",
   "content_reading_time": [
@@ -3329,6 +3366,28 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} взялся(-ась) за ваш запрос «{request}»",
+  "emails_notify_item_request_comment": "{actor} прокомментировал(а) запрос «{request}»",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый комментарий к запросу «{request}»",
+        "count__plural=few": "{count__number} новых комментария к запросу «{request}»",
+        "count__plural=many": "{count__number} новых комментариев к запросу «{request}»",
+        "count__plural=*": "{count__number} нового комментария к запросу «{request}»"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "Вышел мод, который вы запрашивали или за который голосовали: {mod}",
   "emails_notify_item_review_on_my_mod": "{actor} оценил(а) {mod}: {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6824,6 +6883,8 @@
   "ranger_target_compat_report": "Полевой отчёт",
   "ranger_target_kit": "Набор",
   "ranger_target_mod": "Мод",
+  "ranger_target_request": "Запрос",
+  "ranger_target_request_comment": "Комментарий к запросу",
   "ranger_target_review": "Отзыв",
   "ranger_target_user": "Пользователь",
   "ranger_target_version": "Версия",
@@ -7000,6 +7061,197 @@
         "count__plural=few": "{count__number} мин",
         "count__plural=many": "{count__number} мин",
         "count__plural=*": "{count__number} мин"
+      }
+    }
+  ],
+  "requests_action_new": "Запросить мод",
+  "requests_adopt": "Я работаю над этим",
+  "requests_adopt_done": "Теперь вы работаете над этим запросом.",
+  "requests_adopted_by": "В работе у {name}",
+  "requests_asked_on": "Запрос от {date}",
+  "requests_back": "Все запросы",
+  "requests_back_to_first": "Вернуться на первую страницу",
+  "requests_badge_adopter": "Работает над этим",
+  "requests_badge_author": "Автор запроса",
+  "requests_body_placeholder": "Что он должен делать? Чем полезен? С какими модами должен работать?",
+  "requests_by": "от {name}",
+  "requests_clear_filters": "Показать все запросы",
+  "requests_close": "Закрыть запрос",
+  "requests_close_done": "Запрос закрыт.",
+  "requests_closed_banner": "Этот запрос закрыт.",
+  "requests_comment_delete_text": "Это нельзя отменить.",
+  "requests_comment_delete_title": "Удалить этот комментарий?",
+  "requests_comment_edit_label": "Изменить комментарий",
+  "requests_comment_label": "Ваш комментарий",
+  "requests_comment_placeholder": "Добавьте подробности, задайте вопрос или предложите помощь…",
+  "requests_comment_submit": "Комментировать",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} комментарий",
+        "count__plural=few": "{count__number} комментария",
+        "count__plural=many": "{count__number} комментариев",
+        "count__plural=*": "{count__number} комментария"
+      }
+    }
+  ],
+  "requests_comments_empty": "Комментариев пока нет.",
+  "requests_comments_title": "Комментарии",
+  "requests_created_done": "Запрос опубликован.",
+  "requests_delete": "Удалить запрос",
+  "requests_delete_text": "Запрос и его голоса исчезнут с доски. Это нельзя отменить.",
+  "requests_delete_title": "Удалить этот запрос?",
+  "requests_deleted_done": "Запрос удалён.",
+  "requests_detail_description": "Запрос мода от {author}: {title}",
+  "requests_detail_title": "{title} — запрос мода",
+  "requests_edit": "Изменить запрос",
+  "requests_edited": "изменено",
+  "requests_empty_filtered_text": "Выберите другой статус или покажите все запросы.",
+  "requests_empty_filtered_title": "Ничего не найдено",
+  "requests_empty_text": "Здесь пока никто ничего не просил. Опишите первым мод, которого вам не хватает.",
+  "requests_empty_title": "Запросов пока нет",
+  "requests_error_text": "Не удалось загрузить запросы. Повторите попытку чуть позже.",
+  "requests_error_title": "Доска запросов не отвечает",
+  "requests_field_body": "Подробности (необязательно)",
+  "requests_field_title": "Заголовок",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} символов. Скажите, что должен делать мод."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Статус",
+  "requests_fulfill": "Привязать мой мод",
+  "requests_fulfill_done": "Запрос выполнен. Спасибо!",
+  "requests_fulfill_help": "Выберите один из своих опубликованных модов. Запрос будет отмечен выполненным и получит ссылку на него.",
+  "requests_fulfill_label": "Ваш опубликованный мод",
+  "requests_fulfill_none": "У вас пока нет опубликованных модов. Сначала опубликуйте мод, затем вернитесь и привяжите его.",
+  "requests_fulfill_submit": "Отметить выполненным",
+  "requests_fulfill_title": "Привяжите мод, выполняющий этот запрос",
+  "requests_fulfilled_banner": "Выполнено: мод опубликован.",
+  "requests_fulfilled_by": "Выполнено модом {mod}",
+  "requests_guest_hint": "Войдите, чтобы голосовать, комментировать или просить мод.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Можно иметь до {open__number} открытых запросов и публиковать {perDay__number} в день."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} запрос",
+        "count__plural=few": "{count__number} запроса",
+        "count__plural=many": "{count__number} запросов",
+        "count__plural=*": "{count__number} запроса"
+      }
+    }
+  ],
+  "requests_list_description": "Попросите мод, которого не хватает в Sons of the Forest, голосуйте за нужные и следите за авторами, которые берутся за работу.",
+  "requests_list_readout": "Доска запросов",
+  "requests_list_title": "Запросы модов",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — страница {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "Действия с запросом",
+  "requests_new_description": "Опубликуйте запрос на мод для Sons of the Forest, и авторы смогут взяться за него.",
+  "requests_new_guest_title": "Войдите, чтобы запросить мод",
+  "requests_new_intro": "Опишите мод, которого вам не хватает. Авторы просматривают эту доску и могут взяться за ваш запрос.",
+  "requests_new_title": "Запросить мод",
+  "requests_past_end_text": "Запросов меньше, чем нужно для этой страницы.",
+  "requests_past_end_title": "Эта страница пуста",
+  "requests_release": "Отказаться",
+  "requests_release_done": "Запрос снова открыт.",
+  "requests_reopen": "Открыть запрос снова",
+  "requests_reopen_done": "Запрос снова открыт.",
+  "requests_report": "Пожаловаться",
+  "requests_saved": "Запрос обновлён.",
+  "requests_sign_in": "Войти",
+  "requests_sort_label": "Сортировка",
+  "requests_sort_new": "Новые",
+  "requests_sort_top": "Больше голосов",
+  "requests_status_adopted": "В работе",
+  "requests_status_all": "Все",
+  "requests_status_closed": "Закрытые",
+  "requests_status_fulfilled": "Выполнены",
+  "requests_status_open": "Открытые",
+  "requests_submit_create": "Опубликовать запрос",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Заголовок должен содержать не менее {min__number} символов."
+      }
+    }
+  ],
+  "requests_verify_hint": "Подтвердите e-mail, чтобы голосовать, комментировать или просить мод.",
+  "requests_view_mod": "Открыть мод",
+  "requests_vote": "Голосовать",
+  "requests_vote_aria_add": "Проголосовать за этот запрос",
+  "requests_vote_aria_remove": "Отозвать голос",
+  "requests_vote_own": "Нельзя голосовать за свой запрос.",
+  "requests_voted": "Вы проголосовали",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} голос",
+        "count__plural=few": "{count__number} голоса",
+        "count__plural=many": "{count__number} голосов",
+        "count__plural=*": "{count__number} голоса"
       }
     }
   ],
@@ -7330,6 +7582,12 @@
   "settings_notif_reply_hint": "Кто-то ответил на ваш комментарий.",
   "settings_notif_report": "Ваши жалобы",
   "settings_notif_report_hint": "Рейнджеры рассмотрели вашу жалобу.",
+  "settings_notif_request_adopted": "Запрос взят в работу",
+  "settings_notif_request_adopted_hint": "Автор начал работать над вашим запросом.",
+  "settings_notif_request_comment": "Комментарии к запросам",
+  "settings_notif_request_comment_hint": "Кто-то прокомментировал запрос, который вы создали или взяли в работу.",
+  "settings_notif_request_fulfilled": "Запрос выполнен",
+  "settings_notif_request_fulfilled_hint": "Опубликован мод, который вы запрашивали или за который голосовали.",
   "settings_notif_review": "Отзывы о ваших модах",
   "settings_notif_review_hint": "Кто-то оценил один из ваших модов.",
   "settings_notif_review_reply": "Ответы на ваши отзывы",
@@ -7793,6 +8051,28 @@
   "signals_preferences": "Настройки уведомлений",
   "signals_report_dismissed": "Ваша жалоба рассмотрена — действий не потребовалось",
   "signals_report_resolved": "Ваша жалоба рассмотрена, меры приняты",
+  "signals_request_adopted": "{actor} взялся(-ась) за ваш запрос «{request}»",
+  "signals_request_comment": "{actor} прокомментировал(а) запрос «{request}»",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} новый комментарий к запросу «{request}»",
+        "count__plural=few": "{count__number} новых комментария к запросу «{request}»",
+        "count__plural=many": "{count__number} новых комментариев к запросу «{request}»",
+        "count__plural=*": "{count__number} нового комментария к запросу «{request}»"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} вышел и выполняет запрос «{request}»",
   "signals_retry": "Повторить",
   "signals_review_on_mod": "{actor} оставил(а) отзыв на {rating} звёзд о {mod}",
   "signals_review_on_mod_grouped": [
@@ -8091,6 +8371,8 @@
   "social_report_reason_nsfw_unmarked": "Контент для взрослых без отметки 18+",
   "social_report_reason_other": "Другое",
   "social_report_reason_spam": "Спам или реклама",
+  "social_report_request_comment_title": "Пожаловаться на этот комментарий",
+  "social_report_request_title": "Пожаловаться на этот запрос",
   "social_report_review_title": "Пожаловаться на отзыв",
   "social_report_sent": "Спасибо. Рейнджеры посмотрят.",
   "social_report_submit": "Отправить жалобу",

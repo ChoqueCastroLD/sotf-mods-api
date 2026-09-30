@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Para quienes traducen el sitio. Solo la conceden los administradores.",
   "ranger_user_translator_on": "Insignia de traductor concedida.",
   "ranger_user_translator_off": "Insignia de traductor retirada.",
-  "ranger_user_translator_failed": "No se pudo cambiar la insignia de traductor"
+  "ranger_user_translator_failed": "No se pudo cambiar la insignia de traductor",
+  "ranger_target_request": "Petición",
+  "ranger_target_request_comment": "Comentario de petición"
 }

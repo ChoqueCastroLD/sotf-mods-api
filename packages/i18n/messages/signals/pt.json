@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "Criador verificado",
   "signals_badge_name_ranger": "Guarda",
   "signals_badge_name_translator": "Tradutor",
-  "signals_badge_name_night_owl": "Coruja noturna"
+  "signals_badge_name_night_owl": "Coruja noturna",
+  "signals_request_comment": "{actor} comentou o pedido “{request}”",
+  "signals_request_comment_grouped": "{count, plural, one {# novo comentário no pedido “{request}”} other {# novos comentários no pedido “{request}”}}",
+  "signals_request_adopted": "{actor} está a trabalhar no teu pedido “{request}”",
+  "signals_request_fulfilled": "{mod} já saiu e cumpre o pedido “{request}”"
 }

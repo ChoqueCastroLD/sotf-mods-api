@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Välj upp till {max} intjänade märken för profilens sidhuvud.",
   "settings_featured_badges_empty": "Tjäna märken på ön för att visa dem här.",
   "settings_featured_badges_count": "{count} av {max} valda",
-  "settings_featured_badges_saved": "Utvalda märken sparade."
+  "settings_featured_badges_saved": "Utvalda märken sparade.",
+  "settings_notif_request_comment": "Kommentarer på förfrågningar",
+  "settings_notif_request_comment_hint": "Någon kommenterade en förfrågan du gjort eller tagit på dig.",
+  "settings_notif_request_adopted": "Förfrågan antagen",
+  "settings_notif_request_adopted_hint": "En skapare har börjat arbeta på din förfrågan.",
+  "settings_notif_request_fulfilled": "Förfrågan uppfylld",
+  "settings_notif_request_fulfilled_hint": "En mod du bett om eller röstade på har publicerats."
 }

@@ -212,5 +212,19 @@
   "content_dev_errors_text": "Bir hatanın code alanı bunlardan biridir. Her sorunun type URI’si buradaki satırını gösterir.",
   "content_dev_col_code": "Kod",
   "content_dev_col_status": "Durum",
-  "content_dev_col_meaning": "Anlamı"
+  "content_dev_col_meaning": "Anlamı",
+  "content_radar_uptime_title": "Platform çalışma süresi",
+  "content_radar_uptime_intro": "Site, API, indirmeler ve veritabanı her 5 dakikada bir denetlenir. Son {days, number} gün, UTC.",
+  "content_radar_uptime_overall": "Denetimlerin {share} oranında her şey çalışıyordu.",
+  "content_radar_uptime_web": "Web sitesi",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "İndirmeler ve medya",
+  "content_radar_uptime_database": "Veritabanı",
+  "content_radar_uptime_now_ok": "Çalışıyor",
+  "content_radar_uptime_now_down": "Şu an kapalı",
+  "content_radar_uptime_percent": "{share} çalışma süresi",
+  "content_radar_uptime_latency": "ortalama {avg, number} ms · p95 {p95, number} ms",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Veri yok",
+  "content_radar_uptime_bars_label": "{component} günlük çalışma süresi, eskiden yeniye"
 }

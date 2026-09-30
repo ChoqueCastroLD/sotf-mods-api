@@ -18,6 +18,7 @@ import type { ApiClient } from '@sotf/contracts/client';
 import { isApiError } from '@sotf/contracts/client';
 import type { KitCardDTO } from '@sotf/contracts/kits';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
+import type { RequestDTO } from '@sotf/contracts/requests';
 import type { z } from 'zod';
 import { serverApi } from '../api.ts';
 
@@ -116,6 +117,12 @@ export function allCreators(): Promise<Creator[]> {
 export function allKits(): Promise<KitCardDTO[]> {
   return memoized('kits', () =>
     allPages((page) => api().kits.list({ query: { sort: 'new', page, pageSize: MAX_PAGE_SIZE } })),
+  );
+}
+
+export function allRequests(): Promise<RequestDTO[]> {
+  return memoized('requests', () =>
+    allPages((page) => api().requests.list({ query: { status: 'all', sort: 'new', page, pageSize: 50 } })),
   );
 }
 

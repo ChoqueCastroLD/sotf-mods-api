@@ -55,5 +55,9 @@
   "emails_notify_creator_top_heading": "Dina moddar den här veckan",
   "emails_notify_creator_highlights_heading": "Höjdpunkter",
   "emails_notify_creator_button": "Öppna din statistik",
-  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods."
+  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods.",
+  "emails_notify_item_request_comment": "{actor} kommenterade förfrågan ”{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
+  "emails_notify_item_request_fulfilled": "En mod du bett om eller röstade på är ute: {mod}"
 }

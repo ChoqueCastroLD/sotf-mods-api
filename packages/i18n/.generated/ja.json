@@ -2126,6 +2126,7 @@
   "common_term_notifications": "通知",
   "common_term_patch_radar": "パッチレーダー",
   "common_term_ranger_station": "レンジャーステーション",
+  "common_term_requests": "リクエスト",
   "common_term_signals": "シグナル",
   "common_theme_day": "昼",
   "common_theme_label": "テーマ",
@@ -2136,8 +2137,6 @@
   "console_area_admin": "管理",
   "console_area_switcher": "コンソールのエリア",
   "console_back_to_site": "サイトに戻る",
-  "console_empty_detail": "キャンプのこの場所はまだ準備中です。また後で来てください。",
-  "console_empty_title": "まだ何もありません",
   "console_error_detail": "こちら側で問題が起きました。もう一度お試しください。繰り返し起きる場合は、下の参照番号をお送りください。",
   "console_error_title": "この画面を読み込めませんでした",
   "console_forbidden_action": "ベースキャンプへ",
@@ -2608,6 +2607,44 @@
   ],
   "content_radar_summary_title": "概要",
   "content_radar_title": "SOTF の MOD はパッチ {build} で動く？",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "{component} の日別稼働率（古い順）",
+  "content_radar_uptime_database": "データベース",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "サイト・API・ダウンロード・データベースを 5 分ごとに確認しています。直近 {days__number} 日間（UTC）。"
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "平均 {avg__number} ms · p95 {p95__number} ms"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "ダウンロードとメディア",
+  "content_radar_uptime_no_data": "データなし",
+  "content_radar_uptime_now_down": "現在停止中",
+  "content_radar_uptime_now_ok": "正常稼働",
+  "content_radar_uptime_overall": "全体が正常だった確認は {share} でした。",
+  "content_radar_uptime_percent": "稼働率 {share}",
+  "content_radar_uptime_title": "プラットフォームの稼働状況",
+  "content_radar_uptime_web": "ウェブサイト",
   "content_radar_works_empty": "{build} で動作が確認された上位 MOD はまだありません。試したら報告してください。",
   "content_radar_works_title": "動作確認済み",
   "content_reading_time": [
@@ -2910,6 +2947,22 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} があなたのリクエスト「{request}」に取り組んでいます",
+  "emails_notify_item_request_comment": "{actor} がリクエスト「{request}」にコメントしました",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "リクエスト「{request}」に新しいコメント {count__number} 件"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "あなたがリクエストまたは投票した MOD が公開されました：{mod}",
   "emails_notify_item_review_on_my_mod": "{actor} さんが {mod} をレビューしました：{rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -5750,6 +5803,8 @@
   "ranger_target_compat_report": "フィールドレポート",
   "ranger_target_kit": "キット",
   "ranger_target_mod": "MOD",
+  "ranger_target_request": "リクエスト",
+  "ranger_target_request_comment": "リクエストのコメント",
   "ranger_target_review": "レビュー",
   "ranger_target_user": "ユーザー",
   "ranger_target_version": "バージョン",
@@ -5897,6 +5952,179 @@
       "selectors": [],
       "match": {
         "": "{count__number} 分"
+      }
+    }
+  ],
+  "requests_action_new": "MOD をリクエスト",
+  "requests_adopt": "取り組み中にする",
+  "requests_adopt_done": "このリクエストに取り組み中になりました。",
+  "requests_adopted_by": "{name} が対応中",
+  "requests_asked_on": "{date} に投稿",
+  "requests_back": "すべてのリクエスト",
+  "requests_back_to_first": "最初のページへ戻る",
+  "requests_badge_adopter": "対応中",
+  "requests_badge_author": "リクエスト投稿者",
+  "requests_body_placeholder": "何をする MOD ですか？なぜ便利ですか？併用したい MOD はありますか？",
+  "requests_by": "投稿者: {name}",
+  "requests_clear_filters": "すべて表示",
+  "requests_close": "リクエストを終了",
+  "requests_close_done": "リクエストを終了しました。",
+  "requests_closed_banner": "このリクエストは終了しました。",
+  "requests_comment_delete_text": "元に戻せません。",
+  "requests_comment_delete_title": "このコメントを削除しますか？",
+  "requests_comment_edit_label": "コメントを編集",
+  "requests_comment_label": "コメント",
+  "requests_comment_placeholder": "詳細の追加、質問、協力の申し出などをどうぞ…",
+  "requests_comment_submit": "コメントする",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のコメント"
+      }
+    }
+  ],
+  "requests_comments_empty": "まだコメントはありません。",
+  "requests_comments_title": "コメント",
+  "requests_created_done": "リクエストを投稿しました。",
+  "requests_delete": "リクエストを削除",
+  "requests_delete_text": "リクエストと投票はボードから消え、元に戻せません。",
+  "requests_delete_title": "このリクエストを削除しますか？",
+  "requests_deleted_done": "リクエストを削除しました。",
+  "requests_detail_description": "{author} による MOD リクエスト: {title}",
+  "requests_detail_title": "{title} — MOD リクエスト",
+  "requests_edit": "リクエストを編集",
+  "requests_edited": "編集済み",
+  "requests_empty_filtered_text": "別のステータスを試すか、すべてのリクエストを表示してください。",
+  "requests_empty_filtered_title": "一致するリクエストはありません",
+  "requests_empty_text": "ここにはまだリクエストがありません。ほしい MOD を最初に書いてみましょう。",
+  "requests_empty_title": "まだリクエストはありません",
+  "requests_error_text": "リクエストを読み込めませんでした。しばらくしてからもう一度お試しください。",
+  "requests_error_title": "リクエストボードが応答しません",
+  "requests_field_body": "詳細（任意）",
+  "requests_field_title": "タイトル",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}〜{max__number} 文字。MOD に何をしてほしいか書いてください。"
+      }
+    }
+  ],
+  "requests_filter_status_label": "ステータス",
+  "requests_fulfill": "自分の MOD を紐付ける",
+  "requests_fulfill_done": "リクエストを達成しました。ありがとうございます！",
+  "requests_fulfill_help": "公開済みの MOD を選んでください。リクエストは達成済みになり、その MOD へのリンクが表示されます。",
+  "requests_fulfill_label": "公開済みの MOD",
+  "requests_fulfill_none": "公開済みの MOD がまだありません。先に MOD を公開してから紐付けてください。",
+  "requests_fulfill_submit": "達成済みにする",
+  "requests_fulfill_title": "このリクエストを満たす MOD を紐付ける",
+  "requests_fulfilled_banner": "達成済み: MOD が公開されました。",
+  "requests_fulfilled_by": "{mod} で達成",
+  "requests_guest_hint": "ログインすると、投票・コメント・リクエストができます。",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "公開中のリクエストは最大 {open__number} 件、投稿は 1 日 {perDay__number} 件までです。"
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のリクエスト"
+      }
+    }
+  ],
+  "requests_list_description": "Sons of the Forest にほしい MOD をリクエストし、ほしいものに投票して、引き受けたクリエイターをフォローしましょう。",
+  "requests_list_readout": "リクエストボード",
+  "requests_list_title": "MOD リクエスト",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — {page__number} ページ"
+      }
+    }
+  ],
+  "requests_more_actions": "リクエストの操作",
+  "requests_new_description": "Sons of the Forest の MOD リクエストを投稿して、クリエイターに引き受けてもらいましょう。",
+  "requests_new_guest_title": "リクエストするにはログインしてください",
+  "requests_new_intro": "ほしい MOD を書いてください。クリエイターがこのボードを見て、引き受けてくれるかもしれません。",
+  "requests_new_title": "MOD をリクエスト",
+  "requests_past_end_text": "リクエストの数がそこまでありません。",
+  "requests_past_end_title": "このページは空です",
+  "requests_release": "担当をやめる",
+  "requests_release_done": "リクエストが再び受付中になりました。",
+  "requests_reopen": "リクエストを再開",
+  "requests_reopen_done": "リクエストを再開しました。",
+  "requests_report": "通報",
+  "requests_saved": "リクエストを更新しました。",
+  "requests_sign_in": "ログイン",
+  "requests_sort_label": "並び順",
+  "requests_sort_new": "新着順",
+  "requests_sort_top": "投票が多い順",
+  "requests_status_adopted": "対応中",
+  "requests_status_all": "すべて",
+  "requests_status_closed": "終了",
+  "requests_status_fulfilled": "達成済み",
+  "requests_status_open": "受付中",
+  "requests_submit_create": "リクエストを投稿",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "タイトルは {min__number} 文字以上必要です。"
+      }
+    }
+  ],
+  "requests_verify_hint": "メールを認証すると、投票・コメント・リクエストができます。",
+  "requests_view_mod": "MOD を見る",
+  "requests_vote": "投票",
+  "requests_vote_aria_add": "このリクエストに投票",
+  "requests_vote_aria_remove": "投票を取り消す",
+  "requests_vote_own": "自分のリクエストには投票できません。",
+  "requests_voted": "投票済み",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 票"
       }
     }
   ],
@@ -6221,6 +6449,12 @@
   "settings_notif_reply_hint": "あなたのコメントに返信がありました。",
   "settings_notif_report": "あなたの通報",
   "settings_notif_report_hint": "レンジャーがあなたの通報を確認しました。",
+  "settings_notif_request_adopted": "リクエストが引き受けられました",
+  "settings_notif_request_adopted_hint": "クリエイターがあなたのリクエストに取り組み始めました。",
+  "settings_notif_request_comment": "リクエストへのコメント",
+  "settings_notif_request_comment_hint": "あなたが投稿または引き受けたリクエストにコメントがありました。",
+  "settings_notif_request_fulfilled": "リクエストが実現しました",
+  "settings_notif_request_fulfilled_hint": "あなたがリクエストまたは投票した MOD が公開されました。",
   "settings_notif_review": "あなたのMODへのレビュー",
   "settings_notif_review_hint": "あなたのMODが評価されました。",
   "settings_notif_review_reply": "レビューへの返信",
@@ -6643,6 +6877,22 @@
   "signals_preferences": "通知設定",
   "signals_report_dismissed": "あなたの通報は確認されました。対応の必要はありませんでした",
   "signals_report_resolved": "あなたの通報は確認され、対応が行われました",
+  "signals_request_adopted": "{actor} があなたのリクエスト「{request}」に取り組んでいます",
+  "signals_request_comment": "{actor} がリクエスト「{request}」にコメントしました",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "リクエスト「{request}」に新しいコメント {count__number} 件"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} が公開され、リクエスト「{request}」に応えました",
   "signals_retry": "再試行",
   "signals_review_on_mod": "{actor} が {mod} に星 {rating} のレビューを投稿しました",
   "signals_review_on_mod_grouped": [
@@ -6907,6 +7157,8 @@
   "social_report_reason_nsfw_unmarked": "18 歳以上の表示がない成人向けコンテンツ",
   "social_report_reason_other": "その他",
   "social_report_reason_spam": "スパムまたは広告",
+  "social_report_request_comment_title": "このコメントを通報",
+  "social_report_request_title": "このリクエストを通報",
   "social_report_review_title": "このレビューを通報",
   "social_report_sent": "ありがとうございます。レンジャーが確認します。",
   "social_report_submit": "通報を送信",

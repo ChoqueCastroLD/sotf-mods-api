@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Yorum yapmak için giriş yap",
   "social_comments_more_replies": "{count, plural, one {# yanıt daha} other {# yanıt daha}}",
-  "social_comments_empty": "Henüz yorum yok. Sorular, ipuçları ve hatalar buraya."
+  "social_comments_empty": "Henüz yorum yok. Sorular, ipuçları ve hatalar buraya.",
+  "social_report_request_title": "Bu isteği bildir",
+  "social_report_request_comment_title": "Bu yorumu bildir"
 }

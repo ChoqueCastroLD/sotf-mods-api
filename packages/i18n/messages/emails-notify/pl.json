@@ -55,5 +55,9 @@
   "emails_notify_creator_top_heading": "Twoje mody w tym tygodniu",
   "emails_notify_creator_highlights_heading": "Wyróżnienia",
   "emails_notify_creator_button": "Otwórz statystyki",
-  "emails_notify_creator_reason": "Otrzymujesz ten raport, ponieważ publikujesz w SOTF Mods."
+  "emails_notify_creator_reason": "Otrzymujesz ten raport, ponieważ publikujesz w SOTF Mods.",
+  "emails_notify_item_request_comment": "{actor} skomentował(a) prośbę „{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# nowy komentarz do prośby „{request}”} few {# nowe komentarze do prośby „{request}”} many {# nowych komentarzy do prośby „{request}”} other {# nowego komentarza do prośby „{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} pracuje nad Twoją prośbą „{request}”",
+  "emails_notify_item_request_fulfilled": "Mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś), jest już dostępny: {mod}"
 }

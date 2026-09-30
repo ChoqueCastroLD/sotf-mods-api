@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Choose up to {max} earned badges for the header of your profile.",
   "settings_featured_badges_empty": "Earn badges on the island to feature them here.",
   "settings_featured_badges_count": "{count} of {max} selected",
-  "settings_featured_badges_saved": "Featured badges saved."
+  "settings_featured_badges_saved": "Featured badges saved.",
+  "settings_notif_request_comment": "Comments on requests",
+  "settings_notif_request_comment_hint": "Someone commented on a request you made or adopted.",
+  "settings_notif_request_adopted": "Request adopted",
+  "settings_notif_request_adopted_hint": "A creator started working on your request.",
+  "settings_notif_request_fulfilled": "Request fulfilled",
+  "settings_notif_request_fulfilled_hint": "A mod you requested or voted for was published."
 }

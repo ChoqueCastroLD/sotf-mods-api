@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "Creador verificado",
   "signals_badge_name_ranger": "Guardabosques",
   "signals_badge_name_translator": "Traductor",
-  "signals_badge_name_night_owl": "Búho nocturno"
+  "signals_badge_name_night_owl": "Búho nocturno",
+  "signals_request_comment": "{actor} comentó la petición «{request}»",
+  "signals_request_comment_grouped": "{count, plural, one {# comentario nuevo en la petición «{request}»} other {# comentarios nuevos en la petición «{request}»}}",
+  "signals_request_adopted": "{actor} está trabajando en tu petición «{request}»",
+  "signals_request_fulfilled": "{mod} ya está publicado y cumple la petición «{request}»"
 }

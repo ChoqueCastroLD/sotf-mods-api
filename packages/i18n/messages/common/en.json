@@ -146,5 +146,6 @@
   "common_footer_dmca": "DMCA",
   "common_footer_cookies": "Cookies",
   "common_footer_since": "Field-testing mods since 2023",
-  "common_new_tab": "(opens in a new tab)"
+  "common_new_tab": "(opens in a new tab)",
+  "common_term_requests": "Requests"
 }

@@ -203,6 +203,10 @@ export function reportTargetLabel(type: ReportTargetType): string {
       return m.ranger_target_kit();
     case 'compat_report':
       return m.ranger_target_compat_report();
+    case 'request':
+      return m.ranger_target_request();
+    case 'request_comment':
+      return m.ranger_target_request_comment();
   }
 }
 

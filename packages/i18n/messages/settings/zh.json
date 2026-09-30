@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "最多选择 {max} 个已获得的徽章展示在个人资料顶部。",
   "settings_featured_badges_empty": "在岛上获得徽章后即可在此展示。",
   "settings_featured_badges_count": "已选 {count} / {max}",
-  "settings_featured_badges_saved": "已保存展示的徽章。"
+  "settings_featured_badges_saved": "已保存展示的徽章。",
+  "settings_notif_request_comment": "请求的评论",
+  "settings_notif_request_comment_hint": "有人评论了你发起或认领的请求。",
+  "settings_notif_request_adopted": "请求已被认领",
+  "settings_notif_request_adopted_hint": "一位创作者开始处理你的请求。",
+  "settings_notif_request_fulfilled": "请求已完成",
+  "settings_notif_request_fulfilled_hint": "你请求或投票支持的模组已发布。"
 }

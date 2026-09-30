@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "Verified Creator",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Translator",
-  "signals_badge_name_night_owl": "Night Owl"
+  "signals_badge_name_night_owl": "Night Owl",
+  "signals_request_comment": "{actor} commented on the request “{request}”",
+  "signals_request_comment_grouped": "{count, plural, one {# new comment on the request “{request}”} other {# new comments on the request “{request}”}}",
+  "signals_request_adopted": "{actor} is working on your request “{request}”",
+  "signals_request_fulfilled": "{mod} is out and fulfils the request “{request}”"
 }

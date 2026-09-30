@@ -212,5 +212,19 @@
   "content_dev_errors_text": "Fältet code i ett fel är ett av dessa. Varje problems type-URI pekar på dess rad här.",
   "content_dev_col_code": "Kod",
   "content_dev_col_status": "Status",
-  "content_dev_col_meaning": "Betydelse"
+  "content_dev_col_meaning": "Betydelse",
+  "content_radar_uptime_title": "Plattformens drifttid",
+  "content_radar_uptime_intro": "Webbplatsen, API:t, nedladdningarna och databasen kontrolleras var 5:e minut. Senaste {days, number} dagarna, UTC.",
+  "content_radar_uptime_overall": "{share} av kontrollerna hade allt uppe.",
+  "content_radar_uptime_web": "Webbplats",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Nedladdningar och media",
+  "content_radar_uptime_database": "Databas",
+  "content_radar_uptime_now_ok": "Fungerar",
+  "content_radar_uptime_now_down": "Nere just nu",
+  "content_radar_uptime_percent": "{share} drifttid",
+  "content_radar_uptime_latency": "{avg, number} ms i snitt · {p95, number} ms p95",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Inga data",
+  "content_radar_uptime_bars_label": "Daglig drifttid för {component}, äldst till nyast"
 }

@@ -116,5 +116,9 @@
   "signals_badge_name_verified_creator": "认证创作者",
   "signals_badge_name_ranger": "护林员",
   "signals_badge_name_translator": "译者",
-  "signals_badge_name_night_owl": "夜猫子"
+  "signals_badge_name_night_owl": "夜猫子",
+  "signals_request_comment": "{actor} 评论了请求“{request}”",
+  "signals_request_comment_grouped": "{count, plural, other {请求“{request}”有 # 条新评论}}",
+  "signals_request_adopted": "{actor} 正在处理你的请求“{request}”",
+  "signals_request_fulfilled": "{mod} 已发布，满足了请求“{request}”"
 }

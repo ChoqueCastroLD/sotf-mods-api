@@ -1,0 +1,59 @@
+---
+/**
+ * `/requests/new` — post a mod request. Members get the form (island); guests see why they cannot
+ * post and the sign-in link. Never cached, never indexed (a form, not content).
+ */
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { loginHrefFor } from '../../components/mod/format.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, false);
+const loginHref = loginHrefFor(href('/login', locale), href('/requests/new', locale));
+---
+
+<PageLayout
+  template="request-new"
+  width="content"
+  seo={{ title: m.requests_new_title(), description: m.requests_new_description(), path: '/requests/new', noindex: true }}
+  breadcrumbs={[
+    { label: m.common_nav_home(), path: '/' },
+    { label: m.common_term_requests(), path: '/requests' },
+    { label: m.requests_new_title() },
+  ]}
+>
+  <div class="flex flex-col gap-6">
+    <header class="flex flex-col gap-2">
+      <h1 class="font-display-caps text-display-sm text-fg">{m.requests_new_title()}</h1>
+      <p class="max-w-(--container-prose) text-base text-fg-muted">{m.requests_new_intro()}</p>
+    </header>
+    <div data-island="request-new">
+      <div
+        class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4"
+        data-request-guest-hint
+      >
+        <p class="text-sm text-fg">{m.requests_new_guest_title()}</p>
+        <a href={loginHref} class={buttonClasses({ variant: 'primary' })} rel="nofollow">{m.requests_sign_in()}</a>
+      </div>
+    </div>
+  </div>
+  <div
+    data-mod-toast
+    role="status"
+    aria-live="polite"
+    class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
+  >
+  </div>
+</PageLayout>
+
+<script>
+  import { bootNewRequest } from '../../islands/requests/boot.ts';
+  import { whenSession } from '../../scripts/mod/session.ts';
+
+  void bootNewRequest(document, whenSession()).catch(() => {});
+</script>

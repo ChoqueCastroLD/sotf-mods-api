@@ -2330,6 +2330,7 @@
   "common_term_notifications": "Benachrichtigungen",
   "common_term_patch_radar": "Patch-Radar",
   "common_term_ranger_station": "Rangerstation",
+  "common_term_requests": "Wünsche",
   "common_term_signals": "Signale",
   "common_theme_day": "Tag",
   "common_theme_label": "Design",
@@ -2340,8 +2341,6 @@
   "console_area_admin": "Admin",
   "console_area_switcher": "Bereiche der Konsole",
   "console_back_to_site": "Zurück zur Website",
-  "console_empty_detail": "Dieser Teil des Lagers wird noch aufgebaut. Schau bald wieder vorbei.",
-  "console_empty_title": "Hier ist noch nichts",
   "console_error_detail": "Bei uns ist etwas schiefgelaufen. Versuch es noch einmal. Wenn es weiter passiert, schick uns die Referenz unten.",
   "console_error_title": "Diese Ansicht wurde nicht geladen",
   "console_forbidden_action": "Zum Basislager",
@@ -2827,6 +2826,44 @@
   ],
   "content_radar_summary_title": "Zusammenfassung",
   "content_radar_title": "Funktionieren SOTF-Mods mit Patch {build}?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "Tägliche Verfügbarkeit von {component}, von alt nach neu",
+  "content_radar_uptime_database": "Datenbank",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Website, API, Downloads und Datenbank werden alle 5 Minuten geprüft. Letzte {days__number} Tage, UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ø {avg__number} ms · {p95__number} ms p95"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "Downloads und Medien",
+  "content_radar_uptime_no_data": "Keine Daten",
+  "content_radar_uptime_now_down": "Gerade ausgefallen",
+  "content_radar_uptime_now_ok": "In Betrieb",
+  "content_radar_uptime_overall": "Bei {share} der Prüfungen lief alles.",
+  "content_radar_uptime_percent": "{share} Verfügbarkeit",
+  "content_radar_uptime_title": "Verfügbarkeit der Plattform",
+  "content_radar_uptime_web": "Website",
   "content_radar_works_empty": "Noch kein Top-Mod ist auf {build} bestätigt. Einen getestet? Melde dich.",
   "content_radar_works_title": "Bestätigt funktionsfähig",
   "content_reading_time": [
@@ -3181,6 +3218,26 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} arbeitet an deiner Anfrage „{request}“",
+  "emails_notify_item_request_comment": "{actor} hat die Anfrage „{request}“ kommentiert",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} neuer Kommentar zur Anfrage „{request}“",
+        "count__plural=*": "{count__number} neue Kommentare zur Anfrage „{request}“"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "Ein Mod, den du angefragt oder unterstützt hast, ist erschienen: {mod}",
   "emails_notify_item_review_on_my_mod": "{actor} hat {mod} bewertet: {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6374,6 +6431,8 @@
   "ranger_target_compat_report": "Feldbericht",
   "ranger_target_kit": "Kit",
   "ranger_target_mod": "Mod",
+  "ranger_target_request": "Wunsch",
+  "ranger_target_request_comment": "Wunsch-Kommentar",
   "ranger_target_review": "Rezension",
   "ranger_target_user": "Benutzer",
   "ranger_target_version": "Version",
@@ -6540,6 +6599,191 @@
       "match": {
         "count__plural=one": "{count__number} Min.",
         "count__plural=*": "{count__number} Min."
+      }
+    }
+  ],
+  "requests_action_new": "Mod wünschen",
+  "requests_adopt": "Ich arbeite daran",
+  "requests_adopt_done": "Du arbeitest jetzt an diesem Wunsch.",
+  "requests_adopted_by": "{name} arbeitet daran",
+  "requests_asked_on": "Gewünscht am {date}",
+  "requests_back": "Alle Wünsche",
+  "requests_back_to_first": "Zurück zur ersten Seite",
+  "requests_badge_adopter": "Arbeitet daran",
+  "requests_badge_author": "Wünschende:r",
+  "requests_body_placeholder": "Was soll er tun? Warum ist er nützlich? Mit welchen Mods soll er zusammenarbeiten?",
+  "requests_by": "von {name}",
+  "requests_clear_filters": "Alle Wünsche zeigen",
+  "requests_close": "Wunsch schließen",
+  "requests_close_done": "Wunsch geschlossen.",
+  "requests_closed_banner": "Dieser Wunsch ist geschlossen.",
+  "requests_comment_delete_text": "Das lässt sich nicht rückgängig machen.",
+  "requests_comment_delete_title": "Diesen Kommentar löschen?",
+  "requests_comment_edit_label": "Kommentar bearbeiten",
+  "requests_comment_label": "Dein Kommentar",
+  "requests_comment_placeholder": "Ergänze Details, stelle eine Frage oder biete Hilfe an…",
+  "requests_comment_submit": "Kommentieren",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} Kommentar",
+        "count__plural=*": "{count__number} Kommentare"
+      }
+    }
+  ],
+  "requests_comments_empty": "Noch keine Kommentare.",
+  "requests_comments_title": "Kommentare",
+  "requests_created_done": "Wunsch eingestellt.",
+  "requests_delete": "Wunsch löschen",
+  "requests_delete_text": "Der Wunsch und seine Stimmen verschwinden von der Liste. Das lässt sich nicht rückgängig machen.",
+  "requests_delete_title": "Diesen Wunsch löschen?",
+  "requests_deleted_done": "Wunsch gelöscht.",
+  "requests_detail_description": "Mod-Wunsch von {author}: {title}",
+  "requests_detail_title": "{title} — Mod-Wunsch",
+  "requests_edit": "Wunsch bearbeiten",
+  "requests_edited": "bearbeitet",
+  "requests_empty_filtered_text": "Probiere einen anderen Status oder zeige alle Wünsche.",
+  "requests_empty_filtered_title": "Keine passenden Wünsche",
+  "requests_empty_text": "Hier hat noch niemand einen Mod gewünscht. Beschreibe als Erste:r den Mod, der dir fehlt.",
+  "requests_empty_title": "Noch keine Wünsche",
+  "requests_error_text": "Die Wünsche konnten nicht geladen werden. Versuche es gleich noch einmal.",
+  "requests_error_title": "Die Wunschliste antwortet nicht",
+  "requests_field_body": "Details (optional)",
+  "requests_field_title": "Titel",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} Zeichen. Sag, was der Mod tun soll."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Status",
+  "requests_fulfill": "Meinen Mod verknüpfen",
+  "requests_fulfill_done": "Wunsch erfüllt. Danke!",
+  "requests_fulfill_help": "Wähle einen deiner veröffentlichten Mods. Der Wunsch gilt dann als erfüllt und verweist darauf.",
+  "requests_fulfill_label": "Dein veröffentlichter Mod",
+  "requests_fulfill_none": "Du hast noch keine veröffentlichten Mods. Veröffentliche den Mod zuerst und verknüpfe ihn dann hier.",
+  "requests_fulfill_submit": "Als erfüllt markieren",
+  "requests_fulfill_title": "Verknüpfe den Mod, der diesen Wunsch erfüllt",
+  "requests_fulfilled_banner": "Erfüllt: Der Mod ist veröffentlicht.",
+  "requests_fulfilled_by": "Erfüllt mit {mod}",
+  "requests_guest_hint": "Melde dich an, um abzustimmen, zu kommentieren oder einen Mod zu wünschen.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Du kannst bis zu {open__number} offene Wünsche haben und {perDay__number} pro Tag einstellen."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} Wunsch",
+        "count__plural=*": "{count__number} Wünsche"
+      }
+    }
+  ],
+  "requests_list_description": "Wünsche dir den Mod, der in Sons of the Forest fehlt, stimme für die, die du willst, und folge den Creators, die sie übernehmen.",
+  "requests_list_readout": "Wunschliste",
+  "requests_list_title": "Mod-Wünsche",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — Seite {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "Aktionen zum Wunsch",
+  "requests_new_description": "Stelle einen Wunsch für einen Sons-of-the-Forest-Mod ein und lass Creators ihn übernehmen.",
+  "requests_new_guest_title": "Melde dich an, um einen Mod zu wünschen",
+  "requests_new_intro": "Beschreibe den Mod, den du dir wünschst. Creators durchstöbern diese Liste und können deinen Wunsch übernehmen.",
+  "requests_new_title": "Einen Mod wünschen",
+  "requests_past_end_text": "Es gibt weniger Wünsche als das.",
+  "requests_past_end_title": "Diese Seite ist leer",
+  "requests_release": "Zurückgeben",
+  "requests_release_done": "Der Wunsch ist wieder offen.",
+  "requests_reopen": "Wunsch wieder öffnen",
+  "requests_reopen_done": "Wunsch wieder geöffnet.",
+  "requests_report": "Melden",
+  "requests_saved": "Wunsch aktualisiert.",
+  "requests_sign_in": "Anmelden",
+  "requests_sort_label": "Sortierung",
+  "requests_sort_new": "Neueste",
+  "requests_sort_top": "Meistgewählt",
+  "requests_status_adopted": "In Arbeit",
+  "requests_status_all": "Alle",
+  "requests_status_closed": "Geschlossen",
+  "requests_status_fulfilled": "Erfüllt",
+  "requests_status_open": "Offen",
+  "requests_submit_create": "Wunsch einstellen",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Der Titel braucht mindestens {min__number} Zeichen."
+      }
+    }
+  ],
+  "requests_verify_hint": "Bestätige deine E-Mail, um abzustimmen, zu kommentieren oder einen Mod zu wünschen.",
+  "requests_view_mod": "Mod ansehen",
+  "requests_vote": "Abstimmen",
+  "requests_vote_aria_add": "Für diesen Wunsch abstimmen",
+  "requests_vote_aria_remove": "Stimme zurückziehen",
+  "requests_vote_own": "Für den eigenen Wunsch kann man nicht abstimmen.",
+  "requests_voted": "Abgestimmt",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} Stimme",
+        "count__plural=*": "{count__number} Stimmen"
       }
     }
   ],
@@ -6868,6 +7112,12 @@
   "settings_notif_reply_hint": "Jemand hat auf deinen Kommentar geantwortet.",
   "settings_notif_report": "Deine Meldungen",
   "settings_notif_report_hint": "Die Ranger haben etwas geprüft, das du gemeldet hast.",
+  "settings_notif_request_adopted": "Anfrage übernommen",
+  "settings_notif_request_adopted_hint": "Ein Creator arbeitet jetzt an deiner Anfrage.",
+  "settings_notif_request_comment": "Kommentare zu Anfragen",
+  "settings_notif_request_comment_hint": "Jemand hat eine Anfrage kommentiert, die du gestellt oder übernommen hast.",
+  "settings_notif_request_fulfilled": "Anfrage erfüllt",
+  "settings_notif_request_fulfilled_hint": "Ein Mod, den du angefragt oder unterstützt hast, wurde veröffentlicht.",
   "settings_notif_review": "Bewertungen deiner Mods",
   "settings_notif_review_hint": "Jemand hat einen deiner Mods bewertet.",
   "settings_notif_review_reply": "Antworten auf deine Bewertungen",
@@ -7317,6 +7567,26 @@
   "signals_preferences": "Benachrichtigungseinstellungen",
   "signals_report_dismissed": "Deine Meldung wurde geprüft – es war nichts zu tun",
   "signals_report_resolved": "Deine Meldung wurde geprüft und es wurden Maßnahmen ergriffen",
+  "signals_request_adopted": "{actor} arbeitet an deiner Anfrage „{request}“",
+  "signals_request_comment": "{actor} hat die Anfrage „{request}“ kommentiert",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} neuer Kommentar zur Anfrage „{request}“",
+        "count__plural=*": "{count__number} neue Kommentare zur Anfrage „{request}“"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} ist erschienen und erfüllt die Anfrage „{request}“",
   "signals_retry": "Erneut versuchen",
   "signals_review_on_mod": "{actor} hat {mod} mit {rating} Sternen bewertet",
   "signals_review_on_mod_grouped": [
@@ -7603,6 +7873,8 @@
   "social_report_reason_nsfw_unmarked": "Erwachseneninhalt ohne Ab-18-Markierung",
   "social_report_reason_other": "Etwas anderes",
   "social_report_reason_spam": "Spam oder Werbung",
+  "social_report_request_comment_title": "Diesen Kommentar melden",
+  "social_report_request_title": "Diesen Wunsch melden",
   "social_report_review_title": "Diese Bewertung melden",
   "social_report_sent": "Danke. Die Ranger sehen es sich an.",
   "social_report_submit": "Meldung senden",

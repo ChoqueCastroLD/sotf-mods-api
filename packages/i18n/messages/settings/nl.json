@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Kies tot {max} verdiende badges voor de kop van je profiel.",
   "settings_featured_badges_empty": "Verdien badges op het eiland om ze hier uit te lichten.",
   "settings_featured_badges_count": "{count} van {max} gekozen",
-  "settings_featured_badges_saved": "Uitgelichte badges opgeslagen."
+  "settings_featured_badges_saved": "Uitgelichte badges opgeslagen.",
+  "settings_notif_request_comment": "Reacties op verzoeken",
+  "settings_notif_request_comment_hint": "Iemand heeft gereageerd op een verzoek dat je deed of adopteerde.",
+  "settings_notif_request_adopted": "Verzoek geadopteerd",
+  "settings_notif_request_adopted_hint": "Een maker is aan je verzoek begonnen.",
+  "settings_notif_request_fulfilled": "Verzoek vervuld",
+  "settings_notif_request_fulfilled_hint": "Een mod waar je om vroeg of op stemde is gepubliceerd."
 }
