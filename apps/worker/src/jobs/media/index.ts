@@ -5,6 +5,8 @@
  *   becomes an oriented, metadata-free original plus AVIF/WebP variants at 320–1920 px, with its
  *   ThumbHash and dominant colour (`processMedia` of core). One image at a time per process: sharp
  *   already uses every core for a single image.
+ * - `markdown.rerender` (nightly): descriptions and changelogs rendered with an older
+ *   `RENDER_VERSION` are re-rendered in batches; it re-enqueues itself while more are waiting.
  * - `description-images` (subscriber of `mod.published`, `mod.updated` when the description
  *   changed and `mod.status_changed` to `published`): remote images embedded in the Markdown description are fetched under the anti-SSRF
  *   rules, stored on R2 and the description is re-rendered pointing at them with explicit sizes
@@ -13,6 +15,7 @@
  * Without R2 credentials the jobs log and do nothing (no upload can exist then).
  */
 import { processMedia, replicateDescriptionImages } from '@sotf/core/media/index';
+import { rerenderStaleMarkdown } from '@sotf/core/publishing/rerender';
 import { defineJob, defineJobGroup, onEvent } from '../../define-job.ts';
 
 export default defineJobGroup({
@@ -28,6 +31,23 @@ export default defineJobGroup({
           return { status: 'skipped', reason: 'no_storage' };
         }
         return processMedia(ctx, storage, mediaId);
+      },
+    }),
+    defineJob({
+      queue: 'markdown.rerender',
+      options: { localConcurrency: 1 },
+      handler: async ({ batchSize }, { ctx, services }) => {
+        const { env } = services;
+        const result = await rerenderStaleMarkdown(
+          ctx,
+          { config: { mediaBaseUrl: env.R2_PUBLIC_BASE_URL, publicBucket: env.R2_BUCKET }, storage: services.storage() },
+          { batchSize },
+        );
+        if (result.remaining) {
+          await ctx.jobs.enqueue('markdown.rerender', { batchSize }, { singletonKey: 'markdown.rerender:next' });
+        }
+        ctx.log.info(result, 'markdown re-rendered');
+        return result;
       },
     }),
   ],

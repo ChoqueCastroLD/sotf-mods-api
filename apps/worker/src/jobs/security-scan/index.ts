@@ -8,12 +8,15 @@
  * - Without `VIRUSTOTAL_API_KEY` versions get an "not scanned" report and those of non-verified
  *   creators go to human review.
  *
+ * - `security.rescan` (hourly): scans left `pending` for 6 h whose job is gone are enqueued again.
+ *
  * Idempotent: a version with a final verdict for its SHA-256 is skipped; polls and quota waits
  * re-enqueue the same payload with `startAfter`.
  */
 import {
   createVirusTotalClient,
   createVirusTotalThrottle,
+  rescanStaleScans,
   runSecurityScan,
   type VirusTotalClient,
 } from '@sotf/core/security-scan/index';
@@ -44,6 +47,11 @@ export function createSecurityScanJobs(options: SecurityScanJobOptions = {}): Jo
           ctx.log.info({ modVersionId: data.modVersionId, ...outcome }, 'security.scan');
           return outcome;
         },
+      }),
+      defineJob({
+        queue: 'security.rescan',
+        handler: async (_data, { ctx, services }) =>
+          rescanStaleScans(ctx, { schema: services.env.PGBOSS_SCHEMA }),
       }),
     ],
   });

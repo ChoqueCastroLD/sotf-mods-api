@@ -5,11 +5,14 @@
  *   one build (or every build it has data for) with the weights of PLAN §7.10, emits
  *   `compat.aggregate_changed` when a status moves and syncs `Mod.compatStatus` /
  *   `Mod.possiblyOutdated`. Idempotent.
+ * - `compat.reconcile` (nightly, 03:20, after `accounts.trust-level`): finds the aggregates that no
+ *   longer match the reporters' current flags, schedules `compat.aggregate` for them and refreshes
+ *   the time-dependent mod flags (`reconcileCompat` of core).
  * - `compat.mod-status` (domain events): a new, yanked, restored or re-moderated version changes
  *   which version is "latest", so the mod-level status and the "possibly outdated" flag are
  *   recomputed (idempotent; purges the mod's pages only when something changed).
  */
-import { aggregateCompat, refreshModCompat } from '@sotf/core/compat/index';
+import { aggregateCompat, reconcileCompat, refreshModCompat } from '@sotf/core/compat/index';
 import { defineJob, defineJobGroup, onEvent } from '../../define-job.ts';
 
 export default defineJobGroup({
@@ -30,6 +33,10 @@ export default defineJobGroup({
         );
         return result;
       },
+    }),
+    defineJob({
+      queue: 'compat.reconcile',
+      handler: async (_data, { ctx }) => reconcileCompat(ctx),
     }),
   ],
   subscribers: [

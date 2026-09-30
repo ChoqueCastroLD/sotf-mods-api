@@ -5,12 +5,33 @@
  *   `tagsForEvent`) and enqueues `cdn.purge` (debounced 20 s per tag set). The purge itself (web
  *   LRU, Cloudflare, `NOTIFY cache`) is the `cdn.purge` job of WP-61. Idempotent: a duplicate event
  *   only produces a coalesced duplicate purge.
+ * - `ops.alerts` (every 5 min): dead letters, 5xx rate, `db:invariants`, KelvinSeek budget; one
+ *   `ops.alert` email per alert and admin every 6 h (`runOpsAlerts` of core).
  */
 import { purge, tagsForEvent } from '@sotf/core';
-import { defineJobGroup, onEvent } from '../../define-job.ts';
+import { runOpsAlerts } from '@sotf/core/ops/index';
+import { defineJob, defineJobGroup, onEvent } from '../../define-job.ts';
 
 export default defineJobGroup({
   name: 'platform',
+  jobs: [
+    defineJob({
+      queue: 'ops.alerts',
+      handler: async (_data, { ctx, services }) => {
+        const { env } = services;
+        return runOpsAlerts(ctx, {
+          schema: env.PGBOSS_SCHEMA,
+          kelvinSeek: {
+            enabled: true,
+            model: env.KELVINSEEK_MODEL,
+            dailyBudgetUsd: env.KELVINSEEK_DAILY_BUDGET_USD,
+            timeoutMs: 8_000,
+          },
+          siteUrl: env.PUBLIC_SITE_URL,
+        });
+      },
+    }),
+  ],
   subscribers: [
     onEvent({
       name: 'cdn-purge-on-event',
