@@ -1,7 +1,7 @@
 {
   "install": {
     "question": "Comment installer des mods dans Sons of the Forest ?",
-    "answer": "Installez RedLoader, le chargeur de mods, placez chaque mod dans le dossier _RedLoader/Mods du répertoire du jeu, puis lancez le jeu. RedManager peut faire ces deux étapes pour vous. Appuyez sur F1 en jeu pour vérifier que vos mods sont chargés. Chaque page de mod liste ses dépendances, et le guide d’installation détaille chaque étape."
+    "answer": "Installez RedLoader, le chargeur de mods, placez chaque mod dans le dossier Mods du répertoire du jeu, puis lancez le jeu. RedManager peut faire ces deux étapes pour vous. Appuyez sur F1 en jeu pour vérifier que vos mods sont chargés. Chaque page de mod liste ses dépendances, et le guide d’installation détaille chaque étape."
   },
   "free": {
     "question": "Les téléchargements sont-ils gratuits ?",

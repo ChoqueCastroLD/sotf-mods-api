@@ -1,7 +1,7 @@
 {
   "install": {
     "question": "Hoe installeer ik mods in Sons of the Forest?",
-    "answer": "Installeer RedLoader, de modloader, zet elke mod in de map _RedLoader/Mods in je gamemap en start de game. RedManager kan beide stappen voor je doen. Druk in de game op F1 om te controleren of je mods geladen zijn. Elke modpagina noemt de afhankelijkheden en de installatiegids legt elke stap uit."
+    "answer": "Installeer RedLoader, de modloader, zet elke mod in de map Mods in je gamemap en start de game. RedManager kan beide stappen voor je doen. Druk in de game op F1 om te controleren of je mods geladen zijn. Elke modpagina noemt de afhankelijkheden en de installatiegids legt elke stap uit."
   },
   "free": {
     "question": "Zijn de downloads gratis?",
