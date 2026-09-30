@@ -23,10 +23,10 @@ import {
   CircleCheck,
   CircleHelp,
   Copy,
-  Heart,
   Download,
   GitFork,
   HardDrive,
+  Heart,
   Layers,
   Pencil,
   Share2,
@@ -227,6 +227,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
             <Icon icon={Share2} size={16} />
             <span>{m.common_action_share()}</span>
           </a>
+          <!-- biome-ignore lint/a11y/useAriaPropsSupportedByRole: aria-pressed is the toggle state read by the follow script (data-kit-follow) -->
           <a href={login} data-kit-follow rel="nofollow" aria-pressed="false" class={`${ACTION_CLASSES} aria-pressed:border-primary aria-pressed:text-fg`}>
             <Icon icon={Heart} size={16} />
             <span data-follow-label>{m.kitsocial_follow()}</span>

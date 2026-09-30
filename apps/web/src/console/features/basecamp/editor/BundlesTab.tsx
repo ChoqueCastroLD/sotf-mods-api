@@ -14,8 +14,8 @@ import { activeLocale } from '../../../lib/messages.ts';
 import { notify } from '../../../lib/notify.ts';
 import { bdt, useBundlesMessages } from '../../bundles/i18n.ts';
 import { myKitsQuery } from '../../kits/api.ts';
-import { number } from '../format.ts';
 import type { StudioMod } from '../api.ts';
+import { number } from '../format.ts';
 import { failureText } from '../shared.tsx';
 
 const bundleKeys = (modId: number) => ['bundles', 'mod', modId] as const;
@@ -75,12 +75,7 @@ function BundleRow({ bundle, onChanged }: { bundle: ModBundleDTO; onChanged: () 
         </details>
       ) : null}
       <div className="flex flex-wrap justify-end gap-2">
-        <Button
-          variant="ghost"
-          size="sm"
-          loading={rebuild.isPending}
-          onClick={() => rebuild.mutate()}
-        >
+        <Button variant="ghost" size="sm" loading={rebuild.isPending} onClick={() => rebuild.mutate()}>
           {bdt('bundles_rebuild')}
         </Button>
         <Button variant="ghost" size="sm" loading={remove.isPending} onClick={() => remove.mutate()}>
@@ -99,8 +94,7 @@ export function BundlesTab({ studio }: { studio: StudioMod }) {
   const bundles = useQuery({
     queryKey: bundleKeys(modId),
     queryFn: ({ signal }) => api.bundles.manage({ params: { id: modId } }, { signal }),
-    refetchInterval: (query) =>
-      query.state.data?.items.some((bundle) => bundle.status === 'pending') ? 5000 : false,
+    refetchInterval: (query) => (query.state.data?.items.some((bundle) => bundle.status === 'pending') ? 5000 : false),
   });
   const kits = useQuery(myKitsQuery);
   const items = bundles.data?.items ?? [];

@@ -16,8 +16,8 @@
 
 import { cacheTag } from '@sotf/contracts/cache';
 import { BADGES, nextSurvivorRank } from '@sotf/contracts/gamification';
-import { formatDate, formatNumber } from '@sotf/i18n';
 import type { CoAuthoredModListDTO } from '@sotf/contracts/mod-knowledge';
+import { formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
 import { Icon } from '@sotf/ui/icons';
@@ -25,6 +25,7 @@ import { Pagination } from '@sotf/ui/pagination';
 import { ArrowRight, Blocks, EyeOff, Footprints, Map as MapIcon, MessageSquareQuote, Package } from 'lucide-react';
 import { loadTaxonomy } from '../../../components/explore/taxonomy.ts';
 import ActivityHeatmap from '../../../components/profile/ActivityHeatmap.astro';
+import CoAuthoredMods from '../../../components/profile/CoAuthoredMods.astro';
 import {
   BadgeNotebook,
   FeaturedBadges,
@@ -48,7 +49,6 @@ import {
   visibleTabs,
 } from '../../../components/profile/data.ts';
 import { badgeGroupName, badgeHint, badgeName, profileDomainI18n, rankName } from '../../../components/profile/i18n.ts';
-import CoAuthoredMods from '../../../components/profile/CoAuthoredMods.astro';
 import ProfileHeader from '../../../components/profile/ProfileHeader.astro';
 import ProfileTabs from '../../../components/profile/ProfileTabs.astro';
 import { redirectClean, respondUnresolved } from '../../../components/profile/responses.ts';

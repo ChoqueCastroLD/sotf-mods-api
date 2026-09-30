@@ -6,9 +6,10 @@
  * Rules: the actor owns the mod and the kit; the kit is public or unlisted (a private kit would leak
  * through the public zip) and has at least one item; ≤ 5 bundles per mod.
  */
+
+import { createHash } from 'node:crypto';
 import { BUNDLE_LIMITS, type ModBundleDTO } from '@sotf/contracts/bundles';
 import { sql } from 'drizzle-orm';
-import { createHash } from 'node:crypto';
 import { at, intArray, query, queryOne, sqlState, toDate, toInt } from '../follows/sql.ts';
 import type { Actor, Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -142,13 +143,16 @@ export async function createBundle(ctx: Ctx, modId: number, kitId: number): Prom
     ]);
   }
   if (kit.itemsCount < 1) {
-    throw errors.validation('The kit is empty', [{ path: 'kitId', code: 'kit_empty', message: 'Add mods to the kit first' }]);
+    throw errors.validation('The kit is empty', [
+      { path: 'kitId', code: 'kit_empty', message: 'Add mods to the kit first' },
+    ]);
   }
   const count = await queryOne<{ n: number }>(
     ctx.db,
     sql`SELECT count(*)::int AS "n" FROM "ModBundle" WHERE "modId" = ${modId}`,
   );
-  if ((count?.n ?? 0) >= BUNDLE_LIMITS.perMod) throw errors.conflict(`A mod can have at most ${BUNDLE_LIMITS.perMod} bundles`);
+  if ((count?.n ?? 0) >= BUNDLE_LIMITS.perMod)
+    throw errors.conflict(`A mod can have at most ${BUNDLE_LIMITS.perMod} bundles`);
   let id: number;
   try {
     const inserted = await queryOne<{ id: number }>(

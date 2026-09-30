@@ -3,6 +3,8 @@
  * Creator card of the sidebar (research/03 §6.3): avatar, name, trusted mark, follow the creator
  * (a toggle for signed-in visitors, `scripts/mod/follow.ts`) and the mod's support links.
  */
+
+import type { CoAuthorDTO } from '@sotf/contracts/mod-knowledge';
 import { profilePath } from '@sotf/contracts/seo';
 import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
@@ -10,7 +12,6 @@ import { TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ExternalLink, UserPlus } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
-import type { CoAuthorDTO } from '@sotf/contracts/mod-knowledge';
 import type { ModDetailDTO } from './data.ts';
 import { linkLabel } from './i18n.ts';
 import { ACTION_CLASSES, PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';

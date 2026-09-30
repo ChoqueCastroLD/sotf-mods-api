@@ -70,4 +70,3 @@ export function bdt(key: BundlesMessageKey, params?: IcuParams): string {
   if (template === undefined) return key;
   return formatIcu(template, params, toHtmlLang(locale));
 }
-

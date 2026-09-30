@@ -185,7 +185,8 @@ export async function renderEntityOg(
     return { status: 'skipped', key: null, url: null };
   }
 
-  const entityKey = column && column !== 'category' && column !== 'milestone' ? Number(storedId) : String(input.entityId).toLowerCase();
+  const entityKey =
+    column && column !== 'category' && column !== 'milestone' ? Number(storedId) : String(input.entityId).toLowerCase();
   const key = ogImageKey(card.type, entityKey, ogCardHash(card));
   const bucket = deps.storage.config.publicBucket;
   const url = deps.storage.publicUrl(key);

@@ -29,11 +29,7 @@ export function parseCompareRef(raw: string): CompareRef | null {
   } catch {
     return null;
   }
-  const parts = path
-    .split(/[?#]/)[0]!
-    .split('/')
-    .filter(Boolean)
-    .map(decode);
+  const parts = (path.split(/[?#]/)[0] ?? '').split('/').filter(Boolean).map(decode);
   const start = parts[0] === 'mods' || parts[0] === 'builds' ? 1 : 0;
   const localeSkipped = parts.length - start > 2 && /^[a-z]{2}$/.test(parts[0] ?? '') ? 1 : 0;
   const [user, slug] = parts.slice(start + localeSkipped);

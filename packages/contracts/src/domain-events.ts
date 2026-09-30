@@ -177,7 +177,12 @@ export const DOMAIN_EVENT_PAYLOADS = {
     parentId: EntityId.nullable(),
     parentAuthorId: EntityId.nullable(),
   }),
-  'kit.comment_deleted': z.object({ commentId: EntityId, kitId: EntityId, ownerId: EntityId, authorId: EntityId.nullable() }),
+  'kit.comment_deleted': z.object({
+    commentId: EntityId,
+    kitId: EntityId,
+    ownerId: EntityId,
+    authorId: EntityId.nullable(),
+  }),
   // Compatibility
   'compat.report_created': z.object({
     reportId: EntityId,

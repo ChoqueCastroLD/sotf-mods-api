@@ -134,7 +134,7 @@ async function kitAddedDrafts(
   const drafts: NotificationDraft[] = [];
   for (const modId of new Set(modIds)) {
     const ref = refs.get(modId);
-    if (!ref || ref.status !== 'published' || ref.authorId === null || ref.authorId === ownerId) continue;
+    if (ref?.status !== 'published' || ref.authorId === null || ref.authorId === ownerId) continue;
     drafts.push({
       userId: ref.authorId,
       type: 'kit.added_my_mod',

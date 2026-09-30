@@ -7,7 +7,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { Count, EntityId, IdParam, IsoDate, IsoDateTime, ModRefDTO, VersionString } from './common.ts';
+import { Count, IdParam, IsoDate, IsoDateTime, ModRefDTO, VersionString } from './common.ts';
 import { dto, exampleOf } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 

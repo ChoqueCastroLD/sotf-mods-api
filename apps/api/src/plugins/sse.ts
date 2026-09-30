@@ -12,24 +12,24 @@
  *   shutdown so the server can drain.
  */
 import * as sseModule from '@fastify/sse';
-import { eventsEndpoints, SSE_HEARTBEAT_SECONDS, sseChannel, type SseChannel } from '@sotf/contracts';
+import { eventsEndpoints, SSE_HEARTBEAT_SECONDS, type SseChannel, sseChannel } from '@sotf/contracts';
 import {
   encodeModLiveFrame,
   PG_EVENTS_CHANNEL,
   SSE_MOD_LIVE_MAX_SECONDS,
-  SseModLivePushData,
   type SseModLiveEvent,
+  SseModLivePushData,
 } from '@sotf/contracts/events';
 import {
   encodeKitLiveFrame,
-  SSE_KIT_LIVE_MAX_SECONDS,
   kitSocialEndpoints,
+  SSE_KIT_LIVE_MAX_SECONDS,
   SseKitLiveData,
   type SseKitLiveEvent,
 } from '@sotf/contracts/kit-social';
-import { getKitLive } from '@sotf/core/kit-social/index';
-import { getModLive } from '@sotf/core/catalog/index';
 import { decodeRealtimeMessage, hasRole, type Logger, type PgListener, type RealtimeMessage } from '@sotf/core';
+import { getModLive } from '@sotf/core/catalog/index';
+import { getKitLive } from '@sotf/core/kit-social/index';
 import type { FastifyInstance, FastifyReply } from 'fastify';
 import { catalogConfigOf } from '../modules/catalog/index.ts';
 import { httpError } from './errors.ts';

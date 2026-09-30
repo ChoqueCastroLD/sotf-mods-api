@@ -138,23 +138,23 @@ export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExt
   const id = mod.id;
   const [versions, dependents, related, recommendations, reviews, comments, compat, stats, knowledge, bundles] =
     await Promise.all([
-    loadVersionsOptional(id),
-    mod.dependentsCount > 0
-      ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
-      : Promise.resolve(null),
-    optional((signal) => api.catalog.related({ params: { id } }, { signal })),
-    optional((signal) => api.discovery.recommendations({ params: { id } }, { signal })),
-    mod.reviewsSummary.count > 0
-      ? optional((signal) => api.reviews.list({ params: { id }, query: { sort: 'helpful', limit: 3 } }, { signal }))
-      : Promise.resolve(null),
-    mod.commentsCount > 0
-      ? optional((signal) => api.comments.list({ params: { id }, query: { sort: 'top', limit: 10 } }, { signal }))
-      : Promise.resolve(null),
-    optional((signal) => api.compat.modCompat({ params: { id } }, { signal })),
-    optional((signal) => api.stats.modPublicStats({ params: { id }, query: { range: '30d' } }, { signal })),
-    optional((signal) => api.modKnowledge.knowledge({ params: { id } }, { signal })),
-    optional((signal) => api.bundles.forMod({ params: { id } }, { signal })),
-  ]);
+      loadVersionsOptional(id),
+      mod.dependentsCount > 0
+        ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
+        : Promise.resolve(null),
+      optional((signal) => api.catalog.related({ params: { id } }, { signal })),
+      optional((signal) => api.discovery.recommendations({ params: { id } }, { signal })),
+      mod.reviewsSummary.count > 0
+        ? optional((signal) => api.reviews.list({ params: { id }, query: { sort: 'helpful', limit: 3 } }, { signal }))
+        : Promise.resolve(null),
+      mod.commentsCount > 0
+        ? optional((signal) => api.comments.list({ params: { id }, query: { sort: 'top', limit: 10 } }, { signal }))
+        : Promise.resolve(null),
+      optional((signal) => api.compat.modCompat({ params: { id } }, { signal })),
+      optional((signal) => api.stats.modPublicStats({ params: { id }, query: { range: '30d' } }, { signal })),
+      optional((signal) => api.modKnowledge.knowledge({ params: { id } }, { signal })),
+      optional((signal) => api.bundles.forMod({ params: { id } }, { signal })),
+    ]);
   return {
     versions,
     dependents: dependents?.items ?? [],

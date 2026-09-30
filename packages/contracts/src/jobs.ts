@@ -36,7 +36,11 @@ export const JOB_PAYLOADS = {
   'build.geometry': z.object({ modVersionId: EntityId }),
   'bundle.build': z.object({
     bundleId: EntityId,
-    removeKey: z.string().regex(/^bundles\/[a-z0-9._/-]+$/).optional().describe('Deletes this zip instead (the bundle was detached)'),
+    removeKey: z
+      .string()
+      .regex(/^bundles\/[a-z0-9._/-]+$/)
+      .optional()
+      .describe('Deletes this zip instead (the bundle was detached)'),
   }),
   'bundle.sweep': z.object({}),
   'security.rescan': z.object({}),

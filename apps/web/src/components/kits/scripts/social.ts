@@ -11,11 +11,11 @@
  *   through `POST /kits/:id/comments` and `PATCH|DELETE /kit-comments/:id`.
  */
 import type { KitCommentDTO, KitReplyDTO } from '@sotf/contracts/kit-social';
+import type { MeSummary } from '../../../scripts/account-hint.ts';
 import { track } from '../../../scripts/beacon.ts';
 import { type ApiFailure, apiCall } from '../../../scripts/mod/api.ts';
 import { whenSession } from '../../../scripts/mod/session.ts';
 import { toast } from '../../../scripts/mod/toast.ts';
-import type { MeSummary } from '../../../scripts/account-hint.ts';
 import { ACTION_CLASSES } from '../../mod/styles.ts';
 import { fill, type KitPageData, type KitSocialMessages } from './types.ts';
 
@@ -193,7 +193,6 @@ function startLive(data: KitPageData, onLive: (live: LivePayload) => void): void
 // -----------------------------------------------------------------------------------------------
 
 class Thread {
-  readonly #root: HTMLElement;
   readonly #data: KitPageData;
   readonly #doc: Document;
   readonly #messages: KitSocialMessages;
@@ -270,7 +269,9 @@ class Thread {
       return;
     }
     const page = result.data;
-    this.#items = append ? [...this.#items, ...page.items.filter((i) => !this.#items.some((e) => e.id === i.id))] : page.items;
+    this.#items = append
+      ? [...this.#items, ...page.items.filter((i) => !this.#items.some((e) => e.id === i.id))]
+      : page.items;
     this.#cursor = page.nextCursor;
     this.#total = page.total;
     this.#loaded = true;

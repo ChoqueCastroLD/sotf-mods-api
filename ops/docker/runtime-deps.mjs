@@ -90,7 +90,8 @@ function jsFiles(target, out = []) {
 }
 
 /** `import { a, b as c } from "x"` and `export { a } from "x"`: the bindings taken from `x`. */
-const NAMED_IMPORT_PATTERN = /^[ \t]*(?:import\s+(?:[\w$]+\s*,\s*)?|export\s+)\{([^}]*)\}\s*from\s*["']([^"'\n]+)["']/gm;
+const NAMED_IMPORT_PATTERN =
+  /^[ \t]*(?:import\s+(?:[\w$]+\s*,\s*)?|export\s+)\{([^}]*)\}\s*from\s*["']([^"'\n]+)["']/gm;
 
 /** Named bindings imported from bare specifiers (spec -> names). */
 function namedImports(source) {

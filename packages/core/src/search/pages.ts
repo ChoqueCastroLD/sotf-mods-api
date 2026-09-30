@@ -4,8 +4,8 @@
  * locale prefix, as for every other path returned by the API.
  */
 import type { Locale } from '@sotf/contracts/common';
-import * as messages from '@sotf/i18n/messages';
 import { LOCALES } from '@sotf/i18n/locales';
+import * as messages from '@sotf/i18n/messages';
 
 export interface SitePage {
   key: string;

@@ -243,7 +243,7 @@ export async function activateVersion(
       FROM "ModVersion" v JOIN "Mod" m ON m."id" = v."modId" LEFT JOIN "Category" c ON c."id" = m."categoryId"
      WHERE v."id" = ${versionId} FOR UPDATE OF v`);
   const row = found.rows[0];
-  if (!row || row.status !== 'pending') return null;
+  if (row?.status !== 'pending') return null;
   const now = ctx.clock.now();
   await tx
     .update(modVersion)

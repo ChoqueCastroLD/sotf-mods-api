@@ -6,9 +6,10 @@
  * alternative with the size and the piece count, so the block is fully usable without sight, with
  * JavaScript off or without WebGL.
  */
+
+import type { BuildPreviewDTO } from '@sotf/contracts/build-viewer';
 import { formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import type { BuildPreviewDTO } from '@sotf/contracts/build-viewer';
 import { Icon } from '@sotf/ui/icons';
 import { Box } from 'lucide-react';
 import type { ModDetailDTO } from './data.ts';
@@ -26,9 +27,9 @@ const facts = ready
   ? {
       name: build.name,
       pieces: formatNumber(locale, preview.totalPieces),
-      width: fmt(preview.size!.width),
-      depth: fmt(preview.size!.depth),
-      height: fmt(preview.size!.height),
+      width: fmt(preview.size?.width ?? 0),
+      depth: fmt(preview.size?.depth ?? 0),
+      height: fmt(preview.size?.height ?? 0),
     }
   : null;
 ---

@@ -15,9 +15,9 @@ import {
   builds_follow_error,
   builds_followed,
   builds_unfollowed,
+  common_action_close,
   common_action_follow,
   common_action_following,
-  common_action_close,
   common_action_undo,
   common_downloads_compact,
   common_followers_count,
@@ -211,7 +211,10 @@ function initLive(modId: number): void {
   const full = new Intl.NumberFormat(lang);
   startLiveCounters(modId, (live) => {
     for (const element of document.querySelectorAll<HTMLElement>('[data-live="downloads-stat"]')) {
-      element.textContent = common_downloads_compact({ count: live.downloads, display: compact.format(live.downloads) });
+      element.textContent = common_downloads_compact({
+        count: live.downloads,
+        display: compact.format(live.downloads),
+      });
       const item = element.closest<HTMLElement>('[data-live-downloads]');
       if (item) item.title = full.format(live.downloads);
     }

@@ -23,7 +23,14 @@ import { CategoryFigure, RatingsFigure, SeriesFigure, VersionSeriesFigure } from
 import { prefetchCharts } from './charts/lazy.tsx';
 import { number, percent } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
-import { channelLabel, countryName, languageName, REFERRER_GROUPS, referrerGroup, referrerGroupLabel } from './labels.ts';
+import {
+  channelLabel,
+  countryName,
+  languageName,
+  REFERRER_GROUPS,
+  referrerGroup,
+  referrerGroupLabel,
+} from './labels.ts';
 import { Panel, PanelError, PanelSkeleton, RangeSwitch, ScreenHeader } from './shared.tsx';
 
 /** Referrers grouped by source, biggest first (every group, zeros dropped). */

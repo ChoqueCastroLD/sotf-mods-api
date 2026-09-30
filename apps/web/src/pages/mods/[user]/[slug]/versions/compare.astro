@@ -16,9 +16,9 @@ import ModLayout from '../../../../../components/mod/ModLayout.astro';
 import { respondUnresolved } from '../../../../../components/mod/responses.ts';
 import { subpageTitle, truncate } from '../../../../../components/mod/seo.ts';
 import { SECTION_TITLE_CLASSES } from '../../../../../components/mod/styles.ts';
+import { serverApi } from '../../../../../lib/api.ts';
 import { setPageCache } from '../../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../../lib/cache/policy.ts';
-import { serverApi } from '../../../../../lib/api.ts';
 import { href } from '../../../../../lib/i18n.ts';
 import { ensureLocals } from '../../../../../lib/request-context.ts';
 

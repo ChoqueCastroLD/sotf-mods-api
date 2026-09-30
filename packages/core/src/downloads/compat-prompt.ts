@@ -4,13 +4,14 @@
  * downloaded. People who download **after** that moment, still under the current build, get the
  * same signal (same dedupe key, so nobody is asked twice) from the flush of the download counter.
  */
+
+import type { Database } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import { COMPAT_PROMPT_LIMIT, COMPAT_PROMPT_WINDOW_DAYS } from '../compat/read.ts';
 import { GAME_BUILD_COLUMNS, type GameBuildRow } from '../compat/shared.ts';
 import type { Clock } from '../kernel/clock.ts';
 import type { Jobs } from '../kernel/jobs.ts';
 import { createNotifications } from '../notifications/service.ts';
-import type { Database } from '@sotf/db';
 
 const REMEMBERED = 20_000;
 

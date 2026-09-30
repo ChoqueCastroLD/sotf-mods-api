@@ -20,10 +20,10 @@ import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
 import { ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
-import BuildViewer from '../../../../components/builds/BuildViewer.astro';
 import BuildGallery from '../../../../components/builds/BuildGallery.astro';
 import BuildHeader from '../../../../components/builds/BuildHeader.astro';
 import BuildSocial from '../../../../components/builds/BuildSocial.astro';
+import BuildViewer from '../../../../components/builds/BuildViewer.astro';
 import { BuildDependencies, RelatedBuildGrid } from '../../../../components/builds/Domain.tsx';
 import {
   BUILDSHARE_MANIFEST_ID,
@@ -214,8 +214,8 @@ const visibleCrumbs = trail.map((crumb) => ({
 </BaseLayout>
 
 <script>
-  import { initBuildViewer } from '../../../../components/builds/build-viewer.ts';
   import { initBuildPage } from '../../../../components/builds/build-page.ts';
+  import { initBuildViewer } from '../../../../components/builds/build-viewer.ts';
 
   initBuildPage();
   initBuildViewer();

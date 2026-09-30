@@ -5,19 +5,20 @@
  * form, so it works without JavaScript and every comparison is a shareable URL. `noindex`;
  * comparisons are not cached at the edge (they depend on the query), the API failing → 503.
  */
+
+import { isApiError } from '@sotf/contracts/client';
+import { modPath } from '@sotf/contracts/seo';
 import { formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
-import { isApiError } from '@sotf/contracts/client';
 import { type ModDetailDTO, resolveModPage } from '../components/mod/data.ts';
-import { licenseLabel, taxonomyName } from '../components/mod/i18n.ts';
 import { compatSentence, multiplayerLabel, platformLabel } from '../components/mod/format.ts';
+import { licenseLabel, taxonomyName } from '../components/mod/i18n.ts';
 import PageLayout from '../layouts/PageLayout.astro';
 import { setPageCache } from '../lib/cache/page.ts';
 import { MAX_COMPARE, parseCompareRefs } from '../lib/compare.ts';
 import { href } from '../lib/i18n.ts';
 import { ensureLocals } from '../lib/request-context.ts';
-import { modPath } from '@sotf/contracts/seo';
 
 export const prerender = false;
 

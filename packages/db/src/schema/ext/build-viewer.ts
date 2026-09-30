@@ -2,10 +2,10 @@
 import { bigint, customType, index, integer, jsonb, pgTable, text, unique } from 'drizzle-orm/pg-core';
 import { tstz } from '../_columns.ts';
 import type { JsonObject } from '../_json.ts';
-import { kit } from '../v2/community.ts';
 import { mod } from '../legacy/mod.ts';
 import { modVersion } from '../legacy/mod-version.ts';
 import { user } from '../legacy/user.ts';
+import { kit } from '../v2/community.ts';
 
 const bytea = customType<{ data: Buffer; driverData: Buffer }>({
   dataType() {

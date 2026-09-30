@@ -12,8 +12,8 @@ import { cache } from './cache.ts';
 import { EntityId, Locale } from './common.ts';
 import { dto } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
-import { ModerationLane } from './moderation.ts';
 import { SseKitLiveData } from './kit-social.ts';
+import { ModerationLane } from './moderation.ts';
 import { NotificationType } from './notifications.ts';
 
 // -----------------------------------------------------------------------------------------------

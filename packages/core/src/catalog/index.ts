@@ -3,6 +3,8 @@
  * facets, detail with the status/NSFW rules, versions, dependencies and dependents, related mods,
  * taxonomy, public profiles, creators and public statistics. See README.md.
  */
+
+export * from './badge.ts';
 export * from './detail.ts';
 export * from './explore.ts';
 export * from './listing.ts';
@@ -14,4 +16,3 @@ export * from './stats.ts';
 export * from './taxonomy.ts';
 export * from './users.ts';
 export * from './versions.ts';
-export * from './badge.ts';

@@ -12,8 +12,8 @@
  *   pnpm dev --filter=@sotf/web   anything else goes to `turbo run dev`
  */
 import { Socket } from 'node:net';
-import { color, run } from './lib/cli.ts';
 import { initEnv } from './env-init.ts';
+import { color, run } from './lib/cli.ts';
 import { REPO_ROOT } from './lib/repo.ts';
 
 export const DEV_INFRA_PORTS = { postgres: 47_432, s3: 47_333 } as const;

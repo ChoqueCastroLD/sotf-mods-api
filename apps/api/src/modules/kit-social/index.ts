@@ -36,7 +36,10 @@ export default defineModule({
     const deps: KitSocialDeps = {
       config: catalogConfigOf(m.platform.env),
       consumeDaily: (userId) =>
-        m.platform.rateLimiter.consume('kit-comments-day', `u:${userId}`, { max: KIT_COMMENTS_PER_DAY, window: DAY_MS }),
+        m.platform.rateLimiter.consume('kit-comments-day', `u:${userId}`, {
+          max: KIT_COMMENTS_PER_DAY,
+          window: DAY_MS,
+        }),
     };
 
     m.implement(kitSocialEndpoints.follow, async ({ params, body, ctx }) => followKit(ctx, params.id, body.notify));

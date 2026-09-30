@@ -3,10 +3,11 @@
  * Known issues the author maintains (T1-14): open and investigating first, then the fixed ones.
  * Plain text written in Basecamp; the FAQ the author writes is merged into `#faq` by the page.
  */
+
+import type { KnownIssueDTO } from '@sotf/contracts/mod-knowledge';
 import { formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
-import type { KnownIssueDTO } from '@sotf/contracts/mod-knowledge';
 import { SECTION_TITLE_CLASSES } from './styles.ts';
 
 interface Props {

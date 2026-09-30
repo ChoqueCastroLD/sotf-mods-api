@@ -4,13 +4,14 @@
  * the folders RedLoader expects. The link is the API redirect (counts the download, then serves the
  * zip from the CDN), so it works without JavaScript. Hidden when the mod has no ready bundle.
  */
+
+import type { ModBundleDTO } from '@sotf/contracts/bundles';
 import { formatBytes, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { PackageOpen } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
-import type { ModBundleDTO } from '@sotf/contracts/bundles';
 import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
 
 interface Props {
@@ -40,7 +41,7 @@ const ready = bundles.filter((bundle) => bundle.status === 'ready' && bundle.dow
               })}
             </a>
             <a
-              href={bundle.downloadPath!}
+              href={bundle.downloadPath ?? '#'}
               class={buttonClasses({ variant: 'primary', size: 'sm' })}
               download
               rel="nofollow"

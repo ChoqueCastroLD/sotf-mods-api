@@ -9,7 +9,6 @@ export * from './reconcile.ts';
 export * from './registry.ts';
 export * from './reports.ts';
 export * from './rules.ts';
-export * from './uptime.ts';
 export {
   assertRegistryAdmin,
   type CompatDeps,
@@ -21,3 +20,4 @@ export {
   loadEcosystem,
   loadGameBuilds,
 } from './shared.ts';
+export * from './uptime.ts';

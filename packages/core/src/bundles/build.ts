@@ -15,8 +15,8 @@ import type { Ctx } from '../kernel/context.ts';
 import { loadItems, resolveVersions } from '../kits/read.ts';
 import type { ObjectStorage } from '../storage/client.ts';
 import { safeName, storageKeyFromPublicUrl } from '../storage/keys.ts';
-import { bundleFingerprint } from './service.ts';
 import { bundleReadme, mergeFiles, type PlannedFile, planItemFiles } from './plan.ts';
+import { bundleFingerprint } from './service.ts';
 
 export type BundleOutcome =
   | { status: 'ready'; bytes: number; files: number }
@@ -155,9 +155,9 @@ export async function buildBundle(
       WHERE "id" = ${bundle.id}`,
   );
   if (bundle.storageKey && bundle.storageKey !== key && bundle.storageKey.startsWith('bundles/')) {
-    await storage.delete(storage.config.publicBucket, bundle.storageKey).catch((err) =>
-      ctx.log.warn({ err, key: bundle.storageKey }, 'old bundle zip not deleted'),
-    );
+    await storage
+      .delete(storage.config.publicBucket, bundle.storageKey)
+      .catch((err) => ctx.log.warn({ err, key: bundle.storageKey }, 'old bundle zip not deleted'));
   }
   await ctx.jobs.enqueue('cdn.purge', { tags: [`mod:${bundle.modId}`], reason: 'bundle' });
   ctx.log.info({ bundleId: bundle.id, files: merged.files.length, bytes: zip.length }, 'bundle built');

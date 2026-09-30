@@ -4,9 +4,10 @@
  * geometry. A build without geometry yet gets the job enqueued by the first read (existing builds
  * are filled lazily, no separate backfill).
  */
-import { FILE_CHECKS } from '@sotf/contracts/manifest';
+
 import type { BuildGeometryDTO, BuildPreviewDTO } from '@sotf/contracts/build-viewer';
 import { GEOMETRY_STRIDE } from '@sotf/contracts/build-viewer';
+import { FILE_CHECKS } from '@sotf/contracts/manifest';
 import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import { queryOne, toDate, toInt } from '../follows/sql.ts';
@@ -106,10 +107,23 @@ async function latestGeometry(db: Executor, modId: number): Promise<LatestRow> {
 export async function getBuildPreview(ctx: Ctx, modId: number): Promise<BuildPreviewDTO> {
   const row = await latestGeometry(ctx.db, modId);
   const viewBox = { width: PREVIEW_COLUMNS, height: PREVIEW_ROWS };
-  const base = { modId, modVersionId: row.versionId, pieces: 0, totalPieces: 0, profiles: 0, size: null, svg: null, viewBox };
+  const base = {
+    modId,
+    modVersionId: row.versionId,
+    pieces: 0,
+    totalPieces: 0,
+    profiles: 0,
+    size: null,
+    svg: null,
+    viewBox,
+  };
   if (row.versionId === null) return { ...base, status: 'unavailable' };
   if (row.status === null) {
-    await ctx.jobs.enqueue('build.geometry', { modVersionId: row.versionId }, { singletonKey: `geometry:${row.versionId}` });
+    await ctx.jobs.enqueue(
+      'build.geometry',
+      { modVersionId: row.versionId },
+      { singletonKey: `geometry:${row.versionId}` },
+    );
     return { ...base, status: 'pending' };
   }
   if (row.status !== 'ready' || !row.previewSvg) return { ...base, status: 'unavailable' };

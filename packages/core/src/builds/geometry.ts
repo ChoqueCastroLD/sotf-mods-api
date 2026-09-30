@@ -274,7 +274,8 @@ export function renderTopDownSvg(pieces: readonly Piece[], size: BuildBoundsDTO)
       let end = col + 1;
       while (end < cols) {
         const next = heights[row * cols + end] ?? -1;
-        if (next < 0 || Math.min(HEIGHT_BANDS.length - 1, Math.floor((next / top) * HEIGHT_BANDS.length)) !== band) break;
+        if (next < 0 || Math.min(HEIGHT_BANDS.length - 1, Math.floor((next / top) * HEIGHT_BANDS.length)) !== band)
+          break;
         end++;
       }
       paths[band] += `M${col} ${row}h${end - col}v1h-${end - col}z`;

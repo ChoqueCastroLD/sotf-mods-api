@@ -50,8 +50,7 @@ export function createSecurityScanJobs(options: SecurityScanJobOptions = {}): Jo
       }),
       defineJob({
         queue: 'security.rescan',
-        handler: async (_data, { ctx, services }) =>
-          rescanStaleScans(ctx, { schema: services.env.PGBOSS_SCHEMA }),
+        handler: async (_data, { ctx, services }) => rescanStaleScans(ctx, { schema: services.env.PGBOSS_SCHEMA }),
       }),
     ],
   });

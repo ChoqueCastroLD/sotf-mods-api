@@ -3,7 +3,7 @@
  * `ChartFigure` (title and the mandatory «View as table»), with a 30 days / 1 year / all time
  * range switch. Data: `GET /api/v2/mods/:id/stats/public?range=` (edge cached 900 s).
  */
-import { chartTheme, ChartFigure, niceTicks, seriesColor } from '@sotf/ui/domain';
+import { ChartFigure, chartTheme, niceTicks, seriesColor } from '@sotf/ui/domain';
 import { useEffect, useMemo, useState } from 'react';
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { formatNumber, pageLang, SocialI18n } from '../comments/lib/i18n.tsx';
@@ -67,6 +67,7 @@ export function StatsChart({ modId, labels }: StatsChartProps) {
   return (
     <SocialI18n>
       <div className="grid gap-3">
+        {/* biome-ignore lint/a11y/useSemanticElements: a group of toggle buttons; <fieldset> would add unwanted chrome */}
         <div role="group" aria-label={labels.rangeLabel} className="flex flex-wrap gap-1.5">
           {RANGES.map((value) => (
             <button
@@ -99,8 +100,16 @@ export function StatsChart({ modId, labels }: StatsChartProps) {
             <ResponsiveContainer width="100%" height={HEIGHT}>
               <AreaChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }} accessibilityLayer={false}>
                 <CartesianGrid {...chartTheme.grid} />
-                <XAxis {...chartTheme.xAxis} dataKey="day" tickFormatter={(value: string) => dayLabel(value, withYear)} />
-                <YAxis {...chartTheme.yAxis} ticks={niceTicks(max)} tickFormatter={(value: number) => formatNumber(value)} />
+                <XAxis
+                  {...chartTheme.xAxis}
+                  dataKey="day"
+                  tickFormatter={(value: string) => dayLabel(value, withYear)}
+                />
+                <YAxis
+                  {...chartTheme.yAxis}
+                  ticks={niceTicks(max)}
+                  tickFormatter={(value: number) => formatNumber(value)}
+                />
                 <Tooltip
                   {...chartTheme.tooltip}
                   labelFormatter={(value: unknown) => dayLabel(String(value), withYear)}

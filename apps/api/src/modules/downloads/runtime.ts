@@ -5,8 +5,13 @@
  */
 import { DOWNLOAD_REDIRECT_HEADERS } from '@sotf/contracts/downloads';
 import { errors, systemClock } from '@sotf/core';
+import {
+  createCompatPromptForLaterDownloaders,
+  DownloadCounter,
+  type DownloadOutcome,
+  DownloadsService,
+} from '@sotf/core/downloads/index';
 import { publishModLive } from '@sotf/core/realtime/index';
-import { createCompatPromptForLaterDownloaders, DownloadCounter, type DownloadOutcome, DownloadsService } from '@sotf/core/downloads/index';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import type { RedirectOutput } from '../../lib/define-module.ts';
 import type { Platform } from '../../lib/types.ts';

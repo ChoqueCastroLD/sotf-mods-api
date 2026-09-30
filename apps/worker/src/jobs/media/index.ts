@@ -40,7 +40,10 @@ export default defineJobGroup({
         const { env } = services;
         const result = await rerenderStaleMarkdown(
           ctx,
-          { config: { mediaBaseUrl: env.R2_PUBLIC_BASE_URL, publicBucket: env.R2_BUCKET }, storage: services.storage() },
+          {
+            config: { mediaBaseUrl: env.R2_PUBLIC_BASE_URL, publicBucket: env.R2_BUCKET },
+            storage: services.storage(),
+          },
           { batchSize },
         );
         if (result.remaining) {

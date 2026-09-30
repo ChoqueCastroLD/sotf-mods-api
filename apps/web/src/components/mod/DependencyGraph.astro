@@ -45,6 +45,7 @@ const stroke = (kind: string) => (kind === 'conflicts' ? 'var(--color-danger, #e
     <section id="dependency-graph" aria-labelledby="dependency-graph-title" class="grid gap-3">
       <h2 id="dependency-graph-title" class={SECTION_TITLE_CLASSES}>{m.mod_graph_title()}</h2>
       <figure class:list={[PANEL_CLASSES, 'overflow-x-auto']}>
+        <!-- biome-ignore lint/a11y/useSemanticElements: an SVG drawing labelled as a group has no semantic HTML element -->
         <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={m.mod_graph_label({ name: mod.name })} class="mx-auto h-auto w-full min-w-[34rem] max-w-3xl text-fg" font-family="var(--font-sans)">
           {left.map((dependency, index) => {
             const y = yOf(index, left.length);

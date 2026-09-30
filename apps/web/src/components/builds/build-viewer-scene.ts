@@ -4,8 +4,9 @@
  * calls for up to 20 000 pieces); rendering is on demand (no animation loop), so reduced motion and
  * battery are respected. Orbit by mouse/touch (OrbitControls) and by keyboard (arrows, + and -).
  */
-import { viewer_canvas_label } from '@sotf/i18n/messages';
+
 import type { BuildGeometryDTO } from '@sotf/contracts/build-viewer';
+import { viewer_canvas_label } from '@sotf/i18n/messages';
 import {
   AmbientLight,
   BoxGeometry,
@@ -100,7 +101,7 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
   const meshes: InstancedMesh[] = [];
   const materials: MeshLambertMaterial[] = [];
   for (const [profile, indexes] of byProfile) {
-    const material = new MeshLambertMaterial({ color: new Color().setHSL(((profile * 0.618) % 1), 0.45, 0.58) });
+    const material = new MeshLambertMaterial({ color: new Color().setHSL((profile * 0.618) % 1, 0.45, 0.58) });
     const mesh = new InstancedMesh(box, material, indexes.length);
     indexes.forEach((index, slot) => {
       const o = index * STRIDE;

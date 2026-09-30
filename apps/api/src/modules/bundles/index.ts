@@ -3,8 +3,9 @@
  * the zip in R2, counted), and the creator's management (attach a kit, rebuild, detach). The zip is
  * built by the worker (`bundle.build`, `bundle.sweep`); see `@sotf/core/bundles`.
  */
-import { DOWNLOAD_REDIRECT_HEADERS } from '@sotf/contracts/downloads';
+
 import { bundlesEndpoints } from '@sotf/contracts/bundles';
+import { DOWNLOAD_REDIRECT_HEADERS } from '@sotf/contracts/downloads';
 import {
   createBundle,
   listOwnBundles,

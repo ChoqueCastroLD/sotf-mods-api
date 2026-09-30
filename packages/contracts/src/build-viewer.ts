@@ -117,8 +117,7 @@ export const buildViewerEndpoints = {
     method: 'GET',
     path: `${base}/:id/preview`,
     summary: 'Top-down SVG preview of a build (latest version)',
-    description:
-      'Generates the geometry in the background when the build has none yet (`status: pending`).',
+    description: 'Generates the geometry in the background when the build has none yet (`status: pending`).',
     auth: 'public',
     params: z.object({ id: IdParam }),
     response: BuildPreviewDTO,
@@ -140,4 +139,3 @@ export const buildViewerEndpoints = {
     rateLimit: 'anonymousRead',
   }),
 } as const;
-

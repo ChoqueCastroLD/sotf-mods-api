@@ -27,10 +27,6 @@ import { type Executor, withTx } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { type CatalogConfig, getSnapshot } from '../catalog/index.ts';
-import { at, intArray, query, queryOne, toInt } from '../follows/sql.ts';
-import type { Actor, Ctx } from '../kernel/context.ts';
-import { errors } from '../kernel/errors.ts';
-import { buildKitCards, type KitRow, loadKitRow, loadKitRows, viewOf } from '../kits/read.ts';
 import {
   AUTHOR_COLUMNS,
   type AuthorColumns,
@@ -42,6 +38,10 @@ import {
   loadMember,
   userRefOf,
 } from '../comments/shared.ts';
+import { at, intArray, query, queryOne, toInt } from '../follows/sql.ts';
+import type { Actor, Ctx } from '../kernel/context.ts';
+import { errors } from '../kernel/errors.ts';
+import { buildKitCards, type KitRow, loadKitRow, loadKitRows, viewOf } from '../kits/read.ts';
 import { renderUserText } from '../mentions/index.ts';
 import { assertCan } from '../permissions/can.ts';
 import { publishKitLive } from '../realtime/index.ts';

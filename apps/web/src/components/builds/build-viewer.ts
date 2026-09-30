@@ -40,11 +40,11 @@ function mount(root: HTMLElement): void {
   function close() {
     handle?.dispose();
     handle = null;
-    svg!.hidden = false;
+    if (svg) svg.hidden = false;
     setLabel(viewer_explore());
     say('');
-    open!.setAttribute('aria-pressed', 'false');
-    open!.focus();
+    open?.setAttribute('aria-pressed', 'false');
+    open?.focus();
   }
 
   open.addEventListener('click', async () => {
@@ -58,7 +58,12 @@ function mount(root: HTMLElement): void {
     say(viewer_loading());
     try {
       const scene = await import('./build-viewer-scene.ts');
-      const result = await scene.mountScene({ host: frame, modId: id, name, reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches });
+      const result = await scene.mountScene({
+        host: frame,
+        modId: id,
+        name,
+        reduceMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+      });
       if (!result) {
         say(viewer_no_webgl());
         return;

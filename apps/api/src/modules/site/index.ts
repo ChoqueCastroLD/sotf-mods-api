@@ -28,7 +28,10 @@ export default defineModule({
 
     m.implement(statsEndpoints.modBadge, async ({ params, ctx, cache }) => {
       cache({ id: params.id });
-      return { body: await getModBadge(ctx, config, params.id, params.kind), contentType: 'image/svg+xml; charset=utf-8' };
+      return {
+        body: await getModBadge(ctx, config, params.id, params.kind),
+        contentType: 'image/svg+xml; charset=utf-8',
+      };
     });
 
     m.implement(statsEndpoints.modPublicStats, async ({ params, query, ctx, cache, request, reply }) => {

@@ -4,10 +4,10 @@
  * and widths come from a per-character estimate so no font is needed.
  */
 import type { BADGE_KINDS } from '@sotf/contracts/stats';
-import type { CatalogConfig } from './media.ts';
-import { assertReachable } from './detail.ts';
-import { getSnapshot } from './snapshot.ts';
 import type { Ctx } from '../kernel/context.ts';
+import { assertReachable } from './detail.ts';
+import type { CatalogConfig } from './media.ts';
+import { getSnapshot } from './snapshot.ts';
 
 type BadgeKind = (typeof BADGE_KINDS)[number];
 
