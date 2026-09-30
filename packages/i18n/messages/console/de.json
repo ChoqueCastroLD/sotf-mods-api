@@ -48,8 +48,6 @@
   "console_session_expired": "Deine Sitzung ist abgelaufen. Melde dich erneut an, um weiterzumachen.",
   "console_sign_out_failed": "Wir konnten dich nicht abmelden. Versuch es noch einmal.",
   "console_forbidden_action": "Zum Basislager",
-  "console_empty_title": "Hier ist noch nichts",
-  "console_empty_detail": "Dieser Teil des Lagers wird noch aufgebaut. Schau bald wieder vorbei.",
   "console_not_found_detail": "Unter dieser Adresse gibt es in der Konsole nichts. Vielleicht wurde es verschoben.",
   "console_not_found_action": "Zurück zum Basislager",
   "console_error_title": "Diese Ansicht wurde nicht geladen",

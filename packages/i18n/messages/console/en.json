@@ -48,8 +48,6 @@
   "console_session_expired": "Your session ended. Sign in again to continue.",
   "console_sign_out_failed": "We couldn’t sign you out. Try again.",
   "console_forbidden_action": "Go to Basecamp",
-  "console_empty_title": "Nothing here yet",
-  "console_empty_detail": "This part of camp is still being set up. Check back soon.",
   "console_not_found_detail": "There’s nothing at this address inside the console. It may have moved.",
   "console_not_found_action": "Back to Basecamp",
   "console_error_title": "This screen didn’t load",

@@ -48,8 +48,6 @@
   "console_session_expired": "你的会话已结束。请重新登录以继续。",
   "console_sign_out_failed": "无法退出登录，请重试。",
   "console_forbidden_action": "前往营地",
-  "console_empty_title": "这里还什么都没有",
-  "console_empty_detail": "营地的这一部分还在搭建中，请稍后再来。",
   "console_not_found_detail": "控制台中这个地址什么都没有，可能已被移动。",
   "console_not_found_action": "返回营地",
   "console_error_title": "此页面未能加载",

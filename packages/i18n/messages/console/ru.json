@@ -48,8 +48,6 @@
   "console_session_expired": "Сеанс завершён. Войдите снова, чтобы продолжить.",
   "console_sign_out_failed": "Не удалось выйти из аккаунта. Попробуйте ещё раз.",
   "console_forbidden_action": "В лагерь",
-  "console_empty_title": "Здесь пока пусто",
-  "console_empty_detail": "Эта часть лагеря ещё обустраивается. Загляните позже.",
   "console_not_found_detail": "По этому адресу в консоли ничего нет. Возможно, страницу перенесли.",
   "console_not_found_action": "Вернуться в лагерь",
   "console_error_title": "Экран не загрузился",

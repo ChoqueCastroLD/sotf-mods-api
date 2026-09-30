@@ -48,8 +48,6 @@
   "console_session_expired": "Votre session a expiré. Reconnectez-vous pour continuer.",
   "console_sign_out_failed": "Impossible de vous déconnecter. Réessayez.",
   "console_forbidden_action": "Aller au camp de base",
-  "console_empty_title": "Rien ici pour l’instant",
-  "console_empty_detail": "Cette partie du camp est encore en construction. Revenez bientôt.",
   "console_not_found_detail": "Il n’y a rien à cette adresse dans la console. Elle a peut-être été déplacée.",
   "console_not_found_action": "Retour au camp de base",
   "console_error_title": "Cet écran ne s’est pas chargé",

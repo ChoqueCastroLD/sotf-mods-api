@@ -8,7 +8,7 @@ import { EmptyState } from '@sotf/ui/empty-state';
 import { ErrorState } from '@sotf/ui/error-state';
 import { Icon } from '@sotf/ui/icons';
 import { type AnyRouter, useRouter } from '@tanstack/react-router';
-import { Binoculars, Compass, RefreshCw, Tent } from 'lucide-react';
+import { Binoculars, Compass, RefreshCw } from 'lucide-react';
 import type { MouseEvent } from 'react';
 import { t } from '../lib/messages.ts';
 
@@ -50,22 +50,6 @@ export function Forbidden() {
       title={t('errors_permission_title')}
       description={t('errors_permission_detail')}
       action={<BasecampLink label={t('console_forbidden_action')} />}
-    />
-  );
-}
-
-/** An area (or section) whose screens are not available yet. */
-export function AreaPlaceholder({ title }: { title: string }) {
-  return (
-    <EmptyState
-      icon={<Icon icon={Tent} size={32} />}
-      title={title}
-      description={
-        <>
-          <span className="block font-medium text-fg">{t('console_empty_title')}</span>
-          {t('console_empty_detail')}
-        </>
-      }
     />
   );
 }
