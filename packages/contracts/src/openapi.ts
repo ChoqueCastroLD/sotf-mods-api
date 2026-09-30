@@ -58,6 +58,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   seo: 'Path resolution for legacy and canonical URLs.',
   stats: 'Public statistics and live counters.',
   studio: 'Basecamp: drafts, publishing, versions, analytics and inbox.',
+  translations: 'Automatic translation of mod short descriptions and the author overrides in Basecamp.',
   uploads: 'Direct uploads to R2 with presigned URLs.',
   versions: 'Versions of a mod in semver order, with security scans and compatibility.',
 };

@@ -39,6 +39,9 @@ export const workerEnvSchema = z.object({
   KELVINSEEK_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
   /** Default KelvinSeek daily budget (same variable as the API); `ops.alerts` warns at 80 %. */
   KELVINSEEK_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(3),
+  /** Short-description translation (T1-25): model and daily budget of the `translation.mod` job. */
+  TRANSLATION_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
+  TRANSLATION_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(1),
   /** Parallel jobs per queue in this process (sharp stays at 1 inside media jobs). */
   WORKER_CONCURRENCY: envInt(2, 1, 32),
 });

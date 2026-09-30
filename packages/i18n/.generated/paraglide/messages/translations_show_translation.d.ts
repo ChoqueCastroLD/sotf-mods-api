@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_TitleInputs = {};
+export type Translations_Show_TranslationInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing here yet" |
+* | "Show translation" |
 *
-* @param {Console_Empty_TitleInputs} inputs
+* @param {Translations_Show_TranslationInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_title: ((inputs?: Console_Empty_TitleInputs, options?: {
+export declare const translations_show_translation: ((inputs?: Translations_Show_TranslationInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_TitleInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Translations_Show_TranslationInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

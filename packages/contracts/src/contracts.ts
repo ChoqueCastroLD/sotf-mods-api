@@ -24,6 +24,7 @@ import { searchEndpoints } from './search.ts';
 import { seoEndpoints } from './seo.ts';
 import { statsEndpoints } from './stats.ts';
 import { studioEndpoints } from './studio.ts';
+import { translationsEndpoints } from './translations.ts';
 import { uploadsEndpoints } from './uploads.ts';
 import { versionsEndpoints } from './versions.ts';
 
@@ -48,6 +49,7 @@ export const apiContracts = {
   seo: seoEndpoints,
   stats: statsEndpoints,
   studio: studioEndpoints,
+  translations: translationsEndpoints,
   uploads: uploadsEndpoints,
   versions: versionsEndpoints,
 } as const;

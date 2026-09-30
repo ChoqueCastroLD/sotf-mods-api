@@ -270,6 +270,12 @@ export const API_ROUTES = {
     analyticsCsv: { id: 'studio.analyticsCsv', method: 'GET', path: "/api/v2/studio/analytics.csv", kind: 'csv', bodyKind: null },
     inbox: { id: 'studio.inbox', method: 'GET', path: "/api/v2/studio/inbox", kind: 'json', bodyKind: null },
   },
+  translations: {
+    forMod: { id: 'translations.forMod', method: 'GET', path: "/api/v2/mods/:id/translation", kind: 'json', bodyKind: null },
+    studioList: { id: 'translations.studioList', method: 'GET', path: "/api/v2/studio/mods/:id/translations", kind: 'json', bodyKind: null },
+    studioPut: { id: 'translations.studioPut', method: 'PUT', path: "/api/v2/studio/mods/:id/translations/:locale", kind: 'json', bodyKind: 'json' },
+    studioRevert: { id: 'translations.studioRevert', method: 'DELETE', path: "/api/v2/studio/mods/:id/translations/:locale", kind: 'json', bodyKind: null },
+  },
   uploads: {
     create: { id: 'uploads.create', method: 'POST', path: "/api/v2/uploads", kind: 'json', bodyKind: 'json' },
     complete: { id: 'uploads.complete', method: 'POST', path: "/api/v2/uploads/:id/complete", kind: 'json', bodyKind: 'json' },

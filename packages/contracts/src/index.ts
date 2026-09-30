@@ -38,5 +38,6 @@ export * from './search.ts';
 export * from './seo.ts';
 export * from './stats.ts';
 export * from './studio.ts';
+export * from './translations.ts';
 export * from './uploads.ts';
 export * from './versions.ts';

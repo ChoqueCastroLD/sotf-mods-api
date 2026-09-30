@@ -13,7 +13,8 @@ import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
 import { CompatBadge, Cover, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { CalendarClock, Download, Heart, Scale, Star, TrendingUp } from 'lucide-react';
+import { CalendarClock, Download, Heart, Languages, Scale, Star, TrendingUp } from 'lucide-react';
+import { optional, serverApi } from '../../lib/api.ts';
 import { href } from '../../lib/i18n.ts';
 import Picture from '../layout/Picture.astro';
 import ActionBar from './ActionBar.astro';
@@ -47,6 +48,15 @@ const oneLine = [
   multiplayer,
   loader ? m.mod_capsule_loader_short({ version: loader }) : null,
 ].filter((part): part is string => Boolean(part));
+// T1-25: the visitor's language version of the short description (the original stays one click away).
+const translation =
+  !compact && locale !== 'en' && mod.shortDescription
+    ? ((
+        await optional((signal) =>
+          serverApi().translations.forMod({ params: { id: mod.id }, query: { locale } }, { signal }),
+        )
+      )?.translation ?? null)
+    : null;
 const galleryLabel = m.mod_gallery_label({ name: mod.name });
 ---
 
@@ -115,10 +125,42 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
         {compact ? <a href={overviewHref} class="hover:underline underline-offset-4">{mod.name}</a> : mod.name}
       </h1>
       {
-        !compact && mod.shortDescription && (
+        !compact && mod.shortDescription && !translation && (
           <p class="text-lg text-fg-muted" lang={mod.contentLang ?? undefined}>
             {mod.shortDescription}
           </p>
+        )
+      }
+      {
+        !compact && mod.shortDescription && translation && (
+          <div class="grid gap-1.5" data-translation>
+            <p class="text-lg text-fg-muted" lang={locale} data-translation-text="translated">
+              {translation.shortDescription}
+            </p>
+            <p class="text-lg text-fg-muted" lang={mod.contentLang ?? 'en'} data-translation-text="original" hidden>
+              {mod.shortDescription}
+            </p>
+            <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-fg-subtle">
+              <Icon icon={Languages} size={14} />
+              <span
+                data-translation-note
+                data-note-translated={translation.source === 'author' ? m.translations_badge_author() : m.translations_badge_machine()}
+                data-note-original={m.translations_original_note()}
+              >
+                {translation.source === 'author' ? m.translations_badge_author() : m.translations_badge_machine()}
+              </span>
+              <button
+                type="button"
+                data-translation-toggle
+                aria-pressed="false"
+                data-label-original={m.translations_show_original()}
+                data-label-translated={m.translations_show_translation()}
+                class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3"
+              >
+                {m.translations_show_original()}
+              </button>
+            </p>
+          </div>
         )
       }
     </div>
