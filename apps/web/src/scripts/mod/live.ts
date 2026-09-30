@@ -1,8 +1,11 @@
 /**
  * Live counters of mod and build pages. The cached HTML may be up to 15 minutes old, so the page
- * asks `GET /api/v2/mods/:id/live` (edge cached 30 s, public) shortly after load and then once a
- * minute while the tab is visible, pausing in background tabs and on offline. Only the figures
- * change in place (no layout shift: same elements, `tabular-nums`).
+ * opens `EventSource` on `/api/v2/mods/:id/live/stream` (public, cookieless `mod.live` frames: sent
+ * on connect and on every counted download) while the tab is visible. The server closes the stream
+ * after a while and the browser reconnects by itself. Without `EventSource`, or when the stream
+ * cannot be kept open, the page falls back to polling `GET /api/v2/mods/:id/live` (edge cached
+ * 30 s) once a minute, pausing in background tabs and on offline. Only the figures change in place
+ * (no layout shift: same elements, `tabular-nums`).
  */
 
 export interface LiveCounters {
@@ -22,14 +25,21 @@ function isCounters(value: unknown): value is LiveCounters {
   return typeof v.downloads === 'number' && typeof v.followers === 'number';
 }
 
+/** Consecutive stream failures (never opened) before polling takes over. */
+const STREAM_FAILURES_BEFORE_POLLING = 2;
+
 export function startLiveCounters(modId: number, apply: (live: LiveCounters) => void): void {
   let timer: number | undefined;
+  let source: EventSource | null = null;
+  let streamOpen = false;
+  let failures = 0;
+  let streamGaveUp = typeof EventSource === 'undefined';
   let polls = 0;
   let last = 0;
   let inFlight = false;
 
   const poll = async (): Promise<void> => {
-    if (inFlight || document.visibilityState !== 'visible' || navigator.onLine === false) return;
+    if (streamOpen || inFlight || document.visibilityState !== 'visible' || navigator.onLine === false) return;
     inFlight = true;
     polls += 1;
     last = Date.now();
@@ -57,10 +67,67 @@ export function startLiveCounters(modId: number, apply: (live: LiveCounters) => 
     }, delay);
   };
 
+  const closeStream = () => {
+    source?.close();
+    source = null;
+    streamOpen = false;
+  };
+
+  const openStream = () => {
+    if (source || streamGaveUp || document.visibilityState !== 'visible' || navigator.onLine === false) return;
+    let stream: EventSource;
+    try {
+      stream = new EventSource(`/api/v2/mods/${modId}/live/stream`, { withCredentials: false });
+    } catch {
+      streamGaveUp = true;
+      return;
+    }
+    source = stream;
+    stream.onopen = () => {
+      failures = 0;
+      streamOpen = true;
+      window.clearTimeout(timer);
+    };
+    stream.addEventListener('mod.live', (message) => {
+      try {
+        const body: unknown = JSON.parse((message as MessageEvent<string>).data);
+        if (isCounters(body)) apply(body);
+      } catch {
+        // Malformed frame: ignore, the next one replaces it.
+      }
+    });
+    stream.onerror = () => {
+      streamOpen = false;
+      // CLOSED: the browser gave up (refused, 4xx/5xx); CONNECTING: it retries by itself.
+      if (stream.readyState === EventSource.CLOSED) {
+        closeStream();
+        failures = STREAM_FAILURES_BEFORE_POLLING;
+      } else failures += 1;
+      if (failures >= STREAM_FAILURES_BEFORE_POLLING) {
+        streamGaveUp = true;
+        closeStream();
+        schedule(0);
+      }
+    };
+  };
+
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible' && Date.now() - last > INTERVAL_MS / 2) schedule(0);
+    if (document.visibilityState === 'visible') {
+      openStream();
+      if (!streamOpen && Date.now() - last > INTERVAL_MS / 2) schedule(0);
+    } else closeStream();
   });
-  schedule(FIRST_DELAY_MS);
+  window.addEventListener('online', openStream);
+  window.addEventListener('pagehide', closeStream);
+  window.addEventListener('pageshow', (event) => {
+    if ((event as PageTransitionEvent).persisted) openStream();
+  });
+  if (streamGaveUp) schedule(FIRST_DELAY_MS);
+  else {
+    openStream();
+    // If the stream has not opened shortly, one poll covers the gap.
+    schedule(FIRST_DELAY_MS);
+  }
 }
 
 export function compactFormat(lang: string): Intl.NumberFormat {

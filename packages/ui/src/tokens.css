@@ -282,8 +282,10 @@
     @view-transition { navigation: auto; }   /* static site: cross-document transitions (Chromium/Safari; Firefox degrades gracefully) */
   }
   @media (prefers-reduced-motion: reduce) {
-    *, ::before, ::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important;
-                           transition-duration: 1ms !important; scroll-behavior: auto !important; }
+    :root:not([data-motion="full"]), :root:not([data-motion="full"]) *,
+    :root:not([data-motion="full"]) *::before, :root:not([data-motion="full"]) *::after {
+      animation-duration: 1ms !important; animation-iteration-count: 1 !important;
+      transition-duration: 1ms !important; scroll-behavior: auto !important; }
   }
 }
 
@@ -341,19 +343,13 @@
 
   /* Account motion override (User.settings.reducedMotion → <html data-motion>, WP-81).
      "reduce" applies the reduced-motion rules of section 1 even when the OS does not ask for them;
-     "full" opts out of the OS reduction: `revert-layer` drops this layer's !important overrides, so
-     the authored durations (utilities, components) apply again. */
+     "full" opts out of the OS reduction: the OS rule of section 1 simply does not match
+     `:root[data-motion="full"]`, so the authored durations apply again (no !important fight). */
   :root[data-motion="reduce"], :root[data-motion="reduce"] *,
   :root[data-motion="reduce"] *::before, :root[data-motion="reduce"] *::after {
     animation-duration: 1ms !important; animation-iteration-count: 1 !important;
     transition-duration: 1ms !important; scroll-behavior: auto !important;
   }
-  @media (prefers-reduced-motion: reduce) {
-    :root[data-motion="full"], :root[data-motion="full"] *,
-    :root[data-motion="full"] *::before, :root[data-motion="full"] *::after {
-      animation-duration: revert-layer !important; animation-iteration-count: revert-layer !important;
-      transition-duration: revert-layer !important; scroll-behavior: revert-layer !important;
-    }
   }
 
   /* Compact density (User.settings.density → <html data-density="compact">, WP-81): spacing

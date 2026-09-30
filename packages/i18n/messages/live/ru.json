@@ -1,0 +1,12 @@
+{
+  "live_compare_action": "Сравнить",
+  "live_embed_title": "Значки для вашей страницы",
+  "live_embed_intro": "Вставьте значок в README, на форум или в Discord. Они обновляются сами.",
+  "live_embed_markdown_label": "Markdown",
+  "live_embed_html_label": "HTML",
+  "live_embed_kind_downloads": "Загрузки",
+  "live_embed_kind_version": "Версия",
+  "live_embed_kind_compat": "Совместимость",
+  "live_embed_kind_rating": "Рейтинг",
+  "live_embed_badge_alt": "Значок «{kind}»: {name}"
+}
