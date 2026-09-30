@@ -23,7 +23,9 @@ import { Textarea } from '@sotf/ui/textarea';
 import { type InfiniteData, useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Bug, CheckCheck, ExternalLink, Inbox, MessageSquare, Radar, Reply, Star } from 'lucide-react';
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
+import { useTurnstile } from '../../../islands/auth/turnstile.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { problemCode } from '../../lib/errors.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
 import {
@@ -85,11 +87,14 @@ function Composer({
   submitLabel,
   onSubmit,
   onCancel,
+  children,
 }: {
   label: string;
   submitLabel: string;
   onSubmit: (body: string) => Promise<void>;
   onCancel: () => void;
+  /** Extra content under the field (the Turnstile widget host of comment replies). */
+  children?: ReactNode;
 }) {
   const id = useId();
   const field = useRef<HTMLTextAreaElement>(null);
@@ -133,6 +138,7 @@ function Composer({
           if (event.key === 'Escape') onCancel();
         }}
       />
+      {children}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="text-xs text-fg-subtle">
           {bt('basecamp_counter', { count: number(body.length), max: number(LIMITS.replyMax) })} ·{' '}
@@ -208,12 +214,19 @@ function VersionAction({
 
 type Mode = 'idle' | 'reply' | 'resolve' | 'fixed';
 
+/** Build-time public site key (the same one the public comment form falls back to). */
+const TURNSTILE_SITE_KEY =
+  (import.meta.env as Record<string, string | undefined>).PUBLIC_TURNSTILE_SITE_KEY || undefined;
+
 function InboxRow({ item, now }: { item: InboxItem; now: number }) {
   const queryClient = useQueryClient();
   const [mode, setMode] = useState<Mode>('idle');
   const [busy, setBusy] = useState(false);
   const locale = activeLocale();
   const TypeIcon = typeIcon(item.type);
+  // Accounts younger than 24 h need a Turnstile token to comment (PLAN §9.1): the widget only
+  // loads when the API answers TURNSTILE_REQUIRED, as on the public comment form.
+  const turnstile = useTurnstile({ siteKey: TURNSTILE_SITE_KEY, action: 'comment', language: locale });
 
   const done = async (state: InboxItem['state'], message: string) => {
     setItemState(queryClient, item, state);
@@ -225,11 +238,28 @@ function InboxRow({ item, now }: { item: InboxItem; now: number }) {
   const reply = async (body: string) => {
     try {
       if (item.type === 'review') await basecampApi.replyToReview(item.id, body);
-      else await basecampApi.replyToComment(item.mod.id, item.id, body);
+      else await replyToComment(body);
       await done('answered', bt('basecamp_inbox_replied'));
     } catch (error) {
       reportFailure(error, bt('basecamp_inbox_reply_failed'));
       throw error;
+    }
+  };
+
+  const replyToComment = async (body: string) => {
+    try {
+      await basecampApi.replyToComment(item.mod.id, item.id, body);
+    } catch (error) {
+      if (problemCode(error) !== 'TURNSTILE_REQUIRED') throw error;
+      const token = await turnstile.getToken().catch(() => {
+        throw error;
+      });
+      try {
+        await basecampApi.replyToComment(item.mod.id, item.id, body, token);
+      } finally {
+        // Tokens are single use.
+        turnstile.reset();
+      }
     }
   };
 
@@ -320,7 +350,9 @@ function InboxRow({ item, now }: { item: InboxItem; now: number }) {
         submitLabel={bt('basecamp_inbox_send')}
         onSubmit={reply}
         onCancel={() => setMode('idle')}
-      />
+      >
+        {item.type === 'review' ? null : <div ref={turnstile.containerRef} />}
+      </Composer>
     );
   } else {
     actions = (

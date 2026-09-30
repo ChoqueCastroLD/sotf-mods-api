@@ -253,8 +253,11 @@ export const basecampApi = {
     api.studio.requestRemoval({ params: { id: modId }, body: { reason: reason.trim() } }),
   replyToReview: (reviewId: number, bodyMd: string) =>
     api.reviews.reply({ params: { id: reviewId }, body: { bodyMd: bodyMd.trim() } }),
-  replyToComment: (modId: number, parentId: number, bodyMd: string) =>
-    api.comments.create({ params: { id: modId }, body: { bodyMd: bodyMd.trim(), parentId, isBugReport: false } }),
+  replyToComment: (modId: number, parentId: number, bodyMd: string, turnstileToken?: string) =>
+    api.comments.create({
+      params: { id: modId },
+      body: { bodyMd: bodyMd.trim(), parentId, isBugReport: false, ...(turnstileToken ? { turnstileToken } : {}) },
+    }),
   resolveBug: (commentId: number, versionId: number) =>
     api.comments.resolveBug({ params: { id: commentId }, body: { versionId } }),
   acknowledgeCompat: (reportId: number, fixedInVersionId?: number) =>
