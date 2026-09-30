@@ -89,12 +89,13 @@ describe('product beacon', () => {
   });
 
   it('drops GPC, DNT, bots and clients without a User-Agent with the same 204', async () => {
-    for (const headers of [
+    const cases: Array<Record<string, string>> = [
       { 'sec-gpc': '1' },
       { dnt: '1' },
       { 'user-agent': 'Googlebot/2.1 (+http://www.google.com/bot.html)' },
       { 'user-agent': '' },
-    ]) {
+    ];
+    for (const headers of cases) {
       const res = await beacon('/api/v2/e', { events: [pageView] }, headers);
       expect(res.statusCode).toBe(204);
     }
