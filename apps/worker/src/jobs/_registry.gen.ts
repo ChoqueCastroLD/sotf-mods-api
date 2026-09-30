@@ -2,6 +2,7 @@
 // Regenerate after adding, removing or renaming an entry; on merge conflicts, regenerate.
 
 import accountsJobs from './accounts/index.ts';
+import compatJobs from './compat/index.ts';
 import digestsJobs from './digests/index.ts';
 import discordJobs from './discord/index.ts';
 import downloadsJobs from './downloads/index.ts';
@@ -14,6 +15,7 @@ import uploadsJobs from './uploads/index.ts';
 
 export const jobGroups = [
   accountsJobs,
+  compatJobs,
   digestsJobs,
   discordJobs,
   downloadsJobs,

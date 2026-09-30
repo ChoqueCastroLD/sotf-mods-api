@@ -5,7 +5,9 @@ import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
 import catalogModule from './catalog/index.ts';
 import commentsModule from './comments/index.ts';
+import compatModule from './compat/index.ts';
 import downloadsModule from './downloads/index.ts';
+import ecosystemModule from './ecosystem/index.ts';
 import followsModule from './follows/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
@@ -24,7 +26,9 @@ export const modules = [
   authModule,
   catalogModule,
   commentsModule,
+  compatModule,
   downloadsModule,
+  ecosystemModule,
   followsModule,
   kitsModule,
   legacyModule,
