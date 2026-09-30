@@ -19,6 +19,7 @@ import { RATE_LIMITS, type RateLimitBucket } from '@sotf/contracts';
 import { errors } from '@sotf/core';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
 import { surfaceOf } from '../lib/surface.ts';
+import { secretsEqual } from './context.ts';
 
 export interface BucketLimit {
   max: number;
@@ -144,12 +145,22 @@ export function bucketFor(request: FastifyRequest): RateLimitBucket | null {
   return null;
 }
 
-export async function setupRateLimit(app: FastifyInstance, overrides: RateLimitOverrides = {}): Promise<RateLimiter> {
+export async function setupRateLimit(
+  app: FastifyInstance,
+  overrides: RateLimitOverrides = {},
+  internalSecret?: string,
+): Promise<RateLimiter> {
   await app.register(rateLimit, { global: false, cache: 50_000 });
   const limiter = new RateLimiter(app, overrides);
   app.addHook('onRequest', async (request) => {
     // Unknown routes (404) are not counted: the not-found handler answers cheaply.
     if (!request.routeOptions.url) return;
+    // Server-side rendering of the web: every visitor's page comes from the web container's single
+    // IP, so its calls (authenticated with the shared internal secret) are never rate limited.
+    if (internalSecret) {
+      const given = request.headers['x-internal-auth'];
+      if (secretsEqual(Array.isArray(given) ? given[0] : given, internalSecret)) return;
+    }
     const bucket = bucketFor(request);
     if (bucket) await limiter.enforce(bucket, request);
   });

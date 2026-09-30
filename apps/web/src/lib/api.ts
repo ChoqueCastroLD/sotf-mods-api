@@ -10,10 +10,15 @@ let client: ApiClient | undefined;
 
 /** Typed client for the public (anonymous) API, created once per process. */
 export function serverApi(): ApiClient {
+  const env = loadEnv();
   client ??= createApiClient({
-    baseUrl: loadEnv().internalApiUrl,
+    baseUrl: env.internalApiUrl,
     credentials: 'omit',
-    headers: { 'user-agent': 'sotf-web-ssr' },
+    // The internal secret exempts SSR from the per-IP rate limits (all visitors share our IP).
+    headers: {
+      'user-agent': 'sotf-web-ssr',
+      ...(env.internalSecret ? { 'x-internal-auth': env.internalSecret } : {}),
+    },
   });
   return client;
 }

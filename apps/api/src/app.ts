@@ -229,7 +229,7 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
     internalSecret: env.INTERNAL_SECRET,
     sessionResolver: () => sessionResolver,
   });
-  platform.rateLimiter = await setupRateLimit(app, options.rateLimits);
+  platform.rateLimiter = await setupRateLimit(app, options.rateLimits, env.INTERNAL_SECRET);
   await setupCacheHeaders(app);
   // After the cache headers: its onSend hooks demote cookie-setting/private responses.
   await setupSecurity(app, { env });
