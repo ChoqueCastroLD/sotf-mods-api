@@ -70,10 +70,10 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 - **Backfills sobre `@sotf/db`** · `tooling/migration/**` (WP-14) · usar `@sotf/db/testing` y
   `createDb`; los backfills solo escriben columnas v2 (el linter lo exige en migraciones, no en
   scripts). B6 rellena `"emailNormalized"` antes de `0045` (índice único); B5 archiva follows
-  duplicados antes de `0038`. (WP-10.)
+  duplicados antes de `0038`. (WP-10.) · **[x] resolved by wire-data**: verified: B1–B14 in `tooling/migration` (B5/B6 gate 0038/0045 through preconditions).
 - **B9: renderizar todo lo legacy con `profile: 'legacyHtml'`** · `tooling/migration/**` (WP-14) ·
   no solo las 24 descripciones con HTML; guardar `RENDER_VERSION` en `renderVersion`,
-  `decodeEntities` para `changelogMd`/`bodyMd` y `descriptionMd` literal. (WP-15.)
+  `decodeEntities` para `changelogMd`/`bodyMd` y `descriptionMd` literal. (WP-15.) · **[x] resolved by wire-data**: verified, and B9 now also writes `"Mod"."descriptionFormat" = 'legacy'`.
 - **Regenerar la baseline legacy desde un dump real si llega** · `packages/db` (WP-A0) ·
   `0000_legacy_baseline.sql` y `src/guard/legacy-catalog.json`; §14.5 dice que no habrá dump, así
   que el guard contra el catálogo vivo es la red de seguridad. (WP-10.)
@@ -122,7 +122,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `configureUiTranslate((key, params) => m[key](params ?? {}))` una vez (y `UiTranslateProvider` en
   la consola, WP-34). (WP-12, WP-13.)
 - **`UNLOCALIZED_SEGMENTS`** · `packages/i18n/src/paths.ts` o la opción `isLocalized` (WP-22) ·
-  ampliar si aparecen rutas sin prefijo (`/embed`, `/k`, `/_actions`). (WP-13.)
+  ampliar si aparecen rutas sin prefijo (`/embed`, `/k`, `/_actions`). (WP-13.) · **[x] resolved by wire-data**: `healthz` added; `/embed` and `/k` are localized routes by design (they render/redirect per locale).
 - **Sugerencia de idioma** · `apps/web/src/scripts/lang-suggest.ts` (WP-22) · renderizada en el
   locale sugerido, candidato de `negotiateLocale` o `fromLegacyLangCookie`; nunca redirección.
   (WP-13.)
@@ -133,18 +133,18 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `/brand/field-kit.svg` y el resto de `packages/brand/assets/public`. (WP-12; ya en wave-0.)
 - **Componentes de dominio** · `packages/ui/src/domain/index.ts` y
   `packages/ui/playground/domain/**/*.demo.tsx` (WP-25) · el export `@sotf/ui/domain` ya está
-  mapeado. (WP-12.)
+  mapeado. (WP-12.) · **[x] resolved by wire-data**: verified: `packages/ui/src/domain/index.ts` (WP-25).
 - **Estilos prose para los hooks de Markdown** · `packages/ui/src/**` `prose-locator` (WP-25) ·
   `.md-anchor`, `.md-alert*`, `.md-spoiler` (con foco visible y *reduced motion*), `.md-youtube`,
   `.md-mention`, listas de tareas y `details`/`summary`; contrato en
-  `packages/markdown/README.md`. (WP-15.)
+  `packages/markdown/README.md`. (WP-15.) · **[x] resolved by wire-data**: verified: `ProseLocator` (`packages/ui/src/domain/content.tsx`).
 - **Fachada de YouTube y revelado de spoilers** · `apps/web/src/scripts/**` (WP-62/WP-70) ·
   sustituir `a.md-youtube-link` por el iframe `youtube-nocookie`; spoilers accesibles (click, Enter,
   Espacio; `aria-expanded`, quitar `role`/`tabindex`/`aria-label`; CSS para spoilers con enlace o
   dentro de `<summary>`). (WP-15.)
 - **Etiquetas localizadas del HTML guardado** · `packages/i18n/messages/<ns>` (WP-94) y
   componentes (WP-62/WP-70) · mensajes `alert-*` y `spoiler`, y `localizeHtml(html, labels)` al
-  renderizar. (WP-15.)
+  renderizar. (WP-15.) · **[x] resolved by wire-data**: i18n part: `mod_md_alert_*`/`mod_md_spoiler` in 13 locales; the `localizeHtml` calls are web code.
 
 ### Dominio y consola (WP-31, WP-33, WP-34, WP-40, WP-41, WP-51, WP-54, WP-70, WP-81, WP-82)
 
@@ -160,10 +160,10 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   cadena JSON. (WP-11.)
 - **Perfil de render persistido** · `packages/db/migrations/**` + publicación (WP-40) ·
   `"Mod"."descriptionFormat"` `'legacy' | 'markdown'` para que una descripción legacy editada siga
-  con `legacyHtml`; aviso si Markdown nuevo contiene HTML (`hasRawHtml`). (WP-15.)
+  con `legacyHtml`; aviso si Markdown nuevo contiene HTML (`hasRawHtml`). (WP-15.) · **[partial] wire-data**: migration 2002 adds `"Mod"."descriptionFormat"` (NULL = infer) and B9 fills `legacy`; remaining: `packages/core` publishing must read/write it and warn with `hasRawHtml` (wire-api).
 - **Imágenes dentro de descripciones** · `apps/worker/src/jobs/media/**` (WP-40, B15) · replicar a
   R2 con las reglas SSRF de §9.1 y re-renderizar con `resolveImage` (URL + `width`/`height`).
-  (WP-15.)
+  (WP-15.) · **[x] resolved by wire-data**: verified: `description-images` subscriber of `apps/worker/src/jobs/media` (WP-40).
 - **Menciones** · `packages/core` comentarios/reseñas (WP-41) · `extractMentions` → una consulta →
   `resolveMention` síncrono; notificar `mentions`. (WP-15.)
 - **Estado del visitante en listas cacheadas** · contratos de comentarios/reseñas (WP-41/WP-70) ·
@@ -185,7 +185,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 ### Contenido y calidad (WP-72, WP-73, WP-91, WP-94)
 
 - **Carpeta de instalación en `common_download_done`** · `packages/i18n/messages/common/*` (WP-73)
-  · el texto sigue genérico hasta que la guía `/install` fije la ruta. (WP-13.)
+  · el texto sigue genérico hasta que la guía `/install` fije la ruta. (WP-13.) · **[x] resolved by wire-data**: verified: «Drop it in your game’s Mods folder», aligned with `/install`.
 - **Scout en cmdk** · `packages/i18n/messages/cmdk/**` (WP-72/T1) · se omite «or ask Scout» y la
   línea de rachas. (WP-13.)
 - **Revisión nativa de las 12 traducciones** · `packages/i18n/messages/**` (WP-94) · `common`,
