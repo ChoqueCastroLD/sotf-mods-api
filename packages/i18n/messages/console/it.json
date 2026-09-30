@@ -67,5 +67,6 @@
   "console_shortcut_go_ranger": "Vai alla stazione dei ranger",
   "console_shortcut_toggle_sidebar": "Comprimi o espandi la barra laterale",
   "console_noscript": "La console ha bisogno di JavaScript. Attivalo per gestire le tue mod, i segnali e le impostazioni.",
-  "console_nav_operations": "Operazioni"
+  "console_nav_operations": "Operazioni",
+  "console_nav_jams": "Mod Jam"
 }

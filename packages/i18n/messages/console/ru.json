@@ -67,5 +67,6 @@
   "console_shortcut_go_ranger": "Перейти на пост рейнджеров",
   "console_shortcut_toggle_sidebar": "Свернуть или развернуть боковую панель",
   "console_noscript": "Для консоли нужен JavaScript. Включите его, чтобы управлять модами, сигналами и настройками.",
-  "console_nav_operations": "Эксплуатация"
+  "console_nav_operations": "Эксплуатация",
+  "console_nav_jams": "Мод-джемы"
 }

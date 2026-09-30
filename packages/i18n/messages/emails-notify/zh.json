@@ -63,5 +63,6 @@
   "emails_notify_item_request_comment": "{actor} 评论了请求“{request}”",
   "emails_notify_item_request_comment_many": "{count, plural, other {请求“{request}”有 # 条新评论}}",
   "emails_notify_item_request_adopted": "{actor} 正在处理你的请求“{request}”",
-  "emails_notify_item_request_fulfilled": "你请求或投票支持的模组已发布：{mod}"
+  "emails_notify_item_request_fulfilled": "你请求或投票支持的模组已发布：{mod}",
+  "emails_notify_item_jam_phase": "{phase, select, announced {Mod Jam 已公布：{jam}} submissions {{jam} 已开放投稿} voting {{jam} 已开放投票} results {{jam} 的结果已公布} other {{jam} 有新动态}}"
 }

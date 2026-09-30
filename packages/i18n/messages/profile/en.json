@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Votes and reports between accounts on the same network within 24 hours don’t count.",
   "profile_achievements_fair_play_new_accounts": "Brand-new accounts weigh half in ratings and compatibility until they build trust.",
   "profile_achievements_fair_play_spikes": "Sudden download spikes are reviewed by the Rangers.",
-  "profile_achievements_fair_play_reversible": "Every XP point is recorded and can be reversed if it came from abuse."
+  "profile_achievements_fair_play_reversible": "Every XP point is recorded and can be reversed if it came from abuse.",
+  "profile_badge_jam_participant_name": "Jammer",
+  "profile_badge_jam_participant_hint": "Enter a mod in a Mod Jam once its results are published. Can be earned again.",
+  "profile_badge_jam_podium_name": "Jam Podium",
+  "profile_badge_jam_podium_hint": "Finish in the top 3 of a category in a Mod Jam. Can be earned again.",
+  "profile_badge_jam_champion_name": "Jam Champion",
+  "profile_badge_jam_champion_hint": "Win a Mod Jam overall. Can be earned again."
 }

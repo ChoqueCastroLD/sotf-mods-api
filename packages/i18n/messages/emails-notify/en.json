@@ -63,5 +63,6 @@
   "emails_notify_item_request_comment": "{actor} commented on the request “{request}”",
   "emails_notify_item_request_comment_many": "{count, plural, one {# new comment on the request “{request}”} other {# new comments on the request “{request}”}}",
   "emails_notify_item_request_adopted": "{actor} is working on your request “{request}”",
-  "emails_notify_item_request_fulfilled": "A mod you asked for or voted for is out: {mod}"
+  "emails_notify_item_request_fulfilled": "A mod you asked for or voted for is out: {mod}",
+  "emails_notify_item_jam_phase": "{phase, select, announced {Mod Jam announced: {jam}} submissions {Submissions are open in {jam}} voting {Voting is open in {jam}} results {Results are out for {jam}} other {{jam} has an update}}"
 }

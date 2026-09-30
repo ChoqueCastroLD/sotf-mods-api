@@ -63,5 +63,6 @@
   "emails_notify_item_request_comment": "{actor} kommenterade förfrågan ”{request}”",
   "emails_notify_item_request_comment_many": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
   "emails_notify_item_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
-  "emails_notify_item_request_fulfilled": "En mod du bett om eller röstade på är ute: {mod}"
+  "emails_notify_item_request_fulfilled": "En mod du bett om eller röstade på är ute: {mod}",
+  "emails_notify_item_jam_phase": "{phase, select, announced {Mod Jam aviserad: {jam}} submissions {Bidrag till {jam} är öppna} voting {Röstningen i {jam} är öppen} results {Resultaten för {jam} är ute} other {Nyheter om {jam}}}"
 }

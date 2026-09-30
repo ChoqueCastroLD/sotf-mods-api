@@ -124,5 +124,6 @@
   "signals_request_comment": "{actor} прокомментировал(а) запрос «{request}»",
   "signals_request_comment_grouped": "{count, plural, one {# новый комментарий к запросу «{request}»} few {# новых комментария к запросу «{request}»} many {# новых комментариев к запросу «{request}»} other {# нового комментария к запросу «{request}»}}",
   "signals_request_adopted": "{actor} взялся(-ась) за ваш запрос «{request}»",
-  "signals_request_fulfilled": "{mod} вышел и выполняет запрос «{request}»"
+  "signals_request_fulfilled": "{mod} вышел и выполняет запрос «{request}»",
+  "signals_jam_phase": "{phase, select, announced {Анонсирован Mod Jam: {jam}} submissions {Открыт приём работ на {jam}} voting {Открыто голосование в {jam}} results {Опубликованы результаты {jam}} other {Новости {jam}}}"
 }

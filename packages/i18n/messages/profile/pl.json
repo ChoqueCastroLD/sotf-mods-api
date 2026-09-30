@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Głosy i raporty między kontami z tej samej sieci w ciągu 24 godzin się nie liczą.",
   "profile_achievements_fair_play_new_accounts": "Zupełnie nowe konta ważą połowę w ocenach i zgodności, dopóki nie zdobędą zaufania.",
   "profile_achievements_fair_play_spikes": "Nagłe skoki pobrań sprawdzają strażnicy.",
-  "profile_achievements_fair_play_reversible": "Każdy punkt XP jest rejestrowany i może zostać cofnięty w razie nadużycia."
+  "profile_achievements_fair_play_reversible": "Każdy punkt XP jest rejestrowany i może zostać cofnięty w razie nadużycia.",
+  "profile_badge_jam_participant_name": "Jamer",
+  "profile_badge_jam_participant_hint": "Zgłoś moda do Mod Jam po opublikowaniu wyników. Można zdobyć wielokrotnie.",
+  "profile_badge_jam_podium_name": "Podium Jamu",
+  "profile_badge_jam_podium_hint": "Zajmij miejsce w pierwszej trójce kategorii w Mod Jam. Można zdobyć wielokrotnie.",
+  "profile_badge_jam_champion_name": "Mistrz Jamu",
+  "profile_badge_jam_champion_hint": "Wygraj Mod Jam w klasyfikacji generalnej. Można zdobyć wielokrotnie."
 }

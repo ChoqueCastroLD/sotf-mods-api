@@ -124,5 +124,6 @@
   "signals_request_comment": "{actor} heeft gereageerd op het verzoek “{request}”",
   "signals_request_comment_grouped": "{count, plural, one {# nieuwe reactie op het verzoek “{request}”} other {# nieuwe reacties op het verzoek “{request}”}}",
   "signals_request_adopted": "{actor} werkt aan je verzoek “{request}”",
-  "signals_request_fulfilled": "{mod} is uit en vervult het verzoek “{request}”"
+  "signals_request_fulfilled": "{mod} is uit en vervult het verzoek “{request}”",
+  "signals_jam_phase": "{phase, select, announced {Mod Jam aangekondigd: {jam}} submissions {Inzendingen voor {jam} zijn geopend} voting {Stemmen voor {jam} is geopend} results {De resultaten van {jam} zijn er} other {Nieuws over {jam}}}"
 }

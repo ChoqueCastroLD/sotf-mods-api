@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "Förfrågan antagen",
   "settings_notif_request_adopted_hint": "En skapare har börjat arbeta på din förfrågan.",
   "settings_notif_request_fulfilled": "Förfrågan uppfylld",
-  "settings_notif_request_fulfilled_hint": "En mod du bett om eller röstade på har publicerats."
+  "settings_notif_request_fulfilled_hint": "En mod du bett om eller röstade på har publicerats.",
+  "settings_notif_jam": "Mod Jams",
+  "settings_notif_jam_hint": "En jam du följer eller deltar i öppnar bidrag, öppnar röstning eller publicerar resultat."
 }

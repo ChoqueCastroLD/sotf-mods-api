@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "Prośba przejęta",
   "settings_notif_request_adopted_hint": "Twórca zaczął pracować nad Twoją prośbą.",
   "settings_notif_request_fulfilled": "Prośba spełniona",
-  "settings_notif_request_fulfilled_hint": "Opublikowano mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś)."
+  "settings_notif_request_fulfilled_hint": "Opublikowano mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś).",
+  "settings_notif_jam": "Mod Jamy",
+  "settings_notif_jam_hint": "Jam, którą obserwujesz lub w której bierzesz udział, otwiera zgłoszenia, głosowanie lub publikuje wyniki."
 }

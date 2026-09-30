@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "同一网络下的账号在 24 小时内的相互投票和报告不计入。",
   "profile_achievements_fair_play_new_accounts": "全新账号在评分和兼容性中仅计一半权重，直到建立信任。",
   "profile_achievements_fair_play_spikes": "下载量的异常激增会由护林员审查。",
-  "profile_achievements_fair_play_reversible": "每一点 XP 都有记录，若来自滥用可被撤销。"
+  "profile_achievements_fair_play_reversible": "每一点 XP 都有记录，若来自滥用可被撤销。",
+  "profile_badge_jam_participant_name": "参赛者",
+  "profile_badge_jam_participant_hint": "在 Mod Jam 结果公布后，拥有一个参赛作品。可重复获得。",
+  "profile_badge_jam_podium_name": "Jam 领奖台",
+  "profile_badge_jam_podium_hint": "在 Mod Jam 的某个类别中进入前三名。可重复获得。",
+  "profile_badge_jam_champion_name": "Jam 冠军",
+  "profile_badge_jam_champion_hint": "在 Mod Jam 中获得总冠军。可重复获得。"
 }

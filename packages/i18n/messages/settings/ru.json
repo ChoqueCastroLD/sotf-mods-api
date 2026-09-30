@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "Запрос взят в работу",
   "settings_notif_request_adopted_hint": "Автор начал работать над вашим запросом.",
   "settings_notif_request_fulfilled": "Запрос выполнен",
-  "settings_notif_request_fulfilled_hint": "Опубликован мод, который вы запрашивали или за который голосовали."
+  "settings_notif_request_fulfilled_hint": "Опубликован мод, который вы запрашивали или за который голосовали.",
+  "settings_notif_jam": "Mod Jam",
+  "settings_notif_jam_hint": "Джем, за которым вы следите или в котором участвуете, открывает приём работ, голосование или публикует результаты."
 }

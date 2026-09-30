@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Röster och rapporter mellan konton på samma nätverk inom 24 timmar räknas inte.",
   "profile_achievements_fair_play_new_accounts": "Helt nya konton väger hälften i betyg och kompatibilitet tills de byggt upp förtroende.",
   "profile_achievements_fair_play_spikes": "Plötsliga toppar i nedladdningar granskas av Rangers.",
-  "profile_achievements_fair_play_reversible": "Varje XP-poäng loggas och kan dras tillbaka vid missbruk."
+  "profile_achievements_fair_play_reversible": "Varje XP-poäng loggas och kan dras tillbaka vid missbruk.",
+  "profile_badge_jam_participant_name": "Jammare",
+  "profile_badge_jam_participant_hint": "Skicka in en mod till en Mod Jam när resultaten har publicerats. Kan förtjänas flera gånger.",
+  "profile_badge_jam_podium_name": "Jam-pallplats",
+  "profile_badge_jam_podium_hint": "Hamna bland de tre bästa i en kategori i en Mod Jam. Kan förtjänas flera gånger.",
+  "profile_badge_jam_champion_name": "Jam-mästare",
+  "profile_badge_jam_champion_hint": "Vinn en Mod Jam sammanlagt. Kan förtjänas flera gånger."
 }

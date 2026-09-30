@@ -411,5 +411,7 @@
   "settings_notif_request_adopted": "Request adopted",
   "settings_notif_request_adopted_hint": "A creator started working on your request.",
   "settings_notif_request_fulfilled": "Request fulfilled",
-  "settings_notif_request_fulfilled_hint": "A mod you requested or voted for was published."
+  "settings_notif_request_fulfilled_hint": "A mod you requested or voted for was published.",
+  "settings_notif_jam": "Mod Jams",
+  "settings_notif_jam_hint": "A jam you follow or entered opens submissions, opens voting or publishes its results."
 }

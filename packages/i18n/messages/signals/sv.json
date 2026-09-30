@@ -124,5 +124,6 @@
   "signals_request_comment": "{actor} kommenterade förfrågan ”{request}”",
   "signals_request_comment_grouped": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
   "signals_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
-  "signals_request_fulfilled": "{mod} är ute och uppfyller förfrågan ”{request}”"
+  "signals_request_fulfilled": "{mod} är ute och uppfyller förfrågan ”{request}”",
+  "signals_jam_phase": "{phase, select, announced {Mod Jam aviserad: {jam}} submissions {Bidrag till {jam} är öppna} voting {Röstningen i {jam} är öppen} results {Resultaten för {jam} är ute} other {Nyheter om {jam}}}"
 }

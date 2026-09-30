@@ -234,5 +234,11 @@
   "profile_achievements_fair_play_same_network": "Stemmen en rapporten tussen accounts op hetzelfde netwerk binnen 24 uur tellen niet.",
   "profile_achievements_fair_play_new_accounts": "Gloednieuwe accounts tellen half mee in beoordelingen en compatibiliteit tot ze vertrouwen opbouwen.",
   "profile_achievements_fair_play_spikes": "Plotselinge downloadpieken worden door de Rangers bekeken.",
-  "profile_achievements_fair_play_reversible": "Elk XP-punt wordt vastgelegd en kan bij misbruik worden teruggedraaid."
+  "profile_achievements_fair_play_reversible": "Elk XP-punt wordt vastgelegd en kan bij misbruik worden teruggedraaid.",
+  "profile_badge_jam_participant_name": "Jammer",
+  "profile_badge_jam_participant_hint": "Dien een mod in bij een Mod Jam zodra de resultaten zijn gepubliceerd. Kan meerdere keren worden verdiend.",
+  "profile_badge_jam_podium_name": "Jam-podium",
+  "profile_badge_jam_podium_hint": "Eindig in de top 3 van een categorie in een Mod Jam. Kan meerdere keren worden verdiend.",
+  "profile_badge_jam_champion_name": "Jamkampioen",
+  "profile_badge_jam_champion_hint": "Win een Mod Jam in het algemeen klassement. Kan meerdere keren worden verdiend."
 }
