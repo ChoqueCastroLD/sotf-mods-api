@@ -1,5 +1,862 @@
 {
   "$schema": "https://inlang.com/schema/inlang-message-format",
+  "admin_action_add": "Добавить",
+  "admin_action_cancel": "Отмена",
+  "admin_action_delete": "Удалить",
+  "admin_action_discard": "Отменить изменения",
+  "admin_action_edit": "Изменить",
+  "admin_action_save": "Сохранить",
+  "admin_actions_for": "Действия для {name}",
+  "admin_ads_add_slot": "Добавить блок",
+  "admin_ads_client": "ID издателя",
+  "admin_ads_client_hint": "ca-pub- и цифры.",
+  "admin_ads_description": "Google AdSense для посетителей, принявших рекламные cookie. Никогда в консоли и на скачиваниях.",
+  "admin_ads_enabled": "Показывать рекламу",
+  "admin_ads_enabled_hint": "Нужен ID издателя ниже.",
+  "admin_ads_error_client": "Формат: ca-pub- и от 10 до 20 цифр.",
+  "admin_ads_error_client_required": "Для рекламы нужен ID издателя.",
+  "admin_ads_error_slot": "ID блока — от 6 до 20 цифр.",
+  "admin_ads_saved": "Настройки рекламы сохранены",
+  "admin_ads_slot_id": "ID блока",
+  "admin_ads_slot_name": "Место",
+  "admin_ads_slots": "Рекламные блоки",
+  "admin_ads_slots_empty": "Блоков нет.",
+  "admin_ads_title": "Реклама",
+  "admin_ann_add": "Новое объявление",
+  "admin_ann_delete_failed": "Не удалось удалить объявление",
+  "admin_ann_delete_text": "Оно исчезнет с сайта через несколько минут.",
+  "admin_ann_delete_title": "Удалить это объявление?",
+  "admin_ann_deleted": "Объявление удалено",
+  "admin_ann_description": "Баннер под шапкой сайта. На языках без перевода показывается английский текст.",
+  "admin_ann_dismissible": "Можно закрыть",
+  "admin_ann_duplicate": "Дублировать",
+  "admin_ann_edit": "Изменить объявление",
+  "admin_ann_empty_text": "Используйте их для патчей, техработ или новостей сообщества.",
+  "admin_ann_empty_title": "Объявлений нет",
+  "admin_ann_end_now": "Завершить сейчас",
+  "admin_ann_ended": "Объявление завершено",
+  "admin_ann_error_href": "Укажите путь, начинающийся с /, или адрес https://.",
+  "admin_ann_field_dismissible": "Посетители могут закрыть",
+  "admin_ann_field_dismissible_hint": "Важные уведомления (техработы) оставляйте всегда видимыми.",
+  "admin_ann_field_ends": "Окончание",
+  "admin_ann_field_ends_hint": "Оставьте пустым, чтобы показывать до ручного завершения.",
+  "admin_ann_field_href": "Ссылка",
+  "admin_ann_field_href_hint": "Путь на сайте, например /patch-radar, или адрес https://.",
+  "admin_ann_field_level": "Уровень",
+  "admin_ann_field_message": "Текст ({language})",
+  "admin_ann_field_message_hint": "Одно-два коротких предложения, без Markdown.",
+  "admin_ann_field_starts": "Начало",
+  "admin_ann_field_timezone": "В вашем часовом поясе.",
+  "admin_ann_field_translations": "Переводы",
+  "admin_ann_from": "С {start}",
+  "admin_ann_level_info": "Информация",
+  "admin_ann_level_patch": "Патч",
+  "admin_ann_level_warning": "Предупреждение",
+  "admin_ann_not_dismissible": "Всегда видно",
+  "admin_ann_phase_ended": "Завершено",
+  "admin_ann_phase_live": "Показывается",
+  "admin_ann_phase_scheduled": "Запланировано",
+  "admin_ann_preview": "Предпросмотр",
+  "admin_ann_preview_empty": "Здесь появится ваш текст.",
+  "admin_ann_preview_link": "Подробнее",
+  "admin_ann_save_failed": "Не удалось сохранить объявление",
+  "admin_ann_saved": "Объявление сохранено",
+  "admin_ann_title": "Объявления",
+  "admin_ann_translations": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Только английский",
+        "count__exact=*, count__plural=one": "Английский + {count__number} перевод",
+        "count__exact=*, count__plural=few": "Английский + {count__number} перевода",
+        "count__exact=*, count__plural=many": "Английский + {count__number} переводов",
+        "count__exact=*, count__plural=*": "Английский + {count__number} перевода"
+      }
+    }
+  ],
+  "admin_awards_add": "Вручить награду",
+  "admin_awards_automatic": "Автоматически",
+  "admin_awards_col_kind": "Награда",
+  "admin_awards_col_mod": "Мод",
+  "admin_awards_col_period": "Период",
+  "admin_awards_col_reason": "Причина",
+  "admin_awards_delete": "Отозвать",
+  "admin_awards_delete_failed": "Не удалось отозвать награду",
+  "admin_awards_delete_for": "Отозвать «{kind}» у {name}",
+  "admin_awards_delete_text": "Награда пропадёт со страницы мода, главной и профиля автора.",
+  "admin_awards_delete_title": "Отозвать «{kind}» у {name}?",
+  "admin_awards_deleted": "Награда у {name} отозвана",
+  "admin_awards_description": "Мод недели, выбор команды и ежемесячные награды. Новая награда заменяет награду того же типа за тот же период — так переопределяется автоматический Мод недели.",
+  "admin_awards_empty_text": "Первый Мод недели выбирается автоматически в понедельник; выбор команды — за вами.",
+  "admin_awards_empty_title": "Наград пока нет",
+  "admin_awards_error_build": "Выберите билд.",
+  "admin_awards_error_mod": "Выберите мод.",
+  "admin_awards_field_build": "Билд",
+  "admin_awards_field_end": "По",
+  "admin_awards_field_kind": "Награда",
+  "admin_awards_field_mod": "Мод",
+  "admin_awards_field_reason": "Причина",
+  "admin_awards_field_reason_hint": "Показывается вместе с наградой. До 500 символов.",
+  "admin_awards_field_start": "С",
+  "admin_awards_filter": "Тип",
+  "admin_awards_filter_all": "Все типы",
+  "admin_awards_form_description": "Мод будет показан там, где видна награда (главная, страница мода, профиль, а для Мода недели ещё и Discord).",
+  "admin_awards_kind_build_of_month": "Билд месяца",
+  "admin_awards_kind_mod_of_month": "Мод месяца",
+  "admin_awards_kind_mod_of_week": "Мод недели",
+  "admin_awards_kind_staff_pick": "Выбор команды",
+  "admin_awards_override_text": "Если на эти даты уже есть Мод недели, этот займёт его место.",
+  "admin_awards_override_title": "Заменяет выбор этой недели",
+  "admin_awards_running": "Сейчас",
+  "admin_awards_save_failed": "Не удалось вручить награду",
+  "admin_awards_saved": "{kind}: {name}",
+  "admin_awards_table_label": "Награды, сначала новые",
+  "admin_awards_title": "Награды",
+  "admin_awards_upcoming": "Скоро",
+  "admin_builds_add": "Добавить сборку",
+  "admin_builds_breaking": "Ломает моды",
+  "admin_builds_breaking_warning_text": "После сохранения ломающей сборки появится баннер патча, все авторы получат сигнал, а старые моды будут помечены как, возможно, устаревшие.",
+  "admin_builds_breaking_warning_title": "Это увидит весь сайт",
+  "admin_builds_clear_notes": "Удалить текущие заметки",
+  "admin_builds_col_label": "Сборка",
+  "admin_builds_col_notes": "Заметки",
+  "admin_builds_col_released": "Выход",
+  "admin_builds_col_steam": "ID сборки Steam",
+  "admin_builds_current": "Текущая",
+  "admin_builds_current_done": "{label} теперь текущая сборка",
+  "admin_builds_delete_conflict": "По этой сборке уже есть отчёты игроков. Оставьте её или отметьте текущей другую.",
+  "admin_builds_delete_failed": "Не удалось удалить сборку",
+  "admin_builds_delete_text": "Удалить можно только сборки без отчётов.",
+  "admin_builds_delete_title": "Удалить {label}?",
+  "admin_builds_deleted": "{label} удалена",
+  "admin_builds_description": "Патчи Sons of the Forest, к которым относятся полевые отчёты, значки совместимости и Радар патчей. Текущая — ровно одна.",
+  "admin_builds_edit_title": "Изменить {label}",
+  "admin_builds_empty_text": "Добавьте патч, на котором сейчас играют, чтобы полевым отчётам было на что ссылаться.",
+  "admin_builds_empty_title": "Сборок игры пока нет",
+  "admin_builds_error_steam": "Только цифры, не больше 12.",
+  "admin_builds_field_breaking": "Обновление, ломающее моды",
+  "admin_builds_field_breaking_hint": "Патч сломал моды (новая версия игры для RedLoader, изменённые сборки .NET…).",
+  "admin_builds_field_current": "Текущая сборка",
+  "admin_builds_field_current_hint": "Сборка, на которой сейчас играют. Если отметить эту, с предыдущей отметка снимется.",
+  "admin_builds_field_label": "Название",
+  "admin_builds_field_label_hint": "До 40 символов.",
+  "admin_builds_field_notes": "Заметки",
+  "admin_builds_field_notes_edit_hint": "Markdown. Оставьте пустым, чтобы сохранить текущие заметки.",
+  "admin_builds_field_released": "Дата выхода",
+  "admin_builds_field_steam": "ID сборки Steam",
+  "admin_builds_field_steam_hint": "С SteamDB, только цифры.",
+  "admin_builds_form_description": "Название так, как его называют игроки («1.0.4», «Патч 13»).",
+  "admin_builds_make_current": "Сделать текущей",
+  "admin_builds_no_current_text": "Отметьте последний патч как текущий: он нужен значкам совместимости и Радару патчей.",
+  "admin_builds_no_current_title": "Нет текущей сборки",
+  "admin_builds_save_failed": "Не удалось сохранить сборку",
+  "admin_builds_saved": "{label} сохранена",
+  "admin_builds_table_label": "Сборки игры, сначала новые",
+  "admin_builds_title": "Сборки игры",
+  "admin_col_actions": "Действия",
+  "admin_eco_add_release": "Добавить версию",
+  "admin_eco_add_release_description": "Новая версия RedLoader или RedManager.",
+  "admin_eco_cell_label": "{loader} на {build}",
+  "admin_eco_clear_note": "Удалить заметку",
+  "admin_eco_col_build": "Сборка",
+  "admin_eco_current_note": "Текущая заметка",
+  "admin_eco_empty_builds": "Сначала добавьте сборку игры.",
+  "admin_eco_empty_releases": "Добавьте версии RedLoader и RedManager, которыми пользуются игроки.",
+  "admin_eco_empty_title": "Пока нечего сопоставлять",
+  "admin_eco_field_name": "Инструмент",
+  "admin_eco_field_note": "Новая заметка",
+  "admin_eco_field_released": "Дата выхода",
+  "admin_eco_field_status": "Статус",
+  "admin_eco_field_url": "Страница версии",
+  "admin_eco_field_version": "Версия",
+  "admin_eco_matrix_description": "Каждое изменение сохраняется сразу. Добавьте заметку, если что-то работает лишь частично.",
+  "admin_eco_matrix_title": "Статус по сборкам",
+  "admin_eco_note_for": "Заметка: {loader} на {build}",
+  "admin_eco_release_failed": "Не удалось добавить версию",
+  "admin_eco_release_link": "Страница версии {name}",
+  "admin_eco_release_saved": "{name} добавлена",
+  "admin_eco_release_undated": "Без даты выхода",
+  "admin_eco_releases_description": "Сначала новые, по каждому инструменту.",
+  "admin_eco_releases_title": "Версии",
+  "admin_eco_save_failed": "Не удалось сохранить статус",
+  "admin_eco_saved": "{loader} на {build}: {status}",
+  "admin_eco_show_all": "Показать все сборки ({count})",
+  "admin_eco_show_recent": "Показать последние ({count})",
+  "admin_eco_status_broken": "Не работает",
+  "admin_eco_status_partial": "Частично",
+  "admin_eco_status_unknown": "Неизвестно",
+  "admin_eco_status_works": "Работает",
+  "admin_ecosystem_description": "Версии RedLoader и RedManager и их работа на каждой сборке игры, как на Радаре патчей.",
+  "admin_ecosystem_title": "Экосистема",
+  "admin_error_date": "Введите правильную дату.",
+  "admin_error_duplicate": "Уже есть в списке.",
+  "admin_error_integer": "Введите целое число.",
+  "admin_error_period": "Конец должен быть позже начала.",
+  "admin_error_reference": "Код: {reference}",
+  "admin_error_required": "Обязательное поле.",
+  "admin_error_slug": "Только строчные латинские буквы, цифры и дефисы (без дефиса в начале и в конце).",
+  "admin_error_url": "Введите полный адрес http(s).",
+  "admin_flags_description": "Включайте и выключайте функции без деплоя.",
+  "admin_flags_empty": "Флаги не заданы",
+  "admin_flags_error_key": "От 1 до 60 латинских букв, цифр, точек, дефисов или подчёркиваний.",
+  "admin_flags_new": "Новый флаг",
+  "admin_flags_new_hint": "Латинские буквы, цифры, точки, дефисы и подчёркивания.",
+  "admin_flags_saved": "Флаги функций сохранены",
+  "admin_flags_title": "Флаги функций",
+  "admin_hooks_add": "Добавить вебхук",
+  "admin_hooks_description": "До {max} каналов. Адреса вебхуков — секрет: любой, у кого он есть, может писать в канал.",
+  "admin_hooks_empty_text": "Создайте вебхук в настройках канала Discord и вставьте сюда его адрес.",
+  "admin_hooks_empty_title": "Вебхуков нет",
+  "admin_hooks_error_events": "Выберите хотя бы одно событие.",
+  "admin_hooks_error_url": "Вставьте адрес вебхука Discord.",
+  "admin_hooks_event_milestone": "Рубежи в 10 тыс. скачиваний",
+  "admin_hooks_event_mod_of_week": "Мод недели",
+  "admin_hooks_event_mod_published": "Новые моды",
+  "admin_hooks_event_version_published": "Новые версии",
+  "admin_hooks_events": "Сообщать о",
+  "admin_hooks_exclude_beta": "Пропускать события беты",
+  "admin_hooks_exclude_beta_hint": "Не публиковать то, что происходит на beta.sotf-mods.com.",
+  "admin_hooks_hide_url": "Скрыть адрес",
+  "admin_hooks_name": "Название",
+  "admin_hooks_remove": "Удалить вебхук",
+  "admin_hooks_saved": "Вебхуки сохранены",
+  "admin_hooks_show_url": "Показать адрес",
+  "admin_hooks_title": "Вебхуки Discord",
+  "admin_hooks_untitled": "Новый вебхук",
+  "admin_hooks_url": "Адрес вебхука",
+  "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
+  "admin_integrations_description": "Куда сайт отправляет новости о новых модах, версиях, наградах и рубежах.",
+  "admin_integrations_title": "Интеграции",
+  "admin_kelvin_budget": "Дневной бюджет",
+  "admin_kelvin_budget_alert_text": "Потрачено {share} сегодняшнего бюджета. После его исчерпания KelvinSeek до полуночи UTC отвечает офлайн-ответами.",
+  "admin_kelvin_budget_alert_title": "Бюджет на сегодня почти исчерпан",
+  "admin_kelvin_budget_used": "Сегодня: {spent} из {budget} ({share}).",
+  "admin_kelvin_chart_description": [
+    {
+      "declarations": [
+        "input cost",
+        "input tokensIn",
+        "input tokensOut",
+        "input over",
+        "local over__exact = over: number maximumFractionDigits=20",
+        "local over__plural = over: plural",
+        "local over__number = over: number"
+      ],
+      "selectors": [
+        "over__exact",
+        "over__plural"
+      ],
+      "match": {
+        "over__exact=0, over__plural=*": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · бюджет ни разу не превышен",
+        "over__exact=*, over__plural=one": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} день сверх бюджета",
+        "over__exact=*, over__plural=few": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} дня сверх бюджета",
+        "over__exact=*, over__plural=many": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} дней сверх бюджета",
+        "over__exact=*, over__plural=*": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} дня сверх бюджета"
+      }
+    }
+  ],
+  "admin_kelvin_chart_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Последний {count__number} день",
+        "count__plural=few": "Последние {count__number} дня",
+        "count__plural=many": "Последние {count__number} дней",
+        "count__plural=*": "Последние {count__number} дня"
+      }
+    }
+  ],
+  "admin_kelvin_col_cost": "Стоимость",
+  "admin_kelvin_col_day": "День",
+  "admin_kelvin_col_fallbacks": "Офлайн-ответы",
+  "admin_kelvin_col_requests": "Запросы",
+  "admin_kelvin_col_tokens_in": "Токены на входе",
+  "admin_kelvin_col_tokens_out": "Токены на выходе",
+  "admin_kelvin_config_description": "Применяется к новым запросам в течение минуты.",
+  "admin_kelvin_config_title": "Настройки",
+  "admin_kelvin_cost_per_day": "Стоимость по дням",
+  "admin_kelvin_daily_budget": "Дневной бюджет (USD)",
+  "admin_kelvin_daily_budget_hint": "Сбрасывается в полночь UTC.",
+  "admin_kelvin_description": "Использование и стоимость внутриигрового помощника, его дневной бюджет.",
+  "admin_kelvin_detail": "Подробно по дням",
+  "admin_kelvin_enabled": "KelvinSeek включён",
+  "admin_kelvin_enabled_hint": "Выключен: игра получает только офлайн-ответы.",
+  "admin_kelvin_error_budget": "От 0 до {max}.",
+  "admin_kelvin_error_timeout": "От {min} до {max} мс.",
+  "admin_kelvin_fallbacks": "Офлайн-ответы",
+  "admin_kelvin_model": "Модель",
+  "admin_kelvin_no_usage": "За этот период запросов не было.",
+  "admin_kelvin_requests": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Запросы · {count__number} день",
+        "count__plural=few": "Запросы · {count__number} дня",
+        "count__plural=many": "Запросы · {count__number} дней",
+        "count__plural=*": "Запросы · {count__number} дня"
+      }
+    }
+  ],
+  "admin_kelvin_saved": "Настройки KelvinSeek сохранены",
+  "admin_kelvin_timeout": "Тайм-аут (мс)",
+  "admin_kelvin_title": "KelvinSeek",
+  "admin_kelvin_today": "Потрачено сегодня",
+  "admin_limits_add": "Добавить переопределение",
+  "admin_limits_bucket": "Группа",
+  "admin_limits_default": [
+    {
+      "declarations": [
+        "input max",
+        "input seconds",
+        "local seconds__number = seconds: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "По умолчанию: {max} за {seconds__number} с"
+      }
+    }
+  ],
+  "admin_limits_description": "Переопределения встроенных лимитов по группам. Группы без переопределения используют значение по умолчанию.",
+  "admin_limits_empty": "Переопределений нет: все группы используют значения по умолчанию.",
+  "admin_limits_error_number": "Число запросов и секунд должно быть целым и больше 0.",
+  "admin_limits_max": "Запросов",
+  "admin_limits_saved": "Лимиты запросов сохранены",
+  "admin_limits_title": "Лимиты запросов",
+  "admin_limits_window": "За (секунд)",
+  "admin_markdown_hint": "Markdown: ссылки, списки и выделение.",
+  "admin_mod_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=pending": "На проверке",
+        "status=unlisted": "Скрыт из списков",
+        "status=archived": "В архиве",
+        "status=rejected": "Отклонён",
+        "status=removed": "Удалён",
+        "status=draft": "Черновик",
+        "status=*": "Не опубликован"
+      }
+    }
+  ],
+  "admin_no_matches": "Под эти фильтры ничего не подходит",
+  "admin_panel_error_title": "Эта панель не загрузилась",
+  "admin_period": "{start} – {end}",
+  "admin_picker_change": "Сменить",
+  "admin_picker_error": "Поиск не удался. Попробуйте ещё раз.",
+  "admin_picker_placeholder_build": "Ищите билды по названию",
+  "admin_picker_placeholder_mod": "Ищите моды по названию или ID манифеста",
+  "admin_picker_searching": "Ищем…",
+  "admin_range_days": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} день",
+        "count__plural=few": "{count__number} дня",
+        "count__plural=many": "{count__number} дней",
+        "count__plural=*": "{count__number} дня"
+      }
+    }
+  ],
+  "admin_range_label": "Период",
+  "admin_readout": "Admin · Ranger Station",
+  "admin_reauth_action": "Войти снова",
+  "admin_reauth_text": "Для инструментов администрирования нужен вход не старше 12 часов. Войдите снова, и вы сразу вернётесь сюда.",
+  "admin_reauth_title": "Подтвердите, что это вы",
+  "admin_recat_add_tag": "+ Тег",
+  "admin_recat_add_tag_for": "Добавить тег для {name}",
+  "admin_recat_applied": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Менять ничего не пришлось",
+        "count__exact=*, count__plural=one": "Перенесён {count__number} мод",
+        "count__exact=*, count__plural=few": "Перенесено {count__number} мода",
+        "count__exact=*, count__plural=many": "Перенесено {count__number} модов",
+        "count__exact=*, count__plural=*": "Перенесено {count__number} мода"
+      }
+    }
+  ],
+  "admin_recat_applied_tags_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод сохранил свои теги (не опубликован или уже заполнен).",
+        "count__plural=few": "{count__number} мода сохранили свои теги (не опубликованы или уже заполнены).",
+        "count__plural=many": "{count__number} модов сохранили свои теги (не опубликованы или уже заполнены).",
+        "count__plural=*": "{count__number} мода сохранили свои теги (не опубликованы или уже заполнены)."
+      }
+    }
+  ],
+  "admin_recat_applied_unchanged": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} уже был на месте.",
+        "count__plural=few": "{count__number} уже были на месте.",
+        "count__plural=many": "{count__number} уже были на месте.",
+        "count__plural=*": "{count__number} уже были на месте."
+      }
+    }
+  ],
+  "admin_recat_apply": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Применить {count__number} изменение",
+        "count__plural=few": "Применить {count__number} изменения",
+        "count__plural=many": "Применить {count__number} изменений",
+        "count__plural=*": "Применить {count__number} изменения"
+      }
+    }
+  ],
+  "admin_recat_apply_failed": "Не удалось применить изменения",
+  "admin_recat_apply_tags": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Также добавить выбранные теги ({count__number} мод)",
+        "count__plural=few": "Также добавить выбранные теги ({count__number} мода)",
+        "count__plural=many": "Также добавить выбранные теги ({count__number} модов)",
+        "count__plural=*": "Также добавить выбранные теги ({count__number} мода)"
+      }
+    }
+  ],
+  "admin_recat_apply_tags_hint": "Теги добавляются к уже имеющимся у мода (не больше 5). Неопубликованные моды сохраняют свои теги.",
+  "admin_recat_apply_text": "Моды сразу перейдут в эти категории; их страницы и списки обновятся за несколько минут.",
+  "admin_recat_apply_title": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Применить {count__number} изменение?",
+        "count__plural=few": "Применить {count__number} изменения?",
+        "count__plural=many": "Применить {count__number} изменений?",
+        "count__plural=*": "Применить {count__number} изменения?"
+      }
+    }
+  ],
+  "admin_recat_bulk_category": "Категория для выбранных",
+  "admin_recat_bulk_category_placeholder": "Выберите…",
+  "admin_recat_bulk_clear_tags": "Очистить теги",
+  "admin_recat_bulk_dismiss": "Убрать из списка",
+  "admin_recat_bulk_label": "Выбранные строки",
+  "admin_recat_bulk_set": "Назначить",
+  "admin_recat_bulk_set_done": [
+    {
+      "declarations": [
+        "input count",
+        "input name",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} строке назначено: {name}",
+        "count__plural=few": "{count__number} строкам назначено: {name}",
+        "count__plural=many": "{count__number} строкам назначено: {name}",
+        "count__plural=*": "{count__number} строки назначено: {name}"
+      }
+    }
+  ],
+  "admin_recat_bulk_unselect": "Снять выбор",
+  "admin_recat_col_confidence": "Уверенность",
+  "admin_recat_col_current": "Сейчас",
+  "admin_recat_col_mod": "Мод",
+  "admin_recat_col_reason": "Почему",
+  "admin_recat_col_tags": "Добавить теги",
+  "admin_recat_col_target": "Перенести в",
+  "admin_recat_confidence_at_least": "Не меньше {value}",
+  "admin_recat_counts": [
+    {
+      "declarations": [
+        "input visible",
+        "input total",
+        "input selected",
+        "local visible__plural = visible: plural",
+        "local visible__number = visible: number"
+      ],
+      "selectors": [
+        "visible__plural"
+      ],
+      "match": {
+        "visible__plural=one": "Показано строк: {visible__number} из {total} · выбрано: {selected}",
+        "visible__plural=few": "Показано строк: {visible__number} из {total} · выбрано: {selected}",
+        "visible__plural=many": "Показано строк: {visible__number} из {total} · выбрано: {selected}",
+        "visible__plural=*": "Показано строк: {visible__number} из {total} · выбрано: {selected}"
+      }
+    }
+  ],
+  "admin_recat_csv_done": "CSV импортирован: новых строк — {added}, обновлено — {updated}",
+  "admin_recat_csv_dropped_tags": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Отброшен {count__number} неизвестный тег.",
+        "count__plural=few": "Отброшено {count__number} неизвестных тега.",
+        "count__plural=many": "Отброшено {count__number} неизвестных тегов.",
+        "count__plural=*": "Отброшено {count__number} неизвестного тега."
+      }
+    }
+  ],
+  "admin_recat_csv_empty": "В файле нет пригодных строк.",
+  "admin_recat_csv_failed": "Не удалось импортировать CSV",
+  "admin_recat_csv_issues": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Пропущена {count__number} строка:",
+        "count__plural=few": "Пропущено {count__number} строки:",
+        "count__plural=many": "Пропущено {count__number} строк:",
+        "count__plural=*": "Пропущено {count__number} строки:"
+      }
+    }
+  ],
+  "admin_recat_csv_line_no_category": "Строка {line}: нет категории.",
+  "admin_recat_csv_line_no_mod": "Строка {line}: нет мода.",
+  "admin_recat_csv_more": "…и ещё {count}.",
+  "admin_recat_csv_no_category_column": "Нет столбца категории (categorySlug).",
+  "admin_recat_csv_no_header": "Файл пустой.",
+  "admin_recat_csv_no_mod_column": "Нет столбца мода (modId или manifestId).",
+  "admin_recat_csv_report_title": "CSV: новых строк — {added}, заменено предложений — {updated}",
+  "admin_recat_csv_skip_category": "Строка {line}: «{value}» — не активная категория модов.",
+  "admin_recat_csv_skip_duplicate": "Строка {line}: мод {value} встречается дважды; действует первая строка.",
+  "admin_recat_csv_skip_mod": "Строка {line}: неизвестный мод «{value}» (используйте числовой modId).",
+  "admin_recat_csv_too_big": "Файл больше 5 МБ.",
+  "admin_recat_csv_unreadable": "Файл не удалось прочитать.",
+  "admin_recat_current_unknown": "Не загружена",
+  "admin_recat_description": "Перенесите моды в категории v2. Предложения берутся из правил по ключевым словам и из импортированного CSV; ничего не меняется, пока вы не примените.",
+  "admin_recat_empty_text": "Ни одному моду не нужна новая категория. Импортируйте CSV, чтобы проверить другие изменения.",
+  "admin_recat_empty_title": "Всё на своих местах",
+  "admin_recat_export": "Экспорт CSV",
+  "admin_recat_filter_any": "Любая",
+  "admin_recat_filter_confidence": "Уверенность",
+  "admin_recat_filter_current": "Текущая категория",
+  "admin_recat_filter_search": "Поиск модов",
+  "admin_recat_filter_source": "Источник",
+  "admin_recat_human_text": "Проверьте каждое предложение: смените целевую категорию или теги, отметьте строки, с которыми согласны, и примените. Каждое изменение записывается в журнал.",
+  "admin_recat_human_title": "Решаете вы",
+  "admin_recat_import": "Импорт CSV",
+  "admin_recat_load_failed": "Не удалось загрузить предложения",
+  "admin_recat_loading": "Оцениваем все моды…",
+  "admin_recat_no_category": "Без категории",
+  "admin_recat_partial": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "До ошибки применено {count__number} изменение.",
+        "count__plural=few": "До ошибки применено {count__number} изменения.",
+        "count__plural=many": "До ошибки применено {count__number} изменений.",
+        "count__plural=*": "До ошибки применено {count__number} изменения."
+      }
+    }
+  ],
+  "admin_recat_preparing": "Готовим изменения…",
+  "admin_recat_progress": "Применяем пакет {batch} из {total}…",
+  "admin_recat_reload": "Обновить предложения",
+  "admin_recat_reload_text": "Ваши правки и импортированные строки CSV пропадут.",
+  "admin_recat_reload_title": "Обновить предложения?",
+  "admin_recat_remove_tag": "Убрать тег {tag} у {name}",
+  "admin_recat_select_visible": "Выбрать показанные строки ({count})",
+  "admin_recat_selected": "Выбрано: {count}",
+  "admin_recat_source_csv": "CSV",
+  "admin_recat_source_rules": "Правила по ключевым словам",
+  "admin_recat_suggested_was": "Предложено: {name}",
+  "admin_recat_table_label": "Предложенные категории",
+  "admin_recat_target_for": "Новая категория для {name}",
+  "admin_recat_title": "Перекатегоризация",
+  "admin_remove_named": "Убрать {name}",
+  "admin_results": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Ничего не найдено",
+        "count__exact=*, count__plural=one": "{count__number} результат",
+        "count__exact=*, count__plural=few": "{count__number} результата",
+        "count__exact=*, count__plural=many": "{count__number} результатов",
+        "count__exact=*, count__plural=*": "{count__number} результата"
+      }
+    }
+  ],
+  "admin_rum_all_countries": "Все страны",
+  "admin_rum_col_samples": "Замеры",
+  "admin_rum_col_template": "Шаблон",
+  "admin_rum_country": "Страна",
+  "admin_rum_description": "Core Web Vitals от реальных посетителей: 75-й перцентиль по шаблонам страниц.",
+  "admin_rum_empty_text": "Браузеры посетителей присылают замеры во время просмотра; загляните завтра.",
+  "admin_rum_empty_title": "Полевых данных пока нет",
+  "admin_rum_legend": "Зелёный: хорошо · янтарный: нужно улучшить · красный: плохо (пороги Core Web Vitals). «мало»: меньше {samples} замеров, оценивайте осторожно.",
+  "admin_rum_low_samples": "мало",
+  "admin_rum_no_rows": "По этой стране данных нет.",
+  "admin_rum_poor_summary": "Плохой p75: {list}",
+  "admin_rum_rating_good": "хорошо",
+  "admin_rum_rating_improve": "нужно улучшить",
+  "admin_rum_rating_poor": "плохо",
+  "admin_rum_summary": [
+    {
+      "declarations": [
+        "input templates",
+        "input samples",
+        "local templates__plural = templates: plural",
+        "local templates__number = templates: number"
+      ],
+      "selectors": [
+        "templates__plural"
+      ],
+      "match": {
+        "templates__plural=one": "{templates__number} шаблон · замеров: {samples}",
+        "templates__plural=few": "{templates__number} шаблона · замеров: {samples}",
+        "templates__plural=many": "{templates__number} шаблонов · замеров: {samples}",
+        "templates__plural=*": "{templates__number} шаблона · замеров: {samples}"
+      }
+    }
+  ],
+  "admin_rum_table_title": "p75 по шаблонам",
+  "admin_rum_title": "Производительность",
+  "admin_settings_default": "Используются значения по умолчанию",
+  "admin_settings_description": "Флаги функций, лимиты запросов, реклама и шаблоны модерации. API проверяет и записывает в журнал каждое изменение.",
+  "admin_settings_save_failed": "Не удалось сохранить настройку",
+  "admin_settings_title": "Настройки сайта",
+  "admin_settings_unsaved": "Есть несохранённые изменения",
+  "admin_settings_updated": "Последнее изменение: {when}",
+  "admin_show_more": "Показать ещё ({count})",
+  "admin_tax_add_category": "Новая категория",
+  "admin_tax_add_tag": "Новый тег",
+  "admin_tax_categories_empty": "Категорий нет",
+  "admin_tax_categories_empty_text": "Создайте первую категорию.",
+  "admin_tax_categories_hint": "Категории никогда не удаляются: выведите категорию из обращения, когда её моды перенесены, и добавьте её слаг в старые слаги преемницы, чтобы старые ссылки продолжали работать.",
+  "admin_tax_category_saved": "{name} сохранена",
+  "admin_tax_col_count": "Опубликовано",
+  "admin_tax_col_group": "Группа",
+  "admin_tax_col_kind": "Для",
+  "admin_tax_col_legacy": "Старые слаги",
+  "admin_tax_col_name": "Название",
+  "admin_tax_col_order": "Порядок",
+  "admin_tax_col_slug": "Слаг",
+  "admin_tax_edit_category": "Изменить {name}",
+  "admin_tax_edit_tag": "Изменить {name}",
+  "admin_tax_error_legacy": "Не больше {max} старых слагов.",
+  "admin_tax_field_description": "Описание",
+  "admin_tax_field_group": "Группа",
+  "admin_tax_field_group_hint": "Группирует теги в фильтрах, например gameplay.",
+  "admin_tax_field_hub_intro": "Вступление хаба (Markdown, по языкам)",
+  "admin_tax_field_icon": "Иконка",
+  "admin_tax_field_icon_hint": "Имя иконки Lucide, например wand-sparkles.",
+  "admin_tax_field_kind": "Для",
+  "admin_tax_field_kind_locked": "После создания не меняется.",
+  "admin_tax_field_legacy": "Старые слаги",
+  "admin_tax_field_legacy_hint": "Прежние слаги, которые ведут сюда, через запятую.",
+  "admin_tax_field_name": "Название (английское)",
+  "admin_tax_field_name_hint": "Другие языки ниже.",
+  "admin_tax_field_names": "Название на других языках",
+  "admin_tax_field_order": "Порядок",
+  "admin_tax_field_order_hint": "Меньшие числа идут первыми.",
+  "admin_tax_field_slug": "Слаг",
+  "admin_tax_field_slug_hint": "Часть URL. Смена ломает старые ссылки, если прежний слаг не оставить в старых слагах.",
+  "admin_tax_filter_tags": "Фильтр тегов",
+  "admin_tax_hub_intro_unknown_text": "API пока его не возвращает. При сохранении оно заменится тем, что вы введёте здесь (пустое поле удалит его).",
+  "admin_tax_hub_intro_unknown_title": "Текущее вступление хаба показать нельзя",
+  "admin_tax_kind_build": "Билды",
+  "admin_tax_kind_mod": "Моды",
+  "admin_tax_recategorize_mods": "Перенести её моды",
+  "admin_tax_retire": "Вывести",
+  "admin_tax_retire_conflict": "Её ещё используют активные моды. Сначала перенесите их.",
+  "admin_tax_retire_failed": "Не удалось вывести категорию",
+  "admin_tax_retire_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Её не использует ни один опубликованный мод. Выведенные категории пропадают из меню; их страницы перенаправляют по старым слагам.",
+        "count__exact=*, count__plural=one": "Её ещё использует {count__number} опубликованный мод: сначала перенесите его. Выведенные категории пропадают из меню; их страницы перенаправляют по старым слагам.",
+        "count__exact=*, count__plural=few": "Её ещё используют {count__number} опубликованных мода: сначала перенесите их. Выведенные категории пропадают из меню; их страницы перенаправляют по старым слагам.",
+        "count__exact=*, count__plural=many": "Её ещё используют {count__number} опубликованных модов: сначала перенесите их. Выведенные категории пропадают из меню; их страницы перенаправляют по старым слагам.",
+        "count__exact=*, count__plural=*": "Её ещё используют {count__number} опубликованного мода: сначала перенесите их. Выведенные категории пропадают из меню; их страницы перенаправляют по старым слагам."
+      }
+    }
+  ],
+  "admin_tax_retire_title": "Вывести {name}?",
+  "admin_tax_retired": "{name} выведена",
+  "admin_tax_retired_badge": "Выведена",
+  "admin_tax_save_failed": "Не удалось сохранить",
+  "admin_tax_tab_categories": "Категории",
+  "admin_tax_tab_tags": "Теги",
+  "admin_tax_tag_delete_failed": "Не удалось удалить тег",
+  "admin_tax_tag_delete_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Его не использует ни один мод.",
+        "count__exact=*, count__plural=one": "Он будет снят с {count__number} мода.",
+        "count__exact=*, count__plural=few": "Он будет снят с {count__number} модов.",
+        "count__exact=*, count__plural=many": "Он будет снят с {count__number} модов.",
+        "count__exact=*, count__plural=*": "Он будет снят с {count__number} мода."
+      }
+    }
+  ],
+  "admin_tax_tag_delete_title": "Удалить {name}?",
+  "admin_tax_tag_deleted": "{name} удалён",
+  "admin_tax_tag_extras_unknown_text": "API пока их не возвращает. При сохранении они заменятся значениями из этой формы.",
+  "admin_tax_tag_extras_unknown_title": "Не удалось загрузить описание и порядок",
+  "admin_tax_tag_free": "Свободный",
+  "admin_tax_tag_saved": "{name} сохранён",
+  "admin_tax_tags_empty": "Тегов нет",
+  "admin_tax_tags_empty_text": "Создайте отобранные теги, чтобы описывать моды не только категорией.",
+  "admin_taxonomy_description": "Таксономия модов и билдов: названия на всех языках, порядок, старые слаги и отобранные теги.",
+  "admin_taxonomy_title": "Категории и теги",
+  "admin_title": "Администрирование",
+  "admin_tpl_action": "Действие",
+  "admin_tpl_action_approve": "Одобрить",
+  "admin_tpl_action_reject": "Отклонить",
+  "admin_tpl_action_remove": "Удалить",
+  "admin_tpl_action_request_changes": "Запросить правки",
+  "admin_tpl_action_restore": "Восстановить",
+  "admin_tpl_action_unlist": "Скрыть из списков",
+  "admin_tpl_add": "Новый шаблон",
+  "admin_tpl_description": "Причины, которые рейнджеры выбирают при одобрении, отклонении или запросе правок. Авторы читают их на своём языке.",
+  "admin_tpl_empty": "Для этого действия шаблонов нет",
+  "admin_tpl_error_key": "Неверный ключ.",
+  "admin_tpl_error_message": "Английский текст обязателен.",
+  "admin_tpl_filter": "Действие",
+  "admin_tpl_filter_all": "Все ({count})",
+  "admin_tpl_invalid_text": "Исправьте отмеченные шаблоны перед сохранением.",
+  "admin_tpl_invalid_title": "Некоторые шаблоны требуют внимания",
+  "admin_tpl_key": "Ключ",
+  "admin_tpl_key_hint": "От 2 до 60 строчных латинских букв, цифр или подчёркиваний.",
+  "admin_tpl_message": "Текст ({language})",
+  "admin_tpl_remove": "Удалить шаблон",
+  "admin_tpl_saved": "Шаблоны модерации сохранены",
+  "admin_tpl_title": "Шаблоны модерации",
+  "admin_tpl_translations": "Переводы",
+  "admin_tpl_untitled": "Новый шаблон",
+  "admin_translations_filled": "Заполнено {filled} из {total}",
+  "admin_unsaved_confirm": "Есть несохранённые изменения. Уйти без сохранения?",
   "auth_art_benefit_backpack": "Складывайте моды в рюкзак",
   "auth_art_benefit_community": "Оценивайте, пишите отзывы и собирайте наборы",
   "auth_art_benefit_updates": "Получайте уведомления об обновлениях модов",
