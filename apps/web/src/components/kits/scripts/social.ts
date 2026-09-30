@@ -210,7 +210,6 @@ class Thread {
   #reloadTimer: number | undefined;
 
   constructor(root: HTMLElement, data: KitPageData, doc: Document) {
-    this.#root = root;
     this.#data = data;
     this.#doc = doc;
     this.#messages = data.social;
