@@ -113,23 +113,23 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
 
 ### Web pública (WP-22, WP-25, WP-62, WP-70)
 
-- **Cabecera de página** · `apps/web/src/layouts/**` (WP-22) · `data-theme="dark"` en `<html>`,
+- [x] resolved by WP-22 (verified by wire-web-public) (`layouts/BaseLayout.astro`) · **Cabecera de página** · `apps/web/src/layouts/**` (WP-22) · `data-theme="dark"` en `<html>`,
   `THEME_INIT_SCRIPT` inline antes del CSS, `BANNER_INIT_SCRIPT` opcional, `FONT_PRELOADS`,
   `@import "@sotf/ui/tokens.css"` y `enhance()` de `@sotf/ui/enhance`. (WP-12.)
-- **Locale por petición** · `apps/web/src/middleware/**` (WP-22) · importar `@sotf/i18n/server`,
+- [x] resolved by WP-22 (verified by wire-web-public) (`middleware/index.ts` + `lib/i18n.ts`) · **Locale por petición** · `apps/web/src/middleware/**` (WP-22) · importar `@sotf/i18n/server`,
   envolver cada petición en `withLocale(stripLocale(path).locale, …)`,
   `<html lang={toHtmlLang(locale)}>` y `hreflangAlternates(path, origin)`; configurar
   `configureUiTranslate((key, params) => m[key](params ?? {}))` una vez (y `UiTranslateProvider` en
   la consola, WP-34). (WP-12, WP-13.)
 - **`UNLOCALIZED_SEGMENTS`** · `packages/i18n/src/paths.ts` o la opción `isLocalized` (WP-22) ·
   ampliar si aparecen rutas sin prefijo (`/embed`, `/k`, `/_actions`). (WP-13.)
-- **Sugerencia de idioma** · `apps/web/src/scripts/lang-suggest.ts` (WP-22) · renderizada en el
+- [x] resolved by WP-22 (verified by wire-web-public) (`scripts/lang-suggest.ts`) · **Sugerencia de idioma** · `apps/web/src/scripts/lang-suggest.ts` (WP-22) · renderizada en el
   locale sugerido, candidato de `negotiateLocale` o `fromLegacyLangCookie`; nunca redirección.
   (WP-13.)
-- **CSP** · `apps/web/src/lib/security/**` (WP-22, revisión WP-93) · hashes de
+- [x] resolved by WP-93 (verified by wire-web-public) (`lib/security/csp.ts`; `CSP_MODE` cableado por wire-web-public) · **CSP** · `apps/web/src/lib/security/**` (WP-22, revisión WP-93) · hashes de
   `THEME_INIT_SCRIPT`/`BANNER_INIT_SCRIPT` (`cspScriptHash`); sonner y Base UI/floating-ui necesitan
   `style-src 'unsafe-inline'` (o nonce) donde carguen `Toaster` o popups. (WP-12.)
-- **Assets de marca en la raíz web** · `apps/web/public/**` (WP-22) · `/brand/topo.svg`,
+- [x] resolved by WP-22 (verified by wire-web-public) · **Assets de marca en la raíz web** · `apps/web/public/**` (WP-22) · `/brand/topo.svg`,
   `/brand/field-kit.svg` y el resto de `packages/brand/assets/public`. (WP-12; ya en wave-0.)
 - **Componentes de dominio** · `packages/ui/src/domain/index.ts` y
   `packages/ui/playground/domain/**/*.demo.tsx` (WP-25) · el export `@sotf/ui/domain` ya está
@@ -138,7 +138,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   `.md-anchor`, `.md-alert*`, `.md-spoiler` (con foco visible y *reduced motion*), `.md-youtube`,
   `.md-mention`, listas de tareas y `details`/`summary`; contrato en
   `packages/markdown/README.md`. (WP-15.)
-- **Fachada de YouTube y revelado de spoilers** · `apps/web/src/scripts/**` (WP-62/WP-70) ·
+- [x] resolved by wire-web-public (`scripts/mod/prose.ts` enlazado una vez por documento; el boot lo carga en cualquier página con spoilers/fachadas (builds, kits, perfiles, noticias)) · **Fachada de YouTube y revelado de spoilers** · `apps/web/src/scripts/**` (WP-62/WP-70) ·
   sustituir `a.md-youtube-link` por el iframe `youtube-nocookie`; spoilers accesibles (click, Enter,
   Espacio; `aria-expanded`, quitar `role`/`tabindex`/`aria-label`; CSS para spoilers con enlace o
   dentro de `<summary>`). (WP-15.)

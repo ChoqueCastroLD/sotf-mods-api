@@ -6,8 +6,8 @@
 import { modPath } from '@sotf/contracts/seo';
 import type { APIRoute } from 'astro';
 import { loadEnv } from '../../../lib/env.ts';
-import { rawSegments, stripSuffix } from '../../sitemaps/_lib/entities.ts';
-import { machineRedirect } from '../../sitemaps/_lib/respond.ts';
+import { rawSegments, stripSuffix } from '../../../lib/seo/entities.ts';
+import { machineRedirect } from '../../../lib/seo/respond.ts';
 
 export const prerender = false;
 

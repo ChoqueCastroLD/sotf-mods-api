@@ -21,7 +21,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from '
 import { StreamClient, type StreamStatus } from '../../console/lib/stream.ts';
 import { track } from '../../scripts/beacon.ts';
 import { fetchRecentSignals, fetchUnreadCount, markSignalsRead } from './client.ts';
-import { st } from './i18n.ts';
+import { ensureBadgeNames, needsBadgeNames, st } from './i18n.ts';
 import { SignalRow } from './SignalRow.tsx';
 
 export const PANEL_LIMIT = 8;
@@ -80,6 +80,8 @@ export default function Bell({ unread: initialUnread, locale, href = '/signals' 
     setPanel((current) => (current.kind === 'ready' ? current : { kind: 'loading' }));
     try {
       const items = await fetchRecentSignals(PANEL_LIMIT);
+      // «You earned {badge}»: fetch the localised badge names first (never blocks on failure).
+      if (needsBadgeNames(items)) await ensureBadgeNames();
       stale.current = false;
       setNow(Date.now());
       setPanel({ kind: 'ready', items });

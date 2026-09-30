@@ -4,9 +4,9 @@
  */
 import type { APIRoute } from 'astro';
 import { loadEnv } from '../lib/env.ts';
-import { allCards } from './sitemaps/_lib/data.ts';
-import { llmsFullTxt } from './sitemaps/_lib/llms.ts';
-import { CONTENT_TYPES, machineResponse, machineUnavailable } from './sitemaps/_lib/respond.ts';
+import { allCards } from '../lib/seo/data.ts';
+import { llmsFullTxt } from '../lib/seo/llms.ts';
+import { CONTENT_TYPES, machineResponse, machineUnavailable } from '../lib/seo/respond.ts';
 
 export const prerender = false;
 

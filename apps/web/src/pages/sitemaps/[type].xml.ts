@@ -5,9 +5,9 @@
  */
 import type { APIRoute } from 'astro';
 import { loadEnv } from '../../lib/env.ts';
-import { CONTENT_TYPES, machineError, machineResponse, machineUnavailable } from './_lib/respond.ts';
-import { isSitemapType, sitemapPages } from './_lib/sitemaps.ts';
-import { urlset } from './_lib/xml.ts';
+import { CONTENT_TYPES, machineError, machineResponse, machineUnavailable } from '../../lib/seo/respond.ts';
+import { isSitemapType, sitemapPages } from '../../lib/seo/sitemaps.ts';
+import { urlset } from '../../lib/seo/xml.ts';
 
 export const prerender = false;
 

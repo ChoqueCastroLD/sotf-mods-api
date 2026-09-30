@@ -18,10 +18,13 @@ pnpm --filter @sotf/web gen        # console route tree, brand assets in public/
 1. **Server entry** (`lib/server/fetch.ts`, Astro `fetchFile`): trailing slash, `/en/…` and
    prefixed unlocalized paths → 301; `/{locale}/rest` is rewritten to `/rest` with the locale in
    the internal `x-sotf-locale` header (client values are always dropped: every `x-sotf-*` request
-   header is internal). After Astro: `x-sotf-cache-tags` → `Cache-Tag`, baseline security headers.
+   header is internal). After Astro: `x-sotf-cache-tags` → `Cache-Tag`, security headers (`lib/security/headers.ts`;
+   CSP enforcing or report-only per `CSP_MODE`/`SITE_ENV`).
 2. **Route cache** (`lib/cache/cloudflare-tags.ts`, `cache.provider`): origin LRU (≈ 500 entries,
    TTL = edge TTL, keyed by host + locale + path + sorted query, ETag/304) and the header mapping.
-3. **Middleware** (`middleware/index.ts`): `locals.locale/pagePath/requestId`, legacy redirects and
+3. **Middleware** (`middleware/index.ts`): first the Fetch Metadata resource-isolation policy
+   (`middleware/security.ts`, WP-93: cross-site writes and subresource loads → 403), then
+   `locals.locale/pagePath/requestId`, legacy redirects and
    410s (`middleware/redirects.ts`), render inside `withLocale()`, response hygiene
    (`lib/cache/response.ts`: cookies ⇒ `private, no-store`; ≥ 500 ⇒ `no-store`).
 
@@ -58,15 +61,22 @@ setPageCache(Astro, pageCache.mod(mod.id, mod.userId));      // E(900) mod:{id} 
   `theme-color`, robots (`noindex` automatically outside `SITE_ENV=production`) and JSON-LD
   (`lib/seo/jsonld.ts`, `schema-dts`, safely serialized).
 - `Picture.astro`: AVIF/WebP sources from `ImageDTO`, explicit size, `priority` for the LCP.
-- Ads: render `<ins class="adsbygoogle" data-ad-slot>` inside a reserved-height slot (WP-25
-  `AdSlot`); `scripts/ads.ts` loads AdSense only for guests, after load + idle + CMP, near the
-  viewport. Pages where ads are forbidden simply render no slot.
+- Ads: `components/ads/AdUnit.astro` renders the shared `AdSlot` (reserved height) for a
+  placement whose unit id is configured (`PUBLIC_ADSENSE_SLOT_HOME|FEED|MOD_SIDEBAR`, with
+  `PUBLIC_ADSENSE_CLIENT`); Explore adds in-feed units after cards 6 and 18 (`lib/ads.ts`).
+  `scripts/ads.ts` loads AdSense only for guests, after load + idle + CMP, near the viewport;
+  `global.css` hides the boxes for members. Pages where ads are forbidden simply render no slot.
+- Domain components: `lib/domain-i18n.ts` makes every `@sotf/ui/domain` component speak the
+  request locale (compiled `ui-domain` namespace), configured once by the middleware.
 - Analytics: `track(kind, { entityType, entityId })` from `scripts/beacon.ts`.
 
 ## Client scripts (`lib/client/boot.ts`, ≈ 5 KB br)
 
-Immediate: `theme` (enhance ThemeToggle/LanguageSwitcher/banners), cmdk shortcuts (stub),
-mobile chrome, relogin banner, `moon`, `view-transitions`, `account-hint`. Idle/lazy:
+Immediate: `theme` (enhance ThemeToggle/LanguageSwitcher/banners), the Cmd+K trigger
+(`islands/cmdk/Trigger.ts`: ⌘K/Ctrl+K, `/`, header search and «Search» tab open the palette, see
+`islands/cmdk/README.md`), mobile chrome, relogin banner, `moon`, `view-transitions`,
+`account-hint`, the Signals bell and, for members, the account's display preferences
+(`scripts/account-settings.ts`). Idle/lazy:
 `beacon` + web-vitals, `seasonal` (December snow), `lang-suggest`, `ads` + `consent`.
 Inline head scripts (theme, dismissed banners, legacy-token cleanup, Speculation Rules) are hashed
 in the CSP placeholder (`lib/security/csp.ts`, finalized by WP-93).
