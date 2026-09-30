@@ -5,7 +5,9 @@
  */
 export * from './disposable.ts';
 export * from './hibp.ts';
+export * from './oauth.ts';
 export * from './passwords.ts';
+export * from './pat.ts';
 export * from './semaphore.ts';
 export * from './service.ts';
 export * from './sessions.ts';

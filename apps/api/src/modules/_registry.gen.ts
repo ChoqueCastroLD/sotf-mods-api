@@ -20,6 +20,7 @@ import legacyModule from './legacy/index.ts';
 import markdownPreviewModule from './markdown-preview/index.ts';
 import meModule from './me/index.ts';
 import notificationsModule from './notifications/index.ts';
+import oauthModule from './oauth/index.ts';
 import onboardingModule from './onboarding/index.ts';
 import platformModule from './platform/index.ts';
 import rangerModule from './ranger/index.ts';
@@ -30,6 +31,7 @@ import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
 import studioAnalyticsModule from './studio-analytics/index.ts';
 import studioModsModule from './studio-mods/index.ts';
+import tokensModule from './tokens/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
 import uploadsModule from './uploads/index.ts';
 
@@ -53,6 +55,7 @@ export const modules = [
   markdownPreviewModule,
   meModule,
   notificationsModule,
+  oauthModule,
   onboardingModule,
   platformModule,
   rangerModule,
@@ -63,6 +66,7 @@ export const modules = [
   siteModule,
   studioAnalyticsModule,
   studioModsModule,
+  tokensModule,
   unsubscribeModule,
   uploadsModule,
 ] as const;

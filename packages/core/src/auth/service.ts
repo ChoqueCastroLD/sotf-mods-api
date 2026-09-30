@@ -61,6 +61,12 @@ export const AUTH_EVENT_KINDS = [
   'account_delete_request',
   'account_delete_cancel',
   'account_export',
+  'oauth_login',
+  'oauth_register',
+  'oauth_link',
+  'oauth_unlink',
+  'pat_create',
+  'pat_revoke',
 ] as const;
 export type AuthEventKind = (typeof AUTH_EVENT_KINDS)[number];
 

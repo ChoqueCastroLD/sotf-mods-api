@@ -11,6 +11,7 @@ import {
   type BreachedPasswordChecker,
   createHibpChecker,
   createTurnstileVerifier,
+  OAuthService,
   PasswordHasher,
   type TurnstileVerifier,
 } from '@sotf/core/auth/index';
@@ -23,10 +24,13 @@ export interface AccountServicesOptions {
   storage?: ExportStorage | null;
   /** Minimum duration of a failed login (ms). */
   failureFloorMs?: number;
+  /** `fetch` used to talk to OAuth providers (tests). */
+  oauthFetch?: typeof fetch;
 }
 
 export interface AccountServices {
   auth: AuthService;
+  oauth: OAuthService;
   storage: ExportStorage | null;
   mediaBaseUrl: string;
   siteUrl: string;
@@ -61,8 +65,18 @@ export function accountServices(platform: Platform, options: AccountServicesOpti
     limits: platform.rateLimiter,
     ...(options.failureFloorMs !== undefined ? { failureFloorMs: options.failureFloorMs } : {}),
   });
+  const discordConfigured = Boolean(env.DISCORD_CLIENT_ID && env.DISCORD_CLIENT_SECRET);
+  const oauth = new OAuthService({
+    auth,
+    providers: discordConfigured
+      ? { discord: { clientId: env.DISCORD_CLIENT_ID as string, clientSecret: env.DISCORD_CLIENT_SECRET as string } }
+      : {},
+    siteUrl: env.PUBLIC_SITE_URL,
+    ...(options.oauthFetch ? { fetch: options.oauthFetch } : {}),
+  });
   const created: AccountServices = {
     auth,
+    oauth,
     storage: options.storage === undefined ? defaultStorage(platform) : options.storage,
     mediaBaseUrl: env.R2_PUBLIC_BASE_URL,
     siteUrl: env.PUBLIC_SITE_URL,

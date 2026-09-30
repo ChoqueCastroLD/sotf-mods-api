@@ -53,11 +53,13 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   me: 'The signed-in user: profile, settings, privacy, sessions, data export and deletion.',
   moderation: 'Reports and the Ranger Station (moderators).',
   notifications: 'Signals (notifications), preferences and one-click unsubscribe.',
+  oauth: 'OAuth sign-in and account linking (Discord); inactive unless configured on the server.',
   reviews: 'Reviews, helpful votes and author replies.',
   search: 'Search and the compact Cmd+K index.',
   seo: 'Path resolution for legacy and canonical URLs.',
   stats: 'Public statistics and live counters.',
   studio: 'Basecamp: drafts, publishing, versions, analytics and inbox.',
+  tokens: 'Personal access tokens (`Authorization: Bearer sotfm_pat_…`) for the public API, with scopes.',
   uploads: 'Direct uploads to R2 with presigned URLs.',
   versions: 'Versions of a mod in semver order, with security scans and compatibility.',
 };

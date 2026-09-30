@@ -3,9 +3,10 @@
  * the register / login / logout / password reset / email verification endpoints.
  */
 import { authEndpoints, SESSION_COOKIE } from '@sotf/contracts/auth';
-import { resolveSession } from '@sotf/core/auth/index';
+import { patAllows, patFromAuthorization, resolvePersonalAccessToken, resolveSession } from '@sotf/core/auth/index';
 import { type ApiModule, defineModule } from '../../lib/define-module.ts';
 import type { SessionResolver } from '../../lib/types.ts';
+import { httpError } from '../../plugins/errors.ts';
 import { clearSessionCookies, setSessionCookies } from './cookies.ts';
 import { type AccountServicesOptions, accountServices } from './services.ts';
 
@@ -14,6 +15,18 @@ export function createAuthModule(options: AccountServicesOptions = {}): ApiModul
     name: 'auth',
     sessionResolver: (platform): SessionResolver => {
       return async (request) => {
+        // `Authorization: Bearer sotfm_pat_…` (T1-08): the token acts as its owner, limited by its
+        // scopes and never as staff. When present it wins over a cookie.
+        const bearer = patFromAuthorization(request.headers.authorization);
+        if (bearer) {
+          const resolved = await resolvePersonalAccessToken(platform.db, bearer, new Date());
+          if (!resolved) return null;
+          const endpoint = request.routeOptions.config?.endpoint;
+          if (!endpoint || !patAllows(endpoint, resolved.scopes)) {
+            throw httpError('FORBIDDEN', 'This access token cannot call this endpoint (missing scope)');
+          }
+          return resolved.actor;
+        }
         const token = request.cookies?.[SESSION_COOKIE];
         if (!token) return null;
         return resolveSession(platform.db, token, new Date());
