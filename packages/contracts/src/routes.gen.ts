@@ -150,6 +150,18 @@ export const API_ROUTES = {
     getOwn: { id: 'kits.getOwn', method: 'GET', path: "/api/v2/me/kits/:id", kind: 'json', bodyKind: null },
     modKits: { id: 'kits.modKits', method: 'GET', path: "/api/v2/mods/:id/kits", kind: 'json', bodyKind: null },
   },
+  kitSocial: {
+    follow: { id: 'kitSocial.follow', method: 'PUT', path: "/api/v2/kits/:id/follow", kind: 'json', bodyKind: 'json' },
+    unfollow: { id: 'kitSocial.unfollow', method: 'DELETE', path: "/api/v2/kits/:id/follow", kind: 'json', bodyKind: null },
+    myFollows: { id: 'kitSocial.myFollows', method: 'GET', path: "/api/v2/me/kit-follows", kind: 'json', bodyKind: null },
+    lookup: { id: 'kitSocial.lookup', method: 'GET', path: "/api/v2/me/kit-follows/lookup", kind: 'json', bodyKind: null },
+    liveStream: { id: 'kitSocial.liveStream', method: 'GET', path: "/api/v2/kits/:id/live/stream", kind: 'event-stream', bodyKind: null },
+    listComments: { id: 'kitSocial.listComments', method: 'GET', path: "/api/v2/kits/:id/comments", kind: 'json', bodyKind: null },
+    createComment: { id: 'kitSocial.createComment', method: 'POST', path: "/api/v2/kits/:id/comments", kind: 'json', bodyKind: 'json' },
+    updateComment: { id: 'kitSocial.updateComment', method: 'PATCH', path: "/api/v2/kit-comments/:id", kind: 'json', bodyKind: 'json' },
+    deleteComment: { id: 'kitSocial.deleteComment', method: 'DELETE', path: "/api/v2/kit-comments/:id", kind: 'empty', bodyKind: null },
+    commentSource: { id: 'kitSocial.commentSource', method: 'GET', path: "/api/v2/kit-comments/:id/source", kind: 'json', bodyKind: null },
+  },
   legacy: {
     listMods: { id: 'legacy.listMods', method: 'GET', path: "/api/mods", kind: 'json', bodyKind: null },
     getMod: { id: 'legacy.getMod', method: 'GET', path: "/api/mods/:mod_id", kind: 'json', bodyKind: null },

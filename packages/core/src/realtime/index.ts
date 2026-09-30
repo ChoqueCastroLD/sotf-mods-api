@@ -98,3 +98,16 @@ export function modUpdatedNoticeFor(event: DomainEvent): { ownerId: number; modI
       return null;
   }
 }
+
+/** `kit.live` → `kit:{id}` (anyone watching the kit page): follower and comment totals. */
+export async function publishKitLive(
+  exec: Executor,
+  notice: { kitId: number; followers: number; comments: number; id: string },
+): Promise<void> {
+  await publishRealtime(exec, {
+    channel: sseChannel.kit(notice.kitId),
+    event: 'kit.live',
+    id: notice.id,
+    data: { kitId: notice.kitId, followers: notice.followers, comments: notice.comments },
+  });
+}

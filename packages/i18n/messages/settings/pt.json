@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Chave de acesso adicionada.",
   "settings_passkeys_removed_toast": "Chave de acesso removida.",
   "settings_passkeys_cancelled": "A chave de acesso não foi criada (cancelada ou indisponível neste dispositivo).",
-  "settings_passkeys_unsupported": "Este navegador não oferece suporte a chaves de acesso."
+  "settings_passkeys_unsupported": "Este navegador não oferece suporte a chaves de acesso.",
+  "settings_notif_kit_updated": "Kit seguido atualizado",
+  "settings_notif_kit_updated_hint": "Um kit que você segue recebe novos mods ou alterações.",
+  "settings_notif_kit_comment": "Comentário no meu kit",
+  "settings_notif_kit_comment_hint": "Alguém comenta em um kit que você cura.",
+  "settings_notif_kit_reply": "Resposta em um kit",
+  "settings_notif_kit_reply_hint": "Alguém responde ao seu comentário em um kit."
 }

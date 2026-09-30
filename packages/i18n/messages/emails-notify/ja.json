@@ -55,5 +55,8 @@
   "emails_notify_creator_top_heading": "今週のあなたの MOD",
   "emails_notify_creator_highlights_heading": "ハイライト",
   "emails_notify_creator_button": "アナリティクスを開く",
-  "emails_notify_creator_reason": "SOTF Mods で公開しているため、このレポートをお送りしています。"
+  "emails_notify_creator_reason": "SOTF Mods で公開しているため、このレポートをお送りしています。",
+  "emails_notify_item_kit_updated_followed": "フォロー中のキット {kit} が更新されました",
+  "emails_notify_item_kit_comment": "{actor} さんがあなたのキット {kit} にコメントしました",
+  "emails_notify_item_kit_comment_reply": "{actor} さんがキット {kit} のあなたのコメントに返信しました"
 }

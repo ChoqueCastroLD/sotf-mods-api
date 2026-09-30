@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Clé d’accès ajoutée.",
   "settings_passkeys_removed_toast": "Clé d’accès supprimée.",
   "settings_passkeys_cancelled": "La clé d’accès n’a pas été créée (annulée ou indisponible sur cet appareil).",
-  "settings_passkeys_unsupported": "Ce navigateur ne prend pas en charge les clés d’accès."
+  "settings_passkeys_unsupported": "Ce navigateur ne prend pas en charge les clés d’accès.",
+  "settings_notif_kit_updated": "Kit suivi mis à jour",
+  "settings_notif_kit_updated_hint": "Un kit que vous suivez reçoit de nouveaux mods ou des modifications.",
+  "settings_notif_kit_comment": "Commentaire sur mon kit",
+  "settings_notif_kit_comment_hint": "Quelqu’un commente un kit que vous curatez.",
+  "settings_notif_kit_reply": "Réponse sur un kit",
+  "settings_notif_kit_reply_hint": "Quelqu’un répond à votre commentaire sur un kit."
 }

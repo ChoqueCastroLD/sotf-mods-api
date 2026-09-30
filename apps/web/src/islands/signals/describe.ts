@@ -243,6 +243,27 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         icon: Layers,
         tone: 'neutral',
       };
+    case 'kit.updated_followed':
+      return {
+        text: st('signals_kit_updated_followed', { kit: str(signal.data.kitName) ?? signal.target?.title ?? '' }),
+        excerpt: null,
+        icon: Layers,
+        tone: 'signal',
+      };
+    case 'kit.comment':
+      return {
+        text: st('signals_kit_comment', { actor, kit: str(signal.data.kitName) ?? signal.target?.title ?? '' }),
+        excerpt,
+        icon: MessageSquare,
+        tone: 'neutral',
+      };
+    case 'kit.comment_reply':
+      return {
+        text: st('signals_kit_comment_reply', { actor, kit: str(signal.data.kitName) ?? signal.target?.title ?? '' }),
+        excerpt,
+        icon: Reply,
+        tone: 'neutral',
+      };
     case 'patch.breaking_build':
       return {
         text: st('signals_patch_breaking', { build: str(signal.data.build) ?? signal.target?.title ?? '' }),

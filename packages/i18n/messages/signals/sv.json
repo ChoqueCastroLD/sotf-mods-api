@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Verifierad skapare",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Översättare",
-  "signals_badge_name_night_owl": "Nattuggla"
+  "signals_badge_name_night_owl": "Nattuggla",
+  "signals_kit_updated_followed": "Kitet ”{kit}” som du följer har uppdaterats",
+  "signals_kit_comment": "{actor} kommenterade ditt kit ”{kit}”",
+  "signals_kit_comment_reply": "{actor} svarade på din kommentar på kitet ”{kit}”"
 }

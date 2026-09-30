@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Passkey toegevoegd.",
   "settings_passkeys_removed_toast": "Passkey verwijderd.",
   "settings_passkeys_cancelled": "De passkey is niet aangemaakt (geannuleerd of niet beschikbaar op dit apparaat).",
-  "settings_passkeys_unsupported": "Deze browser ondersteunt geen passkeys."
+  "settings_passkeys_unsupported": "Deze browser ondersteunt geen passkeys.",
+  "settings_notif_kit_updated": "Gevolgde kit bijgewerkt",
+  "settings_notif_kit_updated_hint": "Een kit die je volgt krijgt nieuwe mods of wijzigingen.",
+  "settings_notif_kit_comment": "Reactie op mijn kit",
+  "settings_notif_kit_comment_hint": "Iemand reageert op een kit die je beheert.",
+  "settings_notif_kit_reply": "Antwoord bij een kit",
+  "settings_notif_kit_reply_hint": "Iemand reageert op je reactie bij een kit."
 }

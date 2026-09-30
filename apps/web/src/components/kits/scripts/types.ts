@@ -19,6 +19,52 @@ export interface KitPageMessages {
   offline: string;
 }
 
+/** Strings of the follow button and the comment thread (`kitsocial` namespace). */
+export interface KitSocialMessages {
+  follow: string;
+  following: string;
+  followed: string;
+  unfollowed: string;
+  undo: string;
+  signInRequired: string;
+  followFailed: string;
+  rateLimited: string;
+  /** `{n}` templates per plural category. */
+  commentsCount: Record<string, string>;
+  followers: Record<string, string>;
+  commentsEmpty: string;
+  commentsLoading: string;
+  commentsLoadFailed: string;
+  retry: string;
+  loadMore: string;
+  formLabel: string;
+  formPlaceholder: string;
+  formHint: string;
+  formSubmit: string;
+  formPosting: string;
+  reply: string;
+  replyLabel: string;
+  replySubmit: string;
+  cancel: string;
+  edit: string;
+  save: string;
+  delete: string;
+  deleteConfirm: string;
+  deletedNote: string;
+  curator: string;
+  edited: string;
+  signInToComment: string;
+  signInLink: string;
+  verifyEmail: string;
+  posted: string;
+  saved: string;
+  removed: string;
+  postFailed: string;
+  tooLong: string;
+  forbidden: string;
+  deletedAuthor: string;
+}
+
 export interface KitPageData {
   kitId: number;
   name: string;
@@ -33,6 +79,13 @@ export interface KitPageData {
   /** Console editor of this kit (owners). */
   editHref: string;
   messages: KitPageMessages;
+  social: KitSocialMessages;
+  /** Profile URL of a handle with the literal `{handle}` placeholder (localised). */
+  profileHref: string;
+  /** Comment body limit. */
+  commentMax: number;
+  /** Active locale (plural rules, dates). */
+  locale: string;
 }
 
 export function readKitPageData(doc: Document = document): KitPageData | null {

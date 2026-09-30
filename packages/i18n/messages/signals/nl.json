@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Geverifieerde maker",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Vertaler",
-  "signals_badge_name_night_owl": "Nachtuil"
+  "signals_badge_name_night_owl": "Nachtuil",
+  "signals_kit_updated_followed": "De kit “{kit}” die je volgt is bijgewerkt",
+  "signals_kit_comment": "{actor} heeft gereageerd op je kit “{kit}”",
+  "signals_kit_comment_reply": "{actor} heeft gereageerd op je reactie bij de kit “{kit}”"
 }

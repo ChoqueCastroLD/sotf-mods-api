@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Ключ доступа добавлен.",
   "settings_passkeys_removed_toast": "Ключ доступа удалён.",
   "settings_passkeys_cancelled": "Ключ доступа не создан (отменено или недоступно на этом устройстве).",
-  "settings_passkeys_unsupported": "Этот браузер не поддерживает ключи доступа."
+  "settings_passkeys_unsupported": "Этот браузер не поддерживает ключи доступа.",
+  "settings_notif_kit_updated": "Обновлён набор, на который вы подписаны",
+  "settings_notif_kit_updated_hint": "В набор, на который вы подписаны, добавлены моды или внесены изменения.",
+  "settings_notif_kit_comment": "Комментарий к моему набору",
+  "settings_notif_kit_comment_hint": "Кто-то комментирует набор, который вы ведёте.",
+  "settings_notif_kit_reply": "Ответ в наборе",
+  "settings_notif_kit_reply_hint": "Кто-то отвечает на ваш комментарий к набору."
 }

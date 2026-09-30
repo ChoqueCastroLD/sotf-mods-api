@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Geçiş anahtarı eklendi.",
   "settings_passkeys_removed_toast": "Geçiş anahtarı kaldırıldı.",
   "settings_passkeys_cancelled": "Geçiş anahtarı oluşturulmadı (iptal edildi veya bu cihazda kullanılamıyor).",
-  "settings_passkeys_unsupported": "Bu tarayıcı geçiş anahtarlarını desteklemiyor."
+  "settings_passkeys_unsupported": "Bu tarayıcı geçiş anahtarlarını desteklemiyor.",
+  "settings_notif_kit_updated": "Takip edilen kit güncellendi",
+  "settings_notif_kit_updated_hint": "Takip ettiğin bir kite yeni mod veya değişiklik geldi.",
+  "settings_notif_kit_comment": "Kitime yorum",
+  "settings_notif_kit_comment_hint": "Küratörlüğünü yaptığın bir kite biri yorum yaptı.",
+  "settings_notif_kit_reply": "Kitte yanıt",
+  "settings_notif_kit_reply_hint": "Bir kitteki yorumuna biri yanıt verdi."
 }

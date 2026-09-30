@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Passkey tillagd.",
   "settings_passkeys_removed_toast": "Passkey borttagen.",
   "settings_passkeys_cancelled": "Passkeyn skapades inte (avbruten eller inte tillgänglig på den här enheten).",
-  "settings_passkeys_unsupported": "Den här webbläsaren stöder inte passkeys."
+  "settings_passkeys_unsupported": "Den här webbläsaren stöder inte passkeys.",
+  "settings_notif_kit_updated": "Följt kit uppdaterat",
+  "settings_notif_kit_updated_hint": "Ett kit du följer får nya mods eller ändringar.",
+  "settings_notif_kit_comment": "Kommentar på mitt kit",
+  "settings_notif_kit_comment_hint": "Någon kommenterar ett kit du kurerar.",
+  "settings_notif_kit_reply": "Svar på ett kit",
+  "settings_notif_kit_reply_hint": "Någon svarar på din kommentar på ett kit."
 }

@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Dodano klucz dostępu.",
   "settings_passkeys_removed_toast": "Usunięto klucz dostępu.",
   "settings_passkeys_cancelled": "Nie utworzono klucza dostępu (anulowano lub niedostępny na tym urządzeniu).",
-  "settings_passkeys_unsupported": "Ta przeglądarka nie obsługuje kluczy dostępu."
+  "settings_passkeys_unsupported": "Ta przeglądarka nie obsługuje kluczy dostępu.",
+  "settings_notif_kit_updated": "Obserwowany zestaw zaktualizowany",
+  "settings_notif_kit_updated_hint": "Obserwowany zestaw otrzymuje nowe mody lub zmiany.",
+  "settings_notif_kit_comment": "Komentarz do mojego zestawu",
+  "settings_notif_kit_comment_hint": "Ktoś komentuje zestaw, którego jesteś autorem.",
+  "settings_notif_kit_reply": "Odpowiedź w zestawie",
+  "settings_notif_kit_reply_hint": "Ktoś odpowiada na Twój komentarz w zestawie."
 }

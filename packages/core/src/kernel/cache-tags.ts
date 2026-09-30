@@ -61,6 +61,11 @@ export function tagsForEvent(event: DomainEvent): CacheTag[] {
     case 'kit.updated':
     case 'kit.deleted':
       return [cacheTag.kit(event.payload.kitId), 'list:kits', cacheTag.user(event.payload.ownerId)];
+    case 'kit.followed':
+    case 'kit.unfollowed':
+    case 'kit.comment_created':
+    case 'kit.comment_deleted':
+      return [cacheTag.kit(event.payload.kitId)];
     case 'user.profile_updated':
       return [cacheTag.user(event.payload.userId)];
     case 'badge.awarded':

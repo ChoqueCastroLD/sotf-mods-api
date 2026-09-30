@@ -48,6 +48,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   gamification: 'Badges, awards and the Day 1 checklist.',
   internal: 'Health checks and internal operations (Coolify network only).',
   kits: 'Kits: shareable mod collections.',
+  kitSocial: 'Kit follows (signals, live counts) and kit comments.',
   legacy:
     'Legacy v1 API (`/api/*`) kept byte-compatible for RedManager, UpdatesChecker and KelvinSeek. Deprecated routes carry `Deprecation` and `Sunset` headers.',
   me: 'The signed-in user: profile, settings, privacy, sessions, data export and deletion.',

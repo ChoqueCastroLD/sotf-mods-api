@@ -15,6 +15,7 @@ import draftsModule from './drafts/index.ts';
 import ecosystemModule from './ecosystem/index.ts';
 import eventsModule from './events/index.ts';
 import followsModule from './follows/index.ts';
+import kitSocialModule from './kit-social/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
 import markdownPreviewModule from './markdown-preview/index.ts';
@@ -51,6 +52,7 @@ export const modules = [
   ecosystemModule,
   eventsModule,
   followsModule,
+  kitSocialModule,
   kitsModule,
   legacyModule,
   markdownPreviewModule,

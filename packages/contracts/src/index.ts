@@ -25,6 +25,7 @@ export * from './follows.ts';
 export * from './gamification.ts';
 export * from './internal.ts';
 export * from './jobs.ts';
+export * from './kit-social.ts';
 export * from './kits.ts';
 export * from './legacy.ts';
 export * from './manifest.ts';

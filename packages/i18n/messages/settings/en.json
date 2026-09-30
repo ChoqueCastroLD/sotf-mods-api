@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "Passkey added.",
   "settings_passkeys_removed_toast": "Passkey removed.",
   "settings_passkeys_cancelled": "The passkey was not created (cancelled or not available on this device).",
-  "settings_passkeys_unsupported": "This browser does not support passkeys."
+  "settings_passkeys_unsupported": "This browser does not support passkeys.",
+  "settings_notif_kit_updated": "Followed kit updated",
+  "settings_notif_kit_updated_hint": "A kit you follow gets new mods or changes.",
+  "settings_notif_kit_comment": "Comment on my kit",
+  "settings_notif_kit_comment_hint": "Someone comments on a kit you curate.",
+  "settings_notif_kit_reply": "Reply on a kit",
+  "settings_notif_kit_reply_hint": "Someone replies to your comment on a kit."
 }

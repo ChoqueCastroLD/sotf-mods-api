@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "认证创作者",
   "signals_badge_name_ranger": "护林员",
   "signals_badge_name_translator": "译者",
-  "signals_badge_name_night_owl": "夜猫子"
+  "signals_badge_name_night_owl": "夜猫子",
+  "signals_kit_updated_followed": "你关注的套件“{kit}”已更新",
+  "signals_kit_comment": "{actor} 评论了你的套件“{kit}”",
+  "signals_kit_comment_reply": "{actor} 回复了你在套件“{kit}”下的评论"
 }

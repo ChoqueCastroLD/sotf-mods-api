@@ -1,0 +1,2 @@
+DROP TABLE IF EXISTS "KitComment";
+DROP TABLE IF EXISTS "KitFollow";

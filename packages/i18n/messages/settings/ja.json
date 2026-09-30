@@ -397,5 +397,11 @@
   "settings_passkeys_added_toast": "パスキーを追加しました。",
   "settings_passkeys_removed_toast": "パスキーを削除しました。",
   "settings_passkeys_cancelled": "パスキーは作成されませんでした（キャンセルされたか、この端末では利用できません）。",
-  "settings_passkeys_unsupported": "このブラウザーはパスキーに対応していません。"
+  "settings_passkeys_unsupported": "このブラウザーはパスキーに対応していません。",
+  "settings_notif_kit_updated": "フォロー中のキットの更新",
+  "settings_notif_kit_updated_hint": "フォロー中のキットにモッドの追加や変更があったとき。",
+  "settings_notif_kit_comment": "自分のキットへのコメント",
+  "settings_notif_kit_comment_hint": "あなたがキュレーションしているキットにコメントがあったとき。",
+  "settings_notif_kit_reply": "キットでの返信",
+  "settings_notif_kit_reply_hint": "キットでのあなたのコメントに返信があったとき。"
 }

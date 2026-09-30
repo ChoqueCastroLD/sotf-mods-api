@@ -16,6 +16,8 @@ import {
   type Executor,
   gameBuild,
   kit,
+  kitComment,
+  kitFollow,
   mod,
   modFavorite,
   modReview,
@@ -143,6 +145,73 @@ async function kitAddedDrafts(
       dedupeKey: `kit.added_my_mod:${kitId}:${modId}`,
     });
   }
+  return drafts;
+}
+
+/**
+ * `kit.updated_followed`: followers of a kit (with `notify`) when its owner changes it. Private and
+ * deleted kits, and owners that are hidden, signal nobody. Grouped per kit while unread.
+ */
+async function kitFollowerDrafts(
+  db: Executor,
+  event: Extract<DomainEvent, { type: 'kit.updated' }>,
+): Promise<NotificationDraft[]> {
+  const p = event.payload;
+  const [row] = await db
+    .select({ name: kit.name, slug: kit.slug, visibility: kit.visibility, deletedAt: kit.deletedAt, handle: user.slug })
+    .from(kit)
+    .innerJoin(user, eq(user.id, kit.ownerId))
+    .where(eq(kit.id, p.kitId));
+  if (!row || row.visibility === 'private' || row.deletedAt !== null || !row.handle) return [];
+  const followers = await db
+    .select({ userId: kitFollow.userId })
+    .from(kitFollow)
+    .where(and(eq(kitFollow.kitId, p.kitId), eq(kitFollow.notify, true), ne(kitFollow.userId, p.ownerId)));
+  const path = kitPath(row.handle, row.slug);
+  return followers.map((f) => ({
+    userId: f.userId,
+    type: 'kit.updated_followed' as const,
+    actorId: p.ownerId,
+    target: { type: 'kit' as const, id: p.kitId, title: row.name, path },
+    groupKey: `kit.updated_followed:${p.kitId}`,
+    data: { kitName: row.name, revision: p.revision, addedCount: p.addedModIds?.length ?? 0 },
+    dedupeKey: `kit.updated_followed:${p.kitId}:${p.revision}:${f.userId}`,
+  }));
+}
+
+/** `kit.comment` / `kit.comment_reply`: the kit owner and the author of the parent comment. */
+async function kitCommentDrafts(
+  db: Executor,
+  p: Extract<DomainEvent, { type: 'kit.comment_created' }>['payload'],
+): Promise<NotificationDraft[]> {
+  const [row] = await db
+    .select({ name: kit.name, slug: kit.slug, visibility: kit.visibility, deletedAt: kit.deletedAt, handle: user.slug })
+    .from(kit)
+    .innerJoin(user, eq(user.id, kit.ownerId))
+    .where(eq(kit.id, p.kitId));
+  if (!row || row.deletedAt !== null || !row.handle) return [];
+  const [body] = await db
+    .select({ bodyMd: kitComment.bodyMd, status: kitComment.status })
+    .from(kitComment)
+    .where(eq(kitComment.id, p.commentId));
+  if (body?.status !== 'visible') return [];
+  const target = {
+    type: 'kit_comment' as const,
+    id: p.commentId,
+    title: row.name,
+    path: `${kitPath(row.handle, row.slug)}#kc-${p.commentId}`,
+  };
+  const data = { kitName: row.name, excerpt: plainExcerpt(body.bodyMd) || null };
+  const seen = new Set<number>([p.authorId]);
+  const drafts: NotificationDraft[] = [];
+  const add = (userId: number | null, type: NotificationType) => {
+    if (userId === null || seen.has(userId)) return;
+    seen.add(userId);
+    drafts.push({ userId, type, actorId: p.authorId, target, groupKey: null, data });
+  };
+  // A reply beats "comment on your kit".
+  add(p.parentAuthorId, 'kit.comment_reply');
+  add(p.ownerId, 'kit.comment');
   return drafts;
 }
 
@@ -507,8 +576,15 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
     }
     case 'kit.updated': {
       const p = event.payload;
-      return plan(await kitAddedDrafts(db, p.kitId, p.ownerId, p.addedModIds ?? [], event.actorId));
+      return plan([
+        ...(await kitAddedDrafts(db, p.kitId, p.ownerId, p.addedModIds ?? [], event.actorId)),
+        ...(await kitFollowerDrafts(db, event)),
+      ]);
     }
+    case 'kit.comment_created':
+      return plan(await kitCommentDrafts(db, event.payload));
+    case 'kit.comment_deleted':
+      return plan([], [{ targetType: 'kit_comment', targetId: event.payload.commentId }]);
     case 'kit.created': {
       const p = event.payload;
       return plan(await kitAddedDrafts(db, p.kitId, p.ownerId, p.modIds ?? [], event.actorId));

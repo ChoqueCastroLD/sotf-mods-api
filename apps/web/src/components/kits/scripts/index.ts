@@ -10,6 +10,7 @@ import { apiCall } from '../../../scripts/mod/api.ts';
 import { initDialogs } from '../../../scripts/mod/dialogs.ts';
 import { whenSession } from '../../../scripts/mod/session.ts';
 import { toast } from '../../../scripts/mod/toast.ts';
+import { initKitSocial } from './social.ts';
 import { fill, type KitPageData, readKitPageData } from './types.ts';
 
 async function copyText(text: string, doc: Document): Promise<boolean> {
@@ -233,4 +234,5 @@ export function initKitPage(doc: Document = document): void {
   initDownloadChecklist(root, data, doc);
   initFork(root, data, doc);
   void initOwner(root, data);
+  initKitSocial(root, data, doc);
 }

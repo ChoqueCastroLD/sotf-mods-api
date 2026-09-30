@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Verifizierter Ersteller",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Übersetzer",
-  "signals_badge_name_night_owl": "Nachteule"
+  "signals_badge_name_night_owl": "Nachteule",
+  "signals_kit_updated_followed": "Das Kit „{kit}“, dem du folgst, wurde aktualisiert",
+  "signals_kit_comment": "{actor} hat dein Kit „{kit}“ kommentiert",
+  "signals_kit_comment_reply": "{actor} hat auf deinen Kommentar beim Kit „{kit}“ geantwortet"
 }
