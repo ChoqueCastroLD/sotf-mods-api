@@ -52,6 +52,7 @@ const DEFAULTS: Readonly<Record<NotificationType, { inApp: boolean; email: Email
   'milestone.reached': { inApp: true, email: 'off' },
   'badge.awarded': { inApp: true, email: 'off' },
   'award.won': { inApp: true, email: 'off' },
+  'jam.phase': { inApp: true, email: 'daily' },
   'report.resolved': { inApp: true, email: 'off' },
   'system.announcement': { inApp: true, email: 'off' },
   'creator.weekly_report': { inApp: false, email: 'weekly' },
@@ -101,6 +102,7 @@ const GROUPS: readonly { id: string; title: () => string; types: readonly Notifi
       'milestone.reached',
       'badge.awarded',
       'award.won',
+      'jam.phase',
       'system.announcement',
     ],
   },
@@ -154,6 +156,7 @@ const COPY: Readonly<Record<NotificationType, { title: () => string; hint: () =>
   'milestone.reached': { title: () => m.settings_notif_milestone(), hint: () => m.settings_notif_milestone_hint() },
   'badge.awarded': { title: () => m.settings_notif_badge(), hint: () => m.settings_notif_badge_hint() },
   'award.won': { title: () => m.settings_notif_award(), hint: () => m.settings_notif_award_hint() },
+  'jam.phase': { title: () => m.settings_notif_jam(), hint: () => m.settings_notif_jam_hint() },
   'system.announcement': {
     title: () => m.settings_notif_announcement(),
     hint: () => m.settings_notif_announcement_hint(),
