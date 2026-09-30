@@ -32,7 +32,9 @@ export default defineModule({
     const deps: ScoutDeps = {
       catalog,
       config,
-      model: env.OPENAI_API_KEY ? openAiModel({ apiKey: env.OPENAI_API_KEY }) : null,
+      model: env.OPENAI_API_KEY
+        ? openAiModel({ apiKey: env.OPENAI_API_KEY, baseUrl: env.LLM_BASE_URL || undefined })
+        : null,
     };
 
     m.implement(discoveryEndpoints.scoutStatus, async ({ ctx }) => scoutStatus(ctx, deps));

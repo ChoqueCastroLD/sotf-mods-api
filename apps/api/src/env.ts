@@ -77,6 +77,8 @@ export const apiEnvSchema = z.object({
   DISCORD_CLIENT_ID: envOptional,
   DISCORD_CLIENT_SECRET: envOptional,
   OPENAI_API_KEY: envOptional,
+  /** OpenAI-compatible endpoint (`https://openrouter.ai/api/v1` in production); default OpenAI. */
+  LLM_BASE_URL: envOptional,
   KELVINSEEK_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
   KELVINSEEK_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(3),
   /** Scout (T1-07): model, daily spend cap in USD (0 disables) and kill switch. */

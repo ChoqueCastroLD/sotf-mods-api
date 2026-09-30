@@ -36,6 +36,8 @@ export const workerEnvSchema = z.object({
   INDEXNOW_KEY: envOptional,
   VIRUSTOTAL_API_KEY: envOptional,
   OPENAI_API_KEY: envOptional,
+  /** OpenAI-compatible endpoint (`https://openrouter.ai/api/v1` in production); default OpenAI. */
+  LLM_BASE_URL: envOptional,
   KELVINSEEK_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
   /** Default KelvinSeek daily budget (same variable as the API); `ops.alerts` warns at 80 %. */
   KELVINSEEK_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(3),

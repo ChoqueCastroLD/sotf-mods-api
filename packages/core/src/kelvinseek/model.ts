@@ -73,6 +73,12 @@ export function openAiModel(options: OpenAiModelOptions): KelvinModel {
   const baseUrl = (options.baseUrl ?? 'https://api.openai.com/v1').replace(/\/+$/, '');
   const doFetch = options.fetch ?? globalThis.fetch;
   const maxOutputTokens = options.maxOutputTokens ?? 150;
+  // OpenRouter: reasoning models (DeepSeek V4.x) would spend the output budget thinking and return
+  // an empty message, so reasoning is switched off; the attribution headers are OpenRouter's own.
+  const openRouter = /openrouter\.ai/i.test(baseUrl);
+  const extraHeaders: Record<string, string> = openRouter
+    ? { 'http-referer': 'https://sotf-mods.com', 'x-title': 'SOTF Mods' }
+    : {};
   return async (request) => {
     if (isModelAuthBlocked()) throw new KelvinModelError('auth', 'model key rejected recently; calls paused');
     const signal = AbortSignal.timeout(request.timeoutMs);
@@ -80,7 +86,7 @@ export function openAiModel(options: OpenAiModelOptions): KelvinModel {
     try {
       response = await doFetch(`${baseUrl}/chat/completions`, {
         method: 'POST',
-        headers: { authorization: `Bearer ${options.apiKey}`, 'content-type': 'application/json' },
+        headers: { authorization: `Bearer ${options.apiKey}`, 'content-type': 'application/json', ...extraHeaders },
         body: JSON.stringify({
           model: request.model,
           messages: [
@@ -89,6 +95,7 @@ export function openAiModel(options: OpenAiModelOptions): KelvinModel {
           ],
           max_completion_tokens: request.maxOutputTokens ?? maxOutputTokens,
           ...(request.json ? { response_format: { type: 'json_object' } } : {}),
+          ...(openRouter ? { reasoning: { enabled: false } } : {}),
         }),
         signal,
       });
@@ -122,6 +129,7 @@ export function openAiModel(options: OpenAiModelOptions): KelvinModel {
 /** USD per million tokens (input, output). Unknown models are charged at the highest price. */
 export const KELVINSEEK_PRICES_PER_MTOK: Readonly<Record<string, readonly [number, number]>> = {
   'gpt-4o-mini': [0.15, 0.6],
+  'deepseek/deepseek-v4.1-flash': [0.0198, 0.396],
   'gpt-4.1-nano': [0.1, 0.4],
   'gpt-4.1-mini': [0.4, 1.6],
   'gpt-4.1': [2, 8],
