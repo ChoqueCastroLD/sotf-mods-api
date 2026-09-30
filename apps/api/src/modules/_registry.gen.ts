@@ -4,12 +4,14 @@
 import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
 import catalogModule from './catalog/index.ts';
+import commentsModule from './comments/index.ts';
 import downloadsModule from './downloads/index.ts';
 import legacyModule from './legacy/index.ts';
 import meModule from './me/index.ts';
 import notificationsModule from './notifications/index.ts';
 import platformModule from './platform/index.ts';
 import resolveModule from './resolve/index.ts';
+import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
 import siteModule from './site/index.ts';
 import unsubscribeModule from './unsubscribe/index.ts';
@@ -19,12 +21,14 @@ export const modules = [
   accountModule,
   authModule,
   catalogModule,
+  commentsModule,
   downloadsModule,
   legacyModule,
   meModule,
   notificationsModule,
   platformModule,
   resolveModule,
+  reviewsModule,
   searchModule,
   siteModule,
   unsubscribeModule,

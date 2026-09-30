@@ -852,6 +852,9 @@ importers:
       '@sotf/db':
         specifier: workspace:*
         version: link:../db
+      '@sotf/markdown':
+        specifier: workspace:*
+        version: link:../markdown
       drizzle-orm:
         specifier: 'catalog:'
         version: 0.45.3(@types/pg@8.23.1)(kysely@0.28.17)(pg@8.23.0)

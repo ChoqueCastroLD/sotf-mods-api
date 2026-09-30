@@ -21,6 +21,7 @@
     "@sotf/brand": "workspace:*",
     "@sotf/contracts": "workspace:*",
     "@sotf/db": "workspace:*",
+    "@sotf/markdown": "workspace:*",
     "drizzle-orm": "catalog:",
     "fflate": "catalog:",
     "isbot": "catalog:",
