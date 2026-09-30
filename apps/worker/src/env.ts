@@ -37,10 +37,8 @@ export const workerEnvSchema = z.object({
   VIRUSTOTAL_API_KEY: envOptional,
   OPENAI_API_KEY: envOptional,
   KELVINSEEK_MODEL: z.string().trim().min(1).default('gpt-4o-mini'),
-  /** Default KelvinSeek daily budget (same variable as the API); the alert fires at 80 %. */
+  /** Default KelvinSeek daily budget (same variable as the API); `ops.alerts` warns at 80 %. */
   KELVINSEEK_DAILY_BUDGET_USD: z.coerce.number().nonnegative().default(3),
-  /** Operational alerts to the admins (PLAN §10.3, `src/alerts.ts`): check interval, 0 = off. */
-  ALERT_INTERVAL_SECONDS: envInt(300, 0, 86_400),
   /** Parallel jobs per queue in this process (sharp stays at 1 inside media jobs). */
   WORKER_CONCURRENCY: envInt(2, 1, 32),
 });

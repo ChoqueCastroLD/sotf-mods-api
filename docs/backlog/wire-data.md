@@ -36,3 +36,9 @@ item: what · where · why.
 - **Legacy decisions of B15** · owner (WP-84) · whether to scan the ≈ 612 legacy files with VirusTotal gradually, and whether a missing object should become `file_missing`.
 - **i18n** · native-speaker review (WP-13/WP-94), Scout copy (T1), `.generated/` size watch, FAQ templates (WP-61) and search page titles (WP-33/WP-72) as namespaces: the consumers live in `packages/core` (`seo/faq.ts`, `search/pages.ts`) and must move to the catalog first, or the messages would be dead copy.
 - **Baseline from a real dump** · `packages/db` · PLAN §14.5: there will be no dump; the live-catalog guard stays the safety net.
+
+## Resolved by final-data
+
+- [x] resolved by final-data: worker handlers for `ops.alerts`, `security.rescan`, `compat.reconcile`, `markdown.rerender`; `legacy.mentions` on its own schedule; `db:invariants --record`; the `ALERT_INTERVAL_SECONDS` variable no longer exists (alerts are the `ops.alerts` queue).
+- [x] resolved by final-data: "Re-render on a `RENDER_VERSION` bump" and "Queues still needed" (contracts and core now exist).
+- [x] resolved by final-data: "Baseline from a real dump" (decision §14.5) and "Legacy decisions of B15" (no scan of legacy files).

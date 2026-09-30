@@ -1,7 +1,7 @@
 /**
  * `pnpm db:invariants` (PLAN §6.11): the data invariants. Read-only. Exit 1 when one is red.
  *
- *   pnpm db:invariants [--json] [--min-site-downloads <n>] [--expected-file-missing <n>]
+ *   pnpm db:invariants [--json] [--min-site-downloads <n>] [--expected-file-missing <n>] [--record]
  */
 import { connect } from '../db.ts';
 import { runInvariants, seedExpectations } from '../invariants.ts';
@@ -9,9 +9,11 @@ import { cliLogger, color, flagString, helpRequested, parseArgs, runCli } from '
 import { operatorTarget } from './_target.ts';
 
 const USAGE = `
-pnpm db:invariants [--json] [--min-site-downloads <n>] [--expected-file-missing <n>]
+pnpm db:invariants [--json] [--min-site-downloads <n>] [--expected-file-missing <n>] [--record]
   Checks the invariants of PLAN §6.11 (read-only). On a --small dev seed the download threshold
   is taken from the seed record automatically. --expected-file-missing -1 accepts any number.
+  --record inserts a MigrationRun row (name invariants, notes ok+failed) that the worker's
+  ops.alerts job reads: schedule pnpm db:invariants --record nightly (additive, v2 table only).
 `;
 
 async function main(): Promise<number> {
@@ -35,6 +37,12 @@ async function main(): Promise<number> {
       }
     }
     const failed = results.filter((r) => !r.ok);
+    if (args.flags.has('record')) {
+      await client.query(
+        `INSERT INTO "MigrationRun" ("name", "finishedAt", "rowsAffected", "notes") VALUES ('invariants', now(), $1, $2::jsonb)`,
+        [results.length, JSON.stringify({ ok: failed.length === 0, failed: failed.map((r) => r.id) })],
+      );
+    }
     if (failed.length > 0) {
       cliLogger.error(`${failed.length} invariant(s) failed: ${failed.map((r) => r.id).join(', ')}`);
       return 1;
