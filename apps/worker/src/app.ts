@@ -13,6 +13,7 @@ import { jobGroups as registeredGroups } from './jobs/_registry.gen.ts';
 import { type RuntimeState, startRuntime } from './runtime.ts';
 import { type ErrorReporter, noopReporter } from './sentry.ts';
 import { createWorkerServices, type WorkerServices } from './services.ts';
+import { createSweepRunner, type SweepRunner, workerSweeps } from './sweeps.ts';
 
 export interface CreateWorkerOptions {
   env: WorkerEnv;
@@ -36,6 +37,8 @@ export interface CreateWorkerOptions {
    * false; `src/worker.ts` turns them on.
    */
   alerts?: boolean;
+  /** Periodic sweeps (`src/sweeps.ts`: lost security scans). Default false; `src/worker.ts` turns them on. */
+  sweeps?: boolean;
 }
 
 export interface Worker {
@@ -47,6 +50,8 @@ export interface Worker {
   services: WorkerServices;
   /** The operational alert monitor (null when alerts are off). */
   alerts: AlertMonitor | null;
+  /** The periodic sweeps (always available for `runNow`; timers only with `sweeps: true`). */
+  sweeps: SweepRunner;
   readonly started: boolean;
   start(): Promise<RuntimeState>;
   /** Graceful stop: waits for active jobs (up to `timeoutMs`), then closes pg-boss and the pool. */
@@ -94,6 +99,8 @@ export function createWorker(options: CreateWorkerOptions): Worker {
         })
       : null;
 
+  const sweeps = createSweepRunner({ deps, sweeps: workerSweeps(deps, env.PGBOSS_SCHEMA) });
+
   return {
     boss,
     jobs,
@@ -102,6 +109,7 @@ export function createWorker(options: CreateWorkerOptions): Worker {
     deps,
     services,
     alerts,
+    sweeps,
     get started() {
       return started;
     },
@@ -120,11 +128,13 @@ export function createWorker(options: CreateWorkerOptions): Worker {
       });
       started = true;
       alerts?.start();
+      if (options.sweeps) sweeps.start();
       return state;
     },
     async stop(timeoutMs = 30_000) {
       started = false;
       await alerts?.stop();
+      await sweeps.stop();
       await boss.stop({ graceful: true, timeout: timeoutMs }).catch((error: unknown) => {
         log.warn({ err: error }, 'pg-boss stop failed');
       });

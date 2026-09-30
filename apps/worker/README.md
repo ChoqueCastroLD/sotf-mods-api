@@ -27,6 +27,9 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   KelvinSeek spent 80 % of its daily budget (`SiteSetting('kelvinseek')` over
   `KELVINSEEK_DAILY_BUDGET_USD`). The 5xx rate, `db:invariants` and the backup age are not checked
   here (see `docs/operations/monitoring.md`).
+- Sweeps (`src/sweeps.ts`, hourly, advisory-locked): `"SecurityScan"` rows still `pending` after
+  6 h without a live `security.scan` job in pg-boss are enqueued again (a failed job is retried at
+  most once a day).
 - Deployment variables: `ops/coolify/env/worker.env.example`.
 
 ## Backfills run by the worker (B15, B16…)

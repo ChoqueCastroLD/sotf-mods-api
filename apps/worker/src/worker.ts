@@ -11,7 +11,7 @@ import { createErrorReporter } from './sentry.ts';
 
 const env = loadWorkerEnv();
 const reporter = createErrorReporter(env);
-const worker = createWorker({ env, reporter, alerts: true });
+const worker = createWorker({ env, reporter, alerts: true, sweeps: true });
 const startedAt = new Date();
 const health = createHealthServer({
   version: env.GIT_SHA,
