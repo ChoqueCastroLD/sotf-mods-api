@@ -35,9 +35,12 @@ matched loosely (case and `_`/`-` ignored):
 | `categorySlug` | `category`, `suggestedCategory`, `to` | **required**; must be an active mod category |
 | `tagSlugs` | `tags`, `suggestedTags` | separated by `\|`, `;`, `,` or spaces; unknown tags are dropped; ≤ 5 |
 | `confidence` | `score` | 0–1 or 0–100 (`%` ok) |
-| `reason` | `why`, `rationale`, `source` | free text |
+| `reason` | `llmReason`, `why`, `rationale`, `source` | free text |
 | `name`, `currentCategory` | `modName`, `title` · `current`, `from` | display only |
 
 A line for a listed mod replaces its rule suggestion; other lines add rows. Nothing is written
 until the admin selects rows and confirms «Apply». Tags are **added** to each mod's current public
 tags (the API replaces the whole set), never removed; «Export CSV» writes the same columns.
+
+The merged WP-84 output (`modId,categorySlug,tagSlugs,slug,name,currentCategory,source,confidence,…,llmReason`,
+`tagSlugs` separated by `;`) is read as is: `llmReason` fills the reason, else `source`.

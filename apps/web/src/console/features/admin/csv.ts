@@ -111,7 +111,7 @@ const COLUMNS = {
   category: ['categoryslug', 'category', 'suggestedcategory', 'suggestedcategoryslug', 'suggested', 'to'],
   tags: ['tagslugs', 'tags', 'suggestedtags', 'tag'],
   confidence: ['confidence', 'score'],
-  reason: ['reason', 'why', 'rationale', 'source'],
+  reason: ['reason', 'llmreason', 'why', 'rationale', 'source'],
 } as const;
 
 function columnIndex(headers: readonly string[], names: readonly string[]): number {
