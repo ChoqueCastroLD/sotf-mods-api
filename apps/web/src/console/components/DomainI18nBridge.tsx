@@ -8,9 +8,10 @@
  * one lazy chunk per locale, preloaded by the shell); while it loads the route shows its pending
  * state, and if it cannot load the components keep their English source. Numbers and dates follow
  * the user's locale and the browser's time zone. Category and tag names come from the public
- * catalogue (`lib/taxonomy.ts`), English until it arrives.
+ * catalogue (`lib/taxonomy.ts`), English until it arrives. Site paths the components build point at
+ * the public pages of the console locale (`/es/profile/…`).
  */
-import { toHtmlLang } from '@sotf/i18n';
+import { localizePath, toHtmlLang } from '@sotf/i18n';
 import {
   createDomainTranslate,
   type DomainI18n,
@@ -36,7 +37,9 @@ export function DomainI18nBridge({ children }: { children?: ReactNode }) {
       ? createDomainTranslate(catalog as Readonly<Partial<Record<DomainMessageKey, string>>>, lang)
       : englishDomainI18n.t;
     const taxonomy = locale === 'en' ? undefined : taxonomyResolver(taxonomyNames, locale);
-    return { locale: lang, t, timeZone: browserTimeZone(), ...(taxonomy ? { taxonomy } : {}) };
+    // Public pages the cards link to (`/profile/…`, `/mods/…`) in the console's language.
+    const href = (path: string) => localizePath(path, locale);
+    return { locale: lang, t, timeZone: browserTimeZone(), href, ...(taxonomy ? { taxonomy } : {}) };
   }, [locale, catalog, taxonomyNames]);
   return <DomainI18nProvider value={value}>{children}</DomainI18nProvider>;
 }
