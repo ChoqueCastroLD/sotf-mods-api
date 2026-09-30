@@ -8,4 +8,5 @@ export * from './deletion.ts';
 export * from './export.ts';
 export * from './export-storage.ts';
 export * from './me.ts';
+export * from './profile.ts';
 export * from './trust-level.ts';

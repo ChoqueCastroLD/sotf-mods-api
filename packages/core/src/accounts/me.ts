@@ -177,7 +177,7 @@ export interface MeServices {
   /** `R2_PUBLIC_BASE_URL` for avatars. */
   mediaBaseUrl: string;
   /** Card builders of other domains (catalog, kits); absent → empty lists. */
-  modCards?: (db: Executor, ids: number[]) => Promise<Map<number, ModCardDTO>>;
+  modCards?: (db: Executor, ids: number[], viewer: { includeNsfw: boolean }) => Promise<Map<number, ModCardDTO>>;
   recentKits?: (db: Executor, userId: number) => Promise<KitCardDTO[]>;
 }
 
@@ -232,6 +232,7 @@ export async function getMeHome(
       ? await services.modCards(
           db,
           updates.map((u) => u.modId),
+          { includeNsfw: settingsOf(row.settings).nsfwOptIn },
         )
       : null;
   return {
