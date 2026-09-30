@@ -9,6 +9,7 @@ import { type KitCardDTO, type KitCode, type KitDTO, KitVisibility } from '@sotf
 import { kitPath } from '@sotf/contracts/seo';
 import type { Executor, MediaVariant, UserPrivacy } from '@sotf/db';
 import { type SQL, sql } from 'drizzle-orm';
+import { ogImageOf } from '../catalog/build-facts.ts';
 import { type CatalogConfig, imageDto, type MediaRow, mediaUrlForWidth } from '../catalog/media.ts';
 import { type CatalogEntry, type CatalogSnapshot, rankOf, roleOf, tierOf } from '../catalog/snapshot.ts';
 import { dependencyState } from '../catalog/versions.ts';
@@ -38,6 +39,7 @@ export interface KitRow {
   descriptionHtml: string | null;
   visibility: KitVisibility;
   code: string;
+  ogImageKey: string | null;
   coverMediaId: string | null;
   isStaffPick: boolean;
   forkedFromId: number | null;
@@ -76,7 +78,7 @@ export interface KitRow {
 }
 
 const KIT_SELECT = sql`
-SELECT k."id", k."ownerId", k."slug", k."name", k."descriptionMd", k."descriptionHtml", k."visibility", k."code",
+SELECT k."id", k."ownerId", k."slug", k."name", k."descriptionMd", k."descriptionHtml", k."visibility", k."code", k."ogImageKey",
        k."coverMediaId", k."isStaffPick", k."forkedFromId", k."revision", k."itemsCount", k."followersCount",
        k."createdAt", k."updatedAt", k."deletedAt",
        u."slug" AS "ownerSlug", u."name" AS "ownerName", u."displayName" AS "ownerDisplayName",
@@ -440,5 +442,7 @@ export async function buildKitDto(
     })),
     noindex: kitNoindex(kit.visibility, kit.itemsCount),
     createdAt: kit.createdAt.toISOString(),
+    // Private kits are never rendered (og.render skips them); a stale key must not leak either.
+    ogImage: kit.visibility === 'private' ? null : ogImageOf(config, kit.ogImageKey),
   };
 }

@@ -1,5 +1,6 @@
 /**
- * `PATCH /me/profile` (PLAN §5.2, §6.10): the owner edits the public profile.
+ * `GET|PATCH /me/profile` (PLAN §5.2, §6.10): the owner reads (with the bio source) and edits the
+ * public profile.
  *
  * - `displayName`, `bioMd` (≤ 500, blank → null) and `links` (≤ 7, `{ kind, url, label }`).
  * - `avatarUploadId` / `bannerUploadId`: an own upload of purpose `avatar` / `banner` that was
@@ -151,4 +152,16 @@ export async function updateProfile(
   if (updated !== current) ctx.caches?.invalidate([`user:${userId}`]);
   const profile = await getUserProfile(ctx, config, updated.slug);
   return { ...profile, bioMd: updated.bioMd };
+}
+
+/** `GET /me/profile`: the own profile with the Markdown source of the bio. */
+export async function getOwnProfile(
+  ctx: Ctx,
+  config: CatalogConfig,
+  userId: number,
+): Promise<z.infer<typeof SelfProfileDTO>> {
+  const current = await findUserById(ctx.db, userId);
+  if (!current || current.deletedAt) throw errors.unauthenticated();
+  const profile = await getUserProfile(ctx, config, current.slug);
+  return { ...profile, bioMd: current.bioMd };
 }

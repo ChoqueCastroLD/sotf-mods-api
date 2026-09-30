@@ -16,6 +16,7 @@ export const FollowBody = dto('FollowBody', z.strictObject({ notify: z.boolean()
   description: 'Follow with or without update notifications.',
   examples: [{ notify: true }],
 });
+export type FollowBody = z.infer<typeof FollowBody>;
 
 export const FollowStateDTO = dto(
   'FollowStateDTO',
@@ -25,6 +26,7 @@ export const FollowStateDTO = dto(
     examples: [{ following: true, notify: true, followers: 25 }],
   },
 );
+export type FollowStateDTO = z.infer<typeof FollowStateDTO>;
 
 export const BackpackItemDTO = dto(
   'BackpackItemDTO',
@@ -50,16 +52,19 @@ export const BackpackItemDTO = dto(
     ],
   },
 );
+export type BackpackItemDTO = z.infer<typeof BackpackItemDTO>;
 
 export const BackpackDTO = dto('BackpackDTO', z.object({ items: z.array(BackpackItemDTO), updatesAvailable: Count }), {
   description: 'Mods followed by the signed-in user.',
   examples: [{ items: [exampleOf(BackpackItemDTO)], updatesAvailable: 1 }],
 });
+export type BackpackDTO = z.infer<typeof BackpackDTO>;
 
 export const FollowLookupDTO = dto('FollowLookupDTO', z.object({ mods: z.array(EntityId), users: z.array(EntityId) }), {
   description: 'Which of the requested mods/users the viewer follows.',
   examples: [{ mods: [20], users: [] }],
 });
+export type FollowLookupDTO = z.infer<typeof FollowLookupDTO>;
 
 export const FollowLookupQuery = z.object({
   mod: wireList(z.string().regex(/^\d{1,12}$/), { max: 100, description: 'Mod ids' }),

@@ -13,6 +13,7 @@
  * CORS (`*` without credentials, preflight 204 cached 24 h), cache headers and the legacy error
  * envelope come from the platform, driven by the endpoint contracts of `@sotf/contracts/legacy`.
  */
+import { LEGACY_SUNSET_DATE } from '@sotf/contracts/legacy';
 import { type Clock, systemClock } from '@sotf/core';
 import { type ApiModule, defineModule } from '../lib/define-module.ts';
 import { createLegacyContext } from './context.ts';
@@ -24,10 +25,11 @@ import { registerSiteRoutes } from './site.ts';
 import { type LegacyUsageOptions, setupLegacyUsage } from './usage.ts';
 
 /**
- * `Sunset` of the Tier 2 routes: T0 + 12 months (PLAN §5.5). T0 is the cut-over of 2026-Q4; the
- * date is announced on /developers and can be moved later (it is informative for clients).
+ * `Sunset` of the Tier 2 routes: T0 + 12 months (PLAN §5.5), `LEGACY_SUNSET_DATE` of
+ * `@sotf/contracts/legacy` (also shown on /developers). `LEGACY_SUNSET_AT` in the API env moves it
+ * without a release once the owner fixes T0 (it is informative for clients).
  */
-export const LEGACY_SUNSET = new Date('2027-12-31T00:00:00.000Z');
+export const LEGACY_SUNSET = new Date(`${LEGACY_SUNSET_DATE}T00:00:00.000Z`);
 
 export interface LegacyModuleOptions {
   clock?: Clock;
@@ -49,7 +51,8 @@ export function createLegacyModule(options: LegacyModuleOptions = {}): ApiModule
           ? m.platform.caches.create<LegacyCachedBody>({ name: 'legacy-responses', max: 2_000, ttlMs: ttl })
           : null;
       setupLegacyUsage(m.app, m.platform, { clock, ...options.usage });
-      const ctx = createLegacyContext(m.app, m.platform, clock, { sunset: options.sunset ?? LEGACY_SUNSET, cache });
+      const sunset = options.sunset ?? m.platform.env.LEGACY_SUNSET_AT ?? LEGACY_SUNSET;
+      const ctx = createLegacyContext(m.app, m.platform, clock, { sunset, cache });
       registerModRoutes(ctx);
       registerSiteRoutes(ctx);
       registerKelvinSeekRoutes(ctx, options.kelvinseek);

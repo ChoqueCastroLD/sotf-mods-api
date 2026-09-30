@@ -6,8 +6,8 @@
  * Caching: the public reads are edge-cacheable (`kit:{id}` + `user:{ownerId}`; `list:kits`) and,
  * like every public cacheable endpoint, never resolve the session, so they always answer as for
  * an anonymous visitor (private kits are 404 there, `descriptionMd` is never included). The owner
- * gets the full kit from the write responses and `GET /me/kits` (see docs/backlog/WP-42.md for the
- * owner read of a single kit).
+ * reads the full kit with `GET /me/kits/:id` (private, any visibility). `GET /mods/:id/kits` lists
+ * the public kits containing a mod (the mod page sidebar).
  */
 import { cacheTag } from '@sotf/contracts';
 import { kitsEndpoints } from '@sotf/contracts/kits';
@@ -18,7 +18,9 @@ import {
   getKit,
   getKitByCode,
   getKitBySlug,
+  getOwnKit,
   type KitsDeps,
+  kitsWithMod,
   listKits,
   listMyKits,
   listUserKits,
@@ -60,6 +62,12 @@ export default defineModule({
     });
 
     m.implement(kitsEndpoints.myKits, async ({ ctx }) => ({ items: await listMyKits(ctx, deps) }));
+    m.implement(kitsEndpoints.getOwn, async ({ params, ctx }) => (await getOwnKit(ctx, deps, params.id)).kit);
+    m.implement(kitsEndpoints.modKits, async ({ params, query, ctx, cache }) => {
+      const items = await kitsWithMod(ctx, deps, params.id, query.limit);
+      cache({ id: params.id });
+      return { items };
+    });
 
     m.implement(kitsEndpoints.create, async ({ body, ctx }) => (await createKit(ctx, deps, body)).kit);
 

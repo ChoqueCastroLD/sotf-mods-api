@@ -87,8 +87,14 @@ function matches(
   if (skip !== 'multiplayer' && query.multiplayer && entry.multiplayerRole !== query.multiplayer) return false;
   if (query.dedicated === 'yes' && entry.dedicatedServer !== 'yes') return false;
   if (skip !== 'platform' && query.platform && entry.platform !== query.platform) return false;
-  if (r.updatedSince !== null && entry.lastReleasedAt.getTime() < r.updatedSince) return false;
-  if (query.minRating !== undefined && (entry.ratingAvg === null || entry.ratingAvg < query.minRating)) return false;
+  if (skip !== 'updatedWithin' && r.updatedSince !== null && entry.lastReleasedAt.getTime() < r.updatedSince)
+    return false;
+  if (
+    skip !== 'minRating' &&
+    query.minRating !== undefined &&
+    (entry.ratingAvg === null || entry.ratingAvg < query.minRating)
+  )
+    return false;
   if (query.hasSource && !entry.hasSource) return false;
   if (query.verified && !entry.verifiedCreator) return false;
   if (r.author && entry.userHandle.toLowerCase() !== r.author) return false;
@@ -150,6 +156,7 @@ export function computeFacets(
   query: ListQuery,
   r: Resolved,
   relevance: Relevance,
+  now: Date = new Date(),
 ): Facets {
   const subset = (skip: FacetName | null) => pool.filter((e) => matches(e, query, r, relevance, skip));
   const categorySlug = (e: CatalogEntry) =>
@@ -181,7 +188,30 @@ export function computeFacets(
       'broken',
       'untested',
     ]),
+    updatedWithin: updatedWithinBuckets(subset('updatedWithin'), now),
+    minRating: minRatingBuckets(subset('minRating')),
   };
+}
+
+/** Cumulative "released within" counts (every window that has at least one item). */
+function updatedWithinBuckets(entries: readonly CatalogEntry[], now: Date): Array<{ value: string; count: number }> {
+  const out: Array<{ value: string; count: number }> = [];
+  for (const [value, days] of Object.entries(UPDATED_WITHIN_DAYS)) {
+    const since = now.getTime() - days * DAY_MS;
+    const count = entries.filter((e) => e.lastReleasedAt.getTime() >= since).length;
+    if (count > 0) out.push({ value, count });
+  }
+  return out;
+}
+
+/** Cumulative "at least N stars" counts (rated items only). */
+function minRatingBuckets(entries: readonly CatalogEntry[]): Array<{ value: string; count: number }> {
+  const out: Array<{ value: string; count: number }> = [];
+  for (let stars = 1; stars <= 5; stars++) {
+    const count = entries.filter((e) => e.ratingAvg !== null && e.ratingAvg >= stars).length;
+    if (count > 0) out.push({ value: String(stars), count });
+  }
+  return out;
 }
 
 export interface ListResult {
@@ -215,6 +245,6 @@ export function runListQuery(
     pageSize: query.pageSize,
     total: matched.length,
     totalPages: totalPages(matched.length, query.pageSize),
-    facets: query.facets ? computeFacets(snapshot, pool, query, r, relevance) : null,
+    facets: query.facets ? computeFacets(snapshot, pool, query, r, relevance, now) : null,
   };
 }

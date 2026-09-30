@@ -10,10 +10,12 @@ import type { ActivityDayDTO, CreatorCardDTO, ModSort, UserPublicDTO, UserReview
 import { decodeCursor, encodeCursor, totalPages } from '@sotf/contracts/pagination';
 import { profilePath } from '@sotf/contracts/seo';
 import type { MediaVariant, UserLink, UserPrivacy } from '@sotf/db';
+import { renderMarkdown } from '@sotf/markdown';
 import type { z } from 'zod';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
+import { ogImageOf } from './build-facts.ts';
 import { linksOf } from './detail.ts';
 import { sortEntries } from './listing.ts';
 import { type CatalogConfig, imageDto, mediaUrlForWidth } from './media.ts';
@@ -28,6 +30,13 @@ import {
 } from './snapshot.ts';
 import { cached, num, numOrNull, row, rows } from './sql.ts';
 import { textToHtml } from './versions.ts';
+
+/** Profile bio (≤ 500 characters of Markdown `lite`), rendered on read; null when empty. */
+export function bioHtmlOf(bioMd: string | null | undefined): string | null {
+  if (!bioMd?.trim()) return null;
+  const html = renderMarkdown(bioMd, { profile: 'lite' }).html;
+  return html === '' ? null : html;
+}
 
 type ActivityDay = z.infer<typeof ActivityDayDTO>;
 type CreatorCard = z.infer<typeof CreatorCardDTO>;
@@ -77,11 +86,13 @@ interface UserRow {
   compatReportsCount: number | null;
   creatorTier: string | null;
   survivorRank: string | null;
+  ogImageKey: string | null;
 }
 
 const USER_SQL = `
 SELECT u."id", u."slug", u."name", u."displayName", u."imageUrl", u."role", u."verifiedCreator", u."createdAt",
        u."bioMd", u."links", u."bannerSeed", u."privacy", u."pinnedModIds", u."xp", u."deletedAt", u."bannedAt",
+       u."ogImageKey",
        a."width" AS "aWidth", a."height" AS "aHeight", a."thumbhash" AS "aThumbhash", a."dominantColor" AS "aColor",
        a."variants" AS "aVariants", a."sourceBucket" AS "aBucket", a."sourceKey" AS "aKey",
        b."width" AS "bWidth", b."height" AS "bHeight", b."thumbhash" AS "bThumbhash", b."dominantColor" AS "bColor",
@@ -192,7 +203,7 @@ export async function getUserProfile(ctx: Ctx, config: CatalogConfig, handle: st
         avatar: imageDto(config, media('a', user), user.imageUrl, null),
         banner: imageDto(config, media('b', user), null, null),
         bannerSeed: user.bannerSeed,
-        bioHtml: user.bioMd?.trim() ? textToHtml(user.bioMd) : null,
+        bioHtml: bioHtmlOf(user.bioMd),
         links: linksOf(user.links),
         role: roleOf(user.role),
         verifiedCreator: user.verifiedCreator,
@@ -215,6 +226,7 @@ export async function getUserProfile(ctx: Ctx, config: CatalogConfig, handle: st
         featuredBadgeKeys: badges.map((b) => b.key),
         privacy,
         hasPublicContent: mods.length + builds.length > 0 || num(content?.reviews) > 0 || num(content?.kits) > 0,
+        ogImage: ogImageOf(config, user.ogImageKey),
       };
       return { value: dto, tags: [`user:${user.id}`] };
     },
@@ -380,6 +392,9 @@ export async function getUserActivity(
 
 export type CreatorSort = 'downloads' | 'followers' | 'recent' | 'spotlight';
 
+/** Creator tiers that earn the landing spotlight (PLAN §7.2). */
+const SPOTLIGHT_TIERS: ReadonlySet<string> = new Set(['fortress', 'landmark']);
+
 /** Deterministic weekly shuffle key (the spotlight rotates every ISO week, stable within it). */
 function spotlightKey(userId: number, week: number): number {
   let x = (userId * 2_654_435_761 + week * 40_503) >>> 0;
@@ -426,8 +441,11 @@ export async function listCreators(
   const recentCutoff = now.getTime() - 180 * 86_400_000;
   let pool = cards;
   if (query.sort === 'spotlight') {
-    // Active creators (a release in the last 180 days) in a weekly rotation; the rest follow.
-    pool = [...cards].sort((a, b) => Number(b.last >= recentCutoff) - Number(a.last >= recentCutoff) || a.key - b.key);
+    // Fortress and Landmark creators first (PLAN §7.2: their tier earns the landing spotlight),
+    // then active creators (a release in the last 180 days), each group in a weekly rotation.
+    const rank = (c: (typeof cards)[number]) =>
+      (SPOTLIGHT_TIERS.has(c.card.user.creatorTier ?? '') ? 2 : 0) + (c.last >= recentCutoff ? 1 : 0);
+    pool = [...cards].sort((a, b) => rank(b) - rank(a) || a.key - b.key);
   } else {
     const keyOf = {
       downloads: (c: (typeof cards)[number]) => c.card.downloadsTotal,

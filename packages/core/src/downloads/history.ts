@@ -1,5 +1,5 @@
 /**
- * "My downloads" (T0-17, `GET|DELETE /api/v2/me/downloads`): one row per mod the signed-in user
+ * "My downloads" (T0-17, `GET|DELETE /api/v2/me/downloads`, `DELETE /api/v2/me/downloads/:modId`): one row per mod the signed-in user
  * downloaded with the web session, with the last downloaded version against the current one, the
  * compatibility summary and how many times they downloaded it.
  *
@@ -101,5 +101,19 @@ export async function getDownloadHistory(ctx: Ctx, options: CardOptions): Promis
 export async function clearDownloadHistory(ctx: Ctx): Promise<number> {
   const userId = requireUser(ctx);
   const res = await ctx.db.execute(sql`UPDATE "ModDownload" SET "userId" = NULL WHERE "userId" = ${userId}`);
+  return res.rowCount ?? 0;
+}
+
+/**
+ * Detaches the user's download rows of every version of one mod ("Remove from the list"). Returns
+ * how many rows were detached (0 when there was nothing to remove).
+ */
+export async function removeDownloadFromHistory(ctx: Ctx, modId: number): Promise<number> {
+  const userId = requireUser(ctx);
+  const res = await ctx.db.execute(
+    sql`UPDATE "ModDownload" d SET "userId" = NULL
+          FROM "ModVersion" v
+         WHERE v."id" = d."modVersionId" AND v."modId" = ${modId} AND d."userId" = ${userId}`,
+  );
   return res.rowCount ?? 0;
 }

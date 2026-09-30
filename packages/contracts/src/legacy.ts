@@ -253,6 +253,13 @@ export const LEGACY_CORS_HEADERS = {
   'access-control-max-age': '86400',
 } as const;
 
+/**
+ * Default `Sunset` of the Tier 2 legacy routes: T0 + 12 months (PLAN §5.5), T0 being the cut-over of
+ * 2026-Q4. Single source for the API headers and the `/developers` page; the API can override it
+ * with `LEGACY_SUNSET_AT` once the owner fixes T0.
+ */
+export const LEGACY_SUNSET_DATE = '2027-12-31';
+
 /** Headers of Tier 2 routes. `sunset` = T0 + 12 months. */
 export function legacyDeprecationHeaders(sunset: Date): Record<string, string> {
   return {

@@ -40,6 +40,9 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'stats.rollup': { policy: 'singleton' },
   'stats.trending': { policy: 'singleton' },
   'legacy.counters': { policy: 'singleton' },
+  // Idempotent anyway (advisory lock per week, ON CONFLICT DO NOTHING); one run at a time.
+  'awards.mod-of-week': { policy: 'singleton' },
+  'milestones.check': { policy: 'singleton' },
   'gamification.evaluate': { retryLimit: 3 },
 };
 

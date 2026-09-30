@@ -8,9 +8,11 @@
 import { z } from 'zod';
 import { cache } from './cache.ts';
 import { Count, EntityId, IdParam, ImageDTO, IsoDateTime, UserRefDTO, Uuid, VersionString } from './common.ts';
+import { CompatReportDTO } from './compat.ts';
 import { dto, exampleOf } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { CursorQuery, cursorPageOf } from './pagination.ts';
+import { ReviewDTO } from './reviews.ts';
 
 export const COMMENT_RULES = { bodyMax: 2000, imagesMax: 2, pinsMax: 3, previewMax: 20_000 } as const;
 
@@ -214,6 +216,58 @@ export const MarkdownPreviewDTO = dto('MarkdownPreviewDTO', z.object({ html: z.s
   examples: [{ html: '<p><strong>bold</strong> <span class="spoiler">spoiler</span></p>' }],
 });
 
+// -----------------------------------------------------------------------------------------------
+// Viewer state (the public lists are edge-cached and read as a guest)
+// -----------------------------------------------------------------------------------------------
+
+export const MyReviewDTO = dto(
+  'MyReviewDTO',
+  ReviewDTO.extend({ bodyMd: z.string().nullable().describe('Markdown source (for «Edit»)') }),
+  {
+    description: "The viewer's own review of a mod, with its Markdown source.",
+    examples: [{ ...exampleOf(ReviewDTO), bodyMd: 'Works on 1.0.4 with **zero** issues.' }],
+  },
+);
+
+export const SocialStateDTO = dto(
+  'SocialStateDTO',
+  z.object({
+    modId: EntityId,
+    reactions: z
+      .array(z.object({ commentId: EntityId, kinds: z.array(ReactionKind) }))
+      .describe('My reactions on the comments of the mod'),
+    comments: z
+      .array(
+        z.object({
+          id: EntityId,
+          parentId: EntityId.nullable(),
+          status: CommentStatus,
+          hiddenReason: z.string().nullable(),
+          bodyMd: z.string().describe('Markdown source (for «Edit»)'),
+        }),
+      )
+      .describe('My comments on the mod (hidden and held ones included, deleted ones excluded)'),
+    votes: z.array(z.object({ reviewId: EntityId, value: z.union([z.literal(1), z.literal(-1)]) })),
+    review: MyReviewDTO.nullable(),
+    compatReports: z.array(CompatReportDTO).describe('My field reports on the versions of the mod'),
+  }),
+  {
+    description: 'What the signed-in viewer did on a mod page (reactions, votes, own review, comments and reports).',
+    examples: [
+      {
+        modId: 20,
+        reactions: [{ commentId: 221, kinds: ['thumbs_up'] }],
+        comments: [{ id: 230, parentId: 221, status: 'pending', hiddenReason: null, bodyMd: 'Same here, see my log.' }],
+        votes: [{ reviewId: 77, value: 1 }],
+        review: exampleOf(MyReviewDTO),
+        compatReports: [exampleOf(CompatReportDTO)],
+      },
+    ],
+  },
+);
+
+export const SocialStateQuery = z.object({ modId: IdParam });
+
 export const CommentListQuery = CursorQuery.extend({ sort: z.enum(['top', 'new']).default('top') });
 
 const base = API_V2_PREFIX;
@@ -381,6 +435,18 @@ export const commentsEndpoints = {
     response: CommentDTO,
     errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
+  }),
+  socialState: defineEndpoint({
+    id: 'comments.socialState',
+    owner: 'WP-41',
+    method: 'GET',
+    path: `${base}/me/social-state`,
+    summary: 'My reactions, votes, review, comments and field reports on a mod',
+    auth: 'session',
+    query: SocialStateQuery,
+    response: SocialStateDTO,
+    errors: ['UNAUTHENTICATED'],
+    cache: cache.private,
   }),
   previewMarkdown: defineEndpoint({
     id: 'comments.previewMarkdown',

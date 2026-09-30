@@ -18,3 +18,4 @@ export {
   type Viewer,
   viewerOf,
 } from './shared.ts';
+export * from './social-state.ts';

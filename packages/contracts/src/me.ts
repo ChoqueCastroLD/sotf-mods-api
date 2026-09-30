@@ -16,6 +16,7 @@ import {
   IsoDateTime,
   LinkKind,
   Locale,
+  ModLicense,
   NewPassword,
   Uuid,
   VersionString,
@@ -54,6 +55,13 @@ export type Permission = z.infer<typeof Permission>;
 
 export const THEMES = ['system', 'dark', 'light'] as const;
 
+/** Canned replies of creators (Basecamp inbox, PLAN §7.5): ≤ 10, name ≤ 40, text ≤ 1000. */
+export const REPLY_TEMPLATE_LIMITS = { max: 10, nameMax: 40, textMax: 1000 } as const;
+export const ReplyTemplate = z.object({
+  name: z.string().trim().min(1).max(REPLY_TEMPLATE_LIMITS.nameMax),
+  text: z.string().trim().min(1).max(REPLY_TEMPLATE_LIMITS.textMax),
+});
+
 export const UserSettingsDTO = dto(
   'UserSettingsDTO',
   z.object({
@@ -67,6 +75,8 @@ export const UserSettingsDTO = dto(
     compatPrompts: z.boolean().describe('Offer "Did it work?" after downloads'),
     numberFormat: z.enum(['compact', 'full']),
     keyboardShortcuts: z.boolean(),
+    defaultLicense: ModLicense.nullable().describe('Creator default: preselected licence of new mods'),
+    replyTemplates: z.array(ReplyTemplate).max(REPLY_TEMPLATE_LIMITS.max).describe('Creator canned replies'),
   }),
   {
     description: 'UI and privacy-light preferences (`User.settings`).',
@@ -82,6 +92,8 @@ export const UserSettingsDTO = dto(
         compatPrompts: true,
         numberFormat: 'compact',
         keyboardShortcuts: true,
+        defaultLicense: 'reupload-with-credit',
+        replyTemplates: [{ name: 'Logs', text: 'Could you share your RedLoader log? It is in _RedLoader/Logs.' }],
       },
     ],
   },
@@ -228,6 +240,8 @@ export const UpdateSettingsBody = dto(
       compatPrompts: z.boolean().optional(),
       numberFormat: z.enum(['compact', 'full']).optional(),
       keyboardShortcuts: z.boolean().optional(),
+      defaultLicense: ModLicense.nullable().optional(),
+      replyTemplates: z.array(ReplyTemplate).max(REPLY_TEMPLATE_LIMITS.max).optional().describe('Replaces the list'),
     })
     .refine((body) => body.nsfwOptIn !== true || body.confirmAdult === true, {
       message: 'confirm you are an adult to enable NSFW content',
@@ -371,6 +385,17 @@ export const meEndpoints = {
     summary: 'Personal block of the landing (updates, Day 1 checklist, kits)',
     auth: 'session',
     response: MeHomeDTO,
+    errors: ['UNAUTHENTICATED'],
+    cache: cache.private,
+  }),
+  getProfile: defineEndpoint({
+    id: 'me.getProfile',
+    owner: 'WP-30',
+    method: 'GET',
+    path: `${base}/profile`,
+    summary: 'Own public profile with the Markdown source of the bio',
+    auth: 'session',
+    response: SelfProfileDTO,
     errors: ['UNAUTHENTICATED'],
     cache: cache.private,
   }),
