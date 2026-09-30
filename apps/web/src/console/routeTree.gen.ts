@@ -10,33 +10,90 @@
 
 import { Route as rootRouteImport } from './routes/__root.tsx'
 import { Route as IndexRouteImport } from './routes/index.tsx'
+import { Route as BasecampRouteImport } from './routes/basecamp.tsx'
+import { Route as MeRouteImport } from './routes/me.tsx'
+import { Route as RangerRouteImport } from './routes/ranger.tsx'
+import { Route as SettingsRouteImport } from './routes/settings.tsx'
+import { Route as SignalsRouteImport } from './routes/signals.tsx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BasecampRoute = BasecampRouteImport.update({
+  id: '/basecamp',
+  path: '/basecamp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeRoute = MeRouteImport.update({
+  id: '/me',
+  path: '/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RangerRoute = RangerRouteImport.update({
+  id: '/ranger',
+  path: '/ranger',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignalsRoute = SignalsRouteImport.update({
+  id: '/signals',
+  path: '/signals',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/basecamp': typeof BasecampRoute
+  '/me': typeof MeRoute
+  '/ranger': typeof RangerRoute
+  '/settings': typeof SettingsRoute
+  '/signals': typeof SignalsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/basecamp': typeof BasecampRoute
+  '/me': typeof MeRoute
+  '/ranger': typeof RangerRoute
+  '/settings': typeof SettingsRoute
+  '/signals': typeof SignalsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/basecamp': typeof BasecampRoute
+  '/me': typeof MeRoute
+  '/ranger': typeof RangerRoute
+  '/settings': typeof SettingsRoute
+  '/signals': typeof SignalsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/basecamp' | '/me' | '/ranger' | '/settings' | '/signals'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/basecamp' | '/me' | '/ranger' | '/settings' | '/signals'
+  id:
+    | '__root__'
+    | '/'
+    | '/basecamp'
+    | '/me'
+    | '/ranger'
+    | '/settings'
+    | '/signals'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BasecampRoute: typeof BasecampRoute
+  MeRoute: typeof MeRoute
+  RangerRoute: typeof RangerRoute
+  SettingsRoute: typeof SettingsRoute
+  SignalsRoute: typeof SignalsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +105,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/basecamp': {
+      id: '/basecamp'
+      path: '/basecamp'
+      fullPath: '/basecamp'
+      preLoaderRoute: typeof BasecampRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/me': {
+      id: '/me'
+      path: '/me'
+      fullPath: '/me'
+      preLoaderRoute: typeof MeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ranger': {
+      id: '/ranger'
+      path: '/ranger'
+      fullPath: '/ranger'
+      preLoaderRoute: typeof RangerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signals': {
+      id: '/signals'
+      path: '/signals'
+      fullPath: '/signals'
+      preLoaderRoute: typeof SignalsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BasecampRoute: BasecampRoute,
+  MeRoute: MeRoute,
+  RangerRoute: RangerRoute,
+  SettingsRoute: SettingsRoute,
+  SignalsRoute: SignalsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

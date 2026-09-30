@@ -1,0 +1,15 @@
+---
+/**
+ * Console shell (PLAN §2.5, §4.3; WP-34): the same user-free document for every console path —
+ * cacheable at the edge for a day and purged on deploy (ConsoleShell sets the policy), `noindex`.
+ * `<ConsoleApp>` routes on the client (TanStack Router), checks the session and loads the data.
+ */
+import ConsoleApp from '../../console/ConsoleApp.tsx';
+import ConsoleNoScript from '../../console/ConsoleNoScript.astro';
+import ConsoleShell from '../../layouts/ConsoleShell.astro';
+---
+
+<ConsoleShell>
+  <ConsoleApp client:only="react" />
+  <ConsoleNoScript />
+</ConsoleShell>

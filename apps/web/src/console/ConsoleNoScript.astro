@@ -1,0 +1,15 @@
+---
+/**
+ * What the console shell shows without JavaScript (the SPA cannot run): a short explanation and
+ * a way back to the public site. The console's language is chosen on the client, so this uses the
+ * request locale (English on unprefixed console URLs).
+ */
+import { m } from '@sotf/i18n/messages';
+---
+
+<noscript>
+  <main class="mx-auto flex min-h-dvh max-w-prose flex-col items-center justify-center gap-4 p-6 text-center">
+    <p class="text-fg">{m.console_noscript()}</p>
+    <a href="/" class="text-link underline underline-offset-3">{m.console_back_to_site()}</a>
+  </main>
+</noscript>

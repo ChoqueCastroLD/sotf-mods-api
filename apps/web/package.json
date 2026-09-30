@@ -26,6 +26,7 @@
     "@sotf/markdown": "workspace:*",
     "@sotf/ui": "workspace:*",
     "@tailwindcss/vite": "catalog:",
+    "@tanstack/react-query": "catalog:",
     "@tanstack/react-router": "catalog:",
     "astro": "catalog:",
     "lru-cache": "catalog:",
