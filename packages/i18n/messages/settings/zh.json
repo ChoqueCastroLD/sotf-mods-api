@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "最多选择 {max} 个已获得的徽章展示在个人资料顶部。",
   "settings_featured_badges_empty": "在岛上获得徽章后即可在此展示。",
   "settings_featured_badges_count": "已选 {count} / {max}",
-  "settings_featured_badges_saved": "已保存展示的徽章。"
+  "settings_featured_badges_saved": "已保存展示的徽章。",
+  "settings_notif_kit_updated": "已关注套件有更新",
+  "settings_notif_kit_updated_hint": "你关注的套件新增了模组或有改动。",
+  "settings_notif_kit_comment": "我的套件有新评论",
+  "settings_notif_kit_comment_hint": "有人评论了你策展的套件。",
+  "settings_notif_kit_reply": "套件中的回复",
+  "settings_notif_kit_reply_hint": "有人回复了你在套件下的评论。"
 }

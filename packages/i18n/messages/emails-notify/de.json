@@ -55,5 +55,8 @@
   "emails_notify_creator_top_heading": "Deine Mods diese Woche",
   "emails_notify_creator_highlights_heading": "Höhepunkte",
   "emails_notify_creator_button": "Deine Statistiken öffnen",
-  "emails_notify_creator_reason": "Du erhältst diesen Bericht, weil du auf SOTF Mods veröffentlichst."
+  "emails_notify_creator_reason": "Du erhältst diesen Bericht, weil du auf SOTF Mods veröffentlichst.",
+  "emails_notify_item_kit_updated_followed": "Das Kit {kit}, dem du folgst, wurde aktualisiert",
+  "emails_notify_item_kit_comment": "{actor} hat dein Kit {kit} kommentiert",
+  "emails_notify_item_kit_comment_reply": "{actor} hat auf deinen Kommentar beim Kit {kit} geantwortet"
 }

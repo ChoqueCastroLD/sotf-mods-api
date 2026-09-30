@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Wähle bis zu {max} verdiente Abzeichen für den Kopf deines Profils.",
   "settings_featured_badges_empty": "Verdiene Abzeichen auf der Insel, um sie hier hervorzuheben.",
   "settings_featured_badges_count": "{count} von {max} ausgewählt",
-  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert."
+  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert.",
+  "settings_notif_kit_updated": "Gefolgtes Kit aktualisiert",
+  "settings_notif_kit_updated_hint": "Ein Kit, dem du folgst, erhält neue Mods oder Änderungen.",
+  "settings_notif_kit_comment": "Kommentar zu meinem Kit",
+  "settings_notif_kit_comment_hint": "Jemand kommentiert ein Kit, das du kuratierst.",
+  "settings_notif_kit_reply": "Antwort bei einem Kit",
+  "settings_notif_kit_reply_hint": "Jemand antwortet auf deinen Kommentar bei einem Kit."
 }

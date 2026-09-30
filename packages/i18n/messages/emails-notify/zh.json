@@ -55,5 +55,8 @@
   "emails_notify_creator_top_heading": "你的模组本周表现",
   "emails_notify_creator_highlights_heading": "亮点",
   "emails_notify_creator_button": "打开你的数据分析",
-  "emails_notify_creator_reason": "你收到此报告，是因为你在 SOTF Mods 上发布内容。"
+  "emails_notify_creator_reason": "你收到此报告，是因为你在 SOTF Mods 上发布内容。",
+  "emails_notify_item_kit_updated_followed": "你关注的套件 {kit} 已更新",
+  "emails_notify_item_kit_comment": "{actor} 评论了你的套件 {kit}",
+  "emails_notify_item_kit_comment_reply": "{actor} 回复了你在套件 {kit} 下的评论"
 }

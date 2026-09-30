@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Välj upp till {max} intjänade märken för profilens sidhuvud.",
   "settings_featured_badges_empty": "Tjäna märken på ön för att visa dem här.",
   "settings_featured_badges_count": "{count} av {max} valda",
-  "settings_featured_badges_saved": "Utvalda märken sparade."
+  "settings_featured_badges_saved": "Utvalda märken sparade.",
+  "settings_notif_kit_updated": "Följt kit uppdaterat",
+  "settings_notif_kit_updated_hint": "Ett kit du följer får nya mods eller ändringar.",
+  "settings_notif_kit_comment": "Kommentar på mitt kit",
+  "settings_notif_kit_comment_hint": "Någon kommenterar ett kit du kurerar.",
+  "settings_notif_kit_reply": "Svar på ett kit",
+  "settings_notif_kit_reply_hint": "Någon svarar på din kommentar på ett kit."
 }

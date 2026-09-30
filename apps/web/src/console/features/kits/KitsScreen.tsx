@@ -23,6 +23,7 @@ import { AddToKit } from './AddToKit.tsx';
 import { type KitCardDTO, kitKeys, kitsApi, myKitsQuery } from './api.ts';
 import { CreateKitDialog } from './CreateKitDialog.tsx';
 import { copyToClipboard } from './clipboard.ts';
+import { FollowedKits } from './FollowedKits.tsx';
 import { failureDetail, MiniKnolling, shortDate, VisibilityBadge } from './shared.tsx';
 
 export interface KitsScreenProps {
@@ -179,6 +180,8 @@ export function KitsScreen({ openCreate, addModId }: KitsScreenProps) {
           </ul>
         </section>
       )}
+
+      <FollowedKits />
 
       <CreateKitDialog
         open={createOpen}

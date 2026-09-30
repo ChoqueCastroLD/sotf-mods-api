@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Kies tot {max} verdiende badges voor de kop van je profiel.",
   "settings_featured_badges_empty": "Verdien badges op het eiland om ze hier uit te lichten.",
   "settings_featured_badges_count": "{count} van {max} gekozen",
-  "settings_featured_badges_saved": "Uitgelichte badges opgeslagen."
+  "settings_featured_badges_saved": "Uitgelichte badges opgeslagen.",
+  "settings_notif_kit_updated": "Gevolgde kit bijgewerkt",
+  "settings_notif_kit_updated_hint": "Een kit die je volgt krijgt nieuwe mods of wijzigingen.",
+  "settings_notif_kit_comment": "Reactie op mijn kit",
+  "settings_notif_kit_comment_hint": "Iemand reageert op een kit die je beheert.",
+  "settings_notif_kit_reply": "Antwoord bij een kit",
+  "settings_notif_kit_reply_hint": "Iemand reageert op je reactie bij een kit."
 }

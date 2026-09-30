@@ -55,5 +55,8 @@
   "emails_notify_creator_top_heading": "Your mods this week",
   "emails_notify_creator_highlights_heading": "Highlights",
   "emails_notify_creator_button": "Open your analytics",
-  "emails_notify_creator_reason": "You get this report because you publish on SOTF Mods."
+  "emails_notify_creator_reason": "You get this report because you publish on SOTF Mods.",
+  "emails_notify_item_kit_updated_followed": "The kit {kit} you follow was updated",
+  "emails_notify_item_kit_comment": "{actor} commented on your kit {kit}",
+  "emails_notify_item_kit_comment_reply": "{actor} replied to your comment on the kit {kit}"
 }

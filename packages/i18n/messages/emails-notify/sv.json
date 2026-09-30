@@ -55,5 +55,8 @@
   "emails_notify_creator_top_heading": "Dina moddar den här veckan",
   "emails_notify_creator_highlights_heading": "Höjdpunkter",
   "emails_notify_creator_button": "Öppna din statistik",
-  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods."
+  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods.",
+  "emails_notify_item_kit_updated_followed": "Kitet {kit} som du följer har uppdaterats",
+  "emails_notify_item_kit_comment": "{actor} kommenterade ditt kit {kit}",
+  "emails_notify_item_kit_comment_reply": "{actor} svarade på din kommentar på kitet {kit}"
 }

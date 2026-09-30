@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Zweryfikowany twórca",
   "signals_badge_name_ranger": "Strażnik",
   "signals_badge_name_translator": "Tłumacz",
-  "signals_badge_name_night_owl": "Nocny marek"
+  "signals_badge_name_night_owl": "Nocny marek",
+  "signals_kit_updated_followed": "Zestaw „{kit}”, który obserwujesz, został zaktualizowany",
+  "signals_kit_comment": "{actor} skomentował(a) Twój zestaw „{kit}”",
+  "signals_kit_comment_reply": "{actor} odpowiedział(a) na Twój komentarz w zestawie „{kit}”"
 }

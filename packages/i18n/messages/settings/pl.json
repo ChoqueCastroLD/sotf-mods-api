@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Wybierz do {max} zdobytych odznak do nagłówka profilu.",
   "settings_featured_badges_empty": "Zdobywaj odznaki na wyspie, aby je tu wyróżnić.",
   "settings_featured_badges_count": "Wybrano {count} z {max}",
-  "settings_featured_badges_saved": "Zapisano wyróżnione odznaki."
+  "settings_featured_badges_saved": "Zapisano wyróżnione odznaki.",
+  "settings_notif_kit_updated": "Obserwowany zestaw zaktualizowany",
+  "settings_notif_kit_updated_hint": "Obserwowany zestaw otrzymuje nowe mody lub zmiany.",
+  "settings_notif_kit_comment": "Komentarz do mojego zestawu",
+  "settings_notif_kit_comment_hint": "Ktoś komentuje zestaw, którego jesteś autorem.",
+  "settings_notif_kit_reply": "Odpowiedź w zestawie",
+  "settings_notif_kit_reply_hint": "Ktoś odpowiada na Twój komentarz w zestawie."
 }

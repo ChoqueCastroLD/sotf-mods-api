@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Escolha até {max} insígnias conquistadas para o cabeçalho do seu perfil.",
   "settings_featured_badges_empty": "Conquiste insígnias na ilha para destacá-las aqui.",
   "settings_featured_badges_count": "{count} de {max} selecionadas",
-  "settings_featured_badges_saved": "Insígnias em destaque salvas."
+  "settings_featured_badges_saved": "Insígnias em destaque salvas.",
+  "settings_notif_kit_updated": "Kit seguido atualizado",
+  "settings_notif_kit_updated_hint": "Um kit que você segue recebe novos mods ou alterações.",
+  "settings_notif_kit_comment": "Comentário no meu kit",
+  "settings_notif_kit_comment_hint": "Alguém comenta em um kit que você cura.",
+  "settings_notif_kit_reply": "Resposta em um kit",
+  "settings_notif_kit_reply_hint": "Alguém responde ao seu comentário em um kit."
 }

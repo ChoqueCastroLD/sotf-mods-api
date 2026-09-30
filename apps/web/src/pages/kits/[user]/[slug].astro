@@ -23,6 +23,7 @@ import {
   CircleCheck,
   CircleHelp,
   Copy,
+  Heart,
   Download,
   GitFork,
   HardDrive,
@@ -185,16 +186,10 @@ const compatTone: Record<CompatLine['tone'], string> = {
               {m.kits_revision({ revision: kit.revision })}
               (<time datetime={kit.updatedAt}>{dateLabel(kit.updatedAt, locale)}</time>)
             </span>
-            {
-              kit.followersCount > 0 && (
-                <>
-                  <span aria-hidden="true">·</span>
-                  <span>
-                    {m.kits_followers({ count: kit.followersCount, display: formatCompactNumber(locale, kit.followersCount) })}
-                  </span>
-                </>
-              )
-            }
+            <span aria-hidden="true">·</span>
+            <span data-kit-followers={kit.followersCount} data-kit-followers-text>
+              {m.kits_followers({ count: kit.followersCount, display: formatCompactNumber(locale, kit.followersCount) })}
+            </span>
           </p>
           {
             kit.forkedFrom && (
@@ -231,6 +226,10 @@ const compatTone: Record<CompatLine['tone'], string> = {
           <a href={kitShortPath(kit.code)} data-dialog-open="kit-share-dialog" class={ACTION_CLASSES}>
             <Icon icon={Share2} size={16} />
             <span>{m.common_action_share()}</span>
+          </a>
+          <a href={login} data-kit-follow rel="nofollow" aria-pressed="false" class={`${ACTION_CLASSES} aria-pressed:border-primary aria-pressed:text-fg`}>
+            <Icon icon={Heart} size={16} />
+            <span data-follow-label>{m.kitsocial_follow()}</span>
           </a>
           <a href={login} data-kit-fork rel="nofollow" class={ACTION_CLASSES}>
             <Icon icon={GitFork} size={16} />
@@ -306,6 +305,23 @@ const compatTone: Record<CompatLine['tone'], string> = {
               <KitsEmpty title={m.kits_detail_empty_title()} text={m.kits_detail_empty_text()} headingLevel={3} />
             )
           }
+          <section id="kit-comments" data-kit-comments aria-labelledby="kit-comments-title" class="mt-6 grid gap-4">
+            <h2 id="kit-comments-title" class={SECTION_TITLE_CLASSES}>
+              {m.kitsocial_comments_title()}
+              <span class="ms-2 text-sm font-normal text-fg-muted" data-kit-comments-count></span>
+            </h2>
+            <div data-kit-comments-form></div>
+            <p class="text-sm text-fg-muted" data-kit-comments-status aria-live="polite" hidden></p>
+            <div class="grid gap-3" data-kit-comments-list aria-live="polite"></div>
+            <button
+              type="button"
+              hidden
+              data-kit-comments-more
+              class="justify-self-start rounded-md border border-border-strong bg-raised px-4 py-2 text-sm font-semibold text-fg hover:bg-surface"
+            >
+              {m.kitsocial_load_more()}
+            </button>
+          </section>
         </section>
 
         <aside aria-label={m.kits_sidebar_label()} class="grid min-w-0 content-start gap-4">

@@ -30,12 +30,19 @@ export const kitKeys = {
   versions: (modId: number) => ['kits', 'versions', modId] as const,
   search: (q: string) => ['kits', 'search', q] as const,
   mod: (modId: number) => ['kits', 'mod', modId] as const,
+  followed: ['kits', 'followed'] as const,
 } as const;
 
 /** `GET /me/kits` (owner view of the cards). */
 export const myKitsQuery = queryOptions({
   queryKey: kitKeys.mine,
   queryFn: async ({ signal }) => (await api.kits.myKits({}, { signal })).items,
+});
+
+/** `GET /me/kit-follows`: the kits I follow, most recent first. */
+export const followedKitsQuery = queryOptions({
+  queryKey: kitKeys.followed,
+  queryFn: async ({ signal }) => (await api.kitSocial.myFollows({}, { signal })).items,
 });
 
 /** Reads one of my kits in the owner view (`GET /me/kits/:id`). */

@@ -3,20 +3,21 @@
  * this bundle). Mutations always send `Content-Type: application/json` (the API's CSRF rule).
  */
 
-export type ApiFailure = 'unauthenticated' | 'email' | 'rate' | 'conflict' | 'offline' | 'error';
+export type ApiFailure = 'unauthenticated' | 'email' | 'rate' | 'conflict' | 'forbidden' | 'offline' | 'error';
 
 export type ApiResult<T> = { ok: true; status: number; data: T } | { ok: false; status: number; reason: ApiFailure };
 
 function failureOf(status: number, code: string | null): ApiFailure {
   if (status === 401) return 'unauthenticated';
   if (status === 403 && code === 'EMAIL_NOT_VERIFIED') return 'email';
+  if (status === 403) return 'forbidden';
   if (status === 429) return 'rate';
   if (status === 409) return 'conflict';
   return 'error';
 }
 
 export async function apiCall<T>(
-  method: 'GET' | 'PUT' | 'POST' | 'DELETE',
+  method: 'GET' | 'PUT' | 'POST' | 'PATCH' | 'DELETE',
   path: string,
   body?: unknown,
 ): Promise<ApiResult<T>> {

@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Profil başlığın için kazandığın en fazla {max} rozeti seç.",
   "settings_featured_badges_empty": "Burada öne çıkarmak için adada rozet kazan.",
   "settings_featured_badges_count": "{max} içinden {count} seçildi",
-  "settings_featured_badges_saved": "Öne çıkan rozetler kaydedildi."
+  "settings_featured_badges_saved": "Öne çıkan rozetler kaydedildi.",
+  "settings_notif_kit_updated": "Takip edilen kit güncellendi",
+  "settings_notif_kit_updated_hint": "Takip ettiğin bir kite yeni mod veya değişiklik geldi.",
+  "settings_notif_kit_comment": "Kitime yorum",
+  "settings_notif_kit_comment_hint": "Küratörlüğünü yaptığın bir kite biri yorum yaptı.",
+  "settings_notif_kit_reply": "Kitte yanıt",
+  "settings_notif_kit_reply_hint": "Bir kitteki yorumuna biri yanıt verdi."
 }

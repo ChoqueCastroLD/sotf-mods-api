@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Choisis jusqu’à {max} badges obtenus pour l’en-tête de ton profil.",
   "settings_featured_badges_empty": "Obtiens des badges sur l’île pour les mettre en avant ici.",
   "settings_featured_badges_count": "{count} sur {max} sélectionnés",
-  "settings_featured_badges_saved": "Badges mis en avant enregistrés."
+  "settings_featured_badges_saved": "Badges mis en avant enregistrés.",
+  "settings_notif_kit_updated": "Kit suivi mis à jour",
+  "settings_notif_kit_updated_hint": "Un kit que vous suivez reçoit de nouveaux mods ou des modifications.",
+  "settings_notif_kit_comment": "Commentaire sur mon kit",
+  "settings_notif_kit_comment_hint": "Quelqu’un commente un kit que vous curatez.",
+  "settings_notif_kit_reply": "Réponse sur un kit",
+  "settings_notif_kit_reply_hint": "Quelqu’un répond à votre commentaire sur un kit."
 }

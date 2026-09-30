@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Criador verificado",
   "signals_badge_name_ranger": "Guarda",
   "signals_badge_name_translator": "Tradutor",
-  "signals_badge_name_night_owl": "Coruja noturna"
+  "signals_badge_name_night_owl": "Coruja noturna",
+  "signals_kit_updated_followed": "O kit “{kit}” que você segue foi atualizado",
+  "signals_kit_comment": "{actor} comentou no seu kit “{kit}”",
+  "signals_kit_comment_reply": "{actor} respondeu ao seu comentário no kit “{kit}”"
 }

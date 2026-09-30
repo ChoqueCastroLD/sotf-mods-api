@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Проверенный автор",
   "signals_badge_name_ranger": "Рейнджер",
   "signals_badge_name_translator": "Переводчик",
-  "signals_badge_name_night_owl": "Ночная сова"
+  "signals_badge_name_night_owl": "Ночная сова",
+  "signals_kit_updated_followed": "Набор «{kit}», на который вы подписаны, обновлён",
+  "signals_kit_comment": "{actor} прокомментировал(а) ваш набор «{kit}»",
+  "signals_kit_comment_reply": "{actor} ответил(а) на ваш комментарий к набору «{kit}»"
 }

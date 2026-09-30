@@ -116,5 +116,8 @@
   "signals_badge_name_verified_creator": "Doğrulanmış Üretici",
   "signals_badge_name_ranger": "Korucu",
   "signals_badge_name_translator": "Çevirmen",
-  "signals_badge_name_night_owl": "Gece Kuşu"
+  "signals_badge_name_night_owl": "Gece Kuşu",
+  "signals_kit_updated_followed": "Takip ettiğin “{kit}” kiti güncellendi",
+  "signals_kit_comment": "{actor}, “{kit}” kitine yorum yaptı",
+  "signals_kit_comment_reply": "{actor}, “{kit}” kitindeki yorumuna yanıt verdi"
 }

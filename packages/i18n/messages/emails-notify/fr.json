@@ -55,5 +55,8 @@
   "emails_notify_creator_top_heading": "Vos mods cette semaine",
   "emails_notify_creator_highlights_heading": "Temps forts",
   "emails_notify_creator_button": "Ouvrir vos statistiques",
-  "emails_notify_creator_reason": "Vous recevez ce rapport car vous publiez sur SOTF Mods."
+  "emails_notify_creator_reason": "Vous recevez ce rapport car vous publiez sur SOTF Mods.",
+  "emails_notify_item_kit_updated_followed": "Le kit {kit} que vous suivez a été mis à jour",
+  "emails_notify_item_kit_comment": "{actor} a commenté votre kit {kit}",
+  "emails_notify_item_kit_comment_reply": "{actor} a répondu à votre commentaire sur le kit {kit}"
 }

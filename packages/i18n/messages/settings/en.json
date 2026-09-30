@@ -351,5 +351,11 @@
   "settings_featured_badges_text": "Choose up to {max} earned badges for the header of your profile.",
   "settings_featured_badges_empty": "Earn badges on the island to feature them here.",
   "settings_featured_badges_count": "{count} of {max} selected",
-  "settings_featured_badges_saved": "Featured badges saved."
+  "settings_featured_badges_saved": "Featured badges saved.",
+  "settings_notif_kit_updated": "Followed kit updated",
+  "settings_notif_kit_updated_hint": "A kit you follow gets new mods or changes.",
+  "settings_notif_kit_comment": "Comment on my kit",
+  "settings_notif_kit_comment_hint": "Someone comments on a kit you curate.",
+  "settings_notif_kit_reply": "Reply on a kit",
+  "settings_notif_kit_reply_hint": "Someone replies to your comment on a kit."
 }

@@ -4,8 +4,12 @@
  * and the line separators escaped, so user text (the kit name) cannot close the element.
  */
 import { kitShortPath } from '@sotf/contracts/kits';
-import { absoluteUrl } from '@sotf/contracts/seo';
+import { KIT_COMMENT_RULES } from '@sotf/contracts/kit-social';
+import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { m } from '@sotf/i18n/messages';
+import { href } from '../../lib/i18n.ts';
+import { ensureLocals } from '../../lib/request-context.ts';
+import { pluralTemplates } from '../mod/format.ts';
 import type { KitDTO } from './data.ts';
 import { KIT_PAGE_DATA_ID, type KitPageData } from './scripts/types.ts';
 
@@ -17,6 +21,7 @@ interface Props {
 }
 
 const { kit, url, siteUrl, loginHref } = Astro.props;
+const locale = ensureLocals(Astro).locale;
 const data: KitPageData = {
   kitId: kit.id,
   name: kit.name,
@@ -38,6 +43,52 @@ const data: KitPageData = {
     forkEmail: m.kits_fork_email(),
     forkRate: m.kits_fork_rate(),
     offline: m.kits_offline(),
+  },
+  profileHref: href(profilePath('{handle}'), locale).replace('%7Bhandle%7D', '{handle}'),
+  commentMax: KIT_COMMENT_RULES.bodyMax,
+  locale,
+  social: {
+    follow: m.kitsocial_follow(),
+    following: m.kitsocial_following(),
+    followed: m.kitsocial_followed(),
+    unfollowed: m.kitsocial_unfollowed(),
+    undo: m.kitsocial_undo(),
+    signInRequired: m.kitsocial_sign_in_required(),
+    followFailed: m.kitsocial_follow_failed(),
+    rateLimited: m.kitsocial_rate_limited(),
+    commentsCount: pluralTemplates(locale, (count) => m.kitsocial_comments_count({ count })),
+    followers: pluralTemplates(locale, (count) => m.kits_followers({ count, display: String(count) })),
+    commentsEmpty: m.kitsocial_comments_empty(),
+    commentsLoading: m.kitsocial_comments_loading(),
+    commentsLoadFailed: m.kitsocial_comments_load_failed(),
+    retry: m.kitsocial_retry(),
+    loadMore: m.kitsocial_load_more(),
+    formLabel: m.kitsocial_form_label(),
+    formPlaceholder: m.kitsocial_form_placeholder(),
+    formHint: m.kitsocial_form_hint({ max: KIT_COMMENT_RULES.bodyMax }),
+    formSubmit: m.kitsocial_form_submit(),
+    formPosting: m.kitsocial_form_posting(),
+    reply: m.kitsocial_reply(),
+    replyLabel: m.kitsocial_reply_label({ name: '{name}' }),
+    replySubmit: m.kitsocial_reply_submit(),
+    cancel: m.kitsocial_cancel(),
+    edit: m.kitsocial_edit(),
+    save: m.kitsocial_save(),
+    delete: m.kitsocial_delete(),
+    deleteConfirm: m.kitsocial_delete_confirm(),
+    deletedNote: m.kitsocial_deleted_note(),
+    curator: m.kitsocial_curator(),
+    edited: m.kitsocial_edited(),
+    signInToComment: m.kitsocial_sign_in_to_comment(),
+    signInLink: m.kitsocial_sign_in_link(),
+    verifyEmail: m.kitsocial_verify_email(),
+    posted: m.kitsocial_posted(),
+    saved: m.kitsocial_saved(),
+    removed: m.kitsocial_removed(),
+    postFailed: m.kitsocial_post_failed(),
+    tooLong: m.kitsocial_too_long({ max: KIT_COMMENT_RULES.bodyMax }),
+    forbidden: m.kitsocial_forbidden(),
+    deletedAuthor: m.ui_domain_deleted_user(),
   },
 };
 const json = JSON.stringify(data)
