@@ -1,0 +1,84 @@
+/* eslint-disable */
+import { getLocale, experimentalStaticLocale } from '../runtime.js';
+
+/** @typedef {import('../runtime.js').LocalizedString} LocalizedString */
+
+/** @typedef {{}} Cmdk_Op_ByInputs */
+
+const en_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Creator handle`)
+};
+
+const es_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Creador por handle`)
+};
+
+const de_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Kreative nach Handle`)
+};
+
+const fr_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Créateur par identifiant`)
+};
+
+const it_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Creator per handle`)
+};
+
+const nl_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Maker op handle`)
+};
+
+const pl_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Twórca po nazwie`)
+};
+
+const pt_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Criador por handle`)
+};
+
+const ru_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Автор по нику`)
+};
+
+const sv_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Skapare via handle`)
+};
+
+const tr_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Yaratıcı adı`)
+};
+
+const zh_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`按创作者`)
+};
+
+const ja_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`クリエイターのハンドル`)
+};
+
+/**
+* | output |
+* | --- |
+* | "Creator handle" |
+*
+* @param {Cmdk_Op_ByInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export const cmdk_op_by = /** @type {((inputs?: Cmdk_Op_ByInputs, options?: { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Cmdk_Op_ByInputs, { locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }, {}>} */ ((inputs = {}, options = {}) => {
+	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
+	if (locale === "es") return es_cmdk_op_by(inputs)
+	if (locale === "de") return de_cmdk_op_by(inputs)
+	if (locale === "fr") return fr_cmdk_op_by(inputs)
+	if (locale === "it") return it_cmdk_op_by(inputs)
+	if (locale === "nl") return nl_cmdk_op_by(inputs)
+	if (locale === "pl") return pl_cmdk_op_by(inputs)
+	if (locale === "pt") return pt_cmdk_op_by(inputs)
+	if (locale === "ru") return ru_cmdk_op_by(inputs)
+	if (locale === "sv") return sv_cmdk_op_by(inputs)
+	if (locale === "tr") return tr_cmdk_op_by(inputs)
+	if (locale === "zh") return zh_cmdk_op_by(inputs)
+	if (locale === "ja") return ja_cmdk_op_by(inputs)
+	return en_cmdk_op_by(inputs)
+});

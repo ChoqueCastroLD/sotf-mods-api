@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Cmdk_Start_HintInputs = {};
+export type Cmdk_Preview_Kit_ItemsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Recent pages you open from here will show up in this list." |
+* | "Included mods" |
 *
-* @param {Cmdk_Start_HintInputs} inputs
+* @param {Cmdk_Preview_Kit_ItemsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const cmdk_start_hint: ((inputs?: Cmdk_Start_HintInputs, options?: {
+export declare const cmdk_preview_kit_items: ((inputs?: Cmdk_Preview_Kit_ItemsInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Cmdk_Start_HintInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Cmdk_Preview_Kit_ItemsInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

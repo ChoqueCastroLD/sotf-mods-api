@@ -3,7 +3,7 @@ export type Cmdk_Empty_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Try fewer words, or narrow it down with mods:, builds:, kits:, @creator or > for commands." |
+* | "Try fewer words, or narrow it down with mods:, builds:, kits:, @creator, > for commands or by:/cat:/sort:." |
 *
 * @param {Cmdk_Empty_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

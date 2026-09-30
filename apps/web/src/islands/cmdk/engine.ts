@@ -7,15 +7,27 @@
  *   Kelvin) and boosts on the name and the `manifestId`; downloads nudge popular entries up.
  * - An exact `manifestId` or name (case- and accent-insensitive) always comes first.
  * - Words are matched with AND first and OR as a fallback, so an extra word never empties the list.
+ * - Operators (`by:` `cat:` `sort:` `type:` `mp:`, see `operators.ts`) filter and reorder the
+ *   local entries; when MiniSearch finds nothing a subsequence match over names (`kelvnsk` →
+ *   KelvinSeek) still answers.
  * - When the local index has nothing, the server search (`GET /api/v2/search`, full text over
  *   descriptions too) is asked; that request is also what records the query in the aggregated
  *   daily log (`SearchQueryDaily`), so searches without results are counted.
  */
 import type { SearchHitDTO, SearchIndexDTO } from '@sotf/contracts/search';
 import MiniSearch, { type SearchResult } from 'minisearch';
+import { type Filters, hasFilters } from './operators.ts';
 import type { Scope } from './scope.ts';
-import { exactKey, processTerm, tokenize, tokenizeQuery } from './text.ts';
-import type { ActionItem, EntryItem, EntryType, GroupId, ResultGroup, ResultItem } from './types.ts';
+import { exactKey, fold, processTerm, subsequenceScore, tokenize, tokenizeQuery } from './text.ts';
+import {
+  type ActionItem,
+  type EntryItem,
+  type EntryType,
+  type GroupId,
+  isEntry,
+  type ResultGroup,
+  type ResultItem,
+} from './types.ts';
 
 export const INDEX_URL = '/api/v2/search/index';
 export const SEARCH_URL = '/api/v2/search';
@@ -81,6 +93,7 @@ const GROUP_ORDER: readonly GroupId[] = [
   'creators',
   'categories',
   'pages',
+  'go',
   'actions',
   'server',
 ];
@@ -93,6 +106,7 @@ const ALL_LIMITS: Partial<Record<GroupId, number>> = {
   creators: 3,
   categories: 3,
   pages: 3,
+  go: 4,
   actions: 4,
 };
 export const SCOPED_LIMIT = 40;
@@ -110,7 +124,15 @@ export class PaletteIndex {
     for (const [slug, name] of dto.categories) this.categoryNames.set(slug, name);
     const docs: Doc[] = [];
 
-    for (const [id, kind, name, handle, category, tagsCsv, manifestId, downloads, compat, thumb, path] of dto.mods) {
+    // The last four fields of a mod tuple were added after the first index version: read them
+    // defensively so an edge-cached older index still works.
+    for (const row of dto.mods) {
+      const [id, kind, name, handle, category, tagsCsv, manifestId, downloads, compat, thumb, path] = row;
+      const tail = row as unknown as ReadonlyArray<unknown>;
+      const updatedDay = typeof tail[11] === 'number' ? tail[11] : undefined;
+      const createdDay = typeof tail[12] === 'number' ? tail[12] : undefined;
+      const rating = typeof tail[13] === 'number' ? tail[13] / 10 : null;
+      const mp = typeof tail[14] === 'number' ? tail[14] : undefined;
       const type: EntryType = kind === 'build' ? 'build' : 'mod';
       const tags = tagsCsv ? tagsCsv.split(',').filter(Boolean) : [];
       const item: EntryItem = {
@@ -127,6 +149,11 @@ export class PaletteIndex {
         categorySlug: category,
         tags,
         manifestId,
+        handle,
+        rating,
+        ...(updatedDay !== undefined ? { updatedDay } : {}),
+        ...(createdDay !== undefined ? { createdDay } : {}),
+        ...(mp !== undefined ? { mp } : {}),
       };
       this.add(item, downloads);
       this.addExact(item.key, name, manifestId);
@@ -140,7 +167,9 @@ export class PaletteIndex {
       });
     }
 
-    for (const [id, name, owner, itemsCount, path] of dto.kits) {
+    for (const row of dto.kits) {
+      const [id, name, owner, itemsCount, path] = row;
+      const kitThumb = (row as unknown as ReadonlyArray<unknown>)[5];
       const item: EntryItem = {
         key: `kit:${id}`,
         type: 'kit',
@@ -148,15 +177,18 @@ export class PaletteIndex {
         title: name,
         subtitle: `@${owner}`,
         path,
-        thumb: null,
+        thumb: typeof kitThumb === 'string' ? kitThumb : null,
         count: itemsCount,
+        handle: owner,
       };
       this.add(item, itemsCount * 50);
       this.addExact(item.key, name);
       docs.push({ key: item.key, title: name, alt: owner, manifestId: '', tags: '', category: '' });
     }
 
-    for (const [id, handle, displayName, modsCount, path] of dto.users) {
+    for (const row of dto.users) {
+      const [id, handle, displayName, modsCount, path] = row;
+      const avatar = (row as unknown as ReadonlyArray<unknown>)[5];
       const item: EntryItem = {
         key: `user:${id}`,
         type: 'user',
@@ -164,8 +196,9 @@ export class PaletteIndex {
         title: displayName || handle,
         subtitle: `@${handle}`,
         path,
-        thumb: null,
+        thumb: typeof avatar === 'string' ? avatar : null,
         count: modsCount,
+        handle,
       };
       this.add(item, modsCount * 500);
       this.addExact(item.key, handle, displayName);
@@ -228,39 +261,124 @@ export class PaletteIndex {
     return (this.byType.get(type) ?? []).slice(0, limit);
   }
 
-  /** Scored matches of `text` restricted to `scope` (actions are searched separately). */
-  query(text: string, scope: Scope): Array<ResultItem & { score: number }> {
+  /** Categories in index order: `[slug, name]`. */
+  categoryList(): Array<[string, string]> {
+    return [...this.categoryNames.entries()];
+  }
+
+  /** Whether `item` passes the operators (and only entries that can carry them pass). */
+  private passes(item: EntryItem, filters: Filters): boolean {
+    if (!hasFilters(filters)) return true;
+    if (item.type !== 'mod' && item.type !== 'build' && item.type !== 'kit') return false;
+    if (filters.type) {
+      const kind =
+        item.type === 'kit' ? 'kit' : item.type === 'build' ? 'build' : item.kind === 'library' ? 'library' : 'mod';
+      if (kind !== filters.type) return false;
+    }
+    if (filters.by) {
+      const wanted = fold(filters.by);
+      const handle = fold(item.handle ?? '');
+      if (handle !== wanted && !handle.startsWith(wanted)) return false;
+    }
+    if (filters.cat) {
+      if (item.type === 'kit' || !item.categorySlug) return false;
+      const wanted = fold(filters.cat);
+      const slug = fold(item.categorySlug);
+      const name = fold(this.categoryNames.get(item.categorySlug) ?? '');
+      if (slug !== wanted && !slug.startsWith(wanted) && !name.startsWith(wanted)) return false;
+    }
+    if (filters.mp) {
+      if (item.mp === undefined) return false;
+      const multiplayer = item.mp >= 1 && item.mp <= 3;
+      if (filters.mp === 'yes' ? !multiplayer : item.mp !== 0) return false;
+    }
+    return true;
+  }
+
+  /**
+   * Scored matches of `text` restricted to `scope` and the operators (actions are searched
+   * separately). An empty `text` with operators lists what they select.
+   */
+  query(text: string, scope: Scope, filters: Filters = {}): Array<ResultItem & { score: number }> {
     const allowed = SCOPE_TYPES[scope];
     if (allowed.size === 0) return [];
-    const filter = (result: SearchResult) => {
-      const item = this.entries.get(String(result.id));
-      return item !== undefined && allowed.has(item.type);
-    };
-    const boostDocument = (id: unknown) => this.popularity.get(String(id)) ?? 1;
-    let results = this.search.search(text, { combineWith: 'AND', filter, boostDocument });
-    if (results.length === 0) results = this.search.search(text, { combineWith: 'OR', filter, boostDocument });
+    const accepts = (item: EntryItem | undefined): item is EntryItem =>
+      item !== undefined && allowed.has(item.type) && this.passes(item, filters);
 
-    const exact = new Set<string>();
-    const key = exactKey(text);
-    for (const variant of [key, key.replace(/\s+/g, '')]) {
-      for (const hit of this.exact.get(variant) ?? []) exact.add(hit);
+    let out: Array<ResultItem & { score: number }> = [];
+    if (text === '') {
+      for (const item of this.entries.values()) {
+        if (accepts(item)) out.push({ item, terms: [], score: this.popularity.get(item.key) ?? 1 });
+      }
+    } else {
+      const filter = (result: SearchResult) => accepts(this.entries.get(String(result.id)));
+      const boostDocument = (id: unknown) => this.popularity.get(String(id)) ?? 1;
+      let results = this.search.search(text, { combineWith: 'AND', filter, boostDocument });
+      if (results.length === 0) results = this.search.search(text, { combineWith: 'OR', filter, boostDocument });
+
+      const exact = new Set<string>();
+      const key = exactKey(text);
+      for (const variant of [key, key.replace(/\s+/g, '')]) {
+        for (const hit of this.exact.get(variant) ?? []) exact.add(hit);
+      }
+      const seen = new Set<string>();
+      for (const result of results) {
+        const item = this.entries.get(String(result.id));
+        if (!item) continue;
+        seen.add(item.key);
+        out.push({ item, terms: result.terms, score: result.score + (exact.has(item.key) ? EXACT_BONUS : 0) });
+      }
+      // An exact name/manifest id that the tokenizer could not reach (punctuation…) still wins.
+      for (const hit of exact) {
+        const item = this.entries.get(hit);
+        if (!accepts(item) || seen.has(hit)) continue;
+        out.push({ item, terms: [key], score: EXACT_BONUS });
+      }
+      if (out.length === 0) out = this.fuzzy(key, accepts);
     }
+    return this.order(out, filters);
+  }
 
+  /** Subsequence match over names and manifest ids (`kelvnsk`, `axlmnu`) for when nothing else matched. */
+  private fuzzy(
+    key: string,
+    accepts: (item: EntryItem | undefined) => item is EntryItem,
+  ): Array<ResultItem & { score: number }> {
+    const needle = key.replace(/\s+/g, '');
+    if (needle.length < 3) return [];
     const out: Array<ResultItem & { score: number }> = [];
-    const seen = new Set<string>();
-    for (const result of results) {
-      const item = this.entries.get(String(result.id));
-      if (!item) continue;
-      seen.add(item.key);
-      out.push({ item, terms: result.terms, score: result.score + (exact.has(item.key) ? EXACT_BONUS : 0) });
+    for (const item of this.entries.values()) {
+      if (!accepts(item)) continue;
+      const score = Math.max(
+        subsequenceScore(fold(item.title).replace(/\s+/g, ''), needle),
+        item.manifestId ? subsequenceScore(fold(item.manifestId), needle) : 0,
+      );
+      if (score >= 0.6) out.push({ item, terms: [needle], score: score * (this.popularity.get(item.key) ?? 1) });
     }
-    // An exact name/manifest id that the tokenizer could not reach (punctuation…) still wins.
-    for (const hit of exact) {
-      const item = this.entries.get(hit);
-      if (!item || seen.has(hit) || !allowed.has(item.type)) continue;
-      out.push({ item, terms: [key], score: EXACT_BONUS });
+    return out.sort((a, b) => b.score - a.score).slice(0, SCOPED_LIMIT);
+  }
+
+  private order(list: Array<ResultItem & { score: number }>, filters: Filters): Array<ResultItem & { score: number }> {
+    const sort = filters.sort;
+    if (!sort) {
+      return list.sort((a, b) => b.score - a.score);
     }
-    return out.sort((a, b) => b.score - a.score);
+    const value = (entry: ResultItem): number => {
+      const item = entry.item as EntryItem;
+      switch (sort) {
+        case 'new':
+          return item.createdDay ?? 0;
+        case 'updated':
+          return item.updatedDay ?? 0;
+        case 'rating':
+          return item.rating ?? 0;
+        default:
+          return item.downloads ?? 0;
+      }
+    };
+    const sorted = list.sort((a, b) => value(b) - value(a) || b.score - a.score);
+    // Keep the order when the groups are ranked by their best hit.
+    return sorted.map((entry, rank) => ({ ...entry, score: sorted.length - rank }));
   }
 }
 
@@ -269,10 +387,11 @@ export function groupResults(
   scored: ReadonlyArray<ResultItem & { score: number }>,
   actions: ReadonlyArray<ResultItem & { score: number }>,
   scope: Scope,
+  wide = false,
 ): ResultGroup[] {
   const groups = new Map<GroupId, { items: ResultItem[]; best: number }>();
   const push = (id: GroupId, entry: ResultItem & { score: number }) => {
-    const limit = scope === 'all' ? (ALL_LIMITS[id] ?? SCOPED_LIMIT) : SCOPED_LIMIT;
+    const limit = scope === 'all' && !wide ? (ALL_LIMITS[id] ?? SCOPED_LIMIT) : SCOPED_LIMIT;
     const group = groups.get(id) ?? { items: [], best: entry.score };
     if (group.items.length >= limit) return;
     group.items.push({ item: entry.item, terms: entry.terms });
@@ -280,9 +399,9 @@ export function groupResults(
     groups.set(id, group);
   };
   for (const entry of scored) {
-    if (entry.item.type !== 'action') push(GROUP_OF[entry.item.type], entry);
+    if (entry.item.type !== 'action' && isEntry(entry.item)) push(GROUP_OF[entry.item.type], entry);
   }
-  for (const entry of actions) push('actions', entry);
+  for (const entry of actions) push((entry.item as ActionItem).section === 'go' ? 'go' : 'actions', entry);
   return [...groups.entries()]
     .sort(([a, x], [b, y]) => y.best - x.best || GROUP_ORDER.indexOf(a) - GROUP_ORDER.indexOf(b))
     .map(([id, { items }]) => ({ id, items }));
@@ -314,6 +433,15 @@ export class ActionSearch {
     for (const result of results) {
       const item = this.actions.get(String(result.id));
       if (item) out.push({ item, terms: result.terms, score: result.score });
+    }
+    if (out.length === 0) {
+      const needle = fold(text).replace(/\s+/g, '');
+      if (needle.length >= 3) {
+        for (const item of this.actions.values()) {
+          const score = subsequenceScore(fold(item.title).replace(/\s+/g, ''), needle);
+          if (score >= 0.6) out.push({ item, terms: [needle], score });
+        }
+      }
     }
     return out;
   }
