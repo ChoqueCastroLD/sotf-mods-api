@@ -18,6 +18,7 @@ import { b10 } from './b10-dependencies.ts';
 import { b11 } from './b11-stats.ts';
 import { b12 } from './b12-statuses.ts';
 import { b13, b14 } from './b13-b14.ts';
+import { b19 } from './b19-approve-legacy-versions.ts';
 import type { Backfill, BackfillId } from './framework.ts';
 
 export * from './framework.ts';
@@ -25,7 +26,13 @@ export * from './framework.ts';
 /** Execution order of `--all`. */
 export const BACKFILLS: readonly Backfill[] = [b02, b03, b04, b05, b06, b07, b09, b10, b12, b13, b14, b01, b11];
 
-export const BACKFILL_IDS = BACKFILLS.map((b) => b.id);
+/**
+ * One-off backfills that only run when named (never in `--all` / `--delta`): B19 approves every
+ * existing version of legacy-approved mods (owner decision after the cut-over).
+ */
+export const OPT_IN_BACKFILLS: readonly Backfill[] = [b19];
+
+export const BACKFILL_IDS = [...BACKFILLS, ...OPT_IN_BACKFILLS].map((b) => b.id);
 
 /** Backfills of the cut-over delta (PLAN §6.13 D4), in execution order: B12, B14, B1, B11. */
 export const DELTA_BACKFILLS: readonly Backfill[] = BACKFILLS.filter((b) => b.delta);
@@ -57,5 +64,5 @@ export function selectBackfills(ids: readonly string[]): Backfill[] {
     const hint = hints.length > 0 ? ` (${hints.join('; ')})` : ` (known: ${BACKFILL_IDS.join(', ')})`;
     throw new Error(`unknown backfill ${unknown.join(', ')}${hint}`);
   }
-  return BACKFILLS.filter((b) => wanted.has(b.id));
+  return [...BACKFILLS, ...OPT_IN_BACKFILLS].filter((b) => wanted.has(b.id));
 }

@@ -36,6 +36,27 @@ node src/cli/admin-grant.ts --email luis.choque.castro@outlook.com --role admin 
 Los informes quedan en `out/` del contenedor (se pierden al pararlo: copia lo que necesites de la
 salida). **Para** `sotf-v2-tools` al terminar.
 
+## 2c. B19 · aprobar todas las versiones de los mods ya aprobados (opt-in)
+
+Decisión del dueño: todas las versiones existentes (`createdAt` <= momento de la ejecución) de un mod
+aprobado en el legacy pasan a `active` con `checksStatus = passed`; los mods no aprobados siguen
+`pending`. Además vacía la cola de moderación (carriles `versions` y `post_review`) con filas
+`AuditLog` (`version.approve`, actor NULL). No entra en `--all` ni `--delta`: solo por nombre.
+Es idempotente, deja `DataFixAudit` por columna (`fixId = B19`), no toca versiones rechazadas,
+retiradas ni `file_missing`, y mantiene retenidas las que tienen `checksStatus = failed`.
+Al terminar (ejecución real) emite `pg_notify('cache', ...)` con las etiquetas `mod:ID`, `user:ID`,
+`list:mods`, `list:builds`, así que la caché y el CDN se invalidan solos.
+
+En la *Terminal* de `sotf-v2-tools` (directorio `tooling/migration`):
+
+```bash
+node src/cli/backfill.ts B19 --dry-run                   # ensayo: cuentas reales, nada se guarda
+node src/cli/backfill.ts B19 --confirm sotf_mods         # ejecución real
+node src/cli/backfill.ts B19 --confirm sotf_mods         # repetir es seguro (0 cambios)
+# Deshacer (restaura status/checksStatus/publishedAt/isLatest/... desde DataFixAudit):
+node src/cli/revert-fix.ts B19 --confirm sotf_mods
+```
+
 ## 2b. Invariantes nocturnas
 
 Programa en Coolify, en `sotf-v2-tools`, una *Scheduled Task* diaria (p. ej. `15 3 * * *`, directorio
