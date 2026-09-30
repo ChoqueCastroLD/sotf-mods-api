@@ -221,5 +221,22 @@
   "mod_md_alert_warning": "Aviso",
   "mod_md_alert_caution": "Cuidado",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Perguntas frequentes"
+  "mod_faq_title": "Perguntas frequentes",
+  "mod_stats_title": "Downloads ao longo do tempo",
+  "mod_stats_last30": "Últimos 30 dias: {display}",
+  "mod_stats_sparkline_label": "Downloads diários, últimos 30 dias",
+  "mod_stats_open": "Explorar o gráfico",
+  "mod_stats_range_label": "Período",
+  "mod_stats_range_30d": "30 dias",
+  "mod_stats_range_1y": "1 ano",
+  "mod_stats_range_all": "Todo o período",
+  "mod_stats_row_day": "Dia",
+  "mod_stats_row_week": "Semana de",
+  "mod_stats_series_downloads": "Downloads",
+  "mod_stats_error": "Não foi possível carregar o gráfico. Tente novamente.",
+  "mod_stats_empty": "Ainda não há downloads registrados neste período.",
+  "mod_stats_loading": "Carregando gráfico…",
+  "mod_graph_title": "Grafo de dependências",
+  "mod_graph_label": "Grafo de dependências de {name}",
+  "mod_graph_required_by": "Exigido por"
 }

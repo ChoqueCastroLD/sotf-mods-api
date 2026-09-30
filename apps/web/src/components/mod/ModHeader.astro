@@ -182,8 +182,8 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       <div class="inline-flex items-center gap-1.5">
         <dt class="text-fg-subtle"><Icon icon={Download} size={16} /><span class="sr-only">{m.mod_stat_downloads()}</span></dt>
         <dd class="tabular-nums text-fg">
-          <span aria-hidden="true">{formatCompactNumber(locale, mod.downloads)}</span>
-          <span class="sr-only">{formatNumber(locale, mod.downloads)}</span>
+          <span aria-hidden="true" data-live="downloads-compact">{formatCompactNumber(locale, mod.downloads)}</span>
+          <span class="sr-only" data-live="downloads-full">{formatNumber(locale, mod.downloads)}</span>
           <span class="text-fg-muted"> {m.mod_stat_downloads_total()}</span>
         </dd>
       </div>

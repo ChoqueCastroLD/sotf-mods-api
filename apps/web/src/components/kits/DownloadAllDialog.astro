@@ -3,8 +3,8 @@
  * «Download all» (PLAN §7.8): a sheet with the kit's files as a sequential checklist. Every link is
  * the normal download route (so each one counts and gets the same 302 to R2); the page script
  * ticks an item when its link is used, remembers the ticks for this kit revision in
- * `sessionStorage`, shows the progress and offers «Download next». Bundles/RedManager install are
- * T1. Without JavaScript the opener jumps to the item list, which has the same links.
+ * `sessionStorage`, shows the progress and offers «Download next». Bundles and RedManager install need their own endpoints and
+ * are not part of this sheet. Without JavaScript the opener jumps to the item list, which has the same links.
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';

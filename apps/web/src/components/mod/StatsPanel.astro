@@ -1,0 +1,88 @@
+---
+/**
+ * «Downloads over time» (WP-62, T1): the public 30-day series as a server-rendered SVG sparkline
+ * (no JavaScript, no layout shift), plus the Recharts `ChartFigure` (30 days / 1 year / all time,
+ * with the mandatory «View as table») that `islands/stats/boot.ts` loads on demand when the
+ * visitor asks for it. The series comes from `GET /mods/:id/stats/public` (edge 900 s).
+ */
+import { formatCompactNumber, formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import type { ModDetailDTO, ModPublicStats } from './data.ts';
+import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  stats: ModPublicStats | null;
+}
+
+const { mod, stats } = Astro.props;
+const locale = Astro.locals.locale;
+const series = stats?.series ?? [];
+const total = series.reduce((sum, point) => sum + point.downloads, 0);
+const W = 240;
+const H = 48;
+const max = Math.max(1, ...series.map((point) => point.downloads));
+const step = series.length > 1 ? W / (series.length - 1) : W;
+const points = series.map((point, index) => `${(index * step).toFixed(1)},${(H - 2 - (point.downloads / max) * (H - 6)).toFixed(1)}`);
+const line = points.join(' ');
+const area = points.length > 1 ? `0,${H} ${line} ${W},${H}` : '';
+const labels = {
+  title: m.mod_stats_title(),
+  rowDay: m.mod_stats_row_day(),
+  rowWeek: m.mod_stats_row_week(),
+  series: m.mod_stats_series_downloads(),
+  rangeLabel: m.mod_stats_range_label(),
+  range30d: m.mod_stats_range_30d(),
+  range1y: m.mod_stats_range_1y(),
+  rangeAll: m.mod_stats_range_all(),
+  error: m.mod_stats_error(),
+  empty: m.mod_stats_empty(),
+  loading: m.mod_stats_loading(),
+};
+---
+
+{
+  stats && (
+    <section
+      id="mod-stats"
+      aria-labelledby="mod-stats-title"
+      data-island="mod-stats"
+      data-mod-id={mod.id}
+      data-labels={JSON.stringify(labels)}
+      class:list={[PANEL_CLASSES, 'grid gap-3']}
+    >
+      <h2 id="mod-stats-title" class={READOUT_CLASSES}>{m.mod_stats_title()}</h2>
+      {
+        total > 0 ? (
+          <>
+            <p class="tabular-nums text-sm text-fg" title={formatNumber(locale, total)}>
+              {m.mod_stats_last30({ display: formatCompactNumber(locale, total) })}
+            </p>
+            <svg
+              viewBox={`0 0 ${W} ${H}`}
+              role="img"
+              aria-label={`${m.mod_stats_sparkline_label()}: ${formatNumber(locale, total)}`}
+              class="h-12 w-full overflow-visible text-(--color-chart-1)"
+              preserveAspectRatio="none"
+            >
+              {area && <polygon points={area} fill="currentColor" fill-opacity="0.1" />}
+              <polyline points={line} fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke-linecap="round" />
+            </svg>
+          </>
+        ) : (
+          <p class="text-sm text-fg-muted">{m.mod_stats_empty()}</p>
+        )
+      }
+      <button
+        type="button"
+        hidden
+        data-js-only
+        data-stats-open
+        class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3 md:min-h-8"
+      >
+        {m.mod_stats_open()}
+      </button>
+      <div data-stats-chart hidden></div>
+    </section>
+  )
+}

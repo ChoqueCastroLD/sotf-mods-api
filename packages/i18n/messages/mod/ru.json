@@ -221,5 +221,22 @@
   "mod_md_alert_warning": "Предупреждение",
   "mod_md_alert_caution": "Осторожно",
   "mod_md_spoiler": "Спойлер",
-  "mod_faq_title": "Частые вопросы"
+  "mod_faq_title": "Частые вопросы",
+  "mod_stats_title": "Загрузки по времени",
+  "mod_stats_last30": "Последние 30 дней: {display}",
+  "mod_stats_sparkline_label": "Загрузки по дням, последние 30 дней",
+  "mod_stats_open": "Открыть график",
+  "mod_stats_range_label": "Период",
+  "mod_stats_range_30d": "30 дней",
+  "mod_stats_range_1y": "1 год",
+  "mod_stats_range_all": "За всё время",
+  "mod_stats_row_day": "День",
+  "mod_stats_row_week": "Неделя с",
+  "mod_stats_series_downloads": "Загрузки",
+  "mod_stats_error": "Не удалось загрузить график. Попробуйте ещё раз.",
+  "mod_stats_empty": "За этот период загрузок пока нет.",
+  "mod_stats_loading": "Загрузка графика…",
+  "mod_graph_title": "Граф зависимостей",
+  "mod_graph_label": "Граф зависимостей {name}",
+  "mod_graph_required_by": "Требуется для"
 }

@@ -221,5 +221,22 @@
   "mod_md_alert_warning": "Warning",
   "mod_md_alert_caution": "Caution",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Frequently asked questions"
+  "mod_faq_title": "Frequently asked questions",
+  "mod_stats_title": "Downloads over time",
+  "mod_stats_last30": "Last 30 days: {display}",
+  "mod_stats_sparkline_label": "Daily downloads, last 30 days",
+  "mod_stats_open": "Explore the chart",
+  "mod_stats_range_label": "Time range",
+  "mod_stats_range_30d": "30 days",
+  "mod_stats_range_1y": "1 year",
+  "mod_stats_range_all": "All time",
+  "mod_stats_row_day": "Day",
+  "mod_stats_row_week": "Week of",
+  "mod_stats_series_downloads": "Downloads",
+  "mod_stats_error": "The chart could not load. Try again.",
+  "mod_stats_empty": "No downloads recorded in this period yet.",
+  "mod_stats_loading": "Loading chart…",
+  "mod_graph_title": "Dependency graph",
+  "mod_graph_label": "Dependency graph of {name}",
+  "mod_graph_required_by": "Required by"
 }

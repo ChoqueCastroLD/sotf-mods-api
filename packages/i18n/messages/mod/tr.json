@@ -221,5 +221,22 @@
   "mod_md_alert_warning": "Uyarı",
   "mod_md_alert_caution": "Dikkat",
   "mod_md_spoiler": "Spoiler",
-  "mod_faq_title": "Sık sorulan sorular"
+  "mod_faq_title": "Sık sorulan sorular",
+  "mod_stats_title": "Zaman içinde indirmeler",
+  "mod_stats_last30": "Son 30 gün: {display}",
+  "mod_stats_sparkline_label": "Günlük indirmeler, son 30 gün",
+  "mod_stats_open": "Grafiği incele",
+  "mod_stats_range_label": "Zaman aralığı",
+  "mod_stats_range_30d": "30 gün",
+  "mod_stats_range_1y": "1 yıl",
+  "mod_stats_range_all": "Tüm zamanlar",
+  "mod_stats_row_day": "Gün",
+  "mod_stats_row_week": "Hafta başlangıcı",
+  "mod_stats_series_downloads": "İndirmeler",
+  "mod_stats_error": "Grafik yüklenemedi. Tekrar dene.",
+  "mod_stats_empty": "Bu dönemde henüz indirme kaydedilmedi.",
+  "mod_stats_loading": "Grafik yükleniyor…",
+  "mod_graph_title": "Bağımlılık grafiği",
+  "mod_graph_label": "{name} bağımlılık grafiği",
+  "mod_graph_required_by": "Şunlar için gerekli"
 }

@@ -13,6 +13,7 @@ import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
 import AtAGlance from '../../../../components/mod/AtAGlance.astro';
 import CommentsPreview from '../../../../components/mod/CommentsPreview.astro';
+import DependencyGraph from '../../../../components/mod/DependencyGraph.astro';
 import CreatorCard from '../../../../components/mod/CreatorCard.astro';
 import { loadOverviewExtras, resolveModPage } from '../../../../components/mod/data.ts';
 import { loginHrefFor, versionsPagePath } from '../../../../components/mod/format.ts';
@@ -21,6 +22,7 @@ import ModFaq from '../../../../components/mod/ModFaq.astro';
 import ModLayout from '../../../../components/mod/ModLayout.astro';
 import RelatedMods from '../../../../components/mod/RelatedMods.astro';
 import RequiredBy from '../../../../components/mod/RequiredBy.astro';
+import StatsPanel from '../../../../components/mod/StatsPanel.astro';
 import ReviewsPreview from '../../../../components/mod/ReviewsPreview.astro';
 import { respondUnresolved } from '../../../../components/mod/responses.ts';
 import { modDescription, modFaqJsonLd, modJsonLd, modTitle } from '../../../../components/mod/seo.ts';
@@ -133,6 +135,8 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
     )
   }
 
+  <DependencyGraph mod={mod} dependents={extras.dependents} />
+
   <WhatsNew mod={mod} />
 
   <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4">
@@ -162,6 +166,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
   <Fragment slot="sidebar">
     <CreatorCard mod={mod} loginHref={loginHref} />
     <RequiredBy mod={mod} dependents={extras.dependents} />
+    <StatsPanel mod={mod} stats={extras.stats} />
     <RelatedMods mod={mod} related={extras.related} />
   </Fragment>
 </ModLayout>
