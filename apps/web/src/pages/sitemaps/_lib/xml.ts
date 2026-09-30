@@ -3,7 +3,7 @@
  * `xhtml:link` hreflang alternates and `image:image`), the sitemap index and RSS 2.0 channels.
  * Pure string builders: no DOM, deterministic output, every value escaped.
  */
-import { hreflangAlternates } from '@sotf/i18n';
+import { hreflangAlternates, LOCALES, type Locale, localizePath } from '@sotf/i18n';
 
 /** Escapes text for XML element content and attribute values. */
 export function escapeXml(value: string): string {
@@ -70,6 +70,13 @@ export interface SitemapPage {
   images?: readonly SitemapImage[];
   /** Publish only the English URL (pages outside the localized cluster). Default: every locale. */
   englishOnly?: boolean;
+  /**
+   * Locales with their own translation (partially translated documents, PLAN §4.5). When some
+   * locale is missing, the page publishes no hreflang cluster and untranslated locales point their
+   * canonical to English: only the translated URLs are listed, each on its own, without
+   * `xhtml:link`. Default: every locale, with the cluster.
+   */
+  locales?: readonly Locale[];
 }
 
 const URLSET_OPEN =
@@ -95,6 +102,16 @@ export function urlset(siteUrl: string, pages: readonly SitemapPage[]): string {
       parts.push(
         `<url><loc>${escapeXml(absolute(siteUrl, page.path))}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}${imageXml}</url>\n`,
       );
+      continue;
+    }
+    if (page.locales && !LOCALES.every((code) => page.locales?.includes(code))) {
+      const origin = siteUrl.replace(/\/+$/, '');
+      for (const code of LOCALES) {
+        if (!page.locales.includes(code)) continue;
+        parts.push(
+          `<url><loc>${escapeXml(origin + localizePath(page.path, code))}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}${imageXml}</url>\n`,
+        );
+      }
       continue;
     }
     const alternates = hreflangAlternates(page.path, siteUrl.replace(/\/+$/, ''));

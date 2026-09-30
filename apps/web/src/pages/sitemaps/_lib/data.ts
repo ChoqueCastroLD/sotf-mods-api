@@ -99,13 +99,6 @@ export async function recentCards(query: {
   return list.items;
 }
 
-/** Number of published items of a filtered listing (best hubs' ≥ 5 rule). */
-export async function countCards(query: Parameters<ApiClient['catalog']['listMods']>[0]): Promise<number> {
-  const merged = { ...(query?.query ?? {}), page: 1, pageSize: 1 };
-  const list = await api().catalog.listMods({ query: merged });
-  return list.total;
-}
-
 export function allCategories(): Promise<CategoryDTO[]> {
   return memoized('categories', async () => (await api().catalog.categories({ query: { kind: 'all' } })).items);
 }

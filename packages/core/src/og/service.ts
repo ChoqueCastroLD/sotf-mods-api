@@ -10,6 +10,8 @@
  * - Entities with a column (`Mod`, `User`, `Kit`) store the key; categories, the Patch Radar and
  *   guides have none, so their object is only uploaded (the key is returned and logged).
  * - A card that must not exist (missing, private, NSFW) clears the stored key.
+ * - Collage images (kits) are read from the public bucket through the storage client, never
+ *   fetched over HTTP: only URLs under `R2_PUBLIC_BASE_URL` are used.
  */
 import { cacheTag } from '@sotf/contracts/cache';
 import { kit, mod, user } from '@sotf/db';
@@ -22,6 +24,60 @@ import { IMMUTABLE_CACHE_CONTROL } from '../storage/disposition.ts';
 import { ogImageKey } from '../storage/keys.ts';
 import { loadOgCard, type OgEntityType } from './data.ts';
 import { ogCardHash, renderOgPng } from './render.ts';
+
+/** Largest collage source read (thumbnails are ~20 KB, covers a few hundred KB). */
+const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+
+/** Storage key of a public media URL, or null when the URL is not under the public base. */
+export function keyFromPublicUrl(url: string, publicBaseUrl: string): string | null {
+  const base = `${publicBaseUrl.replace(/\/+$/, '')}/`;
+  if (!url.startsWith(base)) return null;
+  const encoded = url.slice(base.length).split(/[?#]/, 1)[0] ?? '';
+  if (!encoded) return null;
+  try {
+    const key = encoded.split('/').map(decodeURIComponent).join('/');
+    return key.split('/').some((part) => part === '' || part === '.' || part === '..') ? null : key;
+  } catch {
+    return null;
+  }
+}
+
+async function readObject(storage: ObjectStorage, bucket: string, key: string): Promise<Buffer | null> {
+  const { body, head } = await storage.get(bucket, key);
+  if (head.size > MAX_IMAGE_BYTES) {
+    body.destroy();
+    return null;
+  }
+  const chunks: Buffer[] = [];
+  let total = 0;
+  for await (const chunk of body) {
+    const buffer = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk as Uint8Array);
+    total += buffer.byteLength;
+    if (total > MAX_IMAGE_BYTES) {
+      body.destroy();
+      return null;
+    }
+    chunks.push(buffer);
+  }
+  return Buffer.concat(chunks);
+}
+
+/** Collage sources of a card, in order; missing or unreadable objects are skipped. */
+async function loadCardImages(ctx: Ctx, storage: ObjectStorage, urls: readonly string[]): Promise<Buffer[]> {
+  const bucket = storage.config.publicBucket;
+  const out: Buffer[] = [];
+  for (const url of urls) {
+    const key = keyFromPublicUrl(url, storage.config.publicBaseUrl);
+    if (!key) continue;
+    try {
+      const image = await readObject(storage, bucket, key);
+      if (image) out.push(image);
+    } catch (error) {
+      ctx.log.warn({ key, err: error }, 'og collage image unreadable');
+    }
+  }
+  return out;
+}
 
 export interface OgRenderResult {
   status: 'rendered' | 'unchanged' | 'skipped' | 'cleared';
@@ -100,7 +156,8 @@ export async function renderEntityOg(
   const exists = (await deps.storage.head(bucket, key)) !== null;
   let bytes: number | undefined;
   if (!exists) {
-    const rendered = await renderOgPng(card);
+    const images = card.images?.length ? await loadCardImages(ctx, deps.storage, card.images) : [];
+    const rendered = await renderOgPng(card, images);
     await deps.storage.put({
       bucket,
       key,

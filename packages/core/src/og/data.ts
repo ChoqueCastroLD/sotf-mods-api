@@ -14,7 +14,7 @@ import { currentGameBuild } from '../compat/registry.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { isDomainError } from '../kernel/errors.ts';
 import { getKit } from '../kits/service.ts';
-import type { OgCard, OgStat } from './template.ts';
+import { OG_COLLAGE_MAX, type OgCard, type OgStat } from './template.ts';
 
 export type OgEntityType = (typeof OG_ENTITY_TYPES)[number];
 
@@ -138,7 +138,10 @@ async function kitCard(ctx: Ctx, config: CatalogConfig, id: number): Promise<OgC
     readouts.push({ icon: 'check', text: `${compact(kit.compat.works)} working`, tone: 'good' });
   if (kit.followersCount > 0)
     readouts.push({ icon: 'users', text: plural(kit.followersCount, 'follower', 'followers') });
+  // Knolling collage (PLAN §7.8): the custom cover alone, or the items' thumbnails.
+  const images = kit.cover ? [kit.cover.url] : kit.previewThumbnails.slice(0, OG_COLLAGE_MAX);
   return {
+    ...(images.length > 0 ? { images } : {}),
     type: 'kit',
     seed: `kit:${kit.id}`,
     kicker: kit.isStaffPick ? 'Mod kit · Staff pick' : 'Mod kit',
