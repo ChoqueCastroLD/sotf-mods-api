@@ -1,4 +1,4 @@
-From 740c9603a17cca34a13dcc0392886b331234994b Mon Sep 17 00:00:00 2001
+From 2cb193c3e61293bb590bf3dccf8dc98c366e50bc Mon Sep 17 00:00:00 2001
 From: Luis Choque <luis.choque.castro@outlook.com>
 Date: Tue, 29 Sep 2026 14:07:35 +0200
 Subject: [PATCH 1/3] fix(downloads): forward the API redirect instead of
@@ -12,6 +12,8 @@ internal API_URL when set, else PUBLIC_API_URL) and returns the API's
 - Path segments are encoded, so slugs with apostrophes or spaces work.
 - The client IP comes from CF-Connecting-IP, else the first
   X-Forwarded-For hop, and is only sent when known (no more "null").
+  The user agent is forwarded truncated to 512 characters (what the API
+  stores), so an oversized header cannot turn into a 414/431.
 - HEAD is forwarded as HEAD, so link checks are not counted.
 - 404 and 410 keep their status code instead of becoming a 200 with a
   JSON body that clients saved as a zip. Non-redirect bodies are
@@ -24,8 +26,8 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 ---
  README.md                 |   8 ++
  src/router.ts             |  15 +---
- src/util/download.util.ts | 162 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 172 insertions(+), 13 deletions(-)
+ src/util/download.util.ts | 164 ++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 174 insertions(+), 13 deletions(-)
  create mode 100644 src/util/download.util.ts
 
 diff --git a/README.md b/README.md
@@ -84,10 +86,10 @@ index bebb77e..b9442e9 100644
    .get("/privacy", render("privacy"))
 diff --git a/src/util/download.util.ts b/src/util/download.util.ts
 new file mode 100644
-index 0000000..8840fb0
+index 0000000..08a50a6
 --- /dev/null
 +++ b/src/util/download.util.ts
-@@ -0,0 +1,162 @@
+@@ -0,0 +1,164 @@
 +/**
 + * Download proxy: `/mods/:userSlug/:modSlug/download/:version`.
 + *
@@ -205,8 +207,10 @@ index 0000000..8840fb0
 +    const query = new URLSearchParams();
 +    const ip = clientIp(request.headers);
 +    if (ip) query.set("ip", ip);
++    // The API keeps 512 characters; a longer header would only risk a 414/431
++    // from the API and block the download.
 +    const agent = present(request.headers.get("user-agent"));
-+    if (agent) query.set("agent", agent);
++    if (agent) query.set("agent", agent.slice(0, 512));
 +
 +    const forwardedHeaders: Record<string, string> = {};
 +    const range = request.headers.get("range");
