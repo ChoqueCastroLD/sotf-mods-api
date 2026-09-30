@@ -15,6 +15,7 @@
   "mod_tab_reviews": "Отзывы",
   "mod_tab_comments": "Комментарии",
   "mod_sidebar_label": "Об этом моде",
+  "mod_feed_title": "Релизы {name}",
   "mod_banners_label": "Статус мода",
   "mod_banner_pending_title": "На проверке.",
   "mod_banner_pending_text": "Рейнджер проверяет этот мод. Его ещё нет в списках, и он может измениться.",

@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Uppdaterad {date}",
   "mod_fact_updated_label": "Uppdaterad",
   "mod_fact_version": "Version",
+  "mod_feed_title": "Versioner av {name}",
   "mod_field_report_sign_in": "Logga in för att lägga till en fältrapport",
   "mod_field_report_text": "En fältrapport tar tio sekunder och visar alla om moden fungerar i den aktuella patchen.",
   "mod_field_report_title": "Fungerade det i ditt spel?",

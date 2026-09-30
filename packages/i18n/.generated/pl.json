@@ -3759,6 +3759,7 @@
   "mod_fact_updated": "Zaktualizowano {date}",
   "mod_fact_updated_label": "Zaktualizowano",
   "mod_fact_version": "Wersja",
+  "mod_feed_title": "Wydania {name}",
   "mod_field_report_sign_in": "Zaloguj się, aby dodać raport z terenu",
   "mod_field_report_text": "Raport z terenu zajmuje dziesięć sekund i mówi wszystkim, czy ten mod działa z obecną łatką.",
   "mod_field_report_title": "Czy działało w twojej grze?",

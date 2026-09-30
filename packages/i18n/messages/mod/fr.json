@@ -15,6 +15,7 @@
   "mod_tab_reviews": "Avis",
   "mod_tab_comments": "Commentaires",
   "mod_sidebar_label": "À propos de ce mod",
+  "mod_feed_title": "Versions de {name}",
   "mod_banners_label": "État du mod",
   "mod_banner_pending_title": "En cours d’examen.",
   "mod_banner_pending_text": "Un ranger vérifie ce mod. Il n’est pas encore listé et peut encore changer.",

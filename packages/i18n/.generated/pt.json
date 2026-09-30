@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Atualizado em {date}",
   "mod_fact_updated_label": "Atualizado",
   "mod_fact_version": "Versão",
+  "mod_feed_title": "Versões de {name}",
   "mod_field_report_sign_in": "Entre para adicionar um relatório de campo",
   "mod_field_report_text": "Um relatório de campo leva dez segundos e mostra a todos se este mod funciona no patch atual.",
   "mod_field_report_title": "Funcionou no seu jogo?",

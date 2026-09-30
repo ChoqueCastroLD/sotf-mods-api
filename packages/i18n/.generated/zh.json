@@ -3151,6 +3151,7 @@
   "mod_fact_updated": "更新于 {date}",
   "mod_fact_updated_label": "更新于",
   "mod_fact_version": "版本",
+  "mod_feed_title": "{name} 的版本",
   "mod_field_report_sign_in": "登录后提交实地报告",
   "mod_field_report_text": "实地报告只需十秒，就能让大家知道此模组在当前补丁下是否可用。",
   "mod_field_report_title": "在你的游戏里能用吗？",

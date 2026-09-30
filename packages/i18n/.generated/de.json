@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Aktualisiert am {date}",
   "mod_fact_updated_label": "Aktualisiert",
   "mod_fact_version": "Version",
+  "mod_feed_title": "Versionen von {name}",
   "mod_field_report_sign_in": "Melde dich an, um einen Feldbericht abzugeben",
   "mod_field_report_text": "Ein Feldbericht dauert zehn Sekunden und zeigt allen, ob dieser Mod mit dem aktuellen Patch läuft.",
   "mod_field_report_title": "Hat es in deinem Spiel funktioniert?",

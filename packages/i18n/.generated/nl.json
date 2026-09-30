@@ -3519,6 +3519,7 @@
   "mod_fact_updated": "Bijgewerkt op {date}",
   "mod_fact_updated_label": "Bijgewerkt",
   "mod_fact_version": "Versie",
+  "mod_feed_title": "Releases van {name}",
   "mod_field_report_sign_in": "Log in om een veldrapport toe te voegen",
   "mod_field_report_text": "Een veldrapport kost tien seconden en vertelt iedereen of deze mod op de huidige patch werkt.",
   "mod_field_report_title": "Werkte het in je game?",
