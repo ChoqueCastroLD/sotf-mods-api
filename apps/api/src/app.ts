@@ -146,6 +146,14 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
     routerOptions: { maxParamLength: 300 },
     return503OnClosing: true,
     forceCloseConnections: 'idle',
+    // Coolify's path routing (`https://sotf-mods.com/api`) strips the `/api` prefix before the
+    // request reaches us; every route lives under `/api`, so put it back. Probes stay at the root.
+    rewriteUrl: (req) => {
+      const url = req.url ?? '/';
+      if (url === '/api' || url.startsWith('/api/') || url.startsWith('/api?')) return url;
+      if (url === '/healthz' || url === '/readyz' || url.startsWith('/healthz?') || url.startsWith('/readyz?')) return url;
+      return url === '/' ? '/api' : `/api${url}`;
+    },
   }) as unknown as FastifyInstance;
   app.setValidatorCompiler(validatorCompiler);
   app.setSerializerCompiler(serializerCompiler);
