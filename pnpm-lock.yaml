@@ -596,6 +596,9 @@ importers:
         specifier: 'catalog:'
         version: 4.6.5
     devDependencies:
+      '@sotf/api':
+        specifier: workspace:*
+        version: link:../api
       '@sotf/config':
         specifier: workspace:*
         version: link:../../packages/config
@@ -702,6 +705,9 @@ importers:
       '@node-rs/bcrypt':
         specifier: 'catalog:'
         version: 1.10.9
+      '@sotf/brand':
+        specifier: workspace:*
+        version: link:../brand
       '@sotf/contracts':
         specifier: workspace:*
         version: link:../contracts

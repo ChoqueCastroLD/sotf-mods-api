@@ -4,11 +4,15 @@
 import accountModule from './account/index.ts';
 import authModule from './auth/index.ts';
 import meModule from './me/index.ts';
+import notificationsModule from './notifications/index.ts';
 import platformModule from './platform/index.ts';
+import unsubscribeModule from './unsubscribe/index.ts';
 
 export const modules = [
   accountModule,
   authModule,
   meModule,
+  notificationsModule,
   platformModule,
+  unsubscribeModule,
 ] as const;

@@ -404,6 +404,381 @@
   "emails_auth_verify_heading": "E-postanı doğrula",
   "emails_auth_verify_preview": "Tek tıkla yayınlayabilir, yorum yapabilir ve inceleme yazabilirsin.",
   "emails_auth_verify_subject": "SOTF Mods için e-postanı doğrula",
+  "emails_notify_creator_button": "İstatistiklerini aç",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yeni yorum",
+        "count__plural=*": "{count__number} yeni yorum"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} indirme",
+        "count__plural=*": "{count__number} indirme"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yeni takipçi",
+        "count__plural=*": "{count__number} yeni takipçi"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "Rakamlarla haftan",
+  "emails_notify_creator_highlights_heading": "Öne çıkanlar",
+  "emails_notify_creator_intro": "Modlarının {start} - {end} arasındaki performansı.",
+  "emails_notify_creator_preview": "{start} - {end} arası indirmeler, takipçiler, yorumlar ve incelemeler.",
+  "emails_notify_creator_reason": "SOTF Mods’ta içerik yayımladığın için bu raporu alıyorsun.",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yeni inceleme",
+        "count__plural=*": "{count__number} yeni inceleme"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Geçen hafta modların: +{count__number} indirme",
+        "count__plural=*": "Geçen hafta modların: +{count__number} indirme"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "Bu hafta modların",
+  "emails_notify_creator_trend_down": "Önceki haftaya göre {percent} düşüş",
+  "emails_notify_creator_trend_same": "Önceki haftayla aynı",
+  "emails_notify_creator_trend_up": "Önceki haftaya göre {percent} artış",
+  "emails_notify_daily_heading": "Adadaki günün",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Günlük SOTF Mods özetin: {count__number} sinyal",
+        "count__plural=*": "Günlük SOTF Mods özetin: {count__number} sinyal"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "Takip ettiğin her şey tek bir e-postada.",
+  "emails_notify_greeting": "Merhaba {name},",
+  "emails_notify_instant_heading": "Yeni sinyaller",
+  "emails_notify_instant_intro": "Modların ve sohbetlerin çevresinde olanlar burada.",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "SOTF Mods’ta yeni sinyal",
+        "count__plural=*": "SOTF Mods’ta {count__number} yeni sinyal"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "SOTF Mods’tan yeni bir duyuru var",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} Haftanın Modu seçildi",
+        "kind=mod_of_month": "{mod} Ayın Modu seçildi",
+        "kind=build_of_month": "{mod} Ayın Yapısı seçildi",
+        "kind=*": "{mod} ekibin seçimi oldu"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "Yeni bir rozet kazandın",
+  "emails_notify_item_comment_mention": "{actor}, {mod} hakkındaki bir yorumda senden bahsetti",
+  "emails_notify_item_comment_on_my_mod": "{actor}, {mod} hakkında yorum yaptı",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} için {count__number} yeni yorum",
+        "count__plural=*": "{mod} için {count__number} yeni yorum"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor}, {mod} hakkındaki yorumuna yanıt verdi",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} hakkındaki yorumuna {count__number} yeni yanıt",
+        "count__plural=*": "{mod} hakkındaki yorumuna {count__number} yeni yanıt"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "{mod} yapımcısı bildirdiğin sorunu düzeltildi olarak işaretledi",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input mod",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "Oyuncular {mod} modunun {build} oyun sürümünde çalışmadığını bildiriyor",
+        "status=*": "Oyuncular {mod} için {build} oyun sürümünde karışık sonuçlar bildiriyor"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor}, {mod} modunu yayımladı",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{actor} {count__number} yeni mod yayımladı, en yenisi {mod}",
+        "count__plural=*": "{actor} {count__number} yeni mod yayımladı, en yenisi {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} {threshold__number} indirmeyi geçti"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "{build} oyun sürümü modları bozabilir: kendi modlarını Yama Radarı’nda kontrol et",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "Bildirimin incelendi ve moderatörler gereğini yaptı",
+        "action=*": "Bildirimin incelendi: herhangi bir işlem gerekmedi"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor}, {mod} için inceleme yazdı: {rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} için {count__number} yeni inceleme",
+        "count__plural=*": "{mod} için {count__number} yeni inceleme"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "{mod} yapımcısı incelemene yanıt verdi",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} onaylandı ve yayında",
+        "status=rejected": "{mod} onaylanmadı",
+        "status=pending": "{mod} onaylanmadan önce değişiklik gerektiriyor",
+        "status=archived": "{mod} arşivlendi",
+        "status=unlisted": "{mod} artık listelerde görünmüyor",
+        "status=removed": "{mod} SOTF Mods’tan kaldırıldı",
+        "status=*": "{mod} modunun durumu değişti"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "Neden: {reason}",
+  "emails_notify_item_version_published": "{mod}, {version} sürümüne güncellendi",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} için {count__number} yeni sürüm var, en yenisi {version}",
+        "count__plural=*": "{mod} için {count__number} yeni sürüm var, en yenisi {version}"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ve {count__number} sinyal daha",
+        "count__plural=*": "Ve {count__number} sinyal daha"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "Sinyalleri aç",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yeni sinyal, ilki: {first}",
+        "count__plural=*": "{count__number} yeni sinyal, ilki: {first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "Bu sinyaller için günlük özet seçtiğin için bu e-postayı alıyorsun.",
+        "cadence=*": "Bu sinyaller için haftalık özet seçtiğin için bu e-postayı alıyorsun."
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "Bu sinyaller için anında e-postalar açık olduğu için bu e-postayı alıyorsun.",
+  "emails_notify_someone": "Biri",
+  "emails_notify_unsubscribe": "Bu e-postaların aboneliğinden çık",
+  "emails_notify_view": "Görüntüle",
+  "emails_notify_weekly_heading": "Adadaki haftan",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Haftalık SOTF Mods özetin: {count__number} sinyal",
+        "count__plural=*": "Haftalık SOTF Mods özetin: {count__number} sinyal"
+      }
+    }
+  ],
   "errors_boundary_detail": "Sayfanın geri kalanı çalışıyor. Bu bölümü yeniden yüklemeyi dene.",
   "errors_boundary_title": "Sayfanın bu bölümü yüklenemedi",
   "errors_code_conflict_detail": "Sen üzerinde çalışırken bu değişti. En son sürümü görmek için sayfayı yenile ve tekrar dene.",

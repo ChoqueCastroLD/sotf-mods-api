@@ -360,6 +360,321 @@
   "emails_auth_verify_heading": "确认你的邮箱",
   "emails_auth_verify_preview": "点一下，就能发布、评论和撰写评价。",
   "emails_auth_verify_subject": "确认你在 SOTF Mods 的邮箱",
+  "emails_notify_creator_button": "打开你的数据分析",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条新评论"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次下载"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 位新关注者"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "你这一周的数据",
+  "emails_notify_creator_highlights_heading": "亮点",
+  "emails_notify_creator_intro": "以下是你的模组在 {start} 至 {end} 的表现。",
+  "emails_notify_creator_preview": "{start} 至 {end} 的下载、关注者、评论和评价。",
+  "emails_notify_creator_reason": "你收到此报告，是因为你在 SOTF Mods 上发布内容。",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条新评价"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你的模组上周：+{count__number} 次下载"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "你的模组本周表现",
+  "emails_notify_creator_trend_down": "比前一周下降 {percent}",
+  "emails_notify_creator_trend_same": "与前一周持平",
+  "emails_notify_creator_trend_up": "比前一周增长 {percent}",
+  "emails_notify_daily_heading": "你在岛上的一天",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你的 SOTF Mods 每日摘要：{count__number} 条信号"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "你关注的一切，尽在这一封邮件。",
+  "emails_notify_greeting": "{name}，你好：",
+  "emails_notify_instant_heading": "新信号",
+  "emails_notify_instant_intro": "以下是你的模组和讨论中发生的新动态。",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "SOTF Mods 上有 {count__number} 条新信号"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "SOTF Mods 发布了新公告",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} 获选本周模组",
+        "kind=mod_of_month": "{mod} 获选本月模组",
+        "kind=build_of_month": "{mod} 获选本月建筑",
+        "kind=*": "{mod} 入选团队精选"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "你获得了一枚新徽章",
+  "emails_notify_item_comment_mention": "{actor} 在 {mod} 的评论中提到了你",
+  "emails_notify_item_comment_on_my_mod": "{actor} 评论了 {mod}",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 有 {count__number} 条新评论"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor} 回复了你在 {mod} 下的评论",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你在 {mod} 下的评论有 {count__number} 条新回复"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "{mod} 的作者已将你报告的问题标记为已修复",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input mod",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "玩家反馈 {mod} 在游戏版本 {build} 上无法运行",
+        "status=*": "玩家反馈 {mod} 在游戏版本 {build} 上表现不一"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor} 发布了 {mod}",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{actor} 发布了 {count__number} 个新模组，最新的是 {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 的下载量已突破 {threshold__number}"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "游戏版本 {build} 可能导致模组失效：请在补丁雷达中检查你的模组",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "你的举报已审核，版主已采取措施",
+        "action=*": "你的举报已审核：无需采取措施"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor} 评价了 {mod}：{rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 有 {count__number} 条新评价"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "{mod} 的作者回复了你的评价",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} 已通过审核并上线",
+        "status=rejected": "{mod} 未通过审核",
+        "status=pending": "{mod} 需要修改后才能通过审核",
+        "status=archived": "{mod} 已归档",
+        "status=unlisted": "{mod} 已不再显示在列表中",
+        "status=removed": "{mod} 已从 SOTF Mods 移除",
+        "status=*": "{mod} 的状态已变更"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "原因：{reason}",
+  "emails_notify_item_version_published": "{mod} 已更新到 {version}",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} 有 {count__number} 个新版本，最新为 {version}"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "还有 {count__number} 条信号"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "打开信号",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条新信号，首先是：{first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "你收到此邮件，是因为你为这些信号选择了每日摘要。",
+        "cadence=*": "你收到此邮件，是因为你为这些信号选择了每周摘要。"
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "你收到此邮件，是因为你为这些信号开启了即时邮件。",
+  "emails_notify_someone": "有人",
+  "emails_notify_unsubscribe": "退订这类邮件",
+  "emails_notify_view": "查看",
+  "emails_notify_weekly_heading": "你在岛上的一周",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "你的 SOTF Mods 每周摘要：{count__number} 条信号"
+      }
+    }
+  ],
   "errors_boundary_detail": "页面其他部分仍可正常使用。请尝试重新加载这一部分。",
   "errors_boundary_title": "页面的这一部分没有加载出来",
   "errors_code_conflict_detail": "在你编辑期间内容发生了变化。请刷新查看最新版本后重试。",

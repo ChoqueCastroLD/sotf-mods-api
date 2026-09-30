@@ -404,6 +404,381 @@
   "emails_auth_verify_heading": "Bevestig je e-mailadres",
   "emails_auth_verify_preview": "Eén klik en je kunt publiceren, reageren en recenseren.",
   "emails_auth_verify_subject": "Bevestig je e-mailadres voor SOTF Mods",
+  "emails_notify_creator_button": "Je statistieken openen",
+  "emails_notify_creator_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe reactie",
+        "count__plural=*": "{count__number} nieuwe reacties"
+      }
+    }
+  ],
+  "emails_notify_creator_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "emails_notify_creator_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe volger",
+        "count__plural=*": "{count__number} nieuwe volgers"
+      }
+    }
+  ],
+  "emails_notify_creator_heading": "Je week in cijfers",
+  "emails_notify_creator_highlights_heading": "Hoogtepunten",
+  "emails_notify_creator_intro": "Zo deden je mods het van {start} tot {end}.",
+  "emails_notify_creator_preview": "Downloads, volgers, reacties en beoordelingen van {start} tot {end}.",
+  "emails_notify_creator_reason": "Je krijgt dit rapport omdat je op SOTF Mods publiceert.",
+  "emails_notify_creator_reviews": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe beoordeling",
+        "count__plural=*": "{count__number} nieuwe beoordelingen"
+      }
+    }
+  ],
+  "emails_notify_creator_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Je mods vorige week: +{count__number} download",
+        "count__plural=*": "Je mods vorige week: +{count__number} downloads"
+      }
+    }
+  ],
+  "emails_notify_creator_top_heading": "Je mods deze week",
+  "emails_notify_creator_trend_down": "{percent} minder dan de week ervoor",
+  "emails_notify_creator_trend_same": "Evenveel als de week ervoor",
+  "emails_notify_creator_trend_up": "{percent} meer dan de week ervoor",
+  "emails_notify_daily_heading": "Je dag op het eiland",
+  "emails_notify_daily_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Je dagelijkse SOTF Mods-overzicht: {count__number} signaal",
+        "count__plural=*": "Je dagelijkse SOTF Mods-overzicht: {count__number} signalen"
+      }
+    }
+  ],
+  "emails_notify_digest_intro": "Alles wat je volgt, in één e-mail.",
+  "emails_notify_greeting": "Hoi {name},",
+  "emails_notify_instant_heading": "Nieuwe signalen",
+  "emails_notify_instant_intro": "Dit is er gebeurd rond je mods en gesprekken.",
+  "emails_notify_instant_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Nieuw signaal op SOTF Mods",
+        "count__plural=*": "{count__number} nieuwe signalen op SOTF Mods"
+      }
+    }
+  ],
+  "emails_notify_item_announcement": "Er is een nieuwe aankondiging van SOTF Mods",
+  "emails_notify_item_award": [
+    {
+      "declarations": [
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=mod_of_week": "{mod} is de Mod van de week",
+        "kind=mod_of_month": "{mod} is de Mod van de maand",
+        "kind=build_of_month": "{mod} is de Build van de maand",
+        "kind=*": "{mod} is een keuze van het team"
+      }
+    }
+  ],
+  "emails_notify_item_badge": "Je hebt een nieuwe badge verdiend",
+  "emails_notify_item_comment_mention": "{actor} noemde je in een reactie bij {mod}",
+  "emails_notify_item_comment_on_my_mod": "{actor} reageerde op {mod}",
+  "emails_notify_item_comment_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe reactie op {mod}",
+        "count__plural=*": "{count__number} nieuwe reacties op {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_comment_reply": "{actor} antwoordde op je reactie bij {mod}",
+  "emails_notify_item_comment_reply_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuw antwoord op je reactie bij {mod}",
+        "count__plural=*": "{count__number} nieuwe antwoorden op je reactie bij {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_compat_acknowledged": "De maker van {mod} heeft het probleem dat je meldde als opgelost gemarkeerd",
+  "emails_notify_item_compat_broken": [
+    {
+      "declarations": [
+        "input status",
+        "input mod",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "Spelers melden dat {mod} niet werkt op gamebuild {build}",
+        "status=*": "Spelers melden wisselende resultaten voor {mod} op gamebuild {build}"
+      }
+    }
+  ],
+  "emails_notify_item_creator_mod_published": "{actor} heeft {mod} gepubliceerd",
+  "emails_notify_item_creator_mod_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input actor",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{actor} heeft {count__number} nieuwe mod gepubliceerd, de nieuwste is {mod}",
+        "count__plural=*": "{actor} heeft {count__number} nieuwe mods gepubliceerd, de nieuwste is {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} is de {threshold__number} downloads gepasseerd"
+      }
+    }
+  ],
+  "emails_notify_item_patch_breaking": "Gamebuild {build} kan mods breken: controleer die van jou in de Patchradar",
+  "emails_notify_item_report_resolved": [
+    {
+      "declarations": [
+        "input action"
+      ],
+      "selectors": [
+        "action"
+      ],
+      "match": {
+        "action=resolve": "Je melding is bekeken en de moderators hebben actie ondernomen",
+        "action=*": "Je melding is bekeken: er was geen actie nodig"
+      }
+    }
+  ],
+  "emails_notify_item_review_on_my_mod": "{actor} beoordeelde {mod}: {rating}/5",
+  "emails_notify_item_review_on_my_mod_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuwe beoordeling van {mod}",
+        "count__plural=*": "{count__number} nieuwe beoordelingen van {mod}"
+      }
+    }
+  ],
+  "emails_notify_item_review_reply": "De maker van {mod} heeft op je beoordeling gereageerd",
+  "emails_notify_item_status": [
+    {
+      "declarations": [
+        "input status",
+        "input mod"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=published": "{mod} is goedgekeurd en staat online",
+        "status=rejected": "{mod} is niet goedgekeurd",
+        "status=pending": "{mod} heeft wijzigingen nodig voordat hij kan worden goedgekeurd",
+        "status=archived": "{mod} is gearchiveerd",
+        "status=unlisted": "{mod} staat niet meer in de lijsten",
+        "status=removed": "{mod} is van SOTF Mods verwijderd",
+        "status=*": "De status van {mod} is gewijzigd"
+      }
+    }
+  ],
+  "emails_notify_item_status_reason": "Reden: {reason}",
+  "emails_notify_item_version_published": "{mod} is bijgewerkt naar {version}",
+  "emails_notify_item_version_published_many": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "input version",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} heeft {count__number} nieuwe versie, de nieuwste is {version}",
+        "count__plural=*": "{mod} heeft {count__number} nieuwe versies, de nieuwste is {version}"
+      }
+    }
+  ],
+  "emails_notify_more": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "En nog {count__number} signaal",
+        "count__plural=*": "En nog {count__number} signalen"
+      }
+    }
+  ],
+  "emails_notify_open_signals": "Signalen openen",
+  "emails_notify_preview": [
+    {
+      "declarations": [
+        "input count",
+        "input first",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nieuw signaal, te beginnen met: {first}",
+        "count__plural=*": "{count__number} nieuwe signalen, te beginnen met: {first}"
+      }
+    }
+  ],
+  "emails_notify_reason_digest": [
+    {
+      "declarations": [
+        "input cadence"
+      ],
+      "selectors": [
+        "cadence"
+      ],
+      "match": {
+        "cadence=daily": "Je krijgt deze e-mail omdat je voor deze signalen een dagelijks overzicht hebt gekozen.",
+        "cadence=*": "Je krijgt deze e-mail omdat je voor deze signalen een wekelijks overzicht hebt gekozen."
+      }
+    }
+  ],
+  "emails_notify_reason_instant": "Je krijgt deze e-mail omdat directe e-mails voor deze signalen aan staan.",
+  "emails_notify_someone": "Iemand",
+  "emails_notify_unsubscribe": "Afmelden voor deze e-mails",
+  "emails_notify_view": "Bekijken",
+  "emails_notify_weekly_heading": "Je week op het eiland",
+  "emails_notify_weekly_subject": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Je wekelijkse SOTF Mods-overzicht: {count__number} signaal",
+        "count__plural=*": "Je wekelijkse SOTF Mods-overzicht: {count__number} signalen"
+      }
+    }
+  ],
   "errors_boundary_detail": "De rest van de pagina werkt nog. Probeer dit onderdeel opnieuw te laden.",
   "errors_boundary_title": "Dit deel van de pagina is niet geladen",
   "errors_code_conflict_detail": "Dit is gewijzigd terwijl je eraan werkte. Laad opnieuw om de nieuwste versie te zien en probeer het nog eens.",

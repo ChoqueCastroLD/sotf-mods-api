@@ -30,6 +30,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@sotf/api": "workspace:*",
     "@sotf/config": "workspace:*",
     "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",

@@ -2,11 +2,19 @@
 // Regenerate after adding, removing or renaming an entry; on merge conflicts, regenerate.
 
 import accountsJobs from './accounts/index.ts';
+import digestsJobs from './digests/index.ts';
+import discordJobs from './discord/index.ts';
 import emailJobs from './email/index.ts';
+import legacyMentionsJobs from './legacy-mentions/index.ts';
+import notificationsJobs from './notifications/index.ts';
 import platformJobs from './platform/index.ts';
 
 export const jobGroups = [
   accountsJobs,
+  digestsJobs,
+  discordJobs,
   emailJobs,
+  legacyMentionsJobs,
+  notificationsJobs,
   platformJobs,
 ] as const;
