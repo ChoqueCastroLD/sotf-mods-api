@@ -446,5 +446,12 @@
   "basecamp_versions_changelog_save": "Günlüğü kaydet",
   "basecamp_analytics_versions_daily": "Zaman içinde sürüm başına indirmeler",
   "basecamp_inbox_filter_mod": "Yalnızca {mod}",
-  "basecamp_inbox_filter_mod_clear": "Tüm modları göster"
+  "basecamp_inbox_filter_mod_clear": "Tüm modları göster",
+  "basecamp_listing_legacy_title": "Bu açıklama eski düzenini koruyor",
+  "basecamp_listing_legacy_body": "Eski sitede yazıldığı için HTML'i hâlâ biçimlendirilmiş görünüyor. Yeni bir açıklama gibi düzenlemek için Markdown'a dönüştürün.",
+  "basecamp_listing_convert": "Markdown'a dönüştür",
+  "basecamp_listing_convert_save_first": "Önce değişikliklerinizi kaydedin veya atın.",
+  "basecamp_listing_convert_title": "Bu açıklama Markdown'a dönüştürülsün mü?",
+  "basecamp_listing_convert_body": "Ham HTML artık düz metin olarak görünecek. Geri dönüş yok.",
+  "basecamp_listing_convert_done": "Açıklama Markdown'a dönüştürüldü."
 }
