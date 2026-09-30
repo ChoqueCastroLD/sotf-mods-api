@@ -59,6 +59,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   moderation: 'Reports and the Ranger Station (moderators).',
   notifications: 'Signals (notifications), preferences and one-click unsubscribe.',
   oauth: 'OAuth sign-in and account linking (Discord); inactive unless configured on the server.',
+  jams: 'Mod Jams: public hub, entries, voting, results, following and the staff console.',
   requests: 'Mod request board: requests, votes, comments, adoption by a creator and the link to the fulfilling mod.',
   reviews: 'Reviews, helpful votes and author replies.',
   search: 'Search and the compact Cmd+K index.',

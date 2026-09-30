@@ -27,6 +27,7 @@ export * from './events.ts';
 export * from './follows.ts';
 export * from './gamification.ts';
 export * from './internal.ts';
+export * from './jams.ts';
 export * from './jobs.ts';
 export * from './kit-social.ts';
 export * from './kits.ts';

@@ -17,6 +17,7 @@ import { eventsEndpoints } from './events.ts';
 import { followsEndpoints } from './follows.ts';
 import { gamificationEndpoints } from './gamification.ts';
 import { internalEndpoints } from './internal.ts';
+import { jamsEndpoints } from './jams.ts';
 import { kitSocialEndpoints } from './kit-social.ts';
 import { kitsEndpoints } from './kits.ts';
 import { legacyEndpoints } from './legacy.ts';
@@ -59,6 +60,7 @@ export const apiContracts = {
   moderation: moderationEndpoints,
   notifications: notificationsEndpoints,
   oauth: oauthEndpoints,
+  jams: jamsEndpoints,
   requests: requestsEndpoints,
   reviews: reviewsEndpoints,
   search: searchEndpoints,

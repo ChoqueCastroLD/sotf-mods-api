@@ -21,6 +21,7 @@ export const OG_ENTITY_TYPES = [
   'patch-radar',
   'guide',
   'milestone',
+  'jam',
 ] as const;
 
 /** Payload schema of every queue. */
@@ -101,6 +102,8 @@ export const JOB_PAYLOADS = {
   'cleanup.kelvinseek': z.object({}),
   'cleanup.coauthor-invites': z.object({}),
   'cleanup.scout': z.object({}),
+  // Mod jams: advances the phase of every jam by its schedule and computes the results
+  'jam.advance': z.object({}),
   // Discovery (T1-15): co-download and tag based recommendations of every mod
   'recommendations.compute': z.object({}),
   // Operations (PLAN §10.3 «Alertas»)
@@ -164,6 +167,7 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   // Descriptions rendered with an older `RENDER_VERSION` (a pipeline bump) are re-rendered.
   { queue: 'markdown.rerender', cron: '0 5 * * *', key: 'nightly', data: {} },
   { queue: 'ops.alerts', cron: '*/5 * * * *', key: 'every-5m', data: {} },
+  { queue: 'jam.advance', cron: '* * * * *', key: 'every-minute', data: {} },
   // Patch Radar uptime (T1-20): one sample per platform component every 5 minutes.
   { queue: 'compat.uptime-probe', cron: '*/5 * * * *', key: 'every-5m', data: {} },
 ];
@@ -218,6 +222,7 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'cleanup.kelvinseek': {},
   'cleanup.coauthor-invites': {},
   'cleanup.scout': {},
+  'jam.advance': {},
   'recommendations.compute': {},
   'ops.alerts': {},
   'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000 },

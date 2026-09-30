@@ -49,6 +49,7 @@ export const RATE_LIMITS = {
   emailResend: { max: 5, window: '1 hour', key: 'user' },
   comments: { max: 5, window: '1 minute', key: 'user', extra: '50/day per user' },
   reviews: { max: 10, window: '1 day', key: 'user' },
+  jamVotes: { max: 240, window: '1 hour', key: 'user', extra: 'one vote call rates one entry in every category' },
   requests: { max: 5, window: '1 day', key: 'user' },
   compatReports: { max: 30, window: '1 day', key: 'user' },
   reports: { max: 20, window: '1 day', key: 'user' },
