@@ -96,9 +96,9 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
   {build.shortDescription && <p class="text-lg text-pretty text-fg">{build.shortDescription}</p>}
 
   <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-fg-muted" aria-label={m.builds_stats_label()}>
-    <li class={statClass} title={formatNumber(locale, build.downloads)}>
+    <li class={statClass} title={formatNumber(locale, build.downloads)} data-live-downloads>
       <Icon icon={Download} size={16} />
-      {m.common_downloads_compact({ count: build.downloads, display: formatCompactNumber(locale, build.downloads) })}
+      <span data-live="downloads-stat">{m.common_downloads_compact({ count: build.downloads, display: formatCompactNumber(locale, build.downloads) })}</span>
     </li>
     <li class={statClass}>
       <Icon icon={Heart} size={16} />
@@ -256,6 +256,12 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
       </button>
     </div>
 
+    <div
+      data-mod-toast
+      role="status"
+      aria-live="polite"
+      class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
+    ></div>
     <div
       data-build-toast
       role="status"

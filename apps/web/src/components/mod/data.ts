@@ -21,6 +21,7 @@ type Awaited2<T> = T extends Promise<infer U> ? U : T;
 export type ReviewPage = Awaited2<ReturnType<ApiClient['reviews']['list']>>;
 export type CommentPage = Awaited2<ReturnType<ApiClient['comments']['list']>>;
 export type ModCompat = Awaited2<ReturnType<ApiClient['compat']['modCompat']>>;
+export type ModPublicStats = Awaited2<ReturnType<ApiClient['stats']['modPublicStats']>>;
 export type { ModCardDTO, ModDetailDTO, VersionDTO };
 
 /** Mod kinds served under `/mods` (builds live under `/builds`, WP-63). */
@@ -119,13 +120,15 @@ export interface OverviewExtras {
   reviews: ReviewPage | null;
   comments: CommentPage | null;
   compat: ModCompat | null;
+  /** Public download series of the last 30 days (sparkline); null when the API is slow. */
+  stats: ModPublicStats | null;
 }
 
 /** The optional blocks of the overview, fetched in parallel. */
 export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExtras> {
   const api = serverApi();
   const id = mod.id;
-  const [versions, dependents, related, reviews, comments, compat] = await Promise.all([
+  const [versions, dependents, related, reviews, comments, compat, stats] = await Promise.all([
     loadVersionsOptional(id),
     mod.dependentsCount > 0
       ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
@@ -138,6 +141,7 @@ export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExt
       ? optional((signal) => api.comments.list({ params: { id }, query: { sort: 'top', limit: 10 } }, { signal }))
       : Promise.resolve(null),
     optional((signal) => api.compat.modCompat({ params: { id } }, { signal })),
+    optional((signal) => api.stats.modPublicStats({ params: { id }, query: { range: '30d' } }, { signal })),
   ]);
   return {
     versions,
@@ -146,6 +150,7 @@ export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExt
     reviews,
     comments,
     compat,
+    stats,
   };
 }
 

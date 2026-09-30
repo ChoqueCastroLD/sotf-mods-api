@@ -56,7 +56,9 @@ function setPressed(target: Target, data: ModPageData, following: boolean): void
   }
 }
 
-function setFollowers(doc: Document, data: ModPageData, count: number): void {
+export function setFollowers(doc: Document, data: ModPageData, count: number): void {
+  for (const element of doc.querySelectorAll<HTMLElement>('a[data-follow][data-mod-id]'))
+    element.dataset.followers = String(count);
   const lang = doc.documentElement.lang || 'en';
   for (const element of doc.querySelectorAll<HTMLElement>('[data-follow-count-text]')) {
     element.textContent = plural(data.messages.followers, count, lang);
@@ -84,6 +86,9 @@ function upgrade(target: Target, data: ModPageData, following: boolean, doc: Doc
 
   const apply = async (follow: boolean, offerUndo: boolean): Promise<void> => {
     busy = true;
+    // Live counters may have refreshed the figure since the page was rendered.
+    const fresh = Number(element.dataset.followers);
+    if (target.kind === 'mod' && Number.isFinite(fresh)) followers = fresh;
     element.setAttribute('aria-busy', 'true');
     setPressed(target, data, follow);
     if (target.kind === 'mod' && Number.isFinite(followers))

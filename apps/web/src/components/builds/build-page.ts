@@ -17,13 +17,34 @@ import {
   builds_unfollowed,
   common_action_follow,
   common_action_following,
+  common_action_close,
+  common_action_undo,
+  common_downloads_compact,
   common_followers_count,
+  common_state_offline,
+  kits_add_already,
+  kits_add_button,
+  kits_add_done,
+  kits_add_failed,
+  kits_add_in_kit,
+  kits_add_new_kit,
+  kits_add_title,
+  kits_add_to_named,
+  kits_items_limit,
+  kits_undo_failed,
+  mod_toast_error,
+  mod_toast_rate_limited,
+  mod_toast_sign_in,
+  mod_toast_verify_email,
 } from '@sotf/i18n/messages';
 import { initSocialIslands } from '../../islands/comments/social.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
 import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from '../../scripts/mod/dialogs.ts';
+import { openKitAdd } from '../../scripts/mod/kit-add.ts';
+import { compactFormat, startLiveCounters } from '../../scripts/mod/live.ts';
 import { whenSession } from '../../scripts/mod/session.ts';
+import type { ModPageData } from '../../scripts/mod/types.ts';
 
 const TOAST_MS = 6000;
 
@@ -122,7 +143,10 @@ function initFollow(toast: Toast): void {
   const paint = () => {
     button.setAttribute('aria-pressed', String(following));
     if (label) label.textContent = following ? common_action_following() : common_action_follow();
-    if (count && followers !== null) count.textContent = common_followers_count({ count: followers });
+    if (count && followers !== null) {
+      count.textContent = common_followers_count({ count: followers });
+      count.dataset.followers = String(followers);
+    }
   };
 
   if (hasSignedInHint()) {
@@ -136,6 +160,9 @@ function initFollow(toast: Toast): void {
   const toggle = async (next: boolean, withUndo: boolean) => {
     if (busy) return;
     busy = true;
+    // The live counters may have refreshed the figure since the page was rendered.
+    const fresh = Number(count?.dataset.followers);
+    if (Number.isFinite(fresh)) followers = fresh;
     const previous = { following, followers };
     following = next;
     if (followers !== null) followers = Math.max(0, followers + (next ? 1 : -1));
@@ -171,6 +198,67 @@ function initFollow(toast: Toast): void {
     if (!hasSignedInHint()) return;
     event.preventDefault();
     void toggle(!following, true);
+  });
+}
+
+// -----------------------------------------------------------------------------------------------
+// Live counters and «+ Kit»
+// -----------------------------------------------------------------------------------------------
+
+function initLive(modId: number): void {
+  const lang = document.documentElement.lang || 'en';
+  const compact = compactFormat(lang);
+  const full = new Intl.NumberFormat(lang);
+  startLiveCounters(modId, (live) => {
+    for (const element of document.querySelectorAll<HTMLElement>('[data-live="downloads-stat"]')) {
+      element.textContent = common_downloads_compact({ count: live.downloads, display: compact.format(live.downloads) });
+      const item = element.closest<HTMLElement>('[data-live-downloads]');
+      if (item) item.title = full.format(live.downloads);
+    }
+    for (const element of document.querySelectorAll<HTMLElement>('[data-live="downloads-full"]'))
+      element.textContent = full.format(live.downloads);
+    const count = document.querySelector<HTMLElement>('[data-follow-count]');
+    if (count) {
+      count.textContent = common_followers_count({ count: live.followers });
+      count.dataset.followers = String(live.followers);
+    }
+  });
+}
+
+/** The build's messages in the shape the shared «+ Kit» popover (mod page) expects. */
+function kitAddData(modId: number, name: string, loginHref: string): ModPageData {
+  const messages = {
+    undo: common_action_undo(),
+    error: mod_toast_error(),
+    offline: common_state_offline(),
+    rateLimited: mod_toast_rate_limited(),
+    signInRequired: mod_toast_sign_in(),
+    verifyEmail: mod_toast_verify_email(),
+    close: common_action_close(),
+    kitAddTitle: kits_add_title({ name: '{name}' }),
+    kitAddNew: kits_add_new_kit(),
+    kitAddButton: kits_add_button(),
+    kitAddInKit: kits_add_in_kit(),
+    kitAddTo: kits_add_to_named({ kit: '{kit}' }),
+    kitAddAlready: kits_add_already({ name: '{name}', kit: '{kit}' }),
+    kitAddDone: kits_add_done({ name: '{name}', kit: '{kit}' }),
+    kitAddFailed: kits_add_failed({ name: '{name}' }),
+    kitLimit: kits_items_limit({ max: '{max}' }),
+    kitUndoFailed: kits_undo_failed(),
+  };
+  return { modId, name, loginHref, messages } as unknown as ModPageData;
+}
+
+/** «+ Kit»: signed-in visitors get the popover with their kits; the link stays for everyone else. */
+function initKitAdd(modId: number): void {
+  const link = document.querySelector<HTMLAnchorElement>('a[data-kit-add]');
+  if (!link) return;
+  const name = document.querySelector('h1')?.textContent?.trim() ?? '';
+  const loginHref = document.querySelector<HTMLElement>('[data-follow]')?.dataset.login ?? '/login';
+  link.addEventListener('click', (event) => {
+    if (!hasSignedInHint() || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+    event.preventDefault();
+    void openKitAdd(link, kitAddData(modId, name, loginHref));
   });
 }
 
@@ -270,7 +358,11 @@ export function initBuildPage(): void {
   const toast = toastRoot ? createToast(toastRoot) : { show: () => {} };
   initFollow(toast);
   initCopy(toast);
-  if (Number.isInteger(modId) && modId > 0) initDownloads(modId);
+  if (Number.isInteger(modId) && modId > 0) {
+    initDownloads(modId);
+    initLive(modId);
+    initKitAdd(modId);
+  }
   initGallery();
   initSocial();
   initReport();
