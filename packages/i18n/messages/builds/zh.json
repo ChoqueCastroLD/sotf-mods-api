@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, other {还有 # 条回复}}",
   "builds_related_title": "更多蓝图",
   "builds_related_all": "所有建筑",
+  "builds_feed_title": "SOTF Mods：新增和更新的建筑",
   "builds_banner_pending_title": "审核中",
   "builds_banner_pending_text": "护林员很快会审核此建筑。在此之前，它不会出现在列表和搜索中。",
   "builds_banner_unlisted_title": "未公开列出",

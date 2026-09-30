@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, one {# autre réponse} other {# autres réponses}}",
   "builds_related_title": "Plus de plans",
   "builds_related_all": "Toutes les builds",
+  "builds_feed_title": "SOTF Mods : builds nouvelles et mises à jour",
   "builds_banner_pending_title": "En cours d’examen",
   "builds_banner_pending_text": "Un ranger va bientôt vérifier cette build. D’ici là, elle n’apparaît ni dans les listes ni dans la recherche.",
   "builds_banner_unlisted_title": "Non listée",

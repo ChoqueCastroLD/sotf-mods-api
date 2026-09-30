@@ -180,6 +180,7 @@
   "builds_copy_failed": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn von Hand.",
   "builds_description_empty": "Der Erbauer hat noch keine Beschreibung geschrieben. Das Datenblatt enthält die Fakten.",
   "builds_description_title": "Über diesen Build",
+  "builds_feed_title": "SOTF Mods: neue und aktualisierte Builds",
   "builds_follow_error": "Dein Rucksack konnte nicht aktualisiert werden. Prüfe deine Verbindung und versuche es erneut.",
   "builds_follow_hint": "Benachrichtigung erhalten, wenn dieser Build eine neue Version bekommt",
   "builds_followed": "Zu deinem Rucksack hinzugefügt.",

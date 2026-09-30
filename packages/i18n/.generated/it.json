@@ -180,6 +180,7 @@
   "builds_copy_failed": "Copia non riuscita. Seleziona il testo e copialo a mano.",
   "builds_description_empty": "Il costruttore non ha ancora scritto una descrizione. La scheda tecnica riporta i dati.",
   "builds_description_title": "Informazioni su questa build",
+  "builds_feed_title": "SOTF Mods: build nuove e aggiornate",
   "builds_follow_error": "Impossibile aggiornare il tuo zaino. Controlla la connessione e riprova.",
   "builds_follow_hint": "Ricevi un avviso quando questa build ha una nuova versione",
   "builds_followed": "Aggiunta al tuo zaino.",

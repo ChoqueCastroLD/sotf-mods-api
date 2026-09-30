@@ -172,6 +172,7 @@
   "builds_copy_failed": "复制失败。请选中文字后手动复制。",
   "builds_description_empty": "建造者还没有写描述。技术参数里有相关信息。",
   "builds_description_title": "关于此建筑",
+  "builds_feed_title": "SOTF Mods：新增和更新的建筑",
   "builds_follow_error": "无法更新你的背包。请检查网络连接后重试。",
   "builds_follow_hint": "此建筑有新版本时通知我",
   "builds_followed": "已加入你的背包。",

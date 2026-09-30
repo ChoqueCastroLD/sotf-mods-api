@@ -87,6 +87,7 @@
   "builds_comments_more_replies": "{count, plural, one {Ещё # ответ} few {Ещё # ответа} many {Ещё # ответов} other {Ещё # ответа}}",
   "builds_related_title": "Другие чертежи",
   "builds_related_all": "Все постройки",
+  "builds_feed_title": "SOTF Mods: новые и обновлённые постройки",
   "builds_banner_pending_title": "На проверке",
   "builds_banner_pending_text": "Рейнджер скоро проверит эту постройку. До этого её нет в списках и в поиске.",
   "builds_banner_unlisted_title": "Скрыта из списков",
