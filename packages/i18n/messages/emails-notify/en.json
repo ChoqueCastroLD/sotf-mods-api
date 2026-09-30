@@ -55,5 +55,6 @@
   "emails_notify_creator_top_heading": "Your mods this week",
   "emails_notify_creator_highlights_heading": "Highlights",
   "emails_notify_creator_button": "Open your analytics",
-  "emails_notify_creator_reason": "You get this report because you publish on SOTF Mods."
+  "emails_notify_creator_reason": "You get this report because you publish on SOTF Mods.",
+  "emails_notify_item_coauthor_invited": "{actor} invited you to co-author {mod}"
 }

@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Geverifieerde maker",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Vertaler",
-  "signals_badge_name_night_owl": "Nachtuil"
+  "signals_badge_name_night_owl": "Nachtuil",
+  "signals_coauthor_invited": "{actor} heeft je uitgenodigd als mede-auteur van {mod}"
 }

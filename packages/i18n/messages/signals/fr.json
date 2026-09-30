@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Créateur vérifié",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Traducteur",
-  "signals_badge_name_night_owl": "Oiseau de nuit"
+  "signals_badge_name_night_owl": "Oiseau de nuit",
+  "signals_coauthor_invited": "{actor} vous a invité à co-créer {mod}"
 }

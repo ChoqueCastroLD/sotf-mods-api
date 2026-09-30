@@ -41,6 +41,7 @@ const TYPES = [
   'compat.prompt',
   'review.update_prompt',
   'kit.added_my_mod',
+  'coauthor.invited',
   'patch.breaking_build',
   'mod.status_changed',
   'milestone.reached',

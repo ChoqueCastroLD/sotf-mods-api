@@ -10,6 +10,7 @@ import { TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ExternalLink, UserPlus } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
+import type { CoAuthorDTO } from '@sotf/contracts/mod-knowledge';
 import type { ModDetailDTO } from './data.ts';
 import { linkLabel } from './i18n.ts';
 import { ACTION_CLASSES, PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
@@ -17,9 +18,10 @@ import { ACTION_CLASSES, PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
 interface Props {
   mod: ModDetailDTO;
   loginHref: string;
+  coAuthors?: readonly CoAuthorDTO[];
 }
 
-const { mod, loginHref } = Astro.props;
+const { mod, loginHref, coAuthors = [] } = Astro.props;
 const locale = Astro.locals.locale;
 const author = mod.author;
 const name = author.displayName || author.handle;
@@ -48,6 +50,27 @@ const profileHref = href(profilePath(author.handle), locale);
     <span data-follow-label>{m.mod_creator_follow()}</span>
     <span class="sr-only">{name}</span>
   </a>
+  {
+    coAuthors.length > 0 && (
+      <div class="grid gap-2">
+        <p class="text-sm font-semibold">{m.mod_knowledge_coauthors_title()}</p>
+        <ul class="grid gap-1">
+          {coAuthors.map(({ user }) => (
+            <li>
+              <a
+                href={href(profilePath(user.handle), locale)}
+                class="flex min-h-11 items-center gap-2 rounded-md hover:bg-fg/4 md:min-h-9"
+              >
+                <Avatar name={user.displayName || user.handle} id={user.id} src={user.avatarUrl} size={32} />
+                <span class="truncate text-sm text-fg">{user.displayName || user.handle}</span>
+                {user.verifiedCreator && <TrustedMark size={14} />}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
   {
     mod.supportLinks.length > 0 && (
       <div class="grid gap-2">

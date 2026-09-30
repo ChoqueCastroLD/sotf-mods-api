@@ -30,6 +30,8 @@ export async function announceModChange(
   tx: Executor,
   current: Pick<Mod, 'id' | 'userId' | 'type'>,
   field: 'knownIssues' | 'faq' | 'coAuthors',
+  /** Co-author whose profile lists the mod (its page is tagged `user:{id}`). */
+  profileUserId: number | null = null,
 ): Promise<void> {
   const routing = await modRouting(tx, current.id);
   await ctx.jobs.emitNew(
@@ -44,7 +46,10 @@ export async function announceModChange(
     },
     { actorId: ctx.actor?.userId ?? null },
   );
-  await publishCacheInvalidation(tx, modTags(current.id, current.userId, routing.kind));
+  await publishCacheInvalidation(tx, [
+    ...modTags(current.id, current.userId, routing.kind),
+    ...(profileUserId ? [`user:${profileUserId}`] : []),
+  ]);
 }
 
 export function evictModCaches(ctx: Ctx, current: Pick<Mod, 'id' | 'userId' | 'type'>): void {

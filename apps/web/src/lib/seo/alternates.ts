@@ -6,7 +6,7 @@
 import { cacheTag } from '@sotf/contracts/cache';
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
-import { serverApi } from '../api.ts';
+import { optional, serverApi } from '../api.ts';
 import { loadEnv } from '../env.ts';
 import { apiStatus } from './data.ts';
 import { handleOf, lookupMod, lookupProfile, rawSegments, stripSuffix } from './entities.ts';
@@ -47,7 +47,10 @@ export function modMarkdownRoute(context: Context, prefix: 'mods' | 'builds'): P
     const mod = await serverApi().catalog.getMod({ params: { id: found.id } });
     const expectedPrefix = mod.kind === 'build' ? 'builds' : 'mods';
     if (expectedPrefix !== prefix) return machineRedirect(`${mod.canonicalPath}.md`);
-    const body = modMarkdown(mod, loadEnv().siteUrl, new Date());
+    const knowledge = await optional((signal) =>
+      serverApi().modKnowledge.knowledge({ params: { id: mod.id } }, { signal }),
+    );
+    const body = modMarkdown(mod, loadEnv().siteUrl, new Date(), knowledge);
     return machineResponse(context, body, {
       contentType: CONTENT_TYPES.markdown,
       tags: [cacheTag.mod(mod.id), cacheTag.user(mod.userId)],

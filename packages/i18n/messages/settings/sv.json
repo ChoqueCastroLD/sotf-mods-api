@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Välj upp till {max} intjänade märken för profilens sidhuvud.",
   "settings_featured_badges_empty": "Tjäna märken på ön för att visa dem här.",
   "settings_featured_badges_count": "{count} av {max} valda",
-  "settings_featured_badges_saved": "Utvalda märken sparade."
+  "settings_featured_badges_saved": "Utvalda märken sparade.",
+  "settings_notif_coauthor": "Inbjudningar som medförfattare",
+  "settings_notif_coauthor_hint": "Någon bjuder in dig som medförfattare till en av sina moddar."
 }

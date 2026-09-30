@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Проверенный автор",
   "signals_badge_name_ranger": "Рейнджер",
   "signals_badge_name_translator": "Переводчик",
-  "signals_badge_name_night_owl": "Ночная сова"
+  "signals_badge_name_night_owl": "Ночная сова",
+  "signals_coauthor_invited": "{actor} приглашает вас стать соавтором {mod}"
 }

@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Choose up to {max} earned badges for the header of your profile.",
   "settings_featured_badges_empty": "Earn badges on the island to feature them here.",
   "settings_featured_badges_count": "{count} of {max} selected",
-  "settings_featured_badges_saved": "Featured badges saved."
+  "settings_featured_badges_saved": "Featured badges saved.",
+  "settings_notif_coauthor": "Co-author invitations",
+  "settings_notif_coauthor_hint": "Someone invites you to co-author one of their mods."
 }

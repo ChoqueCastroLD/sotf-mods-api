@@ -55,5 +55,6 @@
   "emails_notify_creator_top_heading": "Deine Mods diese Woche",
   "emails_notify_creator_highlights_heading": "Höhepunkte",
   "emails_notify_creator_button": "Deine Statistiken öffnen",
-  "emails_notify_creator_reason": "Du erhältst diesen Bericht, weil du auf SOTF Mods veröffentlichst."
+  "emails_notify_creator_reason": "Du erhältst diesen Bericht, weil du auf SOTF Mods veröffentlichst.",
+  "emails_notify_item_coauthor_invited": "{actor} hat dich eingeladen, {mod} mitzuentwickeln"
 }

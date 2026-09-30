@@ -1,0 +1,45 @@
+---
+/**
+ * «Co-authored mods» of the Mods tab (T1-12): published mods the user co-authors with someone
+ * else, as links (the cards of the grid belong to the owner's catalogue listing).
+ */
+import type { CoAuthoredModDTO } from '@sotf/contracts/mod-knowledge';
+import { m } from '@sotf/i18n/messages';
+import { href } from '../../lib/i18n.ts';
+
+interface Props {
+  name: string;
+  items: readonly CoAuthoredModDTO[];
+}
+
+const { name, items } = Astro.props;
+const locale = Astro.locals.locale;
+---
+
+{
+  items.length > 0 && (
+    <section aria-labelledby="coauthored-title" class="grid gap-3">
+      <h2 id="coauthored-title" class="font-display-caps text-display-xs text-fg">
+        {m.mod_knowledge_profile_title({ name })}
+      </h2>
+      <ul class="grid gap-2 sm:grid-cols-2">
+        {items.map((item) => (
+          <li>
+            <a
+              href={href(item.mod.canonicalPath, locale)}
+              class="flex min-h-11 items-center justify-between gap-3 rounded-lg border border-border bg-surface px-4 py-2 hover:border-border-strong"
+            >
+              <span class="grid min-w-0">
+                <span class="truncate font-semibold text-fg">{item.mod.name}</span>
+                <span class="truncate text-sm text-fg-muted">
+                  {m.mod_knowledge_profile_by({ handle: item.mod.userHandle })}
+                </span>
+              </span>
+              {item.latestVersion && <span class="text-sm text-fg-subtle tabular-nums">v{item.latestVersion}</span>}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

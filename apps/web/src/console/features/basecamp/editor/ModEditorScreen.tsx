@@ -7,7 +7,7 @@
 import { Banner } from '@sotf/ui/banner';
 import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { Tabs } from '@sotf/ui/tabs';
+import { type TabItem, Tabs } from '@sotf/ui/tabs';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { AlertTriangle, ArrowLeft, ChartLine, CheckCircle2, ExternalLink, Plus } from 'lucide-react';
@@ -16,15 +16,18 @@ import { DomainI18nBridge } from '../../../components/DomainI18nBridge.tsx';
 import { useDocumentTitle } from '../../../hooks/use-document-title.ts';
 import { useUploadMessages } from '../../upload/i18n.ts';
 import { preflightLabel } from '../../upload/labels.ts';
-import { type StudioMod, studioModQuery } from '../api.ts';
+import { type StudioMod, studioModQuery, teamQuery } from '../api.ts';
 import { number, percent, publicHref } from '../format.ts';
 import { bt, useBasecampMessages } from '../i18n.ts';
+import { kt, useKnowledgeMessages } from '../knowledge-i18n.ts';
 import { Meter, ModThumb, StatusBadge } from '../shared.tsx';
 import { CompatTab } from './CompatTab.tsx';
+import { KnowledgeTab } from './KnowledgeTab.tsx';
 import { ListingTab } from './ListingTab.tsx';
 import { MediaTab } from './MediaTab.tsx';
 import { SettingsTab } from './SettingsTab.tsx';
-import type { EditorTab } from './tabs.ts';
+import { TeamTab } from './TeamTab.tsx';
+import { COAUTHOR_TABS, type EditorTab } from './tabs.ts';
 import { UnsavedGuard } from './UnsavedGuard.tsx';
 import { VersionsTab } from './VersionsTab.tsx';
 
@@ -103,8 +106,10 @@ export function ModEditorScreen({
   onTab: (tab: EditorTab) => void;
 }) {
   useBasecampMessages();
+  useKnowledgeMessages();
   useUploadMessages();
   const { data: studio } = useSuspenseQuery(studioModQuery(modId));
+  const { data: team } = useSuspenseQuery(teamQuery(modId));
   useDocumentTitle(bt('basecamp_editor_title', { name: studio.mod.name }));
   const [dirtyTabs, setDirtyTabs] = useState<ReadonlySet<EditorTab>>(new Set());
   const markDirty = useCallback(
@@ -121,12 +126,21 @@ export function ModEditorScreen({
   const [onListingDirty] = useState(() => markDirty('listing'));
   const [onMediaDirty] = useState(() => markDirty('media'));
   const [onCompatDirty] = useState(() => markDirty('compat'));
+  const [onKnowledgeDirty] = useState(() => markDirty('knowledge'));
 
   const mod = studio.mod;
   const publicPage = mod.status === 'published' || mod.status === 'unlisted';
   const removed = mod.status === 'removed';
   // A removed mod can no longer be edited: only its versions and status remain.
-  const current: EditorTab = removed && tab !== 'versions' ? 'settings' : tab;
+  const coauthor = team.viewerRole === 'coauthor';
+  const allowed = (which: string) => !coauthor || (COAUTHOR_TABS as readonly string[]).includes(which);
+  const current: EditorTab = coauthor
+    ? allowed(tab)
+      ? tab
+      : 'versions'
+    : removed && tab !== 'versions'
+      ? 'settings'
+      : tab;
   const unsaved = (which: EditorTab) => (dirtyTabs.has(which) ? '•' : undefined);
   const withBadge = (which: EditorTab) => {
     const badge = unsaved(which);
@@ -167,14 +181,16 @@ export function ModEditorScreen({
                 <span className="sr-only">{bt('basecamp_new_tab')}</span>
               </a>
             ) : null}
-            <Link
-              to="/basecamp/analytics"
-              search={{ mod: mod.id }}
-              className={buttonClasses({ variant: 'ghost', size: 'sm' })}
-            >
-              <Icon icon={ChartLine} size={16} />
-              {bt('basecamp_mods_action_analytics')}
-            </Link>
+            {coauthor ? null : (
+              <Link
+                to="/basecamp/analytics"
+                search={{ mod: mod.id }}
+                className={buttonClasses({ variant: 'ghost', size: 'sm' })}
+              >
+                <Icon icon={ChartLine} size={16} />
+                {bt('basecamp_mods_action_analytics')}
+              </Link>
+            )}
             {mod.kind !== 'build' && !removed ? (
               <Link
                 to="/basecamp/mods/$modId/new-version"
@@ -189,66 +205,95 @@ export function ModEditorScreen({
         </header>
 
         <StatusBanner studio={studio} />
-        <Quality studio={studio} />
+        {coauthor ? (
+          <Banner tone="info" title={kt('mod_knowledge_editor_coauthor_title')}>
+            {kt('mod_knowledge_editor_coauthor_text', { owner: team.owner.displayName || team.owner.handle })}
+          </Banner>
+        ) : (
+          <Quality studio={studio} />
+        )}
 
         <Tabs<EditorTab>
           label={bt('basecamp_editor_tabs')}
           value={current}
           onValueChange={onTab}
           keepMounted
-          tabs={[
-            {
-              value: 'listing',
-              label: bt('basecamp_editor_tab_listing'),
-              ...withBadge('listing'),
-              disabled: removed,
-              content: (
-                <div className="pt-5">
-                  <ListingTab studio={studio} onDirty={onListingDirty} />
-                </div>
-              ),
-            },
-            {
-              value: 'media',
-              label: bt('basecamp_editor_tab_media'),
-              ...withBadge('media'),
-              disabled: removed,
-              content: (
-                <div className="pt-5">
-                  <MediaTab studio={studio} onDirty={onMediaDirty} />
-                </div>
-              ),
-            },
-            {
-              value: 'versions',
-              label: bt('basecamp_editor_tab_versions', { count: studio.versions.length }),
-              content: (
-                <div className="pt-5">
-                  <VersionsTab studio={studio} />
-                </div>
-              ),
-            },
-            {
-              value: 'compat',
-              label: bt('basecamp_editor_tab_compat'),
-              ...withBadge('compat'),
-              disabled: removed,
-              content: (
-                <div className="pt-5">
-                  <CompatTab studio={studio} onDirty={onCompatDirty} />
-                </div>
-              ),
-            },
-            {
-              value: 'settings',
-              label: bt('basecamp_editor_tab_settings'),
-              content: (
-                <div className="pt-5">
-                  <SettingsTab studio={studio} />
-                </div>
-              ),
-            },
-          ]}
+          tabs={
+            [
+              {
+                value: 'listing',
+                label: bt('basecamp_editor_tab_listing'),
+                ...withBadge('listing'),
+                disabled: removed,
+                content: (
+                  <div className="pt-5">
+                    <ListingTab studio={studio} onDirty={onListingDirty} />
+                  </div>
+                ),
+              },
+              {
+                value: 'media',
+                label: bt('basecamp_editor_tab_media'),
+                ...withBadge('media'),
+                disabled: removed,
+                content: (
+                  <div className="pt-5">
+                    <MediaTab studio={studio} onDirty={onMediaDirty} />
+                  </div>
+                ),
+              },
+              {
+                value: 'versions',
+                label: bt('basecamp_editor_tab_versions', { count: studio.versions.length }),
+                content: (
+                  <div className="pt-5">
+                    <VersionsTab studio={studio} />
+                  </div>
+                ),
+              },
+              {
+                value: 'knowledge',
+                label: kt('mod_knowledge_tab_knowledge'),
+                ...withBadge('knowledge'),
+                disabled: removed,
+                content: (
+                  <div className="pt-5">
+                    <KnowledgeTab modId={mod.id} onDirty={onKnowledgeDirty} />
+                  </div>
+                ),
+              },
+              {
+                value: 'team',
+                label: kt('mod_knowledge_tab_team'),
+                disabled: removed,
+                content: (
+                  <div className="pt-5">
+                    <TeamTab modId={mod.id} />
+                  </div>
+                ),
+              },
+              {
+                value: 'compat',
+                label: bt('basecamp_editor_tab_compat'),
+                ...withBadge('compat'),
+                disabled: removed,
+                content: (
+                  <div className="pt-5">
+                    <CompatTab studio={studio} onDirty={onCompatDirty} />
+                  </div>
+                ),
+              },
+              {
+                value: 'settings',
+                label: bt('basecamp_editor_tab_settings'),
+                content: (
+                  <div className="pt-5">
+                    <SettingsTab studio={studio} />
+                  </div>
+                ),
+              },
+            ].filter((entry) => allowed(entry.value)) as TabItem<EditorTab>[]
+          }
         />
       </div>
     </DomainI18nBridge>

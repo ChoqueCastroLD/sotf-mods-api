@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Wähle bis zu {max} verdiente Abzeichen für den Kopf deines Profils.",
   "settings_featured_badges_empty": "Verdiene Abzeichen auf der Insel, um sie hier hervorzuheben.",
   "settings_featured_badges_count": "{count} von {max} ausgewählt",
-  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert."
+  "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert.",
+  "settings_notif_coauthor": "Einladungen zur Mitautorenschaft",
+  "settings_notif_coauthor_hint": "Jemand lädt dich ein, an einem seiner Mods mitzuarbeiten."
 }

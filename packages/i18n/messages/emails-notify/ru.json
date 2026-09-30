@@ -55,5 +55,6 @@
   "emails_notify_creator_top_heading": "Ваши моды на этой неделе",
   "emails_notify_creator_highlights_heading": "Главное",
   "emails_notify_creator_button": "Открыть статистику",
-  "emails_notify_creator_reason": "Вы получаете этот отчёт, потому что публикуете на SOTF Mods."
+  "emails_notify_creator_reason": "Вы получаете этот отчёт, потому что публикуете на SOTF Mods.",
+  "emails_notify_item_coauthor_invited": "{actor} приглашает вас стать соавтором {mod}"
 }

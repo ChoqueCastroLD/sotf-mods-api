@@ -55,5 +55,6 @@
   "emails_notify_creator_top_heading": "Je mods deze week",
   "emails_notify_creator_highlights_heading": "Hoogtepunten",
   "emails_notify_creator_button": "Je statistieken openen",
-  "emails_notify_creator_reason": "Je krijgt dit rapport omdat je op SOTF Mods publiceert."
+  "emails_notify_creator_reason": "Je krijgt dit rapport omdat je op SOTF Mods publiceert.",
+  "emails_notify_item_coauthor_invited": "{actor} heeft je uitgenodigd als mede-auteur van {mod}"
 }

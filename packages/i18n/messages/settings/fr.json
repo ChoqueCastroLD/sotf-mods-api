@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Choisis jusqu’à {max} badges obtenus pour l’en-tête de ton profil.",
   "settings_featured_badges_empty": "Obtiens des badges sur l’île pour les mettre en avant ici.",
   "settings_featured_badges_count": "{count} sur {max} sélectionnés",
-  "settings_featured_badges_saved": "Badges mis en avant enregistrés."
+  "settings_featured_badges_saved": "Badges mis en avant enregistrés.",
+  "settings_notif_coauthor": "Invitations de co-création",
+  "settings_notif_coauthor_hint": "Quelqu'un vous invite à co-créer l'un de ses mods."
 }

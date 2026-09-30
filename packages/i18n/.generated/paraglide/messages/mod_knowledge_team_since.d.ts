@@ -1,16 +1,18 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Console_Empty_TitleInputs = {};
+export type Mod_Knowledge_Team_SinceInputs = {
+    date: NonNullable<unknown>;
+};
 /**
 * | output |
 * | --- |
-* | "Nothing here yet" |
+* | "since {date}" |
 *
-* @param {Console_Empty_TitleInputs} inputs
+* @param {Mod_Knowledge_Team_SinceInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const console_empty_title: ((inputs?: Console_Empty_TitleInputs, options?: {
+export declare const mod_knowledge_team_since: ((inputs: Mod_Knowledge_Team_SinceInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Console_Empty_TitleInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Mod_Knowledge_Team_SinceInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

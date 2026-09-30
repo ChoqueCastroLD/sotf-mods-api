@@ -19,6 +19,15 @@
 import type { CompatStatus, ModStatus, VersionStatus } from '@sotf/contracts/common';
 import type { ModCompatDTO } from '@sotf/contracts/compat';
 import type { BadgeCatalogDTO, UserBadgesDTO } from '@sotf/contracts/gamification';
+import type {
+  CoAuthoredModDTO,
+  CoAuthorInviteDTO,
+  FaqInput,
+  KnownIssueDTO,
+  KnownIssueInput,
+  ModKnowledgeDTO,
+  ModTeamDTO,
+} from '@sotf/contracts/mod-knowledge';
 import type { ModLiveDTO } from '@sotf/contracts/stats';
 import type {
   AnalyticsDTO,
@@ -73,6 +82,27 @@ export type ListingPatch = z.input<typeof UpdateStudioModBody>;
 export type Transition = StudioTransition;
 export type { CompatStatus, ModStatus, VersionStatus };
 
+export type Knowledge = ModKnowledgeDTO;
+export type KnownIssue = KnownIssueDTO;
+export type KnownIssueDraft = KnownIssueInput;
+export type FaqDraft = FaqInput;
+export type Team = ModTeamDTO;
+export type TeamMember = Team['members'][number];
+export type CoAuthorInvite = CoAuthorInviteDTO;
+export type CoAuthoredMod = CoAuthoredModDTO;
+
+/** `KNOWLEDGE_LIMITS` of the contracts (kept Zod-free). */
+export const KNOWLEDGE_LIMITS = {
+  issuesMax: 30,
+  issueTitleMax: 140,
+  issueBodyMax: 1500,
+  issueVersionsMax: 80,
+  faqMax: 20,
+  questionMax: 160,
+  answerMax: 1500,
+  coAuthorsMax: 5,
+} as const;
+
 /** `DOWNLOAD_CHANNELS` of the contracts. */
 export const CHANNELS = ['web', 'redmanager', 'client', 'api', 'unknown'] as const satisfies readonly DownloadChannel[];
 
@@ -114,6 +144,10 @@ export const basecampKeys = {
   live: (modId: number) => ['studio', 'live', modId] as const,
   badgeCatalog: ['gamification', 'badges'] as const,
   userBadges: (handle: string) => ['gamification', 'user-badges', handle] as const,
+  knowledge: (modId: number) => [...queryKeys.studioMod(modId), 'knowledge'] as const,
+  team: (modId: number) => [...queryKeys.studioMod(modId), 'team'] as const,
+  invites: [...studio, 'invites'] as const,
+  coAuthored: [...studio, 'coauthored'] as const,
 } as const;
 
 // -----------------------------------------------------------------------------------------------
@@ -208,6 +242,35 @@ export function userBadgesQuery(handle: string) {
   });
 }
 
+export function knowledgeQuery(modId: number) {
+  return queryOptions({
+    queryKey: basecampKeys.knowledge(modId),
+    queryFn: ({ signal }): Promise<Knowledge> =>
+      api.modKnowledge.studioKnowledge({ params: { id: modId } }, { signal }),
+    staleTime: 30_000,
+  });
+}
+
+export function teamQuery(modId: number) {
+  return queryOptions({
+    queryKey: basecampKeys.team(modId),
+    queryFn: ({ signal }): Promise<Team> => api.modKnowledge.team({ params: { id: modId } }, { signal }),
+    staleTime: 30_000,
+  });
+}
+
+export const invitesQuery = queryOptions({
+  queryKey: basecampKeys.invites,
+  queryFn: ({ signal }) => api.modKnowledge.myInvites({}, { signal }),
+  staleTime: 30_000,
+});
+
+export const coAuthoredQuery = queryOptions({
+  queryKey: basecampKeys.coAuthored,
+  queryFn: ({ signal }) => api.modKnowledge.myCoAuthored({}, { signal }),
+  staleTime: 60_000,
+});
+
 // -----------------------------------------------------------------------------------------------
 // Mutations
 // -----------------------------------------------------------------------------------------------
@@ -251,6 +314,18 @@ export const basecampApi = {
     api.comments.resolveBug({ params: { id: commentId }, body: { versionId } }),
   acknowledgeCompat: (reportId: number, fixedInVersionId?: number) =>
     api.compat.acknowledgeReport({ params: { id: reportId }, body: fixedInVersionId ? { fixedInVersionId } : {} }),
+};
+
+export const knowledgeApi = {
+  putKnownIssues: (modId: number, items: readonly KnownIssueDraft[]) =>
+    api.modKnowledge.putKnownIssues({ params: { id: modId }, body: { items: [...items] } }),
+  putFaq: (modId: number, items: readonly FaqDraft[]) =>
+    api.modKnowledge.putFaq({ params: { id: modId }, body: { items: [...items] } }),
+  invite: (modId: number, handle: string) =>
+    api.modKnowledge.invite({ params: { id: modId }, body: { handle: handle.trim().replace(/^@/, '') } }),
+  removeMember: (modId: number, userId: number) => api.modKnowledge.removeMember({ params: { id: modId, userId } }),
+  accept: (inviteId: number) => api.modKnowledge.acceptInvite({ params: { id: inviteId } }),
+  decline: (inviteId: number) => api.modKnowledge.declineInvite({ params: { id: inviteId } }),
 };
 
 /** Stores a fresh owner view and refreshes every list and chart it appears in. */

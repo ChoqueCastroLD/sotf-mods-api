@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "プロフィールのヘッダーに表示する獲得済みバッジを最大 {max} 個選べます。",
   "settings_featured_badges_empty": "島でバッジを獲得すると、ここで選べます。",
   "settings_featured_badges_count": "{max} 個中 {count} 個を選択",
-  "settings_featured_badges_saved": "注目のバッジを保存しました。"
+  "settings_featured_badges_saved": "注目のバッジを保存しました。",
+  "settings_notif_coauthor": "共同作者への招待",
+  "settings_notif_coauthor_hint": "誰かがあなたを自分の MOD の共同作者に招待します。"
 }

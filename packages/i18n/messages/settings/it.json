@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Scegli fino a {max} distintivi ottenuti per l’intestazione del tuo profilo.",
   "settings_featured_badges_empty": "Ottieni distintivi sull’isola per metterli in evidenza qui.",
   "settings_featured_badges_count": "{count} di {max} selezionati",
-  "settings_featured_badges_saved": "Distintivi in evidenza salvati."
+  "settings_featured_badges_saved": "Distintivi in evidenza salvati.",
+  "settings_notif_coauthor": "Inviti di co-creazione",
+  "settings_notif_coauthor_hint": "Qualcuno ti invita a co-creare una sua mod."
 }

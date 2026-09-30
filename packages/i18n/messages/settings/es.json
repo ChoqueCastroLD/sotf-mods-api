@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Elige hasta {max} insignias conseguidas para la cabecera de tu perfil.",
   "settings_featured_badges_empty": "Consigue insignias en la isla para destacarlas aquí.",
   "settings_featured_badges_count": "{count} de {max} seleccionadas",
-  "settings_featured_badges_saved": "Insignias destacadas guardadas."
+  "settings_featured_badges_saved": "Insignias destacadas guardadas.",
+  "settings_notif_coauthor": "Invitaciones de coautoría",
+  "settings_notif_coauthor_hint": "Alguien te invita a ser coautor de uno de sus mods."
 }

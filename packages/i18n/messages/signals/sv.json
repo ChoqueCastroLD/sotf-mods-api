@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Verifierad skapare",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Översättare",
-  "signals_badge_name_night_owl": "Nattuggla"
+  "signals_badge_name_night_owl": "Nattuggla",
+  "signals_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}"
 }

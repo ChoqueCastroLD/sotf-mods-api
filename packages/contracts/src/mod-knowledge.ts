@@ -389,6 +389,7 @@ export const CoAuthoredModListDTO = dto('CoAuthoredModListDTO', z.object({ items
   description: 'Mods a user co-authors (public: only published mods).',
   examples: [{ items: [exampleOf(CoAuthoredModDTO)] }],
 });
+export type CoAuthoredModListDTO = z.infer<typeof CoAuthoredModListDTO>;
 
 // -----------------------------------------------------------------------------------------------
 // Endpoints

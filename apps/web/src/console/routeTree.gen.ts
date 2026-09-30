@@ -19,6 +19,7 @@ import { Route as BasecampIndexRouteImport } from './routes/basecamp/index.tsx'
 import { Route as BasecampAnalyticsRouteImport } from './routes/basecamp/analytics.tsx'
 import { Route as BasecampBadgesRouteImport } from './routes/basecamp/badges.tsx'
 import { Route as BasecampInboxRouteImport } from './routes/basecamp/inbox.tsx'
+import { Route as BasecampInvitesRouteImport } from './routes/basecamp/invites.tsx'
 import { Route as MeIndexRouteImport } from './routes/me/index.tsx'
 import { Route as MeBackpackRouteImport } from './routes/me/backpack.tsx'
 import { Route as MeDownloadsRouteImport } from './routes/me/downloads.tsx'
@@ -110,6 +111,11 @@ const BasecampBadgesRoute = BasecampBadgesRouteImport.update({
 const BasecampInboxRoute = BasecampInboxRouteImport.update({
   id: '/inbox',
   path: '/inbox',
+  getParentRoute: () => BasecampRoute,
+} as any)
+const BasecampInvitesRoute = BasecampInvitesRouteImport.update({
+  id: '/invites',
+  path: '/invites',
   getParentRoute: () => BasecampRoute,
 } as any)
 const MeIndexRoute = MeIndexRouteImport.update({
@@ -336,6 +342,7 @@ export interface FileRoutesByFullPath {
   '/basecamp/analytics': typeof BasecampAnalyticsRoute
   '/basecamp/badges': typeof BasecampBadgesRoute
   '/basecamp/inbox': typeof BasecampInboxRoute
+  '/basecamp/invites': typeof BasecampInvitesRoute
   '/me/backpack': typeof MeBackpackRoute
   '/me/downloads': typeof MeDownloadsRoute
   '/ranger/audit': typeof RangerAuditRoute
@@ -384,6 +391,7 @@ export interface FileRoutesByTo {
   '/basecamp/analytics': typeof BasecampAnalyticsRoute
   '/basecamp/badges': typeof BasecampBadgesRoute
   '/basecamp/inbox': typeof BasecampInboxRoute
+  '/basecamp/invites': typeof BasecampInvitesRoute
   '/me/backpack': typeof MeBackpackRoute
   '/me/downloads': typeof MeDownloadsRoute
   '/ranger/audit': typeof RangerAuditRoute
@@ -439,6 +447,7 @@ export interface FileRoutesById {
   '/basecamp/analytics': typeof BasecampAnalyticsRoute
   '/basecamp/badges': typeof BasecampBadgesRoute
   '/basecamp/inbox': typeof BasecampInboxRoute
+  '/basecamp/invites': typeof BasecampInvitesRoute
   '/me/backpack': typeof MeBackpackRoute
   '/me/downloads': typeof MeDownloadsRoute
   '/ranger/audit': typeof RangerAuditRoute
@@ -495,6 +504,7 @@ export interface FileRouteTypes {
     | '/basecamp/analytics'
     | '/basecamp/badges'
     | '/basecamp/inbox'
+    | '/basecamp/invites'
     | '/me/backpack'
     | '/me/downloads'
     | '/ranger/audit'
@@ -543,6 +553,7 @@ export interface FileRouteTypes {
     | '/basecamp/analytics'
     | '/basecamp/badges'
     | '/basecamp/inbox'
+    | '/basecamp/invites'
     | '/me/backpack'
     | '/me/downloads'
     | '/ranger/audit'
@@ -597,6 +608,7 @@ export interface FileRouteTypes {
     | '/basecamp/analytics'
     | '/basecamp/badges'
     | '/basecamp/inbox'
+    | '/basecamp/invites'
     | '/me/backpack'
     | '/me/downloads'
     | '/ranger/audit'
@@ -720,6 +732,13 @@ declare module '@tanstack/react-router' {
       path: '/inbox'
       fullPath: '/basecamp/inbox'
       preLoaderRoute: typeof BasecampInboxRouteImport
+      parentRoute: typeof BasecampRoute
+    }
+    '/basecamp/invites': {
+      id: '/basecamp/invites'
+      path: '/invites'
+      fullPath: '/basecamp/invites'
+      preLoaderRoute: typeof BasecampInvitesRouteImport
       parentRoute: typeof BasecampRoute
     }
     '/me/': {
@@ -1023,6 +1042,7 @@ interface BasecampRouteChildren {
   BasecampAnalyticsRoute: typeof BasecampAnalyticsRoute
   BasecampBadgesRoute: typeof BasecampBadgesRoute
   BasecampInboxRoute: typeof BasecampInboxRoute
+  BasecampInvitesRoute: typeof BasecampInvitesRoute
   BasecampIndexRoute: typeof BasecampIndexRoute
   BasecampDraftsDraftIdRoute: typeof BasecampDraftsDraftIdRoute
   BasecampNewBuildRoute: typeof BasecampNewBuildRoute
@@ -1038,6 +1058,7 @@ const BasecampRouteChildren: BasecampRouteChildren = {
   BasecampAnalyticsRoute: BasecampAnalyticsRoute,
   BasecampBadgesRoute: BasecampBadgesRoute,
   BasecampInboxRoute: BasecampInboxRoute,
+  BasecampInvitesRoute: BasecampInvitesRoute,
   BasecampIndexRoute: BasecampIndexRoute,
   BasecampDraftsDraftIdRoute: BasecampDraftsDraftIdRoute,
   BasecampNewBuildRoute: BasecampNewBuildRoute,

@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Escolha até {max} insígnias conquistadas para o cabeçalho do seu perfil.",
   "settings_featured_badges_empty": "Conquiste insígnias na ilha para destacá-las aqui.",
   "settings_featured_badges_count": "{count} de {max} selecionadas",
-  "settings_featured_badges_saved": "Insígnias em destaque salvas."
+  "settings_featured_badges_saved": "Insígnias em destaque salvas.",
+  "settings_notif_coauthor": "Convites de coautoria",
+  "settings_notif_coauthor_hint": "Alguém convida você para ser coautor de um dos mods dele."
 }

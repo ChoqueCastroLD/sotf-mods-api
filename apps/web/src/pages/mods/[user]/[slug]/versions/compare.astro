@@ -1,0 +1,237 @@
+---
+/**
+ * `/mods/:user/:slug/versions/compare?from=&to=` (T1-17): what changed between two versions,
+ * read from the stored archive inspections (files added, removed and changed), the manifest and
+ * the changelogs in between. SSR, edge-cached with `mod:{id}`; the page is a plain GET form.
+ */
+import { isApiError } from '@sotf/contracts/client';
+import { formatBytes, formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { ProseLocator } from '@sotf/ui/domain';
+import { loadVersions, resolveModPage } from '../../../../../components/mod/data.ts';
+import { versionsPagePath } from '../../../../../components/mod/format.ts';
+import { markdownLabels } from '../../../../../components/mod/i18n.ts';
+import ModLayout from '../../../../../components/mod/ModLayout.astro';
+import { respondUnresolved } from '../../../../../components/mod/responses.ts';
+import { subpageTitle, truncate } from '../../../../../components/mod/seo.ts';
+import { SECTION_TITLE_CLASSES } from '../../../../../components/mod/styles.ts';
+import { setPageCache } from '../../../../../lib/cache/page.ts';
+import { pageCache } from '../../../../../lib/cache/policy.ts';
+import { serverApi } from '../../../../../lib/api.ts';
+import { href } from '../../../../../lib/i18n.ts';
+import { ensureLocals } from '../../../../../lib/request-context.ts';
+
+export const prerender = false;
+
+const locale = ensureLocals(Astro).locale;
+const resolved = await resolveModPage(Astro);
+if (resolved.kind !== 'ok') return respondUnresolved(Astro, resolved);
+if (resolved.rest.length !== 2 || resolved.rest[0] !== 'versions' || resolved.rest[1] !== 'compare') {
+  return respondUnresolved(Astro, { kind: 'not-found' });
+}
+
+const { mod } = resolved;
+setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
+const versions = await loadVersions(mod.id);
+
+function idParam(name: string): number | null {
+  const raw = Astro.url.searchParams.get(name);
+  return raw && /^\d{1,9}$/.test(raw) ? Number(raw) : null;
+}
+const fromId = idParam('from');
+const toId = idParam('to');
+const known = new Set(versions.map((version) => version.id));
+const asked = fromId !== null && toId !== null;
+const valid = asked && fromId !== toId && known.has(fromId) && known.has(toId);
+
+let diff: Awaited<ReturnType<ReturnType<typeof serverApi>['modKnowledge']['diff']>> | null = null;
+let failed = false;
+if (valid) {
+  try {
+    diff = await serverApi().modKnowledge.diff({ params: { id: mod.id }, query: { from: fromId, to: toId } });
+  } catch (error) {
+    if (!isApiError(error) || (error.status !== 404 && error.status !== 400)) throw error;
+    failed = true;
+  }
+}
+
+const labels = markdownLabels();
+const label = m.mod_knowledge_compare_title();
+const comparePath = `${versionsPagePath(mod)}/compare`;
+const fieldClasses =
+  'min-h-11 w-full rounded-md border border-border bg-surface px-3 text-fg md:min-h-10';
+const listClasses = 'grid gap-1 rounded-lg border border-border bg-surface p-3 font-mono text-sm';
+const deltaText = (value: number): string => `${value > 0 ? '+' : value < 0 ? '−' : ''}${formatBytes(locale, Math.abs(value))}`;
+---
+
+<ModLayout
+  mod={mod}
+  tab="versions"
+  versions={versions}
+  crumbs={[{ label: m.mod_tab_versions(), path: versionsPagePath(mod) }, { label }]}
+  seo={{
+    title: subpageTitle(label, mod),
+    description: truncate(m.mod_knowledge_compare_meta({ name: mod.name }), 160),
+    path: comparePath,
+    noindex: true,
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+  }}
+>
+  <section aria-labelledby="compare-title" class="grid gap-4">
+    <h2 id="compare-title" class={SECTION_TITLE_CLASSES}>{label}</h2>
+    <form method="get" action={href(comparePath, locale)} class="grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+      <label class="grid gap-1 text-sm font-semibold">
+        {m.mod_knowledge_compare_from()}
+        <select name="from" class={fieldClasses} required>
+          {versions.map((version) => (
+            <option value={version.id} selected={version.id === fromId}>v{version.version}</option>
+          ))}
+        </select>
+      </label>
+      <label class="grid gap-1 text-sm font-semibold">
+        {m.mod_knowledge_compare_to()}
+        <select name="to" class={fieldClasses} required>
+          {versions.map((version, index) => (
+            <option value={version.id} selected={toId === null ? index === 0 : version.id === toId}>
+              v{version.version}
+            </option>
+          ))}
+        </select>
+      </label>
+      <button
+        type="submit"
+        class="inline-flex min-h-11 items-center justify-center rounded-md bg-signal px-5 font-semibold text-night-975 md:min-h-10"
+      >
+        {m.mod_knowledge_compare_submit()}
+      </button>
+    </form>
+    {asked && !valid && !failed && <p role="alert" class="text-danger">{m.mod_knowledge_compare_invalid()}</p>}
+    {failed && <p role="alert" class="text-danger">{m.mod_knowledge_compare_failed()}</p>}
+  </section>
+
+  {
+    diff && (
+      <>
+        <section aria-labelledby="summary-title" class="grid gap-3">
+          <h2 id="summary-title" class={SECTION_TITLE_CLASSES}>
+            {m.mod_knowledge_diff_heading({ from: diff.from.version, to: diff.to.version })}
+          </h2>
+          <ul class="flex flex-wrap gap-x-6 gap-y-1 text-fg-muted">
+            <li>
+              <a href={href(diff.from.path, locale)} class="text-link">v{diff.from.version}</a>
+              {' · '}
+              <time datetime={diff.from.publishedAt}>{formatDate(locale, diff.from.publishedAt)}</time>
+              {typeof diff.from.fileSize === 'number' && ` · ${formatBytes(locale, diff.from.fileSize)}`}
+            </li>
+            <li>
+              <a href={href(diff.to.path, locale)} class="text-link">v{diff.to.version}</a>
+              {' · '}
+              <time datetime={diff.to.publishedAt}>{formatDate(locale, diff.to.publishedAt)}</time>
+              {typeof diff.to.fileSize === 'number' && ` · ${formatBytes(locale, diff.to.fileSize)}`}
+            </li>
+          </ul>
+          {diff.sizeDelta !== null && <p class="font-semibold">{m.mod_knowledge_diff_size_delta({ delta: deltaText(diff.sizeDelta) })}</p>}
+          {diff.filesAvailable ? (
+            <>
+              <p class="text-fg-muted">
+                {m.mod_knowledge_diff_files_summary({
+                  added: diff.added.length,
+                  removed: diff.removed.length,
+                  changed: diff.changed.length,
+                  unchanged: diff.unchangedCount,
+                })}
+              </p>
+              {!diff.precise && <p class="text-sm text-fg-subtle">{m.mod_knowledge_diff_sizes_only()}</p>}
+              {diff.truncated && <p class="text-sm text-fg-subtle">{m.mod_knowledge_diff_truncated({ max: 500 })}</p>}
+            </>
+          ) : (
+            <p class="text-fg-muted">{m.mod_knowledge_diff_unavailable()}</p>
+          )}
+        </section>
+
+        {diff.filesAvailable && diff.added.length > 0 && (
+          <section aria-labelledby="added-title" class="grid gap-2">
+            <h3 id="added-title" class="font-semibold">{m.mod_knowledge_diff_added({ count: diff.added.length })}</h3>
+            <ul class={listClasses}>
+              {diff.added.map((file) => (
+                <li class="flex flex-wrap justify-between gap-2">
+                  <span class="break-all text-fg"><span aria-hidden="true">+ </span>{file.path}</span>
+                  <span class="text-fg-muted tabular-nums">{formatBytes(locale, file.size)}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {diff.filesAvailable && diff.removed.length > 0 && (
+          <section aria-labelledby="removed-title" class="grid gap-2">
+            <h3 id="removed-title" class="font-semibold">{m.mod_knowledge_diff_removed({ count: diff.removed.length })}</h3>
+            <ul class={listClasses}>
+              {diff.removed.map((file) => (
+                <li class="flex flex-wrap justify-between gap-2">
+                  <span class="break-all text-fg"><span aria-hidden="true">− </span>{file.path}</span>
+                  <span class="text-fg-muted tabular-nums">{formatBytes(locale, file.size)}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {diff.filesAvailable && diff.changed.length > 0 && (
+          <section aria-labelledby="changed-title" class="grid gap-2">
+            <h3 id="changed-title" class="font-semibold">{m.mod_knowledge_diff_changed({ count: diff.changed.length })}</h3>
+            <ul class={listClasses}>
+              {diff.changed.map((file) => (
+                <li class="flex flex-wrap justify-between gap-2">
+                  <span class="break-all text-fg"><span aria-hidden="true">~ </span>{file.path}</span>
+                  <span class="text-fg-muted tabular-nums">
+                    {formatBytes(locale, file.fromSize)} → {formatBytes(locale, file.toSize)}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {diff.manifest.length > 0 && (
+          <section aria-labelledby="manifest-title" class="grid gap-2">
+            <h3 id="manifest-title" class="font-semibold">{m.mod_knowledge_diff_manifest()}</h3>
+            <ul class={listClasses}>
+              {diff.manifest.map((change) => (
+                <li class="flex flex-wrap gap-x-3">
+                  <span class="text-fg">{change.field}</span>
+                  <span class="text-fg-muted break-all">
+                    {change.from ?? m.mod_knowledge_diff_none()} → {change.to ?? m.mod_knowledge_diff_none()}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section aria-labelledby="changelog-title" class="grid gap-4">
+          <h3 id="changelog-title" class={SECTION_TITLE_CLASSES}>{m.mod_knowledge_diff_changelog()}</h3>
+          {diff.changelog.length === 0 ? (
+            <p class="text-fg-muted">{m.mod_knowledge_diff_changelog_empty()}</p>
+          ) : (
+            diff.changelog.map((entry) => (
+              <article class="grid gap-2">
+                <h4 class="flex flex-wrap items-baseline gap-2 font-semibold">
+                  v{entry.version}
+                  <time datetime={entry.publishedAt} class="text-sm font-normal text-fg-muted">
+                    {formatDate(locale, entry.publishedAt)}
+                  </time>
+                </h4>
+                {entry.changelogHtml.trim() ? (
+                  <ProseLocator html={localizeHtml(entry.changelogHtml, labels)} size="sm" lang={mod.contentLang ?? undefined} />
+                ) : (
+                  <p class="text-fg-muted">{m.mod_knowledge_diff_changelog_none()}</p>
+                )}
+              </article>
+            ))
+          )}
+          {diff.changelogTruncated && <p class="text-sm text-fg-subtle">{m.mod_knowledge_diff_changelog_truncated()}</p>}
+        </section>
+      </>
+    )
+  }
+</ModLayout>

@@ -351,5 +351,7 @@
   "settings_featured_badges_text": "Выберите до {max} полученных значков для шапки профиля.",
   "settings_featured_badges_empty": "Получайте значки на острове, чтобы выбрать их здесь.",
   "settings_featured_badges_count": "Выбрано {count} из {max}",
-  "settings_featured_badges_saved": "Избранные значки сохранены."
+  "settings_featured_badges_saved": "Избранные значки сохранены.",
+  "settings_notif_coauthor": "Приглашения в соавторы",
+  "settings_notif_coauthor_hint": "Кто-то приглашает вас стать соавтором одного из своих модов."
 }

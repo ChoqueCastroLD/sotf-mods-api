@@ -112,7 +112,7 @@ export async function inviteCoAuthor(
           type: 'mod',
           id: current.id,
           title: inviterMod?.name ?? current.name,
-          path: '/console/basecamp/invites',
+          path: '/basecamp/invites',
         },
         groupKey: null,
         data: { modId: current.id, modName: inviterMod?.name ?? current.name },
@@ -138,7 +138,7 @@ export async function removeTeamMember(ctx: Ctx, modId: number, userId: number):
       .where(and(eq(modCoAuthor.modId, current.id), eq(modCoAuthor.userId, userId)))
       .returning({ id: modCoAuthor.id });
     if (removed.length === 0) throw errors.notFound('Team member');
-    await announceModChange(ctx, tx, current, 'coAuthors');
+    await announceModChange(ctx, tx, current, 'coAuthors', userId);
   });
   evictModCaches(ctx, current);
 }
@@ -238,7 +238,7 @@ export async function acceptInvite(ctx: Ctx, deps: KnowledgeDeps, inviteId: numb
       .where(and(eq(modCoAuthor.id, invite.id), eq(modCoAuthor.status, 'pending')))
       .returning({ id: modCoAuthor.id });
     if (accepted.length === 0) throw errors.conflict('This invitation was already answered');
-    await announceModChange(ctx, tx, modRow, 'coAuthors');
+    await announceModChange(ctx, tx, modRow, 'coAuthors', ctx.actor?.userId ?? null);
   });
   evictModCaches(ctx, modRow);
   const [row] = await modRowsFor(ctx.db, [invite.modId]);

@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Doğrulanmış Üretici",
   "signals_badge_name_ranger": "Korucu",
   "signals_badge_name_translator": "Çevirmen",
-  "signals_badge_name_night_owl": "Gece Kuşu"
+  "signals_badge_name_night_owl": "Gece Kuşu",
+  "signals_coauthor_invited": "{actor} seni {mod} için ortak yazar olarak davet etti"
 }

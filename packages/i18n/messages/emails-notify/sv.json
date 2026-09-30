@@ -55,5 +55,6 @@
   "emails_notify_creator_top_heading": "Dina moddar den här veckan",
   "emails_notify_creator_highlights_heading": "Höjdpunkter",
   "emails_notify_creator_button": "Öppna din statistik",
-  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods."
+  "emails_notify_creator_reason": "Du får den här rapporten eftersom du publicerar på SOTF Mods.",
+  "emails_notify_item_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}"
 }

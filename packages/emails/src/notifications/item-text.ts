@@ -47,6 +47,8 @@ export function signalText(item: SignalEmailItem, locale: Locale): string {
       return m.emails_notify_item_review_update_prompt({ mod, version: item.version ?? '' }, o);
     case 'kit.added_my_mod':
       return m.emails_notify_item_kit_added_my_mod({ mod }, o);
+    case 'coauthor.invited':
+      return m.emails_notify_item_coauthor_invited({ actor, mod }, o);
     case 'patch.breaking_build':
       return m.emails_notify_item_patch_breaking({ build: item.build ?? '' }, o);
     case 'mod.status_changed':

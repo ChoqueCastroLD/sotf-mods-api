@@ -18,6 +18,7 @@ import CreatorCard from '../../../../components/mod/CreatorCard.astro';
 import { loadOverviewExtras, resolveModPage } from '../../../../components/mod/data.ts';
 import { loginHrefFor, versionsPagePath } from '../../../../components/mod/format.ts';
 import { markdownLabels, taxonomyName } from '../../../../components/mod/i18n.ts';
+import KnownIssues from '../../../../components/mod/KnownIssues.astro';
 import ModFaq from '../../../../components/mod/ModFaq.astro';
 import ModLayout from '../../../../components/mod/ModLayout.astro';
 import RelatedMods from '../../../../components/mod/RelatedMods.astro';
@@ -75,7 +76,12 @@ const sharedOg = milestoneOg ?? mod.ogImage?.url ?? null;
 const ogImage = mod.nsfw ? undefined : (sharedOg ?? mod.thumbnail?.url ?? mod.gallery[0]?.url);
 const ogSized = sharedOg !== null && ogImage === sharedOg;
 const tags = mod.tags;
-const faq = buildModFaq(mod, locale);
+const authorFaq = (extras.knowledge?.faq ?? []).map((entry) => ({
+  id: `faq-author-${entry.id}`,
+  question: entry.question,
+  answer: entry.answer,
+}));
+const faq = [...authorFaq, ...buildModFaq(mod, locale)];
 const jsonLd = modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl });
 if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
 ---
@@ -159,12 +165,13 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
   <ReviewsPreview mod={mod} reviews={extras.reviews} loginHref={loginHref} />
   <CommentsPreview mod={mod} comments={extras.comments} loginHref={loginHref} />
 
+  <KnownIssues issues={extras.knowledge?.knownIssues ?? []} />
   <ModFaq items={faq} />
 
   <AtAGlance slot="glance" mod={mod} compat={extras.compat} loginHref={loginHref} />
 
   <Fragment slot="sidebar">
-    <CreatorCard mod={mod} loginHref={loginHref} />
+    <CreatorCard mod={mod} loginHref={loginHref} coAuthors={extras.knowledge?.coAuthors ?? []} />
     <RequiredBy mod={mod} dependents={extras.dependents} />
     <StatsPanel mod={mod} stats={extras.stats} />
     <RelatedMods mod={mod} related={extras.related} />

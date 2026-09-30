@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Criador verificado",
   "signals_badge_name_ranger": "Guarda",
   "signals_badge_name_translator": "Tradutor",
-  "signals_badge_name_night_owl": "Coruja noturna"
+  "signals_badge_name_night_owl": "Coruja noturna",
+  "signals_coauthor_invited": "{actor} convidou você para ser coautor de {mod}"
 }

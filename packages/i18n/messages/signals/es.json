@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Creador verificado",
   "signals_badge_name_ranger": "Guardabosques",
   "signals_badge_name_translator": "Traductor",
-  "signals_badge_name_night_owl": "Búho nocturno"
+  "signals_badge_name_night_owl": "Búho nocturno",
+  "signals_coauthor_invited": "{actor} te invitó a ser coautor de {mod}"
 }

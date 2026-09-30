@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "Verified Creator",
   "signals_badge_name_ranger": "Ranger",
   "signals_badge_name_translator": "Translator",
-  "signals_badge_name_night_owl": "Night Owl"
+  "signals_badge_name_night_owl": "Night Owl",
+  "signals_coauthor_invited": "{actor} invited you to co-author {mod}"
 }

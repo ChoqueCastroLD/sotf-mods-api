@@ -116,5 +116,6 @@
   "signals_badge_name_verified_creator": "認証済みクリエイター",
   "signals_badge_name_ranger": "レンジャー",
   "signals_badge_name_translator": "翻訳者",
-  "signals_badge_name_night_owl": "夜ふかし"
+  "signals_badge_name_night_owl": "夜ふかし",
+  "signals_coauthor_invited": "{actor} さんが {mod} の共同作者にあなたを招待しました"
 }
