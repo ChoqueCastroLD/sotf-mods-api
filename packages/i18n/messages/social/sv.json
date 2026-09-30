@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Logga in för att kommentera",
   "social_comments_more_replies": "{count, plural, one {# svar till} other {# svar till}}",
-  "social_comments_empty": "Inga kommentarer än. Frågor, tips och buggar hör hemma här."
+  "social_comments_empty": "Inga kommentarer än. Frågor, tips och buggar hör hemma här.",
+  "social_report_request_title": "Rapportera det här önskemålet",
+  "social_report_request_comment_title": "Rapportera den här kommentaren"
 }

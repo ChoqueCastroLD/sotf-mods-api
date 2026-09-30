@@ -212,5 +212,19 @@
   "content_dev_errors_text": "Поле code ошибки принимает одно из этих значений. URI type каждой проблемы ведёт к её строке здесь.",
   "content_dev_col_code": "Код",
   "content_dev_col_status": "Статус",
-  "content_dev_col_meaning": "Значение"
+  "content_dev_col_meaning": "Значение",
+  "content_radar_uptime_title": "Доступность платформы",
+  "content_radar_uptime_intro": "Сайт, API, загрузки и база данных проверяются каждые 5 минут. Последние {days, number} дн., UTC.",
+  "content_radar_uptime_overall": "В {share} проверок всё работало.",
+  "content_radar_uptime_web": "Сайт",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Загрузки и медиа",
+  "content_radar_uptime_database": "База данных",
+  "content_radar_uptime_now_ok": "Работает",
+  "content_radar_uptime_now_down": "Сейчас недоступно",
+  "content_radar_uptime_percent": "{share} доступности",
+  "content_radar_uptime_latency": "в среднем {avg, number} мс · p95 {p95, number} мс",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Нет данных",
+  "content_radar_uptime_bars_label": "Доступность {component} по дням, от старых к новым"
 }

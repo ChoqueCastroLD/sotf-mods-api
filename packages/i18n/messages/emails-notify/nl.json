@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "De kit {kit} die je volgt is bijgewerkt",
   "emails_notify_item_kit_comment": "{actor} heeft gereageerd op je kit {kit}",
   "emails_notify_item_kit_comment_reply": "{actor} heeft gereageerd op je reactie bij de kit {kit}",
-  "emails_notify_item_coauthor_invited": "{actor} heeft je uitgenodigd als mede-auteur van {mod}"
+  "emails_notify_item_coauthor_invited": "{actor} heeft je uitgenodigd als mede-auteur van {mod}",
+  "emails_notify_item_request_comment": "{actor} heeft gereageerd op het verzoek “{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# nieuwe reactie op het verzoek “{request}”} other {# nieuwe reacties op het verzoek “{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} werkt aan je verzoek “{request}”",
+  "emails_notify_item_request_fulfilled": "Een mod waar je om vroeg of op stemde is uit: {mod}"
 }

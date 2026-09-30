@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Per chi traduce il sito. Lo assegnano solo gli amministratori.",
   "ranger_user_translator_on": "Distintivo di traduttore assegnato.",
   "ranger_user_translator_off": "Distintivo di traduttore rimosso.",
-  "ranger_user_translator_failed": "Impossibile modificare il distintivo di traduttore"
+  "ranger_user_translator_failed": "Impossibile modificare il distintivo di traduttore",
+  "ranger_target_request": "Richiesta",
+  "ranger_target_request_comment": "Commento di richiesta"
 }

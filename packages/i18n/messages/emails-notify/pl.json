@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "Zestaw {kit}, który obserwujesz, został zaktualizowany",
   "emails_notify_item_kit_comment": "{actor} skomentował(a) Twój zestaw {kit}",
   "emails_notify_item_kit_comment_reply": "{actor} odpowiedział(a) na Twój komentarz w zestawie {kit}",
-  "emails_notify_item_coauthor_invited": "{actor} zaprasza Cię do współtworzenia {mod}"
+  "emails_notify_item_coauthor_invited": "{actor} zaprasza Cię do współtworzenia {mod}",
+  "emails_notify_item_request_comment": "{actor} skomentował(a) prośbę „{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# nowy komentarz do prośby „{request}”} few {# nowe komentarze do prośby „{request}”} many {# nowych komentarzy do prośby „{request}”} other {# nowego komentarza do prośby „{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} pracuje nad Twoją prośbą „{request}”",
+  "emails_notify_item_request_fulfilled": "Mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś), jest już dostępny: {mod}"
 }

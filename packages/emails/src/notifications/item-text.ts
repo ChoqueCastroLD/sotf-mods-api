@@ -37,6 +37,14 @@ export function signalText(item: SignalEmailItem, locale: Locale): string {
         : m.emails_notify_item_review_on_my_mod({ actor, mod, rating: item.rating ?? 5 }, o);
     case 'review.reply':
       return m.emails_notify_item_review_reply({ mod }, o);
+    case 'request.comment':
+      return many
+        ? m.emails_notify_item_request_comment_many({ count, request: mod }, o)
+        : m.emails_notify_item_request_comment({ actor, request: mod }, o);
+    case 'request.adopted':
+      return m.emails_notify_item_request_adopted({ actor, request: mod }, o);
+    case 'request.fulfilled':
+      return m.emails_notify_item_request_fulfilled({ mod }, o);
     case 'compat.broken_on_my_mod':
       return m.emails_notify_item_compat_broken({ status: item.status ?? 'mixed', mod, build: item.build ?? '' }, o);
     case 'compat.acknowledged':

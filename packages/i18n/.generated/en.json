@@ -2358,6 +2358,7 @@
   "common_term_notifications": "Notifications",
   "common_term_patch_radar": "Patch Radar",
   "common_term_ranger_station": "Ranger Station",
+  "common_term_requests": "Requests",
   "common_term_signals": "Signals",
   "common_theme_day": "Day",
   "common_theme_label": "Theme",
@@ -2853,6 +2854,44 @@
   ],
   "content_radar_summary_title": "Summary",
   "content_radar_title": "Do SOTF mods work on patch {build}?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "Daily uptime of {component}, oldest to newest",
+  "content_radar_uptime_database": "Database",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "The site, API, downloads and database are probed every 5 minutes. Last {days__number} days, UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{avg__number} ms average · {p95__number} ms p95"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "Downloads and media",
+  "content_radar_uptime_no_data": "No data",
+  "content_radar_uptime_now_down": "Down now",
+  "content_radar_uptime_now_ok": "Operational",
+  "content_radar_uptime_overall": "{share} of the checks had everything up.",
+  "content_radar_uptime_percent": "{share} uptime",
+  "content_radar_uptime_title": "Platform uptime",
+  "content_radar_uptime_web": "Website",
   "content_radar_works_empty": "No top mod is confirmed on {build} yet. Tried one? Report back.",
   "content_radar_works_title": "Confirmed working",
   "content_reading_time": [
@@ -3233,6 +3272,26 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} is working on your request “{request}”",
+  "emails_notify_item_request_comment": "{actor} commented on the request “{request}”",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} new comment on the request “{request}”",
+        "count__plural=*": "{count__number} new comments on the request “{request}”"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "A mod you asked for or voted for is out: {mod}",
   "emails_notify_item_review_on_my_mod": "{actor} reviewed {mod}: {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6629,6 +6688,8 @@
   "ranger_target_compat_report": "Field report",
   "ranger_target_kit": "Kit",
   "ranger_target_mod": "Mod",
+  "ranger_target_request": "Request",
+  "ranger_target_request_comment": "Request comment",
   "ranger_target_review": "Review",
   "ranger_target_user": "User",
   "ranger_target_version": "Version",
@@ -6795,6 +6856,191 @@
       "match": {
         "count__plural=one": "{count__number} min",
         "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "requests_action_new": "Ask for a mod",
+  "requests_adopt": "I’m working on it",
+  "requests_adopt_done": "You are now working on this request.",
+  "requests_adopted_by": "In progress by {name}",
+  "requests_asked_on": "Asked {date}",
+  "requests_back": "All requests",
+  "requests_back_to_first": "Back to the first page",
+  "requests_badge_adopter": "Working on it",
+  "requests_badge_author": "Requester",
+  "requests_body_placeholder": "What should it do? Why is it useful? Any mods it should work with?",
+  "requests_by": "by {name}",
+  "requests_clear_filters": "Show all requests",
+  "requests_close": "Close request",
+  "requests_close_done": "Request closed.",
+  "requests_closed_banner": "This request is closed.",
+  "requests_comment_delete_text": "This cannot be undone.",
+  "requests_comment_delete_title": "Delete this comment?",
+  "requests_comment_edit_label": "Edit your comment",
+  "requests_comment_label": "Your comment",
+  "requests_comment_placeholder": "Add details, ask a question or offer help…",
+  "requests_comment_submit": "Comment",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} comment",
+        "count__plural=*": "{count__number} comments"
+      }
+    }
+  ],
+  "requests_comments_empty": "No comments yet.",
+  "requests_comments_title": "Comments",
+  "requests_created_done": "Request posted.",
+  "requests_delete": "Delete request",
+  "requests_delete_text": "The request and its votes disappear from the board. This cannot be undone.",
+  "requests_delete_title": "Delete this request?",
+  "requests_deleted_done": "Request deleted.",
+  "requests_detail_description": "Mod request by {author}: {title}",
+  "requests_detail_title": "{title} — Mod request",
+  "requests_edit": "Edit request",
+  "requests_edited": "edited",
+  "requests_empty_filtered_text": "Try another status or show all requests.",
+  "requests_empty_filtered_title": "No requests match",
+  "requests_empty_text": "Nobody has asked for a mod in this view. Be the first to describe the one you are missing.",
+  "requests_empty_title": "No requests here yet",
+  "requests_error_text": "We could not load the requests. Try again in a moment.",
+  "requests_error_title": "The request board is not answering",
+  "requests_field_body": "Details (optional)",
+  "requests_field_title": "Title",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} characters. Say what the mod should do."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Status",
+  "requests_fulfill": "Link my mod",
+  "requests_fulfill_done": "Request fulfilled. Thank you!",
+  "requests_fulfill_help": "Pick one of your published mods. The request will be marked as fulfilled and will point to it.",
+  "requests_fulfill_label": "Your published mod",
+  "requests_fulfill_none": "You have no published mods yet. Publish the mod first, then come back to link it.",
+  "requests_fulfill_submit": "Mark as fulfilled",
+  "requests_fulfill_title": "Link the mod that fulfils this request",
+  "requests_fulfilled_banner": "Fulfilled: the mod is published.",
+  "requests_fulfilled_by": "Fulfilled with {mod}",
+  "requests_guest_hint": "Sign in to vote, comment or ask for a mod.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "You can have up to {open__number} open requests and post {perDay__number} per day."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} request",
+        "count__plural=*": "{count__number} requests"
+      }
+    }
+  ],
+  "requests_list_description": "Ask for the mod you wish existed in Sons of the Forest, vote for the ones you want and follow the creators who take them on.",
+  "requests_list_readout": "Request board",
+  "requests_list_title": "Mod requests",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — page {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "Request actions",
+  "requests_new_description": "Post a request for a Sons of the Forest mod and let creators pick it up.",
+  "requests_new_guest_title": "Sign in to ask for a mod",
+  "requests_new_intro": "Describe the mod you wish existed. Creators browse this board and may take your request on.",
+  "requests_new_title": "Ask for a mod",
+  "requests_past_end_text": "There are fewer requests than that.",
+  "requests_past_end_title": "That page is empty",
+  "requests_release": "Give it back",
+  "requests_release_done": "The request is open again.",
+  "requests_reopen": "Reopen request",
+  "requests_reopen_done": "Request reopened.",
+  "requests_report": "Report",
+  "requests_saved": "Request updated.",
+  "requests_sign_in": "Sign in",
+  "requests_sort_label": "Sort",
+  "requests_sort_new": "Newest",
+  "requests_sort_top": "Most voted",
+  "requests_status_adopted": "In progress",
+  "requests_status_all": "All",
+  "requests_status_closed": "Closed",
+  "requests_status_fulfilled": "Fulfilled",
+  "requests_status_open": "Open",
+  "requests_submit_create": "Post request",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "The title needs at least {min__number} characters."
+      }
+    }
+  ],
+  "requests_verify_hint": "Verify your e-mail to vote, comment or ask for a mod.",
+  "requests_view_mod": "View the mod",
+  "requests_vote": "Vote",
+  "requests_vote_aria_add": "Vote for this request",
+  "requests_vote_aria_remove": "Remove your vote",
+  "requests_vote_own": "You cannot vote for your own request.",
+  "requests_voted": "Voted",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} vote",
+        "count__plural=*": "{count__number} votes"
       }
     }
   ],
@@ -7160,6 +7406,12 @@
   "settings_notif_reply_hint": "Someone replied to your comment.",
   "settings_notif_report": "Your reports",
   "settings_notif_report_hint": "The Rangers reviewed something you reported.",
+  "settings_notif_request_adopted": "Request adopted",
+  "settings_notif_request_adopted_hint": "A creator started working on your request.",
+  "settings_notif_request_comment": "Comments on requests",
+  "settings_notif_request_comment_hint": "Someone commented on a request you made or adopted.",
+  "settings_notif_request_fulfilled": "Request fulfilled",
+  "settings_notif_request_fulfilled_hint": "A mod you requested or voted for was published.",
   "settings_notif_review": "Reviews of your mods",
   "settings_notif_review_hint": "Someone rated one of your mods.",
   "settings_notif_review_reply": "Replies to your reviews",
@@ -7630,6 +7882,26 @@
   "signals_preferences": "Notification settings",
   "signals_report_dismissed": "Your report was reviewed — no action was needed",
   "signals_report_resolved": "Your report was reviewed and action was taken",
+  "signals_request_adopted": "{actor} is working on your request “{request}”",
+  "signals_request_comment": "{actor} commented on the request “{request}”",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} new comment on the request “{request}”",
+        "count__plural=*": "{count__number} new comments on the request “{request}”"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} is out and fulfils the request “{request}”",
   "signals_retry": "Try again",
   "signals_review_on_mod": "{actor} left a {rating}-star review on {mod}",
   "signals_review_on_mod_grouped": [
@@ -7916,6 +8188,8 @@
   "social_report_reason_nsfw_unmarked": "Adult content not marked 18+",
   "social_report_reason_other": "Something else",
   "social_report_reason_spam": "Spam or advertising",
+  "social_report_request_comment_title": "Report this comment",
+  "social_report_request_title": "Report this request",
   "social_report_review_title": "Report this review",
   "social_report_sent": "Thanks. The rangers will take a look.",
   "social_report_submit": "Send report",

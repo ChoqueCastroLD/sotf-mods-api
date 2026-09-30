@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Inicia sesión para comentar",
   "social_comments_more_replies": "{count, plural, one {# respuesta más} other {# respuestas más}}",
-  "social_comments_empty": "Aún no hay comentarios. Aquí van las preguntas, los trucos y los bugs."
+  "social_comments_empty": "Aún no hay comentarios. Aquí van las preguntas, los trucos y los bugs.",
+  "social_report_request_title": "Denunciar esta petición",
+  "social_report_request_comment_title": "Denunciar este comentario"
 }

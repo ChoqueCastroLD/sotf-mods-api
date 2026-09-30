@@ -212,5 +212,19 @@
   "content_dev_errors_text": "エラーの code フィールドは次のいずれかです。各問題の type URI はここの該当行を指します。",
   "content_dev_col_code": "コード",
   "content_dev_col_status": "ステータス",
-  "content_dev_col_meaning": "意味"
+  "content_dev_col_meaning": "意味",
+  "content_radar_uptime_title": "プラットフォームの稼働状況",
+  "content_radar_uptime_intro": "サイト・API・ダウンロード・データベースを 5 分ごとに確認しています。直近 {days, number} 日間（UTC）。",
+  "content_radar_uptime_overall": "全体が正常だった確認は {share} でした。",
+  "content_radar_uptime_web": "ウェブサイト",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "ダウンロードとメディア",
+  "content_radar_uptime_database": "データベース",
+  "content_radar_uptime_now_ok": "正常稼働",
+  "content_radar_uptime_now_down": "現在停止中",
+  "content_radar_uptime_percent": "稼働率 {share}",
+  "content_radar_uptime_latency": "平均 {avg, number} ms · p95 {p95, number} ms",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "データなし",
+  "content_radar_uptime_bars_label": "{component} の日別稼働率（古い順）"
 }

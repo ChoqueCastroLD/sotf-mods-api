@@ -1,0 +1,83 @@
+---
+/**
+ * Platform uptime series under the Patch Radar: one bar per UTC day and component (website, API,
+ * downloads, database) from the worker's 5-minute probes. Rendered only when there are samples;
+ * the API being slow or down just leaves the block out.
+ */
+import { formatDate, formatPercent } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Activity } from 'lucide-react';
+import { optional, serverApi } from '../../lib/api.ts';
+
+const locale = Astro.locals.locale;
+const WINDOW_DAYS = 30;
+const uptime = await optional(() => serverApi().compat.uptime({ query: { days: WINDOW_DAYS } }));
+const components = (uptime?.components ?? []).filter((component) => component.samples > 0);
+
+const names = {
+  web: m.content_radar_uptime_web(),
+  api: m.content_radar_uptime_api(),
+  media: m.content_radar_uptime_media(),
+  database: m.content_radar_uptime_database(),
+} as const;
+
+function tone(value: number | null): string {
+  if (value === null) return 'bg-border';
+  if (value >= 0.99) return 'bg-success';
+  if (value >= 0.95) return 'bg-warning';
+  return 'bg-danger';
+}
+---
+
+{
+  uptime !== null && components.length > 0 && (
+    <section aria-labelledby="radar-uptime-title" class="mt-10 flex flex-col gap-4" data-radar-uptime>
+      <header class="flex flex-col gap-1">
+        <h2 id="radar-uptime-title" class="flex items-center gap-2 font-display-caps text-xl text-fg">
+          <Icon icon={Activity} size={20} />
+          {m.content_radar_uptime_title()}
+        </h2>
+        <p class="text-sm text-fg-muted">{m.content_radar_uptime_intro({ days: uptime.windowDays })}</p>
+        {uptime.overall !== null && (
+          <p class="text-sm text-fg">{m.content_radar_uptime_overall({ share: formatPercent(locale, uptime.overall, 2) })}</p>
+        )}
+      </header>
+      <ul class="grid gap-4 md:grid-cols-2">
+        {components.map((component) => (
+          <li class="flex flex-col gap-2 rounded-lg border border-border bg-surface p-4">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-sm font-semibold text-fg">{names[component.component]}</h3>
+              {component.current && (
+                <span class:list={['text-xs font-medium', component.current.ok ? 'text-success' : 'text-danger']}>
+                  {component.current.ok ? m.content_radar_uptime_now_ok() : m.content_radar_uptime_now_down()}
+                </span>
+              )}
+            </div>
+            <div
+              role="img"
+              aria-label={m.content_radar_uptime_bars_label({ component: names[component.component] })}
+              class="flex h-8 items-stretch gap-px"
+            >
+              {component.days.map((day) => {
+                const state = day.uptime === null ? m.content_radar_uptime_no_data() : formatPercent(locale, day.uptime, 2);
+                return (
+                  <span
+                    class:list={['min-w-0 flex-1 rounded-[2px]', tone(day.uptime)]}
+                    title={m.content_radar_uptime_day({ date: formatDate(locale, day.date), state })}
+                  />
+                );
+              })}
+            </div>
+            <p class="text-xs text-fg-muted">
+              {component.uptime !== null && m.content_radar_uptime_percent({ share: formatPercent(locale, component.uptime, 2) })}
+              {component.avgLatencyMs !== null && component.p95LatencyMs !== null && (
+                <span>{' · '}{m.content_radar_uptime_latency({ avg: component.avgLatencyMs, p95: component.p95LatencyMs })}</span>
+              )}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

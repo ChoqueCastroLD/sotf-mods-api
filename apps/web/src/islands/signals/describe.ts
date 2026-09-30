@@ -200,6 +200,31 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
     }
     case 'review.reply':
       return { text: st('signals_review_reply', { mod }), excerpt, icon: Reply, tone: 'neutral' };
+    case 'request.comment': {
+      const request = str(signal.data.requestTitle) ?? signal.target?.title ?? '';
+      return {
+        text:
+          count > 1
+            ? st('signals_request_comment_grouped', { count, request })
+            : st('signals_request_comment', { actor, request }),
+        excerpt: count > 1 ? null : excerpt,
+        icon: MessageSquare,
+        tone: 'neutral',
+      };
+    }
+    case 'request.adopted': {
+      const request = str(signal.data.requestTitle) ?? signal.target?.title ?? '';
+      return { text: st('signals_request_adopted', { actor, request }), excerpt: null, icon: Wrench, tone: 'signal' };
+    }
+    case 'request.fulfilled': {
+      const request = str(signal.data.requestTitle) ?? signal.target?.title ?? '';
+      return {
+        text: st('signals_request_fulfilled', { mod, request }),
+        excerpt: null,
+        icon: PackagePlus,
+        tone: 'success',
+      };
+    }
     case 'compat.broken_on_my_mod': {
       const build = str(signal.data.build) ?? st('signals_current_build');
       const status = str(signal.data.status) === 'broken' ? 'broken' : 'mixed';

@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Sign in to comment",
   "social_comments_more_replies": "{count, plural, one {# more reply} other {# more replies}}",
-  "social_comments_empty": "No comments yet. Questions, tips and bug reports go here."
+  "social_comments_empty": "No comments yet. Questions, tips and bug reports go here.",
+  "social_report_request_title": "Report this request",
+  "social_report_request_comment_title": "Report this comment"
 }

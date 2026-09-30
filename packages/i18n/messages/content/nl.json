@@ -212,5 +212,19 @@
   "content_dev_errors_text": "Het veld code van een fout is een van deze waarden. De type-URI van elk probleem verwijst naar de bijbehorende rij hier.",
   "content_dev_col_code": "Code",
   "content_dev_col_status": "Status",
-  "content_dev_col_meaning": "Betekenis"
+  "content_dev_col_meaning": "Betekenis",
+  "content_radar_uptime_title": "Uptime van het platform",
+  "content_radar_uptime_intro": "De site, API, downloads en database worden elke 5 minuten getest. Laatste {days, number} dagen, UTC.",
+  "content_radar_uptime_overall": "Bij {share} van de tests werkte alles.",
+  "content_radar_uptime_web": "Website",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Downloads en media",
+  "content_radar_uptime_database": "Database",
+  "content_radar_uptime_now_ok": "Operationeel",
+  "content_radar_uptime_now_down": "Nu onbereikbaar",
+  "content_radar_uptime_percent": "{share} uptime",
+  "content_radar_uptime_latency": "gemiddeld {avg, number} ms · {p95, number} ms p95",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Geen gegevens",
+  "content_radar_uptime_bars_label": "Dagelijkse uptime van {component}, van oud naar nieuw"
 }

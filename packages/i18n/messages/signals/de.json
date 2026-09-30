@@ -120,5 +120,9 @@
   "signals_kit_updated_followed": "Das Kit „{kit}“, dem du folgst, wurde aktualisiert",
   "signals_kit_comment": "{actor} hat dein Kit „{kit}“ kommentiert",
   "signals_kit_comment_reply": "{actor} hat auf deinen Kommentar beim Kit „{kit}“ geantwortet",
-  "signals_coauthor_invited": "{actor} hat dich eingeladen, {mod} mitzuentwickeln"
+  "signals_coauthor_invited": "{actor} hat dich eingeladen, {mod} mitzuentwickeln",
+  "signals_request_comment": "{actor} hat die Anfrage „{request}“ kommentiert",
+  "signals_request_comment_grouped": "{count, plural, one {# neuer Kommentar zur Anfrage „{request}“} other {# neue Kommentare zur Anfrage „{request}“}}",
+  "signals_request_adopted": "{actor} arbeitet an deiner Anfrage „{request}“",
+  "signals_request_fulfilled": "{mod} ist erschienen und erfüllt die Anfrage „{request}“"
 }

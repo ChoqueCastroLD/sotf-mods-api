@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Für Menschen, die die Seite übersetzen. Nur Admins vergeben es.",
   "ranger_user_translator_on": "Übersetzer-Abzeichen vergeben.",
   "ranger_user_translator_off": "Übersetzer-Abzeichen entfernt.",
-  "ranger_user_translator_failed": "Übersetzer-Abzeichen konnte nicht geändert werden"
+  "ranger_user_translator_failed": "Übersetzer-Abzeichen konnte nicht geändert werden",
+  "ranger_target_request": "Wunsch",
+  "ranger_target_request_comment": "Wunsch-Kommentar"
 }

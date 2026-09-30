@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "サイトを翻訳している人向け。管理者のみが付与できます。",
   "ranger_user_translator_on": "翻訳者バッジを付与しました。",
   "ranger_user_translator_off": "翻訳者バッジを外しました。",
-  "ranger_user_translator_failed": "翻訳者バッジを変更できませんでした"
+  "ranger_user_translator_failed": "翻訳者バッジを変更できませんでした",
+  "ranger_target_request": "リクエスト",
+  "ranger_target_request_comment": "リクエストのコメント"
 }

@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "フォロー中のキット {kit} が更新されました",
   "emails_notify_item_kit_comment": "{actor} さんがあなたのキット {kit} にコメントしました",
   "emails_notify_item_kit_comment_reply": "{actor} さんがキット {kit} のあなたのコメントに返信しました",
-  "emails_notify_item_coauthor_invited": "{actor} さんが {mod} の共同作者にあなたを招待しました"
+  "emails_notify_item_coauthor_invited": "{actor} さんが {mod} の共同作者にあなたを招待しました",
+  "emails_notify_item_request_comment": "{actor} がリクエスト「{request}」にコメントしました",
+  "emails_notify_item_request_comment_many": "{count, plural, other {リクエスト「{request}」に新しいコメント # 件}}",
+  "emails_notify_item_request_adopted": "{actor} があなたのリクエスト「{request}」に取り組んでいます",
+  "emails_notify_item_request_fulfilled": "あなたがリクエストまたは投票した MOD が公開されました：{mod}"
 }

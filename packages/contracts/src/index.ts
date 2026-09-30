@@ -37,6 +37,7 @@ export * from './notifications.ts';
 export * from './oauth.ts';
 export * from './openapi.ts';
 export * from './pagination.ts';
+export * from './requests.ts';
 export * from './reviews.ts';
 export * from './search.ts';
 export * from './seo.ts';

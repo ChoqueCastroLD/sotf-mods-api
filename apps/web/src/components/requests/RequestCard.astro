@@ -1,0 +1,56 @@
+---
+/**
+ * One row of the request board: votes, title, status, author, adopter and counts. The whole row is
+ * a link to the detail page (the title link stretches over the card).
+ */
+import { formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronUp, MessageSquare } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { RequestDTO } from './data.ts';
+import { requestPath } from './data.ts';
+import { STATUS_CLASSES, statusLabel } from './status.ts';
+
+interface Props {
+  request: RequestDTO;
+  headingLevel?: 2 | 3;
+}
+
+const { request, headingLevel = 2 } = Astro.props;
+const locale = Astro.locals.locale;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const authorName = request.author?.displayName || request.author?.handle || null;
+---
+
+<article class="relative flex gap-4 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-border-strong">
+  <div class="flex w-14 shrink-0 flex-col items-center justify-center rounded-md bg-raised py-2 text-fg" aria-hidden="true">
+    <Icon icon={ChevronUp} size={18} className="text-signal" />
+    <span class="font-mono text-base font-semibold tabular-nums">{request.voteCount}</span>
+  </div>
+  <div class="flex min-w-0 flex-1 flex-col gap-2">
+    <div class="flex flex-wrap items-center gap-2">
+      <span class={`inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
+        {statusLabel(request.status)}
+      </span>
+      <Heading class="min-w-0 text-base font-semibold text-balance text-fg">
+        <a href={href(requestPath(request.id), locale)} class="after:absolute after:inset-0 hover:underline">{request.title}</a>
+      </Heading>
+    </div>
+    <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-fg-muted">
+      {authorName && <span>{m.requests_by({ name: authorName })}</span>}
+      <time datetime={request.createdAt}>{formatDate(locale, request.createdAt, 'medium')}</time>
+      <span class="sr-only">{m.requests_votes({ count: request.voteCount })}</span>
+      <span class="inline-flex items-center gap-1">
+        <Icon icon={MessageSquare} size={14} />
+        {m.requests_comments_count({ count: request.commentCount })}
+      </span>
+      {request.adopter && request.status === 'adopted' && (
+        <span class="text-warning">{m.requests_adopted_by({ name: request.adopter.displayName || request.adopter.handle })}</span>
+      )}
+      {request.mod && request.status === 'fulfilled' && (
+        <span class="text-success">{m.requests_fulfilled_by({ mod: request.mod.name })}</span>
+      )}
+    </p>
+  </div>
+</article>

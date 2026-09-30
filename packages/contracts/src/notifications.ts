@@ -28,6 +28,9 @@ export const NOTIFICATION_TYPES = [
   'kit.comment',
   'kit.comment_reply',
   'coauthor.invited',
+  'request.comment',
+  'request.adopted',
+  'request.fulfilled',
   'patch.breaking_build',
   'mod.status_changed',
   'milestone.reached',
@@ -67,6 +70,9 @@ export const NOTIFICATION_DEFAULTS: Readonly<
   'kit.comment': { inApp: true, email: 'off', inAppAvailable: true },
   'kit.comment_reply': { inApp: true, email: 'off', inAppAvailable: true },
   'coauthor.invited': { inApp: true, email: 'instant', inAppAvailable: true },
+  'request.comment': { inApp: true, email: 'off', inAppAvailable: true },
+  'request.adopted': { inApp: true, email: 'off', inAppAvailable: true },
+  'request.fulfilled': { inApp: true, email: 'instant', inAppAvailable: true },
   'patch.breaking_build': { inApp: true, email: 'instant', inAppAvailable: true },
   'mod.status_changed': { inApp: true, email: 'instant', inAppAvailable: true },
   'milestone.reached': { inApp: true, email: 'off', inAppAvailable: true },
@@ -85,7 +91,7 @@ export const NOTIFICATION_FILTER_TYPES: Readonly<
   Record<(typeof NOTIFICATION_FILTERS)[number], readonly NotificationType[]>
 > = {
   all: NOTIFICATION_TYPES,
-  mentions: ['comment.mention', 'comment.reply', 'review.reply', 'kit.comment_reply'],
+  mentions: ['comment.mention', 'comment.reply', 'review.reply', 'kit.comment_reply', 'request.comment'],
   updates: [
     'mod.version_published',
     'creator.mod_published',
@@ -93,6 +99,8 @@ export const NOTIFICATION_FILTER_TYPES: Readonly<
     'kit.updated_followed',
     'review.update_prompt',
     'compat.prompt',
+    'request.adopted',
+    'request.fulfilled',
     'system.announcement',
   ],
   my_mods: [
@@ -117,6 +125,7 @@ export const NOTIFICATION_TARGET_TYPES = [
   'report',
   'kit',
   'kit_comment',
+  'request',
   'user',
   'game_build',
   'badge',

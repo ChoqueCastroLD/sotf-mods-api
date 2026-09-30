@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "Odpowiedź w zestawie",
   "settings_notif_kit_reply_hint": "Ktoś odpowiada na Twój komentarz w zestawie.",
   "settings_notif_coauthor": "Zaproszenia do współtworzenia",
-  "settings_notif_coauthor_hint": "Ktoś zaprasza Cię do współtworzenia jednego ze swoich modów."
+  "settings_notif_coauthor_hint": "Ktoś zaprasza Cię do współtworzenia jednego ze swoich modów.",
+  "settings_notif_request_comment": "Komentarze do próśb",
+  "settings_notif_request_comment_hint": "Ktoś skomentował prośbę, którą złożyłeś(-aś) lub którą przejąłeś(-ęłaś).",
+  "settings_notif_request_adopted": "Prośba przejęta",
+  "settings_notif_request_adopted_hint": "Twórca zaczął pracować nad Twoją prośbą.",
+  "settings_notif_request_fulfilled": "Prośba spełniona",
+  "settings_notif_request_fulfilled_hint": "Opublikowano mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś)."
 }

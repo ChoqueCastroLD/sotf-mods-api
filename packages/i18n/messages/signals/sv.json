@@ -120,5 +120,9 @@
   "signals_kit_updated_followed": "Kitet ”{kit}” som du följer har uppdaterats",
   "signals_kit_comment": "{actor} kommenterade ditt kit ”{kit}”",
   "signals_kit_comment_reply": "{actor} svarade på din kommentar på kitet ”{kit}”",
-  "signals_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}"
+  "signals_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}",
+  "signals_request_comment": "{actor} kommenterade förfrågan ”{request}”",
+  "signals_request_comment_grouped": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
+  "signals_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
+  "signals_request_fulfilled": "{mod} är ute och uppfyller förfrågan ”{request}”"
 }

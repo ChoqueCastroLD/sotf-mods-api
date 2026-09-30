@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Voor mensen die de site vertalen. Alleen beheerders kennen hem toe.",
   "ranger_user_translator_on": "Vertalersbadge toegekend.",
   "ranger_user_translator_off": "Vertalersbadge verwijderd.",
-  "ranger_user_translator_failed": "Vertalersbadge kon niet worden gewijzigd"
+  "ranger_user_translator_failed": "Vertalersbadge kon niet worden gewijzigd",
+  "ranger_target_request": "Verzoek",
+  "ranger_target_request_comment": "Reactie op verzoek"
 }

@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Log in om te reageren",
   "social_comments_more_replies": "{count, plural, one {Nog # antwoord} other {Nog # antwoorden}}",
-  "social_comments_empty": "Nog geen reacties. Vragen, tips en bugs horen hier."
+  "social_comments_empty": "Nog geen reacties. Vragen, tips en bugs horen hier.",
+  "social_report_request_title": "Dit verzoek melden",
+  "social_report_request_comment_title": "Deze reactie melden"
 }

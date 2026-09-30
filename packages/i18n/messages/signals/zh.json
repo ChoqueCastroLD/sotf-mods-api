@@ -120,5 +120,9 @@
   "signals_kit_updated_followed": "你关注的套件“{kit}”已更新",
   "signals_kit_comment": "{actor} 评论了你的套件“{kit}”",
   "signals_kit_comment_reply": "{actor} 回复了你在套件“{kit}”下的评论",
-  "signals_coauthor_invited": "{actor} 邀请你共同维护 {mod}"
+  "signals_coauthor_invited": "{actor} 邀请你共同维护 {mod}",
+  "signals_request_comment": "{actor} 评论了请求“{request}”",
+  "signals_request_comment_grouped": "{count, plural, other {请求“{request}”有 # 条新评论}}",
+  "signals_request_adopted": "{actor} 正在处理你的请求“{request}”",
+  "signals_request_fulfilled": "{mod} 已发布，满足了请求“{request}”"
 }

@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Connectez-vous pour commenter",
   "social_comments_more_replies": "{count, plural, one {# autre réponse} other {# autres réponses}}",
-  "social_comments_empty": "Pas encore de commentaires. Questions, astuces et bugs, c’est ici."
+  "social_comments_empty": "Pas encore de commentaires. Questions, astuces et bugs, c’est ici.",
+  "social_report_request_title": "Signaler cette demande",
+  "social_report_request_comment_title": "Signaler ce commentaire"
 }

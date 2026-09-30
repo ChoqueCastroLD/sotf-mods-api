@@ -18,6 +18,7 @@ import {
   deleteGameBuild,
   getEcosystem,
   getPatchRadar,
+  getUptime,
   listGameBuilds,
   listLoaderReleases,
   putEcosystem,
@@ -37,6 +38,8 @@ export default defineModule({
     m.implement(compatEndpoints.ecosystem, async ({ ctx }) => getEcosystem(ctx));
 
     m.implement(compatEndpoints.patchRadar, async ({ query, ctx }) => getPatchRadar(ctx, deps, query.build));
+
+    m.implement(compatEndpoints.uptime, async ({ query, ctx }) => getUptime(ctx, query.days));
 
     // Admin registry.
     m.implement(adminEndpoints.listGameBuilds, async ({ ctx }) => {

@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "キットでの返信",
   "settings_notif_kit_reply_hint": "キットでのあなたのコメントに返信があったとき。",
   "settings_notif_coauthor": "共同作者への招待",
-  "settings_notif_coauthor_hint": "誰かがあなたを自分の MOD の共同作者に招待します。"
+  "settings_notif_coauthor_hint": "誰かがあなたを自分の MOD の共同作者に招待します。",
+  "settings_notif_request_comment": "リクエストへのコメント",
+  "settings_notif_request_comment_hint": "あなたが投稿または引き受けたリクエストにコメントがありました。",
+  "settings_notif_request_adopted": "リクエストが引き受けられました",
+  "settings_notif_request_adopted_hint": "クリエイターがあなたのリクエストに取り組み始めました。",
+  "settings_notif_request_fulfilled": "リクエストが実現しました",
+  "settings_notif_request_fulfilled_hint": "あなたがリクエストまたは投票した MOD が公開されました。"
 }

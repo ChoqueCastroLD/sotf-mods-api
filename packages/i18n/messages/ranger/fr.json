@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "Pour les personnes qui traduisent le site. Seuls les admins l’attribuent.",
   "ranger_user_translator_on": "Badge de traducteur attribué.",
   "ranger_user_translator_off": "Badge de traducteur retiré.",
-  "ranger_user_translator_failed": "Impossible de modifier le badge de traducteur"
+  "ranger_user_translator_failed": "Impossible de modifier le badge de traducteur",
+  "ranger_target_request": "Demande",
+  "ranger_target_request_comment": "Commentaire de demande"
 }

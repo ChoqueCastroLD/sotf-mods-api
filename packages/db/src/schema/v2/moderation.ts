@@ -6,7 +6,17 @@ import type { JsonObject } from '../_json.ts';
 import { mod } from '../legacy/mod.ts';
 import { user } from '../legacy/user.ts';
 
-export const REPORT_TARGET_TYPES = ['mod', 'version', 'comment', 'review', 'user', 'kit', 'compat_report'] as const;
+export const REPORT_TARGET_TYPES = [
+  'mod',
+  'version',
+  'comment',
+  'review',
+  'user',
+  'kit',
+  'compat_report',
+  'request',
+  'request_comment',
+] as const;
 export type ReportTargetType = (typeof REPORT_TARGET_TYPES)[number];
 export const REPORT_STATUSES = ['open', 'resolved', 'dismissed'] as const;
 export type ReportStatus = (typeof REPORT_STATUSES)[number];

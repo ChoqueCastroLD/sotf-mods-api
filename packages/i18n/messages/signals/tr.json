@@ -120,5 +120,9 @@
   "signals_kit_updated_followed": "Takip ettiğin “{kit}” kiti güncellendi",
   "signals_kit_comment": "{actor}, “{kit}” kitine yorum yaptı",
   "signals_kit_comment_reply": "{actor}, “{kit}” kitindeki yorumuna yanıt verdi",
-  "signals_coauthor_invited": "{actor} seni {mod} için ortak yazar olarak davet etti"
+  "signals_coauthor_invited": "{actor} seni {mod} için ortak yazar olarak davet etti",
+  "signals_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
+  "signals_request_comment_grouped": "{count, plural, one {“{request}” isteğinde # yeni yorum} other {“{request}” isteğinde # yeni yorum}}",
+  "signals_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
+  "signals_request_fulfilled": "{mod} yayında ve “{request}” isteğini karşılıyor"
 }

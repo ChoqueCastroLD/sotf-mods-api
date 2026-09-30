@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "套件中的回复",
   "settings_notif_kit_reply_hint": "有人回复了你在套件下的评论。",
   "settings_notif_coauthor": "共同作者邀请",
-  "settings_notif_coauthor_hint": "有人邀请你共同维护他的某个模组。"
+  "settings_notif_coauthor_hint": "有人邀请你共同维护他的某个模组。",
+  "settings_notif_request_comment": "请求的评论",
+  "settings_notif_request_comment_hint": "有人评论了你发起或认领的请求。",
+  "settings_notif_request_adopted": "请求已被认领",
+  "settings_notif_request_adopted_hint": "一位创作者开始处理你的请求。",
+  "settings_notif_request_fulfilled": "请求已完成",
+  "settings_notif_request_fulfilled_hint": "你请求或投票支持的模组已发布。"
 }

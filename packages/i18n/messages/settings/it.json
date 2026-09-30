@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "Risposta su un kit",
   "settings_notif_kit_reply_hint": "Qualcuno risponde al tuo commento su un kit.",
   "settings_notif_coauthor": "Inviti di co-creazione",
-  "settings_notif_coauthor_hint": "Qualcuno ti invita a co-creare una sua mod."
+  "settings_notif_coauthor_hint": "Qualcuno ti invita a co-creare una sua mod.",
+  "settings_notif_request_comment": "Commenti sulle richieste",
+  "settings_notif_request_comment_hint": "Qualcuno ha commentato una richiesta che hai creato o adottato.",
+  "settings_notif_request_adopted": "Richiesta adottata",
+  "settings_notif_request_adopted_hint": "Un creator ha iniziato a lavorare alla tua richiesta.",
+  "settings_notif_request_fulfilled": "Richiesta soddisfatta",
+  "settings_notif_request_fulfilled_hint": "È stato pubblicato un mod che hai richiesto o votato."
 }

@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Accedi per commentare",
   "social_comments_more_replies": "{count, plural, one {Un’altra risposta} other {Altre # risposte}}",
-  "social_comments_empty": "Ancora nessun commento. Domande, consigli e bug vanno qui."
+  "social_comments_empty": "Ancora nessun commento. Domande, consigli e bug vanno qui.",
+  "social_report_request_title": "Segnala questa richiesta",
+  "social_report_request_comment_title": "Segnala questo commento"
 }

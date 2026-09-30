@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "Antwoord bij een kit",
   "settings_notif_kit_reply_hint": "Iemand reageert op je reactie bij een kit.",
   "settings_notif_coauthor": "Uitnodigingen voor mede-auteurschap",
-  "settings_notif_coauthor_hint": "Iemand nodigt je uit als mede-auteur van een van zijn mods."
+  "settings_notif_coauthor_hint": "Iemand nodigt je uit als mede-auteur van een van zijn mods.",
+  "settings_notif_request_comment": "Reacties op verzoeken",
+  "settings_notif_request_comment_hint": "Iemand heeft gereageerd op een verzoek dat je deed of adopteerde.",
+  "settings_notif_request_adopted": "Verzoek geadopteerd",
+  "settings_notif_request_adopted_hint": "Een maker is aan je verzoek begonnen.",
+  "settings_notif_request_fulfilled": "Verzoek vervuld",
+  "settings_notif_request_fulfilled_hint": "Een mod waar je om vroeg of op stemde is gepubliceerd."
 }

@@ -23,6 +23,7 @@ import { modKnowledgeEndpoints } from './mod-knowledge.ts';
 import { moderationEndpoints } from './moderation.ts';
 import { notificationsEndpoints } from './notifications.ts';
 import { oauthEndpoints } from './oauth.ts';
+import { requestsEndpoints } from './requests.ts';
 import { reviewsEndpoints } from './reviews.ts';
 import { searchEndpoints } from './search.ts';
 import { securityEndpoints } from './security.ts';
@@ -53,6 +54,7 @@ export const apiContracts = {
   moderation: moderationEndpoints,
   notifications: notificationsEndpoints,
   oauth: oauthEndpoints,
+  requests: requestsEndpoints,
   reviews: reviewsEndpoints,
   search: searchEndpoints,
   security: securityEndpoints,

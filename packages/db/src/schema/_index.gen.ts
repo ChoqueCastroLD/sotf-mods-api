@@ -25,3 +25,5 @@ export * from './ext/auth-tokens-oauth.ts';
 export * from './ext/kit-social.ts';
 export * from './ext/mod-knowledge.ts';
 export * from './ext/discovery.ts';
+export * from './ext/compat-uptime.ts';
+export * from './ext/requests.ts';

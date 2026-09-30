@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "For people who translate the site. Only admins grant it.",
   "ranger_user_translator_on": "Translator badge granted.",
   "ranger_user_translator_off": "Translator badge removed.",
-  "ranger_user_translator_failed": "Couldn’t change the translator badge"
+  "ranger_user_translator_failed": "Couldn’t change the translator badge",
+  "ranger_target_request": "Request",
+  "ranger_target_request_comment": "Request comment"
 }

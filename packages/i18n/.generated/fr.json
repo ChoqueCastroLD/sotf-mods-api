@@ -2358,6 +2358,7 @@
   "common_term_notifications": "Notifications",
   "common_term_patch_radar": "Radar des patchs",
   "common_term_ranger_station": "Poste des rangers",
+  "common_term_requests": "Demandes",
   "common_term_signals": "Signaux",
   "common_theme_day": "Jour",
   "common_theme_label": "Thème",
@@ -2853,6 +2854,44 @@
   ],
   "content_radar_summary_title": "Résumé",
   "content_radar_title": "Les mods SOTF fonctionnent-ils sur le patch {build} ?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "Disponibilité quotidienne de {component}, de la plus ancienne à la plus récente",
+  "content_radar_uptime_database": "Base de données",
+  "content_radar_uptime_day": "{date} : {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Le site, l’API, les téléchargements et la base de données sont testés toutes les 5 minutes. {days__number} derniers jours, UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{avg__number} ms en moyenne · {p95__number} ms p95"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "Téléchargements et médias",
+  "content_radar_uptime_no_data": "Aucune donnée",
+  "content_radar_uptime_now_down": "Hors service",
+  "content_radar_uptime_now_ok": "Opérationnel",
+  "content_radar_uptime_overall": "{share} des tests avaient tout en ligne.",
+  "content_radar_uptime_percent": "{share} de disponibilité",
+  "content_radar_uptime_title": "Disponibilité de la plateforme",
+  "content_radar_uptime_web": "Site web",
   "content_radar_works_empty": "Aucun mod principal n’est encore confirmé sur {build}. Vous en avez testé un ? Faites-nous signe.",
   "content_radar_works_title": "Confirmés fonctionnels",
   "content_reading_time": [
@@ -3233,6 +3272,26 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} travaille sur votre demande « {request} »",
+  "emails_notify_item_request_comment": "{actor} a commenté la demande « {request} »",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouveau commentaire sur la demande « {request} »",
+        "count__plural=*": "{count__number} nouveaux commentaires sur la demande « {request} »"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "Un mod que vous avez demandé ou soutenu est publié : {mod}",
   "emails_notify_item_review_on_my_mod": "{actor} a donné son avis sur {mod} : {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6629,6 +6688,8 @@
   "ranger_target_compat_report": "Rapport de terrain",
   "ranger_target_kit": "Kit",
   "ranger_target_mod": "Mod",
+  "ranger_target_request": "Demande",
+  "ranger_target_request_comment": "Commentaire de demande",
   "ranger_target_review": "Avis",
   "ranger_target_user": "Utilisateur",
   "ranger_target_version": "Version",
@@ -6795,6 +6856,191 @@
       "match": {
         "count__plural=one": "{count__number} min",
         "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "requests_action_new": "Demander un mod",
+  "requests_adopt": "Je m’en occupe",
+  "requests_adopt_done": "Vous travaillez maintenant sur cette demande.",
+  "requests_adopted_by": "{name} s’en occupe",
+  "requests_asked_on": "Demandée le {date}",
+  "requests_back": "Toutes les demandes",
+  "requests_back_to_first": "Retour à la première page",
+  "requests_badge_adopter": "S’en occupe",
+  "requests_badge_author": "Demandeur",
+  "requests_body_placeholder": "Que doit-il faire ? En quoi est-il utile ? Avec quels mods doit-il fonctionner ?",
+  "requests_by": "par {name}",
+  "requests_clear_filters": "Afficher toutes les demandes",
+  "requests_close": "Fermer la demande",
+  "requests_close_done": "Demande fermée.",
+  "requests_closed_banner": "Cette demande est fermée.",
+  "requests_comment_delete_text": "Cette action est irréversible.",
+  "requests_comment_delete_title": "Supprimer ce commentaire ?",
+  "requests_comment_edit_label": "Modifier votre commentaire",
+  "requests_comment_label": "Votre commentaire",
+  "requests_comment_placeholder": "Ajoutez des détails, posez une question ou proposez votre aide…",
+  "requests_comment_submit": "Commenter",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} commentaire",
+        "count__plural=*": "{count__number} commentaires"
+      }
+    }
+  ],
+  "requests_comments_empty": "Pas encore de commentaires.",
+  "requests_comments_title": "Commentaires",
+  "requests_created_done": "Demande publiée.",
+  "requests_delete": "Supprimer la demande",
+  "requests_delete_text": "La demande et ses votes disparaissent du tableau. Action irréversible.",
+  "requests_delete_title": "Supprimer cette demande ?",
+  "requests_deleted_done": "Demande supprimée.",
+  "requests_detail_description": "Demande de mod de {author} : {title}",
+  "requests_detail_title": "{title} — Demande de mod",
+  "requests_edit": "Modifier la demande",
+  "requests_edited": "modifiée",
+  "requests_empty_filtered_text": "Essayez un autre statut ou affichez toutes les demandes.",
+  "requests_empty_filtered_title": "Aucune demande ne correspond",
+  "requests_empty_text": "Personne n’a demandé de mod ici. Soyez le premier à décrire celui qui vous manque.",
+  "requests_empty_title": "Aucune demande pour le moment",
+  "requests_error_text": "Impossible de charger les demandes. Réessayez dans un instant.",
+  "requests_error_title": "Le tableau des demandes ne répond pas",
+  "requests_field_body": "Détails (facultatif)",
+  "requests_field_title": "Titre",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} caractères. Dites ce que le mod doit faire."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Statut",
+  "requests_fulfill": "Lier mon mod",
+  "requests_fulfill_done": "Demande réalisée. Merci !",
+  "requests_fulfill_help": "Choisissez l’un de vos mods publiés. La demande sera marquée comme réalisée et pointera vers lui.",
+  "requests_fulfill_label": "Votre mod publié",
+  "requests_fulfill_none": "Vous n’avez pas encore de mod publié. Publiez d’abord le mod, puis revenez le lier.",
+  "requests_fulfill_submit": "Marquer comme réalisée",
+  "requests_fulfill_title": "Liez le mod qui répond à cette demande",
+  "requests_fulfilled_banner": "Réalisée : le mod est publié.",
+  "requests_fulfilled_by": "Réalisée avec {mod}",
+  "requests_guest_hint": "Connectez-vous pour voter, commenter ou demander un mod.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Vous pouvez avoir jusqu’à {open__number} demandes ouvertes et en publier {perDay__number} par jour."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} demande",
+        "count__plural=*": "{count__number} demandes"
+      }
+    }
+  ],
+  "requests_list_description": "Demandez le mod qui manque à Sons of the Forest, votez pour ceux que vous voulez et suivez les créateurs qui s’en chargent.",
+  "requests_list_readout": "Tableau des demandes",
+  "requests_list_title": "Demandes de mods",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — page {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "Actions de la demande",
+  "requests_new_description": "Publiez une demande de mod pour Sons of the Forest et laissez les créateurs s’en emparer.",
+  "requests_new_guest_title": "Connectez-vous pour demander un mod",
+  "requests_new_intro": "Décrivez le mod dont vous rêvez. Les créateurs parcourent ce tableau et peuvent se charger de votre demande.",
+  "requests_new_title": "Demander un mod",
+  "requests_past_end_text": "Il y a moins de demandes que cela.",
+  "requests_past_end_title": "Cette page est vide",
+  "requests_release": "Le rendre",
+  "requests_release_done": "La demande est de nouveau ouverte.",
+  "requests_reopen": "Rouvrir la demande",
+  "requests_reopen_done": "Demande rouverte.",
+  "requests_report": "Signaler",
+  "requests_saved": "Demande mise à jour.",
+  "requests_sign_in": "Se connecter",
+  "requests_sort_label": "Tri",
+  "requests_sort_new": "Plus récentes",
+  "requests_sort_top": "Les plus votées",
+  "requests_status_adopted": "En cours",
+  "requests_status_all": "Toutes",
+  "requests_status_closed": "Fermées",
+  "requests_status_fulfilled": "Réalisées",
+  "requests_status_open": "Ouvertes",
+  "requests_submit_create": "Publier la demande",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Le titre doit compter au moins {min__number} caractères."
+      }
+    }
+  ],
+  "requests_verify_hint": "Vérifiez votre e-mail pour voter, commenter ou demander un mod.",
+  "requests_view_mod": "Voir le mod",
+  "requests_vote": "Voter",
+  "requests_vote_aria_add": "Voter pour cette demande",
+  "requests_vote_aria_remove": "Retirer votre vote",
+  "requests_vote_own": "Vous ne pouvez pas voter pour votre propre demande.",
+  "requests_voted": "Voté",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} vote",
+        "count__plural=*": "{count__number} votes"
       }
     }
   ],
@@ -7160,6 +7406,12 @@
   "settings_notif_reply_hint": "Quelqu’un a répondu à votre commentaire.",
   "settings_notif_report": "Vos signalements",
   "settings_notif_report_hint": "Les rangers ont examiné quelque chose que vous avez signalé.",
+  "settings_notif_request_adopted": "Demande adoptée",
+  "settings_notif_request_adopted_hint": "Un créateur a commencé à travailler sur votre demande.",
+  "settings_notif_request_comment": "Commentaires sur les demandes",
+  "settings_notif_request_comment_hint": "Quelqu’un a commenté une demande que vous avez créée ou adoptée.",
+  "settings_notif_request_fulfilled": "Demande satisfaite",
+  "settings_notif_request_fulfilled_hint": "Un mod que vous avez demandé ou soutenu a été publié.",
   "settings_notif_review": "Avis sur vos mods",
   "settings_notif_review_hint": "Quelqu’un a noté l’un de vos mods.",
   "settings_notif_review_reply": "Réponses à vos avis",
@@ -7630,6 +7882,26 @@
   "signals_preferences": "Paramètres des notifications",
   "signals_report_dismissed": "Votre signalement a été examiné — aucune action n’était nécessaire",
   "signals_report_resolved": "Votre signalement a été examiné et des mesures ont été prises",
+  "signals_request_adopted": "{actor} travaille sur votre demande « {request} »",
+  "signals_request_comment": "{actor} a commenté la demande « {request} »",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nouveau commentaire sur la demande « {request} »",
+        "count__plural=*": "{count__number} nouveaux commentaires sur la demande « {request} »"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} est publié et répond à la demande « {request} »",
   "signals_retry": "Réessayer",
   "signals_review_on_mod": "{actor} a laissé un avis {rating} étoiles sur {mod}",
   "signals_review_on_mod_grouped": [
@@ -7916,6 +8188,8 @@
   "social_report_reason_nsfw_unmarked": "Contenu adulte non marqué 18+",
   "social_report_reason_other": "Autre chose",
   "social_report_reason_spam": "Spam ou publicité",
+  "social_report_request_comment_title": "Signaler ce commentaire",
+  "social_report_request_title": "Signaler cette demande",
   "social_report_review_title": "Signaler cet avis",
   "social_report_sent": "Merci. Les rangers vont regarder.",
   "social_report_submit": "Envoyer le signalement",

@@ -2358,6 +2358,7 @@
   "common_term_notifications": "Aviseringar",
   "common_term_patch_radar": "Patchradar",
   "common_term_ranger_station": "Rangerstation",
+  "common_term_requests": "Önskemål",
   "common_term_signals": "Signaler",
   "common_theme_day": "Dag",
   "common_theme_label": "Tema",
@@ -2853,6 +2854,44 @@
   ],
   "content_radar_summary_title": "Sammanfattning",
   "content_radar_title": "Fungerar SOTF-moddar på patch {build}?",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "Daglig drifttid för {component}, äldst till nyast",
+  "content_radar_uptime_database": "Databas",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Webbplatsen, API:t, nedladdningarna och databasen kontrolleras var 5:e minut. Senaste {days__number} dagarna, UTC."
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{avg__number} ms i snitt · {p95__number} ms p95"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "Nedladdningar och media",
+  "content_radar_uptime_no_data": "Inga data",
+  "content_radar_uptime_now_down": "Nere just nu",
+  "content_radar_uptime_now_ok": "Fungerar",
+  "content_radar_uptime_overall": "{share} av kontrollerna hade allt uppe.",
+  "content_radar_uptime_percent": "{share} drifttid",
+  "content_radar_uptime_title": "Plattformens drifttid",
+  "content_radar_uptime_web": "Webbplats",
   "content_radar_works_empty": "Ingen toppmodd är bekräftad på {build} än. Testat någon? Hör av dig.",
   "content_radar_works_title": "Bekräftat fungerande",
   "content_reading_time": [
@@ -3233,6 +3272,26 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
+  "emails_notify_item_request_comment": "{actor} kommenterade förfrågan ”{request}”",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny kommentar på förfrågan ”{request}”",
+        "count__plural=*": "{count__number} nya kommentarer på förfrågan ”{request}”"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "En mod du bett om eller röstade på är ute: {mod}",
   "emails_notify_item_review_on_my_mod": "{actor} recenserade {mod}: {rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6629,6 +6688,8 @@
   "ranger_target_compat_report": "Fältrapport",
   "ranger_target_kit": "Kit",
   "ranger_target_mod": "Modd",
+  "ranger_target_request": "Önskemål",
+  "ranger_target_request_comment": "Önskemålskommentar",
   "ranger_target_review": "Recension",
   "ranger_target_user": "Användare",
   "ranger_target_version": "Version",
@@ -6795,6 +6856,191 @@
       "match": {
         "count__plural=one": "{count__number} min",
         "count__plural=*": "{count__number} min"
+      }
+    }
+  ],
+  "requests_action_new": "Önska en mod",
+  "requests_adopt": "Jag jobbar på det",
+  "requests_adopt_done": "Du arbetar nu på det här önskemålet.",
+  "requests_adopted_by": "{name} arbetar på den",
+  "requests_asked_on": "Önskades {date}",
+  "requests_back": "Alla önskemål",
+  "requests_back_to_first": "Tillbaka till första sidan",
+  "requests_badge_adopter": "Jobbar på det",
+  "requests_badge_author": "Önskare",
+  "requests_body_placeholder": "Vad ska den göra? Varför är den användbar? Vilka moddar ska den funka med?",
+  "requests_by": "av {name}",
+  "requests_clear_filters": "Visa alla önskemål",
+  "requests_close": "Stäng önskemålet",
+  "requests_close_done": "Önskemålet är stängt.",
+  "requests_closed_banner": "Det här önskemålet är stängt.",
+  "requests_comment_delete_text": "Det går inte att ångra.",
+  "requests_comment_delete_title": "Ta bort den här kommentaren?",
+  "requests_comment_edit_label": "Redigera din kommentar",
+  "requests_comment_label": "Din kommentar",
+  "requests_comment_placeholder": "Lägg till detaljer, ställ en fråga eller erbjud hjälp…",
+  "requests_comment_submit": "Kommentera",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kommentar",
+        "count__plural=*": "{count__number} kommentarer"
+      }
+    }
+  ],
+  "requests_comments_empty": "Inga kommentarer än.",
+  "requests_comments_title": "Kommentarer",
+  "requests_created_done": "Önskemålet är upplagt.",
+  "requests_delete": "Ta bort önskemålet",
+  "requests_delete_text": "Önskemålet och dess röster försvinner från listan. Det går inte att ångra.",
+  "requests_delete_title": "Ta bort det här önskemålet?",
+  "requests_deleted_done": "Önskemålet är borttaget.",
+  "requests_detail_description": "Modönskemål från {author}: {title}",
+  "requests_detail_title": "{title} — Modönskemål",
+  "requests_edit": "Redigera önskemålet",
+  "requests_edited": "redigerad",
+  "requests_empty_filtered_text": "Prova en annan status eller visa alla önskemål.",
+  "requests_empty_filtered_title": "Inga önskemål matchar",
+  "requests_empty_text": "Ingen har önskat en mod här än. Beskriv den du saknar som första person.",
+  "requests_empty_title": "Inga önskemål än",
+  "requests_error_text": "Vi kunde inte läsa in önskemålen. Försök igen om en stund.",
+  "requests_error_title": "Önskelistan svarar inte",
+  "requests_field_body": "Detaljer (valfritt)",
+  "requests_field_title": "Titel",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} tecken. Säg vad modden ska göra."
+      }
+    }
+  ],
+  "requests_filter_status_label": "Status",
+  "requests_fulfill": "Koppla min mod",
+  "requests_fulfill_done": "Önskemålet är uppfyllt. Tack!",
+  "requests_fulfill_help": "Välj en av dina publicerade moddar. Önskemålet markeras som uppfyllt och pekar på den.",
+  "requests_fulfill_label": "Din publicerade mod",
+  "requests_fulfill_none": "Du har inga publicerade moddar än. Publicera modden först och återvänd för att koppla den.",
+  "requests_fulfill_submit": "Markera som uppfylld",
+  "requests_fulfill_title": "Koppla modden som uppfyller önskemålet",
+  "requests_fulfilled_banner": "Uppfylld: modden är publicerad.",
+  "requests_fulfilled_by": "Uppfyllt med {mod}",
+  "requests_guest_hint": "Logga in för att rösta, kommentera eller önska en mod.",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Du kan ha upp till {open__number} öppna önskemål och lägga upp {perDay__number} per dag."
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} önskemål",
+        "count__plural=*": "{count__number} önskemål"
+      }
+    }
+  ],
+  "requests_list_description": "Be om moddarna du saknar i Sons of the Forest, rösta på dem du vill ha och följ skaparna som tar sig an dem.",
+  "requests_list_readout": "Önskelista",
+  "requests_list_title": "Modönskemål",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — sida {page__number}"
+      }
+    }
+  ],
+  "requests_more_actions": "Åtgärder för önskemålet",
+  "requests_new_description": "Lägg upp ett önskemål om en Sons of the Forest-mod och låt skapare ta sig an det.",
+  "requests_new_guest_title": "Logga in för att önska en mod",
+  "requests_new_intro": "Beskriv modden du önskar att det fanns. Skapare bläddrar här och kan ta sig an ditt önskemål.",
+  "requests_new_title": "Önska en mod",
+  "requests_past_end_text": "Det finns färre önskemål än så.",
+  "requests_past_end_title": "Den sidan är tom",
+  "requests_release": "Lämna tillbaka",
+  "requests_release_done": "Önskemålet är öppet igen.",
+  "requests_reopen": "Öppna önskemålet igen",
+  "requests_reopen_done": "Önskemålet är öppnat igen.",
+  "requests_report": "Rapportera",
+  "requests_saved": "Önskemålet är uppdaterat.",
+  "requests_sign_in": "Logga in",
+  "requests_sort_label": "Sortering",
+  "requests_sort_new": "Senaste",
+  "requests_sort_top": "Flest röster",
+  "requests_status_adopted": "Pågår",
+  "requests_status_all": "Alla",
+  "requests_status_closed": "Stängda",
+  "requests_status_fulfilled": "Uppfyllda",
+  "requests_status_open": "Öppna",
+  "requests_submit_create": "Lägg upp önskemålet",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Titeln måste vara minst {min__number} tecken."
+      }
+    }
+  ],
+  "requests_verify_hint": "Verifiera din e-post för att rösta, kommentera eller önska en mod.",
+  "requests_view_mod": "Visa modden",
+  "requests_vote": "Rösta",
+  "requests_vote_aria_add": "Rösta på det här önskemålet",
+  "requests_vote_aria_remove": "Ta bort din röst",
+  "requests_vote_own": "Du kan inte rösta på ditt eget önskemål.",
+  "requests_voted": "Röstat",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} röst",
+        "count__plural=*": "{count__number} röster"
       }
     }
   ],
@@ -7160,6 +7406,12 @@
   "settings_notif_reply_hint": "Någon har svarat på din kommentar.",
   "settings_notif_report": "Dina anmälningar",
   "settings_notif_report_hint": "Rangers har granskat något du anmälde.",
+  "settings_notif_request_adopted": "Förfrågan antagen",
+  "settings_notif_request_adopted_hint": "En skapare har börjat arbeta på din förfrågan.",
+  "settings_notif_request_comment": "Kommentarer på förfrågningar",
+  "settings_notif_request_comment_hint": "Någon kommenterade en förfrågan du gjort eller tagit på dig.",
+  "settings_notif_request_fulfilled": "Förfrågan uppfylld",
+  "settings_notif_request_fulfilled_hint": "En mod du bett om eller röstade på har publicerats.",
   "settings_notif_review": "Recensioner av dina moddar",
   "settings_notif_review_hint": "Någon har betygsatt en av dina moddar.",
   "settings_notif_review_reply": "Svar på dina recensioner",
@@ -7630,6 +7882,26 @@
   "signals_preferences": "Aviseringsinställningar",
   "signals_report_dismissed": "Din anmälan har granskats — ingen åtgärd behövdes",
   "signals_report_resolved": "Din anmälan har granskats och åtgärder har vidtagits",
+  "signals_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
+  "signals_request_comment": "{actor} kommenterade förfrågan ”{request}”",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} ny kommentar på förfrågan ”{request}”",
+        "count__plural=*": "{count__number} nya kommentarer på förfrågan ”{request}”"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} är ute och uppfyller förfrågan ”{request}”",
   "signals_retry": "Försök igen",
   "signals_review_on_mod": "{actor} gav {mod} en recension med {rating} stjärnor",
   "signals_review_on_mod_grouped": [
@@ -7916,6 +8188,8 @@
   "social_report_reason_nsfw_unmarked": "Vuxeninnehåll utan 18+-märkning",
   "social_report_reason_other": "Något annat",
   "social_report_reason_spam": "Spam eller reklam",
+  "social_report_request_comment_title": "Rapportera den här kommentaren",
+  "social_report_request_title": "Rapportera det här önskemålet",
   "social_report_review_title": "Anmäl den här recensionen",
   "social_report_sent": "Tack. En ranger tittar på det.",
   "social_report_submit": "Skicka anmälan",

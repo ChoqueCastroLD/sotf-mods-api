@@ -387,5 +387,7 @@
   "ranger_user_translator_hint": "授予翻译本站的人。仅管理员可授予。",
   "ranger_user_translator_on": "已授予译者徽章。",
   "ranger_user_translator_off": "已移除译者徽章。",
-  "ranger_user_translator_failed": "无法更改译者徽章"
+  "ranger_user_translator_failed": "无法更改译者徽章",
+  "ranger_target_request": "请求",
+  "ranger_target_request_comment": "请求评论"
 }

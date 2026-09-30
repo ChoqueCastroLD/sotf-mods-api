@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "Antwort bei einem Kit",
   "settings_notif_kit_reply_hint": "Jemand antwortet auf deinen Kommentar bei einem Kit.",
   "settings_notif_coauthor": "Einladungen zur Mitautorenschaft",
-  "settings_notif_coauthor_hint": "Jemand lädt dich ein, an einem seiner Mods mitzuarbeiten."
+  "settings_notif_coauthor_hint": "Jemand lädt dich ein, an einem seiner Mods mitzuarbeiten.",
+  "settings_notif_request_comment": "Kommentare zu Anfragen",
+  "settings_notif_request_comment_hint": "Jemand hat eine Anfrage kommentiert, die du gestellt oder übernommen hast.",
+  "settings_notif_request_adopted": "Anfrage übernommen",
+  "settings_notif_request_adopted_hint": "Ein Creator arbeitet jetzt an deiner Anfrage.",
+  "settings_notif_request_fulfilled": "Anfrage erfüllt",
+  "settings_notif_request_fulfilled_hint": "Ein Mod, den du angefragt oder unterstützt hast, wurde veröffentlicht."
 }

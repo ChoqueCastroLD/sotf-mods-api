@@ -18,7 +18,16 @@ import { DEVELOPERS_UPDATED, developersDoc } from '../../content/developers/inde
 import { INSTALL_VERIFIED, installGuide } from '../../content/install/index.ts';
 import { LEGAL_DOCS, LEGAL_META, legalDocs } from '../../content/legal/index.ts';
 import { serverApi } from '../api.ts';
-import { allCards, allCategories, allCreators, allKits, allTags, memoized, newestRelease } from './data.ts';
+import {
+  allCards,
+  allCategories,
+  allCreators,
+  allKits,
+  allRequests,
+  allTags,
+  memoized,
+  newestRelease,
+} from './data.ts';
 import type { SitemapPage } from './xml.ts';
 
 export const SITEMAP_TYPES = [
@@ -28,6 +37,7 @@ export const SITEMAP_TYPES = [
   'categories',
   'tags',
   'kits',
+  'requests',
   'creators',
   'news',
   'best',
@@ -49,6 +59,7 @@ export const STATIC_PATHS: readonly string[] = [
   '/mods',
   '/builds',
   '/kits',
+  '/requests',
   '/creators',
   '/categories',
   '/tags',
@@ -174,6 +185,14 @@ async function kitPages(): Promise<SitemapPage[]> {
     }));
 }
 
+async function requestPages(): Promise<SitemapPage[]> {
+  const requests = await allRequests();
+  return requests.map((request) => ({
+    path: `/requests/${request.id}`,
+    lastmod: request.editedAt ?? request.createdAt,
+  }));
+}
+
 async function creatorPages(): Promise<SitemapPage[]> {
   const creators = await allCreators();
   return creators
@@ -225,6 +244,8 @@ export async function sitemapPages(type: SitemapType): Promise<SitemapPage[]> {
       return tagPages();
     case 'kits':
       return kitPages();
+    case 'requests':
+      return requestPages();
     case 'creators':
       return creatorPages();
     case 'news':

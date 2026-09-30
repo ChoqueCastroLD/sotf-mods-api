@@ -212,5 +212,19 @@
   "content_dev_errors_text": "The code field of an error is one of these. Each problem’s type URI points to its row here.",
   "content_dev_col_code": "Code",
   "content_dev_col_status": "Status",
-  "content_dev_col_meaning": "Meaning"
+  "content_dev_col_meaning": "Meaning",
+  "content_radar_uptime_title": "Platform uptime",
+  "content_radar_uptime_intro": "The site, API, downloads and database are probed every 5 minutes. Last {days, number} days, UTC.",
+  "content_radar_uptime_overall": "{share} of the checks had everything up.",
+  "content_radar_uptime_web": "Website",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Downloads and media",
+  "content_radar_uptime_database": "Database",
+  "content_radar_uptime_now_ok": "Operational",
+  "content_radar_uptime_now_down": "Down now",
+  "content_radar_uptime_percent": "{share} uptime",
+  "content_radar_uptime_latency": "{avg, number} ms average · {p95, number} ms p95",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "No data",
+  "content_radar_uptime_bars_label": "Daily uptime of {component}, oldest to newest"
 }

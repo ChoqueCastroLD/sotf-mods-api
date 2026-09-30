@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS "ModRequestComment";
+DROP TABLE IF EXISTS "ModRequestVote";
+DROP TABLE IF EXISTS "ModRequest";

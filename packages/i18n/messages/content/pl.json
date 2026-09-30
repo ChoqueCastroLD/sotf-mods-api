@@ -212,5 +212,19 @@
   "content_dev_errors_text": "Pole code błędu ma jedną z tych wartości. URI type każdego problemu wskazuje na jego wiersz tutaj.",
   "content_dev_col_code": "Kod",
   "content_dev_col_status": "Status",
-  "content_dev_col_meaning": "Znaczenie"
+  "content_dev_col_meaning": "Znaczenie",
+  "content_radar_uptime_title": "Dostępność platformy",
+  "content_radar_uptime_intro": "Strona, API, pobieranie i baza danych są sprawdzane co 5 minut. Ostatnie {days, number} dni, UTC.",
+  "content_radar_uptime_overall": "{share} sprawdzeń zakończyło się pełnym powodzeniem.",
+  "content_radar_uptime_web": "Strona",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_media": "Pobieranie i media",
+  "content_radar_uptime_database": "Baza danych",
+  "content_radar_uptime_now_ok": "Działa",
+  "content_radar_uptime_now_down": "Nie działa",
+  "content_radar_uptime_percent": "{share} dostępności",
+  "content_radar_uptime_latency": "średnio {avg, number} ms · p95 {p95, number} ms",
+  "content_radar_uptime_day": "{date}: {state}",
+  "content_radar_uptime_no_data": "Brak danych",
+  "content_radar_uptime_bars_label": "Dzienna dostępność: {component}, od najstarszej do najnowszej"
 }

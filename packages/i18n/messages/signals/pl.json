@@ -120,5 +120,9 @@
   "signals_kit_updated_followed": "Zestaw „{kit}”, który obserwujesz, został zaktualizowany",
   "signals_kit_comment": "{actor} skomentował(a) Twój zestaw „{kit}”",
   "signals_kit_comment_reply": "{actor} odpowiedział(a) na Twój komentarz w zestawie „{kit}”",
-  "signals_coauthor_invited": "{actor} zaprasza Cię do współtworzenia {mod}"
+  "signals_coauthor_invited": "{actor} zaprasza Cię do współtworzenia {mod}",
+  "signals_request_comment": "{actor} skomentował(a) prośbę „{request}”",
+  "signals_request_comment_grouped": "{count, plural, one {# nowy komentarz do prośby „{request}”} few {# nowe komentarze do prośby „{request}”} many {# nowych komentarzy do prośby „{request}”} other {# nowego komentarza do prośby „{request}”}}",
+  "signals_request_adopted": "{actor} pracuje nad Twoją prośbą „{request}”",
+  "signals_request_fulfilled": "{mod} jest już dostępny i spełnia prośbę „{request}”"
 }

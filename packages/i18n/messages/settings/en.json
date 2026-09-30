@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "Reply on a kit",
   "settings_notif_kit_reply_hint": "Someone replies to your comment on a kit.",
   "settings_notif_coauthor": "Co-author invitations",
-  "settings_notif_coauthor_hint": "Someone invites you to co-author one of their mods."
+  "settings_notif_coauthor_hint": "Someone invites you to co-author one of their mods.",
+  "settings_notif_request_comment": "Comments on requests",
+  "settings_notif_request_comment_hint": "Someone commented on a request you made or adopted.",
+  "settings_notif_request_adopted": "Request adopted",
+  "settings_notif_request_adopted_hint": "A creator started working on your request.",
+  "settings_notif_request_fulfilled": "Request fulfilled",
+  "settings_notif_request_fulfilled_hint": "A mod you requested or voted for was published."
 }

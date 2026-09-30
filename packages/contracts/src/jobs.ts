@@ -57,6 +57,7 @@ export const JOB_PAYLOADS = {
   'legacy.counters': z.object({}),
   'compat.aggregate': z.object({ modVersionId: EntityId, gameBuildId: EntityId.optional() }),
   'compat.reconcile': z.object({}),
+  'compat.uptime-probe': z.object({}),
   // Gamification
   'gamification.evaluate': z.object({
     userId: EntityId.optional(),
@@ -136,6 +137,8 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   // Descriptions rendered with an older `RENDER_VERSION` (a pipeline bump) are re-rendered.
   { queue: 'markdown.rerender', cron: '0 5 * * *', key: 'nightly', data: {} },
   { queue: 'ops.alerts', cron: '*/5 * * * *', key: 'every-5m', data: {} },
+  // Patch Radar uptime (T1-20): one sample per platform component every 5 minutes.
+  { queue: 'compat.uptime-probe', cron: '*/5 * * * *', key: 'every-5m', data: {} },
 ];
 
 /** Queues that only run after the cut-over (`LEGACY_COEXIST=false`, PLAN §2.9). */
@@ -169,6 +172,7 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'legacy.counters': {},
   'compat.aggregate': { modVersionId: 412, gameBuildId: 7 },
   'compat.reconcile': {},
+  'compat.uptime-probe': {},
   'gamification.evaluate': { userId: 301 },
   'awards.mod-of-week': { weekStart: '2026-09-28' },
   'milestones.check': { modId: 20 },

@@ -28,6 +28,7 @@ import onboardingModule from './onboarding/index.ts';
 import platformModule from './platform/index.ts';
 import rangerModule from './ranger/index.ts';
 import reportsModule from './reports/index.ts';
+import requestsModule from './requests/index.ts';
 import resolveModule from './resolve/index.ts';
 import reviewsModule from './reviews/index.ts';
 import searchModule from './search/index.ts';
@@ -67,6 +68,7 @@ export const modules = [
   platformModule,
   rangerModule,
   reportsModule,
+  requestsModule,
   resolveModule,
   reviewsModule,
   searchModule,

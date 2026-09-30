@@ -3,6 +3,10 @@
 - `compat.aggregate` — weighted aggregate of one version × build (`@sotf/core/compat`), emits
   `compat.aggregate_changed`, syncs `Mod.compatStatus` / `Mod.possiblyOutdated`. Enqueued by the
   field-report writes and by `setAuthorTestedBuilds` (publishing), debounced 30 s per payload.
+- `compat.uptime-probe` — every 5 minutes (`*/5 * * * *`): `runUptimeProbe` of `@sotf/core/compat` samples the web
+  (`/healthz`), the API (`/api/v2/game-builds`), the media bucket (HEAD) and the database, inserts one
+  `CompatUptimeSample` per component and deletes samples older than 100 days. Read by `GET /compat/uptime`
+  and the uptime series of `/patch-radar`. No credentials.
 - `compat.mod-status` — subscriber of `version.published`, `version.status_changed` and
   `mod.status_changed`: recomputes the mod-level status when the latest version changes.
 

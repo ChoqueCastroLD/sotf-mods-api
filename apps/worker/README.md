@@ -54,7 +54,7 @@ Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 | `builds` | `build.extract` | | WP-40 |
 | `cdn` | `cdn.purge` | | WP-61 |
 | `cleanup` | `cleanup.analytics` | | WP-52 |
-| `compat` | `compat.aggregate` | `compat.mod-status` | WP-50 |
+| `compat` | `compat.aggregate`, `compat.reconcile`, `compat.uptime-probe` | `compat.mod-status` | WP-50 |
 | `digests` | `notifications.digest`, `creator.weekly` | | WP-43 |
 | `discord` | `discord.announce` | `discord.enqueue-on-event` | WP-43 |
 | `downloads` | `cleanup.download-unique` | | WP-31 |

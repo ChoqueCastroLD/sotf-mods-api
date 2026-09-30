@@ -302,6 +302,14 @@ async function compatPromptDrafts(
   }));
 }
 
+async function requestFacts(db: Executor, requestId: number): Promise<{ title: string; path: string } | null> {
+  const found = await db.execute<{ title: string }>(
+    sql`SELECT "title" FROM "ModRequest" WHERE "id" = ${requestId} AND "deletedAt" IS NULL`,
+  );
+  const row = found.rows[0];
+  return row ? { title: row.title, path: `/requests/${requestId}` } : null;
+}
+
 /** Plans the signals of one domain event. Events that notify nobody return an empty plan. */
 export async function planForEvent(db: Executor, event: DomainEvent): Promise<NotificationPlan> {
   switch (event.type) {
@@ -355,6 +363,70 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
             data: { modId: ref.id, modName: ref.name, excerpt, isBugReport: false },
             dedupeKey: `comment.mention:${p.commentId}`,
           })),
+      );
+    }
+    case 'request.commented': {
+      const p = event.payload;
+      const facts = await requestFacts(db, p.requestId);
+      if (!facts) return EMPTY;
+      const [row] = (
+        await db.execute<{ bodyMd: string }>(sql`SELECT "bodyMd" FROM "ModRequestComment" WHERE "id" = ${p.commentId}`)
+      ).rows;
+      const target = {
+        type: 'request' as const,
+        id: p.requestId,
+        title: facts.title,
+        path: `${facts.path}#c-${p.commentId}`,
+      };
+      const data = { requestTitle: facts.title, excerpt: row ? plainExcerpt(row.bodyMd) || null : null };
+      const seen = new Set<number>([p.authorId]);
+      const drafts: NotificationDraft[] = [];
+      for (const userId of [p.requestAuthorId, p.adopterId]) {
+        if (userId === null || seen.has(userId)) continue;
+        seen.add(userId);
+        drafts.push({
+          userId,
+          type: 'request.comment',
+          actorId: p.authorId,
+          target,
+          groupKey: `request.comment:${p.requestId}`,
+          data,
+        });
+      }
+      return plan(drafts);
+    }
+    case 'request.adopted': {
+      const p = event.payload;
+      if (p.requestAuthorId === null || p.requestAuthorId === p.adopterId) return EMPTY;
+      const facts = await requestFacts(db, p.requestId);
+      if (!facts) return EMPTY;
+      return plan([
+        {
+          userId: p.requestAuthorId,
+          type: 'request.adopted',
+          actorId: p.adopterId,
+          target: { type: 'request', id: p.requestId, title: facts.title, path: facts.path },
+          groupKey: null,
+          data: { requestTitle: facts.title },
+        },
+      ]);
+    }
+    case 'request.fulfilled': {
+      const p = event.payload;
+      const [facts, ref] = await Promise.all([requestFacts(db, p.requestId), loadModRef(db, p.modId)]);
+      if (!facts || !ref) return EMPTY;
+      const recipients = new Set<number>(p.voterIds);
+      if (p.requestAuthorId !== null) recipients.add(p.requestAuthorId);
+      recipients.delete(p.fulfillerId);
+      return plan(
+        [...recipients].map((userId) => ({
+          userId,
+          type: 'request.fulfilled' as const,
+          actorId: p.fulfillerId,
+          target: { type: 'request' as const, id: p.requestId, title: facts.title, path: facts.path },
+          groupKey: null,
+          data: { requestTitle: facts.title, modId: ref.id, modName: ref.name },
+        })),
       );
     }
     case 'comment.deleted':

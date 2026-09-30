@@ -2154,6 +2154,7 @@
   "common_term_notifications": "通知",
   "common_term_patch_radar": "补丁雷达",
   "common_term_ranger_station": "护林站",
+  "common_term_requests": "请求",
   "common_term_signals": "信号",
   "common_theme_day": "日间",
   "common_theme_label": "主题",
@@ -2634,6 +2635,44 @@
   ],
   "content_radar_summary_title": "概要",
   "content_radar_title": "SOTF 模组能在 {build} 补丁上运行吗？",
+  "content_radar_uptime_api": "API",
+  "content_radar_uptime_bars_label": "{component} 每日可用性，从旧到新",
+  "content_radar_uptime_database": "数据库",
+  "content_radar_uptime_day": "{date}：{state}",
+  "content_radar_uptime_intro": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "站点、API、下载和数据库每 5 分钟检测一次。最近 {days__number} 天（UTC）。"
+      }
+    }
+  ],
+  "content_radar_uptime_latency": [
+    {
+      "declarations": [
+        "input avg",
+        "input p95",
+        "local avg__number = avg: number",
+        "local p95__number = p95: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "平均 {avg__number} 毫秒 · p95 {p95__number} 毫秒"
+      }
+    }
+  ],
+  "content_radar_uptime_media": "下载与媒体",
+  "content_radar_uptime_no_data": "无数据",
+  "content_radar_uptime_now_down": "当前不可用",
+  "content_radar_uptime_now_ok": "运行正常",
+  "content_radar_uptime_overall": "{share} 的检测中所有组件均正常。",
+  "content_radar_uptime_percent": "可用性 {share}",
+  "content_radar_uptime_title": "平台可用性",
+  "content_radar_uptime_web": "网站",
   "content_radar_works_empty": "{build} 上还没有确认可用的热门模组。试过哪个？告诉我们。",
   "content_radar_works_title": "确认可用",
   "content_reading_time": [
@@ -2962,6 +3001,22 @@
       }
     }
   ],
+  "emails_notify_item_request_adopted": "{actor} 正在处理你的请求“{request}”",
+  "emails_notify_item_request_comment": "{actor} 评论了请求“{request}”",
+  "emails_notify_item_request_comment_many": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "请求“{request}”有 {count__number} 条新评论"
+      }
+    }
+  ],
+  "emails_notify_item_request_fulfilled": "你请求或投票支持的模组已发布：{mod}",
   "emails_notify_item_review_on_my_mod": "{actor} 评价了 {mod}：{rating}/5",
   "emails_notify_item_review_on_my_mod_many": [
     {
@@ -6001,6 +6056,8 @@
   "ranger_target_compat_report": "实地报告",
   "ranger_target_kit": "套装",
   "ranger_target_mod": "模组",
+  "ranger_target_request": "请求",
+  "ranger_target_request_comment": "请求评论",
   "ranger_target_review": "评价",
   "ranger_target_user": "用户",
   "ranger_target_version": "版本",
@@ -6148,6 +6205,179 @@
       "selectors": [],
       "match": {
         "": "{count__number} 分钟"
+      }
+    }
+  ],
+  "requests_action_new": "请求模组",
+  "requests_adopt": "我来做",
+  "requests_adopt_done": "你现在正在处理这个请求。",
+  "requests_adopted_by": "{name} 正在制作",
+  "requests_asked_on": "提出于 {date}",
+  "requests_back": "全部请求",
+  "requests_back_to_first": "回到第一页",
+  "requests_badge_adopter": "正在制作",
+  "requests_badge_author": "请求者",
+  "requests_body_placeholder": "它应该做什么？为什么有用？需要兼容哪些模组？",
+  "requests_by": "由 {name} 提出",
+  "requests_clear_filters": "显示全部请求",
+  "requests_close": "关闭请求",
+  "requests_close_done": "请求已关闭。",
+  "requests_closed_banner": "此请求已关闭。",
+  "requests_comment_delete_text": "此操作无法撤销。",
+  "requests_comment_delete_title": "删除此评论？",
+  "requests_comment_edit_label": "编辑评论",
+  "requests_comment_label": "你的评论",
+  "requests_comment_placeholder": "补充细节、提问或提供帮助……",
+  "requests_comment_submit": "评论",
+  "requests_comments_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条评论"
+      }
+    }
+  ],
+  "requests_comments_empty": "还没有评论。",
+  "requests_comments_title": "评论",
+  "requests_created_done": "请求已发布。",
+  "requests_delete": "删除请求",
+  "requests_delete_text": "请求及其投票将从请求板消失，且无法撤销。",
+  "requests_delete_title": "删除此请求？",
+  "requests_deleted_done": "请求已删除。",
+  "requests_detail_description": "{author} 提出的模组请求：{title}",
+  "requests_detail_title": "{title} — 模组请求",
+  "requests_edit": "编辑请求",
+  "requests_edited": "已编辑",
+  "requests_empty_filtered_text": "试试其他状态，或显示全部请求。",
+  "requests_empty_filtered_title": "没有符合的请求",
+  "requests_empty_text": "这里还没有人请求模组。来描述你缺少的那个吧。",
+  "requests_empty_title": "这里还没有请求",
+  "requests_error_text": "无法加载请求，请稍后再试。",
+  "requests_error_title": "请求板没有响应",
+  "requests_field_body": "详情（可选）",
+  "requests_field_title": "标题",
+  "requests_field_title_hint": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number}–{max__number} 个字符，说明模组应该做什么。"
+      }
+    }
+  ],
+  "requests_filter_status_label": "状态",
+  "requests_fulfill": "关联我的模组",
+  "requests_fulfill_done": "请求已完成，谢谢！",
+  "requests_fulfill_help": "选择你已发布的一个模组，请求将标记为已完成并指向它。",
+  "requests_fulfill_label": "你已发布的模组",
+  "requests_fulfill_none": "你还没有已发布的模组。请先发布模组，再回来关联。",
+  "requests_fulfill_submit": "标记为已完成",
+  "requests_fulfill_title": "关联完成此请求的模组",
+  "requests_fulfilled_banner": "已完成：模组已发布。",
+  "requests_fulfilled_by": "已由 {mod} 完成",
+  "requests_guest_hint": "登录后即可投票、评论或提出请求。",
+  "requests_limits": [
+    {
+      "declarations": [
+        "input open",
+        "input perDay",
+        "local open__number = open: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "最多可同时有 {open__number} 个开放请求，每天最多发布 {perDay__number} 个。"
+      }
+    }
+  ],
+  "requests_list_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条请求"
+      }
+    }
+  ],
+  "requests_list_description": "提出你希望在 Sons of the Forest 中出现的模组，为想要的请求投票，并关注接手的创作者。",
+  "requests_list_readout": "请求板",
+  "requests_list_title": "模组请求",
+  "requests_list_title_page": [
+    {
+      "declarations": [
+        "input title",
+        "input page",
+        "local page__number = page: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{title} — 第 {page__number} 页"
+      }
+    }
+  ],
+  "requests_more_actions": "请求操作",
+  "requests_new_description": "发布 Sons of the Forest 的模组请求，让创作者来接手。",
+  "requests_new_guest_title": "登录后提出请求",
+  "requests_new_intro": "描述你希望存在的模组。创作者会浏览这里，并可能接手你的请求。",
+  "requests_new_title": "请求模组",
+  "requests_past_end_text": "请求数量没有那么多。",
+  "requests_past_end_title": "该页为空",
+  "requests_release": "放弃认领",
+  "requests_release_done": "请求已重新开放。",
+  "requests_reopen": "重新开放请求",
+  "requests_reopen_done": "请求已重新开放。",
+  "requests_report": "举报",
+  "requests_saved": "请求已更新。",
+  "requests_sign_in": "登录",
+  "requests_sort_label": "排序",
+  "requests_sort_new": "最新",
+  "requests_sort_top": "票数最多",
+  "requests_status_adopted": "进行中",
+  "requests_status_all": "全部",
+  "requests_status_closed": "已关闭",
+  "requests_status_fulfilled": "已完成",
+  "requests_status_open": "开放",
+  "requests_submit_create": "发布请求",
+  "requests_title_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "标题至少需要 {min__number} 个字符。"
+      }
+    }
+  ],
+  "requests_verify_hint": "验证邮箱后即可投票、评论或提出请求。",
+  "requests_view_mod": "查看模组",
+  "requests_vote": "投票",
+  "requests_vote_aria_add": "为此请求投票",
+  "requests_vote_aria_remove": "撤销投票",
+  "requests_vote_own": "不能为自己的请求投票。",
+  "requests_voted": "已投票",
+  "requests_votes": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 票"
       }
     }
   ],
@@ -6509,6 +6739,12 @@
   "settings_notif_reply_hint": "有人回复了你的评论。",
   "settings_notif_report": "你的举报",
   "settings_notif_report_hint": "护林员处理了你举报的内容。",
+  "settings_notif_request_adopted": "请求已被认领",
+  "settings_notif_request_adopted_hint": "一位创作者开始处理你的请求。",
+  "settings_notif_request_comment": "请求的评论",
+  "settings_notif_request_comment_hint": "有人评论了你发起或认领的请求。",
+  "settings_notif_request_fulfilled": "请求已完成",
+  "settings_notif_request_fulfilled_hint": "你请求或投票支持的模组已发布。",
   "settings_notif_review": "你的模组收到的评价",
   "settings_notif_review_hint": "有人给你的模组打了分。",
   "settings_notif_review_reply": "对你评价的回复",
@@ -6952,6 +7188,22 @@
   "signals_preferences": "通知设置",
   "signals_report_dismissed": "你的举报已处理——无需采取措施",
   "signals_report_resolved": "你的举报已处理，并已采取措施",
+  "signals_request_adopted": "{actor} 正在处理你的请求“{request}”",
+  "signals_request_comment": "{actor} 评论了请求“{request}”",
+  "signals_request_comment_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input request",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "请求“{request}”有 {count__number} 条新评论"
+      }
+    }
+  ],
+  "signals_request_fulfilled": "{mod} 已发布，满足了请求“{request}”",
   "signals_retry": "重试",
   "signals_review_on_mod": "{actor} 给 {mod} 打了 {rating} 星评价",
   "signals_review_on_mod_grouped": [
@@ -7216,6 +7468,8 @@
   "social_report_reason_nsfw_unmarked": "成人内容未标记 18+",
   "social_report_reason_other": "其他",
   "social_report_reason_spam": "垃圾信息或广告",
+  "social_report_request_comment_title": "举报此评论",
+  "social_report_request_title": "举报此请求",
   "social_report_review_title": "举报这条评价",
   "social_report_sent": "谢谢，护林员会查看。",
   "social_report_submit": "提交举报",

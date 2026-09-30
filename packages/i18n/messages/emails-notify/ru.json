@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "Набор {kit}, на который вы подписаны, обновлён",
   "emails_notify_item_kit_comment": "{actor} прокомментировал(а) ваш набор {kit}",
   "emails_notify_item_kit_comment_reply": "{actor} ответил(а) на ваш комментарий к набору {kit}",
-  "emails_notify_item_coauthor_invited": "{actor} приглашает вас стать соавтором {mod}"
+  "emails_notify_item_coauthor_invited": "{actor} приглашает вас стать соавтором {mod}",
+  "emails_notify_item_request_comment": "{actor} прокомментировал(а) запрос «{request}»",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# новый комментарий к запросу «{request}»} few {# новых комментария к запросу «{request}»} many {# новых комментариев к запросу «{request}»} other {# нового комментария к запросу «{request}»}}",
+  "emails_notify_item_request_adopted": "{actor} взялся(-ась) за ваш запрос «{request}»",
+  "emails_notify_item_request_fulfilled": "Вышел мод, который вы запрашивали или за который голосовали: {mod}"
 }

@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "Kitet {kit} som du följer har uppdaterats",
   "emails_notify_item_kit_comment": "{actor} kommenterade ditt kit {kit}",
   "emails_notify_item_kit_comment_reply": "{actor} svarade på din kommentar på kitet {kit}",
-  "emails_notify_item_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}"
+  "emails_notify_item_coauthor_invited": "{actor} bjöd in dig som medförfattare till {mod}",
+  "emails_notify_item_request_comment": "{actor} kommenterade förfrågan ”{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
+  "emails_notify_item_request_fulfilled": "En mod du bett om eller röstade på är ute: {mod}"
 }

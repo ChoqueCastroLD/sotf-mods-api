@@ -405,5 +405,11 @@
   "settings_notif_kit_reply": "Ответ в наборе",
   "settings_notif_kit_reply_hint": "Кто-то отвечает на ваш комментарий к набору.",
   "settings_notif_coauthor": "Приглашения в соавторы",
-  "settings_notif_coauthor_hint": "Кто-то приглашает вас стать соавтором одного из своих модов."
+  "settings_notif_coauthor_hint": "Кто-то приглашает вас стать соавтором одного из своих модов.",
+  "settings_notif_request_comment": "Комментарии к запросам",
+  "settings_notif_request_comment_hint": "Кто-то прокомментировал запрос, который вы создали или взяли в работу.",
+  "settings_notif_request_adopted": "Запрос взят в работу",
+  "settings_notif_request_adopted_hint": "Автор начал работать над вашим запросом.",
+  "settings_notif_request_fulfilled": "Запрос выполнен",
+  "settings_notif_request_fulfilled_hint": "Опубликован мод, который вы запрашивали или за который голосовали."
 }

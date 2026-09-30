@@ -198,5 +198,7 @@
   "social_md_spoiler": "Spoiler",
   "social_comment_sign_in": "Melde dich an, um zu kommentieren",
   "social_comments_more_replies": "{count, plural, one {# weitere Antwort} other {# weitere Antworten}}",
-  "social_comments_empty": "Noch keine Kommentare. Fragen, Tipps und Fehlerberichte gehören hierher."
+  "social_comments_empty": "Noch keine Kommentare. Fragen, Tipps und Fehlerberichte gehören hierher.",
+  "social_report_request_title": "Diesen Wunsch melden",
+  "social_report_request_comment_title": "Diesen Kommentar melden"
 }

@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "Takip ettiğin {kit} kiti güncellendi",
   "emails_notify_item_kit_comment": "{actor}, {kit} kitine yorum yaptı",
   "emails_notify_item_kit_comment_reply": "{actor}, {kit} kitindeki yorumuna yanıt verdi",
-  "emails_notify_item_coauthor_invited": "{actor} seni {mod} için ortak yazar olarak davet etti"
+  "emails_notify_item_coauthor_invited": "{actor} seni {mod} için ortak yazar olarak davet etti",
+  "emails_notify_item_request_comment": "{actor}, “{request}” isteğine yorum yaptı",
+  "emails_notify_item_request_comment_many": "{count, plural, one {“{request}” isteğinde # yeni yorum} other {“{request}” isteğinde # yeni yorum}}",
+  "emails_notify_item_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
+  "emails_notify_item_request_fulfilled": "İstediğin veya oy verdiğin bir mod yayında: {mod}"
 }

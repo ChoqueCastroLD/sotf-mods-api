@@ -146,7 +146,7 @@ export function deferWithUndo(message: string, commit: () => void, revert: () =>
 // Report dialog (comments, reviews, field reports)
 // ---------------------------------------------------------------------------------------------
 
-export type ReportTarget = 'comment' | 'review' | 'compat_report';
+export type ReportTarget = 'comment' | 'review' | 'compat_report' | 'request' | 'request_comment';
 
 const REASONS = ['spam', 'harassment', 'nsfw_unmarked', 'illegal', 'other'] as const;
 
@@ -217,7 +217,11 @@ export function ReportDialog({ target, onClose }: ReportDialogProps) {
       ? t('social_report_review_title')
       : target?.type === 'compat_report'
         ? t('social_report_field_report_title')
-        : t('social_report_comment_title');
+        : target?.type === 'request'
+          ? t('social_report_request_title')
+          : target?.type === 'request_comment'
+            ? t('social_report_request_comment_title')
+            : t('social_report_comment_title');
 
   return (
     <Modal open={target !== null} onClose={onClose} title={title} description={t('social_report_intro')} size="sm">

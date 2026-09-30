@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "你关注的套件 {kit} 已更新",
   "emails_notify_item_kit_comment": "{actor} 评论了你的套件 {kit}",
   "emails_notify_item_kit_comment_reply": "{actor} 回复了你在套件 {kit} 下的评论",
-  "emails_notify_item_coauthor_invited": "{actor} 邀请你共同维护 {mod}"
+  "emails_notify_item_coauthor_invited": "{actor} 邀请你共同维护 {mod}",
+  "emails_notify_item_request_comment": "{actor} 评论了请求“{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, other {请求“{request}”有 # 条新评论}}",
+  "emails_notify_item_request_adopted": "{actor} 正在处理你的请求“{request}”",
+  "emails_notify_item_request_fulfilled": "你请求或投票支持的模组已发布：{mod}"
 }

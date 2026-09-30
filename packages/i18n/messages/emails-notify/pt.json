@@ -59,5 +59,9 @@
   "emails_notify_item_kit_updated_followed": "O kit {kit} que você segue foi atualizado",
   "emails_notify_item_kit_comment": "{actor} comentou no seu kit {kit}",
   "emails_notify_item_kit_comment_reply": "{actor} respondeu ao seu comentário no kit {kit}",
-  "emails_notify_item_coauthor_invited": "{actor} convidou você para ser coautor de {mod}"
+  "emails_notify_item_coauthor_invited": "{actor} convidou você para ser coautor de {mod}",
+  "emails_notify_item_request_comment": "{actor} comentou o pedido “{request}”",
+  "emails_notify_item_request_comment_many": "{count, plural, one {# novo comentário no pedido “{request}”} other {# novos comentários no pedido “{request}”}}",
+  "emails_notify_item_request_adopted": "{actor} está a trabalhar no teu pedido “{request}”",
+  "emails_notify_item_request_fulfilled": "Saiu um mod que pediste ou votaste: {mod}"
 }
