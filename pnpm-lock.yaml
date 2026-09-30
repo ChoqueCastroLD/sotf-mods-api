@@ -566,6 +566,9 @@ importers:
       '@sentry/core':
         specifier: 'catalog:'
         version: 11.1.0
+      '@simplewebauthn/server':
+        specifier: 'catalog:'
+        version: 14.0.3
       '@sotf/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -826,6 +829,9 @@ importers:
       '@sentry/core':
         specifier: 'catalog:'
         version: 11.1.0
+      '@simplewebauthn/server':
+        specifier: 'catalog:'
+        version: 14.0.3
       '@sotf/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts

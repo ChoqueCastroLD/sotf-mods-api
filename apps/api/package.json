@@ -29,6 +29,7 @@
     "@node-rs/bcrypt": "catalog:",
     "@scalar/fastify-api-reference": "catalog:",
     "@sentry/core": "catalog:",
+    "@simplewebauthn/server": "catalog:",
     "@sotf/contracts": "workspace:*",
     "@sotf/core": "workspace:*",
     "@sotf/db": "workspace:*",

@@ -1,12 +1,13 @@
 # Release readiness (2026-09-30)
 
-State of `main` after the final integration (notif-types, search-publishing, console-extras, ops-og merged).
+State of `main` after the second integration (live-web, analytics-countries, auth-2fa, auth-tokens-oauth, kits-social, mod-knowledge, discovery-ai, radar-requests, translations, build-viewer merged on top of the first one).
 
 ## Verified on main
 
 - `pnpm install --frozen-lockfile`, `pnpm gen`, `pnpm typecheck` (15 packages) and `pnpm build` (whole repo): OK.
-- Production images `api.Dockerfile`, `worker.Dockerfile`, `web.Dockerfile` (`ops/docker/`) build: OK (api and worker 317 MB, web 176 MB). The throwaway tags were removed.
-- `pnpm check:forbidden`: no forbidden content (no `files.sotf-mods.com`, no legacy env vars).
+- Production images `api.Dockerfile`, `worker.Dockerfile`, `web.Dockerfile` (`ops/docker/`) build: OK (api and worker 331 MB, web 179 MB of the 180 MB budget), and the tools image `tools.Dockerfile` (1.17 GB). The throwaway tags were removed.
+- `pnpm check:forbidden` clean and `pnpm lint` (biome) clean.
+- Migrations 2009 through 2191 (71 in total) apply from an empty Postgres 16 (throwaway container, removed) with `db:migrate`; `db:lint-sql` clean.
 - Dev-only mode: no tests or QA were run.
 
 ## Complete
@@ -19,14 +20,18 @@ State of `main` after the final integration (notif-types, search-publishing, con
 - Top-bar Signals panel and taxonomy names in console cards.
 - Alerts: `ALERT_INTERVAL_SECONDS` removed; nightly `invariants.ts --record` documented.
 
+## Added by the second integration
+
+- Live counters over SSE and the compare button/badge embed (live-web), country analytics (analytics-countries).
+- Two-factor (TOTP, recovery codes, passkeys; migrations 2120-2123; deps `@simplewebauthn/server` 14.0.3 in api, worker and core, `@simplewebauthn/browser` 14.0.0 and `qrcode` 1.5.4 in web).
+- Personal access tokens and Discord OAuth (2130-2131); both stay hidden/inactive unless `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET` are set on the api (PATs work without extra configuration).
+- Kit comments and social (2140); mod known issues, FAQ and co-authors (2150-2152); recommendations and Scout (2160-2161; env `SCOUT_MODEL`, `SCOUT_DAILY_BUDGET_USD`, `SCOUT_ENABLED`); platform uptime and the request board (2170-2172); automatic translations of short descriptions (2180); 3D build viewer and kit bundles (2190-2191; dep `three` 0.186.1).
+- Integration fixes: `@simplewebauthn/server` added to the api and worker packages (the bundles keep npm deps external, so the image runtime check failed without it); stray brace in `packages/ui/src/tokens.css` (live-web) broke the CSS build; biome findings of several slices.
+
 ## Open (not resolved)
 
 Code / product:
-- Live download events and kit follows over SSE (T1-24): needs a throttled SSE design and a product decision; `GET /mods/:id/live` polling stays.
-- `data-motion="full"` cannot lift the OS reduced-motion rule (`packages/ui/src/tokens.css`, `!important`); low priority.
 - Build pages: `+ Kit` links to `/me/kits?add=<id>` (no popover) and title counts are not live.
-- Mod public stats sparkline and Recharts `ChartFigure` (WP-62): T1, left out on purpose.
-- Scout copy in `cmdk`: deferred to T1.
 - `compat.prompt` fires once at build publication; later downloaders only see it via `GET /me/compat-prompts`.
 - `seo/faq.ts` FAQ templates stay in core (no consumers for an i18n namespace yet).
 - Legacy contract harness: `byId` + `allowExtra` for `type-null` fixtures and settle wait before downloads `counting` (WP-31/WP-32); `pnpm load` needs the `catalog` target (WP-33).
@@ -53,8 +58,8 @@ The full procedure is `ops/deploy/COOLIFY.md` (variables in `ops/deploy/ENV.md`,
 
 ## Needs the owner
 
+- Set `DISCORD_CLIENT_ID`/`DISCORD_CLIENT_SECRET` when a Discord OAuth app exists (the button stays hidden until then) and review the Scout variables.
 - Create and configure the apps, domains and variables in the Coolify UI (nothing was applied).
 - Legal review of the five legal drafts, then set `LEGAL_META[doc].reviewed = true`; confirm mailboxes in `LEGAL_CONTACTS`; add a security mailbox to `pages/.well-known/security.txt.ts`; bump `INSTALL_VERIFIED`.
 - Native review of translations.
-- Decide on the live download SSE design.
 - Schedule the nightly invariants task.
