@@ -12,11 +12,14 @@
  *     return s.trim().replace(/<[^>]*>?/gm, '');
  *   };
  *
- * DOMPurify parses the text as HTML and serialises it back, which for plain text escapes `&`, `<`,
- * `>` and U+00A0 (`&amp;`, `&lt;`, `&gt;`, `&nbsp;` — the letters and `;` then survive the
- * filter: that is where the stray entities come from). Texts whose HTML parse is not a plain text
- * node (tags, comments, existing character references) cannot be reproduced exactly without a
- * browser, so they return `null` and B8 leaves them alone — a false negative, never a false fix.
+ * DOMPurify 3.0.5 (the version the legacy layout loads) returns a text without `<` unchanged
+ * ("exit directly if we have nothing to do"): the filter then simply drops `>`, accents, U+00A0…
+ * (`dropping -> stash` → `dropping - stash`). Only a text containing `<` is parsed as HTML and
+ * serialised back, which escapes `&`, `<`, `>` and U+00A0 (`&amp;`, `&lt;`, `&gt;`, `&nbsp;` — the
+ * letters and `;` then survive the filter: that is where the stray entities come from). Such texts
+ * whose HTML parse is not a plain text node (tags, comments, existing character references) cannot
+ * be reproduced exactly without a browser, so they return `null` and B8 leaves them alone — a
+ * false negative, never a false fix.
  */
 
 const DISALLOWED = /[^\p{Script=Han}a-zA-Z0-9,.¡!¿?$%&()#+;/'"\n @_-]/gu;
@@ -33,6 +36,8 @@ export function legacyFormValue(description: string): string {
 
 /** `DOMPurify.sanitize(text)` for plain text, or null when the HTML parse would not be plain text. */
 function serialisePlainText(text: string): string | null {
+  // DOMPurify 3.0.5 purify.js:1427 «Exit directly if we have nothing to do»: no `<`, no parsing.
+  if (!text.includes('<')) return text;
   if (/<[A-Za-z!/?]/.test(text)) return null; // start of a tag, comment or doctype
   if (/&(?:#\d+|#x[0-9a-f]+|[a-z][a-z0-9]*);?/i.test(text)) return null; // a character reference
   if (text.includes('\0')) return null;
