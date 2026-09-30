@@ -1,0 +1,31 @@
+---
+/**
+ * `/register` (PLAN §4.2 «P + isla», research/03 §6.13). Static HTML for everyone (edge-cached,
+ * purged on deploy); after sign-up the island shows «Day 1 on the island» and the onboarding.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import AuthShell from '../components/account/AuthShell.astro';
+import { islandMessages } from '../islands/auth/messages.server.ts';
+import RegisterForm from '../islands/auth/RegisterForm.tsx';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { loadEnv } from '../lib/env.ts';
+
+setPageCache(Astro, pageCache.static());
+const locale = Astro.locals.locale;
+---
+
+<AuthShell
+  template="register"
+  title={m.auth_meta_register_title()}
+  description={m.auth_meta_register_description()}
+  heading={m.auth_register_heading()}
+  intro={m.auth_register_intro()}
+>
+  <RegisterForm
+    client:load
+    locale={locale}
+    lang={toHtmlLang(locale)}
+    messages={islandMessages('RegisterForm', locale)} turnstileSiteKey={loadEnv().turnstileSiteKey} />
+</AuthShell>

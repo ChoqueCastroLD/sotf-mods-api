@@ -1,0 +1,74 @@
+---
+/**
+ * Layout of the auth pages (research/03 §6.13): the topographic art panel with the contour pin
+ * and the three reasons to sign up, next to the form column. On mobile the art shrinks to a
+ * 120 px strip above the form. Every auth page is `noindex` and has no ads (research/03 §5.6).
+ *
+ * The form itself is a React island passed in the default slot; `<noscript>` explains that the
+ * forms need JavaScript (the API only accepts JSON bodies, PLAN §5.1).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Backpack, BellRing, MapPin, Star } from 'lucide-react';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+interface Props {
+  /** Template name for RUM and analytics (`login`, `register`…). */
+  template: string;
+  title: string;
+  description: string;
+  heading: string;
+  intro?: string | undefined;
+}
+
+const { template, title, description, heading, intro } = Astro.props;
+const benefits = [
+  { icon: Backpack, text: m.auth_art_benefit_backpack() },
+  { icon: BellRing, text: m.auth_art_benefit_updates() },
+  { icon: Star, text: m.auth_art_benefit_community() },
+] as const;
+---
+
+<BaseLayout template={template} seo={{ title, description, noindex: true }} mainClass="grid">
+  <div
+    class="mx-auto grid w-full max-w-(--container-content) md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:px-6 md:py-12"
+  >
+    <aside
+      class="relative flex h-30 items-end overflow-hidden border-b border-border bg-surface px-4 pb-4 md:h-auto md:items-center md:rounded-xl md:border md:p-10"
+      aria-label={m.auth_art_label()}
+    >
+      <div class="texture-topo pointer-events-none absolute inset-0 opacity-70" aria-hidden="true"></div>
+      <div class="relative grid gap-4 md:gap-8">
+        <span class="hidden size-12 items-center justify-center rounded-full border border-primary/40 bg-primary/10 text-primary md:flex" aria-hidden="true">
+          <Icon icon={MapPin} size={24} />
+        </span>
+        <p class="font-display-caps text-display-xs text-fg md:text-display-sm">{m.auth_art_tagline()}</p>
+        <ul class="hidden gap-3 text-fg-muted md:grid">
+          {
+            benefits.map((benefit) => (
+              <li class="flex items-center gap-3">
+                <span class="flex text-signal">
+                  <Icon icon={benefit.icon} size={18} />
+                </span>
+                {benefit.text}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </aside>
+
+    <section class="grid content-start gap-6 px-4 py-8 md:px-0 md:py-4" aria-labelledby="auth-heading">
+      <header class="grid gap-2">
+        <h1 id="auth-heading" class="font-display-caps text-display-sm text-fg">{heading}</h1>
+        {intro && <p class="text-fg-muted">{intro}</p>}
+      </header>
+      <noscript>
+        <p class="rounded-md border border-warning/50 bg-warning/10 p-3 text-sm text-fg">{m.auth_noscript()}</p>
+      </noscript>
+      <div class="w-full max-w-md">
+        <slot />
+      </div>
+    </section>
+  </div>
+</BaseLayout>
