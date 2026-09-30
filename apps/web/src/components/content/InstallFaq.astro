@@ -1,0 +1,27 @@
+---
+/**
+ * FAQ of the install guide: every answer fully visible in the HTML (not collapsed), so readers and
+ * answer engines get exactly the text of the `FAQPage` JSON-LD (PLAN §4.5, §8.7).
+ */
+import { m } from '@sotf/i18n/messages';
+
+interface Props {
+  items: ReadonlyArray<{ q: string; a: string }>;
+}
+
+const { items } = Astro.props;
+---
+
+<section id="faq" aria-labelledby="faq-title" class="flex flex-col gap-4 scroll-mt-32 lg:scroll-mt-20">
+  <h2 id="faq-title" class="font-display-caps text-display-xs text-fg">{m.content_install_faq_title()}</h2>
+  <dl class="grid gap-3">
+    {
+      items.map((item) => (
+        <div class="rounded-lg border border-border bg-surface p-5">
+          <dt class="text-lg font-semibold text-balance text-fg">{item.q}</dt>
+          <dd class="mt-2 text-pretty text-fg-muted">{item.a}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

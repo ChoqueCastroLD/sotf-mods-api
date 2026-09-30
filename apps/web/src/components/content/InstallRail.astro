@@ -1,0 +1,80 @@
+---
+/**
+ * Rail of the install guide (research/03 §6.7): numbered steps ①–④ followed by the other
+ * sections, with a reading-progress bar. Sticky beside the guide from `lg`; below that it is a
+ * horizontal stepper pinned under the header. `scroll-spy.ts` highlights the section being read.
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+
+export interface RailItem {
+  id: string;
+  label: string;
+  /** Step number (1–4) for the numbered steps. */
+  step?: number;
+}
+
+interface Props {
+  items: readonly RailItem[];
+  /** Selector of the element whose reading progress the bar shows. */
+  target: string;
+}
+
+const { items, target } = Astro.props;
+const locale = Astro.locals.locale;
+---
+
+<nav
+  aria-label={m.content_install_rail_label()}
+  data-scroll-spy={target}
+  class="sticky top-16 z-(--z-raised) -mx-4 border-b border-border bg-bg/95 px-4 py-2 supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:-mx-6 md:px-6 lg:top-20 lg:mx-0 lg:border-0 lg:bg-transparent lg:p-0 lg:backdrop-blur-none"
+>
+  <p class="readout mb-3 hidden lg:block">{m.content_install_rail_title()}</p>
+  <ol data-scroll-rail class="flex snap-x gap-1 overflow-x-auto [scrollbar-width:none] lg:flex-col lg:overflow-visible">
+    {
+      items.map((item) => (
+        <li class="shrink-0 snap-start">
+          <a
+            href={`#${item.id}`}
+            class="group flex min-h-11 items-center gap-2 rounded-md px-2 text-sm text-fg-muted hover:bg-fg/6 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus aria-[current]:bg-primary/10 aria-[current]:font-semibold aria-[current]:text-fg lg:min-h-9"
+          >
+            {item.step !== undefined ? (
+              <span
+                aria-hidden="true"
+                class="flex size-6 shrink-0 items-center justify-center rounded-full border border-border-strong font-mono text-xs group-aria-[current]:border-primary group-aria-[current]:bg-primary group-aria-[current]:text-primary-fg"
+              >
+                {formatNumber(locale, item.step)}
+              </span>
+            ) : (
+              <span aria-hidden="true" class="hidden w-6 shrink-0 text-center text-fg-subtle lg:inline">
+                ·
+              </span>
+            )}
+            <span class="whitespace-nowrap lg:whitespace-normal">
+              {item.step !== undefined && (
+                <span class="sr-only">{m.content_install_step_number({ step: item.step })} </span>
+              )}
+              {item.label}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+  <div
+    class="mt-2 h-1 overflow-hidden rounded-full bg-fg/10 lg:mt-4"
+    role="progressbar"
+    aria-label={m.content_install_progress()}
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+  >
+    <div data-scroll-progress class="h-full origin-left scale-x-0 bg-primary motion-safe:transition-transform"></div>
+  </div>
+</nav>
+
+<script>
+  import { initScrollSpy } from './scroll-spy.ts';
+
+  initScrollSpy();
+</script>

@@ -852,6 +852,408 @@
   "console_update_detail": "你浏览期间我们更新了 SOTF Mods。重新加载即可获得最新版本。",
   "console_update_reload": "重新加载",
   "console_update_title": "新版本已发布",
+  "content_about_disclaimer_title": "非官方粉丝社区",
+  "content_about_eyebrow": "关于",
+  "content_about_links_title": "营地周边",
+  "content_binding_note": "本译文仅供参考。如与英文版不一致，以英文版为准。",
+  "content_brand_asset_app_icon": "应用图标",
+  "content_brand_asset_app_icon_hint": "夜间底色上的图钉，用于头像和快捷方式。",
+  "content_brand_asset_horizontal": "横版标志",
+  "content_brand_asset_horizontal_hint": "默认版本：图形标与文字标并排。",
+  "content_brand_asset_mark": "图形标（Contour Pin）",
+  "content_brand_asset_mark_hint": "仅图钉。16 到 24 px 之间请使用简化版。",
+  "content_brand_asset_og": "社交分享预览图",
+  "content_brand_asset_og_hint": "1200 × 630，用于链接预览和缩略图。",
+  "content_brand_asset_stacked": "竖版标志",
+  "content_brand_asset_stacked_hint": "用于方形或较高的空间。",
+  "content_brand_asset_wordmark": "文字标",
+  "content_brand_asset_wordmark_hint": "不含图钉的“SOTF MODS”，用于狭窄的横向空间。",
+  "content_brand_color_blueprint": "蓝图（建筑）",
+  "content_brand_color_bone": "骨白（文字、日间背景）",
+  "content_brand_color_flare_day": "日间上的信号焰",
+  "content_brand_color_flare_night": "夜色上的信号焰",
+  "content_brand_color_lichen": "地衣（可用）",
+  "content_brand_color_night": "夜色（背景）",
+  "content_brand_color_signal": "信号（实时、信息）",
+  "content_brand_color_solafite": "索拉石（精选）",
+  "content_brand_colors_text": "夜色与骨白是基础，信号焰是唯一的强调色。状态色用于表达含义，而非装饰。",
+  "content_brand_colors_title": "配色",
+  "content_brand_description": "下载 SOTF Mods 的标志、图形标和配色，并了解如何在你的模组、视频或服务器中链接到本站。",
+  "content_brand_do_contrast": "深色背景用夜间版文件，浅色背景用日间版文件。",
+  "content_brand_do_link": "将标志链接到 sotf-mods.com。",
+  "content_brand_do_size": "完整图形标不小于 24 px（简化版不小于 16 px）。",
+  "content_brand_do_space": "标志四周至少留出其高度四分之一的空白。",
+  "content_brand_do_title": "建议",
+  "content_brand_dont_distort": "不要拉伸、旋转、裁剪标志或重排其组成部分。",
+  "content_brand_dont_endorse": "不要暗示 SOTF Mods 认可、赞助或审核过你的项目。",
+  "content_brand_dont_game": "不要与游戏官方标志、美术或角色名称组合使用。",
+  "content_brand_dont_recolor": "不要给标志改色、加描边或添加特效。",
+  "content_brand_dont_title": "避免",
+  "content_brand_eyebrow": "品牌素材",
+  "content_brand_font_display": "标题字体：标题与数字，始终使用大写。",
+  "content_brand_font_link": "获取 {name}",
+  "content_brand_font_mono": "读数：版本、ID 与代码。",
+  "content_brand_font_ui": "界面与正文。",
+  "content_brand_lead": "要在模组页面、视频或服务器中链接 SOTF Mods？请使用这些文件并遵守下面的规则。",
+  "content_brand_legal_text": "SOTF Mods 的名称和标志用于标识本社区网站。你可以用它们提及或链接本站；其他任何用途都需要获得我们的许可。",
+  "content_brand_legal_title": "商标",
+  "content_brand_link_text": "把这段代码复制到你的 README、网站或模组介绍中。它指向在线标志，因此始终保持最新。",
+  "content_brand_link_title": "链接到 SOTF Mods",
+  "content_brand_logos_text": "每个文件都有用于深色背景的夜间版和用于浅色背景的日间版。优先使用 SVG；不支持 SVG 时使用 PNG。",
+  "content_brand_logos_title": "标志",
+  "content_brand_on_day": "浅色背景",
+  "content_brand_on_night": "深色背景",
+  "content_brand_rules_title": "标志使用规范",
+  "content_brand_snippet_label": "HTML 代码",
+  "content_brand_title": "SOTF Mods 品牌",
+  "content_brand_type_title": "字体",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "API v2 读取",
+        "bucket=legacyRead": "旧版 API 读取",
+        "bucket=downloads": "下载",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "代码",
+  "content_dev_col_limit": "限制",
+  "content_dev_col_meaning": "含义",
+  "content_dev_col_method": "方法",
+  "content_dev_col_notes": "备注",
+  "content_dev_col_path": "路径",
+  "content_dev_col_scope": "范围",
+  "content_dev_col_status": "状态",
+  "content_dev_col_summary": "作用",
+  "content_dev_endpoints_caption": "公开接口：{domain}",
+  "content_dev_endpoints_text": "匿名、可缓存并支持 CORS。参考文档列出了每个接口的参数、响应和错误。",
+  "content_dev_endpoints_title": "公开只读接口",
+  "content_dev_errors_text": "错误的 code 字段取以下值之一。每个问题的 type URI 都指向这里对应的行。",
+  "content_dev_errors_title": "错误代码",
+  "content_dev_eyebrow": "开发者",
+  "content_dev_legacy_deprecated": "已冻结并弃用",
+  "content_dev_legacy_deprecated_text": "这些路由将响应至 {date}，之后停用。其响应包含以下头：",
+  "content_dev_legacy_deviations": "与旧行为的有意差异",
+  "content_dev_legacy_retired": "已停用",
+  "content_dev_legacy_retired_text": "这些路由上的任何方法都会返回 410 Gone 和以下内容：",
+  "content_dev_legacy_stable": "受支持（逐字节兼容）",
+  "content_dev_legacy_text": "网站第一版的 API 仍在 api.sotf-mods.com/api/* 和 sotf-mods.com/api/* 上响应，以便 RedManager、UpdatesChecker 和游戏内模组继续工作。新的集成应使用 v2。",
+  "content_dev_legacy_title": "旧版 API 与弃用计划",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "每个 IP",
+        "key=user": "每个账号",
+        "key=chat": "每位玩家",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "超过限制时，API 返回 429 并附带 Retry-After 头。缓存响应并遵守 ETag，你几乎不会触及限制。",
+  "content_dev_limits_title": "速率限制",
+  "content_dev_link_docs_text": "所有 v2 接口，含结构与示例，可交互。",
+  "content_dev_link_docs_title": "API 参考",
+  "content_dev_link_legacy_text": "仍在服务；冻结的路由将于 {date} 停用。",
+  "content_dev_link_legacy_title": "旧版 API",
+  "content_dev_link_openapi_text": "机器可读的规范，可用于生成客户端。",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "草稿说明",
+  "content_draft_text": "本文描述的是 SOTF Mods 当前的运作方式，但尚未经过律师审核。定稿前可能会修改，每次修改都会注明日期。",
+  "content_draft_title": "草稿——等待法律审核",
+  "content_error_ref": "参考编号：{ref}",
+  "content_fallback_binding": "法律文本以英文版为准。",
+  "content_fallback_link": "打开{original}页面",
+  "content_fallback_text": "本页尚无{language}版本，你正在阅读{original}原文。",
+  "content_install_eyebrow": "安装指南",
+  "content_install_faq_nav": "常见问题",
+  "content_install_faq_title": "常见问题",
+  "content_install_get_redmanager": "获取 RedManager",
+  "content_install_help_discord": "在 Discord 提问",
+  "content_install_help_text": "看看当前游戏补丁是否让你的模组失效，或者向社区求助。请注明游戏版本、RedLoader 版本以及你使用的模组。",
+  "content_install_help_title": "还是没搞定？",
+  "content_install_kit_more": "浏览所有 Kit",
+  "content_install_kit_nav": "新手 Kit",
+  "content_install_kit_text": "团队精选的一组搭配良好的模组，适合作为第一套装备。",
+  "content_install_kit_title": "新手 Kit",
+  "content_install_manual": "手动安装",
+  "content_install_progress": "阅读进度",
+  "content_install_rail_label": "指南章节",
+  "content_install_rail_title": "步骤",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {step__number} 步："
+      }
+    }
+  ],
+  "content_install_tldr": "简而言之",
+  "content_install_verified": "已在游戏 {game} · RedLoader {loader} 上验证",
+  "content_kelvin_by": "模组作者：",
+  "content_kelvin_credit": "KelvinSeek 由 {author} 制作和维护；SOTF Mods 只运行它所调用的 API。Kelvin 和 Sons of the Forest 属于 Endnight Games；这是一个粉丝项目。",
+  "content_kelvin_description": "KelvinSeek 让你在 Sons of the Forest 中与 Kelvin 聊天，并用自己的话给他下命令。了解它的工作方式、使用限制以及你的消息会如何处理。",
+  "content_kelvin_dev_hint": "在做类似的东西？该接口属于旧版 API：",
+  "content_kelvin_eyebrow": "社区模组",
+  "content_kelvin_history_text": "它以前叫 Kelvin-GPT。需要你自己 OpenAI 密钥的旧版本已停用：那个路由会在地址中暴露密钥，现在只返回“Gone”。",
+  "content_kelvin_how_1": "安装 RedLoader 和 KelvinSeek 模组。",
+  "content_kelvin_how_2": "在游戏中走到 Kelvin 身边，按 E 打开记事本。",
+  "content_kelvin_how_3": "按 T 输入，写下消息后按回车。",
+  "content_kelvin_how_4": "或者使用控制台：“askkelvin …”发送消息，“clearkelvinchathistory”开始新对话。",
+  "content_kelvin_how_title": "使用方法",
+  "content_kelvin_install_hint": "第一次用模组？先看指南：",
+  "content_kelvin_lead": "用自己的话写给 Kelvin，他会回应并照做——从搬木头到搭建庇护所。",
+  "content_kelvin_limits_budget": "AI 服务有每日预算。用完后 Kelvin 依然能理解你：在第二天之前，他会不借助 AI，选择最接近的已知命令。",
+  "content_kelvin_limits_busy": "如果你写得太快，Kelvin 会要求休息几秒。不会丢失任何内容。",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "每位玩家每分钟最多 {perMinute__number} 条消息，每天最多 {perDay__number} 条。"
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "限制",
+  "content_kelvin_open_mod": "打开模组页面",
+  "content_kelvin_privacy_ai": "你的消息文本会发送给 AI 提供商以生成回复。请不要填写个人信息。",
+  "content_kelvin_privacy_hash": "模组发送的聊天 ID（包含你的 Steam ID 和名称）只以不可逆的哈希形式保存。",
+  "content_kelvin_privacy_link": "阅读隐私政策",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__number = days: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "每段对话的最近消息会保存 {days__number} 天，以便 Kelvin 记住上下文，之后删除。"
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "你的消息",
+  "content_kelvin_status_compat": "在 {build} 上",
+  "content_kelvin_status_downloads": "下载量",
+  "content_kelvin_status_title": "在 SOTF Mods 上的状态",
+  "content_kelvin_status_unavailable": "无法加载模组的当前状态。模组页面上有最新版本。",
+  "content_kelvin_status_updated": "最近发布",
+  "content_kelvin_status_version": "最新版本",
+  "content_kelvin_title": "KelvinSeek：在游戏中和 Kelvin 对话",
+  "content_kelvin_what_text": "KelvinSeek 是 {author} 制作的模组。它通过 SOTF Mods API 将你写给 Kelvin 的内容发送给 AI 服务，并把回复变成 Kelvin 的回答；当你提出要求时，还会变成他的一条游戏内命令。你不需要自己的 API 密钥。",
+  "content_kelvin_what_title": "这是什么",
+  "content_legal_eyebrow": "法律信息",
+  "content_legal_other": "其他法律页面",
+  "content_md_alert_caution": "小心",
+  "content_md_alert_important": "重要",
+  "content_md_alert_note": "注意",
+  "content_md_alert_tip": "提示",
+  "content_md_alert_warning": "警告",
+  "content_md_spoiler": "剧透",
+  "content_news_back": "全部新闻",
+  "content_news_byline": "作者：{author}",
+  "content_news_description": "SOTF Mods 团队的公告：新功能、网站与 API 的变化，以及接下来的计划。",
+  "content_news_empty": "还没有新闻。林中一片宁静。",
+  "content_news_eyebrow": "实地笔记",
+  "content_news_feed": "通过 RSS 订阅",
+  "content_news_feed_title": "SOTF Mods — 新闻",
+  "content_news_read": "阅读",
+  "content_news_title": "新闻",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} 个可用，{broken__number} 个失效，{pending__number} 个等待报告"
+      }
+    }
+  ],
+  "content_radar_breaking": "破坏性更新",
+  "content_radar_broken_empty": "在 {build} 上没有热门模组被报告失效。",
+  "content_radar_broken_title": "报告失效",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input build",
+        "input count",
+        "input share",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} 上前 {count__number} 个模组中已确认 {share}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "可用 {works__number} · 部分 {partial__number} · 失效 {broken__number}"
+      }
+    }
+  ],
+  "content_radar_cta_button": "等待报告的模组",
+  "content_radar_cta_text": "打开模组，选择你的游玩方式（单人、主机、客户端或专用服务器），告诉我们能否运行。每份实地报告都能获得 XP，并帮其他幸存者避开坏档。",
+  "content_radar_cta_title": "在 {build} 上试过其中的模组吗？",
+  "content_radar_current": "当前版本",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{build} 补丁：下载量前 50 的 Sons of the Forest 模组中有 {share} 已由玩家确认——{works__number} 个可用，{broken__number} 个失效，{pending__number} 个等待报告。"
+      }
+    }
+  ],
+  "content_radar_description_generic": "哪些 Sons of the Forest 模组能在当前游戏补丁上运行：RedLoader 状态以及玩家对下载量前 50 模组的实地报告。",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "30 天内 {display} 次下载"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "可用",
+        "status=partial": "部分可用",
+        "status=broken": "失效",
+        "status=*": "未知"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "此版本尚未记录加载器状态。",
+  "content_radar_ecosystem_title": "{build} 上的加载器与管理器",
+  "content_radar_empty_text": "还没有登记任何游戏版本。护林员登记当前补丁后，本页会显示哪些热门模组可以运行。",
+  "content_radar_empty_title": "雷达正在预热",
+  "content_radar_error_text": "无法加载兼容性数据。请一分钟后重试；如果仍然失败，请在 Discord 告诉我们并附上下面的参考编号。",
+  "content_radar_error_title": "信号丢失",
+  "content_radar_history_empty": "这是记录中的第一个版本。",
+  "content_radar_history_title": "版本历史",
+  "content_radar_install_link": "如何安装 RedLoader",
+  "content_radar_legend_outdated": "“可能已过时”表示最新版本早于最近一次破坏性更新，且此后没有人确认它可用。",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "报告会加权：作者本人的测试算双倍，认证创作者算 1.5 倍，全新账号算一半。加权报告少于 {min__number} 份的模组视为未测试；可用比例达到 {works} 即为可用；失效比例达到 {broken} 即为失效；其余为结果不一。"
+      }
+    }
+  ],
+  "content_radar_legend_title": "状态如何判定",
+  "content_radar_list_name": "{build} 补丁上的热门 Sons of the Forest 模组",
+  "content_radar_notes": "补丁说明",
+  "content_radar_outdated": "可能已过时",
+  "content_radar_past_link": "查看当前版本",
+  "content_radar_past_notice": "这是旧版本。游戏现在是 {build}。",
+  "content_radar_pending_empty": "此版本上每个热门模组都已有明确结论。",
+  "content_radar_pending_hint": "未测试或结果不一",
+  "content_radar_pending_title": "等待实地报告",
+  "content_radar_released": "发布于 {date}",
+  "content_radar_report": "报告",
+  "content_radar_seo_title": "SOTF 模组能在 {build} 补丁上运行吗？— Patch Radar",
+  "content_radar_seo_title_generic": "SOTF 模组能在最新补丁上运行吗？— Patch Radar",
+  "content_radar_stat_broken": "失效",
+  "content_radar_stat_pending": "需要报告",
+  "content_radar_stat_works": "可用",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "可用",
+        "status=mixed": "不一",
+        "status=broken": "失效",
+        "status=*": "无数据"
+      }
+    }
+  ],
+  "content_radar_summary_title": "概要",
+  "content_radar_title": "SOTF 模组能在 {build} 补丁上运行吗？",
+  "content_radar_works_empty": "{build} 上还没有确认可用的热门模组。试过哪个？告诉我们。",
+  "content_radar_works_title": "确认可用",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "阅读约 {minutes__number} 分钟"
+      }
+    }
+  ],
+  "content_toc_title": "本页内容",
+  "content_updated_on": "最后更新：{date}",
   "emails_auth_deleted_body": "你的个人数据已被清除。评论和评价将以“已删除的幸存者”的名义保留。感谢你曾是岛上的一员。",
   "emails_auth_deleted_heading": "账号已删除",
   "emails_auth_deleted_preview": "你的个人数据已被清除。",

@@ -946,6 +946,424 @@
   "console_update_detail": "Vi uppdaterade SOTF Mods medan du var här. Ladda om för att få den senaste versionen.",
   "console_update_reload": "Ladda om",
   "console_update_title": "En ny version finns",
+  "content_about_disclaimer_title": "Inofficiell fangemenskap",
+  "content_about_eyebrow": "Om oss",
+  "content_about_links_title": "Runt lägret",
+  "content_binding_note": "Översättningen är bara vägledande. Om den skiljer sig från den engelska versionen gäller den engelska.",
+  "content_brand_asset_app_icon": "Appikon",
+  "content_brand_asset_app_icon_hint": "Nålen på en Night-yta, för avatarer och genvägar.",
+  "content_brand_asset_horizontal": "Horisontell logotyp",
+  "content_brand_asset_horizontal_hint": "Standardversionen: symbol och ordmärke sida vid sida.",
+  "content_brand_asset_mark": "Symbol (Contour Pin)",
+  "content_brand_asset_mark_hint": "Bara nålen. Använd den förenklade versionen mellan 16 och 24 px.",
+  "content_brand_asset_og": "Förhandsbild för sociala medier",
+  "content_brand_asset_og_hint": "1200 × 630, för länkförhandsvisningar och miniatyrer.",
+  "content_brand_asset_stacked": "Staplad logotyp",
+  "content_brand_asset_stacked_hint": "För kvadratiska och höga ytor.",
+  "content_brand_asset_wordmark": "Ordmärke",
+  "content_brand_asset_wordmark_hint": "”SOTF MODS” utan nålen, för smala horisontella ytor.",
+  "content_brand_color_blueprint": "Blueprint (builds)",
+  "content_brand_color_bone": "Bone (text, Day-bakgrund)",
+  "content_brand_color_flare_day": "Flare på Day",
+  "content_brand_color_flare_night": "Flare på Night",
+  "content_brand_color_lichen": "Lichen (fungerar)",
+  "content_brand_color_night": "Night (bakgrund)",
+  "content_brand_color_signal": "Signal (live, info)",
+  "content_brand_color_solafite": "Solafite (utvald)",
+  "content_brand_colors_text": "Night och Bone är basen; Flare är den enda accenten. Statusfärgerna bär betydelse, de är inte dekoration.",
+  "content_brand_colors_title": "Färger",
+  "content_brand_description": "Ladda ner logotyp, symbol och färger för SOTF Mods och se hur du länkar till webbplatsen från din modd, video eller server.",
+  "content_brand_do_contrast": "Använd Night-filerna på mörka och Day-filerna på ljusa bakgrunder.",
+  "content_brand_do_link": "Länka logotypen till sotf-mods.com.",
+  "content_brand_do_size": "Använd hela symbolen i 24 px eller större (16 px för den förenklade).",
+  "content_brand_do_space": "Lämna fritt utrymme runt logotypen på minst en fjärdedel av dess höjd.",
+  "content_brand_do_title": "Gör så här",
+  "content_brand_dont_distort": "Att sträcka, rotera, beskära eller flytta om dess delar.",
+  "content_brand_dont_endorse": "Att antyda att SOTF Mods stöder, sponsrar eller har granskat ditt projekt.",
+  "content_brand_dont_game": "Att kombinera den med spelets officiella logotyp, grafik eller karaktärsnamn.",
+  "content_brand_dont_recolor": "Att färga om logotypen eller lägga till konturer och effekter.",
+  "content_brand_dont_title": "Undvik",
+  "content_brand_eyebrow": "Varumärkeskit",
+  "content_brand_font_display": "Display: rubriker och siffror, alltid med versaler.",
+  "content_brand_font_link": "Hämta {name}",
+  "content_brand_font_mono": "Avläsningar: versioner, id:n och kod.",
+  "content_brand_font_ui": "Gränssnitt och brödtext.",
+  "content_brand_lead": "Länkar du till SOTF Mods från din moddsida, en video eller din server? Använd de här filerna och följ reglerna nedan.",
+  "content_brand_legal_text": "Namnet och logotypen SOTF Mods identifierar den här gemenskapssajten. Du får använda dem för att hänvisa eller länka till sajten; all annan användning kräver vårt tillstånd.",
+  "content_brand_legal_title": "Varumärken",
+  "content_brand_link_text": "Kopiera koden till din README, webbplats eller moddbeskrivning. Den pekar på logotypen online, så den är alltid aktuell.",
+  "content_brand_link_title": "Länka till SOTF Mods",
+  "content_brand_logos_text": "Varje fil finns i en Night-version för mörka bakgrunder och en Day-version för ljusa. Använd helst SVG; PNG där SVG inte stöds.",
+  "content_brand_logos_title": "Logotyper",
+  "content_brand_on_day": "Ljusa bakgrunder",
+  "content_brand_on_night": "Mörka bakgrunder",
+  "content_brand_rules_title": "Så använder du logotypen",
+  "content_brand_snippet_label": "HTML-kod",
+  "content_brand_title": "Varumärket SOTF Mods",
+  "content_brand_type_title": "Typsnitt",
+  "content_dev_bucket": [
+    {
+      "declarations": [
+        "input bucket"
+      ],
+      "selectors": [
+        "bucket"
+      ],
+      "match": {
+        "bucket=anonymousRead": "Läsningar i API v2",
+        "bucket=legacyRead": "Läsningar i äldre API",
+        "bucket=downloads": "Nedladdningar",
+        "bucket=kelvinseek": "KelvinSeek",
+        "bucket=*": "{bucket}"
+      }
+    }
+  ],
+  "content_dev_col_code": "Kod",
+  "content_dev_col_limit": "Gräns",
+  "content_dev_col_meaning": "Betydelse",
+  "content_dev_col_method": "Metod",
+  "content_dev_col_notes": "Anteckningar",
+  "content_dev_col_path": "Sökväg",
+  "content_dev_col_scope": "Omfång",
+  "content_dev_col_status": "Status",
+  "content_dev_col_summary": "Vad den gör",
+  "content_dev_endpoints_caption": "Publika slutpunkter: {domain}",
+  "content_dev_endpoints_text": "Anonyma, cachebara och med CORS. Referensen dokumenterar parametrar, svar och fel för varje slutpunkt.",
+  "content_dev_endpoints_title": "Publika lässlutpunkter",
+  "content_dev_errors_text": "Fältet code i ett fel är ett av dessa. Varje problems type-URI pekar på dess rad här.",
+  "content_dev_errors_title": "Felkoder",
+  "content_dev_eyebrow": "Utvecklare",
+  "content_dev_legacy_deprecated": "Frysta och utfasade",
+  "content_dev_legacy_deprecated_text": "De här rutterna svarar till {date}, sedan stängs de. Deras svar har de här huvudena:",
+  "content_dev_legacy_deviations": "Avsiktliga skillnader mot det gamla beteendet",
+  "content_dev_legacy_retired": "Stängda",
+  "content_dev_legacy_retired_text": "Alla metoder på de här rutterna svarar 410 Gone med den här kroppen:",
+  "content_dev_legacy_stable": "Stöds (bytekompatibla)",
+  "content_dev_legacy_text": "API:t från sajtens första version svarar fortfarande på api.sotf-mods.com/api/* och sotf-mods.com/api/*, så att RedManager, UpdatesChecker och moddar i spelet fortsätter att fungera. Nya integrationer bör använda v2.",
+  "content_dev_legacy_title": "Äldre API och utfasning",
+  "content_dev_limit_key": [
+    {
+      "declarations": [
+        "input key"
+      ],
+      "selectors": [
+        "key"
+      ],
+      "match": {
+        "key=ip": "per IP",
+        "key=user": "per konto",
+        "key=chat": "per spelare",
+        "key=*": "{key}"
+      }
+    }
+  ],
+  "content_dev_limits_text": "Över en gräns svarar API:t 429 med huvudet Retry-After. Cacha svar och respektera ETags, så kommer du sällan i närheten.",
+  "content_dev_limits_title": "Hastighetsgränser",
+  "content_dev_link_docs_text": "Alla v2-slutpunkter med scheman och exempel, interaktivt.",
+  "content_dev_link_docs_title": "API-referens",
+  "content_dev_link_legacy_text": "Fortfarande i drift; frysta rutter stängs {date}.",
+  "content_dev_link_legacy_title": "Äldre API",
+  "content_dev_link_openapi_text": "Den maskinläsbara specifikationen, för att generera en klient.",
+  "content_dev_link_openapi_title": "OpenAPI 3.1",
+  "content_draft_label": "Utkast",
+  "content_draft_text": "Den här texten beskriver hur SOTF Mods fungerar i dag, men den har ännu inte granskats av en jurist. Den kan ändras innan den blir slutgiltig; varje ändring dateras.",
+  "content_draft_title": "Utkast – väntar på juridisk granskning",
+  "content_error_ref": "Ref.: {ref}",
+  "content_fallback_binding": "För juridiska texter gäller den engelska versionen.",
+  "content_fallback_link": "Öppna sidan på {original}",
+  "content_fallback_text": "Den här sidan finns inte på {language} än, så du läser originalet på {original}.",
+  "content_install_eyebrow": "Installationsguide",
+  "content_install_faq_nav": "Vanliga frågor",
+  "content_install_faq_title": "Vanliga frågor",
+  "content_install_get_redmanager": "Hämta RedManager",
+  "content_install_help_discord": "Fråga på Discord",
+  "content_install_help_text": "Kolla om den aktuella spelpatchen har förstört dina moddar, eller fråga gemenskapen. Ange din spelversion, din RedLoader-version och vilka moddar du använder.",
+  "content_install_help_title": "Fortfarande fast?",
+  "content_install_kit_more": "Visa alla Kits",
+  "content_install_kit_nav": "Startkit",
+  "content_install_kit_text": "Ett urval från teamet med moddar som fungerar bra ihop. En bra första packning.",
+  "content_install_kit_title": "Startkit",
+  "content_install_manual": "Installera manuellt",
+  "content_install_progress": "Läsförlopp",
+  "content_install_rail_label": "Guidens avsnitt",
+  "content_install_rail_title": "Steg",
+  "content_install_step_number": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Steg {step__number}:"
+      }
+    }
+  ],
+  "content_install_tldr": "I korthet",
+  "content_install_verified": "Kontrollerad med spelet {game} · RedLoader {loader}",
+  "content_kelvin_by": "En modd av",
+  "content_kelvin_credit": "KelvinSeek skapas och underhålls av {author}; SOTF Mods kör bara API:t som den pratar med. Kelvin och Sons of the Forest tillhör Endnight Games; det här är ett fanprojekt.",
+  "content_kelvin_description": "Med KelvinSeek chattar du med Kelvin i Sons of the Forest och ger honom order med egna ord. Hur det fungerar, gränserna och vad som händer med dina meddelanden.",
+  "content_kelvin_dev_hint": "Bygger du något liknande? Slutpunkten ingår i det äldre API:t:",
+  "content_kelvin_eyebrow": "Gemenskapsmodd",
+  "content_kelvin_history_text": "Tidigare hette den Kelvin-GPT. Den gamla versionen som krävde din egen OpenAI-nyckel är stängd: den rutten visade nyckeln i adressen och svarar nu ”Gone”.",
+  "content_kelvin_how_1": "Installera RedLoader och modden KelvinSeek.",
+  "content_kelvin_how_2": "Gå fram till Kelvin i spelet och tryck E för att öppna anteckningsblocket.",
+  "content_kelvin_how_3": "Tryck T för att skriva, skriv ditt meddelande och tryck Enter.",
+  "content_kelvin_how_4": "Eller använd konsolen: ”askkelvin …” skickar ett meddelande och ”clearkelvinchathistory” startar en ny konversation.",
+  "content_kelvin_how_title": "Så använder du den",
+  "content_kelvin_install_hint": "Ny med moddar? Börja med guiden:",
+  "content_kelvin_lead": "Skriv till Kelvin med egna ord – han svarar och gör det du ber om, från att hämta stockar till att bygga ett skydd.",
+  "content_kelvin_limits_budget": "AI-tjänsten har en dagsbudget. När den tar slut förstår Kelvin dig ändå: han väljer utan AI den mest liknande kända ordern fram till nästa dag.",
+  "content_kelvin_limits_busy": "Skriver du för snabbt ber Kelvin om några sekunders paus. Inget går förlorat.",
+  "content_kelvin_limits_rate": [
+    {
+      "declarations": [
+        "input perMinute",
+        "input perDay",
+        "local perMinute__number = perMinute: number",
+        "local perDay__number = perDay: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Upp till {perMinute__number} meddelanden per minut och {perDay__number} per dag och spelare."
+      }
+    }
+  ],
+  "content_kelvin_limits_title": "Gränser",
+  "content_kelvin_open_mod": "Öppna moddsidan",
+  "content_kelvin_privacy_ai": "Texten i dina meddelanden skickas till AI-leverantören för att skapa svaret. Skriv inga personuppgifter.",
+  "content_kelvin_privacy_hash": "Chatt-id:t som modden skickar (det innehåller ditt Steam-id och namn) sparas bara som en oåterkallelig hash.",
+  "content_kelvin_privacy_link": "Läs integritetspolicyn",
+  "content_kelvin_privacy_retention": [
+    {
+      "declarations": [
+        "input days",
+        "local days__plural = days: plural",
+        "local days__number = days: number"
+      ],
+      "selectors": [
+        "days__plural"
+      ],
+      "match": {
+        "days__plural=one": "De senaste meddelandena i varje konversation sparas i {days__number} dag så att Kelvin minns sammanhanget, och raderas sedan.",
+        "days__plural=*": "De senaste meddelandena i varje konversation sparas i {days__number} dagar så att Kelvin minns sammanhanget, och raderas sedan."
+      }
+    }
+  ],
+  "content_kelvin_privacy_title": "Dina meddelanden",
+  "content_kelvin_status_compat": "På build {build}",
+  "content_kelvin_status_downloads": "Nedladdningar",
+  "content_kelvin_status_title": "Status på SOTF Mods",
+  "content_kelvin_status_unavailable": "Vi kunde inte läsa in moddens aktuella status. Moddsidan visar den senaste versionen.",
+  "content_kelvin_status_updated": "Senaste släpp",
+  "content_kelvin_status_version": "Senaste version",
+  "content_kelvin_title": "KelvinSeek: prata med Kelvin i spelet",
+  "content_kelvin_what_text": "KelvinSeek är en modd av {author}. Den skickar det du skriver till Kelvin till en AI-tjänst via SOTF Mods API och gör om svaret till Kelvins replik och, när du ber om något, till en av hans order i spelet. Du behöver ingen egen API-nyckel.",
+  "content_kelvin_what_title": "Vad det är",
+  "content_legal_eyebrow": "Juridik",
+  "content_legal_other": "Andra juridiska sidor",
+  "content_md_alert_caution": "Försiktigt",
+  "content_md_alert_important": "Viktigt",
+  "content_md_alert_note": "Obs",
+  "content_md_alert_tip": "Tips",
+  "content_md_alert_warning": "Varning",
+  "content_md_spoiler": "Spoiler",
+  "content_news_back": "Alla nyheter",
+  "content_news_byline": "av {author}",
+  "content_news_description": "Meddelanden från SOTF Mods-teamet: nya funktioner, ändringar på webbplatsen och i API:t och vad som är på gång.",
+  "content_news_empty": "Inga nyheter än. Allt är lugnt i skogen.",
+  "content_news_eyebrow": "Fältanteckningar",
+  "content_news_feed": "Prenumerera via RSS",
+  "content_news_feed_title": "SOTF Mods – Nyheter",
+  "content_news_read": "Läs",
+  "content_news_title": "Nyheter",
+  "content_radar_bar_label": [
+    {
+      "declarations": [
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} fungerar, {broken__number} trasiga, {pending__number} väntar på rapporter"
+      }
+    }
+  ],
+  "content_radar_breaking": "Uppdatering som bryter moddar",
+  "content_radar_broken_empty": "Ingen av toppmoddarna är rapporterad som trasig på {build}.",
+  "content_radar_broken_title": "Rapporterade som trasiga",
+  "content_radar_confirmed": [
+    {
+      "declarations": [
+        "input share",
+        "input count",
+        "input build",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{share} av toppmodden bekräftade på {build}",
+        "count__plural=*": "{share} av de {count__number} toppmoddarna bekräftade på {build}"
+      }
+    }
+  ],
+  "content_radar_counts": [
+    {
+      "declarations": [
+        "input works",
+        "input partial",
+        "input broken",
+        "local works__number = works: number",
+        "local partial__number = partial: number",
+        "local broken__number = broken: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{works__number} fungerar · {partial__number} delvis · {broken__number} trasig"
+      }
+    }
+  ],
+  "content_radar_cta_button": "Moddar som väntar på rapporter",
+  "content_radar_cta_text": "Öppna modden, välj hur du spelade (solo, värd, klient eller dedikerad server) och säg om den fungerar. Varje fältrapport ger XP och besparar andra överlevare ett förstört sparspel.",
+  "content_radar_cta_title": "Testat någon av dessa på {build}?",
+  "content_radar_current": "Aktuell build",
+  "content_radar_description": [
+    {
+      "declarations": [
+        "input build",
+        "input share",
+        "input works",
+        "input broken",
+        "input pending",
+        "local works__number = works: number",
+        "local broken__number = broken: number",
+        "local pending__number = pending: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Patch {build}: {share} av de 50 mest nedladdade Sons of the Forest-moddarna bekräftade av spelare – {works__number} fungerar, {broken__number} trasiga, {pending__number} väntar på rapporter."
+      }
+    }
+  ],
+  "content_radar_description_generic": "Vilka Sons of the Forest-moddar som fungerar på den aktuella spelpatchen: RedLoaders status och fältrapporter från spelare för de 50 mest nedladdade moddarna.",
+  "content_radar_downloads_30d": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} nedladdning på 30 dagar",
+        "count__plural=*": "{display} nedladdningar på 30 dagar"
+      }
+    }
+  ],
+  "content_radar_eco_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Fungerar",
+        "status=partial": "Fungerar delvis",
+        "status=broken": "Trasig",
+        "status=*": "Okänd"
+      }
+    }
+  ],
+  "content_radar_ecosystem_empty": "Ingen loaderstatus är registrerad för den här builden än.",
+  "content_radar_ecosystem_title": "Loader och hanterare på {build}",
+  "content_radar_empty_text": "Ingen spelbuild har registrerats än. Så snart rangers lägger in den aktuella patchen visar sidan vilka populära moddar som fungerar på den.",
+  "content_radar_empty_title": "Radarn värms upp",
+  "content_radar_error_text": "Vi kunde inte läsa in kompatibilitetsdatan. Försök igen om en minut; fortsätter det att strula, säg till på Discord med referensen nedan.",
+  "content_radar_error_title": "Ingen signal",
+  "content_radar_history_empty": "Det här är den första registrerade builden.",
+  "content_radar_history_title": "Buildhistorik",
+  "content_radar_install_link": "Så installerar du RedLoader",
+  "content_radar_legend_outdated": "”Kanske inaktuell” betyder att den senaste versionen är äldre än den senaste uppdateringen som bryter moddar och att ingen har bekräftat att den fungerar sedan dess.",
+  "content_radar_legend_text": [
+    {
+      "declarations": [
+        "input min",
+        "input works",
+        "input broken",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Rapporter viktas: skaparens eget test räknas dubbelt, verifierade skapare 1,5×, helt nya konton hälften. Under {min__number} viktade rapporter är en modd otestad; vid {works} eller fler som fungerar fungerar den; vid {broken} eller fler trasiga är den trasig; allt annat är blandat."
+      }
+    }
+  ],
+  "content_radar_legend_title": "Så bestäms statusen",
+  "content_radar_list_name": "Toppmoddar för Sons of the Forest på patch {build}",
+  "content_radar_notes": "Patchanteckningar",
+  "content_radar_outdated": "Kanske inaktuell",
+  "content_radar_past_link": "Se aktuell build",
+  "content_radar_past_notice": "Det här är en äldre build. Spelet är nu på {build}.",
+  "content_radar_pending_empty": "Varje toppmodd har ett tydligt utslag på den här builden.",
+  "content_radar_pending_hint": "Otestade eller blandade resultat",
+  "content_radar_pending_title": "Väntar på fältrapporter",
+  "content_radar_released": "Släppt {date}",
+  "content_radar_report": "Rapportera",
+  "content_radar_seo_title": "Fungerar SOTF-moddar på patch {build}? – Patch Radar",
+  "content_radar_seo_title_generic": "Fungerar SOTF-moddar på senaste patchen? – Patch Radar",
+  "content_radar_stat_broken": "Trasiga",
+  "content_radar_stat_pending": "Behöver rapporter",
+  "content_radar_stat_works": "Fungerar",
+  "content_radar_status": [
+    {
+      "declarations": [
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "Fungerar",
+        "status=mixed": "Blandat",
+        "status=broken": "Trasig",
+        "status=*": "Inga data"
+      }
+    }
+  ],
+  "content_radar_summary_title": "Sammanfattning",
+  "content_radar_title": "Fungerar SOTF-moddar på patch {build}?",
+  "content_radar_works_empty": "Ingen toppmodd är bekräftad på {build} än. Testat någon? Hör av dig.",
+  "content_radar_works_title": "Bekräftat fungerande",
+  "content_reading_time": [
+    {
+      "declarations": [
+        "input minutes",
+        "local minutes__plural = minutes: plural",
+        "local minutes__number = minutes: number"
+      ],
+      "selectors": [
+        "minutes__plural"
+      ],
+      "match": {
+        "minutes__plural=one": "{minutes__number} min läsning",
+        "minutes__plural=*": "{minutes__number} min läsning"
+      }
+    }
+  ],
+  "content_toc_title": "På den här sidan",
+  "content_updated_on": "Senast uppdaterad: {date}",
   "emails_auth_deleted_body": "Dina personuppgifter har raderats. Kommentarer och recensioner finns kvar som ”Raderad överlevare”. Tack för att du var en del av ön.",
   "emails_auth_deleted_heading": "Kontot raderat",
   "emails_auth_deleted_preview": "Dina personuppgifter har raderats.",

@@ -1,0 +1,10 @@
+---
+/** `/terms` (T0-14, PLAN §4.2): legal text, draft pending legal review (see `content/legal`). */
+import LegalPage from '../components/content/LegalPage.astro';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+
+setPageCache(Astro, pageCache.static());
+---
+
+<LegalPage doc="terms" />

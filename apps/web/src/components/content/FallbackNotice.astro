@@ -1,0 +1,42 @@
+---
+/**
+ * Shown when a document is not translated into the page language yet: the English original is
+ * displayed (marked `lang="en"`), the canonical points to it and the page leaves the hreflang
+ * cluster out (PLAN §4.5).
+ */
+import { type Locale, toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Languages } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+
+interface Props {
+  /** Locale-less path of the page. */
+  path: string;
+  /** Language of the text shown (English). */
+  textLocale: Locale;
+  /** `true` for legal texts: the English original is the binding version anyway. */
+  binding?: boolean;
+}
+
+const { path, textLocale, binding = false } = Astro.props;
+const locale = Astro.locals.locale;
+const names = new Intl.DisplayNames([toHtmlLang(locale)], { type: 'language' });
+const language = names.of(toHtmlLang(locale)) ?? locale;
+const original = names.of(toHtmlLang(textLocale)) ?? textLocale;
+---
+
+<aside class="flex items-start gap-3 rounded-lg border border-signal/40 bg-signal-soft p-4 text-sm text-fg">
+  <Icon icon={Languages} size={20} className="mt-0.5 shrink-0 text-signal" />
+  <div class="grid gap-1">
+    <p>{m.content_fallback_text({ language, original })}</p>
+    {binding && <p class="text-fg-muted">{m.content_fallback_binding()}</p>}
+    <a
+      href={href(path, textLocale)}
+      hreflang={textLocale}
+      class="inline-flex min-h-8 items-center self-start font-semibold text-link underline underline-offset-3"
+    >
+      {m.content_fallback_link({ original })}
+    </a>
+  </div>
+</aside>
