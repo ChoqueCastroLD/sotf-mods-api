@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { storageConfigFromEnv } from './client.ts';
+import { createStorage, storageConfigFromEnv } from './client.ts';
 import { asciiFilename, attachmentDisposition, encodeRfc5987, versionDownloadName } from './disposition.ts';
 import {
   buildFileKey,
@@ -118,5 +118,40 @@ describe('storageConfigFromEnv', () => {
     );
     const local = storageConfigFromEnv({ ...creds, R2_ACCOUNT_ID: 'acc', R2_ENDPOINT: 'http://127.0.0.1:47333/' });
     expect(local).toMatchObject({ endpoint: 'http://127.0.0.1:47333', publicBaseUrl: R2, publicBucket: 'sotf-mods' });
+    expect(local?.presignEndpoint).toBeUndefined();
+  });
+  it('signs browser uploads for R2_PUBLIC_ENDPOINT and server reads for the internal endpoint', async () => {
+    const config = storageConfigFromEnv({
+      ...base,
+      R2_ACCESS_KEY_ID: 'a',
+      R2_SECRET_ACCESS_KEY: 'b',
+      R2_ENDPOINT: 'http://seaweedfs:8333',
+      R2_PUBLIC_ENDPOINT: 'http://127.0.0.1:47533/',
+    });
+    expect(config).toMatchObject({ endpoint: 'http://seaweedfs:8333', presignEndpoint: 'http://127.0.0.1:47533' });
+    const storage = createStorage(config as NonNullable<typeof config>);
+    try {
+      const put = await storage.presignPut({
+        bucket: 'sotf-mods-private',
+        key: 'incoming/1/x.zip',
+        contentType: 'application/zip',
+        contentLength: 10,
+        expiresInSeconds: 60,
+      });
+      expect(put.url.startsWith('http://127.0.0.1:47533/sotf-mods-private/incoming/1/x.zip?')).toBe(true);
+      const part = await storage.presignPart({
+        bucket: 'sotf-mods-private',
+        key: 'incoming/1/x.zip',
+        uploadId: 'u1',
+        partNumber: 1,
+        contentLength: 10,
+        expiresInSeconds: 60,
+      });
+      expect(part.startsWith('http://127.0.0.1:47533/')).toBe(true);
+      const get = await storage.presignGet('sotf-mods-private', 'incoming/1/x.zip', 60);
+      expect(get.startsWith('http://seaweedfs:8333/')).toBe(true);
+    } finally {
+      storage.destroy();
+    }
   });
 });

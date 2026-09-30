@@ -32,6 +32,12 @@ export type CopyMode = 'server' | 'stream' | 'auto';
 export interface StorageConfig {
   /** S3 endpoint (`https://<account>.r2.cloudflarestorage.com` or the emulator). */
   endpoint: string;
+  /**
+   * Endpoint put in presigned upload URLs (PUT and multipart parts) when browsers cannot reach
+   * `endpoint` (e.g. the e2e stack, where the API talks to `http://seaweedfs:8333` but the browser
+   * to `http://127.0.0.1:47533`). Empty in production: R2 presigned URLs use `endpoint`.
+   */
+  presignEndpoint?: string;
   accessKeyId: string;
   secretAccessKey: string;
   /** Public bucket served by `publicBaseUrl` (`sotf-mods`). */
@@ -50,6 +56,8 @@ export interface StorageConfig {
 export interface StorageEnv {
   R2_ACCOUNT_ID?: string | undefined;
   R2_ENDPOINT?: string | undefined;
+  /** Browser-reachable S3 endpoint for presigned URLs (local/e2e stacks only). */
+  R2_PUBLIC_ENDPOINT?: string | undefined;
   R2_ACCESS_KEY_ID?: string | undefined;
   R2_SECRET_ACCESS_KEY?: string | undefined;
   R2_BUCKET: string;
@@ -62,8 +70,10 @@ export function storageConfigFromEnv(env: StorageEnv): StorageConfig | null {
   const endpoint =
     env.R2_ENDPOINT ?? (env.R2_ACCOUNT_ID ? `https://${env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com` : null);
   if (!endpoint || !env.R2_ACCESS_KEY_ID || !env.R2_SECRET_ACCESS_KEY) return null;
+  const presignEndpoint = env.R2_PUBLIC_ENDPOINT?.trim().replace(/\/+$/, '');
   return {
     endpoint: endpoint.replace(/\/+$/, ''),
+    ...(presignEndpoint ? { presignEndpoint } : {}),
     accessKeyId: env.R2_ACCESS_KEY_ID,
     secretAccessKey: env.R2_SECRET_ACCESS_KEY,
     publicBucket: env.R2_BUCKET,
@@ -188,22 +198,32 @@ function headOf(output: {
   };
 }
 
+function s3Client(config: StorageConfig, endpoint: string): S3Client {
+  return new S3Client({
+    endpoint,
+    region: config.region ?? 'auto',
+    forcePathStyle: true,
+    credentials: { accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey },
+    requestChecksumCalculation: 'WHEN_REQUIRED',
+    responseChecksumValidation: 'WHEN_REQUIRED',
+    maxAttempts: 3,
+    requestHandler: { requestTimeout: config.requestTimeoutMs ?? 30_000, connectionTimeout: 5_000 },
+  });
+}
+
 export class S3Storage implements ObjectStorage {
   readonly config: StorageConfig;
   readonly #client: S3Client;
+  /** Signs the upload URLs handed to browsers (same client unless `presignEndpoint` is set). */
+  readonly #presigner: S3Client;
 
   constructor(config: StorageConfig) {
     this.config = config;
-    this.#client = new S3Client({
-      endpoint: config.endpoint,
-      region: config.region ?? 'auto',
-      forcePathStyle: true,
-      credentials: { accessKeyId: config.accessKeyId, secretAccessKey: config.secretAccessKey },
-      requestChecksumCalculation: 'WHEN_REQUIRED',
-      responseChecksumValidation: 'WHEN_REQUIRED',
-      maxAttempts: 3,
-      requestHandler: { requestTimeout: config.requestTimeoutMs ?? 30_000, connectionTimeout: 5_000 },
-    });
+    this.#client = s3Client(config, config.endpoint);
+    this.#presigner =
+      config.presignEndpoint && config.presignEndpoint !== config.endpoint
+        ? s3Client(config, config.presignEndpoint)
+        : this.#client;
   }
 
   publicUrl(key: string): string {
@@ -223,7 +243,7 @@ export class S3Storage implements ObjectStorage {
       ContentType: input.contentType,
       ContentLength: input.contentLength,
     });
-    const url = await getSignedUrl(this.#client, command, {
+    const url = await getSignedUrl(this.#presigner, command, {
       expiresIn: input.expiresInSeconds,
       signableHeaders: new Set(['content-type', 'content-length']),
     });
@@ -261,7 +281,7 @@ export class S3Storage implements ObjectStorage {
       PartNumber: input.partNumber,
       ContentLength: input.contentLength,
     });
-    return getSignedUrl(this.#client, command, {
+    return getSignedUrl(this.#presigner, command, {
       expiresIn: input.expiresInSeconds,
       signableHeaders: new Set(['content-length']),
     });
@@ -385,11 +405,13 @@ export class S3Storage implements ObjectStorage {
       Key: key,
       ...(downloadName ? { ResponseContentDisposition: attachmentDisposition(downloadName) } : {}),
     });
+    // Read by the API/worker (inspection range reads): signed for the internal endpoint.
     return getSignedUrl(this.#client, command, { expiresIn: expiresInSeconds });
   }
 
   destroy(): void {
     this.#client.destroy();
+    if (this.#presigner !== this.#client) this.#presigner.destroy();
   }
 }
 
