@@ -5,7 +5,7 @@
  * (`content/best/hubs.ts`), an editorial intro per locale (`content/best/<topic>/<locale>.md`)
  * and «updated on {date}» (the most recent release among the listed items).
  *
- * Indexable; E(3600) `list:mods`. Unknown topic → 404; other letter cases → 301.
+ * Indexable from 5 items (the same threshold as the best sitemap); E(3600) `list:mods`. Unknown topic → 404; other letter cases → 301.
  */
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { formatDate, toHtmlLang } from '@sotf/i18n';
@@ -26,6 +26,7 @@ import { setPageCache } from '../../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { BEST_INDEX_MIN_ITEMS } from '../sitemaps/_lib/sitemaps.ts';
 
 const locale = Astro.locals.locale;
 const raw = Astro.params.topic ?? '';
@@ -93,7 +94,7 @@ const others = BEST_TOPICS.filter((other) => other !== topic).map((other) => ({
 <PageLayout
   template="best"
   width="wide"
-  seo={{ title, description, path, noindex: failed || items.length === 0 }}
+  seo={{ title, description, path, noindex: failed || items.length < BEST_INDEX_MIN_ITEMS }}
   jsonLd={jsonLd}
   breadcrumbs={[
     { label: m.common_nav_home(), path: '/' },

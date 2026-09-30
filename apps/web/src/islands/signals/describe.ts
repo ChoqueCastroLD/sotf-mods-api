@@ -63,6 +63,8 @@ function humanizeKey(key: string): string {
 function statusSentence(signal: NotificationDTO, mod: string): { text: string; tone: SignalTone; icon: LucideIcon } {
   const status = str(signal.data.status) ?? 'other';
   const from = str(signal.data.from);
+  // Version decisions (WP-51) carry the version label; `?` keeps the sentence readable without it.
+  const version = str(signal.data.version) ?? '?';
   switch (status) {
     case 'published':
       return {
@@ -76,7 +78,16 @@ function statusSentence(signal: NotificationDTO, mod: string): { text: string; t
     case 'rejected':
       return { text: st('signals_status_rejected', { mod }), tone: 'danger', icon: CircleAlert };
     case 'pending':
+    case 'changes_requested':
       return { text: st('signals_status_changes_requested', { mod }), tone: 'warning', icon: Wrench };
+    case 'version_approved':
+      return { text: st('signals_status_version_approved', { mod, version }), tone: 'success', icon: BadgeCheck };
+    case 'version_rejected':
+      return { text: st('signals_status_version_rejected', { mod, version }), tone: 'danger', icon: CircleAlert };
+    case 'version_changes_requested':
+      return { text: st('signals_status_version_changes_requested', { mod, version }), tone: 'warning', icon: Wrench };
+    case 'version_held':
+      return { text: st('signals_status_version_held', { mod, version }), tone: 'warning', icon: ShieldCheck };
     case 'unlisted':
       return { text: st('signals_status_unlisted', { mod }), tone: 'warning', icon: ShieldCheck };
     case 'archived':

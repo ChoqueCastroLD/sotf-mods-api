@@ -7,6 +7,7 @@
  * - Copy link / GUID / folder path with a spoken confirmation (`role="status"` region).
  * - Download clicks are recorded (`download_click`); the link itself does the download.
  * - Gallery: the numbered ticks follow the visible picture and scroll the strip (not the page).
+ * - Reviews and comments: the WP-70 islands (`islands/comments/social.ts`).
  */
 import {
   builds_copy_failed,
@@ -17,8 +18,10 @@ import {
   common_action_following,
   common_followers_count,
 } from '@sotf/i18n/messages';
+import { initSocialIslands } from '../../islands/comments/social.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
+import { whenSession } from '../../scripts/mod/session.ts';
 
 const TOAST_MS = 6000;
 
@@ -267,4 +270,27 @@ export function initBuildPage(): void {
   initCopy(toast);
   if (Number.isInteger(modId) && modId > 0) initDownloads(modId);
   initGallery();
+  initSocial();
+}
+
+/**
+ * Reviews and comments islands of WP-70 (same mount points as the mod page): guests keep the
+ * server-rendered lists and download nothing but the tiny loaders; members also get rid of the
+ * sign-in hints.
+ */
+function initSocial(): void {
+  try {
+    const session = whenSession();
+    initSocialIslands(document, session);
+    void session.then((summary) => {
+      if (!summary) return;
+      for (const hint of document.querySelectorAll<HTMLElement>(
+        '[data-review-guest-hint], [data-comment-guest-hint]',
+      )) {
+        hint.hidden = true;
+      }
+    });
+  } catch {
+    // Progressive enhancement only: the server-rendered reviews and comments stay.
+  }
 }

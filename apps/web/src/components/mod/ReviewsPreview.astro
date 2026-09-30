@@ -63,7 +63,7 @@ const creatorName = mod.author.displayName || mod.author.handle;
       <p class="text-fg-muted">{m.mod_reviews_empty()}</p>
     )
   }
-  <div data-island="reviews" data-mod-id={mod.id} data-mod-author-id={mod.userId} class="grid gap-2">
+  <div data-island="reviews" data-mod-id={mod.id} data-mod-author-id={mod.userId} data-mod-author-name={creatorName} class="grid gap-2">
     <a href={`${reviewsHref}#write-review`} data-review-write class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3">
       {m.mod_reviews_write()}
     </a>

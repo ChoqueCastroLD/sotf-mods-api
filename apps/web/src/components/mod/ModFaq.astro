@@ -1,0 +1,35 @@
+---
+/**
+ * Per-mod FAQ (PLAN §8.7 GEO «FAQ por mod generada a partir de los hechos», WP-61 templates):
+ * questions answered from the mod's declared metadata and its field-report aggregate, fully
+ * visible (not collapsed) so readers and answer engines get exactly the text of the `FAQPage`
+ * JSON-LD the page emits with {@link modFaqJsonLd}.
+ */
+import { m } from '@sotf/i18n/messages';
+import type { FaqEntry } from '../../pages/sitemaps/_lib/faq.ts';
+import { SECTION_TITLE_CLASSES } from './styles.ts';
+
+interface Props {
+  items: readonly FaqEntry[];
+}
+
+const { items } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section id="faq" aria-labelledby="faq-title" class="grid scroll-mt-24 gap-4">
+      <h2 id="faq-title" class={SECTION_TITLE_CLASSES}>
+        {m.content_install_faq_title()}
+      </h2>
+      <dl class="grid gap-3">
+        {items.map((item) => (
+          <div id={item.id} class="scroll-mt-24 rounded-lg border border-border bg-surface p-4 sm:p-5">
+            <dt class="font-semibold text-balance text-fg">{item.question}</dt>
+            <dd class="mt-1.5 text-pretty text-fg-muted">{item.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}

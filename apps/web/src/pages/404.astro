@@ -30,7 +30,7 @@ const popular = gone
 const mods = popular?.items.slice(0, 6) ?? [];
 const title = gone ? m.errors_gone_title() : m.errors_not_found_title();
 const text = gone ? m.errors_gone_text() : m.errors_not_found_text();
-const readout = `${gone ? 410 : 404} · ${gone ? m.meta_gone_title() : m.meta_not_found_title()}`;
+const readout = gone ? m.errors_gone_readout() : m.errors_not_found_readout();
 ---
 
 <BaseLayout
@@ -55,27 +55,27 @@ const readout = `${gone ? 410 : 404} · ${gone ? m.meta_gone_title() : m.meta_no
 
         <search class="max-w-lg">
           <form method="get" action={href('/search', locale)} class="flex gap-2">
-          <label for="lost-search" class="sr-only">{m.common_search_label()}</label>
-          <div class="relative flex-1">
-            <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
-              <Icon icon={Search} size={18} />
-            </span>
-            <input
-              id="lost-search"
-              name="q"
-              type="search"
-              maxlength="100"
-              enterkeyhint="search"
-              placeholder={m.common_search_placeholder()}
-              class="h-12 w-full rounded-md border border-border-strong bg-surface ps-10 pe-3 text-base text-fg placeholder:text-fg-subtle"
-            />
-          </div>
-          <button
-            type="submit"
-            class="inline-flex h-12 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow"
-          >
-            {m.common_search_label()}
-          </button>
+            <label for="lost-search" class="sr-only">{m.common_search_label()}</label>
+            <div class="relative min-w-0 flex-1">
+              <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
+                <Icon icon={Search} size={18} />
+              </span>
+              <input
+                id="lost-search"
+                name="q"
+                type="search"
+                maxlength="100"
+                enterkeyhint="search"
+                placeholder={m.common_search_placeholder()}
+                class="h-12 w-full rounded-md border border-border-strong bg-surface ps-10 pe-3 text-base text-fg placeholder:text-fg-subtle focus-visible:border-focus"
+              />
+            </div>
+            <button
+              type="submit"
+              class="inline-flex h-12 shrink-0 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow transition-[filter] hover:brightness-110 motion-reduce:transition-none"
+            >
+              {m.common_search_label()}
+            </button>
           </form>
         </search>
 
@@ -92,7 +92,7 @@ const readout = `${gone ? 410 : 404} · ${gone ? m.meta_gone_title() : m.meta_no
             class="inline-flex h-11 items-center gap-2 rounded-md px-4 font-semibold text-fg-muted hover:bg-fg/8 hover:text-fg"
           >
             <Icon icon={BookOpen} size={18} />
-            {m.common_nav_install()}
+            {m.errors_not_found_install()}
           </a>
         </div>
       </div>

@@ -156,6 +156,18 @@ export function bindCmdkTrigger(doc: Document = document): () => void {
     openPalette(doc, 'landing-hero', () => query, field);
   };
 
+  // With JavaScript the header field, the header search icon and the «Search» tab open a dialog:
+  // announce it (without JavaScript they stay a plain form and links, so nothing is set in HTML).
+  const announced: Element[] = [];
+  const input = headerInput();
+  if (input) announced.push(input);
+  for (const link of doc.querySelectorAll<HTMLAnchorElement>('[data-site-header] a[href], [data-tab-bar] a[href]')) {
+    if (searchLink(link, doc) === link) announced.push(link);
+  }
+  for (const element of announced) {
+    if (!element.hasAttribute('aria-haspopup')) element.setAttribute('aria-haspopup', 'dialog');
+  }
+
   doc.addEventListener('keydown', onKey);
   doc.addEventListener('focusin', onFocusIn);
   doc.addEventListener('pointerover', onIntent, { passive: true });
@@ -163,6 +175,7 @@ export function bindCmdkTrigger(doc: Document = document): () => void {
   doc.addEventListener('click', onClick);
   win.addEventListener(CMDK_OPEN_EVENT, onHero);
   return () => {
+    for (const element of announced) element.removeAttribute('aria-haspopup');
     doc.removeEventListener('keydown', onKey);
     doc.removeEventListener('focusin', onFocusIn);
     doc.removeEventListener('pointerover', onIntent);

@@ -83,7 +83,7 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
     <h2 id="reviews-title" class={SECTION_TITLE_CLASSES}>{m.mod_reviews_title({ count: summary.count })}</h2>
     {summary.count > 0 && <RatingHistogram summary={summary} />}
 
-    <div id="write-review" data-island="reviews-write" data-mod-id={mod.id} data-mod-author-id={mod.userId} class="grid gap-2 rounded-lg border border-dashed border-border p-4">
+    <div id="write-review" data-island="reviews-write" data-mod-id={mod.id} data-mod-author-id={mod.userId} data-mod-author-name={creatorName} class="grid gap-2 rounded-lg border border-dashed border-border p-4">
       <p class="font-semibold">{m.mod_reviews_write()}</p>
       <p class="text-sm text-fg-muted">{m.mod_reviews_rules()}</p>
       <a href={loginHref} class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3" data-review-guest-hint>

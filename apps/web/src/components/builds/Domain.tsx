@@ -34,7 +34,7 @@ export function BuildReviewList({ lang, summary, reviews, creatorName }: BuildRe
     <Scope lang={lang}>
       <div className="grid gap-5 md:grid-cols-[14rem_1fr] md:items-start">
         <RatingHistogram summary={summary} />
-        <ul className="grid gap-4">
+        <ul className="grid gap-4" data-review-list="">
           {reviews.map((review) => (
             <li key={review.id} id={`review-${review.id}`}>
               <ReviewCard review={review} creatorName={creatorName} headingLevel={3} />

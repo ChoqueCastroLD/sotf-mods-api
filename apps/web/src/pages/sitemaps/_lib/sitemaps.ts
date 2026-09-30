@@ -41,7 +41,7 @@ export function isSitemapType(value: string | undefined): value is SitemapType {
 /** Tags index from 3 items (PLAN §4.2). */
 const TAG_INDEX_MIN_ITEMS = 3;
 /** Best hubs index from 5 real items (PLAN §8.6). */
-const BEST_INDEX_MIN_ITEMS = 5;
+export const BEST_INDEX_MIN_ITEMS = 5;
 
 /** Localized public pages without an entity nor a Markdown document (PLAN §4.2), all 13 locales. */
 export const STATIC_PATHS: readonly string[] = [

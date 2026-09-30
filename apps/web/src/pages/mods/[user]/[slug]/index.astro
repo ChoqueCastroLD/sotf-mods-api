@@ -17,12 +17,13 @@ import CreatorCard from '../../../../components/mod/CreatorCard.astro';
 import { loadOverviewExtras, resolveModPage } from '../../../../components/mod/data.ts';
 import { loginHrefFor, versionsPagePath } from '../../../../components/mod/format.ts';
 import { markdownLabels, taxonomyName } from '../../../../components/mod/i18n.ts';
+import ModFaq from '../../../../components/mod/ModFaq.astro';
 import ModLayout from '../../../../components/mod/ModLayout.astro';
 import RelatedMods from '../../../../components/mod/RelatedMods.astro';
 import RequiredBy from '../../../../components/mod/RequiredBy.astro';
 import { respondUnresolved } from '../../../../components/mod/responses.ts';
 import ReviewsPreview from '../../../../components/mod/ReviewsPreview.astro';
-import { modDescription, modJsonLd, modTitle } from '../../../../components/mod/seo.ts';
+import { modDescription, modFaqJsonLd, modJsonLd, modTitle } from '../../../../components/mod/seo.ts';
 import { SECTION_TITLE_CLASSES } from '../../../../components/mod/styles.ts';
 import VersionTimeline from '../../../../components/mod/VersionTimeline.astro';
 import WhatsNew from '../../../../components/mod/WhatsNew.astro';
@@ -32,6 +33,7 @@ import { loadEnv } from '../../../../lib/env.ts';
 import { href } from '../../../../lib/i18n.ts';
 import { pictureSources } from '../../../../lib/images.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
+import { buildModFaq } from '../../../sitemaps/_lib/faq.ts';
 
 export const prerender = false;
 
@@ -64,6 +66,9 @@ const preloadImage = hero
   : undefined;
 const ogImage = mod.nsfw ? undefined : (mod.thumbnail?.url ?? mod.gallery[0]?.url);
 const tags = mod.tags;
+const faq = buildModFaq(mod, locale);
+const jsonLd = modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl });
+if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
 ---
 
 <ModLayout
@@ -81,7 +86,7 @@ const tags = mod.tags;
       ...(ogImage ? { image: ogImage } : {}),
     },
   }}
-  jsonLd={modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl })}
+  jsonLd={jsonLd}
   preloadImage={preloadImage}
 >
   <section aria-labelledby="overview-title" class="grid gap-4">
@@ -141,6 +146,8 @@ const tags = mod.tags;
 
   <ReviewsPreview mod={mod} reviews={extras.reviews} loginHref={loginHref} />
   <CommentsPreview mod={mod} comments={extras.comments} loginHref={loginHref} />
+
+  <ModFaq items={faq} />
 
   <AtAGlance slot="glance" mod={mod} compat={extras.compat} loginHref={loginHref} />
 

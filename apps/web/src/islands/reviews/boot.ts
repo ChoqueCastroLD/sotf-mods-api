@@ -51,7 +51,8 @@ export async function bootReviews(root: ParentNode, session: Promise<MeSummary |
     list = { sort, cursor: cursor && /^[A-Za-z0-9_-]{1,200}$/.test(cursor) ? cursor : null, limit: PAGE_LIMIT };
     listTarget = listContainer(ssrList, (container) => mount.after(container));
   } else {
-    ssrList = section.querySelector(':scope > ul');
+    // Mod overview: the list is a direct child; build pages: next to the histogram, marked.
+    ssrList = section.querySelector(':scope > ul, ul[data-review-list]');
     list = { sort: 'helpful', cursor: null, limit: OVERVIEW_LIMIT };
     listTarget = listContainer(ssrList, (container) => mount.before(container));
     const link = mount.querySelector<HTMLAnchorElement>('a[data-review-write]');

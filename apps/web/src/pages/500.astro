@@ -30,7 +30,7 @@ const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
       <path d="M30 70h60M38 70l22-12 22 12M42 62l36-8M42 54l36 8" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
       <path d="M60 46c-6-6-4-14 0-20 1 6 7 8 6 15" stroke="currentColor" stroke-width="2" stroke-dasharray="3 4" opacity="0.6" />
     </svg>
-    <p class="readout text-danger">500</p>
+    <p class="readout text-danger">{m.errors_server_readout()}</p>
     <h1 class="font-display-caps text-display-sm text-fg">{m.errors_server_title()}</h1>
     <p class="text-lg text-fg-muted">{m.errors_server_text()}</p>
     <div class="flex flex-wrap justify-center gap-3">
@@ -39,7 +39,7 @@ const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
         class="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg"
       >
         <Icon icon={RotateCcw} size={18} />
-        {m.common_action_retry()}
+        {m.errors_server_retry()}
       </a>
       <a
         href={SOCIAL_LINKS.discord}
@@ -47,7 +47,7 @@ const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
         class="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8"
       >
         <Icon icon={MessagesSquare} size={18} />
-        Discord
+        {m.errors_server_status()}
       </a>
     </div>
     <p class="readout text-fg-subtle">{m.errors_reference({ id: locals.requestId })}</p>
