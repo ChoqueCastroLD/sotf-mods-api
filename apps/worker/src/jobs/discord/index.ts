@@ -33,8 +33,8 @@ export function createDiscordJobs(source?: NotificationOptionsSource): JobGroup 
     jobs: [
       defineJob({
         queue: 'discord.announce',
-        handler: async (data, { ctx }) => {
-          const opts = options();
+        handler: async (data, { ctx, services }) => {
+          const opts = options(services);
           const result = await announceOnDiscord(
             {
               db: ctx.db,

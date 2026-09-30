@@ -14,10 +14,9 @@
 import { type CdnPurgeDeps, PurgeThrottle, runCdnPurge } from '@sotf/core/cdn/index';
 import { isValidIndexNowKey } from '@sotf/core/seo/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
-import { parseWorkerEnv, type WorkerEnv } from '../../env.ts';
+import type { WorkerEnv } from '../../env.ts';
 
 const throttle = new PurgeThrottle();
-let env: WorkerEnv | undefined;
 
 /** Purge dependencies from the worker environment (exported for tests). */
 export function cdnPurgeDeps(source: WorkerEnv): Omit<CdnPurgeDeps, 'signal'> {
@@ -36,10 +35,8 @@ export default defineJobGroup({
     defineJob({
       queue: 'cdn.purge',
       options: { localConcurrency: 1 },
-      handler: async ({ tags, reason }, { ctx, job }) => {
-        env ??= parseWorkerEnv();
-        return runCdnPurge(ctx, { ...cdnPurgeDeps(env), signal: job.signal }, { tags, reason });
-      },
+      handler: async ({ tags, reason }, { ctx, job, services }) =>
+        runCdnPurge(ctx, { ...cdnPurgeDeps(services.env), signal: job.signal }, { tags, reason }),
     }),
   ],
 });

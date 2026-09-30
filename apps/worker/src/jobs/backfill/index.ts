@@ -15,7 +15,6 @@
  */
 import { runB16 } from '@sotf/core/gamification/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
-import { workerStorage } from '../uploads/index.ts';
 import { runB15 } from './b15.ts';
 
 const TOOLING_HINT: Readonly<Record<string, string>> = {
@@ -30,11 +29,11 @@ export default defineJobGroup({
     defineJob({
       queue: 'backfill.run',
       options: { localConcurrency: 1 },
-      handler: async ({ name, dryRun, batchSize }, { ctx, job }) => {
+      handler: async ({ name, dryRun, batchSize }, { ctx, job, services }) => {
         ctx.log.info({ name, dryRun, batchSize }, 'backfill started');
         switch (name) {
           case 'B15': {
-            const storage = workerStorage();
+            const storage = services.storage();
             if (!storage) throw new Error('B15 needs R2 credentials (R2_* variables of the worker)');
             const result = await runB15(ctx, storage, { dryRun, batchSize, signal: job.signal });
             ctx.log.info({ name, dryRun, ms: result.ms }, 'backfill finished');

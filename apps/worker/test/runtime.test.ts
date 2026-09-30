@@ -17,6 +17,7 @@ const context: JobContext = {
     { requestId: 'job-1' },
   ),
   job: { id: 'job-1', queue: 'domain.event', retryCount: 0, signal: new AbortController().signal },
+  services: { env: {} as never, storage: () => null },
 };
 
 const event = {
@@ -97,7 +98,7 @@ describe('coexistence and env', () => {
     };
     const env = parseWorkerEnv(base);
     expect(env).toMatchObject({
-      PORT: 3002,
+      PORT: 47302, // development port without NODE_ENV=production (3002 in production)
       DB_POOL_MAX: 5,
       LEGACY_COEXIST: true,
       PUBLIC_SITE_URL: 'https://sotf-mods.com',

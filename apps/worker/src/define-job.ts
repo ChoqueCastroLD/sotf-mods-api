@@ -12,6 +12,7 @@
 import type { DomainEvent, DomainEventType } from '@sotf/contracts/domain-events';
 import type { JobData, JobQueue } from '@sotf/contracts/jobs';
 import type { Ctx } from '@sotf/core';
+import type { WorkerServices } from './services.ts';
 
 export interface JobRun {
   id: string;
@@ -23,6 +24,8 @@ export interface JobRun {
 export interface JobContext {
   ctx: Ctx;
   job: JobRun;
+  /** Environment and storage of this worker process (`src/services.ts`). */
+  services: WorkerServices;
 }
 
 export interface JobWorkOptions {

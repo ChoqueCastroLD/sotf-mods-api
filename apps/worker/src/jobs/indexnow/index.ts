@@ -8,9 +8,6 @@
  */
 import { IndexNowError, indexNowUrls, isValidIndexNowKey, submitIndexNow } from '@sotf/core/seo/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
-import { parseWorkerEnv, type WorkerEnv } from '../../env.ts';
-
-let env: WorkerEnv | undefined;
 
 export default defineJobGroup({
   name: 'indexnow',
@@ -18,8 +15,8 @@ export default defineJobGroup({
     defineJob({
       queue: 'indexnow.ping',
       options: { localConcurrency: 1 },
-      handler: async ({ paths }, { ctx, job }) => {
-        env ??= parseWorkerEnv();
+      handler: async ({ paths }, { ctx, job, services }) => {
+        const { env } = services;
         if (env.SITE_ENV !== 'production' || !isValidIndexNowKey(env.INDEXNOW_KEY)) {
           ctx.log.debug({ paths: paths.length }, 'indexnow.ping skipped outside production');
           return { status: 'skipped' as const, submitted: 0 };

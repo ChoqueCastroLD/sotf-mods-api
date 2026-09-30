@@ -6,35 +6,19 @@
  *   deleted (`expireUploads` of core). Without R2 credentials only the rows change; the private
  *   bucket's 1-day lifecycle rule removes the objects anyway.
  *
- * Storage is built lazily from the worker env (validated at start-up by `env.ts`).
+ * Storage is `JobContext.services.storage()` (built lazily from the worker env, `src/services.ts`).
  */
-import { createStorage, type ObjectStorage, storageConfigFromEnv } from '@sotf/core/storage/index';
 import { expireUploads } from '@sotf/core/uploads/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
 
-let storage: ObjectStorage | null | undefined;
-
-/** Storage of this worker process (null when R2 is not configured). */
-export function workerStorage(): ObjectStorage | null {
-  if (storage === undefined) {
-    const config = storageConfigFromEnv(parseWorkerEnv());
-    storage = config ? createStorage(config) : null;
-  }
-  return storage;
-}
-
-/** Tests: use this storage instead of the env's. */
-export function setWorkerStorageForTests(value: ObjectStorage | null | undefined): void {
-  storage = value;
-}
+export { setWorkerStorageForTests } from '../../services.ts';
 
 export default defineJobGroup({
   name: 'uploads',
   jobs: [
     defineJob({
       queue: 'cleanup.uploads',
-      handler: async (_data, { ctx }) => expireUploads(ctx, workerStorage()),
+      handler: async (_data, { ctx, services }) => expireUploads(ctx, services.storage()),
     }),
   ],
 });

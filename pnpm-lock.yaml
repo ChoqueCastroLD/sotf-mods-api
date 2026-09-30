@@ -266,6 +266,9 @@ catalogs:
     '@scalar/fastify-api-reference':
       specifier: 1.72.1
       version: 1.72.1
+    '@sentry/core':
+      specifier: 11.1.0
+      version: 11.1.0
     '@seriousme/openapi-schema-validator':
       specifier: 2.11.0
       version: 2.11.0
@@ -772,6 +775,9 @@ importers:
       '@react-email/components':
         specifier: 'catalog:'
         version: 1.0.12(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+      '@sentry/core':
+        specifier: 'catalog:'
+        version: 11.1.0
       '@sotf/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
@@ -3264,6 +3270,14 @@ packages:
   '@sentry-internal/tracing@7.120.4':
     resolution: {integrity: sha512-Fz5+4XCg3akeoFK+K7g+d7HqGMjmnLoY2eJlpONJmaeT9pXY7yfUyXKZMmMajdE2LxxKJgQ2YKvSCaGVamTjHw==}
     engines: {node: '>=8'}
+
+  '@sentry/conventions@0.24.0':
+    resolution: {integrity: sha512-pmmF2mLy7A23z8gnLRG87lYu4SSPIBColtfqu9cfkh1omn/0CI3w0/AqZ/uf/VGAtM/wJMN61J58Ks/IWBCHpQ==}
+    engines: {node: '>=14'}
+
+  '@sentry/core@11.1.0':
+    resolution: {integrity: sha512-ObM47oMWxRQiVxUdkV6bs2BeHxPVWim571hw1iT3suyAc8iRfJ27f+QdIdmDKZtvHFGJ0Vh/LpeTZP5Z8FXyEA==}
+    engines: {node: '>=20.19.0 <22.0.0 || >=22.12.0 <23.0.0 || >=23.2.0'}
 
   '@sentry/core@7.120.4':
     resolution: {integrity: sha512-TXu3Q5kKiq8db9OXGkWyXUbIxMMuttB5vJ031yolOl5T/B69JRyAoKuojLBjRv1XX583gS1rSSoX8YXX7ATFGA==}
@@ -9455,6 +9469,12 @@ snapshots:
       '@sentry/core': 7.120.4
       '@sentry/types': 7.120.4
       '@sentry/utils': 7.120.4
+
+  '@sentry/conventions@0.24.0': {}
+
+  '@sentry/core@11.1.0':
+    dependencies:
+      '@sentry/conventions': 0.24.0
 
   '@sentry/core@7.120.4':
     dependencies:

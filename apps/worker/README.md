@@ -6,7 +6,9 @@ the recurring schedules. Business logic lives in `@sotf/core`.
 ## Run
 
 - `pnpm --filter @sotf/worker dev` (source) · `node dist/worker.js` (bundle, `pnpm build`).
-- Health server on `PORT` (3002): `/healthz`, `/readyz` (DB + pg-boss).
+- Health server on `PORT`: `/healthz`, `/readyz` (DB + pg-boss). Without `PORT` it listens on
+  47302 (`pnpm dev`, PLAN §11.2) unless `NODE_ENV=production`, where the default is 3002 (Coolify
+  sets `PORT` anyway).
 - pg-boss runs with `migrate: false` (the schema comes from `db:migrate`), maintenance and cron on.
   Every queue of `JOB_PAYLOADS` exists with retries, exponential backoff and the shared
   `dead-letter` queue (`@sotf/core` `ensureQueues`).
@@ -15,8 +17,10 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   overriding set variables; `SOTF_NO_DOTENV=1` disables it). Locally, e-mails go to Mailpit
   (`EMAIL_TRANSPORT=mailpit`, UI `http://127.0.0.1:47080`) and the CDN purge is a no-op without
   `CF_ZONE_ID`/`CF_API_TOKEN`.
-- `PORT` defaults to 3002 (the Coolify port); the development port is 47302:
-  `PORT=47302 pnpm --filter @sotf/worker dev` until the dev script pins it (`docs/backlog/WP-A4.md`).
+- Errors: with `SENTRY_DSN` every failed job attempt is reported to Sentry (`src/sentry.ts`,
+  `@sentry/core` without OpenTelemetry): tags `queue`/`final`, context `job` (id, retry count),
+  level `warning` while pg-boss will retry and `error` on the last attempt; fatal errors of the
+  process are reported before exiting. No job payloads or user data are sent.
 - Deployment variables: `ops/coolify/env/worker.env.example`.
 
 ## Backfills run by the worker (B15, B16…)
@@ -31,6 +35,37 @@ node dist/backfill.js B15 --apply --wait   # applies; --wait blocks and exits 1 
 
 Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 `ops/runbooks/migration/r2-pass.md`.
+
+## Job groups
+
+| Group (`src/jobs/…`) | Queues | Event subscribers | Owner |
+|---|---|---|---|
+| `accounts` | `account.export`, `account.delete`, `accounts.trust-level`, `cleanup.sessions` | | WP-30 |
+| `backfill` | `backfill.run` (B15, B16) | | WP-84 |
+| `builds` | `build.extract` | | WP-40 |
+| `cdn` | `cdn.purge` | | WP-61 |
+| `cleanup` | `cleanup.analytics` | | WP-52 |
+| `compat` | `compat.aggregate` | `compat.mod-status` | WP-50 |
+| `digests` | `notifications.digest`, `creator.weekly` | | WP-43 |
+| `discord` | `discord.announce` | `discord.enqueue-on-event` | WP-43 |
+| `downloads` | `cleanup.download-unique` | | WP-31 |
+| `email` | `email.send` | | WP-30 |
+| `gamification` | `gamification.evaluate`, `awards.mod-of-week`, `milestones.check` | `gamification.xp` | WP-60 |
+| `indexnow` | `indexnow.ping` | | WP-61 |
+| `inspection` | `inspection.run` | | WP-40 |
+| `kelvinseek` | `cleanup.kelvinseek` | | WP-32 |
+| `legacy-counters` | `legacy.counters` (off while `LEGACY_COEXIST=true`) | | WP-52 |
+| `legacy-mentions` | `legacy.mentions` (B18; off while `LEGACY_COEXIST=true`) | | WP-43 |
+| `media` | `media.process` | `description-images` | WP-40 |
+| `moderation` | | `moderation.lane-counts` | WP-51 |
+| `notifications` | | `notifications.signals`, `realtime.mod-updated` | WP-43 |
+| `og` | `og.render` | `og-on-event` | WP-61 |
+| `platform` | | `cdn-purge-on-event` | WP-20 |
+| `security-scan` | `security.scan` | | WP-51 |
+| `stats` | `stats.rollup`, `stats.trending` | `stats.unfollows` | WP-52 |
+| `uploads` | `cleanup.uploads` | | WP-31 |
+
+Notification details: `src/jobs/notifications/README.md`; compatibility: `src/jobs/compat/README.md`.
 
 ## Writing jobs
 
@@ -51,6 +86,9 @@ export default defineJobGroup({
 ```
 
 - Payloads are validated with the queue's schema before the handler runs; throwing retries.
+- Handlers receive `{ ctx, job, services }`: `services.env` is the validated environment of the
+  worker and `services.storage()` its R2 client (null without credentials). Never read
+  `process.env` or re-parse the environment inside a job (`src/services.ts`).
 - Events: producers call `ctx.jobs.emit(tx, event)` inside their transaction; the `domain.event`
   queue dispatches each event to every matching subscriber in sequence and retries the whole event
   when one fails, so **subscribers must be idempotent**.
