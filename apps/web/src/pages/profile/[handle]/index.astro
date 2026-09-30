@@ -170,7 +170,11 @@ const catalogTotal = notebook?.catalog?.badges.filter((badge) => !badge.isSecret
     description: profileDescription(user, locale),
     path: user.canonicalPath,
     noindex: !user.hasPublicContent,
-    og: { imageAlt: m.meta_og_default_alt(), type: 'profile' },
+    og: {
+      imageAlt: m.meta_og_default_alt(),
+      type: 'profile',
+      ...(user.ogImage ? { image: user.ogImage.url, imageWidth: 1200, imageHeight: 630 } : {}),
+    },
   }}
   jsonLd={jsonLd}
   entity={{ type: 'user', id: user.id }}

@@ -18,6 +18,7 @@ import type { MentionCandidate } from './Composer.tsx';
 import { CommentsContext, type CommentsContextValue } from './context.ts';
 import { type Failure, get } from './lib/api.ts';
 import { SocialI18n } from './lib/i18n.tsx';
+import { emitCount } from './lib/live-count.ts';
 import { t } from './lib/messages.ts';
 import type { MeSummary } from './lib/session.ts';
 import { FailureNote, LiveRegion, ReportDialog } from './lib/ui.tsx';
@@ -164,6 +165,7 @@ export function CommentsIsland(props: CommentsIslandProps) {
 
   const addReply = useCallback((rootId: number, reply: Comment) => {
     const { replies: _replies, repliesCount: _count, ...fields } = reply;
+    emitCount('comments', 1);
     setItems(
       (current) =>
         current?.map((item) =>
@@ -176,6 +178,7 @@ export function CommentsIsland(props: CommentsIslandProps) {
 
   const remove = useCallback((id: number) => {
     let snapshot: Comment[] | null = null;
+    emitCount('comments', -1);
     setItems((current) => {
       snapshot = current;
       if (!current) return current;
@@ -196,6 +199,7 @@ export function CommentsIsland(props: CommentsIslandProps) {
       return out;
     });
     return () => {
+      emitCount('comments', 1);
       if (snapshot) setItems(snapshot);
     };
   }, []);
@@ -261,6 +265,7 @@ export function CommentsIsland(props: CommentsIslandProps) {
       <CommentForm
         mode={{ kind: 'new' }}
         onDone={(created) => {
+          emitCount('comments', 1);
           setItems((current) => [created, ...(current ?? [])]);
           setFocused(created.id);
         }}

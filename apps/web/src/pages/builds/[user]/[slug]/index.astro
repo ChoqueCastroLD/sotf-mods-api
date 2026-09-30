@@ -77,7 +77,8 @@ const preloadImage = hero
       }
     : { href: hero.url }
   : undefined;
-const ogImage = build.nsfw ? undefined : (build.thumbnail?.url ?? build.gallery[0]?.url);
+const ogImage = build.nsfw ? undefined : (build.ogImage?.url ?? build.thumbnail?.url ?? build.gallery[0]?.url);
+const ogSized = build.ogImage !== null && ogImage === build.ogImage?.url;
 const sectionTitle = 'font-display-caps text-display-xs text-fg';
 const trail: { label: string; path?: string }[] = [
   { label: m.common_nav_home(), path: '/' },
@@ -112,6 +113,7 @@ const visibleCrumbs = trail.map((crumb) => ({
       imageAlt: m.builds_og_alt({ name: build.name }),
       type: 'article',
       ...(ogImage ? { image: ogImage } : {}),
+      ...(ogSized ? { imageWidth: 1200, imageHeight: 630 } : {}),
     },
   }}
   jsonLd={jsonLd}

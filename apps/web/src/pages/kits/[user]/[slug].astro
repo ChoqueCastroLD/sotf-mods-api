@@ -91,7 +91,8 @@ const [curatedBefore, curatedAfter] = splitSlot(m.kits_curated_by({ curator: SLO
 const [forkBefore, forkAfter] = kit.forkedFrom
   ? splitSlot(m.kits_forked_from({ kit: SLOT, handle: kit.forkedFrom.ownerHandle }))
   : ['', ''];
-const ogImage = kit.cover?.url ?? kit.previewThumbnails[0];
+const ogImage = kit.ogImage?.url ?? kit.cover?.url ?? kit.previewThumbnails[0];
+const ogSized = kit.ogImage !== null && ogImage === kit.ogImage?.url;
 const trail = [
   { label: m.common_nav_home(), path: '/' },
   { label: m.common_term_kits(), path: '/kits' },
@@ -131,6 +132,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
       imageAlt: m.kits_og_alt({ name: kit.name }),
       type: 'website',
       ...(ogImage ? { image: ogImage } : {}),
+      ...(ogSized ? { imageWidth: 1200, imageHeight: 630 } : {}),
     },
   }}
   jsonLd={graph}

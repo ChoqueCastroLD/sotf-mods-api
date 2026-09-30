@@ -45,6 +45,16 @@ export interface ModPageMessages {
   videoTitle: string;
   close: string;
   shareTitle: string;
+  kitAddTitle: string;
+  kitAddNew: string;
+  kitAddButton: string;
+  kitAddInKit: string;
+  kitAddTo: string;
+  kitAddAlready: string;
+  kitAddDone: string;
+  kitAddFailed: string;
+  kitLimit: string;
+  kitUndoFailed: string;
 }
 
 export interface ModPageData {
