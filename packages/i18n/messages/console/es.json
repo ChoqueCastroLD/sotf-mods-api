@@ -48,8 +48,6 @@
   "console_session_expired": "Tu sesión terminó. Vuelve a iniciar sesión para continuar.",
   "console_sign_out_failed": "No pudimos cerrar tu sesión. Inténtalo de nuevo.",
   "console_forbidden_action": "Ir al Campamento",
-  "console_empty_title": "Aún no hay nada aquí",
-  "console_empty_detail": "Esta parte del campamento todavía se está montando. Vuelve pronto.",
   "console_not_found_detail": "No hay nada en esta dirección dentro de la consola. Puede que se haya movido.",
   "console_not_found_action": "Volver al Campamento",
   "console_error_title": "Esta pantalla no se cargó",

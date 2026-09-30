@@ -48,8 +48,6 @@
   "console_session_expired": "Sua sessão terminou. Entre de novo para continuar.",
   "console_sign_out_failed": "Não conseguimos desconectar você. Tente de novo.",
   "console_forbidden_action": "Ir para o Acampamento",
-  "console_empty_title": "Nada aqui ainda",
-  "console_empty_detail": "Esta parte do acampamento ainda está sendo montada. Volte em breve.",
   "console_not_found_detail": "Não há nada neste endereço dentro do console. Talvez tenha sido movido.",
   "console_not_found_action": "Voltar ao Acampamento",
   "console_error_title": "Esta tela não carregou",

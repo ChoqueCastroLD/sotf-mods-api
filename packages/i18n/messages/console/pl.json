@@ -48,8 +48,6 @@
   "console_session_expired": "Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować.",
   "console_sign_out_failed": "Nie udało się cię wylogować. Spróbuj ponownie.",
   "console_forbidden_action": "Przejdź do obozu",
-  "console_empty_title": "Jeszcze nic tu nie ma",
-  "console_empty_detail": "Ta część obozu jest jeszcze w budowie. Zajrzyj wkrótce.",
   "console_not_found_detail": "Pod tym adresem w konsoli nic nie ma. Być może zostało przeniesione.",
   "console_not_found_action": "Wróć do obozu",
   "console_error_title": "Ten ekran się nie wczytał",

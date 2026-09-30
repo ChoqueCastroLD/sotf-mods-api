@@ -4,7 +4,7 @@
  *
  * Links point at the routes of the area work packages (WP-80 Basecamp, WP-81 Signals/Settings/Me,
  * WP-82 Ranger, WP-83 Admin, WP-74 publishing, WP-75 kits); until a route exists, the console
- * shows its empty state (`components/AreaPlaceholder.tsx`) or «not on the map».
+ * shows its empty state (`components/AreaOutlet.tsx`) or «not on the map».
  */
 
 import {

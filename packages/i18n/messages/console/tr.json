@@ -48,8 +48,6 @@
   "console_session_expired": "Oturumun sona erdi. Devam etmek için tekrar giriş yap.",
   "console_sign_out_failed": "Çıkış yapamadık. Tekrar dene.",
   "console_forbidden_action": "Ana Kamp’a git",
-  "console_empty_title": "Burada henüz bir şey yok",
-  "console_empty_detail": "Kampın bu bölümü hâlâ kuruluyor. Yakında tekrar uğra.",
   "console_not_found_detail": "Konsolda bu adreste hiçbir şey yok. Taşınmış olabilir.",
   "console_not_found_action": "Ana Kamp’a dön",
   "console_error_title": "Bu ekran yüklenmedi",

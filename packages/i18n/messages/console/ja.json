@@ -48,8 +48,6 @@
   "console_session_expired": "セッションが終了しました。続けるにはもう一度ログインしてください。",
   "console_sign_out_failed": "ログアウトできませんでした。もう一度お試しください。",
   "console_forbidden_action": "ベースキャンプへ",
-  "console_empty_title": "まだ何もありません",
-  "console_empty_detail": "キャンプのこの場所はまだ準備中です。また後で来てください。",
   "console_not_found_detail": "コンソールのこのアドレスには何もありません。移動した可能性があります。",
   "console_not_found_action": "ベースキャンプに戻る",
   "console_error_title": "この画面を読み込めませんでした",

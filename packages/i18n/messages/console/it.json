@@ -48,8 +48,6 @@
   "console_session_expired": "La tua sessione è scaduta. Accedi di nuovo per continuare.",
   "console_sign_out_failed": "Non siamo riusciti a disconnetterti. Riprova.",
   "console_forbidden_action": "Vai al campo base",
-  "console_empty_title": "Ancora niente qui",
-  "console_empty_detail": "Questa parte del campo è ancora in allestimento. Torna presto.",
   "console_not_found_detail": "Non c’è niente a questo indirizzo nella console. Potrebbe essere stato spostato.",
   "console_not_found_action": "Torna al campo base",
   "console_error_title": "Questa schermata non si è caricata",
