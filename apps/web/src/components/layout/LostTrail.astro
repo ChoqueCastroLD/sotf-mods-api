@@ -1,0 +1,49 @@
+---
+/**
+ * Illustration of the 404 (research/03 §5.10): contour lines, a pin with «?», a dashed trail that
+ * breaks off, pine silhouettes and two glowing eyes that blink (`motion-safe:animate-blink`).
+ * Decorative, ≈ 1 KB, no assets, tinted by tokens.
+ */
+---
+
+<svg
+  viewBox="0 0 320 200"
+  class="h-auto w-full max-w-md text-fg-subtle"
+  aria-hidden="true"
+  focusable="false"
+  fill="none"
+>
+  <g stroke="currentColor" stroke-width="1.25" opacity="0.35">
+    <path d="M10 150c40-30 80-40 120-28s70 10 100-12 60-20 80-14" />
+    <path d="M20 172c46-26 92-30 130-20s74 8 104-10 44-16 60-12" />
+    <path d="M40 124c30-24 66-30 96-22s56 6 80-10" />
+  </g>
+  <path
+    d="M40 178c20-14 36-24 58-30s40-12 58-26"
+    stroke="var(--color-primary)"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    stroke-dasharray="7 7"
+  />
+  <g transform="translate(150 60)">
+    <path d="M16 62C13 58 0 48 0 34a16 16 0 1 1 32 0c0 14-13 24-16 28Z" fill="var(--color-primary)" />
+    <text
+      x="16"
+      y="41"
+      text-anchor="middle"
+      font-size="20"
+      font-weight="800"
+      fill="var(--color-primary-fg)"
+      font-family="var(--font-display)">?</text
+    >
+  </g>
+  <g fill="currentColor" opacity="0.55">
+    <path d="M236 170l18-52 18 52Z" />
+    <path d="M262 176l20-64 20 64Z" />
+    <path d="M214 176l14-40 14 40Z" />
+  </g>
+  <g data-eyes fill="var(--color-warning)">
+    <circle cx="262" cy="140" r="2.4" class="motion-safe:animate-blink" />
+    <circle cx="272" cy="140" r="2.4" class="motion-safe:animate-blink" />
+  </g>
+</svg>

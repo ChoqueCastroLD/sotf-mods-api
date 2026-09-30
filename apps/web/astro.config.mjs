@@ -1,0 +1,72 @@
+// @ts-check
+/**
+ * Astro 7 configuration of @sotf/web (PLAN §2.5, §2.7, §4.1, §8; WP-22).
+ *
+ * - Node standalone server (`node dist/server/entry.mjs`, port from PORT/HOST).
+ * - React for islands and the console SPA; Tailwind 4 through its Vite plugin.
+ * - TanStack Router plugin: file routes in `src/console/routes`, tree in
+ *   `src/console/routeTree.gen.ts` (generated; `pnpm gen`), automatic code splitting.
+ * - i18n `routing: 'manual'`: the server entry (`fetchFile`) strips the locale prefix before
+ *   routing, the middleware runs every request in its locale (see `src/lib/README.md`).
+ * - Route cache with the `cloudflareTags()` provider (edge headers + origin LRU + invalidation).
+ * - CSP placeholder (`src/lib/security/csp.ts`), finalized by WP-93.
+ * - `trailingSlash: 'never'` (the server entry also 301s trailing slashes before routing).
+ */
+import node from '@astrojs/node';
+import react from '@astrojs/react';
+import { LOCALES } from '@sotf/i18n';
+import tailwindcss from '@tailwindcss/vite';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
+import { defineConfig } from 'astro/config';
+import { cspConfig } from './src/lib/security/csp.ts';
+import { CONSOLE_ROUTER_CONFIG } from './src/lib/tooling/router-config.ts';
+
+/** Astro ignores `_`-prefixed files in `src/pages`, so the internal endpoint is injected. */
+const internalRoutes = {
+  name: 'sotf:internal-routes',
+  hooks: {
+    /** @param {{ injectRoute: (route: { pattern: string; entrypoint: string | URL; prerender?: boolean }) => void }} options */
+    'astro:config:setup': ({ injectRoute }) => {
+      injectRoute({
+        pattern: '/_internal/cache/invalidate',
+        entrypoint: new URL('./src/pages/_internal/cache/invalidate.ts', import.meta.url),
+        prerender: false,
+      });
+    },
+  },
+};
+
+export default defineConfig({
+  site: 'https://sotf-mods.com',
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
+  trailingSlash: 'never',
+  build: { format: 'file' },
+  fetchFile: 'lib/server/fetch',
+  compressHTML: true,
+  prefetch: false,
+  // Markdown is rendered by @sotf/markdown; Shiki's inline styles would also fight the CSP.
+  markdown: { syntaxHighlight: false },
+  devToolbar: { enabled: false },
+  integrations: [react(), internalRoutes],
+  i18n: {
+    locales: [...LOCALES],
+    defaultLocale: 'en',
+    routing: 'manual',
+  },
+  cache: {
+    provider: {
+      name: 'cloudflare-tags',
+      entrypoint: new URL('./src/lib/cache/cloudflare-tags.ts', import.meta.url),
+      config: { max: 500 },
+    },
+  },
+  security: {
+    checkOrigin: true,
+    csp: cspConfig(),
+  },
+  vite: {
+    plugins: [tanstackRouter({ ...CONSOLE_ROUTER_CONFIG }), tailwindcss()],
+    build: { assetsInlineLimit: 0 },
+  },
+});

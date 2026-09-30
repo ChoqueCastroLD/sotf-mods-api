@@ -1,0 +1,62 @@
+---
+/**
+ * PageLayout: `BaseLayout` + the standard content column and optional breadcrumbs (visible trail
+ * and `BreadcrumbList` JSON-LD from the same data, PLAN §8.6 «Breadcrumbs en todo»).
+ * Pages that need a full-bleed hero use `BaseLayout` directly.
+ */
+import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
+import type { SeoProps } from '../components/layout/SeoHead.astro';
+import { loadEnv } from '../lib/env.ts';
+import { href } from '../lib/i18n.ts';
+import { breadcrumbJsonLd, type JsonLd } from '../lib/seo/jsonld.ts';
+import BaseLayout from './BaseLayout.astro';
+
+export interface Crumb {
+  label: string;
+  /** Locale-less path; omit on the current page. */
+  path?: string;
+}
+
+interface Props {
+  seo: SeoProps;
+  jsonLd?: readonly JsonLd[];
+  template: string;
+  preloadImage?: { href: string; srcset?: string; sizes?: string; type?: string };
+  breadcrumbs?: readonly Crumb[];
+  /** Content width: `content` (80rem, default), `wide` (96rem) or `prose` (42rem). */
+  width?: 'content' | 'wide' | 'prose';
+}
+
+const { seo, jsonLd = [], template, preloadImage, breadcrumbs = [], width = 'content' } = Astro.props;
+const locale = Astro.locals.locale;
+const siteUrl = loadEnv().siteUrl;
+const items = breadcrumbs.map((crumb) => ({
+  label: crumb.label,
+  href: crumb.path === undefined ? undefined : href(crumb.path, locale),
+}));
+const graph: JsonLd[] =
+  breadcrumbs.length > 1
+    ? [
+        ...jsonLd,
+        breadcrumbJsonLd(
+          breadcrumbs.map((crumb) => ({
+            name: crumb.label,
+            url: crumb.path === undefined ? undefined : `${siteUrl}${href(crumb.path, locale)}`,
+          })),
+        ),
+      ]
+    : [...jsonLd];
+const widthClass = {
+  content: 'max-w-(--container-content)',
+  wide: 'max-w-(--container-wide)',
+  prose: 'max-w-(--container-prose)',
+}[width];
+---
+
+<BaseLayout seo={seo} jsonLd={graph} template={template} preloadImage={preloadImage}>
+  <slot name="head" slot="head" />
+  <div class:list={['mx-auto w-full px-4 py-6 md:px-6 md:py-10', widthClass]}>
+    {items.length > 1 && <Breadcrumbs items={items} className="mb-6" />}
+    <slot />
+  </div>
+</BaseLayout>

@@ -1,0 +1,96 @@
+---
+/**
+ * BaseLayout: the document of every public page (PLAN §2.5, §3.3, §4.5, §8).
+ *
+ * - `<html lang>` from the request locale, `data-theme="dark"` (the inline init script applies a
+ *   stored Day/System preference before the first paint: no FOUC), `data-template` for RUM;
+ * - inline head scripts (hashed in the CSP): theme, dismissed banners, legacy-token cleanup,
+ *   Speculation Rules;
+ * - the two preloaded fonts, `SeoHead`, icons and the web manifest;
+ * - header, global banners, `<main id="main">`, footer and the mobile tab bar (`chrome={false}`
+ *   renders a bare document, e.g. embeds);
+ * - one bundled module (`lib/client/boot.ts`, ≤ 15 KB br budget) that wires the vanilla scripts.
+ *
+ * The HTML is identical for every visitor: nothing here reads cookies or the session.
+ */
+import { BANNER_INIT_SCRIPT } from '@sotf/ui/dismissals';
+import { FONT_PRELOADS } from '@sotf/ui/font-preloads';
+import { SkipLink } from '@sotf/ui/skip-link';
+import { THEME_INIT_SCRIPT } from '@sotf/ui/theme';
+import Footer from '../components/layout/Footer.astro';
+import Header from '../components/layout/Header.astro';
+import MobileTabBar from '../components/layout/MobileTabBar.astro';
+import SeoHead, { type SeoProps } from '../components/layout/SeoHead.astro';
+import SiteBanners from '../components/layout/SiteBanners.astro';
+import { loadEnv } from '../lib/env.ts';
+import { toHtmlLang } from '../lib/i18n.ts';
+import { ensureLocals } from '../lib/request-context.ts';
+import type { JsonLd } from '../lib/seo/jsonld.ts';
+import { SPECULATION_RULES_JSON } from '../lib/speculation.ts';
+import { LEGACY_CLEANUP_SCRIPT } from '../scripts/legacy-cleanup.ts';
+import { seasonOf } from '../scripts/seasonal.ts';
+import './global.css';
+
+interface Props {
+  seo: SeoProps;
+  jsonLd?: readonly JsonLd[];
+  /** Page template name for RUM and analytics (`home`, `mod`, `explore`, `404`…). */
+  template: string;
+  preloadImage?: { href: string; srcset?: string; sizes?: string; type?: string };
+  /** Header, banners, footer and tab bar. Default true. */
+  chrome?: boolean;
+  /** Extra classes for `<main>`. */
+  mainClass?: string;
+  /** Entity of the page for analytics (`page_view` with `entityType`/`entityId`). */
+  entity?: { type: 'mod' | 'build' | 'kit' | 'user' | 'category' | 'tag'; id: number };
+}
+
+const { seo, jsonLd, template, preloadImage, chrome = true, mainClass, entity } = Astro.props;
+const env = loadEnv();
+const locale = ensureLocals(Astro).locale;
+---
+
+<!doctype html>
+<html
+  lang={toHtmlLang(locale)}
+  dir="ltr"
+  data-theme="dark"
+  data-template={template}
+  data-season={seasonOf(new Date())}
+  data-entity-type={entity?.type}
+  data-entity-id={entity?.id}
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script is:inline set:html={THEME_INIT_SCRIPT} />
+    <script is:inline set:html={BANNER_INIT_SCRIPT} />
+    <script is:inline set:html={LEGACY_CLEANUP_SCRIPT} />
+    {FONT_PRELOADS.map((font) => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />)}
+    <SeoHead seo={seo} jsonLd={jsonLd} preloadImage={preloadImage} />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="alternate" type="application/rss+xml" title="SOTF Mods" href="/feed.xml" />
+    {env.adsenseClient && <meta name="google-adsense-account" content={env.adsenseClient} />}
+    <script is:inline type="speculationrules" set:html={SPECULATION_RULES_JSON} />
+    <slot name="head" />
+  </head>
+  <body class="bg-bg text-fg">
+    <SkipLink />
+    {chrome && <Header />}
+    {chrome && <SiteBanners />}
+    <main id="main" tabindex="-1" class:list={['flex-1 outline-none', mainClass]}>
+      <slot />
+    </main>
+    {chrome && <Footer />}
+    {chrome && <MobileTabBar />}
+    <script>
+      import { boot } from '../lib/client/boot.ts';
+
+      boot();
+    </script>
+  </body>
+</html>

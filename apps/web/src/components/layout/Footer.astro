@@ -1,0 +1,153 @@
+---
+/**
+ * Site footer (PLAN §3.1, research/03 §5.4 and §6.1): link columns, the mandatory fan-community
+ * disclaimer, tonight's moon phase (computed on the client by `scripts/moon.ts`, so cached HTML
+ * never shows a stale phase for long), the 13 languages, the theme toggle, the December snow
+ * toggle, Discord and GitHub.
+ */
+
+import { moonPhase } from '@sotf/brand/moon';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { LanguageSwitcher } from '@sotf/ui/language-switcher';
+import { ThemeToggle } from '@sotf/ui/theme-toggle';
+import { CodeXml, MessagesSquare, Snowflake } from 'lucide-react';
+import { href, languageLinks } from '../../lib/i18n.ts';
+import { SOCIAL_LINKS } from '../../lib/site.ts';
+
+const locale = Astro.locals.locale;
+const languages = languageLinks(Astro.locals.pagePath);
+
+const columns = [
+  {
+    title: m.common_footer_explore(),
+    links: [
+      { path: '/mods', label: m.common_term_mods() },
+      { path: '/builds', label: m.common_term_builds() },
+      { path: '/kits', label: m.common_term_kits() },
+      { path: '/creators', label: m.common_nav_creators() },
+      { path: '/patch-radar', label: m.common_term_patch_radar() },
+    ],
+  },
+  {
+    title: m.common_footer_community(),
+    links: [
+      { path: '/news', label: m.common_nav_news() },
+      { path: '/achievements', label: m.common_nav_achievements() },
+      { path: '/about', label: m.common_footer_about() },
+      { path: '/brand', label: m.common_footer_brand() },
+    ],
+  },
+  {
+    title: m.common_footer_resources(),
+    links: [
+      { path: '/install', label: m.common_nav_install() },
+      { path: '/developers', label: m.common_footer_developers() },
+      { path: '/api/docs', label: m.common_footer_api_docs() },
+    ],
+  },
+  {
+    title: m.common_footer_legal(),
+    links: [
+      { path: '/privacy', label: m.common_footer_privacy() },
+      { path: '/terms', label: m.common_footer_terms() },
+      { path: '/content-policy', label: m.common_footer_content_policy() },
+      { path: '/dmca', label: m.common_footer_dmca() },
+      { path: '/cookies', label: m.common_footer_cookies() },
+    ],
+  },
+];
+
+const moonNames = [
+  m.common_moon_new(),
+  m.common_moon_waxing_crescent(),
+  m.common_moon_first_quarter(),
+  m.common_moon_waxing_gibbous(),
+  m.common_moon_full(),
+  m.common_moon_waning_gibbous(),
+  m.common_moon_last_quarter(),
+  m.common_moon_waning_crescent(),
+];
+// Rendered for the server's date; `scripts/moon.ts` recomputes it on the client (cached HTML may
+// be up to a day old). The template keeps a `{phase}` placeholder, so no i18n code ships.
+const moonTemplate = m.common_moon_label({ phase: '{phase}' });
+const tonight = moonPhase();
+const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? '');
+---
+
+<footer class="mt-auto border-t border-border bg-surface pb-24 md:pb-0">
+  <div class="mx-auto grid w-full max-w-(--container-wide) gap-10 px-4 py-12 md:px-6">
+    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+      {
+        columns.map((column) => (
+          <nav aria-label={column.title}>
+            <h2 class="readout mb-3 text-fg-subtle">{column.title}</h2>
+            <ul class="grid gap-1">
+              {column.links.map((link) => (
+                <li>
+                  <a
+                    href={href(link.path, locale)}
+                    class="inline-flex min-h-8 items-center text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="flex flex-wrap items-center gap-3 border-t border-border pt-6">
+      <a
+        href={SOCIAL_LINKS.discord}
+        rel="noopener"
+        class="inline-flex h-10 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8"
+      >
+        <Icon icon={MessagesSquare} size={18} />
+        Discord
+      </a>
+      <a
+        href={SOCIAL_LINKS.github}
+        rel="noopener"
+        class="inline-flex h-10 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8"
+      >
+        <Icon icon={CodeXml} size={18} />
+        GitHub
+      </a>
+      <div class="ms-auto flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          data-snow-toggle
+          hidden
+          aria-pressed="true"
+          class="inline-flex h-10 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 aria-pressed:bg-blueprint-surface"
+        >
+          <Icon icon={Snowflake} size={18} />
+          {m.common_snow_toggle()}
+        </button>
+        <ThemeToggle />
+        <LanguageSwitcher languages={languages} current={locale} placement="top" />
+      </div>
+    </div>
+
+    <div class="grid gap-3 text-sm text-fg-muted md:flex md:items-start md:justify-between md:gap-8">
+      <p class="max-w-(--container-prose)">{m.common_disclaimer()}</p>
+      <div class="grid shrink-0 gap-1 md:justify-items-end">
+        <p
+          class="flex items-center gap-2"
+          data-moon
+          data-moon-names={JSON.stringify(moonNames)}
+          data-moon-template={moonTemplate}
+        >
+          <svg class="size-5 text-featured" aria-hidden="true" focusable="false">
+            <use data-moon-icon href={`/brand/field-kit.svg#fk-moon-phase-${tonight.index}`}></use>
+          </svg>
+          <span data-moon-label>{moonLabel}</span>
+        </p>
+        <p class="readout text-fg-subtle">{m.common_footer_since()}</p>
+      </div>
+    </div>
+  </div>
+</footer>
