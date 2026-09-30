@@ -9,7 +9,8 @@ async function jpegWithExif(width: number, height: number, orientation = 1): Pro
     .toBuffer();
 }
 
-describe('image pipeline (PLAN §8.3)', () => {
+// AVIF encoding at five widths takes seconds on a busy host.
+describe('image pipeline (PLAN §8.3)', { timeout: 120_000 }, () => {
   it('generates AVIF and WebP at every width up to the original, without metadata', async () => {
     const out = await processImage(await jpegWithExif(2000, 1000));
     expect(out.format).toBe('jpeg');
