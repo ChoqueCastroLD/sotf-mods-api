@@ -5,7 +5,7 @@
   "description": "pg-boss 12 worker: media, OG images, inspection, email, rollups, CDN purges and schedules.",
   "type": "module",
   "scripts": {
-    "dev": "node --watch src/worker.ts",
+    "dev": "PORT=${PORT:-47302} HOST=${HOST:-127.0.0.1} node --watch src/worker.ts",
     "start": "node dist/worker.js",
     "build": "tsdown",
     "typecheck": "tsc --noEmit -p tsconfig.json",
