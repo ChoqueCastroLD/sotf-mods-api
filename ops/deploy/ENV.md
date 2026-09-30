@@ -79,7 +79,6 @@ se borra en T+7 (`ops/cloudflare/README.md` §1).
 | `INDEXNOW_KEY` | O | el mismo valor que en la web |
 | `VIRUSTOTAL_API_KEY` | O (secreto) | |
 | `OPENAI_API_KEY`, `KELVINSEEK_MODEL`, `KELVINSEEK_DAILY_BUDGET_USD` | O | como en la api |
-| `ALERT_INTERVAL_SECONDS` | O | alertas operativas a admins, 300; `0` = off |
 | `WORKER_CONCURRENCY` | O | 2 |
 | `NODE_OPTIONS` | O | `--max-old-space-size=576` (75 % de 768 MB) |
 

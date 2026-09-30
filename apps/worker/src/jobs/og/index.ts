@@ -47,6 +47,10 @@ export function ogTargetsOf(event: DomainEvent): OgPayload[] {
     case 'kit.updated':
     case 'kit.deleted':
       return [{ entityType: 'kit', entityId: event.payload.kitId }];
+    case 'milestone.reached':
+      return [
+        { entityType: 'milestone', entityId: `${event.payload.modId}-${event.payload.threshold}` },
+      ];
     case 'game_build.created':
       return event.payload.isCurrent ? [{ entityType: 'patch-radar', entityId: 'current' }] : [];
     default:
@@ -101,6 +105,7 @@ export default defineJobGroup({
         'kit.created',
         'kit.updated',
         'kit.deleted',
+        'milestone.reached',
         'game_build.created',
       ],
       handler: async (event, { ctx }) => {

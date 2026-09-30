@@ -11,7 +11,7 @@ PLAN §10.3 y §6.13 E (hypercare). Todo lo de este documento es de **solo lectu
 | Logs JSON (pino) | Coolify → app → *Logs* | Cada petición con `reqId` (= `cf-ray`), ruta, estado y duración; los errores con su pila |
 | Sentry (si `SENTRY_DSN`) | sentry.io | Errores de api, worker, SSR y consola, sin datos personales |
 | Cola de pg-boss | SQL de solo lectura (§2) | Trabajos atascados, reintentos, `dead-letter` |
-| Invariantes de datos | `node src/cli/invariants.ts` en `sotf-v2-tools` | Las 10 invariantes de PLAN §6.11 |
+| Invariantes de datos | `node src/cli/invariants.ts --record` en `sotf-v2-tools`, programado cada noche (*Scheduled Tasks*, p. ej. `15 3 * * *`) | Las 10 invariantes de PLAN §6.11; `--record` escribe la fila `MigrationRun` que lee la cola `ops.alerts` y avisa a los admins si hay rojo |
 | Rendimiento real (RUM) | *Ranger Station → Admin → Performance* | p75 de CWV por plantilla y país |
 | Gasto de KelvinSeek | *Ranger Station → Admin → KelvinSeek* | Uso frente al presupuesto diario |
 | Cloudflare Analytics | Panel de la zona | Tráfico, ratio de caché, errores del origen, tráfico por host |

@@ -264,9 +264,9 @@ export async function buildModDetail(
       row<{ n: string }>(ctx.db, `SELECT count(*) AS n FROM "Comment" WHERE "modId" = $1 AND "status" = 'visible'`, [
         entry.id,
       ]),
-      rows<{ threshold: number; reachedAt: Date }>(
+      rows<{ threshold: number; reachedAt: Date; ogImageKey: string | null }>(
         ctx.db,
-        `SELECT "threshold", "reachedAt" FROM "ModMilestone" WHERE "modId" = $1 ORDER BY "threshold"`,
+        `SELECT "threshold", "reachedAt", "ogImageKey" FROM "ModMilestone" WHERE "modId" = $1 ORDER BY "threshold"`,
         [entry.id],
       ),
       row<{ n: string }>(
@@ -329,7 +329,11 @@ export async function buildModDetail(
     reviewsSummary: reviewsSummaryOf(reviewRows),
     commentsCount: num(comments?.n),
     milestones: milestones.map(
-      (m): MilestoneDTO => ({ threshold: m.threshold, reachedAt: new Date(m.reachedAt).toISOString() }),
+      (m): MilestoneDTO => ({
+        threshold: m.threshold,
+        reachedAt: new Date(m.reachedAt).toISOString(),
+        ogImageUrl: ogImageOf(config, m.ogImageKey)?.url ?? null,
+      }),
     ),
     originalAuthor: detail.originalAuthorName?.trim()
       ? { name: detail.originalAuthorName.trim(), url: safeHttpUrl(detail.originalAuthorUrl) }
