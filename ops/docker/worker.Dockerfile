@@ -1,4 +1,5 @@
 # syntax=docker/dockerfile:1.7
+# GENERATED from node.Dockerfile by ops/docker/sync-dockerfiles.sh. Do not edit: change node.Dockerfile and re-run.
 #
 # Node image of SOTF Mods v2: `sotf-node` = @sotf/api + @sotf/worker (PLAN §11.1).
 #
@@ -148,8 +149,8 @@ ARG BUILD_DATE=unknown
 # Coolify passes the commit it builds as SOURCE_COMMIT; GIT_SHA (CI) wins when both are set.
 ARG SOURCE_COMMIT=
 # @role-defaults (rewritten by ops/docker/sync-dockerfiles.sh for the api/worker variants)
-ARG SOTF_ROLE=api
-ARG APP_PORT=3001
+ARG SOTF_ROLE=worker
+ARG APP_PORT=3002
 # @end-role-defaults
 LABEL org.opencontainers.image.title="sotf-node" \
       org.opencontainers.image.description="SOTF Mods v2 API, worker, migrate and backfill tasks" \

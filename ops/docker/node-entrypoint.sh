@@ -18,6 +18,13 @@
 #                  `node dist/backfill.js B15 --apply --wait` or `node dist/migrate.js status`)
 set -eu
 
+# Deployed commit: CI bakes GIT_SHA into the image; a Coolify build from Git only knows the commit
+# as SOURCE_COMMIT (injected at build and run time), so it fills in when GIT_SHA is unset or "dev".
+if [ -z "${GIT_SHA:-}" ] || [ "${GIT_SHA}" = "dev" ]; then
+  GIT_SHA="${SOURCE_COMMIT:-dev}"
+fi
+export GIT_SHA
+
 if [ "$#" -gt 0 ]; then
   exec "$@"
 fi

@@ -8,6 +8,11 @@ Instancia: Coolify 4 en `https://coolify.sotf-mods.com`. **No se modifica nada d
 legacy «Sons of the forest Mods»** (`sotf-mods-api`, `sotf-mods-frontend`, `sotf-mods-db`) ni de
 los otros proyectos del servidor, salvo lo que diga el runbook de corte (§6.13 B2, D2).
 
+> Este runbook describe el despliegue con **imágenes de GHCR** disparado por CI. Para compilar en
+> Coolify directamente desde la rama `v2` (Dockerfiles por app) sigue
+> [`../deploy/COOLIFY.md`](../deploy/COOLIFY.md); las plantillas de variables de `env/` sirven en
+> ambos casos.
+
 Resumen de lo que se crea:
 
 | Entorno | App | Imagen (GHCR) | `SOTF_ROLE` | Dominios | Puerto | Health | Memoria |

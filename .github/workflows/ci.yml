@@ -77,6 +77,9 @@ jobs:
           docker run --rm -v "$PWD:/repo" -w /repo koalaman/shellcheck:v0.10.0 -x \
             ops/docker/*.sh ops/coolify/*.sh ops/runbooks/deploy/*.sh tooling/scripts/*.sh
 
+      - name: 2 · Dockerfile variants in sync
+        run: ops/docker/sync-dockerfiles.sh --check
+
       - name: 2 · check:forbidden
         run: pnpm check:forbidden
 

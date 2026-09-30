@@ -15,6 +15,24 @@ docker build -f ops/docker/web.Dockerfile  -t sotf-web  --build-arg GIT_SHA=$(gi
 ops/docker/inspect-image.sh sotf-node 230 && ops/docker/inspect-image.sh sotf-web 180
 ```
 
+## Coolify builds from Git
+
+Each Coolify app builds straight from the `v2` branch with *Base Directory* `/` and its own
+*Dockerfile Location* (step by step in `ops/deploy/COOLIFY.md`):
+
+| App | Dockerfile | Default role / port |
+|---|---|---|
+| api (and the migrate task) | `api.Dockerfile` | `SOTF_ROLE=api`, 3001 (migrate: env `SOTF_ROLE=migrate-task`, `PORT=3003`) |
+| worker | `worker.Dockerfile` | `SOTF_ROLE=worker`, 3002 |
+| web | `web.Dockerfile` | 4321 |
+| tools | `node.Dockerfile`, build target `tools` | `SOTF_ROLE=idle` |
+
+`api.Dockerfile` and `worker.Dockerfile` are generated from `node.Dockerfile` (only the
+`@role-defaults` block differs): edit `node.Dockerfile`, run `ops/docker/sync-dockerfiles.sh`
+(`--check` in CI and `ci:local`). All runtime images are non-root (`USER node`), run under `tini`
+and carry a `HEALTHCHECK` (busybox `wget` on `/healthz` of `$PORT`); Coolify passes
+`SOURCE_COMMIT`, which the images use as the deployed version.
+
 ## How they are built
 
 1. `turbo prune <apps> --docker`: package manifests + pruned lockfile first (the `pnpm fetch` +
@@ -33,7 +51,7 @@ ops/docker/inspect-image.sh sotf-node 230 && ops/docker/inspect-image.sh sotf-we
    `tooling/scripts/test/runtime-deps.test.ts`).
 5. Runtime: plain `alpine:3.23` + the `node` binary of `node:24.17.0-alpine3.23` + `tini`,
    `USER node` (uid 1000), `TZ=UTC`, `NODE_ENV=production`. npm, corepack, yarn and headers are
-   not shipped. No `HEALTHCHECK` (Coolify checks `/healthz` with busybox `wget`).
+   not shipped. `HEALTHCHECK` on `/healthz`.
 
 `<name>.Dockerfile.dockerignore` (BuildKit) keeps `.git`, `node_modules`, build outputs, `.env*`,
 dumps, keys, docs and the other `ops/` files out of the context.

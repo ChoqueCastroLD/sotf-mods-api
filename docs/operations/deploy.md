@@ -8,7 +8,10 @@ Sigue en este orden (lo hace el dueño; ningún agente toca Coolify ni Cloudflar
 
 1. **Repositorio**: el monorepo se publica como rama `v2` de `ChoqueCastroLD/sotf-mods-api`
    (§14.4). El orquestador hace el push solo cuando lo apruebas; en el corte `v2` pasa a `main`.
-2. **Coolify**: proyecto `sotf-mods-v2`, entornos, base de staging, las cinco apps, variables y
+2. **Coolify desde Git (recomendado)**: apps compiladas por Coolify desde la rama `v2` con los
+   Dockerfiles de `ops/docker/` → [`ops/deploy/COOLIFY.md`](../../ops/deploy/COOLIFY.md) y variables en
+   [`ops/deploy/ENV.md`](../../ops/deploy/ENV.md). Alternativa con imágenes de GHCR y despliegue por
+   CI: proyecto `sotf-mods-v2`, entornos, base de staging, las cinco apps, variables y
    entornos de GitHub → [`ops/coolify/README.md`](../../ops/coolify/README.md).
 3. **`/api` en el mismo origen** (obligatorio en staging) →
    [`ops/runbooks/deploy/02-same-origin-api.md`](../../ops/runbooks/deploy/02-same-origin-api.md).

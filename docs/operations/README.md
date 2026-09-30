@@ -50,7 +50,7 @@ sotf-v2-tools (parada; CLIs del operador)   sotf-mods-db (PostgreSQL 16 existent
 | Cuándo | Qué | Dónde |
 |---|---|---|
 | Cada release | Staging automático; producción con etiqueta y aprobación | [deploy.md](deploy.md) |
-| Diario (hypercare T0 → T+30) | Comprobaciones de [monitoring.md](monitoring.md) §3 | Coolify, Sentry, Ranger Station |
+| Diario ([hypercare](../../ops/runbooks/hypercare/README.md) T0 → T+30) | Comprobaciones de [monitoring.md](monitoring.md) §3 | Coolify, Sentry, Ranger Station |
 | Semanal | Reinicio de staging con el seed | [`ops/runbooks/deploy/06-staging.md`](../../ops/runbooks/deploy/06-staging.md) |
 | T+1 tras el corte | Rotación de secretos heredados | [secret-rotation.md](secret-rotation.md) |
 | T+7 | Borrar el registro DNS del host de ficheros legacy si Cloudflare Analytics confirma 0 tráfico | Cloudflare → DNS |
