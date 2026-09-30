@@ -14,6 +14,7 @@
  *     get locale() { return toHtmlLang(getLocale()); },
  *     t: (key, params) => m[key](params ?? {}),
  *     taxonomy: (nameKey, fallback) => (nameKey in m ? m[nameKey]() : fallback),
+ *     href: (path) => localizePath(path, getLocale()),
  *   });
  *
  * Formatting helpers take the BCP-47 locale explicitly and default to UTC, because public HTML
@@ -40,6 +41,12 @@ export interface DomainI18n {
   readonly taxonomy?: (nameKey: string, fallback: string) => string;
   /** Time zone of dates. Default `UTC` (cached public HTML); per-user client UI may pass its own. */
   readonly timeZone?: string;
+  /**
+   * Localises a site path built by a component (`/profile/imaxel` → `/es/profile/imaxel`), e.g.
+   * `(path) => localizePath(path, getLocale())` of `@sotf/i18n`. Default: the path unchanged.
+   * DTO paths (`canonicalPath`) are passed through as the caller gave them.
+   */
+  readonly href?: (path: string) => string;
 }
 
 /** Every key of the namespace (source order). */
@@ -77,6 +84,17 @@ export function DomainI18nProvider({ value, children }: DomainI18nProviderProps)
 /** The i18n in scope (context → configured → English). */
 export function useDomainI18n(): DomainI18n {
   return useContext(DomainI18nContext) ?? configured ?? englishDomainI18n;
+}
+
+/** Public profile path of a handle (locale-less; see {@link useProfileHref}). */
+export function profilePath(handle: string): string {
+  return `/profile/${encodeURIComponent(handle)}`;
+}
+
+/** Localised profile link builder of the i18n in scope. */
+export function useProfileHref(): (handle: string) => string {
+  const { href } = useDomainI18n();
+  return (handle) => (href ? href(profilePath(handle)) : profilePath(handle));
 }
 
 // -------------------------------------------------------------------------------------------

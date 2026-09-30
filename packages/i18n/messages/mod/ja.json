@@ -220,5 +220,6 @@
   "mod_md_alert_important": "重要",
   "mod_md_alert_warning": "警告",
   "mod_md_alert_caution": "注意",
-  "mod_md_spoiler": "ネタバレ"
+  "mod_md_spoiler": "ネタバレ",
+  "mod_faq_title": "よくある質問"
 }

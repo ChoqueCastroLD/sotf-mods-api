@@ -24,6 +24,8 @@ export const session = pgTable('Session', {
   ipHash: text('ipHash'),
   userAgent: text('userAgent'),
   deviceLabel: text('deviceLabel'),
+  /** ISO 3166-1 alpha-2 country of the request that created the session (edge header); null if unknown. */
+  country: text('country'),
 });
 
 export type Session = typeof session.$inferSelect;

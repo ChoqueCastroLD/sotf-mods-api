@@ -7,9 +7,11 @@ import closeWithGrace from 'close-with-grace';
 import { createWorker } from './app.ts';
 import { loadWorkerEnv } from './env.ts';
 import { createHealthServer } from './health.ts';
+import { createErrorReporter } from './sentry.ts';
 
 const env = loadWorkerEnv();
-const worker = createWorker({ env });
+const reporter = createErrorReporter(env);
+const worker = createWorker({ env, reporter, alerts: true, sweeps: true });
 const startedAt = new Date();
 const health = createHealthServer({
   version: env.GIT_SHA,
@@ -39,9 +41,12 @@ async function startWithRetry(attempt = 0): Promise<void> {
 closeWithGrace({ delay: 35_000, logger: worker.log }, async ({ signal, err }) => {
   stopping = true;
   if (retry) clearTimeout(retry);
-  if (err) worker.log.error({ err }, 'fatal error, shutting down');
-  else worker.log.info({ signal }, 'shutting down');
+  if (err) {
+    worker.log.error({ err }, 'fatal error, shutting down');
+    reporter.captureFatal(err);
+  } else worker.log.info({ signal }, 'shutting down');
   await worker.stop(30_000);
+  await reporter.flush(2000);
   await new Promise<void>((resolve) => health.close(() => resolve()));
 });
 

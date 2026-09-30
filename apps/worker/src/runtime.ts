@@ -9,7 +9,7 @@
 
 import { parseDomainEvent } from '@sotf/contracts/domain-events';
 import { JOB_SCHEDULES, type JobQueue, parseJobPayload } from '@sotf/contracts/jobs';
-import { DOMAIN_EVENT_QUEUE, ensureQueues, type Jobs, type KernelDeps, systemCtx } from '@sotf/core';
+import { DOMAIN_EVENT_QUEUE, ensureQueues, type Jobs, type KernelDeps, queueConfig, systemCtx } from '@sotf/core';
 import type { Job, PgBoss } from 'pg-boss';
 import { isQueueEnabled } from './coexist.ts';
 import {
@@ -19,10 +19,14 @@ import {
   type JobGroup,
   subscribes,
 } from './define-job.ts';
+import type { JobErrorInfo } from './sentry.ts';
+import type { WorkerServices } from './services.ts';
 
 export interface RuntimeOptions {
   boss: PgBoss;
   deps: KernelDeps & { jobs: Jobs };
+  /** Environment and storage handed to every job (`JobContext.services`). */
+  services: WorkerServices;
   groups: readonly JobGroup[];
   legacyCoexist: boolean;
   concurrency: number;
@@ -30,6 +34,37 @@ export interface RuntimeOptions {
   schedules?: boolean;
   /** Poll interval of every worker in seconds (default 2; tests use 0.5). */
   pollingIntervalSeconds?: number;
+  /** Called with every failed attempt (error reporting, `src/sentry.ts`); must not throw. */
+  onJobError?: (error: unknown, info: JobErrorInfo) => void;
+}
+
+/** Whether pg-boss retries a failed attempt of `queue` again (`queueConfig` of `@sotf/core`). */
+export function isFinalAttempt(queue: string, retryCount: number): boolean {
+  const limit = queueConfig(queue as JobQueue).retryLimit ?? 0;
+  return retryCount >= limit;
+}
+
+/** Runs one attempt and reports its failure before rethrowing it to pg-boss. */
+async function reporting<T>(
+  job: Job<unknown>,
+  onJobError: RuntimeOptions['onJobError'],
+  run: () => Promise<T>,
+): Promise<T> {
+  try {
+    return await run();
+  } catch (error) {
+    try {
+      onJobError?.(error, {
+        queue: job.name,
+        jobId: job.id,
+        retryCount: job.retryCount,
+        final: isFinalAttempt(job.name, job.retryCount),
+      });
+    } catch {
+      // Reporting never changes the outcome of the job.
+    }
+    throw error;
+  }
 }
 
 export interface RuntimeState {
@@ -39,10 +74,11 @@ export interface RuntimeState {
   skipped: string[];
 }
 
-function contextFor(deps: KernelDeps, job: Job<unknown>): JobContext {
+function contextFor(deps: KernelDeps, services: WorkerServices, job: Job<unknown>): JobContext {
   return {
     ctx: systemCtx(deps, job.id),
     job: { id: job.id, queue: job.name, retryCount: job.retryCount, signal: job.signal },
+    services,
   };
 }
 
@@ -118,12 +154,14 @@ export async function startRuntime(options: RuntimeOptions): Promise<RuntimeStat
       },
       async ([job]) => {
         if (!job) return;
-        const context = contextFor(deps, job);
-        const data = parseJobPayload(queue, job.data);
-        const started = Date.now();
-        const output = await (definition.handler as (d: unknown, c: JobContext) => Promise<unknown>)(data, context);
-        context.ctx.log.info({ queue, jobId: job.id, ms: Date.now() - started }, 'job completed');
-        return output;
+        return reporting(job, options.onJobError, async () => {
+          const context = contextFor(deps, options.services, job);
+          const data = parseJobPayload(queue, job.data);
+          const started = Date.now();
+          const output = await (definition.handler as (d: unknown, c: JobContext) => Promise<unknown>)(data, context);
+          context.ctx.log.info({ queue, jobId: job.id, ms: Date.now() - started }, 'job completed');
+          return output;
+        });
       },
     );
     state.queues.push(queue);
@@ -135,7 +173,9 @@ export async function startRuntime(options: RuntimeOptions): Promise<RuntimeStat
     { batchSize: 1, localConcurrency: options.concurrency, pollingIntervalSeconds: polling },
     async ([job]) => {
       if (!job) return;
-      return dispatchEvent(subscribers, job.data, contextFor(deps, job));
+      return reporting(job, options.onJobError, () =>
+        dispatchEvent(subscribers, job.data, contextFor(deps, options.services, job)),
+      );
     },
   );
   state.queues.push(DOMAIN_EVENT_QUEUE);

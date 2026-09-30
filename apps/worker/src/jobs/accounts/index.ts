@@ -5,7 +5,8 @@
  *   presigned link (24 h). Idempotent; the last attempt marks the export failed.
  * - `account.delete`: daily sweep (or one user) of deletions past their 14-day grace period →
  *   anonymization (see @sotf/core accounts/deletion.ts).
- * - `accounts.trust-level`: nightly trust level recomputation.
+ * - `accounts.trust-level`: nightly trust level recomputation, followed by the compatibility
+ *   reconciliation (report weights follow the new levels; see `../compat/reconcile.ts`).
  * - `cleanup.sessions`: retention of sessions, one-time tokens, the security log, final outbox rows
  *   and expired exports.
  */
@@ -19,7 +20,9 @@ import {
   S3ExportStorage,
 } from '@sotf/core/accounts/index';
 import { defineJob, defineJobGroup, type JobGroup } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
+import type { WorkerEnv } from '../../env.ts';
+import type { WorkerServices } from '../../services.ts';
+import { reconcileCompat } from '../compat/reconcile.ts';
 
 export interface AccountJobOptions {
   /** Private bucket of the exports; null disables exports (they fail and are marked failed). */
@@ -28,8 +31,7 @@ export interface AccountJobOptions {
   siteUrl: string;
 }
 
-function optionsFromEnv(): AccountJobOptions {
-  const env = parseWorkerEnv();
+function optionsFromEnv(env: WorkerEnv): AccountJobOptions {
   let storage: ExportStorage | null = null;
   try {
     storage = new S3ExportStorage(env);
@@ -41,8 +43,8 @@ function optionsFromEnv(): AccountJobOptions {
 
 export function createAccountJobs(options?: AccountJobOptions | (() => AccountJobOptions)): JobGroup {
   let resolved: AccountJobOptions | null = null;
-  const get = (): AccountJobOptions => {
-    resolved ??= typeof options === 'function' ? options() : (options ?? optionsFromEnv());
+  const get = (services: WorkerServices): AccountJobOptions => {
+    resolved ??= typeof options === 'function' ? options() : (options ?? optionsFromEnv(services.env));
     return resolved;
   };
   const exportRetryLimit = queueConfig('account.export').retryLimit ?? 0;
@@ -51,8 +53,8 @@ export function createAccountJobs(options?: AccountJobOptions | (() => AccountJo
     jobs: [
       defineJob({
         queue: 'account.export',
-        handler: async (data, { ctx, job }) => {
-          const { storage, siteUrl } = get();
+        handler: async (data, { ctx, job, services }) => {
+          const { storage, siteUrl } = get(services);
           if (!storage) throw new Error('data exports need R2 credentials (R2_ENDPOINT/R2_ACCOUNT_ID + keys)');
           return runExport(
             { db: ctx.db, jobs: ctx.jobs, clock: ctx.clock, log: ctx.log, storage, siteUrl },
@@ -63,9 +65,9 @@ export function createAccountJobs(options?: AccountJobOptions | (() => AccountJo
       }),
       defineJob({
         queue: 'account.delete',
-        handler: async (data, { ctx }) => {
+        handler: async (data, { ctx, services }) => {
           const executed = await executeDueDeletions(
-            { db: ctx.db, jobs: ctx.jobs, clock: ctx.clock, log: ctx.log, storage: get().storage },
+            { db: ctx.db, jobs: ctx.jobs, clock: ctx.clock, log: ctx.log, storage: get(services).storage },
             data.userId,
           );
           return { executed: executed.length };
@@ -76,13 +78,15 @@ export function createAccountJobs(options?: AccountJobOptions | (() => AccountJo
         handler: async (_data, { ctx }) => {
           const changed = await recomputeTrustLevels(ctx.db);
           ctx.log.info({ changed }, 'trust levels recomputed');
-          return { changed };
+          const compat = await reconcileCompat(ctx);
+          ctx.log.info(compat, 'compat aggregates reconciled');
+          return { changed, compat };
         },
       }),
       defineJob({
         queue: 'cleanup.sessions',
-        handler: async (_data, { ctx }) =>
-          cleanupAccountData({ db: ctx.db, clock: ctx.clock, log: ctx.log, storage: get().storage }),
+        handler: async (_data, { ctx, services }) =>
+          cleanupAccountData({ db: ctx.db, clock: ctx.clock, log: ctx.log, storage: get(services).storage }),
       }),
     ],
   });

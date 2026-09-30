@@ -14,8 +14,6 @@
  */
 import { processMedia, replicateDescriptionImages } from '@sotf/core/media/index';
 import { defineJob, defineJobGroup, onEvent } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
-import { workerStorage } from '../uploads/index.ts';
 
 export default defineJobGroup({
   name: 'media',
@@ -23,8 +21,8 @@ export default defineJobGroup({
     defineJob({
       queue: 'media.process',
       options: { localConcurrency: 1 },
-      handler: async ({ mediaId }, { ctx }) => {
-        const storage = workerStorage();
+      handler: async ({ mediaId }, { ctx, services }) => {
+        const storage = services.storage();
         if (!storage) {
           ctx.log.warn({ mediaId }, 'media.process skipped: R2 is not configured');
           return { status: 'skipped', reason: 'no_storage' };
@@ -37,12 +35,12 @@ export default defineJobGroup({
     onEvent({
       name: 'description-images',
       types: ['mod.published', 'mod.updated', 'mod.status_changed'],
-      handler: async (event, { ctx }) => {
+      handler: async (event, { ctx, services }) => {
         if (event.type === 'mod.updated' && !event.payload.fields.includes('descriptionMd')) return;
         if (event.type === 'mod.status_changed' && event.payload.to !== 'published') return;
-        const storage = workerStorage();
+        const storage = services.storage();
         if (!storage) return;
-        const env = parseWorkerEnv();
+        const { env } = services;
         const report = await replicateDescriptionImages(
           ctx,
           storage,

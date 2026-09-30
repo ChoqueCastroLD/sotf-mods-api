@@ -18,19 +18,10 @@ import {
   type VirusTotalClient,
 } from '@sotf/core/security-scan/index';
 import { defineJob, defineJobGroup, type JobGroup } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
-import { workerStorage } from '../uploads/index.ts';
 
 export interface SecurityScanJobOptions {
   /** Tests inject a fake client (or null to simulate a missing key). Default: from the env. */
   virusTotal?: (ctx: Parameters<typeof runSecurityScan>[0]) => VirusTotalClient | null;
-}
-
-let apiKey: string | null | undefined;
-
-function virusTotalKey(): string | null {
-  if (apiKey === undefined) apiKey = parseWorkerEnv().VIRUSTOTAL_API_KEY?.trim() || null;
-  return apiKey;
 }
 
 export function createSecurityScanJobs(options: SecurityScanJobOptions = {}): JobGroup {
@@ -40,16 +31,16 @@ export function createSecurityScanJobs(options: SecurityScanJobOptions = {}): Jo
       defineJob({
         queue: 'security.scan',
         options: { localConcurrency: 1 },
-        handler: async (data, { ctx }) => {
+        handler: async (data, { ctx, services }) => {
           const virusTotal = options.virusTotal
             ? options.virusTotal(ctx)
             : (() => {
-                const key = virusTotalKey();
+                const key = services.env.VIRUSTOTAL_API_KEY?.trim() || null;
                 if (!key) return null;
                 const throttle = createVirusTotalThrottle(ctx.db, ctx.clock);
                 return createVirusTotalClient({ apiKey: key, beforeRequest: () => throttle('scan') });
               })();
-          const outcome = await runSecurityScan(ctx, { virusTotal, storage: workerStorage() }, data);
+          const outcome = await runSecurityScan(ctx, { virusTotal, storage: services.storage() }, data);
           ctx.log.info({ modVersionId: data.modVersionId, ...outcome }, 'security.scan');
           return outcome;
         },

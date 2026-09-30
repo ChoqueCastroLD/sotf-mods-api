@@ -11,7 +11,8 @@ import { queueConfig } from '@sotf/core';
 import { createTransport, deliverOutboxEmail, type EmailRenderer, type EmailTransport } from '@sotf/core/email/index';
 import { isAccountEmailTemplate, renderAccountEmail } from '@sotf/emails/account/index';
 import { defineJob, defineJobGroup, type JobGroup } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
+import type { WorkerEnv } from '../../env.ts';
+import type { WorkerServices } from '../../services.ts';
 
 export interface EmailJobOptions {
   transport: EmailTransport;
@@ -29,15 +30,14 @@ export function templateRenderer(siteUrl: string): EmailRenderer {
   };
 }
 
-function optionsFromEnv(): EmailJobOptions {
-  const env = parseWorkerEnv();
+function optionsFromEnv(env: WorkerEnv): EmailJobOptions {
   return { transport: createTransport(env), from: env.EMAIL_FROM, siteUrl: env.PUBLIC_SITE_URL };
 }
 
 export function createEmailJobs(options?: EmailJobOptions | (() => EmailJobOptions)): JobGroup {
   let resolved: EmailJobOptions | null = null;
-  const get = (): EmailJobOptions => {
-    resolved ??= typeof options === 'function' ? options() : (options ?? optionsFromEnv());
+  const get = (services: WorkerServices): EmailJobOptions => {
+    resolved ??= typeof options === 'function' ? options() : (options ?? optionsFromEnv(services.env));
     return resolved;
   };
   const retryLimit = queueConfig('email.send').retryLimit ?? 0;
@@ -46,8 +46,8 @@ export function createEmailJobs(options?: EmailJobOptions | (() => EmailJobOptio
     jobs: [
       defineJob({
         queue: 'email.send',
-        handler: async (data, { ctx, job }) => {
-          const { transport, from, siteUrl } = get();
+        handler: async (data, { ctx, job, services }) => {
+          const { transport, from, siteUrl } = get(services);
           return deliverOutboxEmail(
             { db: ctx.db, transport, render: templateRenderer(siteUrl), from, clock: ctx.clock, log: ctx.log },
             data.outboxId,

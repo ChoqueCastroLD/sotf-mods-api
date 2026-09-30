@@ -7,15 +7,15 @@
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { REACTION_EMOJI } from '@sotf/contracts/comments';
+import { COMPAT_STATUSES, CREATOR_TIER_KEYS, SURVIVOR_RANK_KEYS } from '@sotf/contracts/common';
+import { BADGES, CREATOR_TIERS } from '@sotf/contracts/gamification';
+import { REVIEW_RULES } from '@sotf/contracts/reviews';
 import tailwindcss from '@tailwindcss/vite';
 import { renderToString } from 'react-dom/server';
 import { build, type Rolldown } from 'vite';
 import { describe, expect, it } from 'vitest';
 import { FIELD_KIT_NAMES } from '../../../../brand/src/field-kit.ts';
-import { REACTION_EMOJI } from '../../../../contracts/src/comments.ts';
-import { COMPAT_STATUSES, CREATOR_TIER_KEYS, SURVIVOR_RANK_KEYS } from '../../../../contracts/src/common.ts';
-import { BADGES, CREATOR_TIERS } from '../../../../contracts/src/gamification.ts';
-import { REVIEW_RULES } from '../../../../contracts/src/reviews.ts';
 import {
   AD_FORMATS,
   AD_MIN_HEIGHT,

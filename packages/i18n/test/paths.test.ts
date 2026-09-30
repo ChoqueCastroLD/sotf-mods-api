@@ -71,6 +71,7 @@ describe('localizePath', () => {
       '/favicon.ico',
       '/logout',
       '/oembed',
+      '/healthz',
     ];
     for (const path of unlocalized) {
       expect(isLocalizedPath(path), path).toBe(false);

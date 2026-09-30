@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { LOCALES, type Locale } from '../src/locales.ts';
 import { keyPattern, loadCatalog, namespacePrefix, parseFlatJson } from '../tools/catalog.ts';
+import { MIRRORED_MESSAGES } from '../tools/mirrors.ts';
 import { pluralCategoriesFor, validateCatalog } from '../tools/validate.ts';
 
 const roots: string[] = [];
@@ -180,5 +181,28 @@ describe('parseFlatJson', () => {
     expect(parseFlatJson('{}')).toEqual({ entries: [], duplicates: [] });
     expect(() => parseFlatJson('[]')).toThrow(SyntaxError);
     expect(() => parseFlatJson('{"a": {"b": "c"}}')).toThrow(/must be a string/);
+  });
+});
+
+describe('mirrored messages', () => {
+  it('accepts mirrors identical to their source and reports a drifted one', () => {
+    const root = catalog({
+      common: { en: { common_action_close: 'Close' }, es: { common_action_close: 'Cerrar' } },
+      cmdk: { en: { cmdk_close: 'Close' }, es: { cmdk_close: 'Cierra' } },
+    });
+    expect(errors(root)).toEqual([
+      'messages/cmdk/es.json cmdk_close: Mirror of common_action_close differs: expected "Cerrar"',
+    ]);
+  });
+
+  it('keeps every mirror of the real catalog in sync', () => {
+    const drift = validateCatalog(loadCatalog(process.cwd())).diagnostics.filter((d) =>
+      d.message.startsWith('Mirror of'),
+    );
+    expect(drift).toEqual([]);
+    for (const [mirror, source] of Object.entries(MIRRORED_MESSAGES)) {
+      expect(keyPattern('cmdk').test(mirror) || keyPattern('common').test(mirror), mirror).toBe(true);
+      expect(keyPattern('common').test(source), source).toBe(true);
+    }
   });
 });

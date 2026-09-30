@@ -15,7 +15,7 @@ import { cn } from '../cn.ts';
 import { Icon } from '../icons.tsx';
 import { ProseLocator } from './content.tsx';
 import type { ReviewDTO, ReviewsSummaryDTO } from './contracts.ts';
-import { formatCount, formatDate, formatDateTime, formatRating, useDomainI18n } from './i18n.ts';
+import { formatCount, formatDate, formatDateTime, formatRating, useDomainI18n, useProfileHref } from './i18n.ts';
 import { RankStamp, TrustedMark } from './stamps.tsx';
 
 export interface StarRatingProps {
@@ -127,6 +127,7 @@ export interface ReviewCardProps {
 
 export function ReviewCard({ review, creatorName, actions, headingLevel = 3, className }: ReviewCardProps) {
   const { t, locale, timeZone } = useDomainI18n();
+  const profileHref = useProfileHref();
   const Heading = `h${headingLevel}` as const;
   const author = review.author;
   const name = author?.displayName ?? t('ui_domain_deleted_user');
@@ -147,10 +148,7 @@ export function ReviewCard({ review, creatorName, actions, headingLevel = 3, cla
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <p className="flex min-w-0 flex-wrap items-center gap-x-1.5 gap-y-1 text-sm">
             {author ? (
-              <a
-                href={`/profile/${encodeURIComponent(author.handle)}`}
-                className="truncate font-semibold text-fg hover:underline"
-              >
+              <a href={profileHref(author.handle)} className="truncate font-semibold text-fg hover:underline">
                 {name}
               </a>
             ) : (

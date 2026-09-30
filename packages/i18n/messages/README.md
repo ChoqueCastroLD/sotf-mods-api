@@ -23,6 +23,9 @@ file equals `packages/ui/src/domain/messages/en.json` (without `$schema`); edit 
 - **Same arguments** in every locale, used the same way (`{n, number}` stays a number).
 - **No HTML** and no leading/trailing spaces. Use `…`, typographic quotes and the punctuation
   rules of each language (French: non-breaking space before `: ; ? !` and inside `« »`).
+- **Mirrors**: a few `common_*` texts are copied into `cmdk` (the palette loads only its own
+  namespace). The copies must stay identical in every locale (`tools/mirrors.ts`): change the
+  `common` key and its mirror together.
 
 ## ICU syntax
 
@@ -127,8 +130,15 @@ Notes:
 
 ### Checking
 
+`pnpm i18n:check` warns about French typography (plain spaces before `: ; ? !` or inside `« »`).
+`--glossary` adds hints for translations of messages whose English uses a brand term of the table
+above without the locale's term (matched by stem, so inflected forms pass; «builds» is skipped
+because it also means game builds, and «SOTF Mods» is the brand). Hints never fail the check
+unless `--strict` is given.
+
 ```bash
 pnpm i18n:check                                 # completeness, ICU, plurals, arguments
+pnpm --filter @sotf/i18n i18n:check --glossary  # + glossary hints for reviewers
 pnpm --filter @sotf/i18n i18n:glossary backpack # one term in every locale (legacy + v2)
 pnpm i18n:pseudo                                # pseudo-locale: hard-coded text and overflow; pnpm gen restores
 ```

@@ -33,13 +33,13 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   en W2, `apps/api/src/modules/<name>/index.ts` y `apps/worker/src/jobs/<name>/index.ts` (WP-20) ·
   `pnpm gen` espera un `export default` por módulo o grupo de jobs (genera `modules`/`jobGroups`) y
   un barrel `export *` del esquema. Otra forma → cambiar `tooling/scripts/gen-registries.ts` vía
-  backlog.
+  backlog. · **[x] resolved by wire-data**: verified: every `apps/worker/src/jobs/<name>/index.ts` default-exports a group and `_registry.gen.ts` is generated from them; the schema barrel is `export *`.
 - **Scripts homónimos de las tareas raíz delegadas** · `packages/db` (WP-10: `db:migrate`,
   `db:guard`, `db:baseline`), `packages/i18n` (WP-13: `i18n:check`, `i18n:pseudo`); en W2
   `tooling/migration` (WP-14: `db:seed:dev`, `db:reset:dev`, `db:backfill`, `db:invariants`,
   `db:verify-snapshot`, `db:revert-fix`, `admin:grant`) y `tooling/legacy-contract` (WP-24:
   `contract:legacy`) · `tooling/scripts/delegate.ts` ejecuta en el paquete dueño el script con el
-  mismo nombre.
+  mismo nombre. · **[x] resolved by wire-data**: verified: `packages/db`, `packages/i18n` and `tooling/migration` define the delegated scripts.
 - **Tareas opcionales que se vuelven silenciosas** · `tooling/scripts/{delegate,verify}.ts`,
   `ci-local.sh`, `ci.yml` (fix WP al inicio de W2, o integrador en I-1) · `SOTF_OPTIONAL_TASKS=1` y
   `i18n:check --optional` convierten en «skip» un script borrado o renombrado incluso después de que
@@ -48,7 +48,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
 - **Brillo opcional del logo adaptativo en Night** · `packages/ui/src/tokens.css` (WP-12) ·
   `[data-theme="dark"] .brand-flare { fill: #FF7335 }` (y el equivalente `system` +
   `prefers-color-scheme: dark`). `lockupSvg({ theme: 'adaptive' })` usa por defecto el flare Day
-  `#E75803`, que ya cumple 3:1 en todas las superficies.
+  `#E75803`, que ya cumple 3:1 en todas las superficies. · **[x] resolved by wire-data**: verified: `packages/ui/src/tokens.css` `.brand-flare { fill: light-dark(#E75803, #FF7335) }`.
 - **`check:forbidden` incompleto** · `tooling/scripts/forbidden-rules.ts` (WP-00 / fix WP) · solo
   cubre la lista del §2.8 punto 1. Añadir, con límites de palabra y la misma `LEGACY_ENV_ALLOW`,
   `BASE_URL`, `PUBLIC_BASE_URL`, `GPT_API_KEY`, `R2_CUSTOM_DOMAIN`, `R2_BUCKET_NAME`, `API_URL`,
@@ -65,7 +65,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
 
 - [x] resolved by wire-infra (adopted by WP-20 (optional in both apps); `.env.example` and PLAN §11.4 document it) · **Variable `R2_ENDPOINT`** · `apps/{api,worker}/src/env.ts` (WP-20) y cliente S3 (WP-31) ·
   `.env.example` la propone para SeaweedFS en local/tests; §11.4 solo deriva el endpoint de
-  `R2_ACCOUNT_ID`. Adoptarla (opcional, vacía en producción) o renombrarla.
+  `R2_ACCOUNT_ID`. Adoptarla (opcional, vacía en producción) o renombrarla. · **[x] resolved by wire-data**: verified: `apps/worker/src/env.ts` accepts it (optional).
 - [x] resolved by wire-infra (the worker reads `SMTP_URL` for the `mailpit` transport; PLAN §11.4 and `.env.example` document it) · **Variable `SMTP_URL`** · transporte `mailpit` de `EmailOutbox` (WP-30) · `.env.example` propone
   `smtp://127.0.0.1:47025`; §11.4 no fija cómo se configura.
 - **`e2e/package.json` antes de W9** · `e2e/**` es de WP-91, pero WP-22 (W2), WP-31, WP-34, WP-44,
@@ -83,7 +83,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   `manifestIcons()` y `themeColor` de `@sotf/brand`.
 - **Reutilizar los generativos de marca** · `apps/worker/src/jobs/og/**` (WP-61),
   `packages/ui/src/domain/**` (WP-25) · `topoLines` + `topoGroup`, `markPath`/`lockupBody` y
-  `coverSvg`; semillas estables para siempre.
+  `coverSvg`; semillas estables para siempre. · **[x] resolved by wire-data**: verified: `packages/core/src/og/template.ts` and `packages/ui/src/domain` reuse the `@sotf/brand` generators.
 - **Legacy: límites conocidos que resuelve v2** · el API legacy confía en `?ip=` y no limita
   descargas (WP-31: `ipHash`, `X-Internal-Auth`, límite sin conteo); tras el 302 el navegador guarda
   el fichero con la clave R2 con prefijo de timestamp (WP-84: `Content-Disposition` con `filename`,
@@ -110,9 +110,9 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   512 caracteres antes de reenviarlo, para no provocar 414/431 y bloquear una descarga.
 - **`@sotf/brand`: comprobar el manifest en modo tolerante** · `packages/brand/test/assets.test.ts`
   (WP-01 si se reabre) · fuera de linux-x64/CI no se compara `manifest.json`; comparar al menos las
-  entradas no raster (sha256 y bytes).
+  entradas no raster (sha256 y bytes). · **[x] resolved by wire-data**: `test/assets.test.ts` compares the vector entries of the rebuilt manifest on every platform.
 - **`@sotf/brand`: `passWithNoTests: false`** · `packages/brand/vitest.config.ts` · el preset
-  compartido pasa con cero tests; este paquete siempre tiene tests.
+  compartido pasa con cero tests; este paquete siempre tiene tests. · **[x] resolved by wire-data**: `packages/brand/vitest.config.ts`.
 - [x] resolved by wire-infra (PLAN §9.1 and §12.3 WP-00 now say `allowBuilds`) · **Nota para PLAN §9.1** · `docs/plan/PLAN.md` · pnpm 12 llama `allowBuilds` a lo que el plan llama
   `onlyBuiltDependencies` (ADR-0002, ajuste 1).
 

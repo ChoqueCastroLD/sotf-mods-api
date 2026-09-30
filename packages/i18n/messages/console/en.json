@@ -66,5 +66,7 @@
   "console_shortcut_go_settings": "Go to Settings",
   "console_shortcut_go_ranger": "Go to the Ranger Station",
   "console_shortcut_toggle_sidebar": "Collapse or expand the sidebar",
-  "console_noscript": "The console needs JavaScript. Turn it on to manage your mods, signals and settings."
+  "console_noscript": "The console needs JavaScript. Turn it on to manage your mods, signals and settings.",
+  "console_nav_inbox": "Inbox",
+  "console_nav_drafts": "Drafts"
 }

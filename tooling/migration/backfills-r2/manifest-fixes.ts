@@ -14,7 +14,7 @@
  * Idempotent: a restored description no longer matches its sanitised form, a reclassified mod is
  * no longer `Mod`/NULL. `--dry-run` rolls everything back.
  */
-import type { Backfill, BackfillContext, BackfillId } from '../src/backfills/framework.ts';
+import type { Backfill, BackfillContext } from '../src/backfills/framework.ts';
 import { recoverableDescription } from './legacy-sanitize.ts';
 
 export const B8_FIX_ID = 'B8';
@@ -137,12 +137,10 @@ async function b04mRun(ctx: BackfillContext): Promise<number> {
   return changed;
 }
 
-// The framework's `BackfillId` lists the WP-14 ids; these share its runner, lock and
-// "MigrationRun" conventions (`backfill:B8`, `backfill:B4M`).
-const asId = (id: string) => id as BackfillId;
-
+// These share the framework's runner, lock and "MigrationRun" conventions (`backfill:B8`,
+// `backfill:B4M`).
 export const b08: Backfill = {
-  id: asId('B8'),
+  id: 'B8',
   title: 'shortDescription ← manifest description when the legacy sanitiser explains the loss (audited)',
   touchesLegacy: true,
   delta: false,
@@ -151,7 +149,7 @@ export const b08: Backfill = {
 };
 
 export const b04m: Backfill = {
-  id: asId('B4M'),
+  id: 'B4M',
   title: 'type NULL/B4 → Library when the manifest says so (audited)',
   touchesLegacy: true,
   delta: false,

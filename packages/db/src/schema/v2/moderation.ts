@@ -1,5 +1,5 @@
 /** Moderation (Ranger Station) and operations tables (PLAN §6.4, §7.4, §6.9, §9.3). */
-import { bigint, boolean, date, integer, jsonb, pgTable, text, uuid } from 'drizzle-orm/pg-core';
+import { bigint, boolean, date, integer, jsonb, pgTable, primaryKey, text, uuid } from 'drizzle-orm/pg-core';
 import { uuidv7 } from 'uuidv7';
 import { ts3, tstz } from '../_columns.ts';
 import type { JsonObject } from '../_json.ts';
@@ -30,6 +30,35 @@ export const report = pgTable('Report', {
 
 export type Report = typeof report.$inferSelect;
 export type NewReport = typeof report.$inferInsert;
+
+export const MODERATION_ASSIGNMENT_TARGET_TYPES = ['mod', 'version', 'comment', 'report'] as const;
+export type ModerationAssignmentTargetType = (typeof MODERATION_ASSIGNMENT_TARGET_TYPES)[number];
+
+/**
+ * Ranger Station self-assignment and escalation of a queue target (PLAN §7.4, migration 2004).
+ * One row per target, created on the first assignment or escalation; `assigneeId` null =
+ * unassigned, `escalatedAt` null = not escalated.
+ */
+export const moderationAssignment = pgTable(
+  'ModerationAssignment',
+  {
+    targetType: text('targetType').$type<ModerationAssignmentTargetType>().notNull(),
+    targetId: integer('targetId').notNull(),
+    assigneeId: integer('assigneeId').references(() => user.id, { onDelete: 'set null', onUpdate: 'cascade' }),
+    assignedAt: tstz('assignedAt'),
+    escalatedAt: tstz('escalatedAt'),
+    escalatedById: integer('escalatedById').references(() => user.id, { onDelete: 'set null', onUpdate: 'cascade' }),
+    escalationReason: text('escalationReason'),
+    updatedAt: tstz('updatedAt')
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (t) => [primaryKey({ columns: [t.targetType, t.targetId], name: 'ModerationAssignment_pkey' })],
+);
+
+export type ModerationAssignment = typeof moderationAssignment.$inferSelect;
+export type NewModerationAssignment = typeof moderationAssignment.$inferInsert;
 
 /** Insert-only audit trail: the application role cannot UPDATE or DELETE it (ops/sql/roles.sql). */
 export const auditLog = pgTable('AuditLog', {

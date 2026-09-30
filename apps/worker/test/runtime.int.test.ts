@@ -16,12 +16,22 @@ import { defineJob, defineJobGroup, onEvent } from '../src/define-job.ts';
 import { parseWorkerEnv, type WorkerEnv } from '../src/env.ts';
 import { createHealthServer } from '../src/health.ts';
 import platformJobs from '../src/jobs/platform/index.ts';
+import type { ErrorReporter, JobErrorInfo } from '../src/sentry.ts';
 
 let db: TestDb;
 let env: WorkerEnv;
 let worker: Worker;
 const trendingRuns: string[] = [];
 const seenEvents: DomainEvent[] = [];
+const reported: JobErrorInfo[] = [];
+const reporter: ErrorReporter = {
+  enabled: true,
+  captureJobError: (_error, info) => {
+    reported.push(info);
+  },
+  captureFatal: () => undefined,
+  flush: async () => undefined,
+};
 
 async function waitFor<T>(probe: () => Promise<T | undefined | null | false>, timeoutMs = 15_000): Promise<T> {
   const deadline = Date.now() + timeoutMs;
@@ -38,11 +48,20 @@ const testGroup = defineJobGroup({
   jobs: [
     defineJob({
       queue: 'stats.trending',
-      handler: async (_data, { job, ctx }) => {
+      handler: async (_data, { job, ctx, services }) => {
         trendingRuns.push(job.id);
         expect(ctx.requestId).toBe(job.id);
         expect(ctx.actor).toBeNull();
+        // The job sees the environment the worker was created with, not process.env.
+        expect(services.env).toBe(env);
+        expect(services.storage()).toBeNull();
         return { ok: true };
+      },
+    }),
+    defineJob({
+      queue: 'cleanup.kelvinseek',
+      handler: async () => {
+        throw new Error('cleanup failed on purpose');
       },
     }),
     defineJob({ queue: 'legacy.counters', handler: async () => undefined }),
@@ -77,6 +96,7 @@ beforeAll(async () => {
     logger: silentLogger(),
     pollingIntervalSeconds: 0.5,
     maintenance: false,
+    reporter,
   });
   const state = await worker.start();
   expect(state.queues).toContain('stats.trending');
@@ -102,6 +122,12 @@ describe('jobs', () => {
       return found?.state === 'completed' ? found : null;
     });
     expect(job.output).toEqual({ ok: true });
+  });
+
+  it('reports a failed attempt with its queue, job id and retry state', async () => {
+    const id = await worker.jobs.enqueue('cleanup.kelvinseek', {});
+    const info = await waitFor(async () => reported.find((r) => r.jobId === id));
+    expect(info).toEqual({ queue: 'cleanup.kelvinseek', jobId: id, retryCount: 0, final: false });
   });
 
   it('validates payloads when enqueuing', async () => {

@@ -44,6 +44,20 @@ changes, `RENDER_VERSION` is bumped and a job re-renders rows `WHERE "renderVers
 `MAX_MARKDOWN_LENGTH` (50 000 characters) is only a hard ceiling; the product limits (20 000 for
 descriptions, 2 000 for comments and reviews) belong to `@sotf/contracts`.
 
+### Browser entry without `legacyHtml`: `@sotf/markdown/lite`
+
+Editor previews and composers that only render `full`/`lite` import `@sotf/markdown/lite`: the
+same pipeline and byte-identical output for those profiles, without rehype-raw (parse5) and the
+legacy repairs — about 72 KB gzip instead of 135 KB when bundled for the browser. `legacyHtml`
+throws `MarkdownInputError` (`markdown_invalid_option`) there; legacy content is rendered on the
+server (or with the full entry). `test/lite.test.ts` checks the output parity and that the module
+graph of `src/lite.ts` never reaches `rehype-raw` or `src/legacy.ts`.
+
+```ts
+import { renderMarkdown } from '@sotf/markdown/lite';
+const { html } = renderMarkdown(draft, { profile: 'full' });
+```
+
 ## Profiles
 
 | | `full` | `lite` | `legacyHtml` |
