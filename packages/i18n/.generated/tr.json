@@ -3170,6 +3170,199 @@
   "landing_trending_empty": "Adada sakin bir hafta. Hayatta kalanlar indirdikçe modlar burada görünecek.",
   "landing_trending_hint": "Son 7 günün indirmelerine göre",
   "landing_trending_title": "Bu haftanın popülerleri",
+  "me_action_download": "İndir",
+  "me_action_failed": "Olmadı",
+  "me_action_update": "Güncellemeyi al",
+  "me_backpack_description": "Takip ettiğin modlar, güncellemeleri ve güncel sürümde nasıl çalıştıkları.",
+  "me_backpack_empty_text": "Bir modu buraya koymak ve güncellemelerinden haberdar olmak için ♥ simgesine dokun.",
+  "me_backpack_empty_title": "Sırt çantan boş",
+  "me_backpack_list_label": "Takip edilen modlar",
+  "me_backpack_no_broken_text": "Modlarının hiçbiri güncel oyun sürümünde bozuk olarak bildirilmiyor.",
+  "me_backpack_no_broken_title": "Bozuk bildirilen yok",
+  "me_backpack_no_updates_text": "Sırt çantandaki hiçbir modun indirdiğinden daha yeni bir sürümü yok.",
+  "me_backpack_no_updates_title": "Her şey güncel",
+  "me_backpack_notify_off": "{mod} için artık güncelleme sinyali yok",
+  "me_backpack_notify_on": "{mod} güncellendiğinde sinyal alacaksın",
+  "me_backpack_readout": "Teçhizatın",
+  "me_backpack_removed": "{mod} sırt çantandan çıkarıldı",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "Sırt çantanda {count__number} mod · her şey güncel",
+        "count__plural=one, updates__exact=*, updates__plural=one": "Sırt çantanda {count__number} mod · {updates__number} güncelleme var",
+        "count__plural=one, updates__exact=*, updates__plural=*": "Sırt çantanda {count__number} mod · {updates__number} güncelleme var",
+        "count__plural=*, updates__exact=0, updates__plural=*": "Sırt çantanda {count__number} mod · her şey güncel",
+        "count__plural=*, updates__exact=*, updates__plural=one": "Sırt çantanda {count__number} mod · {updates__number} güncelleme var",
+        "count__plural=*, updates__exact=*, updates__plural=*": "Sırt çantanda {count__number} mod · {updates__number} güncelleme var"
+      }
+    }
+  ],
+  "me_backpack_title": "Sırt Çantası",
+  "me_broken_on_current": "{build} üzerinde bozuk",
+  "me_browse_mods": "Modlara göz at",
+  "me_by_author": "yapımcı: {author}",
+  "me_cancel": "İptal",
+  "me_did_it_work": "Çalıştı mı?",
+  "me_downloads_clear": "Geçmişi temizle",
+  "me_downloads_clear_confirm": "Geçmişi temizle",
+  "me_downloads_clear_text": "Tüm satırlar ve eski indirmelerle ilgili “Çalıştı mı?” soruları kaybolur. Modların indirme sayaçları değişmez. Bu işlem geri alınamaz.",
+  "me_downloads_clear_title": "İndirme geçmişin temizlensin mi?",
+  "me_downloads_cleared": "İndirme geçmişi temizlendi",
+  "me_downloads_description": "Oturum açıkken indirdiğin her mod ve kaçırdığın güncellemeler.",
+  "me_downloads_empty_off_text": "Geçmişin kapalı, bu yüzden buraya yeni bir şey kaydedilmiyor.",
+  "me_downloads_empty_text": "Oturum açıkken bir mod indir; burada görünür ve yeni sürüm çıktığında uyarı alırsın.",
+  "me_downloads_empty_title": "Henüz indirme yok",
+  "me_downloads_history_off": "İndirme geçmişi kapatıldı",
+  "me_downloads_history_on": "İndirme geçmişi açıldı",
+  "me_downloads_keep_history": "İndirme geçmişini tut",
+  "me_downloads_last": "{version} sürümünü {date} tarihinde indirdin",
+  "me_downloads_list_label": "İndirilen modlar",
+  "me_downloads_off_text": "Yeni indirmeler kaydedilmiyor, bu yüzden buradaki ve sırt çantandaki güncelleme uyarıları sürümleri karşılaştıramıyor. İstediğin zaman yeniden açabilirsin.",
+  "me_downloads_off_title": "İndirme geçmişin kapalı",
+  "me_downloads_readout": "Erzak kaydı",
+  "me_downloads_remove": "Listeden kaldır",
+  "me_downloads_remove_label": "{mod} listeden kaldır",
+  "me_downloads_removed": "{mod} listeden kaldırıldı",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} mod indirildi · her şey güncel",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} mod indirildi · {updates__number} güncelleme var",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} mod indirildi · {updates__number} güncelleme var",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} mod indirildi · her şey güncel",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} mod indirildi · {updates__number} güncelleme var",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} mod indirildi · {updates__number} güncelleme var"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} indirme",
+        "count__plural=*": "{count__number} indirme"
+      }
+    }
+  ],
+  "me_downloads_title": "İndirdiklerim",
+  "me_filter_all": "Tümü",
+  "me_filter_broken": "Bu sürümde bozuk olanlar",
+  "me_filter_label": "Göster",
+  "me_filter_updates": "Güncellemesi olanlar",
+  "me_follow": "Takip et",
+  "me_followed": "{mod} sırt çantanda",
+  "me_followed_on": "{date} tarihinden beri takipte",
+  "me_latest_version": "En yeni: {version}",
+  "me_no_current_version": "Şu anda kullanılabilir sürüm yok",
+  "me_notify_off": "Güncelleme sinyalleri kapalı",
+  "me_notify_on": "Güncelleme sinyalleri açık",
+  "me_onboarding_completed": "İlk günü atlattın — rozet açıldı",
+  "me_onboarding_dismiss": "Gizle",
+  "me_onboarding_download_action": "Modlara göz at",
+  "me_onboarding_download_hint": "Güncel sürümde çalışan herhangi birini seç.",
+  "me_onboarding_download_title": "İlk modunu indir",
+  "me_onboarding_failed": "Liste güncellenemedi",
+  "me_onboarding_follow_action": "Takip edecek bir mod bul",
+  "me_onboarding_follow_hint": "Sırt çantana koymak ve güncellemelerden haberdar olmak için ♥ simgesine dokun.",
+  "me_onboarding_follow_title": "Bir modu takip et",
+  "me_onboarding_install_action": "Kurulum rehberini aç",
+  "me_onboarding_install_done": "Kurdum",
+  "me_onboarding_install_hint": "Her Sons of the Forest modunun ihtiyaç duyduğu mod yükleyici.",
+  "me_onboarding_install_title": "RedLoader’ı kur",
+  "me_onboarding_kit_action": "Kit oluştur",
+  "me_onboarding_kit_hint": "Modlarını tek bir kodla paylaşabileceğin bir kitte topla.",
+  "me_onboarding_kit_title": "Bir kit hazırla",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input total",
+        "input done",
+        "local total__number = total: number",
+        "local done__number = done: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{total__number} adımdan {done__number} tanesi tamam"
+      }
+    }
+  ],
+  "me_onboarding_readout": "Adada 1. gün",
+  "me_onboarding_report_action": "İndirdiklerime git",
+  "me_onboarding_report_hint": "İndirdiğin bir mod için “Çalıştı mı?” sorusunu yanıtla.",
+  "me_onboarding_report_title": "Çalışıp çalışmadığını söyle",
+  "me_onboarding_step_done": "Tamam:",
+  "me_onboarding_step_todo": "Yapılacak:",
+  "me_onboarding_text": "Başlamak için beş hızlı adım. Hepsini tamamla ve “İlk günü atlattı” rozetini kazan.",
+  "me_onboarding_title": "İlk gününü atlat",
+  "me_report_broken": "Bozuk",
+  "me_report_description": "{build} oyun sürümünde {version} sürümüyle ilgili saha raporun, tüm hayatta kalanların çalışan modları seçmesine yardım eder.",
+  "me_report_mode_client": "Çok oyunculu istemci",
+  "me_report_mode_dedicated": "Özel sunucu",
+  "me_report_mode_host": "Çok oyunculu sunucu (host)",
+  "me_report_mode_label": "Nasıl oynadın",
+  "me_report_mode_singleplayer": "Tek oyunculu",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Çökmeler, diğer modlarla çakışmalar… en fazla {max__number} karakter."
+      }
+    }
+  ],
+  "me_report_note_label": "Ne oldu",
+  "me_report_partial": "Kısmen",
+  "me_report_pick_result": "Nasıl gittiğini seç.",
+  "me_report_result_legend": "Nasıl gitti?",
+  "me_report_submit": "Raporu gönder",
+  "me_report_thanks": "Teşekkürler — {mod} hakkındaki raporun haritada",
+  "me_report_title": "{mod} çalıştı mı?",
+  "me_report_verify_email": "Saha raporu göndermeden önce e-posta adresini doğrula.",
+  "me_report_works": "Çalışıyor",
+  "me_undo": "Geri al",
+  "me_unfollow": "Takibi bırak",
+  "me_unfollowed": "{mod} sırt çantandan çıkarıldı",
+  "me_up_to_date": "Güncel ({version})",
+  "me_update_available": "Güncelleme var",
+  "me_update_from_to": "Güncelleme: {from} → {to}",
   "meta_default_description": "Sons of the Forest modlamanın evi: RedLoader için her yamada test edilen modlar, yapılar ve kitler. Ücretsiz, doğrudan indirme.",
   "meta_feed_description": "SOTF Mods’ta yayınlanan en yeni Sons of the Forest modları ve güncellemeleri.",
   "meta_feed_title": "SOTF Mods: yeni ve güncellenen modlar",
@@ -4790,6 +4983,781 @@
       }
     }
   ],
+  "settings_about_saved": "Profil kaydedildi",
+  "settings_about_text": "Profilinde, modlarında ve yorumlarında nasıl göründüğün.",
+  "settings_about_title": "Hakkında",
+  "settings_account_hint": "Giriş e-postası ve şifre.",
+  "settings_account_overview_title": "Hesabın",
+  "settings_account_title": "Hesap",
+  "settings_appearance_saved": "Görünüm kaydedildi",
+  "settings_appearance_text": "SOTF Mods’un bu ve diğer cihazlarında nasıl göründüğü.",
+  "settings_appearance_title": "Görünüm",
+  "settings_avatar_change": "Fotoğrafı değiştir",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{max__number} MB’a kadar PNG, JPEG, WebP, AVIF veya GIF. Kaydetmeden önce kırpabilirsin."
+      }
+    }
+  ],
+  "settings_avatar_label": "Avatar",
+  "settings_avatar_remove": "Fotoğrafı kaldır",
+  "settings_avatar_removed": "Fotoğraf kaldırıldı",
+  "settings_avatar_saved": "Yeni fotoğraf kaydedildi",
+  "settings_avatar_upload": "Fotoğraf yükle",
+  "settings_avatar_uploading": "Fotoğrafın yükleniyor…",
+  "settings_back": "Ayarlar",
+  "settings_banner_custom_hint": "Kendi görselini kullanıyorsun. Oluşturulmuş afişe dönmek için bir arazi oluştur.",
+  "settings_banner_label": "Afiş",
+  "settings_banner_reroll": "Yeni arazi oluştur",
+  "settings_banner_reroll_hint": "Yeni arazinin önizlemesi — saklamak için “Bu araziyi kullan”ı seç.",
+  "settings_banner_saved": "Yeni afiş kaydedildi",
+  "settings_banner_terrain_hint": "Sadece senin için çizilmiş bir harita. Adanın şeklini beğenene kadar yeniden oluştur.",
+  "settings_banner_terrain_saved": "Arazi afişi kaydedildi",
+  "settings_banner_upload": "Görsel yükle",
+  "settings_banner_uploading": "Afişin yükleniyor…",
+  "settings_banner_use_terrain": "Bu araziyi kullan",
+  "settings_behaviour_saved": "Tercihler kaydedildi",
+  "settings_behaviour_title": "Davranış",
+  "settings_bio": "Biyografi",
+  "settings_bio_hint": "Markdown çalışır: **kalın**, _italik_ ve bağlantılar.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Biyografin {max__number} karakterin altında olsun."
+      }
+    }
+  ],
+  "settings_cancel": "İptal",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} karakter kaldı",
+        "count__plural=*": "{count__number} karakter kaldı"
+      }
+    }
+  ],
+  "settings_compat_prompts": "İndirmelerden sonra “Çalıştı mı?” diye sor",
+  "settings_compat_prompts_hint": "Yanıtların, diğer hayatta kalanlara güncel sürümde hangi modların çalıştığını söyler.",
+  "settings_creator_badges": "Rozetlerin",
+  "settings_creator_basecamp": "Ana Kamp’ı aç",
+  "settings_creator_hint": "Yapımcı durumu, destek bağlantıları, varsayılan lisans ve yanıt şablonları.",
+  "settings_creator_not_verified": "Henüz doğrulanmadı",
+  "settings_creator_not_verified_text": "Korucular güvenli ve bakımlı modlar geçmişi olan yapımcıları doğrular. Yayımlamaya devam et — başvurman gereken bir şey yok.",
+  "settings_creator_policy": "Yayımladığın her şey içerik politikasına uyar.",
+  "settings_creator_policy_link": "İçerik politikasını oku",
+  "settings_creator_status_title": "Yapımcı durumu",
+  "settings_creator_title": "Yapımcı",
+  "settings_creator_verified": "Doğrulanmış yapımcı",
+  "settings_creator_verified_text": "Modların doğrulama işaretini taşır ve daha büyük dosyalar yükleyebilirsin.",
+  "settings_crop_avatar_title": "Fotoğrafını kırp",
+  "settings_crop_banner_title": "Afişini kırp",
+  "settings_crop_failed": "Bu görsel okunamadı. Başka bir dosya dene.",
+  "settings_crop_help": "Görseli sürükle ya da ok tuşlarıyla taşı; yakınlaştırmak için kaydırıcıyı veya + ve − tuşlarını kullan.",
+  "settings_crop_label": "Görsel kırpma alanı",
+  "settings_crop_roledescription": "kırpma alanı",
+  "settings_crop_use": "Görseli kullan",
+  "settings_crop_zoom": "Yakınlaştırma",
+  "settings_data_hint": "Hakkında sahip olduğumuz her şeyi dışa aktar ya da hesabını sil.",
+  "settings_data_title": "Verilerin",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Adada {day__number}. gün"
+      }
+    }
+  ],
+  "settings_default_license": "Varsayılan lisans",
+  "settings_default_license_hint": "Yeni bir mod yayımlarken önceden seçilir; her mod için değiştirebilirsin.",
+  "settings_default_license_none": "Her seferinde sor",
+  "settings_defaults_local_note": "Bu varsayılanlar yalnızca bu tarayıcıda kaydedilir.",
+  "settings_defaults_saved": "Varsayılanlar kaydedildi",
+  "settings_defaults_text": "Yeni modları önceden doldur ve sık sorulan sorulara daha hızlı yanıt ver.",
+  "settings_defaults_title": "Yayın varsayılanları",
+  "settings_delete_already": "Hesabın için zaten planlanmış bir silme işlemi var.",
+  "settings_delete_cancel": "Silmeyi iptal et",
+  "settings_delete_cancel_failed": "Silme iptal edilemedi",
+  "settings_delete_cancelled": "Silme iptal edildi — tekrar hoş geldin",
+  "settings_delete_confirm": "14 gün içinde sil",
+  "settings_delete_dialog_text": "Hesabın 14 gün içinde silinecek. O zamana kadar bu sayfadan iptal edebilirsin.",
+  "settings_delete_dialog_title": "Hesabın silinsin mi?",
+  "settings_delete_mode_archive": "Arşivle",
+  "settings_delete_mode_archive_hint": "Listelerden ve aramadan kaybolurlar ve artık sana atfedilmezler.",
+  "settings_delete_mode_keep": "Yayında bırak",
+  "settings_delete_mode_keep_hint": "Oyuncular onları bulmaya devam eder, ama adın olmadan.",
+  "settings_delete_mods_legend": "Modlarına ne olacak",
+  "settings_delete_open": "Hesabımı sil…",
+  "settings_delete_point_content": "Yorumların ve incelemelerin “Silinmiş hayatta kalan” imzasıyla kalır.",
+  "settings_delete_point_export": "Bir kopya istiyorsan önce verilerini dışa aktar.",
+  "settings_delete_point_grace": "Fikrini değiştirmek için 14 günün var; durdurmak için giriş yap ve buradan iptal et.",
+  "settings_delete_point_mods": "Modların arşivlenir ya da adın olmadan yayında kalır — sen seçersin.",
+  "settings_delete_scheduled_text": "Fikrini mi değiştirdin? Şimdi iptal et, her şey olduğu gibi kalsın.",
+  "settings_delete_scheduled_title": "Hesabın {date} tarihinde silinecek",
+  "settings_delete_scheduled_toast": "Hesabın {date} tarihinde silinecek",
+  "settings_delete_text": "14 günlük bir bekleme süresinden sonra kişisel verilerini kalıcı olarak kaldırır.",
+  "settings_delete_title": "Hesabını sil",
+  "settings_delete_type_handle": "Onaylamak için “{handle}” ifadesini aynen yaz.",
+  "settings_delete_type_label": "Onaylamak için kullanıcı adını “{handle}” yaz",
+  "settings_density": "Yoğunluk",
+  "settings_density_comfortable": "Rahat",
+  "settings_density_comfortable_hint": "Daha fazla nefes alanı.",
+  "settings_density_compact": "Sıkı",
+  "settings_density_compact_hint": "Ekranda aynı anda daha fazlası.",
+  "settings_discard": "Değişiklikleri at",
+  "settings_display_name": "Görünen ad",
+  "settings_display_name_hint": "Her dilde ve her karakterle, 2–32 uzunlukta. İstediğin zaman değiştirebilirsin.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{min__number} ile {max__number} karakter arasında kullan."
+      }
+    }
+  ],
+  "settings_email_daily": "Günlük özet",
+  "settings_email_instant": "Hemen",
+  "settings_email_invalid": "Geçerli bir e-posta adresi gir.",
+  "settings_email_new": "Yeni e-posta adresi",
+  "settings_email_off": "Kapalı",
+  "settings_email_same": "Bu zaten e-posta adresin.",
+  "settings_email_sent_text": "{email} adresine bir onay bağlantısı gönderdik. Bağlantıyı açtığında adresin değişir.",
+  "settings_email_sent_title": "Gelen kutunu kontrol et",
+  "settings_email_sent_toast": "Onay bağlantısı gönderildi",
+  "settings_email_submit": "E-postayı değiştir",
+  "settings_email_taken": "Bu adres kullanılamıyor. Başka birini dene.",
+  "settings_email_text": "Giriş yapmak ve almayı seçtiğin e-postalar için kullanılır. Değiştirmek için yeni adresi gelen kutundan onayla; eski adrese haber veririz.",
+  "settings_email_title": "E-posta adresi",
+  "settings_email_unverified": "Doğrulanmadı",
+  "settings_email_verified": "Doğrulandı",
+  "settings_email_weekly": "Haftalık özet",
+  "settings_export_again": "Yeni bir dışa aktarım hazırla",
+  "settings_export_download": "ZIP’i indir",
+  "settings_export_email_note": "İndirme bağlantısını e-postayla da gönderiyoruz. 24 saat geçerlidir.",
+  "settings_export_expired": "Bu dışa aktarım bağlantısının süresi doldu.",
+  "settings_export_expires": "bağlantı {date} tarihine kadar geçerli",
+  "settings_export_failed": "Dışa aktarım başlatılamadı",
+  "settings_export_preparing": "Dışa aktarımın hazırlanıyor…",
+  "settings_export_rate_limited": "Kısa süre önce dışa aktarım istedin — daha sonra tekrar dene",
+  "settings_export_ready": "Dışa aktarımın hazır",
+  "settings_export_request": "Dışa aktarımımı hazırla",
+  "settings_export_requested": "Dışa aktarımını hazırlıyoruz",
+  "settings_export_requested_at": "{date} tarihinde istendi",
+  "settings_export_status_failed": "Dışa aktarım başarısız oldu. Lütfen tekrar dene.",
+  "settings_export_text": "Hesabın, profilin, modların, yorumların, incelemelerin, kitlerin, takiplerin ve ayarlarınla JSON dosyalarından oluşan bir ZIP.",
+  "settings_export_title": "Verilerini dışa aktar",
+  "settings_handle": "Kullanıcı adı",
+  "settings_handle_hint": "Profilinin adresi. Kullanıcı adları henüz değiştirilemiyor.",
+  "settings_history_link": "İndirdiklerimi aç",
+  "settings_history_off_saved": "İndirme geçmişi kapatıldı",
+  "settings_history_on_saved": "İndirme geçmişi açıldı",
+  "settings_history_switch": "İndirme geçmişini tut",
+  "settings_history_text": "Açıkken, oturum açıkken yaptığın indirmeler “İndirdiklerim”de listelenir; böylece sana güncellemeleri haber verebiliriz.",
+  "settings_history_title": "İndirme geçmişi",
+  "settings_image_processing": "Görselin işlenmesi çok uzun sürüyor. Birazdan tekrar dene.",
+  "settings_image_rejected": "Görsel reddedildi. Başka birini dene.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bu görsel çok büyük. Sınır {max__number} MB."
+      }
+    }
+  ],
+  "settings_image_type": "Bu dosya türü desteklenmiyor. PNG, JPEG, WebP veya AVIF kullan.",
+  "settings_index_title": "Ayarlar",
+  "settings_language_browser": "Tarayıcımla aynı",
+  "settings_language_label": "Dil",
+  "settings_language_saved": "Dil kaydedildi",
+  "settings_language_text": "Konsolun ve sana gönderdiğimiz e-postaların dili.",
+  "settings_language_title": "Dil ve sayılar",
+  "settings_link_add": "Bağlantı ekle",
+  "settings_link_invalid": "https:// ile başlayan tam bir web adresi gir",
+  "settings_link_kind": "Tür",
+  "settings_link_label": "Etiket",
+  "settings_link_other": "Diğer",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{n__number}. bağlantıyı kaldır"
+      }
+    }
+  ],
+  "settings_link_url": "Adres",
+  "settings_link_website": "Web sitesi",
+  "settings_links_empty": "Henüz bağlantı yok.",
+  "settings_links_saved": "Bağlantılar kaydedildi",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Profilinde en fazla {max__number} bağlantı: siten, kanalların ve seni nerede destekleyebilecekleri."
+      }
+    }
+  ],
+  "settings_links_title": "Bağlantılar",
+  "settings_loading": "Yükleniyor…",
+  "settings_member_since": "Hayatta kalma başlangıcı",
+  "settings_motion": "Animasyonlar",
+  "settings_motion_full": "Tümü",
+  "settings_motion_full_hint": "Tüm animasyonlar açık.",
+  "settings_motion_reduce": "Azaltılmış",
+  "settings_motion_reduce_hint": "Kayma, yakınlaştırma ya da kutlama yok.",
+  "settings_motion_system": "Cihazımla aynı",
+  "settings_motion_system_hint": "Sisteminin hareketi azaltma ayarını izler.",
+  "settings_notif_ack": "Saha raporların",
+  "settings_notif_ack_hint": "Bir yapımcı bildirdiğin bir sorunu gördü ya da düzeltti.",
+  "settings_notif_announcement": "Duyurular",
+  "settings_notif_announcement_hint": "SOTF Mods ekibinden haberler.",
+  "settings_notif_award": "Ödüller",
+  "settings_notif_award_hint": "Modlarından biri Haftanın Modu ya da Ekip Seçimi oldu.",
+  "settings_notif_badge": "Rozetler",
+  "settings_notif_badge_hint": "Bir rozet açtın.",
+  "settings_notif_broken": "Modun bozuk olarak bildirildi",
+  "settings_notif_broken_hint": "Saha raporları modlarından birinin güncel sürümde bozulduğunu söylüyor.",
+  "settings_notif_col_app": "Uygulamada",
+  "settings_notif_col_email": "E-posta",
+  "settings_notif_col_signal": "Sinyal",
+  "settings_notif_comment": "Modlarına yorumlar",
+  "settings_notif_comment_hint": "Toplu: birkaç yorum tek bir sinyal olarak gelir.",
+  "settings_notif_creator": "Yapımcılardan yeni modlar",
+  "settings_notif_creator_hint": "Takip ettiğin bir yapımcı yeni bir şey yayımladı.",
+  "settings_notif_defaults": "Varsayılanlara dön",
+  "settings_notif_email_only": "Yalnızca e-posta",
+  "settings_notif_group_community": "Topluluk ve korucular",
+  "settings_notif_group_conversations": "Sohbetler",
+  "settings_notif_group_follows": "Takip ettiklerin",
+  "settings_notif_group_my_mods": "Modların",
+  "settings_notif_matrix_text": "Her sinyal türü için uygulamada gösterilip gösterilmeyeceğini ve ne sıklıkla e-postayla gönderileceğini seç. Özetler her şeyi tek bir e-postada toplar.",
+  "settings_notif_matrix_title": "Sinyaller ve e-postalar",
+  "settings_notif_mention": "Bahsedilmeler",
+  "settings_notif_mention_hint": "Biri senden @bahsetti.",
+  "settings_notif_milestone": "İndirme dönüm noktaları",
+  "settings_notif_milestone_hint": "Modlarından biri bir indirme dönüm noktasını geçti.",
+  "settings_notif_patch": "Modları bozan oyun yamaları",
+  "settings_notif_patch_hint": "Yeni bir oyun sürümü muhtemelen modları bozacak (yapımcılara gönderilir).",
+  "settings_notif_removal_note": "Modlarından biri kaldırılırsa sana her zaman e-postayla haber veririz.",
+  "settings_notif_reply": "Yanıtlar",
+  "settings_notif_reply_hint": "Biri yorumunu yanıtladı.",
+  "settings_notif_report": "Bildirimlerin",
+  "settings_notif_report_hint": "Korucular bildirdiğin bir şeyi inceledi.",
+  "settings_notif_review": "Modlarına incelemeler",
+  "settings_notif_review_hint": "Biri modlarından birini puanladı.",
+  "settings_notif_review_reply": "İncelemelerine yanıtlar",
+  "settings_notif_review_reply_hint": "Bir yapımcı incelemeni yanıtladı.",
+  "settings_notif_saved": "Bildirim ayarları kaydedildi",
+  "settings_notif_status": "İnceleme kararları",
+  "settings_notif_status_hint": "Modlarından biri onaylandı, reddedildi, değişiklik gerektiriyor ya da arşivlendi.",
+  "settings_notif_version": "Yeni sürümler",
+  "settings_notif_version_hint": "Sırt çantandaki bir mod güncelleme yayımladı.",
+  "settings_notif_weekly": "Haftalık yapımcı raporu",
+  "settings_notif_weekly_hint": "Pazartesileri: modlarının indirmeleri, takipçileri ve incelemeleri.",
+  "settings_notifications_hint": "Uygulamada ve e-postayla hangi sinyalleri aldığın.",
+  "settings_notifications_title": "Bildirimler",
+  "settings_nsfw_adult": "18 yaşında veya daha büyüğüm (ya da yaşadığım yerde reşidim)",
+  "settings_nsfw_confirm": "Göster",
+  "settings_nsfw_confirm_text": "NSFW modlar çıplaklık veya açık içerik barındırabilir. İstediğin zaman yeniden gizleyebilirsin.",
+  "settings_nsfw_confirm_title": "Yetişkin içerik gösterilsin mi?",
+  "settings_nsfw_confirmed_on": "{date} tarihinde onaylandı",
+  "settings_nsfw_hide": "Yetişkin içeriği gizle",
+  "settings_nsfw_off_saved": "Yetişkin içerik gizlendi",
+  "settings_nsfw_on_saved": "Yetişkin içerik artık gösteriliyor",
+  "settings_nsfw_show": "Yetişkin içeriği göster",
+  "settings_nsfw_status_off": "Gizli",
+  "settings_nsfw_status_on": "Gösteriliyor",
+  "settings_nsfw_text": "NSFW olarak işaretlenen modlar listelerde, aramada ve akışlarda gizlenir; kendi sayfaları dışında her yerde bulanıklaştırılır. Görmek için bunu aç.",
+  "settings_nsfw_title": "Yetişkin içerik",
+  "settings_number_compact": "Kısaltılmış",
+  "settings_number_compact_hint": "1,2 B indirme",
+  "settings_number_format": "Büyük sayılar",
+  "settings_number_full": "Tam",
+  "settings_number_full_hint": "1.234 indirme",
+  "settings_password_changed": "Şifre değiştirildi",
+  "settings_password_changed_revoked": "Şifre değiştirildi ve diğer cihazlardan çıkış yapıldı",
+  "settings_password_confirm": "Yeni şifreyi tekrarla",
+  "settings_password_current": "Mevcut şifre",
+  "settings_password_mismatch": "İki yeni şifre eşleşmiyor.",
+  "settings_password_new": "Yeni şifre",
+  "settings_password_rejected": "Bu şifre bir veri sızıntısında görüldü. Başka bir şifre seç.",
+  "settings_password_required": "Mevcut şifreni gir.",
+  "settings_password_revoke": "Diğer cihazlarımdan çıkış yap",
+  "settings_password_revoke_hint": "Şifreni başka birinin bildiğini düşünüyorsan önerilir.",
+  "settings_password_same": "Mevcut şifrenden farklı bir şifre seç.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En az {min__number} karakter kullan."
+      }
+    }
+  ],
+  "settings_password_submit": "Şifreyi değiştir",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "En az {min__number} karakter. Uzun bir cümle hatırlaması daha kolay, tahmin etmesi daha zordur."
+      }
+    }
+  ],
+  "settings_password_title": "Şifre",
+  "settings_password_wrong": "Bu şifre doğru değil.",
+  "settings_photos_text": "Avatarın ve profilinin üstündeki afiş. Değişiklikler yükleme biter bitmez kaydedilir.",
+  "settings_photos_title": "Fotoğraf ve afiş",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input max",
+        "input count",
+        "local max__number = max: number",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{max__number} moddan {count__number} tanesi sabitlendi"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} indirme",
+        "count__plural=*": "{count__number} indirme"
+      }
+    }
+  ],
+  "settings_pinned_empty": "Modlarından biri yayımlandığında burada sabitleyebilirsin.",
+  "settings_pinned_failed": "Modların yüklenemedi.",
+  "settings_pinned_hidden": "Bazı sabitlenmiş modlar şu anda herkese açık değil; sabit kalırlar ve açık olduklarında yeniden görünürler.",
+  "settings_pinned_saved": "Sabitlenmiş modlar kaydedildi",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Profilinde ilk gösterilecek en fazla {max__number} modunu bu sırayla seç."
+      }
+    }
+  ],
+  "settings_pinned_title": "Sabitlenmiş modlar",
+  "settings_preferences_hint": "Dil, tema, animasyonlar, kısayollar ve yetişkin içerik.",
+  "settings_preferences_title": "Tercihler",
+  "settings_privacy_data_link": "Verilerimi dışa aktar veya sil",
+  "settings_privacy_data_text": "Hakkında sakladığımız her şeyi dışa aktarabilir ya da hesabını silebilirsin.",
+  "settings_privacy_data_title": "Verilerin",
+  "settings_privacy_hint": "Başkalarının profilinde ne gördüğü ve indirme geçmişin.",
+  "settings_privacy_policy_link": "Gizlilik politikası",
+  "settings_privacy_saved": "Gizlilik ayarları kaydedildi",
+  "settings_privacy_title": "Gizlilik",
+  "settings_profile_hint": "Fotoğraf, afiş, ad, biyografi, bağlantılar ve sabitlenmiş modlar.",
+  "settings_profile_title": "Profil",
+  "settings_profile_view_public": "Herkese açık profilini gör",
+  "settings_readout": "Kamp ayarları",
+  "settings_retry": "Tekrar dene",
+  "settings_save": "Kaydet",
+  "settings_save_failed": "Değişiklikler kaydedilemedi",
+  "settings_security_hint": "Nerede oturum açık olduğu ve diğer cihazlardan çıkış.",
+  "settings_security_tip_email": "Şifreni asla e-postayla ya da Discord’da istemeyiz.",
+  "settings_security_tip_password": "Başka hiçbir yerde kullanmadığın bir şifre kullan.",
+  "settings_security_tip_sessions": "Ortak ya da herkese açık bilgisayarlarda işin bitince çıkış yap.",
+  "settings_security_tips_title": "Kampını güvende tut",
+  "settings_security_title": "Güvenlik",
+  "settings_sessions_active_now": "şu anda etkin",
+  "settings_sessions_confirm_current_text": "Giriş sayfasına gideceksin.",
+  "settings_sessions_confirm_current_title": "Bu tarayıcıdan çıkış yapılsın mı?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} diğer oturum sonlandırılacak. Bu tarayıcıda oturum açık kalır.",
+        "count__plural=*": "{count__number} diğer oturum sonlandırılacak. Bu tarayıcıda oturum açık kalır."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Diğer her yerden çıkış yapılsın mı?",
+  "settings_sessions_confirm_text": "{device} yeniden giriş yapmak zorunda kalacak.",
+  "settings_sessions_confirm_title": "Bu cihazdan çıkış yapılsın mı?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} etkin oturum",
+        "count__plural=*": "{count__number} etkin oturum"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Bu oturum kapatılamadı",
+  "settings_sessions_last_seen": "son etkinlik {when}",
+  "settings_sessions_revoked": "{device} oturumu kapatıldı",
+  "settings_sessions_revoked_others": "Diğer cihazlardan çıkış yapıldı",
+  "settings_sessions_sign_out": "Çıkış yap",
+  "settings_sessions_sign_out_here": "Burada çıkış yap",
+  "settings_sessions_sign_out_others": "Diğer her yerden çıkış yap",
+  "settings_sessions_started": "{date} tarihinde giriş yapıldı",
+  "settings_sessions_text": "Etkin oturumu olan her tarayıcı ve cihaz. Tanımadıklarından çıkış yap.",
+  "settings_sessions_this_device": "Bu cihaz",
+  "settings_sessions_title": "Oturumun açık olduğu yerler",
+  "settings_sessions_unknown_device": "Bilinmeyen cihaz",
+  "settings_shortcuts": "Klavye kısayolları",
+  "settings_shortcuts_hint": "Konsolda tek tuşlu kısayollar. Yardımcı teknolojine engel oluyorlarsa kapat.",
+  "settings_show_activity": "Etkinliğimi göster",
+  "settings_show_activity_hint": "12 aylık ısı haritası ve son etkinliğin.",
+  "settings_show_kits": "Kitlerimi göster",
+  "settings_show_kits_hint": "Profilindeki Kitler sekmesi (özel kitler asla gösterilmez).",
+  "settings_show_leaderboards": "Liderlik tablolarında görün",
+  "settings_show_leaderboards_hint": "En iyi yapımcılar ve en iyi hayatta kalanlar listeleri.",
+  "settings_show_rank": "Hayatta kalan rütbemi ve XP’mi göster",
+  "settings_show_rank_hint": "Adının yanındaki rütbe damgası.",
+  "settings_support_edit": "Profilindeki bağlantıları düzenle",
+  "settings_support_empty": "Henüz bir Ko-fi veya Patreon bağlantısı eklemedin.",
+  "settings_support_text": "Profilindeki Ko-fi ve Patreon bağlantıları profilinde ve modlarının indirme düğmesinin yanında görünür.",
+  "settings_support_title": "Destek bağlantıları",
+  "settings_template_add": "Şablon ekle",
+  "settings_template_copied": "“{name}” kopyalandı",
+  "settings_template_copy": "Kopyala",
+  "settings_template_copy_failed": "Panoya kopyalanamadı",
+  "settings_template_delete": "Sil",
+  "settings_template_name": "Ad",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bir ad ver (en fazla {max__number} karakter)."
+      }
+    }
+  ],
+  "settings_template_text": "Metin",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Metni yaz (en fazla {max__number} karakter)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Henüz şablon yok.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Yorumlara ve inceleme yanıtlarına kopyalamak için en fazla {max__number} hazır yanıt (kurulum adımları, bilinen çakışmalar…)."
+      }
+    }
+  ],
+  "settings_templates_title": "Yanıt şablonları",
+  "settings_theme": "Tema",
+  "settings_theme_day": "Gündüz",
+  "settings_theme_night": "Gece",
+  "settings_theme_system": "Cihazımla aynı",
+  "settings_verify_already": "E-posta adresin zaten doğrulanmış",
+  "settings_verify_resend": "Bağlantıyı yeniden gönder",
+  "settings_verify_resend_failed": "Bağlantı gönderilemedi",
+  "settings_verify_resent": "{email} adresine yeni bir bağlantı gönderdik",
+  "settings_verify_text": "O zamana kadar göz atıp indirebilirsin ama yorum yapamaz, inceleme yazamaz veya yayımlayamazsın.",
+  "settings_verify_title": "E-posta adresini doğrula",
+  "settings_visibility_text": "Kendine saklamayı tercih ettiğin her şeyi kapat.",
+  "settings_visibility_title": "Profilinde",
+  "signals_action_download": "İndir",
+  "signals_announcement": "Koruculardan yeni duyuru",
+  "signals_announcement_titled": "Duyuru: {title}",
+  "signals_award_build_of_month": "{mod} Ayın Yapısı oldu",
+  "signals_award_generic": "{mod} bir ödül kazandı",
+  "signals_award_mod_of_month": "{mod} Ayın Modu oldu",
+  "signals_award_mod_of_week": "{mod} Haftanın Modu oldu",
+  "signals_award_staff_pick": "{mod} bir Ekip Seçimi oldu",
+  "signals_badge_awarded": "Rozet açıldı: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Yeni SOTF Mods’a hoş geldin",
+        "count__exact=*, count__plural=one": "Yeni SOTF Mods’a hoş geldin — saha defterinde {count__number} rozet seni bekliyor",
+        "count__exact=*, count__plural=*": "Yeni SOTF Mods’a hoş geldin — saha defterinde {count__number} rozet seni bekliyor"
+      }
+    }
+  ],
+  "signals_bell_label": "Sinyaller",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Sinyaller: {count__number} okunmamış",
+        "count__plural=*": "Sinyaller: {count__number} okunmamış"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor}, {mod} için bir hata bildirdi",
+  "signals_comment_mention": "{actor}, {mod} yorumlarında senden bahsetti",
+  "signals_comment_on_mod": "{actor}, {mod} hakkında yorum yaptı",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} için {count__number} yeni yorum",
+        "count__plural=*": "{mod} için {count__number} yeni yorum"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor}, {mod} hakkındaki yorumunu yanıtladı",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} hakkındaki yorumuna {count__number} yanıt",
+        "count__plural=*": "{mod} hakkındaki yorumuna {count__number} yanıt"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "{mod} yapımcısı saha raporunu gördü",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input build",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod}, {build} üzerinde bozuk olarak bildiriliyor",
+        "status=*": "{mod}, {build} üzerinde karışık olarak bildiriliyor"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "{mod} hakkındaki saha raporun {version} sürümünde düzeltildi",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} {mod} yapısını yayımladı",
+        "kind=*": "{actor} {mod} modunu yayımladı"
+      }
+    }
+  ],
+  "signals_current_build": "güncel sürüm",
+  "signals_empty_filtered_text": "Henüz bu filtreye uyan sinyal yok. “Tümü”nü dene.",
+  "signals_empty_filtered_title": "Bu kanalda bir şey yok",
+  "signals_empty_text": "Bir şey değiştiğinde haberdar olmak için modları ve yapımcıları takip et.",
+  "signals_empty_title": "Ormanda her şey sakin",
+  "signals_end": "Şimdilik tüm sinyaller bu kadar.",
+  "signals_error_text": "Bizim tarafımızda bir sorun oluştu. Birazdan tekrar dene.",
+  "signals_error_title": "Sinyaller yüklenemedi.",
+  "signals_excerpt": "“{text}”",
+  "signals_filter_all": "Tümü",
+  "signals_filter_label": "Sinyalleri filtrele",
+  "signals_filter_mentions": "Bahsedilmeler",
+  "signals_filter_my_mods": "Modlarım",
+  "signals_filter_ranger": "Korucular",
+  "signals_filter_updates": "Güncellemeler",
+  "signals_group_today": "Bugün",
+  "signals_group_yesterday": "Dün",
+  "signals_load_more": "Daha eski sinyalleri yükle",
+  "signals_loading": "Sinyaller yükleniyor…",
+  "signals_loading_more": "Yükleniyor…",
+  "signals_mark_all_read": "Tümünü okundu say",
+  "signals_mark_failed": "Sinyaller okundu sayılamadı",
+  "signals_mark_read": "Okundu say",
+  "signals_marked_all": "Tüm sinyaller okundu sayıldı",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod}, {threshold__number} indirmeyi geçti"
+      }
+    }
+  ],
+  "signals_more_error": "Daha eski sinyaller yüklenemedi.",
+  "signals_page_description": "Takip ettiklerinden güncellemeler, yanıtlar, bahsedilmeler ve modlarınla ilgili haberler.",
+  "signals_page_readout": "Telsiz kaydı",
+  "signals_page_title": "Sinyaller",
+  "signals_panel_title": "Sinyaller",
+  "signals_patch_breaking": "{build} oyun sürümü modları bozabilir — kendi modlarını Patch Radar’da kontrol et",
+  "signals_preferences": "Bildirim ayarları",
+  "signals_report_dismissed": "Bildirimin incelendi — işlem gerekmedi",
+  "signals_report_resolved": "Bildirimin incelendi ve işlem yapıldı",
+  "signals_retry": "Tekrar dene",
+  "signals_review_on_mod": "{actor}, {mod} için {rating} yıldızlı bir inceleme bıraktı",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} için {count__number} yeni inceleme",
+        "count__plural=*": "{mod} için {count__number} yeni inceleme"
+      }
+    }
+  ],
+  "signals_review_reply": "{mod} yapımcısı incelemeni yanıtladı",
+  "signals_see_all": "Tüm sinyalleri gör",
+  "signals_show_all": "Tüm sinyalleri göster",
+  "signals_someone": "Biri",
+  "signals_status_approved": "{mod} modun onaylandı ve yayında",
+  "signals_status_archived": "{mod} modun arşivlendi",
+  "signals_status_changed": "{mod} modunun durumu değişti",
+  "signals_status_changes_requested": "Korucular {mod} için değişiklik istiyor",
+  "signals_status_rejected": "{mod} modun reddedildi",
+  "signals_status_removed": "{mod} modun kaldırıldı",
+  "signals_status_republished": "{mod} modun yeniden herkese açık",
+  "signals_status_unlisted": "{mod} modun listelerden kaldırıldı",
+  "signals_unknown_mod": "bir mod",
+  "signals_unread_prefix": "Okunmamış:",
+  "signals_version_published": "{mod} {version} çıktı — bu modu takip ediyorsun",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mod} için {count__number} yeni sürüm",
+        "count__plural=*": "{mod} için {count__number} yeni sürüm"
+      }
+    }
+  ],
+  "signals_weekly_report": "Haftalık yapımcı raporun hazır",
   "social_action_back": "Geri",
   "social_action_cancel": "İptal",
   "social_action_close": "Kapat",

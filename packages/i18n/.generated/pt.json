@@ -3170,6 +3170,199 @@
   "landing_trending_empty": "Semana tranquila na ilha. Os mods aparecem aqui conforme os sobreviventes os baixam.",
   "landing_trending_hint": "Por downloads nos últimos 7 dias",
   "landing_trending_title": "Em alta nesta semana",
+  "me_action_download": "Baixar",
+  "me_action_failed": "Não deu certo",
+  "me_action_update": "Baixar a atualização",
+  "me_backpack_description": "Os mods que você segue, com suas atualizações e como funcionam na build atual.",
+  "me_backpack_empty_text": "Toque em ♥ em um mod para guardá-lo aqui e saber das atualizações.",
+  "me_backpack_empty_title": "Sua mochila está vazia",
+  "me_backpack_list_label": "Mods seguidos",
+  "me_backpack_no_broken_text": "Nenhum dos seus mods é relatado como quebrado na build atual do jogo.",
+  "me_backpack_no_broken_title": "Nada relatado como quebrado",
+  "me_backpack_no_updates_text": "Nenhum mod da sua mochila tem versão mais nova do que a que você baixou.",
+  "me_backpack_no_updates_title": "Tudo está atualizado",
+  "me_backpack_notify_off": "Sem mais sinais de atualização de {mod}",
+  "me_backpack_notify_on": "Você vai receber um sinal quando {mod} for atualizado",
+  "me_backpack_readout": "Seu equipamento",
+  "me_backpack_removed": "{mod} saiu da sua mochila",
+  "me_backpack_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} mod na sua mochila · tudo atualizado",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} mod na sua mochila · {updates__number} atualização disponível",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} mod na sua mochila · {updates__number} atualizações disponíveis",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} mods na sua mochila · tudo atualizado",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} mods na sua mochila · {updates__number} atualização disponível",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} mods na sua mochila · {updates__number} atualizações disponíveis"
+      }
+    }
+  ],
+  "me_backpack_title": "Mochila",
+  "me_broken_on_current": "Quebrado em {build}",
+  "me_browse_mods": "Explorar mods",
+  "me_by_author": "de {author}",
+  "me_cancel": "Cancelar",
+  "me_did_it_work": "Funcionou?",
+  "me_downloads_clear": "Limpar histórico",
+  "me_downloads_clear_confirm": "Limpar histórico",
+  "me_downloads_clear_text": "Todas as linhas somem, junto com as perguntas “Funcionou?” sobre downloads antigos. Os contadores de downloads dos mods não mudam. Não dá para desfazer.",
+  "me_downloads_clear_title": "Limpar seu histórico de downloads?",
+  "me_downloads_cleared": "Histórico de downloads limpo",
+  "me_downloads_description": "Todos os mods que você baixou com a sessão iniciada, com as atualizações que faltam.",
+  "me_downloads_empty_off_text": "Seu histórico está desativado, então nada novo é registrado aqui.",
+  "me_downloads_empty_text": "Baixe um mod com a sessão iniciada e ele aparece aqui, com um aviso quando sair uma nova versão.",
+  "me_downloads_empty_title": "Nenhum download ainda",
+  "me_downloads_history_off": "Histórico de downloads desativado",
+  "me_downloads_history_on": "Histórico de downloads ativado",
+  "me_downloads_keep_history": "Manter histórico de downloads",
+  "me_downloads_last": "Você baixou a {version} em {date}",
+  "me_downloads_list_label": "Mods baixados",
+  "me_downloads_off_text": "Novos downloads não são registrados, então os avisos de atualização aqui e na sua mochila não conseguem comparar versões. Você pode reativá-lo quando quiser.",
+  "me_downloads_off_title": "Seu histórico de downloads está desativado",
+  "me_downloads_readout": "Registro de suprimentos",
+  "me_downloads_remove": "Remover da lista",
+  "me_downloads_remove_label": "Remover {mod} da lista",
+  "me_downloads_removed": "{mod} removido da lista",
+  "me_downloads_summary": [
+    {
+      "declarations": [
+        "input count",
+        "input updates",
+        "local count__plural = count: plural",
+        "local count__number = count: number",
+        "local updates__exact = updates: number maximumFractionDigits=20",
+        "local updates__plural = updates: plural",
+        "local updates__number = updates: number"
+      ],
+      "selectors": [
+        "count__plural",
+        "updates__exact",
+        "updates__plural"
+      ],
+      "match": {
+        "count__plural=one, updates__exact=0, updates__plural=*": "{count__number} mod baixado · tudo atualizado",
+        "count__plural=one, updates__exact=*, updates__plural=one": "{count__number} mod baixado · {updates__number} atualização disponível",
+        "count__plural=one, updates__exact=*, updates__plural=*": "{count__number} mod baixado · {updates__number} atualizações disponíveis",
+        "count__plural=*, updates__exact=0, updates__plural=*": "{count__number} mods baixados · tudo atualizado",
+        "count__plural=*, updates__exact=*, updates__plural=one": "{count__number} mods baixados · {updates__number} atualização disponível",
+        "count__plural=*, updates__exact=*, updates__plural=*": "{count__number} mods baixados · {updates__number} atualizações disponíveis"
+      }
+    }
+  ],
+  "me_downloads_times": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "me_downloads_title": "Meus downloads",
+  "me_filter_all": "Todos",
+  "me_filter_broken": "Quebrados nesta build",
+  "me_filter_label": "Mostrar",
+  "me_filter_updates": "Com atualização",
+  "me_follow": "Seguir",
+  "me_followed": "{mod} está na sua mochila",
+  "me_followed_on": "seguido em {date}",
+  "me_latest_version": "Mais recente: {version}",
+  "me_no_current_version": "Nenhuma versão disponível no momento",
+  "me_notify_off": "Sinais de atualização desativados",
+  "me_notify_on": "Sinais de atualização ativados",
+  "me_onboarding_completed": "Você sobreviveu ao primeiro dia — insígnia desbloqueada",
+  "me_onboarding_dismiss": "Ocultar",
+  "me_onboarding_download_action": "Explorar mods",
+  "me_onboarding_download_hint": "Escolha qualquer um que funcione na build atual.",
+  "me_onboarding_download_title": "Baixe seu primeiro mod",
+  "me_onboarding_failed": "Não foi possível atualizar a lista",
+  "me_onboarding_follow_action": "Encontrar um mod para seguir",
+  "me_onboarding_follow_hint": "Toque em ♥ para guardá-lo na mochila e saber das atualizações.",
+  "me_onboarding_follow_title": "Siga um mod",
+  "me_onboarding_install_action": "Abrir o guia de instalação",
+  "me_onboarding_install_done": "Já instalei",
+  "me_onboarding_install_hint": "O carregador de mods que todo mod de Sons of the Forest precisa.",
+  "me_onboarding_install_title": "Instale o RedLoader",
+  "me_onboarding_kit_action": "Criar um kit",
+  "me_onboarding_kit_hint": "Junte seus mods em um loadout para compartilhar com um único código.",
+  "me_onboarding_kit_title": "Monte um kit",
+  "me_onboarding_progress": [
+    {
+      "declarations": [
+        "input done",
+        "input total",
+        "local done__number = done: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{done__number} de {total__number} concluídos"
+      }
+    }
+  ],
+  "me_onboarding_readout": "Dia 1 na ilha",
+  "me_onboarding_report_action": "Ir para meus downloads",
+  "me_onboarding_report_hint": "Responda “Funcionou?” sobre um mod que você baixou.",
+  "me_onboarding_report_title": "Conte se funcionou",
+  "me_onboarding_step_done": "Concluído:",
+  "me_onboarding_step_todo": "Pendente:",
+  "me_onboarding_text": "Cinco passos rápidos para começar. Conclua todos para ganhar a insígnia “Sobreviveu ao primeiro dia”.",
+  "me_onboarding_title": "Sobreviva ao seu primeiro dia",
+  "me_report_broken": "Está quebrado",
+  "me_report_description": "Seu relatório de campo sobre a versão {version} na build {build} do jogo ajuda todos os sobreviventes a escolher mods que funcionam.",
+  "me_report_mode_client": "Cliente multijogador",
+  "me_report_mode_dedicated": "Servidor dedicado",
+  "me_report_mode_host": "Anfitrião multijogador",
+  "me_report_mode_label": "Como você jogou",
+  "me_report_mode_singleplayer": "Um jogador",
+  "me_report_note_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Travamentos, conflitos com outros mods… até {max__number} caracteres."
+      }
+    }
+  ],
+  "me_report_note_label": "O que aconteceu",
+  "me_report_partial": "Em parte",
+  "me_report_pick_result": "Escolha como foi.",
+  "me_report_result_legend": "Como foi?",
+  "me_report_submit": "Enviar relatório",
+  "me_report_thanks": "Valeu — seu relatório sobre {mod} está no mapa",
+  "me_report_title": "{mod} funcionou?",
+  "me_report_verify_email": "Confirme seu e-mail antes de enviar relatórios de campo.",
+  "me_report_works": "Funciona",
+  "me_undo": "Desfazer",
+  "me_unfollow": "Deixar de seguir",
+  "me_unfollowed": "{mod} saiu da sua mochila",
+  "me_up_to_date": "Atualizado ({version})",
+  "me_update_available": "Atualização disponível",
+  "me_update_from_to": "Atualização: {from} → {to}",
   "meta_default_description": "A casa do modding de Sons of the Forest: mods, builds e kits para o RedLoader, testados a cada patch. Downloads grátis e diretos.",
   "meta_feed_description": "Os mods e atualizações mais recentes de Sons of the Forest publicados no SOTF Mods.",
   "meta_feed_title": "SOTF Mods: mods novos e atualizados",
@@ -4790,6 +4983,781 @@
       }
     }
   ],
+  "settings_about_saved": "Perfil salvo",
+  "settings_about_text": "Como você aparece no seu perfil, nos seus mods e nos seus comentários.",
+  "settings_about_title": "Sobre você",
+  "settings_account_hint": "E-mail de acesso e senha.",
+  "settings_account_overview_title": "Sua conta",
+  "settings_account_title": "Conta",
+  "settings_appearance_saved": "Aparência salva",
+  "settings_appearance_text": "Como o SOTF Mods aparece neste e nos seus outros dispositivos.",
+  "settings_appearance_title": "Aparência",
+  "settings_avatar_change": "Trocar foto",
+  "settings_avatar_hint": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "PNG, JPEG, WebP, AVIF ou GIF de até {max__number} MB. Você pode recortar antes de salvar."
+      }
+    }
+  ],
+  "settings_avatar_label": "Avatar",
+  "settings_avatar_remove": "Remover foto",
+  "settings_avatar_removed": "Foto removida",
+  "settings_avatar_saved": "Nova foto salva",
+  "settings_avatar_upload": "Enviar uma foto",
+  "settings_avatar_uploading": "Enviando sua foto…",
+  "settings_back": "Configurações",
+  "settings_banner_custom_hint": "Você está usando uma imagem própria. Gere um terreno para voltar a um banner gerado.",
+  "settings_banner_label": "Banner",
+  "settings_banner_reroll": "Gerar outro terreno",
+  "settings_banner_reroll_hint": "Prévia do novo terreno — escolha “Usar este terreno” para ficar com ele.",
+  "settings_banner_saved": "Novo banner salvo",
+  "settings_banner_terrain_hint": "Um mapa desenhado só para você. Gere outros até gostar do formato da sua ilha.",
+  "settings_banner_terrain_saved": "Banner de terreno salvo",
+  "settings_banner_upload": "Enviar uma imagem",
+  "settings_banner_uploading": "Enviando seu banner…",
+  "settings_banner_use_terrain": "Usar este terreno",
+  "settings_behaviour_saved": "Preferências salvas",
+  "settings_behaviour_title": "Comportamento",
+  "settings_bio": "Bio",
+  "settings_bio_hint": "Markdown funciona: **negrito**, _itálico_ e links.",
+  "settings_bio_too_long": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mantenha sua bio com menos de {max__number} caracteres."
+      }
+    }
+  ],
+  "settings_cancel": "Cancelar",
+  "settings_chars_left": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Resta {count__number} caractere",
+        "count__plural=*": "Restam {count__number} caracteres"
+      }
+    }
+  ],
+  "settings_compat_prompts": "Perguntar “Funcionou?” depois dos downloads",
+  "settings_compat_prompts_hint": "Suas respostas mostram aos outros sobreviventes quais mods funcionam na build atual.",
+  "settings_creator_badges": "Suas insígnias",
+  "settings_creator_basecamp": "Abrir o Acampamento",
+  "settings_creator_hint": "Status de criador, links de apoio, licença padrão e modelos de resposta.",
+  "settings_creator_not_verified": "Ainda não verificado",
+  "settings_creator_not_verified_text": "Os guardas verificam criadores com histórico de mods seguros e bem mantidos. Continue publicando — não há nada para solicitar.",
+  "settings_creator_policy": "Tudo o que você publica segue a política de conteúdo.",
+  "settings_creator_policy_link": "Ler a política de conteúdo",
+  "settings_creator_status_title": "Status de criador",
+  "settings_creator_title": "Criador",
+  "settings_creator_verified": "Criador verificado",
+  "settings_creator_verified_text": "Seus mods têm a marca de verificado e você pode enviar arquivos maiores.",
+  "settings_crop_avatar_title": "Recortar sua foto",
+  "settings_crop_banner_title": "Recortar seu banner",
+  "settings_crop_failed": "Não foi possível ler esta imagem. Tente outro arquivo.",
+  "settings_crop_help": "Arraste a imagem ou use as setas para movê-la; use o controle deslizante ou + e − para dar zoom.",
+  "settings_crop_label": "Área de recorte da imagem",
+  "settings_crop_roledescription": "área de recorte",
+  "settings_crop_use": "Usar imagem",
+  "settings_crop_zoom": "Zoom",
+  "settings_data_hint": "Exporte tudo o que temos sobre você ou exclua sua conta.",
+  "settings_data_title": "Seus dados",
+  "settings_day_on_island": [
+    {
+      "declarations": [
+        "input day",
+        "local day__number = day: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Dia {day__number} na ilha"
+      }
+    }
+  ],
+  "settings_default_license": "Licença padrão",
+  "settings_default_license_hint": "Pré-selecionada ao publicar um novo mod; você pode mudar em cada mod.",
+  "settings_default_license_none": "Perguntar sempre",
+  "settings_defaults_local_note": "Estes padrões ficam salvos apenas neste navegador.",
+  "settings_defaults_saved": "Padrões salvos",
+  "settings_defaults_text": "Preencha novos mods de antemão e responda mais rápido às perguntas comuns.",
+  "settings_defaults_title": "Padrões de publicação",
+  "settings_delete_already": "Já existe uma exclusão agendada para sua conta.",
+  "settings_delete_cancel": "Cancelar a exclusão",
+  "settings_delete_cancel_failed": "Não foi possível cancelar a exclusão",
+  "settings_delete_cancelled": "Exclusão cancelada — que bom ter você de volta",
+  "settings_delete_confirm": "Excluir em 14 dias",
+  "settings_delete_dialog_text": "Sua conta será excluída em 14 dias. Até lá, você pode cancelar nesta página.",
+  "settings_delete_dialog_title": "Excluir sua conta?",
+  "settings_delete_mode_archive": "Arquivá-los",
+  "settings_delete_mode_archive_hint": "Eles somem das listas e da busca e deixam de ser atribuídos a você.",
+  "settings_delete_mode_keep": "Mantê-los publicados",
+  "settings_delete_mode_keep_hint": "Os jogadores continuam encontrando, sem o seu nome.",
+  "settings_delete_mods_legend": "O que acontece com seus mods",
+  "settings_delete_open": "Excluir minha conta…",
+  "settings_delete_point_content": "Seus comentários e avaliações continuam, assinados como “Sobrevivente excluído”.",
+  "settings_delete_point_export": "Exporte seus dados antes se quiser uma cópia.",
+  "settings_delete_point_grace": "Você tem 14 dias para mudar de ideia; entre e cancele aqui para interromper.",
+  "settings_delete_point_mods": "Seus mods são arquivados ou continuam publicados sem o seu nome — você escolhe.",
+  "settings_delete_scheduled_text": "Mudou de ideia? Cancele agora e tudo continua como está.",
+  "settings_delete_scheduled_title": "Sua conta será excluída em {date}",
+  "settings_delete_scheduled_toast": "Sua conta será excluída em {date}",
+  "settings_delete_text": "Remove seus dados pessoais de forma permanente após um período de carência de 14 dias.",
+  "settings_delete_title": "Excluir sua conta",
+  "settings_delete_type_handle": "Digite “{handle}” exatamente para confirmar.",
+  "settings_delete_type_label": "Digite seu nome de usuário “{handle}” para confirmar",
+  "settings_density": "Densidade",
+  "settings_density_comfortable": "Confortável",
+  "settings_density_comfortable_hint": "Mais espaço para respirar.",
+  "settings_density_compact": "Compacta",
+  "settings_density_compact_hint": "Mais coisas na tela ao mesmo tempo.",
+  "settings_discard": "Descartar alterações",
+  "settings_display_name": "Nome de exibição",
+  "settings_display_name_hint": "Em qualquer idioma e com quaisquer caracteres, de 2 a 32. Você pode mudar quando quiser.",
+  "settings_display_name_length": [
+    {
+      "declarations": [
+        "input min",
+        "input max",
+        "local min__number = min: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Use entre {min__number} e {max__number} caracteres."
+      }
+    }
+  ],
+  "settings_email_daily": "Resumo diário",
+  "settings_email_instant": "Na hora",
+  "settings_email_invalid": "Digite um endereço de e-mail válido.",
+  "settings_email_new": "Novo endereço de e-mail",
+  "settings_email_off": "Desativado",
+  "settings_email_same": "Esse já é o seu endereço de e-mail.",
+  "settings_email_sent_text": "Enviamos um link de confirmação para {email}. Seu endereço muda assim que você abrir o link.",
+  "settings_email_sent_title": "Confira sua caixa de entrada",
+  "settings_email_sent_toast": "Link de confirmação enviado",
+  "settings_email_submit": "Mudar e-mail",
+  "settings_email_taken": "Esse endereço não pode ser usado. Tente outro.",
+  "settings_email_text": "Usado para entrar e para os e-mails que você escolher receber. Para mudar, confirme o novo endereço pela sua caixa de entrada; avisaremos o antigo.",
+  "settings_email_title": "Endereço de e-mail",
+  "settings_email_unverified": "Não verificado",
+  "settings_email_verified": "Verificado",
+  "settings_email_weekly": "Resumo semanal",
+  "settings_export_again": "Preparar uma nova exportação",
+  "settings_export_download": "Baixar ZIP",
+  "settings_export_email_note": "Também enviamos o link de download por e-mail. Ele funciona por 24 horas.",
+  "settings_export_expired": "Este link de exportação expirou.",
+  "settings_export_expires": "link válido até {date}",
+  "settings_export_failed": "Não foi possível iniciar a exportação",
+  "settings_export_preparing": "Preparando sua exportação…",
+  "settings_export_rate_limited": "Você pediu uma exportação recentemente — tente mais tarde",
+  "settings_export_ready": "Sua exportação está pronta",
+  "settings_export_request": "Preparar minha exportação",
+  "settings_export_requested": "Estamos preparando sua exportação",
+  "settings_export_requested_at": "Solicitada em {date}",
+  "settings_export_status_failed": "A exportação falhou. Tente de novo.",
+  "settings_export_text": "Um ZIP de arquivos JSON com sua conta, perfil, mods, comentários, avaliações, kits, itens seguidos e configurações.",
+  "settings_export_title": "Exportar seus dados",
+  "settings_handle": "Nome de usuário",
+  "settings_handle_hint": "O endereço do seu perfil. Ainda não é possível mudá-lo.",
+  "settings_history_link": "Abrir meus downloads",
+  "settings_history_off_saved": "Histórico de downloads desativado",
+  "settings_history_on_saved": "Histórico de downloads ativado",
+  "settings_history_switch": "Manter histórico de downloads",
+  "settings_history_text": "Quando está ativado, os downloads feitos com a sessão iniciada aparecem em “Meus downloads” para avisarmos você sobre atualizações.",
+  "settings_history_title": "Histórico de downloads",
+  "settings_image_processing": "A imagem está demorando demais para ser processada. Tente de novo daqui a pouco.",
+  "settings_image_rejected": "A imagem foi rejeitada. Tente outra.",
+  "settings_image_size": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Essa imagem é grande demais. O limite é {max__number} MB."
+      }
+    }
+  ],
+  "settings_image_type": "Esse tipo de arquivo não é compatível. Use PNG, JPEG, WebP ou AVIF.",
+  "settings_index_title": "Configurações",
+  "settings_language_browser": "O mesmo do meu navegador",
+  "settings_language_label": "Idioma",
+  "settings_language_saved": "Idioma salvo",
+  "settings_language_text": "O idioma do console e dos e-mails que enviamos para você.",
+  "settings_language_title": "Idioma e números",
+  "settings_link_add": "Adicionar um link",
+  "settings_link_invalid": "Digite um endereço web completo começando com https://",
+  "settings_link_kind": "Tipo",
+  "settings_link_label": "Rótulo",
+  "settings_link_other": "Outro",
+  "settings_link_remove": [
+    {
+      "declarations": [
+        "input n",
+        "local n__number = n: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Remover o link {n__number}"
+      }
+    }
+  ],
+  "settings_link_url": "Endereço",
+  "settings_link_website": "Site",
+  "settings_links_empty": "Nenhum link ainda.",
+  "settings_links_saved": "Links salvos",
+  "settings_links_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Até {max__number} links no seu perfil: seu site, seus canais e onde as pessoas podem apoiar você."
+      }
+    }
+  ],
+  "settings_links_title": "Links",
+  "settings_loading": "Carregando…",
+  "settings_member_since": "Sobrevivente desde",
+  "settings_motion": "Animações",
+  "settings_motion_full": "Todas",
+  "settings_motion_full_hint": "Todas as animações ativadas.",
+  "settings_motion_reduce": "Reduzidas",
+  "settings_motion_reduce_hint": "Sem deslizes, zooms ou comemorações.",
+  "settings_motion_system": "Igual ao meu dispositivo",
+  "settings_motion_system_hint": "Segue a configuração de movimento reduzido do seu sistema.",
+  "settings_notif_ack": "Seus relatórios de campo",
+  "settings_notif_ack_hint": "Um autor viu ou corrigiu um problema que você relatou.",
+  "settings_notif_announcement": "Anúncios",
+  "settings_notif_announcement_hint": "Novidades da equipe do SOTF Mods.",
+  "settings_notif_award": "Prêmios",
+  "settings_notif_award_hint": "Um mod seu virou Mod da semana ou Escolha da equipe.",
+  "settings_notif_badge": "Insígnias",
+  "settings_notif_badge_hint": "Você desbloqueou uma insígnia.",
+  "settings_notif_broken": "Seu mod relatado como quebrado",
+  "settings_notif_broken_hint": "Relatórios de campo dizem que um mod seu quebrou na build atual.",
+  "settings_notif_col_app": "No app",
+  "settings_notif_col_email": "E-mail",
+  "settings_notif_col_signal": "Sinal",
+  "settings_notif_comment": "Comentários nos seus mods",
+  "settings_notif_comment_hint": "Agrupados: vários comentários chegam como um só sinal.",
+  "settings_notif_creator": "Novos mods de criadores",
+  "settings_notif_creator_hint": "Um criador que você segue publicou algo novo.",
+  "settings_notif_defaults": "Restaurar padrões",
+  "settings_notif_email_only": "Só por e-mail",
+  "settings_notif_group_community": "Comunidade e guardas",
+  "settings_notif_group_conversations": "Conversas",
+  "settings_notif_group_follows": "O que você segue",
+  "settings_notif_group_my_mods": "Seus mods",
+  "settings_notif_matrix_text": "Para cada tipo de sinal, escolha se ele aparece no app e com que frequência chega por e-mail. Os resumos juntam tudo em um único e-mail.",
+  "settings_notif_matrix_title": "Sinais e e-mails",
+  "settings_notif_mention": "Menções",
+  "settings_notif_mention_hint": "Alguém @mencionou você.",
+  "settings_notif_milestone": "Marcos de downloads",
+  "settings_notif_milestone_hint": "Um mod seu passou de um marco de downloads.",
+  "settings_notif_patch": "Patches do jogo que quebram mods",
+  "settings_notif_patch_hint": "Uma nova build do jogo provavelmente vai quebrar mods (enviado aos criadores).",
+  "settings_notif_removal_note": "Se um mod seu for removido, você sempre recebe um e-mail.",
+  "settings_notif_reply": "Respostas",
+  "settings_notif_reply_hint": "Alguém respondeu ao seu comentário.",
+  "settings_notif_report": "Suas denúncias",
+  "settings_notif_report_hint": "Os guardas analisaram algo que você denunciou.",
+  "settings_notif_review": "Avaliações dos seus mods",
+  "settings_notif_review_hint": "Alguém avaliou um dos seus mods.",
+  "settings_notif_review_reply": "Respostas às suas avaliações",
+  "settings_notif_review_reply_hint": "Um autor respondeu à sua avaliação.",
+  "settings_notif_saved": "Configurações de notificação salvas",
+  "settings_notif_status": "Decisões de revisão",
+  "settings_notif_status_hint": "Um mod seu foi aprovado, rejeitado, precisa de mudanças ou foi arquivado.",
+  "settings_notif_version": "Novas versões",
+  "settings_notif_version_hint": "Um mod da sua mochila lançou uma atualização.",
+  "settings_notif_weekly": "Relatório semanal de criador",
+  "settings_notif_weekly_hint": "Às segundas: downloads, seguidores e avaliações dos seus mods.",
+  "settings_notifications_hint": "Quais sinais você recebe no app e por e-mail.",
+  "settings_notifications_title": "Notificações",
+  "settings_nsfw_adult": "Tenho 18 anos ou mais (ou a maioridade onde moro)",
+  "settings_nsfw_confirm": "Mostrar",
+  "settings_nsfw_confirm_text": "Mods NSFW podem ter nudez ou conteúdo explícito. Você pode ocultá-los de novo quando quiser.",
+  "settings_nsfw_confirm_title": "Mostrar conteúdo adulto?",
+  "settings_nsfw_confirmed_on": "Confirmado em {date}",
+  "settings_nsfw_hide": "Ocultar conteúdo adulto",
+  "settings_nsfw_off_saved": "O conteúdo adulto está oculto",
+  "settings_nsfw_on_saved": "O conteúdo adulto agora está visível",
+  "settings_nsfw_show": "Mostrar conteúdo adulto",
+  "settings_nsfw_status_off": "Oculto",
+  "settings_nsfw_status_on": "Visível",
+  "settings_nsfw_text": "Mods marcados como NSFW ficam ocultos em listas, buscas e feeds, e desfocados em todo lugar exceto na própria página. Ative para vê-los.",
+  "settings_nsfw_title": "Conteúdo adulto",
+  "settings_number_compact": "Abreviados",
+  "settings_number_compact_hint": "1,2 mil downloads",
+  "settings_number_format": "Números grandes",
+  "settings_number_full": "Completos",
+  "settings_number_full_hint": "1.234 downloads",
+  "settings_password_changed": "Senha alterada",
+  "settings_password_changed_revoked": "Senha alterada e outros dispositivos desconectados",
+  "settings_password_confirm": "Repita a nova senha",
+  "settings_password_current": "Senha atual",
+  "settings_password_mismatch": "As duas novas senhas não coincidem.",
+  "settings_password_new": "Nova senha",
+  "settings_password_rejected": "Esta senha apareceu em um vazamento de dados. Escolha outra.",
+  "settings_password_required": "Digite sua senha atual.",
+  "settings_password_revoke": "Sair dos meus outros dispositivos",
+  "settings_password_revoke_hint": "Recomendado se você acha que outra pessoa conhece sua senha.",
+  "settings_password_same": "Escolha uma senha diferente da atual.",
+  "settings_password_short": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Use pelo menos {min__number} caracteres."
+      }
+    }
+  ],
+  "settings_password_submit": "Mudar senha",
+  "settings_password_text": [
+    {
+      "declarations": [
+        "input min",
+        "local min__number = min: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Pelo menos {min__number} caracteres. Uma frase longa é mais fácil de lembrar e mais difícil de adivinhar."
+      }
+    }
+  ],
+  "settings_password_title": "Senha",
+  "settings_password_wrong": "Essa senha não está correta.",
+  "settings_photos_text": "Seu avatar e o banner no topo do perfil. As alterações são salvas assim que o envio termina.",
+  "settings_photos_title": "Foto e banner",
+  "settings_pinned_count": [
+    {
+      "declarations": [
+        "input count",
+        "input max",
+        "local count__number = count: number",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} de {max__number} fixados"
+      }
+    }
+  ],
+  "settings_pinned_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "settings_pinned_empty": "Quando um dos seus mods for publicado, você poderá fixá-lo aqui.",
+  "settings_pinned_failed": "Não foi possível carregar seus mods.",
+  "settings_pinned_hidden": "Alguns mods fixados não estão públicos agora; eles continuam fixados e voltam a aparecer quando estiverem.",
+  "settings_pinned_saved": "Mods fixados salvos",
+  "settings_pinned_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Escolha até {max__number} dos seus mods para aparecer primeiro no seu perfil, nesta ordem."
+      }
+    }
+  ],
+  "settings_pinned_title": "Mods fixados",
+  "settings_preferences_hint": "Idioma, tema, animações, atalhos e conteúdo adulto.",
+  "settings_preferences_title": "Preferências",
+  "settings_privacy_data_link": "Exportar ou excluir meus dados",
+  "settings_privacy_data_text": "Você pode exportar tudo o que guardamos sobre você ou excluir sua conta.",
+  "settings_privacy_data_title": "Seus dados",
+  "settings_privacy_hint": "O que os outros veem no seu perfil e seu histórico de downloads.",
+  "settings_privacy_policy_link": "Política de privacidade",
+  "settings_privacy_saved": "Configurações de privacidade salvas",
+  "settings_privacy_title": "Privacidade",
+  "settings_profile_hint": "Foto, banner, nome, bio, links e mods fixados.",
+  "settings_profile_title": "Perfil",
+  "settings_profile_view_public": "Ver seu perfil público",
+  "settings_readout": "Configurações do acampamento",
+  "settings_retry": "Tentar de novo",
+  "settings_save": "Salvar",
+  "settings_save_failed": "Não foi possível salvar as alterações",
+  "settings_security_hint": "Onde você está conectado e como sair de outros dispositivos.",
+  "settings_security_tip_email": "Nunca pedimos sua senha por e-mail nem no Discord.",
+  "settings_security_tip_password": "Use uma senha que você não usa em nenhum outro lugar.",
+  "settings_security_tip_sessions": "Saia de computadores compartilhados ou públicos quando terminar.",
+  "settings_security_tips_title": "Mantenha seu acampamento seguro",
+  "settings_security_title": "Segurança",
+  "settings_sessions_active_now": "ativo agora",
+  "settings_sessions_confirm_current_text": "Você vai para a página de login.",
+  "settings_sessions_confirm_current_title": "Sair deste navegador?",
+  "settings_sessions_confirm_others_text": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} outra sessão será encerrada. Este navegador continua conectado.",
+        "count__plural=*": "{count__number} outras sessões serão encerradas. Este navegador continua conectado."
+      }
+    }
+  ],
+  "settings_sessions_confirm_others_title": "Sair de todos os outros?",
+  "settings_sessions_confirm_text": "{device} vai precisar entrar de novo.",
+  "settings_sessions_confirm_title": "Desconectar este dispositivo?",
+  "settings_sessions_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} sessão ativa",
+        "count__plural=*": "{count__number} sessões ativas"
+      }
+    }
+  ],
+  "settings_sessions_failed": "Não foi possível encerrar essa sessão",
+  "settings_sessions_last_seen": "última atividade {when}",
+  "settings_sessions_revoked": "{device} desconectado",
+  "settings_sessions_revoked_others": "Outros dispositivos desconectados",
+  "settings_sessions_sign_out": "Sair",
+  "settings_sessions_sign_out_here": "Sair daqui",
+  "settings_sessions_sign_out_others": "Sair de todos os outros",
+  "settings_sessions_started": "conectado em {date}",
+  "settings_sessions_text": "Cada navegador e dispositivo com uma sessão ativa. Encerre os que você não reconhece.",
+  "settings_sessions_this_device": "Este dispositivo",
+  "settings_sessions_title": "Onde você está conectado",
+  "settings_sessions_unknown_device": "Dispositivo desconhecido",
+  "settings_shortcuts": "Atalhos de teclado",
+  "settings_shortcuts_hint": "Atalhos de uma tecla no console. Desative-os se atrapalharem sua tecnologia assistiva.",
+  "settings_show_activity": "Mostrar minha atividade",
+  "settings_show_activity_hint": "O mapa de calor de 12 meses e sua atividade recente.",
+  "settings_show_kits": "Mostrar meus kits",
+  "settings_show_kits_hint": "A aba Kits do seu perfil (kits privados nunca aparecem).",
+  "settings_show_leaderboards": "Aparecer nos rankings",
+  "settings_show_leaderboards_hint": "Listas dos melhores criadores e sobreviventes.",
+  "settings_show_rank": "Mostrar minha patente de sobrevivente e meu XP",
+  "settings_show_rank_hint": "Seu selo de patente ao lado do seu nome.",
+  "settings_support_edit": "Editar os links do seu perfil",
+  "settings_support_empty": "Você ainda não adicionou um link de Ko-fi ou Patreon.",
+  "settings_support_text": "Os links de Ko-fi e Patreon do seu perfil aparecem no perfil e ao lado do botão de download dos seus mods.",
+  "settings_support_title": "Links de apoio",
+  "settings_template_add": "Adicionar um modelo",
+  "settings_template_copied": "“{name}” copiado",
+  "settings_template_copy": "Copiar",
+  "settings_template_copy_failed": "Não foi possível copiar para a área de transferência",
+  "settings_template_delete": "Excluir",
+  "settings_template_name": "Nome",
+  "settings_template_name_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Dê um nome (até {max__number} caracteres)."
+      }
+    }
+  ],
+  "settings_template_text": "Texto",
+  "settings_template_text_error": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Escreva o texto (até {max__number} caracteres)."
+      }
+    }
+  ],
+  "settings_templates_empty": "Nenhum modelo ainda.",
+  "settings_templates_text": [
+    {
+      "declarations": [
+        "input max",
+        "local max__number = max: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Até {max__number} respostas prontas (passos de instalação, conflitos conhecidos…) para copiar em comentários e respostas a avaliações."
+      }
+    }
+  ],
+  "settings_templates_title": "Modelos de resposta",
+  "settings_theme": "Tema",
+  "settings_theme_day": "Dia",
+  "settings_theme_night": "Noite",
+  "settings_theme_system": "Igual ao meu dispositivo",
+  "settings_verify_already": "Seu endereço de e-mail já está verificado",
+  "settings_verify_resend": "Reenviar o link",
+  "settings_verify_resend_failed": "Não foi possível enviar o link",
+  "settings_verify_resent": "Enviamos um novo link para {email}",
+  "settings_verify_text": "Até lá você pode explorar e baixar, mas não comentar, avaliar nem publicar.",
+  "settings_verify_title": "Verifique seu endereço de e-mail",
+  "settings_visibility_text": "Desative o que você prefere guardar para si.",
+  "settings_visibility_title": "No seu perfil",
+  "signals_action_download": "Baixar",
+  "signals_announcement": "Novo anúncio dos guardas",
+  "signals_announcement_titled": "Anúncio: {title}",
+  "signals_award_build_of_month": "{mod} é a Build do mês",
+  "signals_award_generic": "{mod} ganhou um prêmio",
+  "signals_award_mod_of_month": "{mod} é o Mod do mês",
+  "signals_award_mod_of_week": "{mod} é o Mod da semana",
+  "signals_award_staff_pick": "{mod} é uma Escolha da equipe",
+  "signals_badge_awarded": "Insígnia desbloqueada: {badge}",
+  "signals_badge_welcome": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Boas-vindas ao novo SOTF Mods",
+        "count__exact=*, count__plural=one": "Boas-vindas ao novo SOTF Mods — {count__number} insígnia espera por você no seu caderno de campo",
+        "count__exact=*, count__plural=*": "Boas-vindas ao novo SOTF Mods — {count__number} insígnias esperam por você no seu caderno de campo"
+      }
+    }
+  ],
+  "signals_bell_label": "Sinais",
+  "signals_bell_unread": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Sinais: {count__number} não lido",
+        "count__plural=*": "Sinais: {count__number} não lidos"
+      }
+    }
+  ],
+  "signals_bug_report_on_mod": "{actor} relatou um bug em {mod}",
+  "signals_comment_mention": "{actor} mencionou você nos comentários de {mod}",
+  "signals_comment_on_mod": "{actor} comentou em {mod}",
+  "signals_comment_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} novo comentário em {mod}",
+        "count__plural=*": "{count__number} novos comentários em {mod}"
+      }
+    }
+  ],
+  "signals_comment_reply": "{actor} respondeu ao seu comentário em {mod}",
+  "signals_comment_reply_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} resposta ao seu comentário em {mod}",
+        "count__plural=*": "{count__number} respostas ao seu comentário em {mod}"
+      }
+    }
+  ],
+  "signals_compat_acknowledged": "O autor de {mod} viu seu relatório de campo",
+  "signals_compat_broken": [
+    {
+      "declarations": [
+        "input mod",
+        "input status",
+        "input build"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=broken": "{mod} está sendo relatado como quebrado em {build}",
+        "status=*": "{mod} está sendo relatado como instável em {build}"
+      }
+    }
+  ],
+  "signals_compat_fixed_in": "Seu relatório de campo sobre {mod} foi corrigido em {version}",
+  "signals_creator_published": [
+    {
+      "declarations": [
+        "input actor",
+        "input kind",
+        "input mod"
+      ],
+      "selectors": [
+        "kind"
+      ],
+      "match": {
+        "kind=build": "{actor} publicou a build {mod}",
+        "kind=*": "{actor} publicou {mod}"
+      }
+    }
+  ],
+  "signals_current_build": "a build atual",
+  "signals_empty_filtered_text": "Nenhum sinal corresponde a este filtro ainda. Tente “Tudo”.",
+  "signals_empty_filtered_title": "Nada neste canal",
+  "signals_empty_text": "Siga mods e criadores para saber quando algo mudar.",
+  "signals_empty_title": "Tudo tranquilo na floresta",
+  "signals_end": "Esses são todos os sinais por enquanto.",
+  "signals_error_text": "Algo deu errado do nosso lado. Tente de novo daqui a pouco.",
+  "signals_error_title": "Não foi possível carregar os sinais.",
+  "signals_excerpt": "“{text}”",
+  "signals_filter_all": "Tudo",
+  "signals_filter_label": "Filtrar sinais",
+  "signals_filter_mentions": "Menções",
+  "signals_filter_my_mods": "Meus mods",
+  "signals_filter_ranger": "Guardas",
+  "signals_filter_updates": "Atualizações",
+  "signals_group_today": "Hoje",
+  "signals_group_yesterday": "Ontem",
+  "signals_load_more": "Carregar sinais anteriores",
+  "signals_loading": "Carregando sinais…",
+  "signals_loading_more": "Carregando…",
+  "signals_mark_all_read": "Marcar tudo como lido",
+  "signals_mark_failed": "Não foi possível marcar os sinais como lidos",
+  "signals_mark_read": "Marcar como lido",
+  "signals_marked_all": "Todos os sinais marcados como lidos",
+  "signals_milestone": [
+    {
+      "declarations": [
+        "input mod",
+        "input threshold",
+        "local threshold__number = threshold: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{mod} passou de {threshold__number} downloads"
+      }
+    }
+  ],
+  "signals_more_error": "Não foi possível carregar os sinais anteriores.",
+  "signals_page_description": "Novidades do que você segue, respostas, menções e notícias sobre seus mods.",
+  "signals_page_readout": "Registro de rádio",
+  "signals_page_title": "Sinais",
+  "signals_panel_title": "Sinais",
+  "signals_patch_breaking": "A build {build} do jogo pode quebrar mods — confira os seus no Patch Radar",
+  "signals_preferences": "Configurações de notificações",
+  "signals_report_dismissed": "Sua denúncia foi analisada — não foi preciso agir",
+  "signals_report_resolved": "Sua denúncia foi analisada e medidas foram tomadas",
+  "signals_retry": "Tentar de novo",
+  "signals_review_on_mod": "{actor} deixou uma avaliação de {rating} estrelas em {mod}",
+  "signals_review_on_mod_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nova avaliação em {mod}",
+        "count__plural=*": "{count__number} novas avaliações em {mod}"
+      }
+    }
+  ],
+  "signals_review_reply": "O autor de {mod} respondeu à sua avaliação",
+  "signals_see_all": "Ver todos os sinais",
+  "signals_show_all": "Mostrar todos os sinais",
+  "signals_someone": "Alguém",
+  "signals_status_approved": "Seu mod {mod} foi aprovado e está no ar",
+  "signals_status_archived": "Seu mod {mod} foi arquivado",
+  "signals_status_changed": "O status de {mod} mudou",
+  "signals_status_changes_requested": "Os guardas pediram mudanças em {mod}",
+  "signals_status_rejected": "Seu mod {mod} foi rejeitado",
+  "signals_status_removed": "Seu mod {mod} foi removido",
+  "signals_status_republished": "Seu mod {mod} está público de novo",
+  "signals_status_unlisted": "Seu mod {mod} saiu das listas",
+  "signals_unknown_mod": "um mod",
+  "signals_unread_prefix": "Não lido:",
+  "signals_version_published": "Saiu {mod} {version} — você segue este mod",
+  "signals_version_published_grouped": [
+    {
+      "declarations": [
+        "input count",
+        "input mod",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nova versão de {mod}",
+        "count__plural=*": "{count__number} novas versões de {mod}"
+      }
+    }
+  ],
+  "signals_weekly_report": "Seu relatório semanal de criador está pronto",
   "social_action_back": "Voltar",
   "social_action_cancel": "Cancelar",
   "social_action_close": "Fechar",
