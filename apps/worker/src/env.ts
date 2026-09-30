@@ -9,7 +9,7 @@ import { z } from 'zod';
 
 export const workerEnvSchema = z.object({
   ...commonServerEnv,
-  /** Health server port (PLAN §11.4: 3002; the `dev` script passes 47302). */
+  /** Health server port (PLAN §11.4: 3002). */
   PORT: envInt(3002, 1, 65_535),
   HOST: z.string().trim().min(1).default('0.0.0.0'),
   DB_POOL_MAX: envInt(5, 1, 50),
@@ -43,16 +43,8 @@ export const workerEnvSchema = z.object({
 
 export type WorkerEnv = z.output<typeof workerEnvSchema>;
 
-/**
- * Validates the environment. Without `PORT`, the health server listens on 3002 when
- * `NODE_ENV=production` and on the development port 47302 otherwise, so `pnpm dev` matches the
- * ports of PLAN §11.2 without a per-app variable (a shared `PORT` in the root `.env` would clash
- * with the API's).
- */
 export function parseWorkerEnv(source: Record<string, string | undefined> = process.env): WorkerEnv {
-  const port = source.PORT?.trim();
-  const withPort = port || source.NODE_ENV === 'production' ? source : { ...source, PORT: String(DEVELOPMENT_PORT) };
-  const parsed = workerEnvSchema.safeParse(withPort);
+  const parsed = workerEnvSchema.safeParse(source);
   if (!parsed.success) throw new Error(formatEnvError('@sotf/worker', parsed.error));
   return parsed.data;
 }
