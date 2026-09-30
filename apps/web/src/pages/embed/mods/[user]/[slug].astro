@@ -1,0 +1,235 @@
+---
+/**
+ * `/embed/mods/:user/:slug` (PLAN §4.2, §8.6 backlinks): the light card other sites embed through
+ * oEmbed (`/oembed`). Standalone HTML (no site chrome, no scripts), `noindex`, framable by anyone
+ * (`frame-ancestors *` for `/embed/*` in the security headers), every link opens the site in a new
+ * tab. Localized by URL prefix like any page; edge-cached 900 s with `mod:{id}` and `user:{id}`.
+ * Builds are served under `/embed/mods/…` too (oEmbed always points here).
+ */
+
+import { palette } from '@sotf/brand/colors';
+import type { ModDetailDTO } from '@sotf/contracts/catalog';
+import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
+import { formatCompactNumber, formatNumber, localizePath, toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import Picture from '../../../../components/layout/Picture.astro';
+import { serverApi } from '../../../../lib/api.ts';
+import { setPageCache } from '../../../../lib/cache/page.ts';
+import { pageCache } from '../../../../lib/cache/policy.ts';
+import { loadEnv } from '../../../../lib/env.ts';
+import { apiStatus } from '../../../sitemaps/_lib/data.ts';
+import { lookupMod, rawSegments } from '../../../sitemaps/_lib/entities.ts';
+
+export const prerender = false;
+
+const locale = Astro.locals.locale;
+const siteUrl = loadEnv().siteUrl;
+const segments = rawSegments(Astro.url);
+const user = segments[2] ?? '';
+const slug = segments[3] ?? '';
+
+function plain(status: number, text: string): Response {
+  setPageCache(Astro, pageCache.notFound());
+  return new Response(text, { status, headers: { 'content-type': 'text/plain; charset=utf-8', 'x-robots-tag': 'noindex' } });
+}
+
+let mod: ModDetailDTO;
+try {
+  const found = await lookupMod('mods', user, slug);
+  if (found.status === 404 || found.status === 410) return plain(found.status, found.status === 410 ? 'Gone.' : 'Not found.');
+  if (found.status === 301 && found.id === null) return plain(404, 'Not found.');
+  const id = found.status === 200 ? found.id : (found.id as number);
+  mod = await serverApi().catalog.getMod({ params: { id } });
+  if (found.status === 301) {
+    // Renamed or moved: 301 to the canonical embed unless only the kind prefix differs (builds).
+    const canonical = `/embed${mod.canonicalPath.replace(/^\/builds\//, '/mods/')}`;
+    const current = decodeURIComponent(Astro.url.pathname);
+    if (decodeURIComponent(canonical) !== current) return Astro.redirect(localizePath(canonical, locale), 301);
+  }
+} catch (error) {
+  const status = apiStatus(error);
+  if (status) return plain(status, status === 410 ? 'Gone.' : 'Not found.');
+  console.error('[web] embed failed', error);
+  return new Response('Temporarily unavailable.', { status: 503, headers: { 'cache-control': 'no-store' } });
+}
+if (mod.banners.includes('pending_review')) return plain(404, 'Not found.');
+
+setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
+
+const pageUrl = absoluteUrl(localizePath(mod.canonicalPath, locale), siteUrl);
+const authorUrl = absoluteUrl(localizePath(profilePath(mod.author.handle), locale), siteUrl);
+const downloads = m.common_downloads_compact({ count: mod.downloads, display: formatCompactNumber(locale, mod.downloads) });
+const rating =
+  mod.reviewsSummary.showStars && mod.reviewsSummary.average !== null
+    ? `★ ${formatNumber(locale, mod.reviewsSummary.average, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} · ${m.common_reviews_count({ count: mod.reviewsSummary.count })}`
+    : null;
+const build = mod.compatCurrent.gameBuild?.label ?? null;
+const compat =
+  mod.kind === 'build' || !build
+    ? null
+    : mod.compatCurrent.status === 'works'
+      ? { tone: 'good', text: m.common_compat_works({ count: mod.compatCurrent.works, build }) }
+      : mod.compatCurrent.status === 'broken'
+        ? { tone: 'bad', text: m.common_compat_broken({ build }) }
+        : { tone: 'muted', text: m.common_compat_unverified() };
+const thumbnail = mod.nsfw ? null : mod.thumbnail;
+const accent = /^#[0-9a-f]{6}$/i.test(mod.logColor ?? '') ? (mod.logColor as string) : palette.flare[400];
+const newTab = m.common_new_tab();
+const cssVars = `--accent:${accent};--bg:${palette.night[950]};--line:${palette.night[800]};--ink:${palette.night[25]};--muted:${palette.night[300]};--good:${palette.lichen[300]};--bad:${palette.blood[400]}`;
+---
+
+<!doctype html>
+<html lang={toHtmlLang(locale)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>{`${mod.name} · ${m.common_site_name()}`}</title>
+    <link rel="canonical" href={pageUrl} />
+    <base target="_blank" />
+  </head>
+  <body>
+    <article class="card" style={cssVars}>
+      {
+        thumbnail && (
+          <div class="thumb">
+            <Picture image={thumbnail} sizes="128px" alt="" fallbackWidth={320} fallbackHeight={180} />
+          </div>
+        )
+      }
+      <div class="body">
+        <h1 class="title">
+          <a href={pageUrl} rel="noopener">{mod.name}<span class="sr">{` ${newTab}`}</span></a>
+        </h1>
+        <p class="author"><a href={authorUrl} rel="noopener">@{mod.author.handle}</a></p>
+        {mod.shortDescription && <p class="summary">{mod.shortDescription}</p>}
+        <p class="facts">
+          <span>↓ {downloads}</span>
+          {rating && <span>{rating}</span>}
+        </p>
+        {compat && <p class={`compat ${compat.tone}`}>{compat.text}</p>}
+      </div>
+      <a class="brand" href={absoluteUrl(localizePath('/', locale), siteUrl)} rel="noopener">{m.common_site_name()}</a>
+    </article>
+  </body>
+</html>
+
+<style is:global>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    margin: 0;
+    height: 100%;
+    background: transparent;
+  }
+  body {
+    font: 14px/1.4 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    height: 100%;
+    padding: 14px 14px 14px 18px;
+    background: var(--bg);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover,
+  a:focus-visible {
+    text-decoration: underline;
+  }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+  .thumb {
+    flex: 0 0 auto;
+    width: 128px;
+    align-self: center;
+  }
+  .thumb img {
+    display: block;
+    width: 128px;
+    height: 128px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .body {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .title {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .author,
+  .facts {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+  .summary {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .compat {
+    margin: 0;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .compat.good {
+    color: var(--good);
+  }
+  .compat.bad {
+    color: var(--bad);
+  }
+  .compat.muted {
+    color: var(--muted);
+  }
+  .brand {
+    position: absolute;
+    right: 12px;
+    bottom: 10px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+</style>
