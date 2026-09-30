@@ -16,6 +16,7 @@
  */
 import type { ModStatus } from '@sotf/contracts/common';
 import type {
+  OwnerVersionDTO,
   PutModMediaBody,
   StudioModDTO,
   StudioModRowDTO,
@@ -24,10 +25,10 @@ import type {
   UpdateStudioModBody,
   UpdateVersionBody,
 } from '@sotf/contracts/studio';
-import type { VersionDTO } from '@sotf/contracts/versions';
 import { type Executor, type Mod, mod, modVersion, report } from '@sotf/db';
 import { and, eq, sql } from 'drizzle-orm';
 import { buildModDetail } from '../catalog/detail.ts';
+import { imageDto, type MediaRow } from '../catalog/media.ts';
 import { type CatalogEntry, type CatalogSnapshot, getSnapshot } from '../catalog/snapshot.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
@@ -163,11 +164,12 @@ export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number
   const row = await loadOwnedMod(ctx, modId);
   const { snapshot, entry } = await entryOf(ctx, deps, row.id);
   const kind = kindOfType(row.type);
-  const [detail, versions, facts, legacy] = await Promise.all([
+  const [detail, versions, facts, legacy, media] = await Promise.all([
     buildModDetail(ctx, deps.config, snapshot, entry),
     ownerVersions(ctx, snapshot, entry),
     storedListingFacts(ctx.db, row.id, kind === 'build' ? 'build' : 'mod'),
     isLegacyAuthored(ctx.db, row.id),
+    studioMedia(ctx, deps, row.id),
   ]);
   const descriptionMd = row.descriptionMd ?? row.description;
   const listingPreflight: PreflightFacts = {
@@ -197,7 +199,35 @@ export async function getStudioMod(ctx: Ctx, deps: PublishingDeps, modId: number
     preflight: preflight(listingPreflight),
     allowedTransitions: allowedTransitions(status),
     versions,
+    media,
   };
+}
+
+type GalleryRow = MediaRow & { mediaId: string | null; url: string; alt: string | null } & Record<string, unknown>;
+
+/**
+ * Media ids of the owner view: the cover (`Mod.thumbnailMediaId`) and the gallery in the order and
+ * with the URLs of `ModDetailDTO.gallery` (legacy rows not adopted by B15 have no media id).
+ */
+async function studioMedia(ctx: Ctx, deps: PublishingDeps, modId: number): Promise<StudioModDTO['media']> {
+  const [cover, gallery] = await Promise.all([
+    ctx.db.execute<{ thumbnailMediaId: string | null }>(
+      sql`SELECT "thumbnailMediaId" FROM "Mod" WHERE "id" = ${modId}`,
+    ),
+    ctx.db.execute<GalleryRow>(
+      sql`SELECT i."mediaId", i."url", i."alt", med."width", med."height", med."thumbhash", med."dominantColor",
+                 med."variants", med."sourceBucket", med."sourceKey"
+            FROM "ModImage" i LEFT JOIN "Media" med ON med."id" = i."mediaId"
+           WHERE i."modId" = ${modId} AND NOT i."isThumbnail"
+           ORDER BY i."position" NULLS LAST, i."isPrimary" DESC, i."id"`,
+    ),
+  ]);
+  const items: StudioModDTO['media']['gallery'] = [];
+  for (const g of gallery.rows) {
+    const image = imageDto(deps.config, g.sourceKey === null && g.variants === null ? null : g, g.url, g.alt);
+    if (image) items.push({ mediaId: g.mediaId, url: image.url });
+  }
+  return { thumbnailMediaId: cover.rows[0]?.thumbnailMediaId ?? null, gallery: items };
 }
 
 // -----------------------------------------------------------------------------------------------
@@ -295,7 +325,12 @@ export async function putStudioModMedia(
 // Versions
 // -----------------------------------------------------------------------------------------------
 
-async function ownerVersion(ctx: Ctx, deps: PublishingDeps, modId: number, versionId: number): Promise<VersionDTO> {
+async function ownerVersion(
+  ctx: Ctx,
+  deps: PublishingDeps,
+  modId: number,
+  versionId: number,
+): Promise<OwnerVersionDTO> {
   const { snapshot, entry } = await entryOf(ctx, deps, modId);
   const [version] = await ownerVersions(ctx, snapshot, entry, versionId);
   if (!version) throw errors.notFound('Version');
@@ -314,7 +349,7 @@ export async function createStudioVersion(
     testedGameBuildIds: readonly number[];
     notifyFollowers: boolean;
   },
-): Promise<VersionDTO> {
+): Promise<OwnerVersionDTO> {
   const result = await releaseVersion(ctx, deps, modId, body);
   return ownerVersion(ctx, deps, modId, result.versionId);
 }
@@ -326,7 +361,7 @@ export async function updateStudioVersion(
   modId: number,
   versionId: number,
   body: UpdateVersionBody,
-): Promise<VersionDTO> {
+): Promise<OwnerVersionDTO> {
   assertWriter(ctx);
   if (body.yank && body.unyank) {
     throw errors.validation('Yank or unyank, not both', [

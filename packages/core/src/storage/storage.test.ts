@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest';
 import { createStorage, storageConfigFromEnv } from './client.ts';
-import { asciiFilename, attachmentDisposition, encodeRfc5987, versionDownloadName } from './disposition.ts';
+import {
+  asciiFilename,
+  attachmentDisposition,
+  buildDownloadName,
+  encodeRfc5987,
+  versionDownloadName,
+} from './disposition.ts';
 import {
   buildFileKey,
   encodeStorageKey,
@@ -102,6 +108,9 @@ describe('Content-Disposition', () => {
     expect(asciiFilename('日本')).toBe('__');
     expect(encodeRfc5987('(x)*')).toBe('%28x%29%2A');
     expect(versionDownloadName('Regi/Lib', '1.0', '.ZIP')).toBe('Regi-Lib 1.0.zip');
+    // Builds: `<Name>.json` (their version is a UUIDv7), the same name B17 gives legacy builds.
+    expect(buildDownloadName(' Natka Cabin ')).toBe('Natka Cabin.json');
+    expect(buildDownloadName('A/B')).toBe('A-B.json');
   });
 });
 

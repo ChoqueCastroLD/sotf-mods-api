@@ -47,5 +47,14 @@ export function versionDownloadName(modName: string, version: string, extension:
   return `${base}.${ext}`;
 }
 
+/**
+ * Download name of a build blueprint: `<Build name>.json`. A build's "version" is a UUIDv7 (no
+ * meaning for players), so it is left out; B17 applies the same name to the legacy builds.
+ */
+export function buildDownloadName(buildName: string): string {
+  const base = buildName.trim().replace(/[/\\]/g, '-') || 'build';
+  return `${base}.json`;
+}
+
 /** Cache-Control of immutable public objects (keys never change content). */
 export const IMMUTABLE_CACHE_CONTROL = 'public, max-age=31536000, immutable';

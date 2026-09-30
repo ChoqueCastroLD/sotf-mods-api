@@ -84,6 +84,7 @@ SELECT type, id::text AS id, "modId", "userId", body, title, result, mode, "buil
  WHERE type = ANY($2::text[])
    AND ($3::boolean OR state = 'open')
    AND ($4::timestamptz IS NULL OR ("createdAt", rank, id) < ($4::timestamptz, $5::int, $6::bigint))
+   AND ($8::int IS NULL OR "modId" = $8::int)
  ORDER BY "createdAt" DESC, rank DESC, id DESC
  LIMIT $7`;
 
@@ -129,6 +130,7 @@ export async function getCreatorInbox(ctx: Ctx, config: CatalogConfig, query: Qu
     after?.rank ?? 0,
     after?.id ?? '0',
     limit + 1,
+    query.modId ?? null,
   ]);
   const page = found.slice(0, limit);
   const [cards, users] = await Promise.all([

@@ -155,7 +155,11 @@ export const BadgeKeySchema = z.enum(BADGE_KEYS);
 export const BadgeDTO = dto(
   'BadgeDTO',
   z.object({
-    key: z.string().describe('Badge key; name and criteria come from i18n (`badges_<key>_*`)'),
+    key: z
+      .string()
+      .describe(
+        'Badge key; name and hint come from i18n (`profile_badge_<snake_key>_name|hint` of the `profile` namespace; the `original-survivor-<year>` badges share `profile_badge_original_survivor_*` with `{year}`)',
+      ),
     group: BadgeGroup,
     tier: z.number().int().min(1),
     icon: z.string(),

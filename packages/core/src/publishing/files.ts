@@ -15,7 +15,12 @@ import { eq } from 'drizzle-orm';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
 import type { ObjectStorage } from '../storage/client.ts';
-import { attachmentDisposition, IMMUTABLE_CACHE_CONTROL, versionDownloadName } from '../storage/disposition.ts';
+import {
+  attachmentDisposition,
+  buildDownloadName,
+  IMMUTABLE_CACHE_CONTROL,
+  versionDownloadName,
+} from '../storage/disposition.ts';
 import { buildFileKey, modFileKey } from '../storage/keys.ts';
 import { finalizeUpload } from '../uploads/service.ts';
 import { uploadRef } from './queries.ts';
@@ -43,7 +48,7 @@ export function versionFile(target: VersionFileTarget): VersionFile {
       key: buildFileKey(target.modId, target.versionId, target.modName),
       extension: 'json',
       contentType: 'application/json',
-      downloadName: versionDownloadName(target.modName, target.version, 'json'),
+      downloadName: buildDownloadName(target.modName),
     };
   }
   return {

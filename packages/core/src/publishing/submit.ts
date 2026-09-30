@@ -178,6 +178,7 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
       notifyFollowers: data.version?.notifyFollowers ?? true,
       declaredDependencies: data.dependencies ?? null,
       draftId: draft.id,
+      loaderMin: data.loaderMin ?? null,
     });
     return result.submit;
   }
@@ -309,6 +310,7 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
         notifyFollowers: false,
         publishedById: actor.userId,
         emitVersionEvent: false,
+        loaderMin: data.loaderMin ?? null,
       });
       const facts = await storedListingFacts(tx, modId, kind === 'build' ? 'build' : 'mod');
       await tx
@@ -364,6 +366,8 @@ export interface ReleaseVersionInput {
   }> | null;
   /** Draft deleted in the same transaction (new-version drafts). */
   draftId?: string;
+  /** Minimum loader of the wizard (`DraftData.loaderMin`), when the manifest declares none. */
+  loaderMin?: string | null;
 }
 
 /** Declared (non-required) dependencies of the current latest version, carried to the next one. */
@@ -495,6 +499,7 @@ export async function releaseVersion(
         notifyFollowers: input.notifyFollowers,
         publishedById: actor.userId,
         emitVersionEvent: locked.status === 'published' || locked.status === 'unlisted' || locked.status === 'archived',
+        loaderMin: input.loaderMin ?? null,
       });
       if (decision.modStatus !== locked.status) {
         // A new version of a rejected mod is a resubmission (rejected → pending).

@@ -193,7 +193,9 @@ export const HandleInput = z
   .max(24)
   .regex(/^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/, 'use lowercase letters, digits and hyphens')
   .refine((value) => !value.includes('--'), 'no consecutive hyphens')
-  .refine((value) => !RESERVED_HANDLES.has(value), 'this handle is reserved');
+  .refine((value) => !RESERVED_HANDLES.has(value), 'this handle is reserved')
+  // Anonymised accounts take `deleted-<id>` (account deletion keeps the row, PLAN §9.3).
+  .refine((value) => !value.startsWith('deleted-'), 'this handle is reserved');
 
 /** Display name: any Unicode (NFC), 2–32 characters after trimming. */
 export const DisplayName = z

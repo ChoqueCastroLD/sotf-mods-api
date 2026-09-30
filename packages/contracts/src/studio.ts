@@ -146,7 +146,7 @@ export const PreflightItemDTO = dto(
   z.object({
     field: z.string(),
     severity: z.enum(['error', 'warning', 'ok']),
-    code: z.string().describe('i18n key suffix (`studio_preflight_<code>`)'),
+    code: z.string().describe('i18n key suffix (`upload_preflight_<code>` of the `upload` namespace)'),
   }),
   {
     description: 'One row of the review step ("✔ / ⚠ with a link to the field").',
@@ -274,6 +274,40 @@ export const StudioModListDTO = dto('StudioModListDTO', z.object({ items: z.arra
   examples: [{ items: [exampleOf(StudioModRowDTO)] }],
 });
 
+export const OwnerVersionDTO = dto(
+  'OwnerVersionDTO',
+  VersionDTO.extend({ changelogMd: z.string().nullable().describe('Markdown source of the changelog') }),
+  {
+    description: 'A version as its author sees it (with the changelog source for «Edit changelog»).',
+    examples: [{ ...exampleOf(VersionDTO), changelogMd: '- Fixed zipline noclip' }],
+  },
+);
+export type OwnerVersionDTO = z.infer<typeof OwnerVersionDTO>;
+
+export const StudioMediaDTO = dto(
+  'StudioMediaDTO',
+  z.object({
+    thumbnailMediaId: Uuid.nullable().describe('null for a legacy cover not processed yet (B15)'),
+    gallery: z
+      .array(z.object({ mediaId: Uuid.nullable(), url: z.string() }))
+      .describe('Same order as `mod.gallery`; `mediaId` null for legacy images not processed yet'),
+  }),
+  {
+    description: 'Media ids of the owner view (the editor reorders and removes gallery items by id).',
+    examples: [
+      {
+        thumbnailMediaId: '0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d',
+        gallery: [
+          {
+            mediaId: '0192f3a6-2c3d-7e4f-9a51-6b7c8d9e0f1a',
+            url: 'https://r2.sotf-mods.com/media/0192f3a6-2c3d-7e4f-9a51-6b7c8d9e0f1a/1280.webp',
+          },
+        ],
+      },
+    ],
+  },
+);
+
 export const StudioModDTO = dto(
   'StudioModDTO',
   z.object({
@@ -283,7 +317,8 @@ export const StudioModDTO = dto(
     qualityScore: z.number().int().min(0).max(100),
     preflight: z.array(PreflightItemDTO),
     allowedTransitions: z.array(StudioTransition),
-    versions: z.array(VersionDTO).describe('Every version, including pending and yanked'),
+    versions: z.array(OwnerVersionDTO).describe('Every version, including pending and yanked'),
+    media: StudioMediaDTO,
   }),
   {
     description: 'Owner view of a mod.',
@@ -295,7 +330,8 @@ export const StudioModDTO = dto(
         qualityScore: 85,
         preflight: [exampleOf(PreflightItemDTO)],
         allowedTransitions: ['archive', 'unlist'],
-        versions: [exampleOf(VersionDTO)],
+        versions: [exampleOf(OwnerVersionDTO)],
+        media: exampleOf(StudioMediaDTO),
       },
     ],
   },
@@ -506,6 +542,9 @@ export const AnalyticsDTO = dto(
     to: IsoDate,
     series: z.array(z.object({ day: IsoDate, downloads: Count, uniqueDownloads: Count, views: Count, follows: Count })),
     byVersion: z.array(z.object({ version: z.string(), downloads: Count })).describe('≤ 8 versions + "other"'),
+    seriesByVersion: z
+      .array(z.object({ day: IsoDate, version: z.string(), downloads: Count }))
+      .describe('Downloads per bucket of the `byVersion` versions (stacked bars); buckets without downloads omitted'),
     byChannel: z.partialRecord(z.enum(DOWNLOAD_CHANNELS), Count),
     referrers: z.array(z.object({ domain: z.string(), visits: Count })),
     locales: z.array(z.object({ locale: z.string(), visits: Count })),
@@ -533,6 +572,11 @@ export const AnalyticsDTO = dto(
         byVersion: [
           { version: '1.3.8', downloads: 80 },
           { version: 'other', downloads: 8 },
+        ],
+        seriesByVersion: [
+          { day: '2026-09-28', version: '1.3.8', downloads: 41 },
+          { day: '2026-09-29', version: '1.3.8', downloads: 39 },
+          { day: '2026-09-29', version: 'other', downloads: 8 },
         ],
         byChannel: { web: 40, redmanager: 38, client: 10 },
         referrers: [
@@ -586,6 +630,7 @@ export const InboxPageDTO = cursorPageOf('InboxPageDTO', InboxItemDTO, 'Cursor p
 export const InboxQuery = CursorQuery.extend({
   type: wireList(z.enum(INBOX_TYPES), { max: 4 }),
   state: z.enum(['open', 'all']).default('open'),
+  modId: IdParam.optional().describe('Only items of one of my mods'),
 });
 
 // -----------------------------------------------------------------------------------------------
@@ -741,7 +786,7 @@ export const studioEndpoints = {
     params: ModIdParams,
     body: CreateVersionBody,
     status: 201,
-    response: VersionDTO,
+    response: OwnerVersionDTO,
     errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT', 'VALIDATION_FAILED'],
     cache: cache.noStore,
     rateLimit: 'uploads',
@@ -756,7 +801,7 @@ export const studioEndpoints = {
     requires: ['mod_owner'],
     params: z.object({ id: IdParam, vid: IdParam }),
     body: UpdateVersionBody,
-    response: VersionDTO,
+    response: OwnerVersionDTO,
     errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
