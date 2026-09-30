@@ -1,0 +1,9 @@
+{
+  "langprompt_title": "此页面的语言是{language}",
+  "langprompt_hint": "你保存的语言是{language}。",
+  "langprompt_stay": "继续使用{language}",
+  "langprompt_switch": "切换到{language}",
+  "langprompt_original": "查看原文（{language}）",
+  "langprompt_remember": "记住我的选择",
+  "langprompt_remember_hint": "不再询问，下次自动应用。"
+}

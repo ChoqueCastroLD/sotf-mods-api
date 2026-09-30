@@ -1,0 +1,9 @@
+{
+  "langprompt_title": "Deze pagina is in het {language}",
+  "langprompt_hint": "Je opgeslagen taal is {language}.",
+  "langprompt_stay": "Blijf in het {language}",
+  "langprompt_switch": "Overschakelen naar {language}",
+  "langprompt_original": "Origineel bekijken ({language})",
+  "langprompt_remember": "Onthoud mijn keuze",
+  "langprompt_remember_hint": "Niet meer vragen en de volgende keer automatisch toepassen."
+}

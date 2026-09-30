@@ -3,7 +3,8 @@
  *
  * Immediate (tiny, needed for interaction): theme/primitives enhancement, header shortcuts,
  * mobile chrome, relogin banner, moon phase, view transitions, account hint, and for members the
- * account's display preferences (`scripts/account-settings.ts`).
+ * account's display preferences, the remembered language (`scripts/locale-pref.ts`: saves the
+ * choice, auto-applies or asks when the URL's language differs) (`scripts/account-settings.ts`).
  * Idle (never competes with the LCP): season + December snow, language suggestion (lazy chunk
  * with its three messages), the analytics beacon and RUM, and ads (lazy chunk, guests with ad
  * slots only).
@@ -13,6 +14,7 @@ import { initSignalsBell } from '../../islands/signals/mount.ts';
 import { initAccountHint } from '../../scripts/account-hint.ts';
 import { initDisplayPreferences } from '../../scripts/account-settings.ts';
 import { initBeacon } from '../../scripts/beacon.ts';
+import { initLocalePreference } from '../../scripts/locale-pref.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
 import { initMoon } from '../../scripts/moon.ts';
 import { initOfflineGuides } from '../../scripts/offline-guides.ts';
@@ -27,6 +29,8 @@ function whenIdle(task: () => void): void {
 
 /** Cheap pre-check so the language-suggestion chunk only loads when it may show something. */
 function mayNeedLanguageSuggestion(): boolean {
+  // Someone who chose a language already has the preference flow (`scripts/locale-pref.ts`).
+  if (/(?:^|;\s*)sotf_locale=/.test(document.cookie)) return false;
   if (/(?:^|;\s*)lang=/.test(document.cookie)) return true;
   const page = document.documentElement.lang.slice(0, 2).toLowerCase();
   const preferred = (navigator.languages?.[0] ?? navigator.language ?? '').slice(0, 2).toLowerCase();
@@ -56,6 +60,7 @@ export function boot(): void {
   safely(() => initAccountHint());
   safely(() => initSignalsBell());
   safely(() => initDisplayPreferences());
+  safely(() => initLocalePreference());
   whenIdle(() => {
     safely(() => initBeacon());
     safely(() => initOfflineGuides());

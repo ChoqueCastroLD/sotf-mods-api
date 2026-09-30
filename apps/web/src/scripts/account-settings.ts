@@ -8,14 +8,17 @@
  * - display preferences: theme (persisted by `setTheme`), density and the reduced-motion
  *   override as `<html data-density>` / `<html data-motion>` (same rules as the console's
  *   `applyDisplayPreferences`);
- * - the 18+ opt-in, read by the Explore script.
+ * - the 18+ opt-in, read by the Explore script;
+ * - the language: adopted as this browser's saved language (`adoptAccountLocale`).
  *
  * `GET /api/v2/me` is asked **once per browser session** (members only; guests never pay a
  * request) and remembered in `sessionStorage`. The account theme is applied only on that first
  * read, so a theme picked later with the header toggle is not overridden on every page; density
  * and motion are re-applied from the remembered copy on every page.
  */
+import { isLocale } from '@sotf/i18n/locales';
 import { setTheme } from '@sotf/ui/theme';
+import { setPreferredLocale } from '../lib/client/locale-pref.ts';
 import { apiCall } from './mod/api.ts';
 import { whenSession } from './mod/session.ts';
 
@@ -57,6 +60,16 @@ function remembered(win: Window, userId: string | number): AccountSettings | nul
   }
 }
 
+/**
+ * The account's language (`settings.locale`) becomes this browser's saved language on the first
+ * read of the session, so a choice made elsewhere follows the member. Choices made here are
+ * pushed to the account at once (`scripts/locale-pref.ts`), so the account is never older.
+ */
+function adoptAccountLocale(settings: unknown, win: Window): void {
+  const locale = settings && typeof settings === 'object' ? (settings as { locale?: unknown }).locale : null;
+  if (isLocale(locale)) setPreferredLocale(locale, win);
+}
+
 let pending: Promise<{ settings: AccountSettings; fresh: boolean } | null> | undefined;
 
 async function resolve(win: Window): Promise<{ settings: AccountSettings; fresh: boolean } | null> {
@@ -66,6 +79,7 @@ async function resolve(win: Window): Promise<{ settings: AccountSettings; fresh:
   if (known) return { settings: known, fresh: false };
   const me = await apiCall<{ settings?: unknown }>('GET', '/api/v2/me');
   if (!me.ok) return null;
+  adoptAccountLocale(me.data.settings, win);
   const settings = normalizeSettings(me.data.settings);
   if (!settings) return null;
   try {

@@ -1,0 +1,9 @@
+{
+  "langprompt_title": "Bu sayfa şu dilde: {language}",
+  "langprompt_hint": "Kayıtlı diliniz: {language}.",
+  "langprompt_stay": "{language} dilinde kal",
+  "langprompt_switch": "{language} diline geç",
+  "langprompt_original": "Orijinali gör ({language})",
+  "langprompt_remember": "Seçimimi hatırla",
+  "langprompt_remember_hint": "Bir daha sorma ve bir dahaki sefere otomatik uygula."
+}

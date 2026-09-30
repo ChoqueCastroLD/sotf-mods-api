@@ -96,6 +96,7 @@ export function LanguageSwitcher({
                 href={language.href}
                 hrefLang={tag}
                 lang={tag}
+                data-locale={language.code}
                 aria-current={selected ? 'true' : undefined}
                 className="flex min-h-9 items-center gap-2 rounded-sm px-2.5 text-sm text-fg hover:bg-fg/8 aria-[current=true]:font-semibold"
               >
