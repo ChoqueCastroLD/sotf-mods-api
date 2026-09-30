@@ -1,0 +1,74 @@
+---
+/**
+ * Patch Radar band (research/03 §6.1, PLAN §7.10): current game build, «N % of the top 50
+ * confirmed», RedLoader status on that build and the way to `/patch-radar`. Falls back to the
+ * ecosystem status when the radar is unavailable, and to an empty note before the first build.
+ */
+import { formatDate, formatPercent, type Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, Radar, TriangleAlert } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { Ecosystem, PatchRadar } from './data.ts';
+
+interface Props {
+  locale: Locale;
+  radar: PatchRadar | null;
+  ecosystem: Ecosystem | null;
+  loader: Ecosystem['entries'][number] | null;
+}
+
+const { locale, radar, ecosystem, loader } = Astro.props;
+const build = radar?.build ?? ecosystem?.currentBuild ?? null;
+const statusIcon = { works: '●', partial: '◐', broken: '✕', unknown: '○' } as const;
+---
+
+<section class="border-y border-border bg-surface" aria-labelledby="radar-title">
+  <div
+    class="mx-auto flex w-full max-w-(--container-wide) flex-col gap-4 px-4 py-6 md:flex-row md:items-center md:gap-8 md:px-6"
+  >
+    <h2 id="radar-title" class="flex shrink-0 items-center gap-2 font-display-caps text-xl text-signal">
+      <Icon icon={Radar} size={22} />
+      {m.common_term_patch_radar()}
+    </h2>
+    {
+      build ? (
+        <div class="grid flex-1 gap-1">
+          <p class="flex flex-wrap items-center gap-2 font-semibold text-fg">
+            {radar
+              ? m.landing_radar_summary({ build: build.label, share: formatPercent(locale, radar.confirmedShare) })
+              : m.landing_readout_game({ build: build.label })}
+            {build.isBreaking && (
+              <span class="inline-flex items-center gap-1 rounded-sm bg-warning-soft px-2 py-0.5 text-xs font-semibold text-warning">
+                <Icon icon={TriangleAlert} size={14} />
+                {m.landing_radar_breaking()}
+              </span>
+            )}
+          </p>
+          <p class="readout flex flex-wrap gap-x-3">
+            <time datetime={build.releasedAt}>{formatDate(locale, build.releasedAt)}</time>
+            {loader && (
+              <span data-status={loader.status}>
+                <span aria-hidden="true">{statusIcon[loader.status]} </span>
+                {m.landing_radar_loader({
+                  loader: loader.loader.name,
+                  version: loader.loader.version,
+                  status: loader.status,
+                })}
+              </span>
+            )}
+          </p>
+        </div>
+      ) : (
+        <p class="flex-1 text-sm text-fg-muted">{m.landing_radar_empty()}</p>
+      )
+    }
+    <a
+      href={href('/patch-radar', locale)}
+      class="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+    >
+      {m.landing_radar_cta()}
+      <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+    </a>
+  </div>
+</section>

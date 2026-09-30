@@ -1105,6 +1105,150 @@
       }
     }
   ],
+  "landing_blueprints_all": "All builds",
+  "landing_blueprints_hint": "Fresh builds from the community",
+  "landing_creators_all": "All creators",
+  "landing_creators_hint": "The survivors who build the island",
+  "landing_creators_title": "Creator spotlight",
+  "landing_faq_figures": "Figures as of {date}.",
+  "landing_faq_hint": "Short answers, checked against the catalog.",
+  "landing_faq_more": "Read more",
+  "landing_faq_title": "Questions survivors ask",
+  "landing_hero_cta_explore": "Explore mods",
+  "landing_hero_cta_install": "How to install (3 min)",
+  "landing_hero_lead": [
+    {
+      "declarations": [
+        "input modCount",
+        "input buildCount",
+        "local modCount__plural = modCount: plural",
+        "local modCount__number = modCount: number",
+        "local buildCount__plural = buildCount: plural",
+        "local buildCount__number = buildCount: number"
+      ],
+      "selectors": [
+        "modCount__plural",
+        "buildCount__plural"
+      ],
+      "match": {
+        "modCount__plural=one, buildCount__plural=one": "{modCount__number} Sons of the Forest mod, {buildCount__number} build and Kits, with compatibility reports from players and direct downloads. No waiting, no sign-up.",
+        "modCount__plural=one, buildCount__plural=*": "{modCount__number} Sons of the Forest mod, {buildCount__number} builds and Kits, with compatibility reports from players and direct downloads. No waiting, no sign-up.",
+        "modCount__plural=*, buildCount__plural=one": "{modCount__number} Sons of the Forest mods, {buildCount__number} build and Kits, with compatibility reports from players and direct downloads. No waiting, no sign-up.",
+        "modCount__plural=*, buildCount__plural=*": "{modCount__number} Sons of the Forest mods, {buildCount__number} builds and Kits, with compatibility reports from players and direct downloads. No waiting, no sign-up."
+      }
+    }
+  ],
+  "landing_hero_lead_fallback": "Sons of the Forest mods, builds and Kits, with compatibility reports from players and direct downloads. No waiting, no sign-up.",
+  "landing_hero_search_label": "Search the catalog",
+  "landing_hero_title_accent": "Field-tested.",
+  "landing_hero_title_lead": "Mods for the island.",
+  "landing_kit_all": "All Kits",
+  "landing_kit_hint": "A ready-made set of mods, picked by the rangers",
+  "landing_kit_open": "Open the Kit",
+  "landing_kit_title": "Featured Kit",
+  "landing_motw_period": "Week of {start}",
+  "landing_motw_title": "Mod of the Week",
+  "landing_notes_all": "All recent updates",
+  "landing_notes_empty": "No updates yet. Creators are still out in the woods.",
+  "landing_notes_hint": "The latest updates from creators",
+  "landing_notes_version": "v{version}",
+  "landing_personal_backpack": "Open your backpack",
+  "landing_personal_checklist_hint": "Finish the checklist to earn the “Survived Day 1” badge.",
+  "landing_personal_checklist_title": "Day 1 on the island",
+  "landing_personal_error": "Lost signal while loading your updates.",
+  "landing_personal_hint": "New versions of the mods in your backpack",
+  "landing_personal_kits_title": "Your recent Kits",
+  "landing_personal_label": "For you",
+  "landing_personal_none": "Everything in your backpack is up to date.",
+  "landing_personal_progress": "Checklist progress",
+  "landing_personal_step_compat_report": "Report whether a mod worked",
+  "landing_personal_step_create_kit": "Build your first Kit",
+  "landing_personal_step_done": "Done",
+  "landing_personal_step_first_download": "Download your first mod",
+  "landing_personal_step_follow_mod": "Follow a mod",
+  "landing_personal_step_install_redloader": "Install RedLoader",
+  "landing_personal_title": "Your updates",
+  "landing_pin_build": "Trending build",
+  "landing_pin_download": "Being downloaded · v{version}",
+  "landing_pin_kit": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Kit · {count__number} mod",
+        "count__plural=*": "Kit · {count__number} mods"
+      }
+    }
+  ],
+  "landing_pin_release": "Updated to v{version}",
+  "landing_pins_label": "Live on the island",
+  "landing_radar_breaking": "Breaking update",
+  "landing_radar_cta": "See what’s broken",
+  "landing_radar_empty": "No game patch on the radar yet. Field reports start with the next update.",
+  "landing_radar_loader": [
+    {
+      "declarations": [
+        "input loader",
+        "input version",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "{loader} {version}: works",
+        "status=partial": "{loader} {version}: partly works",
+        "status=broken": "{loader} {version}: broken",
+        "status=*": "{loader} {version}: not tested yet"
+      }
+    }
+  ],
+  "landing_radar_summary": "Game {build} · {share} of the top 50 mods confirmed on this patch",
+  "landing_readout_game": "Game {build}",
+  "landing_readout_hour": "Last hour",
+  "landing_readout_live": "Live",
+  "landing_readout_offline": "Signal lost: showing the last readout",
+  "landing_readout_today": "Downloads today",
+  "landing_regions_empty": "The map is still being drawn. Regions appear as mods are published.",
+  "landing_regions_hint": "Browse the island by category",
+  "landing_regions_title": "Regions",
+  "landing_section_error": "We couldn’t reach this part of the map. Reload the page in a minute.",
+  "landing_start_cta": "Read the install guide",
+  "landing_start_hint": "Three steps, about three minutes.",
+  "landing_start_install_text": "The mod loader for Sons of the Forest. Set it up once with RedManager or by hand.",
+  "landing_start_install_title": "Install RedLoader",
+  "landing_start_pick_text": "Browse the catalog, or grab a Kit of mods that already work together.",
+  "landing_start_pick_title": "Pick mods or a Kit",
+  "landing_start_play_text": "Start the game and press F1 to check your mods loaded. After a game patch, check Patch Radar.",
+  "landing_start_play_title": "Launch and play",
+  "landing_start_step": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Step {step__number}"
+      }
+    }
+  ],
+  "landing_start_title": "Start here",
+  "landing_stat_creators": "Creators",
+  "landing_stat_downloads": "Downloads",
+  "landing_stat_mods": "Mods",
+  "landing_stat_survivors": "Survivors",
+  "landing_stats_label": "The island in numbers",
+  "landing_trending_all": "All mods",
+  "landing_trending_empty": "A quiet week on the island. Mods show up here as survivors download them.",
+  "landing_trending_hint": "By downloads in the last 7 days",
+  "landing_trending_title": "Trending this week",
   "meta_default_description": "The home of Sons of the Forest modding: mods, builds and kits for RedLoader, tested on every patch. Free, direct downloads.",
   "meta_feed_description": "The latest Sons of the Forest mods and updates published on SOTF Mods.",
   "meta_feed_title": "SOTF Mods: new and updated mods",

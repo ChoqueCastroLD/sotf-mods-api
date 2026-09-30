@@ -1,0 +1,42 @@
+---
+/**
+ * Header of a landing section: display-caps `h2` (the section's accessible name), an optional
+ * readout hint and an optional «view all» link aligned to the end.
+ */
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight } from 'lucide-react';
+
+interface Props {
+  id: string;
+  title: string;
+  hint?: string | undefined;
+  link?: { href: string; label: string } | undefined;
+  /** Blueprint band: ink colours instead of the default foreground. */
+  tone?: 'default' | 'blueprint';
+}
+
+const { id, title, hint, link, tone = 'default' } = Astro.props;
+---
+
+<div class="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+  <div class="grid gap-1">
+    <h2 id={id} class:list={['font-display-caps text-display-xs', tone === 'blueprint' ? 'text-blueprint' : 'text-fg']}>
+      {title}
+    </h2>
+    {hint && <p class="text-sm text-fg-muted">{hint}</p>}
+  </div>
+  {
+    link && (
+      <a
+        href={link.href}
+        class:list={[
+          'inline-flex min-h-11 items-center gap-1.5 rounded-md px-2 text-sm font-semibold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+          tone === 'blueprint' ? 'text-blueprint' : 'text-link',
+        ]}
+      >
+        {link.label}
+        <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+      </a>
+    )
+  }
+</div>

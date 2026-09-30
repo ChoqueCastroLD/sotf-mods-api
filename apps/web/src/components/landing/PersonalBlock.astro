@@ -1,0 +1,168 @@
+---
+/**
+ * Personal block «Your updates» + the «Day 1» checklist + recent Kits (T0-05, PLAN §4.2).
+ *
+ * The public HTML is the same for everyone, so this renders **hidden** and empty: every string
+ * is already in the page language, and `islands/landing/personal.ts` reveals it only when the
+ * `sotf_li` hint cookie exists, calls `GET /api/v2/me/home` and fills it from the `<template>`s.
+ * States: loading (skeleton, only after 300 ms), error (retry), empty («up to date»), ready.
+ * An expired session (401) keeps it hidden.
+ */
+import { ONBOARDING_STEPS } from '@sotf/contracts/gamification';
+import type { Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, Backpack, Check, Circle, Package, RotateCw } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import { pluralTemplates } from './plural.ts';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const STEP_LABEL: Record<(typeof ONBOARDING_STEPS)[number], string> = {
+  install_redloader: m.landing_personal_step_install_redloader(),
+  first_download: m.landing_personal_step_first_download(),
+  follow_mod: m.landing_personal_step_follow_mod(),
+  compat_report: m.landing_personal_step_compat_report(),
+  create_kit: m.landing_personal_step_create_kit(),
+};
+const STEP_PATH: Record<(typeof ONBOARDING_STEPS)[number], string> = {
+  install_redloader: '/install',
+  first_download: '/mods',
+  follow_mod: '/mods',
+  compat_report: '/patch-radar',
+  create_kit: '/kits',
+};
+const modsForms = JSON.stringify(pluralTemplates(locale, (count) => m.common_mods_count({ count })));
+const rowLink =
+  'group flex min-h-12 items-center gap-3 rounded-md px-3 py-2 hover:bg-fg/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+---
+
+<section
+  data-personal
+  data-prefix={href('/mods', locale).slice(0, -'/mods'.length)}
+  data-mods-forms={modsForms}
+  hidden
+  aria-labelledby="personal-title"
+  class="mx-auto w-full max-w-(--container-wide) px-4 pt-8 md:px-6"
+>
+  <div class="grid gap-6 rounded-xl border border-primary/40 bg-surface p-5 md:p-6 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
+    <div class="grid content-start gap-4">
+      <div class="grid gap-1">
+        <p class="readout text-primary">{m.landing_personal_label()}</p>
+        <h2 id="personal-title" class="font-display-caps text-display-xs text-fg">{m.landing_personal_title()}</h2>
+        <p class="text-sm text-fg-muted">{m.landing_personal_hint()}</p>
+      </div>
+
+      <div data-personal-state="loading" aria-busy="true" class="grid gap-2">
+        <span class="sr-only">{m.common_state_loading()}</span>
+        <div class="grid gap-2 opacity-0 motion-safe:animate-skeleton-in motion-reduce:opacity-100" aria-hidden="true">
+          <div class="skeleton h-12"></div>
+          <div class="skeleton h-12"></div>
+          <div class="skeleton h-12"></div>
+        </div>
+      </div>
+
+      <div data-personal-state="error" hidden class="flex flex-wrap items-center gap-3 text-sm text-fg-muted">
+        <p class="flex-1">{m.landing_personal_error()}</p>
+        <button
+          type="button"
+          data-personal-retry
+          class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-strong px-3 font-semibold text-fg hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+        >
+          <Icon icon={RotateCw} size={16} />
+          {m.common_action_retry()}
+        </button>
+      </div>
+
+      <div data-personal-state="ready" hidden class="grid gap-3">
+        <ul data-personal-updates class="grid gap-1"></ul>
+        <p data-personal-none hidden class="rounded-md bg-success-soft px-3 py-2 text-sm text-success">
+          {m.landing_personal_none()}
+        </p>
+        <a
+          href={href('/me/backpack', locale)}
+          class="inline-flex min-h-11 items-center gap-2 self-start rounded-md text-sm font-semibold text-link hover:underline"
+        >
+          <Icon icon={Backpack} size={16} />
+          {m.landing_personal_backpack()}
+          <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+        </a>
+      </div>
+    </div>
+
+    <div class="grid content-start gap-6">
+      <div data-personal-checklist hidden class="grid gap-3">
+        <div class="grid gap-1">
+          <h3 class="font-semibold text-fg">{m.landing_personal_checklist_title()}</h3>
+          <p class="text-sm text-fg-muted">{m.landing_personal_checklist_hint()}</p>
+        </div>
+        <div
+          role="progressbar"
+          aria-label={m.landing_personal_progress()}
+          aria-valuemin="0"
+          aria-valuemax={ONBOARDING_STEPS.length}
+          aria-valuenow="0"
+          data-personal-progress
+          class="h-2 overflow-hidden rounded-full bg-raised"
+        >
+          <div data-personal-progress-bar class="h-full w-0 rounded-full bg-primary transition-[width] duration-(--dur-slow)"></div>
+        </div>
+        <ol class="grid gap-1">
+          {
+            ONBOARDING_STEPS.map((step) => (
+              <li data-step={step} class="group">
+                <a href={href(STEP_PATH[step], locale)} class={rowLink}>
+                  <span class="text-fg-subtle group-data-done:hidden">
+                    <Icon icon={Circle} size={18} />
+                  </span>
+                  <span class="hidden text-success group-data-done:inline">
+                    <Icon icon={Check} size={18} />
+                  </span>
+                  <span class="text-sm text-fg group-data-done:text-fg-muted group-data-done:line-through">
+                    {STEP_LABEL[step]}
+                  </span>
+                  <span class="sr-only hidden group-data-done:inline">({m.landing_personal_step_done()})</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <div data-personal-kits hidden class="grid gap-2">
+        <h3 class="font-semibold text-fg">{m.landing_personal_kits_title()}</h3>
+        <ul data-personal-kit-list class="grid gap-1"></ul>
+      </div>
+    </div>
+  </div>
+
+  <template data-personal-update-template>
+    <li>
+      <a href={href('/me/backpack', locale)} data-link class={rowLink}>
+        <span class="grid min-w-0 flex-1">
+          <span data-name class="truncate font-semibold text-fg group-hover:text-primary">{m.landing_personal_title()}</span>
+          <span class="readout truncate">
+            <span data-author></span>
+            <span aria-hidden="true"> · </span>
+            <time data-relative datetime=""></time>
+          </span>
+        </span>
+        <span data-versions class="shrink-0 font-mono text-xs text-signal"></span>
+      </a>
+    </li>
+  </template>
+
+  <template data-personal-kit-template>
+    <li>
+      <a href={href('/kits', locale)} data-link class={rowLink}>
+        <span class="text-fg-subtle"><Icon icon={Package} size={18} /></span>
+        <span data-name class="min-w-0 flex-1 truncate text-sm font-semibold text-fg group-hover:text-primary"></span>
+        <span data-count class="readout shrink-0"></span>
+      </a>
+    </li>
+  </template>
+</section>

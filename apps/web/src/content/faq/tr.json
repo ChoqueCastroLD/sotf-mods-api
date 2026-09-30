@@ -1,0 +1,34 @@
+{
+  "install": {
+    "question": "Sons of the Forest’a nasıl mod kurarım?",
+    "answer": "Mod yükleyici RedLoader’ı kur, ardından her modu oyun dizinindeki _RedLoader/Mods klasörüne koy ve oyunu başlat. RedManager bu iki adımı senin yerine yapabilir. Modların yüklendiğini görmek için oyunda F1’e bas. Her mod sayfası bağımlılıklarını listeler ve kurulum rehberi her adımı anlatır."
+  },
+  "free": {
+    "question": "İndirmeler ücretsiz mi?",
+    "answer": "Evet. SOTF Mods’taki tüm modlar, yapılar ve kitler doğrudan depolamamızdan ücretsiz indirilir: hesap yok, bekleme sayacı yok, indirme yöneticisi yok. Reklamlar yalnızca oturum açmamış ziyaretçilere gösterilir ve hiçbir zaman bir indirme düğmesinin yanında yer almaz."
+  },
+  "multiplayer": {
+    "question": "Modlar çok oyunculu modda çalışır mı?",
+    "answer": "Birçoğu çalışır, ama bu moda bağlıdır. Her mod sayfası modun yalnızca sunucuya mı yoksa tüm oyunculara mı gerektiğini, sadece tek oyunculu olup olmadığını ve özel sunucularda çalışıp çalışmadığını belirtir. Emin değilsen grubun tamamı aynı modları aynı sürümlerle kurmalı."
+  },
+  "patch": {
+    "question": "Oyun güncellemesinden sonra modlar çalışmaya devam eder mi?",
+    "answer": "Her zaman değil: oyun yamaları, yapımcıları güncelleyene kadar modları bozabilir. Yama Radarı güncel oyun sürümünü, RedLoader’ın durumunu ve en çok indirilen 50 moddan hangilerinin oyuncular tarafından çalışıyor, bozuk ya da test edilmemiş olarak doğrulandığını izler. Her mod sayfasındaki saha raporları en son sonuçları gösterir."
+  },
+  "bepinex": {
+    "question": "BepInEx modlarını RedLoader ile kullanabilir miyim?",
+    "answer": "Hayır. SOTF Mods, Sons of the Forest için geliştirilmiş yükleyici RedLoader’a yönelik modları listeler. BepInEx modları farklı bir yükleyici ister: RedLoader klasörlerine konduklarında hiçbir şey yapmazlar ve hata da göstermezler. Kurmadan önce bir modun RedLoader için yapıldığını kontrol et."
+  },
+  "safe": {
+    "question": "Modları indirmek güvenli mi?",
+    "answer": "Her yeni mod, listelenmeden önce Korucu İstasyonu tarafından kontrol edilir ve her dosya, indirdiğini doğrulayabilmen için boyutunu ve SHA-256 sağlama toplamını gösterir. Bazı antivirüs programları mod yükleyicileri yanlışlıkla tehdit olarak işaretler; emin değilsen dosyayı tara ya da Discord’umuzda sor."
+  },
+  "kits": {
+    "question": "Kit nedir?",
+    "answer": "Kit, bir hayatta kalma çantası gibi paylaşılabilen bir mod koleksiyonudur: bir yapımcı ya da oyuncu birlikte iyi çalışan modları notlarla bir araya getirir ve herkes onu takip edebilir, kopyalayabilir ya da içindeki her şeyi indirebilir. Korucular yeni oyuncular ve özel sunucular için kitleri öne çıkarır."
+  },
+  "catalog": {
+    "question": "Sons of the Forest için kaç mod var?",
+    "answer": "{date} itibarıyla SOTF Mods’ta {creators} yapımcıdan {mods} mod ve {builds} yapı bulunuyor; toplam indirme sayısı {downloads}. Sons of the Forest için en büyük RedLoader mod kataloğudur ve bu sayfadaki rakamlar birkaç dakikada bir güncellenir."
+  }
+}

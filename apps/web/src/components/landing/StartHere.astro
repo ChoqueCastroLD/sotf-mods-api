@@ -1,0 +1,64 @@
+---
+/**
+ * «Start here — 3 steps» (research/03 §6.1): install RedLoader → pick mods or a Kit → launch.
+ * An ordered list joined by a dashed trail on desktop; every step links to where it happens.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ArrowRight, Download, Gamepad2, Package } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import SectionHeader from './SectionHeader.astro';
+
+const locale = Astro.locals.locale;
+const steps = [
+  {
+    icon: Download,
+    title: m.landing_start_install_title(),
+    text: m.landing_start_install_text(),
+    path: '/install',
+  },
+  { icon: Package, title: m.landing_start_pick_title(), text: m.landing_start_pick_text(), path: '/kits' },
+  { icon: Gamepad2, title: m.landing_start_play_title(), text: m.landing_start_play_text(), path: '/patch-radar' },
+];
+---
+
+<section class="mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6 md:py-14" aria-labelledby="start-title">
+  <SectionHeader
+    id="start-title"
+    title={m.landing_start_title()}
+    hint={m.landing_start_hint()}
+    link={{ href: href('/install', locale), label: m.landing_start_cta() }}
+  />
+  <ol class="relative grid gap-4 md:grid-cols-3 md:gap-6">
+    <li
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-[16%] top-8 hidden border-t-2 border-dashed border-border-strong md:block"
+    >
+    </li>
+    {
+      steps.map((step, index) => (
+        <li class="relative">
+          <a
+            href={href(step.path, locale)}
+            class="group flex h-full flex-col gap-3 rounded-lg border border-border bg-surface p-5 transition-colors duration-(--dur-fast) hover:border-border-strong hover:bg-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            <span class="flex items-center gap-3">
+              <span class="flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-primary bg-bg font-display-caps text-xl text-primary">
+                {index + 1}
+              </span>
+              <span class="readout">{m.landing_start_step({ step: index + 1 })}</span>
+              <Icon icon={step.icon} size={20} className="ms-auto text-fg-subtle group-hover:text-primary" />
+            </span>
+            <span class="text-lg font-semibold text-fg">{step.title}</span>
+            <span class="text-sm text-fg-muted">{step.text}</span>
+            <Icon
+              icon={ArrowRight}
+              size={18}
+              className="mt-auto text-fg-subtle transition-transform duration-(--dur-fast) group-hover:text-primary motion-safe:group-hover:translate-x-1 rtl:rotate-180"
+            />
+          </a>
+        </li>
+      ))
+    }
+  </ol>
+</section>

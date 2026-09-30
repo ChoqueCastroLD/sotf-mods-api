@@ -1,0 +1,66 @@
+---
+/**
+ * «Field notes» (research/03 §6.1): the latest releases as a timeline — name, new version,
+ * author and when (absolute UTC in the cached HTML; the landing script rewrites it as «2 h ago»).
+ */
+import { formatDate, type Locale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { href } from '../../lib/i18n.ts';
+import type { ModCardDTO } from './data.ts';
+import EmptyNote from './EmptyNote.astro';
+import SectionError from './SectionError.astro';
+import SectionHeader from './SectionHeader.astro';
+
+interface Props {
+  locale: Locale;
+  notes: readonly ModCardDTO[] | null;
+}
+
+const { locale, notes } = Astro.props;
+---
+
+<section aria-labelledby="notes-title" class="min-w-0">
+  <SectionHeader
+    id="notes-title"
+    title={m.common_term_field_notes()}
+    hint={m.landing_notes_hint()}
+    link={{ href: `${href('/mods', locale)}?sort=updated`, label: m.landing_notes_all() }}
+  />
+  {
+    notes === null ? (
+      <SectionError />
+    ) : notes.length === 0 ? (
+      <EmptyNote text={m.landing_notes_empty()} />
+    ) : (
+      <ol class="relative grid gap-1 border-s-2 border-dashed border-border-strong ps-5">
+        {notes.map((mod) => (
+          <li class="relative">
+            <span
+              aria-hidden="true"
+              class="absolute -start-[1.72rem] top-4 size-3 rounded-full border-2 border-bg bg-primary"
+            />
+            <a
+              href={href(mod.canonicalPath, locale)}
+              class="group grid gap-0.5 rounded-md p-2 hover:bg-fg/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            >
+              <span class="flex min-w-0 flex-wrap items-baseline gap-x-2">
+                <span class="truncate font-semibold text-fg group-hover:text-primary">{mod.name}</span>
+                {mod.latestVersion && (
+                  <span class="font-mono text-xs text-signal">
+                    {m.landing_notes_version({ version: mod.latestVersion })}
+                  </span>
+                )}
+              </span>
+              <span class="line-clamp-1 text-sm text-fg-muted">{mod.shortDescription}</span>
+              <span class="readout">
+                @{mod.userHandle}
+                <span aria-hidden="true"> · </span>
+                <time data-relative datetime={mod.lastReleasedAt}>{formatDate(locale, mod.lastReleasedAt)}</time>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    )
+  }
+</section>

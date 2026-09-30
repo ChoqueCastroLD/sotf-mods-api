@@ -986,6 +986,138 @@
       }
     }
   ],
+  "landing_blueprints_all": "全部建筑",
+  "landing_blueprints_hint": "来自社区的新鲜建筑",
+  "landing_creators_all": "全部创作者",
+  "landing_creators_hint": "建设这座岛的幸存者们",
+  "landing_creators_title": "创作者聚光灯",
+  "landing_faq_figures": "数据截至 {date}。",
+  "landing_faq_hint": "简短的回答，已与目录核对。",
+  "landing_faq_more": "了解更多",
+  "landing_faq_title": "幸存者常问的问题",
+  "landing_hero_cta_explore": "浏览模组",
+  "landing_hero_cta_install": "安装方法（3 分钟）",
+  "landing_hero_lead": [
+    {
+      "declarations": [
+        "input modCount",
+        "input buildCount",
+        "local modCount__number = modCount: number",
+        "local buildCount__number = buildCount: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{modCount__number} 个 Sons of the Forest 模组、{buildCount__number} 个建筑以及套装，附带玩家的兼容性报告和直接下载。无需等待，无需注册。"
+      }
+    }
+  ],
+  "landing_hero_lead_fallback": "Sons of the Forest 的模组、建筑和套装，附带玩家的兼容性报告和直接下载。无需等待，无需注册。",
+  "landing_hero_search_label": "搜索目录",
+  "landing_hero_title_accent": "经过实地检验。",
+  "landing_hero_title_lead": "为这座岛打造的模组，",
+  "landing_kit_all": "全部套装",
+  "landing_kit_hint": "护林员挑选的一套即用模组",
+  "landing_kit_open": "打开套装",
+  "landing_kit_title": "精选套装",
+  "landing_motw_period": "{start} 当周",
+  "landing_motw_title": "本周模组",
+  "landing_notes_all": "全部近期更新",
+  "landing_notes_empty": "还没有更新。创作者们还在林子里。",
+  "landing_notes_hint": "创作者的最新更新",
+  "landing_notes_version": "v{version}",
+  "landing_personal_backpack": "打开背包",
+  "landing_personal_checklist_hint": "完成清单即可获得“熬过第一天”徽章。",
+  "landing_personal_checklist_title": "岛上第 1 天",
+  "landing_personal_error": "加载你的更新时信号中断。",
+  "landing_personal_hint": "你背包中模组的新版本",
+  "landing_personal_kits_title": "你最近的套装",
+  "landing_personal_label": "为你推荐",
+  "landing_personal_none": "你背包里的一切都是最新的。",
+  "landing_personal_progress": "清单进度",
+  "landing_personal_step_compat_report": "报告模组是否可用",
+  "landing_personal_step_create_kit": "组建你的第一个套装",
+  "landing_personal_step_done": "已完成",
+  "landing_personal_step_first_download": "下载你的第一个模组",
+  "landing_personal_step_follow_mod": "关注一个模组",
+  "landing_personal_step_install_redloader": "安装 RedLoader",
+  "landing_personal_title": "你的更新",
+  "landing_pin_build": "热门建筑",
+  "landing_pin_download": "正在下载 · v{version}",
+  "landing_pin_kit": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "套装 · {count__number} 个模组"
+      }
+    }
+  ],
+  "landing_pin_release": "已更新至 v{version}",
+  "landing_pins_label": "岛上实时动态",
+  "landing_radar_breaking": "破坏性更新",
+  "landing_radar_cta": "查看哪些不可用",
+  "landing_radar_empty": "雷达上还没有游戏补丁。实地报告将从下一次更新开始。",
+  "landing_radar_loader": [
+    {
+      "declarations": [
+        "input loader",
+        "input version",
+        "input status"
+      ],
+      "selectors": [
+        "status"
+      ],
+      "match": {
+        "status=works": "{loader} {version}：可用",
+        "status=partial": "{loader} {version}：部分可用",
+        "status=broken": "{loader} {version}：不可用",
+        "status=*": "{loader} {version}：尚未测试"
+      }
+    }
+  ],
+  "landing_radar_summary": "游戏 {build} · 前 50 名模组中已有 {share} 在此补丁上得到确认",
+  "landing_readout_game": "游戏 {build}",
+  "landing_readout_hour": "最近一小时",
+  "landing_readout_live": "实时",
+  "landing_readout_offline": "信号丢失：显示上一次读数",
+  "landing_readout_today": "今日下载",
+  "landing_regions_empty": "地图仍在绘制中。模组发布后，区域会陆续出现。",
+  "landing_regions_hint": "按分类探索这座岛",
+  "landing_regions_title": "区域",
+  "landing_section_error": "暂时无法到达地图的这一部分。请过一分钟再刷新页面。",
+  "landing_start_cta": "阅读安装指南",
+  "landing_start_hint": "三个步骤，大约三分钟。",
+  "landing_start_install_text": "Sons of the Forest 的模组加载器。用 RedManager 或手动安装一次即可。",
+  "landing_start_install_title": "安装 RedLoader",
+  "landing_start_pick_text": "浏览目录，或直接使用一套已确认能一起运行的模组套装。",
+  "landing_start_pick_title": "挑选模组或套装",
+  "landing_start_play_text": "启动游戏并按 F1 确认模组已加载。游戏更新后，请查看补丁雷达。",
+  "landing_start_play_title": "启动游戏开玩",
+  "landing_start_step": [
+    {
+      "declarations": [
+        "input step",
+        "local step__number = step: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {step__number} 步"
+      }
+    }
+  ],
+  "landing_start_title": "从这里开始",
+  "landing_stat_creators": "创作者",
+  "landing_stat_downloads": "下载",
+  "landing_stat_mods": "模组",
+  "landing_stat_survivors": "幸存者",
+  "landing_stats_label": "岛上数据",
+  "landing_trending_all": "全部模组",
+  "landing_trending_empty": "岛上这周很安静。幸存者下载模组后，它们会出现在这里。",
+  "landing_trending_hint": "按最近 7 天的下载量",
+  "landing_trending_title": "本周热门",
   "meta_default_description": "《森林之子》模组之家：适用于 RedLoader 的模组、建筑与套装，每个补丁都经过测试。免费直接下载。",
   "meta_feed_description": "SOTF Mods 上最新发布的《森林之子》模组与更新。",
   "meta_feed_title": "SOTF Mods：新增与更新的模组",
