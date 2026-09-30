@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { chunkTags, normalizeTags, purge, tagsForEvent } from './cache-tags.ts';
 import { ManualClock, utcDay } from './clock.ts';
 import { createCtx, hasRole } from './context.ts';
-import { envFlag, envInt } from './env.ts';
+import { envFlag, envInt, SERVER_PORTS, withDefaultPort } from './env.ts';
 import { DomainError, errors, isDomainError, rateLimitDetail } from './errors.ts';
 import { dailySalt, ipHash, keyedHash, logHash, normalizeIp } from './hashing.ts';
 import { isUuid, newId } from './ids.ts';
@@ -274,5 +274,19 @@ describe('context and env helpers', () => {
   it('queue config applies overrides', () => {
     expect(queueConfig('backfill.run')).toMatchObject({ policy: 'singleton', retryLimit: 0 });
     expect(queueConfig('stats.rollup').retryBackoff).toBe(true);
+  });
+});
+
+describe('withDefaultPort', () => {
+  it('uses the 47xxx development ports unless NODE_ENV=production', () => {
+    expect(withDefaultPort({}, 'api').PORT).toBe('47301');
+    expect(withDefaultPort({ NODE_ENV: 'test' }, 'worker').PORT).toBe('47302');
+    expect(withDefaultPort({ NODE_ENV: 'production' }, 'api').PORT).toBe(String(SERVER_PORTS.api.production));
+    expect(withDefaultPort({ NODE_ENV: 'production', PORT: '' }, 'worker').PORT).toBe('3002');
+  });
+
+  it('keeps an explicit PORT', () => {
+    expect(withDefaultPort({ NODE_ENV: 'production', PORT: '8080' }, 'api').PORT).toBe('8080');
+    expect(withDefaultPort({ PORT: '9000' }, 'api').PORT).toBe('9000');
   });
 });

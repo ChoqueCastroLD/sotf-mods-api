@@ -22,6 +22,12 @@ export interface Actor {
   suspendedUntil?: Date | null;
   /** Handle (slug), for logs and URLs. */
   handle?: string;
+  /** "User"."verifiedCreator" as resolved with the session (`can()` treats unknown as false). */
+  verifiedCreator?: boolean;
+  /** "User"."trustLevel" 0–3 as resolved with the session (unknown = 0). */
+  trustLevel?: number;
+  /** Creation time of the session (`assertFreshSession`, 12 h re-authentication of staff actions). */
+  sessionCreatedAt?: Date;
 }
 
 /** Long-lived dependencies shared by every context of a process. */

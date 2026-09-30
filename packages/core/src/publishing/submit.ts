@@ -25,6 +25,7 @@ import { checkAgainstMod } from '../inspection/checks.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { newId } from '../kernel/ids.ts';
+import { publishLaneCounts } from '../moderation/lanes.ts';
 import { can } from '../permissions/can.ts';
 import { audit, evictLocal, modRouting, modTags, type PublishingDeps } from './context.ts';
 import { evaluateDraft, loadOwnDraft } from './drafts.ts';
@@ -49,6 +50,9 @@ import {
   uploadRef,
 } from './queries.ts';
 import { BUILDSHARE_MANIFEST_ID, legacyType, reserveId, writeVersion } from './release.ts';
+
+/** Lanes a submission can enter (held for review, or published into the post-review lanes). */
+const REVIEW_LANES = ['new_mods', 'versions', 'post_review', 'builds'] as const;
 
 type UploadInspectionDTO = z.infer<typeof UploadInspectionSchema>;
 
@@ -319,6 +323,8 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
           { actorId: actor.userId },
         );
       }
+      // The rangers see the new item (or the auto-published one in post-review) at once.
+      await publishLaneCounts(tx, ctx.clock.now(), REVIEW_LANES);
       await audit(ctx, tx, {
         action: 'mod.submit',
         targetType: 'mod',
@@ -512,6 +518,7 @@ export async function releaseVersion(
           { actorId: actor.userId },
         );
       }
+      await publishLaneCounts(tx, ctx.clock.now(), REVIEW_LANES);
       await audit(ctx, tx, {
         action: 'version.submit',
         targetType: 'version',

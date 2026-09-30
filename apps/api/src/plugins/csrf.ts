@@ -11,7 +11,8 @@
  *    and contracts that require a `signed_token` (RFC 8058 one-click unsubscribe: form body posted
  *    cross-site by mail providers; the signed token is the protection, so step 1 is skipped too).
  *
- * Internal routes (`X-Internal-Auth`, no cookies) are exempt. No GET mutates state.
+ * Internal routes (`X-Internal-Auth`, no cookies) and routes flagged `config.csrfExempt` (the CSP
+ * report collector: no credentials, no user state) are exempt. No GET mutates state.
  */
 import type { Endpoint } from '@sotf/contracts';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
@@ -45,6 +46,8 @@ export interface CsrfOptions {
 
 export function checkCsrf(request: FastifyRequest, options: CsrfOptions): void {
   if (!UNSAFE.has(request.method)) return;
+  // Credential-less collectors that change no user state (CSP reports, plugins/security).
+  if (request.routeOptions.config?.csrfExempt === true) return;
   const endpoint = request.routeOptions.config?.endpoint;
   if (surfaceOf(request.url) === 'internal' || endpoint?.auth === 'internal') return;
   const signedToken = endpoint?.requires?.includes('signed_token') ?? false;

@@ -24,9 +24,18 @@ import { textToHtml } from '../catalog/versions.ts';
 import { query, queryOne, toDate, toInt } from '../follows/sql.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
+import { getReport } from '../reports/service.ts';
 import { modAllowedActions, versionAllowedActions } from './decisions.ts';
 import { assertStaff } from './guard.ts';
-import { commentRows, type LaneRow, pendingModRows, reportRows, toQueueItems, versionRows } from './lanes.ts';
+import {
+  applyQueueMarks,
+  commentRows,
+  type LaneRow,
+  pendingModRows,
+  reportRows,
+  toQueueItems,
+  versionRows,
+} from './lanes.ts';
 import { authorHistory, flagsOf, latestScans, type ModerationDeps, scanSummary } from './shared.ts';
 
 type QueueItemDetail = z.infer<typeof QueueItemDetailDTO>;
@@ -212,13 +221,13 @@ async function gallery(ctx: Ctx, deps: ModerationDeps, modId: number): Promise<z
     .filter((i): i is z.infer<typeof ImageDTO> => i !== null);
 }
 
-function parseItemId(id: string): { lane: ModerationLane; targetType: string; targetId: number } {
+export function parseItemId(id: string): { lane: ModerationLane; targetType: string; targetId: number } {
   const match = ITEM_ID.exec(id);
   if (!match || !LANE_SET.has(match[1] ?? '')) throw errors.notFound('Queue item');
   return { lane: match[1] as ModerationLane, targetType: match[2] ?? '', targetId: Number(match[3]) };
 }
 
-async function laneRowFor(
+async function rawLaneRowFor(
   ctx: Ctx,
   lane: ModerationLane,
   targetType: string,
@@ -236,6 +245,19 @@ async function laneRowFor(
     default:
       return null;
   }
+}
+
+/** The lane row of one item (with its assignment and escalation), or null. */
+export async function laneRowFor(
+  ctx: Ctx,
+  lane: ModerationLane,
+  targetType: string,
+  targetId: number,
+): Promise<LaneRow | null> {
+  const row = await rawLaneRowFor(ctx, lane, targetType, targetId);
+  if (!row) return null;
+  const [marked] = await applyQueueMarks(ctx.db, [row]);
+  return marked ?? null;
 }
 
 /** `GET /ranger/items/:id`. */
@@ -345,5 +367,6 @@ export async function getQueueItem(ctx: Ctx, deps: ModerationDeps, itemId: strin
     media,
     authorHistory: history,
     allowedActions,
+    report: targetType === 'report' ? await getReport(ctx, deps.config, targetId) : null,
   };
 }

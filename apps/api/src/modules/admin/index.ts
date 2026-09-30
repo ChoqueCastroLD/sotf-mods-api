@@ -5,7 +5,8 @@
  *
  * - Taxonomy: categories (create, replace, retire) and tags (create, replace, delete) plus the
  *   bulk recategorisation with keyword-rule suggestions (`dryRun` by default).
- * - Awards (Mod of the Week overrides, staff picks, Build/Mod of the Month).
+ * - Awards (Mod of the Week overrides, staff picks, Build/Mod of the Month), kit staff picks and the
+ *   manual `translator` badge.
  * - Site settings (`GET|PUT /admin/settings/:key`, validated per key).
  * - KelvinSeek usage and budget, RUM p75 per template and country.
  *
@@ -25,6 +26,8 @@ import {
   listAwards,
   recategorize,
   retireCategory,
+  setKitStaffPick,
+  setManualBadge,
   updateCategory,
   updateTag,
 } from '@sotf/core/admin/index';
@@ -75,6 +78,17 @@ export default defineModule({
     m.implement(adminEndpoints.recategorize, async ({ body, ctx }) => recategorize(ctx, config, body), {
       bodyLimit: 512 * 1024,
     });
+
+    // Curation: kit staff picks and manual badges.
+    m.implement(adminEndpoints.setKitStaffPick, async ({ params, body, ctx }) =>
+      setKitStaffPick(ctx, params.id, body.isStaffPick),
+    );
+    m.implement(adminEndpoints.grantManualBadge, async ({ params, ctx }) =>
+      setManualBadge(ctx, params.id, params.badgeKey, true),
+    );
+    m.implement(adminEndpoints.revokeManualBadge, async ({ params, ctx }) =>
+      setManualBadge(ctx, params.id, params.badgeKey, false),
+    );
 
     // Awards.
     m.implement(adminEndpoints.listAwards, async ({ ctx }) => listAwards(ctx, config));

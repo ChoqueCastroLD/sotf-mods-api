@@ -9,7 +9,8 @@
  *   onSend     cache headers + Cache-Tag + ETag (public), CORS pruning
  *   errors     RFC 9457 problem+json (v2) or the legacy envelope (`/api/*`)
  *
- * Also: helmet, cookies, under-pressure (503), SSE hub (`/api/v2/stream`), OpenAPI + Scalar
+ * Also: helmet, security hardening (plugins/security: HSTS, Permissions-Policy, private-data guard,
+ * CSP report collector), cookies, under-pressure (503), SSE hub (`/api/v2/stream`), OpenAPI + Scalar
  * (`/api/docs`), `/healthz`, `/readyz` and graceful shutdown of every owned resource.
  */
 import cookie from '@fastify/cookie';
@@ -47,6 +48,7 @@ import { setupCsrf } from './plugins/csrf.ts';
 import { setupDocs } from './plugins/docs.ts';
 import { setupErrors } from './plugins/errors.ts';
 import { type RateLimitOverrides, setupRateLimit } from './plugins/rate-limit.ts';
+import { HSTS_MAX_AGE_SECONDS, setupSecurity } from './plugins/security/index.ts';
 import { SseHub, setupSse } from './plugins/sse.ts';
 
 export interface BuildAppOptions {
@@ -73,6 +75,11 @@ export interface BuildAppOptions {
   sse?: { pingMs?: number };
   /** How dependencies start: in the background with retries (server) or awaited (tests). */
   startDependencies?: 'background' | 'await' | 'manual';
+  /**
+   * `@fastify/under-pressure` (503 when the event loop is saturated). Default: on. Integration
+   * tests turn it off: on a loaded shared host it answers 503 to requests that would succeed.
+   */
+  underPressure?: boolean;
 }
 
 const anonymous: SessionResolver = async () => null;
@@ -179,20 +186,22 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
       directives: { defaultSrc: ["'none'"], frameAncestors: ["'none'"], baseUri: ["'none'"], formAction: ["'none'"] },
     },
     crossOriginResourcePolicy: { policy: 'cross-origin' },
-    strictTransportSecurity: { maxAge: 31_536_000, includeSubDomains: true, preload: false },
+    // Same value as plugins/security (HSTS 6 months, PLAN §9.1), which sets the final header.
+    strictTransportSecurity: { maxAge: HSTS_MAX_AGE_SECONDS, includeSubDomains: true, preload: false },
     referrerPolicy: { policy: 'no-referrer' },
   });
   await app.register(cookie);
-  await app.register(underPressure, {
-    maxEventLoopDelay: 1000,
-    maxEventLoopUtilization: 0.98,
-    retryAfter: 10,
-    pressureHandler: (request) => {
-      const path = request.url.split('?', 1)[0];
-      if (path === '/healthz' || path === '/readyz') return undefined;
-      return Promise.reject(domainErrors.unavailable('The server is under pressure', 10));
-    },
-  });
+  if (options.underPressure !== false)
+    await app.register(underPressure, {
+      maxEventLoopDelay: 1000,
+      maxEventLoopUtilization: 0.98,
+      retryAfter: 10,
+      pressureHandler: (request) => {
+        const path = request.url.split('?', 1)[0];
+        if (path === '/healthz' || path === '/readyz') return undefined;
+        return Promise.reject(domainErrors.unavailable('The server is under pressure', 10));
+      },
+    });
   await setupCors(app);
   setupCsrf(app, { trustedOrigins: [new URL(env.PUBLIC_SITE_URL).origin, ...env.CSRF_TRUSTED_ORIGINS] });
   setupContext(app, {
@@ -202,6 +211,8 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
   });
   platform.rateLimiter = await setupRateLimit(app, options.rateLimits);
   await setupCacheHeaders(app);
+  // After the cache headers: its onSend hooks demote cookie-setting/private responses.
+  await setupSecurity(app, { env });
 
   registerHealth(app);
   await setupDocs(app, { version: env.GIT_SHA, siteUrl: env.PUBLIC_SITE_URL });

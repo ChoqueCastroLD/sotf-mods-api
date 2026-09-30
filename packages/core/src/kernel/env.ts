@@ -87,6 +87,30 @@ export const commonServerEnv = {
   GIT_SHA: z.string().trim().default('dev'),
 } as const;
 
+/**
+ * Listening ports of the server processes (PLAN §11.2, §11.4): Coolify sets `PORT` explicitly
+ * (3001/3002); local development (`pnpm dev`) uses the 47xxx range so the web
+ * (`INTERNAL_API_URL=http://127.0.0.1:47301`) finds the API without extra configuration.
+ */
+export const SERVER_PORTS = {
+  api: { production: 3001, development: 47_301 },
+  worker: { production: 3002, development: 47_302 },
+} as const;
+
+/**
+ * `source` with `PORT` filled in when it is unset or empty: the production port when
+ * `NODE_ENV=production`, the development port otherwise (development and test).
+ */
+export function withDefaultPort<T extends Record<string, string | undefined>>(
+  source: T,
+  app: keyof typeof SERVER_PORTS,
+): T & { PORT: string } {
+  if (source.PORT !== undefined && source.PORT.trim() !== '') return source as T & { PORT: string };
+  const ports = SERVER_PORTS[app];
+  const port = source.NODE_ENV?.trim() === 'production' ? ports.production : ports.development;
+  return { ...source, PORT: String(port) };
+}
+
 /** Formats Zod issues as the start-up error message. */
 export function formatEnvError(app: string, error: z.ZodError): string {
   const lines = error.issues.map((issue) => `  - ${issue.path.join('.') || 'env'}: ${issue.message}`);

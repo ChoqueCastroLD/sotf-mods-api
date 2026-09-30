@@ -73,6 +73,8 @@ export async function buildTestApp(options: TestAppOptions = {}): Promise<TestAp
   try {
     app = await buildApp({
       startDependencies: 'await',
+      // A saturated shared host would otherwise turn requests into 503 "under pressure".
+      underPressure: false,
       sessionResolver: headerSessionResolver,
       ...rest,
       env,

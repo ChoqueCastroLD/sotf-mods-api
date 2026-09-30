@@ -4,12 +4,22 @@
  */
 import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { commonServerEnv, envFlag, envInt, envOptional, envUrl, formatEnvError } from '@sotf/core';
+import {
+  commonServerEnv,
+  envFlag,
+  envInt,
+  envOptional,
+  envUrl,
+  formatEnvError,
+  SERVER_PORTS,
+  withDefaultPort,
+} from '@sotf/core';
 import { z } from 'zod';
 
 export const apiEnvSchema = z.object({
   ...commonServerEnv,
-  PORT: envInt(3001, 1, 65_535),
+  /** Unset: 3001 with NODE_ENV=production (Coolify), 47301 otherwise (`pnpm dev`, PLAN §11.2). */
+  PORT: envInt(SERVER_PORTS.api.production, 1, 65_535),
   HOST: z.string().trim().min(1).default('0.0.0.0'),
   DB_POOL_MAX: envInt(10, 1, 100),
   LEGACY_SNAKE_ALIASES: envFlag(false),
@@ -56,7 +66,7 @@ export type ApiEnv = z.output<typeof apiEnvSchema>;
 
 /** Parses an environment (defaults to `process.env`); throws with a readable message. */
 export function parseApiEnv(source: Record<string, string | undefined> = process.env): ApiEnv {
-  const parsed = apiEnvSchema.safeParse(source);
+  const parsed = apiEnvSchema.safeParse(withDefaultPort(source, 'api'));
   if (!parsed.success) throw new Error(formatEnvError('@sotf/api', parsed.error));
   return parsed.data;
 }

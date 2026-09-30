@@ -4,6 +4,7 @@
  * announcements and settings have their own domains. Import from `@sotf/core/admin/index`.
  */
 export * from './awards.ts';
+export * from './curation.ts';
 export * from './recategorize.ts';
 export * from './taxonomy.ts';
 export * from './usage.ts';
