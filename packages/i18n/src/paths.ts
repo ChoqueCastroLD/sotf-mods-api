@@ -33,9 +33,10 @@ export const UNLOCALIZED_SEGMENTS: ReadonlySet<string> = new Set([
   'fonts',
   'static',
   'sitemaps',
-  // Endpoints without a page (PLAN §4.2, §4.4).
+  // Endpoints without a page (PLAN §4.2, §4.4) and the web health check (PLAN §10.3).
   'logout',
   'oembed',
+  'healthz',
 ]);
 
 /** File extensions of machine endpoints (`/sitemap.xml`, `/feed.xml`, `/llms.txt`, `/mods/u/s.md`…). */

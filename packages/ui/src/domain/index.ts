@@ -96,8 +96,10 @@ export {
   formatDateTime,
   formatRating,
   formatShare,
+  profilePath,
   SLOT,
   useDomainI18n,
+  useProfileHref,
   withSlot,
 } from './i18n.ts';
 export { formatIcu, type IcuParams, parseIcu } from './icu.ts';

@@ -184,6 +184,7 @@ catalog:
   web-vitals: 6.2.2
   # Errors
   '@sentry/node': 11.1.0
+  '@sentry/core': 11.1.0
   '@sentry/astro': 11.1.0
   '@sentry/react': 11.1.0
   # Tests

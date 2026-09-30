@@ -41,6 +41,7 @@
     "@fontsource-variable/onest": "catalog:",
     "@fontsource-variable/sofia-sans-extra-condensed": "catalog:",
     "@sotf/brand": "workspace:*",
+    "@sotf/contracts": "workspace:*",
     "@tailwindcss/typography": "catalog:",
     "lucide-react": "catalog:",
     "sonner": "catalog:",

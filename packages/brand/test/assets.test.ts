@@ -166,6 +166,15 @@ describe('reproducibility (build:assets)', () => {
         expect(file.bytes.equals(committed), file.path).toBe(true);
       }
     }
+    // The rebuilt manifest may differ only in the raster entries (PNG/ICO encoder drift).
+    const rebuilt = files.find((file) => file.path === 'manifest.json');
+    expect(rebuilt).toBeDefined();
+    const rebuiltManifest = JSON.parse((rebuilt as BuiltFile).bytes.toString('utf8')) as Manifest;
+    const vectors = (m: Manifest) =>
+      Object.fromEntries(Object.entries(m.files).filter(([path]) => !/\.(?:png|ico)$/.test(path)));
+    expect(Object.keys(vectors(manifest)).length).toBeGreaterThan(0);
+    expect(vectors(rebuiltManifest)).toEqual(vectors(manifest));
+    expect(Object.keys(rebuiltManifest.files).sort()).toEqual(Object.keys(manifest.files).sort());
   });
 
   it('measures raster drift instead of accepting any image', async () => {

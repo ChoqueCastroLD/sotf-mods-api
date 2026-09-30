@@ -1,13 +1,15 @@
 /**
  * Configuration shared by the notification job groups (notifications, digests, discord,
  * legacy-mentions): the email transport and sender, the public URLs and the coexistence flag.
- * Tests pass explicit options; production reads the worker environment once, lazily.
+ * Tests pass explicit options; production reads the worker environment (`JobContext.services`)
+ * once, lazily.
  */
 import { createTransport, type EmailTransport } from '@sotf/core/email/index';
 import type { NotificationEmailRenderer, NotificationMailer } from '@sotf/core/notifications/index';
 import { renderNotificationEmail } from '@sotf/emails/notifications/index';
 import type { JobContext } from '../../define-job.ts';
-import { parseWorkerEnv } from '../../env.ts';
+import type { WorkerEnv } from '../../env.ts';
+import type { WorkerServices } from '../../services.ts';
 
 export interface NotificationJobOptions {
   transport: EmailTransport;
@@ -25,8 +27,7 @@ export interface NotificationJobOptions {
 
 export type NotificationOptionsSource = NotificationJobOptions | (() => NotificationJobOptions);
 
-export function notificationOptionsFromEnv(): NotificationJobOptions {
-  const env = parseWorkerEnv();
+export function notificationOptionsFromEnv(env: WorkerEnv): NotificationJobOptions {
   return {
     transport: createTransport(env),
     from: env.EMAIL_FROM,
@@ -36,11 +37,14 @@ export function notificationOptionsFromEnv(): NotificationJobOptions {
   };
 }
 
-/** Resolves the options once (the environment is read on the first job, not at import). */
-export function lazyOptions(source?: NotificationOptionsSource): () => NotificationJobOptions {
+/**
+ * Resolves the options once, on the first job: the explicit source (tests) or the environment of
+ * the worker running the job (`JobContext.services.env`).
+ */
+export function lazyOptions(source?: NotificationOptionsSource): (services: WorkerServices) => NotificationJobOptions {
   let resolved: NotificationJobOptions | null = null;
-  return () => {
-    resolved ??= typeof source === 'function' ? source() : (source ?? notificationOptionsFromEnv());
+  return (services) => {
+    resolved ??= typeof source === 'function' ? source() : (source ?? notificationOptionsFromEnv(services.env));
     return resolved;
   };
 }

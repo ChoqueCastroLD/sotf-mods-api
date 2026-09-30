@@ -107,6 +107,8 @@ SELECT jsonb_build_object(
 
 -- @section v2
 WITH
+-- The FIRST audit row of a (table, row, column) holds the original legacy value: chains such as
+-- B4 → B4M (both audit "Mod"."type") must undo to the pre-B4 value. Keep the ORDER BY "id".
 audit AS (
   SELECT DISTINCT ON ("tableName", "rowId", "columnName") "tableName", "rowId", "columnName", "oldValue"
     FROM "DataFixAudit" WHERE "revertedAt" IS NULL AND "columnName" <> '*'

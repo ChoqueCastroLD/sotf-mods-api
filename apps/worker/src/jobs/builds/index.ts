@@ -8,15 +8,14 @@
  */
 import { extractBuild } from '@sotf/core/builds/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
-import { workerStorage } from '../uploads/index.ts';
 
 export default defineJobGroup({
   name: 'builds',
   jobs: [
     defineJob({
       queue: 'build.extract',
-      handler: async ({ uploadId, modVersionId }, { ctx }) => {
-        const storage = workerStorage();
+      handler: async ({ uploadId, modVersionId }, { ctx, services }) => {
+        const storage = services.storage();
         if (!storage) {
           ctx.log.warn({ uploadId }, 'build.extract skipped: R2 is not configured');
           return { status: 'skipped', reason: 'no_storage' };

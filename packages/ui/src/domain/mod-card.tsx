@@ -28,6 +28,7 @@ import {
   formatRating,
   SLOT,
   useDomainI18n,
+  useProfileHref,
   withSlot,
 } from './i18n.ts';
 import { CardLink, Cover, cardClasses, cardControlClasses, Placeholder } from './shared.tsx';
@@ -179,6 +180,7 @@ function Rating({ mod, className }: { mod: ModCardDTO; className?: string }) {
 
 function Byline({ mod, className }: { mod: ModCardDTO; className?: string }) {
   const { t, taxonomy } = useDomainI18n();
+  const profileHref = useProfileHref();
   const category = mod.category ? (taxonomy?.(mod.category.nameKey, mod.category.name) ?? mod.category.name) : null;
   return (
     <p className={cn('flex min-w-0 items-center gap-1 text-xs text-fg-muted', className)}>
@@ -187,7 +189,7 @@ function Byline({ mod, className }: { mod: ModCardDTO; className?: string }) {
           t('ui_domain_by_author', { author: SLOT }),
           <a
             key="author"
-            href={`/profile/${encodeURIComponent(mod.userHandle)}`}
+            href={profileHref(mod.userHandle)}
             className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline')}
           >
             {mod.userDisplayName}

@@ -20,6 +20,7 @@
     "@node-rs/argon2": "catalog:",
     "@node-rs/bcrypt": "catalog:",
     "@react-email/components": "catalog:",
+    "@sentry/core": "catalog:",
     "@sotf/contracts": "workspace:*",
     "@sotf/core": "workspace:*",
     "@sotf/db": "workspace:*",

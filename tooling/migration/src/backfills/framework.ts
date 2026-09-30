@@ -19,7 +19,27 @@ import { inTransaction } from '../db.ts';
 
 export const BACKFILL_LOCK_KEY = '4705206785634133331';
 
-export type BackfillId = 'B1' | 'B2' | 'B3' | 'B4' | 'B5' | 'B6' | 'B7' | 'B9' | 'B10' | 'B11' | 'B12' | 'B13' | 'B14';
+/**
+ * Database backfills run by this package: B1–B7 and B9–B14 through `pnpm db:backfill`, and the
+ * manifest fixes of the R2 pass (`B8`, `B4M`, `backfills-r2/manifest-fixes.ts`, WP-84) through
+ * `pnpm --filter @sotf/migration-tools r2:manifest-fixes`, which share the same runner.
+ */
+export type BackfillId =
+  | 'B1'
+  | 'B2'
+  | 'B3'
+  | 'B4'
+  | 'B4M'
+  | 'B5'
+  | 'B6'
+  | 'B7'
+  | 'B8'
+  | 'B9'
+  | 'B10'
+  | 'B11'
+  | 'B12'
+  | 'B13'
+  | 'B14';
 
 export interface BackfillContext {
   client: pg.Client;

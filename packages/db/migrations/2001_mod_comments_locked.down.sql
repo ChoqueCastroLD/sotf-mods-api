@@ -1,0 +1,1 @@
+ALTER TABLE "Mod" DROP COLUMN IF EXISTS "commentsLockedAt";

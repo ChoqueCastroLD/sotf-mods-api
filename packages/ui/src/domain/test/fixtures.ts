@@ -7,15 +7,12 @@ import {
   CreatorCardDTO as CreatorCardSchema,
   ModCardDTO as ModCardSchema,
   ModDetailDTO as ModDetailSchema,
-} from '../../../../contracts/src/catalog.ts';
-import { CommentDTO as CommentSchema } from '../../../../contracts/src/comments.ts';
-import { exampleOf, examplesOf } from '../../../../contracts/src/dto.ts';
-import { KitCardDTO as KitCardSchema } from '../../../../contracts/src/kits.ts';
-import {
-  ReviewDTO as ReviewSchema,
-  ReviewsSummaryDTO as ReviewsSummarySchema,
-} from '../../../../contracts/src/reviews.ts';
-import { DependencyDTO as DependencySchema, VersionDTO as VersionSchema } from '../../../../contracts/src/versions.ts';
+} from '@sotf/contracts/catalog';
+import { CommentDTO as CommentSchema } from '@sotf/contracts/comments';
+import { exampleOf, examplesOf } from '@sotf/contracts/dto';
+import { KitCardDTO as KitCardSchema } from '@sotf/contracts/kits';
+import { ReviewDTO as ReviewSchema, ReviewsSummaryDTO as ReviewsSummarySchema } from '@sotf/contracts/reviews';
+import { DependencyDTO as DependencySchema, VersionDTO as VersionSchema } from '@sotf/contracts/versions';
 import type {
   CommentDTO,
   CreatorCardDTO,

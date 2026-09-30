@@ -9,6 +9,8 @@ import type { JobGroup } from './define-job.ts';
 import type { WorkerEnv } from './env.ts';
 import { jobGroups as registeredGroups } from './jobs/_registry.gen.ts';
 import { type RuntimeState, startRuntime } from './runtime.ts';
+import { type ErrorReporter, noopReporter } from './sentry.ts';
+import { createWorkerServices, type WorkerServices } from './services.ts';
 
 export interface CreateWorkerOptions {
   env: WorkerEnv;
@@ -23,6 +25,10 @@ export interface CreateWorkerOptions {
   pollingIntervalSeconds?: number;
   /** pg-boss maintenance (supervise) and cron processing (default true). */
   maintenance?: boolean;
+  /** Error reporting of failed jobs (default: none; `src/worker.ts` passes Sentry). */
+  reporter?: ErrorReporter;
+  /** Services handed to the jobs (default: built from `env`). */
+  services?: WorkerServices;
 }
 
 export interface Worker {
@@ -31,6 +37,7 @@ export interface Worker {
   db: DbHandle;
   log: Logger;
   deps: KernelDeps & { jobs: Jobs };
+  services: WorkerServices;
   readonly started: boolean;
   start(): Promise<RuntimeState>;
   /** Graceful stop: waits for active jobs (up to `timeoutMs`), then closes pg-boss and the pool. */
@@ -60,6 +67,8 @@ export function createWorker(options: CreateWorkerOptions): Worker {
   const clock = options.clock ?? systemClock;
   const jobs = new Jobs(boss, { clock });
   const deps = { db: db.db, jobs, clock, log, appSecret: env.APP_SECRET };
+  const reporter = options.reporter ?? noopReporter;
+  const services = options.services ?? createWorkerServices(env);
   let started = false;
 
   return {
@@ -68,6 +77,7 @@ export function createWorker(options: CreateWorkerOptions): Worker {
     db,
     log,
     deps,
+    services,
     get started() {
       return started;
     },
@@ -76,11 +86,13 @@ export function createWorker(options: CreateWorkerOptions): Worker {
       const state = await startRuntime({
         boss,
         deps,
+        services,
         groups: options.groups ?? registeredGroups,
         legacyCoexist: env.LEGACY_COEXIST,
         concurrency: env.WORKER_CONCURRENCY,
         schedules: options.schedules,
         pollingIntervalSeconds: options.pollingIntervalSeconds,
+        onJobError: reporter.enabled ? (error, info) => reporter.captureJobError(error, info) : undefined,
       });
       started = true;
       return state;

@@ -16,7 +16,7 @@ import { cn } from '../cn.ts';
 import { Icon } from '../icons.tsx';
 import { ProseLocator } from './content.tsx';
 import type { CommentDTO } from './contracts.ts';
-import { formatCount, formatDate, formatDateTime, useDomainI18n } from './i18n.ts';
+import { formatCount, formatDate, formatDateTime, useDomainI18n, useProfileHref } from './i18n.ts';
 import { TrustedMark } from './stamps.tsx';
 
 /** A top-level comment or a reply (same fields). */
@@ -50,6 +50,7 @@ export interface CommentItemProps {
 
 export function CommentItem({ comment, actions, reactions, children, permalink, className }: CommentItemProps) {
   const { t, locale, timeZone } = useDomainI18n();
+  const profileHref = useProfileHref();
   const deleted = comment.status === 'deleted';
   const author = deleted ? null : comment.author;
   const name = author?.displayName ?? t('ui_domain_deleted_user');
@@ -75,10 +76,7 @@ export function CommentItem({ comment, actions, reactions, children, permalink, 
         <div className="flex min-w-0 flex-1 flex-col gap-1.5">
           <header className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             {author ? (
-              <a
-                href={`/profile/${encodeURIComponent(author.handle)}`}
-                className="font-semibold text-fg hover:underline"
-              >
+              <a href={profileHref(author.handle)} className="font-semibold text-fg hover:underline">
                 {name}
               </a>
             ) : (
