@@ -61,6 +61,18 @@ describe('hashing', () => {
     expect(() => dailySalt(SECRET, '2026-9-1')).toThrow();
   });
 
+  it('memoises the daily salt per secret and day without mixing them', () => {
+    const salt = dailySalt(SECRET, '2026-09-30');
+    expect(dailySalt(SECRET, '2026-09-30')).toBe(salt);
+    expect(dailySalt(`${SECRET}y`, '2026-09-30').equals(salt)).toBe(false);
+    // More days than the memo holds: values stay right after evictions.
+    const days = Array.from({ length: 12 }, (_, i) => `2026-10-${String(i + 1).padStart(2, '0')}`);
+    const first = days.map((d) => dailySalt(SECRET, d).toString('hex'));
+    expect(new Set(first).size).toBe(12);
+    expect(days.map((d) => dailySalt(SECRET, d).toString('hex'))).toEqual(first);
+    expect(ipHash(SECRET, '203.0.113.7', '2026-09-30')).toBe(ipHash(SECRET, '203.0.113.7', '2026-09-30'));
+  });
+
   it('normalizes IPs', () => {
     expect(normalizeIp('FE80::1%eth0')).toBe('fe80::1');
     expect(normalizeIp('::ffff:10.0.0.1')).toBe('10.0.0.1');
