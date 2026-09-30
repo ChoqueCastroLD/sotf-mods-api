@@ -33,7 +33,6 @@ const PUBLIC_SECTIONS: ReadonlySet<string> = new Set([
   'about',
   'brand',
   'developers',
-  'kelvinseek',
   'privacy',
   'terms',
   'content-policy',

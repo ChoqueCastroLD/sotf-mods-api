@@ -1,7 +1,7 @@
 # Landing (`/`, WP-53, T0-05)
 
 `pages/index.astro` loads every block in parallel from the public API (`data.ts`, 800 ms budget per
-call) and renders: hero «The living island» (`Hero.astro`, `PinItem.astro`, `pins.ts`) · personal
+call) and renders: hero «The living island» (`Hero.astro`, `IslandMap.astro`, `MapCanvas.astro`, `island-map.ts`) · personal
 block (`PersonalBlock.astro`, hidden) · Start here · Patch Radar band · Trending · Regions · Field
 notes · Featured Kit · Mod of the Week · Blueprints · Creator spotlight · FAQ (`content/faq`,
 13 locales) · footer (layout). Cards are the `@sotf/ui/domain` components, server-rendered in a

@@ -19,7 +19,7 @@ import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import AdUnit from '../components/ads/AdUnit.astro';
 import BlueprintCards from '../components/landing/BlueprintCards.tsx';
-import CreatorCards from '../components/landing/CreatorCards.tsx';
+import CreatorSpotlight from '../components/landing/CreatorSpotlight.astro';
 import { categoryNames, currentBuildLabel, currentLoader, loadLanding } from '../components/landing/data.ts';
 import type { DomainScopeProps } from '../components/landing/domain.tsx';
 import EmptyNote from '../components/landing/EmptyNote.astro';
@@ -33,7 +33,6 @@ import ModOfWeekCard from '../components/landing/ModOfWeekCard.tsx';
 import PatchRadarBand from '../components/landing/PatchRadarBand.astro';
 import PersonalBlock from '../components/landing/PersonalBlock.astro';
 import PicksTabs from '../components/landing/PicksTabs.astro';
-import { catalogPins, pulsePins } from '../components/landing/pins.ts';
 import Regions from '../components/landing/Regions.astro';
 import SectionError from '../components/landing/SectionError.astro';
 import SectionHeader from '../components/landing/SectionHeader.astro';
@@ -105,7 +104,6 @@ const jsonLd = [
   faqPageJsonLd(faq, pageUrl, locale),
 ];
 
-const pins = [...pulsePins(data.pulse), ...catalogPins(data.builds?.[0], data.kit)].slice(0, 5);
 const modOfWeek = data.awards?.modOfWeek ?? null;
 const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6 md:py-14';
 ---
@@ -117,7 +115,8 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6
     pulse={data.pulse}
     currentBuild={currentBuild}
     loader={loader}
-    pins={pins}
+    mapSources={{ trending: data.trending, updated: data.picks.updated, legends: data.legends }}
+    categories={data.categories}
   />
 
   <PersonalBlock locale={locale} />
@@ -214,7 +213,7 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6
   }
 
   {
-    data.creators !== null && data.creators.length > 0 && (
+    data.creators !== null && (data.creators.legends.length > 0 || data.creators.rising.length > 0) && (
       <section class={sectionClass} aria-labelledby="creators-title">
         <SectionHeader
           id="creators-title"
@@ -222,7 +221,7 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-10 md:px-6
           hint={m.landing_creators_hint()}
           link={{ href: href('/creators', locale), label: m.landing_creators_all() }}
         />
-        <CreatorCards scope={scope} creators={data.creators} />
+        <CreatorSpotlight locale={locale} legends={data.creators.legends} rising={data.creators.rising} />
         <AdUnit placement="home" format="inline" class="mt-8" />
       </section>
     )

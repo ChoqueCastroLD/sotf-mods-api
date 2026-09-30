@@ -240,5 +240,8 @@
   "mod_stats_loading": "Wczytywanie wykresu…",
   "mod_graph_title": "Graf zależności",
   "mod_graph_label": "Graf zależności modu {name}",
-  "mod_graph_required_by": "Wymagany przez"
+  "mod_graph_required_by": "Wymagany przez",
+  "mod_compat_report_cta": "Zgłoś, czy działa",
+  "mod_action_more": "Więcej akcji",
+  "mod_action_report_mod": "Zgłoś tego moda"
 }

@@ -43,7 +43,6 @@ const GUIDE_TITLES: Readonly<Record<string, string>> = {
   install: 'How to install Sons of the Forest mods',
   developers: 'Build on the SOTF Mods API',
   about: 'About SOTF Mods',
-  kelvinseek: 'KelvinSeek',
   brand: 'SOTF Mods brand',
 };
 

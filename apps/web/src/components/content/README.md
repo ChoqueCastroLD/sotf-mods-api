@@ -2,7 +2,7 @@
 
 Editorial and informational pages of the public site: `/install`, `/patch-radar` (+ `/:build`),
 `/privacy`, `/terms`, `/content-policy`, `/dmca`, `/cookies`, `/about`, `/brand`, `/developers`,
-`/kelvinseek`, `/news` (+ `/:slug`, `/news/feed.xml`).
+`/news` (+ `/:slug`, `/news/feed.xml`).
 
 ## Where things live
 
@@ -36,6 +36,5 @@ Editorial and informational pages of the public site: `/install`, `/patch-radar`
 ## Caching
 
 Guides, legal, about, brand, developers and news: `pageCache.static()` (a day at the edge, purged on
-deploy). `/install` adds `list:kits` (starter Kit), `/kelvinseek` the mod's `mod:{id}`/`user:{id}`
-tags; both drop to 5 min when their optional read failed. Patch Radar: `pageCache.compat()` (E300,
+deploy). `/install` adds `list:kits` (starter Kit), which drops to 5 min when its optional read failed. Patch Radar: `pageCache.compat()` (E300,
 tag `compat`); 503 + `no-store` when the API is down.

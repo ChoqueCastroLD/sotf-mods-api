@@ -231,77 +231,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "新しい MOD、バージョン、アワード、マイルストーンをサイトが告知する場所。",
   "admin_integrations_title": "連携",
-  "admin_kelvin_budget": "1 日の予算",
-  "admin_kelvin_budget_alert_text": "今日の予算の {share} を使いました。予算を超えると、KelvinSeek は UTC の午前 0 時までオフライン応答を返します。",
-  "admin_kelvin_budget_alert_title": "今日の予算に近づいています",
-  "admin_kelvin_budget_used": "今日：{budget} のうち {spent}（{share}）。",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact"
-      ],
-      "match": {
-        "over__exact=0": "合計 {cost} · 入力トークン {tokensIn}、出力 {tokensOut} · 予算超過なし",
-        "over__exact=*": "合計 {cost} · 入力トークン {tokensIn}、出力 {tokensOut} · 予算超過 {over__number} 日"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__number = count: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "直近 {count__number} 日間"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "費用",
-  "admin_kelvin_col_day": "日付",
-  "admin_kelvin_col_fallbacks": "オフライン応答",
-  "admin_kelvin_col_requests": "リクエスト",
-  "admin_kelvin_col_tokens_in": "入力トークン",
-  "admin_kelvin_col_tokens_out": "出力トークン",
-  "admin_kelvin_config_description": "1 分以内に新しいリクエストへ適用されます。",
-  "admin_kelvin_config_title": "設定",
-  "admin_kelvin_cost_per_day": "1 日あたりの費用",
-  "admin_kelvin_daily_budget": "1 日の予算（USD）",
-  "admin_kelvin_daily_budget_hint": "UTC の午前 0 時にリセットされます。",
-  "admin_kelvin_description": "ゲーム内アシスタントの利用状況、費用、1 日の予算。",
-  "admin_kelvin_detail": "日別の詳細",
-  "admin_kelvin_enabled": "KelvinSeek を有効にする",
-  "admin_kelvin_enabled_hint": "オフのとき、ゲームにはオフライン応答だけが返ります。",
-  "admin_kelvin_error_budget": "0〜{max} の範囲で入力してください。",
-  "admin_kelvin_error_timeout": "{min}〜{max} ms の範囲で入力してください。",
-  "admin_kelvin_fallbacks": "オフライン応答",
-  "admin_kelvin_model": "モデル",
-  "admin_kelvin_no_usage": "この期間のリクエストはありません。",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__number = count: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "リクエスト · {count__number} 日間"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "KelvinSeek の設定を保存しました",
-  "admin_kelvin_timeout": "タイムアウト（ms）",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "今日の支出",
   "admin_kit_picks_col_followers": "フォロワー",
   "admin_kit_picks_col_items": "MOD",
   "admin_kit_picks_col_kit": "キット",
@@ -2213,7 +2142,6 @@
   "console_nav_game_builds": "ゲームのバージョン",
   "console_nav_inbox": "受信箱",
   "console_nav_integrations": "連携",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "コンソール",
   "console_nav_my_mods": "マイMOD",
   "console_nav_new_build": "新しい建築",
@@ -2338,7 +2266,6 @@
         "bucket=anonymousRead": "API v2 の読み取り",
         "bucket=legacyRead": "旧 API の読み取り",
         "bucket=downloads": "ダウンロード",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2361,8 +2288,6 @@
   "content_dev_legacy_deprecated": "凍結・非推奨",
   "content_dev_legacy_deprecated_text": "これらのルートは {date} まで応答し、その後廃止されます。レスポンスには次のヘッダーが付きます：",
   "content_dev_legacy_deviations": "旧動作との意図的な違い",
-  "content_dev_legacy_kelvin_text": "言語モデルが利用できない場合（キーなし、タイムアウト、1日の予算超過）でも /api/kelvinseek/prompt は失敗せず、従来の決定論的フォールバック \"COMMAND|I will … right away (Chat GPT API Error …)\" を返すため、ゲーム内ボットは動作し続けます。",
-  "content_dev_legacy_kelvin_title": "KelvinSeekのフォールバック",
   "content_dev_legacy_retired": "廃止済み",
   "content_dev_legacy_retired_text": "これらのルートはどのメソッドでも、次の本文とともに 410 Gone を返します：",
   "content_dev_legacy_retired_write": "廃止された書き込みルート（アップロード、編集、コメント、投票）も同じエンベロープで410を返します：status false、error GONE。トークン付きのv2 APIを使用してください。",
@@ -2429,62 +2354,6 @@
   ],
   "content_install_tldr": "要点",
   "content_install_verified": "ゲーム {game} · RedLoader {loader} で確認済み",
-  "content_kelvin_by": "作者：",
-  "content_kelvin_credit": "KelvinSeek は {author} が制作・保守しています。SOTF Mods は通信先の API を運用しているだけです。ケルヴィンと Sons of the Forest は Endnight Games に帰属します。これはファンプロジェクトです。",
-  "content_kelvin_description": "KelvinSeek を使うと、Sons of the Forest でケルヴィンとチャットし、自分の言葉で指示を出せます。仕組み、制限、メッセージの扱いについて。",
-  "content_kelvin_dev_hint": "似たものを作っていますか？このエンドポイントは旧 API の一部です：",
-  "content_kelvin_eyebrow": "コミュニティ MOD",
-  "content_kelvin_history_text": "以前は Kelvin-GPT という名前でした。自分の OpenAI キーを必要とした旧版は廃止されました。そのルートはアドレスにキーが露出していたため、現在は「Gone」を返します。",
-  "content_kelvin_how_1": "RedLoader と KelvinSeek MOD をインストールします。",
-  "content_kelvin_how_2": "ゲーム内でケルヴィンに近づき、E キーでメモ帳を開きます。",
-  "content_kelvin_how_3": "T キーで入力を始め、メッセージを書いて Enter を押します。",
-  "content_kelvin_how_4": "またはコンソールで「askkelvin …」と入力するとメッセージを送信、「clearkelvinchathistory」で新しい会話を始めます。",
-  "content_kelvin_how_title": "使い方",
-  "content_kelvin_install_hint": "MOD は初めて？まずはガイドから：",
-  "content_kelvin_lead": "自分の言葉でケルヴィンに書けば、返事をして頼んだことをやってくれます。丸太集めからシェルター作りまで。",
-  "content_kelvin_limits_budget": "AI サービスには 1 日の予算があります。使い切っても、ケルヴィンは翌日まで AI を使わずに最も近い既知の指示を選ぶので、ちゃんと伝わります。",
-  "content_kelvin_limits_busy": "書き込みが速すぎると、ケルヴィンが数秒の休憩を求めます。内容が失われることはありません。",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "プレイヤーごとに 1 分あたり最大 {perMinute__number} 件、1 日あたり最大 {perDay__number} 件のメッセージ。"
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "制限",
-  "content_kelvin_open_mod": "MOD のページを開く",
-  "content_kelvin_privacy_ai": "返事を生成するため、メッセージの本文は AI プロバイダーに送信されます。個人情報は書かないでください。",
-  "content_kelvin_privacy_hash": "MOD が送信するチャット ID（Steam ID と名前を含む）は、元に戻せないハッシュとしてのみ保存されます。",
-  "content_kelvin_privacy_link": "プライバシーポリシーを読む",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__number = days: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "ケルヴィンが文脈を覚えていられるよう、各会話の直近のメッセージは {days__number} 日間保存され、その後削除されます。"
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "メッセージの扱い",
-  "content_kelvin_status_compat": "ビルド {build}",
-  "content_kelvin_status_downloads": "ダウンロード数",
-  "content_kelvin_status_title": "SOTF Mods での状態",
-  "content_kelvin_status_unavailable": "MOD の現在の状態を読み込めませんでした。最新バージョンは MOD のページで確認できます。",
-  "content_kelvin_status_updated": "最終リリース",
-  "content_kelvin_status_version": "最新バージョン",
-  "content_kelvin_title": "KelvinSeek：ゲーム内でケルヴィンと話そう",
-  "content_kelvin_what_text": "KelvinSeek は {author} による MOD です。ケルヴィンに書いた内容を SOTF Mods の API 経由で AI サービスに送り、その答えをケルヴィンの返事に、頼みごとがあればゲーム内の指示の 1 つに変換します。自分の API キーは不要です。",
-  "content_kelvin_what_title": "KelvinSeek とは",
   "content_legal_eyebrow": "法的情報",
   "content_legal_other": "その他の法的ページ",
   "content_md_alert_caution": "注意",
@@ -4306,7 +4175,13 @@
   "landing_blueprints_hint": "コミュニティの最新の建築",
   "landing_creators_all": "すべてのクリエイター",
   "landing_creators_hint": "島を作るサバイバーたち",
+  "landing_creators_last_release": "最新リリース {when}",
+  "landing_creators_legends": "レジェンド",
+  "landing_creators_legends_hint": "累計ダウンロード数が多いクリエイター",
+  "landing_creators_rising": "ライジング",
+  "landing_creators_rising_hint": "過去90日間の新人・急成長クリエイター",
   "landing_creators_title": "注目のクリエイター",
+  "landing_creators_top": "代表Mod",
   "landing_faq_figures": "{date} 時点の数値です。",
   "landing_faq_hint": "カタログで確認した短い回答です。",
   "landing_faq_more": "詳しく見る",
@@ -4337,6 +4212,23 @@
   "landing_kit_hint": "レンジャーが選んだ、すぐに使えるMODセット",
   "landing_kit_open": "キットを開く",
   "landing_kit_title": "注目のキット",
+  "landing_map_kind_legend": "レジェンド",
+  "landing_map_kind_trending": "トレンド",
+  "landing_map_kind_updated": "更新",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 個のModをウェイポイントとして示した島マップ"
+      }
+    }
+  ],
+  "landing_map_legend_label": "マップの凡例",
+  "landing_map_title": "島マップ",
   "landing_motw_period": "{start} の週",
   "landing_motw_title": "今週のMOD",
   "landing_notes_all": "最近のアップデートをすべて見る",
@@ -4363,22 +4255,6 @@
   "landing_picks_cta_hint": "カテゴリ、互換性、ゲームバージョンなどで絞り込み",
   "landing_picks_tabs_label": "MODの並べ替え",
   "landing_picks_title": "次のMODを見つけよう",
-  "landing_pin_build": "人気の建築",
-  "landing_pin_download": "ダウンロード中 · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__number = count: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "キット · MOD {count__number} 件"
-      }
-    }
-  ],
-  "landing_pin_release": "v{version} に更新",
-  "landing_pins_label": "島のライブ情報",
   "landing_radar_breaking": "MODが壊れる更新",
   "landing_radar_cta": "動かないものを見る",
   "landing_radar_empty": "レーダーにはまだゲームパッチがありません。フィールドレポートは次の更新から始まります。",
@@ -4664,7 +4540,9 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "キットに追加",
   "mod_action_install": "導入方法",
+  "mod_action_more": "その他の操作",
   "mod_action_report": "通報",
+  "mod_action_report_mod": "このMODを報告",
   "mod_banner_archived_action": "後継 MOD へ",
   "mod_banner_archived_successor": "作者はこの MOD の更新を終了し、代わりに {name} を勧めています。",
   "mod_banner_archived_text": "作者はこの MOD の更新を終了しました。現在のパッチでは動かない可能性があります。",
@@ -4735,6 +4613,7 @@
   "mod_compat_prompt": "v{version} はゲームで動きましたか？",
   "mod_compat_prompt_action": "報告する",
   "mod_compat_report": "報告",
+  "mod_compat_report_cta": "動作するか報告する",
   "mod_copy_hash": "SHA-256 をコピー",
   "mod_cover_alt": "{name} のカバー画像",
   "mod_creator_follow": "作者をフォロー",
@@ -6422,7 +6301,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "MODを探す",
   "search_page_install": "MODのインストール方法",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "MODキット",
   "search_page_news": "ニュース",
   "search_page_patch_radar": "パッチレーダー",

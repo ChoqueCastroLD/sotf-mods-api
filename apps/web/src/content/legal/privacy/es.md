@@ -1,7 +1,7 @@
 ---
 title: Política de privacidad
 description: Qué datos personales recoge SOTF Mods, para qué, cuánto tiempo los guardamos, quién los trata por nosotros y cómo consultar, exportar o borrar tus datos.
-anchors: [controller, summary, data, purposes, analytics, kelvinseek, processors, retention, rights, children, transfers, security, changes, contact]
+anchors: [controller, summary, data, purposes, analytics, processors, retention, rights, children, transfers, security, changes, contact]
 ---
 
 # Quién es el responsable
@@ -47,10 +47,6 @@ No vendemos datos personales ni creamos perfiles publicitarios.
 
 Nuestra medición de audiencia propia (páginas vistas, búsquedas, descargas) no instala cookies ni guarda identificadores personales. Cada visita se cuenta con un hash de la IP y el navegador combinados con un secreto que rota cada día, así que las visitas no se pueden enlazar entre días ni con una persona. Si tu navegador envía **Global Privacy Control** o **Do Not Track**, no registramos la visita.
 
-# KelvinSeek (asistente del juego)
-
-El mod KelvinSeek envía tus mensajes de chat a nuestra API. Guardamos el identificador de chat que envía el mod (contiene tu id y nombre de Steam) solo como un hash irreversible con clave, conservamos los últimos mensajes de cada conversación durante 30 días para que el asistente mantenga el contexto, y enviamos el texto de tus mensajes a nuestro proveedor de IA para generar la respuesta. No escribas información personal en tus mensajes.
-
 # Quién trata datos por nosotros
 
 Usamos unos pocos proveedores, cada uno solo para su finalidad y con un acuerdo de encargo de tratamiento:
@@ -59,7 +55,6 @@ Usamos unos pocos proveedores, cada uno solo para su finalidad y con un acuerdo 
 |---|---|
 | Cloudflare | Distribución de contenido, seguridad, almacenamiento de archivos (R2) y protección contra bots (Turnstile) |
 | Resend | Envío de emails de cuenta y notificaciones |
-| OpenAI | Generar las respuestas de KelvinSeek (solo el texto de los mensajes) |
 | Google | Anuncios y herramienta de consentimiento, solo para invitados |
 | VirusTotal | Análisis de los archivos de mods publicados (solo archivos, sin datos personales) |
 | Sentry | Informes de errores, si se activa, con los datos personales desactivados |
@@ -75,7 +70,6 @@ Los moderadores ven lo necesario para moderar (por ejemplo, el contenido y el hi
 | Registros de descargas (IP con hash) | Se conservan para estadísticas |
 | Eventos de inicio de sesión | 90 días |
 | Sesiones | Hasta que caducan, más 30 días |
-| Conversaciones de KelvinSeek (id con hash) | 30 días |
 | Exportaciones de datos | 24 horas |
 | Cuentas borradas | Se anonimizan tras un periodo de gracia de 14 días |
 

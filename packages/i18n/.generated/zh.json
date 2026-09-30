@@ -231,77 +231,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "网站在哪里发布新模组、新版本、奖项和里程碑。",
   "admin_integrations_title": "集成",
-  "admin_kelvin_budget": "每日预算",
-  "admin_kelvin_budget_alert_text": "今日预算已用 {share}。超出预算后，KelvinSeek 会在 UTC 午夜前使用离线回复。",
-  "admin_kelvin_budget_alert_title": "接近今日预算",
-  "admin_kelvin_budget_used": "今日：{spent} / {budget}（{share}）。",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact"
-      ],
-      "match": {
-        "over__exact=0": "共 {cost} · 输入 {tokensIn} 个 token，输出 {tokensOut} 个 · 从未超出预算",
-        "over__exact=*": "共 {cost} · 输入 {tokensIn} 个 token，输出 {tokensOut} 个 · {over__number} 天超出预算"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__number = count: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "最近 {count__number} 天"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "费用",
-  "admin_kelvin_col_day": "日期",
-  "admin_kelvin_col_fallbacks": "离线回复",
-  "admin_kelvin_col_requests": "请求",
-  "admin_kelvin_col_tokens_in": "输入 token",
-  "admin_kelvin_col_tokens_out": "输出 token",
-  "admin_kelvin_config_description": "一分钟内对新请求生效。",
-  "admin_kelvin_config_title": "配置",
-  "admin_kelvin_cost_per_day": "每日费用",
-  "admin_kelvin_daily_budget": "每日预算（美元）",
-  "admin_kelvin_daily_budget_hint": "UTC 午夜重置。",
-  "admin_kelvin_description": "游戏内助手的使用量、费用和每日预算。",
-  "admin_kelvin_detail": "每日明细",
-  "admin_kelvin_enabled": "启用 KelvinSeek",
-  "admin_kelvin_enabled_hint": "关闭后，游戏只会收到离线回复。",
-  "admin_kelvin_error_budget": "介于 0 和 {max} 之间。",
-  "admin_kelvin_error_timeout": "介于 {min} 和 {max} 毫秒之间。",
-  "admin_kelvin_fallbacks": "离线回复",
-  "admin_kelvin_model": "模型",
-  "admin_kelvin_no_usage": "此期间没有请求。",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__number = count: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "请求 · {count__number} 天"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "KelvinSeek 设置已保存",
-  "admin_kelvin_timeout": "超时（毫秒）",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "今日花费",
   "admin_kit_picks_col_followers": "关注者",
   "admin_kit_picks_col_items": "模组",
   "admin_kit_picks_col_kit": "合集",
@@ -2213,7 +2142,6 @@
   "console_nav_game_builds": "游戏版本",
   "console_nav_inbox": "收件箱",
   "console_nav_integrations": "集成",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "控制台",
   "console_nav_my_mods": "我的模组",
   "console_nav_new_build": "新建建筑",
@@ -2338,7 +2266,6 @@
         "bucket=anonymousRead": "API v2 读取",
         "bucket=legacyRead": "旧版 API 读取",
         "bucket=downloads": "下载",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2361,8 +2288,6 @@
   "content_dev_legacy_deprecated": "已冻结并弃用",
   "content_dev_legacy_deprecated_text": "这些路由将响应至 {date}，之后停用。其响应包含以下头：",
   "content_dev_legacy_deviations": "与旧行为的有意差异",
-  "content_dev_legacy_kelvin_text": "当语言模型不可用（无密钥、超时或当日预算用尽）时，/api/kelvinseek/prompt 不会失败：它会返回旧版的确定性回退 \"COMMAND|I will … right away (Chat GPT API Error …)\"，游戏内机器人因此可继续工作。",
-  "content_dev_legacy_kelvin_title": "KelvinSeek 回退",
   "content_dev_legacy_retired": "已停用",
   "content_dev_legacy_retired_text": "这些路由上的任何方法都会返回 410 Gone 和以下内容：",
   "content_dev_legacy_retired_write": "已停用的写入路由（上传、编辑、评论、投票）同样返回 410 和相同的响应结构：status false、error GONE。请改用带令牌的 v2 API。",
@@ -2429,62 +2354,6 @@
   ],
   "content_install_tldr": "简而言之",
   "content_install_verified": "已在游戏 {game} · RedLoader {loader} 上验证",
-  "content_kelvin_by": "模组作者：",
-  "content_kelvin_credit": "KelvinSeek 由 {author} 制作和维护；SOTF Mods 只运行它所调用的 API。Kelvin 和 Sons of the Forest 属于 Endnight Games；这是一个粉丝项目。",
-  "content_kelvin_description": "KelvinSeek 让你在 Sons of the Forest 中与 Kelvin 聊天，并用自己的话给他下命令。了解它的工作方式、使用限制以及你的消息会如何处理。",
-  "content_kelvin_dev_hint": "在做类似的东西？该接口属于旧版 API：",
-  "content_kelvin_eyebrow": "社区模组",
-  "content_kelvin_history_text": "它以前叫 Kelvin-GPT。需要你自己 OpenAI 密钥的旧版本已停用：那个路由会在地址中暴露密钥，现在只返回“Gone”。",
-  "content_kelvin_how_1": "安装 RedLoader 和 KelvinSeek 模组。",
-  "content_kelvin_how_2": "在游戏中走到 Kelvin 身边，按 E 打开记事本。",
-  "content_kelvin_how_3": "按 T 输入，写下消息后按回车。",
-  "content_kelvin_how_4": "或者使用控制台：“askkelvin …”发送消息，“clearkelvinchathistory”开始新对话。",
-  "content_kelvin_how_title": "使用方法",
-  "content_kelvin_install_hint": "第一次用模组？先看指南：",
-  "content_kelvin_lead": "用自己的话写给 Kelvin，他会回应并照做——从搬木头到搭建庇护所。",
-  "content_kelvin_limits_budget": "AI 服务有每日预算。用完后 Kelvin 依然能理解你：在第二天之前，他会不借助 AI，选择最接近的已知命令。",
-  "content_kelvin_limits_busy": "如果你写得太快，Kelvin 会要求休息几秒。不会丢失任何内容。",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "每位玩家每分钟最多 {perMinute__number} 条消息，每天最多 {perDay__number} 条。"
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "限制",
-  "content_kelvin_open_mod": "打开模组页面",
-  "content_kelvin_privacy_ai": "你的消息文本会发送给 AI 提供商以生成回复。请不要填写个人信息。",
-  "content_kelvin_privacy_hash": "模组发送的聊天 ID（包含你的 Steam ID 和名称）只以不可逆的哈希形式保存。",
-  "content_kelvin_privacy_link": "阅读隐私政策",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__number = days: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "每段对话的最近消息会保存 {days__number} 天，以便 Kelvin 记住上下文，之后删除。"
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "你的消息",
-  "content_kelvin_status_compat": "在 {build} 上",
-  "content_kelvin_status_downloads": "下载量",
-  "content_kelvin_status_title": "在 SOTF Mods 上的状态",
-  "content_kelvin_status_unavailable": "无法加载模组的当前状态。模组页面上有最新版本。",
-  "content_kelvin_status_updated": "最近发布",
-  "content_kelvin_status_version": "最新版本",
-  "content_kelvin_title": "KelvinSeek：在游戏中和 Kelvin 对话",
-  "content_kelvin_what_text": "KelvinSeek 是 {author} 制作的模组。它通过 SOTF Mods API 将你写给 Kelvin 的内容发送给 AI 服务，并把回复变成 Kelvin 的回答；当你提出要求时，还会变成他的一条游戏内命令。你不需要自己的 API 密钥。",
-  "content_kelvin_what_title": "这是什么",
   "content_legal_eyebrow": "法律信息",
   "content_legal_other": "其他法律页面",
   "content_md_alert_caution": "小心",
@@ -4306,7 +4175,13 @@
   "landing_blueprints_hint": "来自社区的新鲜建筑",
   "landing_creators_all": "全部创作者",
   "landing_creators_hint": "建设这座岛的幸存者们",
+  "landing_creators_last_release": "最近发布 {when}",
+  "landing_creators_legends": "传奇",
+  "landing_creators_legends_hint": "历史下载量最高的创作者",
+  "landing_creators_rising": "新星",
+  "landing_creators_rising_hint": "过去 90 天内的新人和快速成长者",
   "landing_creators_title": "创作者聚光灯",
+  "landing_creators_top": "最佳模组",
   "landing_faq_figures": "数据截至 {date}。",
   "landing_faq_hint": "简短的回答，已与目录核对。",
   "landing_faq_more": "了解更多",
@@ -4337,6 +4212,23 @@
   "landing_kit_hint": "护林员挑选的一套即用模组",
   "landing_kit_open": "打开套装",
   "landing_kit_title": "精选套装",
+  "landing_map_kind_legend": "传奇",
+  "landing_map_kind_trending": "热门",
+  "landing_map_kind_updated": "已更新",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "岛屿地图，{count__number} 个模组标记为路径点"
+      }
+    }
+  ],
+  "landing_map_legend_label": "地图图例",
+  "landing_map_title": "岛屿地图",
   "landing_motw_period": "{start} 当周",
   "landing_motw_title": "本周模组",
   "landing_notes_all": "全部近期更新",
@@ -4363,22 +4255,6 @@
   "landing_picks_cta_hint": "按分类、兼容性、游戏版本等筛选",
   "landing_picks_tabs_label": "模组排序",
   "landing_picks_title": "发现你的下一个模组",
-  "landing_pin_build": "热门建筑",
-  "landing_pin_download": "正在下载 · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__number = count: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "套装 · {count__number} 个模组"
-      }
-    }
-  ],
-  "landing_pin_release": "已更新至 v{version}",
-  "landing_pins_label": "岛上实时动态",
   "landing_radar_breaking": "破坏性更新",
   "landing_radar_cta": "查看哪些不可用",
   "landing_radar_empty": "雷达上还没有游戏补丁。实地报告将从下一次更新开始。",
@@ -4664,7 +4540,9 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "加入套装",
   "mod_action_install": "安装",
+  "mod_action_more": "更多操作",
   "mod_action_report": "举报",
+  "mod_action_report_mod": "举报此模组",
   "mod_banner_archived_action": "前往替代模组",
   "mod_banner_archived_successor": "作者已不再维护此模组，并推荐改用 {name}。",
   "mod_banner_archived_text": "作者已不再维护此模组，它可能无法在当前补丁下运行。",
@@ -4735,6 +4613,7 @@
   "mod_compat_prompt": "v{version} 在你的游戏里能用吗？",
   "mod_compat_prompt_action": "报告",
   "mod_compat_report": "报告",
+  "mod_compat_report_cta": "报告是否可用",
   "mod_copy_hash": "复制 SHA-256",
   "mod_cover_alt": "{name} 的封面图",
   "mod_creator_follow": "关注作者",
@@ -6422,7 +6301,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "浏览模组",
   "search_page_install": "如何安装模组",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "模组合集",
   "search_page_news": "新闻",
   "search_page_patch_radar": "补丁雷达",

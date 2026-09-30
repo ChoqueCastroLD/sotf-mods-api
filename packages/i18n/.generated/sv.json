@@ -234,88 +234,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "Var sajten meddelar nya moddar, versioner, utmärkelser och milstolpar.",
   "admin_integrations_title": "Integrationer",
-  "admin_kelvin_budget": "Dagsbudget",
-  "admin_kelvin_budget_alert_text": "{share} av dagens budget är förbrukad. Över budgeten svarar KelvinSeek med sina offlinesvar fram till midnatt UTC.",
-  "admin_kelvin_budget_alert_title": "Nära dagens budget",
-  "admin_kelvin_budget_used": "I dag: {spent} av {budget} ({share}).",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__plural = over: plural",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact",
-        "over__plural"
-      ],
-      "match": {
-        "over__exact=0, over__plural=*": "{cost} totalt · {tokensIn} tokens in, {tokensOut} ut · aldrig över budget",
-        "over__exact=*, over__plural=one": "{cost} totalt · {tokensIn} tokens in, {tokensOut} ut · {over__number} dag över budget",
-        "over__exact=*, over__plural=*": "{cost} totalt · {tokensIn} tokens in, {tokensOut} ut · {over__number} dagar över budget"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Senaste dagen",
-        "count__plural=*": "Senaste {count__number} dagarna"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "Kostnad",
-  "admin_kelvin_col_day": "Dag",
-  "admin_kelvin_col_fallbacks": "Offlinesvar",
-  "admin_kelvin_col_requests": "Anrop",
-  "admin_kelvin_col_tokens_in": "Tokens in",
-  "admin_kelvin_col_tokens_out": "Tokens ut",
-  "admin_kelvin_config_description": "Gäller nya anrop inom en minut.",
-  "admin_kelvin_config_title": "Konfiguration",
-  "admin_kelvin_cost_per_day": "Kostnad per dag",
-  "admin_kelvin_daily_budget": "Dagsbudget (USD)",
-  "admin_kelvin_daily_budget_hint": "Nollställs vid midnatt UTC.",
-  "admin_kelvin_description": "Användning och kostnad för assistenten i spelet, och dess dagsbudget.",
-  "admin_kelvin_detail": "Detaljer per dag",
-  "admin_kelvin_enabled": "KelvinSeek på",
-  "admin_kelvin_enabled_hint": "Av: spelet får bara offlinesvaren.",
-  "admin_kelvin_error_budget": "Mellan 0 och {max}.",
-  "admin_kelvin_error_timeout": "Mellan {min} och {max} ms.",
-  "admin_kelvin_fallbacks": "Offlinesvar",
-  "admin_kelvin_model": "Modell",
-  "admin_kelvin_no_usage": "Inga anrop under perioden.",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Anrop · {count__number} dag",
-        "count__plural=*": "Anrop · {count__number} dagar"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "KelvinSeek-inställningar sparade",
-  "admin_kelvin_timeout": "Tidsgräns (ms)",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "Spenderat i dag",
   "admin_kit_picks_col_followers": "Följare",
   "admin_kit_picks_col_items": "Moddar",
   "admin_kit_picks_col_kit": "Kit",
@@ -2417,7 +2335,6 @@
   "console_nav_game_builds": "Spelversioner",
   "console_nav_inbox": "Inkorg",
   "console_nav_integrations": "Integrationer",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "Konsol",
   "console_nav_my_mods": "Mina moddar",
   "console_nav_new_build": "Nytt bygge",
@@ -2545,7 +2462,6 @@
         "bucket=anonymousRead": "Läsningar i API v2",
         "bucket=legacyRead": "Läsningar i äldre API",
         "bucket=downloads": "Nedladdningar",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2568,8 +2484,6 @@
   "content_dev_legacy_deprecated": "Frysta och utfasade",
   "content_dev_legacy_deprecated_text": "De här rutterna svarar till {date}, sedan stängs de. Deras svar har de här huvudena:",
   "content_dev_legacy_deviations": "Avsiktliga skillnader mot det gamla beteendet",
-  "content_dev_legacy_kelvin_text": "När språkmodellen inte är tillgänglig (ingen nyckel, timeout eller slut på dagsbudget) misslyckas inte /api/kelvinseek/prompt: den svarar med det deterministiska äldre reservsvaret \"COMMAND|I will … right away (Chat GPT API Error …)\", så spelboten fortsätter fungera.",
-  "content_dev_legacy_kelvin_title": "KelvinSeek-reservsvar",
   "content_dev_legacy_retired": "Stängda",
   "content_dev_legacy_retired_text": "Alla metoder på de här rutterna svarar 410 Gone med den här kroppen:",
   "content_dev_legacy_retired_write": "Avvecklade skrivrutter (uppladdningar, ändringar, kommentarer, röster) svarar också 410 med samma kuvert: status false, error GONE. Använd v2-API:et med en token.",
@@ -2636,66 +2550,6 @@
   ],
   "content_install_tldr": "I korthet",
   "content_install_verified": "Kontrollerad med spelet {game} · RedLoader {loader}",
-  "content_kelvin_by": "En modd av",
-  "content_kelvin_credit": "KelvinSeek skapas och underhålls av {author}; SOTF Mods kör bara API:t som den pratar med. Kelvin och Sons of the Forest tillhör Endnight Games; det här är ett fanprojekt.",
-  "content_kelvin_description": "Med KelvinSeek chattar du med Kelvin i Sons of the Forest och ger honom order med egna ord. Hur det fungerar, gränserna och vad som händer med dina meddelanden.",
-  "content_kelvin_dev_hint": "Bygger du något liknande? Slutpunkten ingår i det äldre API:t:",
-  "content_kelvin_eyebrow": "Gemenskapsmodd",
-  "content_kelvin_history_text": "Tidigare hette den Kelvin-GPT. Den gamla versionen som krävde din egen OpenAI-nyckel är stängd: den rutten visade nyckeln i adressen och svarar nu ”Gone”.",
-  "content_kelvin_how_1": "Installera RedLoader och modden KelvinSeek.",
-  "content_kelvin_how_2": "Gå fram till Kelvin i spelet och tryck E för att öppna anteckningsblocket.",
-  "content_kelvin_how_3": "Tryck T för att skriva, skriv ditt meddelande och tryck Enter.",
-  "content_kelvin_how_4": "Eller använd konsolen: ”askkelvin …” skickar ett meddelande och ”clearkelvinchathistory” startar en ny konversation.",
-  "content_kelvin_how_title": "Så använder du den",
-  "content_kelvin_install_hint": "Ny med moddar? Börja med guiden:",
-  "content_kelvin_lead": "Skriv till Kelvin med egna ord – han svarar och gör det du ber om, från att hämta stockar till att bygga ett skydd.",
-  "content_kelvin_limits_budget": "AI-tjänsten har en dagsbudget. När den tar slut förstår Kelvin dig ändå: han väljer utan AI den mest liknande kända ordern fram till nästa dag.",
-  "content_kelvin_limits_busy": "Skriver du för snabbt ber Kelvin om några sekunders paus. Inget går förlorat.",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "Upp till {perMinute__number} meddelanden per minut och {perDay__number} per dag och spelare."
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "Gränser",
-  "content_kelvin_open_mod": "Öppna moddsidan",
-  "content_kelvin_privacy_ai": "Texten i dina meddelanden skickas till AI-leverantören för att skapa svaret. Skriv inga personuppgifter.",
-  "content_kelvin_privacy_hash": "Chatt-id:t som modden skickar (det innehåller ditt Steam-id och namn) sparas bara som en oåterkallelig hash.",
-  "content_kelvin_privacy_link": "Läs integritetspolicyn",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__plural = days: plural",
-        "local days__number = days: number"
-      ],
-      "selectors": [
-        "days__plural"
-      ],
-      "match": {
-        "days__plural=one": "De senaste meddelandena i varje konversation sparas i {days__number} dag så att Kelvin minns sammanhanget, och raderas sedan.",
-        "days__plural=*": "De senaste meddelandena i varje konversation sparas i {days__number} dagar så att Kelvin minns sammanhanget, och raderas sedan."
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "Dina meddelanden",
-  "content_kelvin_status_compat": "På build {build}",
-  "content_kelvin_status_downloads": "Nedladdningar",
-  "content_kelvin_status_title": "Status på SOTF Mods",
-  "content_kelvin_status_unavailable": "Vi kunde inte läsa in moddens aktuella status. Moddsidan visar den senaste versionen.",
-  "content_kelvin_status_updated": "Senaste släpp",
-  "content_kelvin_status_version": "Senaste version",
-  "content_kelvin_title": "KelvinSeek: prata med Kelvin i spelet",
-  "content_kelvin_what_text": "KelvinSeek är en modd av {author}. Den skickar det du skriver till Kelvin till en AI-tjänst via SOTF Mods API och gör om svaret till Kelvins replik och, när du ber om något, till en av hans order i spelet. Du behöver ingen egen API-nyckel.",
-  "content_kelvin_what_title": "Vad det är",
   "content_legal_eyebrow": "Juridik",
   "content_legal_other": "Andra juridiska sidor",
   "content_md_alert_caution": "Försiktigt",
@@ -4748,7 +4602,13 @@
   "landing_blueprints_hint": "Färska byggen från communityn",
   "landing_creators_all": "Alla skapare",
   "landing_creators_hint": "Överlevarna som bygger ön",
+  "landing_creators_last_release": "Senaste version {when}",
+  "landing_creators_legends": "Legender",
+  "landing_creators_legends_hint": "De mest nedladdade skaparna genom tiderna",
+  "landing_creators_rising": "På uppgång",
+  "landing_creators_rising_hint": "Nya och snabbt växande de senaste 90 dagarna",
   "landing_creators_title": "Skapare i rampljuset",
+  "landing_creators_top": "Toppmod",
   "landing_faq_figures": "Siffror per {date}.",
   "landing_faq_hint": "Korta svar, kontrollerade mot katalogen.",
   "landing_faq_more": "Läs mer",
@@ -4787,6 +4647,27 @@
   "landing_kit_hint": "En färdig uppsättning moddar, vald av rangers",
   "landing_kit_open": "Öppna kitet",
   "landing_kit_title": "Utvalt kit",
+  "landing_map_kind_legend": "Legend",
+  "landing_map_kind_trending": "Trendar",
+  "landing_map_kind_updated": "Uppdaterad",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ökarta med {count__number} mod markerade som riktpunkter",
+        "count__plural=*": "Ökarta med {count__number} mods markerade som riktpunkter"
+      }
+    }
+  ],
+  "landing_map_legend_label": "Kartans teckenförklaring",
+  "landing_map_title": "Ökarta",
   "landing_motw_period": "Veckan från {start}",
   "landing_motw_title": "Veckans modd",
   "landing_notes_all": "Alla senaste uppdateringar",
@@ -4813,26 +4694,6 @@
   "landing_picks_cta_hint": "Filtrera på kategori, kompatibilitet, spelversion och mer",
   "landing_picks_tabs_label": "Sortera moddar",
   "landing_picks_title": "Hitta din nästa mod",
-  "landing_pin_build": "Populärt bygge",
-  "landing_pin_download": "Laddas ned · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Kit · {count__number} modd",
-        "count__plural=*": "Kit · {count__number} moddar"
-      }
-    }
-  ],
-  "landing_pin_release": "Uppdaterad till v{version}",
-  "landing_pins_label": "Live på ön",
   "landing_radar_breaking": "Uppdatering som bryter moddar",
   "landing_radar_cta": "Se vad som är trasigt",
   "landing_radar_empty": "Ingen spelpatch på radarn än. Fältrapporterna börjar med nästa uppdatering.",
@@ -5146,7 +5007,9 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "Kit",
   "mod_action_install": "Installera",
+  "mod_action_more": "Fler åtgärder",
   "mod_action_report": "Anmäl",
+  "mod_action_report_mod": "Anmäl den här modden",
   "mod_banner_archived_action": "Till efterföljaren",
   "mod_banner_archived_successor": "Skaparen underhåller inte längre den här moden och rekommenderar {name} i stället.",
   "mod_banner_archived_text": "Skaparen underhåller inte längre den här moden. Den kanske inte fungerar med den aktuella patchen.",
@@ -5224,6 +5087,7 @@
   "mod_compat_prompt": "Fungerade v{version} i ditt spel?",
   "mod_compat_prompt_action": "Rapportera",
   "mod_compat_report": "Rapportera",
+  "mod_compat_report_cta": "Rapportera om den fungerar",
   "mod_copy_hash": "Kopiera SHA-256",
   "mod_cover_alt": "Omslagsbild för {name}",
   "mod_creator_follow": "Följ skaparen",
@@ -7085,7 +6949,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "Utforska moddar",
   "search_page_install": "Så installerar du moddar",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "Moddpaket",
   "search_page_news": "Nyheter",
   "search_page_patch_radar": "Patchradar",

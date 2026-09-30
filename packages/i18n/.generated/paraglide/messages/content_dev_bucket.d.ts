@@ -8,7 +8,6 @@ export type Content_Dev_BucketInputs = {
 * | "anonymousRead" | "API v2 reads" |
 * | "legacyRead" | "Legacy API reads" |
 * | "downloads" | "Downloads" |
-* | "kelvinseek" | "KelvinSeek" |
 * | * | "{bucket}" |
 *
 * @param {Content_Dev_BucketInputs} inputs

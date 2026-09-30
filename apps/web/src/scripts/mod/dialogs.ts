@@ -42,6 +42,7 @@ export function initDialogs(root: HTMLElement, doc: Document = document): void {
     if (opener && root.contains(opener)) {
       const id = opener.dataset.dialogOpen ?? '';
       if (openDialog(id, opener, doc)) {
+        opener.closest('details[data-disclosure]')?.removeAttribute('open');
         event.preventDefault();
         const kind = opener.dataset.track as AnalyticsEventKind | undefined;
         if (kind) track(kind, pageEntity());

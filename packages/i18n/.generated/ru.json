@@ -236,94 +236,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "Куда сайт отправляет новости о новых модах, версиях, наградах и рубежах.",
   "admin_integrations_title": "Интеграции",
-  "admin_kelvin_budget": "Дневной бюджет",
-  "admin_kelvin_budget_alert_text": "Потрачено {share} сегодняшнего бюджета. После его исчерпания KelvinSeek до полуночи UTC отвечает офлайн-ответами.",
-  "admin_kelvin_budget_alert_title": "Бюджет на сегодня почти исчерпан",
-  "admin_kelvin_budget_used": "Сегодня: {spent} из {budget} ({share}).",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__plural = over: plural",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact",
-        "over__plural"
-      ],
-      "match": {
-        "over__exact=0, over__plural=*": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · бюджет ни разу не превышен",
-        "over__exact=*, over__plural=one": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} день сверх бюджета",
-        "over__exact=*, over__plural=few": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} дня сверх бюджета",
-        "over__exact=*, over__plural=many": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} дней сверх бюджета",
-        "over__exact=*, over__plural=*": "Всего {cost} · токенов на входе: {tokensIn}, на выходе: {tokensOut} · {over__number} дня сверх бюджета"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Последний {count__number} день",
-        "count__plural=few": "Последние {count__number} дня",
-        "count__plural=many": "Последние {count__number} дней",
-        "count__plural=*": "Последние {count__number} дня"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "Стоимость",
-  "admin_kelvin_col_day": "День",
-  "admin_kelvin_col_fallbacks": "Офлайн-ответы",
-  "admin_kelvin_col_requests": "Запросы",
-  "admin_kelvin_col_tokens_in": "Токены на входе",
-  "admin_kelvin_col_tokens_out": "Токены на выходе",
-  "admin_kelvin_config_description": "Применяется к новым запросам в течение минуты.",
-  "admin_kelvin_config_title": "Настройки",
-  "admin_kelvin_cost_per_day": "Стоимость по дням",
-  "admin_kelvin_daily_budget": "Дневной бюджет (USD)",
-  "admin_kelvin_daily_budget_hint": "Сбрасывается в полночь UTC.",
-  "admin_kelvin_description": "Использование и стоимость внутриигрового помощника, его дневной бюджет.",
-  "admin_kelvin_detail": "Подробно по дням",
-  "admin_kelvin_enabled": "KelvinSeek включён",
-  "admin_kelvin_enabled_hint": "Выключен: игра получает только офлайн-ответы.",
-  "admin_kelvin_error_budget": "От 0 до {max}.",
-  "admin_kelvin_error_timeout": "От {min} до {max} мс.",
-  "admin_kelvin_fallbacks": "Офлайн-ответы",
-  "admin_kelvin_model": "Модель",
-  "admin_kelvin_no_usage": "За этот период запросов не было.",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Запросы · {count__number} день",
-        "count__plural=few": "Запросы · {count__number} дня",
-        "count__plural=many": "Запросы · {count__number} дней",
-        "count__plural=*": "Запросы · {count__number} дня"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "Настройки KelvinSeek сохранены",
-  "admin_kelvin_timeout": "Тайм-аут (мс)",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "Потрачено сегодня",
   "admin_kit_picks_col_followers": "Подписчики",
   "admin_kit_picks_col_items": "Моды",
   "admin_kit_picks_col_kit": "Набор",
@@ -2531,7 +2443,6 @@
   "console_nav_game_builds": "Версии игры",
   "console_nav_inbox": "Входящие",
   "console_nav_integrations": "Интеграции",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "Консоль",
   "console_nav_my_mods": "Мои моды",
   "console_nav_new_build": "Новая постройка",
@@ -2661,7 +2572,6 @@
         "bucket=anonymousRead": "Чтение API v2",
         "bucket=legacyRead": "Чтение старого API",
         "bucket=downloads": "Скачивания",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2684,8 +2594,6 @@
   "content_dev_legacy_deprecated": "Заморожены и устарели",
   "content_dev_legacy_deprecated_text": "Эти маршруты отвечают до {date}, затем будут отключены. Их ответы содержат такие заголовки:",
   "content_dev_legacy_deviations": "Намеренные отличия от прежнего поведения",
-  "content_dev_legacy_kelvin_text": "Если языковая модель недоступна (нет ключа, тайм-аут или исчерпан дневной бюджет), /api/kelvinseek/prompt не падает: он отвечает прежним детерминированным резервным ответом \"COMMAND|I will … right away (Chat GPT API Error …)\", и игровой бот продолжает работать.",
-  "content_dev_legacy_kelvin_title": "Резервный ответ KelvinSeek",
   "content_dev_legacy_retired": "Отключены",
   "content_dev_legacy_retired_text": "Любой метод на этих маршрутах отвечает 410 Gone с таким телом:",
   "content_dev_legacy_retired_write": "Выведенные из работы маршруты записи (загрузки, правки, комментарии, голоса) тоже отвечают 410 с тем же конвертом: status false, error GONE. Используйте API v2 с токеном.",
@@ -2752,68 +2660,6 @@
   ],
   "content_install_tldr": "Коротко",
   "content_install_verified": "Проверено на игре {game} · RedLoader {loader}",
-  "content_kelvin_by": "Мод от",
-  "content_kelvin_credit": "KelvinSeek создаёт и поддерживает {author}; SOTF Mods только размещает API, с которым он общается. Кельвин и Sons of the Forest принадлежат Endnight Games; это фанатский проект.",
-  "content_kelvin_description": "KelvinSeek позволяет переписываться с Кельвином в Sons of the Forest и отдавать ему команды своими словами. Как это работает, какие есть ограничения и что происходит с вашими сообщениями.",
-  "content_kelvin_dev_hint": "Делаете что-то похожее? Эндпоинт входит в старый API:",
-  "content_kelvin_eyebrow": "Мод сообщества",
-  "content_kelvin_history_text": "Раньше он назывался Kelvin-GPT. Старая версия, которая просила ваш собственный ключ OpenAI, отключена: этот маршрут раскрывал ключ в адресе и теперь отвечает «Gone».",
-  "content_kelvin_how_1": "Установите RedLoader и мод KelvinSeek.",
-  "content_kelvin_how_2": "В игре подойдите к Кельвину и нажмите E, чтобы открыть блокнот.",
-  "content_kelvin_how_3": "Нажмите T, напишите сообщение и нажмите Enter.",
-  "content_kelvin_how_4": "Или используйте консоль: «askkelvin …» отправляет сообщение, «clearkelvinchathistory» начинает разговор заново.",
-  "content_kelvin_how_title": "Как пользоваться",
-  "content_kelvin_install_hint": "Впервые с модами? Начните с руководства:",
-  "content_kelvin_lead": "Напишите Кельвину своими словами — он ответит и сделает, что просите: от сбора брёвен до постройки укрытия.",
-  "content_kelvin_limits_budget": "У ИИ-сервиса есть дневной бюджет. Когда он заканчивается, Кельвин всё равно вас понимает: до следующего дня он без ИИ выбирает самую похожую известную команду.",
-  "content_kelvin_limits_busy": "Если писать слишком быстро, Кельвин попросит пару секунд перерыва. Ничего не потеряется.",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "До {perMinute__number} сообщений в минуту и {perDay__number} в день на игрока."
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "Ограничения",
-  "content_kelvin_open_mod": "Открыть страницу мода",
-  "content_kelvin_privacy_ai": "Текст ваших сообщений отправляется ИИ-провайдеру, чтобы сгенерировать ответ. Не пишите личные данные.",
-  "content_kelvin_privacy_hash": "Идентификатор чата, который отправляет мод (в нём ваш Steam ID и имя), хранится только в виде необратимого хеша.",
-  "content_kelvin_privacy_link": "Политика конфиденциальности",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__plural = days: plural",
-        "local days__number = days: number"
-      ],
-      "selectors": [
-        "days__plural"
-      ],
-      "match": {
-        "days__plural=one": "Последние сообщения каждого разговора хранятся {days__number} день, чтобы Кельвин помнил контекст, а затем удаляются.",
-        "days__plural=few": "Последние сообщения каждого разговора хранятся {days__number} дня, чтобы Кельвин помнил контекст, а затем удаляются.",
-        "days__plural=many": "Последние сообщения каждого разговора хранятся {days__number} дней, чтобы Кельвин помнил контекст, а затем удаляются.",
-        "days__plural=*": "Последние сообщения каждого разговора хранятся {days__number} дня, чтобы Кельвин помнил контекст, а затем удаляются."
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "Ваши сообщения",
-  "content_kelvin_status_compat": "На сборке {build}",
-  "content_kelvin_status_downloads": "Скачивания",
-  "content_kelvin_status_title": "Статус на SOTF Mods",
-  "content_kelvin_status_unavailable": "Не удалось загрузить текущий статус мода. Последняя версия есть на странице мода.",
-  "content_kelvin_status_updated": "Последний релиз",
-  "content_kelvin_status_version": "Последняя версия",
-  "content_kelvin_title": "KelvinSeek: говорите с Кельвином в игре",
-  "content_kelvin_what_text": "KelvinSeek — мод от {author}. Он отправляет то, что вы пишете Кельвину, в ИИ-сервис через API SOTF Mods и превращает ответ в реплику Кельвина, а если вы о чём-то просите — в одну из его игровых команд. Собственный ключ API не нужен.",
-  "content_kelvin_what_title": "Что это",
   "content_legal_eyebrow": "Правовая информация",
   "content_legal_other": "Другие правовые страницы",
   "content_md_alert_caution": "Осторожно",
@@ -4992,7 +4838,13 @@
   "landing_blueprints_hint": "Свежие постройки от сообщества",
   "landing_creators_all": "Все авторы",
   "landing_creators_hint": "Выжившие, которые строят остров",
+  "landing_creators_last_release": "Последний релиз {when}",
+  "landing_creators_legends": "Легенды",
+  "landing_creators_legends_hint": "Самые скачиваемые авторы за всё время",
+  "landing_creators_rising": "Восходящие",
+  "landing_creators_rising_hint": "Новые и быстрорастущие за последние 90 дней",
   "landing_creators_title": "Авторы в центре внимания",
+  "landing_creators_top": "Лучший мод",
   "landing_faq_figures": "Данные на {date}.",
   "landing_faq_hint": "Короткие ответы, сверенные с каталогом.",
   "landing_faq_more": "Подробнее",
@@ -5043,6 +4895,29 @@
   "landing_kit_hint": "Готовый набор модов, выбранный рейнджерами",
   "landing_kit_open": "Открыть набор",
   "landing_kit_title": "Набор в центре внимания",
+  "landing_map_kind_legend": "Легенда",
+  "landing_map_kind_trending": "В тренде",
+  "landing_map_kind_updated": "Обновлён",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Карта острова: {count__number} мод отмечен как путевые точки",
+        "count__plural=few": "Карта острова: {count__number} мода отмечены как путевые точки",
+        "count__plural=many": "Карта острова: {count__number} модов отмечено как путевые точки",
+        "count__plural=*": "Карта острова: {count__number} мода отмечено как путевые точки"
+      }
+    }
+  ],
+  "landing_map_legend_label": "Легенда карты",
+  "landing_map_title": "Карта острова",
   "landing_motw_period": "Неделя с {start}",
   "landing_motw_title": "Мод недели",
   "landing_notes_all": "Все недавние обновления",
@@ -5069,28 +4944,6 @@
   "landing_picks_cta_hint": "Фильтры по категории, совместимости, версии игры и другие",
   "landing_picks_tabs_label": "Сортировка модов",
   "landing_picks_title": "Найдите свой следующий мод",
-  "landing_pin_build": "Популярная постройка",
-  "landing_pin_download": "Скачивают · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Набор · {count__number} мод",
-        "count__plural=few": "Набор · {count__number} мода",
-        "count__plural=many": "Набор · {count__number} модов",
-        "count__plural=*": "Набор · {count__number} мода"
-      }
-    }
-  ],
-  "landing_pin_release": "Обновлён до v{version}",
-  "landing_pins_label": "Сейчас на острове",
   "landing_radar_breaking": "Обновление ломает моды",
   "landing_radar_cta": "Что сломано",
   "landing_radar_empty": "На радаре пока нет патчей игры. Полевые отчёты начнутся со следующего обновления.",
@@ -5446,7 +5299,9 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "В набор",
   "mod_action_install": "Установка",
+  "mod_action_more": "Другие действия",
   "mod_action_report": "Пожаловаться",
+  "mod_action_report_mod": "Пожаловаться на мод",
   "mod_banner_archived_action": "К преемнику",
   "mod_banner_archived_successor": "Автор больше не поддерживает этот мод и советует вместо него {name}.",
   "mod_banner_archived_text": "Автор больше не поддерживает этот мод. Он может не работать на текущем патче.",
@@ -5528,6 +5383,7 @@
   "mod_compat_prompt": "Сработала ли v{version} в вашей игре?",
   "mod_compat_prompt_action": "Сообщить",
   "mod_compat_report": "Сообщить",
+  "mod_compat_report_cta": "Сообщить, работает ли",
   "mod_copy_hash": "Скопировать SHA-256",
   "mod_cover_alt": "Обложка {name}",
   "mod_creator_follow": "Подписаться на автора",
@@ -7555,7 +7411,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "Каталог модов",
   "search_page_install": "Как установить моды",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "Наборы модов",
   "search_page_news": "Новости",
   "search_page_patch_radar": "Радар патчей",

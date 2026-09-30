@@ -1,7 +1,7 @@
 ---
 title: Privacy policy
 description: What personal data SOTF Mods collects, why, how long we keep it, who processes it for us and how to access, export or delete your data.
-anchors: [controller, summary, data, purposes, analytics, kelvinseek, processors, retention, rights, children, transfers, security, changes, contact]
+anchors: [controller, summary, data, purposes, analytics, processors, retention, rights, children, transfers, security, changes, contact]
 ---
 
 # Who is responsible
@@ -47,10 +47,6 @@ We don't sell personal data and we don't build advertising profiles.
 
 Our own audience measurement (page views, searches, downloads) sets no cookies and stores no personal identifiers. Each visit is counted with a hash of the IP address and browser combined with a secret that rotates daily, so visits can't be linked across days or to a person. If your browser sends **Global Privacy Control** or **Do Not Track**, we don't record the visit at all.
 
-# KelvinSeek (in-game assistant)
-
-The KelvinSeek mod sends your chat messages to our API. We store the chat id sent by the mod (which contains your Steam id and name) only as an irreversible keyed hash, keep the last messages of each conversation for 30 days so the assistant keeps context, and send the text of your messages to our AI provider to generate the answer. Don't write personal information in your messages.
-
 # Who processes data for us
 
 We use a few service providers, each only for its purpose and under a data processing agreement:
@@ -59,7 +55,6 @@ We use a few service providers, each only for its purpose and under a data proce
 |---|---|
 | Cloudflare | Content delivery, security, file storage (R2) and bot protection (Turnstile) |
 | Resend | Sending account and notification emails |
-| OpenAI | Generating KelvinSeek answers (message text only) |
 | Google | Ads and the consent tool, for guests only |
 | VirusTotal | Scanning published mod files (files only, no personal data) |
 | Sentry | Error reports, if enabled, with personal data disabled |
@@ -75,7 +70,6 @@ Moderators see what is needed to moderate (for example, the content and history 
 | Download records (hashed IP) | Kept for statistics |
 | Sign-in events | 90 days |
 | Sessions | Until they expire, plus 30 days |
-| KelvinSeek conversations (hashed id) | 30 days |
 | Data exports | 24 hours |
 | Deleted accounts | Anonymized after a 14-day grace period |
 

@@ -240,5 +240,8 @@
   "mod_stats_loading": "正在加载图表…",
   "mod_graph_title": "依赖关系图",
   "mod_graph_label": "{name} 的依赖关系图",
-  "mod_graph_required_by": "被以下模组依赖"
+  "mod_graph_required_by": "被以下模组依赖",
+  "mod_compat_report_cta": "报告是否可用",
+  "mod_action_more": "更多操作",
+  "mod_action_report_mod": "举报此模组"
 }

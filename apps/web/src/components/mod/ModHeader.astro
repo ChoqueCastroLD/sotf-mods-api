@@ -57,7 +57,7 @@ const translatedName = shownName !== mod.name;
 const galleryLabel = m.mod_gallery_label({ name: mod.name });
 ---
 
-<header class:list={['grid gap-6', compact ? '' : 'md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-start']}>
+<header class:list={['grid grid-cols-1 gap-6', compact ? '' : 'md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-start']}>
   {
     !compact && (
       <div class="grid min-w-0 gap-3">
@@ -246,13 +246,13 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
 
     <ActionBar mod={mod} versions={versions} loginHref={loginHref} />
 
-    <p class="flex flex-wrap items-center gap-2 text-sm text-fg-muted">
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border border-border bg-raised/60 px-3 py-2 text-sm text-fg-muted">
       <CompatBadge status={mod.compatCurrent.status} build={build} size="sm" />
-      <span>{compatSentence(mod)}</span>
+      <span class="min-w-0 flex-1 basis-40">{compatSentence(mod)}</span>
       <a href={`${overviewHref}#field-report`} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
-        {m.mod_compat_report()}
+        {m.mod_compat_report_cta()}
       </a>
-    </p>
+    </div>
 
     {
       oneLine.length > 0 && (

@@ -240,5 +240,8 @@
   "mod_stats_loading": "グラフを読み込み中…",
   "mod_graph_title": "依存関係グラフ",
   "mod_graph_label": "{name} の依存関係グラフ",
-  "mod_graph_required_by": "必要とするMod"
+  "mod_graph_required_by": "必要とするMod",
+  "mod_compat_report_cta": "動作するか報告する",
+  "mod_action_more": "その他の操作",
+  "mod_action_report_mod": "このMODを報告"
 }

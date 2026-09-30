@@ -73,6 +73,109 @@ html[data-scroll-dir="down"] [data-tab-bar] {
 
 /* Cross-document view transitions: the opt-in and the reduced-motion fallback live in tokens.css. */
 
+/* ---- «Locator» active indicator (header, mobile tab bar, in-page tabs). ---------------------
+   `.loc-host` carries the state (`aria-current=page` / `aria-selected=true`, or hover as a
+   faint preview); `.loc-frame` draws the four crosshair corner brackets around its box and
+   `.loc-pip` (a real span, so it can be a view-transition element) or the host's `::after` is the
+   GPS waypoint diamond with a soft glow. Across pages the named pip slides between items. */
+.loc-host {
+  --loc-o: 0;
+  --loc-pip-o: 0;
+  --loc-s: 1.14;
+  position: relative;
+}
+.loc-host:hover {
+  --loc-o: 0.42;
+  --loc-pip-o: 0.5;
+  --loc-s: 1;
+}
+.loc-host[aria-current="page"],
+.loc-host[aria-selected="true"] {
+  --loc-o: 1;
+  --loc-pip-o: 1;
+  --loc-s: 1;
+}
+.loc-frame {
+  position: relative;
+}
+.loc-frame::before {
+  content: "";
+  position: absolute;
+  inset: var(--loc-inset, 4px 1px);
+  pointer-events: none;
+  opacity: var(--loc-o);
+  transform: scale(var(--loc-s));
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+  background:
+    linear-gradient(var(--color-primary), var(--color-primary)) top left / 7px 1.5px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) top left / 1.5px 7px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) top right / 7px 1.5px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) top right / 1.5px 7px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) bottom left / 7px 1.5px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) bottom left / 1.5px 7px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) bottom right / 7px 1.5px no-repeat,
+    linear-gradient(var(--color-primary), var(--color-primary)) bottom right / 1.5px 7px no-repeat;
+}
+.loc-pip,
+.loc-host[data-loc-pip]::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-end: var(--loc-pip-y, -7px);
+  inline-size: 6px;
+  block-size: 6px;
+  margin-inline-start: -3px;
+  rotate: 45deg;
+  background: var(--color-primary);
+  box-shadow:
+    0 0 0 1.5px var(--color-bg),
+    0 0 10px 2px color-mix(in oklab, var(--color-primary) 60%, transparent);
+  pointer-events: none;
+}
+.loc-host[data-loc-pip]::after {
+  opacity: var(--loc-pip-o);
+  transition: opacity var(--dur-base) var(--ease-out);
+}
+/* The real pip takes over while the item is the current page (the ::after is the hover preview). */
+.loc-host:has(> .loc-pip)[data-loc-pip]::after {
+  opacity: 0;
+}
+.loc-pip {
+  view-transition-name: var(--loc-vt, nav-pip);
+}
+.loc-host[aria-current="page"] > .loc-frame::before,
+.loc-host[aria-current="page"].loc-frame::before {
+  animation: loc-lock 280ms var(--ease-out) both;
+}
+@keyframes loc-lock {
+  from {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-group(nav-pip),
+  ::view-transition-group(tab-pip) {
+    animation-duration: 340ms;
+    animation-timing-function: var(--ease-out);
+  }
+  ::view-transition-old(nav-pip),
+  ::view-transition-new(nav-pip),
+  ::view-transition-old(tab-pip),
+  ::view-transition-new(tab-pip) {
+    animation: none;
+    mix-blend-mode: normal;
+    block-size: 100%;
+    inline-size: 100%;
+  }
+  ::view-transition-old(nav-pip),
+  ::view-transition-old(tab-pip) {
+    display: none;
+  }
+}
+
 /* ---- 404: the two eyes in the trees blink (`motion-safe:animate-blink` on each circle). ---- */
 [data-eyes] circle {
   transform-box: fill-box;

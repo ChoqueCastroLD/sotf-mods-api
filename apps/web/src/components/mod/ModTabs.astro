@@ -41,8 +41,7 @@ const tabs: Array<{ key: string; label: string; count?: number | null; href: str
   },
   { key: 'comments', label: m.mod_tab_comments(), count: mod.commentsCount, href: `${overview}#comments`, current: false },
 ];
-const indicator =
-  'after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-transparent aria-[current=page]:after:bg-primary';
+const indicator = 'loc-host loc-frame [--loc-pip-y:-4px]';
 ---
 
 <nav aria-label={m.mod_tabs_label()} class="mt-8">
@@ -50,7 +49,7 @@ const indicator =
     {
       tabs.map((tab) => (
         <li class="flex">
-          <a href={tab.href} aria-current={tab.current ? 'page' : undefined} class:list={[tabClasses, indicator]}>
+          <a href={tab.href} data-loc-pip aria-current={tab.current ? 'page' : undefined} class:list={[tabClasses, indicator]}>
             {tab.label}
             {typeof tab.count === 'number' && (
               <span class="rounded-full bg-fg/8 px-1.5 text-xs tabular-nums text-fg-muted">{formatNumber(locale, tab.count)}</span>

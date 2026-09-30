@@ -34,7 +34,9 @@ export const LANDING_LIMITS = {
   legends: 24,
   notes: 6,
   builds: 4,
-  creators: 3,
+  /** Creator spotlight: «Legends» (top downloads) and «Rising» (emerging), three each. */
+  legendCreators: 3,
+  risingCreators: 3,
   regions: 12,
   pulsePins: 3,
 } as const;
@@ -58,13 +60,27 @@ export interface LandingData {
   categories: Category[] | null;
   kit: KitCardDTO | null;
   awards: CurrentAwards | null;
-  creators: Creator[] | null;
+  creators: { legends: Creator[]; rising: Creator[] } | null;
   /** Some catalogue block failed: the page is cached briefly so it heals quickly. */
   degraded: boolean;
 }
 
 function items<T>(page: { items: T[] } | null): T[] | null {
   return page ? page.items : null;
+}
+
+/** «Legends» = top by downloads; «Rising» = the emerging ones that are not already legends. */
+function pickCreators(
+  legends: Creator[] | null,
+  candidates: Creator[] | null,
+): { legends: Creator[]; rising: Creator[] } | null {
+  if (!legends && !candidates) return null;
+  const top = (legends ?? []).slice(0, LANDING_LIMITS.legendCreators);
+  const taken = new Set(top.map((creator) => creator.user.id));
+  const rising = (candidates ?? [])
+    .filter((creator) => !taken.has(creator.user.id))
+    .slice(0, LANDING_LIMITS.risingCreators);
+  return { legends: top, rising };
 }
 
 /**
@@ -85,7 +101,9 @@ export async function loadLanding(): Promise<LandingData> {
     categories,
     kits,
     awards,
-    creators,
+    topCreators,
+    risingCreators,
+    recentCreators,
     legends,
     newest,
     rated,
@@ -123,7 +141,25 @@ export async function loadLanding(): Promise<LandingData> {
     ),
     optional((signal) => api.gamification.currentAwards(undefined, { signal }), budget),
     optional(
-      (signal) => api.catalog.creators({ query: { sort: 'spotlight', pageSize: LANDING_LIMITS.creators } }, { signal }),
+      (signal) =>
+        api.catalog.creators({ query: { sort: 'downloads', pageSize: LANDING_LIMITS.legendCreators } }, { signal }),
+      budget,
+    ),
+    optional(
+      (signal) =>
+        api.catalog.creators(
+          { query: { sort: 'rising', pageSize: LANDING_LIMITS.legendCreators + LANDING_LIMITS.risingCreators } },
+          { signal },
+        ),
+      budget,
+    ),
+    // Fallback while an API without the `rising` sort answers: the newest active creators.
+    optional(
+      (signal) =>
+        api.catalog.creators(
+          { query: { sort: 'recent', pageSize: LANDING_LIMITS.legendCreators + LANDING_LIMITS.risingCreators + 6 } },
+          { signal },
+        ),
       budget,
     ),
     optional(
@@ -177,7 +213,7 @@ export async function loadLanding(): Promise<LandingData> {
     categories: categoryItems,
     kit: kits?.items[0] ?? null,
     awards,
-    creators: items(creators),
+    creators: pickCreators(items(topCreators), items(risingCreators) ?? items(recentCreators)),
     degraded: stats === null || trendingItems === null || notesItems === null || categoryItems === null,
   };
 }

@@ -390,10 +390,14 @@ export async function getUserActivity(
   };
 }
 
-export type CreatorSort = 'downloads' | 'followers' | 'recent' | 'spotlight';
+export type CreatorSort = 'downloads' | 'followers' | 'recent' | 'spotlight' | 'rising';
 
 /** Creator tiers that earn the landing spotlight (PLAN §7.2). */
 const SPOTLIGHT_TIERS: ReadonlySet<string> = new Set(['fortress', 'landmark']);
+
+/** Rising creators: days since the last release, and the downloads floor that keeps noise out. */
+const RISING_ACTIVE_DAYS = 90;
+const RISING_MIN_DOWNLOADS = 25;
 
 /** Deterministic weekly shuffle key (the spotlight rotates every ISO week, stable within it). */
 function spotlightKey(userId: number, week: number): number {
@@ -417,18 +421,20 @@ export async function listCreators(
     byUser.set(e.userId, [...(byUser.get(e.userId) ?? []), e]);
   }
   const now = ctx.clock.now();
-  const cards: Array<{ card: CreatorCard; last: number; key: number }> = [];
+  const cards: Array<{ card: CreatorCard; last: number; key: number; growth: number }> = [];
   for (const [userId, entries] of byUser) {
     const author = snapshot.authors.get(userId);
     if (!author) continue;
     const top = [...entries].sort((a, b) => b.downloads - a.downloads || a.id - b.id)[0];
     const last = Math.max(...entries.map((e) => e.lastReleasedAt.getTime()));
+    const downloadsTotal = entries.reduce((sum, e) => sum + e.downloads, 0);
+    const downloads7d = entries.reduce((sum, e) => sum + e.downloads7d, 0);
     cards.push({
       card: {
         user: author.ref,
         modsCount: entries.filter((e) => e.kind !== 'build').length,
         buildsCount: entries.filter((e) => e.kind === 'build').length,
-        downloadsTotal: entries.reduce((sum, e) => sum + e.downloads, 0),
+        downloadsTotal,
         followersCount: author.followersCount,
         ratingAvg: author.ratingAvg === null ? null : Math.round(author.ratingAvg * 100) / 100,
         topMod: top ? top.ref : null,
@@ -436,6 +442,8 @@ export async function listCreators(
       },
       last,
       key: spotlightKey(userId, Math.floor(now.getTime() / (7 * 86_400_000))),
+      // Share of all downloads that happened in the last 7 days: high for a creator taking off.
+      growth: downloads7d / Math.max(downloadsTotal, RISING_MIN_DOWNLOADS),
     });
   }
   const recentCutoff = now.getTime() - 180 * 86_400_000;
@@ -446,6 +454,16 @@ export async function listCreators(
     const rank = (c: (typeof cards)[number]) =>
       (SPOTLIGHT_TIERS.has(c.card.user.creatorTier ?? '') ? 2 : 0) + (c.last >= recentCutoff ? 1 : 0);
     pool = [...cards].sort((a, b) => rank(b) - rank(a) || a.key - b.key);
+  } else if (query.sort === 'rising') {
+    // Emerging creators: released in the last 90 days and ranked by how fast their downloads
+    // grow (last 7 days over all time), so a new creator taking off beats a stable giant.
+    const activeCutoff = now.getTime() - RISING_ACTIVE_DAYS * 86_400_000;
+    pool = cards
+      .filter((c) => c.last >= activeCutoff && c.card.downloadsTotal >= RISING_MIN_DOWNLOADS)
+      .sort(
+        (a, b) =>
+          b.growth - a.growth || b.card.downloadsTotal - a.card.downloadsTotal || a.card.user.id - b.card.user.id,
+      );
   } else {
     const keyOf = {
       downloads: (c: (typeof cards)[number]) => c.card.downloadsTotal,

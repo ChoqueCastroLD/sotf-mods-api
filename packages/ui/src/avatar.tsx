@@ -30,7 +30,10 @@ export function avatarSlot(id: string | number): number {
 }
 
 export function Avatar({ name, id, src, size = 40, alt = '', className }: AvatarProps) {
-  const classes = cn('inline-block aspect-square shrink-0 rounded-full bg-raised object-cover object-center', className);
+  const classes = cn(
+    'inline-block aspect-square shrink-0 rounded-full bg-raised object-cover object-center',
+    className,
+  );
   if (src) {
     // Inline size: the base `img { height: auto }` rule would otherwise keep the photo's own ratio.
     return (

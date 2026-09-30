@@ -1,21 +1,22 @@
 ---
 /**
- * Action bar of the mod header (T0-08): split download button (latest version + other versions),
- * «Install» (guide dialog), Follow ♥, «+ Kit», Share and Report.
+ * Action bar of the mod header (T0-08): a right-sized split download button (latest version + size,
+ * other versions in the menu; on phones `MobileDownloadBar` is the download CTA), then a compact secondary group:
+ * Follow ♥, «Install» (guide dialog), «+ Kit» and a «More» menu (Compare, Share, Report).
  *
  * Without JavaScript: the download links work (302 to R2), «Install» opens `/install`, Follow and
- * «+ Kit» lead to sign-in / the kit editor; Share and Report (dialogs) stay hidden until the
- * page script enables them. Follow is upgraded to a toggle for signed-in visitors
+ * «+ Kit» lead to sign-in / the kit editor; Compare is a link, Share and Report (dialogs) stay
+ * hidden until the page script enables them. Follow is upgraded to a toggle for signed-in visitors
  * (`scripts/mod/follow.ts`, optimistic with undo).
  */
 import { m } from '@sotf/i18n/messages';
 import { DownloadSplitButton, downloadOptionOf } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { BookOpen, Flag, GitCompareArrows, Heart, Plus, Share2 } from 'lucide-react';
+import { BookOpen, Ellipsis, Flag, GitCompareArrows, Heart, Plus, Share2 } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { otherVersions, versionsPagePath } from './format.ts';
-import { ACTION_CLASSES } from './styles.ts';
+import { FOCUS_RING } from './styles.ts';
 
 interface Props {
   mod: ModDetailDTO;
@@ -30,19 +31,29 @@ const downloadable = latest !== null && latest.status === 'active';
 const others = otherVersions(versions, latest?.id ?? null).map(downloadOptionOf);
 const versionsHref = href(versionsPagePath(mod), locale);
 const compareHref = `${href('/compare', locale)}?mods=${mod.canonicalPath.replace(/^\/(mods|builds)\//, '')}`;
+const BTN =
+  'inline-flex h-10 min-w-10 items-center justify-center gap-1.5 rounded-md border border-border bg-transparent px-3 text-sm font-medium text-fg-muted ' +
+  'hover:border-border-strong hover:bg-raised hover:text-fg aria-pressed:border-primary aria-pressed:text-primary ' +
+  'disabled:cursor-not-allowed disabled:opacity-55 aria-busy:cursor-progress ' +
+  FOCUS_RING;
+const ITEM =
+  'flex min-h-10 w-full items-center gap-2.5 rounded-sm px-2.5 py-1.5 text-start text-sm text-fg hover:bg-fg/8 ' + FOCUS_RING;
 const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
 ---
 
 <div class="grid gap-3" data-mod-actions>
   {
     downloadable && latest ? (
-      <div data-download-area>
+      <div
+        data-download-area
+        class="max-md:hidden md:max-w-sm"
+      >
         <DownloadSplitButton
           primary={downloadOptionOf(latest)}
           others={others}
           allVersionsHref={versionsHref}
           glow
-          size="lg"
+          size="md"
         />
       </div>
     ) : (
@@ -53,48 +64,38 @@ const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
     )
   }
 
-  <div class="flex flex-wrap gap-2">
-    <a
-      href={href('/install', locale)}
-      data-dialog-open="install-dialog"
-      data-track="install_modal_open"
-      class={ACTION_CLASSES}
-    >
-      <Icon icon={BookOpen} size={18} />
-      <span>{m.mod_action_install()}</span>
-    </a>
-    <a
-      href={loginHref}
-      data-follow
-      data-mod-id={mod.id}
-      data-followers={mod.followers}
-      class={ACTION_CLASSES}
-    >
-      <Icon icon={Heart} size={18} className="[[aria-pressed=true]_&]:fill-current" />
+  <div class="flex flex-wrap items-center gap-2">
+    <a href={loginHref} data-follow data-mod-id={mod.id} data-followers={mod.followers} class={BTN}>
+      <Icon icon={Heart} size={16} className="[[aria-pressed=true]_&]:fill-current" />
       <span data-follow-label>{m.common_action_follow()}</span>
       <span class="sr-only" data-follow-name>{mod.name}</span>
     </a>
-    <a href={kitHref} data-kit-add={mod.id} class={ACTION_CLASSES}>
-      <Icon icon={Plus} size={18} />
+    <a href={href('/install', locale)} data-dialog-open="install-dialog" data-track="install_modal_open" class={BTN}>
+      <Icon icon={BookOpen} size={16} />
+      <span>{m.mod_action_install()}</span>
+    </a>
+    <a href={kitHref} data-kit-add={mod.id} class={BTN}>
+      <Icon icon={Plus} size={16} />
       <span>{m.mod_action_add_to_kit()}</span>
     </a>
-    <a href={compareHref} class={ACTION_CLASSES}>
-      <Icon icon={GitCompareArrows} size={18} />
-      <span>{m.live_compare_action()}</span>
-    </a>
-    <button type="button" hidden data-dialog-open="share-dialog" data-js-only class={ACTION_CLASSES}>
-      <Icon icon={Share2} size={18} />
-      <span>{m.common_action_share()}</span>
-    </button>
-    <button
-      type="button"
-      hidden
-      data-dialog-open="report-dialog"
-      data-js-only
-      class={`${ACTION_CLASSES} border-transparent bg-transparent text-fg-muted`}
-    >
-      <Icon icon={Flag} size={18} />
-      <span class="max-sm:sr-only">{m.mod_action_report()}</span>
-    </button>
+    <details data-disclosure class="relative">
+      <summary class={`${BTN} cursor-pointer list-none [&::-webkit-details-marker]:hidden`} aria-label={m.mod_action_more()} title={m.mod_action_more()}>
+        <Icon icon={Ellipsis} size={18} />
+      </summary>
+      <div class="absolute end-0 top-full z-(--z-dropdown) mt-2 w-56 rounded-lg border border-border bg-overlay p-1 text-fg shadow-lg">
+        <a href={compareHref} class={ITEM}>
+          <Icon icon={GitCompareArrows} size={16} className="text-fg-subtle" />
+          <span>{m.live_compare_action()}</span>
+        </a>
+        <button type="button" hidden data-dialog-open="share-dialog" data-js-only class={ITEM}>
+          <Icon icon={Share2} size={16} className="text-fg-subtle" />
+          <span>{m.common_action_share()}</span>
+        </button>
+        <button type="button" hidden data-dialog-open="report-dialog" data-js-only class={`${ITEM} border-t border-border`}>
+          <Icon icon={Flag} size={16} className="text-fg-subtle" />
+          <span>{m.mod_action_report_mod()}</span>
+        </button>
+      </div>
+    </details>
   </div>
 </div>

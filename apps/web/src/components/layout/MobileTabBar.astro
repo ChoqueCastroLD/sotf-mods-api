@@ -35,22 +35,32 @@ const TABS = [
             href={href(tab.path, locale)}
             aria-current={isCurrent(tab.path) ? 'page' : undefined}
             class:list={[
-              'flex min-h-11 flex-1 flex-col items-center justify-center gap-0.5 text-2xs font-medium text-fg-muted aria-[current=page]:text-primary',
+              'loc-host flex min-h-11 flex-1 flex-col items-center justify-center gap-0.5 text-2xs font-medium text-fg-muted aria-[current=page]:text-fg',
               'primary' in tab && tab.primary ? 'text-fg' : null,
             ]}
           >
             <span
               class:list={[
                 'flex items-center justify-center',
+                'primary' in tab && tab.primary ? null : 'loc-frame [--loc-inset:-4px_-7px]',
                 'primary' in tab && tab.primary ? 'size-10 rounded-full bg-primary text-primary-fg' : 'size-6',
               ]}
             >
               <Icon icon={tab.icon} size={'primary' in tab && tab.primary ? 20 : 22} />
             </span>
             <span class:list={['primary' in tab && tab.primary ? 'sr-only' : null]}>{tab.label}</span>
+            {isCurrent(tab.path) && <span class="loc-pip tab-pip" aria-hidden="true" />}
           </a>
         </li>
       ))
     }
   </ul>
 </nav>
+
+<style>
+  .tab-pip {
+    --loc-vt: tab-pip;
+    inset-block-end: auto;
+    inset-block-start: -3px;
+  }
+</style>

@@ -234,88 +234,6 @@
   "admin_hooks_url_hint": "https://discord.com/api/webhooks/…",
   "admin_integrations_description": "Sitenin yeni modları, sürümleri, ödülleri ve kilometre taşlarını duyurduğu yerler.",
   "admin_integrations_title": "Entegrasyonlar",
-  "admin_kelvin_budget": "Günlük bütçe",
-  "admin_kelvin_budget_alert_text": "Bugünkü bütçenin {share} kadarı harcandı. Bütçe aşılınca KelvinSeek UTC gece yarısına kadar çevrimdışı yanıtlarını verir.",
-  "admin_kelvin_budget_alert_title": "Bugünkü bütçeye yakın",
-  "admin_kelvin_budget_used": "Bugün: {budget} bütçenin {spent} kadarı ({share}).",
-  "admin_kelvin_chart_description": [
-    {
-      "declarations": [
-        "input cost",
-        "input tokensIn",
-        "input tokensOut",
-        "input over",
-        "local over__exact = over: number maximumFractionDigits=20",
-        "local over__plural = over: plural",
-        "local over__number = over: number"
-      ],
-      "selectors": [
-        "over__exact",
-        "over__plural"
-      ],
-      "match": {
-        "over__exact=0, over__plural=*": "Toplam {cost} · {tokensIn} giriş, {tokensOut} çıkış token’ı · bütçe hiç aşılmadı",
-        "over__exact=*, over__plural=one": "Toplam {cost} · {tokensIn} giriş, {tokensOut} çıkış token’ı · {over__number} gün bütçe aşıldı",
-        "over__exact=*, over__plural=*": "Toplam {cost} · {tokensIn} giriş, {tokensOut} çıkış token’ı · {over__number} gün bütçe aşıldı"
-      }
-    }
-  ],
-  "admin_kelvin_chart_title": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Son gün",
-        "count__plural=*": "Son {count__number} gün"
-      }
-    }
-  ],
-  "admin_kelvin_col_cost": "Maliyet",
-  "admin_kelvin_col_day": "Gün",
-  "admin_kelvin_col_fallbacks": "Çevrimdışı yanıtlar",
-  "admin_kelvin_col_requests": "İstekler",
-  "admin_kelvin_col_tokens_in": "Giriş token’ları",
-  "admin_kelvin_col_tokens_out": "Çıkış token’ları",
-  "admin_kelvin_config_description": "Yeni isteklere bir dakika içinde uygulanır.",
-  "admin_kelvin_config_title": "Yapılandırma",
-  "admin_kelvin_cost_per_day": "Günlük maliyet",
-  "admin_kelvin_daily_budget": "Günlük bütçe (USD)",
-  "admin_kelvin_daily_budget_hint": "UTC gece yarısı sıfırlanır.",
-  "admin_kelvin_description": "Oyun içi asistanın kullanımı, maliyeti ve günlük bütçesi.",
-  "admin_kelvin_detail": "Günlük ayrıntı",
-  "admin_kelvin_enabled": "KelvinSeek açık",
-  "admin_kelvin_enabled_hint": "Kapalı: oyun yalnızca çevrimdışı yanıtları alır.",
-  "admin_kelvin_error_budget": "0 ile {max} arasında.",
-  "admin_kelvin_error_timeout": "{min} ile {max} ms arasında.",
-  "admin_kelvin_fallbacks": "Çevrimdışı yanıtlar",
-  "admin_kelvin_model": "Model",
-  "admin_kelvin_no_usage": "Bu dönemde istek yok.",
-  "admin_kelvin_requests": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "İstekler · {count__number} gün",
-        "count__plural=*": "İstekler · {count__number} gün"
-      }
-    }
-  ],
-  "admin_kelvin_saved": "KelvinSeek ayarları kaydedildi",
-  "admin_kelvin_timeout": "Zaman aşımı (ms)",
-  "admin_kelvin_title": "KelvinSeek",
-  "admin_kelvin_today": "Bugün harcanan",
   "admin_kit_picks_col_followers": "Takipçiler",
   "admin_kit_picks_col_items": "Modlar",
   "admin_kit_picks_col_kit": "Kit",
@@ -2417,7 +2335,6 @@
   "console_nav_game_builds": "Oyun sürümleri",
   "console_nav_inbox": "Gelen kutusu",
   "console_nav_integrations": "Entegrasyonlar",
-  "console_nav_kelvinseek": "KelvinSeek",
   "console_nav_label": "Konsol",
   "console_nav_my_mods": "Modlarım",
   "console_nav_new_build": "Yeni yapı",
@@ -2545,7 +2462,6 @@
         "bucket=anonymousRead": "API v2 okumaları",
         "bucket=legacyRead": "Eski API okumaları",
         "bucket=downloads": "İndirmeler",
-        "bucket=kelvinseek": "KelvinSeek",
         "bucket=*": "{bucket}"
       }
     }
@@ -2568,8 +2484,6 @@
   "content_dev_legacy_deprecated": "Dondurulmuş ve kullanımdan kalkıyor",
   "content_dev_legacy_deprecated_text": "Bu rotalar {date} tarihine kadar yanıt verir, sonra kapatılır. Yanıtlarında şu başlıklar bulunur:",
   "content_dev_legacy_deviations": "Eski davranıştan bilinçli farklar",
-  "content_dev_legacy_kelvin_text": "Dil modeli kullanılamadığında (anahtar yok, zaman aşımı veya günlük bütçe bitti) /api/kelvinseek/prompt hata vermez: eski deterministik yedek yanıtla \"COMMAND|I will … right away (Chat GPT API Error …)\" cevap verir, böylece oyundaki bot çalışmaya devam eder.",
-  "content_dev_legacy_kelvin_title": "KelvinSeek yedek yanıtı",
   "content_dev_legacy_retired": "Kapatıldı",
   "content_dev_legacy_retired_text": "Bu rotalardaki her yöntem şu gövdeyle 410 Gone yanıtı verir:",
   "content_dev_legacy_retired_write": "Kaldırılan yazma rotaları (yüklemeler, düzenlemeler, yorumlar, oylar) da aynı zarfla 410 döner: status false, error GONE. Bunun yerine belirteçle v2 API’sini kullanın.",
@@ -2636,66 +2550,6 @@
   ],
   "content_install_tldr": "Kısaca",
   "content_install_verified": "Oyun {game} · RedLoader {loader} ile doğrulandı",
-  "content_kelvin_by": "Yapımcı:",
-  "content_kelvin_credit": "KelvinSeek’i {author} geliştirir ve sürdürür; SOTF Mods yalnızca konuştuğu API’yi barındırır. Kelvin ve Sons of the Forest, Endnight Games’e aittir; bu bir hayran projesidir.",
-  "content_kelvin_description": "KelvinSeek ile Sons of the Forest’ta Kelvin’le sohbet edebilir, ona kendi sözlerinle emir verebilirsin. Nasıl çalıştığı, sınırları ve mesajlarına ne olduğu.",
-  "content_kelvin_dev_hint": "Benzer bir şey mi yapıyorsun? Uç nokta eski API’nin parçası:",
-  "content_kelvin_eyebrow": "Topluluk modu",
-  "content_kelvin_history_text": "Eskiden adı Kelvin-GPT idi. Kendi OpenAI anahtarını isteyen eski sürüm kapatıldı: o rota anahtarı adreste açığa çıkarıyordu ve artık “Gone” yanıtı veriyor.",
-  "content_kelvin_how_1": "RedLoader’ı ve KelvinSeek modunu kur.",
-  "content_kelvin_how_2": "Oyunda Kelvin’in yanına git ve not defterini açmak için E’ye bas.",
-  "content_kelvin_how_3": "Yazmak için T’ye bas, mesajını yaz ve Enter’a bas.",
-  "content_kelvin_how_4": "Ya da konsolu kullan: “askkelvin …” mesaj gönderir, “clearkelvinchathistory” yeni bir sohbet başlatır.",
-  "content_kelvin_how_title": "Nasıl kullanılır",
-  "content_kelvin_install_hint": "Modlarda yeni misin? Rehberle başla:",
-  "content_kelvin_lead": "Kelvin’e kendi sözlerinle yaz; cevap verir ve istediğini yapar: kütük toplamaktan barınak kurmaya kadar.",
-  "content_kelvin_limits_budget": "Yapay zekâ hizmetinin günlük bir bütçesi var. Bittiğinde Kelvin seni yine anlar: ertesi güne kadar yapay zekâ olmadan en yakın bilinen emri seçer.",
-  "content_kelvin_limits_busy": "Çok hızlı yazarsan Kelvin birkaç saniye mola ister. Hiçbir şey kaybolmaz.",
-  "content_kelvin_limits_rate": [
-    {
-      "declarations": [
-        "input perMinute",
-        "input perDay",
-        "local perMinute__number = perMinute: number",
-        "local perDay__number = perDay: number"
-      ],
-      "selectors": [],
-      "match": {
-        "": "Oyuncu başına dakikada en fazla {perMinute__number}, günde {perDay__number} mesaj."
-      }
-    }
-  ],
-  "content_kelvin_limits_title": "Sınırlar",
-  "content_kelvin_open_mod": "Mod sayfasını aç",
-  "content_kelvin_privacy_ai": "Yanıtı oluşturmak için mesajlarının metni yapay zekâ sağlayıcısına gönderilir. Kişisel bilgi yazma.",
-  "content_kelvin_privacy_hash": "Modun gönderdiği sohbet kimliği (Steam kimliğini ve adını içerir) yalnızca geri döndürülemez bir özet (hash) olarak saklanır.",
-  "content_kelvin_privacy_link": "Gizlilik politikasını oku",
-  "content_kelvin_privacy_retention": [
-    {
-      "declarations": [
-        "input days",
-        "local days__plural = days: plural",
-        "local days__number = days: number"
-      ],
-      "selectors": [
-        "days__plural"
-      ],
-      "match": {
-        "days__plural=one": "Kelvin bağlamı hatırlasın diye her sohbetin son mesajları {days__number} gün saklanır, sonra silinir.",
-        "days__plural=*": "Kelvin bağlamı hatırlasın diye her sohbetin son mesajları {days__number} gün saklanır, sonra silinir."
-      }
-    }
-  ],
-  "content_kelvin_privacy_title": "Mesajların",
-  "content_kelvin_status_compat": "{build} sürümünde",
-  "content_kelvin_status_downloads": "İndirmeler",
-  "content_kelvin_status_title": "SOTF Mods’taki durumu",
-  "content_kelvin_status_unavailable": "Modun güncel durumunu yükleyemedik. Mod sayfasında en son sürüm var.",
-  "content_kelvin_status_updated": "Son yayın",
-  "content_kelvin_status_version": "Son sürüm",
-  "content_kelvin_title": "KelvinSeek: oyunda Kelvin’le konuş",
-  "content_kelvin_what_text": "KelvinSeek, {author} tarafından yapılmış bir mod. Kelvin’e yazdıklarını SOTF Mods API’si üzerinden bir yapay zekâ hizmetine gönderir ve yanıtı Kelvin’in cevabına, bir şey istediğinde de oyundaki emirlerinden birine dönüştürür. Kendi API anahtarına ihtiyacın yok.",
-  "content_kelvin_what_title": "Nedir",
   "content_legal_eyebrow": "Yasal",
   "content_legal_other": "Diğer yasal sayfalar",
   "content_md_alert_caution": "Dikkat",
@@ -4748,7 +4602,13 @@
   "landing_blueprints_hint": "Topluluktan yeni yapılar",
   "landing_creators_all": "Tüm yapımcılar",
   "landing_creators_hint": "Adayı inşa eden hayatta kalanlar",
+  "landing_creators_last_release": "Son sürüm {when}",
+  "landing_creators_legends": "Efsaneler",
+  "landing_creators_legends_hint": "Tüm zamanların en çok indirilen geliştiricileri",
+  "landing_creators_rising": "Yükselenler",
+  "landing_creators_rising_hint": "Son 90 günde yeni ve hızla büyüyen geliştiriciler",
   "landing_creators_title": "Öne çıkan yapımcılar",
+  "landing_creators_top": "En iyi mod",
   "landing_faq_figures": "{date} itibarıyla rakamlar.",
   "landing_faq_hint": "Katalogla doğrulanmış kısa yanıtlar.",
   "landing_faq_more": "Devamını oku",
@@ -4787,6 +4647,27 @@
   "landing_kit_hint": "Korucuların seçtiği, kullanıma hazır bir mod seti",
   "landing_kit_open": "Kiti aç",
   "landing_kit_title": "Öne çıkan kit",
+  "landing_map_kind_legend": "Efsane",
+  "landing_map_kind_trending": "Yükselişte",
+  "landing_map_kind_updated": "Güncellendi",
+  "landing_map_label": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod yol noktası olarak işaretli ada haritası",
+        "count__plural=*": "{count__number} mod yol noktası olarak işaretli ada haritası"
+      }
+    }
+  ],
+  "landing_map_legend_label": "Harita göstergesi",
+  "landing_map_title": "Ada haritası",
   "landing_motw_period": "{start} haftası",
   "landing_motw_title": "Haftanın modu",
   "landing_notes_all": "Tüm son güncellemeler",
@@ -4813,26 +4694,6 @@
   "landing_picks_cta_hint": "Kategori, uyumluluk, oyun sürümü ve daha fazlasına göre filtrele",
   "landing_picks_tabs_label": "Modları sırala",
   "landing_picks_title": "Bir sonraki modunu bul",
-  "landing_pin_build": "Popüler yapı",
-  "landing_pin_download": "İndiriliyor · v{version}",
-  "landing_pin_kit": [
-    {
-      "declarations": [
-        "input count",
-        "local count__plural = count: plural",
-        "local count__number = count: number"
-      ],
-      "selectors": [
-        "count__plural"
-      ],
-      "match": {
-        "count__plural=one": "Kit · {count__number} mod",
-        "count__plural=*": "Kit · {count__number} mod"
-      }
-    }
-  ],
-  "landing_pin_release": "v{version} sürümüne güncellendi",
-  "landing_pins_label": "Adada şu an",
   "landing_radar_breaking": "Modları bozan güncelleme",
   "landing_radar_cta": "Nelerin bozuk olduğunu gör",
   "landing_radar_empty": "Radarda henüz oyun yaması yok. Saha raporları bir sonraki güncellemeyle başlayacak.",
@@ -5146,7 +5007,9 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "Kit",
   "mod_action_install": "Kur",
+  "mod_action_more": "Diğer eylemler",
   "mod_action_report": "Şikâyet et",
+  "mod_action_report_mod": "Bu modu şikâyet et",
   "mod_banner_archived_action": "Yeni moda git",
   "mod_banner_archived_successor": "Yapımcı artık bu modu geliştirmiyor ve yerine {name} öneriyor.",
   "mod_banner_archived_text": "Yapımcı artık bu modu geliştirmiyor. Güncel yamada çalışmayabilir.",
@@ -5224,6 +5087,7 @@
   "mod_compat_prompt": "v{version} oyununda çalıştı mı?",
   "mod_compat_prompt_action": "Bildir",
   "mod_compat_report": "Bildir",
+  "mod_compat_report_cta": "Çalışıp çalışmadığını bildir",
   "mod_copy_hash": "SHA-256’yı kopyala",
   "mod_cover_alt": "{name} kapak görseli",
   "mod_creator_follow": "Yapımcıyı takip et",
@@ -7085,7 +6949,6 @@
   "search_page_dmca": "DMCA",
   "search_page_explore": "Modları keşfet",
   "search_page_install": "Mod nasıl kurulur",
-  "search_page_kelvinseek": "KelvinSeek",
   "search_page_kits": "Mod setleri",
   "search_page_news": "Haberler",
   "search_page_patch_radar": "Yama radarı",

@@ -42,7 +42,6 @@ export const SITE_PAGES: readonly SitePage[] = [
   page('news', '/news', ['blog', 'changelog', 'announcements']),
   page('about', '/about', ['about', 'team', 'contact']),
   page('developers', '/developers', ['api', 'docs', 'openapi', 'integration']),
-  page('kelvinseek', '/kelvinseek', ['bot', 'telegram', 'kelvin', 'assistant']),
   page('brand', '/brand', ['logo', 'press', 'brand']),
   page('privacy', '/privacy', ['privacy', 'gdpr', 'data']),
   page('terms', '/terms', ['terms', 'tos', 'rules']),

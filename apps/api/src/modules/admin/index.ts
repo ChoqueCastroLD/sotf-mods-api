@@ -35,9 +35,11 @@ import {
 } from '@sotf/core/admin/index';
 import type { KelvinSeekConfig } from '@sotf/core/kelvinseek/index';
 import { getSiteSetting, putSiteSetting, type SettingDefaults } from '@sotf/core/settings/index';
-import { KELVINSEEK_TIMEOUT_MS } from '../../legacy/kelvinseek.ts';
 import { defineModule } from '../../lib/define-module.ts';
 import { catalogConfigOf } from '../catalog/index.ts';
+
+/** Model timeout shown in the admin usage readout (the legacy route no longer calls a model). */
+const KELVINSEEK_TIMEOUT_MS = 8_000;
 
 export default defineModule({
   name: 'admin',

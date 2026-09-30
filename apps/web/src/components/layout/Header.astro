@@ -54,9 +54,11 @@ const searchHref = href('/search', locale);
               <a
                 href={href(item.path, locale)}
                 aria-current={isCurrent(item.path) ? 'page' : undefined}
-                class="flex h-10 items-center rounded-md px-3 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg aria-[current=page]:text-fg aria-[current=page]:shadow-[inset_0_-2px_0_var(--color-primary)]"
+                data-loc-pip
+                class="loc-host loc-frame flex h-10 items-center rounded-md px-3.5 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:text-fg aria-[current=page]:text-fg"
               >
                 {item.label}
+                {isCurrent(item.path) && <span class="loc-pip" aria-hidden="true" />}
               </a>
             </li>
           ))
