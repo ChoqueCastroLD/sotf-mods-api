@@ -33,13 +33,13 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
   en W2, `apps/api/src/modules/<name>/index.ts` y `apps/worker/src/jobs/<name>/index.ts` (WP-20) ·
   `pnpm gen` espera un `export default` por módulo o grupo de jobs (genera `modules`/`jobGroups`) y
   un barrel `export *` del esquema. Otra forma → cambiar `tooling/scripts/gen-registries.ts` vía
-  backlog.
+  backlog. · **[x] resolved by wire-data**: verified: every `apps/worker/src/jobs/<name>/index.ts` default-exports a group and `_registry.gen.ts` is generated from them; the schema barrel is `export *`.
 - **Scripts homónimos de las tareas raíz delegadas** · `packages/db` (WP-10: `db:migrate`,
   `db:guard`, `db:baseline`), `packages/i18n` (WP-13: `i18n:check`, `i18n:pseudo`); en W2
   `tooling/migration` (WP-14: `db:seed:dev`, `db:reset:dev`, `db:backfill`, `db:invariants`,
   `db:verify-snapshot`, `db:revert-fix`, `admin:grant`) y `tooling/legacy-contract` (WP-24:
   `contract:legacy`) · `tooling/scripts/delegate.ts` ejecuta en el paquete dueño el script con el
-  mismo nombre.
+  mismo nombre. · **[x] resolved by wire-data**: verified: `packages/db`, `packages/i18n` and `tooling/migration` define the delegated scripts.
 - **Tareas opcionales que se vuelven silenciosas** · `tooling/scripts/{delegate,verify}.ts`,
   `ci-local.sh`, `ci.yml` (fix WP al inicio de W2, o integrador en I-1) · `SOTF_OPTIONAL_TASKS=1` y
   `i18n:check --optional` convierten en «skip» un script borrado o renombrado incluso después de que
@@ -48,7 +48,7 @@ Los ítems marcados **[hecho en I-0]** los resolvió el integrador en `main` ant
 - **Brillo opcional del logo adaptativo en Night** · `packages/ui/src/tokens.css` (WP-12) ·
   `[data-theme="dark"] .brand-flare { fill: #FF7335 }` (y el equivalente `system` +
   `prefers-color-scheme: dark`). `lockupSvg({ theme: 'adaptive' })` usa por defecto el flare Day
-  `#E75803`, que ya cumple 3:1 en todas las superficies.
+  `#E75803`, que ya cumple 3:1 en todas las superficies. · **[x] resolved by wire-data**: verified: `packages/ui/src/tokens.css` `.brand-flare { fill: light-dark(#E75803, #FF7335) }`.
 - **`check:forbidden` incompleto** · `tooling/scripts/forbidden-rules.ts` (WP-00 / fix WP) · solo
   cubre la lista del §2.8 punto 1. Añadir, con límites de palabra y la misma `LEGACY_ENV_ALLOW`,
   `BASE_URL`, `PUBLIC_BASE_URL`, `GPT_API_KEY`, `R2_CUSTOM_DOMAIN`, `R2_BUCKET_NAME`, `API_URL`,

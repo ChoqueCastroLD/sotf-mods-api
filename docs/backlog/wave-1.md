@@ -97,7 +97,7 @@ etiqueta `wave-1`. Los ficheros por WP se conservan como fuente con el detalle c
   RFC 8058). (WP-11.)
 - **Cola de eventos de dominio** · `packages/core/src/kernel/**`, `apps/worker` (WP-20) · adoptar
   `JOB_PAYLOADS['domain.event']` (fan-out único) o añadir colas por consumidor (cambio aditivo).
-  (WP-11.)
+  (WP-11.) · **[x] resolved by wire-data**: verified: fan-out único `domain.event` adoptado (`apps/worker/src/runtime.ts`).
 - [x] resolved by wire-infra (verified: `ops/docker/node.Dockerfile` ships `dist/migrations/*.sql` and `dist/migrate.js` (WP-90)) · **Imagen de migración** · `ops/docker/node.Dockerfile`, bundle de `apps/api` (WP-20/WP-90) ·
   incluir `packages/db/migrations/` y ejecutar `cli/migrate.ts` con `MIGRATIONS_DATABASE_URL`
   (`MIGRATIONS_DIR` si se empaqueta). (WP-10.)
