@@ -64,7 +64,8 @@ const preloadImage = hero
       }
     : { href: hero.url }
   : undefined;
-const ogImage = mod.nsfw ? undefined : (mod.thumbnail?.url ?? mod.gallery[0]?.url);
+const ogImage = mod.nsfw ? undefined : (mod.ogImage?.url ?? mod.thumbnail?.url ?? mod.gallery[0]?.url);
+const ogSized = mod.ogImage !== null && ogImage === mod.ogImage?.url;
 const tags = mod.tags;
 const faq = buildModFaq(mod, locale);
 const jsonLd = modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl });
@@ -84,6 +85,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
       imageAlt: m.mod_og_alt({ name: mod.name }),
       type: 'website',
       ...(ogImage ? { image: ogImage } : {}),
+      ...(ogSized ? { imageWidth: 1200, imageHeight: 630 } : {}),
     },
   }}
   jsonLd={jsonLd}

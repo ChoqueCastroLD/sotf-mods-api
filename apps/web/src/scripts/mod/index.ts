@@ -10,6 +10,7 @@ import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from './dialogs
 import { initCompatPrompt, initDownloads } from './download.ts';
 import { initFollow } from './follow.ts';
 import { initGallery } from './gallery.ts';
+import { initKitAdd } from './kit-add.ts';
 import { initNsfwGate } from './nsfw.ts';
 import { initProse } from './prose.ts';
 import { whenSession } from './session.ts';
@@ -63,5 +64,6 @@ export function initModPage(doc: Document = document): void {
     }
     safely(() => initFollow(root, data, summary, doc));
     safely(() => initWhatsNew(root, data, doc));
+    safely(() => initKitAdd(root, data, doc));
   });
 }

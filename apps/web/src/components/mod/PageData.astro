@@ -71,6 +71,16 @@ const data: ModPageData = {
     videoTitle: mod.video ? m.mod_video_title({ name: mod.name }) : '',
     close: m.common_action_close(),
     shareTitle: m.mod_share_text({ name: mod.name }),
+    kitAddTitle: m.kits_add_title({ name: '{name}' }),
+    kitAddNew: m.kits_add_new_kit(),
+    kitAddButton: m.kits_add_button(),
+    kitAddInKit: m.kits_add_in_kit(),
+    kitAddTo: m.kits_add_to_named({ kit: '{kit}' }),
+    kitAddAlready: m.kits_add_already({ name: '{name}', kit: '{kit}' }),
+    kitAddDone: m.kits_add_done({ name: '{name}', kit: '{kit}' }),
+    kitAddFailed: m.kits_add_failed({ name: '{name}' }),
+    kitLimit: m.kits_items_limit({ max: '{max}' }),
+    kitUndoFailed: m.kits_undo_failed(),
   },
 };
 const json = JSON.stringify(data)

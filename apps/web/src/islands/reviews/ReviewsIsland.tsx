@@ -18,6 +18,7 @@ import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } fro
 import { createPortal } from 'react-dom';
 import { api, failureText, get } from '../comments/lib/api.ts';
 import { SocialI18n } from '../comments/lib/i18n.tsx';
+import { emitCount } from '../comments/lib/live-count.ts';
 import { t } from '../comments/lib/messages.ts';
 import type { MeSummary } from '../comments/lib/session.ts';
 import { deferWithUndo, LiveRegion, notify, ReportDialog } from '../comments/lib/ui.tsx';
@@ -147,9 +148,11 @@ export function ReviewsIsland(props: ReviewsIslandProps) {
   const removeOwn = useCallback(() => {
     const beforeItems = items;
     const beforeMine = mine;
+    if (beforeMine) emitCount('reviews', -1);
     setItems((current) => current?.filter((item) => item.id !== beforeMine?.id) ?? current);
     setMine(null);
     return () => {
+      if (beforeMine) emitCount('reviews', 1);
       setItems(beforeItems);
       setMine(beforeMine);
     };
@@ -209,6 +212,7 @@ export function ReviewsIsland(props: ReviewsIslandProps) {
     setMine(review);
     setWriting(false);
     setEditingOwn(false);
+    if (created) emitCount('reviews', 1);
     if (created) setItems((current) => (current ? [review, ...current] : current));
     else replaceItem(review);
     announce(created ? t('social_review_posted') : t('social_review_updated'));

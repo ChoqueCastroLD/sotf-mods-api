@@ -12,9 +12,15 @@
 import { bootFieldReport } from '../compat/boot.ts';
 import { bootReviews } from '../reviews/boot.ts';
 import { bootComments } from './boot.ts';
+import { initLiveCounts } from './lib/live-count.ts';
 import type { MeSummary } from './lib/session.ts';
 
 export function initSocialIslands(root: ParentNode, session: Promise<MeSummary | null>): void {
+  try {
+    initLiveCounts(root);
+  } catch {
+    // Progressive enhancement only.
+  }
   for (const boot of [bootComments, bootReviews, bootFieldReport]) {
     try {
       void boot(root, session).catch(() => {});

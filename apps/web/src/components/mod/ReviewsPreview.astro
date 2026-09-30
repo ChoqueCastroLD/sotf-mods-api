@@ -11,7 +11,7 @@ import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO, ReviewPage } from './data.ts';
-import { reviewsPagePath } from './format.ts';
+import { pluralTemplates, reviewsPagePath } from './format.ts';
 import { markdownLabels } from './i18n.ts';
 import { SECTION_TITLE_CLASSES } from './styles.ts';
 
@@ -35,7 +35,14 @@ const creatorName = mod.author.displayName || mod.author.handle;
 
 <section id="reviews" aria-labelledby="reviews-title" class="grid gap-4">
   <div class="flex flex-wrap items-baseline justify-between gap-3">
-    <h2 id="reviews-title" class={SECTION_TITLE_CLASSES}>{m.mod_reviews_title({ count: summary.count })}</h2>
+    <h2
+      id="reviews-title"
+      class={SECTION_TITLE_CLASSES}
+      data-live-count="reviews"
+      data-count={summary.count}
+      data-count-templates={JSON.stringify(pluralTemplates(locale, (count) => m.mod_reviews_title({ count })))}
+      data-count-zero={m.mod_reviews_title({ count: 0 })}
+    >{m.mod_reviews_title({ count: summary.count })}</h2>
     {
       summary.count > 0 && (
         <a href={reviewsHref} class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link">

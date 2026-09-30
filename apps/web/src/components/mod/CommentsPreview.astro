@@ -9,6 +9,7 @@ import { localizeHtml } from '@sotf/markdown/labels';
 import { CommentItem } from '@sotf/ui/domain';
 import { loadEnv } from '../../lib/env.ts';
 import type { CommentPage, ModDetailDTO } from './data.ts';
+import { pluralTemplates } from './format.ts';
 import { markdownLabels } from './i18n.ts';
 import { SECTION_TITLE_CLASSES } from './styles.ts';
 
@@ -19,6 +20,7 @@ interface Props {
 }
 
 const { mod, comments, loginHref } = Astro.props;
+const locale = Astro.locals.locale;
 const labels = markdownLabels();
 const localize = <T extends { bodyHtml: string }>(comment: T): T => ({
   ...comment,
@@ -31,7 +33,14 @@ const items = (comments?.items ?? []).map((comment) => ({
 ---
 
 <section id="comments" aria-labelledby="comments-title" class="grid gap-4">
-  <h2 id="comments-title" class={SECTION_TITLE_CLASSES}>{m.mod_comments_title({ count: mod.commentsCount })}</h2>
+  <h2
+    id="comments-title"
+    class={SECTION_TITLE_CLASSES}
+    data-live-count="comments"
+    data-count={mod.commentsCount}
+    data-count-templates={JSON.stringify(pluralTemplates(locale, (count) => m.mod_comments_title({ count })))}
+    data-count-zero={m.mod_comments_title({ count: 0 })}
+  >{m.mod_comments_title({ count: mod.commentsCount })}</h2>
   {
     items.length > 0 ? (
       <ol class="grid gap-6" data-comment-list>
