@@ -1,47 +1,84 @@
 # SOTF Mods v2
 
-El hogar del modding de *Sons of the Forest* (sotf-mods.com), reconstruido: Astro 7 + React 19 en
-la web, Fastify 5 + pg-boss en el servidor, PostgreSQL 16 y Cloudflare R2.
+El hogar del modding de *Sons of the Forest* ([sotf-mods.com](https://sotf-mods.com)),
+reconstruido: Astro 7 + React 19 en la web, Fastify 5 + pg-boss en el servidor, PostgreSQL 16 y
+Cloudflare R2. Comparte la base de datos de producción con la versión legacy, ampliada solo con
+migraciones aditivas, y mantiene byte a byte la API que usan RedManager y los mods.
 
-- **Plan maestro (fuente única de verdad)**: [`docs/plan/PLAN.md`](docs/plan/PLAN.md)
-- **Decisiones de arquitectura**: [`docs/adr/`](docs/adr/README.md)
-- **Pendientes por paquete de trabajo**: [`docs/backlog/`](docs/backlog/)
+| Quiero… | Leer |
+|---|---|
+| Arrancar el proyecto en local | [Arranque rápido](#arranque-rápido) y [`docs/developers/local-environment.md`](docs/developers/local-environment.md) |
+| Entender cómo está hecho | [`docs/developers/architecture.md`](docs/developers/architecture.md) y [`docs/adr/`](docs/adr/README.md) |
+| Contribuir | [`docs/developers/contributing.md`](docs/developers/contributing.md) |
+| Desplegar u operar producción | [`docs/operations/`](docs/operations/README.md) (despliegue, backups, marcha atrás, rotación de secretos, vigilancia) |
+| Saber qué se decidió y por qué | [`docs/plan/PLAN.md`](docs/plan/PLAN.md) (fuente única de verdad; §14 prevalece) |
+| Ver pendientes | [`docs/backlog/`](docs/backlog/) |
 
 ## Requisitos
 
 - Node.js **24.17** (`.nvmrc`) con corepack: `corepack enable pnpm` activa pnpm **12.6**
   (versión fijada en `package.json#packageManager`).
-- Docker con Compose v2 (infraestructura local y tests de integración).
+- Docker con Compose v2 (infraestructura local, dump del seed y tests de integración).
 
-## Arranque
+## Arranque rápido
+
+Cinco comandos, desde la raíz del repositorio:
 
 ```bash
-corepack enable pnpm
-pnpm install            # lockfile congelado en CI; versiones exactas del catálogo
-cp .env.example .env    # valores locales; los secretos reales solo viven en Coolify
-pnpm infra:up           # postgres, seaweedfs (S3) y mailpit, healthy y con los buckets creados
-pnpm verify             # lint, checks, typecheck, tests y build de lo afectado
+pnpm install
+node -e "const fs=require('node:fs'),c=require('node:crypto');fs.writeFileSync('.env',fs.readFileSync('.env.example','utf8').replace(/^(APP_SECRET|INTERNAL_SECRET)=$/gm,(_,k)=>k+'='+c.randomBytes(48).toString('base64url')))"
+pnpm infra:up
+pnpm db:seed:dev --small
+pnpm dev
 ```
 
-La web (`pnpm dev`) y los datos de desarrollo (`pnpm db:seed:dev`) llegan con WP-22, WP-10 y
-WP-14 (ver el plan, §12.3).
+1. Instala las dependencias (versiones exactas del catálogo).
+2. Crea `.env` a partir de `.env.example` con `APP_SECRET` e `INTERNAL_SECRET` locales aleatorios
+   (equivale a `cp .env.example .env` y rellenar ambos con `openssl rand -base64 48`; sobrescribe
+   un `.env` existente). La api, el worker y los scripts `db:*` cargan este `.env` solos.
+3. Levanta PostgreSQL 16, SeaweedFS (S3) y Mailpit (proyecto Compose `sotfv2`) y crea los buckets.
+4. Construye la base de desarrollo: snapshot público + datos sintéticos → migraciones → backfills
+   → verificación. Todas las cuentas usan la contraseña `sotf-dev-2026!` (`<slug>@example.test`).
+5. Arranca web, api y worker en modo desarrollo.
+
+Abre **http://127.0.0.1:47321**. Los emails de desarrollo se ven en http://127.0.0.1:47080.
+
+> **Aviso (estado a 2026-09-30, ver [`docs/backlog/WP-A4.md`](docs/backlog/WP-A4.md))**: los
+> scripts `dev` de la api y el worker aún no fijan sus puertos de desarrollo, así que `pnpm dev`
+> los arranca en 3001 y 3002; la landing se sirve igual, pero sus secciones con datos muestran el
+> estado de error y las islas no encuentran `/api` (la web de desarrollo no hace de proxy). Hasta
+> que se corrija, para tener el stack completo arranca cada app en su terminal:
+>
+> ```bash
+> PORT=47301 pnpm --filter @sotf/api dev
+> PORT=47302 pnpm --filter @sotf/worker dev
+> pnpm --filter @sotf/web dev
+> ```
+
+Más detalle, cuentas de admin locales y problemas frecuentes:
+[`docs/developers/local-environment.md`](docs/developers/local-environment.md).
 
 ## Estructura
 
 ```
 apps/       web (Astro SSR + consola SPA) · api (Fastify) · worker (pg-boss)
 packages/   contracts · db · core · ui · brand · i18n · markdown · emails · config
-tooling/    scripts (este andamiaje) · migration · legacy-contract · lhci · load · shadow
+tooling/    scripts (andamiaje) · migration (seed, backfills) · legacy-contract · load
 ops/        compose · docker · sql · coolify · cloudflare · runbooks · legacy-hotfix
-e2e/        Playwright
-docs/       plan · adr · backlog
+docs/       plan · adr · developers · operations · backlog
 ```
 
 Los paquetes internos no se compilan: exportan `./src/index.ts` y las apps los empaquetan
 (PLAN §2.4). Convenciones de TypeScript en PLAN §2.6 (`strict`, `noUncheckedIndexedAccess`,
 `erasableSyntaxOnly`, imports relativos con extensión `.ts`).
 
-## Scripts raíz (PLAN §12.1)
+| App | Desarrollo | Producción (Coolify) | README |
+|---|---|---|---|
+| `@sotf/web` | `127.0.0.1:47321` | `sotf-mods.com` (:4321) | [`apps/web/README.md`](apps/web/README.md) |
+| `@sotf/api` | `127.0.0.1:47301` | `sotf-mods.com/api`, `api.sotf-mods.com` (:3001) | [`apps/api/README.md`](apps/api/README.md) |
+| `@sotf/worker` | health `127.0.0.1:47302` | interno (:3002) | [`apps/worker/README.md`](apps/worker/README.md) |
+
+## Scripts raíz
 
 | Script | Qué hace |
 |---|---|
@@ -51,16 +88,21 @@ Los paquetes internos no se compilan: exportan `./src/index.ts` y las apps los e
 | `pnpm ci:local` | Las mismas etapas que `.github/workflows/ci.yml` (`--quick` omite e2e, LHCI e imágenes) |
 | `pnpm check:forbidden` | Falla ante referencias legacy eliminadas (host de ficheros legacy, variables de entorno retiradas, sufijo de vista previa) o cualquier cosa con pinta de secreto |
 | `pnpm check:ownership [WP-ID]` | Falla si la rama toca rutas que no son del WP (el id se deduce de la rama `wp/WP-XX`) |
-| `pnpm gen` | Regenera los ficheros generados (`*.gen.ts`, `.generated/`); nunca se editan a mano |
+| `pnpm gen` | Regenera los ficheros generados (`*.gen.ts`, `.generated/`, árbol de rutas de la consola); nunca se editan a mano |
 | `pnpm gen:ownership` | Regenera `tooling/scripts/ownership.json` desde PLAN §12.3 |
 | `pnpm infra:up` / `infra:down` / `infra:reset` / `infra:status` | Infraestructura local (proyecto Compose `sotfv2`) |
-| `pnpm dev` | Apps en modo desarrollo (web 47321, api 47301, worker 47302) |
-| `pnpm db:*`, `pnpm admin:grant` | Migraciones, guarda, seed, backfills e invariantes (WP-10 y WP-14) |
-| `pnpm i18n:check` / `i18n:pseudo` | Catálogo completo en los 13 locales (WP-13) |
-| `pnpm e2e` · `contract:legacy` · `lhci` · `load` | Verificación extendida (WP-91, WP-24, WP-92) |
+| `pnpm dev` | Apps en modo desarrollo |
+| `pnpm db:migrate` · `db:guard` · `db:baseline` | Migraciones SQL, guarda de superconjunto y baseline legacy (`packages/db`) |
+| `pnpm db:seed:dev` · `db:reset:dev` | Base de desarrollo (`tooling/migration`) |
+| `pnpm db:backfill` · `db:invariants` · `db:verify-snapshot` · `db:revert-fix` · `admin:grant` | Backfills, verificaciones, reversión de fixes auditados y roles (`tooling/migration`) |
+| `pnpm i18n:check` / `i18n:pseudo` | Catálogo completo en los 13 locales |
+| `pnpm e2e` · `contract:legacy` · `lhci` · `load` | Verificación extendida |
 
-Las tareas que implementa un WP posterior se delegan en el script homónimo de su paquete
-(`tooling/scripts/delegate.ts`); mientras no exista, fallan indicando qué WP lo entrega.
+Las tareas raíz que implementa un paquete concreto se delegan en su script homónimo
+(`tooling/scripts/delegate.ts`); si el paquete aún no existe, fallan indicando qué WP lo entrega.
+Los scripts `db:*` y `admin:grant` usan `MIGRATIONS_DATABASE_URL` o `DATABASE_URL` del entorno o
+del `.env` raíz, y por defecto la base local (`127.0.0.1:47432`); se niegan a escribir en una
+base no local sin `--confirm <base>`.
 
 ## Infraestructura local (PLAN §11.2)
 
@@ -87,3 +129,5 @@ pnpm verify && pnpm test:int
 - Dependencias nuevas: versión exacta en el `package.json` del paquete + nota en el backlog.
 - Commits convencionales. Nadie empuja a GitHub; el integrador fusiona por orden de id.
 - Producción es de solo lectura para los agentes (PLAN §12.1, «Datos»).
+
+Guía completa: [`docs/developers/contributing.md`](docs/developers/contributing.md).
