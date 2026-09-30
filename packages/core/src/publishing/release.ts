@@ -156,7 +156,7 @@ export async function writeVersion(ctx: Ctx, tx: Transaction, input: ReleaseInpu
   if (builds.length > 0) {
     await tx.execute(sql`
       INSERT INTO "ModVersionCompat" ("modVersionId", "gameBuildId", "authorTested", "updatedAt")
-      SELECT ${input.versionId}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${builds}::int[])
+      SELECT ${input.versionId}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${sql.param(builds)}::int[])
       ON CONFLICT ("modVersionId", "gameBuildId") DO UPDATE SET "authorTested" = true`);
   }
 

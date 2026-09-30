@@ -8,7 +8,7 @@
 import { type Ctx, createCtx, silentLogger } from '@sotf/core';
 import { aggregateCompat, driftedVersions, reconcileCompat } from '@sotf/core/compat/index';
 import { evaluateOpsAlerts, runOpsAlerts } from '@sotf/core/ops/index';
-import { RENDER_VERSION, rerenderStaleMarkdown } from '@sotf/core/publishing/index';
+import { RENDER_VERSION, rerenderStaleMarkdown } from '@sotf/core/publishing/rerender';
 import { rescanStaleScans } from '@sotf/core/security-scan/index';
 import type { TestDb } from '@sotf/db/testing';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';

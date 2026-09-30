@@ -121,7 +121,7 @@ async function rowStats(exec: Executor, modIds: readonly number[]): Promise<Map<
                AND NOT EXISTS (SELECT 1 FROM "Comment" r WHERE r."replyId" = c."id" AND r."userId" = m."userId")) AS "comments",
            (SELECT count(*)::int FROM "ModReview" rv
              WHERE rv."modId" = m."id" AND rv."status" = 'visible' AND rv."authorRepliedAt" IS NULL) AS "reviews"
-      FROM "Mod" m WHERE m."id" = ANY(${[...modIds]}::int[])`);
+      FROM "Mod" m WHERE m."id" = ANY(${sql.param([...modIds])}::int[])`);
   for (const r of res.rows) {
     map.set(Number(r.modId), {
       modId: Number(r.modId),
@@ -421,11 +421,11 @@ export async function updateStudioVersion(
       const builds = [...new Set(body.testedGameBuildIds)];
       await tx.execute(sql`
         UPDATE "ModVersionCompat" SET "authorTested" = false
-         WHERE "modVersionId" = ${version.id} AND "authorTested" AND NOT ("gameBuildId" = ANY(${builds}::int[]))`);
+         WHERE "modVersionId" = ${version.id} AND "authorTested" AND NOT ("gameBuildId" = ANY(${sql.param(builds)}::int[]))`);
       if (builds.length > 0) {
         await tx.execute(sql`
           INSERT INTO "ModVersionCompat" ("modVersionId", "gameBuildId", "authorTested", "updatedAt")
-          SELECT ${version.id}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${builds}::int[])
+          SELECT ${version.id}, g."id", true, now() FROM "GameBuild" g WHERE g."id" = ANY(${sql.param(builds)}::int[])
           ON CONFLICT ("modVersionId", "gameBuildId") DO UPDATE SET "authorTested" = true`);
       }
       if (version.status === 'active') {

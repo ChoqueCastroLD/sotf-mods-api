@@ -132,7 +132,7 @@ export async function findTags(
   const wanted = [...new Set(slugs.map((s) => s.trim().toLowerCase()).filter(Boolean))];
   if (wanted.length === 0) return { ids: [], unknown: [] };
   const res = await exec.execute<{ id: number; slug: string }>(
-    sql`SELECT "id", "slug" FROM "Tag" WHERE "slug" = ANY(${wanted}::text[])`,
+    sql`SELECT "id", "slug" FROM "Tag" WHERE "slug" = ANY(${sql.param(wanted)}::text[])`,
   );
   const found = new Map(res.rows.map((r) => [r.slug, r.id]));
   return {
@@ -198,7 +198,7 @@ export async function resolveDependencies(
   if (ids.length === 0) return [];
   const res = await exec.execute<{ id: number; manifestId: string }>(sql`
     SELECT "id", "mod_id" AS "manifestId" FROM "Mod"
-     WHERE "mod_id" = ANY(${ids}::text[]) AND "status" NOT IN ('rejected')`);
+     WHERE "mod_id" = ANY(${sql.param(ids)}::text[]) AND "status" NOT IN ('rejected')`);
   for (const r of res.rows) {
     const dep = merged.get(r.manifestId);
     if (dep) dep.depModId = r.id;
@@ -216,7 +216,7 @@ export async function dependencyCycles(
   if (direct.length === 0) return [];
   const res = await exec.execute<{ origin: string }>(sql`
     WITH RECURSIVE walk("origin", "manifest", "depth") AS (
-      SELECT o, o, 1 FROM unnest(${direct}::text[]) AS o
+      SELECT o, o, 1 FROM unnest(${sql.param(direct)}::text[]) AS o
       UNION
       SELECT w."origin", d."depManifestId", w."depth" + 1
         FROM walk w
@@ -291,7 +291,7 @@ export async function loadMedia(exec: Executor, ids: readonly string[]): Promise
   const unique = [...new Set(ids)];
   if (unique.length === 0) return new Map();
   const res = await exec.execute<Row>(sql`
-    SELECT "id", "status", "ownerId", "sourceBucket", "sourceKey" FROM "Media" WHERE "id" = ANY(${unique}::uuid[])`);
+    SELECT "id", "status", "ownerId", "sourceBucket", "sourceKey" FROM "Media" WHERE "id" = ANY(${sql.param(unique)}::uuid[])`);
   return new Map(
     res.rows.map((r) => [
       String(r.id),

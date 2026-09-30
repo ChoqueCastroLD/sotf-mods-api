@@ -58,6 +58,7 @@
     "@types/node": "catalog:",
     "@types/pg": "catalog:",
     "fflate": "catalog:",
+    "sharp": "catalog:",
     "testcontainers": "catalog:",
     "tsdown": "catalog:",
     "typescript": "catalog:",

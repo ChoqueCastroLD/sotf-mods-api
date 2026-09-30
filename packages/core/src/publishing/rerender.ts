@@ -11,6 +11,9 @@
  * - Rows edited meanwhile are skipped (`WHERE "descriptionMd" = <source>`); only v2 columns are
  *   written, with raw SQL so the legacy `updatedAt` never moves.
  * - Batches of `batchSize` mods; `remaining` tells the caller whether another run is needed.
+ *
+ * Import it from `@sotf/core/publishing/rerender` (not the publishing barrel): it reaches the image
+ * pipeline (sharp), which the API bundle must not load.
  */
 import { RENDER_VERSION } from '@sotf/markdown';
 import { sql } from 'drizzle-orm';
