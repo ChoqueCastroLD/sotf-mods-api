@@ -15,6 +15,8 @@
     "test:int": "vitest run --config ../../packages/config/vitest/int.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "catalog:",
+    "@aws-sdk/s3-request-presigner": "catalog:",
     "@fastify/cookie": "catalog:",
     "@fastify/cors": "catalog:",
     "@fastify/etag": "catalog:",
@@ -31,6 +33,7 @@
     "drizzle-orm": "catalog:",
     "fastify": "catalog:",
     "fastify-type-provider-zod": "catalog:",
+    "isbot": "catalog:",
     "lru-cache": "catalog:",
     "pg": "catalog:",
     "pg-boss": "catalog:",
@@ -41,6 +44,7 @@
   "devDependencies": {
     "@sotf/config": "workspace:*",
     "@sotf/emails": "workspace:*",
+    "@sotf/migration-tools": "workspace:*",
     "@testcontainers/postgresql": "catalog:",
     "@types/node": "catalog:",
     "@types/pg": "catalog:",

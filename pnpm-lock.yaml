@@ -344,6 +344,9 @@ catalogs:
     fontaine:
       specifier: 1.0.0
       version: 1.0.0
+    isbot:
+      specifier: 5.2.2
+      version: 5.2.2
     jsdom:
       specifier: 30.1.1
       version: 30.1.1
@@ -461,6 +464,12 @@ importers:
 
   apps/api:
     dependencies:
+      '@aws-sdk/client-s3':
+        specifier: 'catalog:'
+        version: 3.1142.0
+      '@aws-sdk/s3-request-presigner':
+        specifier: 'catalog:'
+        version: 3.1142.0
       '@fastify/cookie':
         specifier: 'catalog:'
         version: 11.1.2
@@ -509,6 +518,9 @@ importers:
       fastify-type-provider-zod:
         specifier: 'catalog:'
         version: 7.0.0(@fastify/swagger@9.9.0(supports-color@5.5.0))(fastify@5.12.5)(openapi-types@12.1.3)(zod@4.6.5)
+      isbot:
+        specifier: 'catalog:'
+        version: 5.2.2
       lru-cache:
         specifier: 'catalog:'
         version: 11.5.3
@@ -534,6 +546,9 @@ importers:
       '@sotf/emails':
         specifier: workspace:*
         version: link:../../packages/emails
+      '@sotf/migration-tools':
+        specifier: workspace:*
+        version: link:../../tooling/migration
       '@testcontainers/postgresql':
         specifier: 'catalog:'
         version: 12.2.0(supports-color@5.5.0)
@@ -664,6 +679,12 @@ importers:
 
   apps/worker:
     dependencies:
+      '@aws-sdk/client-s3':
+        specifier: 'catalog:'
+        version: 3.1142.0
+      '@aws-sdk/s3-request-presigner':
+        specifier: 'catalog:'
+        version: 3.1142.0
       '@react-email/components':
         specifier: 'catalog:'
         version: 1.0.12(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -685,6 +706,9 @@ importers:
       drizzle-orm:
         specifier: 'catalog:'
         version: 0.45.3(@types/pg@8.23.1)(kysely@0.28.17)(pg@8.23.0)
+      isbot:
+        specifier: 'catalog:'
+        version: 5.2.2
       lru-cache:
         specifier: 'catalog:'
         version: 11.5.3
@@ -828,6 +852,9 @@ importers:
       fflate:
         specifier: 'catalog:'
         version: 0.8.3
+      isbot:
+        specifier: 'catalog:'
+        version: 5.2.2
       lru-cache:
         specifier: 'catalog:'
         version: 11.5.3
@@ -859,6 +886,9 @@ importers:
       '@types/pg':
         specifier: 'catalog:'
         version: 8.23.1
+      testcontainers:
+        specifier: 'catalog:'
+        version: 12.2.0(supports-color@5.5.0)
       typescript:
         specifier: 'catalog:'
         version: 7.0.2
@@ -1131,6 +1161,25 @@ importers:
       vitest:
         specifier: 'catalog:'
         version: 5.0.2(@types/node@24.19.0)(jsdom@30.1.1)(vite@8.3.1(@types/node@24.19.0)(jiti@2.7.0)(yaml@2.9.1))
+
+  tooling/load:
+    dependencies:
+      '@sotf/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@sotf/migration-tools':
+        specifier: workspace:*
+        version: link:../migration
+      pg:
+        specifier: 'catalog:'
+        version: 8.23.0
+    devDependencies:
+      '@types/node':
+        specifier: 'catalog:'
+        version: 24.19.0
+      '@types/pg':
+        specifier: 'catalog:'
+        version: 8.23.1
 
   tooling/migration:
     dependencies:
