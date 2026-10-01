@@ -103,6 +103,14 @@ export {
 export { Popover, PopoverClose, type PopoverProps } from './popover.tsx';
 export { RadioCardGroup, type RadioCardGroupProps, type RadioCardOption } from './radio-card.tsx';
 export { Select, type SelectOption, type SelectProps } from './select.tsx';
+export {
+  ActionSheet,
+  type ActionSheetItem,
+  type ActionSheetProps,
+  BottomSheet,
+  type BottomSheetProps,
+  type SheetSnapPoint,
+} from './sheet.tsx';
 export { Skeleton, SkeletonGroup, type SkeletonGroupProps, SkeletonText, type SkeletonTextProps } from './skeleton.tsx';
 export { SkipLink, type SkipLinkProps } from './skip-link.tsx';
 export { Slider, type SliderProps } from './slider.tsx';

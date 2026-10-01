@@ -6,10 +6,12 @@ import { FIELD_KIT_NAMES } from '@sotf/brand/field-kit';
 import { Copy, Download, Heart, Search, Share2, Trash2, Upload } from 'lucide-react';
 import { type ReactNode, useState } from 'react';
 import {
+  ActionSheet,
   Avatar,
   BADGE_VARIANTS,
   Badge,
   Banner,
+  BottomSheet,
   Breadcrumbs,
   BUTTON_SIZES,
   Button,
@@ -267,11 +269,56 @@ function Forms() {
   );
 }
 
+const SHEET_CATEGORIES = [
+  'Quality of Life',
+  'Gameplay',
+  'Building',
+  'Companions',
+  'Weapons & Gear',
+  'Vehicles',
+  'Model Swap',
+  'UI & HUD',
+  'Libraries',
+  'Multiplayer',
+  'Cheats',
+  'Maps',
+];
+
 function Surfaces() {
   const [menuValue, setMenuValue] = useState('trending');
   const [compact, setCompact] = useState(false);
   return (
     <Section title="Surfaces">
+      <Row label="BottomSheet (snap points: half / full) and ActionSheet">
+        <BottomSheet
+          title="Filters"
+          description="Drag the handle: it rests at half or full height."
+          snapPoints={[0.5, 1]}
+          trigger={<Button variant="secondary">Open sheet</Button>}
+          footer={<Button>Show 189 mods</Button>}
+        >
+          {SHEET_CATEGORIES.map((name) => (
+            <Switch key={name} label={name} />
+          ))}
+        </BottomSheet>
+        <ActionSheet
+          title="Mod actions"
+          menuOnDesktop
+          trigger={<Button variant="secondary">Action sheet</Button>}
+          items={[
+            [
+              { label: 'Share', icon: <Share2 size={20} />, onSelect: () => toast.success('Link copied') },
+              {
+                label: 'Copy link',
+                icon: <Copy size={20} />,
+                description: 'sotf-mods.com/mods/axel',
+                onSelect: () => {},
+              },
+            ],
+            [{ label: 'Delete mod', icon: <Trash2 size={20} />, danger: true, onSelect: () => {} }],
+          ]}
+        />
+      </Row>
       <Row label="Dialog (bottom sheet below md)">
         <Dialog
           title="Report a problem"

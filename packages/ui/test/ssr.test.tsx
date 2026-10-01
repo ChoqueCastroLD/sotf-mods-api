@@ -10,9 +10,11 @@ import { describe, expect, it } from 'vitest';
 import * as ui from '../src/index.ts';
 
 const {
+  ActionSheet,
   Avatar,
   Badge,
   Banner,
+  BottomSheet,
   Breadcrumbs,
   Button,
   ButtonLink,
@@ -62,12 +64,20 @@ const options = [
 ];
 
 const cases: Record<string, () => ReactElement> = {
+  ActionSheet: () => (
+    <ActionSheet title="Actions" trigger={<Button>Open</Button>} items={[{ label: 'Share', onSelect: () => {} }]} />
+  ),
   Avatar: () => <Avatar name="Kelvin Scout" id={42} />,
   Badge: () => <Badge variant="featured">Featured</Badge>,
   Banner: () => (
     <Banner tone="signal" title="Patch 1.0.4" dismissible persistId="patch-1.0.4">
       Check your mods
     </Banner>
+  ),
+  BottomSheet: () => (
+    <BottomSheet title="Filters" snapPoints={[0.5, 1]} trigger={<Button>Open</Button>}>
+      Content
+    </BottomSheet>
   ),
   Breadcrumbs: () => <Breadcrumbs items={[{ label: 'Mods', href: '/mods' }, { label: 'Axel' }]} />,
   Button: () => <Button loading>Save</Button>,
