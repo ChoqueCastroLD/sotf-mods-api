@@ -3634,6 +3634,7 @@
   ],
   "explore_results_heading": "結果",
   "explore_search_browse": "カテゴリを見る",
+  "explore_search_clear_input": "検索をクリア",
   "explore_search_count": [
     {
       "declarations": [
@@ -3659,9 +3660,13 @@
   "explore_search_in_explore": "この結果を「探す」で絞り込む",
   "explore_search_prompt_text": "名前、作者、マニフェスト ID で MOD、建築、キット、クリエイター、ガイドを検索できます。",
   "explore_search_prompt_title": "何をお探しですか？",
+  "explore_search_recent_clear": "消去",
+  "explore_search_recent_remove": "「{query}」を最近の検索から削除",
+  "explore_search_recent_title": "最近の検索",
   "explore_search_type_all": "すべて",
   "explore_search_type_pages": "ページ",
   "explore_search_types_label": "結果の種類",
+  "explore_sort_close": "並べ替えを閉じる",
   "explore_sort_comments": "コメント数順",
   "explore_sort_downloads": "ダウンロード数順",
   "explore_sort_follows": "フォロー数順",
@@ -3670,6 +3675,7 @@
   "explore_sort_rating": "高評価順",
   "explore_sort_relevance": "関連度順",
   "explore_sort_reversed": "{sort}（逆順）",
+  "explore_sort_title": "並べ替え",
   "explore_sort_trending": "注目",
   "explore_sort_updated": "最近の更新順",
   "explore_tab_all": "すべて",
@@ -4536,6 +4542,18 @@
   "landing_faq_more": "詳しく見る",
   "landing_faq_title": "サバイバーからのよくある質問",
   "landing_hall_hint": "歴代ダウンロード数トップのMOD",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件すべて表示"
+      }
+    }
+  ],
   "landing_hall_title": "島のレジェンド",
   "landing_hero_cta_explore": "MODを探す",
   "landing_hero_cta_install": "インストール方法（3分）",

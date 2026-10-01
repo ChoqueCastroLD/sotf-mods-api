@@ -183,5 +183,11 @@
   "explore_compare_row_multiplayer": "Multiplayer",
   "explore_compare_row_downloads_week": "Downloads this week",
   "explore_compare_none": "None",
-  "explore_compare_crumb": "Compare"
+  "explore_compare_crumb": "Compare",
+  "explore_sort_title": "Sort by",
+  "explore_sort_close": "Close sorting",
+  "explore_search_recent_title": "Recent searches",
+  "explore_search_recent_clear": "Clear",
+  "explore_search_recent_remove": "Remove “{query}” from recent searches",
+  "explore_search_clear_input": "Clear the search"
 }

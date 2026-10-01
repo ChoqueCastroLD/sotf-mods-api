@@ -183,5 +183,11 @@
   "explore_compare_row_multiplayer": "Multijogador",
   "explore_compare_row_downloads_week": "Downloads nesta semana",
   "explore_compare_none": "Nenhuma",
-  "explore_compare_crumb": "Comparar"
+  "explore_compare_crumb": "Comparar",
+  "explore_sort_title": "Ordenar por",
+  "explore_sort_close": "Fechar ordenação",
+  "explore_search_recent_title": "Pesquisas recentes",
+  "explore_search_recent_clear": "Limpar",
+  "explore_search_recent_remove": "Remover “{query}” das pesquisas recentes",
+  "explore_search_clear_input": "Limpar a pesquisa"
 }

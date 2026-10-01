@@ -4134,6 +4134,7 @@
   ],
   "explore_results_heading": "Wyniki",
   "explore_search_browse": "Przeglądaj kategorie",
+  "explore_search_clear_input": "Wyczyść wyszukiwanie",
   "explore_search_count": [
     {
       "declarations": [
@@ -4164,9 +4165,13 @@
   "explore_search_in_explore": "Filtruj te wyniki w Przeglądaj",
   "explore_search_prompt_text": "Szukaj modów, buildów, zestawów, twórców i poradników po nazwie, autorze lub ID manifestu.",
   "explore_search_prompt_title": "Czego szukasz?",
+  "explore_search_recent_clear": "Wyczyść",
+  "explore_search_recent_remove": "Usuń „{query}” z ostatnich wyszukiwań",
+  "explore_search_recent_title": "Ostatnie wyszukiwania",
   "explore_search_type_all": "Wszystko",
   "explore_search_type_pages": "Strony",
   "explore_search_types_label": "Rodzaj wyniku",
+  "explore_sort_close": "Zamknij sortowanie",
   "explore_sort_comments": "Najczęściej komentowane",
   "explore_sort_downloads": "Najczęściej pobierane",
   "explore_sort_follows": "Najczęściej obserwowane",
@@ -4175,6 +4180,7 @@
   "explore_sort_rating": "Najlepiej oceniane",
   "explore_sort_relevance": "Najtrafniejsze",
   "explore_sort_reversed": "{sort} (odwrotnie)",
+  "explore_sort_title": "Sortuj według",
   "explore_sort_trending": "Na topie",
   "explore_sort_updated": "Ostatnio aktualizowane",
   "explore_tab_all": "Wszystko",
@@ -5237,6 +5243,18 @@
   "landing_faq_more": "Czytaj dalej",
   "landing_faq_title": "Pytania ocalałych",
   "landing_hall_hint": "Najczęściej pobierane mody wszech czasów",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Pokaż wszystkie ({count__number})"
+      }
+    }
+  ],
   "landing_hall_title": "Legendy wyspy",
   "landing_hero_cta_explore": "Przeglądaj mody",
   "landing_hero_cta_install": "Jak zainstalować (3 min)",

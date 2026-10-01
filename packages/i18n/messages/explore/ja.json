@@ -183,5 +183,11 @@
   "explore_compare_row_multiplayer": "マルチプレイ",
   "explore_compare_row_downloads_week": "今週のダウンロード数",
   "explore_compare_none": "なし",
-  "explore_compare_crumb": "比較"
+  "explore_compare_crumb": "比較",
+  "explore_sort_title": "並べ替え",
+  "explore_sort_close": "並べ替えを閉じる",
+  "explore_search_recent_title": "最近の検索",
+  "explore_search_recent_clear": "消去",
+  "explore_search_recent_remove": "「{query}」を最近の検索から削除",
+  "explore_search_clear_input": "検索をクリア"
 }

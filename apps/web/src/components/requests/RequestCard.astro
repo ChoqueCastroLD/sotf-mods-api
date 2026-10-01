@@ -23,22 +23,20 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const authorName = request.author?.displayName || request.author?.handle || null;
 ---
 
-<article class="relative flex gap-4 rounded-lg border border-border bg-surface p-4 transition-colors hover:border-border-strong">
-  <div class="flex w-14 shrink-0 flex-col items-center justify-center rounded-md bg-raised py-2 text-fg" aria-hidden="true">
+<article class="relative flex gap-3 rounded-xl border border-border bg-surface p-3.5 transition-colors hover:border-border-strong active:bg-raised md:gap-4 md:rounded-lg md:p-4">
+  <div class="flex w-12 shrink-0 flex-col items-center justify-center self-start rounded-lg bg-raised py-2 text-fg md:w-14 md:self-stretch" aria-hidden="true">
     <Icon icon={ChevronUp} size={18} className="text-signal" />
     <span class="font-mono text-base font-semibold tabular-nums">{request.voteCount}</span>
   </div>
-  <div class="flex min-w-0 flex-1 flex-col gap-2">
-    <div class="flex flex-wrap items-center gap-2">
+  <div class="flex min-w-0 flex-1 flex-col gap-1.5">
+    <Heading class="line-clamp-2 min-w-0 text-base font-semibold text-balance text-fg">
+      <a href={href(requestPath(request.id), locale)} class="after:absolute after:inset-0 hover:underline">{request.title}</a>
+    </Heading>
+    <p class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-fg-muted">
       <span class={`inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
         {statusLabel(request.status)}
       </span>
-      <Heading class="min-w-0 text-base font-semibold text-balance text-fg">
-        <a href={href(requestPath(request.id), locale)} class="after:absolute after:inset-0 hover:underline">{request.title}</a>
-      </Heading>
-    </div>
-    <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-fg-muted">
-      {authorName && <span>{m.requests_by({ name: authorName })}</span>}
+      {authorName && <span class="min-w-0 truncate">{m.requests_by({ name: authorName })}</span>}
       <time datetime={request.createdAt}>{formatDate(locale, request.createdAt, 'medium')}</time>
       <span class="sr-only">{m.requests_votes({ count: request.voteCount })}</span>
       <span class="inline-flex items-center gap-1">

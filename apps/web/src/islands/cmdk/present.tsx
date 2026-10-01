@@ -233,7 +233,7 @@ const ICON_BOX = 'flex shrink-0 items-center justify-center rounded-md bg-sunken
 function Thumb({ item }: { item: PaletteItem }) {
   if (item.type === 'search') {
     return (
-      <span className={`${ICON_BOX} size-10`}>
+      <span className={`${ICON_BOX} size-12 md:size-10`}>
         <Glyph icon={Clock} size={16} />
       </span>
     );
@@ -241,27 +241,33 @@ function Thumb({ item }: { item: PaletteItem }) {
   if (item.type === 'suggestion') {
     if (item.avatar) return <Avatar name={item.title} id={item.value} src={item.thumb} size={40} />;
     return (
-      <span className={`${ICON_BOX} size-10`}>
+      <span className={`${ICON_BOX} size-12 md:size-10`}>
         <Glyph icon={item.operator === 'cat' ? FolderTree : Tag} size={16} />
       </span>
     );
   }
   if (item.type === 'action') {
     return (
-      <span className={`${ICON_BOX} size-10`}>
+      <span className={`${ICON_BOX} size-12 md:size-10`}>
         <Glyph icon={ACTION_ICONS[item.icon]} size={16} />
       </span>
     );
   }
   if (item.type === 'user') return <Avatar name={item.title} id={item.id} src={item.thumb} size={40} />;
   const fallback = (
-    <span className={`${ICON_BOX} size-10`}>
+    <span className={`${ICON_BOX} size-12 md:size-10`}>
       <Glyph icon={entryIcon(item)} size={16} />
     </span>
   );
   if (!item.thumb) return fallback;
   return (
-    <Picture src={item.thumb} width={40} height={40} className="size-10 shrink-0 rounded-md" fallback={fallback} />
+    <Picture
+      src={item.thumb}
+      width={48}
+      height={48}
+      className="size-12 shrink-0 rounded-lg md:size-10 md:rounded-md"
+      fallback={fallback}
+    />
   );
 }
 

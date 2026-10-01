@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Resultat",
   "explore_search_browse": "Bläddra bland kategorier",
+  "explore_search_clear_input": "Rensa sökningen",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,9 +3987,13 @@
   "explore_search_in_explore": "Filtrera resultaten i Utforska",
   "explore_search_prompt_text": "Sök moddar, byggen, kit, skapare och guider på namn, skapare eller manifest-ID.",
   "explore_search_prompt_title": "Vad letar du efter?",
+  "explore_search_recent_clear": "Rensa",
+  "explore_search_recent_remove": "Ta bort ”{query}” från senaste sökningar",
+  "explore_search_recent_title": "Senaste sökningar",
   "explore_search_type_all": "Allt",
   "explore_search_type_pages": "Sidor",
   "explore_search_types_label": "Resultattyp",
+  "explore_sort_close": "Stäng sortering",
   "explore_sort_comments": "Mest diskuterade",
   "explore_sort_downloads": "Mest nedladdade",
   "explore_sort_follows": "Mest följda",
@@ -3997,6 +4002,7 @@
   "explore_sort_rating": "Högst betyg",
   "explore_sort_relevance": "Bäst matchning",
   "explore_sort_reversed": "{sort} (omvänd)",
+  "explore_sort_title": "Sortera efter",
   "explore_sort_trending": "Trendar",
   "explore_sort_updated": "Nyligen uppdaterade",
   "explore_tab_all": "Allt",
@@ -4983,6 +4989,18 @@
   "landing_faq_more": "Läs mer",
   "landing_faq_title": "Frågor från överlevare",
   "landing_hall_hint": "De mest nedladdade moddarna genom tiderna",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Visa alla {count__number}"
+      }
+    }
+  ],
   "landing_hall_title": "Öns legender",
   "landing_hero_cta_explore": "Utforska moddar",
   "landing_hero_cta_install": "Så installerar du (3 min)",

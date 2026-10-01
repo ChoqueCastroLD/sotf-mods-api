@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "I tuoi Kit recenti",
   "landing_personal_error": "Segnale perso durante il caricamento dei tuoi aggiornamenti.",
   "landing_personal_step_mark_done": "Segna «{step}» come fatto",
-  "landing_personal_step_failed": "Impossibile salvare il passaggio. Riprova."
+  "landing_personal_step_failed": "Impossibile salvare il passaggio. Riprova.",
+  "landing_hall_show_all": "Mostra tutti i {count, number}"
 }

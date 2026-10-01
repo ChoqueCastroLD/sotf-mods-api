@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "Your recent Kits",
   "landing_personal_error": "Lost signal while loading your updates.",
   "landing_personal_step_mark_done": "Mark “{step}” as done",
-  "landing_personal_step_failed": "Couldn't save that step. Try again."
+  "landing_personal_step_failed": "Couldn't save that step. Try again.",
+  "landing_hall_show_all": "Show all {count, number}"
 }

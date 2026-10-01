@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Resultados",
   "explore_search_browse": "Ver categorías",
+  "explore_search_clear_input": "Borrar la búsqueda",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,9 +3987,13 @@
   "explore_search_in_explore": "Filtrar estos resultados en Explorar",
   "explore_search_prompt_text": "Busca mods, builds, kits, creadores y guías por nombre, autor o ID del manifiesto.",
   "explore_search_prompt_title": "¿Qué estás buscando?",
+  "explore_search_recent_clear": "Borrar",
+  "explore_search_recent_remove": "Quitar «{query}» de las búsquedas recientes",
+  "explore_search_recent_title": "Búsquedas recientes",
   "explore_search_type_all": "Todo",
   "explore_search_type_pages": "Páginas",
   "explore_search_types_label": "Tipo de resultado",
+  "explore_sort_close": "Cerrar orden",
   "explore_sort_comments": "Más comentados",
   "explore_sort_downloads": "Más descargados",
   "explore_sort_follows": "Más seguidos",
@@ -3997,6 +4002,7 @@
   "explore_sort_rating": "Mejor valorados",
   "explore_sort_relevance": "Más relevantes",
   "explore_sort_reversed": "{sort} (invertido)",
+  "explore_sort_title": "Ordenar por",
   "explore_sort_trending": "Tendencia",
   "explore_sort_updated": "Actualizados hace poco",
   "explore_tab_all": "Todo",
@@ -4983,6 +4989,18 @@
   "landing_faq_more": "Leer más",
   "landing_faq_title": "Lo que preguntan los supervivientes",
   "landing_hall_hint": "Los mods más descargados de todos los tiempos",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mostrar los {count__number}"
+      }
+    }
+  ],
   "landing_hall_title": "Leyendas de la isla",
   "landing_hero_cta_explore": "Explorar mods",
   "landing_hero_cta_install": "Cómo instalar (3 min)",

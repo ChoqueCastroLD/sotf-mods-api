@@ -23,6 +23,14 @@ export function initHall(doc: Document = document): void {
     if (view.innerHeight - box.bottom < CARD_HEIGHT && box.top > CARD_HEIGHT) item.dataset.y = 'up';
     else delete item.dataset.y;
   };
+  // Mobile: only the top of the ranking shows until «Show all» (a plain link to the sorted
+  // catalogue when this script does not run).
+  const more = root.querySelector<HTMLElement>('[data-hall-more]');
+  more?.addEventListener('click', (event) => {
+    event.preventDefault();
+    root.querySelector<HTMLElement>('[data-hall-list]')?.setAttribute('data-expanded', '');
+    more.closest('p')?.remove();
+  });
   root.addEventListener('pointerover', place);
   root.addEventListener('focusin', place);
 }

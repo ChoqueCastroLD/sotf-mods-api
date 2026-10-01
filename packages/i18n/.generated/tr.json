@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Sonuçlar",
   "explore_search_browse": "Kategorilere göz at",
+  "explore_search_clear_input": "Aramayı temizle",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,9 +3987,13 @@
   "explore_search_in_explore": "Bu sonuçları Keşfet’te filtrele",
   "explore_search_prompt_text": "Modları, yapıları, kitleri, üreticileri ve rehberleri ada, üreticiye veya manifest kimliğine göre ara.",
   "explore_search_prompt_title": "Ne arıyorsun?",
+  "explore_search_recent_clear": "Temizle",
+  "explore_search_recent_remove": "“{query}” aramasını son aramalardan kaldır",
+  "explore_search_recent_title": "Son aramalar",
   "explore_search_type_all": "Tümü",
   "explore_search_type_pages": "Sayfalar",
   "explore_search_types_label": "Sonuç türü",
+  "explore_sort_close": "Sıralamayı kapat",
   "explore_sort_comments": "En çok konuşulan",
   "explore_sort_downloads": "En çok indirilen",
   "explore_sort_follows": "En çok takip edilen",
@@ -3997,6 +4002,7 @@
   "explore_sort_rating": "En yüksek puanlı",
   "explore_sort_relevance": "En alakalı",
   "explore_sort_reversed": "{sort} (ters)",
+  "explore_sort_title": "Sıralama ölçütü",
   "explore_sort_trending": "Popüler",
   "explore_sort_updated": "Yeni güncellenen",
   "explore_tab_all": "Tümü",
@@ -4983,6 +4989,18 @@
   "landing_faq_more": "Devamını oku",
   "landing_faq_title": "Hayatta kalanların soruları",
   "landing_hall_hint": "Tüm zamanların en çok indirilen modları",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tümünü göster ({count__number})"
+      }
+    }
+  ],
   "landing_hall_title": "Adanın efsaneleri",
   "landing_hero_cta_explore": "Modları keşfet",
   "landing_hero_cta_install": "Nasıl kurulur (3 dk)",

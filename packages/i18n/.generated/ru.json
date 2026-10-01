@@ -4134,6 +4134,7 @@
   ],
   "explore_results_heading": "Результаты",
   "explore_search_browse": "Смотреть категории",
+  "explore_search_clear_input": "Очистить поиск",
   "explore_search_count": [
     {
       "declarations": [
@@ -4164,9 +4165,13 @@
   "explore_search_in_explore": "Отфильтровать эти результаты в обзоре",
   "explore_search_prompt_text": "Ищите моды, постройки, наборы, авторов и руководства по названию, автору или ID манифеста.",
   "explore_search_prompt_title": "Что вы ищете?",
+  "explore_search_recent_clear": "Очистить",
+  "explore_search_recent_remove": "Удалить «{query}» из недавних запросов",
+  "explore_search_recent_title": "Недавние запросы",
   "explore_search_type_all": "Всё",
   "explore_search_type_pages": "Страницы",
   "explore_search_types_label": "Тип результата",
+  "explore_sort_close": "Закрыть сортировку",
   "explore_sort_comments": "Больше обсуждений",
   "explore_sort_downloads": "Больше загрузок",
   "explore_sort_follows": "Больше подписчиков",
@@ -4175,6 +4180,7 @@
   "explore_sort_rating": "Лучшие оценки",
   "explore_sort_relevance": "По релевантности",
   "explore_sort_reversed": "{sort} (обратный порядок)",
+  "explore_sort_title": "Сортировать по",
   "explore_sort_trending": "Популярное",
   "explore_sort_updated": "Недавно обновлённые",
   "explore_tab_all": "Всё",
@@ -5237,6 +5243,18 @@
   "landing_faq_more": "Подробнее",
   "landing_faq_title": "Вопросы выживших",
   "landing_hall_hint": "Самые скачиваемые моды за всё время",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Показать все ({count__number})"
+      }
+    }
+  ],
   "landing_hall_title": "Легенды острова",
   "landing_hero_cta_explore": "Смотреть моды",
   "landing_hero_cta_install": "Как установить (3 мин)",

@@ -24,13 +24,13 @@ import { TierStamp, TrustedMark } from './stamps.tsx';
 
 type HeadingLevel = 2 | 3 | 4;
 
-function AuthorLink({ handle, name }: { handle: string; name: string }) {
+function AuthorLink({ handle, name, className }: { handle: string; name: string; className?: string }) {
   const profileHref = useProfileHref();
   return (
     <a
       key="author"
       href={profileHref(handle)}
-      className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline')}
+      className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline', className)}
     >
       {name}
     </a>
@@ -51,6 +51,8 @@ export interface BuildCardProps {
   headingLevel?: HeadingLevel;
   action?: ReactNode;
   priority?: boolean;
+  /** Below 260 px of its own width, tighten the frame and the text (two-column mobile grids). */
+  tight?: boolean;
   className?: string;
 }
 
@@ -91,40 +93,82 @@ export function BuildCard({
   headingLevel = 3,
   action,
   priority,
+  tight = false,
   className,
 }: BuildCardProps) {
   const { t, locale } = useDomainI18n();
   const Heading = `h${headingLevel}` as const;
   const display = formatCompact(locale, build.downloads);
   return (
-    <article data-variant="build" data-mod-id={build.id} className={className}>
-      <div className={cn(cardClasses, 'flex h-full flex-col gap-3 p-3')}>
-        <div className="texture-blueprint relative rounded-md border border-blueprint/40 p-3">
-          <CornerMarks />
+    <article
+      data-variant="build"
+      data-mod-id={build.id}
+      className={tight ? cn('@container/build', className) : className}
+    >
+      <div
+        className={cn(
+          cardClasses,
+          'flex h-full flex-col gap-3 p-3',
+          tight && '@max-[260px]/build:gap-2 @max-[260px]/build:p-1.5',
+        )}
+      >
+        <div
+          className={cn(
+            'texture-blueprint relative rounded-md border border-blueprint/40 p-3',
+            tight && '@max-[260px]/build:p-1.5',
+          )}
+        >
+          {tight ? (
+            <span className="@max-[260px]/build:hidden">
+              <CornerMarks />
+            </span>
+          ) : (
+            <CornerMarks />
+          )}
           <div className="aspect-cover overflow-hidden rounded-xs bg-raised">
             <Cover
               image={build.thumbnail}
               seed={build.slug}
               name={displayName(build)}
               category={build.category}
-              sizes="(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw"
+              sizes={
+                tight
+                  ? '(min-width: 80rem) 20rem, (min-width: 64rem) 16rem, (min-width: 40rem) 33vw, 50vw'
+                  : '(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw'
+              }
               priority={priority}
               className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
             />
           </div>
           {typeof pieces === 'number' ? (
-            <div className="mt-2">
+            <div className={cn('mt-2', tight && '@max-[260px]/build:hidden')}>
               <DimensionLine>{t('ui_domain_build_pieces', { count: pieces })}</DimensionLine>
             </div>
           ) : null}
         </div>
         {action ? <div className={cn('absolute z-10 end-5 top-5')}>{action}</div> : null}
-        <div className="flex min-w-0 flex-1 flex-col gap-1 px-1">
-          <Heading className="truncate text-base font-semibold">
+        <div
+          className={cn(
+            'flex min-w-0 flex-1 flex-col gap-1 px-1',
+            tight && '@max-[260px]/build:px-0.5 @max-[260px]/build:pb-1',
+          )}
+        >
+          <Heading
+            className={cn(
+              'truncate text-base font-semibold',
+              tight &&
+                '@max-[260px]/build:[&>a]:line-clamp-2 @max-[260px]/build:[&>a]:block @max-[260px]/build:[&>a]:min-h-6 @max-[260px]/build:text-sm @max-[260px]/build:leading-snug @max-[260px]/build:whitespace-normal @max-[260px]/build:text-pretty',
+            )}
+          >
             <CardLink href={build.canonicalPath}>{displayName(build)}</CardLink>
           </Heading>
-          <OriginalName card={build} />
-          <p className="flex min-w-0 items-center gap-1 truncate text-xs text-fg-muted">
+          <OriginalName card={build} className={cn(tight && '@max-[260px]/build:hidden')} />
+          <p
+            className={cn(
+              'flex min-w-0 items-center gap-1 truncate text-xs text-fg-muted',
+              tight && '@max-[260px]/build:text-2xs',
+            )}
+          >
             <span className="truncate">
               {withSlot(
                 t('ui_domain_by_author', { author: SLOT }),
@@ -245,7 +289,11 @@ export function KitCard({ kit, totalSize, compat, currentBuild, headingLevel = 3
           <p className="truncate text-xs text-fg-muted">
             {withSlot(
               t('ui_domain_curated_by', { author: SLOT }),
-              <AuthorLink handle={kit.owner.handle} name={kit.owner.displayName} />,
+              <AuthorLink
+                handle={kit.owner.handle}
+                name={kit.owner.displayName}
+                className="underline decoration-fg-subtle underline-offset-2"
+              />,
             )}
           </p>
           <p className="text-xs text-fg-muted tabular-nums">{facts.join(' · ')}</p>
@@ -284,21 +332,29 @@ export interface CreatorCardProps {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex min-w-0 flex-col">
-      <dt className="readout truncate">{label}</dt>
-      <dd className="font-display-caps text-xl leading-tight tabular-nums text-fg">{value}</dd>
+      <dt className="readout truncate @max-[23rem]/creator:text-[0.625rem] @max-[23rem]/creator:tracking-normal">
+        {label}
+      </dt>
+      <dd className="font-display-caps text-xl leading-tight tabular-nums text-fg @max-[23rem]/creator:text-base">
+        {value}
+      </dd>
     </div>
   );
 }
 
+/**
+ * Below 23 rem of its own width (a phone's single column) the card becomes a row: avatar, name,
+ * handle and the three stats, with the follow slot at the end, and drops the banner and top mod.
+ */
 export function CreatorCard({ creator, action, headingLevel = 3, iconMode, className }: CreatorCardProps) {
   const { t, locale } = useDomainI18n();
   const profileHref = useProfileHref();
   const Heading = `h${headingLevel}` as const;
   const { user } = creator;
   return (
-    <article data-variant="creator" data-user-id={user.id} className={className}>
+    <article data-variant="creator" data-user-id={user.id} className={cn('@container/creator', className)}>
       <div className={cn(cardClasses, 'flex h-full flex-col overflow-hidden')}>
-        <div className="aspect-banner overflow-hidden bg-raised">
+        <div className="aspect-banner overflow-hidden bg-raised @max-[23rem]/creator:hidden">
           <img
             src={generativeBannerUri(user.id)}
             alt=""
@@ -307,18 +363,27 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
             className="block size-full object-cover"
           />
         </div>
-        <div className="flex flex-1 flex-col gap-3 px-4 pb-4">
-          <div className="-mt-8 flex items-end justify-between gap-2">
+        <div className="flex flex-1 flex-col gap-3 px-4 pb-4 @max-[23rem]/creator:grid @max-[23rem]/creator:flex-none @max-[23rem]/creator:grid-cols-[auto_minmax(0,1fr)_auto] @max-[23rem]/creator:gap-x-3 @max-[23rem]/creator:gap-y-1.5 @max-[23rem]/creator:p-3">
+          <div className="-mt-8 flex items-end justify-between gap-2 @max-[23rem]/creator:contents">
             <Avatar
               name={user.displayName}
               id={user.id}
               src={user.avatarUrl}
               size={64}
-              className="rounded-full ring-4 ring-surface"
+              className="rounded-full ring-4 ring-surface @max-[23rem]/creator:col-start-1 @max-[23rem]/creator:row-span-2 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:self-center @max-[23rem]/creator:ring-0"
             />
-            {action ? <div className={cardControlClasses}>{action}</div> : null}
+            {action ? (
+              <div
+                className={cn(
+                  cardControlClasses,
+                  '@max-[23rem]/creator:col-start-3 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:self-start',
+                )}
+              >
+                {action}
+              </div>
+            ) : null}
           </div>
-          <div className="flex min-w-0 flex-col gap-1.5">
+          <div className="flex min-w-0 flex-col gap-1.5 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:gap-0.5">
             <div className="flex min-w-0 items-center gap-1.5">
               <Heading className="truncate text-base font-semibold">
                 <CardLink href={profileHref(user.handle)}>{user.displayName}</CardLink>
@@ -327,10 +392,15 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
             </div>
             <p className="truncate font-mono text-2xs text-fg-subtle">@{user.handle}</p>
             {user.creatorTier ? (
-              <TierStamp tier={user.creatorTier} size="sm" iconMode={iconMode} className="self-start" />
+              <TierStamp
+                tier={user.creatorTier}
+                size="sm"
+                iconMode={iconMode}
+                className="self-start @max-[23rem]/creator:hidden"
+              />
             ) : null}
           </div>
-          <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3">
+          <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3 @max-[23rem]/creator:col-span-2 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-2 @max-[23rem]/creator:mt-0 @max-[23rem]/creator:border-t-0 @max-[23rem]/creator:pt-0">
             <Stat
               label={t('ui_domain_stat_mods')}
               value={formatCount(locale, creator.modsCount + creator.buildsCount)}
@@ -339,7 +409,7 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
             <Stat label={t('ui_domain_stat_followers')} value={formatCompact(locale, creator.followersCount)} />
           </dl>
           {creator.topMod ? (
-            <p className="truncate text-xs text-fg-muted">
+            <p className="truncate text-xs text-fg-muted @max-[23rem]/creator:hidden">
               {withSlot(
                 t('ui_domain_creator_top_mod', { mod: SLOT }),
                 <a

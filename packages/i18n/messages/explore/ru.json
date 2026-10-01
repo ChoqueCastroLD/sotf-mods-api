@@ -183,5 +183,11 @@
   "explore_compare_row_multiplayer": "Мультиплеер",
   "explore_compare_row_downloads_week": "Загрузок за неделю",
   "explore_compare_none": "Нет",
-  "explore_compare_crumb": "Сравнить"
+  "explore_compare_crumb": "Сравнить",
+  "explore_sort_title": "Сортировать по",
+  "explore_sort_close": "Закрыть сортировку",
+  "explore_search_recent_title": "Недавние запросы",
+  "explore_search_recent_clear": "Очистить",
+  "explore_search_recent_remove": "Удалить «{query}» из недавних запросов",
+  "explore_search_clear_input": "Очистить поиск"
 }

@@ -1,0 +1,65 @@
+---
+/**
+ * Floating action button of the discovery pages on phones (create a kit, ask for a mod): a pill
+ * above the tab bar that slides down with it while the page scrolls down (`data-scroll-dir`, set
+ * by the chrome script). From `md` the page header carries the same action, so the pill is hidden.
+ */
+import { Icon } from '@sotf/ui/icons';
+import { Plus } from 'lucide-react';
+
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a href={href} rel="nofollow" class="discovery-fab">
+  <Icon icon={Plus} size={20} />
+  <span>{label}</span>
+</a>
+
+<style is:global>
+  .discovery-fab {
+    display: none;
+  }
+  @media (width < 48rem) {
+    .discovery-fab {
+      position: fixed;
+      z-index: var(--z-sticky, 20);
+      inset-inline-end: 1rem;
+      inset-block-end: calc(4rem + env(safe-area-inset-bottom) + 0.75rem);
+      display: inline-flex;
+      height: 3.25rem;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      background: var(--color-primary);
+      padding-inline: 1.125rem 1.375rem;
+      font-weight: 650;
+      color: var(--color-primary-fg);
+      box-shadow:
+        0 8px 24px rgb(0 0 0 / 0.45),
+        0 0 24px color-mix(in oklab, var(--color-primary) 35%, transparent);
+      transition:
+        translate var(--dur-base, 200ms) var(--ease-out, ease-out),
+        scale var(--dur-fast, 120ms);
+    }
+    .discovery-fab:active {
+      scale: 0.96;
+    }
+    .discovery-fab:focus-visible {
+      outline: 2px solid var(--color-focus);
+      outline-offset: 3px;
+    }
+    html[data-scroll-dir='down'] .discovery-fab {
+      translate: 0 calc(4rem + env(safe-area-inset-bottom) + 0.75rem);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .discovery-fab {
+      transition: none;
+    }
+  }
+</style>

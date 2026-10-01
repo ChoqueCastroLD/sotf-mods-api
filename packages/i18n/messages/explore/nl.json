@@ -183,5 +183,11 @@
   "explore_compare_row_multiplayer": "Multiplayer",
   "explore_compare_row_downloads_week": "Downloads deze week",
   "explore_compare_none": "Geen",
-  "explore_compare_crumb": "Vergelijken"
+  "explore_compare_crumb": "Vergelijken",
+  "explore_sort_title": "Sorteer op",
+  "explore_sort_close": "Sortering sluiten",
+  "explore_search_recent_title": "Recente zoekopdrachten",
+  "explore_search_recent_clear": "Wissen",
+  "explore_search_recent_remove": "“{query}” verwijderen uit recente zoekopdrachten",
+  "explore_search_clear_input": "Zoekopdracht wissen"
 }

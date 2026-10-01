@@ -32,7 +32,7 @@ const { locale, notes } = Astro.props;
     ) : notes.length === 0 ? (
       <EmptyNote text={m.landing_notes_empty()} />
     ) : (
-      <ol class="relative grid gap-1 border-s-2 border-dashed border-border-strong ps-5">
+      <ol class="relative grid gap-1 border-s-2 border-dashed border-border-strong ps-5 max-md:[&>li:nth-child(n+6)]:hidden">
         {notes.map((mod) => (
           <li class="relative">
             <span

@@ -3634,6 +3634,7 @@
   ],
   "explore_results_heading": "结果",
   "explore_search_browse": "浏览分类",
+  "explore_search_clear_input": "清空搜索",
   "explore_search_count": [
     {
       "declarations": [
@@ -3659,9 +3660,13 @@
   "explore_search_in_explore": "在探索中筛选这些结果",
   "explore_search_prompt_text": "按名称、作者或清单 ID 搜索模组、建筑、套装、创作者和指南。",
   "explore_search_prompt_title": "你在找什么？",
+  "explore_search_recent_clear": "清除",
+  "explore_search_recent_remove": "从最近搜索中移除“{query}”",
+  "explore_search_recent_title": "最近搜索",
   "explore_search_type_all": "全部",
   "explore_search_type_pages": "页面",
   "explore_search_types_label": "结果类型",
+  "explore_sort_close": "关闭排序",
   "explore_sort_comments": "讨论最多",
   "explore_sort_downloads": "下载最多",
   "explore_sort_follows": "关注最多",
@@ -3670,6 +3675,7 @@
   "explore_sort_rating": "评分最高",
   "explore_sort_relevance": "最相关",
   "explore_sort_reversed": "{sort}（倒序）",
+  "explore_sort_title": "排序方式",
   "explore_sort_trending": "热门",
   "explore_sort_updated": "最近更新",
   "explore_tab_all": "全部",
@@ -4536,6 +4542,18 @@
   "landing_faq_more": "了解更多",
   "landing_faq_title": "幸存者常问的问题",
   "landing_hall_hint": "有史以来下载量最高的模组",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "显示全部 {count__number} 个"
+      }
+    }
+  ],
   "landing_hall_title": "岛上传奇",
   "landing_hero_cta_explore": "浏览模组",
   "landing_hero_cta_install": "安装方法（3 分钟）",

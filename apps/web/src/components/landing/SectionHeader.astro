@@ -18,19 +18,22 @@ interface Props {
 const { id, title, hint, link, tone = 'default' } = Astro.props;
 ---
 
-<div class="mb-5 flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
-  <div class="grid gap-1">
-    <h2 id={id} class:list={['font-display-caps text-display-xs', tone === 'blueprint' ? 'text-blueprint' : 'text-fg']}>
-      {title}
-    </h2>
-    {hint && <p class="text-sm text-fg-muted">{hint}</p>}
-  </div>
+<div
+  class="mb-4 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-x-4 gap-y-1 [grid-template-areas:'title_link'_'hint_hint'] md:mb-5 md:[grid-template-areas:'title_link'_'hint_link']"
+>
+  <h2
+    id={id}
+    class:list={['min-w-0 font-display-caps text-display-xs [grid-area:title]', tone === 'blueprint' ? 'text-blueprint' : 'text-fg']}
+  >
+    {title}
+  </h2>
+  {hint && <p class="text-sm text-fg-muted [grid-area:hint]">{hint}</p>}
   {
     link && (
       <a
         href={link.href}
         class:list={[
-          'inline-flex min-h-11 items-center gap-1.5 rounded-md px-2 text-sm font-semibold hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
+          'inline-flex min-h-11 items-center gap-1.5 self-center rounded-md ps-2 text-sm font-semibold whitespace-nowrap [grid-area:link] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus md:self-end',
           tone === 'blueprint' ? 'text-blueprint' : 'text-link',
         ]}
       >

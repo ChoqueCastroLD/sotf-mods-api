@@ -58,14 +58,14 @@ function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: D
   const originalNode =
     original !== null ? (hit.highlight && plain === original ? highlight(hit.highlight) : original) : null;
   return (
-    <li className="relative flex min-h-16 items-center gap-3 rounded-lg border border-border bg-surface p-3 hover:border-border-strong hover:bg-raised">
-      <span className="flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md bg-raised text-fg-muted">
+    <li className="relative flex min-h-[4.5rem] min-w-0 items-center gap-3 rounded-xl border border-border bg-surface p-3 hover:border-border-strong hover:bg-raised active:bg-raised">
+      <span className="flex size-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-raised text-fg-muted md:size-12 md:rounded-md">
         {hit.thumbnailUrl ? (
           <img
             src={hit.thumbnailUrl}
             alt=""
-            width={48}
-            height={48}
+            width={56}
+            height={56}
             loading="lazy"
             decoding="async"
             className="size-full object-cover"
@@ -90,7 +90,7 @@ function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: D
         {snippet ? <span className="line-clamp-1 text-sm text-fg-muted">{snippet}</span> : null}
       </span>
       <span className="flex shrink-0 flex-col items-end gap-1 text-xs text-fg-muted">
-        {hit.compatStatus ? (
+        {hit.compatStatus && hit.compatStatus !== 'untested' ? (
           <DomainI18nProvider value={i18n}>
             <CompatBadge status={hit.compatStatus} size="sm" short />
           </DomainI18nProvider>
@@ -116,7 +116,7 @@ export default function SearchResults({ groups, locale, i18n, exploreHref, explo
           <h2 id={`search-group-${group.key}`} className="readout">
             {group.title} <span className="font-mono tabular-nums">({group.hits.length})</span>
           </h2>
-          <ul className="grid gap-2 md:grid-cols-2">
+          <ul className="grid grid-cols-1 gap-2.5 md:grid-cols-2">
             {group.hits.map((hit) => (
               <Hit key={`${hit.type}:${hit.id}`} hit={hit} locale={locale} i18n={i18n} />
             ))}

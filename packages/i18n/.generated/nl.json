@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Resultaten",
   "explore_search_browse": "Categorieën bekijken",
+  "explore_search_clear_input": "Zoekopdracht wissen",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,9 +3987,13 @@
   "explore_search_in_explore": "Deze resultaten filteren in Verkennen",
   "explore_search_prompt_text": "Zoek mods, builds, kits, makers en handleidingen op naam, maker of manifest-ID.",
   "explore_search_prompt_title": "Waar ben je naar op zoek?",
+  "explore_search_recent_clear": "Wissen",
+  "explore_search_recent_remove": "“{query}” verwijderen uit recente zoekopdrachten",
+  "explore_search_recent_title": "Recente zoekopdrachten",
   "explore_search_type_all": "Alles",
   "explore_search_type_pages": "Pagina’s",
   "explore_search_types_label": "Soort resultaat",
+  "explore_sort_close": "Sortering sluiten",
   "explore_sort_comments": "Meest besproken",
   "explore_sort_downloads": "Meest gedownload",
   "explore_sort_follows": "Meest gevolgd",
@@ -3997,6 +4002,7 @@
   "explore_sort_rating": "Best beoordeeld",
   "explore_sort_relevance": "Beste match",
   "explore_sort_reversed": "{sort} (omgekeerd)",
+  "explore_sort_title": "Sorteer op",
   "explore_sort_trending": "Populair nu",
   "explore_sort_updated": "Onlangs bijgewerkt",
   "explore_tab_all": "Alles",
@@ -4983,6 +4989,18 @@
   "landing_faq_more": "Lees meer",
   "landing_faq_title": "Vragen van overlevenden",
   "landing_hall_hint": "De meest gedownloade mods aller tijden",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Toon alle {count__number}"
+      }
+    }
+  ],
   "landing_hall_title": "Legendes van het eiland",
   "landing_hero_cta_explore": "Mods verkennen",
   "landing_hero_cta_install": "Zo installeer je (3 min)",
