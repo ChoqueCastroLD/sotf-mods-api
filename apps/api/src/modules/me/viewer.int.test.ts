@@ -109,6 +109,31 @@ describe('profile and settings', () => {
   });
 });
 
+describe('Day 1 checklist', () => {
+  it('ticks and unticks every step by hand and completes the checklist', async () => {
+    const who = await createTestUser(db, 'viewer-onboarding');
+    const patch = async (body: object) => {
+      const res = await call('PATCH', '/api/v2/me/onboarding', who, body);
+      expect(res.status).toBe(200);
+      return res.body as { steps: Array<{ key: string; done: boolean }>; completed: boolean };
+    };
+    const doneKeys = (dto: { steps: Array<{ key: string; done: boolean }> }) =>
+      dto.steps.filter((step) => step.done).map((step) => step.key);
+
+    expect(doneKeys(await patch({ markDone: ['follow_mod'] }))).toEqual(['follow_mod']);
+    expect(doneKeys(await patch({ markUndone: ['follow_mod'] }))).toEqual([]);
+    const partial = await patch({ markDone: ['install_redloader', 'first_download', 'follow_mod', 'compat_report'] });
+    expect(partial.completed).toBe(false);
+    const full = await patch({ markDone: ['create_kit'] });
+    expect(full.completed).toBe(true);
+    expect(doneKeys(full)).toHaveLength(5);
+    // Complete: unticking changes nothing any more.
+    expect(doneKeys(await patch({ markUndone: ['create_kit'] }))).toHaveLength(5);
+    const stored = await exec(db, `SELECT "onboarding" -> 'completedAt' AS c FROM "User" WHERE "id" = $1`, [who.userId]);
+    expect(stored.rows[0].c).not.toBeNull();
+  });
+});
+
 describe('kits', () => {
   it('lists my recent kits in /me/home and reads one of my private kits', async () => {
     const created = await call('POST', '/api/v2/kits', member, { name: 'Secret base kit', visibility: 'private' });
