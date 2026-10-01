@@ -14,14 +14,14 @@ import { Avatar } from '@sotf/ui/avatar';
 import { CompatBadge, Cover, displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { CalendarClock, Download, Heart, Scale, Star, TrendingUp } from 'lucide-react';
-import { loadModTranslation } from '../../lib/mod-translation.ts';
 import { href } from '../../lib/i18n.ts';
+import { loadModTranslation } from '../../lib/mod-translation.ts';
 import Picture from '../layout/Picture.astro';
 import ActionBar from './ActionBar.astro';
-import TranslatedText from './TranslatedText.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { compatSentence, multiplayerLabel, platformLabel, reviewsPagePath } from './format.ts';
 import { licenseLabel, taxonomyName } from './i18n.ts';
+import TranslatedText from './TranslatedText.astro';
 
 interface Props {
   mod: ModDetailDTO;
@@ -142,7 +142,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
             original={mod.shortDescription}
             locale={locale}
             sourceLang={mod.contentLang}
-            source={translation.sources.shortDescription ?? 'machine'}
+            source={translation.sources?.shortDescription ?? 'machine'}
             class="text-lg text-fg-muted"
           />
         )

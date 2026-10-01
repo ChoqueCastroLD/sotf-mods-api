@@ -118,7 +118,7 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
         original={build.shortDescription}
         locale={locale}
         sourceLang={build.contentLang}
-        source={translation.sources.shortDescription ?? 'machine'}
+        source={translation.sources?.shortDescription ?? 'machine'}
         class="text-lg text-pretty text-fg"
       />
     ) : (

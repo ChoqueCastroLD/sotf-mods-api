@@ -1,9 +1,11 @@
 import json,sys,time,re,urllib.request,urllib.parse,http.client
 from urllib.parse import quote
+import os as _o
+_D=_o.environ.get('SWEEP_DIR','/tmp/sweep')
 BASE=sys.argv[1]; OUT=sys.argv[2]; SET=sys.argv[3] if len(sys.argv)>3 else 'all'
 RATE=float(sys.argv[4]) if len(sys.argv)>4 else 5
 LOC=['en','es','de','fr','it','nl','pl','pt','ru','sv','tr','zh','ja']
-d=json.load(open('/tmp/sweep/data.json')); tx=json.load(open('/tmp/sweep/taxo.json'))
+d=json.load(open(_D+'/data.json')); tx=json.load(open(_D+'/taxo.json'))
 def pre(l): return '' if l=='en' else '/'+l
 paths=[]
 STATIC=['/','/about','/achievements','/brand','/builds','/categories','/compare','/content-policy','/cookies','/creators','/developers','/developers/errors','/dmca','/forgot-password','/install','/kits','/login','/mods','/news','/patch-radar','/privacy','/register','/requests','/requests/new','/reset-password','/search','/signals','/tags','/terms','/unsubscribe','/verify-email','/oauth/link','/basecamp','/basecamp/new/mod','/me','/me/backpack','/ranger','/settings','/best/mods','/best/libraries','/best/nope','/feed.xml','/news/feed.xml','/builds/feed.xml','/mods?page=2','/mods?page=1&type=Mod&showunapproved=false&orderby=newest','/mods?category=qol','/mods?search=kelvin','/mods?type=Build','/builds?page=2','/search?q=kelvin','/mods/','/loader','/upload','/upload-build','/nonexistent-page','/mods/nobody/nothing','/builds/nobody/nothing','/profile/nobody']

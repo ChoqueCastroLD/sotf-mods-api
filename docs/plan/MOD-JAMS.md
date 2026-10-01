@@ -1,6 +1,10 @@
 # Plan · Mod Jams de sotf-mods.com
 
-Estado: **solo plan, nada implementado**. Este documento define el producto, el modelo de datos
+Estado: **plan de producto y técnico**. Nota (2026-10-01): `main` ya incorpora una primera
+implementación (rama `feat/modjams`, migración `2210_mod_jams`: tablas `Jam`, `JamCategory`,
+`JamEntry`, `JamEntryAuthor`, `JamVote`, `JamResult`, `JamFollow`) cuyos nombres de tablas difieren de
+los propuestos en §13; este documento sigue siendo la referencia de producto (ciclo, reglas,
+antiabuso, premios) y de las fases pendientes. Cuando se escribió no había nada implementado. Este documento define el producto, el modelo de datos
 aditivo, la API, las páginas y el despliegue por fases de las "Mod Jams": concursos temporales en
 los que la comunidad crea mods y builds de Sons of the Forest alrededor de un tema revelado al
 empezar, y vota por los mejores.

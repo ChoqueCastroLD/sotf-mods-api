@@ -13,9 +13,7 @@
  * - JSON-LD `CreativeWork` (+ `BreadcrumbList` of the visible trail); `aggregateRating` only with ≥ 3
  *   visible reviews. Everything user-specific is filled in by `build-page.ts` after load.
  */
-import TranslatedText from '../../../../components/mod/TranslatedText.astro';
-import { localizeCards } from '../../../../lib/localize.ts';
-import { loadModTranslation } from '../../../../lib/mod-translation.ts';
+
 import { toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
@@ -42,12 +40,15 @@ import StatusBanners from '../../../../components/builds/StatusBanners.astro';
 import { buildDescription, buildJsonLd, buildTitle } from '../../../../components/builds/seo.ts';
 import VersionsList from '../../../../components/builds/VersionsList.astro';
 import ReportDialog from '../../../../components/mod/ReportDialog.astro';
+import TranslatedText from '../../../../components/mod/TranslatedText.astro';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { setPageCache } from '../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../lib/cache/policy.ts';
 import { loadEnv } from '../../../../lib/env.ts';
 import { href } from '../../../../lib/i18n.ts';
 import { pictureSources } from '../../../../lib/images.ts';
+import { localizeCards } from '../../../../lib/localize.ts';
+import { loadModTranslation } from '../../../../lib/mod-translation.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
 import { breadcrumbJsonLd } from '../../../../lib/seo/jsonld.ts';
 
@@ -167,7 +168,7 @@ const visibleCrumbs = trail.map((crumb) => ({
                 original={descriptionHtml}
                 locale={locale}
                 sourceLang={build.contentLang}
-                source={translation.sources.description ?? 'machine'}
+                source={translation.sources?.description ?? 'machine'}
                 class="max-w-(--container-prose)"
               />
             ) : descriptionHtml ? (
