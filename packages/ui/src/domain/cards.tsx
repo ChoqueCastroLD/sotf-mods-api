@@ -100,7 +100,7 @@ export function BuildCard({
   const Heading = `h${headingLevel}` as const;
   const display = formatCompact(locale, build.downloads);
   return (
-    <article data-variant="build" data-mod-id={build.id} className={cn(tight && '@container/build', className)}>
+    <article data-variant="build" data-mod-id={build.id} className={tight ? cn('@container/build', className) : className}>
       <div
         className={cn(
           cardClasses,
@@ -114,9 +114,13 @@ export function BuildCard({
             tight && '@max-[260px]/build:p-1.5',
           )}
         >
-          <span className={cn(tight && '@max-[260px]/build:hidden')}>
+          {tight ? (
+            <span className="@max-[260px]/build:hidden">
+              <CornerMarks />
+            </span>
+          ) : (
             <CornerMarks />
-          </span>
+          )}
           <div className="aspect-cover overflow-hidden rounded-xs bg-raised">
             <Cover
               image={build.thumbnail}

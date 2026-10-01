@@ -217,7 +217,7 @@ export function OriginalName({
   );
 }
 
-function Byline({ mod, className }: { mod: ModCardDTO; className?: string }) {
+function Byline({ mod, className, tile = false }: { mod: ModCardDTO; className?: string; tile?: boolean }) {
   const { t, taxonomy } = useDomainI18n();
   const profileHref = useProfileHref();
   const category = mod.category ? (taxonomy?.(mod.category.nameKey, mod.category.name) ?? mod.category.name) : null;
@@ -238,10 +238,10 @@ function Byline({ mod, className }: { mod: ModCardDTO; className?: string }) {
       {mod.verifiedCreator ? <TrustedMark size={14} className={cardControlClasses} /> : null}
       {category ? (
         <>
-          <span aria-hidden="true" data-byline-extra="">
+          <span aria-hidden="true" {...(tile ? { 'data-byline-extra': '' } : {})}>
             ·
           </span>
-          <span className="truncate" data-byline-extra="">
+          <span className="truncate" {...(tile ? { 'data-byline-extra': '' } : {})}>
             {category}
           </span>
         </>
@@ -345,6 +345,7 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
           </Heading>
           <OriginalName card={mod} className={CQ.hide} />
           <Byline
+            tile={tile}
             mod={mod}
             className={tile ? '@max-[260px]/card:text-2xs @max-[260px]/card:[&_[data-byline-extra]]:hidden' : CQ.hide}
           />
