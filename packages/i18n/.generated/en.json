@@ -3700,7 +3700,7 @@
   "explore_empty_text": "No mods match all of these filters. Remove one and try again.",
   "explore_empty_title": "Nothing on this trail",
   "explore_empty_try_removing": "Try removing:",
-  "explore_empty_unfiltered_text": "Nothing has been published here yet. Check back soon.",
+  "explore_empty_unfiltered_text": "Nothing has been published here yet.",
   "explore_error_text": "We couldn’t load this list. Check your connection and try again.",
   "explore_error_title": "No signal",
   "explore_facet_category": "Category",
@@ -4289,7 +4289,7 @@
   "jams_first_discord": "Join the Discord",
   "jams_first_hint": "Open your signal settings so jam updates reach you in the app or by email, then follow the jam the moment it is announced.",
   "jams_first_judged": "Entries are judged on",
-  "jams_first_kicker": "First jam coming soon",
+  "jams_first_kicker": "Season one · Date announced here first",
   "jams_first_notify": "Get notified",
   "jams_first_prize": "Every entry earns a participant badge; podium places and the overall win earn more.",
   "jams_first_text": "A themed build-off for the whole community: a theme, a few days to make something new, then everyone votes. The date will be announced here first.",
@@ -8504,6 +8504,7 @@
       }
     }
   ],
+  "signals_review_on_mod_unrated": "{actor} left a review on {mod}",
   "signals_review_reply": "The author of {mod} replied to your review",
   "signals_review_update_prompt": "{mod} released version {version}. Want to update your review?",
   "signals_see_all": "See all signals",

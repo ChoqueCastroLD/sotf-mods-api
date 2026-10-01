@@ -3402,7 +3402,7 @@
   "explore_empty_text": "すべての条件に合う MOD はありません。条件をひとつ外して、もう一度お試しください。",
   "explore_empty_title": "この道には何もありません",
   "explore_empty_try_removing": "外してみる条件：",
-  "explore_empty_unfiltered_text": "ここにはまだ何も公開されていません。また後で見に来てください。",
+  "explore_empty_unfiltered_text": "ここにはまだ何も公開されていません。",
   "explore_error_text": "このリストを読み込めませんでした。接続を確認して、もう一度お試しください。",
   "explore_error_title": "電波が届きません",
   "explore_facet_category": "カテゴリ",
@@ -3944,7 +3944,7 @@
   "jams_first_discord": "Discord に参加",
   "jams_first_hint": "シグナル設定を開いて、ジャムの更新をアプリ内またはメールで受け取れるようにし、告知されたらすぐにフォローしましょう。",
   "jams_first_judged": "作品は次の観点で評価されます",
-  "jams_first_kicker": "初のジャム、まもなく",
+  "jams_first_kicker": "シーズン1 · 日程はここで最初に発表",
   "jams_first_notify": "通知を受け取る",
   "jams_first_prize": "応募作品には参加バッジが贈られ、表彰台入りと総合優勝ではさらにバッジがもらえます。",
   "jams_first_text": "コミュニティ全員で楽しむテーマ制作イベントです。テーマが発表され、数日で新しい作品を作り、みんなで投票します。日程はまずここで発表します。",
@@ -7787,6 +7787,7 @@
       }
     }
   ],
+  "signals_review_on_mod_unrated": "{actor} が {mod} にレビューを投稿しました",
   "signals_review_reply": "{mod} の作者があなたのレビューに返信しました",
   "signals_review_update_prompt": "{mod} がバージョン {version} を公開しました。レビューを更新しませんか？",
   "signals_see_all": "すべてのシグナルを見る",

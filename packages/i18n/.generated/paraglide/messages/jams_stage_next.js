@@ -10,7 +10,7 @@ const en_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => Localiz
 };
 
 const es_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Próximamente`)
+	return /** @type {LocalizedString} */ (`Siguiente`)
 };
 
 const de_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
@@ -26,15 +26,15 @@ const it_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => Localiz
 };
 
 const nl_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Straks`)
+	return /** @type {LocalizedString} */ (`Hierna`)
 };
 
 const pl_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wkrótce`)
+	return /** @type {LocalizedString} */ (`Następny`)
 };
 
 const pt_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Em breve`)
+	return /** @type {LocalizedString} */ (`A seguir`)
 };
 
 const ru_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => Localiz
 };
 
 const zh_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`即将开始`)
+	return /** @type {LocalizedString} */ (`接下来`)
 };
 
 const ja_jams_stage_next = /** @type {(inputs: Jams_Stage_NextInputs) => LocalizedString} */ () => {

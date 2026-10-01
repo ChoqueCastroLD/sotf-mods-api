@@ -14,7 +14,7 @@ const es_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs
 };
 
 const de_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Demnächst`)
+	return /** @type {LocalizedString} */ (`Anstehend`)
 };
 
 const fr_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
@@ -26,19 +26,19 @@ const it_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs
 };
 
 const nl_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Binnenkort`)
+	return /** @type {LocalizedString} */ (`Aankomend`)
 };
 
 const pl_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wkrótce`)
+	return /** @type {LocalizedString} */ (`Nadchodzące`)
 };
 
 const pt_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Em breve`)
+	return /** @type {LocalizedString} */ (`Próximo`)
 };
 
 const ru_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скоро`)
+	return /** @type {LocalizedString} */ (`Предстоящие`)
 };
 
 const sv_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs
 };
 
 const tr_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yakında`)
+	return /** @type {LocalizedString} */ (`Yaklaşan`)
 };
 
 const zh_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`即将开始`)
+	return /** @type {LocalizedString} */ (`待开始`)
 };
 
 const ja_admin_awards_upcoming = /** @type {(inputs: Admin_Awards_UpcomingInputs) => LocalizedString} */ () => {

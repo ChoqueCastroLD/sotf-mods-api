@@ -30,7 +30,7 @@ const nl_jams_schedule_tba = /** @type {(inputs: Jams_Schedule_TbaInputs) => Loc
 };
 
 const pl_jams_schedule_tba = /** @type {(inputs: Jams_Schedule_TbaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wkrótce`)
+	return /** @type {LocalizedString} */ (`Do ogłoszenia`)
 };
 
 const pt_jams_schedule_tba = /** @type {(inputs: Jams_Schedule_TbaInputs) => LocalizedString} */ () => {
@@ -46,7 +46,7 @@ const sv_jams_schedule_tba = /** @type {(inputs: Jams_Schedule_TbaInputs) => Loc
 };
 
 const tr_jams_schedule_tba = /** @type {(inputs: Jams_Schedule_TbaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yakında duyurulacak`)
+	return /** @type {LocalizedString} */ (`Duyurulacak`)
 };
 
 const zh_jams_schedule_tba = /** @type {(inputs: Jams_Schedule_TbaInputs) => LocalizedString} */ () => {

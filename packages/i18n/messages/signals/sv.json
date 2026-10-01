@@ -25,6 +25,7 @@
   "signals_comment_reply_grouped": "{count, plural, one {# svar på din kommentar på {mod}} other {# svar på din kommentar på {mod}}}",
   "signals_comment_mention": "{actor} nämnde dig i kommentarerna på {mod}",
   "signals_review_on_mod": "{actor} gav {mod} en recension med {rating} stjärnor",
+  "signals_review_on_mod_unrated": "{actor} lämnade en recension på {mod}",
   "signals_review_on_mod_grouped": "{count, plural, one {# ny recension av {mod}} other {# nya recensioner av {mod}}}",
   "signals_review_reply": "Skaparen av {mod} svarade på din recension",
   "signals_compat_broken": "{mod} rapporteras som {status, select, broken {trasig} other {blandad}} på {build}",

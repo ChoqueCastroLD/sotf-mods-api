@@ -25,6 +25,7 @@
   "signals_comment_reply_grouped": "{count, plural, one {# ответ на ваш комментарий к {mod}} few {# ответа на ваш комментарий к {mod}} many {# ответов на ваш комментарий к {mod}} other {# ответа на ваш комментарий к {mod}}}",
   "signals_comment_mention": "{actor} упомянул(а) вас в комментариях к {mod}",
   "signals_review_on_mod": "{actor} оставил(а) отзыв на {rating} звёзд о {mod}",
+  "signals_review_on_mod_unrated": "{actor} оставил(а) отзыв о {mod}",
   "signals_review_on_mod_grouped": "{count, plural, one {# новый отзыв о {mod}} few {# новых отзыва о {mod}} many {# новых отзывов о {mod}} other {# нового отзыва о {mod}}}",
   "signals_review_reply": "Автор {mod} ответил на ваш отзыв",
   "signals_compat_broken": "{mod} отмечен как {status, select, broken {неработающий} other {работающий частично}} на {build}",

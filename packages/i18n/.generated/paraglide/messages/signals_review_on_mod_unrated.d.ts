@@ -1,16 +1,19 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Explore_Empty_Unfiltered_TextInputs = {};
+export type Signals_Review_On_Mod_UnratedInputs = {
+    actor: NonNullable<unknown>;
+    mod: NonNullable<unknown>;
+};
 /**
 * | output |
 * | --- |
-* | "Nothing has been published here yet." |
+* | "{actor} left a review on {mod}" |
 *
-* @param {Explore_Empty_Unfiltered_TextInputs} inputs
+* @param {Signals_Review_On_Mod_UnratedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const explore_empty_unfiltered_text: ((inputs?: Explore_Empty_Unfiltered_TextInputs, options?: {
+export declare const signals_review_on_mod_unrated: ((inputs: Signals_Review_On_Mod_UnratedInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Explore_Empty_Unfiltered_TextInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Signals_Review_On_Mod_UnratedInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

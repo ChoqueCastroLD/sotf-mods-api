@@ -10,11 +10,11 @@ const en_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => Loc
 };
 
 const es_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Próximamente`)
+	return /** @type {LocalizedString} */ (`Siguientes`)
 };
 
 const de_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Demnächst`)
+	return /** @type {LocalizedString} */ (`Anstehend`)
 };
 
 const fr_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
@@ -26,19 +26,19 @@ const it_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => Loc
 };
 
 const nl_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Binnenkort`)
+	return /** @type {LocalizedString} */ (`Aankomend`)
 };
 
 const pl_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wkrótce`)
+	return /** @type {LocalizedString} */ (`Nadchodzące`)
 };
 
 const pt_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Em breve`)
+	return /** @type {LocalizedString} */ (`A seguir`)
 };
 
 const ru_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скоро`)
+	return /** @type {LocalizedString} */ (`Впереди`)
 };
 
 const sv_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => Loc
 };
 
 const zh_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`即将开始`)
+	return /** @type {LocalizedString} */ (`接下来`)
 };
 
 const ja_jams_hub_upcoming = /** @type {(inputs: Jams_Hub_UpcomingInputs) => LocalizedString} */ () => {

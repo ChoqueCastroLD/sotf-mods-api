@@ -188,11 +188,15 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
       };
     case 'review.on_my_mod': {
       const rating = num(signal.data.rating);
+      // Ratings are 1–5: a missing or out-of-range one never reads «a 0-star review».
+      const rated = rating !== null && rating >= 1 && rating <= 5;
       return {
         text:
           count > 1
             ? st('signals_review_on_mod_grouped', { mod, count })
-            : st('signals_review_on_mod', { mod, rating: rating ?? 0, actor }),
+            : rated
+              ? st('signals_review_on_mod', { mod, rating, actor })
+              : st('signals_review_on_mod_unrated', { mod, actor }),
         excerpt: count > 1 ? null : excerpt,
         icon: Star,
         tone: 'neutral',

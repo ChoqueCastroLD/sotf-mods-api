@@ -3700,7 +3700,7 @@
   "explore_empty_text": "Aucun mod ne correspond à tous ces filtres. Retirez-en un et réessayez.",
   "explore_empty_title": "Rien sur ce sentier",
   "explore_empty_try_removing": "Essayez de retirer :",
-  "explore_empty_unfiltered_text": "Rien n’a encore été publié ici. Revenez bientôt.",
+  "explore_empty_unfiltered_text": "Rien n’a encore été publié ici.",
   "explore_error_text": "Impossible de charger cette liste. Vérifiez votre connexion et réessayez.",
   "explore_error_title": "Pas de signal",
   "explore_facet_category": "Catégorie",
@@ -4289,7 +4289,7 @@
   "jams_first_discord": "Rejoindre le Discord",
   "jams_first_hint": "Ouvrez vos réglages de signaux pour recevoir les nouvelles des jams dans l'app ou par e-mail, puis suivez le jam dès son annonce.",
   "jams_first_judged": "Les participations sont notées sur",
-  "jams_first_kicker": "Le premier jam arrive",
+  "jams_first_kicker": "Saison un · Date annoncée ici en premier",
   "jams_first_notify": "Être prévenu",
   "jams_first_prize": "Chaque participation reçoit un badge de participant ; les places du podium et la victoire générale en rapportent davantage.",
   "jams_first_text": "Un concours à thème pour toute la communauté : un thème, quelques jours pour créer du neuf, puis tout le monde vote. La date sera annoncée ici en premier.",
@@ -8504,6 +8504,7 @@
       }
     }
   ],
+  "signals_review_on_mod_unrated": "{actor} a laissé un avis sur {mod}",
   "signals_review_reply": "L’auteur de {mod} a répondu à votre avis",
   "signals_review_update_prompt": "{mod} a publié la version {version}. Voulez-vous mettre à jour votre avis ?",
   "signals_see_all": "Voir tous les signaux",

@@ -3,7 +3,7 @@ export type Jams_First_KickerInputs = {};
 /**
 * | output |
 * | --- |
-* | "First jam coming soon" |
+* | "Season one · Date announced here first" |
 *
 * @param {Jams_First_KickerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

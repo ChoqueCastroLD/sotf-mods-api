@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_First_KickerInputs */
 
 const en_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`First jam coming soon`)
+	return /** @type {LocalizedString} */ (`Season one · Date announced here first`)
 };
 
 const es_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pronto, el primer jam`)
+	return /** @type {LocalizedString} */ (`Temporada uno · Fecha anunciada aquí primero`)
 };
 
 const de_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Der erste Jam kommt bald`)
+	return /** @type {LocalizedString} */ (`Staffel eins · Termin zuerst hier`)
 };
 
 const fr_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le premier jam arrive`)
+	return /** @type {LocalizedString} */ (`Saison un · Date annoncée ici en premier`)
 };
 
 const it_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il primo jam in arrivo`)
+	return /** @type {LocalizedString} */ (`Stagione uno · Data annunciata prima qui`)
 };
 
 const nl_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De eerste jam komt eraan`)
+	return /** @type {LocalizedString} */ (`Seizoen één · Datum eerst hier bekendgemaakt`)
 };
 
 const pl_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pierwszy jam już wkrótce`)
+	return /** @type {LocalizedString} */ (`Sezon pierwszy · Termin ogłosimy najpierw tutaj`)
 };
 
 const pt_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O primeiro jam vem aí`)
+	return /** @type {LocalizedString} */ (`Temporada um · Data anunciada aqui primeiro`)
 };
 
 const ru_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скоро первый джем`)
+	return /** @type {LocalizedString} */ (`Первый сезон · Дату объявим здесь первыми`)
 };
 
 const sv_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Första jammen kommer snart`)
+	return /** @type {LocalizedString} */ (`Säsong ett · Datum meddelas här först`)
 };
 
 const tr_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İlk jam yakında`)
+	return /** @type {LocalizedString} */ (`İlk sezon · Tarih önce burada duyurulur`)
 };
 
 const zh_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`首届 Jam 即将到来`)
+	return /** @type {LocalizedString} */ (`第一季 · 日期将在此率先公布`)
 };
 
 const ja_jams_first_kicker = /** @type {(inputs: Jams_First_KickerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`初のジャム、まもなく`)
+	return /** @type {LocalizedString} */ (`シーズン1 · 日程はここで最初に発表`)
 };
 
 /**
 * | output |
 * | --- |
-* | "First jam coming soon" |
+* | "Season one · Date announced here first" |
 *
 * @param {Jams_First_KickerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

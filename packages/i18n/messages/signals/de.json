@@ -25,6 +25,7 @@
   "signals_comment_reply_grouped": "{count, plural, one {# Antwort auf deinen Kommentar zu {mod}} other {# Antworten auf deinen Kommentar zu {mod}}}",
   "signals_comment_mention": "{actor} hat dich in den Kommentaren zu {mod} erwähnt",
   "signals_review_on_mod": "{actor} hat {mod} mit {rating} Sternen bewertet",
+  "signals_review_on_mod_unrated": "{actor} hat {mod} bewertet",
   "signals_review_on_mod_grouped": "{count, plural, one {# neue Bewertung zu {mod}} other {# neue Bewertungen zu {mod}}}",
   "signals_review_reply": "Der Autor von {mod} hat auf deine Bewertung geantwortet",
   "signals_compat_broken": "{mod} wird auf {build} als {status, select, broken {kaputt} other {gemischt}} gemeldet",

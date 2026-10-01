@@ -25,6 +25,7 @@
   "signals_comment_reply_grouped": "{count, plural, other {{mod} でのあなたのコメントに返信 # 件}}",
   "signals_comment_mention": "{actor} が {mod} のコメントであなたをメンションしました",
   "signals_review_on_mod": "{actor} が {mod} に星 {rating} のレビューを投稿しました",
+  "signals_review_on_mod_unrated": "{actor} が {mod} にレビューを投稿しました",
   "signals_review_on_mod_grouped": "{count, plural, other {{mod} に新しいレビュー # 件}}",
   "signals_review_reply": "{mod} の作者があなたのレビューに返信しました",
   "signals_compat_broken": "{mod} は {build} で{status, select, broken {動作しない} other {動作が不安定}}と報告されています",

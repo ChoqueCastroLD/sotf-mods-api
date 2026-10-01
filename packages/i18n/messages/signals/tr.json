@@ -25,6 +25,7 @@
   "signals_comment_reply_grouped": "{count, plural, one {{mod} hakkındaki yorumuna # yanıt} other {{mod} hakkındaki yorumuna # yanıt}}",
   "signals_comment_mention": "{actor}, {mod} yorumlarında senden bahsetti",
   "signals_review_on_mod": "{actor}, {mod} için {rating} yıldızlı bir inceleme bıraktı",
+  "signals_review_on_mod_unrated": "{actor}, {mod} için bir inceleme bıraktı",
   "signals_review_on_mod_grouped": "{count, plural, one {{mod} için # yeni inceleme} other {{mod} için # yeni inceleme}}",
   "signals_review_reply": "{mod} yapımcısı incelemeni yanıtladı",
   "signals_compat_broken": "{mod}, {build} üzerinde {status, select, broken {bozuk} other {karışık}} olarak bildiriliyor",

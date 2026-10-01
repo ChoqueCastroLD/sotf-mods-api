@@ -22,6 +22,9 @@ interface Props {
 const { build, preview } = Astro.props;
 const locale = Astro.locals.locale;
 const ready = preview?.status === 'ready' && preview.svg && preview.size;
+// A build without geometry has nothing to show: no empty box. Only a preview that is being
+// generated (a transient state) keeps its block.
+const show = Boolean(ready) || preview?.status === 'pending';
 const fmt = (value: number) => formatNumber(locale, Math.round(value * 10) / 10);
 const facts = ready
   ? {
@@ -34,45 +37,49 @@ const facts = ready
   : null;
 ---
 
-<section
-  class="grid gap-3 rounded-lg border border-blueprint/40 p-3 md:p-4"
-  data-build-viewer
-  data-mod-id={build.id}
-  data-name={build.name}
-  aria-labelledby="build-viewer-title"
->
-  <div class="flex flex-wrap items-center justify-between gap-2">
-    <h2 id="build-viewer-title" class="readout text-fg">{m.viewer_heading()}</h2>
+{
+  show && (
+  <section
+    class="grid gap-3 rounded-lg border border-blueprint/40 p-3 md:p-4"
+    data-build-viewer
+    data-mod-id={build.id}
+    data-name={build.name}
+    aria-labelledby="build-viewer-title"
+  >
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <h2 id="build-viewer-title" class="readout text-fg">{m.viewer_heading()}</h2>
+      {
+        ready && (
+          <button type="button" class="btn-viewer" data-viewer-open>
+            <Icon icon={Box} size={16} />
+            {m.viewer_explore()}
+          </button>
+        )
+      }
+    </div>
+
     {
-      ready && (
-        <button type="button" class="btn-viewer" data-viewer-open>
-          <Icon icon={Box} size={16} />
-          {m.viewer_explore()}
-        </button>
+      facts && preview ? (
+        <figure class="grid gap-2" data-viewer-stage>
+          <div
+            class="texture-blueprint relative overflow-hidden rounded-md text-blueprint"
+            style={`aspect-ratio: ${preview.viewBox.width} / ${preview.viewBox.height}`}
+            data-viewer-frame
+          >
+            <div role="img" aria-label={m.viewer_alt(facts)} class="size-full [&>svg]:size-full" data-viewer-svg set:html={preview.svg} />
+          </div>
+          <figcaption class="font-mono text-xs text-fg-muted">{m.viewer_stats(facts)}</figcaption>
+        </figure>
+      ) : (
+        <p class="text-sm text-fg-muted">
+          {preview?.status === 'pending' ? m.viewer_pending() : m.viewer_unavailable()}
+        </p>
       )
     }
-  </div>
-
-  {
-    facts && preview ? (
-      <figure class="grid gap-2" data-viewer-stage>
-        <div
-          class="texture-blueprint relative overflow-hidden rounded-md text-blueprint"
-          style={`aspect-ratio: ${preview.viewBox.width} / ${preview.viewBox.height}`}
-          data-viewer-frame
-        >
-          <div role="img" aria-label={m.viewer_alt(facts)} class="size-full [&>svg]:size-full" data-viewer-svg set:html={preview.svg} />
-        </div>
-        <figcaption class="font-mono text-xs text-fg-muted">{m.viewer_stats(facts)}</figcaption>
-      </figure>
-    ) : (
-      <p class="text-sm text-fg-muted">
-        {preview?.status === 'pending' ? m.viewer_pending() : m.viewer_unavailable()}
-      </p>
-    )
-  }
-  <p class="text-sm text-fg-muted" role="status" aria-live="polite" data-viewer-status></p>
-</section>
+    <p class="text-sm text-fg-muted" role="status" aria-live="polite" data-viewer-status></p>
+  </section>
+  )
+}
 
 <style>
   .btn-viewer {

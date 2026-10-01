@@ -215,6 +215,13 @@ export function buildExploreModel(input: {
   const categoryBuckets = facets?.category;
   const categoryChips: FilterChipOption[] = taxonomy.categories
     .filter((category) => category.kind === categoryKind || state.category.includes(category.slug))
+    // A category with no results is noise: hidden unless it is selected or excluded right now.
+    .filter(
+      (category) =>
+        bucketCount(categoryBuckets, category.slug) !== 0 ||
+        state.category.includes(category.slug) ||
+        state.excludeCategory.includes(category.slug),
+    )
     .map((category) => {
       const included = state.category.includes(category.slug);
       const excluded = state.excludeCategory.includes(category.slug);

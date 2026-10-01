@@ -3700,7 +3700,7 @@
   "explore_empty_text": "Ingen modd matchar alla de här filtren. Ta bort ett och försök igen.",
   "explore_empty_title": "Inget på den här stigen",
   "explore_empty_try_removing": "Prova att ta bort:",
-  "explore_empty_unfiltered_text": "Inget har publicerats här än. Titta in snart igen.",
+  "explore_empty_unfiltered_text": "Inget har publicerats här än.",
   "explore_error_text": "Vi kunde inte ladda listan. Kontrollera anslutningen och försök igen.",
   "explore_error_title": "Ingen signal",
   "explore_facet_category": "Kategori",
@@ -4289,7 +4289,7 @@
   "jams_first_discord": "Gå med i Discord",
   "jams_first_hint": "Öppna dina signalinställningar så att nyheter om jams når dig i appen eller via e-post, och följ jammen så fort den tillkännages.",
   "jams_first_judged": "Bidragen bedöms efter",
-  "jams_first_kicker": "Första jammen kommer snart",
+  "jams_first_kicker": "Säsong ett · Datum meddelas här först",
   "jams_first_notify": "Få aviseringar",
   "jams_first_prize": "Varje bidrag ger ett deltagarmärke; prispallsplatser och totalsegern ger fler.",
   "jams_first_text": "En tematisk tävling för hela communityn: ett tema, några dagar att skapa något nytt, sedan röstar alla. Datumet tillkännages här först.",
@@ -8504,6 +8504,7 @@
       }
     }
   ],
+  "signals_review_on_mod_unrated": "{actor} lämnade en recension på {mod}",
   "signals_review_reply": "Skaparen av {mod} svarade på din recension",
   "signals_review_update_prompt": "{mod} har släppt version {version}. Vill du uppdatera din recension?",
   "signals_see_all": "Visa alla signaler",
