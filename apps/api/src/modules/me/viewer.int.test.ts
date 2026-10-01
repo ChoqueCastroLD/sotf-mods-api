@@ -129,7 +129,9 @@ describe('Day 1 checklist', () => {
     expect(doneKeys(full)).toHaveLength(5);
     // Complete: unticking changes nothing any more.
     expect(doneKeys(await patch({ markUndone: ['create_kit'] }))).toHaveLength(5);
-    const stored = await exec(db, `SELECT "onboarding" -> 'completedAt' AS c FROM "User" WHERE "id" = $1`, [who.userId]);
+    const stored = await exec(db, `SELECT "onboarding" -> 'completedAt' AS c FROM "User" WHERE "id" = $1`, [
+      who.userId,
+    ]);
     expect(stored.rows[0].c).not.toBeNull();
   });
 });
