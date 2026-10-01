@@ -2427,6 +2427,7 @@
   "console_not_found_action": "Torna al campo base",
   "console_not_found_detail": "Non c’è niente a questo indirizzo nella console. Potrebbe essere stato spostato.",
   "console_offline_detail": "Le modifiche che fai adesso potrebbero non essere salvate. Aggiorneremo tutto appena torni online.",
+  "console_pull_refreshing": "Aggiornamento…",
   "console_redirecting": "Ti portiamo all’accesso…",
   "console_session_expired": "La tua sessione è scaduta. Accedi di nuovo per continuare.",
   "console_shortcut_go_backpack": "Vai al tuo zaino",
@@ -2462,6 +2463,7 @@
       }
     }
   ],
+  "console_tab_basecamp": "Campo",
   "console_tab_ranger": "Ranger",
   "console_update_detail": "Abbiamo aggiornato SOTF Mods mentre eri qui. Ricarica per avere l’ultima versione.",
   "console_update_reload": "Ricarica",
@@ -9817,6 +9819,7 @@
   "upload_tags_full": "Sono {max} tag: rimuovine uno per sceglierne un altro.",
   "upload_tags_label": "Tag",
   "upload_tags_none": "Nessun tag corrisponde.",
+  "upload_take_photo": "Scatta una foto",
   "upload_target_removed_detail": "Le mod rimosse non possono ricevere nuove versioni.",
   "upload_target_removed_title": "Questa mod è stata rimossa.",
   "upload_title_build": "Nuova build",

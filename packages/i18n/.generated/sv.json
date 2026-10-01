@@ -2427,6 +2427,7 @@
   "console_not_found_action": "Tillbaka till baslägret",
   "console_not_found_detail": "Det finns inget på den här adressen i konsolen. Den kan ha flyttats.",
   "console_offline_detail": "Ändringar du gör nu kanske inte sparas. Vi uppdaterar allt när du är online igen.",
+  "console_pull_refreshing": "Uppdaterar …",
   "console_redirecting": "Tar dig till inloggningen…",
   "console_session_expired": "Din session har gått ut. Logga in igen för att fortsätta.",
   "console_shortcut_go_backpack": "Gå till din ryggsäck",
@@ -2462,6 +2463,7 @@
       }
     }
   ],
+  "console_tab_basecamp": "Läger",
   "console_tab_ranger": "Ranger",
   "console_update_detail": "Vi uppdaterade SOTF Mods medan du var här. Ladda om för att få den senaste versionen.",
   "console_update_reload": "Ladda om",
@@ -9817,6 +9819,7 @@
   "upload_tags_full": "Det är {max} taggar: ta bort en för att välja en annan.",
   "upload_tags_label": "Taggar",
   "upload_tags_none": "Ingen tagg matchar.",
+  "upload_take_photo": "Ta ett foto",
   "upload_target_removed_detail": "Borttagna moddar kan inte få nya versioner.",
   "upload_target_removed_title": "Den här modden har tagits bort.",
   "upload_title_build": "Nytt bygge",

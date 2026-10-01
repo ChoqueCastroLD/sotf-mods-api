@@ -154,7 +154,10 @@ export function ModEditorScreen({
     <DomainI18nBridge>
       <div className="grid gap-6">
         <UnsavedGuard dirty={dirtyTabs.size > 0} />
-        <Link to="/basecamp/mods" className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg">
+        <Link
+          to="/basecamp/mods"
+          className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg max-md:hidden"
+        >
           <Icon icon={ArrowLeft} size={16} />
           {bt('basecamp_editor_back')}
         </Link>

@@ -16,7 +16,7 @@ import { Input } from '@sotf/ui/input';
 import { Textarea } from '@sotf/ui/textarea';
 import type { ErrorComponentProps } from '@tanstack/react-router';
 import { KeyRound, Languages } from 'lucide-react';
-import { type ReactNode, useId, useState } from 'react';
+import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { RouteError } from '../../components/RouteError.tsx';
 import { currentPath, redirectToLogin } from '../../lib/auth.ts';
 import { errorReference } from '../../lib/errors.ts';
@@ -41,7 +41,7 @@ export function AdminHeader({ title, description, actions }: AdminHeaderProps) {
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid gap-1">
         <p className="readout text-signal max-md:hidden">{m.admin_readout()}</p>
-        <h1 className="font-display-caps text-display-xs text-fg">{title}</h1>
+        <h1 className="font-display-caps text-display-xs text-fg max-md:sr-only">{title}</h1>
         <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p>
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
@@ -81,9 +81,32 @@ export function Panel({ title, description, actions, children, className }: Pane
 
 /** Horizontal scroller for wide tables (keeps the page from scrolling sideways on phones). */
 export function TableScroller({ label, children }: { label: string; children: ReactNode }) {
+  const region = useRef<HTMLElement>(null);
+  const [more, setMore] = useState(false);
+  // A soft fade on the trailing edge tells touch users there is more to swipe to.
+  useEffect(() => {
+    const element = region.current;
+    if (!element) return;
+    const update = () => setMore(Math.abs(element.scrollLeft) + element.clientWidth < element.scrollWidth - 4);
+    update();
+    element.addEventListener('scroll', update, { passive: true });
+    const observer = new ResizeObserver(update);
+    observer.observe(element);
+    if (element.firstElementChild) observer.observe(element.firstElementChild);
+    return () => {
+      element.removeEventListener('scroll', update);
+      observer.disconnect();
+    };
+  }, []);
   return (
-    // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region must be reachable by keyboard (WCAG 2.1.1)
-    <section aria-label={label} tabIndex={0} className="overflow-x-auto rounded-md border border-border">
+    <section
+      ref={region}
+      aria-label={label}
+      // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region must be reachable by keyboard (WCAG 2.1.1)
+      tabIndex={0}
+      data-more={more ? 'true' : 'false'}
+      className="overflow-x-auto rounded-md border border-border data-[more=true]:[mask-image:linear-gradient(to_right,#000_calc(100%-2.5rem),transparent)] rtl:data-[more=true]:[mask-image:linear-gradient(to_left,#000_calc(100%-2.5rem),transparent)]"
+    >
       {children}
     </section>
   );

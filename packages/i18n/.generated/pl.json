@@ -2535,6 +2535,7 @@
   "console_not_found_action": "Wróć do obozu",
   "console_not_found_detail": "Pod tym adresem w konsoli nic nie ma. Być może zostało przeniesione.",
   "console_offline_detail": "Zmiany wprowadzone teraz mogą się nie zapisać. Odświeżymy wszystko, gdy wrócisz do sieci.",
+  "console_pull_refreshing": "Odświeżanie…",
   "console_redirecting": "Przenosimy cię do logowania…",
   "console_session_expired": "Twoja sesja wygasła. Zaloguj się ponownie, aby kontynuować.",
   "console_shortcut_go_backpack": "Przejdź do plecaka",
@@ -2572,6 +2573,7 @@
       }
     }
   ],
+  "console_tab_basecamp": "Obóz",
   "console_tab_ranger": "Strażnicy",
   "console_update_detail": "Zaktualizowaliśmy SOTF Mods, gdy tu byłeś. Odśwież, aby mieć najnowszą wersję.",
   "console_update_reload": "Odśwież",
@@ -10375,6 +10377,7 @@
   "upload_tags_full": "Masz już {max} tagów: usuń jeden, aby wybrać inny.",
   "upload_tags_label": "Tagi",
   "upload_tags_none": "Żaden tag nie pasuje.",
+  "upload_take_photo": "Zrób zdjęcie",
   "upload_target_removed_detail": "Usunięte mody nie mogą otrzymywać nowych wersji.",
   "upload_target_removed_title": "Ten mod został usunięty.",
   "upload_title_build": "Nowy build",

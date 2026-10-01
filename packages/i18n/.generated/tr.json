@@ -2427,6 +2427,7 @@
   "console_not_found_action": "Ana Kamp’a dön",
   "console_not_found_detail": "Konsolda bu adreste hiçbir şey yok. Taşınmış olabilir.",
   "console_offline_detail": "Şu an yaptığın değişiklikler kaydedilmeyebilir. Tekrar çevrimiçi olduğunda her şeyi yenileyeceğiz.",
+  "console_pull_refreshing": "Yenileniyor…",
   "console_redirecting": "Giriş sayfasına götürüyoruz…",
   "console_session_expired": "Oturumun sona erdi. Devam etmek için tekrar giriş yap.",
   "console_shortcut_go_backpack": "Sırt Çantana git",
@@ -2462,6 +2463,7 @@
       }
     }
   ],
+  "console_tab_basecamp": "Kamp",
   "console_tab_ranger": "Korucular",
   "console_update_detail": "Sen buradayken SOTF Mods’u güncelledik. En son sürümü almak için yeniden yükle.",
   "console_update_reload": "Yeniden yükle",
@@ -9817,6 +9819,7 @@
   "upload_tags_full": "{max} etiket oldu: başka birini seçmek için birini kaldır.",
   "upload_tags_label": "Etiketler",
   "upload_tags_none": "Eşleşen etiket yok.",
+  "upload_take_photo": "Fotoğraf çek",
   "upload_target_removed_detail": "Kaldırılan modlar yeni sürüm alamaz.",
   "upload_target_removed_title": "Bu mod kaldırıldı.",
   "upload_title_build": "Yeni yapı",

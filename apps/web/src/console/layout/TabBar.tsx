@@ -20,8 +20,11 @@ export interface TabBarProps {
   unread: number;
 }
 
+/** Short names for the tabs whose area title is long in some languages. */
 function tabLabel(area: ConsoleArea): string {
-  return area.id === 'ranger' ? t('console_tab_ranger') : area.label();
+  if (area.id === 'ranger') return t('console_tab_ranger');
+  if (area.id === 'basecamp') return t('console_tab_basecamp');
+  return area.label();
 }
 
 export function TabBar({ viewer, area, unread }: TabBarProps) {
@@ -42,7 +45,7 @@ export function TabBar({ viewer, area, unread }: TabBarProps) {
                 aria-current={active ? 'page' : 'false'}
                 {...(badge ? { 'aria-label': t('console_signals_unread', { count: badge }) } : {})}
                 className={cn(
-                  'group/tab relative flex h-full flex-col items-center justify-center gap-0.5 rounded-lg px-1 text-2xs font-semibold tracking-wide transition-colors',
+                  'group/tab relative flex h-full flex-col items-center justify-center gap-0.5 rounded-lg px-1 text-[0.65rem] leading-4 font-semibold transition-colors',
                   active ? 'text-fg' : 'text-fg-subtle active:text-fg',
                 )}
               >

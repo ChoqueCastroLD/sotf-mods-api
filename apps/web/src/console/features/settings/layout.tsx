@@ -109,7 +109,7 @@ export function SettingsPage({ section, children }: { section: SettingsSection; 
     <div className="grid max-w-3xl gap-6">
       <header className="grid gap-1">
         <p className="readout text-signal max-md:hidden">{m.settings_readout()}</p>
-        <h1 className="font-display-caps text-display-xs text-fg">{meta.title()}</h1>
+        <h1 className="font-display-caps text-display-xs text-fg max-md:sr-only">{meta.title()}</h1>
         <p className="max-w-prose text-sm text-fg-muted">{meta.hint()}</p>
       </header>
       {children}
@@ -176,7 +176,14 @@ export function SettingsCard({
   return (
     <form id={id} aria-labelledby={headingId} className={classes} onSubmit={submit} noValidate>
       {body}
-      <div className="flex flex-wrap items-center justify-end gap-2 border-t border-border pt-4">
+      {/* Phones: the Save bar sticks to the bottom while the card is on screen and only shows once something changed. */}
+      <div
+        className={cn(
+          'flex flex-wrap items-center justify-end gap-2 border-t border-border pt-4',
+          'max-md:sticky max-md:bottom-0 max-md:z-10 max-md:-mx-4 max-md:-mb-4 max-md:rounded-b-lg max-md:bg-surface/95 max-md:px-4 max-md:pt-3 max-md:pb-[max(0.75rem,env(safe-area-inset-bottom))] max-md:backdrop-blur',
+          !dirty && !saving && 'max-md:hidden',
+        )}
+      >
         {onReset && dirty ? (
           <Button variant="ghost" onClick={onReset} disabled={saving}>
             {m.settings_discard()}

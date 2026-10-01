@@ -2427,6 +2427,7 @@
   "console_not_found_action": "Zurück zum Basislager",
   "console_not_found_detail": "Unter dieser Adresse gibt es in der Konsole nichts. Vielleicht wurde es verschoben.",
   "console_offline_detail": "Änderungen, die du jetzt machst, werden eventuell nicht gespeichert. Sobald du wieder online bist, aktualisieren wir alles.",
+  "console_pull_refreshing": "Wird aktualisiert …",
   "console_redirecting": "Wir bringen dich zur Anmeldung…",
   "console_session_expired": "Deine Sitzung ist abgelaufen. Melde dich erneut an, um weiterzumachen.",
   "console_shortcut_go_backpack": "Zu deinem Rucksack",
@@ -2462,6 +2463,7 @@
       }
     }
   ],
+  "console_tab_basecamp": "Lager",
   "console_tab_ranger": "Ranger",
   "console_update_detail": "Wir haben SOTF Mods aktualisiert, während du hier warst. Lade neu, um die neueste Version zu bekommen.",
   "console_update_reload": "Neu laden",
@@ -9817,6 +9819,7 @@
   "upload_tags_full": "Das sind {max} Tags: Entferne einen, um einen anderen zu wählen.",
   "upload_tags_label": "Tags",
   "upload_tags_none": "Kein Tag passt.",
+  "upload_take_photo": "Foto aufnehmen",
   "upload_target_removed_detail": "Entfernte Mods können keine neuen Versionen erhalten.",
   "upload_target_removed_title": "Dieser Mod wurde entfernt.",
   "upload_title_build": "Neuer Build",

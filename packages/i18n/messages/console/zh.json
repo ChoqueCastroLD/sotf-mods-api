@@ -69,5 +69,6 @@
   "console_nav_operations": "运维",
   "console_nav_jams": "模组 Jam",
   "console_tab_ranger": "护林",
-  "console_pull_refreshing": "正在刷新…"
+  "console_pull_refreshing": "正在刷新…",
+  "console_tab_basecamp": "营地"
 }

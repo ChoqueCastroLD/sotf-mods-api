@@ -163,7 +163,7 @@ export function TimeSeriesChart({
     <YAxis
       key="y"
       {...chartTheme.yAxis}
-      width={narrow ? 44 : chartTheme.yAxis.width}
+      width={narrow ? 52 : chartTheme.yAxis.width}
       domain={domain}
       ticks={ticks}
       allowDecimals={Boolean(yDomain)}

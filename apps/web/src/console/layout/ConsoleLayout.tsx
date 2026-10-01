@@ -54,6 +54,37 @@ function useStaticTitle(pathname: string): (() => string) | undefined {
   return title;
 }
 
+/**
+ * On phones the top bar already carries the title of a pushed screen: a screen heading with the
+ * same text would say it twice. It stays in the document (screen readers, desktop) and is only
+ * visually hidden below `md` (`data-phone-dup`, see the `main` classes).
+ */
+function useDuplicateHeading(mainId: string, title: string | undefined, active: boolean): void {
+  useEffect(() => {
+    const main = document.getElementById(mainId);
+    if (!main) return;
+    const mark = () => {
+      const heading = main.querySelector('h1');
+      if (!heading) return;
+      const same =
+        active && title !== undefined && heading.textContent?.trim().toLowerCase() === title.trim().toLowerCase();
+      if (same) heading.setAttribute('data-phone-dup', '');
+      else heading.removeAttribute('data-phone-dup');
+    };
+    mark();
+    let frame = 0;
+    const observer = new MutationObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(mark);
+    });
+    observer.observe(main, { childList: true, subtree: true, characterData: true });
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+    };
+  }, [mainId, title, active]);
+}
+
 /** Switches to the user's saved language once `/me` says it differs from the first guess. */
 function useUserLocale(me: Parameters<typeof userLocale>[0]): void {
   const { locale, setLocale } = useConsoleLocale();
@@ -90,6 +121,7 @@ export function ConsoleLayout() {
   const itemOpen = useRouterState({ select: (state) => 'item' in (state.location.search as object) });
   const pushed = isPushedRoute(pathname) || itemOpen;
   const tabs = !pushed;
+  useDuplicateHeading(MAIN_ID, screenTitle?.(), pushed);
 
   const viewer: Viewer = { role: me.user.role };
   const showShortcuts = () => {
@@ -146,7 +178,7 @@ export function ConsoleLayout() {
             <main
               id={MAIN_ID}
               tabIndex={-1}
-              className="mx-auto flex w-full max-w-(--container-wide) flex-1 flex-col px-4 pt-5 pb-[calc(var(--tabbar-h)+1.5rem)] outline-none [&>*]:min-w-0 [&>.grid:not([class*='grid-cols'])]:grid-cols-[minmax(0,1fr)] md:px-6 md:py-6 lg:px-8"
+              className="mx-auto flex w-full max-w-(--container-wide) flex-1 flex-col px-4 pt-5 pb-[calc(var(--tabbar-h)+1.5rem)] outline-none [&_h1[data-phone-dup]]:max-md:sr-only [&>*]:min-w-0 [&>.grid:not([class*='grid-cols'])]:grid-cols-[minmax(0,1fr)] md:px-6 md:py-6 lg:px-8"
             >
               <Outlet />
             </main>

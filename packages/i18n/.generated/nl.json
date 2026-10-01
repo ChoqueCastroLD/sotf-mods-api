@@ -2427,6 +2427,7 @@
   "console_not_found_action": "Terug naar het basiskamp",
   "console_not_found_detail": "Er is niets op dit adres in de console. Misschien is het verplaatst.",
   "console_offline_detail": "Wijzigingen die je nu maakt, worden misschien niet opgeslagen. We vernieuwen alles zodra je weer online bent.",
+  "console_pull_refreshing": "Vernieuwen…",
   "console_redirecting": "We brengen je naar het inloggen…",
   "console_session_expired": "Je sessie is verlopen. Log opnieuw in om verder te gaan.",
   "console_shortcut_go_backpack": "Naar je rugzak",
@@ -2462,6 +2463,7 @@
       }
     }
   ],
+  "console_tab_basecamp": "Kamp",
   "console_tab_ranger": "Ranger",
   "console_update_detail": "We hebben SOTF Mods bijgewerkt terwijl je hier was. Herlaad om de nieuwste versie te krijgen.",
   "console_update_reload": "Herladen",
@@ -9817,6 +9819,7 @@
   "upload_tags_full": "Dat zijn {max} tags: haal er een weg om een andere te kiezen.",
   "upload_tags_label": "Tags",
   "upload_tags_none": "Geen tag komt overeen.",
+  "upload_take_photo": "Foto maken",
   "upload_target_removed_detail": "Verwijderde mods kunnen geen nieuwe versies krijgen.",
   "upload_target_removed_title": "Deze mod is verwijderd.",
   "upload_title_build": "Nieuwe build",
