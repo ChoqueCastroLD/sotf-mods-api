@@ -20,7 +20,7 @@
  * Formatting helpers take the BCP-47 locale explicitly and default to UTC, because public HTML
  * is shared and cached at the edge (same rules as `@sotf/i18n`).
  */
-import { createContext, createElement, type ReactNode, useContext } from 'react';
+import { createContext, createElement, Fragment, type ReactNode, useContext } from 'react';
 import { formatIcu, type IcuParams } from './icu.ts';
 import en from './messages/en.json' with { type: 'json' };
 
@@ -184,5 +184,6 @@ export const SLOT = '\uE000';
  */
 export function withSlot(text: string, node: ReactNode): ReactNode[] {
   const [before = '', ...rest] = text.split(SLOT);
-  return rest.length === 0 ? [text] : [before, node, rest.join('')];
+  // The slot node gets a key: an unkeyed element inside an array makes React warn on every render.
+  return rest.length === 0 ? [text] : [before, createElement(Fragment, { key: 'slot' }, node), rest.join('')];
 }

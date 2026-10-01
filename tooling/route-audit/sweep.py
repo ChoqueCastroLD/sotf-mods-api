@@ -36,9 +36,16 @@ if SET in('all','users'):
         for l in ['en','es']:
             paths+= [pre(l)+'/profile/'+quote(h),pre(l)+'/profile/'+quote(h)+'.md',pre(l)+'/profile/'+quote(h)+'/feed.xml']
     paths+=['/profile/IMAXEL','/profile/imaxel/','/profile/Nobody%20X','/profile/%E0%A4%A','/profile/a%2Fb']
+import os as _os
+SKIP=_os.environ.get('SKIP')
+DONE=set(open(_os.environ['DONE']).read().split('\n')) if _os.environ.get('DONE') else set()
 seen=set(); uniq=[]
 for p in paths:
-    if p not in seen: seen.add(p); uniq.append(p)
+    if p in seen: continue
+    seen.add(p)
+    if SKIP and re.search(SKIP,p): continue
+    if p in DONE: continue
+    uniq.append(p)
 host=re.sub(r'^https?://','',BASE); https=BASE.startswith('https')
 out=open(OUT,'w')
 def fetch(p):
