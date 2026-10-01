@@ -65,6 +65,20 @@ if SET in('all','extra','nsfw'):
             for l in ['en','es']:
                 for sfx in ['','.md','/versions','/reviews','/feed.xml']: paths.append(pre(l)+cp+sfx)
             paths+=['/embed'+cp,'/badges'+cp+'/downloads.svg',cp+'.json']
+if SET in('all','legacy'):
+    # URLs of the old site (research/01 §4.1-4.4): same path, 301 variants, 404/410, query mapping.
+    paths+=['/mods/codengine/upgradeableplayerstats','/mods/anwender/helimod','/mods/tempbito/perishableshuffler','/mods/simmelsau/RemoveMountainFog','/mods/aedev/gyrocopter','/mods/aedev/gyrocopter/download/1.0.0',
+      '/login?registered','/login?reset','/login?registered=true','/mods?orderby=most_downloaded','/mods?orderby=least_downloaded&page=2','/mods?orderby=most_downloaded_week','/mods?orderby=most_followed','/mods?orderby=highest_rating','/mods?orderby=most_comments','/mods?orderby=oldest',
+      '/mods?type=Build','/mods?type=Both','/mods?type=Library','/mods?type=Mod&showunapproved=true','/mods?nsfw=true','/mods?nsfw=false&type=Mod&showunapproved=false&orderby=newest&page=1&category=qol','/mods?category=model-swap','/mods?category=library&page=2','/mods?search=axel%27s&page=1',
+      '/builds?type=Build&showunapproved=false&page=1','/builds?category=houses','/builds?orderby=most_downloaded&page=3','/builds?search=house','/builds?nsfw=true',
+      '/profile/imaxel/','/profile/ImAxel','/profile/codengine','/loader?utm_source=x','/privacy','/ads.txt','/robots.txt','/404','/static/images/logo.png','/static/images/favicon.ico','/static/images/hd_thumbnail.png','/images/abc123','/images/abc123/preview','/api/mods/imaxel/axel%27s-mod-menu/check','/api/mods/imaxel/axel%27s-mod-menu']
+    for m in d['v2']:
+        cp=m['canonicalPath']; seg=cp.split('/')
+        if re.search(r"['()+._]",seg[3]) or re.search(r"['()+._]",seg[2]):
+            paths+=[quote(cp,safe='/'),cp.upper(),quote(cp,safe='/')+'/versions',cp+'/download/1.0.0'.replace('/download/1.0.0','') ]
+            for l in ['es','de']: paths.append('/'+l+quote(cp,safe='/'))
+    for m in d['v2'][:25]:
+        paths.append(m['canonicalPath'].upper()); paths.append(m['canonicalPath']+'/')
 if SET=='sitemap':
     import xml.etree.ElementTree as ET
     def g(u):
