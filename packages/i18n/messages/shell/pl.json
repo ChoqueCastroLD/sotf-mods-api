@@ -1,0 +1,23 @@
+{
+  "shell_more_label": "Więcej",
+  "shell_more_help": "Pomoc",
+  "shell_more_community": "Społeczność",
+  "shell_more_install_guide": "Instrukcja instalacji",
+  "shell_install_app": "Zainstaluj aplikację",
+  "shell_install_app_hint": "Dodaj SOTF Mods do ekranu głównego",
+  "shell_install_ios_hint": "Aby zainstalować na iPhonie lub iPadzie, stuknij Udostępnij, a następnie „Do ekranu początkowego”.",
+  "shell_ptr_pull": "Pociągnij, aby odświeżyć",
+  "shell_ptr_release": "Puść, aby odświeżyć",
+  "shell_ptr_loading": "Odświeżanie…",
+  "shell_offline_meta_title": "Offline",
+  "shell_offline_meta_description": "Brak połączenia. Spróbuj ponownie, gdy wrócisz w zasięg.",
+  "shell_offline_eyebrow": "Brak sygnału",
+  "shell_offline_title": "Jesteś poza zasięgiem",
+  "shell_offline_body": "Nie możemy teraz dotrzeć na wyspę. Sprawdź połączenie i spróbuj ponownie.",
+  "shell_offline_retry": "Spróbuj ponownie",
+  "shell_offline_checking": "Szukam sygnału…",
+  "shell_offline_still": "Nadal brak sygnału. Spróbuj za chwilę.",
+  "shell_offline_back_online": "Znów jesteś online. Wczytuję ponownie…",
+  "shell_offline_saved": "Zapisano na tym urządzeniu",
+  "shell_offline_available": "Działa offline"
+}

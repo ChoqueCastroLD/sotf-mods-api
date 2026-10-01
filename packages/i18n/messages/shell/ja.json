@@ -1,0 +1,23 @@
+{
+  "shell_more_label": "その他",
+  "shell_more_help": "ヘルプ",
+  "shell_more_community": "コミュニティ",
+  "shell_more_install_guide": "インストールガイド",
+  "shell_install_app": "アプリをインストール",
+  "shell_install_app_hint": "SOTF Mods をホーム画面に追加",
+  "shell_install_ios_hint": "iPhoneまたはiPadにインストールするには、共有をタップして「ホーム画面に追加」を選びます。",
+  "shell_ptr_pull": "引っ張って更新",
+  "shell_ptr_release": "離して更新",
+  "shell_ptr_loading": "更新中…",
+  "shell_offline_meta_title": "オフライン",
+  "shell_offline_meta_description": "現在接続できません。電波が戻ったらもう一度お試しください。",
+  "shell_offline_eyebrow": "圏外",
+  "shell_offline_title": "電波の届かない場所です",
+  "shell_offline_body": "いまは島に接続できません。通信状況を確認して、もう一度お試しください。",
+  "shell_offline_retry": "再試行",
+  "shell_offline_checking": "電波を探しています…",
+  "shell_offline_still": "まだ電波がありません。しばらくしてからもう一度お試しください。",
+  "shell_offline_back_online": "オンラインに戻りました。再読み込みしています…",
+  "shell_offline_saved": "この端末に保存済み",
+  "shell_offline_available": "オフラインで利用可能"
+}

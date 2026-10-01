@@ -1,0 +1,23 @@
+{
+  "shell_more_label": "更多",
+  "shell_more_help": "帮助",
+  "shell_more_community": "社区",
+  "shell_more_install_guide": "安装指南",
+  "shell_install_app": "安装应用",
+  "shell_install_app_hint": "将 SOTF Mods 添加到主屏幕",
+  "shell_install_ios_hint": "在 iPhone 或 iPad 上安装：点按“分享”，再选择“添加到主屏幕”。",
+  "shell_ptr_pull": "下拉刷新",
+  "shell_ptr_release": "松开刷新",
+  "shell_ptr_loading": "正在刷新…",
+  "shell_offline_meta_title": "离线",
+  "shell_offline_meta_description": "当前没有网络连接。恢复信号后请重试。",
+  "shell_offline_eyebrow": "无信号",
+  "shell_offline_title": "你已失去信号",
+  "shell_offline_body": "暂时无法连接到小岛。请检查网络后重试。",
+  "shell_offline_retry": "重试",
+  "shell_offline_checking": "正在搜索信号…",
+  "shell_offline_still": "仍然没有信号，请稍后再试。",
+  "shell_offline_back_online": "已恢复连接，正在重新加载…",
+  "shell_offline_saved": "已保存在此设备上",
+  "shell_offline_available": "离线可用"
+}

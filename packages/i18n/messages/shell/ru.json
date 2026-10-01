@@ -1,0 +1,23 @@
+{
+  "shell_more_label": "Ещё",
+  "shell_more_help": "Помощь",
+  "shell_more_community": "Сообщество",
+  "shell_more_install_guide": "Руководство по установке",
+  "shell_install_app": "Установить приложение",
+  "shell_install_app_hint": "Добавьте SOTF Mods на главный экран",
+  "shell_install_ios_hint": "Чтобы установить на iPhone или iPad, нажмите «Поделиться», затем «На экран „Домой“».",
+  "shell_ptr_pull": "Потяните, чтобы обновить",
+  "shell_ptr_release": "Отпустите, чтобы обновить",
+  "shell_ptr_loading": "Обновление…",
+  "shell_offline_meta_title": "Офлайн",
+  "shell_offline_meta_description": "Сейчас нет подключения. Повторите попытку, когда сеть появится.",
+  "shell_offline_eyebrow": "Нет сигнала",
+  "shell_offline_title": "Вы вне зоны доступа",
+  "shell_offline_body": "Сейчас не удаётся добраться до острова. Проверьте подключение и повторите попытку.",
+  "shell_offline_retry": "Повторить",
+  "shell_offline_checking": "Ищем сигнал…",
+  "shell_offline_still": "Сигнала по-прежнему нет. Повторите чуть позже.",
+  "shell_offline_back_online": "Связь восстановлена. Перезагружаем…",
+  "shell_offline_saved": "Сохранено на этом устройстве",
+  "shell_offline_available": "Доступно офлайн"
+}

@@ -1,0 +1,23 @@
+{
+  "shell_more_label": "Mais",
+  "shell_more_help": "Ajuda",
+  "shell_more_community": "Comunidade",
+  "shell_more_install_guide": "Guia de instalação",
+  "shell_install_app": "Instalar o app",
+  "shell_install_app_hint": "Adicione o SOTF Mods à tela inicial",
+  "shell_install_ios_hint": "Para instalar no iPhone ou iPad, toque em Compartilhar e depois em “Adicionar à Tela de Início”.",
+  "shell_ptr_pull": "Puxe para atualizar",
+  "shell_ptr_release": "Solte para atualizar",
+  "shell_ptr_loading": "Atualizando…",
+  "shell_offline_meta_title": "Off-line",
+  "shell_offline_meta_description": "Sem conexão no momento. Tente novamente quando voltar a ter sinal.",
+  "shell_offline_eyebrow": "Sem sinal",
+  "shell_offline_title": "Você está fora de alcance",
+  "shell_offline_body": "Não conseguimos chegar à ilha agora. Verifique sua conexão e tente novamente.",
+  "shell_offline_retry": "Tentar novamente",
+  "shell_offline_checking": "Procurando sinal…",
+  "shell_offline_still": "Ainda sem sinal. Tente novamente daqui a pouco.",
+  "shell_offline_back_online": "Você voltou a ficar online. Recarregando…",
+  "shell_offline_saved": "Salvo neste dispositivo",
+  "shell_offline_available": "Disponível off-line"
+}
