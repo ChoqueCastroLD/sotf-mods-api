@@ -31,8 +31,12 @@ mkdirSync(OUT, { recursive: true });
 for (const job of JOBS) {
   for (const width of job.widths) {
     const base = () => sharp(join(SRC, job.source)).resize({ width, withoutEnlargement: true });
-    await base().avif({ quality: 46, effort: 6 }).toFile(join(OUT, `${job.name}-${width}.avif`));
-    await base().webp({ quality: 70, effort: 6 }).toFile(join(OUT, `${job.name}-${width}.webp`));
+    await base()
+      .avif({ quality: 46, effort: 6 })
+      .toFile(join(OUT, `${job.name}-${width}.avif`));
+    await base()
+      .webp({ quality: 70, effort: 6 })
+      .toFile(join(OUT, `${job.name}-${width}.webp`));
   }
   process.stdout.write(`ok ${job.name}\n`);
 }

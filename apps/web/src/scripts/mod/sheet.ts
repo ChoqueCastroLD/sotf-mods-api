@@ -19,7 +19,6 @@ export function bindSheetDrag(dialog: HTMLDialogElement, win: Window = window): 
   const header = dialog.querySelector<HTMLElement>('[data-sheet-header]');
   let startY = 0;
   let startX = 0;
-  let startTime = 0;
   let lastY = 0;
   let lastTime = 0;
   let velocity = 0;
@@ -51,7 +50,7 @@ export function bindSheetDrag(dialog: HTMLDialogElement, win: Window = window): 
       dragging = false;
       startX = touch.clientX;
       startY = lastY = touch.clientY;
-      startTime = lastTime = event.timeStamp;
+      lastTime = event.timeStamp;
       velocity = 0;
     },
     { passive: true },

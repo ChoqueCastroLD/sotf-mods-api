@@ -41,7 +41,8 @@ function bind(host: HTMLElement): void {
       if (position === index) dot.setAttribute('aria-current', 'true');
       else dot.removeAttribute('aria-current');
     });
-    if (chip && template) chip.textContent = template.replace('{index}', String(index + 1)).replace('{total}', String(total));
+    if (chip && template)
+      chip.textContent = template.replace('{index}', String(index + 1)).replace('{total}', String(total));
   };
   let frame = 0;
   track.addEventListener(

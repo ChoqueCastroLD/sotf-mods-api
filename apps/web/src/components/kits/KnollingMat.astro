@@ -19,11 +19,13 @@ const slots = kit.items
   .slice(0, 12)
   .map((item) => item.mod.thumbnail);
 const emptySlots = Math.max(0, (slots.length <= 6 ? 6 : 12) - slots.length);
+// Phones: two full rows of four at most, and no placeholders (they read as «missing pictures»).
+const PHONE_SLOTS = 8;
 ---
 
 {
   kit.cover ? (
-    <div class="aspect-[3/1] overflow-hidden rounded-xl border border-border bg-raised max-sm:aspect-[2/1]">
+    <div class="aspect-[3/1] overflow-hidden rounded-xl border border-border bg-raised max-sm:-mx-4 max-sm:aspect-[2/1] max-sm:rounded-none max-sm:border-x-0">
       <Picture
         image={kit.cover}
         sizes="(min-width: 80rem) 1216px, 100vw"
@@ -37,12 +39,15 @@ const emptySlots = Math.max(0, (slots.length <= 6 ? 6 : 12) - slots.length);
     <div
       aria-hidden="true"
       data-surface="blueprint"
-      class="texture-blueprint relative overflow-hidden rounded-xl border border-dashed border-blueprint/50 bg-sunken p-4 sm:p-6"
+      class="texture-blueprint relative overflow-hidden rounded-xl border border-dashed border-blueprint/50 bg-sunken p-4 max-sm:-mx-4 max-sm:rounded-none max-sm:border-x-0 max-sm:border-solid max-sm:px-5 sm:p-6"
     >
       <ul class="grid grid-cols-4 place-items-center gap-3 sm:grid-cols-6 sm:gap-5">
         {slots.map((image, index) => (
           <li
-            class="kit-knoll block aspect-square w-full max-w-24 overflow-hidden rounded-md bg-raised shadow-md"
+            class:list={[
+              'kit-knoll block aspect-square w-full max-w-24 overflow-hidden rounded-md bg-raised shadow-md',
+              index >= PHONE_SLOTS && 'max-sm:hidden',
+            ]}
             style={`--knoll-rotate:${ROTATIONS[index % ROTATIONS.length]}deg`}
           >
             {image && (
@@ -59,7 +64,7 @@ const emptySlots = Math.max(0, (slots.length <= 6 ? 6 : 12) - slots.length);
         ))}
         {Array.from({ length: emptySlots }, (_, index) => (
           <li
-            class="kit-knoll block aspect-square w-full max-w-24 rounded-md border border-dashed border-blueprint/40"
+            class="kit-knoll block aspect-square w-full max-w-24 rounded-md border border-dashed border-blueprint/40 max-sm:hidden"
             style={`--knoll-rotate:${ROTATIONS[(slots.length + index) % ROTATIONS.length]}deg`}
           />
         ))}

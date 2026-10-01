@@ -20,15 +20,18 @@ import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
 import { KitCard, ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import {
+  ChevronRight,
   CircleAlert,
   CircleCheck,
   CircleHelp,
   Copy,
   Download,
+  Ellipsis,
   GitFork,
   HardDrive,
   Heart,
   Layers,
+  MessageSquareText,
   Pencil,
   Share2,
   Star,
@@ -49,14 +52,18 @@ import {
   totalSizeLabel,
 } from '../../../components/kits/format.ts';
 import KitItems from '../../../components/kits/KitItems.astro';
+import KitMoreSheet from '../../../components/kits/KitMoreSheet.astro';
 import KitPageData from '../../../components/kits/KitPageData.astro';
 import KitScripts from '../../../components/kits/KitScripts.astro';
 import { KitsEmpty } from '../../../components/kits/KitStates.tsx';
 import KnollingMat from '../../../components/kits/KnollingMat.astro';
 import ShareKitDialog from '../../../components/kits/ShareKitDialog.astro';
 import { kitDescription, kitJsonLd, kitTitle } from '../../../components/kits/seo.ts';
+import Clamp from '../../../components/mod/Clamp.astro';
 import { configureModDomainI18n, markdownLabels } from '../../../components/mod/i18n.ts';
+import ModDialog from '../../../components/mod/ModDialog.astro';
 import { respondUnresolved } from '../../../components/mod/responses.ts';
+import SectionNav from '../../../components/mod/SectionNav.astro';
 import { ACTION_CLASSES, PANEL_CLASSES, SECTION_TITLE_CLASSES } from '../../../components/mod/styles.ts';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { setPageCache } from '../../../lib/cache/page.ts';
@@ -143,7 +150,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
   entity={{ type: 'kit', id: kit.id }}
 >
   <div data-kit-page data-kit-id={kit.id}>
-    <div class="mx-auto grid w-full max-w-(--container-content) gap-6 px-4 py-6 md:px-6 md:py-8">
+    <div class="mx-auto grid w-full max-w-(--container-content) grid-cols-1 gap-6 px-4 py-4 md:px-6 md:py-8">
       <Breadcrumbs
         items={trail.map((crumb) => ({
           label: crumb.label,
@@ -167,7 +174,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
             {m.kits_detail_readout()} · <span class="font-mono">{kit.code}</span>
           </p>
           <div class="flex flex-wrap items-center gap-3">
-            <h1 class="font-display-caps text-display-sm break-words text-fg">{kit.name}</h1>
+            <h1 class="font-display-caps text-display-sm text-balance break-words text-fg [hyphens:auto]">{kit.name}</h1>
             {
               kit.isStaffPick && (
                 <span class="inline-flex items-center gap-1 rounded-full border border-primary/50 bg-primary/10 px-2.5 py-1 text-xs font-semibold text-fg">
@@ -209,7 +216,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
           }
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2 max-md:hidden">
           {
             downloadable.length > 0 && (
               <a
@@ -246,9 +253,19 @@ const compatTone: Record<CompatLine['tone'], string> = {
         </div>
       </header>
 
-      <section aria-labelledby="kit-summary-title" class="grid gap-3 sm:grid-cols-3">
+      <SectionNav
+        label={m.mod_tabs_label()}
+        items={[
+          { id: 'kit-items', label: m.kits_items_title(), count: String(kit.items.length) },
+          { id: 'kit-about', label: m.kits_about_title() },
+          { id: 'kit-comments', label: m.kitsocial_comments_title() },
+          ...(kit.recentRevisions.length > 0 ? [{ id: 'kit-revisions', label: m.kits_revisions_title() }] : []),
+        ]}
+      />
+
+      <section aria-labelledby="kit-summary-title" class="grid gap-3 max-sm:-mx-4 max-sm:auto-cols-[82%] max-sm:grid-flow-col max-sm:snap-x max-sm:snap-mandatory max-sm:overflow-x-auto max-sm:overscroll-x-contain max-sm:px-4 max-sm:pb-1 max-sm:[scrollbar-width:none] sm:grid-cols-3">
         <h2 id="kit-summary-title" class="sr-only">{m.kits_summary_title()}</h2>
-        <div class={PANEL_CLASSES}>
+        <div class:list={[PANEL_CLASSES, "max-sm:snap-center"]}>
           <h3 class="readout mb-2 text-fg-muted">{m.kits_summary_compat()}</h3>
           <ul class="grid gap-1.5 text-sm">
             {
@@ -261,7 +278,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
             }
           </ul>
         </div>
-        <div class={PANEL_CLASSES}>
+        <div class:list={[PANEL_CLASSES, "max-sm:snap-center"]}>
           <h3 class="readout mb-2 text-fg-muted">{m.kits_summary_multiplayer()}</h3>
           {
             mpParts.length > 0 ? (
@@ -278,7 +295,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
             )
           }
         </div>
-        <div class={PANEL_CLASSES}>
+        <div class:list={[PANEL_CLASSES, "max-sm:snap-center"]}>
           <h3 class="readout mb-2 text-fg-muted">{m.kits_summary_size()}</h3>
           <ul class="grid gap-1.5 text-sm">
             <li class="flex items-start gap-2">
@@ -299,8 +316,8 @@ const compatTone: Record<CompatLine['tone'], string> = {
         </div>
       </section>
 
-      <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
-        <section id="kit-items" aria-labelledby="kit-items-title" class="grid min-w-0 content-start gap-4">
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
+        <section id="kit-items" aria-labelledby="kit-items-title" class="grid min-w-0 scroll-mt-32 content-start gap-4 max-lg:order-2 md:scroll-mt-24">
           <h2 id="kit-items-title" class={SECTION_TITLE_CLASSES}>{m.kits_items_title()}</h2>
           {
             kit.items.length > 0 ? (
@@ -309,11 +326,24 @@ const compatTone: Record<CompatLine['tone'], string> = {
               <KitsEmpty title={m.kits_detail_empty_title()} text={m.kits_detail_empty_text()} headingLevel={3} />
             )
           }
-          <section id="kit-comments" data-kit-comments aria-labelledby="kit-comments-title" class="mt-6 grid gap-4">
+          <section id="kit-comments" data-kit-comments data-sheet-section="comments-sheet" aria-labelledby="kit-comments-title" class="mt-6 grid scroll-mt-32 gap-4 md:scroll-mt-24">
             <h2 id="kit-comments-title" class={SECTION_TITLE_CLASSES}>
               {m.kitsocial_comments_title()}
               <span class="ms-2 text-sm font-normal text-fg-muted" data-kit-comments-count></span>
             </h2>
+            <div data-sheet-preview hidden class="grid gap-3">
+              <button
+                type="button"
+                data-dialog-open="comments-sheet"
+                data-compose
+                class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+              >
+                <Icon icon={MessageSquareText} size={18} className="text-signal" />
+                <span class="min-w-0 flex-1">{m.kitsocial_comments_title()} <span class="font-normal text-fg-muted" data-kit-comments-count></span></span>
+                <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+              </button>
+            </div>
+            <div data-sheet-body class="grid min-w-0 gap-4">
             <div data-kit-comments-form></div>
             <p class="text-sm text-fg-muted" data-kit-comments-status aria-live="polite" hidden></p>
             <div class="grid gap-3" data-kit-comments-list aria-live="polite"></div>
@@ -325,15 +355,18 @@ const compatTone: Record<CompatLine['tone'], string> = {
             >
               {m.kitsocial_load_more()}
             </button>
+            </div>
           </section>
         </section>
 
-        <aside aria-label={m.kits_sidebar_label()} class="grid min-w-0 content-start gap-4">
-          <section aria-labelledby="kit-about-title" class={PANEL_CLASSES}>
+        <aside aria-label={m.kits_sidebar_label()} class="grid min-w-0 content-start gap-4 max-lg:contents">
+          <section id="kit-about" aria-labelledby="kit-about-title" class:list={[PANEL_CLASSES, "scroll-mt-32 md:scroll-mt-24 max-lg:order-1"]}>
             <h2 id="kit-about-title" class="mb-3 font-semibold text-fg">{m.kits_about_title()}</h2>
             {
               descriptionHtml ? (
-                <ProseLocator html={descriptionHtml} className="text-sm" />
+                <Clamp height={9}>
+                  <ProseLocator html={descriptionHtml} className="text-sm" />
+                </Clamp>
               ) : (
                 <p class="text-sm text-fg-muted">{m.kits_about_empty()}</p>
               )
@@ -342,7 +375,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
 
           {
             kit.recentRevisions.length > 0 && (
-              <section aria-labelledby="kit-revisions-title" class={PANEL_CLASSES}>
+              <section id="kit-revisions" data-fold="closed" aria-labelledby="kit-revisions-title" class:list={[PANEL_CLASSES, "scroll-mt-32 md:scroll-mt-24 max-lg:order-4"]}>
                 <h2 id="kit-revisions-title" class="mb-3 font-semibold text-fg">{m.kits_revisions_title()}</h2>
                 <ol class="grid gap-2 text-sm">
                   {kit.recentRevisions.map((revision) => (
@@ -361,7 +394,7 @@ const compatTone: Record<CompatLine['tone'], string> = {
 
           {
             moreKits.length > 0 && (
-              <section aria-labelledby="kit-more-title" class="grid gap-3">
+              <section aria-labelledby="kit-more-title" class="grid gap-3 max-lg:order-5">
                 <h2 id="kit-more-title" class="font-semibold text-fg">{m.kits_more_from({ curator })}</h2>
                 <ul class="grid gap-3">
                   {moreKits.map((card) => (
@@ -377,34 +410,62 @@ const compatTone: Record<CompatLine['tone'], string> = {
       </div>
     </div>
 
-    {
-      downloadable.length > 0 && (
-        <>
-          <div aria-hidden="true" class="h-20 md:hidden"></div>
-          <div class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-(--z-sticky) border-t border-border bg-bg/95 px-3 py-2 transition-[bottom] duration-(--dur-base) supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden [html[data-scroll-dir=down]_&]:bottom-0 [html[data-scroll-dir=down]_&]:pb-[calc(0.5rem+env(safe-area-inset-bottom))] motion-reduce:transition-none">
-            <div class="mx-auto flex max-w-lg items-center gap-2">
-              <a
-                href="#kit-items"
-                data-dialog-open="kit-download-dialog"
-                class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover"
-              >
-                <Icon icon={Download} size={18} />
-                <span class="truncate">{m.kits_download_all({ count: downloadable.length })}</span>
-              </a>
-              <a
-                href={kitShortPath(kit.code)}
-                data-dialog-open="kit-share-dialog"
-                class="inline-flex size-12 shrink-0 items-center justify-center rounded-md border border-border-strong bg-raised text-fg"
-              >
-                <Icon icon={Share2} size={20} />
-                <span class="sr-only">{m.common_action_share()}</span>
-              </a>
-            </div>
-          </div>
-          <DownloadAllDialog kit={kit} />
-        </>
-      )
-    }
+    <div aria-hidden="true" class="h-20 md:hidden"></div>
+    <div
+      data-mobile-download-bar
+      class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-(--z-sticky) border-t border-border bg-bg/95 px-3 py-2 transition-[bottom] duration-(--dur-base) supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden [html[data-scroll-dir=down]_&]:bottom-0 [html[data-scroll-dir=down]_&]:pb-[calc(0.5rem+env(safe-area-inset-bottom))] motion-reduce:transition-none"
+    >
+      <div class="mx-auto flex max-w-lg items-center gap-2">
+        {
+          downloadable.length > 0 ? (
+            <a
+              href="#kit-items"
+              data-dialog-open="kit-download-dialog"
+              class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover active:bg-primary-hover"
+            >
+              <Icon icon={Download} size={18} />
+              <span class="truncate">{m.kits_download_all({ count: downloadable.length })}</span>
+            </a>
+          ) : (
+            <a
+              href={kitShortPath(kit.code)}
+              data-dialog-open="kit-share-dialog"
+              class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-border-strong bg-raised px-4 font-semibold text-fg"
+            >
+              <Icon icon={Share2} size={18} />
+              <span class="truncate">{m.common_action_share()}</span>
+            </a>
+          )
+        }
+        <!-- biome-ignore lint/a11y/useAriaPropsSupportedByRole: aria-pressed is the toggle state read by the follow script (data-kit-follow) -->
+        <a
+          href={login}
+          data-kit-follow
+          rel="nofollow"
+          aria-pressed="false"
+          class="inline-flex size-12 shrink-0 items-center justify-center rounded-md border border-border-strong bg-raised text-fg active:bg-fg/10 aria-pressed:border-primary aria-pressed:text-primary"
+        >
+          <Icon icon={Heart} size={20} className="[[aria-pressed=true]_&]:fill-current" />
+          <span class="sr-only" data-follow-label>{m.kitsocial_follow()}</span>
+        </a>
+        <button
+          type="button"
+          hidden
+          data-js-only
+          data-dialog-open="kit-more-sheet"
+          aria-haspopup="dialog"
+          class="inline-flex size-12 shrink-0 items-center justify-center rounded-md border border-border-strong bg-raised text-fg active:bg-fg/10"
+        >
+          <Icon icon={Ellipsis} size={22} />
+          <span class="sr-only">{m.mod_action_more()}</span>
+        </button>
+      </div>
+    </div>
+    {downloadable.length > 0 && <DownloadAllDialog kit={kit} />}
+    <KitMoreSheet kit={kit} login={login} />
+    <ModDialog id="comments-sheet" size="tall" title={m.kitsocial_comments_title()} bodyClass="max-md:pb-0!">
+      <section data-sheet-slot="comments-sheet" aria-label={m.kitsocial_comments_title()} class="kit-comments-slot grid min-w-0 gap-5"></section>
+    </ModDialog>
     <ShareKitDialog kit={kit} url={url} siteUrl={env.siteUrl} />
     <div
       data-mod-toast
@@ -417,3 +478,21 @@ const compatTone: Record<CompatLine['tone'], string> = {
     <KitScripts />
   </div>
 </BaseLayout>
+
+<style is:global>
+  /* The comment form of the sheet (phones) stays docked at the bottom while the thread scrolls. */
+  .kit-comments-slot [data-kit-comments-form] {
+    order: 99;
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    margin-inline: -1.25rem;
+    padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+  }
+  .kit-comments-slot [data-kit-comments-form]:empty {
+    display: none;
+  }
+</style>

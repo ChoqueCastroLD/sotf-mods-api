@@ -39,19 +39,19 @@ import {
   mod_toast_verify_email,
 } from '@sotf/i18n/messages';
 import { initSocialIslands } from '../../islands/comments/social.ts';
-import { initCarousels } from '../../scripts/mod/carousel.ts';
-import { initFolds } from '../../scripts/mod/fold.ts';
-import { initGallery as initLightboxGallery } from '../../scripts/mod/gallery.ts';
-import { initSectionNav } from '../../scripts/mod/section-nav.ts';
-import { initSheetSections } from '../../scripts/mod/sheets.ts';
-import { initVersions } from '../../scripts/mod/versions.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
+import { initCarousels } from '../../scripts/mod/carousel.ts';
 import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from '../../scripts/mod/dialogs.ts';
+import { initFolds } from '../../scripts/mod/fold.ts';
+import { initGallery as initLightboxGallery } from '../../scripts/mod/gallery.ts';
 import { openKitAdd } from '../../scripts/mod/kit-add.ts';
 import { compactFormat, startLiveCounters } from '../../scripts/mod/live.ts';
+import { initSectionNav } from '../../scripts/mod/section-nav.ts';
 import { whenSession } from '../../scripts/mod/session.ts';
+import { initSheetSections } from '../../scripts/mod/sheets.ts';
 import type { ModPageData } from '../../scripts/mod/types.ts';
+import { initVersions } from '../../scripts/mod/versions.ts';
 
 const TOAST_MS = 6000;
 
@@ -268,15 +268,18 @@ function kitAddData(modId: number, name: string, loginHref: string): ModPageData
 
 /** «+ Kit»: signed-in visitors get the popover with their kits; the link stays for everyone else. */
 function initKitAdd(modId: number): void {
-  const link = document.querySelector<HTMLAnchorElement>('a[data-kit-add]');
-  if (!link) return;
+  const links = document.querySelectorAll<HTMLAnchorElement>('a[data-kit-add]');
+  if (links.length === 0) return;
   const name = document.querySelector('h1')?.textContent?.trim() ?? '';
   const loginHref = document.querySelector<HTMLElement>('[data-follow]')?.dataset.login ?? '/login';
-  link.addEventListener('click', (event) => {
-    if (!hasSignedInHint() || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-    event.preventDefault();
-    void openKitAdd(link, kitAddData(modId, name, loginHref));
-  });
+  // The header link and the sheet's row (phones) behave the same.
+  for (const link of links) {
+    link.addEventListener('click', (event) => {
+      if (!hasSignedInHint() || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+      event.preventDefault();
+      void openKitAdd(link, kitAddData(modId, name, loginHref));
+    });
+  }
 }
 
 // -----------------------------------------------------------------------------------------------

@@ -30,12 +30,13 @@ export function StickyComposer({ canWrite, open, onOpenChange, host, children }:
   return (
     <div
       data-sheet-nodrag
+      data-sheet-dock
       className="sticky bottom-0 z-10 -mx-5 border-t border-border bg-surface px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
     >
       {!canWrite ? (
         children
       ) : open ? (
-        <div className="grid max-h-[62dvh] gap-2 overflow-y-auto overscroll-contain">
+        <div className="grid max-h-[58dvh] gap-2 overflow-y-auto overscroll-contain">
           <div className="flex justify-end">
             <button
               type="button"

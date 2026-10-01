@@ -14,7 +14,6 @@ import { Button } from '@sotf/ui/button';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CommentForm } from './CommentForm.tsx';
 import { Thread } from './CommentView.tsx';
-import { StickyComposer } from './StickyComposer.tsx';
 import type { MentionCandidate } from './Composer.tsx';
 import { CommentsContext, type CommentsContextValue } from './context.ts';
 import { type Failure, get } from './lib/api.ts';
@@ -23,6 +22,7 @@ import { emitCount } from './lib/live-count.ts';
 import { t } from './lib/messages.ts';
 import type { MeSummary } from './lib/session.ts';
 import { FailureNote, LiveRegion, ReportDialog } from './lib/ui.tsx';
+import { StickyComposer } from './StickyComposer.tsx';
 import type { AnyComment, Comment, CommentPage, CommentSort, CommentThread, VersionOption } from './types.ts';
 
 export const COMMENTS_PAGE_SIZE = 10;

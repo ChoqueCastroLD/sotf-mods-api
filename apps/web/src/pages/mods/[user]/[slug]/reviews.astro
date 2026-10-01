@@ -13,6 +13,7 @@ import { RatingHistogram, ReviewCard } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
 import { loadReviews, loadVersionsOptional, resolveModPage } from '../../../../components/mod/data.ts';
+import EmptyArt from '../../../../components/mod/EmptyArt.astro';
 import { loginHrefFor, reviewsPagePath } from '../../../../components/mod/format.ts';
 import { markdownLabels } from '../../../../components/mod/i18n.ts';
 import ModLayout from '../../../../components/mod/ModLayout.astro';
@@ -117,7 +118,7 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
           ))}
         </ul>
       ) : (
-        <p class="text-fg-muted">{cursor ? m.mod_reviews_end() : m.mod_reviews_empty()}</p>
+        <EmptyArt>{cursor ? m.mod_reviews_end() : m.mod_reviews_empty()}</EmptyArt>
       )
     }
 

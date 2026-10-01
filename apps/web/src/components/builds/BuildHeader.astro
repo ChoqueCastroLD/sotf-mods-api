@@ -51,8 +51,8 @@ const translation = locale !== 'en' && build.shortDescription ? await loadModTra
 const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
 ---
 
-<header class="grid content-start gap-5" data-build-header>
-  <div class="grid gap-2">
+<header class="grid grid-cols-1 content-start gap-5" data-build-header>
+  <div class="grid grid-cols-1 gap-2">
     <p class="readout text-blueprint">{m.builds_kind_label()}</p>
     <h1
       id="build-title"

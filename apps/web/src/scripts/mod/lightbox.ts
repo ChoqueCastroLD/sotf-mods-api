@@ -37,8 +37,12 @@ function bind(dialog: HTMLDialogElement, data: ModPageData | null, doc: Document
   const counter = dialog.querySelector<HTMLElement>('[data-lightbox-counter]');
   if (!track) return;
   const total = slides(track).length;
-  const counterTemplate = dialog.querySelector<HTMLElement>('[data-lightbox]')?.dataset.counter ?? data?.messages.galleryCounter ?? '{index} / {total}';
-  const videoTitle = dialog.querySelector<HTMLElement>('[data-lightbox]')?.dataset.videoTitle ?? data?.messages.videoTitle ?? '';
+  const counterTemplate =
+    dialog.querySelector<HTMLElement>('[data-lightbox]')?.dataset.counter ??
+    data?.messages.galleryCounter ??
+    '{index} / {total}';
+  const videoTitle =
+    dialog.querySelector<HTMLElement>('[data-lightbox]')?.dataset.videoTitle ?? data?.messages.videoTitle ?? '';
   bindLightboxGestures(dialog, track);
   const update = () => {
     if (counter) counter.textContent = fill(counterTemplate, { index: currentIndex(track) + 1, total });
@@ -82,7 +86,11 @@ function bind(dialog: HTMLDialogElement, data: ModPageData | null, doc: Document
     const link = doc.querySelector<HTMLElement>(`[data-carousel] a[data-gallery-index="${slide}"]`);
     const host = link?.closest<HTMLElement>('[data-carousel]');
     const carousel = host?.querySelector<HTMLElement>('[data-carousel-track]');
-    const position = link ? Array.from(carousel?.querySelectorAll('[data-carousel-slide]') ?? []).indexOf(link.closest('[data-carousel-slide]') as Element) : -1;
+    const position = link
+      ? Array.from(carousel?.querySelectorAll('[data-carousel-slide]') ?? []).indexOf(
+          link.closest('[data-carousel-slide]') as Element,
+        )
+      : -1;
     if (carousel && position >= 0) scrollCarouselTo(carousel, position, false);
     for (const facade of dialog.querySelectorAll<HTMLElement>('[data-youtube-facade][data-original]')) {
       facade.innerHTML = facade.dataset.original ?? '';
@@ -91,7 +99,12 @@ function bind(dialog: HTMLDialogElement, data: ModPageData | null, doc: Document
   });
 }
 
-export function openLightbox(index: number, opener: HTMLElement, data: ModPageData | null, doc: Document = document): void {
+export function openLightbox(
+  index: number,
+  opener: HTMLElement,
+  data: ModPageData | null,
+  doc: Document = document,
+): void {
   const dialog = doc.getElementById('gallery-dialog');
   if (!(dialog instanceof HTMLDialogElement)) return;
   bind(dialog, data, doc);

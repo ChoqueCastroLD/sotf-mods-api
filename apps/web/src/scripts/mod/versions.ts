@@ -28,7 +28,8 @@ function populate(sheet: HTMLDialogElement, row: HTMLAnchorElement, doc: Documen
   if (changelog) {
     const source = doc.getElementById(`v-${version}`);
     const content =
-      source?.querySelector<HTMLElement>('[data-changelog]') ?? source?.querySelector<HTMLElement>(':scope > p.text-fg-muted');
+      source?.querySelector<HTMLElement>('[data-changelog]') ??
+      source?.querySelector<HTMLElement>(':scope > p.text-fg-muted');
     changelog.replaceChildren();
     if (content) {
       const clone = content.cloneNode(true) as HTMLElement;

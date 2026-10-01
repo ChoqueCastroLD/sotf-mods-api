@@ -8,7 +8,10 @@
 import { track } from '../../../scripts/beacon.ts';
 import { apiCall } from '../../../scripts/mod/api.ts';
 import { initDialogs } from '../../../scripts/mod/dialogs.ts';
+import { initFolds } from '../../../scripts/mod/fold.ts';
+import { initSectionNav } from '../../../scripts/mod/section-nav.ts';
 import { whenSession } from '../../../scripts/mod/session.ts';
+import { initSheetSections } from '../../../scripts/mod/sheets.ts';
 import { toast } from '../../../scripts/mod/toast.ts';
 import { initKitSocial } from './social.ts';
 import { fill, type KitPageData, readKitPageData } from './types.ts';
@@ -57,6 +60,23 @@ function initCopyAndShare(root: HTMLElement, data: KitPageData, doc: Document): 
 
   for (const field of root.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('[data-share-select]')) {
     field.addEventListener('focus', () => field.select());
+  }
+
+  // «Share» of the sheet on phones: the system share sheet when there is one, else the dialog
+  // (capture phase, so the generic `data-dialog-open` handler does not open it first).
+  if (typeof navigator.share === 'function') {
+    root.addEventListener(
+      'click',
+      (event) => {
+        const action = (event.target as Element | null)?.closest<HTMLElement>('[data-share-action]');
+        if (!action) return;
+        event.preventDefault();
+        event.stopPropagation();
+        action.closest('dialog')?.close();
+        void navigator.share({ title: data.name, text: data.messages.shareTitle, url: data.shortUrl }).catch(() => {});
+      },
+      true,
+    );
   }
 
   const native = root.querySelector<HTMLButtonElement>('[data-native-share]');
@@ -182,8 +202,10 @@ interface ForkedKit {
 }
 
 function initFork(root: HTMLElement, data: KitPageData, doc: Document): void {
-  const button = root.querySelector<HTMLAnchorElement>('[data-kit-fork]');
-  if (!button) return;
+  for (const button of root.querySelectorAll<HTMLAnchorElement>('[data-kit-fork]')) bindFork(button, data, doc);
+}
+
+function bindFork(button: HTMLAnchorElement, data: KitPageData, doc: Document): void {
   button.addEventListener('click', (event) => {
     event.preventDefault();
     if (button.getAttribute('aria-busy') === 'true') return;
@@ -229,8 +251,15 @@ export function initKitPage(doc: Document = document): void {
   const root = doc.querySelector<HTMLElement>('[data-kit-page]');
   const data = readKitPageData(doc);
   if (!root || !data) return;
+  initSheetSections(root, doc);
   initDialogs(root, doc);
   initCopyAndShare(root, data, doc);
+  try {
+    initFolds(root);
+    initSectionNav(doc);
+  } catch {
+    // Progressive enhancement only.
+  }
   initDownloadChecklist(root, data, doc);
   initFork(root, data, doc);
   void initOwner(root, data);

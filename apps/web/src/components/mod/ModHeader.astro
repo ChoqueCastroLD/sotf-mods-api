@@ -76,8 +76,8 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
     )
   }
 
-  <div class="grid min-w-0 content-start gap-4">
-    <div class="grid gap-2">
+  <div class="grid min-w-0 grid-cols-1 content-start gap-4">
+    <div class="grid grid-cols-1 gap-2">
       {
         mod.kind === 'library' && (
           <p class="readout text-signal">{m.mod_kind_library()}</p>
@@ -179,7 +179,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       )
     }
 
-    <dl class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <dl class:list={['flex flex-wrap gap-x-5 gap-y-2 text-sm', compact && 'max-md:hidden']}>
       <div class="inline-flex items-center gap-1.5">
         <dt class="text-fg-subtle"><Icon icon={Download} size={16} /><span class="sr-only">{m.mod_stat_downloads()}</span></dt>
         <dd class="tabular-nums text-fg">
@@ -221,7 +221,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
 
     <ActionBar mod={mod} versions={versions} loginHref={loginHref} />
 
-    <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border border-border bg-raised/60 px-3 py-2 text-sm text-fg-muted">
+    <div class:list={['flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border border-border bg-raised/60 px-3 py-2 text-sm text-fg-muted', compact && 'max-md:hidden']}>
       <CompatBadge status={mod.compatCurrent.status} build={build} size="sm" />
       <span class="min-w-0 flex-1 basis-40">{compatSentence(mod)}</span>
       <a href={`${overviewHref}#field-report`} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">

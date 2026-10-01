@@ -52,3 +52,13 @@ legacy columns (`buildGuid`, `buildShareVersion`, `numberOfElements`) through th
 Namespace `builds` (`packages/i18n/messages/builds/*.json`, 13 locales); shared words come from
 `common`. The `ui_domain_*` texts of the domain components follow the Paraglide catalogue when that
 namespace is compiled in (English source otherwise).
+
+## Phones (m-entity)
+
+Same building blocks as the mod page (`components/mod/README.md`, «Phones»): the gallery is the build's
+scroll-snap strip with a dot pager and the shared lightbox, the sticky bar is Download · Follow · More
+(`MobileDownloadBar.astro`, `BuildMoreSheet.astro`: How to import, + Kit, Versions, Share, Copy link, Report),
+`SectionNav.astro` is a sticky pill nav with scroll-spy (Overview · Versions · Reviews · Comments · Spec sheet),
+the description is clamped, the spec sheet folds, versions are rows with a changelog sheet and reviews/comments
+live in sheets. `build-page.ts` wires it all (`initCarousels`, `initSheetSections`, `initVersions`, `initFolds`,
+`initSectionNav`) and keeps every `[data-follow]` / `a[data-kit-add]` in sync.

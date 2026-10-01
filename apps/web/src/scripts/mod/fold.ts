@@ -40,7 +40,7 @@ function build(section: HTMLElement): void {
   button.dataset.foldToggle = '';
   button.setAttribute('aria-controls', id);
   button.className =
-    'flex min-h-11 w-full items-center justify-between gap-3 text-start max-md:-my-1 [&[aria-expanded=true]_.fold-chevron]:rotate-180';
+    'flex min-h-11 w-full items-center justify-between gap-3 text-start [text-transform:inherit] [letter-spacing:inherit] max-md:-my-1 [&[aria-expanded=true]_.fold-chevron]:rotate-180';
   const label = document.createElement('span');
   label.className = 'min-w-0';
   label.append(...Array.from(heading.childNodes));
@@ -61,7 +61,7 @@ function build(section: HTMLElement): void {
   section.addEventListener('fold:open', () => set(true));
 }
 
-function openForHash(root: ParentNode): void {
+function openForHash(): void {
   const id = decodeURIComponent(location.hash.slice(1));
   if (!id) return;
   const target = document.getElementById(id);
@@ -112,6 +112,6 @@ export function initFolds(root: HTMLElement, win: Window = window): void {
   };
   apply();
   query.addEventListener('change', apply);
-  win.addEventListener('hashchange', () => openForHash(root));
-  if (query.matches) openForHash(root);
+  win.addEventListener('hashchange', () => openForHash());
+  if (query.matches) openForHash();
 }

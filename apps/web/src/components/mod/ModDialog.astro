@@ -31,6 +31,9 @@ interface Props {
 
 const { id, title, description, size = 'md', class: className, bodyClass, descriptionHidden = false } = Astro.props;
 const hasFooter = Astro.slots.has('footer');
+// Tall sheets (comments, reviews) scroll their body under a fixed header, with the footer or the
+// island's composer docked at the bottom.
+const stacked = hasFooter || size === 'tall';
 const titleId = `${id}-title`;
 const descriptionId = description ? `${id}-description` : undefined;
 const sizeClass = {
@@ -47,7 +50,7 @@ const sizeClass = {
   aria-describedby={descriptionId}
   data-mod-dialog
   data-sheet={size}
-  class:list={[DIALOG_CLASSES, sizeClass, hasFooter && 'flex flex-col overflow-hidden! max-md:pb-0!', className]}
+  class:list={[DIALOG_CLASSES, sizeClass, stacked && 'open:flex open:flex-col overflow-hidden! max-md:pb-0!', className]}
 >
   <div class={DIALOG_HEADER_CLASSES} data-sheet-header>
     <span aria-hidden="true" data-sheet-grabber class="absolute inset-x-0 top-1.5 mx-auto h-1 w-10 rounded-full bg-border-strong md:hidden"></span>
@@ -64,7 +67,7 @@ const sizeClass = {
       <span class="sr-only">{m.common_action_close()}</span>
     </button>
   </div>
-  <div class:list={[DIALOG_BODY_CLASSES, hasFooter && 'min-h-0 flex-1 overflow-y-auto overscroll-contain', bodyClass]} data-sheet-body>
+  <div class:list={[DIALOG_BODY_CLASSES, stacked && 'min-h-0 flex-1 overflow-y-auto overscroll-contain', bodyClass]} data-sheet-body>
     <slot />
   </div>
   {
@@ -156,6 +159,9 @@ const sizeClass = {
       padding: 0;
       height: 100%;
     }
+    dialog[data-sheet='full'] [data-lightbox-counter] {
+      opacity: var(--lb-progress, 1);
+    }
     dialog[data-sheet='full'][data-zoomed] [data-sheet-header],
     dialog[data-sheet='full'][data-zoomed] [data-lightbox-counter] {
       opacity: 0;
@@ -164,6 +170,25 @@ const sizeClass = {
     dialog[data-sheet='full']::backdrop {
       background: #000;
     }
+  }
+  /* Tall sheets: the content column fills the sheet so a docked composer sits at the bottom. */
+  dialog[data-sheet='tall'] [data-sheet-body] {
+    display: flex;
+    flex-direction: column;
+  }
+  dialog[data-sheet='tall'] [data-sheet-slot] {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  dialog[data-sheet='tall'] [data-sheet-slot] > [data-island='comments'] {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+  }
+  [data-sheet-dock] {
+    margin-top: auto;
   }
   @media (prefers-reduced-motion: reduce) {
     dialog[data-mod-dialog][open],

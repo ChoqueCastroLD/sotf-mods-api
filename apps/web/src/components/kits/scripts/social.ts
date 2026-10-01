@@ -104,28 +104,31 @@ function currentFollowers(doc: Document): number {
 // -----------------------------------------------------------------------------------------------
 
 function initFollow(root: HTMLElement, data: KitPageData, session: MeSummary | null, doc: Document): void {
-  const button = root.querySelector<HTMLAnchorElement>('a[data-kit-follow]');
-  if (!button || !session) return;
+  // The header button and the sticky bar of phones: always painted together.
+  const buttons = Array.from(root.querySelectorAll<HTMLAnchorElement>('a[data-kit-follow]'));
+  if (buttons.length === 0 || !session) return;
   if (session.id === data.ownerId) {
-    button.hidden = true;
+    for (const button of buttons) button.hidden = true;
     return;
   }
   const messages = data.social;
   const setPressed = (following: boolean) => {
-    button.setAttribute('aria-pressed', following ? 'true' : 'false');
-    const label = button.querySelector('[data-follow-label]');
-    if (label) label.textContent = following ? messages.following : messages.follow;
+    for (const button of buttons) {
+      button.setAttribute('aria-pressed', following ? 'true' : 'false');
+      const label = button.querySelector('[data-follow-label]');
+      if (label) label.textContent = following ? messages.following : messages.follow;
+    }
   };
   void (async () => {
     const lookup = await apiCall<{ kits: number[] }>('GET', `/api/v2/me/kit-follows/lookup?kit=${data.kitId}`);
     let busy = false;
-    button.setAttribute('role', 'button');
+    for (const button of buttons) button.setAttribute('role', 'button');
     setPressed(lookup.ok && lookup.data.kits.includes(data.kitId));
 
     const apply = async (follow: boolean, offerUndo: boolean): Promise<void> => {
       busy = true;
       const before = currentFollowers(doc);
-      button.setAttribute('aria-busy', 'true');
+      for (const button of buttons) button.setAttribute('aria-busy', 'true');
       setPressed(follow);
       setFollowers(doc, data, Math.max(0, before + (follow ? 1 : -1)));
       const url = `/api/v2/kits/${data.kitId}/follow`;
@@ -133,7 +136,7 @@ function initFollow(root: HTMLElement, data: KitPageData, session: MeSummary | n
         ? await apiCall<FollowState>('PUT', url, { notify: true })
         : await apiCall<FollowState>('DELETE', url);
       busy = false;
-      button.removeAttribute('aria-busy');
+      for (const button of buttons) button.removeAttribute('aria-busy');
       if (!result.ok) {
         setPressed(!follow);
         setFollowers(doc, data, before);
@@ -151,11 +154,13 @@ function initFollow(root: HTMLElement, data: KitPageData, session: MeSummary | n
       }
     };
 
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      if (busy) return;
-      void apply(button.getAttribute('aria-pressed') !== 'true', true);
-    });
+    for (const button of buttons) {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (busy) return;
+        void apply(button.getAttribute('aria-pressed') !== 'true', true);
+      });
+    }
   })();
 }
 

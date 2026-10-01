@@ -21,8 +21,8 @@ import { initShare } from './share.ts';
 import { initSheetSections } from './sheets.ts';
 import { initTabs } from './tabs.ts';
 import { initTranslation } from './translation.ts';
-import { initVersions } from './versions.ts';
 import type { ModPageData } from './types.ts';
+import { initVersions } from './versions.ts';
 import { initWhatsNew } from './whats-new.ts';
 
 let started = false;

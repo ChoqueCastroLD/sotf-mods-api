@@ -19,3 +19,10 @@ PLAN §7.8, research/03 §6.5. Backend: WP-42 (`@sotf/core/kits`, `packages/cont
 
 The editor lives in the console: `src/console/features/kits` (`/me/kits`, `/me/kits/$kitId`).
 Messages: namespace `kits` (`packages/i18n/messages/kits/*.json`, 13 locales).
+
+## Phones (m-entity)
+
+The knolling mat is full-bleed (max two rows, no placeholders), the summary panels swipe sideways, the sticky bar is
+Download all · Follow · More (`KitMoreSheet.astro`: copy code, share, fork, edit), `SectionNav.astro` jumps between
+items, about, comments and revisions, the description is clamped, revisions fold and the comment thread opens in a
+bottom sheet (`scripts/mod/sheets.ts`; the form stays docked at the bottom, see the global style of the page).

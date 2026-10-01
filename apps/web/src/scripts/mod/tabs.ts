@@ -17,7 +17,11 @@ const EDGE = 28;
 
 function scrollsSideways(element: Element | null, boundary: Element): boolean {
   for (let node = element; node && node !== boundary; node = node.parentElement) {
-    if (node.matches('[data-carousel], [data-no-tab-swipe], pre, table, input, textarea, select, canvas, dialog, [contenteditable], [role="slider"]')) {
+    if (
+      node.matches(
+        '[data-carousel], [data-no-tab-swipe], pre, table, input, textarea, select, canvas, dialog, [contenteditable], [role="slider"]',
+      )
+    ) {
       return true;
     }
     if (node instanceof HTMLElement && node.scrollWidth > node.clientWidth + 4) {
@@ -71,7 +75,7 @@ export function initTabs(root: HTMLElement, win: Window = window): void {
       if (event.timeStamp - begin.t > MAX_DURATION) return;
       const rtl = win.document.documentElement.dir === 'rtl';
       // Dragging to the left reveals the next page (previous in right-to-left scripts).
-      const step = (dx < 0) !== rtl ? 1 : -1;
+      const step = dx < 0 !== rtl ? 1 : -1;
       const next = pages[index + step];
       if (next) win.location.assign(next.href);
     },
