@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Journal des modifications",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Soyez le premier à commenter",
+        "count__exact=*, count__plural=one": "Ouvrir 1 commentaire",
+        "count__exact=*, count__plural=*": "Ouvrir les {count__number} commentaires"
+      }
+    }
+  ],
+  "entity_comments_write": "Écrire un commentaire…",
+  "entity_lightbox_hint": "Pincez ou touchez deux fois pour zoomer, glissez vers le bas pour fermer.",
+  "entity_original_label": "Titre original",
+  "entity_read_less": "Afficher moins",
+  "entity_read_more": "Lire la suite",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Soyez le premier à donner un avis",
+        "count__exact=*, count__plural=one": "Ouvrir 1 avis",
+        "count__exact=*, count__plural=*": "Ouvrir les {count__number} avis"
+      }
+    }
+  ],
+  "entity_version_details": "Détails de la version",
+  "entity_version_open": "Modifications de la version {version}",
   "errors_boundary_detail": "Le reste de la page fonctionne toujours. Essayez de recharger cette section.",
   "errors_boundary_title": "Cette partie de la page ne s’est pas chargée",
   "errors_code_conflict_detail": "Ce contenu a changé pendant que vous travailliez dessus. Rechargez pour voir la dernière version, puis réessayez.",

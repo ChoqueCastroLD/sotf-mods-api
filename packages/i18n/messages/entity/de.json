@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Mehr lesen",
+  "entity_read_less": "Weniger anzeigen",
+  "entity_comments_see_all": "{count, plural, =0 {Schreibe den ersten Kommentar} one {1 Kommentar öffnen} other {Alle # Kommentare öffnen}}",
+  "entity_comments_write": "Kommentar schreiben…",
+  "entity_reviews_see_all": "{count, plural, =0 {Schreibe die erste Bewertung} one {1 Bewertung öffnen} other {Alle # Bewertungen öffnen}}",
+  "entity_changelog_title": "Änderungsprotokoll",
+  "entity_version_open": "Änderungen in Version {version}",
+  "entity_version_details": "Versionsdetails",
+  "entity_original_label": "Originaltitel",
+  "entity_lightbox_hint": "Zum Zoomen spreizen oder doppeltippen, zum Schließen nach unten wischen."
+}

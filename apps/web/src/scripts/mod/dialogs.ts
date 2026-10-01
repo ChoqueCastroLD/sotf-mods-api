@@ -7,6 +7,7 @@
  */
 import type { AnalyticsEventKind } from '@sotf/contracts/events';
 import { pageEntity, track } from '../beacon.ts';
+import { bindSheetDrag } from './sheet.ts';
 
 export const DIALOG_OPEN_EVENT = 'mod:dialog-open';
 
@@ -22,6 +23,10 @@ export function openDialog(id: string, opener: HTMLElement | null = null, doc: D
   const dialog = doc.getElementById(id);
   if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== 'function') return false;
   if (!dialog.open) {
+    // One sheet at a time: «More» hands over to the dialog of the row that was tapped.
+    for (const other of doc.querySelectorAll<HTMLDialogElement>('dialog[data-mod-dialog][open]')) {
+      if (other !== dialog) other.close();
+    }
     openers.set(dialog, opener);
     dialog.showModal();
   }
@@ -49,6 +54,13 @@ export function initDialogs(root: HTMLElement, doc: Document = document): void {
       }
       return;
     }
+    // A sheet row that only jumps to an anchor of the page closes its sheet first.
+    const jump = target?.closest<HTMLElement>('[data-sheet-close-on-click]');
+    const jumpDialog = jump?.closest('dialog');
+    if (jump && jumpDialog) {
+      closeDialog(jumpDialog);
+      return;
+    }
     const closer = target?.closest<HTMLElement>('[data-dialog-close]');
     const dialog = closer?.closest('dialog');
     if (closer && dialog) {
@@ -58,6 +70,7 @@ export function initDialogs(root: HTMLElement, doc: Document = document): void {
   });
 
   for (const dialog of root.querySelectorAll<HTMLDialogElement>('dialog[data-mod-dialog]')) {
+    bindSheetDrag(dialog);
     // A click whose target is the dialog itself landed on the backdrop (the content has padding).
     dialog.addEventListener('click', (event) => {
       if (event.target !== dialog) return;

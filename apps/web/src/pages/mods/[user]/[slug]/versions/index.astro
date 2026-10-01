@@ -12,6 +12,7 @@ import ModLayout from '../../../../../components/mod/ModLayout.astro';
 import { respondUnresolved } from '../../../../../components/mod/responses.ts';
 import { subpageTitle, truncate } from '../../../../../components/mod/seo.ts';
 import { SECTION_TITLE_CLASSES } from '../../../../../components/mod/styles.ts';
+import VersionRows from '../../../../../components/mod/VersionRows.astro';
 import VersionTimeline from '../../../../../components/mod/VersionTimeline.astro';
 import { setPageCache } from '../../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../../lib/cache/policy.ts';
@@ -50,7 +51,10 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
 >
   <section aria-labelledby="versions-title" class="grid gap-4">
     <h2 id="versions-title" class={SECTION_TITLE_CLASSES}>{m.mod_versions_title({ count: versions.length })}</h2>
-    <VersionTable versions={versions} caption={m.mod_versions_caption({ name: mod.name })} />
+    <div class="max-md:hidden">
+      <VersionTable versions={versions} caption={m.mod_versions_caption({ name: mod.name })} />
+    </div>
+    <VersionRows mod={mod} versions={versions} />
     {
       versions.length > 1 && (
         <p>
@@ -65,7 +69,7 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
     }
   </section>
 
-  <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4">
+  <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4 max-md:hidden">
     <h2 id="field-notes-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_notes()}</h2>
     {
       versions.length > 0 ? (

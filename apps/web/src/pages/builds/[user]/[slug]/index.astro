@@ -22,6 +22,7 @@ import { ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
 import BuildGallery from '../../../../components/builds/BuildGallery.astro';
+import BuildMoreSheet from '../../../../components/builds/BuildMoreSheet.astro';
 import BuildHeader from '../../../../components/builds/BuildHeader.astro';
 import BuildSocial from '../../../../components/builds/BuildSocial.astro';
 import BuildViewer from '../../../../components/builds/BuildViewer.astro';
@@ -39,7 +40,12 @@ import SpecSheet from '../../../../components/builds/SpecSheet.astro';
 import StatusBanners from '../../../../components/builds/StatusBanners.astro';
 import { buildDescription, buildJsonLd, buildTitle } from '../../../../components/builds/seo.ts';
 import VersionsList from '../../../../components/builds/VersionsList.astro';
+import Clamp from '../../../../components/mod/Clamp.astro';
+import Lightbox from '../../../../components/mod/Lightbox.astro';
 import ReportDialog from '../../../../components/mod/ReportDialog.astro';
+import SectionNav from '../../../../components/mod/SectionNav.astro';
+import SocialSheets from '../../../../components/mod/SocialSheets.astro';
+import VersionSheet from '../../../../components/mod/VersionSheet.astro';
 import TranslatedText from '../../../../components/mod/TranslatedText.astro';
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { setPageCache } from '../../../../lib/cache/page.ts';
@@ -137,18 +143,18 @@ const visibleCrumbs = trail.map((crumb) => ({
     <link rel="alternate" type="application/json+oembed" href={oembedHref} title={build.name} />
   </Fragment>
 
-  <div class="mx-auto grid w-full max-w-(--container-wide) gap-6 px-4 py-6 md:px-6 md:py-10">
+  <div class="mx-auto grid w-full max-w-(--container-wide) grid-cols-1 gap-6 px-4 py-6 md:px-6 md:py-10">
   <Breadcrumbs items={visibleCrumbs} />
   <article
     data-surface="blueprint"
     data-build-page
     data-mod-id={build.id}
-    class="grid gap-8 md:gap-10"
+    class="grid grid-cols-1 gap-8 md:gap-10"
     aria-labelledby="build-title"
   >
     <StatusBanners build={build} />
 
-    <div class="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
       <div class="grid min-w-0 gap-6">
         <BuildGallery build={build} spec={spec} />
         <BuildViewer build={build} preview={extras.preview} />
@@ -156,31 +162,45 @@ const visibleCrumbs = trail.map((crumb) => ({
       <BuildHeader build={build} spec={spec} versions={extras.versions} />
     </div>
 
-    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem]">
+    <SectionNav
+      label={m.mod_tabs_label()}
+      accent="blueprint"
+      items={[
+        { id: 'about', label: m.mod_tab_overview() },
+        { id: 'versions', label: m.mod_tab_versions(), count: extras.versions ? String(extras.versions.length) : null },
+        { id: 'reviews', label: m.mod_tab_reviews(), count: build.reviewsSummary.count > 0 ? String(build.reviewsSummary.count) : null },
+        { id: 'comments', label: m.mod_tab_comments(), count: build.commentsCount > 0 ? String(build.commentsCount) : null },
+        { id: 'spec', label: m.builds_spec_title() },
+      ]}
+    />
+
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem]">
       <div class="grid min-w-0 gap-10">
-        <section aria-labelledby="about-title" class="grid gap-4">
+        <section id="about" aria-labelledby="about-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
           <h2 id="about-title" class={sectionTitle}>{m.builds_description_title()}</h2>
-          {
-            translatedHtml && translation ? (
-              <TranslatedText
-                html
-                translated={translatedHtml}
-                original={descriptionHtml}
-                locale={locale}
-                sourceLang={build.contentLang}
-                source={translation.sources?.description ?? 'machine'}
-                class="max-w-(--container-prose)"
-              />
-            ) : descriptionHtml ? (
-              <ProseLocator
-                html={descriptionHtml}
-                lang={build.contentLang ?? undefined}
-                className="max-w-(--container-prose)"
-              />
-            ) : (
-              <p class="text-fg-muted">{m.builds_description_empty()}</p>
-            )
-          }
+          <Clamp>
+            {
+              translatedHtml && translation ? (
+                <TranslatedText
+                  html
+                  translated={translatedHtml}
+                  original={descriptionHtml}
+                  locale={locale}
+                  sourceLang={build.contentLang}
+                  source={translation.sources?.description ?? 'machine'}
+                  class="max-w-(--container-prose)"
+                />
+              ) : descriptionHtml ? (
+                <ProseLocator
+                  html={descriptionHtml}
+                  lang={build.contentLang ?? undefined}
+                  className="max-w-(--container-prose)"
+                />
+              ) : (
+                <p class="text-fg-muted">{m.builds_description_empty()}</p>
+              )
+            }
+          </Clamp>
         </section>
 
         <ImportSteps build={build} />
@@ -201,7 +221,7 @@ const visibleCrumbs = trail.map((crumb) => ({
         <BuildSocial build={build} reviews={extras.reviews} comments={extras.comments} />
       </div>
 
-      <aside class="order-first grid min-w-0 gap-6 lg:sticky lg:top-24 lg:order-none">
+      <aside class="order-first grid min-w-0 gap-6 max-md:order-none lg:sticky lg:top-24 lg:order-none">
         <SpecSheet build={build} spec={spec} />
       </aside>
     </div>
@@ -230,6 +250,10 @@ const visibleCrumbs = trail.map((crumb) => ({
   </div>
 
   <MobileDownloadBar build={build} />
+  <BuildMoreSheet build={build} />
+  <Lightbox mod={build} />
+  <VersionSheet />
+  <SocialSheets mod={build} loginHref={loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale))} reviewsPage={false} />
   <ReportDialog mod={build} loginHref={loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale))} />
 </BaseLayout>
 

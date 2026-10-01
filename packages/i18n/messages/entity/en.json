@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Read more",
+  "entity_read_less": "Show less",
+  "entity_comments_see_all": "{count, plural, =0 {Be the first to comment} one {Open 1 comment} other {Open all # comments}}",
+  "entity_comments_write": "Write a comment…",
+  "entity_reviews_see_all": "{count, plural, =0 {Be the first to review} one {Open 1 review} other {Open all # reviews}}",
+  "entity_changelog_title": "Changelog",
+  "entity_version_open": "Changelog of version {version}",
+  "entity_version_details": "Version details",
+  "entity_original_label": "Original title",
+  "entity_lightbox_hint": "Pinch or double-tap to zoom, swipe down to close."
+}

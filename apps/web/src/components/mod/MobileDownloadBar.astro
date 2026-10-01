@@ -1,54 +1,74 @@
 ---
 /**
- * Fixed download bar on phones (T0-08): «Download v2.4.1» + the versions menu, above the site's
- * tab bar and following it down when the tab bar hides while scrolling
+ * Sticky action bar of the mod page on phones (T0-08): Download (primary, with the version) ·
+ * Follow ♥ · More (a bottom sheet with Install, + Kit, Compare, Share, Versions, Report). It sits
+ * above the site's tab bar and follows it down when the tab bar hides while scrolling
  * (`html[data-scroll-dir=down]`), respecting `safe-area-inset-bottom`. A spacer keeps the footer
- * reachable. Hidden from `md` up (the header button is visible there).
+ * reachable. Hidden from `md` up (the header actions are visible there).
+ *
+ * Follow is the same `a[data-follow]` the header uses on desktop: `scripts/mod/follow.ts` upgrades
+ * every instance and keeps them in sync; for guests it is the sign-in link. Without a published
+ * file the primary slot becomes «Versions».
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { ChevronUp, Download } from 'lucide-react';
+import { Download, Ellipsis, Heart, History } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
 import { versionsPagePath } from './format.ts';
+import { FOCUS_RING } from './styles.ts';
 
 interface Props {
   mod: ModDetailDTO;
+  loginHref: string;
 }
 
-const { mod } = Astro.props;
+const { mod, loginHref } = Astro.props;
 const locale = Astro.locals.locale;
 const latest = mod.latestVersion;
 const downloadable = latest !== null && latest.status === 'active';
+const SIDE =
+  'inline-flex size-12 shrink-0 items-center justify-center rounded-md border border-border-strong bg-raised text-fg active:bg-fg/10 aria-pressed:border-primary aria-pressed:text-primary ' +
+  FOCUS_RING;
 ---
 
-{
-  downloadable && latest && (
-    <>
-      <div aria-hidden="true" class="h-20 md:hidden"></div>
-      <div
-        data-mobile-download-bar
-        class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-(--z-sticky) border-t border-border bg-bg/95 px-3 py-2 transition-[bottom] duration-(--dur-base) supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden [html[data-scroll-dir=down]_&]:bottom-0 [html[data-scroll-dir=down]_&]:pb-[calc(0.5rem+env(safe-area-inset-bottom))] motion-reduce:transition-none"
-      >
-        <div class="mx-auto flex max-w-lg items-center gap-2">
-          <a
-            href={latest.downloadPath}
-            rel="nofollow"
-            data-download={latest.version}
-            class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover"
-          >
-            <Icon icon={Download} size={18} />
-            <span class="truncate">{m.common_download_version_short({ version: latest.version })}</span>
-          </a>
-          <a
-            href={href(versionsPagePath(mod), locale)}
-            class="inline-flex size-12 shrink-0 items-center justify-center rounded-md border border-border-strong bg-raised text-fg"
-          >
-            <Icon icon={ChevronUp} size={20} />
-            <span class="sr-only">{m.mod_other_versions()}</span>
-          </a>
-        </div>
-      </div>
-    </>
-  )
-}
+<div aria-hidden="true" class="h-20 md:hidden"></div>
+<div
+  data-mobile-download-bar
+  role="group"
+  aria-label={m.mod_action_more()}
+  class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-(--z-sticky) border-t border-border bg-bg/95 px-3 py-2 transition-[bottom] duration-(--dur-base) supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden [html[data-scroll-dir=down]_&]:bottom-0 [html[data-scroll-dir=down]_&]:pb-[calc(0.5rem+env(safe-area-inset-bottom))] motion-reduce:transition-none"
+>
+  <div class="mx-auto flex max-w-lg items-center gap-2">
+    {
+      downloadable && latest ? (
+        <a
+          href={latest.downloadPath}
+          rel="nofollow"
+          data-download={latest.version}
+          class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover active:bg-primary-hover"
+        >
+          <Icon icon={Download} size={18} />
+          <span class="truncate">{m.common_download_version_short({ version: latest.version })}</span>
+        </a>
+      ) : (
+        <a
+          href={href(versionsPagePath(mod), locale)}
+          class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-border-strong bg-raised px-4 font-semibold text-fg"
+        >
+          <Icon icon={History} size={18} />
+          <span class="truncate">{m.mod_tab_versions()}</span>
+        </a>
+      )
+    }
+    <a href={loginHref} data-follow data-mod-id={mod.id} data-followers={mod.followers} class={SIDE}>
+      <Icon icon={Heart} size={20} className="[[aria-pressed=true]_&]:fill-current" />
+      <span class="sr-only" data-follow-label>{m.common_action_follow()}</span>
+      <span class="sr-only" data-follow-name>{mod.name}</span>
+    </a>
+    <button type="button" hidden data-js-only data-dialog-open="more-sheet" class={SIDE} aria-haspopup="dialog">
+      <Icon icon={Ellipsis} size={22} />
+      <span class="sr-only">{m.mod_action_more()}</span>
+    </button>
+  </div>
+</div>

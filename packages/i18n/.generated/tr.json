@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Değişiklik günlüğü",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "İlk yorumu sen yaz",
+        "count__exact=*, count__plural=one": "1 yorumu aç",
+        "count__exact=*, count__plural=*": "{count__number} yorumun tümünü aç"
+      }
+    }
+  ],
+  "entity_comments_write": "Yorum yaz…",
+  "entity_lightbox_hint": "Yakınlaştırmak için çimdikleyin veya çift dokunun, kapatmak için aşağı kaydırın.",
+  "entity_original_label": "Orijinal başlık",
+  "entity_read_less": "Daha az göster",
+  "entity_read_more": "Devamını oku",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "İlk değerlendirmeyi sen yaz",
+        "count__exact=*, count__plural=one": "1 değerlendirmeyi aç",
+        "count__exact=*, count__plural=*": "{count__number} değerlendirmenin tümünü aç"
+      }
+    }
+  ],
+  "entity_version_details": "Sürüm ayrıntıları",
+  "entity_version_open": "{version} sürümünün değişiklikleri",
   "errors_boundary_detail": "Sayfanın geri kalanı çalışıyor. Bu bölümü yeniden yüklemeyi dene.",
   "errors_boundary_title": "Sayfanın bu bölümü yüklenemedi",
   "errors_code_conflict_detail": "Sen üzerinde çalışırken bu değişti. En son sürümü görmek için sayfayı yenile ve tekrar dene.",

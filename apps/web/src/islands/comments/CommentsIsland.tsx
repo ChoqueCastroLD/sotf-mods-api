@@ -14,6 +14,7 @@ import { Button } from '@sotf/ui/button';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { CommentForm } from './CommentForm.tsx';
 import { Thread } from './CommentView.tsx';
+import { StickyComposer } from './StickyComposer.tsx';
 import type { MentionCandidate } from './Composer.tsx';
 import { CommentsContext, type CommentsContextValue } from './context.ts';
 import { type Failure, get } from './lib/api.ts';
@@ -37,6 +38,10 @@ export interface CommentsIslandProps {
   onTakeOver: () => void;
   /** `#comment-{id}` of the URL, if any. */
   focusId: number | null;
+  /** `sheet`: inside the bottom sheet of phones, with the composer docked at the bottom. */
+  layout?: 'inline' | 'sheet';
+  /** The mount point (the page can ask a sheet's composer to open on it). */
+  host?: HTMLElement | null;
 }
 
 function merge<T extends AnyComment>(current: T, fresh: Partial<AnyComment>): T {
@@ -75,6 +80,8 @@ function participantsOf(items: readonly Comment[], session: MeSummary | null): M
 
 export function CommentsIsland(props: CommentsIslandProps) {
   const { modId, modAuthorId, session, loginHref, verifyHref, turnstileSiteKey, onTakeOver, focusId } = props;
+  const sheet = props.layout === 'sheet';
+  const [composing, setComposing] = useState(props.host?.dataset.compose === '1');
   const [sort, setSort] = useState<CommentSort>('top');
   const [items, setItems] = useState<Comment[] | null>(null);
   const [cursor, setCursor] = useState<string | null>(null);
@@ -264,10 +271,12 @@ export function CommentsIsland(props: CommentsIslandProps) {
     session.emailVerified ? (
       <CommentForm
         mode={{ kind: 'new' }}
+        {...(sheet ? { autoFocus: true } : {})}
         onDone={(created) => {
           emitCount('comments', 1);
           setItems((current) => [created, ...(current ?? [])]);
           setFocused(created.id);
+          setComposing(false);
         }}
       />
     ) : (
@@ -278,6 +287,13 @@ export function CommentsIsland(props: CommentsIslandProps) {
         </a>
       </p>
     )
+  ) : sheet ? (
+    <a
+      href={loginHref}
+      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-primary px-5 font-semibold text-primary-fg active:bg-primary-hover"
+    >
+      {t('social_comment_sign_in')}
+    </a>
   ) : (
     <p className="text-sm text-fg-muted">
       <a
@@ -295,7 +311,7 @@ export function CommentsIsland(props: CommentsIslandProps) {
     <SocialI18n>
       <CommentsContext.Provider value={context}>
         <div className="grid gap-5">
-          {writer}
+          {sheet ? null : writer}
           {items && (items.length > 0 || sort === 'new') ? (
             <fieldset
               className="m-0 flex min-w-0 flex-wrap items-center gap-2 border-0 p-0"
@@ -328,6 +344,26 @@ export function CommentsIsland(props: CommentsIslandProps) {
                   <Thread key={comment.id} comment={comment} focusId={focused} />
                 ))}
               </ol>
+            ) : sheet ? (
+              <div className="grid justify-items-center gap-3 py-4 text-center">
+                <picture>
+                  <source
+                    type="image/avif"
+                    srcSet="/art/entity/empty-320.avif 320w, /art/entity/empty-640.avif 640w"
+                    sizes="160px"
+                  />
+                  <img
+                    src="/art/entity/empty-320.webp"
+                    alt=""
+                    width={160}
+                    height={160}
+                    loading="lazy"
+                    decoding="async"
+                    className="size-40 rounded-2xl border border-border object-cover"
+                  />
+                </picture>
+                <p className="text-fg-muted">{t('social_comments_empty')}</p>
+              </div>
             ) : (
               <p className="text-fg-muted">{t('social_comments_empty')}</p>
             )
@@ -343,6 +379,16 @@ export function CommentsIsland(props: CommentsIslandProps) {
             </Button>
           ) : null}
         </div>
+        {sheet ? (
+          <StickyComposer
+            canWrite={Boolean(session?.emailVerified)}
+            open={composing}
+            onOpenChange={setComposing}
+            host={props.host ?? null}
+          >
+            {writer}
+          </StickyComposer>
+        ) : null}
         <ReportDialog
           target={reportId === null ? null : { type: 'comment', id: reportId }}
           onClose={() => setReportId(null)}

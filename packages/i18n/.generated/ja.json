@@ -3113,6 +3113,46 @@
       }
     }
   ],
+  "entity_changelog_title": "変更履歴",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "最初のコメントを書く",
+        "count__exact=*": "{count__number} 件のコメントをすべて開く"
+      }
+    }
+  ],
+  "entity_comments_write": "コメントを書く…",
+  "entity_lightbox_hint": "ピンチまたはダブルタップで拡大、下にスワイプで閉じます。",
+  "entity_original_label": "原題",
+  "entity_read_less": "閉じる",
+  "entity_read_more": "続きを読む",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "最初のレビューを書く",
+        "count__exact=*": "{count__number} 件のレビューをすべて開く"
+      }
+    }
+  ],
+  "entity_version_details": "バージョンの詳細",
+  "entity_version_open": "バージョン {version} の変更点",
   "errors_boundary_detail": "ページのほかの部分は引き続き使えます。このセクションをもう一度読み込んでみてください。",
   "errors_boundary_title": "ページのこの部分を読み込めませんでした",
   "errors_code_conflict_detail": "作業中に内容が変更されました。再読み込みして最新の状態を確認し、もう一度お試しください。",

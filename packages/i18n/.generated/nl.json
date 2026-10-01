@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Wijzigingslogboek",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Plaats de eerste reactie",
+        "count__exact=*, count__plural=one": "1 reactie openen",
+        "count__exact=*, count__plural=*": "Alle {count__number} reacties openen"
+      }
+    }
+  ],
+  "entity_comments_write": "Schrijf een reactie…",
+  "entity_lightbox_hint": "Knijp of tik twee keer om te zoomen, veeg omlaag om te sluiten.",
+  "entity_original_label": "Originele titel",
+  "entity_read_less": "Minder tonen",
+  "entity_read_more": "Meer lezen",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Schrijf de eerste recensie",
+        "count__exact=*, count__plural=one": "1 recensie openen",
+        "count__exact=*, count__plural=*": "Alle {count__number} recensies openen"
+      }
+    }
+  ],
+  "entity_version_details": "Versiedetails",
+  "entity_version_open": "Wijzigingen in versie {version}",
   "errors_boundary_detail": "De rest van de pagina werkt nog. Probeer dit onderdeel opnieuw te laden.",
   "errors_boundary_title": "Dit deel van de pagina is niet geladen",
   "errors_code_conflict_detail": "Dit is gewijzigd terwijl je eraan werkte. Laad opnieuw om de nieuwste versie te zien en probeer het nog eens.",

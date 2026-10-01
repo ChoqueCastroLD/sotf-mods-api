@@ -19,7 +19,9 @@ interface DownloadHistory {
 }
 
 export async function initWhatsNew(root: HTMLElement, data: ModPageData, doc: Document = document): Promise<void> {
-  const timeline = root.querySelectorAll<HTMLElement>('[data-version-timeline] > li[data-published-at]');
+  const timeline = root.querySelectorAll<HTMLElement>(
+    '[data-version-timeline] > li[data-published-at], a[data-version-open][data-published-at]',
+  );
   const box = root.querySelector<HTMLElement>('[data-whats-new]');
   if (timeline.length === 0 && !box) return;
   const history = await apiCall<DownloadHistory>('GET', '/api/v2/me/downloads');
@@ -30,8 +32,10 @@ export async function initWhatsNew(root: HTMLElement, data: ModPageData, doc: Do
   const newer: HTMLElement[] = [];
   for (const item of timeline) {
     const published = Date.parse(item.dataset.publishedAt ?? '');
-    if (Number.isFinite(published) && published > since && item.dataset.version !== entry.lastDownloaded.version) {
-      newer.push(item);
+    const version = item.dataset.version ?? item.dataset.versionOpen;
+    if (Number.isFinite(published) && published > since && version !== entry.lastDownloaded.version) {
+      // The tappable rows of phones carry the same badge; only the timeline feeds the summary.
+      if (item.dataset.version !== undefined) newer.push(item);
       const badge = item.querySelector<HTMLElement>('[data-whats-new-badge]');
       if (badge) badge.hidden = false;
     }

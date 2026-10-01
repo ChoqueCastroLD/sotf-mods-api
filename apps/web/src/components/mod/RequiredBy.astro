@@ -22,7 +22,7 @@ const currentBuild = mod.compatCurrent.gameBuild?.label ?? null;
 
 {
   (mod.dependentsCount > 0 || mod.kitsCount > 0) && (
-    <section aria-labelledby="required-by-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
+    <section data-fold="closed" aria-labelledby="required-by-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
       {mod.dependentsCount > 0 ? (
         <>
           <h2 id="required-by-title" class={READOUT_CLASSES}>

@@ -10,6 +10,7 @@ import { localizeHtml } from '@sotf/markdown/labels';
 import { ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { Download } from 'lucide-react';
+import VersionRows from '../mod/VersionRows.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { markdownLabels } from './i18n.ts';
 
@@ -25,7 +26,7 @@ const labels = markdownLabels();
 const list = versions ?? (build.latestVersion ? [build.latestVersion] : []);
 ---
 
-<section id="versions" aria-labelledby="versions-title" class="grid scroll-mt-24 gap-4">
+<section id="versions" aria-labelledby="versions-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
     <h2 id="versions-title" class="font-display-caps text-display-xs text-fg">{m.builds_versions_title()}</h2>
     {versions && <p class="text-sm text-fg-muted">{m.builds_versions_count({ count: versions.length })}</p>}
@@ -34,12 +35,14 @@ const list = versions ?? (build.latestVersion ? [build.latestVersion] : []);
     list.length === 0 ? (
       <p class="text-fg-muted">{m.builds_versions_empty()}</p>
     ) : (
-      <ol class="grid gap-3 border-s-2 border-blueprint/40 ps-4">
+      <>
+      <VersionRows mod={build} versions={list} detailsHref="#versions" />
+      <ol class="grid gap-3 border-s-2 border-blueprint/40 ps-4 max-md:hidden">
         {list.map((version) => {
           const withdrawn = version.status !== 'active';
           const changelog = version.changelogHtml.trim() ? localizeHtml(version.changelogHtml, labels) : '';
           return (
-            <li class="relative grid gap-2" data-version={version.version}>
+            <li id={`v-${version.version}`} class="relative grid gap-2" data-version={version.version}>
               <span
                 aria-hidden="true"
                 class="absolute -start-[1.4rem] top-1.5 size-3 rounded-full border-2 border-blueprint bg-bg"
@@ -75,11 +78,16 @@ const list = versions ?? (build.latestVersion ? [build.latestVersion] : []);
                 )}
               </div>
               {withdrawn && version.statusReason && <p class="text-sm text-fg-muted">{version.statusReason}</p>}
-              {changelog && <ProseLocator html={changelog} size="sm" />}
+              {changelog && (
+                <div data-changelog>
+                  <ProseLocator html={changelog} size="sm" />
+                </div>
+              )}
             </li>
           );
         })}
       </ol>
+      </>
     )
   }
 </section>

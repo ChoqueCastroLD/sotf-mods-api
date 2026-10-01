@@ -56,15 +56,16 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
     <p class="readout text-blueprint">{m.builds_kind_label()}</p>
     <h1
       id="build-title"
-      class="font-display-caps text-display-sm text-balance break-words text-fg"
+      class="font-display-caps text-display-sm text-balance break-words text-fg [hyphens:auto]"
       lang={shownName !== build.name ? locale : undefined}
     >
       {shownName}
     </h1>
     {
       shownName !== build.name && (
-        <p class="break-words text-base text-fg-subtle" lang={build.contentLang ?? 'en'} translate="no" data-original-name>
-          {build.name}
+        <p class="flex items-baseline gap-2 text-sm text-fg-subtle" data-original-name>
+          <span class="readout shrink-0 text-2xs text-fg-subtle">{m.entity_original_label()}</span>
+          <span class="min-w-0 break-words text-base text-fg-muted" lang={build.contentLang ?? 'en'} translate="no">{build.name}</span>
         </p>
       )
     }
@@ -119,10 +120,10 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
         locale={locale}
         sourceLang={build.contentLang}
         source={translation.sources?.shortDescription ?? 'machine'}
-        class="text-lg text-pretty text-fg"
+        class="text-base text-pretty text-fg md:text-lg"
       />
     ) : (
-      build.shortDescription && <p class="text-lg text-pretty text-fg">{build.shortDescription}</p>
+      build.shortDescription && <p class="text-base text-pretty text-fg md:text-lg">{build.shortDescription}</p>
     )
   }
 
@@ -176,7 +177,7 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
   <div class="grid gap-3" id="download">
     {
       latest && latest.status === 'active' && downloadLabel ? (
-        <div class="flex items-stretch">
+        <div class="flex items-stretch max-md:hidden">
           <a
             href={latest.downloadPath}
             rel="nofollow"
@@ -228,13 +229,13 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
           )}
         </div>
       ) : (
-        <p class="rounded-md border border-dashed border-border-strong p-3 text-sm text-fg-muted">
+        <p class="rounded-md border border-dashed border-border-strong p-3 text-sm text-fg-muted max-md:hidden">
           {m.builds_action_download_unavailable()}
         </p>
       )
     }
 
-    <div class="flex flex-wrap gap-2">
+    <div class="flex flex-wrap gap-2 max-md:hidden">
       <form method="get" action={href('/login', locale)} class="contents" data-follow-form>
         <input type="hidden" name="next" value={href(Astro.locals.pagePath, locale)} />
         <button

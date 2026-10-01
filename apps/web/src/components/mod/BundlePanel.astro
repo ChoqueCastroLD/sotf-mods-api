@@ -25,7 +25,7 @@ const ready = bundles.filter((bundle) => bundle.status === 'ready' && bundle.dow
 
 {
   ready.length > 0 && (
-    <section aria-labelledby="bundle-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
+    <section data-fold="closed" aria-labelledby="bundle-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
       <h2 id="bundle-title" class={READOUT_CLASSES}>
         {m.bundles_title()}
       </h2>

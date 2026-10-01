@@ -64,7 +64,7 @@ const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
     )
   }
 
-  <div class="flex flex-wrap items-center gap-2">
+  <div class="flex flex-wrap items-center gap-2 max-md:hidden">
     <a href={loginHref} data-follow data-mod-id={mod.id} data-followers={mod.followers} class={BTN}>
       <Icon icon={Heart} size={16} className="[[aria-pressed=true]_&]:fill-current" />
       <span data-follow-label>{m.common_action_follow()}</span>

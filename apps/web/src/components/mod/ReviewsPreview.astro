@@ -8,9 +8,10 @@ import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { RatingHistogram, ReviewCard } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronRight, Star } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO, ReviewPage } from './data.ts';
+import EmptyArt from './EmptyArt.astro';
 import { pluralTemplates, reviewsPagePath } from './format.ts';
 import { markdownLabels } from './i18n.ts';
 import { SECTION_TITLE_CLASSES } from './styles.ts';
@@ -33,7 +34,7 @@ const reviewsHref = href(reviewsPagePath(mod), locale);
 const creatorName = mod.author.displayName || mod.author.handle;
 ---
 
-<section id="reviews" aria-labelledby="reviews-title" class="grid gap-4">
+<section id="reviews" data-sheet-section="reviews-sheet" aria-labelledby="reviews-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <div class="flex flex-wrap items-baseline justify-between gap-3">
     <h2
       id="reviews-title"
@@ -52,12 +53,25 @@ const creatorName = mod.author.displayName || mod.author.handle;
       )
     }
   </div>
+  <div data-sheet-preview hidden class="grid gap-3">
+    <ul data-sheet-preview-list class="grid gap-3 [&_.prose-sm]:line-clamp-3"></ul>
+    <button
+      type="button"
+      data-dialog-open="reviews-sheet"
+      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+    >
+      <Icon icon={Star} size={18} className="text-featured" />
+      <span class="min-w-0 flex-1">{m.entity_reviews_see_all({ count: summary.count })}</span>
+      <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+    </button>
+  </div>
+  <div data-sheet-body class="grid min-w-0 gap-4">
   {
     summary.count > 0 ? (
       <>
         <RatingHistogram summary={summary} />
         {items.length > 0 && (
-          <ul class="grid gap-3">
+          <ul class="grid gap-3" data-review-list>
             {items.map((review) => (
               <li>
                 <ReviewCard review={review} creatorName={creatorName} headingLevel={3} />
@@ -67,7 +81,7 @@ const creatorName = mod.author.displayName || mod.author.handle;
         )}
       </>
     ) : (
-      <p class="text-fg-muted">{m.mod_reviews_empty()}</p>
+      <EmptyArt>{m.mod_reviews_empty()}</EmptyArt>
     )
   }
   <div data-island="reviews" data-mod-id={mod.id} data-mod-author-id={mod.userId} data-mod-author-name={creatorName} class="grid gap-2">
@@ -78,5 +92,6 @@ const creatorName = mod.author.displayName || mod.author.handle;
       <a href={loginHref} class="underline underline-offset-3">{m.common_account_sign_in()}</a>
       {' · '}{m.mod_reviews_rules()}
     </p>
+  </div>
   </div>
 </section>

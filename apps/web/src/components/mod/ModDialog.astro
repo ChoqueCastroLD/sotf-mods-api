@@ -16,18 +16,28 @@ interface Props {
   title: string;
   /** Optional line under the title. */
   description?: string;
-  /** Wider dialog (lightbox). */
-  size?: 'md' | 'lg' | 'full';
+  /**
+   * Wider dialog (lightbox). On phones every size is a bottom sheet (grabber, swipe down to close,
+   * `scripts/mod/sheet.ts`); `tall` fills ~92 % of the screen (comments, reviews) and `full` is the
+   * edge-to-edge lightbox.
+   */
+  size?: 'md' | 'lg' | 'full' | 'tall';
   class?: string;
+  /** Extra classes of the scrolling body. */
+  bodyClass?: string;
+  /** Keep the description for assistive technology only. */
+  descriptionHidden?: boolean;
 }
 
-const { id, title, description, size = 'md', class: className } = Astro.props;
+const { id, title, description, size = 'md', class: className, bodyClass, descriptionHidden = false } = Astro.props;
+const hasFooter = Astro.slots.has('footer');
 const titleId = `${id}-title`;
 const descriptionId = description ? `${id}-description` : undefined;
 const sizeClass = {
   md: '',
   lg: 'md:w-[min(52rem,calc(100vw-2rem))]',
   full: 'md:w-[min(80rem,calc(100vw-2rem))] md:max-h-[calc(100dvh-2rem)]',
+  tall: 'md:w-[min(40rem,calc(100vw-2rem))] max-md:h-[92dvh] max-md:max-h-[92dvh] max-md:pb-0!',
 }[size];
 ---
 
@@ -36,12 +46,14 @@ const sizeClass = {
   aria-labelledby={titleId}
   aria-describedby={descriptionId}
   data-mod-dialog
-  class:list={[DIALOG_CLASSES, sizeClass, className]}
+  data-sheet={size}
+  class:list={[DIALOG_CLASSES, sizeClass, hasFooter && 'flex flex-col overflow-hidden! max-md:pb-0!', className]}
 >
-  <div class={DIALOG_HEADER_CLASSES}>
+  <div class={DIALOG_HEADER_CLASSES} data-sheet-header>
+    <span aria-hidden="true" data-sheet-grabber class="absolute inset-x-0 top-1.5 mx-auto h-1 w-10 rounded-full bg-border-strong md:hidden"></span>
     <div class="grid min-w-0 gap-1">
       <h2 id={titleId} class={DIALOG_TITLE_CLASSES}>{title}</h2>
-      {description && <p id={descriptionId} class="text-sm text-fg-muted">{description}</p>}
+      {description && <p id={descriptionId} class:list={['text-sm text-fg-muted', descriptionHidden && 'sr-only']}>{description}</p>}
     </div>
     <button
       type="button"
@@ -52,7 +64,114 @@ const sizeClass = {
       <span class="sr-only">{m.common_action_close()}</span>
     </button>
   </div>
-  <div class={DIALOG_BODY_CLASSES}>
+  <div class:list={[DIALOG_BODY_CLASSES, hasFooter && 'min-h-0 flex-1 overflow-y-auto overscroll-contain', bodyClass]} data-sheet-body>
     <slot />
   </div>
+  {
+    hasFooter && (
+      <div
+        data-sheet-footer
+        class="sticky bottom-0 z-10 border-t border-border bg-surface px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] md:px-5"
+      >
+        <slot name="footer" />
+      </div>
+    )
+  }
 </dialog>
+
+<style is:global>
+  @keyframes sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes sheet-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @media (max-width: 47.99rem) {
+    dialog[data-mod-dialog] {
+      margin-block-end: 0;
+      transition: transform 0.22s var(--ease-out, ease-out);
+    }
+    dialog[data-mod-dialog][open] {
+      animation: sheet-in 0.32s var(--ease-out, ease-out) both;
+    }
+    dialog[data-mod-dialog][open]::backdrop {
+      animation: sheet-fade 0.3s ease-out both;
+      opacity: var(--sheet-progress, 1);
+    }
+    dialog[data-mod-dialog][data-dragging] {
+      transition: none;
+      animation: none;
+    }
+    dialog[data-mod-dialog][data-sheet='full'] {
+      width: 100%;
+      max-width: none;
+      height: 100dvh;
+      max-height: none;
+      border-radius: 0;
+      border: 0;
+      background: rgb(0 0 0 / var(--lb-progress, 1));
+      padding-bottom: 0;
+      overflow: hidden;
+    }
+    dialog[data-sheet='full'][open] {
+      animation: sheet-fade 0.22s ease-out both;
+    }
+    dialog[data-sheet='full'] [data-sheet-grabber] {
+      display: none;
+    }
+    dialog[data-sheet='full'] [data-sheet-header] {
+      position: absolute;
+      inset-inline: 0;
+      top: 0;
+      border: 0;
+      background: linear-gradient(to bottom, rgb(0 0 0 / 0.72), transparent);
+      color: #fff;
+      padding: max(0.5rem, env(safe-area-inset-top)) 0.75rem 1.5rem 1.25rem;
+      opacity: var(--lb-progress, 1);
+    }
+    dialog[data-sheet='full'] [data-sheet-header] h2 {
+      font-size: 0.875rem;
+      line-height: 1.2;
+      color: #fff;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    dialog[data-sheet='full'] [data-sheet-header] button {
+      color: #fff;
+      background: rgb(0 0 0 / 0.35);
+      border-radius: 9999px;
+    }
+    dialog[data-sheet='full'] [data-sheet-body] {
+      padding: 0;
+      height: 100%;
+    }
+    dialog[data-sheet='full'][data-zoomed] [data-sheet-header],
+    dialog[data-sheet='full'][data-zoomed] [data-lightbox-counter] {
+      opacity: 0;
+      pointer-events: none;
+    }
+    dialog[data-sheet='full']::backdrop {
+      background: #000;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    dialog[data-mod-dialog][open],
+    dialog[data-mod-dialog][open]::backdrop {
+      animation: none;
+    }
+    dialog[data-mod-dialog] {
+      transition: none;
+    }
+  }
+</style>

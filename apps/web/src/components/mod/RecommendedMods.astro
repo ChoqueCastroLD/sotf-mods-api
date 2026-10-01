@@ -26,7 +26,7 @@ const sections = [
 
 {
   sections.map((section) => (
-    <section aria-labelledby={`${section.id}-title`} class:list={[PANEL_CLASSES, 'grid gap-3']}>
+    <section data-fold="closed" aria-labelledby={`${section.id}-title`} class:list={[PANEL_CLASSES, 'grid gap-3']}>
       <div class="grid gap-0.5">
         <h2 id={`${section.id}-title`} class={READOUT_CLASSES}>{section.title}</h2>
         <p class="text-xs text-fg-muted">{section.hint}</p>

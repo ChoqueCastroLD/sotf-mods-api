@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "続きを読む",
+  "entity_read_less": "閉じる",
+  "entity_comments_see_all": "{count, plural, =0 {最初のコメントを書く} other {# 件のコメントをすべて開く}}",
+  "entity_comments_write": "コメントを書く…",
+  "entity_reviews_see_all": "{count, plural, =0 {最初のレビューを書く} other {# 件のレビューをすべて開く}}",
+  "entity_changelog_title": "変更履歴",
+  "entity_version_open": "バージョン {version} の変更点",
+  "entity_version_details": "バージョンの詳細",
+  "entity_original_label": "原題",
+  "entity_lightbox_hint": "ピンチまたはダブルタップで拡大、下にスワイプで閉じます。"
+}

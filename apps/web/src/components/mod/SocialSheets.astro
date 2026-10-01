@@ -1,0 +1,65 @@
+---
+/**
+ * Comments and reviews as bottom sheets on phones (the overview keeps a compact preview card with
+ * «Open all N comments»; `scripts/mod/sheets.ts` moves the full section — list, «load more»,
+ * island mount points — into these sheets, so the islands hydrate inside them and nothing is
+ * duplicated). On desktops and without JavaScript the sections stay inline; the dialogs stay
+ * empty and unused.
+ *
+ * - Comments: a tall sheet; the comments island renders a sticky composer at the bottom
+ *   (`layout="sheet"`), collapsed to a «Write a comment…» field until it is tapped.
+ * - Reviews: a tall sheet with the histogram and the reviews; the footer keeps «Write a review»
+ *   (the reviews page opens the editor) within thumb's reach.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { PenLine } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { reviewsPagePath } from './format.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+  loginHref: string;
+  /** Mod pages have a reviews page that opens the editor; builds write in the sheet itself. */
+  reviewsPage?: boolean;
+}
+
+const { mod, loginHref, reviewsPage = true } = Astro.props;
+const locale = Astro.locals.locale;
+const writeHref = `${href(reviewsPagePath(mod), locale)}#write-review`;
+---
+
+<ModDialog id="comments-sheet" size="tall" title={m.mod_tab_comments()} bodyClass="max-md:pb-0!">
+  <section data-sheet-slot="comments-sheet" aria-label={m.mod_tab_comments()} class="grid min-w-0 gap-5"></section>
+</ModDialog>
+
+{
+  reviewsPage ? (
+    <ModDialog id="reviews-sheet" size="tall" title={m.mod_tab_reviews()}>
+      <section data-sheet-slot="reviews-sheet" aria-label={m.mod_tab_reviews()} class="grid min-w-0 gap-5" />
+      <Fragment slot="footer">
+        <a
+          href={writeHref}
+          data-review-write-cta
+          data-login-href={loginHref}
+          class="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover active:bg-primary-hover"
+        >
+          <Icon icon={PenLine} size={18} />
+          {m.mod_reviews_write()}
+        </a>
+      </Fragment>
+    </ModDialog>
+  ) : (
+    <ModDialog id="reviews-sheet" size="tall" title={m.mod_tab_reviews()}>
+      <section data-sheet-slot="reviews-sheet" aria-label={m.mod_tab_reviews()} class="grid min-w-0 gap-5" />
+    </ModDialog>
+  )
+}
+
+<style is:global>
+  [data-sheet-slot='reviews-sheet'] a[data-review-write] {
+    display: none;
+  }
+</style>

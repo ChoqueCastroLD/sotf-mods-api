@@ -1,0 +1,175 @@
+---
+/**
+ * Cover + gallery of a mod page (research/03 §6.3). One list serves every screen:
+ *
+ * - phones: a full-bleed, swipeable scroll-snap carousel (native momentum, no JavaScript needed)
+ *   with a dot pager and a «2 / 5» chip, the trailer as a poster slide; a tap opens the lightbox;
+ * - from `md` up: only the first slide (the cover) shows, the thumbnail strip is rendered by the
+ *   caller next to it.
+ *
+ * The first slide is the LCP image (eager, preloaded by the page); the others are lazy. The frame
+ * is always 16:9, so nothing shifts while images load. `scripts/mod/carousel.ts` keeps the dots,
+ * the chip and the `aria-current` of the dots in sync with the scroll position.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Cover } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { Play } from 'lucide-react';
+import { type ImageDTO, safeHexColor } from '../../lib/images.ts';
+import Picture from '../layout/Picture.astro';
+import type { ModDetailDTO } from './data.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  sizes: string;
+  /** Accessible name of the gallery. */
+  label: string;
+}
+
+const { mod, sizes, label } = Astro.props;
+const hero = mod.thumbnail ?? mod.gallery[0] ?? null;
+const heroInGallery = hero !== null && mod.gallery.some((image) => image.url === hero.url);
+const offset = mod.video ? 1 : 0;
+interface Slide {
+  key: string;
+  image: ImageDTO | null;
+  /** Position in the lightbox (video first), or null when the lightbox does not hold it. */
+  index: number | null;
+  video: boolean;
+  alt: string;
+}
+const slides: Slide[] = [];
+if (hero) {
+  slides.push({
+    key: hero.url,
+    image: hero,
+    index: heroInGallery ? mod.gallery.findIndex((image) => image.url === hero.url) + offset : null,
+    video: false,
+    alt: hero.alt ?? m.mod_cover_alt({ name: mod.name }),
+  });
+}
+if (mod.video) slides.push({ key: `video:${mod.video.id}`, image: null, index: 0, video: true, alt: m.mod_video_play({ name: mod.name }) });
+mod.gallery.forEach((image, position) => {
+  if (hero && image.url === hero.url) return;
+  slides.push({
+    key: image.url,
+    image,
+    index: position + offset,
+    video: false,
+    alt: image.alt ?? m.mod_gallery_image_alt({ name: mod.name, index: position + 1 }),
+  });
+});
+const total = slides.length;
+const accent = safeHexColor(hero?.dominantColor ?? null);
+---
+
+<div
+  data-vt-cover-target={String(mod.id)}
+  data-carousel
+  class="relative overflow-hidden border-y border-border bg-raised max-md:-mx-4 md:rounded-lg md:border"
+  style={accent ? `background-color:${accent}` : undefined}
+>
+  <ul
+    data-carousel-track
+    role="group"
+    aria-roledescription="carousel"
+    aria-label={label}
+    tabindex={total > 1 ? 0 : undefined}
+    class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] max-md:[&::-webkit-scrollbar]:hidden md:overflow-hidden"
+  >
+    {
+      total === 0 ? (
+        <li class="aspect-video w-full shrink-0">
+          <Cover image={null} seed={mod.slug} name={mod.name} category={mod.category} priority />
+        </li>
+      ) : (
+        slides.map((slide, position) => (
+          <li
+            class:list={['relative aspect-video w-full shrink-0 snap-center snap-always', position > 0 && 'md:hidden']}
+            aria-roledescription="slide"
+            aria-label={m.mod_gallery_slide({ index: position + 1, total })}
+            data-carousel-slide
+          >
+            {slide.video && mod.video ? (
+              <a
+                href={mod.video.url}
+                data-gallery-index={slide.index}
+                data-gallery-kind="video"
+                class="relative block size-full bg-night-975"
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${encodeURIComponent(mod.video.id)}/hqdefault.jpg`}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                  width="480"
+                  height="360"
+                  class="size-full object-cover opacity-85"
+                />
+                <span class="absolute inset-0 m-auto flex size-16 items-center justify-center rounded-full bg-night-975/75 text-white backdrop-blur-sm">
+                  <Icon icon={Play} size={28} className="fill-current" />
+                </span>
+                <span class="sr-only">{slide.alt}</span>
+              </a>
+            ) : slide.image && slide.index !== null ? (
+              <a href={slide.image.url} data-gallery-index={slide.index} data-gallery-kind="image" class="block size-full">
+                <Picture
+                  image={slide.image}
+                  sizes={sizes}
+                  priority={position === 0}
+                  hero={position === 0}
+                  alt={slide.alt}
+                  class="block size-full object-cover"
+                />
+              </a>
+            ) : slide.image ? (
+              <Picture
+                image={slide.image}
+                sizes={sizes}
+                priority={position === 0}
+                hero={position === 0}
+                alt={slide.alt}
+                class="block size-full object-cover"
+              />
+            ) : null}
+          </li>
+        ))
+      )
+    }
+  </ul>
+  {
+    total > 1 && (
+      <>
+        <p
+          data-carousel-chip
+          aria-hidden="true"
+          data-template={m.mod_gallery_counter({ index: '{index}', total: '{total}' })}
+          class="pointer-events-none absolute end-3 top-3 rounded-full bg-night-975/70 px-2.5 py-1 font-mono text-xs text-white tabular-nums backdrop-blur-sm md:hidden"
+        >
+          {m.mod_gallery_counter({ index: 1, total })}
+        </p>
+        <div
+          data-carousel-dots
+          data-js-only
+          hidden
+          class="absolute inset-x-0 bottom-2 z-10 flex justify-center md:hidden"
+        >
+          <div class="flex items-center rounded-full bg-night-975/55 px-1 backdrop-blur-sm">
+            {slides.map((_, position) => (
+              <button
+                type="button"
+                data-carousel-dot={position}
+                aria-label={m.mod_gallery_slide({ index: position + 1, total })}
+                aria-current={position === 0 ? 'true' : undefined}
+                class="group flex size-6 items-center justify-center"
+              >
+                <span class="block size-1.5 rounded-full bg-white/50 transition-[width,background-color] duration-(--dur-base) group-aria-[current=true]:w-4 group-aria-[current=true]:bg-primary motion-reduce:transition-none" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </>
+    )
+  }
+</div>

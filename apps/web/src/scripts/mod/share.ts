@@ -65,6 +65,23 @@ export function initShare(root: HTMLElement, data: ModPageData, doc: Document = 
     field.addEventListener('focus', () => field.select());
   }
 
+  // «Share» of the sheet on phones: the system share sheet when there is one, else the dialog
+  // (capture phase, so the generic `data-dialog-open` handler does not open it first).
+  if (typeof navigator.share === 'function') {
+    root.addEventListener(
+      'click',
+      (event) => {
+        const action = (event.target as Element | null)?.closest<HTMLElement>('[data-share-action]');
+        if (!action) return;
+        event.preventDefault();
+        event.stopPropagation();
+        action.closest('dialog')?.close();
+        void navigator.share({ title: data.name, text: data.messages.shareTitle, url: data.url }).catch(() => {});
+      },
+      true,
+    );
+  }
+
   const native = root.querySelector<HTMLButtonElement>('[data-native-share]');
   if (native && typeof navigator.share === 'function') {
     native.hidden = false;

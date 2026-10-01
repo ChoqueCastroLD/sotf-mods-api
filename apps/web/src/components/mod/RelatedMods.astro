@@ -20,7 +20,7 @@ const currentBuild = mod.compatCurrent.gameBuild?.label ?? null;
 
 {
   related.length > 0 && (
-    <section aria-labelledby="related-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
+    <section data-fold="closed" aria-labelledby="related-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
       <h2 id="related-title" class={READOUT_CLASSES}>{m.mod_related_title()}</h2>
       <ul class="grid gap-2">
         {related.map((card) => (

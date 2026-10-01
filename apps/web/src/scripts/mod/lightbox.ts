@@ -5,8 +5,10 @@
  * the video stops).
  */
 
+import { scrollCarouselTo } from './carousel.ts';
 import { fill } from './data.ts';
 import { openDialog } from './dialogs.ts';
+import { bindLightboxGestures } from './lightbox-zoom.ts';
 import { youtubeIframe } from './prose.ts';
 import type { ModPageData } from './types.ts';
 
@@ -28,15 +30,18 @@ function goTo(track: HTMLElement, index: number, smooth: boolean): void {
   track.scrollTo({ left: target * track.clientWidth, behavior: smooth && !reduce ? 'smooth' : 'auto' });
 }
 
-function bind(dialog: HTMLDialogElement, data: ModPageData, doc: Document): void {
+function bind(dialog: HTMLDialogElement, data: ModPageData | null, doc: Document): void {
   if (bound) return;
   bound = true;
   const track = dialog.querySelector<HTMLElement>('[data-lightbox-track]');
   const counter = dialog.querySelector<HTMLElement>('[data-lightbox-counter]');
   if (!track) return;
   const total = slides(track).length;
+  const counterTemplate = dialog.querySelector<HTMLElement>('[data-lightbox]')?.dataset.counter ?? data?.messages.galleryCounter ?? '{index} / {total}';
+  const videoTitle = dialog.querySelector<HTMLElement>('[data-lightbox]')?.dataset.videoTitle ?? data?.messages.videoTitle ?? '';
+  bindLightboxGestures(dialog, track);
   const update = () => {
-    if (counter) counter.textContent = fill(data.messages.galleryCounter, { index: currentIndex(track) + 1, total });
+    if (counter) counter.textContent = fill(counterTemplate, { index: currentIndex(track) + 1, total });
   };
   let frame = 0;
   track.addEventListener('scroll', () => {
@@ -66,12 +71,19 @@ function bind(dialog: HTMLDialogElement, data: ModPageData, doc: Document): void
     const id = facade.dataset.youtubeId ?? '';
     if (!/^[\w-]{6,20}$/.test(id)) return;
     facade.dataset.original = facade.innerHTML;
-    const iframe = youtubeIframe(doc, id, 0, data.messages.videoTitle || data.messages.videoEmbedTitle);
+    const iframe = youtubeIframe(doc, id, 0, videoTitle || data?.messages.videoEmbedTitle || '');
     iframe.className = 'size-full border-0';
     facade.replaceChildren(iframe);
     iframe.focus();
   });
   dialog.addEventListener('close', () => {
+    // The page's carousel follows the picture the visitor left the lightbox on.
+    const slide = currentIndex(track);
+    const link = doc.querySelector<HTMLElement>(`[data-carousel] a[data-gallery-index="${slide}"]`);
+    const host = link?.closest<HTMLElement>('[data-carousel]');
+    const carousel = host?.querySelector<HTMLElement>('[data-carousel-track]');
+    const position = link ? Array.from(carousel?.querySelectorAll('[data-carousel-slide]') ?? []).indexOf(link.closest('[data-carousel-slide]') as Element) : -1;
+    if (carousel && position >= 0) scrollCarouselTo(carousel, position, false);
     for (const facade of dialog.querySelectorAll<HTMLElement>('[data-youtube-facade][data-original]')) {
       facade.innerHTML = facade.dataset.original ?? '';
       delete facade.dataset.original;
@@ -79,7 +91,7 @@ function bind(dialog: HTMLDialogElement, data: ModPageData, doc: Document): void
   });
 }
 
-export function openLightbox(index: number, opener: HTMLElement, data: ModPageData, doc: Document = document): void {
+export function openLightbox(index: number, opener: HTMLElement, data: ModPageData | null, doc: Document = document): void {
   const dialog = doc.getElementById('gallery-dialog');
   if (!(dialog instanceof HTMLDialogElement)) return;
   bind(dialog, data, doc);

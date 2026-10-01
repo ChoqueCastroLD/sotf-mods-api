@@ -14,6 +14,7 @@ import {
   builds_copy_failed,
   builds_follow_error,
   builds_followed,
+  builds_link_copied,
   builds_unfollowed,
   common_action_close,
   common_action_follow,
@@ -38,6 +39,12 @@ import {
   mod_toast_verify_email,
 } from '@sotf/i18n/messages';
 import { initSocialIslands } from '../../islands/comments/social.ts';
+import { initCarousels } from '../../scripts/mod/carousel.ts';
+import { initFolds } from '../../scripts/mod/fold.ts';
+import { initGallery as initLightboxGallery } from '../../scripts/mod/gallery.ts';
+import { initSectionNav } from '../../scripts/mod/section-nav.ts';
+import { initSheetSections } from '../../scripts/mod/sheets.ts';
+import { initVersions } from '../../scripts/mod/versions.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
 import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from '../../scripts/mod/dialogs.ts';
@@ -128,11 +135,12 @@ async function writeFollow(modId: number, follow: boolean): Promise<FollowState 
 }
 
 function initFollow(toast: Toast): void {
-  const button = document.querySelector<HTMLButtonElement>('[data-follow]');
+  // Header button and the sticky bar of phones: same contract, always painted together.
+  const buttons = Array.from(document.querySelectorAll<HTMLElement>('[data-follow]'));
+  const button = buttons[0];
   if (!button) return;
   const modId = Number(button.dataset.modId);
   if (!Number.isInteger(modId) || modId <= 0) return;
-  const label = button.querySelector<HTMLElement>('[data-follow-label]');
   const count = document.querySelector<HTMLElement>('[data-follow-count]');
   const loginHref = button.dataset.login ?? '/login';
   let following = false;
@@ -141,8 +149,11 @@ function initFollow(toast: Toast): void {
   let busy = false;
 
   const paint = () => {
-    button.setAttribute('aria-pressed', String(following));
-    if (label) label.textContent = following ? common_action_following() : common_action_follow();
+    for (const item of buttons) {
+      item.setAttribute('aria-pressed', String(following));
+      const label = item.querySelector<HTMLElement>('[data-follow-label]');
+      if (label) label.textContent = following ? common_action_following() : common_action_follow();
+    }
     if (count && followers !== null) {
       count.textContent = common_followers_count({ count: followers });
       count.dataset.followers = String(followers);
@@ -193,12 +204,15 @@ function initFollow(toast: Toast): void {
     }
   };
 
-  // The button submits its GET form to the sign-in page: guests (and no-JS visitors) keep that.
-  button.addEventListener('click', (event) => {
-    if (!hasSignedInHint()) return;
-    event.preventDefault();
-    void toggle(!following, true);
-  });
+  // The header button submits its GET form to the sign-in page, the bar's is a link to it: guests
+  // (and no-JS visitors) keep that.
+  for (const item of buttons) {
+    item.addEventListener('click', (event) => {
+      if (!hasSignedInHint()) return;
+      event.preventDefault();
+      void toggle(!following, true);
+    });
+  }
 }
 
 // -----------------------------------------------------------------------------------------------
@@ -367,8 +381,41 @@ export function initBuildPage(): void {
     initKitAdd(modId);
   }
   initGallery();
-  initSocial();
   initReport();
+  initShareAction(toast);
+  // Phones: native-feeling gallery, sheets for comments/reviews/versions, collapsible sections.
+  safely(() => initCarousels(root));
+  safely(() => initLightboxGallery(document.body, null));
+  safely(() => initSheetSections(document.body));
+  safely(() => initVersions(document.body));
+  safely(() => initFolds(root));
+  safely(() => initSectionNav(document));
+  // The sheets must hold their sections before the islands look for their mount points.
+  initSocial();
+}
+
+function safely(task: () => unknown): void {
+  try {
+    task();
+  } catch {
+    // Progressive enhancement only.
+  }
+}
+
+/** «Share» of the sheet: the system share sheet where there is one, else the link is copied. */
+function initShareAction(toast: Toast): void {
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-share-action]')) {
+    button.addEventListener('click', async () => {
+      const title = document.querySelector('h1')?.textContent?.trim() ?? document.title;
+      const url = canonicalHref();
+      button.closest('dialog')?.close();
+      if (typeof navigator.share === 'function') {
+        await navigator.share({ title, url }).catch(() => {});
+        return;
+      }
+      toast.show((await copyText(url)) ? builds_link_copied() : builds_copy_failed());
+    });
+  }
 }
 
 /** «Report» opens the shared report dialog; its form is bound lazily on the first opening. */

@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Lire la suite",
+  "entity_read_less": "Afficher moins",
+  "entity_comments_see_all": "{count, plural, =0 {Soyez le premier à commenter} one {Ouvrir 1 commentaire} other {Ouvrir les # commentaires}}",
+  "entity_comments_write": "Écrire un commentaire…",
+  "entity_reviews_see_all": "{count, plural, =0 {Soyez le premier à donner un avis} one {Ouvrir 1 avis} other {Ouvrir les # avis}}",
+  "entity_changelog_title": "Journal des modifications",
+  "entity_version_open": "Modifications de la version {version}",
+  "entity_version_details": "Détails de la version",
+  "entity_original_label": "Titre original",
+  "entity_lightbox_hint": "Pincez ou touchez deux fois pour zoomer, glissez vers le bas pour fermer."
+}

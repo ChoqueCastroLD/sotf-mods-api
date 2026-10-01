@@ -1,0 +1,76 @@
+---
+/**
+ * «More actions» bottom sheet of the mod page on phones (opened from the sticky bar): the actions
+ * that do not fit next to Download and Follow, as big tappable rows. Every row is a real link or
+ * opens the dialog of the same action as on desktop (`scripts/mod/dialogs.ts` hands over from one
+ * sheet to the next); Share uses the system share sheet when the browser has one
+ * (`[data-share-action]`, `scripts/mod/share.ts`) and the share dialog otherwise.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { BookOpen, ChevronRight, Flag, GitCompareArrows, History, Plus, Share2 } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO } from './data.ts';
+import { versionsPagePath } from './format.ts';
+import ModDialog from './ModDialog.astro';
+import { FOCUS_RING } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  /** Absolute canonical URL (for the native share sheet). */
+  url: string;
+}
+
+const { mod } = Astro.props;
+const locale = Astro.locals.locale;
+const compareHref = `${href('/compare', locale)}?mods=${mod.canonicalPath.replace(/^\/(mods|builds)\//, '')}`;
+const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
+const ROW =
+  'flex min-h-14 w-full items-center gap-3 rounded-lg px-2 py-2 text-start text-base font-medium text-fg active:bg-fg/8 ' + FOCUS_RING;
+const TILE = 'flex size-10 shrink-0 items-center justify-center rounded-lg bg-raised text-signal';
+---
+
+<ModDialog id="more-sheet" title={m.mod_action_more()} bodyClass="!gap-0 !px-3 !py-2">
+  <ul class="grid">
+    <li>
+      <a href={href('/install', locale)} data-dialog-open="install-dialog" data-track="install_modal_open" class={ROW}>
+        <span class={TILE}><Icon icon={BookOpen} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.mod_action_install()}</span>
+        <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+      </a>
+    </li>
+    <li>
+      <a href={kitHref} data-kit-add={mod.id} class={ROW}>
+        <span class={TILE}><Icon icon={Plus} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.mod_action_add_to_kit()}</span>
+        <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+      </a>
+    </li>
+    <li>
+      <a href={compareHref} class={ROW}>
+        <span class={TILE}><Icon icon={GitCompareArrows} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.live_compare_action()}</span>
+        <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+      </a>
+    </li>
+    <li>
+      <a href={href(versionsPagePath(mod), locale)} class={ROW}>
+        <span class={TILE}><Icon icon={History} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.mod_tab_versions()}</span>
+        <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+      </a>
+    </li>
+    <li>
+      <button type="button" hidden data-js-only data-share-action data-dialog-open="share-dialog" class={ROW}>
+        <span class={TILE}><Icon icon={Share2} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.common_action_share()}</span>
+      </button>
+    </li>
+    <li class="mt-1 border-t border-border pt-1">
+      <button type="button" hidden data-js-only data-dialog-open="report-dialog" class={ROW}>
+        <span class:list={[TILE, 'text-fg-muted']}><Icon icon={Flag} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.mod_action_report_mod()}</span>
+      </button>
+    </li>
+  </ul>
+</ModDialog>

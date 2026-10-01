@@ -8,6 +8,8 @@
 import { toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronRight, MessageSquareText, Star } from 'lucide-react';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 import { BuildCommentList, BuildReviewList } from './Domain.tsx';
@@ -44,11 +46,24 @@ const moreRepliesLabel = (count: number) => m.builds_comments_more_replies({ cou
 const titleClass = 'font-display-caps text-display-xs text-fg';
 ---
 
-<section id="reviews" aria-labelledby="reviews-title" class="grid scroll-mt-24 gap-4">
+<section id="reviews" data-sheet-section="reviews-sheet" aria-labelledby="reviews-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
     <h2 id="reviews-title" class={titleClass}>{m.builds_reviews_title()}</h2>
     {reviewCount > 0 && <p class="text-sm text-fg-muted">{m.common_reviews_count({ count: reviewCount })}</p>}
   </div>
+  <div data-sheet-preview hidden class="grid gap-3">
+    <ul data-sheet-preview-list class="grid gap-3 [&_.prose-sm]:line-clamp-3"></ul>
+    <button
+      type="button"
+      data-dialog-open="reviews-sheet"
+      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-blueprint/40 bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+    >
+      <Icon icon={Star} size={18} className="text-blueprint" />
+      <span class="min-w-0 flex-1">{m.entity_reviews_see_all({ count: reviewCount })}</span>
+      <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+    </button>
+  </div>
+  <div data-sheet-body class="grid min-w-0 gap-4">
   {
     reviewItems.length > 0 ? (
       <BuildReviewList lang={lang} summary={build.reviewsSummary} reviews={reviewItems} creatorName={creatorName} />
@@ -72,13 +87,35 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
       </a>
     </p>
   </div>
+  </div>
 </section>
 
-<section id="comments" aria-labelledby="comments-title" class="grid scroll-mt-24 gap-4">
+<section id="comments" data-sheet-section="comments-sheet" aria-labelledby="comments-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
     <h2 id="comments-title" class={titleClass}>{m.builds_comments_title()}</h2>
     {build.commentsCount > 0 && <p class="text-sm text-fg-muted">{m.common_comments_count({ count: build.commentsCount })}</p>}
   </div>
+  <div data-sheet-preview hidden class="grid gap-3">
+    <ol data-sheet-preview-list class="grid gap-3 [&_.prose-sm]:line-clamp-3"></ol>
+    <button
+      type="button"
+      data-dialog-open="comments-sheet"
+      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-blueprint/40 bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+    >
+      <Icon icon={MessageSquareText} size={18} className="text-blueprint" />
+      <span class="min-w-0 flex-1">{m.entity_comments_see_all({ count: build.commentsCount })}</span>
+      <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+    </button>
+    <button
+      type="button"
+      data-dialog-open="comments-sheet"
+      data-compose
+      class="flex min-h-12 w-full items-center rounded-full border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
+    >
+      {m.entity_comments_write()}
+    </button>
+  </div>
+  <div data-sheet-body class="grid min-w-0 gap-4">
   {
     commentItems.length > 0 ? (
       <BuildCommentList lang={lang} comments={commentItems} moreRepliesLabel={moreRepliesLabel} />
@@ -101,5 +138,6 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
         {m.builds_comments_sign_in()}
       </a>
     </p>
+  </div>
   </div>
 </section>

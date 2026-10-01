@@ -1,0 +1,77 @@
+---
+/**
+ * Versions as tappable rows on phones (replaces the table and the long timeline below `md`): the
+ * version, its badges, a one-line changelog excerpt and the date · size · downloads, with a chevron.
+ * A tap opens the changelog sheet (`VersionSheet.astro`, filled by `scripts/mod/versions.ts` from
+ * the version's timeline entry); without JavaScript the row is a plain link to the version page.
+ */
+import { formatBytes, formatCompactNumber, formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Badge } from '@sotf/ui/badge';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronRight } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import type { ModDetailDTO, VersionDTO } from './data.ts';
+import { versionPagePath } from './format.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+  versions: readonly VersionDTO[];
+  class?: string;
+  /** Builds have no page per version: the row then links to this anchor and the sheet has no «details». */
+  detailsHref?: string;
+}
+
+const { mod, versions, class: className, detailsHref } = Astro.props;
+const locale = Astro.locals.locale;
+
+const ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', '#39': "'", nbsp: ' ' };
+function excerpt(html: string): string {
+  return html
+    .replace(/<(br|\/p|\/li|\/h\d)\s*\/?>/gi, ' ')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&(amp|lt|gt|quot|#39|nbsp);/g, (_, name: string) => ENTITIES[name] ?? '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+---
+
+<ol class:list={['grid gap-2 md:hidden', className]} data-version-rows>
+  {
+    versions.map((version) => {
+      const summary = excerpt(version.changelogHtml);
+      return (
+        <li>
+          <a
+            href={detailsHref ?? href(versionPagePath(mod, version.version), locale)}
+            data-version-open={version.version}
+            data-no-details={detailsHref ? '' : undefined}
+            data-published-at={version.publishedAt}
+            data-download-href={version.status === 'active' ? version.downloadPath : undefined}
+            aria-label={m.entity_version_open({ version: version.version })}
+            class="flex min-h-[4.5rem] items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 active:bg-fg/6"
+          >
+            <span class="grid min-w-0 flex-1 gap-1">
+              <span class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span class="font-mono text-base font-semibold text-fg">v{version.version}</span>
+                {version.isLatest && <Badge variant="signal" size="sm">{m.mod_version_latest()}</Badge>}
+                {version.channel === 'beta' && <Badge variant="warning" size="sm">{m.mod_version_beta()}</Badge>}
+                {version.status === 'yanked' && <Badge variant="danger" size="sm">{m.mod_version_yanked()}</Badge>}
+                <span hidden data-whats-new-badge>
+                  <Badge variant="signal" size="sm">{m.mod_whats_new_badge()}</Badge>
+                </span>
+              </span>
+              <span class="truncate text-sm text-fg-muted">{summary || m.mod_version_no_changelog()}</span>
+              <span class="flex flex-wrap items-center gap-x-1.5 text-xs text-fg-subtle tabular-nums" data-version-meta>
+                <time datetime={version.publishedAt}>{formatDate(locale, version.publishedAt)}</time>
+                {typeof version.fileSize === 'number' && <span>· {formatBytes(locale, version.fileSize)}</span>}
+                <span>· {m.common_downloads_compact({ count: version.downloadsCount, display: formatCompactNumber(locale, version.downloadsCount) })}</span>
+              </span>
+            </span>
+            <Icon icon={ChevronRight} size={18} className="shrink-0 text-fg-subtle rtl:rotate-180" />
+          </a>
+        </li>
+      );
+    })
+  }
+</ol>

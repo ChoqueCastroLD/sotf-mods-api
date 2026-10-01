@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Meer lezen",
+  "entity_read_less": "Minder tonen",
+  "entity_comments_see_all": "{count, plural, =0 {Plaats de eerste reactie} one {1 reactie openen} other {Alle # reacties openen}}",
+  "entity_comments_write": "Schrijf een reactie…",
+  "entity_reviews_see_all": "{count, plural, =0 {Schrijf de eerste recensie} one {1 recensie openen} other {Alle # recensies openen}}",
+  "entity_changelog_title": "Wijzigingslogboek",
+  "entity_version_open": "Wijzigingen in versie {version}",
+  "entity_version_details": "Versiedetails",
+  "entity_original_label": "Originele titel",
+  "entity_lightbox_hint": "Knijp of tik twee keer om te zoomen, veeg omlaag om te sluiten."
+}
