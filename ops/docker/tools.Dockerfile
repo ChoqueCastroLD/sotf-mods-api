@@ -185,3 +185,4 @@ CMD []
 
 # ── tools.Dockerfile: Coolify builds the LAST stage, so re-export the tools target ─────────────
 FROM tools AS tools-final
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s CMD ["true"]
