@@ -27,6 +27,8 @@ function isCounters(value: unknown): value is LiveCounters {
 
 /** Consecutive stream failures (never opened) before polling takes over. */
 const STREAM_FAILURES_BEFORE_POLLING = 2;
+/** A stream that has not opened by then (buffering proxy) is dropped in favour of polling. */
+const STREAM_OPEN_TIMEOUT_MS = 10_000;
 
 export function startLiveCounters(modId: number, apply: (live: LiveCounters) => void): void {
   let timer: number | undefined;
@@ -83,7 +85,16 @@ export function startLiveCounters(modId: number, apply: (live: LiveCounters) => 
       return;
     }
     source = stream;
+    // A proxy that buffers the stream never fires `open`: drop it and keep polling.
+    const watchdog = window.setTimeout(() => {
+      if (source === stream && !streamOpen) {
+        streamGaveUp = true;
+        closeStream();
+        schedule(0);
+      }
+    }, STREAM_OPEN_TIMEOUT_MS);
     stream.onopen = () => {
+      window.clearTimeout(watchdog);
       failures = 0;
       streamOpen = true;
       window.clearTimeout(timer);
