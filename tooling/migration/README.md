@@ -110,3 +110,17 @@ diff rules, SQL files) and `test:int` (Docker/Testcontainers or `SOTF_TEST_DATAB
 `--small` seed end to end, second run = no-op, dry runs, B4/B5/admin-grant reverts, anonymisation,
 hand-made edge cases (versions without mod, NULL follows, watermarks, collisions), replay-delta
 and the CLIs' safety refusals.
+
+
+## B19 (opt-in)
+
+`B19` aprueba todas las versiones existentes de los mods aprobados en el legacy y vacía la cola de
+moderación. Nunca se ejecuta con `--all`/`--delta`; solo por nombre:
+
+```bash
+node src/cli/backfill.ts B19 --dry-run
+node src/cli/backfill.ts B19 --confirm sotf_mods
+node src/cli/revert-fix.ts B19 --confirm sotf_mods   # deshacer
+```
+
+Runbook completo: `ops/runbooks/deploy/05-migrations-and-backfills.md` §2c.

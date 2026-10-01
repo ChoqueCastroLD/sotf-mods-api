@@ -2,7 +2,8 @@
 /**
  * 500 «Something broke at base camp» (research/03 §5.10, §6.14): cold campfire, what happened,
  * «Try again», Discord for status and the reference id (`cf-ray` or a UUID) the user can quote.
- * No API calls, no JavaScript needed; `no-store` (the middleware never caches ≥ 500).
+ * No API calls, no JavaScript needed; `no-store` (the middleware never caches ≥ 500). Transient API
+ * failures (429, 502+) answer 503 with `Retry-After` instead.
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
@@ -17,7 +18,8 @@ interface Props {
 }
 
 const locals = ensureLocals(Astro);
-Astro.response.status = 500;
+// Transient API failures are answered 503 + Retry-After by the middleware (it rewrites here).
+Astro.response.status = locals.upstreamError ? 503 : 500;
 const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
 ---
 

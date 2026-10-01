@@ -5055,9 +5055,11 @@
   "landing_personal_step_compat_report": "Report whether a mod worked",
   "landing_personal_step_create_kit": "Build your first Kit",
   "landing_personal_step_done": "Done",
+  "landing_personal_step_failed": "Couldn't save that step. Try again.",
   "landing_personal_step_first_download": "Download your first mod",
   "landing_personal_step_follow_mod": "Follow a mod",
   "landing_personal_step_install_redloader": "Install RedLoader",
+  "landing_personal_step_mark_done": "Mark “{step}” as done",
   "landing_personal_title": "Your updates",
   "landing_picks_cta": "Browse all {count} mods",
   "landing_picks_cta_hint": "Filter by category, compatibility, game build and more",
@@ -5389,6 +5391,7 @@
   "me_onboarding_kit_action": "Create a kit",
   "me_onboarding_kit_hint": "Group your mods into a loadout you can share with one code.",
   "me_onboarding_kit_title": "Pack a kit",
+  "me_onboarding_mark_done": "Mark “{step}” as done",
   "me_onboarding_progress": [
     {
       "declarations": [

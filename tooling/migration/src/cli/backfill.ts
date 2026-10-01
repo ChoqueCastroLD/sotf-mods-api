@@ -8,7 +8,7 @@
  *   pnpm db:backfill --list
  */
 import { migrateUp } from '@sotf/db';
-import { BACKFILLS, DELTA_BACKFILLS, runBackfills, selectBackfills } from '../backfills/index.ts';
+import { BACKFILLS, DELTA_BACKFILLS, OPT_IN_BACKFILLS, runBackfills, selectBackfills } from '../backfills/index.ts';
 import { OUT_DIR } from '../constants.ts';
 import { connect } from '../db.ts';
 import { cliLogger, color, flagInt, helpRequested, parseArgs, runCli } from './_shared.ts';
@@ -24,15 +24,16 @@ pnpm db:backfill (--all | --delta | <B1,B2,…>) [--dry-run] [--batch-size <n>] 
   --no-migrate        do not apply the migrations deferred until the backfills (0038, 0045…)
   --confirm <db>      required to write to a non-local database
   --list              list the backfills
+  B19                 (opt-in, never in --all) approve every existing version of legacy-approved mods
 `;
 
 async function main(): Promise<number> {
   const args = parseArgs(process.argv.slice(2));
   if (helpRequested(args, USAGE)) return 0;
   if (args.flags.has('list')) {
-    for (const b of BACKFILLS) {
+    for (const b of [...BACKFILLS, ...OPT_IN_BACKFILLS]) {
       cliLogger.info(
-        `${b.id.padEnd(4)} ${b.title}${b.touchesLegacy ? color.yellow(' (audited legacy change)') : ''}${b.delta ? color.dim(' [delta]') : ''}`,
+        `${b.id.padEnd(4)} ${b.title}${b.touchesLegacy ? color.yellow(' (audited legacy change)') : ''}${b.delta ? color.dim(' [delta]') : ''}${OPT_IN_BACKFILLS.includes(b) ? color.dim(' [opt-in: by name only]') : ''}`,
       );
     }
     return 0;

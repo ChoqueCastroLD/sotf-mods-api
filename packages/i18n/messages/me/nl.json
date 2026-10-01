@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Bundel je mods in een loadout die je met één code deelt.",
   "me_onboarding_kit_action": "Kit maken",
   "me_onboarding_completed": "Je hebt de eerste dag overleefd — badge ontgrendeld",
-  "me_onboarding_failed": "De checklist kon niet worden bijgewerkt"
+  "me_onboarding_failed": "De checklist kon niet worden bijgewerkt",
+  "me_onboarding_mark_done": "„{step}” als gedaan markeren"
 }

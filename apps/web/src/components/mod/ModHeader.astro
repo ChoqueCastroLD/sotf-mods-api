@@ -142,7 +142,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
             original={mod.shortDescription}
             locale={locale}
             sourceLang={mod.contentLang}
-            source={translation.sources.shortDescription ?? 'machine'}
+            source={translation.sources?.shortDescription ?? 'machine'}
             class="text-lg text-fg-muted"
           />
         )

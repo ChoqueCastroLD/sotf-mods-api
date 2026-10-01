@@ -168,7 +168,7 @@ const visibleCrumbs = trail.map((crumb) => ({
                 original={descriptionHtml}
                 locale={locale}
                 sourceLang={build.contentLang}
-                source={translation.sources.description ?? 'machine'}
+                source={translation.sources?.description ?? 'machine'}
                 class="max-w-(--container-prose)"
               />
             ) : descriptionHtml ? (

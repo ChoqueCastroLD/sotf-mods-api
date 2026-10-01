@@ -5055,9 +5055,11 @@
   "landing_personal_step_compat_report": "Dire si un mod a fonctionné",
   "landing_personal_step_create_kit": "Créer votre premier Kit",
   "landing_personal_step_done": "Fait",
+  "landing_personal_step_failed": "Impossible d'enregistrer cette étape. Réessayez.",
   "landing_personal_step_first_download": "Télécharger votre premier mod",
   "landing_personal_step_follow_mod": "Suivre un mod",
   "landing_personal_step_install_redloader": "Installer RedLoader",
+  "landing_personal_step_mark_done": "Marquer « {step} » comme fait",
   "landing_personal_title": "Vos mises à jour",
   "landing_picks_cta": "Parcourir les {count} mods",
   "landing_picks_cta_hint": "Filtrez par catégorie, compatibilité, version du jeu et plus encore",
@@ -5389,6 +5391,7 @@
   "me_onboarding_kit_action": "Créer un kit",
   "me_onboarding_kit_hint": "Regroupez vos mods dans un loadout à partager avec un seul code.",
   "me_onboarding_kit_title": "Préparez un kit",
+  "me_onboarding_mark_done": "Marquer « {step} » comme fait",
   "me_onboarding_progress": [
     {
       "declarations": [

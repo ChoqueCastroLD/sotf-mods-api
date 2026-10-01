@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Cuenta si un mod te funcionó",
   "landing_personal_step_create_kit": "Arma tu primer Kit",
   "landing_personal_kits_title": "Tus Kits recientes",
-  "landing_personal_error": "Se perdió la señal al cargar tus actualizaciones."
+  "landing_personal_error": "Se perdió la señal al cargar tus actualizaciones.",
+  "landing_personal_step_mark_done": "Marcar «{step}» como hecho",
+  "landing_personal_step_failed": "No se pudo guardar el paso. Inténtalo de nuevo."
 }

@@ -125,7 +125,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
           original={descriptionHtml}
           locale={locale}
           sourceLang={mod.contentLang}
-          source={translation.sources.description ?? 'machine'}
+          source={translation.sources?.description ?? 'machine'}
           class="max-w-(--container-prose)"
         />
       ) : descriptionHtml ? (

@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Zgłoś, czy mod zadziałał",
   "landing_personal_step_create_kit": "Stwórz swój pierwszy zestaw",
   "landing_personal_kits_title": "Twoje ostatnie zestawy",
-  "landing_personal_error": "Utracono sygnał podczas wczytywania aktualizacji."
+  "landing_personal_error": "Utracono sygnał podczas wczytywania aktualizacji.",
+  "landing_personal_step_mark_done": "Oznacz „{step}” jako zrobione",
+  "landing_personal_step_failed": "Nie udało się zapisać kroku. Spróbuj ponownie."
 }

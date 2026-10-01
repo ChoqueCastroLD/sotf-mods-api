@@ -348,13 +348,18 @@ export const UpdateOnboardingBody = dto(
   z.strictObject({
     dismissed: z.boolean().optional(),
     markDone: z
-      .array(z.literal('install_redloader'))
-      .max(1)
+      .array(OnboardingStep)
+      .max(ONBOARDING_STEPS.length)
       .optional()
-      .describe('Only the manual step can be self-reported'),
+      .describe('Steps the user ticks by hand from the checklist (manual ticks count toward completion)'),
+    markUndone: z
+      .array(OnboardingStep)
+      .max(ONBOARDING_STEPS.length)
+      .optional()
+      .describe('Steps to untick; steps backed by real activity come back on the next sync'),
   }),
   {
-    description: 'Dismiss the checklist or self-report the manual step.',
+    description: 'Dismiss the checklist or tick/untick steps by hand.',
     examples: [{ markDone: ['install_redloader'] }],
   },
 );

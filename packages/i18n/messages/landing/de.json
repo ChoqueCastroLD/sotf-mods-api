@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Melden, ob ein Mod funktioniert hat",
   "landing_personal_step_create_kit": "Dein erstes Kit zusammenstellen",
   "landing_personal_kits_title": "Deine letzten Kits",
-  "landing_personal_error": "Beim Laden deiner Updates ist das Signal abgerissen."
+  "landing_personal_error": "Beim Laden deiner Updates ist das Signal abgerissen.",
+  "landing_personal_step_mark_done": "„{step}“ als erledigt markieren",
+  "landing_personal_step_failed": "Der Schritt konnte nicht gespeichert werden. Versuche es erneut."
 }

@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Agrupa tus mods en un loadout que puedes compartir con un solo código.",
   "me_onboarding_kit_action": "Crear un kit",
   "me_onboarding_completed": "Has sobrevivido al primer día: insignia desbloqueada",
-  "me_onboarding_failed": "No se ha podido actualizar la lista"
+  "me_onboarding_failed": "No se ha podido actualizar la lista",
+  "me_onboarding_mark_done": "Marcar «{step}» como hecho"
 }

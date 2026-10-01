@@ -128,7 +128,15 @@ export function allRequests(): Promise<RequestDTO[]> {
 }
 
 export function allJams(): Promise<JamSummaryDTO[]> {
-  return memoized('jams', async () => (await api().jams.list({})).items);
+  return memoized('jams', async () => {
+    try {
+      return (await api().jams.list({})).items;
+    } catch (error) {
+      // An API that does not know Jams yet (web deployed first) must not take the sitemap index down.
+      if (isApiError(error) && error.status === 404) return [];
+      throw error;
+    }
+  });
 }
 
 /** Classifies an API failure: 404/410 of the entity, or anything else (→ 503). */

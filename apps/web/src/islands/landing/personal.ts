@@ -12,6 +12,7 @@ import { relativize } from './relative-time.ts';
 type MeHome = z.output<typeof MeHomeDTO>;
 
 export const ME_HOME_URL = '/api/v2/me/home';
+export const ONBOARDING_URL = '/api/v2/me/onboarding';
 const MAX_UPDATES = 6;
 const MAX_KITS = 3;
 
@@ -43,6 +44,66 @@ function modsCount(section: HTMLElement, count: number): string {
   const category = new Intl.PluralRules(lang).select(count);
   const template = forms[category] ?? forms.other ?? '#';
   return template.replace('#', new Intl.NumberFormat(lang).format(count));
+}
+
+function setStepDone(item: HTMLElement, done: boolean): void {
+  item.toggleAttribute('data-done', done);
+  const toggle = item.querySelector<HTMLElement>('[data-step-toggle]');
+  toggle?.setAttribute('aria-pressed', String(done));
+}
+
+/** Progress bar + counter from the `data-done` marks currently on the steps. */
+function paintProgress(checklist: HTMLElement): void {
+  const items = checklist.querySelectorAll<HTMLElement>('[data-step]');
+  const done = checklist.querySelectorAll('[data-step][data-done]').length;
+  const total = items.length || 1;
+  const progress = checklist.querySelector<HTMLElement>('[data-personal-progress]');
+  progress?.setAttribute('aria-valuenow', String(done));
+  progress?.setAttribute('aria-valuemax', String(total));
+  const bar = checklist.querySelector<HTMLElement>('[data-personal-progress-bar]');
+  if (bar) bar.style.width = `${Math.round((done / total) * 100)}%`;
+}
+
+/**
+ * Ticks/unticks a step straight from the landing: optimistic, reverted (with an inline error) when
+ * the PATCH fails. Finishing the list hides the checklist (the badge is awarded server-side).
+ */
+async function toggleStep(checklist: HTMLElement, item: HTMLElement): Promise<void> {
+  const key = item.dataset.step;
+  if (!key) return;
+  const wasDone = item.hasAttribute('data-done');
+  const error = checklist.querySelector<HTMLElement>('[data-personal-step-error]');
+  if (error) error.hidden = true;
+  setStepDone(item, !wasDone);
+  paintProgress(checklist);
+  try {
+    const headers: Record<string, string> = { 'content-type': 'application/json', accept: 'application/json' };
+    try {
+      headers['sotf-time-zone'] = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    } catch {
+      // No time zone support: the server keeps what it has.
+    }
+    const response = await fetch(ONBOARDING_URL, {
+      method: 'PATCH',
+      credentials: 'same-origin',
+      headers,
+      body: JSON.stringify(wasDone ? { markUndone: [key] } : { markDone: [key] }),
+    });
+    if (!response.ok) throw new Error(`onboarding ${response.status}`);
+    const next = (await response.json()) as NonNullable<MeHome['onboarding']>;
+    for (const row of checklist.querySelectorAll<HTMLElement>('[data-step]')) {
+      setStepDone(
+        row,
+        next.steps.some((step) => step.key === row.dataset.step && step.done),
+      );
+    }
+    paintProgress(checklist);
+    if (next.completed || next.dismissed) checklist.hidden = true;
+  } catch {
+    setStepDone(item, wasDone);
+    paintProgress(checklist);
+    if (error) error.hidden = false;
+  }
 }
 
 function render(section: HTMLElement, home: MeHome): void {
@@ -82,14 +143,9 @@ function render(section: HTMLElement, home: MeHome): void {
     if (onboarding) {
       const done = new Set(onboarding.steps.filter((step) => step.done).map((step) => step.key));
       for (const item of checklist.querySelectorAll<HTMLElement>('[data-step]')) {
-        item.toggleAttribute('data-done', done.has(item.dataset.step as (typeof onboarding.steps)[number]['key']));
+        setStepDone(item, done.has(item.dataset.step as (typeof onboarding.steps)[number]['key']));
       }
-      const total = onboarding.steps.length || 1;
-      const progress = checklist.querySelector<HTMLElement>('[data-personal-progress]');
-      progress?.setAttribute('aria-valuenow', String(done.size));
-      progress?.setAttribute('aria-valuemax', String(total));
-      const bar = checklist.querySelector<HTMLElement>('[data-personal-progress-bar]');
-      if (bar) bar.style.width = `${Math.round((done.size / total) * 100)}%`;
+      paintProgress(checklist);
     }
   }
 
@@ -147,6 +203,12 @@ export function initPersonal(doc: Document = document): void {
 
   section.querySelector('[data-personal-retry]')?.addEventListener('click', () => {
     void load();
+  });
+  const checklist = section.querySelector<HTMLElement>('[data-personal-checklist]');
+  checklist?.addEventListener('click', (event) => {
+    const toggle = (event.target as Element | null)?.closest('[data-step-toggle]');
+    const item = toggle?.closest<HTMLElement>('[data-step]');
+    if (checklist && item) void toggleStep(checklist, item);
   });
   section.hidden = false;
   void load();

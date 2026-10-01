@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Fasse deine Mods zu einem Loadout zusammen, das du mit einem Code teilen kannst.",
   "me_onboarding_kit_action": "Kit erstellen",
   "me_onboarding_completed": "Du hast den ersten Tag überlebt – Abzeichen freigeschaltet",
-  "me_onboarding_failed": "Die Checkliste konnte nicht aktualisiert werden"
+  "me_onboarding_failed": "Die Checkliste konnte nicht aktualisiert werden",
+  "me_onboarding_mark_done": "„{step}“ als erledigt markieren"
 }

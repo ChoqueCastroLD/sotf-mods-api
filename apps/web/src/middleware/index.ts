@@ -19,6 +19,7 @@ import { finalizePublicResponse } from '../lib/cache/response.ts';
 import { configureDomainMessages } from '../lib/domain-i18n.ts';
 import { configureUiMessages } from '../lib/i18n.ts';
 import { requestIdOf } from '../lib/server/request-id.ts';
+import { isTransientUpstreamError, retryAfterSeconds } from '../lib/server/upstream.ts';
 import { legacyRule } from './redirects.ts';
 import { securityMiddleware } from './security.ts';
 
@@ -49,8 +50,21 @@ const siteMiddleware = defineMiddleware(async (context, next) => {
     // `/images/…` never matches a page, so Astro is already rendering 404.astro: flag it as
     // «gone» (different copy) and answer 410.
     if (rule.kind === 'gone') context.locals.errorKind = 'gone';
-    let response = await next();
-    if (rule.kind === 'gone' && response.status === 404) {
+    let response: Response;
+    try {
+      response = await next();
+    } catch (error) {
+      // The API rate limiting or failing is transient: render the error page as 503 + Retry-After.
+      if (!isTransientUpstreamError(error)) throw error;
+      context.locals.upstreamError = error;
+      const page = await context.rewrite('/500');
+      const headers = new Headers(page.headers);
+      headers.set('retry-after', String(retryAfterSeconds(error)));
+      headers.set('cache-control', 'no-store');
+      response = new Response(page.body, { status: 503, headers });
+    }
+    // Tombstoned pages (`respondUnresolved` flags `gone` and rewrites to 404.astro) are 410 as well.
+    if (context.locals.errorKind === 'gone' && response.status === 404) {
       response = new Response(response.body, { status: 410, headers: response.headers });
     }
     return finalizePublicResponse(response, {

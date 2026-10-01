@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Conte se um mod funcionou",
   "landing_personal_step_create_kit": "Monte seu primeiro Kit",
   "landing_personal_kits_title": "Seus Kits recentes",
-  "landing_personal_error": "O sinal caiu ao carregar suas atualizações."
+  "landing_personal_error": "O sinal caiu ao carregar suas atualizações.",
+  "landing_personal_step_mark_done": "Marcar “{step}” como feito",
+  "landing_personal_step_failed": "Não foi possível salvar a etapa. Tente novamente."
 }

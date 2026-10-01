@@ -39,7 +39,8 @@ export type BackfillId =
   | 'B11'
   | 'B12'
   | 'B13'
-  | 'B14';
+  | 'B14'
+  | 'B19';
 
 export interface BackfillContext {
   client: pg.Client;

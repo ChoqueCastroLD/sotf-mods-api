@@ -40,8 +40,23 @@ describe('entryDecision (server entry, before routing)', () => {
 
   it('does not treat look-alike prefixes as locales', () => {
     expect(entryDecision(url('/esx/mods'))).toEqual({ locale: 'en', path: '/esx/mods' });
-    expect(entryDecision(url('/ES/mods'))).toEqual({ locale: 'en', path: '/ES/mods' });
-    expect(entryDecision(url('/pt-BR/mods'))).toEqual({ locale: 'en', path: '/pt-BR/mods' });
+    expect(entryDecision(url('/xx/mods'))).toEqual({ locale: 'en', path: '/xx/mods' });
+    expect(entryDecision(url('/Mods'))).toEqual({ locale: 'en', path: '/Mods' });
+  });
+
+  it('redirects capitalised and regional locale prefixes to the canonical one', () => {
+    expect(entryDecision(url('/ES/mods?page=2')).redirect).toEqual({ status: 301, location: '/es/mods?page=2' });
+    expect(entryDecision(url('/pt-BR/mods')).redirect?.location).toBe('/pt/mods');
+    expect(entryDecision(url('/es-ES')).redirect?.location).toBe('/es');
+    expect(entryDecision(url('/zh_CN/best/mods')).redirect?.location).toBe('/zh/best/mods');
+    expect(entryDecision(url('/EN/mods')).redirect?.location).toBe('/mods');
+    expect(entryDecision(url('/en-US')).redirect?.location).toBe('/');
+  });
+
+  it('answers 400 to URLs with a NUL byte instead of reaching the database', () => {
+    expect(entryDecision(url('/mods/a%00b/c')).reject).toEqual({ status: 400 });
+    expect(entryDecision(url('/search?q=a%00b')).reject).toEqual({ status: 400 });
+    expect(entryDecision(url('/search?q=a%2500b')).reject).toBeUndefined();
   });
 
   it('redirects the explicit /en prefix to the unprefixed URL', () => {

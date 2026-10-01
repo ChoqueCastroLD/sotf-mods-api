@@ -205,6 +205,16 @@ describe('resolver rules', () => {
     const res = await t.app.inject({ method: 'GET', url: '/api/v2/resolve?path=https://evil.test/x' });
     expect(res.statusCode).toBe(422);
   });
+
+  it('never fails on NUL bytes: the request hook rejects them, the resolver answers 404', async () => {
+    const raw = await t.app.inject({ method: 'GET', url: '/api/v2/resolve?path=/mods/a%00b/c' });
+    expect(raw.statusCode).toBe(422);
+    expect((await t.app.inject({ method: 'GET', url: '/api/v2/mods?search=a%00b' })).statusCode).toBe(422);
+    // `%00` inside the value of `path` (double-encoded in the URL) reaches the resolver.
+    for (const path of ['/mods/a%00b/c', '/profile/a%00b', '/builds/a/b%00', '/kits/a%00/b']) {
+      expect((await resolve(t, path)).body).toMatchObject({ status: 404, id: null });
+    }
+  });
 });
 
 describe('on the development seed', () => {

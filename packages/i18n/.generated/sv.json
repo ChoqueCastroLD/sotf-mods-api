@@ -5055,9 +5055,11 @@
   "landing_personal_step_compat_report": "Rapportera om en modd fungerade",
   "landing_personal_step_create_kit": "Sätt ihop ditt första kit",
   "landing_personal_step_done": "Klart",
+  "landing_personal_step_failed": "Det gick inte att spara steget. Försök igen.",
   "landing_personal_step_first_download": "Ladda ned din första modd",
   "landing_personal_step_follow_mod": "Följ en modd",
   "landing_personal_step_install_redloader": "Installera RedLoader",
+  "landing_personal_step_mark_done": "Markera ”{step}” som klart",
   "landing_personal_title": "Dina uppdateringar",
   "landing_picks_cta": "Bläddra bland alla {count} moddar",
   "landing_picks_cta_hint": "Filtrera på kategori, kompatibilitet, spelversion och mer",
@@ -5389,6 +5391,7 @@
   "me_onboarding_kit_action": "Skapa ett kit",
   "me_onboarding_kit_hint": "Samla dina moddar i en loadout som du delar med en enda kod.",
   "me_onboarding_kit_title": "Packa ett kit",
+  "me_onboarding_mark_done": "Markera ”{step}” som klart",
   "me_onboarding_progress": [
     {
       "declarations": [

@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "MODが動いたか報告",
   "landing_personal_step_create_kit": "最初のキットを作る",
   "landing_personal_kits_title": "最近のキット",
-  "landing_personal_error": "アップデートの読み込み中に信号が途切れました。"
+  "landing_personal_error": "アップデートの読み込み中に信号が途切れました。",
+  "landing_personal_step_mark_done": "「{step}」を完了にする",
+  "landing_personal_step_failed": "ステップを保存できませんでした。もう一度お試しください。"
 }

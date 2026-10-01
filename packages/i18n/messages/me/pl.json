@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Zbierz mody w zestaw, który udostępnisz jednym kodem.",
   "me_onboarding_kit_action": "Utwórz zestaw",
   "me_onboarding_completed": "Przetrwałeś pierwszy dzień — odznaka odblokowana",
-  "me_onboarding_failed": "Nie udało się zaktualizować listy"
+  "me_onboarding_failed": "Nie udało się zaktualizować listy",
+  "me_onboarding_mark_done": "Oznacz „{step}” jako zrobione"
 }

@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Modlarını tek bir kodla paylaşabileceğin bir kitte topla.",
   "me_onboarding_kit_action": "Kit oluştur",
   "me_onboarding_completed": "İlk günü atlattın — rozet açıldı",
-  "me_onboarding_failed": "Liste güncellenemedi"
+  "me_onboarding_failed": "Liste güncellenemedi",
+  "me_onboarding_mark_done": "“{step}” adımını tamamlandı olarak işaretle"
 }

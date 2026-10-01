@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Raggruppa le tue mod in un loadout da condividere con un solo codice.",
   "me_onboarding_kit_action": "Crea un kit",
   "me_onboarding_completed": "Sei sopravvissuto al primo giorno: distintivo sbloccato",
-  "me_onboarding_failed": "Impossibile aggiornare la lista"
+  "me_onboarding_failed": "Impossibile aggiornare la lista",
+  "me_onboarding_mark_done": "Segna «{step}» come fatto"
 }

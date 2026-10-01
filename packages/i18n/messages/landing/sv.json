@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Rapportera om en modd fungerade",
   "landing_personal_step_create_kit": "Sätt ihop ditt första kit",
   "landing_personal_kits_title": "Dina senaste kit",
-  "landing_personal_error": "Signalen försvann när dina uppdateringar laddades."
+  "landing_personal_error": "Signalen försvann när dina uppdateringar laddades.",
+  "landing_personal_step_mark_done": "Markera ”{step}” som klart",
+  "landing_personal_step_failed": "Det gick inte att spara steget. Försök igen."
 }

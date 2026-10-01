@@ -102,5 +102,6 @@
   "me_onboarding_kit_hint": "Group your mods into a loadout you can share with one code.",
   "me_onboarding_kit_action": "Create a kit",
   "me_onboarding_completed": "You survived day one — badge unlocked",
-  "me_onboarding_failed": "Couldn’t update the checklist"
+  "me_onboarding_failed": "Couldn’t update the checklist",
+  "me_onboarding_mark_done": "Mark “{step}” as done"
 }

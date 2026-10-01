@@ -4596,9 +4596,11 @@
   "landing_personal_step_compat_report": "报告模组是否可用",
   "landing_personal_step_create_kit": "组建你的第一个套装",
   "landing_personal_step_done": "已完成",
+  "landing_personal_step_failed": "无法保存该步骤，请重试。",
   "landing_personal_step_first_download": "下载你的第一个模组",
   "landing_personal_step_follow_mod": "关注一个模组",
   "landing_personal_step_install_redloader": "安装 RedLoader",
+  "landing_personal_step_mark_done": "将“{step}”标记为已完成",
   "landing_personal_title": "你的更新",
   "landing_picks_cta": "浏览全部 {count} 个模组",
   "landing_picks_cta_hint": "按分类、兼容性、游戏版本等筛选",
@@ -4910,6 +4912,7 @@
   "me_onboarding_kit_action": "创建套装",
   "me_onboarding_kit_hint": "把你的模组组合成一个套装，用一个代码即可分享。",
   "me_onboarding_kit_title": "打包一个套装",
+  "me_onboarding_mark_done": "将“{step}”标记为已完成",
   "me_onboarding_progress": [
     {
       "declarations": [

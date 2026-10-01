@@ -36,6 +36,17 @@ export async function handle(request: Request): Promise<Response> {
     if (archived) return archived;
   }
   const decision = entryDecision(url, request.method);
+  if (decision.reject) {
+    return finalizeResponse(
+      new Response('Bad request', {
+        status: decision.reject.status,
+        headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store' },
+      }),
+      env.siteEnv,
+      url.pathname,
+      { cspMode: env.cspMode },
+    );
+  }
   if (decision.redirect) {
     return finalizeResponse(
       redirectResponse(decision.redirect.status, decision.redirect.location),

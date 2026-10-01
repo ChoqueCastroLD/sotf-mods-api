@@ -90,5 +90,7 @@
   "landing_personal_step_compat_report": "Meld of een mod werkte",
   "landing_personal_step_create_kit": "Stel je eerste Kit samen",
   "landing_personal_kits_title": "Je recente Kits",
-  "landing_personal_error": "Signaal kwijt bij het laden van je updates."
+  "landing_personal_error": "Signaal kwijt bij het laden van je updates.",
+  "landing_personal_step_mark_done": "„{step}” als gedaan markeren",
+  "landing_personal_step_failed": "Die stap kon niet worden opgeslagen. Probeer het opnieuw."
 }

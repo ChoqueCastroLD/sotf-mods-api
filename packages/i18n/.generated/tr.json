@@ -5055,9 +5055,11 @@
   "landing_personal_step_compat_report": "Bir modun çalışıp çalışmadığını bildir",
   "landing_personal_step_create_kit": "İlk kitini oluştur",
   "landing_personal_step_done": "Tamamlandı",
+  "landing_personal_step_failed": "Adım kaydedilemedi. Tekrar dene.",
   "landing_personal_step_first_download": "İlk modunu indir",
   "landing_personal_step_follow_mod": "Bir modu takip et",
   "landing_personal_step_install_redloader": "RedLoader’ı kur",
+  "landing_personal_step_mark_done": "“{step}” adımını tamamlandı olarak işaretle",
   "landing_personal_title": "Güncellemelerin",
   "landing_picks_cta": "{count} modun tümüne göz at",
   "landing_picks_cta_hint": "Kategori, uyumluluk, oyun sürümü ve daha fazlasına göre filtrele",
@@ -5389,6 +5391,7 @@
   "me_onboarding_kit_action": "Kit oluştur",
   "me_onboarding_kit_hint": "Modlarını tek bir kodla paylaşabileceğin bir kitte topla.",
   "me_onboarding_kit_title": "Bir kit hazırla",
+  "me_onboarding_mark_done": "“{step}” adımını tamamlandı olarak işaretle",
   "me_onboarding_progress": [
     {
       "declarations": [
