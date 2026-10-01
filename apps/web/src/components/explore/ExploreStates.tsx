@@ -3,10 +3,10 @@
  * each so their icons and actions render inside the primitive (server-rendered, not hydrated).
  */
 import { buttonClasses } from '@sotf/ui/button';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { ErrorState } from '@sotf/ui/error-state';
 import { Icon } from '@sotf/ui/icons';
-import { Compass, WifiOff, X } from 'lucide-react';
+import { WifiOff, X } from 'lucide-react';
+import { DiscoveryEmpty } from './DiscoveryEmpty.tsx';
 
 export interface RemovableFilter {
   key: string;
@@ -36,13 +36,7 @@ export function ListingEmpty({
   headingLevel = 3,
 }: ListingEmptyProps) {
   return (
-    <div className="flex flex-col items-center gap-4">
-      <EmptyState
-        icon={<Icon icon={Compass} size={32} />}
-        title={title}
-        description={text}
-        headingLevel={headingLevel}
-      />
+    <DiscoveryEmpty title={title} text={text} headingLevel={headingLevel}>
       {filters.length > 0 ? (
         <div className="flex flex-col items-center gap-3">
           {tryRemovingLabel ? <p className="text-sm text-fg-muted">{tryRemovingLabel}</p> : null}
@@ -52,7 +46,7 @@ export function ListingEmpty({
                 <a
                   href={filter.removeHref}
                   rel="nofollow"
-                  className="inline-flex h-8 items-center gap-1.5 rounded-full border border-border-strong px-3 text-sm text-fg hover:bg-fg/6"
+                  className="inline-flex h-10 items-center gap-1.5 rounded-full border border-border-strong px-3.5 text-sm text-fg hover:bg-fg/6 active:bg-fg/8"
                 >
                   <Icon icon={X} size={14} />
                   {removeLabel ? removeLabel(filter.label) : filter.label}
@@ -66,12 +60,12 @@ export function ListingEmpty({
         <a
           href={action.href}
           rel={action.nofollow ? 'nofollow' : undefined}
-          className={buttonClasses({ variant: filters.length > 0 ? 'primary' : 'secondary', size: 'md' })}
+          className={`${buttonClasses({ variant: filters.length > 0 ? 'primary' : 'secondary', size: 'md' })} max-sm:h-12 max-sm:w-full`}
         >
           {action.label}
         </a>
       ) : null}
-    </div>
+    </DiscoveryEmpty>
   );
 }
 

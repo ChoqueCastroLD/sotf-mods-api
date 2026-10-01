@@ -7,6 +7,7 @@ import { EmptyState } from '@sotf/ui/empty-state';
 import { ErrorState } from '@sotf/ui/error-state';
 import { Icon } from '@sotf/ui/icons';
 import { Layers } from 'lucide-react';
+import { DiscoveryEmpty } from '../explore/DiscoveryEmpty.tsx';
 
 export interface KitsEmptyProps {
   title: string;
@@ -14,9 +15,35 @@ export interface KitsEmptyProps {
   action?: { label: string; href: string; nofollow?: boolean } | null;
   secondary?: { label: string; href: string } | null;
   headingLevel?: 2 | 3;
+  /** Discovery pages (kits, requests): the forest-clearing art instead of the line icon. */
+  art?: boolean;
 }
 
-export function KitsEmpty({ title, text, action, secondary, headingLevel = 2 }: KitsEmptyProps) {
+export function KitsEmpty({ title, text, action, secondary, headingLevel = 2, art = false }: KitsEmptyProps) {
+  if (art) {
+    return (
+      <DiscoveryEmpty title={title} text={text} headingLevel={headingLevel}>
+        {action || secondary ? (
+          <div className="flex w-full flex-col justify-center gap-2 sm:w-auto sm:flex-row">
+            {action ? (
+              <a
+                href={action.href}
+                rel={action.nofollow ? 'nofollow' : undefined}
+                className={`${buttonClasses({ variant: 'primary' })} max-sm:h-12`}
+              >
+                {action.label}
+              </a>
+            ) : null}
+            {secondary ? (
+              <a href={secondary.href} className={`${buttonClasses({ variant: 'secondary' })} max-sm:h-12`}>
+                {secondary.label}
+              </a>
+            ) : null}
+          </div>
+        ) : null}
+      </DiscoveryEmpty>
+    );
+  }
   return (
     <EmptyState
       icon={<Icon icon={Layers} size={32} />}

@@ -13,6 +13,8 @@ import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { Pagination } from '@sotf/ui/pagination';
 import { Plus } from 'lucide-react';
+import '../../components/explore/discovery.css';
+import Fab from '../../components/explore/Fab.astro';
 import { KitsEmpty, KitsError } from '../../components/kits/KitStates.tsx';
 import { configureModDomainI18n } from '../../components/mod/i18n.ts';
 import { isFiltered, loadRequestList, requestListHref, requestListQuery } from '../../components/requests/data.ts';
@@ -59,34 +61,36 @@ const sorts = [
   seo={{ title, description, path: seoPath, noindex: filtered }}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_term_requests() }]}
 >
-  <div class="flex flex-col gap-6">
-    <header class="flex flex-col gap-3">
+  <div class="flex flex-col gap-4 md:gap-6">
+    <header class="flex flex-col gap-2 md:gap-3">
       <p class="readout text-signal">{m.requests_list_readout()}</p>
       <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
         <div class="flex flex-col gap-2">
           <h1 class="font-display-caps text-display-sm text-fg">{heading}</h1>
-          <p class="max-w-(--container-prose) text-base text-fg-muted">{description}</p>
+          <p class="line-clamp-2 max-w-(--container-prose) text-sm text-fg-muted md:line-clamp-none md:text-base">{description}</p>
         </div>
-        <a href={href('/requests/new', locale)} class={buttonClasses({ variant: 'primary' })} rel="nofollow">
+        <a href={href('/requests/new', locale)} class={`${buttonClasses({ variant: 'primary' })} max-md:hidden`} rel="nofollow">
           <Icon icon={Plus} size={18} />
           {m.requests_action_new()}
         </a>
       </div>
     </header>
 
-    <div class="flex flex-wrap items-center justify-between gap-3 border-y border-border py-3">
-      <nav aria-label={m.requests_filter_status_label()}>
-        <ul class="flex flex-wrap gap-1">
+    <div class="discovery-bar" data-discovery-bar>
+      <nav aria-label={m.requests_filter_status_label()} class="contents">
+        <ul class="contents">
           {
             REQUEST_LIST_STATUSES.map((status) => (
-              <li>
+              <li class="shrink-0">
                 <a
                   href={requestListHref(state, { status }, locale)}
                   rel="nofollow"
                   aria-current={state.status === status ? 'true' : undefined}
                   class:list={[
-                    'inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold md:min-h-9',
-                    state.status === status ? 'bg-fg/8 text-fg' : 'text-fg-muted hover:text-fg',
+                    'inline-flex h-11 items-center rounded-full border px-4 text-sm font-semibold whitespace-nowrap md:h-9',
+                    state.status === status
+                      ? 'border-primary bg-primary/12 text-fg'
+                      : 'border-border-strong text-fg-muted hover:text-fg',
                   ]}
                 >
                   {statusLabel(status)}
@@ -96,8 +100,11 @@ const sorts = [
           }
         </ul>
       </nav>
-      <nav aria-label={m.requests_sort_label()}>
-        <ul class="flex flex-wrap gap-1">
+    </div>
+    <div class="flex items-center justify-between gap-3">
+      <p class="font-mono text-sm text-fg-muted tabular-nums">{total !== null ? m.requests_list_count({ count: total }) : ''}</p>
+      <nav aria-label={m.requests_sort_label()} class="shrink-0">
+        <ul class="flex gap-1 rounded-full border border-border-strong p-0.5">
           {
             sorts.map((sort) => (
               <li>
@@ -106,8 +113,8 @@ const sorts = [
                   rel="nofollow"
                   aria-current={state.sort === sort.key ? 'true' : undefined}
                   class:list={[
-                    'inline-flex min-h-11 items-center rounded-md px-3 text-sm font-semibold md:min-h-9',
-                    state.sort === sort.key ? 'bg-fg/8 text-fg' : 'text-fg-muted hover:text-fg',
+                    'inline-flex h-9 items-center rounded-full px-3.5 text-sm font-semibold whitespace-nowrap',
+                    state.sort === sort.key ? 'bg-raised text-fg' : 'text-fg-muted hover:text-fg',
                   ]}
                 >
                   {sort.label}
@@ -117,13 +124,6 @@ const sorts = [
           }
         </ul>
       </nav>
-      {
-        total !== null && (
-          <p class="w-full font-mono text-sm text-fg-muted tabular-nums sm:w-auto">
-            {m.requests_list_count({ count: total })}
-          </p>
-        )
-      }
     </div>
 
     <section aria-label={heading}>
@@ -137,6 +137,7 @@ const sorts = [
           />
         ) : pastEnd ? (
           <KitsEmpty
+              art
             title={m.requests_past_end_title()}
             text={m.requests_past_end_text()}
             action={{ label: m.requests_back_to_first(), href: pageHref(1) }}
@@ -144,12 +145,14 @@ const sorts = [
         ) : items.length === 0 ? (
           filtered ? (
             <KitsEmpty
+              art
               title={m.requests_empty_filtered_title()}
               text={m.requests_empty_filtered_text()}
               action={{ label: m.requests_clear_filters(), href: href('/requests', locale), nofollow: true }}
             />
           ) : (
             <KitsEmpty
+              art
               title={m.requests_empty_title()}
               text={m.requests_empty_text()}
               action={{ label: m.requests_action_new(), href: href('/requests/new', locale), nofollow: true }}
@@ -178,4 +181,5 @@ const sorts = [
       )
     }
   </div>
+  {items.length > 0 && <Fab href={href('/requests/new', locale)} label={m.requests_action_new()} />}
 </PageLayout>

@@ -13,6 +13,7 @@ import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { Pagination } from '@sotf/ui/pagination';
 import { ArrowRight, Users } from 'lucide-react';
+import '../../components/explore/discovery.css';
 import { CreatorGrid } from '../../components/profile/Domain.tsx';
 import {
   CREATOR_DIRECTORY_SORTS,
@@ -98,10 +99,10 @@ const jsonLd = result
   jsonLd={jsonLd}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_nav_creators() }]}
 >
-  <div class="grid gap-8" data-creators-page>
-    <header class="grid gap-3">
-      <h1 class="font-display-caps text-display-md text-fg">{m.profile_creators_title()}</h1>
-      <p class="max-w-(--container-prose) text-lg text-pretty text-fg-muted">{m.profile_creators_intro()}</p>
+  <div class="grid grid-cols-1 gap-4 md:gap-8" data-creators-page>
+    <header class="grid gap-2 md:gap-3">
+      <h1 class="font-display-caps text-display-sm text-fg md:text-display-md">{m.profile_creators_title()}</h1>
+      <p class="line-clamp-2 max-w-(--container-prose) text-sm text-pretty text-fg-muted md:line-clamp-none md:text-lg">{m.profile_creators_intro()}</p>
       {
         result && result.total > 0 && (
           <p class="readout text-fg-muted">{m.profile_creators_count({ count: result.total, display: formatNumber(locale, result.total) })}</p>
@@ -109,22 +110,24 @@ const jsonLd = result
       }
     </header>
 
-    <div class="flex flex-wrap items-center justify-between gap-3">
-      <nav aria-label={m.profile_sort_label()} class="flex flex-wrap items-center gap-1 text-sm">
-        <span class="me-1 text-fg-muted">{m.profile_sort_label()}</span>
-        {
-          CREATOR_DIRECTORY_SORTS.map((option) => (
-            <a
-              href={href(listPath({ sort: option }), locale)}
-              aria-current={sort === option ? 'page' : undefined}
-              class="inline-flex min-h-11 items-center rounded-md px-2.5 text-fg-muted hover:bg-fg/6 hover:text-fg aria-[current=page]:bg-fg/8 aria-[current=page]:font-semibold aria-[current=page]:text-fg md:min-h-8"
-            >
-              {SORT_LABEL[option]()}
-            </a>
-          ))
-        }
+    <div class="flex items-center gap-2 md:justify-between md:gap-3">
+      <nav aria-label={m.profile_sort_label()} class="min-w-0 flex-1">
+        <div class="discovery-bar md:!border-0 md:!p-0">
+          <span class="me-1 shrink-0 text-sm text-fg-muted max-md:sr-only">{m.profile_sort_label()}</span>
+          {
+            CREATOR_DIRECTORY_SORTS.map((option) => (
+              <a
+                href={href(listPath({ sort: option }), locale)}
+                aria-current={sort === option ? 'page' : undefined}
+                class="inline-flex h-11 shrink-0 items-center rounded-full border border-border-strong px-4 text-sm font-medium whitespace-nowrap text-fg-muted hover:text-fg aria-[current=page]:border-primary aria-[current=page]:bg-primary/12 aria-[current=page]:font-semibold aria-[current=page]:text-fg md:h-8 md:rounded-md md:border-0 md:px-2.5 md:aria-[current=page]:bg-fg/8"
+              >
+                {SORT_LABEL[option]()}
+              </a>
+            ))
+          }
+        </div>
       </nav>
-      <a href={href('/achievements', locale)} class="inline-flex min-h-11 items-center gap-1.5 text-sm font-semibold text-link md:min-h-8">
+      <a href={href('/achievements', locale)} class="hidden min-h-8 shrink-0 items-center gap-1.5 text-sm font-semibold text-link md:inline-flex">
         {m.profile_creators_tiers_link()}
         <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
       </a>
@@ -164,6 +167,11 @@ const jsonLd = result
         <TabState kind="error" title={m.profile_creators_error_title()} description={m.profile_tab_error_description()} />
       )
     }
+
+    <a href={href('/achievements', locale)} class="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-xl border border-border bg-surface px-4 text-sm font-semibold text-link md:hidden">
+      {m.profile_creators_tiers_link()}
+      <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+    </a>
 
     <ProfileToast />
   </div>
