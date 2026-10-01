@@ -15,6 +15,7 @@
       "!**/*.gen.ts",
       "!**/.generated",
       "!**/routeTree.gen.ts",
+      "!apps/web/public/manifest.webmanifest",
       "!docs/plan",
       "!pnpm-lock.yaml",
       "!tooling/scripts/ownership.json"
