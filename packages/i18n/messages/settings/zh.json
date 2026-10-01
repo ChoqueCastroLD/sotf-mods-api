@@ -413,5 +413,8 @@
   "settings_notif_request_fulfilled": "请求已完成",
   "settings_notif_request_fulfilled_hint": "你请求或投票支持的模组已发布。",
   "settings_notif_jam": "Mod Jam",
-  "settings_notif_jam_hint": "你关注或参加的 jam 开放投稿、开放投票或公布结果时。"
+  "settings_notif_jam_hint": "你关注或参加的 jam 开放投稿、开放投票或公布结果时。",
+  "settings_group_account": "你的账号",
+  "settings_group_app": "应用",
+  "settings_group_creator": "创作者与数据"
 }

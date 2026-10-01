@@ -67,5 +67,8 @@
   "console_shortcut_toggle_sidebar": "Collapse or expand the sidebar",
   "console_noscript": "The console needs JavaScript. Turn it on to manage your mods, signals and settings.",
   "console_nav_operations": "Operations",
-  "console_nav_jams": "Mod Jams"
+  "console_nav_jams": "Mod Jams",
+  "console_tab_ranger": "Ranger",
+  "console_pull_refreshing": "Refreshing…",
+  "console_tab_basecamp": "Basecamp"
 }

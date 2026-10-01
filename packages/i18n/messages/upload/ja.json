@@ -466,5 +466,6 @@
   "upload_drafts_deleted": "下書きを削除しました",
   "upload_kind_mod": "MOD",
   "upload_kind_build": "建築",
-  "upload_kind_version": "新しいバージョン"
+  "upload_kind_version": "新しいバージョン",
+  "upload_take_photo": "写真を撮る"
 }

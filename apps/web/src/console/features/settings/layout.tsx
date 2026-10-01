@@ -4,13 +4,13 @@
  * («Save» per card, with a toast). Also the section list shown at `/settings` on phones.
  */
 import { m } from '@sotf/i18n/messages';
+import { Avatar } from '@sotf/ui/avatar';
 import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Link } from '@tanstack/react-router';
 import {
   BellRing,
-  ChevronLeft,
   ChevronRight,
   Database,
   EyeOff,
@@ -23,7 +23,9 @@ import {
   UserRound,
 } from 'lucide-react';
 import type { FormEvent, ReactNode } from 'react';
+import { type IconTone, ListGroup, ListLink } from '../../components/native-list.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
+import { useMe } from '../../hooks/use-me.ts';
 
 export const SETTINGS_SECTIONS = [
   'profile',
@@ -105,16 +107,9 @@ export function SettingsPage({ section, children }: { section: SettingsSection; 
   useDocumentTitle(meta.title());
   return (
     <div className="grid max-w-3xl gap-6">
-      <Link
-        to="/settings"
-        className="-ms-1 inline-flex h-11 items-center gap-1 justify-self-start rounded-md px-1 text-sm font-semibold text-link md:hidden"
-      >
-        <Icon icon={ChevronLeft} size={18} />
-        {m.settings_back()}
-      </Link>
       <header className="grid gap-1">
-        <p className="readout text-signal">{m.settings_readout()}</p>
-        <h1 className="font-display-caps text-display-xs text-fg">{meta.title()}</h1>
+        <p className="readout text-signal max-md:hidden">{m.settings_readout()}</p>
+        <h1 className="font-display-caps text-display-xs text-fg max-md:sr-only">{meta.title()}</h1>
         <p className="max-w-prose text-sm text-fg-muted">{meta.hint()}</p>
       </header>
       {children}
@@ -181,7 +176,14 @@ export function SettingsCard({
   return (
     <form id={id} aria-labelledby={headingId} className={classes} onSubmit={submit} noValidate>
       {body}
-      <div className="flex flex-wrap items-center justify-end gap-2 border-t border-border pt-4">
+      {/* Phones: the Save bar sticks to the bottom while the card is on screen and only shows once something changed. */}
+      <div
+        className={cn(
+          'flex flex-wrap items-center justify-end gap-2 border-t border-border pt-4',
+          'max-md:sticky max-md:bottom-0 max-md:z-10 max-md:-mx-4 max-md:-mb-4 max-md:rounded-b-lg max-md:bg-surface/95 max-md:px-4 max-md:pt-3 max-md:pb-[max(0.75rem,env(safe-area-inset-bottom))] max-md:backdrop-blur',
+          !dirty && !saving && 'max-md:hidden',
+        )}
+      >
         {onReset && dirty ? (
           <Button variant="ghost" onClick={onReset} disabled={saving}>
             {m.settings_discard()}
@@ -195,39 +197,68 @@ export function SettingsCard({
   );
 }
 
-/** The list of sections (`/settings` on phones; also a desktop overview). */
+const SETTINGS_GROUPS: ReadonlyArray<{ title: () => string; sections: readonly SettingsSection[] }> = [
+  { title: () => m.settings_group_account(), sections: ['profile', 'account', 'security', 'tokens'] },
+  { title: () => m.settings_group_app(), sections: ['notifications', 'preferences', 'privacy'] },
+  { title: () => m.settings_group_creator(), sections: ['creator', 'data'] },
+];
+
+/**
+ * The list of sections (`/settings` on phones: the root of the Settings tab; also a desktop
+ * overview): the account card, then grouped lists with a leading icon, the hint and a chevron.
+ */
 export function SettingsIndex() {
   useDocumentTitle(m.settings_index_title());
+  const me = useMe();
+  const { user } = me;
   return (
     <div className="grid max-w-3xl gap-6">
-      <header className="grid gap-1">
+      <header className="grid gap-1 max-md:sr-only">
         <p className="readout text-signal">{m.settings_readout()}</p>
         <h1 className="font-display-caps text-display-xs text-fg">{m.settings_index_title()}</h1>
       </header>
-      <nav aria-label={m.settings_index_title()}>
-        <ul className="grid divide-y divide-border overflow-hidden rounded-lg border border-border bg-surface">
-          {SETTINGS_SECTIONS.map((section) => {
-            const meta = SECTION_META[section];
-            return (
-              <li key={section}>
-                <Link
+      <Link
+        to="/settings/profile"
+        className="flex items-center gap-4 rounded-xl border border-border bg-surface p-4 active:bg-fg/5 md:hidden"
+      >
+        <Avatar name={user.displayName} id={user.id} src={user.avatarUrl} size={64} />
+        <span className="grid min-w-0 flex-1">
+          <span className="truncate font-display-caps text-xl leading-tight text-fg">{user.displayName}</span>
+          <span className="truncate text-sm text-fg-muted">@{user.handle}</span>
+        </span>
+        <Icon icon={ChevronRight} size={18} className="shrink-0 text-fg-subtle rtl:rotate-180" />
+      </Link>
+      <nav aria-label={m.settings_index_title()} className="grid gap-6">
+        {SETTINGS_GROUPS.map((group) => (
+          <ListGroup key={group.sections.join()} title={group.title()}>
+            {group.sections.map((section) => {
+              const meta = SECTION_META[section];
+              return (
+                <ListLink
+                  key={section}
                   to={meta.to}
-                  className="flex min-h-16 items-center gap-3 px-4 py-3 hover:bg-fg/5 focus-visible:bg-fg/5"
-                >
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-fg/8 text-fg-muted">
-                    <Icon icon={meta.icon} size={18} />
-                  </span>
-                  <span className="grid min-w-0 flex-1">
-                    <span className="font-semibold text-fg">{meta.title()}</span>
-                    <span className="truncate text-sm text-fg-muted">{meta.hint()}</span>
-                  </span>
-                  <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+                  icon={meta.icon}
+                  tone={SECTION_TONES[section]}
+                  title={meta.title()}
+                  hint={meta.hint()}
+                />
+              );
+            })}
+          </ListGroup>
+        ))}
       </nav>
     </div>
   );
 }
+
+const SECTION_TONES: Readonly<Record<SettingsSection, IconTone>> = {
+  profile: 'primary',
+  account: 'signal',
+  security: 'success',
+  tokens: 'featured',
+  notifications: 'warning',
+  preferences: 'signal',
+  privacy: 'neutral',
+  creator: 'primary',
+  data: 'neutral',
+};

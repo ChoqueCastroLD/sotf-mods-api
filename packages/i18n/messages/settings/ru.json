@@ -413,5 +413,8 @@
   "settings_notif_request_fulfilled": "Запрос выполнен",
   "settings_notif_request_fulfilled_hint": "Опубликован мод, который вы запрашивали или за который голосовали.",
   "settings_notif_jam": "Mod Jam",
-  "settings_notif_jam_hint": "Джем, за которым вы следите или в котором участвуете, открывает приём работ, голосование или публикует результаты."
+  "settings_notif_jam_hint": "Джем, за которым вы следите или в котором участвуете, открывает приём работ, голосование или публикует результаты.",
+  "settings_group_account": "Ваш аккаунт",
+  "settings_group_app": "Приложение",
+  "settings_group_creator": "Автор и данные"
 }

@@ -67,5 +67,8 @@
   "console_shortcut_toggle_sidebar": "Zwiń lub rozwiń pasek boczny",
   "console_noscript": "Konsola wymaga JavaScriptu. Włącz go, aby zarządzać modami, sygnałami i ustawieniami.",
   "console_nav_operations": "Operacje",
-  "console_nav_jams": "Mod Jamy"
+  "console_nav_jams": "Mod Jamy",
+  "console_tab_ranger": "Strażnicy",
+  "console_pull_refreshing": "Odświeżanie…",
+  "console_tab_basecamp": "Obóz"
 }

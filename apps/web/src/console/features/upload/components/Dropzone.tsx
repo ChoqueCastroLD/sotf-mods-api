@@ -4,7 +4,7 @@
  */
 import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
-import { Upload } from 'lucide-react';
+import { Camera, Upload } from 'lucide-react';
 import { type DragEvent, type ReactNode, useId, useRef, useState } from 'react';
 
 export interface DropzoneProps {
@@ -19,6 +19,8 @@ export interface DropzoneProps {
   onFiles: (files: File[]) => void;
   className?: string;
   compact?: boolean;
+  /** Adds «Take a photo» (touch screens only): opens the camera through `capture`. */
+  cameraLabel?: string;
 }
 
 export function Dropzone({
@@ -32,8 +34,10 @@ export function Dropzone({
   onFiles,
   className,
   compact = false,
+  cameraLabel,
 }: DropzoneProps) {
   const input = useRef<HTMLInputElement>(null);
+  const camera = useRef<HTMLInputElement>(null);
   const [over, setOver] = useState(false);
   const hintId = useId();
 
@@ -62,14 +66,15 @@ export function Dropzone({
         'flex flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-border-strong bg-sunken text-center outline-none',
         'transition-[border-color,background-color] duration-(--dur-fast) motion-reduce:transition-none',
         'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-        compact ? 'p-4' : 'p-8 sm:p-10',
+        compact ? 'p-4' : 'p-8 sm:p-10 pointer-coarse:px-5 pointer-coarse:py-7',
         over && 'border-primary bg-primary-soft',
         disabled && 'opacity-55',
         className,
       )}
     >
       <Icon icon={Upload} size={compact ? 20 : 28} className="text-fg-muted" />
-      <p className="text-sm font-medium text-fg">{title}</p>
+      {/* Dragging a file onto a touch screen is not a thing: the title gives way to the button. */}
+      <p className={cn('text-sm font-medium text-fg', !compact && 'pointer-coarse:sr-only')}>{title}</p>
       {hint ? (
         <p id={hintId} className="text-xs text-fg-muted">
           {hint}
@@ -90,15 +95,45 @@ export function Dropzone({
           if (files.length > 0) onFiles(files);
         }}
       />
-      <button
-        type="button"
-        disabled={disabled}
-        aria-describedby={hint ? hintId : undefined}
-        onClick={() => input.current?.click()}
-        className="inline-flex h-10 items-center justify-center rounded-md border border-border-strong bg-raised px-4 text-sm font-medium text-fg hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed"
-      >
-        {buttonLabel}
-      </button>
+      {cameraLabel ? (
+        <input
+          ref={camera}
+          type="file"
+          accept="image/*"
+          capture="environment"
+          disabled={disabled}
+          className="sr-only"
+          tabIndex={-1}
+          aria-hidden="true"
+          onChange={(event) => {
+            const files = [...(event.currentTarget.files ?? [])];
+            event.currentTarget.value = '';
+            if (files.length > 0) onFiles(files);
+          }}
+        />
+      ) : null}
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <button
+          type="button"
+          disabled={disabled}
+          aria-describedby={hint ? hintId : undefined}
+          onClick={() => input.current?.click()}
+          className="inline-flex h-10 items-center justify-center rounded-md border border-border-strong bg-raised px-4 text-sm font-medium text-fg hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed pointer-coarse:h-12 pointer-coarse:px-5 pointer-coarse:text-base"
+        >
+          {buttonLabel}
+        </button>
+        {cameraLabel ? (
+          <button
+            type="button"
+            disabled={disabled}
+            onClick={() => camera.current?.click()}
+            className="hidden h-12 items-center justify-center gap-2 rounded-md border border-border-strong bg-raised px-5 text-base font-medium text-fg active:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed pointer-coarse:inline-flex"
+          >
+            <Icon icon={Camera} size={18} />
+            {cameraLabel}
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }

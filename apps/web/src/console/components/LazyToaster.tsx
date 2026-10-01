@@ -27,7 +27,8 @@ export function LazyToaster() {
   if (!mounted) return null;
   return (
     <Suspense fallback={null}>
-      <Toaster />
+      {/* Phones: clear the bottom tabs and sticky action bars. */}
+      <Toaster mobileOffset="calc(5.25rem + env(safe-area-inset-bottom))" />
     </Suspense>
   );
 }

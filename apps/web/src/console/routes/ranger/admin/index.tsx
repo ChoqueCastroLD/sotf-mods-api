@@ -1,8 +1,17 @@
-/** `/ranger/admin` has no overview of its own: it opens the first admin screen. */
+/**
+ * `/ranger/admin`: on phones the list of admin screens (the root of the «Admin» pill); on larger
+ * screens the sidebar already lists them, so the route opens the first one.
+ */
 import { createFileRoute, redirect } from '@tanstack/react-router';
+import { AdminIndex } from '../../../features/admin/AdminIndex.tsx';
+import { t } from '../../../lib/messages.ts';
 
 export const Route = createFileRoute('/ranger/admin/')({
+  staticData: { title: () => t('console_area_admin') },
   beforeLoad: () => {
-    throw redirect({ to: '/ranger/admin/game-builds', replace: true });
+    if (!window.matchMedia('(max-width: 47.99rem)').matches) {
+      throw redirect({ to: '/ranger/admin/game-builds', replace: true });
+    }
   },
+  component: AdminIndex,
 });

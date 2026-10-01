@@ -252,7 +252,9 @@ export function ScreenHeader({
   title,
   description,
   actions,
+  keepReadout = false,
 }: {
+  keepReadout?: boolean;
   readout: string;
   title: string;
   description?: string;
@@ -261,9 +263,9 @@ export function ScreenHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid gap-1">
-        <p className="readout text-signal">{readout}</p>
+        <p className={cn('readout text-signal', !keepReadout && 'max-md:hidden')}>{readout}</p>
         <h1 className="font-display-caps text-display-xs text-fg">{title}</h1>
-        {description ? <p className="max-w-prose text-sm text-fg-muted">{description}</p> : null}
+        {description ? <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p> : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
     </header>

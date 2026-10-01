@@ -67,5 +67,8 @@
   "console_shortcut_toggle_sidebar": "Seitenleiste ein- oder ausklappen",
   "console_noscript": "Die Konsole braucht JavaScript. Aktiviere es, um deine Mods, Signale und Einstellungen zu verwalten.",
   "console_nav_operations": "Betrieb",
-  "console_nav_jams": "Mod-Jams"
+  "console_nav_jams": "Mod-Jams",
+  "console_tab_ranger": "Ranger",
+  "console_pull_refreshing": "Wird aktualisiert …",
+  "console_tab_basecamp": "Lager"
 }

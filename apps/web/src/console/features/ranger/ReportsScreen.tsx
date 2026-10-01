@@ -16,6 +16,7 @@ import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { Check, ExternalLink, EyeOff, Flag, Gavel, X } from 'lucide-react';
 import { useState } from 'react';
+import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { notify } from '../../lib/notify.ts';
 import { REPORT_STATUSES, type Report, type ReportFilter, rangerApi, refreshModeration, reportsQuery } from './api.ts';
 import { reportReasonLabel, reportStatusLabel, reportTargetLabel } from './labels.ts';
@@ -137,114 +138,142 @@ function ReportCard({
   const open = report.status === 'open';
   const severe = report.reason === 'malware' || report.reason === 'illegal';
   return (
-    <li className="grid gap-3 rounded-lg border border-border bg-surface p-4">
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="grid min-w-0 gap-1">
-          <p className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
-            <Badge variant={severe ? 'danger' : 'neutral'} size="sm">
-              {reportReasonLabel(report.reason)}
-            </Badge>
-            <span>{reportTargetLabel(report.targetType)}</span>
-            <time dateTime={report.createdAt} title={dateTime(report.createdAt)}>
-              {relative(report.createdAt)}
-            </time>
-            {!open ? (
-              <Badge variant={report.status === 'resolved' ? 'success' : 'outline-mono'} size="sm">
-                {reportStatusLabel(report.status)}
-              </Badge>
-            ) : null}
-          </p>
-          <h2 className="font-medium break-words text-fg">
-            {report.target?.path ? (
-              <a
-                href={publicHref(report.target.path)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 hover:text-link"
+    <li className="overflow-hidden rounded-xl border border-border bg-surface">
+      {/* Touch: swipe toward the end to resolve, toward the start to dismiss (both open the same dialog as the buttons). */}
+      <SwipeRow
+        start={
+          open
+            ? {
+                label: m.ranger_report_resolve(),
+                icon: <Check size={20} aria-hidden="true" />,
+                tone: 'success',
+                onTrigger: () => onAction('resolve', false),
+              }
+            : undefined
+        }
+        end={
+          open
+            ? {
+                label: m.ranger_report_dismiss(),
+                icon: <X size={20} aria-hidden="true" />,
+                tone: 'neutral',
+                onTrigger: () => onAction('dismiss', false),
+              }
+            : undefined
+        }
+        peekKey={open ? 'ranger-reports' : undefined}
+      >
+        <div className="grid gap-3 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <div className="grid min-w-0 gap-1">
+              <p className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
+                <Badge variant={severe ? 'danger' : 'neutral'} size="sm">
+                  {reportReasonLabel(report.reason)}
+                </Badge>
+                <span>{reportTargetLabel(report.targetType)}</span>
+                <time dateTime={report.createdAt} title={dateTime(report.createdAt)}>
+                  {relative(report.createdAt)}
+                </time>
+                {!open ? (
+                  <Badge variant={report.status === 'resolved' ? 'success' : 'outline-mono'} size="sm">
+                    {reportStatusLabel(report.status)}
+                  </Badge>
+                ) : null}
+              </p>
+              <h2 className="font-medium break-words text-fg">
+                {report.target?.path ? (
+                  <a
+                    href={publicHref(report.target.path)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 hover:text-link"
+                  >
+                    {subjectOf(report)}
+                    <Icon icon={ExternalLink} size={14} />
+                    <span className="sr-only">{m.ranger_new_tab()}</span>
+                  </a>
+                ) : (
+                  subjectOf(report)
+                )}
+              </h2>
+            </div>
+            {report.targetType === 'user' ? (
+              <Link
+                to="/ranger/users/$userId"
+                params={{ userId: String(report.targetId) }}
+                className="inline-flex items-center gap-1 text-sm text-link hover:underline"
               >
-                {subjectOf(report)}
-                <Icon icon={ExternalLink} size={14} />
-                <span className="sr-only">{m.ranger_new_tab()}</span>
-              </a>
+                <Icon icon={Gavel} size={14} />
+                {m.ranger_report_open_user()}
+              </Link>
+            ) : null}
+          </div>
+
+          {report.details ? (
+            <blockquote className="border-s-2 border-border-strong ps-3 text-sm whitespace-pre-wrap break-words text-fg">
+              {report.details}
+            </blockquote>
+          ) : (
+            <p className="text-sm text-fg-subtle">{m.ranger_report_no_details()}</p>
+          )}
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-fg-muted">
+            {report.reporter ? (
+              <span className="inline-flex items-center gap-1">
+                {m.ranger_report_by()} <UserChip user={report.reporter} size={20} />
+              </span>
             ) : (
-              subjectOf(report)
+              <span>{m.ranger_report_by_unknown()}</span>
             )}
-          </h2>
-        </div>
-        {report.targetType === 'user' ? (
-          <Link
-            to="/ranger/users/$userId"
-            params={{ userId: String(report.targetId) }}
-            className="inline-flex items-center gap-1 text-sm text-link hover:underline"
-          >
-            <Icon icon={Gavel} size={14} />
-            {m.ranger_report_open_user()}
-          </Link>
-        ) : null}
-      </div>
-
-      {report.details ? (
-        <blockquote className="border-s-2 border-border-strong ps-3 text-sm whitespace-pre-wrap break-words text-fg">
-          {report.details}
-        </blockquote>
-      ) : (
-        <p className="text-sm text-fg-subtle">{m.ranger_report_no_details()}</p>
-      )}
-
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-fg-muted">
-        {report.reporter ? (
-          <span className="inline-flex items-center gap-1">
-            {m.ranger_report_by()} <UserChip user={report.reporter} size={20} />
-          </span>
-        ) : (
-          <span>{m.ranger_report_by_unknown()}</span>
-        )}
-        {report.assignee ? (
-          <span className="inline-flex items-center gap-1">
-            {m.ranger_assigned_to()} <UserChip user={report.assignee} size={20} />
-          </span>
-        ) : null}
-        <Link
-          to="/ranger/audit"
-          search={{ target: `${report.targetType}:${report.targetId}` }}
-          className="text-link hover:underline"
-        >
-          {m.ranger_report_history()}
-        </Link>
-      </div>
-
-      {!open && report.resolution ? (
-        <p className="text-sm text-fg-muted">
-          {m.ranger_report_resolution({ note: report.resolution })}
-          {report.resolvedAt ? ` · ${dateTime(report.resolvedAt)}` : ''}
-        </p>
-      ) : null}
-
-      {open ? (
-        <div className="flex flex-wrap gap-2">
-          <Button size="sm" icon={<Icon icon={Check} size={16} />} onClick={() => onAction('resolve', false)}>
-            {m.ranger_report_resolve()}
-          </Button>
-          {report.targetType !== 'user' ? (
-            <Button
-              size="sm"
-              variant="danger"
-              icon={<Icon icon={EyeOff} size={16} />}
-              onClick={() => onAction('resolve', true)}
+            {report.assignee ? (
+              <span className="inline-flex items-center gap-1">
+                {m.ranger_assigned_to()} <UserChip user={report.assignee} size={20} />
+              </span>
+            ) : null}
+            <Link
+              to="/ranger/audit"
+              search={{ target: `${report.targetType}:${report.targetId}` }}
+              className="text-link hover:underline"
             >
-              {m.ranger_report_resolve_hide()}
-            </Button>
+              {m.ranger_report_history()}
+            </Link>
+          </div>
+
+          {!open && report.resolution ? (
+            <p className="text-sm text-fg-muted">
+              {m.ranger_report_resolution({ note: report.resolution })}
+              {report.resolvedAt ? ` · ${dateTime(report.resolvedAt)}` : ''}
+            </p>
           ) : null}
-          <Button
-            size="sm"
-            variant="secondary"
-            icon={<Icon icon={X} size={16} />}
-            onClick={() => onAction('dismiss', false)}
-          >
-            {m.ranger_report_dismiss()}
-          </Button>
+
+          {open ? (
+            <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap max-md:[&>button]:h-11">
+              <Button size="sm" icon={<Icon icon={Check} size={16} />} onClick={() => onAction('resolve', false)}>
+                {m.ranger_report_resolve()}
+              </Button>
+              {report.targetType !== 'user' ? (
+                <Button
+                  size="sm"
+                  variant="danger"
+                  className="order-last col-span-2 md:order-none md:col-span-1"
+                  icon={<Icon icon={EyeOff} size={16} />}
+                  onClick={() => onAction('resolve', true)}
+                >
+                  {m.ranger_report_resolve_hide()}
+                </Button>
+              ) : null}
+              <Button
+                size="sm"
+                variant="secondary"
+                icon={<Icon icon={X} size={16} />}
+                onClick={() => onAction('dismiss', false)}
+              >
+                {m.ranger_report_dismiss()}
+              </Button>
+            </div>
+          ) : null}
         </div>
-      ) : null}
+      </SwipeRow>
     </li>
   );
 }

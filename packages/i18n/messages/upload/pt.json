@@ -466,5 +466,6 @@
   "upload_drafts_deleted": "Rascunho excluído",
   "upload_kind_mod": "Mod",
   "upload_kind_build": "Build",
-  "upload_kind_version": "Nova versão"
+  "upload_kind_version": "Nova versão",
+  "upload_take_photo": "Tirar uma foto"
 }

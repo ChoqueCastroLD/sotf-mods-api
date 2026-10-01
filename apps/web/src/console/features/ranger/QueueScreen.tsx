@@ -18,22 +18,47 @@ import { useMediaQuery } from '@sotf/ui';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { LiveDot } from '@sotf/ui/live-dot';
 import { Skeleton, SkeletonGroup } from '@sotf/ui/skeleton';
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Binoculars, ShieldAlert, Siren } from 'lucide-react';
-import { useEffect, useMemo, useRef } from 'react';
+import { Binoculars, ChevronRight, ShieldAlert, Siren, UserCheck, UserMinus } from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { ArtState } from '../../components/ArtState.tsx';
+import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
+import { useMe } from '../../hooks/use-me.ts';
 import { useShortcut } from '../../hooks/use-shortcuts.tsx';
 import { useStreamStatus } from '../../hooks/use-stream.ts';
+import { problemCode } from '../../lib/errors.ts';
 import { activeLocale } from '../../lib/messages.ts';
-import { type Lane, laneQuery, metricsQuery, type QueueItem, type ReviewMetrics, SLA_HOURS } from './api.ts';
+import { notify } from '../../lib/notify.ts';
+import {
+  type Lane,
+  laneQuery,
+  metricsQuery,
+  type QueueItem,
+  type ReviewMetrics,
+  rangerApi,
+  refreshModeration,
+  SLA_HOURS,
+  storeQueueItem,
+} from './api.ts';
+import { EscalateDialog } from './EscalateDialog.tsx';
 import { ItemView } from './ItemView.tsx';
 import { flagLabel, laneEmpty, laneHint, laneLabel } from './labels.ts';
-import { number, PanelError, RiskBadge, ScreenHeader, UserChip, WaitingBadge, waitingText } from './shared.tsx';
+import {
+  number,
+  PanelError,
+  RiskBadge,
+  reportFailure,
+  ScreenHeader,
+  slaState,
+  UserChip,
+  WaitingBadge,
+  waitingText,
+} from './shared.tsx';
 
 /** `lg` and up: list and item side by side. Below `md`: triage (phones). */
 const SPLIT_QUERY = '(min-width: 64rem)';
@@ -99,7 +124,7 @@ export function QueueScreen({ basePath, lanes, lane, itemId }: QueueScreenProps)
   const showItem = Boolean(itemId);
 
   return (
-    <div className="grid gap-5">
+    <div className="grid grid-cols-[minmax(0,1fr)] gap-5">
       {!itemId || split ? (
         <ScreenHeader
           readout={m.ranger_readout()}
@@ -133,14 +158,14 @@ export function QueueScreen({ basePath, lanes, lane, itemId }: QueueScreenProps)
             ) : query.isError ? (
               <PanelError error={query.error} onRetry={() => void query.refetch()} />
             ) : items.length === 0 ? (
-              <EmptyState
-                icon={<Icon icon={Binoculars} size={32} />}
-                title={m.ranger_lane_empty_title()}
-                description={laneEmpty(lane)}
-              />
+              <ArtState art="cabin" title={m.ranger_lane_empty_title()} description={laneEmpty(lane)} />
             ) : (
               <>
-                <QueueList basePath={basePath} items={items} selectedId={itemId} />
+                {phone ? (
+                  <QueueCards basePath={basePath} items={items} lane={lane} />
+                ) : (
+                  <QueueList basePath={basePath} items={items} selectedId={itemId} />
+                )}
                 {query.hasNextPage ? (
                   <div className="mt-3 flex justify-center">
                     <Button
@@ -256,9 +281,12 @@ function SlaSummary({
   ];
   if (metrics.data) tiles.push(...metricTiles(metrics.data));
   return (
-    <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
+    <dl className="-mx-4 flex snap-x scroll-px-4 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-4 md:gap-3 md:overflow-visible md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
       {tiles.map((tile) => (
-        <div key={tile.label} className="rounded-md border border-border bg-surface px-3 py-2">
+        <div
+          key={tile.label}
+          className="min-w-32 shrink-0 snap-start rounded-lg border border-border bg-surface px-3 py-2 md:min-w-0 md:shrink md:rounded-md"
+        >
           <dt className="text-xs text-fg-muted">{tile.label}</dt>
           <dd className={cn('font-display text-lg tabular-nums text-fg', tile.tone)}>{tile.value}</dd>
         </div>
@@ -363,5 +391,168 @@ function ListSkeleton() {
         <Skeleton key={index} className="h-16 w-full" />
       ))}
     </SkeletonGroup>
+  );
+}
+
+/**
+ * Phone queue: cards with the mod's thumbnail and a stripe in the SLA colour. Swipe toward the end
+ * to take the item (or release it), toward the start to escalate; the same actions live in the
+ * item view as buttons (and the card opens it on tap).
+ */
+function QueueCards({
+  basePath,
+  items,
+  lane,
+}: {
+  basePath: QueueScreenProps['basePath'];
+  items: readonly QueueItem[];
+  lane: Lane;
+}) {
+  const queryClient = useQueryClient();
+  const me = useMe();
+  const [escalating, setEscalating] = useState<QueueItem | null>(null);
+  const busy = useRef(false);
+
+  const toggleAssign = async (item: QueueItem) => {
+    if (busy.current) return;
+    busy.current = true;
+    const mine = item.assignee?.id === me.user.id;
+    try {
+      storeQueueItem(queryClient, await rangerApi.assign(item.id, !mine));
+      notify.success(mine ? m.ranger_assign_released() : m.ranger_assign_done());
+    } catch (error) {
+      if (problemCode(error) === 'CONFLICT') {
+        notify.error(m.ranger_assign_conflict());
+        void refreshModeration(queryClient);
+      } else {
+        reportFailure(error, m.ranger_assign_failed());
+      }
+    } finally {
+      busy.current = false;
+    }
+  };
+
+  const escalate = async (note: string) => {
+    if (!escalating) return;
+    try {
+      storeQueueItem(queryClient, await rangerApi.escalate(escalating.id, true, note));
+      notify.success(m.ranger_escalate_done());
+    } catch (error) {
+      reportFailure(error, m.ranger_escalate_failed());
+      throw error;
+    }
+  };
+
+  return (
+    <>
+      <ul className="grid gap-3">
+        {items.map((item, index) => {
+          const flagged = item.flags.filter((flag) => flag.severity === 'error').length;
+          const mine = item.assignee?.id === me.user.id;
+          const sla = slaState(item.waitingHours);
+          return (
+            <li key={item.id} className="overflow-hidden rounded-xl border border-border bg-surface">
+              <SwipeRow
+                peekKey={index === 0 ? `ranger-queue-${lane}` : undefined}
+                start={{
+                  label: mine ? m.ranger_assign_release() : m.ranger_assign_me(),
+                  icon: <UserCheck size={20} aria-hidden="true" />,
+                  tone: 'signal',
+                  onTrigger: () => void toggleAssign(item),
+                }}
+                end={
+                  item.escalation
+                    ? undefined
+                    : {
+                        label: m.ranger_escalate(),
+                        icon: <Siren size={20} aria-hidden="true" />,
+                        tone: 'danger',
+                        onTrigger: () => setEscalating(item),
+                      }
+                }
+              >
+                <Link
+                  to={basePath}
+                  search={(previous: Record<string, unknown>) => ({ ...previous, item: item.id })}
+                  className="relative flex min-h-20 items-center gap-3 py-3 ps-4 pe-3 active:bg-fg/5"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'absolute inset-y-0 start-0 w-1',
+                      sla === 'overdue'
+                        ? 'bg-danger'
+                        : sla === 'due'
+                          ? 'bg-warning'
+                          : item.escalation
+                            ? 'bg-danger'
+                            : 'bg-signal/50',
+                    )}
+                  />
+                  {item.mod?.thumbnailUrl ? (
+                    <img
+                      src={item.mod.thumbnailUrl}
+                      alt=""
+                      width={56}
+                      height={56}
+                      loading="lazy"
+                      decoding="async"
+                      className="size-14 shrink-0 rounded-lg bg-raised object-cover"
+                    />
+                  ) : (
+                    <span className="flex size-14 shrink-0 items-center justify-center rounded-lg bg-raised text-fg-subtle">
+                      <Icon icon={Binoculars} size={22} />
+                    </span>
+                  )}
+                  <span className="grid min-w-0 flex-1 gap-1">
+                    <span className="line-clamp-2 leading-snug font-semibold break-words text-fg">{item.title}</span>
+                    <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-fg-muted">
+                      <WaitingBadge hours={item.waitingHours} />
+                      {item.author ? <UserChip user={item.author} size={20} link={false} /> : null}
+                    </span>
+                    {item.escalation || item.risk !== 'low' || flagged > 0 || item.assignee ? (
+                      <span className="flex flex-wrap items-center gap-1.5 text-xs">
+                        {item.escalation ? (
+                          <Badge variant="danger" size="sm" icon={<Icon icon={Siren} size={12} />}>
+                            {m.ranger_escalated()}
+                          </Badge>
+                        ) : null}
+                        {item.risk !== 'low' ? <RiskBadge risk={item.risk} /> : null}
+                        {flagged > 0 ? (
+                          <span className="inline-flex items-center gap-1 text-danger">
+                            <Icon icon={ShieldAlert} size={12} />
+                            {m.ranger_flags_count({ count: flagged })}
+                          </span>
+                        ) : null}
+                        {item.assignee ? (
+                          <Badge
+                            variant={mine ? 'signal' : 'neutral'}
+                            size="sm"
+                            icon={<Icon icon={mine ? UserCheck : UserMinus} size={12} />}
+                          >
+                            {mine
+                              ? m.ranger_assign_done()
+                              : m.ranger_assigned_short({ name: item.assignee.displayName })}
+                          </Badge>
+                        ) : null}
+                      </span>
+                    ) : null}
+                  </span>
+                  <Icon icon={ChevronRight} size={18} className="shrink-0 text-fg-subtle rtl:rotate-180" />
+                </Link>
+              </SwipeRow>
+            </li>
+          );
+        })}
+      </ul>
+      <EscalateDialog
+        open={escalating !== null}
+        onOpenChange={(open) => {
+          if (!open) setEscalating(null);
+        }}
+        subject={escalating?.title ?? ''}
+        onSubmit={escalate}
+      />
+    </>
   );
 }

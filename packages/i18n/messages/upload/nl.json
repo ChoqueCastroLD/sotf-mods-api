@@ -466,5 +466,6 @@
   "upload_drafts_deleted": "Concept verwijderd",
   "upload_kind_mod": "Mod",
   "upload_kind_build": "Build",
-  "upload_kind_version": "Nieuwe versie"
+  "upload_kind_version": "Nieuwe versie",
+  "upload_take_photo": "Foto maken"
 }

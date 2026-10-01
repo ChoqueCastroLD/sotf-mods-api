@@ -7,6 +7,7 @@
  * Recharts ships as its own chunk, fetched when the first chart mounts. Titles, legends and the
  * «View as table» alternative live outside (in `ChartFigure`), so they render before the chunk.
  */
+import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { chartTheme, niceTicks, seriesColor } from '@sotf/ui/domain';
 import type { ReactNode } from 'react';
 import {
@@ -97,17 +98,24 @@ function maxOf(data: TimeSeriesChartProps['data'], series: readonly SeriesSpec[]
   return max;
 }
 
-function markerLines(markers: readonly ChartMarker[]): ReactNode[] {
+/** Phones draw the marker as a hairline only: its name is in the legend and in the tapped tooltip. */
+function markerLines(markers: readonly ChartMarker[], labels: boolean): ReactNode[] {
   return markers.map((marker) => (
     <ReferenceLine
       key={`${marker.kind}:${marker.day}`}
       x={marker.day}
       {...(marker.kind === 'release' ? chartTheme.releaseMarker : chartTheme.patchMarker)}
-      label={{
-        ...chartTheme.markerLabel,
-        value: marker.label,
-        ...(marker.kind === 'patch' ? { fill: 'var(--color-featured)', position: 'insideTopRight' as const } : {}),
-      }}
+      {...(labels
+        ? {
+            label: {
+              ...chartTheme.markerLabel,
+              value: marker.label,
+              ...(marker.kind === 'patch'
+                ? { fill: 'var(--color-featured)', position: 'insideTopRight' as const }
+                : {}),
+            },
+          }
+        : {})}
     />
   ));
 }
@@ -125,6 +133,7 @@ export function TimeSeriesChart({
   yDomain,
   yTicks,
 }: TimeSeriesChartProps) {
+  const narrow = useMediaQuery(BELOW_MD_QUERY);
   const rows = data as Array<{ day: string } & Record<string, number | string | null>>;
   const ticks = yTicks ?? niceTicks(maxOf(data, series));
   const domain: [number, number] = yDomain ?? [0, ticks[ticks.length - 1] ?? 1];
@@ -135,14 +144,26 @@ export function TimeSeriesChart({
   const common = {
     data: rows,
     title,
-    margin: { top: 16, right: 12, bottom: 0, left: 0 },
+    margin: { top: narrow ? 8 : 16, right: narrow ? 8 : 12, bottom: 0, left: 0 },
   };
+  const markerNames = (day: string) =>
+    snapped
+      .filter((marker) => marker.day === day)
+      .map((marker) => marker.label)
+      .join(' · ');
   const axes = [
     <CartesianGrid key="grid" {...chartTheme.grid} />,
-    <XAxis key="x" {...chartTheme.xAxis} dataKey="day" tickFormatter={(value: string) => formatDay(String(value))} />,
+    <XAxis
+      key="x"
+      {...chartTheme.xAxis}
+      dataKey="day"
+      minTickGap={narrow ? 36 : chartTheme.xAxis.minTickGap}
+      tickFormatter={(value: string) => formatDay(String(value))}
+    />,
     <YAxis
       key="y"
       {...chartTheme.yAxis}
+      width={narrow ? 52 : chartTheme.yAxis.width}
       domain={domain}
       ticks={ticks}
       allowDecimals={Boolean(yDomain)}
@@ -152,13 +173,16 @@ export function TimeSeriesChart({
       key="tooltip"
       {...chartTheme.tooltip}
       {...(kind === 'bar' ? { cursor: { fill: 'var(--color-fg)', fillOpacity: 0.05 } } : {})}
-      labelFormatter={(label: unknown) => formatDayLong(String(label))}
+      labelFormatter={(label: unknown) => {
+        const extra = markerNames(String(label));
+        return extra ? `${formatDayLong(String(label))} · ${extra}` : formatDayLong(String(label));
+      }}
       formatter={(value: unknown, name: unknown) => [
         typeof value === 'number' ? formatValue(value) : String(value ?? '—'),
         series.find((entry) => entry.key === name)?.label ?? String(name),
       ]}
     />,
-    ...markerLines(snapped),
+    ...markerLines(snapped, !narrow),
   ];
 
   let chart: ReactNode;
@@ -233,6 +257,7 @@ export interface CategoryBarChartProps {
 
 /** Horizontal bars, one per category (versions, channels, referrers, languages). */
 export function CategoryBarChart({ data, title, valueLabel, formatValue, colorIndex = 0 }: CategoryBarChartProps) {
+  const narrow = useMediaQuery(BELOW_MD_QUERY);
   const rows = data.map((entry) => ({ label: entry.label, value: entry.value }));
   const ticks = niceTicks(Math.max(0, ...rows.map((row) => row.value)));
   const height = Math.max(96, rows.length * 32 + 40);
@@ -247,7 +272,14 @@ export function CategoryBarChart({ data, title, valueLabel, formatValue, colorIn
           ticks={ticks}
           tickFormatter={(value: number) => formatValue(Number(value))}
         />
-        <YAxis {...chartTheme.yAxis} type="category" dataKey="label" width={120} interval={0} />
+        <YAxis
+          {...chartTheme.yAxis}
+          type="category"
+          dataKey="label"
+          width={narrow ? 84 : 120}
+          interval={0}
+          tickFormatter={(value: string) => (narrow && value.length > 12 ? `${value.slice(0, 11)}…` : value)}
+        />
         <Tooltip
           {...chartTheme.tooltip}
           cursor={{ fill: 'var(--color-fg)', fillOpacity: 0.05 }}

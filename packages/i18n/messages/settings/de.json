@@ -413,5 +413,8 @@
   "settings_notif_request_fulfilled": "Anfrage erfüllt",
   "settings_notif_request_fulfilled_hint": "Ein Mod, den du angefragt oder unterstützt hast, wurde veröffentlicht.",
   "settings_notif_jam": "Mod Jams",
-  "settings_notif_jam_hint": "Eine Jam, der du folgst oder bei der du mitmachst, öffnet Einreichungen, startet die Abstimmung oder veröffentlicht die Ergebnisse."
+  "settings_notif_jam_hint": "Eine Jam, der du folgst oder bei der du mitmachst, öffnet Einreichungen, startet die Abstimmung oder veröffentlicht die Ergebnisse.",
+  "settings_group_account": "Dein Konto",
+  "settings_group_app": "App",
+  "settings_group_creator": "Creator und Daten"
 }

@@ -331,6 +331,7 @@ export function GalleryEditor({ id, value, onChange }: GalleryEditorProps) {
           title={ut('upload_gallery_drop')}
           hint={ut('upload_gallery_hint', { max: number(STUDIO_LIMITS.galleryMax) })}
           buttonLabel={ut('upload_gallery_choose')}
+          cameraLabel={ut('upload_take_photo')}
           onFiles={addFiles}
         />
       ) : (

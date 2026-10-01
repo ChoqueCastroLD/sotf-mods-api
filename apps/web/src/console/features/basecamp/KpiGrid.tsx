@@ -36,14 +36,15 @@ function display(key: KpiKey, kpi: Kpi): string | undefined {
 
 export function KpiGrid({ kpis }: { kpis: Overview['kpis'] }) {
   return (
-    <ul className="grid grid-cols-2 gap-3 md:grid-cols-3 2xl:grid-cols-6">
+    // Phones: a swipeable strip (the first two tiles are in view, the rest peek in); wider: a grid.
+    <ul className="-mx-4 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:grid md:grid-cols-3 md:overflow-visible md:px-0 md:pb-0 2xl:grid-cols-6 [&::-webkit-scrollbar]:hidden">
       {ORDER.map((key) => {
         const kpi = kpis[key];
         const empty = isEmpty(key, kpi);
         const change = empty ? null : changeOf(kpi.value, kpi.previous);
         const shown = display(key, kpi);
         return (
-          <li key={key} className="min-w-0">
+          <li key={key} className="w-[9.75rem] min-w-0 shrink-0 snap-start md:w-auto">
             <StatTile
               label={kpiLabel(key)}
               value={key === 'compatWorksShare' ? Math.round(kpi.value * 100) : kpi.value}

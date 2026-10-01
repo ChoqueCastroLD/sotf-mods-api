@@ -27,11 +27,44 @@ export function WizardSteps({ steps, current, attention, onSelect }: WizardSteps
   const index = steps.indexOf(current);
   return (
     <nav aria-label={ut('upload_steps_label')}>
-      <p className="mb-2 text-sm font-medium text-fg md:hidden">
-        <span className="readout me-2">{ut('upload_step_of', { current: index + 1, total: steps.length })}</span>
-        {STEP_LABELS[current]()}
-      </p>
-      <ol className="flex gap-1 max-md:[&>li]:flex-1">
+      {/* Phones: «Step 2 of 6 · Details» over a segmented progress bar (each segment is a button). */}
+      <div className="md:hidden">
+        <p className="flex items-baseline gap-2 text-sm font-semibold text-fg">
+          <span className="readout">{ut('upload_step_of', { current: index + 1, total: steps.length })}</span>
+          <span className="truncate">{STEP_LABELS[current]()}</span>
+        </p>
+        <ol className="mt-1 flex gap-1.5">
+          {steps.map((step, i) => {
+            const flagged = attention.has(step) && i !== index;
+            return (
+              <li key={step} className="min-w-0 flex-1">
+                <button
+                  type="button"
+                  onClick={() => onSelect(step)}
+                  aria-label={STEP_LABELS[step]()}
+                  aria-current={i === index ? 'step' : undefined}
+                  className="group flex h-8 w-full items-center rounded-sm focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-focus"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      'h-1.5 w-full rounded-full transition-colors duration-(--dur-base)',
+                      flagged
+                        ? 'bg-warning'
+                        : i < index
+                          ? 'bg-success'
+                          : i === index
+                            ? 'bg-primary shadow-[0_0_10px_var(--glow-color)]'
+                            : 'bg-fg/14',
+                    )}
+                  />
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+      <ol className="flex gap-1 max-md:hidden">
         {steps.map((step, i) => {
           const state = i < index ? 'complete' : i === index ? 'current' : 'upcoming';
           const flagged = attention.has(step) && state !== 'current';
@@ -151,9 +184,9 @@ export interface WizardFooterProps {
 
 export function WizardFooter({ status, dirty, canSave, onSave, onBack, onNext, nextLabel }: WizardFooterProps) {
   return (
-    <div className="sticky bottom-0 z-10 -mx-4 mt-6 border-t border-border bg-bg/95 px-4 py-3 backdrop-blur supports-[backdrop-filter]:bg-bg/80 sm:-mx-6 sm:px-6">
+    <div className="sticky bottom-0 z-10 -mx-4 mt-6 border-t border-border bg-bg/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur supports-[backdrop-filter]:bg-bg/85 sm:-mx-6 sm:px-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex min-w-0 items-center gap-3">
+        <div className="flex min-w-0 items-center gap-3 max-sm:w-full max-sm:justify-between">
           <AutosaveIndicator status={status} dirty={dirty} />
           <Button
             variant="ghost"
@@ -162,7 +195,7 @@ export function WizardFooter({ status, dirty, canSave, onSave, onBack, onNext, n
             onClick={onSave}
             disabled={!canSave || status.state === 'saving'}
           >
-            {ut('upload_save_draft')}
+            <span className="max-sm:sr-only">{ut('upload_save_draft')}</span>
           </Button>
         </div>
         <div className="flex gap-2 max-sm:w-full max-sm:[&>*]:flex-1">
@@ -171,12 +204,17 @@ export function WizardFooter({ status, dirty, canSave, onSave, onBack, onNext, n
               variant="outline"
               icon={<Icon icon={ArrowLeft} size={16} className="rtl:rotate-180" />}
               onClick={onBack}
+              className="max-sm:h-12 max-sm:flex-none! max-sm:px-5"
             >
               {ut('upload_back')}
             </Button>
           ) : null}
           {onNext ? (
-            <Button iconEnd={<Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />} onClick={onNext}>
+            <Button
+              iconEnd={<Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />}
+              onClick={onNext}
+              className="max-sm:h-12"
+            >
               {nextLabel ?? ut('upload_next')}
             </Button>
           ) : null}

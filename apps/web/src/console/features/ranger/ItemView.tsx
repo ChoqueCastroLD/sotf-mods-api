@@ -143,7 +143,7 @@ function BackButton({ onBack }: { onBack: () => void }) {
       size="sm"
       icon={<Icon icon={ArrowLeft} size={16} />}
       onClick={onBack}
-      className="justify-self-start"
+      className="justify-self-start max-md:hidden"
     >
       {m.ranger_back_to_list()}
     </Button>

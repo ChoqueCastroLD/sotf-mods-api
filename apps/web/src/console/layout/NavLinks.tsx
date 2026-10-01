@@ -44,7 +44,7 @@ function NavEntry({ to, label, icon, active, compact, onNavigate, badge, accessi
       <Link
         // Area routes are registered by their own work packages; unknown paths render «not found».
         to={to as LinkProps['to']}
-        aria-current={active ? 'page' : undefined}
+        aria-current={active ? 'page' : 'false'}
         {...(name ? { 'aria-label': name } : {})}
         onClick={onNavigate}
         className={cn(

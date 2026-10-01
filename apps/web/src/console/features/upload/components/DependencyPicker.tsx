@@ -91,6 +91,9 @@ export function DependencyPicker({ id, selfId, manifestDependencies, value, onCh
               size="sm"
               aria-label={ut('upload_dependency_range', { id: dep.manifestId })}
               placeholder={ut('upload_dependency_range_placeholder')}
+              autoCapitalize="none"
+              autoComplete="off"
+              spellCheck={false}
               maxLength={64}
               value={dep.versionRange ?? ''}
               onChange={(event) => {
@@ -179,6 +182,10 @@ export function DependencyPicker({ id, selfId, manifestDependencies, value, onCh
             }}
             aria-label={ut('upload_dependency_manual')}
             placeholder={ut('upload_dependency_manual')}
+            autoCapitalize="none"
+            autoComplete="off"
+            spellCheck={false}
+            enterKeyHint="done"
             aria-invalid={manualError ? true : undefined}
             className="max-w-xs"
             disabled={full}
