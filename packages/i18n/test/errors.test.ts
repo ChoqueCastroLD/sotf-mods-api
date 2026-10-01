@@ -23,10 +23,10 @@ describe('describeProblem', () => {
 
   it('includes Retry-After for rate limits', () => {
     expect(describeProblem('RATE_LIMITED', { locale: 'es', retryAfterSeconds: 29.2 }).detail).toBe(
-      'Kelvin necesita un descanso. Vuelve a intentarlo en 30 s.',
+      'Demasiadas solicitudes. Vuelve a intentarlo en 30 s.',
     );
     expect(describeProblem('RATE_LIMITED', { locale: 'en', retryAfterSeconds: 0 }).detail).toBe(
-      'Kelvin needs a break. Try again in a moment.',
+      'Too many requests. Try again in a moment.',
     );
   });
 

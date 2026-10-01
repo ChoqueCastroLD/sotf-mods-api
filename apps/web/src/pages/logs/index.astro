@@ -1,0 +1,48 @@
+---
+/**
+ * `/logs` — "Share logs": paste or drop a RedLoader/BepInEx/Player.log file and get a private link
+ * that deletes itself after 24 hours. The form is an island; the page is the same for every
+ * visitor (Turnstile and the session are handled in the island), so it is cached like a static page.
+ */
+import { toHtmlLang } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { logLabels } from '../../components/logs/labels.ts';
+import CreateLogIsland from '../../islands/logs/CreateLogIsland.tsx';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.static());
+---
+
+<PageLayout
+  template="logs"
+  width="content"
+  seo={{ title: m.logs_meta_title(), description: m.logs_meta_description(), path: '/logs' }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.logs_nav_link() }]}
+>
+  <div class="flex max-w-4xl flex-col gap-6">
+    <header class="flex flex-col gap-2">
+      <h1 class="font-display-caps text-display-sm text-fg">{m.logs_heading()}</h1>
+      <p class="text-base text-fg-muted">{m.logs_intro()}</p>
+    </header>
+    <div class="flex items-start gap-3 rounded-lg border border-border bg-surface p-3 text-sm md:p-4">
+      <div class="flex flex-col gap-1">
+        <p class="font-semibold text-fg">{m.logs_privacy_title()}</p>
+        <p class="text-fg-muted">{m.logs_privacy_text()}</p>
+      </div>
+    </div>
+    <CreateLogIsland
+      client:load
+      labels={logLabels()}
+      lang={toHtmlLang(locale)}
+      basePath={href('/logs', locale)}
+      turnstileSiteKey={loadEnv().turnstileSiteKey}
+    />
+  </div>
+</PageLayout>

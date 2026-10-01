@@ -682,7 +682,7 @@ AdSense solo para invitados, con CMP, sin anuncios en NSFW ni en el flujo de des
 - Cloudflare Turnstile en el registro, en "olvidé mi contraseña", tras fallos de login y en comentarios y reseñas de cuentas con < 24 h.
 - Límites por usuario e IP: comentarios 5/min y 50/día, reseñas 10/día, reportes 20/día, subidas 20/día y registro 3/día por IP.
 - Cuentas nuevas: los enlaces de su primer comentario quedan en revisión. Lista de emails desechables. Campos honeypot.
-- Respuesta 429 con un mensaje amable ("Kelvin necesita un descanso: vuelve a intentarlo en 30 s").
+- Respuesta 429 con un mensaje amable ("Demasiadas solicitudes: vuelve a intentarlo en 30 s").
 
 **Datos**: contadores en memoria o Postgres (lo decide el backend) y `users.trust_level` (0–3, derivado de la antigüedad, el email verificado y el historial limpio).
 

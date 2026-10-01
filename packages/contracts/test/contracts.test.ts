@@ -343,6 +343,7 @@ describe('endpoint contracts', () => {
         'kitSocial',
         'kits',
         'legacy',
+        'logs',
         'me',
         'modKnowledge',
         'moderation',

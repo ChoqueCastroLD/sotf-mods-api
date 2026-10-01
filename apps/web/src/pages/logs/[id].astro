@@ -1,0 +1,239 @@
+---
+/**
+ * `/logs/:id` — a shared game log. Never cached, never indexed, never sent as a referrer: the link
+ * is the secret. The server renders the summary (versions, mods, counts, top errors, the 24-hour
+ * countdown) from `GET /api/v2/logs/:id`; the island downloads the text and renders the lines.
+ * Expired, deleted or reported logs answer a friendly 410, unknown ids a 404.
+ */
+import { toIntlLocale } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronRight, Clock, Package, ShieldCheck } from 'lucide-react';
+import { LOG_ID_PATTERN, loadLog } from '../../components/logs/data.ts';
+import { logLabels } from '../../components/logs/labels.ts';
+import { respondNotFound } from '../../components/mod/responses.ts';
+import LogViewer from '../../islands/logs/LogViewer.tsx';
+import { formatBytes, formatRemaining } from '../../islands/logs/labels.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { setPageCache } from '../../lib/cache/page.ts';
+import { href } from '../../lib/i18n.ts';
+
+export const prerender = false;
+
+const locale = Astro.locals.locale;
+const id = Astro.params.id ?? '';
+if (!LOG_ID_PATTERN.test(id)) return respondNotFound(Astro);
+
+setPageCache(Astro, false);
+Astro.response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive');
+Astro.response.headers.set('Referrer-Policy', 'no-referrer');
+
+const data = await loadLog(id);
+if (data.kind === 'not-found') return respondNotFound(Astro);
+if (data.kind === 'gone') Astro.response.status = 410;
+if (data.kind === 'error') Astro.response.status = 503;
+
+const log = data.kind === 'ok' ? data.log : null;
+const summary = log?.summary ?? null;
+const number = new Intl.NumberFormat(toIntlLocale(locale));
+const kindLabel: Record<string, string> = {
+  redloader: m.logs_kind_redloader(),
+  bepinex: m.logs_kind_bepinex(),
+  melonloader: m.logs_kind_melonloader(),
+  player: m.logs_kind_player(),
+  server: m.logs_kind_server(),
+  unknown: m.logs_kind_unknown(),
+};
+const goneText =
+  data.kind === 'gone'
+    ? data.reason === 'deleted'
+      ? m.logs_gone_deleted()
+      : data.reason === 'reported'
+        ? m.logs_gone_reported()
+        : m.logs_gone_expired()
+    : '';
+const pageTitle = log?.title ? `${log.title} · ${m.logs_viewer_title()}` : m.logs_viewer_title();
+const basePath = href('/logs', locale);
+const remainingNow = log ? Math.max(0, new Date(log.expiresAt).getTime() - Date.now()) : 0;
+---
+
+<PageLayout
+  template="log-viewer"
+  width="wide"
+  seo={{
+    title: data.kind === 'gone' ? m.logs_gone_title() : pageTitle,
+    rawTitle: data.kind === 'ok',
+    description: m.logs_meta_viewer_description(),
+    path: `/logs/${id}`,
+    noindex: true,
+  }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.logs_nav_link(), path: '/logs' }, { label: m.logs_viewer_title() }]}
+>
+  {
+    log && summary ? (
+      <div class="flex min-w-0 flex-col gap-5">
+        <header class="flex flex-col gap-3">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="inline-flex items-center rounded-sm bg-surface px-2 py-0.5 text-xs font-semibold text-fg ring-1 ring-border-strong">
+              {kindLabel[summary.kind]}
+            </span>
+            <p class="inline-flex items-center gap-1.5 text-sm text-fg-muted" data-logs-expiry>
+              <Icon icon={Clock} size={16} />
+              <time
+                data-logs-countdown
+                data-expires={log.expiresAt}
+                data-template={m.logs_expires_in({ time: '{time}' })}
+                data-expired={m.logs_expired_now()}
+                datetime={log.expiresAt}
+              >
+                {m.logs_expires_in({ time: formatRemaining(remainingNow) })}
+              </time>
+            </p>
+          </div>
+          <h1 class="font-display-caps text-display-sm break-words text-fg">{log.title ?? m.logs_viewer_title()}</h1>
+          <p class="text-sm text-fg-muted">{m.logs_expiry_notice()}</p>
+        </header>
+
+        <section class="grid gap-2 rounded-lg border border-border bg-surface p-3 md:gap-3 md:p-4" aria-label={m.logs_summary_label()}>
+          <dl class="grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              [m.logs_sum_game(), summary.gameVersion],
+              [m.logs_sum_loader(), summary.loaderName ? `${summary.loaderName}${summary.loaderVersion ? ` ${summary.loaderVersion}` : ''}` : null],
+              [m.logs_sum_unity(), summary.unityVersion],
+              [m.logs_sum_lines(), number.format(log.lineCount)],
+              [m.logs_sum_size(), formatBytes(log.sizeBytes)],
+            ].map(([label, value]) => (
+              <div class="min-w-0">
+                <dt class="text-xs font-medium tracking-wide text-fg-subtle uppercase">{label}</dt>
+                <dd class="truncate text-sm font-semibold text-fg">{value ?? '—'}</dd>
+              </div>
+            ))}
+            <div class="min-w-0">
+              <dt class="text-xs font-medium tracking-wide text-fg-subtle uppercase">{m.logs_sum_problems()}</dt>
+              <dd class="flex flex-wrap gap-x-3 text-sm font-semibold">
+                <span class={summary.counts.error + summary.counts.fatal > 0 ? 'text-danger' : 'text-fg'}>
+                  {m.logs_sum_errors({ count: number.format(summary.counts.error + summary.counts.fatal) })}
+                </span>
+                <span class={summary.counts.warning > 0 ? 'text-warning' : 'text-fg'}>
+                  {m.logs_sum_warnings({ count: number.format(summary.counts.warning) })}
+                </span>
+              </dd>
+            </div>
+          </dl>
+
+          {log.redactions.total > 0 ? (
+            <p class="flex items-center gap-1.5 text-sm text-fg-muted">
+              <Icon icon={ShieldCheck} size={16} className="text-success" />
+              {m.logs_done_redactions({ count: number.format(log.redactions.total) })}
+            </p>
+          ) : null}
+
+          {summary.mods.length > 0 ? (
+            <details class="group grid gap-2" data-open-wide open={summary.mods.length <= 12}>
+              <summary class="flex min-h-11 cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-fg md:min-h-9 [&::-webkit-details-marker]:hidden"><Icon icon={ChevronRight} size={14} className="transition-transform group-open:rotate-90 motion-reduce:transition-none" />{m.logs_sum_mods({ count: number.format(summary.mods.length) })}</summary>
+              <ul class="flex flex-wrap gap-1.5">
+                {summary.mods.slice(0, 120).map((mod) => (
+                  <li>
+                    {mod.mod ? (
+                      <a
+                        href={href(mod.mod.canonicalPath, locale)}
+                        class="inline-flex min-h-8 items-center gap-1 rounded-sm border border-border-strong bg-raised px-2 py-0.5 text-xs text-link hover:bg-surface"
+                        title={m.logs_sum_in_catalog()}
+                      >
+                        <Icon icon={Package} size={12} />
+                        {mod.name}
+                        {mod.version ? <span class="text-fg-muted">{mod.version}</span> : null}
+                      </a>
+                    ) : (
+                      <span class="inline-flex min-h-8 items-center gap-1 rounded-sm border border-border bg-bg px-2 py-0.5 text-xs text-fg">
+                        {mod.name}
+                        {mod.version ? <span class="text-fg-muted">{mod.version}</span> : null}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </details>
+          ) : null}
+
+          <details class="group grid gap-2" data-open-wide open>
+            <summary class="flex min-h-11 cursor-pointer list-none items-center gap-1.5 text-sm font-semibold text-fg md:min-h-9 [&::-webkit-details-marker]:hidden"><Icon icon={ChevronRight} size={14} className="transition-transform group-open:rotate-90 motion-reduce:transition-none" />{m.logs_sum_top_errors()}</summary>
+            {summary.topErrors.length === 0 ? (
+              <p class="text-sm text-fg-muted">{m.logs_no_errors()}</p>
+            ) : (
+              <ol class="grid gap-1.5">
+                {summary.topErrors.map((entry) => (
+                  <li>
+                    <a
+                      href={`#L${entry.line}`}
+                      class="flex min-h-11 items-start gap-2 rounded-md border border-border bg-bg px-3 py-2 text-sm hover:bg-raised md:min-h-9"
+                    >
+                      <span class="shrink-0 rounded-sm bg-danger px-1.5 text-xs font-semibold text-danger-fg tabular-nums">
+                        ×{number.format(entry.count)}
+                      </span>
+                      <span class="min-w-0 break-words font-mono text-[13px] text-fg">{entry.message}</span>
+                      <span class="ms-auto shrink-0 font-mono text-xs text-fg-subtle">L{entry.line}</span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            )}
+          </details>
+        </section>
+
+        <LogViewer
+          client:load
+          id={id}
+          labels={logLabels()}
+          basePath={basePath}
+          firstErrorLine={summary.firstErrorLine}
+          counts={{
+            error: summary.counts.error + summary.counts.fatal,
+            warning: summary.counts.warning,
+            info: summary.counts.info + summary.counts.debug,
+            lines: log.lineCount,
+          }}
+        />
+      </div>
+    ) : (
+      <div class="mx-auto flex max-w-xl flex-col items-center gap-4 py-10 text-center" role={data.kind === 'error' ? 'alert' : undefined}>
+        <h1 class="font-display-caps text-display-sm text-fg">
+          {data.kind === 'gone' ? m.logs_gone_title() : m.logs_unavailable_title()}
+        </h1>
+        <p class="text-base text-fg-muted">{data.kind === 'gone' ? goneText : m.logs_unavailable_text()}</p>
+        <a href={basePath} class={buttonClasses({ variant: 'primary' })}>{m.logs_share_new()}</a>
+      </div>
+    )
+  }
+</PageLayout>
+
+<script>
+  import { formatRemaining } from '../../islands/logs/labels.ts';
+
+  const element = document.querySelector<HTMLElement>('[data-logs-countdown]');
+  if (element) {
+    const expires = Date.parse(element.dataset.expires ?? '');
+    const template = element.dataset.template ?? '{time}';
+    const tick = (): void => {
+      const left = expires - Date.now();
+      if (!(left > 0)) {
+        element.textContent = element.dataset.expired ?? '';
+        clearInterval(timer);
+        // The server answers 410 from now on: show the friendly page.
+        setTimeout(() => location.reload(), 1500);
+        return;
+      }
+      element.textContent = template.replace('{time}', formatRemaining(left));
+    };
+    const timer = setInterval(tick, 1000);
+    tick();
+  }
+</script>
+
+<script>
+  // Small screens: keep the summary collapsed so the log itself is visible sooner.
+  if (matchMedia('(max-width: 767px)').matches) {
+    for (const details of document.querySelectorAll<HTMLDetailsElement>('details[data-open-wide]')) details.open = false;
+  }
+</script>

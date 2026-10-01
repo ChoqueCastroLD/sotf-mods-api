@@ -104,6 +104,7 @@ export const JOB_PAYLOADS = {
   'cleanup.scout': z.object({}),
   // Mod jams: advances the phase of every jam by its schedule and computes the results
   'jam.advance': z.object({}),
+  'cleanup.logs': z.object({}),
   // Discovery (T1-15): co-download and tag based recommendations of every mod
   'recommendations.compute': z.object({}),
   // Operations (PLAN §10.3 «Alertas»)
@@ -152,6 +153,8 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'cleanup.kelvinseek', cron: '50 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.coauthor-invites', cron: '55 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.scout', cron: '55 4 * * *', key: 'daily', data: {} },
+  // Shared logs live 24 h: the purge runs hourly (hard delete of the payload).
+  { queue: 'cleanup.logs', cron: '35 * * * *', key: 'hourly', data: {} },
   // After the hourly trending rollup of 02:15, before the morning traffic.
   { queue: 'recommendations.compute', cron: '30 2 * * *', key: 'nightly', data: {} },
   // Catches mods without (or with stale) translations: older mods, failed or over-budget runs.
@@ -223,6 +226,7 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'cleanup.coauthor-invites': {},
   'cleanup.scout': {},
   'jam.advance': {},
+  'cleanup.logs': {},
   'recommendations.compute': {},
   'ops.alerts': {},
   'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000 },

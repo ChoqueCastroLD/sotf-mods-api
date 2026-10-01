@@ -51,6 +51,8 @@ export const RATE_LIMITS = {
   reviews: { max: 10, window: '1 day', key: 'user' },
   jamVotes: { max: 240, window: '1 hour', key: 'user', extra: 'one vote call rates one entry in every category' },
   requests: { max: 5, window: '1 day', key: 'user' },
+  logsCreate: { max: 15, window: '1 hour', key: 'user', extra: '60/day per IP' },
+  logsRead: { max: 120, window: '1 minute', key: 'ip' },
   compatReports: { max: 30, window: '1 day', key: 'user' },
   reports: { max: 20, window: '1 day', key: 'user' },
   uploads: { max: 20, window: '1 day', key: 'user' },

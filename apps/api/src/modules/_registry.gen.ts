@@ -22,6 +22,7 @@ import jamsModule from './jams/index.ts';
 import kitSocialModule from './kit-social/index.ts';
 import kitsModule from './kits/index.ts';
 import legacyModule from './legacy/index.ts';
+import logsModule from './logs/index.ts';
 import markdownPreviewModule from './markdown-preview/index.ts';
 import meModule from './me/index.ts';
 import modKnowledgeModule from './mod-knowledge/index.ts';
@@ -66,6 +67,7 @@ export const modules = [
   kitSocialModule,
   kitsModule,
   legacyModule,
+  logsModule,
   markdownPreviewModule,
   meModule,
   modKnowledgeModule,

@@ -33,6 +33,7 @@ tooling/migration/rehearsal/out/
 
 # Logs and OS noise
 *.log
+!packages/contracts/fixtures/logs/*.log
 npm-debug.log*
 pnpm-debug.log*
 .DS_Store

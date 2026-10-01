@@ -8,6 +8,7 @@ import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { CommentItem } from '@sotf/ui/domain';
 import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
 import type { CommentPage, ModDetailDTO } from './data.ts';
 import { pluralTemplates } from './format.ts';
 import { markdownLabels } from './i18n.ts';
@@ -63,6 +64,9 @@ const items = (comments?.items ?? []).map((comment) => ({
       <p class="text-fg-muted">{mod.commentsCount > 0 ? m.mod_comments_unavailable() : m.mod_comments_empty()}</p>
     )
   }
+  <p class="text-sm text-fg-muted">
+    <a href={href('/logs', locale)} class="font-semibold text-link underline underline-offset-3">{m.logs_hint_comments()}</a>
+  </p>
   <div
     data-island="comments"
     data-mod-id={mod.id}
