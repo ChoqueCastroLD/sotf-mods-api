@@ -446,7 +446,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           {line.n}
         </button>
         {row.kind === 'fold' ? (
-          <div className="flex min-w-0 items-center gap-2 ps-2 pe-3">
+          <div className="flex min-w-0 flex-1 items-center gap-2 ps-2 pe-3">
             <button
               type="button"
               aria-expanded={row.expanded}
@@ -463,7 +463,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
               <Icon icon={ChevronRight} size={12} className={row.expanded ? 'rotate-90' : ''} />
               {fill(row.expanded ? labels.collapse : labels.repeated, { count: row.count })}
             </button>
-            <span className="font-mono text-[13px] leading-5 whitespace-pre">
+            <span className="min-w-0 truncate font-mono text-[13px] leading-5">
               {row.expanded ? null : <LineText line={line} needle={needle} dim />}
             </span>
           </div>
@@ -499,12 +499,12 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
               className="h-11 w-full rounded-md border border-border-strong bg-raised ps-9 pe-3 text-base text-fg placeholder:text-fg-subtle md:h-10 md:text-sm"
             />
           </label>
-          <div className="flex min-w-0 items-center gap-2">
+          <div className="flex min-w-0 flex-wrap items-center gap-2">
             {/* biome-ignore lint/a11y/useSemanticElements: a scrolling chip row, a fieldset cannot scroll horizontally */}
             <div
               role="group"
               aria-label={labels.filter_label}
-              className="-mx-1 flex min-w-0 flex-1 gap-1.5 overflow-x-auto px-1 py-0.5 md:flex-none"
+              className="-mx-1 flex min-w-0 basis-full gap-1.5 overflow-x-auto px-1 py-0.5 md:basis-auto"
             >
               {LEVEL_FILTERS.map((value) => (
                 <button
@@ -534,10 +534,10 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
               aria-pressed={wrap}
               icon={<Icon icon={WrapText} size={16} />}
               onClick={() => setWrap((value) => !value)}
-              className="max-md:min-h-11 max-md:min-w-11"
+              className="max-md:min-h-11"
               title={labels.wrap}
             >
-              <span className="max-md:sr-only">{labels.wrap}</span>
+              {labels.wrap}
             </Button>
             {firstErrorLine !== null ? (
               <Button
@@ -549,10 +549,10 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
                   history.replaceState(null, '', `${location.pathname}${location.search}#L${firstErrorLine}`);
                   jumpTo(firstErrorLine);
                 }}
-                className="max-md:min-h-11 max-md:min-w-11"
+                className="max-md:min-h-11"
                 title={labels.jump_error}
               >
-                <span className="max-lg:sr-only">{labels.jump_error}</span>
+                <span className="md:max-lg:sr-only">{labels.jump_error}</span>
               </Button>
             ) : null}
           </div>

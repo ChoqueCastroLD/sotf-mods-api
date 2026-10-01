@@ -695,7 +695,7 @@ Los parámetros de filtro que la v2 no reconoce se ignoran (sin 404). El `canoni
 | Descargas | **Nunca 429**: por encima de 60/min por IP se redirige igual, pero sin contar |
 | Beacon `/e` | 120/min por IP; el exceso se descarta en silencio |
 
-La respuesta 429 lleva un texto amable («Kelvin necesita un descanso: vuelve a intentarlo en 30 s»).
+La respuesta 429 lleva un texto amable («Demasiadas solicitudes: vuelve a intentarlo en 30 s»).
 
 ### 5.2 Catálogo de endpoints v2 (T0)
 

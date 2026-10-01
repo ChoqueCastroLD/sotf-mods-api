@@ -24,6 +24,8 @@ const NAV = [
   { path: '/jams', label: m.jams_nav() },
   { path: '/install', label: m.common_nav_install() },
   { path: '/creators', label: m.common_nav_creators() },
+  // Wide screens only: the bar is full below 1280 px (the footer and the command palette always have it).
+  { path: '/logs', label: m.logs_nav_link(), wideOnly: true },
 ] as const;
 
 const isCurrent = (path: string) => current === path || current.startsWith(`${path}/`);
@@ -51,7 +53,7 @@ const searchHref = href('/search', locale);
       <ul class="flex items-center gap-1">
         {
           NAV.map((item) => (
-            <li>
+            <li class={'wideOnly' in item ? 'hidden xl:block' : undefined}>
               <a
                 href={href(item.path, locale)}
                 aria-current={isCurrent(item.path) ? 'page' : undefined}

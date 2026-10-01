@@ -291,6 +291,14 @@ export const TABLE_POLICIES = {
     privateColumns: ['assigneeId', 'escalatedById', 'escalationReason'],
     note: 'Queue assignee and escalation per target (Ranger Station); every change is also audited.',
   },
+  SharedLog: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'system'],
+    privateColumns: ['userId', 'reportCount', 'hiddenAt', 'purgeReason'],
+    secretColumns: ['deleteTokenHash', 'content'],
+    retention: '24 hours; the worker hard-deletes the payload, a tombstone row stays 30 days',
+    note: 'Shared game logs behind an unguessable id. Only the viewer endpoints read them, by id; never listed or indexed.',
+  },
   AuditLog: {
     exposure: 'staff',
     writers: ['system'],

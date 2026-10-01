@@ -1,4 +1,4 @@
-import { parseLog } from '@sotf/contracts/log-parser';
+import { type LogLine, parseLog } from '@sotf/contracts/log-parser';
 import { describe, expect, it } from 'vitest';
 import { buildRows, foldHiding, rowAt, rowOffsets, rowOfLine, segmentsOf, visibleRange, wrappedRows } from './model.ts';
 
@@ -65,7 +65,7 @@ describe('log viewer model', () => {
           .join(''),
       ).toBe(line.text);
     }
-    expect(segmentsOf(lines[1]!).map((s) => s.kind)).toContain('level');
-    expect(segmentsOf(lines[6]!)).toEqual([{ kind: 'body', text: '  at Foo.Bar()' }]);
+    expect(segmentsOf(lines[1] as LogLine).map((s) => s.kind)).toContain('level');
+    expect(segmentsOf(lines[6] as LogLine)).toEqual([{ kind: 'body', text: '  at Foo.Bar()' }]);
   });
 });
