@@ -37,7 +37,7 @@ const BTN =
   'disabled:cursor-not-allowed disabled:opacity-55 aria-busy:cursor-progress ' +
   FOCUS_RING;
 const ITEM =
-  'flex min-h-10 w-full items-center gap-2.5 rounded-sm px-2.5 py-1.5 text-start text-sm text-fg hover:bg-fg/8 ' + FOCUS_RING;
+  `flex min-h-10 w-full items-center gap-2.5 rounded-sm px-2.5 py-1.5 text-start text-sm text-fg hover:bg-fg/8 ${FOCUS_RING}`;
 const kitHref = `${href('/me/kits', locale)}?add=${mod.id}`;
 ---
 

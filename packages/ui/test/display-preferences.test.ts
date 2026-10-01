@@ -14,7 +14,7 @@ const sectionTwo = tokensCss.slice(
 describe('display preferences in tokens.css', () => {
   it('data-motion="reduce" repeats the reduced-motion rule for every element and pseudo-element', () => {
     expect(sectionTwo).toContain(
-      ':root[data-motion="reduce"] *, :root[data-motion="reduce"] ::before, :root[data-motion="reduce"] ::after',
+      ':root[data-motion="reduce"] *,\n  :root[data-motion="reduce"] *::before, :root[data-motion="reduce"] *::after',
     );
     expect(sectionTwo).toMatch(/animation-duration: 1ms !important; animation-iteration-count: 1 !important;/);
     expect(sectionTwo).toMatch(/transition-duration: 1ms !important; scroll-behavior: auto !important;/);

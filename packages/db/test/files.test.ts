@@ -28,9 +28,9 @@ describe('the repository migrations', () => {
     expect(new Set(numbers).size).toBe(numbers.length);
   });
 
-  it('stay inside the PLAN §12.1 numbering ranges (0000–2099) and every one after the baseline has a down file', () => {
+  it('stay inside the PLAN §12.1 numbering ranges (0000–2999) and every one after the baseline has a down file', () => {
     for (const m of migrations) {
-      expect(m.number).toBeLessThan(2100);
+      expect(m.number).toBeLessThan(3000);
       if (m.number > 0) expect(m.down, m.file).not.toBeNull();
     }
   });

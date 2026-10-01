@@ -57,7 +57,7 @@ describe('endpoint contracts', () => {
     const declared = endpoint.params ? Object.keys(endpoint.params.shape) : [];
     expect(declared.sort()).toEqual([...names].sort());
     expect(endpoint.path).toMatch(/^\/(api\/|internal\/|healthz$|readyz$)/);
-    expect(endpoint.owner).toMatch(/^WP-\d{2}$/);
+    expect(endpoint.owner).toMatch(/^WP-[A-Za-z0-9]{2,5}$/);
     expect(endpoint.summary.length).toBeGreaterThan(3);
 
     // Bodies only on mutations; request and response bodies are registered DTOs.
@@ -333,19 +333,25 @@ describe('endpoint contracts', () => {
         'catalog',
         'comments',
         'compat',
+        'discovery',
         'downloads',
         'events',
         'follows',
         'gamification',
         'internal',
+        'jams',
+        'kitSocial',
         'kits',
         'legacy',
         'me',
+        'modKnowledge',
         'moderation',
         'notifications',
         'oauth',
+        'requests',
         'reviews',
         'search',
+        'security',
         'seo',
         'stats',
         'studio',

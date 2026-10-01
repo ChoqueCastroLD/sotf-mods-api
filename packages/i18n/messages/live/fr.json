@@ -8,5 +8,5 @@
   "live_embed_kind_version": "Version",
   "live_embed_kind_compat": "Compatibilité",
   "live_embed_kind_rating": "Note",
-  "live_embed_badge_alt": "Badge {kind} : {name}"
+  "live_embed_badge_alt": "Badge {kind} : {name}"
 }

@@ -18,7 +18,7 @@ const de_emails_notify_item_review_update_prompt = /** @type {(inputs: Emails_No
 };
 
 const fr_emails_notify_item_review_update_prompt = /** @type {(inputs: Emails_Notify_Item_Review_Update_PromptInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} a publié une nouvelle version majeure (${i?.version}) : mettez à jour votre avis`)
+	return /** @type {LocalizedString} */ (`${i?.mod} a publié une nouvelle version majeure (${i?.version}) : mettez à jour votre avis`)
 };
 
 const it_emails_notify_item_review_update_prompt = /** @type {(inputs: Emails_Notify_Item_Review_Update_PromptInputs) => LocalizedString} */ (i) => {

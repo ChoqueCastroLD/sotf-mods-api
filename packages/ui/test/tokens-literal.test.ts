@@ -23,7 +23,18 @@ describe('tokens.css', () => {
       '/* Fontsource variable fonts (OFL-1.1) + fontaine metric fallbacks: see ./fonts.css (WP-12) */\n@import "./fonts.css";\n',
     );
     expect(expected).not.toBe(researchTokenBlock());
-    expect(sectionOne(tokensCss)).toBe(expected);
+    // Documented deviation: the OS reduced-motion rule skips `data-motion="full"` (account override, WP-81).
+    const withMotionOptOut = expected.replace(
+      /\*, ::before, ::after \{ animation-duration: 1ms !important; animation-iteration-count: 1 !important;\n\s+transition-duration: 1ms !important; scroll-behavior: auto !important; \}/,
+      [
+        ':root:not([data-motion="full"]), :root:not([data-motion="full"]) *,',
+        '    :root:not([data-motion="full"]) *::before, :root:not([data-motion="full"]) *::after {',
+        '      animation-duration: 1ms !important; animation-iteration-count: 1 !important;',
+        '      transition-duration: 1ms !important; scroll-behavior: auto !important; }',
+      ].join('\n'),
+    );
+    expect(withMotionOptOut).not.toBe(expected);
+    expect(sectionOne(tokensCss)).toBe(withMotionOptOut);
   });
 
   it('fonts.css carries the four Fontsource imports of the research block and the fallbacks', () => {

@@ -18,7 +18,7 @@ const de_emails_auth_new_login_preview = /** @type {(inputs: Emails_Auth_New_Log
 };
 
 const fr_emails_auth_new_login_preview = /** @type {(inputs: Emails_Auth_New_Login_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Était-ce vous ?`)
+	return /** @type {LocalizedString} */ (`Était-ce vous ?`)
 };
 
 const it_emails_auth_new_login_preview = /** @type {(inputs: Emails_Auth_New_Login_PreviewInputs) => LocalizedString} */ () => {

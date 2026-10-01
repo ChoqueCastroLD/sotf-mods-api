@@ -494,11 +494,7 @@ function DetailsForm({ jam }: { jam: AdminJam }) {
         {votingStarted ? <Banner tone="info" title={m.jams_editor_categories_locked()} /> : null}
         <ul className="grid gap-3">
           {categories.map((category, index) => (
-            <li
-              // biome-ignore lint/suspicious/noArrayIndexKey: rows are edited in place and reordered never
-              key={index}
-              className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_6rem_auto] sm:items-end"
-            >
+            <li key={index} className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_6rem_auto] sm:items-end">
               <Field label={m.jams_editor_category_key()}>
                 <Input
                   value={category.key}

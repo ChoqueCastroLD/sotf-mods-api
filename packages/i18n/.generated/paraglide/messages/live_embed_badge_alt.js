@@ -18,7 +18,7 @@ const de_live_embed_badge_alt = /** @type {(inputs: Live_Embed_Badge_AltInputs) 
 };
 
 const fr_live_embed_badge_alt = /** @type {(inputs: Live_Embed_Badge_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Badge ${i?.kind} : ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Badge ${i?.kind} : ${i?.name}`)
 };
 
 const it_live_embed_badge_alt = /** @type {(inputs: Live_Embed_Badge_AltInputs) => LocalizedString} */ (i) => {

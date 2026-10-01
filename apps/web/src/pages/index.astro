@@ -14,7 +14,7 @@
  *   docs/backlog/WP-53.md).
  * - JSON-LD: `WebSite` + `SearchAction`, `Organization` and `FAQPage` (the visible FAQ).
  */
-import { localizeCards } from '../lib/localize.ts';
+
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import AdUnit from '../components/ads/AdUnit.astro';
@@ -43,6 +43,7 @@ import { setPageCache } from '../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../lib/cache/policy.ts';
 import { loadEnv } from '../lib/env.ts';
 import { href, toHtmlLang } from '../lib/i18n.ts';
+import { localizeCards } from '../lib/localize.ts';
 import { ensureLocals } from '../lib/request-context.ts';
 import { organizationJsonLd, websiteJsonLd } from '../lib/seo/jsonld.ts';
 

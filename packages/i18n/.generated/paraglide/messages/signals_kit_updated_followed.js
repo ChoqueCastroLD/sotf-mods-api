@@ -18,7 +18,7 @@ const de_signals_kit_updated_followed = /** @type {(inputs: Signals_Kit_Updated_
 };
 
 const fr_signals_kit_updated_followed = /** @type {(inputs: Signals_Kit_Updated_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Le kit « ${i?.kit} » que vous suivez a été mis à jour`)
+	return /** @type {LocalizedString} */ (`Le kit « ${i?.kit} » que vous suivez a été mis à jour`)
 };
 
 const it_signals_kit_updated_followed = /** @type {(inputs: Signals_Kit_Updated_FollowedInputs) => LocalizedString} */ (i) => {

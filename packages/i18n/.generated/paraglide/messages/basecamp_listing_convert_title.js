@@ -18,7 +18,7 @@ const de_basecamp_listing_convert_title = /** @type {(inputs: Basecamp_Listing_C
 };
 
 const fr_basecamp_listing_convert_title = /** @type {(inputs: Basecamp_Listing_Convert_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Convertir cette description en Markdown ?`)
+	return /** @type {LocalizedString} */ (`Convertir cette description en Markdown ?`)
 };
 
 const it_basecamp_listing_convert_title = /** @type {(inputs: Basecamp_Listing_Convert_TitleInputs) => LocalizedString} */ () => {

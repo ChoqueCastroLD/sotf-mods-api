@@ -15,11 +15,9 @@ import { profilePath } from '@sotf/contracts/seo';
 import { formatDateTime } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
-import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
-import { ModCard } from '@sotf/ui/domain';
-import { KitsError } from '../../components/kits/KitStates.tsx';
-import { jamPath, loadJamPage } from '../../components/jams/data.ts';
+import { ModCard, PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
 import Countdown from '../../components/jams/Countdown.astro';
+import { jamPath, loadJamPage } from '../../components/jams/data.ts';
 import Podium from '../../components/jams/Podium.astro';
 import {
   accentHex,
@@ -29,6 +27,7 @@ import {
   phaseLabel,
   phaseTone,
 } from '../../components/jams/phase.ts';
+import { KitsError } from '../../components/kits/KitStates.tsx';
 import { loginHrefFor } from '../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../components/mod/i18n.ts';
 import { respondNotFound } from '../../components/mod/responses.ts';

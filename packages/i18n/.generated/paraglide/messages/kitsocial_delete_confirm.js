@@ -18,7 +18,7 @@ const de_kitsocial_delete_confirm = /** @type {(inputs: Kitsocial_Delete_Confirm
 };
 
 const fr_kitsocial_delete_confirm = /** @type {(inputs: Kitsocial_Delete_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Supprimer ce commentaire ? Cette action est irréversible.`)
+	return /** @type {LocalizedString} */ (`Supprimer ce commentaire ? Cette action est irréversible.`)
 };
 
 const it_kitsocial_delete_confirm = /** @type {(inputs: Kitsocial_Delete_ConfirmInputs) => LocalizedString} */ () => {

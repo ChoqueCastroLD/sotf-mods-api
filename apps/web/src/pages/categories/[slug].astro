@@ -7,7 +7,7 @@
  * - Unknown slug → 404. Indexable unless filtered or empty; `?page=N` self-canonical.
  * - Cache: E(900) `category:{slug}` + `list:mods|list:builds`.
  */
-import { localizeCards } from '../../lib/localize.ts';
+
 import { cacheTag } from '@sotf/contracts/cache';
 import { m } from '@sotf/i18n/messages';
 import { categoryIntro } from '../../components/explore/copy.ts';
@@ -21,6 +21,7 @@ import { setPageCache } from '../../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { localizeCards } from '../../lib/localize.ts';
 
 const locale = Astro.locals.locale;
 const raw = Astro.params.slug ?? '';

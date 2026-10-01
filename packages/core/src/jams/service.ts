@@ -221,7 +221,7 @@ export async function withdrawEntry(ctx: Ctx, slug: string, entryId: number): Pr
                  EXISTS (SELECT 1 FROM "JamEntryAuthor" a WHERE a."entryId" = e."id" AND a."userId" = ${member.id} AND a."isLead") AS "lead"
             FROM "JamEntry" e WHERE e."id" = ${entryId} AND e."jamId" = ${row.id} FOR UPDATE`,
     );
-    if (!entry || !entry.lead) throw errors.notFound('Entry');
+    if (!entry?.lead) throw errors.notFound('Entry');
     if (entry.status === 'withdrawn') return;
     if (!acceptsWithdrawals(row.phase)) throw errors.conflict('Entries can only be withdrawn before voting starts');
     if (entry.status !== 'active') throw errors.forbidden('Moderators handle this entry');

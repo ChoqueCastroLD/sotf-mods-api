@@ -9,7 +9,7 @@
  *   their canonical to the base listing.
  * - Cache: E(300) `list:kits`; the API failing → 503 with an error state, never cached.
  */
-import { localizeCards } from '../../lib/localize.ts';
+
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
 import { KitCard } from '@sotf/ui/domain';
@@ -25,6 +25,7 @@ import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { localizeCards } from '../../lib/localize.ts';
 
 export const prerender = false;
 

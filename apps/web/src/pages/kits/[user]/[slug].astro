@@ -10,7 +10,7 @@
  * more kits of the curator). Everything user-specific (the owner's «Edit», fork) is resolved by
  * the page script after load; the HTML is the same for every visitor.
  */
-import { localizeCards } from '../../../lib/localize.ts';
+
 import { kitShortPath } from '@sotf/contracts/kits';
 import { profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber } from '@sotf/i18n';
@@ -63,6 +63,7 @@ import { setPageCache } from '../../../lib/cache/page.ts';
 import { pageCache } from '../../../lib/cache/policy.ts';
 import { loadEnv } from '../../../lib/env.ts';
 import { href } from '../../../lib/i18n.ts';
+import { localizeCards } from '../../../lib/localize.ts';
 import { ensureLocals } from '../../../lib/request-context.ts';
 import { breadcrumbJsonLd } from '../../../lib/seo/jsonld.ts';
 

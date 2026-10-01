@@ -18,7 +18,7 @@ const de_mod_stats_last30 = /** @type {(inputs: Mod_Stats_Last30Inputs) => Local
 };
 
 const fr_mod_stats_last30 = /** @type {(inputs: Mod_Stats_Last30Inputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`30 derniers jours : ${i?.display}`)
+	return /** @type {LocalizedString} */ (`30 derniers jours : ${i?.display}`)
 };
 
 const it_mod_stats_last30 = /** @type {(inputs: Mod_Stats_Last30Inputs) => LocalizedString} */ (i) => {

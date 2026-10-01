@@ -18,7 +18,7 @@ const de_emails_auth_new_login_country = /** @type {(inputs: Emails_Auth_New_Log
 };
 
 const fr_emails_auth_new_login_country = /** @type {(inputs: Emails_Auth_New_Login_CountryInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Pays : ${i?.country}`)
+	return /** @type {LocalizedString} */ (`Pays : ${i?.country}`)
 };
 
 const it_emails_auth_new_login_country = /** @type {(inputs: Emails_Auth_New_Login_CountryInputs) => LocalizedString} */ (i) => {

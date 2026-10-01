@@ -18,7 +18,7 @@ const de_signals_review_update_prompt = /** @type {(inputs: Signals_Review_Updat
 };
 
 const fr_signals_review_update_prompt = /** @type {(inputs: Signals_Review_Update_PromptInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} a publié la version ${i?.version}. Voulez-vous mettre à jour votre avis ?`)
+	return /** @type {LocalizedString} */ (`${i?.mod} a publié la version ${i?.version}. Voulez-vous mettre à jour votre avis ?`)
 };
 
 const it_signals_review_update_prompt = /** @type {(inputs: Signals_Review_Update_PromptInputs) => LocalizedString} */ (i) => {

@@ -96,7 +96,9 @@ describe('AdSlot reserves its height', () => {
       const [small, large] = AD_MIN_HEIGHT[format];
       expect(html).toContain(`min-h-[${small}px]`);
       expect(html).toContain(`md:min-h-[${large}px]`);
-      expect(html).toContain('data-full-width-responsive="false"');
+      // The site's units are AdSense in-article (fluid) units.
+      expect(html).toContain('data-ad-format="fluid"');
+      expect(html).toContain('data-ad-layout="in-article"');
       expect(textOf(html)).toContain('Advertisement');
     });
   }

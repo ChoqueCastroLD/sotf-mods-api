@@ -48,6 +48,7 @@ export type ActionIcon =
   | 'radar'
   | 'creators'
   | 'compare'
+  | 'jams'
   | 'developers'
   | 'settings'
   | 'basecamp'

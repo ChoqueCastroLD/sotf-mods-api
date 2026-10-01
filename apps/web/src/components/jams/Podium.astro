@@ -3,9 +3,10 @@
  * Podium of one category (top 3, ties included): rank medal, the entry as a compact mod card,
  * the team, the average stars and the number of votes. Ranks are also text, never only colour.
  */
+
+import { profilePath } from '@sotf/contracts/seo';
 import { formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { profilePath } from '@sotf/contracts/seo';
 import { ModCard } from '@sotf/ui/domain';
 import { href } from '../../lib/i18n.ts';
 import type { JamResultsDTO } from './data.ts';

@@ -52,6 +52,7 @@ const {
   ModCard,
   ModCardSkeleton,
   ModChip,
+  OriginalName,
   ProseLocator,
   RankStamp,
   RatingHistogram,
@@ -153,6 +154,13 @@ const cases: Record<string, Case[]> = {
       ),
     ],
     ['empty', () => <VersionTable versions={[]} />],
+  ],
+  OriginalName: [
+    [
+      'translated',
+      () => <OriginalName card={{ name: 'Axel Mod Menu', localized: { name: 'Menú de mods de Axel' } }} />,
+    ],
+    ['untranslated renders nothing', () => <OriginalName card={{ name: 'Axel Mod Menu' }} />],
   ],
   ModChip: [
     ['required, linked', () => <ModChip dependency={dependencies[0] as domain.DependencyDTO} />],

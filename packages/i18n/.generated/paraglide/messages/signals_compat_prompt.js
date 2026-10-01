@@ -18,7 +18,7 @@ const de_signals_compat_prompt = /** @type {(inputs: Signals_Compat_PromptInputs
 };
 
 const fr_signals_compat_prompt = /** @type {(inputs: Signals_Compat_PromptInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`La version ${i?.build} du jeu est sortie. Les mods que vous avez téléchargés fonctionnent-ils toujours ? Dites-le-nous.`)
+	return /** @type {LocalizedString} */ (`La version ${i?.build} du jeu est sortie. Les mods que vous avez téléchargés fonctionnent-ils toujours ? Dites-le-nous.`)
 };
 
 const it_signals_compat_prompt = /** @type {(inputs: Signals_Compat_PromptInputs) => LocalizedString} */ (i) => {

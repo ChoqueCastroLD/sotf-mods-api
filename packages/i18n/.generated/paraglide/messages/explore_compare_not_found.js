@@ -18,7 +18,7 @@ const de_explore_compare_not_found = /** @type {(inputs: Explore_Compare_Not_Fou
 };
 
 const fr_explore_compare_not_found = /** @type {(inputs: Explore_Compare_Not_FoundInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Impossible de trouver « ${i?.ref} ».`)
+	return /** @type {LocalizedString} */ (`Impossible de trouver « ${i?.ref} ».`)
 };
 
 const it_explore_compare_not_found = /** @type {(inputs: Explore_Compare_Not_FoundInputs) => LocalizedString} */ (i) => {

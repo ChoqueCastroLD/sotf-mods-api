@@ -226,7 +226,7 @@
   "mod_stats_series": "Téléchargements par jour",
   "mod_stats_day": "Jour",
   "mod_stats_empty": "Aucun téléchargement enregistré sur cette période.",
-  "mod_stats_last30": "30 derniers jours : {display}",
+  "mod_stats_last30": "30 derniers jours : {display}",
   "mod_stats_sparkline_label": "Téléchargements quotidiens, 30 derniers jours",
   "mod_stats_open": "Explorer le graphique",
   "mod_stats_range_label": "Période",

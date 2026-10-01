@@ -18,7 +18,7 @@ const de_signals_kit_added_my_mod = /** @type {(inputs: Signals_Kit_Added_My_Mod
 };
 
 const fr_signals_kit_added_my_mod = /** @type {(inputs: Signals_Kit_Added_My_ModInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.actor} a ajouté ${i?.mod} au kit « ${i?.kit} »`)
+	return /** @type {LocalizedString} */ (`${i?.actor} a ajouté ${i?.mod} au kit « ${i?.kit} »`)
 };
 
 const it_signals_kit_added_my_mod = /** @type {(inputs: Signals_Kit_Added_My_ModInputs) => LocalizedString} */ (i) => {

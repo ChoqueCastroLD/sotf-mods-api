@@ -18,7 +18,7 @@ const de_cmdk_filter_tip = /** @type {(inputs: Cmdk_Filter_TipInputs) => Localiz
 };
 
 const fr_cmdk_filter_tip = /** @type {(inputs: Cmdk_Filter_TipInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Astuce : affinez avec by:, cat:, sort:, type: et mp:.`)
+	return /** @type {LocalizedString} */ (`Astuce : affinez avec by:, cat:, sort:, mp:, type:.`)
 };
 
 const it_cmdk_filter_tip = /** @type {(inputs: Cmdk_Filter_TipInputs) => LocalizedString} */ () => {
