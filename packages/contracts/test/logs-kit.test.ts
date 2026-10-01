@@ -35,7 +35,7 @@ describe('redactLog', () => {
   it('hides secrets by key name and by shape', () => {
     const { text, counts } = redactLog(
       [
-        'token=ghp_0123456789abcdefghijklmnopqrstuvwxyz12',
+        'token=ghp_0123456789abcdefghijklmnopqrstuvwxyz12', // check-forbidden-allow: secret-github-token fake token for the redaction test
         'Authorization: Bearer abcdefghijklmnop123456',
         '"password": "hunter2hunter2"',
         'url https://user:pass@example.com/x',

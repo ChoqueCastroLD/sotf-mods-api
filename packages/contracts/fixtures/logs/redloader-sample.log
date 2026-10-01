@@ -26,7 +26,7 @@
 [14:02:11.009] [Debug  :AmmoUi] Loaded 14 ammo icons from C:\Users\Luis Choque\AppData\LocalLow\Endnight\SonsOfTheForest\Mods\AmmoUi\icons
 [14:02:11.171] [Info   :AxelModMenu] Initialized
 [14:02:11.332] [Info   :BuildShare] Initialized
-[14:02:11.482] [Info   :BuildShare] Connecting to https://sotf-mods.com/api/v2/builds (token=ghp_0123456789abcdefghijklmnopqrstuvwxyz12)
+[14:02:11.482] [Info   :BuildShare] Connecting to https://sotf-mods.com/api/v2/builds (token=ghp_0123456789abcdefghijklmnopqrstuvwxyz12) check-forbidden-allow: secret-github-token fake token for the redaction fixture
 [14:02:11.498] [Info   :BuildShare] Logged in as luis.choque.castro@outlook.com
 [14:02:11.646] [Info   :CleanStash] Initialized
 [14:02:11.796] [Info   :FastZiplines] Initialized
