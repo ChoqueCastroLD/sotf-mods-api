@@ -50,6 +50,8 @@ const LINE_HEIGHT = 20;
 const OVERSCAN = 400;
 /** Gutter (line number), level stripe and text padding in px: must match the row classes below. */
 const GUTTER = 56;
+/** Narrow screens give the text the width: a slimmer line-number gutter. */
+const GUTTER_NARROW = 44;
 const STRIPE = 3;
 const PAD = 8 + 12;
 const STORAGE_PREFIX = 'sotf.logs.del.';
@@ -260,7 +262,8 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
   }, [status]);
 
   const rows = useMemo(() => buildRows(lines, level, deferredQuery, expanded), [lines, level, deferredQuery, expanded]);
-  const textWidth = Math.max(0, size.width - STRIPE - GUTTER - PAD);
+  const gutter = size.width > 0 && size.width < 560 ? GUTTER_NARROW : GUTTER;
+  const textWidth = Math.max(0, size.width - STRIPE - gutter - PAD);
   const charsPerRow = wrap ? Math.max(8, Math.floor(textWidth / charWidth - 0.05)) : null;
   const offsets = useMemo(() => rowOffsets(rows, LINE_HEIGHT, charsPerRow), [rows, charsPerRow]);
   const total = offsets[rows.length] ?? 0;
@@ -272,7 +275,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
   }, [rows, wrap]);
   const contentWidth = wrap
     ? '100%'
-    : Math.max(size.width, STRIPE + GUTTER + PAD + Math.ceil(maxChars * charWidth) + 24);
+    : Math.max(size.width, STRIPE + gutter + PAD + Math.ceil(maxChars * charWidth) + 24);
   const { start, end } = visibleRange(offsets, scrollTop, size.height, OVERSCAN);
 
   const scrollToIndex = useCallback(
@@ -441,7 +444,8 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           onClick={() => pickLine(line.n)}
           aria-label={fill(labels.line_number, { line: line.n })}
           aria-pressed={isActive}
-          className="sticky start-0 z-1 w-14 shrink-0 cursor-pointer bg-bg pe-2 text-end font-mono text-[12px] leading-5 text-fg-subtle tabular-nums select-none hover:text-fg focus-visible:outline-2 focus-visible:outline-focus"
+          style={{ width: gutter }}
+          className="sticky start-0 z-1 shrink-0 cursor-pointer bg-bg pe-1.5 text-end md:pe-2 font-mono text-[12px] leading-5 text-fg-subtle tabular-nums select-none hover:text-fg focus-visible:outline-2 focus-visible:outline-focus"
         >
           {line.n}
         </button>
@@ -499,12 +503,12 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
               className="h-11 w-full rounded-md border border-border-strong bg-raised ps-9 pe-3 text-base text-fg placeholder:text-fg-subtle md:h-10 md:text-sm"
             />
           </label>
-          <div className="flex min-w-0 flex-wrap items-center gap-2">
-            {/* biome-ignore lint/a11y/useSemanticElements: a scrolling chip row, a fieldset cannot scroll horizontally */}
+          <div className="grid min-w-0 gap-2 md:flex md:flex-wrap md:items-center">
+            {/* biome-ignore lint/a11y/useSemanticElements: a segmented control of toggle buttons, a fieldset has no layout of its own */}
             <div
               role="group"
               aria-label={labels.filter_label}
-              className="-mx-1 flex min-w-0 basis-full gap-1.5 overflow-x-auto px-1 py-0.5 md:basis-auto"
+              className="grid min-w-0 grid-cols-4 gap-1 rounded-lg border border-border bg-bg p-1 md:flex md:gap-1.5 md:border-0 md:bg-transparent md:p-0"
             >
               {LEVEL_FILTERS.map((value) => (
                 <button
@@ -512,49 +516,51 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
                   type="button"
                   aria-pressed={level === value}
                   onClick={() => changeLevel(value)}
-                  className={`inline-flex h-11 shrink-0 items-center gap-1.5 rounded-md border px-3 text-sm font-medium md:h-10 ${
+                  className={`inline-flex min-h-12 min-w-0 flex-col items-center justify-center gap-0.5 rounded-md border px-1 text-center text-[13px] leading-tight font-medium md:h-10 md:min-h-0 md:flex-row md:gap-1.5 md:px-3 md:text-sm ${
                     level === value
                       ? 'border-flare-500 bg-flare-400/15 text-fg'
-                      : 'border-border-strong bg-raised text-fg-muted hover:text-fg'
+                      : 'border-transparent text-fg-muted hover:text-fg md:border-border-strong md:bg-raised'
                   }`}
                 >
-                  {chipLabel[value]}
+                  <span className="min-w-0 break-words">{chipLabel[value]}</span>
                   <span
-                    className={`rounded-sm px-1.5 text-xs tabular-nums ${value === 'error' && counts.error > 0 ? 'bg-danger text-danger-fg' : value === 'warning' && counts.warning > 0 ? 'bg-warning-soft text-warning' : 'bg-bg text-fg-muted'}`}
+                    className={`rounded-sm px-1.5 text-xs tabular-nums ${value === 'error' && counts.error > 0 ? 'bg-danger text-danger-fg' : value === 'warning' && counts.warning > 0 ? 'bg-warning-soft text-warning' : 'bg-raised text-fg-muted md:bg-bg'}`}
                   >
                     {chipCount[value]}
                   </span>
                 </button>
               ))}
             </div>
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              aria-pressed={wrap}
-              icon={<Icon icon={WrapText} size={16} />}
-              onClick={() => setWrap((value) => !value)}
-              className="max-md:min-h-11"
-              title={labels.wrap}
-            >
-              {labels.wrap}
-            </Button>
-            {firstErrorLine !== null ? (
+            <div className="grid grid-cols-2 gap-2 md:flex">
               <Button
                 type="button"
                 variant="secondary"
                 size="sm"
-                icon={<Icon icon={TriangleAlert} size={16} />}
-                onClick={() => {
-                  history.replaceState(null, '', `${location.pathname}${location.search}#L${firstErrorLine}`);
-                  jumpTo(firstErrorLine);
-                }}
-                className="max-md:min-h-11"
-                title={labels.jump_error}
+                aria-pressed={wrap}
+                icon={<Icon icon={WrapText} size={16} />}
+                onClick={() => setWrap((value) => !value)}
+                className={`max-md:min-h-11 max-md:justify-center ${wrap ? 'border-flare-500 bg-flare-400/10' : ''}`}
+                title={labels.wrap}
               >
-                <span className="md:max-lg:sr-only">{labels.jump_error}</span>
+                {labels.wrap}
               </Button>
-            ) : null}
+              {firstErrorLine !== null ? (
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="sm"
+                  icon={<Icon icon={TriangleAlert} size={16} />}
+                  onClick={() => {
+                    history.replaceState(null, '', `${location.pathname}${location.search}#L${firstErrorLine}`);
+                    jumpTo(firstErrorLine);
+                  }}
+                  className="max-md:min-h-11 max-md:justify-center"
+                  title={labels.jump_error}
+                >
+                  <span className="md:max-lg:sr-only">{labels.jump_error}</span>
+                </Button>
+              ) : null}
+            </div>
           </div>
         </div>
         <p className="text-xs text-fg-muted" aria-live="polite">
@@ -643,6 +649,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           size="sm"
           icon={<Icon icon={Download} size={16} />}
           rel="nofollow"
+          className="max-md:min-h-11"
         >
           {labels.download}
         </ButtonLink>
@@ -651,6 +658,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           variant="secondary"
           size="sm"
           icon={<Icon icon={Link2} size={16} />}
+          className="max-md:min-h-11"
           onClick={async () =>
             flash((await copy(`${location.origin}${basePath}/${id}`)) ? labels.copied : labels.err_generic)
           }
@@ -662,6 +670,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           type="button"
           variant="ghost"
           size="sm"
+          className="max-md:min-h-11"
           icon={<Icon icon={Flag} size={16} />}
           aria-expanded={panel === 'report'}
           onClick={() => {

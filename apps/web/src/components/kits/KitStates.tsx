@@ -23,6 +23,7 @@ export function KitsEmpty({ title, text, action, secondary, headingLevel = 2 }: 
       title={title}
       description={text}
       headingLevel={headingLevel}
+      art
       action={
         action || secondary ? (
           <div className="flex flex-wrap justify-center gap-2">

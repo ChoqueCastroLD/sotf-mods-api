@@ -10,7 +10,7 @@ import { formatCompactNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight, BookOpen, Download, Search } from 'lucide-react';
-import LostTrail from '../components/layout/LostTrail.astro';
+import ArtPicture from '../components/layout/ArtPicture.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { optional, serverApi } from '../lib/api.ts';
 import { setPageCache } from '../lib/cache/page.ts';
@@ -43,13 +43,27 @@ const readout = gone ? m.errors_gone_readout() : m.errors_not_found_readout();
   }}
 >
   <section class="relative overflow-hidden">
-    <div class="texture-topo pointer-events-none absolute inset-0 opacity-60" aria-hidden="true"></div>
+    <div class="texture-topo pointer-events-none absolute inset-0 opacity-50 max-md:hidden" aria-hidden="true"></div>
     <div
-      class="relative mx-auto grid w-full max-w-(--container-content) items-center gap-10 px-4 py-12 md:grid-cols-[1.1fr_1fr] md:px-6 md:py-20"
+      class="relative mx-auto grid w-full max-w-(--container-content) items-center md:grid-cols-[1fr_1.05fr] md:gap-12 md:px-6 md:py-16"
     >
-      <div class="order-2 grid gap-6 md:order-1">
-        <p class="readout text-signal">{readout}</p>
-        <p class="font-display-caps text-display-xl text-fg" aria-hidden="true">{gone ? '410' : '404'}</p>
+      <figure
+        class="relative order-1 m-0 md:order-2 md:overflow-hidden md:rounded-2xl md:border md:border-border md:shadow-lg"
+        aria-hidden="true"
+      >
+        <ArtPicture
+          name="not-found"
+          widths={[480, 800, 1200]}
+          width={1376}
+          height={768}
+          sizes="(min-width: 48rem) 40rem, 100vw"
+          priority
+          class="block aspect-[16/10] w-full bg-raised object-cover max-md:mask-[linear-gradient(to_bottom,black_60%,transparent)] md:aspect-[4/3]"
+        />
+      </figure>
+      <div class="order-2 grid gap-5 px-4 pb-10 max-md:-mt-16 md:order-1 md:px-0 md:pb-0">
+        <p class="readout relative text-signal">{readout}</p>
+        <p class="font-display-caps relative text-display-xl text-fg" aria-hidden="true">{gone ? '410' : '404'}</p>
         <h1 class="font-display-caps text-display-sm text-fg">{title}</h1>
         <p class="max-w-(--container-prose) text-lg text-fg-muted">{text}</p>
 
@@ -79,25 +93,22 @@ const readout = gone ? m.errors_gone_readout() : m.errors_not_found_readout();
           </form>
         </search>
 
-        <div class="flex flex-wrap gap-3">
+        <div class="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
           <a
             href={href('/', locale)}
-            class="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8"
+            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border-strong px-3 py-2 text-center leading-tight font-semibold text-fg hover:bg-fg/8 sm:min-h-11 sm:px-4"
           >
             {m.errors_not_found_home()}
             <Icon icon={ArrowRight} size={18} className="rtl:rotate-180" />
           </a>
           <a
             href={href('/install', locale)}
-            class="inline-flex h-11 items-center gap-2 rounded-md px-4 font-semibold text-fg-muted hover:bg-fg/8 hover:text-fg"
+            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-center leading-tight font-semibold text-fg-muted hover:bg-fg/8 hover:text-fg sm:min-h-11 sm:border-0 sm:px-4"
           >
             <Icon icon={BookOpen} size={18} />
             {m.errors_not_found_install()}
           </a>
         </div>
-      </div>
-      <div class="order-1 flex justify-center md:order-2">
-        <LostTrail />
       </div>
     </div>
   </section>

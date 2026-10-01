@@ -113,9 +113,9 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
 
 ---
 
-<header class="grid gap-5">
+<header class="grid gap-4 md:gap-5">
   <div
-    class="relative -mx-4 aspect-[3/1] overflow-hidden bg-raised md:mx-0 md:aspect-banner md:rounded-xl md:border md:border-border"
+    class="relative -mx-4 aspect-[3/1] overflow-hidden bg-raised md:mx-0 md:aspect-[5/1] md:rounded-xl md:border md:border-border"
   >
     {
       user.banner ? (
@@ -136,12 +136,17 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
         </>
       )
     }
+    <div
+      class="pointer-events-none absolute inset-x-0 bottom-0 h-1/2 bg-linear-to-t from-bg/70 to-transparent md:hidden"
+      aria-hidden="true"
+    >
+    </div>
   </div>
 
-  <div class="grid gap-5 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-end md:gap-6">
+  <div class="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-x-4 gap-y-3 md:grid-cols-[auto_minmax(0,1fr)_auto] md:items-end md:gap-6">
     <div
       class:list={[
-        '-mt-14 flex w-fit items-end rounded-full md:-mt-20',
+        'relative z-10 -mt-12 flex w-fit items-end rounded-full md:-mt-20',
         frame === 'spotlight' && 'bg-bg p-1 outline-3 -outline-offset-1 outline-featured',
         frame === 'tier' && 'bg-bg p-1 outline-2 -outline-offset-1 outline-border-strong',
       ]}
@@ -151,45 +156,28 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
         user.avatar ? (
           <Picture
             image={user.avatar}
-            sizes="(min-width: 48rem) 128px, 96px"
+            sizes="(min-width: 48rem) 128px, 88px"
             alt={m.profile_avatar_alt({ name })}
             priority={!user.banner}
             fallbackWidth={128}
             fallbackHeight={128}
-            class="block size-24 rounded-full bg-raised object-cover ring-4 ring-bg md:size-32"
+            class="block size-22 rounded-full bg-raised object-cover ring-4 ring-bg md:size-32"
           />
         ) : (
           <Avatar
             name={name}
             id={user.id}
             size={128}
-            className="size-24 ring-4 ring-bg md:size-32"
+            className="size-22 ring-4 ring-bg md:size-32"
           />
         )
       }
     </div>
 
-    <div class="grid min-w-0 gap-1.5">
-      <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
-        <h1 id="profile-name" class="font-display-caps text-display-sm break-words text-fg">{name}</h1>
-        {
-          user.verifiedCreator && (
-            <span class="inline-flex items-center gap-1 text-sm font-medium text-signal" title={m.profile_verified_creator()}>
-              <Icon icon={BadgeCheck} size={20} />
-              <span class="sr-only md:not-sr-only">{m.profile_verified_creator()}</span>
-            </span>
-          )
-        }
-      </div>
-      <p class="font-mono text-sm text-fg-muted">@{user.handle}</p>
-      <p class="readout text-fg-muted">
-        <time datetime={user.createdAt} title={m.profile_joined({ date: formatDate(locale, user.createdAt, 'long') })}>
-          {m.profile_day_on_island({ day: formatNumber(locale, day) })}
-        </time>
-      </p>
-    </div>
-
-    <div class="flex flex-wrap gap-2" data-profile-actions>
+    <div
+      class="flex items-center justify-end gap-2 md:order-3 md:flex-wrap md:justify-start"
+      data-profile-actions
+    >
       <form method="get" action={loginAction} class="contents" data-profile-follow-form>
         <input type="hidden" name="next" value={next} />
         <button
@@ -198,7 +186,7 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
           data-follow-user={user.handle}
           data-follow-user-id={user.id}
           data-followers={stats.followersCount}
-          class={buttonClasses({ variant: 'primary', size: 'md', className: 'group/follow max-md:w-full' })}
+          class={buttonClasses({ variant: 'primary', size: 'md', className: 'group/follow max-md:h-11 max-md:px-5' })}
         >
           <Icon icon={UserPlus} size={18} className="group-aria-pressed/follow:hidden" />
           <Icon icon={UserCheck} size={18} className="hidden group-aria-pressed/follow:inline" />
@@ -220,11 +208,34 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
         data-profile-share
         data-share-title={name}
         data-copied={m.profile_link_copied()}
-        class={buttonClasses({ variant: 'secondary', size: 'md', className: 'max-md:h-11' })}
+        aria-label={m.common_action_share()}
+        class={buttonClasses({ variant: 'secondary', size: 'md', className: 'max-md:size-11 max-md:px-0' })}
       >
         <Icon icon={Share2} size={18} />
-        {m.common_action_share()}
+        <span class="max-md:sr-only">{m.common_action_share()}</span>
       </button>
+    </div>
+
+    <div class="col-span-full grid min-w-0 gap-1.5 md:order-2 md:col-span-1">
+      <div class="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
+        <h1 id="profile-name" class="font-display-caps text-display-sm break-words text-fg">{name}</h1>
+        {
+          user.verifiedCreator && (
+            <span class="inline-flex items-center gap-1 text-sm font-medium text-signal" title={m.profile_verified_creator()}>
+              <Icon icon={BadgeCheck} size={20} />
+              <span class="sr-only md:not-sr-only">{m.profile_verified_creator()}</span>
+            </span>
+          )
+        }
+      </div>
+      <p class="flex flex-wrap items-center gap-x-3 gap-y-0.5">
+        <span class="font-mono text-sm text-fg-muted">@{user.handle}</span>
+        <span class="readout text-fg-muted">
+          <time datetime={user.createdAt} title={m.profile_joined({ date: formatDate(locale, user.createdAt, 'long') })}>
+            {m.profile_day_on_island({ day: formatNumber(locale, day) })}
+          </time>
+        </span>
+      </p>
     </div>
   </div>
 
@@ -262,13 +273,16 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
     )
   }
 
-  <dl class="grid grid-cols-2 gap-3 border-y border-border py-4 sm:grid-cols-4" aria-label={m.profile_stats_label()}>
+  <dl
+    class="grid grid-cols-4 divide-x divide-border rounded-xl border border-border bg-surface py-3 rtl:divide-x-reverse"
+    aria-label={m.profile_stats_label()}
+  >
     {
       statItems.map((item) => (
-        <div class="flex min-w-0 flex-col gap-0.5" title={item.title}>
-          <dt class="readout truncate text-fg-muted">{item.label}</dt>
+        <div class="flex min-w-0 flex-col-reverse items-center justify-end gap-1.5 px-1 text-center md:items-start md:px-5 md:text-start" title={item.title}>
+          <dt class="readout line-clamp-2 text-[0.625rem] leading-3 break-words text-fg-muted md:text-2xs md:leading-4">{item.label}</dt>
           <dd
-            class="font-display-caps text-display-xs leading-none tabular-nums text-fg"
+            class="font-display-caps text-display-xs leading-none tabular-nums text-fg md:text-display-sm"
             data-follow-count={item.followers === undefined ? undefined : ''}
             data-followers={item.followers}
           >
@@ -280,7 +294,7 @@ const showHelpfulExtra = stats.ratingAvg !== null && stats.helpfulVotes > 0;
   </dl>
   {
     showHelpfulExtra && (
-      <p class="-mt-3 text-sm text-fg-muted">
+      <p class="-mt-2 text-sm text-fg-muted">
         {m.profile_stat_helpful_line({ count: stats.helpfulVotes })}
       </p>
     )

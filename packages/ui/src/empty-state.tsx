@@ -14,10 +14,68 @@ export interface EmptyStateProps {
   /** Heading level of the title. Default 2. */
   headingLevel?: 2 | 3 | 4;
   className?: string;
+  /**
+   * Painted forest scene (`/art/empty-state-*`, ~8 KB AVIF) above the text: for page-level empty
+   * states where the whole area is empty. Lazy-loaded, fixed aspect ratio (no layout shift). The
+   * `icon` is not drawn when the art is on; panels and small lists keep the line icon.
+   */
+  art?: boolean;
 }
 
-export function EmptyState({ icon, title, description, action, headingLevel = 2, className }: EmptyStateProps) {
+/** `<picture>` of the empty-state art, square source shown as a wide crop that fades into the card. */
+function EmptyArt() {
+  return (
+    <picture className="block w-full">
+      <source
+        type="image/avif"
+        srcSet="/art/empty-state-320.avif 320w, /art/empty-state-640.avif 640w"
+        sizes="(min-width: 40rem) 28rem, 100vw"
+      />
+      <source
+        type="image/webp"
+        srcSet="/art/empty-state-320.webp 320w, /art/empty-state-640.webp 640w"
+        sizes="(min-width: 40rem) 28rem, 100vw"
+      />
+      <img
+        src="/art/empty-state-640.webp"
+        alt=""
+        width={640}
+        height={640}
+        loading="lazy"
+        decoding="async"
+        className="aspect-[16/10] w-full bg-raised object-cover object-[50%_72%] mask-[linear-gradient(to_bottom,black_55%,transparent)]"
+      />
+    </picture>
+  );
+}
+
+export function EmptyState({
+  icon,
+  title,
+  description,
+  action,
+  headingLevel = 2,
+  className,
+  art = false,
+}: EmptyStateProps) {
   const Heading = `h${headingLevel}` as const;
+  if (art) {
+    return (
+      <div
+        className={cn(
+          'mx-auto flex w-full max-w-xl flex-col items-center overflow-hidden rounded-2xl border border-border bg-surface text-center',
+          className,
+        )}
+      >
+        <EmptyArt />
+        <div className="-mt-10 flex flex-col items-center gap-3 px-6 pb-8">
+          <Heading className="font-display-caps text-display-xs text-fg">{title}</Heading>
+          {description ? <p className="max-w-prose text-sm text-fg-muted">{description}</p> : null}
+          {action ? <div className="mt-2 flex flex-wrap justify-center gap-2">{action}</div> : null}
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={cn('flex flex-col items-center gap-3 px-4 py-12 text-center', className)}>
       {icon ? (

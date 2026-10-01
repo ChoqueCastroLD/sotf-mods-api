@@ -42,6 +42,7 @@ export function ListingEmpty({
         title={title}
         description={text}
         headingLevel={headingLevel}
+        art
       />
       {filters.length > 0 ? (
         <div className="flex flex-col items-center gap-3">

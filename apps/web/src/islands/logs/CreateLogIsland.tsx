@@ -222,6 +222,7 @@ export default function CreateLogIsland({ labels, lang, basePath, turnstileSiteK
               variant="secondary"
               size="sm"
               icon={<Icon icon={FileUp} size={16} />}
+              className="max-md:min-h-11"
               onClick={() => fileInput.current?.click()}
             >
               {labels.choose_file}
@@ -232,6 +233,7 @@ export default function CreateLogIsland({ labels, lang, basePath, turnstileSiteK
                 variant="ghost"
                 size="sm"
                 icon={<Icon icon={X} size={16} />}
+                className="max-md:min-h-11"
                 onClick={() => setText('')}
               >
                 {labels.clear}
@@ -250,11 +252,11 @@ export default function CreateLogIsland({ labels, lang, basePath, turnstileSiteK
           spellCheck={false}
           autoCapitalize="off"
           autoCorrect="off"
-          rows={12}
+          rows={8}
           placeholder={dragging ? labels.drop_active : labels.field_text_placeholder}
           aria-describedby={error ? `${sizeId} ${errorId}` : sizeId}
           aria-invalid={error ? true : undefined}
-          className="min-h-56 w-full resize-y rounded-md border border-border-strong bg-raised p-3 font-mono text-[13px] leading-5 text-fg placeholder:text-fg-subtle md:min-h-72"
+          className="min-h-44 w-full resize-y rounded-md border border-border-strong bg-raised p-3 font-mono text-[13px] leading-5 text-fg placeholder:text-fg-subtle md:min-h-72"
           wrap="off"
         />
         <p id={sizeId} className="text-xs text-fg-muted">
