@@ -44,7 +44,7 @@ describe('DomainError', () => {
     const limited = errors.rateLimited(29.2);
     expect(limited.code).toBe('RATE_LIMITED');
     expect(limited.meta.retryAfter).toBe(29.2);
-    expect(limited.detail).toBe('Kelvin needs a break: try again in 30 s');
+    expect(limited.detail).toBe('Too many requests — try again in 30 s');
     expect(rateLimitDetail(0)).toContain('1 s');
     expect(errors.validation('bad', [{ path: 'a', message: 'b' }]).meta.errors).toHaveLength(1);
   });

@@ -18,7 +18,7 @@ import { formatDate, LOCALES, toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowRight, Download, LifeBuoy, Radar, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Download, FileText, LifeBuoy, Radar, ShieldCheck } from 'lucide-react';
 import ContentHeader from '../components/content/ContentHeader.astro';
 import FallbackNotice from '../components/content/FallbackNotice.astro';
 import InstallFaq from '../components/content/InstallFaq.astro';
@@ -184,11 +184,16 @@ const htmlLang = toHtmlLang(locale);
               {m.content_install_help_title()}
             </h2>
             <p class="text-fg-muted">{m.content_install_help_text()}</p>
+            <p class="text-sm text-fg-muted">{m.logs_hint_install()}</p>
           </div>
           <div class="flex flex-wrap gap-2">
             <a href={href('/patch-radar', locale)} class={buttonClasses({ variant: 'secondary', size: 'md' })}>
               <Icon icon={Radar} size={16} />
               {m.common_term_patch_radar()}
+            </a>
+            <a href={href('/logs', locale)} class={buttonClasses({ variant: 'secondary', size: 'md' })}>
+              <Icon icon={FileText} size={16} />
+              {m.logs_nav_link()}
             </a>
             <a href={SOCIAL_LINKS.discord} rel="noopener" class={buttonClasses({ variant: 'ghost', size: 'md' })}>
               {m.content_install_help_discord()}

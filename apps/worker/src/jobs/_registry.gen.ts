@@ -20,6 +20,7 @@ import jamsJobs from './jams/index.ts';
 import kelvinseekJobs from './kelvinseek/index.ts';
 import legacyCountersJobs from './legacy-counters/index.ts';
 import legacyMentionsJobs from './legacy-mentions/index.ts';
+import logsJobs from './logs/index.ts';
 import mediaJobs from './media/index.ts';
 import modKnowledgeJobs from './mod-knowledge/index.ts';
 import moderationJobs from './moderation/index.ts';
@@ -51,6 +52,7 @@ export const jobGroups = [
   kelvinseekJobs,
   legacyCountersJobs,
   legacyMentionsJobs,
+  logsJobs,
   mediaJobs,
   modKnowledgeJobs,
   moderationJobs,

@@ -5,7 +5,7 @@ export type Errors_Code_Rate_Limited_RetryInputs = {
 /**
 * | output |
 * | --- |
-* | "Kelvin needs a break. Try again in {seconds__number} s." |
+* | "Too many requests. Try again in {seconds__number} s." |
 *
 * @param {Errors_Code_Rate_Limited_RetryInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -74,6 +74,7 @@ export function buildActions(context: ActionContext): ActionItem[] {
     nav('go-kits', t('cmdk_go_kits'), `kits collections packs ${t('cmdk_term_kits')}`, 'kits', '/kits'),
     nav('go-requests', t('cmdk_go_requests'), 'requests wishlist ideas suggest', 'requests', '/requests'),
     nav('go-install', t('cmdk_go_install'), 'install guide how to setup tutorial help start', 'install', '/install'),
+    nav('go-logs', t('cmdk_go_logs'), 'logs share log crash error bug report help paste upload', 'install', '/logs'),
     nav(
       'go-radar',
       t('cmdk_go_radar'),

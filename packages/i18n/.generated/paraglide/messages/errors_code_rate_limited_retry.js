@@ -7,61 +7,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ seconds: NonNullable<unknown> }} Errors_Code_Rate_Limited_RetryInputs */
 
 const en_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("en", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin needs a break. Try again in ${seconds__number} s.`)
+	const seconds__number = registry.number("en", i?.seconds, {});return /** @type {LocalizedString} */ (`Too many requests. Try again in ${seconds__number} s.`)
 };
 
 const es_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("es", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin necesita un descanso. Vuelve a intentarlo en ${seconds__number} s.`)
+	const seconds__number = registry.number("es", i?.seconds, {});return /** @type {LocalizedString} */ (`Demasiadas solicitudes. Vuelve a intentarlo en ${seconds__number} s.`)
 };
 
 const de_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("de", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin braucht eine Pause. Versuch es in ${seconds__number} s erneut.`)
+	const seconds__number = registry.number("de", i?.seconds, {});return /** @type {LocalizedString} */ (`Zu viele Anfragen. Versuch es in ${seconds__number} s erneut.`)
 };
 
 const fr_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("fr", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin a besoin d’une pause. Réessayez dans ${seconds__number} s.`)
+	const seconds__number = registry.number("fr", i?.seconds, {});return /** @type {LocalizedString} */ (`Trop de requêtes. Réessayez dans ${seconds__number} s.`)
 };
 
 const it_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("it", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin ha bisogno di una pausa. Riprova tra ${seconds__number} s.`)
+	const seconds__number = registry.number("it", i?.seconds, {});return /** @type {LocalizedString} */ (`Troppe richieste. Riprova tra ${seconds__number} s.`)
 };
 
 const nl_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("nl", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin heeft even pauze nodig. Probeer het over ${seconds__number} s opnieuw.`)
+	const seconds__number = registry.number("nl", i?.seconds, {});return /** @type {LocalizedString} */ (`Te veel verzoeken. Probeer het over ${seconds__number} s opnieuw.`)
 };
 
 const pl_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("pl", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin potrzebuje przerwy. Spróbuj ponownie za ${seconds__number} s.`)
+	const seconds__number = registry.number("pl", i?.seconds, {});return /** @type {LocalizedString} */ (`Zbyt wiele żądań. Spróbuj ponownie za ${seconds__number} s.`)
 };
 
 const pt_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("pt", i?.seconds, {});return /** @type {LocalizedString} */ (`O Kelvin precisa de uma pausa. Tente de novo em ${seconds__number} s.`)
+	const seconds__number = registry.number("pt", i?.seconds, {});return /** @type {LocalizedString} */ (`Muitos pedidos. Tente de novo em ${seconds__number} s.`)
 };
 
 const ru_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("ru", i?.seconds, {});return /** @type {LocalizedString} */ (`Кельвину нужен перерыв. Попробуйте снова через ${seconds__number} с.`)
+	const seconds__number = registry.number("ru", i?.seconds, {});return /** @type {LocalizedString} */ (`Слишком много запросов. Попробуйте снова через ${seconds__number} с.`)
 };
 
 const sv_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("sv", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin behöver en paus. Försök igen om ${seconds__number} s.`)
+	const seconds__number = registry.number("sv", i?.seconds, {});return /** @type {LocalizedString} */ (`För många förfrågningar. Försök igen om ${seconds__number} s.`)
 };
 
 const tr_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("tr", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin’in biraz molaya ihtiyacı var. ${seconds__number} sn sonra tekrar dene.`)
+	const seconds__number = registry.number("tr", i?.seconds, {});return /** @type {LocalizedString} */ (`Çok fazla istek. ${seconds__number} sn sonra tekrar dene.`)
 };
 
 const zh_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("zh", i?.seconds, {});return /** @type {LocalizedString} */ (`Kelvin 需要歇一会儿。请在 ${seconds__number} 秒后重试。`)
+	const seconds__number = registry.number("zh", i?.seconds, {});return /** @type {LocalizedString} */ (`请求过多。请在 ${seconds__number} 秒后重试。`)
 };
 
 const ja_errors_code_rate_limited_retry = /** @type {(inputs: Errors_Code_Rate_Limited_RetryInputs) => LocalizedString} */ (i) => {
-	const seconds__number = registry.number("ja", i?.seconds, {});return /** @type {LocalizedString} */ (`ケルヴィンがひと休みしています。${seconds__number} 秒後にもう一度お試しください。`)
+	const seconds__number = registry.number("ja", i?.seconds, {});return /** @type {LocalizedString} */ (`リクエストが多すぎます。${seconds__number} 秒後にもう一度お試しください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Kelvin needs a break. Try again in {seconds__number} s." |
+* | "Too many requests. Try again in {seconds__number} s." |
 *
 * @param {Errors_Code_Rate_Limited_RetryInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -23,6 +23,8 @@ export const ROBOTS_TXT = [
   'Disallow: /api/',
   'Disallow: /search',
   'Disallow: /*/download/',
+  'Disallow: /logs/',
+  'Disallow: /*/logs/',
   'Disallow: /_internal/',
   `Sitemap: ${PRODUCTION_ORIGIN}/sitemap.xml`,
   'Content-Signal: search=yes, ai-input=yes, ai-train=no',

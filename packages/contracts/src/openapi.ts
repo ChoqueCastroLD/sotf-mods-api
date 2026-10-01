@@ -54,6 +54,7 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   kitSocial: 'Kit follows (signals, live counts) and kit comments.',
   legacy:
     'Legacy v1 API (`/api/*`) kept byte-compatible for RedManager, UpdatesChecker and KelvinSeek. Deprecated routes carry `Deprecation` and `Sunset` headers.',
+  logs: 'Share logs: paste a game log, get a link that shows it organised and is deleted after 24 hours.',
   me: 'The signed-in user: profile, settings, privacy, sessions, data export and deletion.',
   modKnowledge: 'Known issues, author FAQ, version diff and co-authors of a mod.',
   moderation: 'Reports and the Ranger Station (moderators).',

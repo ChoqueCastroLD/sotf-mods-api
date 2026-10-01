@@ -29,4 +29,5 @@ export * from './ext/kit-social.ts';
 export * from './ext/mod-knowledge.ts';
 export * from './ext/requests.ts';
 export * from './ext/security.ts';
+export * from './ext/shared-logs.ts';
 export * from './ext/translation.ts';

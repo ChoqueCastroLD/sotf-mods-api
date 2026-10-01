@@ -200,6 +200,13 @@ export const API_ROUTES = {
     download: { id: 'legacy.download', method: 'GET', path: "/api/mods/:mod_id/download/:version", kind: 'redirect', bodyKind: null },
     downloadBySlug: { id: 'legacy.downloadBySlug', method: 'GET', path: "/api/mods/slug/:userSlug/:mod_slug/download/:version", kind: 'redirect', bodyKind: null },
   },
+  logs: {
+    create: { id: 'logs.create', method: 'POST', path: "/api/v2/logs", kind: 'json', bodyKind: 'json' },
+    get: { id: 'logs.get', method: 'GET', path: "/api/v2/logs/:id", kind: 'json', bodyKind: null },
+    raw: { id: 'logs.raw', method: 'GET', path: "/api/v2/logs/:id/raw", kind: 'text', bodyKind: null },
+    delete: { id: 'logs.delete', method: 'DELETE', path: "/api/v2/logs/:id", kind: 'empty', bodyKind: null },
+    report: { id: 'logs.report', method: 'POST', path: "/api/v2/logs/:id/report", kind: 'empty', bodyKind: 'json' },
+  },
   me: {
     get: { id: 'me.get', method: 'GET', path: "/api/v2/me", kind: 'json', bodyKind: null },
     summary: { id: 'me.summary', method: 'GET', path: "/api/v2/me/summary", kind: 'json', bodyKind: null },

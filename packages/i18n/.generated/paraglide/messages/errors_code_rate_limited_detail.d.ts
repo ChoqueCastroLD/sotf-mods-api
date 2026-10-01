@@ -3,7 +3,7 @@ export type Errors_Code_Rate_Limited_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "Kelvin needs a break. Try again in a moment." |
+* | "Too many requests. Try again in a moment." |
 *
 * @param {Errors_Code_Rate_Limited_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

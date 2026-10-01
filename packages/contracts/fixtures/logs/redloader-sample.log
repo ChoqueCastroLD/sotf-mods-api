@@ -1,0 +1,155 @@
+[14:02:09.203] [Message:RedLoader] RedLoader 1.4.2 (build 2026-08-14) - Sons Of The Forest
+[14:02:09.242] [Info   :RedLoader] Game Version: 1.1.4.2
+[14:02:09.344] [Info   :RedLoader] Unity Version: 2022.3.62f1
+[14:02:09.511] [Info   :RedLoader] Running on Windows 11 (10.0.22631) 64bit, 16 cores, 32708 MB RAM
+[14:02:09.524] [Info   :RedLoader] Game Path: C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest
+[14:02:09.543] [Info   :RedLoader] Data Path: C:\Users\Luis Choque\AppData\LocalLow\Endnight\SonsOfTheForest
+[14:02:09.681] [Debug  :RedLoader] Steam user 76561198012345678 authenticated (session from 84.12.201.7)
+[14:02:09.706] [Info   :RedLoader] Loading preferences from C:\Users\Luis Choque\AppData\LocalLow\Endnight\SonsOfTheForest\RedLoader\config.cfg
+[14:02:09.800] [Info   :RedLoader] ------------------------------
+[14:02:09.950] [Info   :RedLoader] Loading Mods...
+[14:02:09.965] [Info   :RedLoader] ------------------------------
+[14:02:10.095] [Info   :RedLoader] AmmoUi v1.3.0 by ImAxel
+[14:02:10.150] [Info   :RedLoader] AxelModMenu v2.1.4 by ImAxel
+[14:02:10.160] [Info   :RedLoader] BuildShare v1.0.9 by Kelvin
+[14:02:10.183] [Info   :RedLoader] CleanStash v0.8.2 by Nova
+[14:02:10.295] [Info   :RedLoader] FastZiplines v1.2.1 by Stryx
+[14:02:10.403] [Info   :RedLoader] ModernMap v3.0.0 by Orla
+[14:02:10.421] [Info   :RedLoader] NoPlaneCrash v1.0.3 by Rett
+[14:02:10.483] [Info   :RedLoader] SmartInventory v2.4.0 by Vale
+[14:02:10.507] [Info   :RedLoader] TreeRegrow v1.1.0 by Mossy
+[14:02:10.649] [Info   :RedLoader] LegacyBackpack v0.4.1 by Dusk
+[14:02:10.758] [Info   :RedLoader] 10 mods loaded, 0 skipped
+[14:02:10.774] [Warning:RedLoader] LegacyBackpack targets game version 1.0.x and may not work with 1.1.4.2
+[14:02:10.919] [Info   :RedLoader] Initializing mods...
+[14:02:10.951] [Info   :AmmoUi] Initialized
+[14:02:11.009] [Debug  :AmmoUi] Loaded 14 ammo icons from C:\Users\Luis Choque\AppData\LocalLow\Endnight\SonsOfTheForest\Mods\AmmoUi\icons
+[14:02:11.171] [Info   :AxelModMenu] Initialized
+[14:02:11.332] [Info   :BuildShare] Initialized
+[14:02:11.482] [Info   :BuildShare] Connecting to https://sotf-mods.com/api/v2/builds (token=ghp_0123456789abcdefghijklmnopqrstuvwxyz12)
+[14:02:11.498] [Info   :BuildShare] Logged in as luis.choque.castro@outlook.com
+[14:02:11.646] [Info   :CleanStash] Initialized
+[14:02:11.796] [Info   :FastZiplines] Initialized
+[14:02:11.898] [Info   :ModernMap] Initialized
+[14:02:11.911] [Info   :NoPlaneCrash] Initialized
+[14:02:11.968] [Info   :SmartInventory] Initialized
+[14:02:11.980] [Info   :TreeRegrow] Initialized
+[14:02:12.123] [Info   :LegacyBackpack] Initialized
+[14:02:12.158] [Info   :Unity Log] Initialize engine version: 2022.3.62f1 (a2c8bd4e2b1f)
+[14:02:12.233] [Warning:Unity Log] The referenced script (Unknown) on this Behaviour is missing!
+[14:02:12.341] [Warning:Unity Log] The referenced script (Unknown) on this Behaviour is missing!
+[14:02:12.378] [Warning:Unity Log] The referenced script (Unknown) on this Behaviour is missing!
+[14:02:12.517] [Info   :Unity Log] Loading scene: SonsMain
+[14:02:12.548] [Info   :Unity Log] Loading scene: SonsMainMenu
+[14:02:12.692] [Info   :SmartInventory] Scanned container 39 items in 5 ms
+[14:02:12.841] [Info   :SmartInventory] Scanned container 14 items in 2 ms
+[14:02:12.937] [Info   :SmartInventory] Scanned container 39 items in 4 ms
+[14:02:12.954] [Info   :SmartInventory] Scanned container 9 items in 9 ms
+[14:02:13.113] [Info   :SmartInventory] Scanned container 39 items in 1 ms
+[14:02:13.288] [Info   :SmartInventory] Scanned container 16 items in 8 ms
+[14:02:13.425] [Error  :Unity Log] NullReferenceException: Object reference not set to an instance of an object
+  at AmmoUi.UI.AmmoHud.Refresh () [0x0002a] in <3f8a1b2c>:0
+  at AmmoUi.UI.AmmoHud.Update () [0x00011] in <3f8a1b2c>:0
+  at UnityEngine.Object.Instantiate[T] (T original) [0x00000] in <aa12f0>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:13.535] [Info   :Unity Log] World loaded in 11.42 s
+[14:02:13.616] [Info   :FastZiplines] Zipline network rebuilt (3 lines)
+[14:02:13.736] [Warning:ModernMap] Icon 'cave_entrance_00' not found in atlas, using fallback
+[14:02:13.886] [Warning:ModernMap] Icon 'cave_entrance_01' not found in atlas, using fallback
+[14:02:14.003] [Warning:ModernMap] Icon 'cave_entrance_02' not found in atlas, using fallback
+[14:02:14.096] [Warning:ModernMap] Icon 'cave_entrance_00' not found in atlas, using fallback
+[14:02:14.173] [Warning:ModernMap] Icon 'cave_entrance_01' not found in atlas, using fallback
+[14:02:14.237] [Warning:ModernMap] Icon 'cave_entrance_02' not found in atlas, using fallback
+[14:02:14.284] [Warning:ModernMap] Icon 'cave_entrance_00' not found in atlas, using fallback
+[14:02:14.463] [Warning:ModernMap] Icon 'cave_entrance_01' not found in atlas, using fallback
+[14:02:14.526] [Warning:ModernMap] Icon 'cave_entrance_02' not found in atlas, using fallback
+[14:02:14.547] [Warning:ModernMap] Icon 'cave_entrance_00' not found in atlas, using fallback
+[14:02:14.695] [Warning:ModernMap] Icon 'cave_entrance_01' not found in atlas, using fallback
+[14:02:14.772] [Warning:ModernMap] Icon 'cave_entrance_02' not found in atlas, using fallback
+[14:02:14.907] [Warning:ModernMap] Icon 'cave_entrance_00' not found in atlas, using fallback
+[14:02:15.034] [Warning:ModernMap] Icon 'cave_entrance_01' not found in atlas, using fallback
+[14:02:15.122] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:15.237] [Info   :SmartInventory] Sorted backpack (56 items)
+[14:02:15.393] [Info   :SmartInventory] Sorted backpack (28 items)
+[14:02:15.424] [Info   :SmartInventory] Sorted backpack (14 items)
+[14:02:15.532] [Info   :SmartInventory] Sorted backpack (42 items)
+[14:02:15.575] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:15.663] [Info   :SmartInventory] Sorted backpack (58 items)
+[14:02:15.789] [Info   :SmartInventory] Sorted backpack (19 items)
+[14:02:15.800] [Info   :SmartInventory] Sorted backpack (36 items)
+[14:02:15.820] [Info   :SmartInventory] Sorted backpack (52 items)
+[14:02:15.963] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:16.044] [Info   :SmartInventory] Sorted backpack (46 items)
+[14:02:16.222] [Info   :SmartInventory] Sorted backpack (31 items)
+[14:02:16.375] [Info   :SmartInventory] Sorted backpack (32 items)
+[14:02:16.524] [Info   :SmartInventory] Sorted backpack (41 items)
+[14:02:16.641] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:16.665] [Info   :SmartInventory] Sorted backpack (14 items)
+[14:02:16.787] [Info   :SmartInventory] Sorted backpack (27 items)
+[14:02:16.958] [Info   :SmartInventory] Sorted backpack (54 items)
+[14:02:16.974] [Info   :SmartInventory] Sorted backpack (14 items)
+[14:02:17.154] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:17.320] [Info   :SmartInventory] Sorted backpack (29 items)
+[14:02:17.495] [Info   :SmartInventory] Sorted backpack (46 items)
+[14:02:17.568] [Info   :SmartInventory] Sorted backpack (38 items)
+[14:02:17.667] [Info   :SmartInventory] Sorted backpack (55 items)
+[14:02:17.839] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:17.845] [Info   :SmartInventory] Sorted backpack (32 items)
+[14:02:17.936] [Info   :SmartInventory] Sorted backpack (39 items)
+[14:02:18.093] [Info   :SmartInventory] Sorted backpack (20 items)
+[14:02:18.220] [Info   :SmartInventory] Sorted backpack (17 items)
+[14:02:18.236] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:18.310] [Info   :SmartInventory] Sorted backpack (23 items)
+[14:02:18.374] [Info   :SmartInventory] Sorted backpack (18 items)
+[14:02:18.475] [Info   :SmartInventory] Sorted backpack (35 items)
+[14:02:18.496] [Info   :SmartInventory] Sorted backpack (41 items)
+[14:02:18.539] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:18.642] [Info   :SmartInventory] Sorted backpack (38 items)
+[14:02:18.714] [Info   :SmartInventory] Sorted backpack (45 items)
+[14:02:18.825] [Info   :SmartInventory] Sorted backpack (18 items)
+[14:02:18.897] [Info   :SmartInventory] Sorted backpack (45 items)
+[14:02:19.004] [Error  :Unity Log] MissingReferenceException: The object of type 'Transform' has been destroyed but you are still trying to access it.
+  at TreeRegrow.Regrow.Tick () [0x00042] in <9c71d>:0
+(Filename: C:/buildslave/unity/build/Runtime/Export/Debug/Debug.bindings.h Line: 39)
+[14:02:19.179] [Info   :SmartInventory] Sorted backpack (32 items)
+[14:02:19.239] [Info   :SmartInventory] Sorted backpack (34 items)
+[14:02:19.261] [Info   :SmartInventory] Sorted backpack (19 items)
+[14:02:19.300] [Info   :SmartInventory] Sorted backpack (21 items)
+[14:02:19.360] [Error  :CleanStash] Failed to parse stash layout for slot 12: unexpected token '}' at position 481
+[14:02:19.529] [Error  :CleanStash] Failed to parse stash layout for slot 12: unexpected token '}' at position 481
+[14:02:19.589] [Warning:RedLoader] Mod 'LegacyBackpack' threw during OnUpdate; disabling it for this session
+[14:02:19.593] [Info   :NoPlaneCrash] Plane crash prevented (seed 88214)
+[14:02:19.718] [Info   :BuildShare] Uploading blueprint to 192.168.1.42:8080 ...
+[14:02:19.869] [Error  :BuildShare] HttpRequestException: Connection refused (sotf-mods.com:443)
+  at System.Net.Http.HttpClient.SendAsync (System.Net.Http.HttpRequestMessage request) [0x0004c] in <a1b2c3d4>:0
+[14:02:19.916] [Message:RedLoader] Saved preferences
+[14:02:19.984] [Fatal  :Unity Log] Unhandled Exception: System.OutOfMemoryException: Out of memory
+  at TreeRegrow.Spawner.SpawnBatch (System.Int32 count) [0x00020] in <9c71d>:0
+[14:02:20.057] [Debug  :RedLoader] Heartbeat 0
+[14:02:20.059] [Debug  :RedLoader] Heartbeat 1
+[14:02:20.097] [Debug  :RedLoader] Heartbeat 2
+[14:02:20.205] [Debug  :RedLoader] Heartbeat 3
+[14:02:20.342] [Debug  :RedLoader] Heartbeat 4
+[14:02:20.437] [Debug  :RedLoader] Heartbeat 5
+[14:02:20.594] [Debug  :RedLoader] Heartbeat 6
+[14:02:20.739] [Debug  :RedLoader] Heartbeat 7
+[14:02:20.821] [Debug  :RedLoader] Heartbeat 8
+[14:02:20.854] [Debug  :RedLoader] Heartbeat 9
+[14:02:21.031] [Debug  :RedLoader] Heartbeat 10
+[14:02:21.163] [Debug  :RedLoader] Heartbeat 11
