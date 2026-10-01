@@ -7,6 +7,7 @@ import type { CacheTag } from '@sotf/contracts/cache';
 import type { APIRoute } from 'astro';
 import { serverApi } from '../../../../../lib/api.ts';
 import { badgeParts, isBadgeKind, renderBadge } from '../../../../../lib/seo/badge.ts';
+import { apiStatus } from '../../../../../lib/seo/data.ts';
 import { lookupMod, rawSegments, stripSuffix, underMods } from '../../../../../lib/seo/entities.ts';
 import { machineError, machineRedirect, machineResponse } from '../../../../../lib/seo/respond.ts';
 
@@ -44,6 +45,9 @@ export const GET: APIRoute = async (context) => {
       headers: { 'x-content-type-options': 'nosniff' },
     });
   } catch (error) {
+    // The resolver can name a mod the public detail hides (pending review): that is a 404, not an outage.
+    const status = apiStatus(error);
+    if (status) return machineError(context, status, status === 410 ? 'Gone.' : 'Not found.');
     console.error('[web] badge failed', error);
     return new Response('Unavailable.\n', {
       status: 503,

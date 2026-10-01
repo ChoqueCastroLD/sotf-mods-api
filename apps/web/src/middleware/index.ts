@@ -63,7 +63,8 @@ const siteMiddleware = defineMiddleware(async (context, next) => {
       headers.set('cache-control', 'no-store');
       response = new Response(page.body, { status: 503, headers });
     }
-    if (rule.kind === 'gone' && response.status === 404) {
+    // Tombstoned pages (`respondUnresolved` flags `gone` and rewrites to 404.astro) are 410 as well.
+    if (context.locals.errorKind === 'gone' && response.status === 404) {
       response = new Response(response.body, { status: 410, headers: response.headers });
     }
     return finalizePublicResponse(response, {
