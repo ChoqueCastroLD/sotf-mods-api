@@ -6,12 +6,12 @@
  * Phones: KPIs in two columns, «Needs attention» before the chart, the table as cards.
  */
 import { buttonClasses } from '@sotf/ui/button';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { ChartLine, Inbox, PackagePlus, Plus, Tent } from 'lucide-react';
+import { ChartLine, Inbox, PackagePlus, Plus } from 'lucide-react';
 import { useEffect } from 'react';
+import { ArtState } from '../../components/ArtState.tsx';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { useMe } from '../../hooks/use-me.ts';
 import { type AnalyticsRange, analyticsQuery, overviewQuery } from './api.ts';
@@ -115,11 +115,12 @@ export function OverviewScreen({
 
   const header = (
     <ScreenHeader
+      keepReadout
       readout={bt('basecamp_day', { day: number(dayNumber(me.user.createdAt)) })}
       title={greeting(name)}
       actions={
         <>
-          <Link to="/basecamp/new/mod" className={buttonClasses({ variant: 'primary', size: 'sm' })}>
+          <Link to="/basecamp/new/mod" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
             <Icon icon={Plus} size={16} />
             {bt('basecamp_action_new_mod')}
           </Link>
@@ -142,8 +143,8 @@ export function OverviewScreen({
     return (
       <div className="grid gap-6">
         {header}
-        <EmptyState
-          icon={<Icon icon={Tent} size={32} />}
+        <ArtState
+          art="cabin"
           title={bt('basecamp_empty_title')}
           description={bt('basecamp_empty_text')}
           action={

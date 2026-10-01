@@ -466,5 +466,6 @@
   "upload_drafts_deleted": "Entwurf gelöscht",
   "upload_kind_mod": "Mod",
   "upload_kind_build": "Build",
-  "upload_kind_version": "Neue Version"
+  "upload_kind_version": "Neue Version",
+  "upload_take_photo": "Foto aufnehmen"
 }

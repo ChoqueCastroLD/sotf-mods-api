@@ -466,5 +466,6 @@
   "upload_drafts_deleted": "草稿已删除",
   "upload_kind_mod": "模组",
   "upload_kind_build": "建筑",
-  "upload_kind_version": "新版本"
+  "upload_kind_version": "新版本",
+  "upload_take_photo": "拍照"
 }

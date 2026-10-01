@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Ranger",
   "console_update_detail": "Vi uppdaterade SOTF Mods medan du var här. Ladda om för att få den senaste versionen.",
   "console_update_reload": "Ladda om",
   "console_update_title": "En ny version finns",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Utvalda märken sparade.",
   "settings_featured_badges_text": "Välj upp till {max} intjänade märken för profilens sidhuvud.",
   "settings_featured_badges_title": "Utvalda märken",
+  "settings_group_account": "Ditt konto",
+  "settings_group_app": "Appen",
+  "settings_group_creator": "Skapare och data",
   "settings_handle": "Användarnamn",
   "settings_handle_hint": "Adressen till din profil. Den kan inte ändras än.",
   "settings_history_link": "Öppna mina nedladdningar",

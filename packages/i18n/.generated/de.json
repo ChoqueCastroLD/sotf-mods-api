@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Ranger",
   "console_update_detail": "Wir haben SOTF Mods aktualisiert, während du hier warst. Lade neu, um die neueste Version zu bekommen.",
   "console_update_reload": "Neu laden",
   "console_update_title": "Eine neue Version ist da",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Hervorgehobene Abzeichen gespeichert.",
   "settings_featured_badges_text": "Wähle bis zu {max} verdiente Abzeichen für den Kopf deines Profils.",
   "settings_featured_badges_title": "Hervorgehobene Abzeichen",
+  "settings_group_account": "Dein Konto",
+  "settings_group_app": "App",
+  "settings_group_creator": "Creator und Daten",
   "settings_handle": "Handle",
   "settings_handle_hint": "Deine Profiladresse. Handles lassen sich noch nicht ändern.",
   "settings_history_link": "Meine Downloads öffnen",

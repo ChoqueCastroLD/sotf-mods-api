@@ -2,6 +2,7 @@
  * `/basecamp/mods` — every mod and build of the creator in any status (PLAN §7.5 «Mis mods»), with
  * a status filter, a name search and the sort order, all kept in the URL.
  */
+import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { buttonClasses } from '@sotf/ui/button';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
@@ -9,8 +10,9 @@ import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { NotebookPen, Package, Plus, Search } from 'lucide-react';
+import { NotebookPen, Plus, Search } from 'lucide-react';
 import { useDeferredValue, useId } from 'react';
+import { ArtState } from '../../components/ArtState.tsx';
 import { activeLocale } from '../../lib/messages.ts';
 import { MOD_STATUS_VALUES, type ModRow, type ModStatus, modsQuery } from './api.ts';
 import { CoAuthoredPanel } from './CoAuthoredPanel.tsx';
@@ -80,6 +82,7 @@ export function ModsScreen({
 }) {
   useBasecampMessages();
   useKnowledgeMessages();
+  const phone = useMediaQuery(BELOW_MD_QUERY);
   const searchId = useId();
   const { data } = useSuspenseQuery(modsQuery);
   const q = useDeferredValue(filters.q.trim().toLocaleLowerCase(activeLocale()));
@@ -115,7 +118,7 @@ export function ModsScreen({
         description={bt('basecamp_mods_intro')}
         actions={
           <>
-            <Link to="/basecamp/new" className={buttonClasses({ variant: 'primary', size: 'sm' })}>
+            <Link to="/basecamp/new" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
               <Icon icon={Plus} size={16} />
               {bt('basecamp_action_publish_new')}
             </Link>
@@ -130,8 +133,8 @@ export function ModsScreen({
       <CoAuthoredPanel />
 
       {data.items.length === 0 ? (
-        <EmptyState
-          icon={<Icon icon={Package} size={32} />}
+        <ArtState
+          art="cabin"
           title={bt('basecamp_empty_title')}
           description={bt('basecamp_empty_text')}
           action={
@@ -143,9 +146,9 @@ export function ModsScreen({
         />
       ) : (
         <>
-          <div className="flex flex-wrap items-end gap-3">
-            <div className="grid min-w-56 flex-1 gap-1 sm:max-w-xs">
-              <label htmlFor={searchId} className="text-sm font-medium text-fg">
+          <div className="grid grid-cols-2 items-end gap-2 md:flex md:flex-wrap md:gap-3">
+            <div className="col-span-2 grid min-w-56 flex-1 gap-1 md:col-span-1 md:max-w-xs">
+              <label htmlFor={searchId} className="text-sm font-medium text-fg max-md:sr-only">
                 {bt('basecamp_mods_search_label')}
               </label>
               <span className="relative">
@@ -159,7 +162,9 @@ export function ModsScreen({
                   type="search"
                   value={filters.q}
                   placeholder={bt('basecamp_mods_search_placeholder')}
-                  className="ps-9"
+                  className="ps-9 max-md:h-12"
+                  enterKeyHint="search"
+                  autoComplete="off"
                   onChange={(event) => onFilters({ q: event.currentTarget.value })}
                 />
               </span>
@@ -169,14 +174,18 @@ export function ModsScreen({
               options={statusOptions}
               value={filters.status}
               onValueChange={(value) => onFilters({ status: value ?? 'all' })}
-              className="min-w-48"
+              hideLabel={phone}
+              size={phone ? 'lg' : 'md'}
+              className="min-w-0 md:min-w-48"
             />
             <Select<ModSort>
               label={bt('basecamp_mods_sort_label')}
               options={MOD_SORTS.map((sort) => ({ value: sort, label: sortLabel(sort) }))}
               value={filters.sort}
               onValueChange={(value) => onFilters({ sort: value ?? 'downloads' })}
-              className="min-w-48"
+              hideLabel={phone}
+              size={phone ? 'lg' : 'md'}
+              className="min-w-0 md:min-w-48"
             />
           </div>
           <p className="sr-only" aria-live="polite">

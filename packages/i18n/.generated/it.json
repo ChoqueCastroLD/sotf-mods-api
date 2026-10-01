@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Ranger",
   "console_update_detail": "Abbiamo aggiornato SOTF Mods mentre eri qui. Ricarica per avere l’ultima versione.",
   "console_update_reload": "Ricarica",
   "console_update_title": "È uscita una nuova versione",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Distintivi in evidenza salvati.",
   "settings_featured_badges_text": "Scegli fino a {max} distintivi ottenuti per l’intestazione del tuo profilo.",
   "settings_featured_badges_title": "Distintivi in evidenza",
+  "settings_group_account": "Il tuo account",
+  "settings_group_app": "App",
+  "settings_group_creator": "Creator e dati",
   "settings_handle": "Nome utente",
   "settings_handle_hint": "L’indirizzo del tuo profilo. Per ora non si può cambiare.",
   "settings_history_link": "Apri i miei download",

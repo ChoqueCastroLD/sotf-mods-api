@@ -5,13 +5,13 @@
 import { Badge } from '@sotf/ui/badge';
 import { buttonClasses } from '@sotf/ui/button';
 import { ConfirmDialog } from '@sotf/ui/dialog';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { Skeleton } from '@sotf/ui/skeleton';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { FilePlus2, NotebookPen, Trash2 } from 'lucide-react';
+import { FilePlus2, Trash2 } from 'lucide-react';
 import { useState } from 'react';
+import { ArtState } from '../../components/ArtState.tsx';
 import { ErrorScreen } from '../../components/states.tsx';
 import { api } from '../../lib/api.ts';
 import { errorReference } from '../../lib/errors.ts';
@@ -156,8 +156,8 @@ export function DraftsList() {
           {...(errorReference(drafts.error) ? { reference: errorReference(drafts.error) } : {})}
         />
       ) : count === 0 ? (
-        <EmptyState
-          icon={<Icon icon={NotebookPen} size={32} />}
+        <ArtState
+          art="camp"
           title={ut('upload_drafts_empty_title')}
           description={ut('upload_drafts_empty_detail')}
           action={

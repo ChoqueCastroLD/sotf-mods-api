@@ -56,6 +56,8 @@ export interface NavItem {
   icon: LucideIcon;
   /** Active only on this exact path (area overviews). */
   exact?: boolean;
+  /** `false`: a flow rather than a place — left out of the phone's section strip. */
+  phone?: boolean;
 }
 
 export interface NavSection {
@@ -94,8 +96,8 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/basecamp/mods', label: () => t('console_nav_my_mods'), icon: Package },
           // Paraglide (the two labels live in the `basecamp` namespace, not in the shell catalogue).
           { to: '/basecamp/inbox', label: () => t('console_nav_inbox'), icon: Inbox },
-          { to: '/basecamp/new/mod', label: () => t('console_nav_new_mod'), icon: Plus },
-          { to: '/basecamp/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass },
+          { to: '/basecamp/new/mod', label: () => t('console_nav_new_mod'), icon: Plus, phone: false },
+          { to: '/basecamp/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass, phone: false },
           { to: '/basecamp/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
           { to: '/basecamp/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
           { to: '/basecamp/badges', label: () => t('console_nav_badges'), icon: Award },
@@ -223,4 +225,64 @@ export function isActivePath(pathname: string, item: Pick<NavItem, 'to' | 'exact
 /** Areas the user can reach but the current viewer cannot see → «Rangers only». */
 export function isAreaAllowed(id: AreaId, viewer: Viewer): boolean {
   return !findArea(id).rangerOnly || isRangerRole(viewer.role);
+}
+
+// -----------------------------------------------------------------------------------------------
+// Phones: bottom tabs, section strip, pushed screens
+// -----------------------------------------------------------------------------------------------
+
+/** Where an area's bottom tab goes (Settings opens its list of sections, the phone's root). */
+export function tabTarget(area: ConsoleArea): string {
+  return area.id === 'settings' ? '/settings' : area.to;
+}
+
+/**
+ * Places of an area shown as pills under the phone's top bar. Settings has no strip (its root is
+ * a grouped list) and the Admin screens hide behind one «Admin» entry that opens their list.
+ */
+export function phoneItems(area: ConsoleArea, viewer: Viewer): NavItem[] {
+  if (area.id === 'settings') return [];
+  const items = area.sections
+    .filter((section) => !section.adminOnly)
+    .flatMap((section) => section.items)
+    .filter((item) => item.phone !== false);
+  if (area.id === 'ranger' && viewer.role === 'admin') {
+    items.push({ to: '/ranger/admin', label: () => t('console_area_admin'), icon: ShieldCheck });
+  }
+  return items.length > 1 ? items : [];
+}
+
+/**
+ * Pushed screens (a mod's editor, the publishing wizard, one jam, one user, an open queue item…)
+ * take the whole screen on phones: the bottom tabs give way to the screen's own sticky actions and
+ * the top bar shows a Back arrow.
+ */
+const PUSHED = [
+  /^\/basecamp\/new(\/|$)/,
+  /^\/basecamp\/drafts\/[^/]+/,
+  /^\/basecamp\/mods\/[^/]+/,
+  /^\/me\/kits\/[^/]+/,
+  /^\/ranger\/users\/[^/]+/,
+  /^\/ranger\/jams\/[^/]+/,
+  /^\/ranger\/admin\/[^/]+/,
+  /^\/settings\/[^/]+/,
+] as const;
+
+export function isPushedRoute(pathname: string): boolean {
+  const path = pathname.replace(/\/+$/, '');
+  return PUSHED.some((pattern) => pattern.test(path));
+}
+
+/** The screen Back leads to when there is no history to go back through. */
+export function parentPath(pathname: string): string {
+  const path = pathname.replace(/\/+$/, '');
+  if (/^\/basecamp\/mods\/[^/]+/.test(path)) return '/basecamp/mods';
+  if (/^\/basecamp\/drafts\/[^/]+/.test(path)) return '/basecamp/drafts';
+  if (/^\/basecamp\/new/.test(path)) return '/basecamp';
+  if (/^\/ranger\/admin\/[^/]+/.test(path)) return '/ranger/admin';
+  if (/^\/ranger\/users\/[^/]+/.test(path)) return '/ranger/users';
+  if (/^\/ranger\/jams\/[^/]+/.test(path)) return '/ranger/jams';
+  if (/^\/me\/kits\/[^/]+/.test(path)) return '/me/kits';
+  if (/^\/settings\/[^/]+/.test(path)) return '/settings';
+  return '/basecamp';
 }

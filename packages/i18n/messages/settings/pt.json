@@ -413,5 +413,8 @@
   "settings_notif_request_fulfilled": "Pedido cumprido",
   "settings_notif_request_fulfilled_hint": "Foi publicado um mod que pediste ou votaste.",
   "settings_notif_jam": "Mod Jams",
-  "settings_notif_jam_hint": "Uma jam que você segue ou em que participa abre as inscrições, abre a votação ou publica os resultados."
+  "settings_notif_jam_hint": "Uma jam que você segue ou em que participa abre as inscrições, abre a votação ou publica os resultados.",
+  "settings_group_account": "A tua conta",
+  "settings_group_app": "Aplicação",
+  "settings_group_creator": "Criador e dados"
 }

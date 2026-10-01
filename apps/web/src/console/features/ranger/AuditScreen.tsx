@@ -68,7 +68,15 @@ export function AuditScreen({ filters }: { filters: AuditFilters }) {
         noValidate
       >
         <Field label={m.ranger_audit_actor()} optional>
-          <Input value={actor} maxLength={65} onChange={(event) => setActor(event.target.value)} placeholder="imaxel" />
+          <Input
+            value={actor}
+            maxLength={65}
+            onChange={(event) => setActor(event.target.value)}
+            placeholder="imaxel"
+            autoCapitalize="none"
+            autoComplete="off"
+            spellCheck={false}
+          />
         </Field>
         <Field label={m.ranger_audit_action()} optional>
           <Input
@@ -76,6 +84,9 @@ export function AuditScreen({ filters }: { filters: AuditFilters }) {
             maxLength={80}
             onChange={(event) => setAction(event.target.value)}
             placeholder="mod.reject"
+            autoCapitalize="none"
+            autoComplete="off"
+            spellCheck={false}
           />
         </Field>
         <Field

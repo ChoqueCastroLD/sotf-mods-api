@@ -22,7 +22,9 @@ export function ScreenHeader({
   title,
   description,
   actions,
+  keepReadout = false,
 }: {
+  keepReadout?: boolean;
   readout: string;
   title: ReactNode;
   description?: ReactNode;
@@ -31,9 +33,9 @@ export function ScreenHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid min-w-0 gap-1">
-        <p className="readout text-signal">{readout}</p>
+        <p className={cn('readout text-signal', !keepReadout && 'max-md:hidden')}>{readout}</p>
         <h1 className="font-display-caps text-display-xs text-fg break-words">{title}</h1>
-        {description ? <p className="max-w-prose text-sm text-fg-muted">{description}</p> : null}
+        {description ? <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p> : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
     </header>
@@ -102,16 +104,18 @@ export function RangeSwitch({
   value,
   onChange,
   label,
+  className,
 }: {
   value: AnalyticsRange;
   onChange: (range: AnalyticsRange) => void;
   label?: string;
+  className?: string;
 }) {
   return (
     <div
       role="radiogroup"
       aria-label={label ?? bt('basecamp_range_label')}
-      className="inline-flex rounded-md border border-border bg-sunken p-0.5"
+      className={cn('flex rounded-lg border border-border bg-sunken p-0.5 md:inline-flex md:rounded-md', className)}
     >
       {RANGES.map((range) => {
         const checked = range === value;
@@ -141,7 +145,7 @@ export function RangeSwitch({
             data-range={range}
             tabIndex={checked ? 0 : -1}
             className={cn(
-              'inline-flex h-8 min-w-11 items-center justify-center rounded-sm px-2.5 text-xs font-medium tabular-nums transition-colors',
+              'inline-flex h-10 min-w-11 flex-1 items-center justify-center rounded-md px-2.5 text-sm font-medium tabular-nums transition-colors md:h-8 md:flex-none md:rounded-sm md:text-xs',
               'focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus',
               checked ? 'bg-surface text-fg shadow-sm' : 'text-fg-muted hover:text-fg',
             )}

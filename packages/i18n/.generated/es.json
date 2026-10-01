@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Guardas",
   "console_update_detail": "Actualizamos SOTF Mods mientras estabas aquí. Recarga para tener la última versión.",
   "console_update_reload": "Recargar",
   "console_update_title": "Hay una versión nueva",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Insignias destacadas guardadas.",
   "settings_featured_badges_text": "Elige hasta {max} insignias conseguidas para la cabecera de tu perfil.",
   "settings_featured_badges_title": "Insignias destacadas",
+  "settings_group_account": "Tu cuenta",
+  "settings_group_app": "Aplicación",
+  "settings_group_creator": "Creador y datos",
   "settings_handle": "Usuario",
   "settings_handle_hint": "La dirección de tu perfil. Por ahora no se puede cambiar.",
   "settings_history_link": "Abrir mis descargas",

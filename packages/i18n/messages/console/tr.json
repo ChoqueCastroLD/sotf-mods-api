@@ -67,5 +67,7 @@
   "console_shortcut_toggle_sidebar": "Kenar çubuğunu daralt veya genişlet",
   "console_noscript": "Konsol için JavaScript gerekiyor. Modlarını, sinyallerini ve ayarlarını yönetmek için JavaScript’i aç.",
   "console_nav_operations": "Operasyon",
-  "console_nav_jams": "Mod Jam'leri"
+  "console_nav_jams": "Mod Jam'leri",
+  "console_tab_ranger": "Korucular",
+  "console_pull_refreshing": "Yenileniyor…"
 }

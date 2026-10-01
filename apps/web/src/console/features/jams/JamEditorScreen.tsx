@@ -500,6 +500,9 @@ function DetailsForm({ jam }: { jam: AdminJam }) {
                   value={category.key}
                   disabled={votingStarted}
                   className="font-mono"
+                  autoCapitalize="none"
+                  autoComplete="off"
+                  spellCheck={false}
                   onChange={(event) => {
                     const key = event.currentTarget.value;
                     setCategories((rows) => rows.map((row, at) => (at === index ? { ...row, key } : row)));

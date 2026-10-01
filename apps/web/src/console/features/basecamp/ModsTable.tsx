@@ -7,8 +7,9 @@ import { buttonClasses } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Menu } from '@sotf/ui/menu';
-import { Link, useRouter } from '@tanstack/react-router';
+import { Link, useNavigate, useRouter } from '@tanstack/react-router';
 import { ChartLine, ExternalLink, MoreHorizontal, Pencil, Plus, Star } from 'lucide-react';
+import { SwipeRow } from '../../components/SwipeRow.tsx';
 import type { ModRow } from './api.ts';
 import { compact, number, publicHref, rating } from './format.ts';
 import { bt } from './i18n.ts';
@@ -140,50 +141,73 @@ function PrimaryActions({ row, compactLayout = false }: { row: ModRow; compactLa
 }
 
 export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption: string }) {
+  const navigate = useNavigate();
   return (
     <>
       {/* Phones: cards. */}
       <ul className="grid gap-2 md:hidden" aria-label={caption}>
-        {rows.map((row) => (
-          <li key={row.mod.id} className="grid gap-3 rounded-lg border border-border bg-surface p-3">
-            <div className="flex min-w-0 items-start gap-3">
-              <ModThumb url={row.mod.thumbnail?.url} className="w-20" />
-              <div className="grid min-w-0 gap-1">
-                <Link
-                  to="/basecamp/mods/$modId"
-                  params={{ modId: String(row.mod.id) }}
-                  className="truncate font-semibold text-fg hover:text-link"
-                >
-                  {row.mod.name}
-                </Link>
-                <span className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
-                  <StatusBadge status={row.mod.status} />
-                  {row.mod.latestVersion ? <span className="font-mono">v{row.mod.latestVersion}</span> : null}
-                </span>
+        {rows.map((row, index) => (
+          <li key={row.mod.id} className="overflow-hidden rounded-xl border border-border bg-surface">
+            <SwipeRow
+              peekKey={index === 0 ? 'basecamp-mods' : undefined}
+              start={
+                takesVersions(row) && row.mod.status !== 'removed'
+                  ? {
+                      label: bt('basecamp_mods_new_version'),
+                      icon: <Plus size={20} aria-hidden="true" />,
+                      tone: 'primary',
+                      onTrigger: () =>
+                        void navigate({
+                          to: '/basecamp/mods/$modId/new-version',
+                          params: { modId: String(row.mod.id) },
+                        }),
+                    }
+                  : undefined
+              }
+            >
+              <div className="relative grid gap-3 p-3">
+                <div className="flex min-w-0 items-start gap-3">
+                  <ModThumb url={row.mod.thumbnail?.url} className="w-20" />
+                  <div className="grid min-w-0 gap-1">
+                    <Link
+                      to="/basecamp/mods/$modId"
+                      params={{ modId: String(row.mod.id) }}
+                      className="truncate font-semibold text-fg after:absolute after:inset-0 after:content-[''] hover:text-link"
+                    >
+                      {row.mod.name}
+                    </Link>
+                    <span className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
+                      <StatusBadge status={row.mod.status} />
+                      {row.mod.latestVersion ? <span className="font-mono">v{row.mod.latestVersion}</span> : null}
+                    </span>
+                  </div>
+                </div>
+                <dl className="grid grid-cols-3 gap-2 text-xs">
+                  <div className="grid gap-0.5">
+                    <dt className="readout">{bt('basecamp_mods_col_downloads')}</dt>
+                    <dd className="tabular-nums text-fg">{compact(row.downloads7d)}</dd>
+                  </div>
+                  <div className="grid gap-0.5">
+                    <dt className="readout">{bt('basecamp_mods_col_rating')}</dt>
+                    <dd>
+                      <RatingCell row={row} />
+                    </dd>
+                  </div>
+                  <div className="grid gap-0.5">
+                    <dt className="readout">{bt('basecamp_mods_col_reports')}</dt>
+                    <dd>
+                      <ReportsCell row={row} />
+                    </dd>
+                  </div>
+                </dl>
+                {row.statusReason && row.mod.status === 'rejected' ? (
+                  <p className="text-xs text-warning">{bt('basecamp_mods_reason', { reason: row.statusReason })}</p>
+                ) : null}
+                <div className="relative">
+                  <PrimaryActions row={row} />
+                </div>
               </div>
-            </div>
-            <dl className="grid grid-cols-3 gap-2 text-xs">
-              <div className="grid gap-0.5">
-                <dt className="readout">{bt('basecamp_mods_col_downloads')}</dt>
-                <dd className="tabular-nums text-fg">{compact(row.downloads7d)}</dd>
-              </div>
-              <div className="grid gap-0.5">
-                <dt className="readout">{bt('basecamp_mods_col_rating')}</dt>
-                <dd>
-                  <RatingCell row={row} />
-                </dd>
-              </div>
-              <div className="grid gap-0.5">
-                <dt className="readout">{bt('basecamp_mods_col_reports')}</dt>
-                <dd>
-                  <ReportsCell row={row} />
-                </dd>
-              </div>
-            </dl>
-            {row.statusReason && row.mod.status === 'rejected' ? (
-              <p className="text-xs text-warning">{bt('basecamp_mods_reason', { reason: row.statusReason })}</p>
-            ) : null}
-            <PrimaryActions row={row} />
+            </SwipeRow>
           </li>
         ))}
       </ul>

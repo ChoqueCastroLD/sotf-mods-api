@@ -381,8 +381,8 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-5">
       <header className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-between gap-2">
-          <h1 className="font-display-caps text-2xl text-fg sm:text-3xl">{title}</h1>
-          <Link to="/basecamp/drafts" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
+          <h1 className="font-display-caps text-2xl text-fg max-md:sr-only sm:text-3xl">{title}</h1>
+          <Link to="/basecamp/drafts" className={`${buttonClasses({ variant: 'ghost', size: 'sm' })} max-md:hidden`}>
             {ut('upload_my_drafts')}
           </Link>
         </div>

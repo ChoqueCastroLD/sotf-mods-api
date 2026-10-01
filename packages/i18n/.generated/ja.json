@@ -2266,6 +2266,7 @@
       }
     }
   ],
+  "console_tab_ranger": "レンジャー",
   "console_update_detail": "閲覧中に SOTF Mods を更新しました。再読み込みして最新版を利用してください。",
   "console_update_reload": "再読み込み",
   "console_update_title": "新しいバージョンがあります",
@@ -7004,6 +7005,9 @@
   "settings_featured_badges_saved": "注目のバッジを保存しました。",
   "settings_featured_badges_text": "プロフィールのヘッダーに表示する獲得済みバッジを最大 {max} 個選べます。",
   "settings_featured_badges_title": "注目のバッジ",
+  "settings_group_account": "アカウント",
+  "settings_group_app": "アプリ",
+  "settings_group_creator": "クリエイターとデータ",
   "settings_handle": "ユーザー名",
   "settings_handle_hint": "プロフィールのアドレスです。現在は変更できません。",
   "settings_history_link": "ダウンロード履歴を開く",

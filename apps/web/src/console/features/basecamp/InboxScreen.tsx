@@ -26,6 +26,7 @@ import { Bug, CheckCheck, ExternalLink, Inbox, MessageSquare, Radar, Reply, Star
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { useTurnstile } from '../../../islands/auth/turnstile.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { useMe } from '../../hooks/use-me.ts';
 import { problemCode } from '../../lib/errors.ts';
 import { activeLocale } from '../../lib/messages.ts';
@@ -398,45 +399,70 @@ function InboxRow({ item, now }: { item: InboxItem; now: number }) {
     );
   }
 
+  // Swipe shortcuts (touch): toward the end replies, toward the start resolves or acknowledges. They
+  // only open the same flows as the buttons below, so nothing is sent by accident.
+  const swipeStart =
+    mode === 'idle' && item.type !== 'compat'
+      ? {
+          label: bt('basecamp_inbox_reply'),
+          icon: <Reply size={20} aria-hidden="true" />,
+          tone: 'primary' as const,
+          onTrigger: () => setMode('reply'),
+        }
+      : undefined;
+  const swipeEnd =
+    mode === 'idle' && item.state !== 'resolved' && (item.type === 'bug' || item.type === 'compat')
+      ? {
+          label: item.type === 'bug' ? bt('basecamp_inbox_mark_resolved') : bt('basecamp_inbox_mark_fixed'),
+          icon: <CheckCheck size={20} aria-hidden="true" />,
+          tone: 'success' as const,
+          onTrigger: () => setMode(item.type === 'bug' ? 'resolve' : 'fixed'),
+        }
+      : undefined;
+
   return (
     <li
       className={cn(
-        'grid gap-3 rounded-lg border bg-surface p-4',
+        'overflow-hidden rounded-xl border bg-surface',
         item.state === 'open' ? 'border-border-strong' : 'border-border',
       )}
     >
-      <div className="flex flex-wrap items-start justify-between gap-2">
-        <div className="flex min-w-0 items-start gap-3">
-          <span
-            aria-hidden="true"
-            className="flex size-9 shrink-0 items-center justify-center rounded-full bg-fg/8 text-fg-muted"
-          >
-            <Icon icon={TypeIcon} size={18} />
-          </span>
-          <div className="grid min-w-0 gap-0.5">
-            <p className="text-sm text-fg">
-              {bt('basecamp_inbox_line', {
-                type: inboxTypeLabel(item.type),
-                author: author ? author.displayName || author.handle : bt('basecamp_inbox_deleted_user'),
-                mod: item.mod.name,
-              })}
-            </p>
-            <time dateTime={item.createdAt} title={dateTime(item.createdAt)} className="text-xs text-fg-subtle">
-              {formatRelativeTime(locale, item.createdAt, { now })}
-            </time>
+      <SwipeRow start={swipeStart} end={swipeEnd} peekKey={item.state === 'open' ? 'basecamp-inbox' : undefined}>
+        <div className="grid gap-3 p-4">
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <div className="flex min-w-0 items-start gap-3">
+              <span
+                aria-hidden="true"
+                className="flex size-9 shrink-0 items-center justify-center rounded-full bg-fg/8 text-fg-muted"
+              >
+                <Icon icon={TypeIcon} size={18} />
+              </span>
+              <div className="grid min-w-0 gap-0.5">
+                <p className="text-sm text-fg">
+                  {bt('basecamp_inbox_line', {
+                    type: inboxTypeLabel(item.type),
+                    author: author ? author.displayName || author.handle : bt('basecamp_inbox_deleted_user'),
+                    mod: item.mod.name,
+                  })}
+                </p>
+                <time dateTime={item.createdAt} title={dateTime(item.createdAt)} className="text-xs text-fg-subtle">
+                  {formatRelativeTime(locale, item.createdAt, { now })}
+                </time>
+              </div>
+            </div>
+            <span className="flex items-center gap-2">
+              {author ? (
+                <Avatar name={author.displayName || author.handle} id={author.id} src={author.avatarUrl} size={24} />
+              ) : null}
+              <Badge variant={inboxStateVariant(item.state)} size="sm">
+                {inboxStateLabel(item.state)}
+              </Badge>
+            </span>
           </div>
+          <ProseLocator html={item.excerptHtml} size="sm" className="line-clamp-6 text-fg-muted" />
+          {actions}
         </div>
-        <span className="flex items-center gap-2">
-          {author ? (
-            <Avatar name={author.displayName || author.handle} id={author.id} src={author.avatarUrl} size={24} />
-          ) : null}
-          <Badge variant={inboxStateVariant(item.state)} size="sm">
-            {inboxStateLabel(item.state)}
-          </Badge>
-        </span>
-      </div>
-      <ProseLocator html={item.excerptHtml} size="sm" className="line-clamp-6 text-fg-muted" />
-      {actions}
+      </SwipeRow>
     </li>
   );
 }
@@ -447,7 +473,7 @@ function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (t
     ...INBOX_KINDS.map((type) => ({ value: type, label: inboxTypeLabel(type) })),
   ];
   return (
-    <fieldset className="flex flex-wrap gap-2">
+    <fieldset className="-mx-4 flex min-w-0 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
       <legend className="sr-only">{bt('basecamp_inbox_filter_type')}</legend>
       {options.map((option) => {
         const active = option.value === value;
@@ -458,7 +484,7 @@ function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (t
             aria-pressed={active}
             onClick={() => onChange(option.value)}
             className={cn(
-              'inline-flex h-9 items-center rounded-full border px-3 text-sm transition-colors',
+              'inline-flex h-10 shrink-0 items-center rounded-full border px-4 text-sm transition-colors md:h-9 md:px-3',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
               active ? 'border-primary bg-primary-soft text-fg' : 'border-border text-fg-muted hover:text-fg',
             )}

@@ -2572,6 +2572,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Рейнджеры",
   "console_update_detail": "Мы обновили SOTF Mods, пока вы были здесь. Перезагрузите страницу, чтобы получить новую версию.",
   "console_update_reload": "Перезагрузить",
   "console_update_title": "Вышла новая версия",
@@ -8158,6 +8159,9 @@
   "settings_featured_badges_saved": "Избранные значки сохранены.",
   "settings_featured_badges_text": "Выберите до {max} полученных значков для шапки профиля.",
   "settings_featured_badges_title": "Избранные значки",
+  "settings_group_account": "Ваш аккаунт",
+  "settings_group_app": "Приложение",
+  "settings_group_creator": "Автор и данные",
   "settings_handle": "Имя пользователя",
   "settings_handle_hint": "Адрес вашего профиля. Пока его нельзя изменить.",
   "settings_history_link": "Открыть мои загрузки",

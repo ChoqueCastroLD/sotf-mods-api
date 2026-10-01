@@ -40,9 +40,9 @@ export function AdminHeader({ title, description, actions }: AdminHeaderProps) {
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid gap-1">
-        <p className="readout text-signal">{m.admin_readout()}</p>
+        <p className="readout text-signal max-md:hidden">{m.admin_readout()}</p>
         <h1 className="font-display-caps text-display-xs text-fg">{title}</h1>
-        <p className="max-w-prose text-sm text-fg-muted">{description}</p>
+        <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p>
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
     </header>

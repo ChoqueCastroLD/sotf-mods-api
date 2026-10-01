@@ -475,6 +475,9 @@ function LoaderReleaseForm({ onDone, onSaved }: { onDone: () => void; onSaved: (
             value={version}
             maxLength={ADMIN_LIMITS.loaderVersionMax}
             placeholder="0.8.7"
+            autoCapitalize="none"
+            autoComplete="off"
+            spellCheck={false}
             autoFocus
             onChange={(event) => setVersion(event.currentTarget.value)}
           />

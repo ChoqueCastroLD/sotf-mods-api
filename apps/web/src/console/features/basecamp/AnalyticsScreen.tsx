@@ -205,13 +205,13 @@ export function AnalyticsScreen({
     <DomainI18nBridge>
       <div className="grid gap-6">
         {header}
-        <div className="flex flex-wrap items-end gap-3">
+        <div className="grid gap-3 md:flex md:flex-wrap md:items-end">
           <Select
             label={bt('basecamp_analytics_mod')}
             options={modOptions}
             value={modId ? String(modId) : 'all'}
             onValueChange={(value) => onChange({ modId: value && value !== 'all' ? Number(value) : null })}
-            className="min-w-56"
+            className="md:min-w-56"
           />
           <RangeSwitch value={range} onChange={(next) => onChange({ range: next })} />
           {selected ? (

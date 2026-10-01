@@ -6,14 +6,14 @@ import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
 import { Dialog } from '@sotf/ui/dialog';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { Plus, Trophy } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { type FormEvent, useState } from 'react';
+import { ArtState } from '../../components/ArtState.tsx';
 import { notify } from '../../lib/notify.ts';
 import { formatInstant, reportFailure, slugify, TableScroller, tdClasses, thClasses } from '../admin/shared.tsx';
 import { adminJamsQuery, jamKeys, jamsAdminApi } from './api.ts';
@@ -38,11 +38,7 @@ export function JamsAdminScreen() {
       </header>
 
       {jams.length === 0 ? (
-        <EmptyState
-          icon={<Icon icon={Trophy} size={32} />}
-          title={m.jams_admin_empty_title()}
-          description={m.jams_admin_empty_text()}
-        />
+        <ArtState art="trophy" title={m.jams_admin_empty_title()} description={m.jams_admin_empty_text()} />
       ) : (
         <TableScroller label={m.jams_admin_table_label()}>
           <table className="w-full border-collapse text-sm">

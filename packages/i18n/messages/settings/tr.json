@@ -413,5 +413,8 @@
   "settings_notif_request_fulfilled": "İstek karşılandı",
   "settings_notif_request_fulfilled_hint": "İstediğin veya oy verdiğin bir mod yayınlandı.",
   "settings_notif_jam": "Mod Jam'ler",
-  "settings_notif_jam_hint": "Takip ettiğin ya da katıldığın bir jam katılımları açtığında, oylamayı başlattığında veya sonuçları yayımladığında."
+  "settings_notif_jam_hint": "Takip ettiğin ya da katıldığın bir jam katılımları açtığında, oylamayı başlattığında veya sonuçları yayımladığında.",
+  "settings_group_account": "Hesabın",
+  "settings_group_app": "Uygulama",
+  "settings_group_creator": "Üretici ve veriler"
 }

@@ -413,5 +413,8 @@
   "settings_notif_request_fulfilled": "リクエストが実現しました",
   "settings_notif_request_fulfilled_hint": "あなたがリクエストまたは投票した MOD が公開されました。",
   "settings_notif_jam": "Mod Jam",
-  "settings_notif_jam_hint": "フォローまたは参加中のジャムがエントリー受付・投票を開始したとき、または結果を発表したとき。"
+  "settings_notif_jam_hint": "フォローまたは参加中のジャムがエントリー受付・投票を開始したとき、または結果を発表したとき。",
+  "settings_group_account": "アカウント",
+  "settings_group_app": "アプリ",
+  "settings_group_creator": "クリエイターとデータ"
 }

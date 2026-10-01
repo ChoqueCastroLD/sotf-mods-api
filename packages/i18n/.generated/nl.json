@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Ranger",
   "console_update_detail": "We hebben SOTF Mods bijgewerkt terwijl je hier was. Herlaad om de nieuwste versie te krijgen.",
   "console_update_reload": "Herladen",
   "console_update_title": "Er is een nieuwe versie",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Uitgelichte badges opgeslagen.",
   "settings_featured_badges_text": "Kies tot {max} verdiende badges voor de kop van je profiel.",
   "settings_featured_badges_title": "Uitgelichte badges",
+  "settings_group_account": "Jouw account",
+  "settings_group_app": "App",
+  "settings_group_creator": "Maker en gegevens",
   "settings_handle": "Handle",
   "settings_handle_hint": "Het adres van je profiel. Handles kunnen nog niet worden gewijzigd.",
   "settings_history_link": "Mijn downloads openen",

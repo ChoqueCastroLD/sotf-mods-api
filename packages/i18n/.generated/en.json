@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Ranger",
   "console_update_detail": "We updated SOTF Mods while you were here. Reload to get the latest version.",
   "console_update_reload": "Reload",
   "console_update_title": "A new version is out",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Featured badges saved.",
   "settings_featured_badges_text": "Choose up to {max} earned badges for the header of your profile.",
   "settings_featured_badges_title": "Featured badges",
+  "settings_group_account": "Your account",
+  "settings_group_app": "App",
+  "settings_group_creator": "Creator and data",
   "settings_handle": "Handle",
   "settings_handle_hint": "Your profile address. Handles can’t be changed yet.",
   "settings_history_link": "Open my downloads",

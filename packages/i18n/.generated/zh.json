@@ -2266,6 +2266,7 @@
       }
     }
   ],
+  "console_tab_ranger": "护林",
   "console_update_detail": "你浏览期间我们更新了 SOTF Mods。重新加载即可获得最新版本。",
   "console_update_reload": "重新加载",
   "console_update_title": "新版本已发布",
@@ -7004,6 +7005,9 @@
   "settings_featured_badges_saved": "已保存展示的徽章。",
   "settings_featured_badges_text": "最多选择 {max} 个已获得的徽章展示在个人资料顶部。",
   "settings_featured_badges_title": "展示的徽章",
+  "settings_group_account": "你的账号",
+  "settings_group_app": "应用",
+  "settings_group_creator": "创作者与数据",
   "settings_handle": "用户名",
   "settings_handle_hint": "你的个人资料地址。目前还不能更改。",
   "settings_history_link": "打开我的下载",

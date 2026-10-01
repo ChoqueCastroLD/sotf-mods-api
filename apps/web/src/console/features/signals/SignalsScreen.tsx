@@ -6,6 +6,7 @@
  * `['notifications']`); older pages load on demand (cursor).
  */
 import { formatDate, type Locale } from '@sotf/i18n';
+import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
@@ -18,6 +19,8 @@ import { useMemo, useState } from 'react';
 import { st } from '../../../islands/signals/i18n.ts';
 import { localTimeZone, SignalRow } from '../../../islands/signals/SignalRow.tsx';
 import { track } from '../../../scripts/beacon.ts';
+import { ArtState } from '../../components/ArtState.tsx';
+import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useMe } from '../../hooks/use-me.ts';
 import { activeLocale } from '../../lib/messages.ts';
@@ -72,6 +75,7 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
   const queryClient = useQueryClient();
   const query = useSuspenseInfiniteQuery(signalsQuery(filter));
   const [marking, setMarking] = useState(false);
+  const phone = useMediaQuery(BELOW_MD_QUERY);
   useDocumentTitle(st('signals_page_title'));
 
   const timeZone = useMemo(() => localTimeZone(), []);
@@ -130,24 +134,70 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
     readOne(signal);
   };
 
+  const filterNav = (
+    <nav
+      aria-label={st('signals_filter_label')}
+      className="-mx-1 min-w-0 flex-1 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+    >
+      <ul className="flex gap-2">
+        {SIGNAL_FILTERS.map((value) => {
+          const active = value === filter;
+          return (
+            <li key={value}>
+              <Link
+                to="/signals"
+                search={value === 'all' ? {} : { filter: value }}
+                aria-current={active ? 'page' : undefined}
+                className={cn(
+                  'inline-flex h-10 items-center whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors md:h-9',
+                  active
+                    ? 'border-primary bg-primary text-primary-fg'
+                    : 'border-border-strong text-fg-muted hover:bg-fg/8 hover:text-fg',
+                )}
+              >
+                {st(FILTER_LABELS[value])}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
+  );
+
+  const markAll = phone ? (
+    <Button
+      variant="icon"
+      onClick={() => void readAll()}
+      loading={marking}
+      disabled={unread === 0}
+      aria-label={st('signals_mark_all_read')}
+      title={st('signals_mark_all_read')}
+      className="size-11 shrink-0 rounded-full border border-border-strong"
+    >
+      <Icon icon={CheckCheck} size={18} />
+    </Button>
+  ) : (
+    <Button
+      variant="secondary"
+      icon={<Icon icon={CheckCheck} size={18} />}
+      onClick={() => void readAll()}
+      loading={marking}
+      disabled={unread === 0}
+    >
+      {st('signals_mark_all_read')}
+    </Button>
+  );
+
   return (
-    <div className="grid gap-6">
-      <header className="flex flex-wrap items-end justify-between gap-4">
+    <div className="grid gap-4 md:gap-6">
+      <header className="flex flex-wrap items-end justify-between gap-4 max-md:hidden">
         <div className="grid gap-1">
           <p className="readout text-signal">{st('signals_page_readout')}</p>
           <h1 className="font-display-caps text-display-xs text-fg">{st('signals_page_title')}</h1>
           <p className="max-w-prose text-sm text-fg-muted">{st('signals_page_description')}</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <Button
-            variant="secondary"
-            icon={<Icon icon={CheckCheck} size={18} />}
-            onClick={() => void readAll()}
-            loading={marking}
-            disabled={unread === 0}
-          >
-            {st('signals_mark_all_read')}
-          </Button>
+          {markAll}
           <Link
             to="/settings/notifications"
             className="inline-flex size-10 items-center justify-center rounded-md border border-border-strong text-fg-muted hover:bg-fg/8 hover:text-fg"
@@ -158,39 +208,28 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
           </Link>
         </div>
       </header>
+      <h1 className="sr-only md:hidden">{st('signals_page_title')}</h1>
 
-      <nav aria-label={st('signals_filter_label')} className="-mx-1 overflow-x-auto px-1">
-        <ul className="flex gap-2">
-          {SIGNAL_FILTERS.map((value) => {
-            const active = value === filter;
-            return (
-              <li key={value}>
-                <Link
-                  to="/signals"
-                  search={value === 'all' ? {} : { filter: value }}
-                  aria-current={active ? 'page' : undefined}
-                  className={cn(
-                    'inline-flex h-10 items-center whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors md:h-9',
-                    active
-                      ? 'border-primary bg-primary text-primary-fg'
-                      : 'border-border-strong text-fg-muted hover:bg-fg/8 hover:text-fg',
-                  )}
-                >
-                  {st(FILTER_LABELS[value])}
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
+      {/* Phones: the area title lives in the top bar; filters and the bulk action share one row. */}
+      <div className="flex items-center gap-2 md:block">
+        {filterNav}
+        {phone ? (
+          <>
+            {markAll}
+            <Link
+              to="/settings/notifications"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg-muted active:bg-fg/8"
+              aria-label={st('signals_preferences')}
+            >
+              <Icon icon={Settings2} size={18} />
+            </Link>
+          </>
+        ) : null}
+      </div>
 
       {items.length === 0 ? (
         filter === 'all' ? (
-          <EmptyState
-            icon={<Icon icon={Radio} size={32} />}
-            title={st('signals_empty_title')}
-            description={st('signals_empty_text')}
-          />
+          <ArtState art="camp" title={st('signals_empty_title')} description={st('signals_empty_text')} />
         ) : (
           <EmptyState
             icon={<Icon icon={Radio} size={32} />}
@@ -216,26 +255,40 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
               </h2>
               <ul className="grid gap-0.5 rounded-lg border border-border bg-surface p-1">
                 {group.items.map((signal) => (
-                  <li key={signal.id}>
-                    <SignalRow
-                      signal={signal}
-                      locale={locale}
-                      now={now}
-                      onOpen={open}
-                      actions={
-                        signal.readAt === null ? (
-                          <Button
-                            variant="icon"
-                            size="sm"
-                            aria-label={st('signals_mark_read')}
-                            title={st('signals_mark_read')}
-                            onClick={() => readOne(signal)}
-                          >
-                            <Icon icon={Check} size={16} />
-                          </Button>
-                        ) : undefined
+                  <li key={signal.id} className="overflow-hidden rounded-md">
+                    <SwipeRow
+                      peekKey={signal.readAt === null ? 'signals-list' : undefined}
+                      start={
+                        signal.readAt === null
+                          ? {
+                              label: st('signals_mark_read'),
+                              icon: <Check size={20} aria-hidden="true" />,
+                              tone: 'success',
+                              onTrigger: () => readOne(signal),
+                            }
+                          : undefined
                       }
-                    />
+                    >
+                      <SignalRow
+                        signal={signal}
+                        locale={locale}
+                        now={now}
+                        onOpen={open}
+                        actions={
+                          signal.readAt === null ? (
+                            <Button
+                              variant="icon"
+                              size="sm"
+                              aria-label={st('signals_mark_read')}
+                              title={st('signals_mark_read')}
+                              onClick={() => readOne(signal)}
+                            >
+                              <Icon icon={Check} size={16} />
+                            </Button>
+                          ) : undefined
+                        }
+                      />
+                    </SwipeRow>
                   </li>
                 ))}
               </ul>

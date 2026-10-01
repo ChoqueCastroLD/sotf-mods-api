@@ -2462,6 +2462,7 @@
       }
     }
   ],
+  "console_tab_ranger": "Korucular",
   "console_update_detail": "Sen buradayken SOTF Mods’u güncelledik. En son sürümü almak için yeniden yükle.",
   "console_update_reload": "Yeniden yükle",
   "console_update_title": "Yeni bir sürüm çıktı",
@@ -7676,6 +7677,9 @@
   "settings_featured_badges_saved": "Öne çıkan rozetler kaydedildi.",
   "settings_featured_badges_text": "Profil başlığın için kazandığın en fazla {max} rozeti seç.",
   "settings_featured_badges_title": "Öne çıkan rozetler",
+  "settings_group_account": "Hesabın",
+  "settings_group_app": "Uygulama",
+  "settings_group_creator": "Üretici ve veriler",
   "settings_handle": "Kullanıcı adı",
   "settings_handle_hint": "Profilinin adresi. Kullanıcı adları henüz değiştirilemiyor.",
   "settings_history_link": "İndirdiklerimi aç",

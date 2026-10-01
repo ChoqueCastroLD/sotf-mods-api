@@ -85,6 +85,8 @@ export function CompatStep({ data, update, manifestId, manifestDependencies, hea
             maxLength={40}
             placeholder="0.9.0"
             spellCheck={false}
+            autoCapitalize="none"
+            autoComplete="off"
             onChange={(event) => {
               const next = event.currentTarget.value;
               update((d) => ({ ...d, loaderMin: next.trim() ? next.trim() : null }));

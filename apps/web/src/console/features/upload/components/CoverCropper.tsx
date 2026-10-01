@@ -194,6 +194,7 @@ export function CoverCropper({ id, value, onChange, fallbackHint }: CoverCropper
           title={ut('upload_cover_drop')}
           hint={fallbackHint ?? ut('upload_cover_hint')}
           buttonLabel={ut('upload_cover_choose')}
+          cameraLabel={ut('upload_take_photo')}
           onFiles={([file]) => {
             if (file) void pick(file);
           }}
