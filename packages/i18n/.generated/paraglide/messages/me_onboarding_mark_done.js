@@ -18,7 +18,7 @@ const de_me_onboarding_mark_done = /** @type {(inputs: Me_Onboarding_Mark_DoneIn
 };
 
 const fr_me_onboarding_mark_done = /** @type {(inputs: Me_Onboarding_Mark_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Marquer « ${i?.step} » comme fait`)
+	return /** @type {LocalizedString} */ (`Marquer « ${i?.step} » comme fait`)
 };
 
 const it_me_onboarding_mark_done = /** @type {(inputs: Me_Onboarding_Mark_DoneInputs) => LocalizedString} */ (i) => {

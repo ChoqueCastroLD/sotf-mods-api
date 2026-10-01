@@ -103,5 +103,5 @@
   "me_onboarding_kit_action": "Créer un kit",
   "me_onboarding_completed": "Vous avez survécu au premier jour — badge débloqué",
   "me_onboarding_failed": "Impossible de mettre à jour la liste",
-  "me_onboarding_mark_done": "Marquer « {step} » comme fait"
+  "me_onboarding_mark_done": "Marquer « {step} » comme fait"
 }

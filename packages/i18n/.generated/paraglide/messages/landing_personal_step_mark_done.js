@@ -18,7 +18,7 @@ const de_landing_personal_step_mark_done = /** @type {(inputs: Landing_Personal_
 };
 
 const fr_landing_personal_step_mark_done = /** @type {(inputs: Landing_Personal_Step_Mark_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Marquer « ${i?.step} » comme fait`)
+	return /** @type {LocalizedString} */ (`Marquer « ${i?.step} » comme fait`)
 };
 
 const it_landing_personal_step_mark_done = /** @type {(inputs: Landing_Personal_Step_Mark_DoneInputs) => LocalizedString} */ (i) => {
