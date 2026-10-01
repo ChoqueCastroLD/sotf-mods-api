@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "Son kitlerin",
   "landing_personal_error": "Güncellemelerin yüklenirken sinyal kayboldu.",
   "landing_personal_step_mark_done": "“{step}” adımını tamamlandı olarak işaretle",
-  "landing_personal_step_failed": "Adım kaydedilemedi. Tekrar dene."
+  "landing_personal_step_failed": "Adım kaydedilemedi. Tekrar dene.",
+  "landing_hall_show_all": "Tümünü göster ({count, number})"
 }

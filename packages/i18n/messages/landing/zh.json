@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "你最近的套装",
   "landing_personal_error": "加载你的更新时信号中断。",
   "landing_personal_step_mark_done": "将“{step}”标记为已完成",
-  "landing_personal_step_failed": "无法保存该步骤，请重试。"
+  "landing_personal_step_failed": "无法保存该步骤，请重试。",
+  "landing_hall_show_all": "显示全部 {count, number} 个"
 }

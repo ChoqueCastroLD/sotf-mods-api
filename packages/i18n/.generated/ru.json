@@ -5243,6 +5243,18 @@
   "landing_faq_more": "Подробнее",
   "landing_faq_title": "Вопросы выживших",
   "landing_hall_hint": "Самые скачиваемые моды за всё время",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Показать все ({count__number})"
+      }
+    }
+  ],
   "landing_hall_title": "Легенды острова",
   "landing_hero_cta_explore": "Смотреть моды",
   "landing_hero_cta_install": "Как установить (3 мин)",

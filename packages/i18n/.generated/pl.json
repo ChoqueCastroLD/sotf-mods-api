@@ -5243,6 +5243,18 @@
   "landing_faq_more": "Czytaj dalej",
   "landing_faq_title": "Pytania ocalałych",
   "landing_hall_hint": "Najczęściej pobierane mody wszech czasów",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Pokaż wszystkie ({count__number})"
+      }
+    }
+  ],
   "landing_hall_title": "Legendy wyspy",
   "landing_hero_cta_explore": "Przeglądaj mody",
   "landing_hero_cta_install": "Jak zainstalować (3 min)",

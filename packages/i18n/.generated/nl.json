@@ -4989,6 +4989,18 @@
   "landing_faq_more": "Lees meer",
   "landing_faq_title": "Vragen van overlevenden",
   "landing_hall_hint": "De meest gedownloade mods aller tijden",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Toon alle {count__number}"
+      }
+    }
+  ],
   "landing_hall_title": "Legendes van het eiland",
   "landing_hero_cta_explore": "Mods verkennen",
   "landing_hero_cta_install": "Zo installeer je (3 min)",

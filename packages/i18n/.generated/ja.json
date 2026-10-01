@@ -4542,6 +4542,18 @@
   "landing_faq_more": "詳しく見る",
   "landing_faq_title": "サバイバーからのよくある質問",
   "landing_hall_hint": "歴代ダウンロード数トップのMOD",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件すべて表示"
+      }
+    }
+  ],
   "landing_hall_title": "島のレジェンド",
   "landing_hero_cta_explore": "MODを探す",
   "landing_hero_cta_install": "インストール方法（3分）",

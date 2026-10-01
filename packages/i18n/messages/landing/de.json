@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "Deine letzten Kits",
   "landing_personal_error": "Beim Laden deiner Updates ist das Signal abgerissen.",
   "landing_personal_step_mark_done": "„{step}“ als erledigt markieren",
-  "landing_personal_step_failed": "Der Schritt konnte nicht gespeichert werden. Versuche es erneut."
+  "landing_personal_step_failed": "Der Schritt konnte nicht gespeichert werden. Versuche es erneut.",
+  "landing_hall_show_all": "Alle {count, number} anzeigen"
 }

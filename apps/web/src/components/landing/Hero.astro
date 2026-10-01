@@ -50,17 +50,17 @@ const tiles = stats
   : [];
 
 const primaryCta =
-  'inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-primary px-5 font-semibold text-primary-fg shadow-glow transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:w-auto';
+  'inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 font-semibold text-primary-fg shadow-glow transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:w-auto';
 const secondaryCta =
-  'inline-flex h-12 w-full items-center justify-center gap-2 rounded-md border border-border-strong bg-surface/80 px-5 font-semibold text-fg transition-colors duration-(--dur-fast) hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:w-auto';
+  'inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold text-link underline-offset-4 hover:underline sm:h-12 sm:w-auto sm:rounded-md sm:border sm:border-border-strong sm:bg-surface/80 sm:text-base sm:text-fg sm:no-underline transition-colors duration-(--dur-fast) hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:w-auto';
 ---
 
 <section class="landing-hero texture-topo relative overflow-hidden border-b border-border" aria-labelledby="home-title">
   <div
-    class="relative mx-auto grid w-full max-w-(--container-wide) gap-x-10 gap-y-6 px-4 pt-8 pb-10 md:px-6 md:pt-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:pt-16 lg:pb-16"
+    class="relative mx-auto grid w-full max-w-(--container-wide) gap-x-10 gap-y-4 px-4 pt-6 pb-8 md:gap-y-6 md:px-6 md:pt-12 md:pb-10 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:pt-16 lg:pb-16"
   >
-    <div class="grid content-start gap-5 lg:col-start-1 lg:row-start-1">
-      <p class="readout flex flex-wrap items-center gap-x-2 gap-y-1 text-signal" data-pulse-readout>
+    <div class="contents lg:grid lg:content-start lg:gap-5 lg:col-start-1 lg:row-start-1">
+      <p class="readout order-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-signal" data-pulse-readout>
         <span data-pulse-group hidden={pulse === null} class="contents">
           <span>
             {m.landing_readout_today()}{' '}
@@ -91,13 +91,13 @@ const secondaryCta =
         <span data-pulse-offline data-text={m.landing_readout_offline()} role="status" class="text-warning"></span>
       </p>
 
-      <h1 id="home-title" class="font-display-caps text-display-lg text-balance text-fg">
+      <h1 id="home-title" class="order-2 -mt-2 font-display-caps text-display-md text-balance text-fg md:mt-0 md:text-display-lg">
         <span class="block">{m.landing_hero_title_lead()}</span>
         <span class="block text-primary">{m.landing_hero_title_accent()}</span>
       </h1>
-      <p class="max-w-(--container-prose) text-lg text-pretty text-fg-muted">{lead}</p>
+      <p class="order-3 line-clamp-3 max-w-(--container-prose) text-base text-pretty text-fg-muted sm:line-clamp-none md:text-lg">{lead}</p>
 
-      <div class="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+      <div class="order-5 -mt-2 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:gap-3 md:mt-0">
         <a href={href('/mods', locale)} class={primaryCta}>
           {m.landing_hero_cta_explore()}
           <Icon icon={ArrowRight} size={18} />
@@ -109,7 +109,7 @@ const secondaryCta =
       </div>
     </div>
 
-    <div class="lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
+    <div class="order-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
       <IslandMap
         locale={locale}
         trending={mapSources.trending}
@@ -119,12 +119,12 @@ const secondaryCta =
       />
     </div>
 
-    <div class="grid content-start gap-6 lg:col-start-1 lg:row-start-2">
-      <search class="max-w-xl">
+    <div class="contents lg:grid lg:content-start lg:gap-6 lg:col-start-1 lg:row-start-2">
+      <search class="order-4 max-w-xl">
         <form method="get" action={href('/search', locale)} data-landing-search class="flex gap-2">
           <label for="landing-search" class="sr-only">{m.landing_hero_search_label()}</label>
           <div class="relative flex-1">
-            <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
+            <span class="pointer-events-none absolute inset-y-0 start-3.5 flex items-center text-fg-subtle md:start-3">
               <Icon icon={Search} size={18} />
             </span>
             <input
@@ -137,7 +137,7 @@ const secondaryCta =
               placeholder={m.common_search_placeholder()}
               aria-describedby="landing-search-hint"
               data-landing-search-input
-              class="h-12 w-full rounded-md border border-border-strong bg-sunken ps-10 pe-16 text-base text-fg placeholder:text-fg-subtle focus-visible:outline-2 focus-visible:outline-focus"
+              class="h-12 w-full rounded-full border border-border-strong bg-sunken ps-11 pe-4 text-base text-fg placeholder:text-fg-subtle focus-visible:outline-2 focus-visible:outline-focus md:rounded-md md:ps-10 md:pe-16"
             />
             <span
               id="landing-search-hint"
@@ -149,7 +149,7 @@ const secondaryCta =
           </div>
           <button
             type="submit"
-            class="inline-flex h-12 shrink-0 items-center justify-center rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+            class="inline-flex h-12 shrink-0 items-center justify-center rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus max-sm:hidden"
           >
             {m.common_search_label()}
           </button>
@@ -158,11 +158,14 @@ const secondaryCta =
 
       {
         tiles.length > 0 && (
-          <dl class="grid grid-cols-2 gap-3 md:grid-cols-4" aria-label={m.landing_stats_label()}>
+          <dl
+            class="order-7 grid grid-cols-4 divide-x divide-border overflow-hidden rounded-xl border border-border bg-surface/90 md:gap-3 md:divide-x-0 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent"
+            aria-label={m.landing_stats_label()}
+          >
             {tiles.map((tile) => (
-              <div class="flex min-w-0 flex-col gap-1.5 rounded-lg border border-border bg-surface/90 p-4">
-                <dt class="readout truncate">{tile.label}</dt>
-                <dd class="font-display-caps text-display-xs leading-none tabular-nums text-fg">
+              <div class="flex min-w-0 flex-col gap-1 px-2.5 py-3 md:gap-1.5 md:rounded-lg md:border md:border-border md:bg-surface/90 md:p-4">
+                <dt class="readout truncate text-[0.625rem] md:text-xs">{tile.label}</dt>
+                <dd class="font-display-caps text-xl leading-none tabular-nums text-fg md:text-display-xs">
                   <span aria-hidden="true" data-count-up={tile.value} title={formatNumber(locale, tile.value)}>
                     {formatCompactNumber(locale, tile.value)}
                   </span>

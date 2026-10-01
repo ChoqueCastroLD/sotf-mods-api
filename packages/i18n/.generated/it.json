@@ -4989,6 +4989,18 @@
   "landing_faq_more": "Leggi di più",
   "landing_faq_title": "Le domande dei sopravvissuti",
   "landing_hall_hint": "Le mod più scaricate di sempre",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Mostra tutti i {count__number}"
+      }
+    }
+  ],
   "landing_hall_title": "Leggende dell’isola",
   "landing_hero_cta_explore": "Esplora le mod",
   "landing_hero_cta_install": "Come installare (3 min)",

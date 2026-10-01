@@ -4989,6 +4989,18 @@
   "landing_faq_more": "En savoir plus",
   "landing_faq_title": "Les questions des survivants",
   "landing_hall_hint": "Les mods les plus téléchargés de tous les temps",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Afficher les {count__number}"
+      }
+    }
+  ],
   "landing_hall_title": "Légendes de l’île",
   "landing_hero_cta_explore": "Explorer les mods",
   "landing_hero_cta_install": "Comment installer (3 min)",

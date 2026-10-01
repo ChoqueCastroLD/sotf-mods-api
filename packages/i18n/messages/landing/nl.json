@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "Je recente Kits",
   "landing_personal_error": "Signaal kwijt bij het laden van je updates.",
   "landing_personal_step_mark_done": "„{step}” als gedaan markeren",
-  "landing_personal_step_failed": "Die stap kon niet worden opgeslagen. Probeer het opnieuw."
+  "landing_personal_step_failed": "Die stap kon niet worden opgeslagen. Probeer het opnieuw.",
+  "landing_hall_show_all": "Toon alle {count, number}"
 }

@@ -92,5 +92,6 @@
   "landing_personal_kits_title": "Seus Kits recentes",
   "landing_personal_error": "O sinal caiu ao carregar suas atualizações.",
   "landing_personal_step_mark_done": "Marcar “{step}” como feito",
-  "landing_personal_step_failed": "Não foi possível salvar a etapa. Tente novamente."
+  "landing_personal_step_failed": "Não foi possível salvar a etapa. Tente novamente.",
+  "landing_hall_show_all": "Mostrar os {count, number}"
 }

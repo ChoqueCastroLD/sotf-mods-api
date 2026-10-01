@@ -4989,6 +4989,18 @@
   "landing_faq_more": "Devamını oku",
   "landing_faq_title": "Hayatta kalanların soruları",
   "landing_hall_hint": "Tüm zamanların en çok indirilen modları",
+  "landing_hall_show_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Tümünü göster ({count__number})"
+      }
+    }
+  ],
   "landing_hall_title": "Adanın efsaneleri",
   "landing_hero_cta_explore": "Modları keşfet",
   "landing_hero_cta_install": "Nasıl kurulur (3 dk)",
