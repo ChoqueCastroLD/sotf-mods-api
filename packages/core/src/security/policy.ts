@@ -376,6 +376,180 @@ export const TABLE_POLICIES = {
     note: 'Data-fix audit trail (revertible).',
   },
   _v2_migrations: { exposure: 'internal', writers: ['system'], note: 'Applied schema migrations.' },
+
+  // ── Sign-in methods and tokens ─────────────────────────────────────────────────────────────
+  AuthChallenge: {
+    exposure: 'internal',
+    writers: ['system'],
+    privateColumns: ['payload'],
+    secretColumns: ['challenge'],
+    retention: 'until expiry + 1 day',
+    note: 'Pending passkey / second-factor challenges; single use, never returned.',
+  },
+  OAuthIdentity: {
+    exposure: 'owner',
+    writers: ['owner', 'system'],
+    privateColumns: ['providerUserId', 'providerUsername', 'lastLoginAt'],
+    retention: 'until the owner unlinks the provider or deletes the account',
+    note: 'Linked Discord / GitHub identities; the owner lists and unlinks theirs in the account settings.',
+  },
+  OAuthLinkTicket: {
+    exposure: 'internal',
+    writers: ['system'],
+    privateColumns: ['providerUserId', 'providerUsername'],
+    secretColumns: ['tokenHash'],
+    retention: 'until expiry + 1 day',
+    note: 'One-time ticket that links a provider identity to a signed-in account.',
+  },
+  PersonalAccessToken: {
+    exposure: 'owner',
+    writers: ['owner'],
+    privateColumns: ['tokenPrefix', 'lastUsedAt', 'scopes'],
+    secretColumns: ['tokenHash'],
+    retention: 'until revoked or expired + 90 days',
+    note: 'API tokens: the owner lists name, prefix and scopes; the token itself is shown once at creation.',
+  },
+  UserPasskey: {
+    exposure: 'owner',
+    writers: ['owner', 'system'],
+    privateColumns: ['name', 'deviceType', 'backedUp', 'transports', 'lastUsedAt'],
+    secretColumns: ['credentialId', 'publicKey', 'counter'],
+    retention: 'until the owner removes it or deletes the account',
+    note: 'WebAuthn credentials; the owner lists and removes their passkeys.',
+  },
+  UserRecoveryCode: {
+    exposure: 'internal',
+    writers: ['system'],
+    secretColumns: ['codeHash'],
+    retention: 'until regenerated or the account is deleted',
+    note: 'Hashed single-use recovery codes; only the count of unused codes is shown to the owner.',
+  },
+  UserTotp: {
+    exposure: 'internal',
+    writers: ['owner', 'system'],
+    secretColumns: ['secret'],
+    retention: 'until the owner disables it or deletes the account',
+    note: 'Authenticator secret; only whether it is enabled is shown to the owner.',
+  },
+  UserLoginSignal: {
+    exposure: 'internal',
+    writers: ['system'],
+    privateColumns: ['kind', 'value', 'firstSeenAt', 'lastSeenAt'],
+    retention: 'account lifetime',
+    note: 'Hashed device and network signals to spot suspicious sign-ins; never exposed row by row.',
+  },
+
+  // ── Catalog extensions (v2) ────────────────────────────────────────────────────────────────
+  ModCoAuthor: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'staff'],
+    privateColumns: ['invitedById', 'invitedAt', 'respondedAt'],
+    note: 'Accepted co-authors are public on the mod page; pending invitations only to the two users involved and staff.',
+  },
+  ModFaqEntry: { exposure: 'public_filtered', writers: ['owner', 'staff'], note: 'FAQ of published mods.' },
+  ModKnownIssue: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'staff'],
+    privateColumns: ['createdById'],
+    note: 'Known issues of published mods, written by their authors.',
+  },
+  ModRecommendation: { exposure: 'public', writers: ['system'], note: 'Computed "players also use" links.' },
+  ModBundle: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'system'],
+    privateColumns: ['createdById', 'statusReason', 'storageKey'],
+    note: 'Kit download bundles; ready ones are public through the kit page, the storage key never leaves the server.',
+  },
+  BuildGeometry: {
+    exposure: 'public_filtered',
+    writers: ['system'],
+    note: 'Derived geometry and preview of published builds.',
+  },
+  CompatUptimeSample: {
+    exposure: 'public',
+    writers: ['system'],
+    retention: '90 days',
+    note: 'Compatibility checker uptime samples (status page).',
+  },
+  KitComment: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'staff'],
+    privateColumns: ['deletedById'],
+    note: 'Visible comments on public kits; deleted ones only to staff.',
+  },
+  KitFollow: {
+    exposure: 'owner',
+    writers: ['owner'],
+    note: 'Follows of kits: counts are public (denormalised), who follows only to that user.',
+  },
+
+  // ── Mod requests ───────────────────────────────────────────────────────────────────────────
+  ModRequest: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'staff', 'system'],
+    privateColumns: ['hiddenReason', 'hiddenAt'],
+    note: 'Public wishlist of mods; hidden and deleted requests only to the author and staff.',
+  },
+  ModRequestComment: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'staff'],
+    note: 'Visible comments on public requests; deleted ones only to staff.',
+  },
+  ModRequestVote: {
+    exposure: 'owner',
+    writers: ['owner'],
+    note: 'Votes on requests: the count is public (denormalised), the vote itself only to its author.',
+  },
+
+  // ── Translations and Scout ─────────────────────────────────────────────────────────────────
+  ModTranslation: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'system'],
+    privateColumns: ['model', 'sourceHash', 'nameHash', 'descriptionHash'],
+    note: 'Translated name, short description and description of published mods (machine or author text).',
+  },
+  TranslationUsageDaily: { exposure: 'staff', writers: ['system'], note: 'Translation budget (admin.translations).' },
+  ScoutCache: {
+    exposure: 'internal',
+    writers: ['system'],
+    privateColumns: ['question', 'answer'],
+    retention: '30 days',
+    note: 'Cached Scout answers; served as an answer, never listed row by row.',
+  },
+  ScoutUsageDaily: { exposure: 'staff', writers: ['system'], note: 'Scout budget (admin.kelvinseek).' },
+
+  // ── Mod Jams ───────────────────────────────────────────────────────────────────────────────
+  Jam: {
+    exposure: 'public_filtered',
+    writers: ['staff', 'admin', 'system'],
+    privateColumns: ['createdById', 'themeHidden', 'phaseLocked'],
+    note: 'Jams are public from their announcement; the theme stays hidden until the jam reveals it.',
+  },
+  JamCategory: { exposure: 'public_filtered', writers: ['staff', 'admin'], note: 'Voting categories of visible jams.' },
+  JamEntry: {
+    exposure: 'public_filtered',
+    writers: ['owner', 'staff', 'system'],
+    privateColumns: ['statusReason'],
+    note: 'Approved entries are public; pending and rejected ones only to their authors and staff.',
+  },
+  JamEntryAuthor: { exposure: 'public_filtered', writers: ['owner', 'system'], note: 'Authors of visible entries.' },
+  JamFollow: {
+    exposure: 'owner',
+    writers: ['owner'],
+    note: 'Jam follows (notifications): who follows only to that user.',
+  },
+  JamVote: {
+    exposure: 'internal',
+    writers: ['owner', 'system'],
+    privateColumns: ['ipHash', 'excludedReason', 'voterId'],
+    retention: 'kept with the jam',
+    note: 'Individual votes are never public (anti-abuse data); a voter reads only their own, everyone else gets the results.',
+  },
+  JamResult: {
+    exposure: 'public_filtered',
+    writers: ['system'],
+    note: 'Computed scores and ranks, public once the results are published.',
+  },
 } as const satisfies Record<string, TablePolicy>;
 
 export type ReviewedTable = keyof typeof TABLE_POLICIES;

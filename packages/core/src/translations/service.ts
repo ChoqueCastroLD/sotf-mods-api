@@ -36,27 +36,14 @@ import { publishCacheInvalidation } from '../kernel/notify.ts';
 import { firstRow, rows } from '../legacy/db.ts';
 import { assertWriter, descriptionFormatOf, loadOwnedMod } from '../publishing/queries.ts';
 import { renderDescription } from '../publishing/text.ts';
+import { type PipelineSettings, prepareDescription, translateDescription, translateListing } from './pipeline.ts';
 import {
-  chunkText,
-  DESCRIPTION_SYSTEM_PROMPT,
-  descriptionMaxOutputTokens,
-  descriptionUserPrompt,
-  LANGUAGE_NAME_OF,
-  type ListingTranslation,
-  maskMarkdown,
-  parseTranslations,
   SQL_DESCRIPTION_SOURCE,
   sourceLocaleOf,
   sqlHashOf,
-  stripAnswerFence,
-  TRANSLATION_SYSTEM_PROMPT,
   targetLocalesOf,
-  translationMaxOutputTokens,
-  translationProblem,
   translationSourceHash,
-  translationUserPrompt,
   trimmedSource,
-  unmaskText,
 } from './text.ts';
 
 export interface TranslationConfig {
@@ -68,12 +55,8 @@ export interface TranslationConfig {
 export const DEFAULT_TRANSLATION_TIMEOUT_MS = 40_000;
 /** A run stops starting new locales after this long; the continuation job carries on. */
 export const TRANSLATION_RUN_DEADLINE_MS = 6 * 60_000;
-/** Characters of one description chunk sent to the model. */
-export const DESCRIPTION_CHUNK_CHARS = 3000;
 /** Description locales translated at the same time inside one job. */
 const DESCRIPTION_CONCURRENCY = 3;
-/** Attempts per model call that fails validation or transiently. */
-const CALL_ATTEMPTS = 2;
 
 export type TranslateOutcome =
   | { status: 'translated'; locales: TranslationLocale[]; costMicroUsd: number; remaining: boolean }
@@ -184,14 +167,14 @@ async function recordUsage(
   delta: { requests: number; failures: number; tokensIn: number; tokensOut: number; costMicroUsd: number },
 ): Promise<void> {
   await db.execute(sql`
-    INSERT INTO "TranslationUsageDaily" ("day", "requests", "failures", "tokensIn", "tokensOut", "costMicroUsd")
+    INSERT INTO "TranslationUsageDaily" AS u ("day", "requests", "failures", "tokensIn", "tokensOut", "costMicroUsd")
     VALUES (${day}::date, ${delta.requests}, ${delta.failures}, ${delta.tokensIn}, ${delta.tokensOut}, ${delta.costMicroUsd})
     ON CONFLICT ("day") DO UPDATE SET
-      "requests" = "TranslationUsageDaily"."requests" + EXCLUDED."requests",
-      "failures" = "TranslationUsageDaily"."failures" + EXCLUDED."failures",
-      "tokensIn" = "TranslationUsageDaily"."tokensIn" + EXCLUDED."tokensIn",
-      "tokensOut" = "TranslationUsageDaily"."tokensOut" + EXCLUDED."tokensOut",
-      "costMicroUsd" = "TranslationUsageDaily"."costMicroUsd" + EXCLUDED."costMicroUsd"`);
+      "requests" = u."requests" + EXCLUDED."requests",
+      "failures" = u."failures" + EXCLUDED."failures",
+      "tokensIn" = u."tokensIn" + EXCLUDED."tokensIn",
+      "tokensOut" = u."tokensOut" + EXCLUDED."tokensOut",
+      "costMicroUsd" = u."costMicroUsd" + EXCLUDED."costMicroUsd"`);
 }
 
 /** Evicts the mod's pages from the web, the CDN and the API caches. */
@@ -331,6 +314,13 @@ export async function translateMod(
   };
 
   const source = sourceLocaleOf(row.contentLang);
+  const settings: PipelineSettings = {
+    model: deps.config.model,
+    timeoutMs: deps.config.timeoutMs,
+    from: source,
+    isFatal: (error) => error instanceof StopRun,
+    warn: (fields, message) => ctx.log.warn({ modId: row.id, ...fields }, message),
+  };
 
   // ---- Name and short description of every locale: one call. -----------------------------------
   const listingLocales = [...plan].filter(([, f]) => f.includes('name') || f.includes('shortDescription'));
@@ -342,24 +332,7 @@ export async function translateMod(
     const locales = listingLocales.map(([locale]) => locale);
     const texts: Partial<Record<'name' | 'shortDescription', string>> = {};
     for (const f of listingFields) texts[f] = originals[f];
-    let parsed = new Map<TranslationLocale, ListingTranslation>();
-    for (let attempt = 1; attempt <= CALL_ATTEMPTS && parsed.size === 0; attempt++) {
-      let answer: Awaited<ReturnType<KelvinModel>>;
-      try {
-        answer = await call({
-          model: deps.config.model,
-          system: TRANSLATION_SYSTEM_PROMPT,
-          user: translationUserPrompt({ texts, from: source, locales }),
-          timeoutMs: deps.config.timeoutMs,
-          maxOutputTokens: translationMaxOutputTokens(locales.length, listingFields),
-          json: true,
-        });
-      } catch (error) {
-        if (error instanceof StopRun || attempt === CALL_ATTEMPTS) throw error;
-        continue;
-      }
-      parsed = parseTranslations(answer.text, locales, listingFields);
-    }
+    const parsed = await translateListing(call, settings, { texts, locales });
     if (parsed.size === 0) {
       await recordUsage(ctx.db, utcDay(ctx.clock.now()), {
         requests: 0,
@@ -381,51 +354,11 @@ export async function translateMod(
 
   // ---- Description: per locale, chunk by chunk. --------------------------------------------------
   const descriptionLocales = [...plan].filter(([, f]) => f.includes('description')).map(([locale]) => locale);
-  const masked = originals.description ? maskMarkdown(originals.description, [originals.name]) : null;
-  const chunks = masked ? chunkText(masked.text, DESCRIPTION_CHUNK_CHARS) : [];
-
-  const translateChunk = async (locale: TranslationLocale, text: string, part: number): Promise<string> => {
-    // Nothing translatable (only code, links and symbols): keep it as it is.
-    if (!/\p{L}/u.test(text.replace(/⟦\d+⟧/g, ''))) return text;
-    let lastProblem = 'unknown';
-    for (let attempt = 1; attempt <= CALL_ATTEMPTS; attempt++) {
-      let answer: Awaited<ReturnType<KelvinModel>>;
-      try {
-        answer = await call({
-          model: deps.config.model,
-          system: DESCRIPTION_SYSTEM_PROMPT,
-          user: descriptionUserPrompt({
-            text,
-            language: LANGUAGE_NAME_OF[locale],
-            from: source,
-            part,
-            parts: chunks.length,
-          }),
-          timeoutMs: deps.config.timeoutMs,
-          maxOutputTokens: descriptionMaxOutputTokens(text.length),
-        });
-      } catch (error) {
-        if (error instanceof StopRun || attempt === CALL_ATTEMPTS) throw error;
-        continue;
-      }
-      const out = stripAnswerFence(answer.text).replace(/\r\n?/g, '\n').trim();
-      const problem = translationProblem(text, out);
-      // A list or table reflowed by the model is cosmetic once every placeholder is intact.
-      if (problem === null || (problem === 'structure' && attempt === CALL_ATTEMPTS)) return out;
-      lastProblem = problem;
-      ctx.log.warn({ modId: row.id, locale, part, problem }, 'translated chunk rejected');
-    }
-    throw new Error(`description chunk ${part} (${locale}) failed validation: ${lastProblem}`);
-  };
+  const prepared = originals.description ? prepareDescription(originals.description, [originals.name]) : null;
 
   const runDescription = async (locale: TranslationLocale): Promise<void> => {
-    if (!masked) return;
-    const parts: string[] = [];
-    for (const [index, chunk] of chunks.entries()) {
-      const out = await translateChunk(locale, chunk.text, index + 1);
-      parts.push(out, chunk.sep);
-    }
-    const text = unmaskText(parts.join('').trimEnd(), masked.tokens).trim();
+    if (!prepared) return;
+    const text = await translateDescription(call, settings, prepared, locale);
     if (!text || text.length > TRANSLATION_LIMITS.descriptionMax * 2) {
       throw new Error(`description (${locale}) has an unusable length`);
     }

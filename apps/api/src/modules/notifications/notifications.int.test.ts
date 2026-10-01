@@ -3,6 +3,7 @@
  * unread counter, mark-as-read, the preference matrix and the one-click unsubscribe edge cases.
  * The end-to-end flow (worker, Mailpit, SSE timing) lives in the worker's notifications test.
  */
+import { NOTIFICATION_TYPES } from '@sotf/contracts/notifications';
 import { systemClock } from '@sotf/core';
 import { createNotifications, createUnsubscribeToken, type NotificationDraft } from '@sotf/core/notifications/index';
 import { notificationPreference, user } from '@sotf/db';
@@ -125,7 +126,7 @@ describe('preferences', () => {
     const headers = { ...t.sameOrigin(), ...t.as({ userId: me.id }) };
     const initial = await t.app.inject({ method: 'GET', url: '/api/v2/notification-preferences', headers });
     const items = initial.json().items as Array<{ type: string; email: string; inApp: boolean; isDefault: boolean }>;
-    expect(items).toHaveLength(17);
+    expect(items).toHaveLength(NOTIFICATION_TYPES.length);
     expect(items.find((i) => i.type === 'mod.version_published')).toMatchObject({ email: 'daily', isDefault: true });
     expect(items.find((i) => i.type === 'creator.weekly_report')).toMatchObject({
       inApp: false,
@@ -170,6 +171,7 @@ describe('one-click unsubscribe', () => {
     expect(res.statusCode).toBe(204);
     const rows = await t.db.db.select().from(notificationPreference).where(eq(notificationPreference.userId, me.id));
     expect(rows.map((r) => [r.type, r.email]).sort()).toEqual([
+      ['jam.phase', 'off'],
       ['mod.version_published', 'off'],
       ['review.on_my_mod', 'off'],
     ]);

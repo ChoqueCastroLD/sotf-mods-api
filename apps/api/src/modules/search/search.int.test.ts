@@ -147,7 +147,7 @@ describe('GET /search/index', () => {
     const listed = await get('/api/v2/mods?type=all&pageSize=1');
     expect(index.mods).toHaveLength(listed.body.total);
     const stack = index.mods.find((m: any[]) => m[0] === STACKMOD);
-    expect(stack).toHaveLength(15);
+    expect(stack).toHaveLength(16);
     expect(stack.slice(0, 9)).toEqual([
       STACKMOD,
       'mod',
@@ -163,6 +163,8 @@ describe('GET /search/index', () => {
     // releasedDay, createdDay (days since the epoch), ratingTenths (or null), multiplayer code.
     expect([typeof stack[11], typeof stack[12], typeof stack[14]]).toEqual(['number', 'number', 'number']);
     expect(['number', 'object']).toContain(typeof stack[13]);
+    // originalName: the English name when the index shows a translation, else null.
+    expect(['string', 'object']).toContain(typeof stack[15]);
     expect(index.categories).toContainEqual(['quality-of-life', 'Calidad de vida', '/categories/quality-of-life']);
     expect(index.pages).toContainEqual(['install', 'Cómo instalar mods', '/install']);
     expect(index.kits).toHaveLength(1);

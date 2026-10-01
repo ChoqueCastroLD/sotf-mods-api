@@ -111,7 +111,8 @@ describe('notification email templates', () => {
 
   it('writes the English sentences', async () => {
     const out = await renderNotificationEmail('notify.signals', 'en', signals, SITE);
-    expect(out.subject).toBe('Your daily SOTF Mods digest: 28 signals');
+    // One signal per type, plus the 5 and 3 folded into two grouped rows, plus the 4 not listed.
+    expect(out.subject).toBe(`Your daily SOTF Mods digest: ${TYPES.length + 5 + 3 + 4} signals`);
     expect(out.text).toContain('Kelvin commented on AmmoUi');
     expect(out.text).toContain('5 new comments on AmmoUi');
     expect(out.text).toContain('AmmoUi has 3 new versions, the latest is 1.2.0');

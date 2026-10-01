@@ -3,5 +3,6 @@
  * job service, the public read and the author's overrides. Import from
  * `@sotf/core/translations/index`.
  */
+export * from './pipeline.ts';
 export * from './service.ts';
 export * from './text.ts';
