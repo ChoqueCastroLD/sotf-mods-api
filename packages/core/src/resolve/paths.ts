@@ -159,9 +159,16 @@ async function resolveKit(db: Executor, parsed: ParsedPath): Promise<ResolveDTO 
   });
 }
 
+function hasNul(value: string): boolean {
+  return value.includes('\u0000') || /%00/i.test(value);
+}
+
 /** Resolves a site path (PLAN §4.6). */
 export async function resolvePath(db: Executor, path: string): Promise<ResolveDTO> {
   const pathOnly = path.split(/[?#]/, 1)[0] ?? '/';
+  // A NUL byte (raw or as `%00`) cannot exist in a slug and Postgres rejects it in any text value:
+  // answer 404 instead of letting the query fail with a 500.
+  if (hasNul(path)) return result({ status: 404, rule: 'none' });
   const redirect = await db.execute<{ toPath: string; status: number }>(
     sql`SELECT "toPath", "status" FROM "Redirect" WHERE "fromPath" = ${pathOnly} LIMIT 1`,
   );
@@ -169,6 +176,7 @@ export async function resolvePath(db: Executor, path: string): Promise<ResolveDT
   if (explicit) return result({ status: 301, canonicalPath: explicit.toPath, rule: 'redirect' });
 
   const parsed = parseSitePath(pathOnly);
+  if (parsed.segments.some(hasNul)) return result({ status: 404, rule: 'none' });
   let resolved: ResolveDTO | null = null;
   if (parsed.section === 'mods' || parsed.section === 'builds') resolved = await resolveMod(db, parsed, parsed.section);
   else if (parsed.section === 'profile') resolved = await resolveProfile(db, parsed);

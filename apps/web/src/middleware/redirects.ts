@@ -14,7 +14,7 @@
  * Every function takes the locale-less path (`stripLocale` has already run) plus the locale of
  * the request, and returns targets already localized.
  */
-import { DEFAULT_LOCALE, isLocalizedPath, type Locale, localizePath, stripLocale } from '@sotf/i18n';
+import { DEFAULT_LOCALE, isLocale, isLocalizedPath, type Locale, localizePath, stripLocale } from '@sotf/i18n';
 
 export type RuleResult =
   | { kind: 'redirect'; status: 301 | 308; location: string }
@@ -92,7 +92,27 @@ export function legacyRule(pathname: string, search: string, locale: Locale, met
   return PASS;
 }
 
+/**
+ * `/ES/mods`, `/es-ES/mods`, `/pt-BR/mods`, `/zh_CN/mods`: a supported language written in capitals
+ * or with a region/script subtag. Returns the canonical prefix (`es`, `pt`, `zh`; `''` for English)
+ * and the rest of the path, or `null` when the first segment is not such a variant.
+ */
+export function localeAliasOf(pathname: string): { prefix: string; rest: string } | null {
+  const first = pathname.split('/', 2)[1] ?? '';
+  const match = /^([A-Za-z]{2})(?:[-_](?:[A-Za-z]{2}|[A-Za-z]{4}|\d{3}))?$/.exec(first);
+  const language = match?.[1]?.toLowerCase();
+  if (!language || !isLocale(language) || first === language) return null;
+  return { prefix: language === DEFAULT_LOCALE ? '' : `/${language}`, rest: pathname.slice(first.length + 1) };
+}
+
+/** Whether the request URL carries a NUL byte (raw or `%00`): never valid, databases reject it. */
+export function hasNulByte(url: URL): boolean {
+  return /%00/i.test(url.pathname + url.search) || url.href.includes('\u0000');
+}
+
 export interface EntryDecision {
+  /** Answer 400 right away (malformed URL). */
+  reject?: { status: 400 };
   /** Redirect the client before routing. */
   redirect?: { status: 301 | 308; location: string };
   /** Locale of the request (from the URL prefix). */
@@ -106,6 +126,7 @@ export interface EntryDecision {
  * and prefixed unlocalized paths redirect; otherwise the prefix is stripped for routing.
  */
 export function entryDecision(url: URL, method = 'GET'): EntryDecision {
+  if (hasNulByte(url)) return { reject: { status: 400 }, locale: DEFAULT_LOCALE, path: url.pathname };
   const slash = trailingSlashTarget(url.pathname);
   if (slash !== null) {
     return { redirect: redirectOf(redirect(slash + url.search, method)), locale: DEFAULT_LOCALE, path: slash };
@@ -113,6 +134,11 @@ export function entryDecision(url: URL, method = 'GET'): EntryDecision {
   // `/en` and `/en/…` are not canonical: English has no prefix (PLAN §4.1).
   if (url.pathname === `/${DEFAULT_LOCALE}` || url.pathname.startsWith(`/${DEFAULT_LOCALE}/`)) {
     const target = url.pathname.slice(DEFAULT_LOCALE.length + 1) || '/';
+    return { redirect: redirectOf(redirect(target + url.search, method)), locale: DEFAULT_LOCALE, path: target };
+  }
+  const alias = localeAliasOf(url.pathname);
+  if (alias) {
+    const target = `${alias.prefix}${alias.rest}` || '/';
     return { redirect: redirectOf(redirect(target + url.search, method)), locale: DEFAULT_LOCALE, path: target };
   }
   const split = stripLocale(url.pathname);

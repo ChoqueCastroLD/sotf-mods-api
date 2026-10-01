@@ -82,6 +82,10 @@ export function setupRequestBasics(app: FastifyInstance): void {
     request.clientIp = clientIpOf(request);
     request.cacheValues = {};
     request.extraCacheTags = [];
+    // A NUL byte (`%00`) in the path or query can never be valid and makes Postgres fail with a 500.
+    if (/%00/i.test(request.raw.url ?? '') || (request.raw.url ?? '').includes('\u0000')) {
+      throw httpError('VALIDATION_FAILED', 'The URL contains a NUL character');
+    }
   });
 }
 
