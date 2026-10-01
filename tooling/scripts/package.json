@@ -11,6 +11,7 @@
   "devDependencies": {
     "@sotf/config": "workspace:*",
     "@types/node": "catalog:",
+    "sharp": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   }

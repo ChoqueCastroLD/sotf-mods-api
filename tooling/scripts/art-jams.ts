@@ -6,12 +6,9 @@
  *   ART_SRC=/path/to/art-src node tooling/scripts/art-jams.ts
  */
 import { mkdirSync } from 'node:fs';
-import { createRequire } from 'node:module';
 import { join } from 'node:path';
+import sharp from 'sharp';
 import { REPO_ROOT } from './lib/repo.ts';
-
-const require = createRequire(join(REPO_ROOT, 'packages/brand/package.json'));
-const sharp = require('sharp') as typeof import('sharp');
 
 const SRC = process.env.ART_SRC ?? '/root/sotf-mods/art-src';
 const OUT = join(REPO_ROOT, 'apps/web/public/art/jams');
