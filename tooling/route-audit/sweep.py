@@ -98,6 +98,7 @@ for p in paths:
     if SKIP and re.search(SKIP,p): continue
     if p in DONE: continue
     uniq.append(p)
+if _os.environ.get('STRIDE'): uniq=[p for i,p in enumerate(uniq) if i%int(_os.environ['STRIDE'])==0]  # sample 1 of N (rotates over locales)
 host=re.sub(r'^https?://','',BASE); https=BASE.startswith('https')
 out=open(OUT,'w')
 def fetch(p):
