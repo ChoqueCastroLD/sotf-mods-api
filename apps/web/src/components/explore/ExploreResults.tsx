@@ -22,7 +22,7 @@ import { type AdUnit, feedAdAfter } from '../../lib/ads.ts';
 import type { ExploreView } from './state.ts';
 
 export const LIST_CLASSES: Record<ExploreView, string> = {
-  grid: 'grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3',
+  grid: 'grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3',
   list: 'grid grid-cols-1 gap-3',
   compact: 'grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3',
 };
@@ -72,11 +72,12 @@ export function ExploreItems({
           <Fragment key={mod.id}>
             <li data-explore-item="" data-position={offset + index + 1} className="min-w-0">
               {view === 'grid' && mod.kind === 'build' ? (
-                <BuildCard build={card} headingLevel={headingLevel} priority={priority} className="h-full" />
+                <BuildCard build={card} headingLevel={headingLevel} priority={priority} tight className="h-full" />
               ) : (
                 <ModCard
                   mod={card}
                   variant={view === 'grid' ? 'grid' : view === 'list' ? 'row' : 'compact'}
+                  narrow="tile"
                   headingLevel={headingLevel}
                   priority={priority}
                   downloadHref={modDownloadHref(mod)}
@@ -124,7 +125,7 @@ export function ExploreSkeleton({
           {view === 'grid' && builds ? (
             <BuildCardSkeleton />
           ) : (
-            <ModCardSkeleton variant={view === 'grid' ? 'grid' : view === 'list' ? 'row' : 'compact'} />
+            <ModCardSkeleton variant={view === 'grid' ? 'grid' : view === 'list' ? 'row' : 'compact'} narrow="tile" />
           )}
         </li>
       ))}

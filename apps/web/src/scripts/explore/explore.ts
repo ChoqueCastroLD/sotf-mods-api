@@ -25,7 +25,13 @@ import { track } from '../beacon.ts';
 const ROOT = '[data-explore-root]';
 const SKELETON_DELAY_MS = 300;
 const TEXT_DEBOUNCE_MS = 350;
-const SHEET_QUERY = '(width < 64rem)';
+const SHEET_QUERY = '(width < 48rem)';
+/** Pages that load by themselves while the visitor scrolls (mobile); then the button takes over. */
+const AUTO_LOAD_PAGES = 3;
+const AUTO_LOAD_MARGIN = '900px 0px';
+const PENDING_SKELETONS = 4;
+
+type SheetKind = 'filters' | 'sort';
 
 interface Messages {
   loading: string;
@@ -38,6 +44,10 @@ let controller: AbortController | null = null;
 let textTimer: ReturnType<typeof setTimeout> | undefined;
 let backdrop: HTMLElement | null = null;
 let sheetReturnFocus: HTMLElement | null = null;
+let openKind: SheetKind | null = null;
+let sentinelObserver: IntersectionObserver | null = null;
+let autoLoaded = 0;
+let loadingMore = false;
 /** Path + query of the listing on screen (popstate ignores hash-only changes). */
 let shownUrl = '';
 
@@ -98,7 +108,8 @@ function focusKeyOf(element: Element | null): string | null {
     const primary = chip.querySelector('a, button');
     return `chip|${chip.closest('fieldset')?.querySelector('legend')?.textContent ?? ''}|${label}|${element === primary ? 'main' : 'exclude'}`;
   }
-  if (element.matches('[data-explore-sheet-open]')) return 'sheet-open';
+  const opener = element.closest<HTMLElement>('[data-explore-sheet-open]');
+  if (opener) return `sheet-open|${opener.dataset.exploreSheetOpen ?? 'filters'}`;
   if (element.closest('details[data-disclosure]')) return 'sort';
   const title = element.getAttribute('title');
   if (title) return `title|${title}`;
@@ -120,7 +131,7 @@ function findByFocusKey(root: HTMLElement, key: string): HTMLElement | null {
     }
     return null;
   }
-  if (kind === 'sheet-open') return root.querySelector<HTMLElement>('[data-explore-sheet-open]');
+  if (kind === 'sheet-open') return root.querySelector<HTMLElement>(`[data-explore-sheet-open="${CSS.escape(a)}"]`);
   if (kind === 'sort') return root.querySelector<HTMLElement>('details[data-disclosure] > summary');
   if (kind === 'title') return root.querySelector<HTMLElement>(`[title="${CSS.escape(a)}"]`);
   return null;
@@ -130,8 +141,10 @@ function findByFocusKey(root: HTMLElement, key: string): HTMLElement | null {
 // Mobile bottom sheet
 // ---------------------------------------------------------------------------------------------
 
-function sheetOf(root: ParentNode | null): HTMLElement | null {
-  return root?.querySelector<HTMLElement>('[data-explore-sheet]') ?? null;
+function sheetOf(root: ParentNode | null, kind: SheetKind | null = openKind): HTMLElement | null {
+  if (!root) return null;
+  if (kind) return root.querySelector<HTMLElement>(`[data-explore-sheet="${kind}"]`);
+  return root.querySelector<HTMLElement>('[data-explore-sheet][data-open]');
 }
 
 function isSheetMode(win: Window): boolean {
@@ -146,36 +159,49 @@ function focusables(container: HTMLElement): HTMLElement[] {
   ].filter((element) => element.offsetParent !== null || element === document.activeElement);
 }
 
-function openSheet(win: Window, opener?: HTMLElement | null): void {
+function openSheet(win: Window, kind: SheetKind, opener?: HTMLElement | null, restored = false): void {
   const doc = win.document;
-  const sheet = sheetOf(rootOf(doc));
+  const sheet = sheetOf(rootOf(doc), kind);
   if (!sheet || !isSheetMode(win)) return;
   sheetReturnFocus = opener ?? (doc.activeElement instanceof HTMLElement ? doc.activeElement : null);
+  openKind = kind;
   sheet.dataset.open = '';
+  if (restored) sheet.dataset.restored = '';
   sheet.setAttribute('role', 'dialog');
   sheet.setAttribute('aria-modal', 'true');
-  for (const openButton of doc.querySelectorAll('[data-explore-sheet-open]')) {
+  for (const openButton of doc.querySelectorAll(`[data-explore-sheet-open="${kind}"]`)) {
     openButton.setAttribute('aria-expanded', 'true');
   }
   if (!backdrop) {
     backdrop = doc.createElement('div');
     backdrop.setAttribute('aria-hidden', 'true');
-    backdrop.className = 'fixed inset-0 z-50 bg-black/55 lg:hidden';
+    backdrop.setAttribute('data-explore-backdrop', '');
+    backdrop.className = 'fixed inset-0 z-50 bg-black/60 md:hidden';
     backdrop.addEventListener('click', () => closeSheet(win));
     doc.body.append(backdrop);
   }
   doc.documentElement.style.overflow = 'hidden';
-  (sheet.querySelector<HTMLElement>('[data-explore-sheet-close]') ?? focusables(sheet)[0])?.focus();
+  if (!restored) {
+    (sheet.querySelector<HTMLElement>('[data-explore-sheet-close]') ?? focusables(sheet)[0])?.focus({
+      preventScroll: true,
+    });
+  }
 }
 
 function closeSheet(win: Window, restoreFocus = true): void {
   const doc = win.document;
   const sheet = sheetOf(rootOf(doc));
+  const kind = openKind;
   if (sheet) {
     delete sheet.dataset.open;
+    delete sheet.dataset.restored;
+    delete sheet.dataset.dragging;
+    delete sheet.dataset.closing;
+    sheet.style.transform = '';
     sheet.removeAttribute('role');
     sheet.removeAttribute('aria-modal');
   }
+  openKind = null;
   for (const openButton of doc.querySelectorAll('[data-explore-sheet-open]')) {
     openButton.setAttribute('aria-expanded', 'false');
   }
@@ -186,17 +212,77 @@ function closeSheet(win: Window, restoreFocus = true): void {
     const target =
       sheetReturnFocus && doc.contains(sheetReturnFocus)
         ? sheetReturnFocus
-        : doc.querySelector<HTMLElement>('[data-explore-sheet-open]');
-    target?.focus();
+        : doc.querySelector<HTMLElement>(`[data-explore-sheet-open="${kind ?? 'filters'}"]`);
+    target?.focus({ preventScroll: true });
   }
   sheetReturnFocus = null;
-  if (win.location.hash === '#explore-filters') {
+  if (win.location.hash === '#explore-filters' || win.location.hash === '#explore-sort') {
     win.history.replaceState(win.history.state, '', win.location.pathname + win.location.search);
   }
 }
 
 function sheetIsOpen(doc: Document): boolean {
-  return sheetOf(rootOf(doc))?.hasAttribute('data-open') ?? false;
+  return openKind !== null && (sheetOf(rootOf(doc))?.hasAttribute('data-open') ?? false);
+}
+
+/** Swipe down on the handle or the title row dismisses the sheet (a short slide, then close). */
+function bindSheetDrag(win: Window): void {
+  const doc = win.document;
+  let drag: { sheet: HTMLElement; startY: number; lastY: number; lastT: number; velocity: number; id: number } | null =
+    null;
+  doc.addEventListener('pointerdown', (event) => {
+    if (!sheetIsOpen(doc) || event.button !== 0) return;
+    const target = event.target instanceof Element ? event.target : null;
+    const grip = target?.closest('[data-sheet-handle], [data-sheet-drag]');
+    const sheet = grip?.closest<HTMLElement>('[data-explore-sheet]');
+    if (!grip || !sheet || target?.closest('a, button')) return;
+    drag = {
+      sheet,
+      startY: event.clientY,
+      lastY: event.clientY,
+      lastT: event.timeStamp,
+      velocity: 0,
+      id: event.pointerId,
+    };
+    sheet.dataset.dragging = '';
+    try {
+      grip.setPointerCapture(event.pointerId);
+    } catch {
+      // Capture is a nicety; the move listener below works without it.
+    }
+  });
+  doc.addEventListener('pointermove', (event) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const dy = Math.max(0, event.clientY - drag.startY);
+    const dt = Math.max(1, event.timeStamp - drag.lastT);
+    drag.velocity = (event.clientY - drag.lastY) / dt;
+    drag.lastY = event.clientY;
+    drag.lastT = event.timeStamp;
+    drag.sheet.style.transform = `translateY(${dy}px)`;
+    if (backdrop) backdrop.style.opacity = String(Math.max(0, 1 - dy / 400));
+  });
+  const finish = (event: PointerEvent) => {
+    if (!drag || event.pointerId !== drag.id) return;
+    const { sheet, startY, velocity } = drag;
+    drag = null;
+    const dy = Math.max(0, event.clientY - startY);
+    delete sheet.dataset.dragging;
+    if (event.type === 'pointercancel' || (dy < 90 && velocity < 0.6)) {
+      sheet.style.transform = '';
+      if (backdrop) backdrop.style.opacity = '';
+      return;
+    }
+    if (reducedMotion(win)) {
+      closeSheet(win);
+      return;
+    }
+    sheet.dataset.closing = '';
+    sheet.style.transform = '';
+    if (backdrop) backdrop.style.opacity = '0';
+    setTimeout(() => closeSheet(win), 190);
+  };
+  doc.addEventListener('pointerup', finish);
+  doc.addEventListener('pointercancel', finish);
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -281,6 +367,8 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
   }
 
   const wasSheetOpen = sheetIsOpen(doc);
+  const wasKind = openKind;
+  const sheetScroll = sheetOf(current)?.querySelector<HTMLElement>('[data-explore-sheet-body]')?.scrollTop ?? 0;
   const typed =
     doc.activeElement instanceof HTMLInputElement && doc.activeElement.type === 'search'
       ? {
@@ -327,8 +415,12 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
     }
   }
 
-  if (wasSheetOpen && !options.closeSheet && isSheetMode(win)) {
-    openSheet(win, null);
+  autoLoaded = 0;
+  observeSentinel(win);
+  if (wasSheetOpen && wasKind === 'filters' && !options.closeSheet && isSheetMode(win)) {
+    openSheet(win, 'filters', null, true);
+    const body = sheetOf(next, 'filters')?.querySelector<HTMLElement>('[data-explore-sheet-body]');
+    if (body) body.scrollTop = sheetScroll;
   } else if (wasSheetOpen) {
     closeSheet(win, false);
   }
@@ -382,33 +474,55 @@ function formUrl(win: Window, form: HTMLFormElement): URL | null {
 // Load more
 // ---------------------------------------------------------------------------------------------
 
-async function loadMore(win: Window, button: HTMLButtonElement): Promise<void> {
+/** Placeholder cards (the page's skeleton template) at the end of the list while a page loads. */
+function addPending(root: HTMLElement, list: Element): void {
+  const template = root.querySelector<HTMLTemplateElement>('template[data-explore-skeleton]');
+  const cells = template ? [...template.content.querySelectorAll('li')].slice(0, PENDING_SKELETONS) : [];
+  for (const cell of cells) {
+    const clone = cell.cloneNode(true) as HTMLElement;
+    clone.setAttribute('data-explore-pending', '');
+    list.append(clone);
+  }
+}
+
+function clearPending(root: ParentNode): void {
+  for (const cell of root.querySelectorAll('[data-explore-pending]')) cell.remove();
+}
+
+async function loadMore(win: Window, button: HTMLButtonElement, automatic = false): Promise<void> {
   const doc = win.document;
   const root = rootOf(doc);
   const target = sameOriginUrl(win, button.dataset.nextHref ?? '');
-  if (!root || !target) return;
+  if (!root || !target || loadingMore) return;
   const messages = messagesOf(root);
   if (!win.navigator.onLine) {
     announce(root, messages.offline);
     return;
   }
+  loadingMore = true;
   button.disabled = true;
   button.setAttribute('aria-busy', 'true');
+  const pendingList = root.querySelector('[data-explore-items]');
+  if (pendingList) addPending(root, pendingList);
   let fetched: { doc: Document; url: URL } | null = null;
   try {
     fetched = await fetchDocument(win, target, new AbortController().signal);
   } catch {
     fetched = null;
   }
+  loadingMore = false;
+  clearPending(root);
+  if (automatic) autoLoaded += 1;
   const incoming = fetched ? rootOf(fetched.doc) : null;
   const list = root.querySelector('[data-explore-items]');
   const newItems = incoming ? [...incoming.querySelectorAll('[data-explore-items] > [data-explore-item]')] : [];
   if (!fetched || !incoming || !list || newItems.length === 0) {
     button.disabled = false;
     button.removeAttribute('aria-busy');
+    if (automatic) autoLoaded = AUTO_LOAD_PAGES;
     if (!fetched || !incoming) {
       announce(root, win.navigator.onLine ? messages.failed : messages.offline);
-      if (win.navigator.onLine) win.location.assign(target.href);
+      if (win.navigator.onLine && !automatic) win.location.assign(target.href);
     }
     return;
   }
@@ -433,11 +547,40 @@ async function loadMore(win: Window, button: HTMLButtonElement): Promise<void> {
     pager.querySelector('[data-explore-more]')?.remove();
   }
   win.history.replaceState({ explore: true }, '', fetched.url.pathname + fetched.url.search);
-  const firstLink = appended[0]?.querySelector<HTMLElement>('h2 a, h3 a, h4 a, a');
-  firstLink?.focus({ preventScroll: true });
+  // A visitor who tapped the button lands on the first new card; an automatic load must not
+  // steal focus or move the page.
+  if (!automatic) appended[0]?.querySelector<HTMLElement>('h2 a, h3 a, h4 a, a')?.focus({ preventScroll: true });
   shownUrl = fetched.url.pathname + fetched.url.search;
+  fillAds(root);
+  observeSentinel(win);
   const pageText = root.querySelector('[data-explore-page-indicator]')?.textContent?.trim();
   if (pageText) announce(root, pageText);
+}
+
+// ---------------------------------------------------------------------------------------------
+// Infinite feel (mobile): the next page loads before the visitor reaches the end of the list
+// ---------------------------------------------------------------------------------------------
+
+/** (Re)observes the sentinel of the current pager; the first `AUTO_LOAD_PAGES` pages are automatic. */
+function observeSentinel(win: Window): void {
+  sentinelObserver?.disconnect();
+  sentinelObserver = null;
+  const doc = win.document;
+  const sentinel = rootOf(doc)?.querySelector<HTMLElement>('[data-explore-sentinel]');
+  if (!sentinel || !isSheetMode(win) || autoLoaded >= AUTO_LOAD_PAGES || typeof IntersectionObserver === 'undefined')
+    return;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((entry) => entry.isIntersecting)) return;
+      const button = rootOf(doc)?.querySelector<HTMLButtonElement>('[data-explore-more]');
+      if (!button || button.disabled || loadingMore) return;
+      observer.disconnect();
+      void loadMore(win, button, true);
+    },
+    { rootMargin: AUTO_LOAD_MARGIN },
+  );
+  observer.observe(sentinel);
+  sentinelObserver = observer;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -459,12 +602,17 @@ export function initExplore(win: Window = window): void {
   const doc = win.document;
   if (!rootOf(doc)) return;
   revealLoadMore(doc);
+  doc.documentElement.setAttribute('data-explore-js', '');
   if (bound) return;
   bound = true;
+  bindSheetDrag(win);
+  observeSentinel(win);
 
-  // Opened through `#explore-filters` (no-JS link shared or reloaded): use the modal sheet.
-  if (win.location.hash === '#explore-filters' && isSheetMode(win)) openSheet(win, null);
-
+  // Opened through `#explore-filters` / `#explore-sort` (no-JS link shared or reloaded): use the modal sheet.
+  if (isSheetMode(win)) {
+    if (win.location.hash === '#explore-filters') openSheet(win, 'filters', null);
+    else if (win.location.hash === '#explore-sort') openSheet(win, 'sort', null);
+  }
   doc.addEventListener('click', (event) => {
     if (
       event.defaultPrevented ||
@@ -488,7 +636,7 @@ export function initExplore(win: Window = window): void {
     const opener = target.closest<HTMLElement>('[data-explore-sheet-open]');
     if (opener && isSheetMode(win)) {
       event.preventDefault();
-      openSheet(win, opener);
+      openSheet(win, opener.dataset.exploreSheetOpen === 'sort' ? 'sort' : 'filters', opener);
       return;
     }
     if (target.closest('[data-explore-sheet-close]')) {
@@ -508,6 +656,8 @@ export function initExplore(win: Window = window): void {
       push: true,
       focusKey: inPager ? null : focusKeyOf(anchor),
       filter: !inPager,
+      // The sort sheet is an action sheet: picking an option applies it and closes it.
+      closeSheet: openKind === 'sort' && Boolean(anchor.closest('[data-explore-sheet="sort"]')),
     });
   });
 
@@ -585,7 +735,9 @@ export function initExplore(win: Window = window): void {
   win.addEventListener('popstate', () => {
     if (!rootOf(doc)) return;
     if (win.location.pathname + win.location.search === shownUrl) {
-      if (win.location.hash !== '#explore-filters' && sheetIsOpen(doc)) closeSheet(win, false);
+      if (win.location.hash !== '#explore-filters' && win.location.hash !== '#explore-sort' && sheetIsOpen(doc)) {
+        closeSheet(win, false);
+      }
       return;
     }
     const url = sameOriginUrl(win, win.location.href);

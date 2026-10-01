@@ -183,5 +183,7 @@
   "explore_compare_row_multiplayer": "Мультиплеер",
   "explore_compare_row_downloads_week": "Загрузок за неделю",
   "explore_compare_none": "Нет",
-  "explore_compare_crumb": "Сравнить"
+  "explore_compare_crumb": "Сравнить",
+  "explore_sort_title": "Сортировать по",
+  "explore_sort_close": "Закрыть сортировку"
 }

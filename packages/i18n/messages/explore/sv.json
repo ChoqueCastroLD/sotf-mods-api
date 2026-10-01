@@ -183,5 +183,7 @@
   "explore_compare_row_multiplayer": "Flerspelare",
   "explore_compare_row_downloads_week": "Nedladdningar den här veckan",
   "explore_compare_none": "Inga",
-  "explore_compare_crumb": "Jämför"
+  "explore_compare_crumb": "Jämför",
+  "explore_sort_title": "Sortera efter",
+  "explore_sort_close": "Stäng sortering"
 }

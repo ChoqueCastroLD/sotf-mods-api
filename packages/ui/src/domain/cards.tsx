@@ -51,6 +51,8 @@ export interface BuildCardProps {
   headingLevel?: HeadingLevel;
   action?: ReactNode;
   priority?: boolean;
+  /** Below 260 px of its own width, tighten the frame and the text (two-column mobile grids). */
+  tight?: boolean;
   className?: string;
 }
 
@@ -91,40 +93,74 @@ export function BuildCard({
   headingLevel = 3,
   action,
   priority,
+  tight = false,
   className,
 }: BuildCardProps) {
   const { t, locale } = useDomainI18n();
   const Heading = `h${headingLevel}` as const;
   const display = formatCompact(locale, build.downloads);
   return (
-    <article data-variant="build" data-mod-id={build.id} className={className}>
-      <div className={cn(cardClasses, 'flex h-full flex-col gap-3 p-3')}>
-        <div className="texture-blueprint relative rounded-md border border-blueprint/40 p-3">
-          <CornerMarks />
+    <article data-variant="build" data-mod-id={build.id} className={cn(tight && '@container/build', className)}>
+      <div
+        className={cn(
+          cardClasses,
+          'flex h-full flex-col gap-3 p-3',
+          tight && '@max-[260px]/build:gap-2 @max-[260px]/build:p-1.5',
+        )}
+      >
+        <div
+          className={cn(
+            'texture-blueprint relative rounded-md border border-blueprint/40 p-3',
+            tight && '@max-[260px]/build:p-1.5',
+          )}
+        >
+          <span className={cn(tight && '@max-[260px]/build:hidden')}>
+            <CornerMarks />
+          </span>
           <div className="aspect-cover overflow-hidden rounded-xs bg-raised">
             <Cover
               image={build.thumbnail}
               seed={build.slug}
               name={displayName(build)}
               category={build.category}
-              sizes="(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw"
+              sizes={
+                tight
+                  ? '(min-width: 80rem) 20rem, (min-width: 64rem) 16rem, (min-width: 40rem) 33vw, 50vw'
+                  : '(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw'
+              }
               priority={priority}
               className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
             />
           </div>
           {typeof pieces === 'number' ? (
-            <div className="mt-2">
+            <div className={cn('mt-2', tight && '@max-[260px]/build:hidden')}>
               <DimensionLine>{t('ui_domain_build_pieces', { count: pieces })}</DimensionLine>
             </div>
           ) : null}
         </div>
         {action ? <div className={cn('absolute z-10 end-5 top-5')}>{action}</div> : null}
-        <div className="flex min-w-0 flex-1 flex-col gap-1 px-1">
-          <Heading className="truncate text-base font-semibold">
+        <div
+          className={cn(
+            'flex min-w-0 flex-1 flex-col gap-1 px-1',
+            tight && '@max-[260px]/build:px-0.5 @max-[260px]/build:pb-1',
+          )}
+        >
+          <Heading
+            className={cn(
+              'truncate text-base font-semibold',
+              tight &&
+                '@max-[260px]/build:line-clamp-2 @max-[260px]/build:text-sm @max-[260px]/build:leading-snug @max-[260px]/build:whitespace-normal @max-[260px]/build:text-pretty',
+            )}
+          >
             <CardLink href={build.canonicalPath}>{displayName(build)}</CardLink>
           </Heading>
-          <OriginalName card={build} />
-          <p className="flex min-w-0 items-center gap-1 truncate text-xs text-fg-muted">
+          <OriginalName card={build} className={cn(tight && '@max-[260px]/build:hidden')} />
+          <p
+            className={cn(
+              'flex min-w-0 items-center gap-1 truncate text-xs text-fg-muted',
+              tight && '@max-[260px]/build:text-2xs',
+            )}
+          >
             <span className="truncate">
               {withSlot(
                 t('ui_domain_by_author', { author: SLOT }),

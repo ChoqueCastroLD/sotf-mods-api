@@ -183,5 +183,7 @@
   "explore_compare_row_multiplayer": "Mehrspieler",
   "explore_compare_row_downloads_week": "Downloads diese Woche",
   "explore_compare_none": "Keine",
-  "explore_compare_crumb": "Vergleichen"
+  "explore_compare_crumb": "Vergleichen",
+  "explore_sort_title": "Sortieren nach",
+  "explore_sort_close": "Sortierung schließen"
 }

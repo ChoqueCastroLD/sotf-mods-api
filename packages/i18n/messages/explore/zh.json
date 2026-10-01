@@ -183,5 +183,7 @@
   "explore_compare_row_multiplayer": "多人模式",
   "explore_compare_row_downloads_week": "本周下载量",
   "explore_compare_none": "无",
-  "explore_compare_crumb": "对比"
+  "explore_compare_crumb": "对比",
+  "explore_sort_title": "排序方式",
+  "explore_sort_close": "关闭排序"
 }

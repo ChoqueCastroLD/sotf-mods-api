@@ -19,7 +19,7 @@ import { Badge } from '../badge.tsx';
 import { buttonClasses } from '../button.tsx';
 import { cn } from '../cn.ts';
 import { Icon } from '../icons.tsx';
-import { CompatBadge } from './compat.tsx';
+import { COMPAT_STATUS_STYLE, CompatBadge, useCompatLabel } from './compat.tsx';
 import type { ModCardDTO } from './contracts.ts';
 import {
   type DomainMessageKey,
@@ -70,6 +70,12 @@ export interface ModCardProps {
   priority?: boolean;
   /** Name the cover for cross-document view transitions. Default true (grid, feature). */
   viewTransition?: boolean;
+  /**
+   * Grid only: what the card becomes below 260 px of its own width. `row` (default) is the
+   * 40 px thumbnail row of sidebars; `tile` keeps the cover (4:3) with a two-line title, the
+   * author and the downloads, for two-column mobile grids.
+   */
+  narrow?: 'row' | 'tile';
   className?: string;
 }
 
@@ -232,8 +238,12 @@ function Byline({ mod, className }: { mod: ModCardDTO; className?: string }) {
       {mod.verifiedCreator ? <TrustedMark size={14} className={cardControlClasses} /> : null}
       {category ? (
         <>
-          <span aria-hidden="true">·</span>
-          <span className="truncate">{category}</span>
+          <span aria-hidden="true" data-byline-extra="">
+            ·
+          </span>
+          <span className="truncate" data-byline-extra="">
+            {category}
+          </span>
         </>
       ) : null}
     </p>
@@ -254,15 +264,37 @@ const CQ = {
   footer: '@max-[260px]/card:pt-0',
 } as const;
 
+/** `narrow="tile"`: the same container query keeps the cover and tightens the text. */
+const CQ_TILE = {
+  card: '',
+  cover: '@max-[260px]/card:aspect-[4/3]',
+  body: '@max-[260px]/card:gap-1 @max-[260px]/card:p-2.5',
+  hide: '@max-[260px]/card:hidden',
+  footer: '@max-[260px]/card:pt-1',
+} as const;
+
 function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
-  const { mod, action, isNew = false, now, currentBuild, priority, viewTransition = true, className, Heading } = props;
+  const {
+    mod,
+    action,
+    isNew = false,
+    now,
+    currentBuild,
+    priority,
+    viewTransition = true,
+    narrow = 'row',
+    className,
+    Heading,
+  } = props;
   const { t } = useDomainI18n();
   const badges = useBadges(mod, isNew, now);
+  const tile = narrow === 'tile';
+  const CQ_ = tile ? CQ_TILE : CQ;
   return (
     <article data-variant="grid" data-mod-id={mod.id} className={cn('@container/card', className)}>
-      <div className={cn(cardClasses, 'flex h-full flex-col overflow-hidden', CQ.card)}>
+      <div className={cn(cardClasses, 'flex h-full flex-col overflow-hidden', CQ_.card)}>
         <div
-          className={cn('relative aspect-cover overflow-hidden rounded-t-[inherit] bg-raised', CQ.cover)}
+          className={cn('relative aspect-cover overflow-hidden rounded-t-[inherit] bg-raised', CQ_.cover)}
           style={coverStyle(mod, viewTransition)}
         >
           <Cover
@@ -270,31 +302,58 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             seed={mod.slug}
             name={displayName(mod)}
             category={mod.category}
-            sizes="(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw"
+            sizes={
+              tile
+                ? '(min-width: 80rem) 20rem, (min-width: 64rem) 16rem, (min-width: 40rem) 33vw, 50vw'
+                : '(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw'
+            }
             priority={priority}
             className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
           />
           {badges.length > 0 ? (
             <div
-              className={cn('pointer-events-none absolute start-2 top-2 flex max-w-[calc(100%-3.5rem)] gap-1', CQ.hide)}
+              className={cn(
+                'pointer-events-none absolute start-2 top-2 flex max-w-[calc(100%-3.5rem)] gap-1',
+                tile
+                  ? '@max-[260px]/card:start-1.5 @max-[260px]/card:top-1.5 @max-[260px]/card:[&>*:nth-child(n+2)]:hidden'
+                  : CQ.hide,
+              )}
             >
               {badges}
             </div>
           ) : null}
         </div>
-        {action ? <div className={cn('absolute z-10 end-2 top-2', CQ.hide)}>{action}</div> : null}
-        <div className={cn('flex min-w-0 flex-1 flex-col gap-1.5 p-4', CQ.body)}>
-          <Heading className="truncate text-base font-semibold">
+        {action ? (
+          <div
+            className={cn(
+              'absolute z-10 end-2 top-2',
+              tile ? '@max-[260px]/card:end-1 @max-[260px]/card:top-1' : CQ.hide,
+            )}
+          >
+            {action}
+          </div>
+        ) : null}
+        <div className={cn('flex min-w-0 flex-1 flex-col gap-1.5 p-4', CQ_.body)}>
+          <Heading
+            className={cn(
+              'truncate text-base font-semibold',
+              tile &&
+                '@max-[260px]/card:line-clamp-2 @max-[260px]/card:text-sm @max-[260px]/card:leading-snug @max-[260px]/card:whitespace-normal @max-[260px]/card:text-pretty',
+            )}
+          >
             <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
           </Heading>
           <OriginalName card={mod} className={CQ.hide} />
-          <Byline mod={mod} className={CQ.hide} />
+          <Byline
+            mod={mod}
+            className={tile ? '@max-[260px]/card:text-2xs @max-[260px]/card:[&_[data-byline-extra]]:hidden' : CQ.hide}
+          />
           <p className={cn('line-clamp-2 text-sm text-fg-muted', CQ.hide)}>{displayShortDescription(mod)}</p>
           <div
-            className={cn('mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-xs text-fg-muted', CQ.footer)}
+            className={cn('mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-xs text-fg-muted', CQ_.footer)}
           >
             <Downloads value={mod.downloads} />
-            <Rating mod={mod} className={CQ.hide} />
+            <Rating mod={mod} className={tile ? undefined : CQ.hide} />
             {mod.latestVersion ? (
               <span className={cn('font-mono text-2xs', CQ.hide)}>
                 {t('ui_domain_version_label', { version: mod.latestVersion })}
@@ -307,10 +366,30 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
               size="sm"
               className={cn('ms-auto', CQ.hide)}
             />
+            {tile && mod.compatStatus !== 'untested' ? (
+              <CompatDot status={mod.compatStatus} build={currentBuild} />
+            ) : null}
           </div>
         </div>
       </div>
     </article>
+  );
+}
+
+/** Icon-only compatibility mark of the narrow tile (the status text stays for screen readers). */
+function CompatDot({ status, build }: { status: ModCardDTO['compatStatus']; build?: string | null | undefined }) {
+  const label = useCompatLabel();
+  const style = COMPAT_STATUS_STYLE[status];
+  const text = label(status, build);
+  return (
+    <span
+      title={text}
+      data-compat={status}
+      className={cn('ms-auto hidden items-center @max-[260px]/card:inline-flex', style.tone)}
+    >
+      <Icon icon={style.icon} size={16} />
+      <span className="sr-only">{text}</span>
+    </span>
   );
 }
 
@@ -452,11 +531,13 @@ export function ModCard({ variant = 'grid', headingLevel = 3, ...props }: ModCar
 
 export interface ModCardSkeletonProps {
   variant?: ModCardVariant;
+  /** Grid only: geometry of the card below 260 px (see `ModCardProps.narrow`). */
+  narrow?: 'row' | 'tile';
   className?: string;
 }
 
 /** Placeholder with the geometry of each variant (wrap lists in `SkeletonGroup`). */
-export function ModCardSkeleton({ variant = 'grid', className }: ModCardSkeletonProps) {
+export function ModCardSkeleton({ variant = 'grid', narrow = 'row', className }: ModCardSkeletonProps) {
   const surface = 'rounded-lg border border-border bg-surface';
   if (variant === 'row') {
     return (
@@ -497,13 +578,14 @@ export function ModCardSkeleton({ variant = 'grid', className }: ModCardSkeleton
       </div>
     );
   }
+  const CQ_ = narrow === 'tile' ? CQ_TILE : CQ;
   return (
     <div aria-hidden="true" className={cn('@container/card', className)}>
-      <div className={cn(surface, 'flex h-full flex-col overflow-hidden', CQ.card)}>
-        <Placeholder className={cn('aspect-cover h-auto w-full rounded-none', CQ.cover)} />
-        <span className={cn('flex flex-col gap-2 p-4', CQ.body)}>
+      <div className={cn(surface, 'flex h-full flex-col overflow-hidden', CQ_.card)}>
+        <Placeholder className={cn('aspect-cover h-auto w-full rounded-none', CQ_.cover)} />
+        <span className={cn('flex flex-col gap-2 p-4', CQ_.body)}>
           <Placeholder className="h-4 w-3/5" />
-          <Placeholder className={cn('h-3 w-2/5', CQ.hide)} />
+          <Placeholder className={cn('h-3 w-2/5', narrow === 'tile' ? undefined : CQ.hide)} />
           <Placeholder className={cn('h-3 w-full', CQ.hide)} />
           <Placeholder className={cn('h-3 w-4/5', CQ.hide)} />
           <Placeholder className="mt-1 h-3 w-1/3" />

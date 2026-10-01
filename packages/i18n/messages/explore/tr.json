@@ -183,5 +183,7 @@
   "explore_compare_row_multiplayer": "Çok oyunculu",
   "explore_compare_row_downloads_week": "Bu haftaki indirmeler",
   "explore_compare_none": "Yok",
-  "explore_compare_crumb": "Karşılaştır"
+  "explore_compare_crumb": "Karşılaştır",
+  "explore_sort_title": "Sıralama ölçütü",
+  "explore_sort_close": "Sıralamayı kapat"
 }
