@@ -80,7 +80,7 @@ const deltaText = (value: number): string => `${value > 0 ? '+' : value < 0 ? 'â
 >
   <section aria-labelledby="compare-title" class="grid gap-4">
     <h2 id="compare-title" class={SECTION_TITLE_CLASSES}>{label}</h2>
-    <form method="get" action={href(comparePath, locale)} class="grid gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+    <form method="get" action={href(comparePath, locale)} class="grid grid-cols-2 gap-3 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
       <label class="grid gap-1 text-sm font-semibold">
         {m.mod_knowledge_compare_from()}
         <select name="from" class={fieldClasses} required>
@@ -101,7 +101,7 @@ const deltaText = (value: number): string => `${value > 0 ? '+' : value < 0 ? 'â
       </label>
       <button
         type="submit"
-        class="inline-flex min-h-11 items-center justify-center rounded-md bg-signal px-5 font-semibold text-night-975 md:min-h-10"
+        class="col-span-2 inline-flex min-h-12 items-center justify-center rounded-md bg-signal px-5 font-semibold text-night-975 sm:col-span-1 md:min-h-10"
       >
         {m.mod_knowledge_compare_submit()}
       </button>

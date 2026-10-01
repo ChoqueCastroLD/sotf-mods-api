@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Читать далее",
+  "entity_read_less": "Свернуть",
+  "entity_comments_see_all": "{count, plural, =0 {Станьте первым, кто прокомментирует} one {Открыть # комментарий} few {Открыть # комментария} many {Открыть # комментариев} other {Открыть # комментария}}",
+  "entity_comments_write": "Напишите комментарий…",
+  "entity_reviews_see_all": "{count, plural, =0 {Оставьте первый отзыв} one {Открыть # отзыв} few {Открыть # отзыва} many {Открыть # отзывов} other {Открыть # отзыва}}",
+  "entity_changelog_title": "Список изменений",
+  "entity_version_open": "Изменения в версии {version}",
+  "entity_version_details": "Подробнее о версии",
+  "entity_original_label": "Оригинальное название",
+  "entity_lightbox_hint": "Разведите пальцы или коснитесь дважды, чтобы увеличить; смахните вниз, чтобы закрыть."
+}

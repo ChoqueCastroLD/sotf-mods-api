@@ -43,3 +43,23 @@ Guest hints inside the mount points (`[data-review-guest-hint]`, `[data-comment-
 
 Namespace `mod` (`packages/i18n/messages/mod/*.json`, 13 locales). `i18n.ts` also configures the
 `@sotf/ui/domain` components for the request locale (`configureModDomainI18n()`).
+
+## Phones: native-app feel (m-entity)
+
+Everything below is progressive enhancement over server-rendered HTML that already works inline
+(desktops, crawlers and no-JS visitors get that); phones are `max-width: 47.99rem`.
+
+| Piece | Files | What |
+|---|---|---|
+| Gallery | `GalleryCarousel.astro`, `scripts/mod/carousel.ts` | one list for every screen: full-bleed scroll-snap carousel + dot pager + «2 / 5» chip on phones, only the first slide (the cover) from `md` up; tapping a slide opens the lightbox, which hands the current slide back on close |
+| Lightbox | `Lightbox.astro`, `scripts/mod/lightbox{,-zoom}.ts` | edge-to-edge black sheet on phones; pinch (or Ctrl+wheel) zoom to 5×, double tap 2.5×, pan, swipe down/up to dismiss with a fading backdrop; slide changes stay native scroll-snap. Only needs `data-counter` / `data-video-title` on `[data-lightbox]`, so builds reuse it |
+| Bottom sheets | `ModDialog.astro`, `scripts/mod/sheet.ts` | every `ModDialog` is a bottom sheet on phones: grabber, swipe the header (or the body at scrollTop 0) to dismiss; `size="tall"` (comments, reviews), `footer` slot (sticky), one open at a time (`openDialog`) |
+| Action bar | `MobileDownloadBar.astro`, `MoreSheet.astro` | sticky Download · Follow ♥ · More; the follow links are the same `a[data-follow]` as the header's and are always painted together (`follow.ts`). More = Install, + Kit, Compare, Versions, Share (system share sheet, else the dialog; `[data-share-action]`), Report |
+| Tabs | `ModTabs.astro`, `scripts/mod/tabs.ts` | segmented control, sticky under the header, current pill centred; swiping the content sideways goes to the neighbouring page tab (guards: carousels, code, tables, fields, screen edges) |
+| Fold / clamp | `Clamp.astro`, `scripts/mod/fold.ts` | `[data-fold]` sections collapse behind their `h2` (`data-fold="closed"` starts closed; a hash inside opens it); `Clamp` clamps the description behind «Read more» only when clearly taller |
+| Social sheets | `SocialSheets.astro`, `scripts/mod/sheets.ts`, `islands/comments/StickyComposer.tsx` | `section[data-sheet-section=<dialog id>]` (preview card + body): the body moves into the sheet before the islands look for their mount points, so they hydrate inside it; the comments island renders a docked composer (`layout="sheet"`); `#comment-N` opens the sheet |
+| Versions | `VersionRows.astro`, `VersionSheet.astro`, `scripts/mod/versions.ts` | tappable rows (excerpt, date · size · downloads) replace the table and the timeline; the changelog sheet clones the timeline entry (no duplicate HTML) |
+| Title | `ModHeader.astro` | translated title in display caps, `Original title` readout + original name underneath |
+
+Strings: namespace `entity` (`packages/i18n/messages/entity/*.json`, 13 locales). Art: `public/art/entity/`
+(built by `tooling/scripts/art-entity.ts` from the concept art; used by the empty comment/review states).

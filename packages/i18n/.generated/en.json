@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Changelog",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Be the first to comment",
+        "count__exact=*, count__plural=one": "Open 1 comment",
+        "count__exact=*, count__plural=*": "Open all {count__number} comments"
+      }
+    }
+  ],
+  "entity_comments_write": "Write a comment…",
+  "entity_lightbox_hint": "Pinch or double-tap to zoom, swipe down to close.",
+  "entity_original_label": "Original title",
+  "entity_read_less": "Show less",
+  "entity_read_more": "Read more",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Be the first to review",
+        "count__exact=*, count__plural=one": "Open 1 review",
+        "count__exact=*, count__plural=*": "Open all {count__number} reviews"
+      }
+    }
+  ],
+  "entity_version_details": "Version details",
+  "entity_version_open": "Changelog of version {version}",
   "errors_boundary_detail": "The rest of the page still works. Try loading this section again.",
   "errors_boundary_title": "This part of the page didn’t load",
   "errors_code_conflict_detail": "This changed while you were working on it. Reload to see the latest version, then try again.",

@@ -1,0 +1,68 @@
+---
+/**
+ * «More actions» bottom sheet of the build page on phones (opened from the sticky bar): How to
+ * import, + Kit, Copy link, Share (the system share sheet, else the link is copied), the versions
+ * and Report, as big tappable rows. Rows are real links or buttons handled by `build-page.ts`.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronRight, Flag, History, Link2, ListOrdered, Plus, Share2 } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import ModDialog from '../mod/ModDialog.astro';
+import type { ModDetailDTO } from './data.ts';
+
+interface Props {
+  build: ModDetailDTO;
+}
+
+const { build } = Astro.props;
+const locale = Astro.locals.locale;
+const ROW =
+  'flex min-h-14 w-full items-center gap-3 rounded-lg px-2 py-2 text-start text-base font-medium text-fg active:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+const TILE = 'flex size-10 shrink-0 items-center justify-center rounded-lg bg-raised text-blueprint';
+const chevron = 'text-fg-subtle rtl:rotate-180';
+---
+
+<ModDialog id="more-sheet" title={m.mod_action_more()} bodyClass="!gap-0 !px-3 !py-2">
+  <ul class="grid">
+    <li>
+      <a href="#import" data-sheet-close-on-click class={ROW}>
+        <span class={TILE}><Icon icon={ListOrdered} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.builds_action_how_to_import()}</span>
+        <Icon icon={ChevronRight} size={18} className={chevron} />
+      </a>
+    </li>
+    <li>
+      <a href={`${href('/me/kits', locale)}?add=${build.id}`} data-kit-add={build.id} class={ROW}>
+        <span class={TILE}><Icon icon={Plus} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.builds_action_add_to_kit()}</span>
+        <Icon icon={ChevronRight} size={18} className={chevron} />
+      </a>
+    </li>
+    <li>
+      <a href="#versions" data-sheet-close-on-click class={ROW}>
+        <span class={TILE}><Icon icon={History} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.builds_versions_title()}</span>
+        <Icon icon={ChevronRight} size={18} className={chevron} />
+      </a>
+    </li>
+    <li>
+      <button type="button" hidden data-js-only data-share-action class={ROW}>
+        <span class={TILE}><Icon icon={Share2} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.common_action_share()}</span>
+      </button>
+    </li>
+    <li>
+      <button type="button" data-copy-link data-copied={m.builds_link_copied()} class={ROW}>
+        <span class={TILE}><Icon icon={Link2} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.common_action_copy_link()}</span>
+      </button>
+    </li>
+    <li class="mt-1 border-t border-border pt-1">
+      <button type="button" hidden data-js-only data-dialog-open="report-dialog" class={ROW}>
+        <span class:list={[TILE, 'text-fg-muted']}><Icon icon={Flag} size={20} /></span>
+        <span class="min-w-0 flex-1">{m.mod_action_report()}</span>
+      </button>
+    </li>
+  </ul>
+</ModDialog>

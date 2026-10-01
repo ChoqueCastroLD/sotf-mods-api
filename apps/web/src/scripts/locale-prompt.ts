@@ -25,6 +25,7 @@ import {
 } from '@sotf/i18n/messages';
 import { acknowledge, type LocaleMode, readPref, writePref } from '../lib/client/locale-pref.ts';
 import { localeTarget, originalLocaleOf } from './locale-pref.ts';
+import { enableSwipeDismiss } from './swipe-dismiss.ts';
 
 function query<T extends HTMLElement>(root: ParentNode, selector: string): T | null {
   return root.querySelector<T>(selector);
@@ -96,5 +97,7 @@ export function initLocalePrompt(pageLocale: Locale, win: Window = window): bool
   });
 
   root.hidden = false;
+  // On phones it is a bottom sheet: swiping it down is the ✕ (stay for this tab, unremembered).
+  enableSwipeDismiss(root, () => close.click());
   return true;
 }

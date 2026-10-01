@@ -3545,6 +3545,56 @@
       }
     }
   ],
+  "entity_changelog_title": "Lista zmian",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Dodaj pierwszy komentarz",
+        "count__exact=*, count__plural=one": "Otwórz 1 komentarz",
+        "count__exact=*, count__plural=few": "Otwórz {count__number} komentarze",
+        "count__exact=*, count__plural=many": "Otwórz {count__number} komentarzy",
+        "count__exact=*, count__plural=*": "Otwórz {count__number} komentarza"
+      }
+    }
+  ],
+  "entity_comments_write": "Napisz komentarz…",
+  "entity_lightbox_hint": "Ściągnij palce lub dotknij dwukrotnie, aby powiększyć; przesuń w dół, aby zamknąć.",
+  "entity_original_label": "Tytuł oryginalny",
+  "entity_read_less": "Pokaż mniej",
+  "entity_read_more": "Czytaj więcej",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Dodaj pierwszą recenzję",
+        "count__exact=*, count__plural=one": "Otwórz 1 recenzję",
+        "count__exact=*, count__plural=few": "Otwórz {count__number} recenzje",
+        "count__exact=*, count__plural=many": "Otwórz {count__number} recenzji",
+        "count__exact=*, count__plural=*": "Otwórz {count__number} recenzji"
+      }
+    }
+  ],
+  "entity_version_details": "Szczegóły wersji",
+  "entity_version_open": "Zmiany w wersji {version}",
   "errors_boundary_detail": "Reszta strony nadal działa. Spróbuj ponownie wczytać tę sekcję.",
   "errors_boundary_title": "Ta część strony się nie wczytała",
   "errors_code_conflict_detail": "To zmieniło się, gdy nad tym pracowałeś. Odśwież, aby zobaczyć najnowszą wersję, i spróbuj ponownie.",

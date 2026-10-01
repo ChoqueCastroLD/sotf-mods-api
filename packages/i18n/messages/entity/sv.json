@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Läs mer",
+  "entity_read_less": "Visa mindre",
+  "entity_comments_see_all": "{count, plural, =0 {Skriv den första kommentaren} one {Öppna 1 kommentar} other {Öppna alla # kommentarer}}",
+  "entity_comments_write": "Skriv en kommentar…",
+  "entity_reviews_see_all": "{count, plural, =0 {Skriv den första recensionen} one {Öppna 1 recension} other {Öppna alla # recensioner}}",
+  "entity_changelog_title": "Ändringslogg",
+  "entity_version_open": "Ändringar i version {version}",
+  "entity_version_details": "Versionsdetaljer",
+  "entity_original_label": "Originaltitel",
+  "entity_lightbox_hint": "Nyp eller dubbeltryck för att zooma, svep nedåt för att stänga."
+}

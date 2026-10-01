@@ -32,11 +32,14 @@ import MobileDownloadBar from './MobileDownloadBar.astro';
 import ModHeader from './ModHeader.astro';
 import ModScripts from './ModScripts.astro';
 import ModTabs, { type ModTab } from './ModTabs.astro';
+import MoreSheet from './MoreSheet.astro';
 import NsfwGate from './NsfwGate.astro';
 import PageData from './PageData.astro';
 import ReportDialog from './ReportDialog.astro';
 import ShareDialog from './ShareDialog.astro';
+import SocialSheets from './SocialSheets.astro';
 import StatusBanners from './StatusBanners.astro';
+import VersionSheet from './VersionSheet.astro';
 
 export interface ModCrumb {
   label: string;
@@ -123,7 +126,7 @@ const hasGlance = Astro.slots.has('glance');
     class="border-t-2 border-transparent"
     style={accent ? `border-top-color:${accent}` : undefined}
   >
-    <div class="mx-auto grid w-full max-w-(--container-content) grid-cols-1 gap-6 px-4 py-6 md:px-6 md:py-8">
+    <div class="mx-auto grid w-full max-w-(--container-content) grid-cols-1 gap-4 px-4 py-4 md:gap-6 md:px-6 md:py-8">
       <Breadcrumbs items={visibleCrumbs} />
       <StatusBanners mod={mod} overviewHref={overviewHref} />
       {gated && <NsfwGate revealHref={revealHref} />}
@@ -164,15 +167,18 @@ const hasGlance = Astro.slots.has('glance');
             )
           }
         </div>
-        <MobileDownloadBar mod={mod} />
+        <MobileDownloadBar mod={mod} loginHref={loginHref} />
       </div>
     </div>
 
     <InstallDialog mod={mod} />
     <DependencySheet mod={mod} />
+    <MoreSheet mod={mod} url={`${env.siteUrl}${overviewHref}`} />
     <ShareDialog mod={mod} url={`${env.siteUrl}${overviewHref}`} />
     <ReportDialog mod={mod} loginHref={loginHref} />
     {tab === 'overview' && <Lightbox mod={mod} />}
+    {(tab === 'overview' || tab === 'versions') && <VersionSheet />}
+    {tab === 'overview' && <SocialSheets mod={mod} loginHref={loginHref} />}
     <div
       data-mod-toast
       role="status"

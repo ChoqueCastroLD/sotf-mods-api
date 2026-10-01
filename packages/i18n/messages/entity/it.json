@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Leggi tutto",
+  "entity_read_less": "Mostra meno",
+  "entity_comments_see_all": "{count, plural, =0 {Sii il primo a commentare} one {Apri 1 commento} other {Apri tutti i # commenti}}",
+  "entity_comments_write": "Scrivi un commento…",
+  "entity_reviews_see_all": "{count, plural, =0 {Sii il primo a recensire} one {Apri 1 recensione} other {Apri tutte le # recensioni}}",
+  "entity_changelog_title": "Note di rilascio",
+  "entity_version_open": "Modifiche della versione {version}",
+  "entity_version_details": "Dettagli della versione",
+  "entity_original_label": "Titolo originale",
+  "entity_lightbox_hint": "Pizzica o tocca due volte per ingrandire, scorri verso il basso per chiudere."
+}

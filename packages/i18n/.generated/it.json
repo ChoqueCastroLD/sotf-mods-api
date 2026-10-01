@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Note di rilascio",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sii il primo a commentare",
+        "count__exact=*, count__plural=one": "Apri 1 commento",
+        "count__exact=*, count__plural=*": "Apri tutti i {count__number} commenti"
+      }
+    }
+  ],
+  "entity_comments_write": "Scrivi un commento…",
+  "entity_lightbox_hint": "Pizzica o tocca due volte per ingrandire, scorri verso il basso per chiudere.",
+  "entity_original_label": "Titolo originale",
+  "entity_read_less": "Mostra meno",
+  "entity_read_more": "Leggi tutto",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sii il primo a recensire",
+        "count__exact=*, count__plural=one": "Apri 1 recensione",
+        "count__exact=*, count__plural=*": "Apri tutte le {count__number} recensioni"
+      }
+    }
+  ],
+  "entity_version_details": "Dettagli della versione",
+  "entity_version_open": "Modifiche della versione {version}",
   "errors_boundary_detail": "Il resto della pagina funziona ancora. Prova a caricare di nuovo questa sezione.",
   "errors_boundary_title": "Questa parte della pagina non si è caricata",
   "errors_code_conflict_detail": "Questo contenuto è cambiato mentre ci lavoravi. Ricarica per vedere la versione più recente, poi riprova.",

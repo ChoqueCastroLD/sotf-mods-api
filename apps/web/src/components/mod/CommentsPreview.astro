@@ -7,9 +7,12 @@
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { CommentItem } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronRight, MessageSquareText } from 'lucide-react';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 import type { CommentPage, ModDetailDTO } from './data.ts';
+import EmptyArt from './EmptyArt.astro';
 import { pluralTemplates } from './format.ts';
 import { markdownLabels } from './i18n.ts';
 import { SECTION_TITLE_CLASSES } from './styles.ts';
@@ -33,7 +36,7 @@ const items = (comments?.items ?? []).map((comment) => ({
 }));
 ---
 
-<section id="comments" aria-labelledby="comments-title" class="grid gap-4">
+<section id="comments" data-sheet-section="comments-sheet" aria-labelledby="comments-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <h2
     id="comments-title"
     class={SECTION_TITLE_CLASSES}
@@ -42,6 +45,27 @@ const items = (comments?.items ?? []).map((comment) => ({
     data-count-templates={JSON.stringify(pluralTemplates(locale, (count) => m.mod_comments_title({ count })))}
     data-count-zero={m.mod_comments_title({ count: 0 })}
   >{m.mod_comments_title({ count: mod.commentsCount })}</h2>
+  <div data-sheet-preview hidden class="grid gap-3">
+    <ol data-sheet-preview-list class="grid gap-4 [&_.prose-sm]:line-clamp-3"></ol>
+    <button
+      type="button"
+      data-dialog-open="comments-sheet"
+      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+    >
+      <Icon icon={MessageSquareText} size={18} className="text-signal" />
+      <span class="min-w-0 flex-1">{m.entity_comments_see_all({ count: mod.commentsCount })}</span>
+      <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+    </button>
+    <button
+      type="button"
+      data-dialog-open="comments-sheet"
+      data-compose
+      class="flex min-h-12 w-full items-center rounded-full border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
+    >
+      {m.entity_comments_write()}
+    </button>
+  </div>
+  <div data-sheet-body class="grid min-w-0 gap-4">
   {
     items.length > 0 ? (
       <ol class="grid gap-6" data-comment-list>
@@ -61,7 +85,7 @@ const items = (comments?.items ?? []).map((comment) => ({
         ))}
       </ol>
     ) : (
-      <p class="text-fg-muted">{mod.commentsCount > 0 ? m.mod_comments_unavailable() : m.mod_comments_empty()}</p>
+      <EmptyArt>{mod.commentsCount > 0 ? m.mod_comments_unavailable() : m.mod_comments_empty()}</EmptyArt>
     )
   }
   <p class="text-sm text-fg-muted">
@@ -79,5 +103,6 @@ const items = (comments?.items ?? []).map((comment) => ({
     <p class="text-sm text-fg-muted" data-comment-guest-hint>
       <a href={loginHref} class="font-semibold text-link underline underline-offset-3">{m.mod_comments_sign_in()}</a>
     </p>
+  </div>
   </div>
 </section>

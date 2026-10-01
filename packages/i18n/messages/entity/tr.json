@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "Devamını oku",
+  "entity_read_less": "Daha az göster",
+  "entity_comments_see_all": "{count, plural, =0 {İlk yorumu sen yaz} one {1 yorumu aç} other {# yorumun tümünü aç}}",
+  "entity_comments_write": "Yorum yaz…",
+  "entity_reviews_see_all": "{count, plural, =0 {İlk değerlendirmeyi sen yaz} one {1 değerlendirmeyi aç} other {# değerlendirmenin tümünü aç}}",
+  "entity_changelog_title": "Değişiklik günlüğü",
+  "entity_version_open": "{version} sürümünün değişiklikleri",
+  "entity_version_details": "Sürüm ayrıntıları",
+  "entity_original_label": "Orijinal başlık",
+  "entity_lightbox_hint": "Yakınlaştırmak için çimdikleyin veya çift dokunun, kapatmak için aşağı kaydırın."
+}

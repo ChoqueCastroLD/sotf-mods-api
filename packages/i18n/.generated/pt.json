@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Registro de alterações",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Seja o primeiro a comentar",
+        "count__exact=*, count__plural=one": "Abrir 1 comentário",
+        "count__exact=*, count__plural=*": "Abrir os {count__number} comentários"
+      }
+    }
+  ],
+  "entity_comments_write": "Escreva um comentário…",
+  "entity_lightbox_hint": "Faça pinça ou toque duas vezes para ampliar; deslize para baixo para fechar.",
+  "entity_original_label": "Título original",
+  "entity_read_less": "Mostrar menos",
+  "entity_read_more": "Ler mais",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Seja o primeiro a avaliar",
+        "count__exact=*, count__plural=one": "Abrir 1 avaliação",
+        "count__exact=*, count__plural=*": "Abrir as {count__number} avaliações"
+      }
+    }
+  ],
+  "entity_version_details": "Detalhes da versão",
+  "entity_version_open": "Alterações da versão {version}",
   "errors_boundary_detail": "O resto da página continua funcionando. Tente carregar esta seção de novo.",
   "errors_boundary_title": "Esta parte da página não carregou",
   "errors_code_conflict_detail": "Isto mudou enquanto você trabalhava nele. Recarregue para ver a versão mais recente e tente de novo.",

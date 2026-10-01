@@ -12,6 +12,7 @@ import {
   common_language_suggest_accept,
   common_language_suggest_decline,
 } from '@sotf/i18n/messages';
+import { enableSwipeDismiss } from './swipe-dismiss.ts';
 
 export const DECLINED_KEY = 'sotf-lang-declined';
 
@@ -99,5 +100,7 @@ export function initLangSuggest(doc: Document = document): Locale | null {
     { once: true },
   );
   banner.hidden = false;
+  // On phones it is a bottom sheet: swiping it down is «No, thanks».
+  enableSwipeDismiss(banner, () => decline.click());
   return locale;
 }

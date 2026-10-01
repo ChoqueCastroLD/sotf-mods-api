@@ -10,15 +10,15 @@
 export const DIALOG_CLASSES =
   'm-auto w-[min(36rem,calc(100vw-2rem))] max-h-[min(44rem,calc(100dvh-2rem))] overflow-y-auto overscroll-contain ' +
   'rounded-xl border border-border-strong bg-surface p-0 text-fg shadow-xl backdrop:bg-night-975/70 ' +
-  'max-md:mb-0 max-md:w-full max-md:max-w-none max-md:rounded-b-none max-md:pb-[env(safe-area-inset-bottom)] ' +
-  'motion-safe:open:animate-rise';
+  'max-md:mb-0 max-md:w-full max-md:max-w-none max-md:rounded-t-2xl max-md:rounded-b-none max-md:border-b-0 max-md:max-h-[88dvh] max-md:pb-[env(safe-area-inset-bottom)] ' +
+  'md:motion-safe:open:animate-rise';
 
 export const DIALOG_HEADER_CLASSES =
-  'sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-border bg-surface px-5 py-4';
+  'sticky top-0 z-10 flex touch-none items-center justify-between gap-3 border-b border-border bg-surface px-5 pt-5 pb-3 md:py-4';
 
 export const DIALOG_TITLE_CLASSES = 'font-display-caps text-display-xs text-fg';
 
-export const DIALOG_BODY_CLASSES = 'grid gap-4 px-5 py-5';
+export const DIALOG_BODY_CLASSES = 'grid content-start gap-4 px-5 py-5';
 
 /** Section heading of the main column and the sidebar. */
 export const SECTION_TITLE_CLASSES = 'font-display-caps text-display-xs text-fg';

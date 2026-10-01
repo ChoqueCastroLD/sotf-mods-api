@@ -30,7 +30,7 @@ const labels = markdownLabels();
 const Heading = headingLevel === 3 ? 'h3' : 'h4';
 ---
 
-<ol class="relative grid gap-6 border-s border-border ps-6" data-version-timeline>
+<ol class="relative grid gap-6 border-s border-border ps-6 max-md:hidden" data-version-timeline>
   {
     versions.map((version) => (
       <li
@@ -73,7 +73,9 @@ const Heading = headingLevel === 3 ? 'h3' : 'h4';
           <p class="text-sm text-danger">{m.mod_version_yanked_reason({ reason: version.statusReason })}</p>
         )}
         {version.changelogHtml.trim() ? (
-          <ProseLocator html={localizeHtml(version.changelogHtml, labels)} size="sm" lang={mod.contentLang ?? undefined} />
+          <div data-changelog>
+            <ProseLocator html={localizeHtml(version.changelogHtml, labels)} size="sm" lang={mod.contentLang ?? undefined} />
+          </div>
         ) : (
           <p class="text-sm text-fg-muted">{m.mod_version_no_changelog()}</p>
         )}

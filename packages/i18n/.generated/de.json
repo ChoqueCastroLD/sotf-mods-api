@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Änderungsprotokoll",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Schreibe den ersten Kommentar",
+        "count__exact=*, count__plural=one": "1 Kommentar öffnen",
+        "count__exact=*, count__plural=*": "Alle {count__number} Kommentare öffnen"
+      }
+    }
+  ],
+  "entity_comments_write": "Kommentar schreiben…",
+  "entity_lightbox_hint": "Zum Zoomen spreizen oder doppeltippen, zum Schließen nach unten wischen.",
+  "entity_original_label": "Originaltitel",
+  "entity_read_less": "Weniger anzeigen",
+  "entity_read_more": "Mehr lesen",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Schreibe die erste Bewertung",
+        "count__exact=*, count__plural=one": "1 Bewertung öffnen",
+        "count__exact=*, count__plural=*": "Alle {count__number} Bewertungen öffnen"
+      }
+    }
+  ],
+  "entity_version_details": "Versionsdetails",
+  "entity_version_open": "Änderungen in Version {version}",
   "errors_boundary_detail": "Der Rest der Seite funktioniert weiter. Lade diesen Abschnitt noch einmal.",
   "errors_boundary_title": "Dieser Teil der Seite wurde nicht geladen",
   "errors_code_conflict_detail": "Das hat sich geändert, während du daran gearbeitet hast. Lade neu, um die aktuelle Version zu sehen, und versuch es erneut.",

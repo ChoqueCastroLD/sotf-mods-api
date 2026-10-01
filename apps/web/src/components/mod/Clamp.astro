@@ -1,0 +1,47 @@
+---
+/**
+ * Long text that is clamped on phones behind «Read more» (`scripts/mod/fold.ts` measures it and
+ * only clamps when it is clearly taller than `lines`; without JavaScript, on desktops and for
+ * crawlers the whole text is there). The fade at the bottom uses a CSS mask, so it works on any
+ * background.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronDown } from 'lucide-react';
+
+interface Props {
+  /** Clamp height in rem. */
+  height?: number;
+  class?: string;
+}
+
+const { height = 14, class: className } = Astro.props;
+---
+
+<div class:list={['grid gap-1', className]}>
+  <div data-clamp={height} class="clamp-block">
+    <slot />
+  </div>
+  <button
+    type="button"
+    hidden
+    data-clamp-toggle
+    data-more={m.entity_read_more()}
+    data-less={m.entity_read_less()}
+    class="inline-flex min-h-11 items-center gap-1.5 justify-self-start font-semibold text-link md:hidden [&[aria-expanded=true]_svg]:rotate-180"
+  >
+    <span data-clamp-label>{m.entity_read_more()}</span>
+    <Icon icon={ChevronDown} size={16} className="transition-transform motion-reduce:transition-none" />
+  </button>
+</div>
+
+<style is:global>
+  @media (max-width: 47.99rem) {
+    .clamp-block[data-clamped] {
+      max-height: var(--clamp-height, 14rem);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 4.5rem), transparent);
+      mask-image: linear-gradient(to bottom, #000 calc(100% - 4.5rem), transparent);
+    }
+  }
+</style>

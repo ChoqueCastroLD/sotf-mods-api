@@ -28,6 +28,8 @@ export async function bootComments(root: ParentNode, session: Promise<MeSummary 
     verifyHref: siblingHref(loginHref, '/verify-email'),
     turnstileSiteKey: turnstileSiteKey(mount),
     focusId,
+    layout: mount.dataset.layout === 'sheet' ? 'sheet' : 'inline',
+    host: mount,
     onTakeOver: () => {
       // The island now renders the list: drop the server-rendered copy (and its duplicate ids).
       for (const child of Array.from(section.children)) {

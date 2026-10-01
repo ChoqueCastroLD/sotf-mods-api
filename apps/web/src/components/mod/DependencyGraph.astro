@@ -42,7 +42,7 @@ const stroke = (kind: string) => (kind === 'conflicts' ? 'var(--color-danger, #e
 
 {
   (left.length > 0 || right.length > 0) && (
-    <section id="dependency-graph" aria-labelledby="dependency-graph-title" class="grid gap-3">
+    <section id="dependency-graph" data-fold="closed" aria-labelledby="dependency-graph-title" class="grid gap-3">
       <h2 id="dependency-graph-title" class={SECTION_TITLE_CLASSES}>{m.mod_graph_title()}</h2>
       <figure class:list={[PANEL_CLASSES, 'overflow-x-auto']}>
         <!-- biome-ignore lint/a11y/useSemanticElements: an SVG drawing labelled as a group has no semantic HTML element -->

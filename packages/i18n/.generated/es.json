@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Registro de cambios",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sé el primero en comentar",
+        "count__exact=*, count__plural=one": "Abrir 1 comentario",
+        "count__exact=*, count__plural=*": "Abrir los {count__number} comentarios"
+      }
+    }
+  ],
+  "entity_comments_write": "Escribe un comentario…",
+  "entity_lightbox_hint": "Pellizca o toca dos veces para ampliar; desliza hacia abajo para cerrar.",
+  "entity_original_label": "Título original",
+  "entity_read_less": "Mostrar menos",
+  "entity_read_more": "Leer más",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Sé el primero en valorar",
+        "count__exact=*, count__plural=one": "Abrir 1 reseña",
+        "count__exact=*, count__plural=*": "Abrir las {count__number} reseñas"
+      }
+    }
+  ],
+  "entity_version_details": "Detalles de la versión",
+  "entity_version_open": "Cambios de la versión {version}",
   "errors_boundary_detail": "El resto de la página sigue funcionando. Intenta cargar esta sección de nuevo.",
   "errors_boundary_title": "Esta parte de la página no cargó",
   "errors_code_conflict_detail": "Esto cambió mientras trabajabas en ello. Recarga para ver la versión más reciente y vuelve a intentarlo.",

@@ -11,15 +11,15 @@ import { categoryPath, profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
-import { CompatBadge, Cover, displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
+import { CompatBadge, displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { CalendarClock, Download, Heart, Scale, Star, TrendingUp } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import { loadModTranslation } from '../../lib/mod-translation.ts';
-import Picture from '../layout/Picture.astro';
 import ActionBar from './ActionBar.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { compatSentence, multiplayerLabel, platformLabel, reviewsPagePath } from './format.ts';
+import GalleryCarousel from './GalleryCarousel.astro';
 import { licenseLabel, taxonomyName } from './i18n.ts';
 import TranslatedText from './TranslatedText.astro';
 
@@ -34,9 +34,6 @@ interface Props {
 
 const { mod, versions, compact = false, overviewHref, loginHref } = Astro.props;
 const locale = Astro.locals.locale;
-const hero = mod.thumbnail ?? mod.gallery[0] ?? null;
-const heroInGallery = hero !== null && mod.gallery.some((image) => image.url === hero.url);
-const heroIndex = heroInGallery ? mod.gallery.findIndex((image) => image.url === hero?.url) + (mod.video ? 1 : 0) : -1;
 const summary = mod.reviewsSummary;
 const author = mod.author;
 const authorName = author.displayName || author.handle;
@@ -61,39 +58,13 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
   {
     !compact && (
       <div class="grid min-w-0 gap-3">
-        <div
-          data-vt-cover-target={String(mod.id)}
-          class="relative aspect-video overflow-hidden rounded-lg border border-border bg-raised"
-          style={hero?.dominantColor ? `background-color:${hero.dominantColor}` : undefined}
-        >
-          {hero ? (
-            heroInGallery ? (
-              <a href={hero.url} data-gallery-index={heroIndex} data-gallery-kind="image" class="block size-full">
-                <Picture
-                  image={hero}
-                  sizes="(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw"
-                  priority
-                  hero
-                  alt={hero.alt ?? m.mod_cover_alt({ name: mod.name })}
-                  class="block size-full object-cover"
-                />
-              </a>
-            ) : (
-              <Picture
-                image={hero}
-                sizes="(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw"
-                priority
-                hero
-                alt={hero.alt ?? m.mod_cover_alt({ name: mod.name })}
-                class="block size-full object-cover"
-              />
-            )
-          ) : (
-            <Cover image={null} seed={mod.slug} name={mod.name} category={mod.category} priority />
-          )}
-        </div>
+        <GalleryCarousel
+          mod={mod}
+          sizes="(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw"
+          label={galleryLabel}
+        />
         {(mod.gallery.length > 1 || mod.video) && (
-          <div data-gallery-strip>
+          <div data-gallery-strip class="max-md:hidden">
             <GalleryStrip
               images={mod.gallery}
               video={mod.video ? { id: mod.video.id, url: mod.video.url } : null}
@@ -105,8 +76,8 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
     )
   }
 
-  <div class="grid min-w-0 content-start gap-4">
-    <div class="grid gap-2">
+  <div class="grid min-w-0 grid-cols-1 content-start gap-4">
+    <div class="grid grid-cols-1 gap-2">
       {
         mod.kind === 'library' && (
           <p class="readout text-signal">{m.mod_kind_library()}</p>
@@ -114,7 +85,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       }
       <h1
         class:list={[
-          'font-display-caps break-words text-fg',
+          'font-display-caps text-balance break-words text-fg [hyphens:auto]',
           compact ? 'text-display-xs' : 'text-display-sm',
         ]}
         lang={translatedName ? locale : (mod.contentLang ?? undefined)}
@@ -123,14 +94,18 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       </h1>
       {
         translatedName && (
-          <p class="break-words text-base text-fg-subtle" lang={mod.contentLang ?? 'en'} translate="no" data-original-name>
-            {mod.name}
+          <p
+            class="flex items-baseline gap-2 text-sm text-fg-subtle"
+            data-original-name
+          >
+            <span class="readout shrink-0 text-2xs text-fg-subtle">{m.entity_original_label()}</span>
+            <span class="min-w-0 break-words text-base text-fg-muted" lang={mod.contentLang ?? 'en'} translate="no">{mod.name}</span>
           </p>
         )
       }
       {
         !compact && mod.shortDescription && !translation?.shortDescription && (
-          <p class="text-lg text-fg-muted" lang={mod.contentLang ?? undefined}>
+          <p class="text-base text-fg-muted md:text-lg" lang={mod.contentLang ?? undefined}>
             {mod.shortDescription}
           </p>
         )
@@ -143,7 +118,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
             locale={locale}
             sourceLang={mod.contentLang}
             source={translation.sources?.shortDescription ?? 'machine'}
-            class="text-lg text-fg-muted"
+            class="text-base text-fg-muted md:text-lg"
           />
         )
       }
@@ -204,7 +179,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       )
     }
 
-    <dl class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+    <dl class:list={['flex flex-wrap gap-x-5 gap-y-2 text-sm', compact && 'max-md:hidden']}>
       <div class="inline-flex items-center gap-1.5">
         <dt class="text-fg-subtle"><Icon icon={Download} size={16} /><span class="sr-only">{m.mod_stat_downloads()}</span></dt>
         <dd class="tabular-nums text-fg">
@@ -246,7 +221,7 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
 
     <ActionBar mod={mod} versions={versions} loginHref={loginHref} />
 
-    <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border border-border bg-raised/60 px-3 py-2 text-sm text-fg-muted">
+    <div class:list={['flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border border-border bg-raised/60 px-3 py-2 text-sm text-fg-muted', compact && 'max-md:hidden']}>
       <CompatBadge status={mod.compatCurrent.status} build={build} size="sm" />
       <span class="min-w-0 flex-1 basis-40">{compatSentence(mod)}</span>
       <a href={`${overviewHref}#field-report`} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">

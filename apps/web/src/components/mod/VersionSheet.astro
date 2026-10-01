@@ -1,0 +1,45 @@
+---
+/**
+ * Changelog sheet of the version rows (`VersionRows.astro`): title, badges and facts of the tapped
+ * version, its sanitised changelog (cloned from the timeline entry) and the actions — download
+ * (the counted route; the dependency prompt still applies) and the version page.
+ * Filled by `scripts/mod/versions.ts`.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Download } from 'lucide-react';
+import ModDialog from './ModDialog.astro';
+
+const hrefClasses =
+  'inline-flex h-12 items-center justify-center gap-2 rounded-md px-4 font-semibold ';
+---
+
+<ModDialog id="version-sheet" size="md" title={m.entity_changelog_title()}>
+  <div class="grid min-w-0 gap-4" data-version-sheet-body>
+    <p class="flex flex-wrap items-center gap-x-2 gap-y-1" data-version-sheet-head></p>
+    <p class="text-xs text-fg-subtle tabular-nums" data-version-sheet-meta></p>
+    <div class="min-w-0" data-version-sheet-changelog></div>
+  </div>
+  <Fragment slot="footer">
+    <div class="flex gap-2 [&>a]:flex-1">
+      <a
+        href="#version-sheet"
+        rel="nofollow"
+        data-version-sheet-download
+        data-label={m.common_download_version_short({ version: '{version}' })}
+        hidden
+        class={`${hrefClasses}flex-[1.4]! whitespace-nowrap bg-primary text-primary-fg hover:bg-primary-hover active:bg-primary-hover`}
+      >
+        <Icon icon={Download} size={18} />
+        <span data-version-sheet-download-label></span>
+      </a>
+      <a
+        href="#version-sheet"
+        data-version-sheet-details
+        class={`${hrefClasses}border border-border-strong bg-raised text-fg`}
+      >
+        {m.entity_version_details()}
+      </a>
+    </div>
+  </Fragment>
+</ModDialog>

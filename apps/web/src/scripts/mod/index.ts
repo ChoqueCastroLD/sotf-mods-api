@@ -5,9 +5,11 @@
  */
 import { initSocialIslands } from '../../islands/comments/social.ts';
 import { pageEntity, track } from '../beacon.ts';
+import { initCarousels } from './carousel.ts';
 import { pageData } from './data.ts';
 import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from './dialogs.ts';
 import { initCompatPrompt, initDownloads } from './download.ts';
+import { initFolds } from './fold.ts';
 import { initFollow, setFollowers } from './follow.ts';
 import { initGallery } from './gallery.ts';
 import { initKitAdd } from './kit-add.ts';
@@ -16,8 +18,11 @@ import { initNsfwGate } from './nsfw.ts';
 import { initProse } from './prose.ts';
 import { whenSession } from './session.ts';
 import { initShare } from './share.ts';
+import { initSheetSections } from './sheets.ts';
+import { initTabs } from './tabs.ts';
 import { initTranslation } from './translation.ts';
 import type { ModPageData } from './types.ts';
+import { initVersions } from './versions.ts';
 import { initWhatsNew } from './whats-new.ts';
 
 let started = false;
@@ -52,12 +57,17 @@ export function initModPage(doc: Document = document): void {
   if (!root || !data) return;
   const session = whenSession();
 
+  safely(() => initSheetSections(root, doc));
   safely(() => initSocialIslands(root, session));
   safely(() => initDialogs(root, doc));
   safely(() => initNsfwGate(root, session));
   safely(() => initDownloads(root, data, doc));
   safely(() => initShare(root, data, doc));
   safely(() => initTranslation(root));
+  safely(() => initCarousels(root));
+  safely(() => initTabs(root));
+  safely(() => initFolds(root));
+  safely(() => initVersions(root, doc));
   safely(() => initGallery(root, data, doc));
   safely(() => initProse(root, data.messages.videoEmbedTitle, doc));
   // Members get the «Did it work?» callout in place from the field-report island (server truth,

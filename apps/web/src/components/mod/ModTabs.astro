@@ -42,14 +42,35 @@ const tabs: Array<{ key: string; label: string; count?: number | null; href: str
   { key: 'comments', label: m.mod_tab_comments(), count: mod.commentsCount, href: `${overview}#comments`, current: false },
 ];
 const indicator = 'loc-host loc-frame [--loc-pip-y:-4px]';
+// Phones: a segmented control (pill on the current segment) instead of the Locator underline.
+const segment =
+  'max-md:h-10 max-md:rounded-lg max-md:px-3.5 max-md:text-[0.9375rem] max-md:active:bg-fg/8 ' +
+  'max-md:aria-[current=page]:bg-surface max-md:aria-[current=page]:text-fg max-md:aria-[current=page]:shadow-[0_1px_0_0_var(--color-border-strong),0_0_0_1px_var(--color-border-strong)] ' +
+  'max-md:aria-[current=page]:[--loc-o:0]! max-md:aria-[current=page]:[--loc-pip-o:0]! max-md:hover:[--loc-o:0]! max-md:hover:[--loc-pip-o:0]!';
 ---
 
-<nav aria-label={m.mod_tabs_label()} class="mt-8">
-  <ul class={tabListClasses}>
+<nav
+  aria-label={m.mod_tabs_label()}
+  data-mod-tabs
+  class="max-md:sticky max-md:top-[4.0625rem] max-md:z-(--z-raised) max-md:-mx-4 max-md:mt-5 max-md:bg-bg/92 max-md:px-3 max-md:py-2 max-md:supports-[backdrop-filter]:bg-bg/80 max-md:supports-[backdrop-filter]:backdrop-blur-md md:mt-8"
+>
+  <ul
+    class:list={[
+      tabListClasses,
+      'max-md:snap-x max-md:snap-proximity max-md:gap-1 max-md:rounded-xl max-md:border max-md:border-border max-md:bg-raised max-md:p-1 max-md:mask-none',
+    ]}
+  >
     {
       tabs.map((tab) => (
-        <li class="flex">
-          <a href={tab.href} data-loc-pip aria-current={tab.current ? 'page' : undefined} class:list={[tabClasses, indicator]}>
+        <li class="flex max-md:snap-center">
+          <a
+            href={tab.href}
+            data-loc-pip
+            data-tab-key={tab.key}
+            data-tab-page={tab.key === 'overview' || tab.key === 'versions' || tab.key === 'reviews' ? '' : undefined}
+            aria-current={tab.current ? 'page' : undefined}
+            class:list={[tabClasses, indicator, segment]}
+          >
             {tab.label}
             {typeof tab.count === 'number' && (
               <span class="rounded-full bg-fg/8 px-1.5 text-xs tabular-nums text-fg-muted">{formatNumber(locale, tab.count)}</span>

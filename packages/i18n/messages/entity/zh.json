@@ -1,0 +1,12 @@
+{
+  "entity_read_more": "展开阅读",
+  "entity_read_less": "收起",
+  "entity_comments_see_all": "{count, plural, =0 {来写第一条评论吧} other {查看全部 # 条评论}}",
+  "entity_comments_write": "写评论…",
+  "entity_reviews_see_all": "{count, plural, =0 {来写第一条评价吧} other {查看全部 # 条评价}}",
+  "entity_changelog_title": "更新日志",
+  "entity_version_open": "版本 {version} 的更新内容",
+  "entity_version_details": "版本详情",
+  "entity_original_label": "原标题",
+  "entity_lightbox_hint": "双指捏合或双击可缩放，向下滑动可关闭。"
+}

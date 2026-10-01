@@ -4,7 +4,9 @@
  */
 import type { ModPageData } from './types.ts';
 
-export function initGallery(root: HTMLElement, data: ModPageData, doc: Document = document): void {
+/** The lightbox needs only two strings; pages without the mod JSON island pass `null`. */
+
+export function initGallery(root: HTMLElement, data: ModPageData | null, doc: Document = document): void {
   if (!doc.getElementById('gallery-dialog')) return;
   root.addEventListener('click', (event) => {
     const link = (event.target as Element | null)?.closest<HTMLAnchorElement>('a[data-gallery-index]');

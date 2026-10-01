@@ -18,7 +18,7 @@ const { items } = Astro.props;
 
 {
   items.length > 0 && (
-    <section id="faq" aria-labelledby="faq-title" class="grid scroll-mt-24 gap-4">
+    <section id="faq" data-fold="closed" aria-labelledby="faq-title" class="grid scroll-mt-24 gap-4">
       <h2 id="faq-title" class={SECTION_TITLE_CLASSES}>
         {m.content_install_faq_title()}
       </h2>

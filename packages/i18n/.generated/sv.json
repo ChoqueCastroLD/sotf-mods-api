@@ -3393,6 +3393,52 @@
       }
     }
   ],
+  "entity_changelog_title": "Ändringslogg",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Skriv den första kommentaren",
+        "count__exact=*, count__plural=one": "Öppna 1 kommentar",
+        "count__exact=*, count__plural=*": "Öppna alla {count__number} kommentarer"
+      }
+    }
+  ],
+  "entity_comments_write": "Skriv en kommentar…",
+  "entity_lightbox_hint": "Nyp eller dubbeltryck för att zooma, svep nedåt för att stänga.",
+  "entity_original_label": "Originaltitel",
+  "entity_read_less": "Visa mindre",
+  "entity_read_more": "Läs mer",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Skriv den första recensionen",
+        "count__exact=*, count__plural=one": "Öppna 1 recension",
+        "count__exact=*, count__plural=*": "Öppna alla {count__number} recensioner"
+      }
+    }
+  ],
+  "entity_version_details": "Versionsdetaljer",
+  "entity_version_open": "Ändringar i version {version}",
   "errors_boundary_detail": "Resten av sidan fungerar fortfarande. Försök ladda det här avsnittet igen.",
   "errors_boundary_title": "Den här delen av sidan laddades inte",
   "errors_code_conflict_detail": "Det här ändrades medan du arbetade med det. Ladda om för att se den senaste versionen och försök igen.",

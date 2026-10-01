@@ -39,8 +39,7 @@ export function failureMessage(data: ModPageData, reason: ApiFailure): string {
   }
 }
 
-function setPressed(target: Target, data: ModPageData, following: boolean): void {
-  const { element } = target;
+function paint(element: Element, target: Target, data: ModPageData, following: boolean): void {
   element.setAttribute('aria-pressed', following ? 'true' : 'false');
   const label = element.querySelector('[data-follow-label]');
   if (label) {
@@ -54,6 +53,17 @@ function setPressed(target: Target, data: ModPageData, following: boolean): void
           ? messages.creatorFollowing
           : messages.creatorFollow;
   }
+}
+
+function setPressed(target: Target, data: ModPageData, following: boolean): void {
+  // The mod has several follow buttons (header, sticky bar on phones): they always agree.
+  if (target.kind === 'mod') {
+    for (const element of target.element.ownerDocument.querySelectorAll('a[data-follow][data-mod-id]')) {
+      paint(element, target, data, following);
+    }
+    return;
+  }
+  paint(target.element, target, data, following);
 }
 
 export function setFollowers(doc: Document, data: ModPageData, count: number): void {

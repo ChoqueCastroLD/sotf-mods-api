@@ -95,7 +95,7 @@ const downloadClasses =
               </p>
             )}
           </div>
-          <div class="col-span-2 flex flex-wrap items-center justify-end gap-2 sm:col-span-1">
+          <div class="col-span-2 flex flex-wrap items-center justify-between gap-2 sm:col-span-1 sm:justify-end">
             <CompatBadge status={item.mod.compatStatus} build={currentBuild} short size="sm" />
             {unavailable ? (
               <span class="text-xs text-fg-muted">{m.kits_item_unavailable()}</span>

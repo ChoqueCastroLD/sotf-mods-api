@@ -3113,6 +3113,46 @@
       }
     }
   ],
+  "entity_changelog_title": "更新日志",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "来写第一条评论吧",
+        "count__exact=*": "查看全部 {count__number} 条评论"
+      }
+    }
+  ],
+  "entity_comments_write": "写评论…",
+  "entity_lightbox_hint": "双指捏合或双击可缩放，向下滑动可关闭。",
+  "entity_original_label": "原标题",
+  "entity_read_less": "收起",
+  "entity_read_more": "展开阅读",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact"
+      ],
+      "match": {
+        "count__exact=0": "来写第一条评价吧",
+        "count__exact=*": "查看全部 {count__number} 条评价"
+      }
+    }
+  ],
+  "entity_version_details": "版本详情",
+  "entity_version_open": "版本 {version} 的更新内容",
   "errors_boundary_detail": "页面其他部分仍可正常使用。请尝试重新加载这一部分。",
   "errors_boundary_title": "页面的这一部分没有加载出来",
   "errors_code_conflict_detail": "在你编辑期间内容发生了变化。请刷新查看最新版本后重试。",

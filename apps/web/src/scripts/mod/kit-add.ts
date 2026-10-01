@@ -54,13 +54,16 @@ function fill(template: string, values: Record<string, string>): string {
 
 export async function openKitAdd(link: HTMLAnchorElement, data: ModPageData, doc: Document = document): Promise<void> {
   const messages = data.messages;
+  // Opened from the «More» sheet of phones: that sheet hands over.
+  link.closest('dialog')?.close();
   const existing = doc.getElementById('kit-add-dialog');
   if (existing instanceof HTMLDialogElement) existing.remove();
 
   const dialog = doc.createElement('dialog');
   dialog.id = 'kit-add-dialog';
   dialog.className =
-    'm-auto w-[min(28rem,calc(100vw-2rem))] rounded-xl border border-border-strong bg-raised p-0 text-fg shadow-xl backdrop:bg-black/60';
+    'm-auto w-[min(28rem,calc(100vw-2rem))] rounded-xl border border-border-strong bg-raised p-0 text-fg shadow-xl backdrop:bg-black/60 ' +
+    'max-md:mb-0 max-md:w-full max-md:max-w-none max-md:rounded-b-none max-md:rounded-t-2xl max-md:border-b-0 max-md:pb-[env(safe-area-inset-bottom)]';
   dialog.setAttribute('aria-labelledby', 'kit-add-title');
   const body = doc.createElement('div');
   body.className = 'grid gap-3 p-4';

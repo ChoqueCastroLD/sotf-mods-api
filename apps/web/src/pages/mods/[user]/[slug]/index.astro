@@ -13,6 +13,7 @@ import { Icon } from '@sotf/ui/icons';
 import { ArrowRight } from 'lucide-react';
 import AtAGlance from '../../../../components/mod/AtAGlance.astro';
 import BundlePanel from '../../../../components/mod/BundlePanel.astro';
+import Clamp from '../../../../components/mod/Clamp.astro';
 import CommentsPreview from '../../../../components/mod/CommentsPreview.astro';
 import CreatorCard from '../../../../components/mod/CreatorCard.astro';
 import DependencyGraph from '../../../../components/mod/DependencyGraph.astro';
@@ -31,6 +32,7 @@ import StatsPanel from '../../../../components/mod/StatsPanel.astro';
 import { modDescription, modFaqJsonLd, modJsonLd, modTitle } from '../../../../components/mod/seo.ts';
 import { SECTION_TITLE_CLASSES } from '../../../../components/mod/styles.ts';
 import TranslatedText from '../../../../components/mod/TranslatedText.astro';
+import VersionRows from '../../../../components/mod/VersionRows.astro';
 import VersionTimeline from '../../../../components/mod/VersionTimeline.astro';
 import WhatsNew from '../../../../components/mod/WhatsNew.astro';
 import { setPageCache } from '../../../../lib/cache/page.ts';
@@ -117,23 +119,25 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
 >
   <section aria-labelledby="overview-title" class="grid gap-4">
     <h2 id="overview-title" class="sr-only">{m.mod_tab_overview()}</h2>
-    {
-      translatedHtml && translation ? (
-        <TranslatedText
-          html
-          translated={translatedHtml}
-          original={descriptionHtml}
-          locale={locale}
-          sourceLang={mod.contentLang}
-          source={translation.sources?.description ?? 'machine'}
-          class="max-w-(--container-prose)"
-        />
-      ) : descriptionHtml ? (
-        <ProseLocator html={descriptionHtml} lang={mod.contentLang ?? undefined} className="max-w-(--container-prose)" />
-      ) : (
-        <p class="text-fg-muted">{m.mod_description_empty()}</p>
-      )
-    }
+    <Clamp>
+      {
+        translatedHtml && translation ? (
+          <TranslatedText
+            html
+            translated={translatedHtml}
+            original={descriptionHtml}
+            locale={locale}
+            sourceLang={mod.contentLang}
+            source={translation.sources?.description ?? 'machine'}
+            class="max-w-(--container-prose)"
+          />
+        ) : descriptionHtml ? (
+          <ProseLocator html={descriptionHtml} lang={mod.contentLang ?? undefined} className="max-w-(--container-prose)" />
+        ) : (
+          <p class="text-fg-muted">{m.mod_description_empty()}</p>
+        )
+      }
+    </Clamp>
     {
       tags.length > 0 && (
         <ul class="flex flex-wrap gap-2" aria-label={m.mod_tags_label()}>
@@ -165,7 +169,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
 
   <WhatsNew mod={mod} />
 
-  <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4">
+  <section id="field-notes" aria-labelledby="field-notes-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
     <div class="flex flex-wrap items-baseline justify-between gap-3">
       <h2 id="field-notes-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_notes()}</h2>
       <a href={href(versionsPagePath(mod), locale)} class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link">
@@ -175,6 +179,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
     </div>
     {
       recentVersions.length > 0 ? (
+        <VersionRows mod={mod} versions={recentVersions} />
         <VersionTimeline mod={mod} versions={recentVersions} />
       ) : (
         <p class="text-fg-muted">{m.mod_versions_empty()}</p>

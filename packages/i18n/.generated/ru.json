@@ -3545,6 +3545,56 @@
       }
     }
   ],
+  "entity_changelog_title": "Список изменений",
+  "entity_comments_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Станьте первым, кто прокомментирует",
+        "count__exact=*, count__plural=one": "Открыть {count__number} комментарий",
+        "count__exact=*, count__plural=few": "Открыть {count__number} комментария",
+        "count__exact=*, count__plural=many": "Открыть {count__number} комментариев",
+        "count__exact=*, count__plural=*": "Открыть {count__number} комментария"
+      }
+    }
+  ],
+  "entity_comments_write": "Напишите комментарий…",
+  "entity_lightbox_hint": "Разведите пальцы или коснитесь дважды, чтобы увеличить; смахните вниз, чтобы закрыть.",
+  "entity_original_label": "Оригинальное название",
+  "entity_read_less": "Свернуть",
+  "entity_read_more": "Читать далее",
+  "entity_reviews_see_all": [
+    {
+      "declarations": [
+        "input count",
+        "local count__exact = count: number maximumFractionDigits=20",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__exact",
+        "count__plural"
+      ],
+      "match": {
+        "count__exact=0, count__plural=*": "Оставьте первый отзыв",
+        "count__exact=*, count__plural=one": "Открыть {count__number} отзыв",
+        "count__exact=*, count__plural=few": "Открыть {count__number} отзыва",
+        "count__exact=*, count__plural=many": "Открыть {count__number} отзывов",
+        "count__exact=*, count__plural=*": "Открыть {count__number} отзыва"
+      }
+    }
+  ],
+  "entity_version_details": "Подробнее о версии",
+  "entity_version_open": "Изменения в версии {version}",
   "errors_boundary_detail": "Остальная страница работает. Попробуйте загрузить этот раздел ещё раз.",
   "errors_boundary_title": "Эта часть страницы не загрузилась",
   "errors_code_conflict_detail": "Пока вы работали, данные изменились. Перезагрузите страницу, чтобы увидеть последнюю версию, и попробуйте снова.",

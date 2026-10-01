@@ -26,6 +26,12 @@ const images = [build.thumbnail, ...build.gallery].filter((image): image is NonN
   return true;
 });
 const total = images.length;
+const offset = build.video ? 1 : 0;
+/** Position of a picture in the lightbox (video first), or null when the lightbox does not hold it. */
+const lightboxIndex = (url: string): number | null => {
+  const position = build.gallery.findIndex((image) => image.url === url);
+  return position === -1 ? null : position + offset;
+};
 const sizes = '(min-width: 80rem) 760px, (min-width: 64rem) 58vw, 100vw';
 const pieces =
   spec.elements === null
@@ -34,7 +40,7 @@ const pieces =
 const corner = 'absolute size-4 border-blueprint';
 ---
 
-<figure class="texture-blueprint relative grid gap-3 rounded-lg border border-blueprint/40 p-3 md:p-4" data-build-gallery>
+<figure class="texture-blueprint relative grid gap-3 rounded-lg border border-blueprint/40 p-3 max-md:-mx-4 max-md:rounded-none max-md:border-x-0 max-md:px-0 max-md:pt-2 md:p-4" data-build-gallery>
   <span aria-hidden="true" class="pointer-events-none absolute inset-1.5">
     <span class={`${corner} start-0 top-0 border-s-2 border-t-2`}></span>
     <span class={`${corner} end-0 top-0 border-e-2 border-t-2`}></span>
@@ -70,32 +76,75 @@ const corner = 'absolute size-4 border-blueprint';
         </div>
       </details>
     ) : (
-      <div class="grid gap-2">
-        <ul
-          class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain rounded-md bg-surface [scrollbar-width:thin] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-          aria-label={m.builds_gallery_label({ name: build.name })}
-          tabindex={total > 1 ? 0 : undefined}
-          data-gallery-track
-        >
-          {images.map((image, index) => (
-            <li
-              id={`build-image-${index + 1}`}
-              class="relative w-full shrink-0 snap-center"
-              aria-label={m.builds_gallery_image({ index: index + 1, total })}
-            >
-              <Picture
-                image={image}
-                sizes={sizes}
-                priority={index === 0}
-                hero={index === 0}
-                alt={image.alt || (index === 0 ? m.builds_og_alt({ name: build.name }) : '')}
-                class="aspect-video w-full object-contain"
-              />
-            </li>
-          ))}
-        </ul>
+      <div class="grid min-w-0 gap-2" data-carousel>
+        <div class="relative min-w-0">
+          <ul
+            class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-surface [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus md:rounded-md md:[scrollbar-width:thin]"
+            aria-label={m.builds_gallery_label({ name: build.name })}
+            tabindex={total > 1 ? 0 : undefined}
+            data-gallery-track
+            data-carousel-track
+          >
+            {images.map((image, index) => {
+              const opens = lightboxIndex(image.url);
+              const picture = (
+                <Picture
+                  image={image}
+                  sizes={sizes}
+                  priority={index === 0}
+                  hero={index === 0}
+                  alt={image.alt || (index === 0 ? m.builds_og_alt({ name: build.name }) : '')}
+                  class="aspect-video w-full object-contain"
+                />
+              );
+              return (
+                <li
+                  id={`build-image-${index + 1}`}
+                  class="relative w-full shrink-0 snap-center snap-always"
+                  aria-label={m.builds_gallery_image({ index: index + 1, total })}
+                  data-carousel-slide
+                >
+                  {opens === null ? (
+                    picture
+                  ) : (
+                    <a href={image.url} data-gallery-index={opens} data-gallery-kind="image" class="block">
+                      {picture}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
+          {total > 1 && (
+            <>
+              <p
+                data-carousel-chip
+                aria-hidden="true"
+                data-template={m.mod_gallery_counter({ index: '{index}', total: '{total}' })}
+                class="pointer-events-none absolute end-3 top-3 rounded-full bg-night-975/70 px-2.5 py-1 font-mono text-xs text-white tabular-nums backdrop-blur-sm md:hidden"
+              >
+                {m.mod_gallery_counter({ index: 1, total })}
+              </p>
+              <div data-carousel-dots data-js-only hidden class="absolute inset-x-0 bottom-2 z-10 flex justify-center md:hidden">
+                <div class="flex items-center rounded-full bg-night-975/55 px-1 backdrop-blur-sm">
+                  {images.map((_, index) => (
+                    <button
+                      type="button"
+                      data-carousel-dot={index}
+                      aria-label={m.builds_gallery_image({ index: index + 1, total })}
+                      aria-current={index === 0 ? 'true' : undefined}
+                      class="group flex size-6 items-center justify-center"
+                    >
+                      <span class="block size-1.5 rounded-full bg-white/50 transition-[width,background-color] duration-(--dur-base) group-aria-[current=true]:w-4 group-aria-[current=true]:bg-blueprint motion-reduce:transition-none" />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+        </div>
         {total > 1 && (
-          <ol class="flex flex-wrap justify-center gap-1.5" aria-label={m.builds_gallery_label({ name: build.name })}>
+          <ol class="flex flex-wrap justify-center gap-1.5 max-md:hidden" aria-label={m.builds_gallery_label({ name: build.name })}>
             {images.map((_, index) => (
               <li>
                 <a
@@ -117,7 +166,7 @@ const corner = 'absolute size-4 border-blueprint';
 
   {
     pieces && (
-      <figcaption class="flex items-center gap-2 font-mono text-2xs text-blueprint">
+      <figcaption class="flex items-center gap-2 px-4 font-mono text-2xs text-blueprint md:px-0">
         <span aria-hidden="true" class="flex flex-1 items-center">
           <span class="h-3 w-px bg-current"></span>
           <span class="h-px flex-1 bg-current"></span>
