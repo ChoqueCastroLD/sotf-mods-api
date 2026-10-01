@@ -7,12 +7,19 @@
  * - inline head scripts (hashed in the CSP): theme, dismissed banners, legacy-token cleanup,
  *   Speculation Rules;
  * - the two preloaded fonts, `SeoHead`, icons and the web manifest;
- * - header, global banners, `<main id="main">`, footer and the mobile tab bar (`chrome={false}`
- *   renders a bare document, e.g. embeds);
- * - one bundled module (`lib/client/boot.ts`, ≤ 15 KB br budget) that wires the vanilla scripts.
+ * - header, global banners, `<main id="main">`, footer, the mobile tab bar and the phone «More»
+ *   sheet (`chrome={false}` renders a bare document, e.g. embeds);
+ * - app-shell metadata: installable web manifest, iOS standalone tags (opaque black status bar: the
+ *   page starts below it, so nothing hides under the clock; the home-indicator inset is still
+ *   handled) and splash screens, safe-area aware viewport (`viewport-fit=cover`);
+ * - the pull-to-refresh indicator on feed pages (`pullToRefresh`, drawn only in the installed app);
+ * - one bundled module (`lib/client/boot.ts`, ≤ 15 KB br budget) that wires the vanilla scripts
+ *   (`boot={false}` for the self-contained offline page).
  *
  * The HTML is identical for every visitor: nothing here reads cookies or the session.
  */
+
+import { m } from '@sotf/i18n/messages';
 import { BANNER_INIT_SCRIPT } from '@sotf/ui/dismissals';
 import { FONT_PRELOADS } from '@sotf/ui/font-preloads';
 import { SkipLink } from '@sotf/ui/skip-link';
@@ -20,10 +27,12 @@ import { THEME_INIT_SCRIPT } from '@sotf/ui/theme';
 import Footer from '../components/layout/Footer.astro';
 import Header from '../components/layout/Header.astro';
 import MobileTabBar from '../components/layout/MobileTabBar.astro';
+import MoreSheet from '../components/layout/MoreSheet.astro';
 import SeoHead, { type SeoProps } from '../components/layout/SeoHead.astro';
 import SiteBanners from '../components/layout/SiteBanners.astro';
 import { loadEnv } from '../lib/env.ts';
 import { toHtmlLang } from '../lib/i18n.ts';
+import { IOS_SPLASH_SCREENS, PULL_TO_REFRESH_TEMPLATES } from '../lib/pwa.ts';
 import { ensureLocals } from '../lib/request-context.ts';
 import type { JsonLd } from '../lib/seo/jsonld.ts';
 import { SPECULATION_RULES_JSON } from '../lib/speculation.ts';
@@ -37,15 +46,20 @@ interface Props {
   /** Page template name for RUM and analytics (`home`, `mod`, `explore`, `404`…). */
   template: string;
   preloadImage?: { href: string; srcset?: string; sizes?: string; type?: string };
-  /** Header, banners, footer and tab bar. Default true. */
+  /** Header, banners, footer, tab bar and More sheet. Default true. */
   chrome?: boolean;
+  /** Load the shared client module. Default true; only the self-contained offline page opts out. */
+  boot?: boolean;
+  /** Draw the pull-to-refresh indicator (installed app). Default: feed-like templates. */
+  pullToRefresh?: boolean;
   /** Extra classes for `<main>`. */
   mainClass?: string;
   /** Entity of the page for analytics (`page_view` with `entityType`/`entityId`). */
   entity?: { type: 'mod' | 'build' | 'kit' | 'user' | 'category' | 'tag'; id: number };
 }
 
-const { seo, jsonLd, template, preloadImage, chrome = true, mainClass, entity } = Astro.props;
+const { seo, jsonLd, template, preloadImage, chrome = true, boot = true, pullToRefresh, mainClass, entity } = Astro.props;
+const withRefresh = chrome && (pullToRefresh ?? PULL_TO_REFRESH_TEMPLATES.has(template));
 const env = loadEnv();
 const locale = ensureLocals(Astro).locale;
 ---
@@ -73,6 +87,15 @@ const locale = ensureLocals(Astro).locale;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="SOTF Mods" />
+    {
+      IOS_SPLASH_SCREENS.map((screen) => (
+        <link rel="apple-touch-startup-image" href={screen.href} media={screen.media} />
+      ))
+    }
     <link rel="alternate" type="application/rss+xml" title="SOTF Mods" href="/feed.xml" />
     {env.adsenseClient && <meta name="google-adsense-account" content={env.adsenseClient} />}
     <script is:inline type="speculationrules" set:html={SPECULATION_RULES_JSON} />
@@ -87,10 +110,31 @@ const locale = ensureLocals(Astro).locale;
     </main>
     {chrome && <Footer />}
     {chrome && <MobileTabBar />}
-    <script>
-      import { boot } from '../lib/client/boot.ts';
+    {chrome && <MoreSheet />}
+    {
+      withRefresh && (
+        <div
+          data-ptr
+          aria-hidden="true"
+          data-label-pull={m.shell_ptr_pull()}
+          data-label-release={m.shell_ptr_release()}
+          data-label-loading={m.shell_ptr_loading()}
+        >
+          <div data-ptr-chip>
+            <span data-ptr-diamond />
+            <span data-ptr-label class="readout text-fg" />
+          </div>
+        </div>
+      )
+    }
+    {
+      boot && (
+        <script>
+          import { boot } from '../lib/client/boot.ts';
 
-      boot();
-    </script>
+          boot();
+        </script>
+      )
+    }
   </body>
 </html>

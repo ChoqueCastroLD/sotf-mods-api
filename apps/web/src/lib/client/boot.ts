@@ -2,12 +2,14 @@
  * The one module every public page loads (PLAN §2.5 «Vanilla TS», §8.2 JS ≤ 15 KB br).
  *
  * Immediate (tiny, needed for interaction): theme/primitives enhancement, header shortcuts,
- * mobile chrome, relogin banner, moon phase, view transitions, account hint, and for members the
- * account's display preferences, the remembered language (`scripts/locale-pref.ts`: saves the
- * choice, auto-applies or asks when the URL's language differs) (`scripts/account-settings.ts`).
- * Idle (never competes with the LCP): season + December snow, language suggestion (lazy chunk
- * with its three messages), the analytics beacon and RUM, and ads (lazy chunk, guests with ad
- * slots only).
+ * mobile chrome (scroll-aware bars, bottom sheets, install prompt, pull-to-refresh in the app),
+ * relogin banner, moon phase, view transitions, account hint, and for members the account's
+ * display preferences (`scripts/account-settings.ts`) and the remembered language
+ * (`scripts/locale-pref.ts`: saves the choice, auto-applies or asks when the URL's language
+ * differs).
+ * Idle (never competes with the LCP): service worker (offline page, install guide), the sheet
+ * module, season + December snow, language suggestion (lazy chunk with its three messages), the
+ * analytics beacon and RUM, and ads (lazy chunk, guests with ad slots only).
  */
 import { bindCmdkTrigger } from '../../islands/cmdk/Trigger.ts';
 import { initSignalsBell } from '../../islands/signals/mount.ts';
@@ -17,10 +19,13 @@ import { initBeacon } from '../../scripts/beacon.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
 import { initLocalePreference } from '../../scripts/locale-pref.ts';
 import { initMoon } from '../../scripts/moon.ts';
-import { initOfflineGuides } from '../../scripts/offline-guides.ts';
+import { initPullToRefresh } from '../../scripts/pull-to-refresh.ts';
+import { initServiceWorker } from '../../scripts/service-worker.ts';
 import { initTheme } from '../../scripts/theme.ts';
 import { initViewTransitions } from '../../scripts/view-transitions.ts';
 import { initChrome } from './chrome.ts';
+import { initInstall } from './install.ts';
+import { initSheets, preloadSheets } from './sheet-loader.ts';
 
 function whenIdle(task: () => void): void {
   if ('requestIdleCallback' in window) requestIdleCallback(task, { timeout: 3000 });
@@ -54,6 +59,9 @@ export function boot(): void {
   safely(() => initTheme());
   safely(() => bindCmdkTrigger());
   safely(() => initChrome());
+  safely(() => initSheets());
+  safely(() => initInstall());
+  safely(() => initPullToRefresh());
   safely(() => initReloginBanner());
   safely(() => initMoon());
   safely(() => initViewTransitions());
@@ -63,7 +71,8 @@ export function boot(): void {
   safely(() => initLocalePreference());
   whenIdle(() => {
     safely(() => initBeacon());
-    safely(() => initOfflineGuides());
+    safely(() => preloadSheets());
+    safely(() => initServiceWorker());
     safely(() => import('../../scripts/seasonal.ts').then(({ initSeasonal }) => initSeasonal()));
     if (mayNeedLanguageSuggestion()) {
       safely(() => import('../../scripts/lang-suggest.ts').then(({ initLangSuggest }) => initLangSuggest()));

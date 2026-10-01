@@ -29,9 +29,22 @@ function sha256(path: string): string {
   return createHash('sha256').update(readFileSync(path)).digest('hex');
 }
 
-/** Web app manifest (PLAN §4.4 `/manifest.webmanifest`). English: the manifest is not localized. */
+/** App shortcuts (long-press the home-screen icon). English: the manifest is not localized. */
+const SHORTCUTS = [
+  { name: 'Explore mods', short_name: 'Explore', url: '/mods' },
+  { name: 'Install guide', short_name: 'Install', url: '/install' },
+  { name: 'Search', short_name: 'Search', url: '/search' },
+  { name: 'Share logs', short_name: 'Logs', url: '/logs' },
+] as const;
+
+/**
+ * Web app manifest (PLAN §4.4 `/manifest.webmanifest`): installable standalone app (`id`, display
+ * overrides, shortcuts). English: the manifest is not localized.
+ */
 export function webManifest(): string {
+  const icons = manifestIcons('/');
   const manifest = {
+    id: '/',
     name: m.meta_site_name({}, { locale: 'en' }),
     short_name: 'SOTF Mods',
     description: m.meta_default_description({}, { locale: 'en' }),
@@ -40,9 +53,17 @@ export function webManifest(): string {
     start_url: '/',
     scope: '/',
     display: 'standalone',
+    display_override: ['standalone', 'minimal-ui'],
+    orientation: 'any',
     background_color: themeColor.night,
     theme_color: themeColor.night,
-    icons: manifestIcons('/'),
+    categories: ['games', 'entertainment', 'utilities'],
+    prefer_related_applications: false,
+    icons,
+    shortcuts: SHORTCUTS.map((shortcut) => ({
+      ...shortcut,
+      icons: icons.filter((icon) => icon.purpose === 'any' && icon.sizes === '192x192'),
+    })),
   };
   return `${JSON.stringify(manifest, null, 2)}\n`;
 }
