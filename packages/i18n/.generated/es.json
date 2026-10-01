@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Resultados",
   "explore_search_browse": "Ver categorías",
+  "explore_search_clear_input": "Borrar la búsqueda",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,6 +3987,9 @@
   "explore_search_in_explore": "Filtrar estos resultados en Explorar",
   "explore_search_prompt_text": "Busca mods, builds, kits, creadores y guías por nombre, autor o ID del manifiesto.",
   "explore_search_prompt_title": "¿Qué estás buscando?",
+  "explore_search_recent_clear": "Borrar",
+  "explore_search_recent_remove": "Quitar «{query}» de las búsquedas recientes",
+  "explore_search_recent_title": "Búsquedas recientes",
   "explore_search_type_all": "Todo",
   "explore_search_type_pages": "Páginas",
   "explore_search_types_label": "Tipo de resultado",

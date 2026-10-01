@@ -4134,6 +4134,7 @@
   ],
   "explore_results_heading": "Результаты",
   "explore_search_browse": "Смотреть категории",
+  "explore_search_clear_input": "Очистить поиск",
   "explore_search_count": [
     {
       "declarations": [
@@ -4164,6 +4165,9 @@
   "explore_search_in_explore": "Отфильтровать эти результаты в обзоре",
   "explore_search_prompt_text": "Ищите моды, постройки, наборы, авторов и руководства по названию, автору или ID манифеста.",
   "explore_search_prompt_title": "Что вы ищете?",
+  "explore_search_recent_clear": "Очистить",
+  "explore_search_recent_remove": "Удалить «{query}» из недавних запросов",
+  "explore_search_recent_title": "Недавние запросы",
   "explore_search_type_all": "Всё",
   "explore_search_type_pages": "Страницы",
   "explore_search_types_label": "Тип результата",

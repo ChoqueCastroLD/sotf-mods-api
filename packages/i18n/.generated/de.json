@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Ergebnisse",
   "explore_search_browse": "Kategorien ansehen",
+  "explore_search_clear_input": "Suche leeren",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,6 +3987,9 @@
   "explore_search_in_explore": "Diese Ergebnisse unter Entdecken filtern",
   "explore_search_prompt_text": "Suche Mods, Builds, Kits, Creator und Anleitungen nach Name, Autor oder Manifest-ID.",
   "explore_search_prompt_title": "Wonach suchst du?",
+  "explore_search_recent_clear": "Löschen",
+  "explore_search_recent_remove": "„{query}“ aus den letzten Suchen entfernen",
+  "explore_search_recent_title": "Letzte Suchen",
   "explore_search_type_all": "Alle",
   "explore_search_type_pages": "Seiten",
   "explore_search_types_label": "Ergebnistyp",

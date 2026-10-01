@@ -185,5 +185,9 @@
   "explore_compare_none": "Yok",
   "explore_compare_crumb": "Karşılaştır",
   "explore_sort_title": "Sıralama ölçütü",
-  "explore_sort_close": "Sıralamayı kapat"
+  "explore_sort_close": "Sıralamayı kapat",
+  "explore_search_recent_title": "Son aramalar",
+  "explore_search_recent_clear": "Temizle",
+  "explore_search_recent_remove": "“{query}” aramasını son aramalardan kaldır",
+  "explore_search_clear_input": "Aramayı temizle"
 }

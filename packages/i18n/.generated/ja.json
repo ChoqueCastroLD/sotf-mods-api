@@ -3634,6 +3634,7 @@
   ],
   "explore_results_heading": "結果",
   "explore_search_browse": "カテゴリを見る",
+  "explore_search_clear_input": "検索をクリア",
   "explore_search_count": [
     {
       "declarations": [
@@ -3659,6 +3660,9 @@
   "explore_search_in_explore": "この結果を「探す」で絞り込む",
   "explore_search_prompt_text": "名前、作者、マニフェスト ID で MOD、建築、キット、クリエイター、ガイドを検索できます。",
   "explore_search_prompt_title": "何をお探しですか？",
+  "explore_search_recent_clear": "消去",
+  "explore_search_recent_remove": "「{query}」を最近の検索から削除",
+  "explore_search_recent_title": "最近の検索",
   "explore_search_type_all": "すべて",
   "explore_search_type_pages": "ページ",
   "explore_search_types_label": "結果の種類",

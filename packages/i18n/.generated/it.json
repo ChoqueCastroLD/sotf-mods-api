@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Risultati",
   "explore_search_browse": "Sfoglia le categorie",
+  "explore_search_clear_input": "Cancella la ricerca",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,6 +3987,9 @@
   "explore_search_in_explore": "Filtra questi risultati in Esplora",
   "explore_search_prompt_text": "Cerca mod, build, kit, creator e guide per nome, autore o ID del manifest.",
   "explore_search_prompt_title": "Cosa stai cercando?",
+  "explore_search_recent_clear": "Cancella",
+  "explore_search_recent_remove": "Rimuovi «{query}» dalle ricerche recenti",
+  "explore_search_recent_title": "Ricerche recenti",
   "explore_search_type_all": "Tutto",
   "explore_search_type_pages": "Pagine",
   "explore_search_types_label": "Tipo di risultato",

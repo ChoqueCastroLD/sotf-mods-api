@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Resultaten",
   "explore_search_browse": "Categorieën bekijken",
+  "explore_search_clear_input": "Zoekopdracht wissen",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,6 +3987,9 @@
   "explore_search_in_explore": "Deze resultaten filteren in Verkennen",
   "explore_search_prompt_text": "Zoek mods, builds, kits, makers en handleidingen op naam, maker of manifest-ID.",
   "explore_search_prompt_title": "Waar ben je naar op zoek?",
+  "explore_search_recent_clear": "Wissen",
+  "explore_search_recent_remove": "“{query}” verwijderen uit recente zoekopdrachten",
+  "explore_search_recent_title": "Recente zoekopdrachten",
   "explore_search_type_all": "Alles",
   "explore_search_type_pages": "Pagina’s",
   "explore_search_types_label": "Soort resultaat",

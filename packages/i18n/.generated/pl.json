@@ -4134,6 +4134,7 @@
   ],
   "explore_results_heading": "Wyniki",
   "explore_search_browse": "Przeglądaj kategorie",
+  "explore_search_clear_input": "Wyczyść wyszukiwanie",
   "explore_search_count": [
     {
       "declarations": [
@@ -4164,6 +4165,9 @@
   "explore_search_in_explore": "Filtruj te wyniki w Przeglądaj",
   "explore_search_prompt_text": "Szukaj modów, buildów, zestawów, twórców i poradników po nazwie, autorze lub ID manifestu.",
   "explore_search_prompt_title": "Czego szukasz?",
+  "explore_search_recent_clear": "Wyczyść",
+  "explore_search_recent_remove": "Usuń „{query}” z ostatnich wyszukiwań",
+  "explore_search_recent_title": "Ostatnie wyszukiwania",
   "explore_search_type_all": "Wszystko",
   "explore_search_type_pages": "Strony",
   "explore_search_types_label": "Rodzaj wyniku",

@@ -185,5 +185,9 @@
   "explore_compare_none": "无",
   "explore_compare_crumb": "对比",
   "explore_sort_title": "排序方式",
-  "explore_sort_close": "关闭排序"
+  "explore_sort_close": "关闭排序",
+  "explore_search_recent_title": "最近搜索",
+  "explore_search_recent_clear": "清除",
+  "explore_search_recent_remove": "从最近搜索中移除“{query}”",
+  "explore_search_clear_input": "清空搜索"
 }

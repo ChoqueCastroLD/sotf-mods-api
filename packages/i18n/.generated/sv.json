@@ -3958,6 +3958,7 @@
   ],
   "explore_results_heading": "Resultat",
   "explore_search_browse": "Bläddra bland kategorier",
+  "explore_search_clear_input": "Rensa sökningen",
   "explore_search_count": [
     {
       "declarations": [
@@ -3986,6 +3987,9 @@
   "explore_search_in_explore": "Filtrera resultaten i Utforska",
   "explore_search_prompt_text": "Sök moddar, byggen, kit, skapare och guider på namn, skapare eller manifest-ID.",
   "explore_search_prompt_title": "Vad letar du efter?",
+  "explore_search_recent_clear": "Rensa",
+  "explore_search_recent_remove": "Ta bort ”{query}” från senaste sökningar",
+  "explore_search_recent_title": "Senaste sökningar",
   "explore_search_type_all": "Allt",
   "explore_search_type_pages": "Sidor",
   "explore_search_types_label": "Resultattyp",

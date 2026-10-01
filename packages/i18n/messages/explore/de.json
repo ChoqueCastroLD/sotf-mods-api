@@ -185,5 +185,9 @@
   "explore_compare_none": "Keine",
   "explore_compare_crumb": "Vergleichen",
   "explore_sort_title": "Sortieren nach",
-  "explore_sort_close": "Sortierung schließen"
+  "explore_sort_close": "Sortierung schließen",
+  "explore_search_recent_title": "Letzte Suchen",
+  "explore_search_recent_clear": "Löschen",
+  "explore_search_recent_remove": "„{query}“ aus den letzten Suchen entfernen",
+  "explore_search_clear_input": "Suche leeren"
 }

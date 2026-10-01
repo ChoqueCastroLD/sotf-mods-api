@@ -185,5 +185,9 @@
   "explore_compare_none": "Inga",
   "explore_compare_crumb": "Jämför",
   "explore_sort_title": "Sortera efter",
-  "explore_sort_close": "Stäng sortering"
+  "explore_sort_close": "Stäng sortering",
+  "explore_search_recent_title": "Senaste sökningar",
+  "explore_search_recent_clear": "Rensa",
+  "explore_search_recent_remove": "Ta bort ”{query}” från senaste sökningar",
+  "explore_search_clear_input": "Rensa sökningen"
 }

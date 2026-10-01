@@ -3634,6 +3634,7 @@
   ],
   "explore_results_heading": "结果",
   "explore_search_browse": "浏览分类",
+  "explore_search_clear_input": "清空搜索",
   "explore_search_count": [
     {
       "declarations": [
@@ -3659,6 +3660,9 @@
   "explore_search_in_explore": "在探索中筛选这些结果",
   "explore_search_prompt_text": "按名称、作者或清单 ID 搜索模组、建筑、套装、创作者和指南。",
   "explore_search_prompt_title": "你在找什么？",
+  "explore_search_recent_clear": "清除",
+  "explore_search_recent_remove": "从最近搜索中移除“{query}”",
+  "explore_search_recent_title": "最近搜索",
   "explore_search_type_all": "全部",
   "explore_search_type_pages": "页面",
   "explore_search_types_label": "结果类型",

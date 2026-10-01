@@ -17,6 +17,9 @@ import { serverApi } from '../lib/api.ts';
 import { setPageCache } from '../lib/cache/page.ts';
 import { pageCache } from '../lib/cache/policy.ts';
 import { href } from '../lib/i18n.ts';
+import { loadTaxonomy } from '../components/explore/taxonomy.ts';
+import { Icon } from '@sotf/ui/icons';
+import { Clock, Search as SearchIcon, X } from 'lucide-react';
 
 const SEARCH_LIMIT = 50;
 const TYPES = ['mod', 'build', 'kit', 'user', 'page'] as const;
@@ -69,6 +72,7 @@ const searchHref = (next: SearchType | null) => {
 };
 const filters = [{ key: null, label: m.explore_search_type_all() }, ...TYPES.map((key) => ({ key, label: typeLabels[key] }))];
 const exploreHref = href(`/mods?${new URLSearchParams({ type: 'all', q }).toString()}`, locale);
+const browseCategories = q ? [] : (await loadTaxonomy(locale)).categories.filter((category) => category.kind === 'mod');
 const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty();
 ---
 
@@ -83,62 +87,129 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
   }}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_search_label() }]}
 >
-  <div class="flex flex-col gap-6" data-search-page="" data-search-query={q} data-search-total={total}>
-    <header class="flex flex-col gap-4">
+  <div
+    class="flex min-w-0 flex-col gap-4 md:gap-6"
+    data-search-page=""
+    data-search-query={q}
+    data-search-total={total}
+    data-search-base={href('/search', locale)}
+  >
+    <header class="flex flex-col gap-2">
       <p class="readout text-signal">{m.common_search_label()}</p>
       <h1 class="font-display-caps text-display-sm text-fg">
         {q ? m.explore_search_heading_query({ query: q }) : m.explore_search_heading()}
       </h1>
+    </header>
+
+    <div class="search-bar" data-search-bar="">
       <search class="max-w-2xl">
-        <form method="get" action={href('/search', locale)} class="flex gap-2">
+        <form method="get" action={href('/search', locale)} class="flex gap-2" data-search-form="">
           {type && <input type="hidden" name="type" value={type} />}
           <label for="search-q" class="sr-only">{m.common_search_label()}</label>
-          <input
-            id="search-q"
-            name="q"
-            type="search"
-            value={q}
-            maxlength="100"
-            enterkeyhint="search"
-            autocomplete="off"
-            placeholder={m.common_search_placeholder()}
-            class="h-12 min-w-0 flex-1 rounded-md border border-border-strong bg-surface px-3 text-base text-fg placeholder:text-fg-subtle"
-          />
-          <button type="submit" class="inline-flex h-12 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow">
+          <div class="relative min-w-0 flex-1">
+            <span class="pointer-events-none absolute inset-y-0 start-3.5 flex items-center text-fg-subtle">
+              <Icon icon={SearchIcon} size={20} />
+            </span>
+            <input
+              id="search-q"
+              name="q"
+              type="search"
+              value={q}
+              maxlength="100"
+              enterkeyhint="search"
+              autocomplete="off"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder={m.common_search_placeholder()}
+              class="h-12 w-full rounded-full border border-border-strong bg-sunken ps-11 pe-11 text-base text-fg placeholder:text-fg-subtle focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-focus md:rounded-md"
+            />
+            <button
+              type="button"
+              hidden
+              data-search-clear=""
+              class="absolute inset-y-1 end-1 inline-flex size-10 items-center justify-center rounded-full text-fg-muted hover:bg-fg/8 hover:text-fg"
+            >
+              <Icon icon={X} size={18} />
+              <span class="sr-only">{m.explore_search_clear_input()}</span>
+            </button>
+          </div>
+          <button
+            type="submit"
+            class="inline-flex h-12 items-center rounded-full bg-primary px-5 font-semibold text-primary-fg shadow-glow max-md:hidden md:rounded-md"
+          >
             {m.common_search_label()}
           </button>
         </form>
       </search>
+
       {
-        q && !failed && (
-          <p class="font-mono text-sm text-fg-muted tabular-nums" aria-live="polite">
-            {m.explore_search_count({ count: total, query: q })}
-          </p>
+        q && (
+          <nav aria-label={m.explore_search_types_label()} class="-mx-4 mt-1 md:mx-0">
+            <ul class="search-tabs flex min-w-0 gap-1 overflow-x-auto border-b border-border px-4 md:px-0">
+              {filters.map((filter) => (
+                <li class="shrink-0">
+                  <a
+                    href={searchHref(filter.key)}
+                    rel="nofollow"
+                    aria-current={filter.key === type ? 'page' : undefined}
+                    class:list={[
+                      'inline-flex h-11 items-center border-b-2 px-3 text-sm font-semibold whitespace-nowrap',
+                      filter.key === type ? 'border-primary text-fg' : 'border-transparent text-fg-muted hover:text-fg',
+                    ]}
+                  >
+                    {filter.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
         )
       }
-    </header>
+    </div>
 
     {
-      q && (
-        <nav aria-label={m.explore_search_types_label()} class="-mx-1 overflow-x-auto">
-          <ul class="flex min-w-max gap-1 border-b border-border px-1">
-            {filters.map((filter) => (
+      q && !failed && (
+        <p class="font-mono text-sm text-fg-muted tabular-nums" aria-live="polite">
+          {m.explore_search_count({ count: total, query: q })}
+        </p>
+      )
+    }
+
+    {
+      !q && (
+        <section hidden data-search-recents="" aria-labelledby="search-recent-title" class="flex flex-col gap-1">
+          <div class="flex items-center justify-between gap-3">
+            <h2 id="search-recent-title" class="readout">{m.explore_search_recent_title()}</h2>
+            <button
+              type="button"
+              data-search-recents-clear=""
+              class="inline-flex min-h-11 items-center px-2 text-sm font-medium text-link underline underline-offset-3"
+            >
+              {m.explore_search_recent_clear()}
+            </button>
+          </div>
+          <ul data-search-recents-list="" data-remove-label={m.explore_search_recent_remove({ query: '{query}' })} class="divide-y divide-border rounded-xl border border-border bg-surface" />
+        </section>
+      )
+    }
+
+    {
+      !q && browseCategories.length > 0 && (
+        <section aria-labelledby="search-browse-title" class="flex flex-col gap-3">
+          <h2 id="search-browse-title" class="readout">{m.explore_search_browse()}</h2>
+          <ul class="flex flex-wrap gap-2">
+            {browseCategories.map((category) => (
               <li>
                 <a
-                  href={searchHref(filter.key)}
-                  rel="nofollow"
-                  aria-current={filter.key === type ? 'page' : undefined}
-                  class:list={[
-                    'inline-flex h-11 items-center border-b-2 px-3 text-sm font-semibold',
-                    filter.key === type ? 'border-primary text-fg' : 'border-transparent text-fg-muted hover:text-fg',
-                  ]}
+                  href={href(`/categories/${category.slug}`, locale)}
+                  class="inline-flex h-11 items-center gap-2 rounded-full border border-border-strong bg-surface px-4 text-sm font-medium text-fg active:bg-raised"
                 >
-                  {filter.label}
+                  {category.names[locale] ?? category.name}
                 </a>
               </li>
             ))}
           </ul>
-        </nav>
+        </section>
       )
     }
 
@@ -170,6 +241,26 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
       )
     }
   </div>
+
+  <style is:global>
+    .search-tabs {
+      scrollbar-width: none;
+    }
+    .search-tabs::-webkit-scrollbar {
+      display: none;
+    }
+    @media (width < 48rem) {
+      .search-bar {
+        position: sticky;
+        top: var(--sticky-top, 4rem);
+        z-index: var(--z-raised, 10);
+        margin-inline: -1rem;
+        padding: 0.5rem 1rem 0;
+        background: color-mix(in oklab, var(--color-bg) 94%, transparent);
+        backdrop-filter: blur(12px);
+      }
+    }
+  </style>
 
   <script>
     import { initSearchPage } from '../scripts/explore/search.ts';
