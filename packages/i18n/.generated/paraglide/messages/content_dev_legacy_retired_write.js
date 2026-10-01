@@ -18,7 +18,7 @@ const de_content_dev_legacy_retired_write = /** @type {(inputs: Content_Dev_Lega
 };
 
 const fr_content_dev_legacy_retired_write = /** @type {(inputs: Content_Dev_Legacy_Retired_WriteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les routes d’écriture retirées (envois, modifications, commentaires, votes) répondent aussi 410 avec la même enveloppe : status false, error GONE. Utilisez l’API v2 avec un jeton.`)
+	return /** @type {LocalizedString} */ (`Les routes d’écriture retirées (envois, modifications, commentaires, votes) répondent aussi 410 avec la même enveloppe : status false, error GONE. Utilisez l’API v2 avec un jeton.`)
 };
 
 const it_content_dev_legacy_retired_write = /** @type {(inputs: Content_Dev_Legacy_Retired_WriteInputs) => LocalizedString} */ () => {

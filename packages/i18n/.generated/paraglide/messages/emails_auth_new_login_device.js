@@ -18,7 +18,7 @@ const de_emails_auth_new_login_device = /** @type {(inputs: Emails_Auth_New_Logi
 };
 
 const fr_emails_auth_new_login_device = /** @type {(inputs: Emails_Auth_New_Login_DeviceInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Appareil : ${i?.device}`)
+	return /** @type {LocalizedString} */ (`Appareil : ${i?.device}`)
 };
 
 const it_emails_auth_new_login_device = /** @type {(inputs: Emails_Auth_New_Login_DeviceInputs) => LocalizedString} */ (i) => {

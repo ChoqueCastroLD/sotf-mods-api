@@ -18,7 +18,7 @@ const de_emails_notify_item_compat_prompt = /** @type {(inputs: Emails_Notify_It
 };
 
 const fr_emails_notify_item_compat_prompt = /** @type {(inputs: Emails_Notify_Item_Compat_PromptInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`La version ${i?.build} du jeu est sortie : dites-nous si les mods téléchargés fonctionnent toujours`)
+	return /** @type {LocalizedString} */ (`La version ${i?.build} du jeu est sortie : dites-nous si les mods téléchargés fonctionnent toujours`)
 };
 
 const it_emails_notify_item_compat_prompt = /** @type {(inputs: Emails_Notify_Item_Compat_PromptInputs) => LocalizedString} */ (i) => {

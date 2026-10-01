@@ -18,7 +18,7 @@ const de_signals_kit_comment_reply = /** @type {(inputs: Signals_Kit_Comment_Rep
 };
 
 const fr_signals_kit_comment_reply = /** @type {(inputs: Signals_Kit_Comment_ReplyInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.actor} a répondu à votre commentaire sur le kit « ${i?.kit} »`)
+	return /** @type {LocalizedString} */ (`${i?.actor} a répondu à votre commentaire sur le kit « ${i?.kit} »`)
 };
 
 const it_signals_kit_comment_reply = /** @type {(inputs: Signals_Kit_Comment_ReplyInputs) => LocalizedString} */ (i) => {

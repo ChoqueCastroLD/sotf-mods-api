@@ -7,9 +7,9 @@
  *   error state, never cached.
  */
 import { m } from '@sotf/i18n/messages';
-import { KitsEmpty, KitsError } from '../../components/kits/KitStates.tsx';
 import { groupJams, loadJamList } from '../../components/jams/data.ts';
 import JamCard from '../../components/jams/JamCard.astro';
+import { KitsEmpty, KitsError } from '../../components/kits/KitStates.tsx';
 import { configureModDomainI18n } from '../../components/mod/i18n.ts';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';

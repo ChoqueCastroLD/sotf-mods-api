@@ -18,6 +18,7 @@ const pref = (mode: 'ask' | 'stay' | 'switch' | 'original') => ({ locale: 'es', 
 function clear() {
   localStorage.clear();
   sessionStorage.clear();
+  // biome-ignore lint/suspicious/noDocumentCookie: jsdom test fixture for the cookie fallback
   document.cookie = 'sotf_locale=; Max-Age=0; Path=/';
   document.head.innerHTML = '';
   document.body.innerHTML = '';
@@ -58,9 +59,11 @@ describe('preference store', () => {
 
   it('falls back to the cookie and ignores garbage', () => {
     localStorage.setItem(PREF_KEY, '{oops');
+    // biome-ignore lint/suspicious/noDocumentCookie: jsdom test fixture for the cookie fallback
     document.cookie = 'sotf_locale=de; Path=/';
     expect(readPref()).toEqual({ locale: 'de', mode: 'ask' });
     localStorage.setItem(PREF_KEY, JSON.stringify({ locale: 'xx', mode: 'switch' }));
+    // biome-ignore lint/suspicious/noDocumentCookie: jsdom test fixture for the cookie fallback
     document.cookie = 'sotf_locale=; Max-Age=0; Path=/';
     expect(readPref()).toBeNull();
   });

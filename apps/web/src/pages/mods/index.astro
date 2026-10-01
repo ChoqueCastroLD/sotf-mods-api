@@ -10,7 +10,7 @@
  * - Indexable: `/mods` and `/mods?page=N`; any filter → `noindex, follow` + canonical to `/mods`.
  * - Cache: E(300) `list:mods` (+ `html`, `locale:{lc}`); the API failing → 503, not cached.
  */
-import { localizeCards } from '../../lib/localize.ts';
+
 import { m } from '@sotf/i18n/messages';
 import ExploreView from '../../components/explore/ExploreView.astro';
 import { loadListing } from '../../components/explore/load.ts';
@@ -21,6 +21,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
+import { localizeCards } from '../../lib/localize.ts';
 
 const locale = Astro.locals.locale;
 setPageCache(Astro, pageCache.listMods());

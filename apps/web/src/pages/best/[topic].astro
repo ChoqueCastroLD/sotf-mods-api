@@ -7,7 +7,7 @@
  *
  * Indexable from 5 items (the same threshold as the best sitemap); E(3600) `list:mods`. Unknown topic → 404; other letter cases → 301.
  */
-import { localizeCards } from '../../lib/localize.ts';
+
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { formatDate, toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -27,6 +27,7 @@ import { setPageCache } from '../../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../../lib/cache/policy.ts';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { localizeCards } from '../../lib/localize.ts';
 import { BEST_INDEX_MIN_ITEMS } from '../../lib/seo/sitemaps.ts';
 
 const locale = Astro.locals.locale;

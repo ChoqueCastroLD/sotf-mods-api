@@ -18,7 +18,7 @@ const de_emails_auth_security_change_not_you = /** @type {(inputs: Emails_Auth_S
 };
 
 const fr_emails_auth_security_change_not_you = /** @type {(inputs: Emails_Auth_Security_Change_Not_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce n’était pas vous ? Réinitialisez votre mot de passe immédiatement et vérifiez vos sessions actives.`)
+	return /** @type {LocalizedString} */ (`Ce n’était pas vous ? Réinitialisez votre mot de passe immédiatement et vérifiez vos sessions actives.`)
 };
 
 const it_emails_auth_security_change_not_you = /** @type {(inputs: Emails_Auth_Security_Change_Not_YouInputs) => LocalizedString} */ () => {

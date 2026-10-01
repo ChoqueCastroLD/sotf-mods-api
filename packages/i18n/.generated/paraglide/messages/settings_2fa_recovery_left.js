@@ -18,7 +18,7 @@ const de_settings_2fa_recovery_left = /** @type {(inputs: Settings_2fa_Recovery_
 };
 
 const fr_settings_2fa_recovery_left = /** @type {(inputs: Settings_2fa_Recovery_LeftInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Codes de récupération restants : ${i?.count}`)
+	return /** @type {LocalizedString} */ (`Codes de récupération restants : ${i?.count}`)
 };
 
 const it_settings_2fa_recovery_left = /** @type {(inputs: Settings_2fa_Recovery_LeftInputs) => LocalizedString} */ (i) => {

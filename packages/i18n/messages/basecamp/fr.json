@@ -454,7 +454,7 @@
   "basecamp_listing_legacy_body": "Elle a été écrite sur l'ancien site, son HTML s'affiche donc encore avec sa mise en forme. Convertissez-la en Markdown pour la modifier comme une nouvelle description.",
   "basecamp_listing_convert": "Convertir en Markdown",
   "basecamp_listing_convert_save_first": "Enregistrez ou annulez d'abord vos modifications.",
-  "basecamp_listing_convert_title": "Convertir cette description en Markdown ?",
+  "basecamp_listing_convert_title": "Convertir cette description en Markdown ?",
   "basecamp_listing_convert_body": "Le HTML brut s'affichera désormais comme du texte. Il n'y a pas de retour en arrière.",
   "basecamp_listing_convert_done": "Description convertie en Markdown."
 }

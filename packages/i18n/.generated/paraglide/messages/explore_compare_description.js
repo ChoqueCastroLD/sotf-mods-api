@@ -18,7 +18,7 @@ const de_explore_compare_description = /** @type {(inputs: Explore_Compare_Descr
 };
 
 const fr_explore_compare_description = /** @type {(inputs: Explore_Compare_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Placez des mods Sons of the Forest côte à côte : téléchargements, note, compatibilité, rôle en multijoueur, licence et dépendances.`)
+	return /** @type {LocalizedString} */ (`Placez des mods Sons of the Forest côte à côte : téléchargements, note, compatibilité, rôle en multijoueur, licence et dépendances.`)
 };
 
 const it_explore_compare_description = /** @type {(inputs: Explore_Compare_DescriptionInputs) => LocalizedString} */ () => {

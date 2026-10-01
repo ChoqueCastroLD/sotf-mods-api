@@ -18,7 +18,7 @@ const de_settings_notif_compat_prompt = /** @type {(inputs: Settings_Notif_Compa
 };
 
 const fr_settings_notif_compat_prompt = /** @type {(inputs: Settings_Notif_Compat_PromptInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Invitations « Ça a marché ? »`)
+	return /** @type {LocalizedString} */ (`Invitations « Ça a marché ? »`)
 };
 
 const it_settings_notif_compat_prompt = /** @type {(inputs: Settings_Notif_Compat_PromptInputs) => LocalizedString} */ () => {

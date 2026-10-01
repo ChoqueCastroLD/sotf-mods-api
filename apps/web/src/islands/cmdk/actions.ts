@@ -88,6 +88,7 @@ export function buildActions(context: ActionContext): ActionItem[] {
       'creators',
       '/creators',
     ),
+    nav('go-jams', t('cmdk_go_jams'), 'jams jam contest competition event challenge theme', 'jams', '/jams'),
     nav('go-compare', t('cmdk_go_compare'), 'compare versus side by side', 'compare', '/compare'),
     nav('go-developers', t('cmdk_go_developers'), 'developers api docs openapi tokens', 'developers', '/developers'),
   ];
