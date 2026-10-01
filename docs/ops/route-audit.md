@@ -35,7 +35,7 @@ Alcance del barrido:
 - **Datos**: los 226 mods/builds públicos (190 mods + 36 builds), sus 563 versiones, los 56 creadores,
   33 categorías y 40 etiquetas. Cada detalle en **en y es** (+ `.md`, `/versions`, `/reviews`,
   `/feed.xml`, `/versions/:v`, `compare`, `embed`, `badges`, el `.json`→oEmbed, el cruce `/mods`↔`/builds`),
-  y **todas las URLs de los sitemaps en los 13 locales**.
+  y **las URLs de los sitemaps en los 13 locales** (completo en en y es; en los otros 11, una de cada cinco rotando).
 - **URLs del sitio antiguo** (`docs/plan/research/01-compat-contract.md` §4): `/mods?…` con todos los
   parámetros heredados, `/profile/:u`, `/loader`, `/privacy`, `/upload`, `/upload-build`, `/login?registered`,
   `/user/*`, `/images/*`, `/static/*`, `/ads.txt`, enlaces rotos conocidos (§4.4: `codengine/upgradeableplayerstats`…),
@@ -60,8 +60,7 @@ Producción (código desplegado antes de esta rama), 6 107 peticiones:
 | 400 / 405 | 8 (URI mal codificada, `%00`, `/oembed` sin `url`, GET a `/_internal/cache/invalidate`: respuestas correctas) |
 | 5xx / 0 / 520 | 38: 35 **transitorias** (reintentadas después: 200), 1 persistente (badge de mod oculto, 503) y 2 de Cloudflare 520 (escape `%` truncado, ver «Pendiente») |
 
-Local, build de esta rama, 6 079 rutas del conjunto `all` + todas las URLs de los sitemaps en los 13
-locales + legacy + NSFW: ver «Barrido final» al final del documento.
+Local, build de esta rama (datos de producción vía proxy de solo lectura): ver «Barrido final» al final.
 
 ### Qué fallaba
 
@@ -121,3 +120,23 @@ locales + legacy + NSFW: ver «Barrido final» al final del documento.
 - `/oembed` sin `url` y `/_internal/cache/invalidate` por GET: 400 y 405, correctos.
 - Las 5xx esporádicas bajo carga de la máquina (ráfagas de 500 de la API) no son un fallo de rutas;
   conviene vigilar el tamaño del servidor/BD cuando coinciden varios procesos pesados.
+
+## Barrido final (build local de esta rama)
+
+7 086 peticiones (conjunto `all` completo, muestra de los sitemaps en los 13 locales, URLs heredadas y los
+mods NSFW):
+
+| Estado | Peticiones |
+|---|---|
+| 200 | 5 181 |
+| 301 | 1 393 |
+| 302 / 303 | 2 |
+| 404 | 476 (esperados) |
+| 410 | 7 (tombstones e `/images/*`) |
+| 400 | 8 (URI mal formada, `%00`, `/oembed` sin `url`) |
+| 405 | 1 (`GET /_internal/cache/invalidate`) |
+| 503 | 18: 13 son `/jams` (la API de producción usada como fuente aún no tiene Jams) y 5 las descargas de prueba (el build local usa un `INTERNAL_SECRET` falso, así que el resolvedor de descargas no responde) |
+| 500 | **0** |
+
+`summarize.py` reproduce estas tablas. Pruebas añadidas: `redirects.test.ts` (prefijos de idioma, NUL),
+`upstream.test.ts` (503 transitorio), `resolve.int.test.ts` (NUL).
