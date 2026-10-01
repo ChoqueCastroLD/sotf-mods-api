@@ -259,7 +259,7 @@
   "admin_awards_col_period": "Período",
   "admin_awards_col_reason": "Motivo",
   "admin_awards_running": "Agora",
-  "admin_awards_upcoming": "Em breve",
+  "admin_awards_upcoming": "Próximo",
   "admin_awards_automatic": "Automático",
   "admin_awards_delete": "Retirar",
   "admin_awards_delete_for": "Retirar {kind} de {name}",

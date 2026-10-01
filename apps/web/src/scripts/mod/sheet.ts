@@ -13,7 +13,7 @@ const FLICK_SPEED = 0.55; // px per ms
 const bound = new WeakSet<HTMLDialogElement>();
 
 export function bindSheetDrag(dialog: HTMLDialogElement, win: Window = window): void {
-  if (bound.has(dialog) || dialog.dataset.sheet === 'full') return;
+  if (bound.has(dialog) || dialog.dataset.sheetSize === 'full') return;
   bound.add(dialog);
   const body = dialog.querySelector<HTMLElement>('[data-sheet-body]') ?? dialog;
   const header = dialog.querySelector<HTMLElement>('[data-sheet-header]');

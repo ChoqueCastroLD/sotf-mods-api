@@ -49,7 +49,7 @@ const sizeClass = {
   aria-labelledby={titleId}
   aria-describedby={descriptionId}
   data-mod-dialog
-  data-sheet={size}
+  data-sheet-size={size}
   class:list={[DIALOG_CLASSES, sizeClass, stacked && 'open:flex open:flex-col overflow-hidden! max-md:pb-0!', className]}
 >
   <div class={DIALOG_HEADER_CLASSES} data-sheet-header>
@@ -115,7 +115,7 @@ const sizeClass = {
       transition: none;
       animation: none;
     }
-    dialog[data-mod-dialog][data-sheet='full'] {
+    dialog[data-mod-dialog][data-sheet-size='full'] {
       width: 100%;
       max-width: none;
       height: 100dvh;
@@ -126,13 +126,13 @@ const sizeClass = {
       padding-bottom: 0;
       overflow: hidden;
     }
-    dialog[data-sheet='full'][open] {
+    dialog[data-sheet-size='full'][open] {
       animation: sheet-fade 0.22s ease-out both;
     }
-    dialog[data-sheet='full'] [data-sheet-grabber] {
+    dialog[data-sheet-size='full'] [data-sheet-grabber] {
       display: none;
     }
-    dialog[data-sheet='full'] [data-sheet-header] {
+    dialog[data-sheet-size='full'] [data-sheet-header] {
       position: absolute;
       inset-inline: 0;
       top: 0;
@@ -142,7 +142,7 @@ const sizeClass = {
       padding: max(0.5rem, env(safe-area-inset-top)) 0.75rem 1.5rem 1.25rem;
       opacity: var(--lb-progress, 1);
     }
-    dialog[data-sheet='full'] [data-sheet-header] h2 {
+    dialog[data-sheet-size='full'] [data-sheet-header] h2 {
       font-size: 0.875rem;
       line-height: 1.2;
       color: #fff;
@@ -150,39 +150,39 @@ const sizeClass = {
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-    dialog[data-sheet='full'] [data-sheet-header] button {
+    dialog[data-sheet-size='full'] [data-sheet-header] button {
       color: #fff;
       background: rgb(0 0 0 / 0.35);
       border-radius: 9999px;
     }
-    dialog[data-sheet='full'] [data-sheet-body] {
+    dialog[data-sheet-size='full'] [data-sheet-body] {
       padding: 0;
       height: 100%;
     }
-    dialog[data-sheet='full'] [data-lightbox-counter] {
+    dialog[data-sheet-size='full'] [data-lightbox-counter] {
       opacity: var(--lb-progress, 1);
     }
-    dialog[data-sheet='full'][data-zoomed] [data-sheet-header],
-    dialog[data-sheet='full'][data-zoomed] [data-lightbox-counter] {
+    dialog[data-sheet-size='full'][data-zoomed] [data-sheet-header],
+    dialog[data-sheet-size='full'][data-zoomed] [data-lightbox-counter] {
       opacity: 0;
       pointer-events: none;
     }
-    dialog[data-sheet='full']::backdrop {
+    dialog[data-sheet-size='full']::backdrop {
       background: #000;
     }
   }
   /* Tall sheets: the content column fills the sheet so a docked composer sits at the bottom. */
-  dialog[data-sheet='tall'] [data-sheet-body] {
+  dialog[data-sheet-size='tall'] [data-sheet-body] {
     display: flex;
     flex-direction: column;
   }
-  dialog[data-sheet='tall'] [data-sheet-slot] {
+  dialog[data-sheet-size='tall'] [data-sheet-slot] {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
   }
-  dialog[data-sheet='tall'] [data-sheet-slot] > [data-island='comments'] {
+  dialog[data-sheet-size='tall'] [data-sheet-slot] > [data-island='comments'] {
     flex: 1 1 auto;
     display: flex;
     flex-direction: column;

@@ -259,7 +259,7 @@
   "admin_awards_col_period": "Период",
   "admin_awards_col_reason": "Причина",
   "admin_awards_running": "Сейчас",
-  "admin_awards_upcoming": "Скоро",
+  "admin_awards_upcoming": "Предстоящие",
   "admin_awards_automatic": "Автоматически",
   "admin_awards_delete": "Отозвать",
   "admin_awards_delete_for": "Отозвать «{kind}» у {name}",

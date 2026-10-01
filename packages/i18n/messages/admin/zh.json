@@ -259,7 +259,7 @@
   "admin_awards_col_period": "时段",
   "admin_awards_col_reason": "理由",
   "admin_awards_running": "进行中",
-  "admin_awards_upcoming": "即将开始",
+  "admin_awards_upcoming": "待开始",
   "admin_awards_automatic": "自动",
   "admin_awards_delete": "撤销",
   "admin_awards_delete_for": "撤销 {name} 的{kind}",
