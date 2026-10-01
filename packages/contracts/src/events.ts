@@ -9,7 +9,7 @@
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
-import { EntityId, Locale } from './common.ts';
+import { EntityId, IdParam, Locale } from './common.ts';
 import { dto } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { SseKitLiveData } from './kit-social.ts';
@@ -242,7 +242,7 @@ export const eventsEndpoints = {
       'Public, cookieless stream of `mod.live` events (downloads, downloads in 24 h, followers) for one reachable mod. ' +
       'Sent on connect and pushed whenever downloads of the mod are counted (event-driven), always with the full counters; the stream is recycled every 10 min.',
     auth: 'public',
-    params: z.object({ id: EntityId }),
+    params: z.object({ id: IdParam }),
     response: SseModLiveEventDTO,
     responseKind: 'event-stream',
     errors: ['NOT_FOUND', 'RATE_LIMITED'],

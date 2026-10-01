@@ -216,7 +216,7 @@ export const kitSocialEndpoints = {
     description:
       'Public, cookieless stream of `kit.live` events for one public or unlisted kit. Sent on connect and pushed whenever the followers or comments of the kit change; the stream is recycled every 10 min.',
     auth: 'public',
-    params: z.object({ id: EntityId }),
+    params: z.object({ id: IdParam }),
     response: SseKitLiveEventDTO,
     responseKind: 'event-stream',
     errors: ['NOT_FOUND', 'RATE_LIMITED'],
