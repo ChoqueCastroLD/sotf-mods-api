@@ -66,3 +66,26 @@ export async function loadJamPage(slug: string): Promise<JamPageData> {
 export function jamPath(slug: string): string {
   return `/jams/${slug}`;
 }
+
+/** Published results of the finished jams of a list (newest first, at most `limit`); failures are skipped. */
+export async function loadFinishedResults(
+  items: readonly JamSummaryDTO[],
+  limit = 8,
+): Promise<Map<string, JamResultsDTO>> {
+  const api = serverApi();
+  const finished = items.filter((jam) => jam.phase === 'results' || jam.phase === 'archived').slice(0, limit);
+  const found = await Promise.all(
+    finished.map(async (jam) => {
+      const results = await api.jams
+        .results({ params: { slug: jam.slug } }, { signal: AbortSignal.timeout(CALL_TIMEOUT_MS) })
+        .catch(() => null);
+      return [jam.slug, results] as const;
+    }),
+  );
+  return new Map(found.flatMap(([slug, results]) => (results ? [[slug, results] as const] : [])));
+}
+
+/** The overall winner (rank 1), or null when the first place is not public (entry hidden, mod removed). */
+export function winnerOf(results: JamResultsDTO | null | undefined): JamResultsDTO['overall'][number] | null {
+  return results?.overall.find((placement) => placement.rank === 1) ?? null;
+}

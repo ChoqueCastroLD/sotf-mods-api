@@ -1,0 +1,86 @@
+---
+/**
+ * The hub while no jam exists yet. It is not an empty state but the first page of the event: the
+ * workbench painting, the promise («the first jam is on its way»), what players will be judged
+ * on, a way to hear about it first (signal settings, Discord) and how a jam works.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { BellRing, BookOpen, Gamepad2, Gem, Lightbulb, MessageCircle } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import { SOCIAL_LINKS } from '../../lib/site.ts';
+import JamArt from './JamArt.astro';
+
+const locale = Astro.locals.locale;
+const criteria = [
+  { icon: Gamepad2, label: m.jams_category_fun() },
+  { icon: Gem, label: m.jams_category_polish() },
+  { icon: Lightbulb, label: m.jams_category_creativity() },
+  { icon: BookOpen, label: m.jams_category_lore() },
+];
+const primaryCta =
+  'inline-flex h-12 items-center justify-center gap-2 rounded-md bg-primary px-6 font-semibold text-primary-fg shadow-glow transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+const glassCta =
+  'inline-flex h-12 items-center justify-center gap-2 rounded-md border border-white/25 bg-night-975/60 px-5 font-semibold text-night-50 backdrop-blur-sm transition-colors duration-(--dur-fast) hover:bg-night-975/80 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+---
+
+<section
+  aria-labelledby="jams-first"
+  class="relative isolate overflow-hidden rounded-2xl border border-white/10 bg-night-975 text-night-50"
+>
+  <div class="absolute inset-0 -z-20" aria-hidden="true">
+    <JamArt name="generic" priority={true} sizes="(min-width: 1536px) 1536px, 100vw" />
+  </div>
+  <div
+    class="absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background: linear-gradient(to top, #090F0C 0%, rgb(9 15 12 / 0.78) 38%, rgb(9 15 12 / 0.2) 75%, rgb(9 15 12 / 0.05) 100%), linear-gradient(to right, rgb(9 15 12 / 0.72) 0%, rgb(9 15 12 / 0.25) 60%, transparent 100%);"
+  >
+  </div>
+  <div
+    class="relative grid gap-8 p-5 pt-28 sm:p-8 sm:pt-32 md:p-10 md:pt-36 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:items-end lg:gap-12"
+  >
+    <div class="flex min-w-0 flex-col items-start gap-4">
+      <p class="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-night-975/70 px-3 py-1 text-xs font-semibold text-primary backdrop-blur-sm">
+        <span class="relative flex size-2" aria-hidden="true">
+          <span class="absolute inset-0 animate-ping-locator rounded-full bg-primary"></span>
+          <span class="relative size-2 rounded-full bg-primary"></span>
+        </span>
+        {m.jams_first_kicker()}
+      </p>
+      <h2
+        id="jams-first"
+        class="font-display-caps text-display-md text-night-50 [text-shadow:0_2px_24px_rgb(0_0_0/0.55)] md:text-display-lg"
+      >
+        {m.jams_first_title()}
+      </h2>
+      <p class="max-w-[38rem] text-base text-night-100 md:text-lg">{m.jams_first_text()}</p>
+      <div class="mt-2 flex flex-wrap gap-3">
+        <a href={href('/settings/notifications', locale)} class={primaryCta}>
+          <Icon icon={BellRing} size={18} />
+          {m.jams_first_notify()}
+        </a>
+        <a href={SOCIAL_LINKS.discord} class={glassCta} rel="noopener" target="_blank">
+          <Icon icon={MessageCircle} size={18} />
+          {m.jams_first_discord()}
+        </a>
+      </div>
+      <p class="max-w-[38rem] text-sm text-night-200">{m.jams_first_hint()}</p>
+    </div>
+
+    <div class="flex min-w-0 flex-col gap-4 rounded-xl border border-white/10 bg-night-975/60 p-4 backdrop-blur-md md:p-5">
+      <p class="readout text-night-200">{m.jams_first_judged()}</p>
+      <ul class="grid grid-cols-2 gap-2">
+        {
+          criteria.map((item) => (
+            <li class="flex items-center gap-2.5 rounded-md border border-white/10 bg-night-975/50 px-3 py-2.5 text-sm font-semibold text-night-50">
+              <Icon icon={item.icon} size={18} className="text-primary" />
+              {item.label}
+            </li>
+          ))
+        }
+      </ul>
+      <p class="text-sm text-night-200">{m.jams_first_prize()}</p>
+    </div>
+  </div>
+</section>

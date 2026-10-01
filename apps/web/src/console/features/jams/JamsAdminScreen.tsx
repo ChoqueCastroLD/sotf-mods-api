@@ -6,17 +6,17 @@ import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
 import { Dialog } from '@sotf/ui/dialog';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { useNavigate } from '@tanstack/react-router';
-import { Plus, Trophy } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { type FormEvent, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
 import { formatInstant, reportFailure, slugify, TableScroller, tdClasses, thClasses } from '../admin/shared.tsx';
 import { adminJamsQuery, jamKeys, jamsAdminApi } from './api.ts';
+import { JamArtThumb, JamEmpty, StagePips } from './JamArtThumb.tsx';
 import { jamPhaseLabel, jamPhaseVariant } from './phase.ts';
 
 export function JamsAdminScreen() {
@@ -38,10 +38,14 @@ export function JamsAdminScreen() {
       </header>
 
       {jams.length === 0 ? (
-        <EmptyState
-          icon={<Icon icon={Trophy} size={32} />}
+        <JamEmpty
           title={m.jams_admin_empty_title()}
-          description={m.jams_admin_empty_text()}
+          text={m.jams_admin_empty_text()}
+          action={
+            <Button icon={<Icon icon={Plus} size={18} />} onClick={() => setCreating(true)}>
+              {m.jams_admin_new()}
+            </Button>
+          }
         />
       ) : (
         <TableScroller label={m.jams_admin_table_label()}>
@@ -66,30 +70,38 @@ export function JamsAdminScreen() {
             <tbody>
               {jams.map((jam) => (
                 <tr key={jam.id} className="border-t border-border">
-                  <th scope="row" className={`${tdClasses} min-w-56 text-start font-normal`}>
-                    <a
-                      href={`/ranger/jams/${jam.id}`}
-                      onClick={(event) => {
-                        if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-                        event.preventDefault();
-                        void navigate({ to: '/ranger/jams/$jamId', params: { jamId: String(jam.id) } });
-                      }}
-                      className="font-semibold text-fg hover:text-link"
-                    >
-                      {jam.title}
-                    </a>
-                    <span className="block font-mono text-xs text-fg-muted">/jams/{jam.slug}</span>
+                  <th scope="row" className={`${tdClasses} min-w-64 text-start font-normal`}>
+                    <span className="flex items-center gap-3">
+                      <JamArtThumb jam={jam} className="hidden h-12 w-28 sm:block" />
+                      <span className="grid min-w-0 gap-0.5">
+                        <a
+                          href={`/ranger/jams/${jam.id}`}
+                          onClick={(event) => {
+                            if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
+                            event.preventDefault();
+                            void navigate({ to: '/ranger/jams/$jamId', params: { jamId: String(jam.id) } });
+                          }}
+                          className="font-semibold text-fg hover:text-link"
+                        >
+                          {jam.title}
+                        </a>
+                        <span className="block font-mono text-xs text-fg-muted">/jams/{jam.slug}</span>
+                      </span>
+                    </span>
                   </th>
                   <td className={`${tdClasses} whitespace-nowrap`}>
-                    <span className="flex flex-wrap items-center gap-2">
-                      <Badge variant={jamPhaseVariant(jam.phase)} size="sm">
-                        {jamPhaseLabel(jam.phase)}
-                      </Badge>
-                      {jam.phaseLocked ? (
-                        <Badge variant="outline-mono" size="sm">
-                          {m.jams_admin_locked()}
+                    <span className="grid gap-1.5">
+                      <span className="flex flex-wrap items-center gap-2">
+                        <Badge variant={jamPhaseVariant(jam.phase)} size="sm">
+                          {jamPhaseLabel(jam.phase)}
                         </Badge>
-                      ) : null}
+                        {jam.phaseLocked ? (
+                          <Badge variant="outline-mono" size="sm">
+                            {m.jams_admin_locked()}
+                          </Badge>
+                        ) : null}
+                      </span>
+                      <StagePips phase={jam.phase} />
                     </span>
                   </td>
                   <td className={`${tdClasses} whitespace-nowrap text-fg-muted`}>

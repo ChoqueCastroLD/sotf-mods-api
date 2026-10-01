@@ -4,12 +4,12 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { ArrowUpRight, Trophy } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { formatInstant, Panel } from '../admin/shared.tsx';
 import { myJamsQuery } from './api.ts';
+import { JamArtThumb, JamEmpty, StagePips } from './JamArtThumb.tsx';
 import { jamPhaseLabel, jamPhaseVariant } from './phase.ts';
 
 const link = 'inline-flex items-center gap-1 font-semibold text-fg hover:text-link';
@@ -35,20 +35,17 @@ export function MyJamsScreen() {
         }
       >
         {data.open.length === 0 ? (
-          <EmptyState
-            icon={<Icon icon={Trophy} size={32} />}
-            title={m.jams_mine_open_empty_title()}
-            description={m.jams_mine_open_empty_text()}
-          />
+          <JamEmpty title={m.jams_mine_open_empty_title()} text={m.jams_mine_open_empty_text()} />
         ) : (
           <ul className="grid gap-3">
             {data.open.map((jam) => (
               <li
                 key={jam.id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-border p-3"
+                className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-surface p-3"
               >
-                <div className="grid gap-0.5">
-                  <a href={`/jams/${jam.slug}`} className={link}>
+                <JamArtThumb jam={jam} className="h-16 w-36 max-sm:hidden" />
+                <div className="grid min-w-0 flex-1 gap-1">
+                  <a href={`/jams/${jam.slug}`} className={`${link} font-display-caps text-2xl leading-none`}>
                     {jam.title}
                     <Icon icon={ArrowUpRight} size={16} />
                   </a>
@@ -57,6 +54,7 @@ export function MyJamsScreen() {
                       ? m.jams_mine_closes({ date: formatInstant(jam.submissionsCloseAt) })
                       : m.jams_mine_no_deadline()}
                   </span>
+                  <StagePips phase={jam.phase} />
                 </div>
                 <Badge variant={jamPhaseVariant(jam.phase)} size="sm">
                   {jamPhaseLabel(jam.phase)}
@@ -75,9 +73,10 @@ export function MyJamsScreen() {
             {data.participations.map((entry) => (
               <li
                 key={entry.entryId}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-border p-3"
+                className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-surface p-3"
               >
-                <div className="grid gap-0.5">
+                <JamArtThumb jam={entry.jam} className="h-12 w-28 max-sm:hidden" />
+                <div className="grid min-w-0 flex-1 gap-0.5">
                   <a href={`/jams/${entry.jam.slug}`} className={link}>
                     {entry.jam.title}
                     <Icon icon={ArrowUpRight} size={16} />

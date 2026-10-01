@@ -1,11 +1,14 @@
 /**
- * Lazy chunk of the Mod Jams island: React + the hero actions, plus one vote panel per entry
+ * Lazy chunk of the Mod Jams island: React + the hero actions, the vote dock and booth, plus one vote panel per entry
  * slot rendered by the page (`[data-jam-vote-slot]`), all sharing one store.
  */
 import { createRoot } from 'react-dom/client';
 import { loadExtraMessages, loadSocialMessages } from '../comments/lib/messages.ts';
+import { parseBoothEntries } from './booth.ts';
 import { JamActions } from './JamActions.tsx';
 import { createJamStore, type JamCategoryInfo, type JamState } from './store.ts';
+import { VoteBooth } from './VoteBooth.tsx';
+import { VoteDock } from './VoteDock.tsx';
 import { VotePanel } from './VotePanel.tsx';
 
 export interface JamPageProps {
@@ -13,7 +16,7 @@ export interface JamPageProps {
   phase: string;
   categories: JamCategoryInfo[];
   state: JamState;
-  session: { emailVerified: boolean };
+  session: { id: number; emailVerified: boolean };
   maxEntries: number;
   verifyHref: string;
 }
@@ -39,6 +42,23 @@ export async function mountJamPage(element: HTMLElement, root: ParentNode, props
   for (const slot of Array.from(root.querySelectorAll<HTMLElement>('[data-jam-vote-slot]'))) {
     const entryId = Number(slot.dataset.entryId);
     if (!Number.isInteger(entryId)) continue;
-    createRoot(slot).render(<VotePanel store={store} entryId={entryId} verifyHref={props.verifyHref} />);
+    createRoot(slot).render(<VotePanel store={store} entryId={entryId} />);
+  }
+  // The vote dock (ballot summary) and the voting booth every button of the page opens.
+  const dock = root.querySelector<HTMLElement>('[data-jam-vote-dock]');
+  if (dock && props.phase === 'voting') {
+    const entries = parseBoothEntries(dock.dataset.entries);
+    dock.replaceChildren();
+    createRoot(dock).render(
+      <>
+        <VoteDock store={store} entryIds={entries.map((entry) => entry.id)} verifyHref={props.verifyHref} />
+        <VoteBooth
+          store={store}
+          entries={entries}
+          voterId={props.session.id}
+          jamTitle={document.getElementById('jam-title')?.textContent?.trim() ?? ''}
+        />
+      </>,
+    );
   }
 }

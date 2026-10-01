@@ -10,23 +10,19 @@
  * - A hidden theme stays hidden in the HTML until submissions open (the API withholds it).
  * - SEO: `Event` JSON-LD, the generated OG image when present.
  */
-import { JAM_OVERALL_KEY } from '@sotf/contracts/jams';
-import { profilePath } from '@sotf/contracts/seo';
+
 import { formatDateTime } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
-import { ModCard, PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
-import Countdown from '../../components/jams/Countdown.astro';
+import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { BookOpen, CalendarDays, Gamepad2, Gem, Lightbulb, ShieldCheck, Tag, Trophy } from 'lucide-react';
 import { jamPath, loadJamPage } from '../../components/jams/data.ts';
-import Podium from '../../components/jams/Podium.astro';
-import {
-  accentHex,
-  categoryLabel,
-  nextDeadline,
-  PHASE_TONE_CLASSES,
-  phaseLabel,
-  phaseTone,
-} from '../../components/jams/phase.ts';
+import EntryCard from '../../components/jams/EntryCard.astro';
+import JamHero from '../../components/jams/JamHero.astro';
+import JamStepper from '../../components/jams/JamStepper.astro';
+import { categoryLabel } from '../../components/jams/phase.ts';
+import ResultsBoard from '../../components/jams/ResultsBoard.astro';
 import { KitsError } from '../../components/kits/KitStates.tsx';
 import { loginHrefFor } from '../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../components/mod/i18n.ts';
@@ -62,10 +58,19 @@ const path = jamPath(slug);
 const loginHref = loginHrefFor(href('/login', locale), href(path, locale));
 const siteUrl = loadEnv().siteUrl;
 
-const accent = jam ? accentHex(jam.accent) : '#F2A93B';
-const deadline = jam ? nextDeadline(jam) : null;
 const voting = jam?.phase === 'voting';
 const showEntries = jam !== null && ['submissions', 'submissions_closed', 'voting', 'results', 'archived'].includes(jam.phase);
+const hasPodium = results !== null && results.overall.length > 0;
+const CATEGORY_ICON = { fun: Gamepad2, polish: Gem, creativity: Lightbulb, lore: BookOpen } as const;
+/** What the voting booth needs of an entry (the island has no other source for names and images). */
+const boothEntries = entries.map((entry) => ({
+  id: entry.id,
+  name: entry.mod.name,
+  path: href(entry.mod.canonicalPath, locale),
+  thumb: entry.mod.thumbnail?.url ?? null,
+  blurb: entry.mod.shortDescription.slice(0, 220),
+  authors: entry.authors.map((author) => author.displayName || author.handle),
+}));
 const timeline = jam
   ? [
       { key: 'announce', label: m.jams_timeline_announce(), at: jam.announceAt },
@@ -119,180 +124,192 @@ const title = jam?.title ?? m.jams_hub_title();
         reference={Astro.locals.requestId}
       />
     ) : (
-      <article class="flex flex-col gap-8">
-        <header
-          class="relative overflow-hidden rounded-xl border border-border"
-          style={`background: linear-gradient(135deg, ${accent}40, ${accent}0d 65%);`}
-        >
-          {jam.bannerUrl && (
-            <img
-              src={jam.bannerUrl}
-              alt=""
-              decoding="async"
-              fetchpriority="high"
-              class="absolute inset-0 size-full object-cover opacity-40"
-            />
-          )}
-          <div class="relative flex flex-col gap-4 p-5 md:p-8">
-            <div class="flex flex-wrap items-center gap-2">
-              <span class:list={['rounded-sm px-2 py-1 text-xs font-semibold', PHASE_TONE_CLASSES[phaseTone(jam.phase)]]}>
-                {phaseLabel(jam.phase)}
-              </span>
-              <span class="readout text-fg-muted">{m.jams_entries_count({ count: jam.entryCount })}</span>
-            </div>
-            <h1 class="font-display-caps text-display-sm text-fg">{jam.title}</h1>
-            {jam.tagline && <p class="max-w-(--container-prose) text-base text-fg">{jam.tagline}</p>}
-            {jam.theme ? (
-              <p class="text-lg font-semibold text-fg">
-                <span class="readout me-2 text-fg-muted">{m.jams_theme_heading()}</span>{jam.theme}
-              </p>
-            ) : jam.themeHidden ? (
-              <p class="text-base font-semibold text-fg-muted">{m.jams_theme_hidden()}</p>
-            ) : null}
-            {deadline && <Countdown deadline={deadline} />}
-            <div
-              data-island="jam"
-              data-jam-slug={jam.slug}
-              data-phase={jam.phase}
-              data-max-entries={jam.maxEntriesPerUser}
-              data-max-coauthors={jam.maxCoAuthors}
-              data-categories={JSON.stringify(jam.categories.map((category) => ({ id: category.id, label: categoryLabel(category) })))}
-              class="min-h-11"
-            >
-              <p class="text-sm text-fg-muted" data-jam-guest-hint>
-                {jam.phase === 'announced' || jam.phase === 'submissions' || voting ? (
-                  <>
-                    {m.jams_guest_hint()}{' '}
-                    <a href={loginHref} class="font-semibold text-link underline underline-offset-3" rel="nofollow">
-                      {m.jams_sign_in()}
-                    </a>
-                  </>
-                ) : null}
-              </p>
-            </div>
+      <article class="flex flex-col gap-8 md:gap-12">
+        <JamHero jam={jam} mode="detail" results={results} resultsAnchor={hasPodium ? '#jam-results' : undefined}>
+          <div
+            slot="actions"
+            data-island="jam"
+            data-jam-slug={jam.slug}
+            data-phase={jam.phase}
+            data-max-entries={jam.maxEntriesPerUser}
+            data-max-coauthors={jam.maxCoAuthors}
+            data-categories={JSON.stringify(jam.categories.map((category) => ({ id: category.id, label: categoryLabel(category) })))}
+            class:list={[jam.phase === 'results' || jam.phase === 'archived' ? '' : 'min-h-11']}
+          >
+            <p class="text-sm text-night-200" data-jam-guest-hint>
+              {jam.phase === 'announced' || jam.phase === 'submissions' || voting ? (
+                <>
+                  {m.jams_guest_hint()}{' '}
+                  <a href={loginHref} class="font-semibold text-primary underline underline-offset-3" rel="nofollow">
+                    {m.jams_sign_in()}
+                  </a>
+                </>
+              ) : null}
+            </p>
           </div>
-        </header>
+        </JamHero>
 
-        {results && results.overall.length > 0 && (
-          <section aria-labelledby="jam-results" class="flex flex-col gap-5">
-            <div class="flex flex-wrap items-end justify-between gap-2">
-              <h2 id="jam-results" class="text-xl font-semibold text-fg">{m.jams_results_title()}</h2>
-              <p class="font-mono text-xs text-fg-muted tabular-nums">
-                {m.jams_results_summary({ participants: results.participants, voters: results.voters })}
-              </p>
-            </div>
-            <div class="flex flex-col gap-2">
-              <h3 class="readout text-featured">{categoryLabel({ key: JAM_OVERALL_KEY, label: null })}</h3>
-              <Podium placements={results.overall} />
-            </div>
-            {results.categories.map((category) => (
-              <div class="flex flex-col gap-2">
-                <h3 class="readout text-fg-muted">{categoryLabel(category)}</h3>
-                <Podium placements={category.placements} />
+        <JamStepper jam={jam} class="rounded-xl border border-border bg-surface p-5 md:px-8" />
+
+        <div class="flex flex-col gap-8 md:gap-12">
+          {hasPodium && results && (
+            <section aria-labelledby="jam-results" id="jam-results" class="flex scroll-mt-24 flex-col gap-6">
+              <div class="flex flex-wrap items-end justify-between gap-2">
+                <h2 id="jam-results" class="font-display-caps text-4xl leading-none text-fg">{m.jams_results_title()}</h2>
+                <p class="font-mono text-xs text-fg-muted tabular-nums">
+                  {m.jams_results_summary({ participants: results.participants, voters: results.voters })}
+                </p>
               </div>
-            ))}
-            <p class="text-xs text-fg-muted">{m.jams_results_method({ min: results.minVotes })}</p>
-          </section>
-        )}
+              <ResultsBoard results={results} id={`jam-${jam.slug}`} />
+              <p class="text-xs text-fg-muted">{m.jams_results_method({ min: results.minVotes })}</p>
+            </section>
+          )}
 
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
-          <div class="flex min-w-0 flex-col gap-8">
-            {jam.descriptionHtml && (
-              <section aria-labelledby="jam-about" class="flex flex-col gap-2">
-                <h2 id="jam-about" class="text-lg font-semibold text-fg">{m.jams_about_title()}</h2>
-                <div class:list={[PROSE_LOCATOR_CLASSES]} set:html={localizeHtml(jam.descriptionHtml, labels)} />
-              </section>
-            )}
-            {jam.rulesHtml && (
-              <section aria-labelledby="jam-rules" class="flex flex-col gap-2">
-                <h2 id="jam-rules" class="text-lg font-semibold text-fg">{m.jams_rules_title()}</h2>
-                <div class:list={[PROSE_LOCATOR_CLASSES]} set:html={localizeHtml(jam.rulesHtml, labels)} />
-              </section>
-            )}
-            {jam.prizesHtml && (
-              <section aria-labelledby="jam-prizes" class="flex flex-col gap-2">
-                <h2 id="jam-prizes" class="text-lg font-semibold text-fg">{m.jams_prizes_title()}</h2>
-                <div class:list={[PROSE_LOCATOR_CLASSES]} set:html={localizeHtml(jam.prizesHtml, labels)} />
-              </section>
-            )}
-          </div>
-          <aside class="flex flex-col gap-6" aria-label={m.jams_schedule_title()}>
-            <section aria-labelledby="jam-schedule" class="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4">
-              <h2 id="jam-schedule" class="readout text-fg-muted">{m.jams_schedule_title()}</h2>
-              {timeline.length === 0 ? (
-                <p class="text-sm text-fg-muted">{m.jams_schedule_tba()}</p>
+          {showEntries && (
+            <section
+              aria-labelledby="jam-entries"
+              id="jam-entries"
+              class:list={['flex scroll-mt-24 flex-col gap-5', voting ? 'order-first' : '']}
+            >
+              <div class="flex flex-wrap items-end justify-between gap-2">
+                <h2 id="jam-entries" class="font-display-caps text-4xl leading-none text-fg">
+                  {m.jams_entries_title()}
+                  <span class="ms-2 font-mono text-sm font-normal text-fg-muted">{entries.length}</span>
+                </h2>
+              </div>
+              {voting && entries.length > 0 && (
+                <div data-jam-vote-dock data-entries={JSON.stringify(boothEntries)}>
+                  <div class="texture-topo flex min-h-24 flex-col gap-3 rounded-xl border border-border bg-surface p-4 md:flex-row md:items-center md:justify-between md:gap-8 md:p-5">
+                    <div class="flex flex-col gap-2">
+                      <p class="font-display-caps text-2xl leading-none text-fg">{m.jams_vote_dock_title()}</p>
+                      <p class="max-w-(--container-prose) text-sm text-fg-muted">{m.jams_voting_hint()}</p>
+                    </div>
+                    <a
+                      href={loginHref}
+                      rel="nofollow"
+                      class="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-6 font-semibold text-primary-fg hover:bg-primary-hover"
+                    >
+                      {m.jams_vote_signin()}
+                    </a>
+                  </div>
+                </div>
+              )}
+              {entries.length === 0 ? (
+                <div class="flex flex-col items-center gap-6 overflow-hidden rounded-xl border border-dashed border-border-strong/60 bg-surface p-6 sm:flex-row sm:p-8">
+                  <picture class="shrink-0">
+                    <source type="image/avif" srcset="/art/jams/empty-480.avif" />
+                    <img
+                      src="/art/jams/empty-480.webp"
+                      alt=""
+                      width="480"
+                      height="480"
+                      loading="lazy"
+                      decoding="async"
+                      class="size-40 rounded-xl object-cover sm:size-48"
+                    />
+                  </picture>
+                  <div class="flex max-w-prose flex-col gap-2 text-center sm:text-start">
+                    <p class="font-display-caps text-3xl leading-none text-fg">
+                      {jam.phase === 'submissions' ? m.jams_entries_empty_open_title() : m.jams_entries_empty()}
+                    </p>
+                    {jam.phase === 'submissions' && <p class="text-sm text-fg-muted">{m.jams_entries_empty_open_text()}</p>}
+                  </div>
+                </div>
               ) : (
-                <ol class="flex flex-col gap-2">
-                  {timeline.map((step) => (
-                    <li class="flex flex-col">
-                      <span class="text-sm font-semibold text-fg">{step.label}</span>
-                      <time datetime={step.at} class="font-mono text-xs text-fg-muted tabular-nums">
-                        {formatDateTime(locale, step.at, 'medium', 'short')} UTC
-                      </time>
-                    </li>
+                <ul class="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                  {entries.map((entry, index) => (
+                    <EntryCard entry={entry} accent={jam.accent} voting={voting} labels={labels} eager={index < 3} />
                   ))}
-                </ol>
+                </ul>
               )}
             </section>
-            <section aria-labelledby="jam-categories" class="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4">
-              <h2 id="jam-categories" class="readout text-fg-muted">{m.jams_categories_title()}</h2>
-              <ul class="flex flex-col gap-1 text-sm text-fg">
-                {jam.categories.map((category) => (
-                  <li>{categoryLabel(category)}</li>
-                ))}
-              </ul>
-              <p class="text-xs text-fg-muted">{m.jams_voting_rules({ minDays: jam.minVoterAgeDays })}</p>
-            </section>
-          </aside>
-        </div>
+          )}
 
-        {showEntries && (
-          <section aria-labelledby="jam-entries" class="flex flex-col gap-4">
-            <div class="flex flex-wrap items-end justify-between gap-2">
-              <h2 id="jam-entries" class="text-xl font-semibold text-fg">
-                {m.jams_entries_title()}
-                <span class="ms-1 font-mono text-sm font-normal text-fg-muted">{entries.length}</span>
-              </h2>
-              {voting && <p class="text-sm text-fg-muted">{m.jams_voting_hint()}</p>}
+          <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_22rem] lg:gap-10">
+            <div class="flex min-w-0 flex-col gap-8">
+              {jam.descriptionHtml && (
+                <section aria-labelledby="jam-about" class="flex flex-col gap-3">
+                  <h2 id="jam-about" class="font-display-caps text-3xl leading-none text-fg">{m.jams_about_title()}</h2>
+                  <div class:list={[PROSE_LOCATOR_CLASSES]} set:html={localizeHtml(jam.descriptionHtml, labels)} />
+                </section>
+              )}
+              {jam.rulesHtml && (
+                <section aria-labelledby="jam-rules" class="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5 md:p-6">
+                  <h2 id="jam-rules" class="font-display-caps text-3xl leading-none text-fg">{m.jams_rules_title()}</h2>
+                  <div class:list={[PROSE_LOCATOR_CLASSES]} set:html={localizeHtml(jam.rulesHtml, labels)} />
+                </section>
+              )}
+              <section aria-labelledby="jam-schedule" class="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5">
+  <h2 id="jam-schedule" class="readout flex items-center gap-2 text-fg-muted">
+    <Icon icon={CalendarDays} size={14} />
+    {m.jams_schedule_title()}
+  </h2>
+  {timeline.length === 0 ? (
+    <p class="text-sm text-fg-muted">{m.jams_schedule_tba()}</p>
+  ) : (
+    <ol class="grid gap-x-6 gap-y-3 sm:grid-cols-2 xl:grid-cols-3">
+      {timeline.map((step) => (
+        <li class="flex flex-col gap-0.5">
+          <span class="text-sm font-semibold text-fg">{step.label}</span>
+          <time datetime={step.at} class="font-mono text-xs text-fg-muted tabular-nums">
+            {formatDateTime(locale, step.at, 'medium', 'short')} UTC
+          </time>
+        </li>
+      ))}
+    </ol>
+  )}
+</section>
             </div>
-            {entries.length === 0 ? (
-              <p class="rounded-lg border border-dashed border-border p-6 text-center text-sm text-fg-muted">
-                {m.jams_entries_empty()}
-              </p>
-            ) : (
-              <ul class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-                {entries.map((entry) => (
-                  <li class="flex min-w-0 flex-col gap-2" data-jam-entry={entry.id}>
-                    <ModCard
-                      mod={{ ...entry.mod, canonicalPath: href(entry.mod.canonicalPath, locale) }}
-                      variant="compact"
-                      headingLevel={3}
-                      viewTransition={false}
+            <aside class="flex flex-col gap-5" aria-label={m.jams_details_aside()}>
+              {jam.prizesHtml && (
+                <section
+                  aria-labelledby="jam-prizes"
+                  class="relative isolate overflow-hidden rounded-xl border border-featured/40 bg-night-975 p-5 text-night-50"
+                >
+                  <picture class="absolute inset-0 -z-20">
+                    <source type="image/avif" srcset="/art/jams/trophy-400.avif 400w, /art/jams/trophy-800.avif 800w" sizes="22rem" />
+                    <img
+                      src="/art/jams/trophy-800.webp"
+                      alt=""
+                      width="800"
+                      height="800"
+                      loading="lazy"
+                      decoding="async"
+                      class="size-full object-cover"
+                      style="object-position: 50% 30%;"
                     />
-                    <p class="text-xs text-fg-muted">
-                      {m.jams_by()}{' '}
-                      {entry.authors.map((author, index) => (
-                        <>
-                          {index > 0 && ', '}
-                          <a href={href(profilePath(author.handle), locale)} class="font-semibold text-fg hover:underline">
-                            {author.displayName || author.handle}
-                          </a>
-                        </>
-                      ))}
-                    </p>
-                    {entry.notesHtml && (
-                      <details class="rounded-md border border-border bg-surface px-3 py-2 text-sm">
-                        <summary class="min-h-11 cursor-pointer py-2 font-semibold text-fg md:min-h-0 md:py-0">{m.jams_entry_notes()}</summary>
-                        <div class:list={[PROSE_LOCATOR_CLASSES, 'prose-sm mt-2']} set:html={localizeHtml(entry.notesHtml, labels)} />
-                      </details>
-                    )}
-                    {voting && <div data-jam-vote-slot data-entry-id={entry.id} />}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </section>
-        )}
+                  </picture>
+                  <div class="absolute inset-0 -z-10 bg-gradient-to-t from-night-975 via-night-975/80 to-night-975/20" aria-hidden="true"></div>
+                  <div class="flex min-h-56 flex-col justify-end gap-2">
+                    <h2 id="jam-prizes" class="font-display-caps flex items-center gap-2 text-3xl leading-none text-featured">
+                      <Icon icon={Trophy} size={24} />
+                      {m.jams_prizes_title()}
+                    </h2>
+                    <div class:list={[PROSE_LOCATOR_CLASSES, 'text-night-100 [&_*]:text-night-100 [&_strong]:text-night-50']} set:html={localizeHtml(jam.prizesHtml, labels)} />
+                  </div>
+                </section>
+              )}
+              <section aria-labelledby="jam-categories" class="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5">
+                <h2 id="jam-categories" class="readout flex items-center gap-2 text-fg-muted">
+                  <Icon icon={Tag} size={14} />
+                  {m.jams_categories_title()}
+                </h2>
+                <ul class="grid grid-cols-2 gap-2">
+                  {jam.categories.map((category) => (
+                    <li class="flex items-center gap-2 rounded-md border border-border bg-sunken/50 px-3 py-2 text-sm font-semibold text-fg">
+                      <Icon icon={CATEGORY_ICON[category.key as keyof typeof CATEGORY_ICON] ?? Tag} size={16} className="text-primary" />
+                      {categoryLabel(category)}
+                    </li>
+                  ))}
+                </ul>
+                <p class="flex gap-2 text-xs text-fg-muted">
+                  <Icon icon={ShieldCheck} size={16} className="mt-0.5 text-signal" />
+                  <span>{m.jams_voting_rules({ minDays: jam.minVoterAgeDays })}</span>
+                </p>
+              </section>
+            </aside>
+          </div>
+        </div>
       </article>
     )
   }
