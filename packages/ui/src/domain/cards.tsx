@@ -24,13 +24,13 @@ import { TierStamp, TrustedMark } from './stamps.tsx';
 
 type HeadingLevel = 2 | 3 | 4;
 
-function AuthorLink({ handle, name }: { handle: string; name: string }) {
+function AuthorLink({ handle, name, className }: { handle: string; name: string; className?: string }) {
   const profileHref = useProfileHref();
   return (
     <a
       key="author"
       href={profileHref(handle)}
-      className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline')}
+      className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline', className)}
     >
       {name}
     </a>
@@ -157,7 +157,7 @@ export function BuildCard({
             className={cn(
               'truncate text-base font-semibold',
               tight &&
-                '@max-[260px]/build:line-clamp-2 @max-[260px]/build:text-sm @max-[260px]/build:leading-snug @max-[260px]/build:whitespace-normal @max-[260px]/build:text-pretty',
+                '@max-[260px]/build:[&>a]:line-clamp-2 @max-[260px]/build:[&>a]:block @max-[260px]/build:[&>a]:min-h-6 @max-[260px]/build:text-sm @max-[260px]/build:leading-snug @max-[260px]/build:whitespace-normal @max-[260px]/build:text-pretty',
             )}
           >
             <CardLink href={build.canonicalPath}>{displayName(build)}</CardLink>
@@ -289,7 +289,11 @@ export function KitCard({ kit, totalSize, compat, currentBuild, headingLevel = 3
           <p className="truncate text-xs text-fg-muted">
             {withSlot(
               t('ui_domain_curated_by', { author: SLOT }),
-              <AuthorLink handle={kit.owner.handle} name={kit.owner.displayName} />,
+              <AuthorLink
+                handle={kit.owner.handle}
+                name={kit.owner.displayName}
+                className="underline decoration-fg-subtle underline-offset-2"
+              />,
             )}
           </p>
           <p className="text-xs text-fg-muted tabular-nums">{facts.join(' · ')}</p>
@@ -328,7 +332,9 @@ export interface CreatorCardProps {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex min-w-0 flex-col">
-      <dt className="readout truncate">{label}</dt>
+      <dt className="readout truncate @max-[23rem]/creator:text-[0.625rem] @max-[23rem]/creator:tracking-normal">
+        {label}
+      </dt>
       <dd className="font-display-caps text-xl leading-tight tabular-nums text-fg @max-[23rem]/creator:text-base">
         {value}
       </dd>
@@ -370,7 +376,7 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
               <div
                 className={cn(
                   cardControlClasses,
-                  '@max-[23rem]/creator:col-start-3 @max-[23rem]/creator:row-span-2 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:self-center',
+                  '@max-[23rem]/creator:col-start-3 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:self-start',
                 )}
               >
                 {action}
@@ -394,7 +400,7 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
               />
             ) : null}
           </div>
-          <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-2 @max-[23rem]/creator:mt-0 @max-[23rem]/creator:border-t-0 @max-[23rem]/creator:pt-0">
+          <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3 @max-[23rem]/creator:col-span-2 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-2 @max-[23rem]/creator:mt-0 @max-[23rem]/creator:border-t-0 @max-[23rem]/creator:pt-0">
             <Stat
               label={t('ui_domain_stat_mods')}
               value={formatCount(locale, creator.modsCount + creator.buildsCount)}

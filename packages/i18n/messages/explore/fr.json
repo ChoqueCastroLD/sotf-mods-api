@@ -188,6 +188,6 @@
   "explore_sort_close": "Fermer le tri",
   "explore_search_recent_title": "Recherches récentes",
   "explore_search_recent_clear": "Effacer",
-  "explore_search_recent_remove": "Retirer « {query} » des recherches récentes",
+  "explore_search_recent_remove": "Retirer « {query} » des recherches récentes",
   "explore_search_clear_input": "Effacer la recherche"
 }

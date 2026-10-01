@@ -93,7 +93,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
   }
 
   <div class="grid gap-6 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-8">
-    <aside
+    <section
       id="explore-filters"
       data-explore-sheet="filters"
       data-explore-intercept=""
@@ -113,7 +113,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
         </a>
       </div>
       <ExploreFilters model={model} i18n={i18n} total={total} />
-    </aside>
+    </section>
     <ExploreSortSheet model={model} />
 
     <section id="explore-results" aria-labelledby="explore-results-title" class="flex min-w-0 flex-col gap-3 md:gap-4" tabindex="-1">

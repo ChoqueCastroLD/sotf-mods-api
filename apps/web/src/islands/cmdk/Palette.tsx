@@ -917,7 +917,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       },
       onMouseDown: (event: ReactMouseEvent) => event.preventDefault(),
       onClick: (event: ReactMouseEvent) => select(value, event.metaKey || event.ctrlKey),
-      className: `flex min-h-11 cursor-pointer items-center gap-3 rounded-md px-3 py-1.5 select-none data-selected:bg-fg/8 data-selected:shadow-[inset_2px_0_0_var(--color-primary)] md:min-h-10 ${extra}`,
+      className: `flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-3 py-1.5 select-none data-selected:bg-fg/8 data-selected:shadow-[inset_2px_0_0_var(--color-primary)] pointer-coarse:data-selected:bg-transparent pointer-coarse:data-selected:shadow-none pointer-coarse:active:bg-fg/8 max-md:min-h-16 md:min-h-10 md:rounded-md ${extra}`,
     };
   };
 
@@ -985,7 +985,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         // Focusable so a click on its background keeps focus (and Esc / Tab) inside the dialog.
         tabIndex={-1}
         onKeyDown={onKeyDown}
-        className="absolute inset-0 flex flex-col outline-none overflow-hidden bg-overlay text-fg md:inset-x-4 md:top-[12vh] md:bottom-auto md:mx-auto md:max-h-[76vh] md:max-w-160 md:rounded-xl md:border md:border-border md:shadow-lg md:motion-safe:animate-rise lg:max-w-220"
+        className="absolute inset-0 flex flex-col outline-none overflow-hidden bg-overlay pt-[env(safe-area-inset-top)] text-fg max-md:motion-safe:animate-rise md:pt-0 md:inset-x-4 md:top-[12vh] md:bottom-auto md:mx-auto md:max-h-[76vh] md:max-w-160 md:rounded-xl md:border md:border-border md:shadow-lg md:motion-safe:animate-rise lg:max-w-220"
       >
         <div className="flex items-center gap-2 border-b border-border px-3 md:px-4">
           <span className="relative flex size-5 shrink-0 items-center justify-center text-fg-subtle">
@@ -1075,7 +1075,11 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         {scope !== 'actions' &&
         scope !== 'scout' &&
         (parsed.tokens.some((token) => token.value !== '') || search === '') ? (
-          <fieldset className="flex min-w-0 shrink-0 items-center gap-1 overflow-x-auto border-b border-border px-3 py-1.5 md:px-4">
+          <fieldset
+            className={`flex min-w-0 shrink-0 items-center gap-1 overflow-x-auto border-b border-border px-3 py-1.5 md:px-4 ${
+              parsed.tokens.some((token) => token.value !== '') ? '' : 'max-md:hidden'
+            }`}
+          >
             <legend className="sr-only">{t('cmdk_filters_label')}</legend>
             {parsed.tokens.filter((token) => token.value !== '').length > 0 ? (
               parsed.tokens
@@ -1202,10 +1206,15 @@ export function Palette({ request, host, onClose }: PaletteProps) {
             scope === 'all' &&
             indexState.status === 'ready' &&
             suggestions.length === 0 ? (
-              <p className="px-4 pt-3 text-xs text-fg-subtle">{t('cmdk_filter_tip')}</p>
+              <p className="px-4 pt-3 text-xs text-fg-subtle max-md:hidden">{t('cmdk_filter_tip')}</p>
             ) : null}
 
-            <div id={listId} role="listbox" aria-label={t('cmdk_dialog_label')} className={hasList ? 'p-2' : 'hidden'}>
+            <div
+              id={listId}
+              role="listbox"
+              aria-label={t('cmdk_dialog_label')}
+              className={hasList ? 'p-2 max-md:pb-[calc(0.5rem+env(safe-area-inset-bottom))]' : 'hidden'}
+            >
               {groups.map((group) => (
                 // biome-ignore lint/a11y/useSemanticElements: an option group of a listbox (ARIA combobox pattern), not a form group
                 <div key={group.id} role="group" aria-labelledby={`${ids}-g-${group.id}`} className="pb-1">

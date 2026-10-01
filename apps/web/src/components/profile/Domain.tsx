@@ -451,7 +451,10 @@ export interface CreatorGridProps {
 export function CreatorGrid({ i18n, creators, label, follow, headingLevel = 2 }: CreatorGridProps) {
   return (
     <Scope i18n={i18n}>
-      <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4" aria-label={label}>
+      <ul
+        className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 2xl:grid-cols-4"
+        aria-label={label}
+      >
         {creators.map((creator) => (
           <li key={creator.user.id} className="min-w-0">
             <CreatorCard

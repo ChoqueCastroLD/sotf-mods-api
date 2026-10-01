@@ -3988,7 +3988,7 @@
   "explore_search_prompt_text": "Cherchez des mods, builds, kits, créateurs et guides par nom, auteur ou identifiant de manifeste.",
   "explore_search_prompt_title": "Que cherchez-vous ?",
   "explore_search_recent_clear": "Effacer",
-  "explore_search_recent_remove": "Retirer « {query} » des recherches récentes",
+  "explore_search_recent_remove": "Retirer « {query} » des recherches récentes",
   "explore_search_recent_title": "Recherches récentes",
   "explore_search_type_all": "Tout",
   "explore_search_type_pages": "Pages",

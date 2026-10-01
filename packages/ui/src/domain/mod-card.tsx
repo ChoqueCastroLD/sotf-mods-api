@@ -338,7 +338,7 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             className={cn(
               'truncate text-base font-semibold',
               tile &&
-                '@max-[260px]/card:line-clamp-2 @max-[260px]/card:text-sm @max-[260px]/card:leading-snug @max-[260px]/card:whitespace-normal @max-[260px]/card:text-pretty',
+                '@max-[260px]/card:[&>a]:line-clamp-2 @max-[260px]/card:[&>a]:block @max-[260px]/card:[&>a]:min-h-6 @max-[260px]/card:text-sm @max-[260px]/card:leading-snug @max-[260px]/card:whitespace-normal @max-[260px]/card:text-pretty',
             )}
           >
             <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>

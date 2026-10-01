@@ -18,7 +18,7 @@ const de_explore_search_recent_remove = /** @type {(inputs: Explore_Search_Recen
 };
 
 const fr_explore_search_recent_remove = /** @type {(inputs: Explore_Search_Recent_RemoveInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Retirer « ${i?.query} » des recherches récentes`)
+	return /** @type {LocalizedString} */ (`Retirer « ${i?.query} » des recherches récentes`)
 };
 
 const it_explore_search_recent_remove = /** @type {(inputs: Explore_Search_Recent_RemoveInputs) => LocalizedString} */ (i) => {

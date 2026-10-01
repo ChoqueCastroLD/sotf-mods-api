@@ -9,17 +9,17 @@
  */
 import type { SearchHitDTO } from '@sotf/contracts/search';
 import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Search as SearchIcon, X } from 'lucide-react';
 import { exploreDomainI18n } from '../components/explore/domain-i18n.ts';
 import { ListingEmpty, ListingError } from '../components/explore/ExploreStates.tsx';
 import SearchResults, { type SearchGroup } from '../components/explore/SearchResults.tsx';
+import { loadTaxonomy } from '../components/explore/taxonomy.ts';
 import PageLayout from '../layouts/PageLayout.astro';
 import { serverApi } from '../lib/api.ts';
 import { setPageCache } from '../lib/cache/page.ts';
 import { pageCache } from '../lib/cache/policy.ts';
 import { href } from '../lib/i18n.ts';
-import { loadTaxonomy } from '../components/explore/taxonomy.ts';
-import { Icon } from '@sotf/ui/icons';
-import { Clock, Search as SearchIcon, X } from 'lucide-react';
 
 const SEARCH_LIMIT = 50;
 const TYPES = ['mod', 'build', 'kit', 'user', 'page'] as const;

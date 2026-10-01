@@ -19,7 +19,7 @@ export default function ExploreSortSheet({ model }: ExploreSortSheetProps) {
     'flex min-h-14 w-full items-center gap-3 rounded-xl px-3 text-start text-base text-fg active:bg-fg/8 ' +
     'focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-focus';
   return (
-    <aside
+    <section
       id="explore-sort"
       data-explore-sheet="sort"
       data-explore-intercept=""
@@ -67,6 +67,6 @@ export default function ExploreSortSheet({ model }: ExploreSortSheetProps) {
           </a>
         </li>
       </ul>
-    </aside>
+    </section>
   );
 }
