@@ -1,16 +1,22 @@
 ---
 /**
- * Layout of the auth pages (research/03 §6.13): the topographic art panel with the contour pin
- * and the three reasons to sign up, next to the form column. On mobile the art shrinks to a
- * 120 px strip above the form. Every auth page is `noindex` and has no ads (research/03 §5.6).
+ * Layout of the auth pages (research/03 §6.13). Tablet and desktop: the painted cabin scene
+ * (`/art/auth-side-*`, a lantern next to the pinned map) as a full-height side panel with the
+ * tagline and the three reasons to sign up, next to the form column. Phones: a full-screen flow
+ * without the site chrome (header, tab bar, footer are hidden below `md`): the scene is the
+ * header of the screen with the logo on it, the form follows and the legal links close it.
+ * Every auth page is `noindex` and has no ads (research/03 §5.6).
  *
  * The form itself is a React island passed in the default slot; `<noscript>` explains that the
  * forms need JavaScript (the API only accepts JSON bodies, PLAN §5.1).
  */
+import { lockupSvg } from '@sotf/brand/logo';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { Backpack, BellRing, MapPin, Star } from 'lucide-react';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { href } from '../../lib/i18n.ts';
+import ArtPicture from '../layout/ArtPicture.astro';
 
 interface Props {
   /** Template name for RUM and analytics (`login`, `register`…). */
@@ -27,23 +33,48 @@ const benefits = [
   { icon: BellRing, text: m.auth_art_benefit_updates() },
   { icon: Star, text: m.auth_art_benefit_community() },
 ] as const;
+const locale = Astro.locals.locale;
+const logo = lockupSvg({ layout: 'horizontal', theme: 'night', height: 28, title: '' });
 ---
 
 <BaseLayout template={template} seo={{ title, description, noindex: true }} mainClass="grid">
   <div
-    class="mx-auto grid w-full max-w-(--container-content) md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-10 md:px-6 md:py-12"
+    class="mx-auto grid w-full max-w-(--container-content) grid-rows-[auto_1fr] md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:grid-rows-1 md:gap-12 md:px-6 md:py-12"
   >
     <aside
-      class="relative flex h-30 items-end overflow-hidden border-b border-border bg-surface px-4 pb-4 md:h-auto md:items-center md:rounded-xl md:border md:p-10"
+      class="relative isolate flex h-64 items-end overflow-hidden md:h-auto md:min-h-[38rem] md:rounded-2xl md:border md:border-border md:shadow-lg"
       aria-label={m.auth_art_label()}
     >
-      <div class="texture-topo pointer-events-none absolute inset-0 opacity-70" aria-hidden="true"></div>
-      <div class="relative grid gap-4 md:gap-8">
-        <span class="hidden size-12 items-center justify-center rounded-full border border-primary/40 bg-primary/10 text-primary md:flex" aria-hidden="true">
+      <ArtPicture
+        name="auth-side"
+        widths={[480, 896]}
+        width={896}
+        height={1200}
+        sizes="(min-width: 48rem) 40vw, 100vw"
+        priority
+        class="absolute inset-0 -z-20 size-full bg-raised object-cover object-[50%_50%] md:object-[50%_45%]"
+      />
+      <div
+        class="absolute inset-0 -z-10 bg-linear-to-t from-bg via-bg/30 to-bg/40 md:from-bg/95 md:via-bg/35 md:to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+      <a
+        href={href('/', locale)}
+        class="absolute start-4 top-4 flex min-h-11 items-center rounded-md text-fg md:hidden"
+        aria-label={`${m.common_site_name()} · ${m.common_nav_home()}`}
+      >
+        <Fragment set:html={logo} />
+      </a>
+      <div class="relative grid gap-4 p-4 md:gap-8 md:p-10">
+        <span
+          class="hidden size-12 items-center justify-center rounded-full border border-primary/50 bg-bg/60 text-primary backdrop-blur-sm md:flex"
+          aria-hidden="true"
+        >
           <Icon icon={MapPin} size={24} />
         </span>
-        <p class="font-display-caps text-display-xs text-fg md:text-display-sm">{m.auth_art_tagline()}</p>
-        <ul class="hidden gap-3 text-fg-muted md:grid">
+        <p class="font-display-caps text-display-xs text-fg max-md:sr-only md:text-display-sm">{m.auth_art_tagline()}</p>
+        <ul class="hidden gap-3 text-fg md:grid">
           {
             benefits.map((benefit) => (
               <li class="flex items-center gap-3">
@@ -58,8 +89,11 @@ const benefits = [
       </div>
     </aside>
 
-    <section class="grid content-start gap-6 px-4 py-8 md:px-0 md:py-4" aria-labelledby="auth-heading">
-      <header class="grid gap-2">
+    <section
+      class="relative -mt-6 flex flex-col gap-6 rounded-t-3xl border-t border-border bg-bg px-5 pt-7 pb-10 md:mt-0 md:grid md:content-center md:justify-items-center md:rounded-none md:border-0 md:bg-transparent md:px-0 md:py-4"
+      aria-labelledby="auth-heading"
+    >
+      <header class="grid w-full max-w-md gap-2">
         <h1 id="auth-heading" class="font-display-caps text-display-sm text-fg">{heading}</h1>
         {intro && <p class="text-fg-muted">{intro}</p>}
       </header>
@@ -69,6 +103,20 @@ const benefits = [
       <div class="w-full max-w-md">
         <slot />
       </div>
+      <nav class="mt-auto flex w-full max-w-md flex-wrap gap-x-4 gap-y-1 pt-4 text-xs text-fg-subtle md:hidden" aria-label={m.common_footer_legal()}>
+        <a href={href('/terms', locale)} class="inline-flex min-h-11 items-center hover:text-fg">{m.common_footer_terms()}</a>
+        <a href={href('/privacy', locale)} class="inline-flex min-h-11 items-center hover:text-fg">{m.common_footer_privacy()}</a>
+      </nav>
     </section>
   </div>
 </BaseLayout>
+
+<style is:global>
+  /* Phones: a full-screen flow, the site chrome steps aside (the logo on the scene is the way home). */
+  @media (max-width: 47.99rem) {
+    html:is([data-template='login'], [data-template='register'], [data-template='forgot-password'], [data-template='reset-password'], [data-template='verify-email'])
+      :is([data-site-header], [data-tab-bar], body > footer) {
+      display: none;
+    }
+  }
+</style>

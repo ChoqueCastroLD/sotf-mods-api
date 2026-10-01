@@ -56,30 +56,59 @@ function count(tab: ProfileTab): number | null {
 }
 ---
 
-<nav aria-label={m.profile_tabs_label()} class={cn(tabListClasses, 'sticky top-[calc(4rem+1px)] z-(--z-raised) bg-bg')}>
-  {
-    tabs.map((tab) => {
-      const n = count(tab);
-      return (
-        <a
-          href={href(tabPath(user, tab, { isDefault: tab === defaultTab }), locale)}
-          aria-current={tab === active ? 'page' : undefined}
-          data-tab={tab}
-          data-loc-pip
-          class={cn(
-            tabClasses,
-            'loc-host loc-frame [--loc-pip-y:-4px]',
-          )}
-        >
-          {label(tab)}
-          {n !== null && (
-            <span class="rounded-full bg-fg/8 px-1.5 font-mono text-2xs tabular-nums text-fg-muted" aria-hidden="true">
-              {formatCompactNumber(locale, n)}
-            </span>
-          )}
-          {n !== null && <span class="sr-only">({formatCompactNumber(locale, n)})</span>}
-        </a>
-      );
-    })
+<div class="sticky top-[calc(4rem+1px)] z-(--z-raised) -mx-4 min-w-0 bg-bg/92 px-4 py-2 backdrop-blur-md md:mx-0 md:bg-bg md:p-0 md:backdrop-blur-none">
+  <nav
+    aria-label={m.profile_tabs_label()}
+    data-profile-tabs
+    class={cn(
+      tabListClasses,
+      'gap-1 rounded-xl border border-border bg-surface p-1 md:gap-0 md:rounded-none md:border-0 md:border-b md:bg-transparent md:p-0',
+    )}
+  >
+    {
+      tabs.map((tab) => {
+        const n = count(tab);
+        return (
+          <a
+            href={href(tabPath(user, tab, { isDefault: tab === defaultTab }), locale)}
+            aria-current={tab === active ? 'page' : undefined}
+            data-tab={tab}
+            data-loc-pip
+            class={cn(
+              tabClasses,
+              'profile-tab loc-host loc-frame [--loc-pip-y:-4px]',
+              'max-md:h-10 max-md:flex-1 max-md:justify-center max-md:rounded-lg max-md:px-3.5 max-md:aria-[current=page]:bg-raised max-md:aria-[current=page]:shadow-sm max-md:aria-[current=page]:ring-1 max-md:aria-[current=page]:ring-border-strong',
+            )}
+          >
+            {label(tab)}
+            {n !== null && (
+              <span class="rounded-full bg-fg/8 px-1.5 font-mono text-2xs tabular-nums text-fg-muted" aria-hidden="true">
+                {formatCompactNumber(locale, n)}
+              </span>
+            )}
+            {n !== null && <span class="sr-only">({formatCompactNumber(locale, n)})</span>}
+          </a>
+        );
+      })
+    }
+  </nav>
+</div>
+
+<style>
+  /* Phones: a segmented control (raised active segment) instead of the crosshair brackets. */
+  @media (max-width: 47.99rem) {
+    .profile-tab::before,
+    .profile-tab::after {
+      display: none;
+    }
   }
-</nav>
+</style>
+
+<script>
+  // Keep the active segment in view when the bar scrolls (six tabs do not fit a phone).
+  const bar = document.querySelector<HTMLElement>('[data-profile-tabs]');
+  const current = bar?.querySelector<HTMLElement>('[aria-current="page"]');
+  if (bar && current && bar.scrollWidth > bar.clientWidth) {
+    bar.scrollLeft = current.offsetLeft - (bar.clientWidth - current.offsetWidth) / 2;
+  }
+</script>

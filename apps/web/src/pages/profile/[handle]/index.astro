@@ -200,7 +200,7 @@ const catalogTotal = notebook?.catalog?.badges.filter((badge) => !badge.isSecret
   </Fragment>
 
   <div
-    class="mx-auto grid w-full max-w-(--container-wide) gap-6 px-4 py-4 md:px-6 md:py-8"
+    class="mx-auto grid w-full max-w-(--container-wide) grid-cols-[minmax(0,1fr)] gap-5 px-4 pb-4 md:gap-6 md:px-6 md:py-8"
     data-profile-page
     data-user-id={user.id}
   >
@@ -233,13 +233,16 @@ const catalogTotal = notebook?.catalog?.badges.filter((badge) => !badge.isSecret
                 {content.tab === 'mods' ? m.profile_mods_title({ name }) : m.profile_builds_title({ name })}
               </h2>
               {content.state === 'ok' && content.data.total > 1 && (
-                <nav aria-label={m.profile_sort_label()} class="flex flex-wrap items-center gap-1 text-sm">
-                  <span class="me-1 text-fg-muted">{m.profile_sort_label()}</span>
+                <nav
+                  aria-label={m.profile_sort_label()}
+                  class="grid w-full grid-cols-3 gap-1 rounded-lg border border-border bg-surface p-1 text-center text-sm md:flex md:w-auto md:flex-wrap md:items-center md:rounded-none md:border-0 md:bg-transparent md:p-0 md:text-start"
+                >
+                  <span class="me-1 text-fg-muted max-md:sr-only">{m.profile_sort_label()}</span>
                   {PROFILE_SORTS.map((sort) => (
                     <a
                       href={tabHref(content.tab, { sort: sortParam(sort) })}
                       aria-current={query.sort === sort ? 'page' : undefined}
-                      class="inline-flex min-h-11 items-center rounded-md px-2.5 text-fg-muted hover:bg-fg/6 hover:text-fg aria-[current=page]:bg-fg/8 aria-[current=page]:font-semibold aria-[current=page]:text-fg md:min-h-8"
+                      class="inline-flex min-h-10 items-center justify-center rounded-md px-2 leading-tight text-fg-muted hover:bg-fg/6 hover:text-fg aria-[current=page]:bg-raised aria-[current=page]:font-semibold aria-[current=page]:text-fg md:min-h-8 md:px-2.5 md:aria-[current=page]:bg-fg/8"
                     >
                       {SORT_LABEL[sort]()}
                     </a>

@@ -8,6 +8,7 @@
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { MessagesSquare, RotateCcw } from 'lucide-react';
+import ArtPicture from '../components/layout/ArtPicture.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { href } from '../lib/i18n.ts';
 import { ensureLocals } from '../lib/request-context.ts';
@@ -27,18 +28,27 @@ const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
   template="server-error"
   seo={{ title: m.meta_server_error_title(), description: m.errors_server_text(), noindex: true, canonical: false, alternates: false }}
 >
-  <section class="mx-auto grid w-full max-w-(--container-prose) justify-items-center gap-6 px-4 py-16 text-center md:py-24">
-    <svg viewBox="0 0 120 80" class="w-40 text-fg-subtle" aria-hidden="true" focusable="false" fill="none">
-      <path d="M30 70h60M38 70l22-12 22 12M42 62l36-8M42 54l36 8" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
-      <path d="M60 46c-6-6-4-14 0-20 1 6 7 8 6 15" stroke="currentColor" stroke-width="2" stroke-dasharray="3 4" opacity="0.6" />
-    </svg>
+  <section class="mx-auto grid w-full max-w-(--container-prose) justify-items-center gap-5 pb-16 text-center md:px-4 md:py-16">
+    <figure class="relative m-0 w-full overflow-hidden md:rounded-2xl md:border md:border-border md:shadow-lg" aria-hidden="true">
+      <ArtPicture
+        name="cabin-waypoint"
+        widths={[480, 800, 1200]}
+        width={1584}
+        height={672}
+        sizes="(min-width: 44rem) 42rem, 100vw"
+        priority
+        class="block aspect-[16/9] w-full bg-raised object-cover md:aspect-[1584/672]"
+      />
+      <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-linear-to-t from-bg/80 to-transparent md:hidden"></div>
+    </figure>
+    <div class="grid justify-items-center gap-5 px-4 md:px-0">
     <p class="readout text-danger">{m.errors_server_readout()}</p>
     <h1 class="font-display-caps text-display-sm text-fg">{m.errors_server_title()}</h1>
     <p class="text-lg text-fg-muted">{m.errors_server_text()}</p>
-    <div class="flex flex-wrap justify-center gap-3">
+    <div class="grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap sm:justify-center">
       <a
         href={retryHref}
-        class="inline-flex h-11 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg"
+        class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-primary px-4 sm:min-h-11 font-semibold text-primary-fg"
       >
         <Icon icon={RotateCcw} size={18} />
         {m.errors_server_retry()}
@@ -46,12 +56,13 @@ const retryHref = href(locals.pagePath.split('#', 1)[0] ?? '/', locals.locale);
       <a
         href={SOCIAL_LINKS.discord}
         rel="noopener"
-        class="inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8"
+        class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border-strong px-4 py-2 text-center leading-tight sm:min-h-11 font-semibold text-fg hover:bg-fg/8"
       >
         <Icon icon={MessagesSquare} size={18} />
         {m.errors_server_status()}
       </a>
     </div>
     <p class="readout text-fg-subtle">{m.errors_reference({ id: locals.requestId })}</p>
+    </div>
   </section>
 </BaseLayout>

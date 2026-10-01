@@ -40,7 +40,8 @@ const retry = retryHref ?? href(Astro.locals.pagePath, Astro.locals.locale);
       title={title}
       description={description}
       headingLevel={headingLevel}
-      className="rounded-lg border border-dashed border-border-strong"
+      art={kind === 'empty'}
+      className={kind === 'empty' ? undefined : 'rounded-lg border border-dashed border-border-strong'}
     >
       {icon && (
         <span slot="icon" class="contents">
