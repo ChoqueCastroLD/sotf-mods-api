@@ -1,0 +1,23 @@
+{
+  "shell_more_label": "Daha fazla",
+  "shell_more_help": "Yardım",
+  "shell_more_community": "Topluluk",
+  "shell_more_install_guide": "Kurulum rehberi",
+  "shell_install_app": "Uygulamayı yükle",
+  "shell_install_app_hint": "SOTF Mods’u ana ekrana ekle",
+  "shell_install_ios_hint": "iPhone veya iPad’e yüklemek için Paylaş’a dokun, ardından “Ana Ekrana Ekle”yi seç.",
+  "shell_ptr_pull": "Yenilemek için çek",
+  "shell_ptr_release": "Yenilemek için bırak",
+  "shell_ptr_loading": "Yenileniyor…",
+  "shell_offline_meta_title": "Çevrimdışı",
+  "shell_offline_meta_description": "Şu anda bağlantı yok. Kapsama alanına döndüğünde tekrar dene.",
+  "shell_offline_eyebrow": "Sinyal yok",
+  "shell_offline_title": "Kapsama alanı dışındasın",
+  "shell_offline_body": "Şu anda adaya ulaşamıyoruz. Bağlantını kontrol edip tekrar dene.",
+  "shell_offline_retry": "Tekrar dene",
+  "shell_offline_checking": "Sinyal aranıyor…",
+  "shell_offline_still": "Hâlâ sinyal yok. Biraz sonra tekrar dene.",
+  "shell_offline_back_online": "Yeniden çevrimiçisin. Sayfa yenileniyor…",
+  "shell_offline_saved": "Bu cihazda kayıtlı",
+  "shell_offline_available": "Çevrimdışı da çalışır"
+}

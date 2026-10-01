@@ -368,3 +368,139 @@
 }
 
 /* ===== End of section 2 ===== */
+
+/* ===== Section 3 · Mobile native feel (shell: safe areas, touch, press, overscroll) ===== */
+
+@layer base {
+  :root {
+    /* Safe-area insets (notch, home indicator, landscape cut-outs). `viewport-fit=cover` is set
+       by the layout, so these are real in installed PWAs and notched phones, 0 elsewhere. */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    /* Chrome metrics: top bar and bottom tab bar (below md). Pages that pin their own bottom
+       bars use `--bottom-chrome` to sit above the tab bar. */
+    --topbar-h: 3.25rem;
+    --tabbar-h: 4rem;
+    --bottom-chrome: calc(var(--tabbar-h) + var(--safe-bottom));
+    /* Gutter that never sits under a landscape notch. */
+    --gutter: max(1rem, var(--safe-left), var(--safe-right));
+  }
+  @media (min-width: 48rem) {
+    :root {
+      --topbar-h: 4rem;
+      --tabbar-h: 0rem;
+      --bottom-chrome: 0rem;
+      --gutter: 1.5rem;
+    }
+  }
+
+  /* No grey flash on tap; no 300 ms delay or double-tap zoom on controls. */
+  html { -webkit-tap-highlight-color: transparent; }
+  a, button, summary, label, select, input, textarea, [role="button"], [role="tab"], [role="menuitem"] {
+    touch-action: manipulation;
+  }
+
+  /* Installed app (standalone window): no rubber-band of the page and no browser pull-to-refresh
+     (the shell draws its own on feed pages). Regular browser tabs keep their native behaviour. */
+  @media (display-mode: standalone), (display-mode: fullscreen) {
+    html { overscroll-behavior-y: none; }
+  }
+
+  /* Text selection on chrome surfaces feels web-like; opt out where it is a control. */
+  [data-tab-bar], [data-topbar-actions], .press { -webkit-touch-callout: none; user-select: none; }
+
+  /* Touch devices: focus rings stay (keyboard), but taps never leave the :hover tint behind. */
+  @media (hover: none) {
+    .press:hover { background-color: transparent; }
+  }
+}
+
+/* Press state: the pressed control sinks a hair and takes a soft tint, in ≤ 90 ms. Feels like a
+   hardware key; reduced motion keeps the tint and drops the movement. */
+@utility press {
+  transition: transform 90ms var(--ease-out), background-color 120ms var(--ease-out), opacity 120ms var(--ease-out);
+  &:active { background-color: color-mix(in oklab, currentColor 12%, transparent); }
+  @media (prefers-reduced-motion: no-preference) {
+    &:active { transform: scale(var(--press-scale, 0.95)); transition-duration: 40ms; }
+  }
+}
+
+/* 44 × 44 px hit area without changing layout: the ::after grows to at least 44 px each way. */
+@utility touch-target {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block: min(0px, calc((100% - 2.75rem) / 2));
+    inset-inline: min(0px, calc((100% - 2.75rem) / 2));
+  }
+}
+
+@utility pt-safe { padding-top: var(--safe-top); }
+@utility pb-safe { padding-bottom: var(--safe-bottom); }
+@utility ps-safe { padding-inline-start: max(var(--safe-left), 0px); }
+@utility pe-safe { padding-inline-end: max(var(--safe-right), 0px); }
+
+/* ---------- Bottom sheet (native <dialog>, `Sheet.astro` + `lib/client/sheet.ts`) ----------
+   The React twin (`@sotf/ui/sheet`) shares the look; this block serves server-rendered pages. */
+dialog[data-sheet] {
+  --sheet-y: 0px;
+  margin: 0;
+  padding: 0;
+  inset: auto 0 0 0;
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: auto;
+  max-block-size: calc(100dvh - var(--safe-top) - 0.75rem);
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--color-fg);
+  overscroll-behavior: contain;
+}
+dialog[data-sheet]::backdrop {
+  background: color-mix(in oklab, var(--color-night-975) 62%, transparent);
+  opacity: calc(1 - var(--sheet-progress, 0));
+}
+dialog[data-sheet] > [data-sheet-panel] {
+  display: flex;
+  flex-direction: column;
+  max-block-size: inherit;
+  margin-inline: auto;
+  inline-size: min(100%, 34rem);
+  border: 1px solid var(--color-border);
+  border-block-end: 0;
+  border-start-start-radius: var(--radius-xl);
+  border-start-end-radius: var(--radius-xl);
+  background: var(--color-overlay);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 var(--highlight-color);
+  padding-inline: max(var(--safe-left), var(--safe-right));
+  transform: translateY(var(--sheet-y));
+  will-change: transform;
+}
+dialog[data-sheet][data-has-snaps] > [data-sheet-panel] { block-size: var(--sheet-h); }
+dialog[data-sheet] [data-sheet-grip] { touch-action: none; cursor: grab; }
+dialog[data-sheet] [data-sheet-drag] { touch-action: none; }
+dialog[data-sheet][data-dragging] > [data-sheet-panel] { transition: none; }
+dialog[data-sheet][data-dragging] { cursor: grabbing; }
+dialog[data-sheet] [data-sheet-body] {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem 1.25rem max(1.25rem, var(--safe-bottom));
+}
+dialog[data-sheet][data-has-snaps]:not([data-expanded]) [data-sheet-body] { overflow-y: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  dialog[data-sheet] > [data-sheet-panel] { transition: transform var(--dur-slow) var(--ease-out); }
+  dialog[data-sheet]::backdrop { transition: opacity var(--dur-base) var(--ease-out); }
+  @starting-style {
+    dialog[data-sheet][open] > [data-sheet-panel] { transform: translateY(100%); }
+    dialog[data-sheet][open]::backdrop { opacity: 0; }
+  }
+}
+dialog[data-sheet][data-closing] > [data-sheet-panel] { transform: translateY(100%); }
+dialog[data-sheet][data-closing]::backdrop { opacity: 0; }
+html:has(dialog[data-sheet][open]) { overflow: hidden; }
+
+/* ===== End of section 3 ===== */

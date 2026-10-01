@@ -13,7 +13,8 @@
  *   morphs it into the card; any other element marked `[data-vt-cover][data-vt-href="<target
  *   path>"]` (custom tiles) is named after its `data-vt-cover` id the same way.
  *
- * Names set by this script are cleared once the transition ends.
+ * Names set by this script are cleared once the transition ends. Back navigations also get the
+ * `back` transition type, so touch devices slide the page in from the left (`global.css`).
  *
  * It also recovers from deploy skew: when a lazily imported chunk of the previous build is gone
  * (`vite:preloadError`), the page reloads once (PLAN §2.7).
@@ -29,6 +30,21 @@ const RELOAD_KEY = 'sotf-preload-reload';
 
 interface ViewTransitionLike {
   finished: Promise<unknown>;
+  /** Transition types (Chromium 125+, Safari 18.2+): `:active-view-transition-type(back)` in CSS. */
+  types?: Set<string>;
+}
+
+interface NavigationActivationLike {
+  navigationType?: string;
+  from?: { index: number } | null;
+  entry?: { index: number } | null;
+}
+
+/** Back navigations (history traverse to an earlier entry) slide the other way on touch devices. */
+export function isBackNavigation(activation: NavigationActivationLike | null | undefined): boolean {
+  if (activation?.navigationType !== 'traverse') return false;
+  if (!activation.from || !activation.entry) return false;
+  return activation.entry.index < activation.from.index;
 }
 
 interface PageSwapEvent extends Event {
@@ -80,6 +96,8 @@ export function initViewTransitions(win: Window = window): void {
   win.addEventListener('pagereveal', (event) => {
     const reveal = event as PageRevealEvent;
     if (!reveal.viewTransition) return;
+    const navigation = (win as Window & { navigation?: { activation?: NavigationActivationLike | null } }).navigation;
+    if (isBackNavigation(navigation?.activation)) reveal.viewTransition.types?.add('back');
     const target = doc.querySelector<HTMLElement>('[data-vt-cover-target]');
     if (!target) return;
     target.style.viewTransitionName = coverTransitionName(target.dataset.vtCoverTarget);

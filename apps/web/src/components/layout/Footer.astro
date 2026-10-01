@@ -79,19 +79,19 @@ const tonight = moonPhase();
 const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? '');
 ---
 
-<footer class="mt-auto border-t border-border bg-surface pb-24 md:pb-0">
-  <div class="mx-auto grid w-full max-w-(--container-wide) gap-10 px-4 py-12 md:px-6">
+<footer class="mt-auto border-t border-border bg-surface pb-[calc(var(--bottom-chrome)+1.5rem)] md:pb-0">
+  <div class="mx-auto grid w-full max-w-(--container-wide) gap-10 py-12 ps-[max(1rem,var(--safe-left))] pe-[max(1rem,var(--safe-right))] md:px-6">
     <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
       {
         columns.map((column) => (
           <nav aria-label={column.title}>
             <h2 class="readout mb-3 text-fg-subtle">{column.title}</h2>
-            <ul class="grid gap-1">
+            <ul class="grid gap-0 md:gap-1">
               {column.links.map((link) => (
                 <li>
                   <a
                     href={href(link.path, locale)}
-                    class="inline-flex min-h-8 items-center text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline"
+                    class="inline-flex min-h-11 items-center text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline md:min-h-8"
                   >
                     {link.label}
                   </a>
@@ -107,7 +107,7 @@ const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? ''
       <a
         href={SOCIAL_LINKS.discord}
         rel="noopener"
-        class="inline-flex h-10 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8"
+        class="press inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 md:h-10"
       >
         <Icon icon={MessagesSquare} size={18} />
         Discord
@@ -115,7 +115,7 @@ const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? ''
       <a
         href={SOCIAL_LINKS.github}
         rel="noopener"
-        class="inline-flex h-10 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8"
+        class="press inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 md:h-10"
       >
         <Icon icon={CodeXml} size={18} />
         GitHub
@@ -126,7 +126,7 @@ const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? ''
           data-snow-toggle
           hidden
           aria-pressed="true"
-          class="inline-flex h-10 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 aria-pressed:bg-blueprint-surface"
+          class="press inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 md:h-10 aria-pressed:bg-blueprint-surface"
         >
           <Icon icon={Snowflake} size={18} />
           {m.common_snow_toggle()}

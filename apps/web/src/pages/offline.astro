@@ -1,0 +1,175 @@
+---
+/**
+ * `/offline` (any locale): the page the service worker (`public/sw.js`) answers with when a
+ * navigation fails because the device has no connection. Precached together with its stylesheet,
+ * fonts and art, so it must stay self-contained: `chrome={false}` (no header or footer whose links
+ * would all dead-end), `boot={false}` (the shared client module imports chunks the worker does not
+ * cache) and one tiny script of its own with no imports.
+ *
+ * Besides «Try again» (it probes `/healthz` first and says so when there is still no signal) it
+ * lists what does keep working offline: the install guide, when this device has visited it.
+ * It reloads by itself when the connection returns. `noindex`; edge TTL as the other static pages.
+ */
+import { lockupSvg } from '@sotf/brand/logo';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { BookOpen, RotateCw, WifiOff } from 'lucide-react';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { href } from '../lib/i18n.ts';
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.static());
+const logo = lockupSvg({ layout: 'horizontal', theme: 'adaptive', height: 26, title: '' });
+const description = m.shell_offline_meta_description();
+---
+
+<BaseLayout
+  template="offline"
+  chrome={false}
+  boot={false}
+  seo={{ title: m.shell_offline_meta_title(), description, noindex: true, canonical: false }}
+>
+  <!-- The contour texture is a CSS mask: preloading it as a link lets the worker cache it too. -->
+  <link rel="preload" href="/brand/topo.svg" as="image" crossorigin="anonymous" slot="head" />
+  <div
+    data-offline
+    data-checking={m.shell_offline_checking()}
+    data-still={m.shell_offline_still()}
+    data-back={m.shell_offline_back_online()}
+    class="relative isolate flex min-h-dvh flex-col overflow-hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]"
+  >
+    <div class="texture-topo pointer-events-none absolute inset-0 z-[1] opacity-70" aria-hidden="true"></div>
+    <div class="relative order-1 lg:order-2">
+      <img
+        src="/art/offline-896.webp"
+        alt=""
+        width="896"
+        height="1200"
+        decoding="async"
+        fetchpriority="high"
+        class="aspect-[3/4] max-h-[50dvh] w-full object-cover object-[50%_28%] sm:max-h-[62dvh] lg:absolute lg:inset-0 lg:aspect-auto lg:max-h-none lg:h-full lg:object-[50%_30%]"
+      />
+      <div
+        class="pointer-events-none absolute inset-0 bg-linear-to-b from-bg/55 via-transparent via-45% to-bg lg:bg-linear-to-r lg:from-bg lg:via-bg/10 lg:via-35% lg:to-transparent"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="absolute inset-x-0 top-0 flex px-5 pt-[max(1.25rem,var(--safe-top))] lg:hidden" aria-hidden="true">
+        <span class="text-fg" set:html={logo} />
+      </div>
+    </div>
+
+    <main
+      id="main"
+      tabindex="-1"
+      class="relative z-10 order-2 -mt-24 flex flex-1 flex-col justify-end gap-5 sm:justify-center px-5 pb-[max(2rem,var(--safe-bottom))] outline-none sm:-mt-28 sm:px-8 lg:order-1 lg:mt-0 lg:max-w-3xl lg:justify-center lg:justify-self-end lg:px-12 lg:py-16"
+    >
+      <span class="mb-2 hidden text-fg lg:block" aria-hidden="true" set:html={logo} />
+      <p class="readout flex items-center gap-3 text-signal">
+        <span class="relative flex size-9 items-center justify-center rounded-full border border-signal/50 text-signal">
+          <span class="absolute inset-0 rounded-full border border-signal/40 motion-safe:animate-ping-locator" aria-hidden="true"></span>
+          <Icon icon={WifiOff} size={18} />
+        </span>
+        {m.shell_offline_eyebrow()}
+      </p>
+      <h1 class="font-display-caps text-display-md text-balance text-fg lg:text-display-lg">{m.shell_offline_title()}</h1>
+      <p class="max-w-prose text-lg text-fg-muted">{m.shell_offline_body()}</p>
+
+      <div class="mt-1 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          data-offline-retry
+          class="press inline-flex h-12 items-center gap-2.5 rounded-md bg-primary px-5 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover disabled:opacity-80"
+        >
+          <span class="retry-icon flex" aria-hidden="true"><Icon icon={RotateCw} size={18} /></span>
+          {m.shell_offline_retry()}
+        </button>
+      </div>
+      <p data-offline-status role="status" aria-live="polite" class="min-h-6 text-sm text-fg-muted"></p>
+
+      <section data-offline-available hidden class="grid gap-2 border-t border-border pt-5">
+        <h2 class="readout">{m.shell_offline_available()}</h2>
+        <a
+          data-offline-guide
+          href={href('/install', locale)}
+          class="press flex min-h-16 items-center gap-3.5 rounded-lg border border-border-strong bg-surface/80 px-4 backdrop-blur-sm hover:border-primary"
+        >
+          <span class="flex size-10 shrink-0 items-center justify-center rounded-md bg-sunken text-primary">
+            <Icon icon={BookOpen} size={20} />
+          </span>
+          <span class="grid">
+            <span class="font-semibold text-fg">{m.shell_more_install_guide()}</span>
+            <span class="text-sm text-fg-muted">{m.shell_offline_saved()}</span>
+          </span>
+        </a>
+      </section>
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  [data-offline][data-busy] .retry-icon {
+    animation: offline-spin 900ms linear infinite;
+  }
+  @keyframes offline-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-offline]');
+  const retry = root?.querySelector<HTMLButtonElement>('[data-offline-retry]');
+  const status = root?.querySelector<HTMLElement>('[data-offline-status]');
+  const GUIDE = /^\/(?:[a-z]{2}\/)?install\/?$/;
+
+  async function reachable(): Promise<boolean> {
+    try {
+      const response = await fetch('/healthz', { cache: 'no-store' });
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+
+  async function check(): Promise<void> {
+    if (!root || !retry || !status || retry.disabled) return;
+    retry.disabled = true;
+    root.setAttribute('data-busy', '');
+    status.textContent = root.dataset.checking ?? '';
+    const ok = await reachable();
+    if (ok) {
+      status.textContent = root.dataset.back ?? '';
+      location.reload();
+      return;
+    }
+    root.removeAttribute('data-busy');
+    status.textContent = root.dataset.still ?? '';
+    retry.disabled = false;
+  }
+
+  retry?.addEventListener('click', () => void check());
+  window.addEventListener('online', () => void check());
+
+  // The install guide is the one page the worker keeps for offline use: offer it when it is there.
+  void (async () => {
+    const section = root?.querySelector<HTMLElement>('[data-offline-available]');
+    const link = root?.querySelector<HTMLAnchorElement>('[data-offline-guide]');
+    if (!section || !link || !('caches' in window)) return;
+    try {
+      const keys = await (await caches.open('sotf-pages-v2')).keys();
+      const guides = keys.map((request) => new URL(request.url).pathname).filter((path) => GUIDE.test(path));
+      const prefix = /^\/([a-z]{2})(?:\/|$)/.exec(location.pathname)?.[1];
+      const own = guides.find((path) => (prefix ? path.startsWith(`/${prefix}/`) : path === '/install'));
+      const best = own ?? guides[0];
+      if (!best) return;
+      link.href = best;
+      section.hidden = false;
+    } catch {
+      // No cache access: the section stays hidden.
+    }
+  })();
+</script>

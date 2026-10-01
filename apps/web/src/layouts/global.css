@@ -34,9 +34,9 @@ html[data-relogin] [data-relogin-banner] {
   display: block;
 }
 
-/* ---- Header: compacts from 64 to 52 px while scrolling (transform only, no layout). -------- */
+/* ---- Header: from md it compacts from 64 to 58 px while scrolling (transform only, no layout). -- */
 @supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
     [data-site-header] [data-header-bar] {
       animation: header-compact linear both;
       animation-timeline: scroll(root);
@@ -50,16 +50,68 @@ html[data-relogin] [data-relogin-banner] {
   }
 }
 
-/* ---- Mobile tab bar: hidden while scrolling down (data-scroll-dir set by the chrome script). - */
-[data-tab-bar] {
-  transition: transform var(--dur-base, 200ms) var(--ease-out, ease-out);
+/* ---- Phones: the 56 px top bar slides away while scrolling down and returns on the first
+   upward flick (`html[data-scroll-dir]`, set by lib/client/chrome.ts; transform only). It stays
+   put while anything inside has focus (keyboard users never lose their place). The tab bar has
+   the same rule in MobileTabBar.astro. -------------------------------------------------------- */
+[data-site-header] {
+  view-transition-name: site-header;
 }
-html[data-scroll-dir="down"] [data-tab-bar] {
-  transform: translateY(110%);
+@media (max-width: 47.999rem) {
+  [data-site-header] {
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  html[data-scroll-dir="down"] [data-site-header]:not(:focus-within) {
+    transform: translateY(-100%);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
-  [data-tab-bar] {
+  [data-site-header] {
     transition: none;
+  }
+}
+
+/* ---- Sticky offset: whatever pins itself under the header uses `top-(--sticky-top)`: it follows
+   the bar when it hides on phones. The two pre-existing hard-coded sticky bars (profile tabs, the
+   install rail; `top: 4rem`) are remapped here until their owners switch to the variable: a
+   transform (never `top`, which would count as layout shift) closes the 8 px the 56 px bar leaves
+   and slides them up with the bar. -------------------------------------------------------------- */
+:root {
+  --sticky-top: calc(var(--topbar-h) + var(--safe-top));
+}
+@media (max-width: 47.999rem) {
+  html[data-scroll-dir="down"] {
+    --sticky-top: var(--safe-top);
+  }
+  .sticky[class*="top-16"],
+  .sticky[class*="top-[calc(4rem+1px)]"] {
+    transform: translateY(calc(var(--sticky-top) - 4rem));
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+}
+
+/* Touch: the header's account controls (guest «Sign in», avatar) keep their look but get a 44 px hit area. */
+@media (pointer: coarse) {
+  [data-account-guest],
+  [data-account-user] {
+    position: relative;
+  }
+  [data-account-guest]::after,
+  [data-account-user]::after {
+    content: "";
+    position: absolute;
+    inset: -0.25rem -0.125rem;
+  }
+}
+
+/* The account popover hangs under the bar, wherever the bar's height lands. */
+html [data-account-menu].account-menu:popover-open {
+  inset-block-start: calc(var(--safe-top) + var(--topbar-h) + 0.25rem);
+  inset-inline-end: max(var(--safe-right), 0.75rem);
+}
+@media (min-width: 48rem) {
+  html [data-account-menu].account-menu:popover-open {
+    inset-inline-end: max(1rem, calc((100vw - var(--container-wide)) / 2 + 1.5rem));
   }
 }
 
@@ -71,7 +123,124 @@ html[data-scroll-dir="down"] [data-tab-bar] {
   z-index: var(--z-overlay, 40);
 }
 
-/* Cross-document view transitions: the opt-in and the reduced-motion fallback live in tokens.css. */
+/* ---- Page transitions (cross-document View Transitions). The opt-in lives in tokens.css and only
+   exists when the visitor has no reduced-motion preference: with reduced motion (or in browsers
+   without the API) navigation is instant, which is the fallback. The header and the tab bar are
+   named, so they stay put while the page between them changes; the page leaves with a quick fade
+   and arrives with a short rise (desktop) or a short slide from the side it came from (touch:
+   forward from the right, back from the left, `types: back` added in scripts/view-transitions.ts). */
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: vt-out 120ms var(--ease-in) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 300ms var(--ease-out) 60ms both;
+  }
+  ::view-transition-group(site-header),
+  ::view-transition-group(tab-bar) {
+    animation-duration: var(--dur-slow);
+    animation-timing-function: var(--ease-out);
+  }
+  @media (pointer: coarse) {
+    ::view-transition-old(root) {
+      animation: vt-out-forward 140ms var(--ease-in) both;
+    }
+    ::view-transition-new(root) {
+      animation: vt-in-forward 320ms var(--ease-out) 40ms both;
+    }
+    :root:active-view-transition-type(back)::view-transition-old(root) {
+      animation-name: vt-out-back;
+    }
+    :root:active-view-transition-type(back)::view-transition-new(root) {
+      animation-name: vt-in-back;
+    }
+  }
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes vt-out-forward {
+  to {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+}
+@keyframes vt-in-forward {
+  from {
+    opacity: 0;
+    transform: translateX(32px);
+  }
+}
+@keyframes vt-out-back {
+  to {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+}
+@keyframes vt-in-back {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+}
+
+/* ---- Pull to refresh (installed app on feed pages; scripts/pull-to-refresh.ts). The indicator is
+   a waypoint diamond that turns as you pull and spins while the page reloads. ------------------ */
+[data-ptr] {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-start: calc(var(--sticky-top) + 0.5rem);
+  z-index: calc(var(--z-sticky) - 1);
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  opacity: var(--ptr-progress, 0);
+  transform: translateY(calc(var(--ptr-pull, 0) * 1px - 3.5rem));
+}
+html:not([data-ptr-active]) [data-ptr] {
+  visibility: hidden;
+}
+[data-ptr] [data-ptr-chip] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 0.875rem 0.5rem 0.625rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-overlay);
+  box-shadow: var(--shadow-md);
+}
+[data-ptr] [data-ptr-diamond] {
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  background: var(--color-primary);
+  rotate: calc(45deg + var(--ptr-progress, 0) * 270deg);
+  box-shadow: 0 0 12px 2px color-mix(in oklab, var(--color-primary) 55%, transparent);
+}
+[data-ptr][data-state="ready"] [data-ptr-diamond] {
+  scale: 1.35;
+}
+[data-ptr][data-state="loading"] [data-ptr-diamond] {
+  animation: ptr-spin 900ms linear infinite;
+}
+html[data-ptr-releasing] [data-ptr] {
+  transition:
+    transform var(--dur-slow) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+@keyframes ptr-spin {
+  to {
+    rotate: 405deg;
+  }
+}
 
 /* ---- «Locator» active indicator (header, mobile tab bar, in-page tabs). ---------------------
    `.loc-host` carries the state (`aria-current=page` / `aria-selected=true`, or hover as a

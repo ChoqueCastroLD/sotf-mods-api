@@ -1,0 +1,74 @@
+---
+/**
+ * «More» on phones: the same destinations as `MoreMenu.astro`, as a bottom sheet (`Sheet.astro`)
+ * opened from the top bar's «⋯» button (`MoreSheetTrigger`). Grouped rows with 44 px+ targets,
+ * the current page marked, and an «Install app» row that appears once the browser can install
+ * the PWA (or, on iOS Safari, a short hint, because iOS has no install prompt).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { ChevronRight, Share, Smartphone } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+import { isCurrentPath, moreGroups } from './nav-items.ts';
+import Sheet from './Sheet.astro';
+
+const locale = Astro.locals.locale;
+const current = Astro.locals.pagePath.split('?', 1)[0] ?? '/';
+const groups = moreGroups();
+const rowClass =
+  'press flex min-h-14 w-full items-center gap-3.5 px-3.5 text-start text-base text-fg aria-[current=page]:bg-primary-soft';
+---
+
+<Sheet id="more-sheet" title={m.shell_more_label()}>
+  <div class="grid gap-5 pt-1">
+    <section data-install-app-row hidden>
+      <button
+        type="button"
+        data-install-app
+        class="press flex min-h-16 w-full items-center gap-3.5 rounded-lg border border-primary/60 bg-primary-soft px-3.5 text-start"
+      >
+        <span class="flex size-10 shrink-0 items-center justify-center rounded-md bg-primary text-primary-fg">
+          <Icon icon={Smartphone} size={20} />
+        </span>
+        <span class="grid">
+          <span class="font-semibold text-fg">{m.shell_install_app()}</span>
+          <span class="text-sm text-fg-muted">{m.shell_install_app_hint()}</span>
+        </span>
+      </button>
+    </section>
+    <p
+      data-install-ios-hint
+      hidden
+      class="flex items-start gap-3 rounded-lg border border-border bg-sunken p-3.5 text-sm text-fg-muted"
+    >
+      <Icon icon={Share} size={20} className="mt-0.5 text-primary" />
+      <span>{m.shell_install_ios_hint()}</span>
+    </p>
+    {
+      groups.map((group) => (
+        <section aria-labelledby={`more-${group.id}`}>
+          <h3 id={`more-${group.id}`} class="readout mb-2 px-1">
+            {group.title}
+          </h3>
+          <ul class="divide-y divide-border overflow-hidden rounded-lg border border-border bg-surface">
+            {group.items.map((item) => (
+              <li>
+                <a
+                  href={href(item.path, locale)}
+                  aria-current={isCurrentPath(current, item.path) ? 'page' : undefined}
+                  class={rowClass}
+                >
+                  <span class="flex size-9 shrink-0 items-center justify-center rounded-md bg-sunken text-primary">
+                    <Icon icon={item.icon} size={20} />
+                  </span>
+                  <span class="min-w-0 flex-1 truncate">{item.label}</span>
+                  <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Sheet>

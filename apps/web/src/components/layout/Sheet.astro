@@ -1,0 +1,69 @@
+---
+/**
+ * Sheet: a bottom sheet for server-rendered pages, on the native `<dialog>` (focus trap, inert
+ * page, Escape and the back gesture come from the platform). `lib/client/sheet.ts` adds drag to
+ * dismiss, optional snap points and the open/close motion; the look lives in `@sotf/ui/tokens.css`.
+ * On tablets and desktops it stays a docked panel (max 34 rem) instead of stretching.
+ *
+ * Open it with any element carrying `data-sheet-open="<id>"` (a real `<button>`):
+ *
+ *   <button type="button" data-sheet-open="filters" aria-haspopup="dialog" aria-expanded="false">…</button>
+ *   <Sheet id="filters" title="Filters" snaps={[0.55, 1]}>…content…</Sheet>
+ *
+ * - `snaps`: fractions of the available height, ascending (`[0.55, 1]`); the body scrolls only
+ *   when the sheet is fully expanded. Omit for a sheet that is as tall as its content.
+ * - `initial`: the fraction it opens at (default: the lowest).
+ * - Anything inside with `data-sheet-close` closes it; links inside close it before navigating.
+ * - Without JavaScript the opener does nothing, so keep the same destinations reachable elsewhere
+ *   (the footer has every link of the «More» sheet).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { X } from 'lucide-react';
+
+interface Props {
+  id: string;
+  title: string;
+  /** Fractions of the available height, ascending. Omit for content-height. */
+  snaps?: readonly number[];
+  /** Fraction it opens at; defaults to the lowest snap. */
+  initial?: number;
+  /** Visually hide the title (it still labels the dialog). */
+  hideTitle?: boolean;
+  class?: string;
+}
+
+const { id, title, snaps, initial, hideTitle = false, class: className } = Astro.props;
+const titleId = `${id}-title`;
+---
+
+<dialog
+  id={id}
+  data-sheet
+  data-snaps={snaps?.join(' ')}
+  data-snap-initial={initial}
+  aria-labelledby={titleId}
+  class={className}
+>
+  <div data-sheet-panel>
+    <div data-sheet-grip class="flex shrink-0 justify-center pt-2.5 pb-1" aria-hidden="true">
+      <span class="h-1 w-10 rounded-full bg-border-strong/70"></span>
+    </div>
+    <header data-sheet-drag class="flex shrink-0 items-center gap-3 px-5 pb-2 pt-1">
+      <h2 id={titleId} class:list={['font-display-caps text-xl tracking-wide text-fg', hideTitle && 'sr-only']}>
+        {title}
+      </h2>
+      <button
+        type="button"
+        data-sheet-close
+        aria-label={m.ui_close()}
+        class="press ms-auto flex size-11 shrink-0 items-center justify-center rounded-full text-fg-muted hover:text-fg"
+      >
+        <Icon icon={X} size={20} />
+      </button>
+    </header>
+    <div data-sheet-body>
+      <slot />
+    </div>
+  </div>
+</dialog>
