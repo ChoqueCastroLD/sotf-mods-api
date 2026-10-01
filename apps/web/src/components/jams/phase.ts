@@ -115,3 +115,136 @@ export function categoryLabel(category: { key: string; label: string | null }): 
       return category.key.replace(/[-_]+/g, ' ').replace(/^./, (c) => c.toUpperCase());
   }
 }
+
+/* ------------------------------------------------------------------------------------------ *
+ * Hero art and the four stages of a jam (announce → build → vote → results).
+ * ------------------------------------------------------------------------------------------ */
+
+export type JamSeason = 'winter' | 'spring' | 'summer' | 'autumn';
+export type JamArtName = JamSeason | 'generic';
+
+/** Words (any of the site languages) that name a season in a title, slug or theme. */
+const SEASON_WORDS: ReadonlyArray<readonly [JamSeason, RegExp]> = [
+  ['winter', /winter|invierno|hiver|inverno|zima|зим|vinter|kış|冬|snow|frost|nieve|neige/i],
+  ['spring', /spring|primavera|printemps|frühling|fruhling|lente|wiosn|весн|\bvår\b|ilkbahar|春|thaw|bloom/i],
+  ['summer', /summer|verano|\bété\b|estate|sommer|zomer|lato|лет[оау]|sommar|\byaz\b|夏/i],
+  ['autumn', /autumn|\bfall\b|otoño|automne|autunno|herbst|herfst|jesie|осен|\bhöst\b|sonbahar|秋|harvest|cosecha/i],
+];
+
+/** Season of a calendar month on the island (northern hemisphere, meteorological). */
+export function seasonOfMonth(month: number): JamSeason {
+  if (month === 11 || month <= 1) return 'winter';
+  if (month <= 4) return 'spring';
+  if (month <= 7) return 'summer';
+  return 'autumn';
+}
+
+type ArtSource = Pick<
+  JamSummaryDTO,
+  'slug' | 'title' | 'theme' | 'announceAt' | 'submissionsOpenAt' | 'votingOpenAt' | 'phase'
+>;
+
+/**
+ * Which painting a jam gets: the season named in its slug, title or theme, otherwise the season of
+ * its schedule, otherwise the generic workbench. Deterministic: the same jam always gets the same
+ * art, whatever the viewer's date.
+ */
+export function jamArtName(jam: ArtSource): JamArtName {
+  for (const text of [jam.slug.replace(/-/g, ' '), jam.title, jam.theme ?? '']) {
+    for (const [season, pattern] of SEASON_WORDS) if (pattern.test(text)) return season;
+  }
+  const at = jam.submissionsOpenAt ?? jam.announceAt ?? jam.votingOpenAt;
+  if (!at) return 'generic';
+  const month = new Date(at).getUTCMonth();
+  return Number.isNaN(month) ? 'generic' : seasonOfMonth(month);
+}
+
+/** `object-position` that keeps the focal point of each painting in view when it is cropped. */
+export const ART_FOCUS: Readonly<Record<JamArtName | 'cabin', string>> = {
+  winter: '60% 55%',
+  spring: '68% 45%',
+  summer: '55% 50%',
+  autumn: '72% 55%',
+  generic: '58% 55%',
+  cabin: '50% 50%',
+};
+
+export const JAM_STAGES = ['announce', 'build', 'vote', 'results'] as const;
+export type JamStage = (typeof JAM_STAGES)[number];
+export type JamStageState = 'done' | 'current' | 'upcoming';
+
+/** State of each stage for a phase (index-aligned with {@link JAM_STAGES}). */
+export function stageStates(phase: JamPhase): JamStageState[] {
+  const current: number = {
+    draft: 0,
+    announced: 0,
+    submissions: 1,
+    submissions_closed: 1,
+    voting: 2,
+    results: 3,
+    archived: 3,
+  }[phase];
+  return JAM_STAGES.map((_, index) => (index < current ? 'done' : index === current ? 'current' : 'upcoming'));
+}
+
+export function stageLabel(stage: JamStage): string {
+  switch (stage) {
+    case 'announce':
+      return m.jams_stage_announce();
+    case 'build':
+      return m.jams_stage_build();
+    case 'vote':
+      return m.jams_stage_vote();
+    case 'results':
+      return m.jams_stage_results();
+  }
+}
+
+export interface StageDates {
+  /** Start of the stage (or its only moment). */
+  from: string | null;
+  /** End of a ranged stage. */
+  to: string | null;
+}
+
+export function stageDates(
+  jam: Pick<
+    JamSummaryDTO,
+    'announceAt' | 'submissionsOpenAt' | 'submissionsCloseAt' | 'votingOpenAt' | 'votingCloseAt' | 'resultsPublishedAt'
+  >,
+  stage: JamStage,
+): StageDates {
+  switch (stage) {
+    case 'announce':
+      return { from: jam.announceAt, to: null };
+    case 'build':
+      return { from: jam.submissionsOpenAt, to: jam.submissionsCloseAt };
+    case 'vote':
+      return { from: jam.votingOpenAt, to: jam.votingCloseAt };
+    case 'results':
+      return { from: jam.resultsPublishedAt ?? jam.votingCloseAt, to: null };
+  }
+}
+
+/** The jam a hub features: whatever is happening now, else the next one, else the latest results. */
+const FEATURE_ORDER: readonly JamPhase[] = ['voting', 'submissions', 'submissions_closed', 'announced', 'results'];
+
+export function pickFeatured(items: readonly JamSummaryDTO[]): JamSummaryDTO | null {
+  for (const phase of FEATURE_ORDER) {
+    const found = items.filter((jam) => jam.phase === phase);
+    if (found.length === 0) continue;
+    // Several in the same phase: the one whose next milestone comes first (results: the newest).
+    const key = (jam: JamSummaryDTO): number => {
+      const at = phase === 'results' ? jam.resultsPublishedAt : (nextDeadline(jam)?.at ?? null);
+      const time = at ? Date.parse(at) : Number.POSITIVE_INFINITY;
+      return phase === 'results' ? -time : time;
+    };
+    return [...found].sort((a, b) => key(a) - key(b))[0] ?? null;
+  }
+  return null;
+}
+
+/** Whether the phase has a live (ticking) feel: submissions and voting. */
+export function isLivePhase(phase: JamPhase): boolean {
+  return phase === 'submissions' || phase === 'voting';
+}

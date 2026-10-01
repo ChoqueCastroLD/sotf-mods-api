@@ -6,14 +6,18 @@
 import type { EligibleModsDTO, JamEntryDTO } from '@sotf/contracts/jams';
 import { Button, ButtonLink } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { Bell, BellRing, Plus } from 'lucide-react';
+import { Bell, BellRing, Plus, Vote } from 'lucide-react';
 import { type FormEvent, useEffect, useId, useState } from 'react';
 import { api, type Failure, get } from '../comments/lib/api.ts';
 import { t } from '../comments/lib/messages.ts';
 import { FailureNote, Modal, notify } from '../comments/lib/ui.tsx';
+import { openBooth } from './booth.ts';
 import { type JamStore, useJamState } from './store.ts';
 
 const NOTES_MAX = 1500;
+
+/** Buttons over the painting: fixed light-on-dark colours, whatever the theme. */
+const GLASS = 'border-white/25 bg-night-975/60 text-night-50 hover:bg-night-975/80 backdrop-blur-sm';
 
 export interface JamActionsProps {
   store: JamStore;
@@ -83,15 +87,23 @@ export function JamActions({ store, root, verifyHref, maxEntries, emailVerified 
     notify(t('jams_withdraw_done'));
   };
 
+  const canVoteNow = phase === 'voting' && state.eligibility.canVote && store.categories.length > 0;
   return (
     <div className="grid gap-3">
       <div className="flex flex-wrap items-center gap-2">
+        {canVoteNow ? (
+          <Button variant="primary" size="lg" glow onClick={() => openBooth()}>
+            <Icon icon={Vote} size={18} />
+            {state.votes.length > 0 ? t('jams_vote_continue') : t('jams_vote_start')}
+          </Button>
+        ) : null}
         {follows ? (
           <Button
-            variant={state.following ? 'secondary' : 'outline'}
+            variant="outline"
             onClick={toggleFollow}
             loading={busy}
             aria-pressed={state.following}
+            className={state.following ? 'border-primary/60 bg-primary/15 text-primary hover:bg-primary/25' : GLASS}
           >
             <Icon icon={state.following ? BellRing : Bell} size={18} />
             {state.following ? t('jams_following') : t('jams_follow')}
@@ -99,36 +111,42 @@ export function JamActions({ store, root, verifyHref, maxEntries, emailVerified 
         ) : null}
         {canSubmit ? (
           emailVerified ? (
-            <Button variant="primary" onClick={() => setSubmitOpen(true)}>
+            <Button variant="primary" size="lg" glow onClick={() => setSubmitOpen(true)}>
               <Icon icon={Plus} size={18} />
               {t('jams_submit_action')}
             </Button>
           ) : (
-            <ButtonLink href={verifyHref} variant="secondary">
+            <ButtonLink href={verifyHref} variant="outline" className={GLASS}>
               {t('jams_verify_to_submit')}
             </ButtonLink>
           )
         ) : null}
       </div>
       {phase === 'voting' && !state.eligibility.canVote ? (
-        <p className="text-sm text-fg-muted">
+        <p className="text-sm text-night-200">
           {eligibilityText(state.eligibility.reason)}{' '}
           {state.eligibility.reason === 'email_not_verified' ? (
-            <a href={verifyHref} className="font-semibold text-link underline underline-offset-3">
+            <a href={verifyHref} className="font-semibold text-primary underline underline-offset-3">
               {t('social_verify_action')}
             </a>
           ) : null}
         </p>
       ) : null}
       {state.myEntryIds.length > 0 ? (
-        <section className="grid gap-1" aria-label={t('jams_my_entries')}>
-          <h3 className="readout text-fg-muted">{t('jams_my_entries')}</h3>
+        <section className="grid gap-1.5 border-t border-white/10 pt-3" aria-label={t('jams_my_entries')}>
+          <h3 className="readout text-night-200">{t('jams_my_entries')}</h3>
           <ul className="grid gap-1">
             {state.myEntryIds.map((entryId) => (
-              <li key={entryId} className="flex flex-wrap items-center gap-2 text-sm text-fg">
+              <li key={entryId} className="flex flex-wrap items-center gap-2 text-sm text-night-50">
                 <span className="font-semibold">{entryName(root, entryId)}</span>
                 {canWithdraw ? (
-                  <Button variant="ghost" size="sm" onClick={() => withdraw(entryId)} disabled={busy}>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => withdraw(entryId)}
+                    disabled={busy}
+                    className="text-night-100 hover:bg-white/10"
+                  >
                     {t('jams_withdraw')}
                   </Button>
                 ) : null}

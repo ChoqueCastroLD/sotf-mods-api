@@ -1,0 +1,45 @@
+---
+/**
+ * Phase of a jam as a pill with a status dot (a pulsing waypoint while the jam is live). The text
+ * always names the phase; colour is only a second cue. `onArt` is the glass variant used over the
+ * paintings (fixed light-on-dark colours, independent of the theme).
+ */
+import type { JamPhase } from '@sotf/contracts/jams';
+import { isLivePhase, PHASE_TONE_CLASSES, phaseLabel, phaseTone } from './phase.ts';
+
+interface Props {
+  phase: JamPhase;
+  onArt?: boolean;
+  class?: string;
+}
+
+const { phase, onArt = false, class: className } = Astro.props;
+const tone = phaseTone(phase);
+const live = isLivePhase(phase);
+const ART_TONE = {
+  live: 'text-lichen-200 border-lichen-300/40',
+  soon: 'text-signal-200 border-signal-300/40',
+  wait: 'text-solafite-200 border-solafite-300/40',
+  done: 'text-night-100 border-white/20',
+} as const;
+const DOT = {
+  live: 'bg-lichen-300',
+  soon: 'bg-signal-300',
+  wait: 'bg-solafite-300',
+  done: 'bg-night-300',
+} as const;
+---
+
+<span
+  class:list={[
+    'inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold tracking-wide',
+    onArt ? ['border bg-night-975/70 backdrop-blur-sm', ART_TONE[tone]] : PHASE_TONE_CLASSES[tone],
+    className,
+  ]}
+>
+  <span class="relative flex size-2">
+    {live && <span class:list={['absolute inset-0 animate-ping-locator rounded-full', DOT[tone]]} aria-hidden="true" />}
+    <span class:list={['relative size-2 rounded-full', onArt ? DOT[tone] : 'bg-current']} aria-hidden="true"></span>
+  </span>
+  {phaseLabel(phase)}
+</span>

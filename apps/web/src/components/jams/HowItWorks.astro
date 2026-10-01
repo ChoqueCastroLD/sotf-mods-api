@@ -1,0 +1,46 @@
+---
+/**
+ * «How a jam works» in four steps (theme drops, build, vote, podium) as a trail of waypoints.
+ * Static text, shown on the hub (the whole story when no jam exists yet, a compact strip when some
+ * do).
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Hammer, MapPin, Star, Trophy } from 'lucide-react';
+
+interface Props {
+  headingLevel?: 2 | 3;
+  class?: string;
+}
+
+const { headingLevel = 2, class: className } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+const steps = [
+  { icon: MapPin, title: m.jams_how_1_title(), text: m.jams_how_1_text() },
+  { icon: Hammer, title: m.jams_how_2_title(), text: m.jams_how_2_text() },
+  { icon: Star, title: m.jams_how_3_title(), text: m.jams_how_3_text() },
+  { icon: Trophy, title: m.jams_how_4_title(), text: m.jams_how_4_text() },
+];
+---
+
+<section aria-labelledby="jams-how" class:list={['flex flex-col gap-5', className]}>
+  <Heading id="jams-how" class="font-display-caps text-3xl text-fg">{m.jams_how_title()}</Heading>
+  <ol class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      steps.map((step, index) => (
+        <li class="texture-topo relative flex flex-col gap-3 overflow-hidden rounded-xl border border-border bg-surface p-5">
+          <span class="flex items-center gap-3">
+            <span class="grid size-10 place-items-center rounded-full bg-primary-soft text-primary ring-1 ring-primary/40">
+              <Icon icon={step.icon} size={20} />
+            </span>
+            <span class="font-mono text-xs tabular-nums text-fg-subtle" aria-hidden="true">
+              0{index + 1}
+            </span>
+          </span>
+          <h3 class="font-display-caps text-2xl leading-none text-fg">{step.title}</h3>
+          <p class="text-sm text-fg-muted">{step.text}</p>
+        </li>
+      ))
+    }
+  </ol>
+</section>

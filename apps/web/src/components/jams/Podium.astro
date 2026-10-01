@@ -1,13 +1,15 @@
 ---
 /**
- * Podium of one category (top 3, ties included): rank medal, the entry as a compact mod card,
- * the team, the average stars and the number of votes. Ranks are also text, never only colour.
+ * Podium of one category (top 3, ties included): the winner stands in the middle on the tallest
+ * plinth with the trophy, second place on the left and third on the right, each with the mod's
+ * thumbnail, name, team and the average stars with the number of votes. Below `md` the podium is a
+ * stacked list in rank order. Ranks are text, never only colour or position.
  */
-
 import { profilePath } from '@sotf/contracts/seo';
 import { formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { ModCard } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { Package, Star } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { JamResultsDTO } from './data.ts';
 
@@ -15,48 +17,155 @@ type Placement = JamResultsDTO['overall'][number];
 
 interface Props {
   placements: readonly Placement[];
-  headingLevel?: 3 | 4;
+  /** Show the trophy medallion above the winner (the overall podium). */
+  trophy?: boolean;
 }
 
-const { placements } = Astro.props;
+const { placements, trophy = false } = Astro.props;
 const locale = Astro.locals.locale;
-const MEDAL = ['bg-featured-soft text-featured', 'bg-fg/10 text-fg', 'bg-primary-soft text-primary'];
+
+/** Rank → entries (ties share a rank). Anything below third place is not part of the podium. */
+const byRank = new Map<number, Placement[]>();
+for (const placement of placements) {
+  if (placement.rank > 3) continue;
+  byRank.set(placement.rank, [...(byRank.get(placement.rank) ?? []), placement]);
+}
+const slots = ([2, 1, 3] as const).flatMap((rank) => {
+  const entries = byRank.get(rank);
+  return entries ? [{ rank, entries }] : [];
+});
+
+const PLINTH = { 1: 'md:h-36', 2: 'md:h-24', 3: 'md:h-16' } as const;
+const ORDER = { 1: 'max-md:order-1', 2: 'max-md:order-2', 3: 'max-md:order-3' } as const;
+const TONE = {
+  1: {
+    ring: 'border-featured/60 shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-featured),transparent_70%),0_24px_60px_-24px_rgb(245_212_154/0.5)]',
+    chip: 'bg-featured text-night-950',
+    num: 'text-featured',
+    plinth: 'from-featured/25',
+  },
+  2: { ring: 'border-border-strong/60', chip: 'bg-fg/90 text-bg', num: 'text-fg-muted', plinth: 'from-fg/12' },
+  3: { ring: 'border-primary/40', chip: 'bg-primary text-primary-fg', num: 'text-primary', plinth: 'from-primary/18' },
+} as const;
 ---
 
-<ol class="grid gap-3 md:grid-cols-3">
+<ol
+  class:list={[
+    'grid items-end gap-4 md:gap-5',
+    slots.length >= 3 ? 'md:grid-cols-3' : slots.length === 2 ? 'md:mx-auto md:max-w-3xl md:grid-cols-2' : 'md:mx-auto md:max-w-md',
+  ]}
+>
   {
-    placements.map((placement) => (
-      <li class="flex min-w-0 flex-col gap-2 rounded-lg border border-border bg-surface p-3">
-        <div class="flex items-center justify-between gap-2">
-          <span
+    slots.map(({ rank, entries }) => {
+      const tone = TONE[rank];
+      return (
+        <li
+          class:list={[
+            'flex min-w-0 flex-col gap-3',
+            ORDER[rank],
+          ]}
+          data-rank={rank}
+        >
+          {entries.map((placement) => {
+            const mod = placement.entry.mod;
+            const thumb = mod.thumbnail;
+            return (
+              <article
+                class:list={[
+                  'relative flex flex-col rounded-xl border bg-surface',
+                  rank > 1 && 'max-md:flex-row',
+                  tone.ring,
+                  rank === 1 && 'md:pb-2',
+                  trophy && rank === 1 && 'md:mt-20',
+                ]}
+              >
+                {trophy && rank === 1 && (
+                  <picture class="pointer-events-none absolute start-1/2 -top-24 hidden size-32 -translate-x-1/2 md:block">
+                    <source type="image/avif" srcset="/art/jams/trophy-400.avif" />
+                    <img
+                      src="/art/jams/trophy-400.webp"
+                      alt=""
+                      width="400"
+                      height="400"
+                      loading="lazy"
+                      decoding="async"
+                      class="size-full object-cover [mask-image:radial-gradient(circle_at_50%_50%,#000_30%,transparent_66%)]"
+                      style="object-position: 50% 50%; transform: scale(2.5); transform-origin: 50% 29%;"
+                    />
+                  </picture>
+                )}
+                <div
+                  class:list={[
+                    'relative aspect-[16/10] w-full overflow-hidden rounded-t-[calc(var(--radius-xl)-1px)] bg-sunken',
+                    rank > 1 && 'max-md:aspect-square max-md:w-28 max-md:shrink-0 max-md:rounded-s-[calc(var(--radius-xl)-1px)] max-md:rounded-te-none',
+                  ]}
+                >
+                  {thumb ? (
+                    <img
+                      src={thumb.url}
+                      {...(thumb.srcset ? { srcset: thumb.srcset, sizes: '(min-width: 768px) 30vw, 92vw' } : {})}
+                      alt=""
+                      width={thumb.width ?? 640}
+                      height={thumb.height ?? 400}
+                      loading="lazy"
+                      decoding="async"
+                      class="size-full object-cover"
+                    />
+                  ) : (
+                    <div class="texture-topo grid size-full place-items-center text-fg-subtle">
+                      <Icon icon={Package} size={40} />
+                    </div>
+                  )}
+                  <div class="absolute inset-0 bg-gradient-to-t from-night-975/80 via-transparent to-transparent" aria-hidden="true" />
+                  <span
+                    class:list={[
+                      'absolute start-3 top-3 inline-flex min-w-11 items-center justify-center rounded-md px-2.5 py-1 font-display-caps text-xl leading-none max-md:start-2 max-md:top-2',
+                      tone.chip,
+                    ]}
+                  >
+                    {m.jams_rank({ rank })}
+                  </span>
+                </div>
+                <div class="flex min-w-0 flex-col gap-1.5 p-4 max-md:justify-center max-md:p-3">
+                  <h4 class="font-display-caps text-xl leading-tight text-fg">
+                    <a href={href(mod.canonicalPath, locale)} class="hover:underline">
+                      {mod.name}
+                    </a>
+                  </h4>
+                  <p class="text-sm text-fg-muted">
+                    {m.jams_by()}{' '}
+                    {placement.entry.authors.map((author, index) => (
+                      <>
+                        {index > 0 && ', '}
+                        <a href={href(profilePath(author.handle), locale)} class="font-semibold text-fg hover:underline">
+                          {author.displayName || author.handle}
+                        </a>
+                      </>
+                    ))}
+                  </p>
+                  <p class="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-fg-muted tabular-nums">
+                    <span class="inline-flex items-center gap-1 font-semibold text-fg">
+                      <Icon icon={Star} size={16} className="fill-current text-featured" />
+                      {formatNumber(locale, placement.average, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+                    </span>
+                    <span>{m.jams_votes_count({ count: placement.votes })}</span>
+                  </p>
+                </div>
+              </article>
+            );
+          })}
+          <div
+            aria-hidden="true"
             class:list={[
-              'inline-flex min-w-16 items-center justify-center rounded-md px-2 py-1 font-display-caps text-sm',
-              MEDAL[Math.min(placement.rank, 3) - 1],
+              'texture-topo relative hidden items-start justify-center overflow-hidden rounded-t-lg border border-b-0 border-border bg-gradient-to-b to-transparent md:flex',
+              tone.plinth,
+              PLINTH[rank],
             ]}
           >
-            {m.jams_rank({ rank: placement.rank })}
-          </span>
-          <span class="font-mono text-xs text-fg-muted tabular-nums">
-            {formatNumber(locale, placement.average, { maximumFractionDigits: 2, minimumFractionDigits: 2 })} ★ · {m.jams_votes_count({ count: placement.votes })}
-          </span>
-        </div>
-        <ModCard
-          mod={{ ...placement.entry.mod, canonicalPath: href(placement.entry.mod.canonicalPath, locale) }}
-          variant="compact"
-          headingLevel={4}
-          viewTransition={false}
-        />
-        <p class="text-xs text-fg-muted">
-          {placement.entry.authors.map((author, index) => (
-            <>
-              {index > 0 && ', '}
-              <a href={href(profilePath(author.handle), locale)} class="font-semibold text-fg hover:underline">
-                {author.displayName || author.handle}
-              </a>
-            </>
-          ))}
-        </p>
-      </li>
-    ))
+            <span class:list={['mt-1 font-display-caps text-6xl leading-none opacity-90', tone.num]}>{rank}</span>
+          </div>
+        </li>
+      );
+    })
   }
 </ol>
