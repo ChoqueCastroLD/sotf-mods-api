@@ -49,6 +49,9 @@ export async function checkMilestones(tx: Executor, options: MilestoneOptions): 
   const modFilter = options.modId === undefined ? sql`` : sql` AND m."id" = ${options.modId}`;
   const now = options.now;
   const today = now.toISOString().slice(0, 10);
+  // A full sweep (first run, or many mods crossing at once) aggregates every daily row: allow it
+  // more than the role's 5 s default. SET LOCAL only lasts for the surrounding transaction.
+  if (options.modId === undefined) await tx.execute(sql`SET LOCAL statement_timeout = '60s'`);
   const rows = await query<{ modId: number; authorId: number | null; threshold: number; reachedAt: Date | string }>(
     tx,
     sql`
@@ -81,10 +84,13 @@ export async function checkMilestones(tx: Executor, options: MilestoneOptions): 
           FROM cumulative c JOIN th ON c.total >= th.threshold
          GROUP BY c."modId", th.threshold
       ),
+      maxes AS (
+        SELECT "modId", max(total) AS total FROM cumulative GROUP BY "modId"
+      ),
       totals AS (
-        SELECT c."modId", c."userId",
-               greatest(coalesce((SELECT max(x.total) FROM cumulative x WHERE x."modId" = c."modId"), 0), m."downloads") AS total
+        SELECT c."modId", c."userId", greatest(coalesce(mx.total, 0), m."downloads") AS total
           FROM candidates c JOIN "Mod" m ON m."id" = c."modId"
+          LEFT JOIN maxes mx ON mx."modId" = c."modId"
       ),
       reached AS (
         SELECT t."modId", t."userId", th.threshold,
