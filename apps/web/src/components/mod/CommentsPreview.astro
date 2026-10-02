@@ -88,7 +88,7 @@ const items = (comments?.items ?? []).map((comment) => ({
       <EmptyArt>{mod.commentsCount > 0 ? m.mod_comments_unavailable() : m.mod_comments_empty()}</EmptyArt>
     )
   }
-  <p class="text-sm text-fg-muted">
+  <p class="text-sm text-fg-muted" data-keep>
     <a href={href('/logs', locale)} class="font-semibold text-link underline underline-offset-3">{m.logs_hint_comments()}</a>
   </p>
   <div

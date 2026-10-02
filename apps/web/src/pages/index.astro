@@ -2,9 +2,11 @@
 /**
  * Landing `/` (T0-05, research/03 §5.10 and §6.1, PLAN §4.2, §4.5).
  *
- * Sections: hero «The living island» (live readout + pins) · personal block (island, signed-in
- * only) · Start here · Patch Radar band · Find your next mod (sort tabs) · Legends (hall of fame) · Field notes + Regions ·
- * Featured Kit + Mod of the Week · Blueprints · Creator spotlight · FAQ · footer (layout).
+ * Sections, functional first (search and the catalogue are why people come): hero (search) ·
+ * personal block (signed-in only) · Patch Radar band, here only while a breaking build is current ·
+ * Find your next mod (category chips + sort tabs) · Start here · Blueprints · Legends (hall of
+ * fame) · Field notes + Featured Kit / Mod of the Week · Patch Radar band (calm state) · Creator
+ * spotlight · FAQ · footer (layout).
  *
  * - SSR, edge-cached 300 s with tags `home`, `list:*`, `compat` (60 s when a block failed, so
  *   it heals quickly). The HTML never depends on the visitor: the live figures are polled by
@@ -33,7 +35,6 @@ import ModOfWeekCard from '../components/landing/ModOfWeekCard.tsx';
 import PatchRadarBand from '../components/landing/PatchRadarBand.astro';
 import PersonalBlock from '../components/landing/PersonalBlock.astro';
 import PicksTabs from '../components/landing/PicksTabs.astro';
-import Regions from '../components/landing/Regions.astro';
 import SectionError from '../components/landing/SectionError.astro';
 import SectionHeader from '../components/landing/SectionHeader.astro';
 import StartHere from '../components/landing/StartHere.astro';
@@ -106,6 +107,8 @@ const jsonLd = [
 ];
 
 const modOfWeek = data.awards?.modOfWeek ?? null;
+/** A breaking game build is news: the radar moves up under the hero until it is resolved. */
+const radarUrgent = (data.radar?.build ?? data.ecosystem?.currentBuild)?.isBreaking === true;
 const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-8 md:px-6 md:py-14';
 ---
 
@@ -122,9 +125,7 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-8 md:px-6 
 
   <PersonalBlock locale={locale} />
 
-  <StartHere />
-
-  <PatchRadarBand locale={locale} radar={data.radar} ecosystem={data.ecosystem} loader={loader} />
+  {radarUrgent && <PatchRadarBand locale={locale} radar={data.radar} ecosystem={data.ecosystem} loader={loader} />}
 
   {
     data.trending === null ? (
@@ -144,57 +145,12 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-8 md:px-6 
         picks={data.picks}
         currentBuild={currentBuild}
         modCount={data.stats?.mods ?? null}
+        categories={data.categories}
       />
     )
   }
 
-  <HallOfFame locale={locale} mods={data.legends} categories={data.categories} />
-
-  <div class:list={[sectionClass, 'grid gap-10 lg:grid-cols-12 lg:gap-12']}>
-    <div class="min-w-0 lg:col-span-7">
-      <FieldNotes locale={locale} notes={data.notes} />
-    </div>
-    <div class="min-w-0 lg:col-span-5 lg:flex lg:flex-col">
-      <Regions locale={locale} categories={data.categories} />
-    </div>
-  </div>
-
-  {
-    (data.kit || modOfWeek) && (
-      <div class:list={[sectionClass, 'grid gap-10 pt-0 md:grid-cols-2 md:gap-8 md:pt-0']}>
-        {
-          data.kit && (
-            <section aria-labelledby="kit-title" class="min-w-0">
-              <SectionHeader
-                id="kit-title"
-                title={m.landing_kit_title()}
-                hint={m.landing_kit_hint()}
-                link={{ href: href('/kits', locale), label: m.landing_kit_all() }}
-              />
-              <FeaturedKitCard scope={scope} kit={data.kit} currentBuild={currentBuild} />
-            </section>
-          )
-        }
-        {
-          modOfWeek && (
-            <section aria-labelledby="motw-title" class="min-w-0">
-              <SectionHeader
-                id="motw-title"
-                title={m.landing_motw_title()}
-                hint={m.landing_motw_period({ start: formatDate(locale, modOfWeek.periodStart, 'long') })}
-              />
-              <ModOfWeekCard
-                scope={scope}
-                mod={modOfWeek.mod}
-                reason={modOfWeek.reason}
-                currentBuild={currentBuild}
-              />
-            </section>
-          )
-        }
-      </div>
-    )
-  }
+  <StartHere />
 
   {
     data.builds !== null && data.builds.length > 0 && (
@@ -212,6 +168,52 @@ const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-8 md:px-6 
       </section>
     )
   }
+
+  <HallOfFame locale={locale} mods={data.legends} categories={data.categories} />
+
+  <div class:list={[sectionClass, 'grid gap-10 lg:grid-cols-12 lg:gap-12']}>
+    <div class="min-w-0 lg:col-span-7">
+      <FieldNotes locale={locale} notes={data.notes} />
+    </div>
+    {
+      (data.kit || modOfWeek) && (
+        <div class="grid min-w-0 content-start gap-10 lg:col-span-5">
+          {
+            data.kit && (
+              <section aria-labelledby="kit-title" class="min-w-0">
+                <SectionHeader
+                  id="kit-title"
+                  title={m.landing_kit_title()}
+                  hint={m.landing_kit_hint()}
+                  link={{ href: href('/kits', locale), label: m.landing_kit_all() }}
+                />
+                <FeaturedKitCard scope={scope} kit={data.kit} currentBuild={currentBuild} />
+              </section>
+            )
+          }
+          {
+            modOfWeek && (
+              <section aria-labelledby="motw-title" class="min-w-0">
+                <SectionHeader
+                  id="motw-title"
+                  title={m.landing_motw_title()}
+                  hint={m.landing_motw_period({ start: formatDate(locale, modOfWeek.periodStart, 'long') })}
+                />
+                <ModOfWeekCard
+                  scope={scope}
+                  mod={modOfWeek.mod}
+                  reason={modOfWeek.reason}
+                  currentBuild={currentBuild}
+                />
+              </section>
+            )
+          }
+        </div>
+      )
+    }
+  </div>
+
+  {!radarUrgent && <PatchRadarBand locale={locale} radar={data.radar} ecosystem={data.ecosystem} loader={loader} />}
 
   {
     data.creators !== null && (data.creators.legends.length > 0 || data.creators.rising.length > 0) && (

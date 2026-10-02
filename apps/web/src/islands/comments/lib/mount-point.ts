@@ -52,3 +52,18 @@ export function commentHash(hash: string = location.hash): number | null {
   const match = /^#(?:comment|c)-(\d{1,12})$/.exec(hash);
   return match?.[1] ? Number(match[1]) : null;
 }
+
+/**
+ * Once an island renders its own list, drops the server-rendered copy (and its duplicate ids): the
+ * mount's siblings in its container (`[data-sheet-body]`, or the phone sheet's slot it was moved
+ * into), never the container itself, which holds the mount. Keeps the title, alone or in its header
+ * row (build pages: title + count), and hints marked `data-keep`.
+ */
+export function dropServerCopy(mount: HTMLElement): void {
+  const container = mount.parentElement;
+  if (!container) return;
+  for (const child of Array.from(container.children)) {
+    if (child === mount || child.matches('h2, h3, [data-keep]') || child.querySelector(':scope > h2')) continue;
+    child.remove();
+  }
+}

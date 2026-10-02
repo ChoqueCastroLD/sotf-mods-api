@@ -6,7 +6,15 @@
  * server-rendered comments stay).
  */
 
-import { commentHash, intData, loginHrefOf, siblingHref, turnstileSiteKey, whenNear } from './lib/mount-point.ts';
+import {
+  commentHash,
+  dropServerCopy,
+  intData,
+  loginHrefOf,
+  siblingHref,
+  turnstileSiteKey,
+  whenNear,
+} from './lib/mount-point.ts';
 import type { MeSummary } from './lib/session.ts';
 
 export async function bootComments(root: ParentNode, session: Promise<MeSummary | null>): Promise<void> {
@@ -30,12 +38,6 @@ export async function bootComments(root: ParentNode, session: Promise<MeSummary 
     focusId,
     layout: mount.dataset.layout === 'sheet' ? 'sheet' : 'inline',
     host: mount,
-    onTakeOver: () => {
-      // The island now renders the list: drop the server-rendered copy (and its duplicate ids).
-      for (const child of Array.from(section.children)) {
-        // Keep the section title, alone or inside its header row (build pages: title + count).
-        if (child !== mount && !child.matches('h2, h3') && !child.querySelector(':scope > h2')) child.remove();
-      }
-    },
+    onTakeOver: () => dropServerCopy(mount),
   });
 }

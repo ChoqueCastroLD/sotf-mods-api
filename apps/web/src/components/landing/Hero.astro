@@ -8,8 +8,9 @@
  * - Headline (second sentence in Flare), lead with dated catalogue figures, primary and secondary
  *   CTAs, the search field (a real GET form; with JS it opens Cmd+K) and four stat tiles with a
  *   count-up (skipped under reduced motion).
- * - Right side: the island map (`IslandMap.astro`), waypoints for ~26 mods over brand contours;
- *   a compact map below `lg`.
+ * - Right side: the island map (`IslandMap.astro`), waypoints for ~26 mods over brand contours.
+ *   Phones and tablets skip the map and the stat tiles: the hero stays one screen of «search, then
+ *   browse» and the catalogue starts right under it.
  */
 import { formatCompactNumber, formatNumber, type Locale } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -109,7 +110,7 @@ const secondaryCta =
       </div>
     </div>
 
-    <div class="order-6 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-center">
+    <div class="order-6 hidden lg:col-start-2 lg:block lg:row-span-2 lg:row-start-1 lg:self-center">
       <IslandMap
         locale={locale}
         trending={mapSources.trending}
@@ -159,7 +160,7 @@ const secondaryCta =
       {
         tiles.length > 0 && (
           <dl
-            class="order-7 grid grid-cols-4 divide-x divide-border overflow-hidden rounded-xl border border-border bg-surface/90 md:gap-3 md:divide-x-0 md:overflow-visible md:rounded-none md:border-0 md:bg-transparent"
+            class="order-7 hidden grid-cols-4 divide-x divide-border overflow-hidden rounded-xl border border-border bg-surface/90 md:gap-3 md:divide-x-0 md:overflow-visible md:grid md:rounded-none md:border-0 md:bg-transparent"
             aria-label={m.landing_stats_label()}
           >
             {tiles.map((tile) => (
