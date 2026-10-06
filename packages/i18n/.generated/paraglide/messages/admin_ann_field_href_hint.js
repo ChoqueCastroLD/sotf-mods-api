@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Ann_Field_Href_HintInputs */
 
 const en_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A site path such as /patch-radar, or an https:// address.`)
+	return /** @type {LocalizedString} */ (`A site path such as /mods, or an https:// address.`)
 };
 
 const es_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Una ruta del sitio como /patch-radar o una dirección https://.`)
+	return /** @type {LocalizedString} */ (`Una ruta del sitio como /mods o una dirección https://.`)
 };
 
 const de_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ein Pfad der Website wie /patch-radar oder eine https://-Adresse.`)
+	return /** @type {LocalizedString} */ (`Ein Pfad der Website wie /mods oder eine https://-Adresse.`)
 };
 
 const fr_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un chemin du site comme /patch-radar, ou une adresse https://.`)
+	return /** @type {LocalizedString} */ (`Un chemin du site comme /mods, ou une adresse https://.`)
 };
 
 const it_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un percorso del sito come /patch-radar o un indirizzo https://.`)
+	return /** @type {LocalizedString} */ (`Un percorso del sito come /mods o un indirizzo https://.`)
 };
 
 const nl_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een pad van de site zoals /patch-radar, of een https://-adres.`)
+	return /** @type {LocalizedString} */ (`Een pad van de site zoals /mods, of een https://-adres.`)
 };
 
 const pl_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ścieżka strony, np. /patch-radar, albo adres https://.`)
+	return /** @type {LocalizedString} */ (`Ścieżka strony, np. /mods, albo adres https://.`)
 };
 
 const pt_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Um caminho do site como /patch-radar ou um endereço https://.`)
+	return /** @type {LocalizedString} */ (`Um caminho do site como /mods ou um endereço https://.`)
 };
 
 const ru_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Путь на сайте, например /patch-radar, или адрес https://.`)
+	return /** @type {LocalizedString} */ (`Путь на сайте, например /mods, или адрес https://.`)
 };
 
 const sv_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En sökväg på sajten som /patch-radar, eller en https://-adress.`)
+	return /** @type {LocalizedString} */ (`En sökväg på sajten som /mods, eller en https://-adress.`)
 };
 
 const tr_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`/patch-radar gibi bir site yolu veya bir https:// adresi.`)
+	return /** @type {LocalizedString} */ (`/mods gibi bir site yolu veya bir https:// adresi.`)
 };
 
 const zh_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`站内路径（如 /patch-radar）或 https:// 地址。`)
+	return /** @type {LocalizedString} */ (`站内路径（如 /mods）或 https:// 地址。`)
 };
 
 const ja_admin_ann_field_href_hint = /** @type {(inputs: Admin_Ann_Field_Href_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`/patch-radar のようなサイト内パス、または https:// のアドレス。`)
+	return /** @type {LocalizedString} */ (`/mods のようなサイト内パス、または https:// のアドレス。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "A site path such as /patch-radar, or an https:// address." |
+* | "A site path such as /mods, or an https:// address." |
 *
 * @param {Admin_Ann_Field_Href_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

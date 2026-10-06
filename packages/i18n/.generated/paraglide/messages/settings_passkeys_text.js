@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Passkeys_TextInputs */
 
 const en_settings_passkeys_text = /** @type {(inputs: Settings_Passkeys_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in with your fingerprint, face or device lock instead of a password. A passkey can also be your second step.`)
+	return /** @type {LocalizedString} */ (`Log in with your fingerprint, face or device lock instead of a password. A passkey can also be your second step.`)
 };
 
 const es_settings_passkeys_text = /** @type {(inputs: Settings_Passkeys_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_passkeys_text = /** @type {(inputs: Settings_Passkeys_TextInpu
 /**
 * | output |
 * | --- |
-* | "Sign in with your fingerprint, face or device lock instead of a password. A passkey can also be your second step." |
+* | "Log in with your fingerprint, face or device lock instead of a password. A passkey can also be your second step." |
 *
 * @param {Settings_Passkeys_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

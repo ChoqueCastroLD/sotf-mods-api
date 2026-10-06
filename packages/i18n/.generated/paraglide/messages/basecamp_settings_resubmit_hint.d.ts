@@ -3,7 +3,7 @@ export type Basecamp_Settings_Resubmit_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Send it back to the Ranger Station once you made the requested changes." |
+* | "Send it back to moderation once you made the requested changes." |
 *
 * @param {Basecamp_Settings_Resubmit_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

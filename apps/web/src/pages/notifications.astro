@@ -1,0 +1,14 @@
+---
+/**
+ * Console shell for `/notifications` (PLAN §4.3; WP-34). Sub-paths of Signals are client routes only
+ * (filters live in the query string). Same document as `{dashboard,me,moderation,settings}/[...path]`.
+ */
+import ConsoleApp from '../console/ConsoleApp.tsx';
+import ConsoleNoScript from '../console/ConsoleNoScript.astro';
+import ConsoleShell from '../layouts/ConsoleShell.astro';
+---
+
+<ConsoleShell>
+  <ConsoleApp client:only="react" />
+  <ConsoleNoScript />
+</ConsoleShell>

@@ -1,5 +1,5 @@
 /**
- * `/basecamp/analytics` — analytics of all my mods or one (PLAN §7.5 «Analíticas por mod»):
+ * `/dashboard/analytics` — analytics of all my mods or one (PLAN §7.5 «Analíticas por mod»):
  * daily downloads (zero-filled) total and unique with release and patch markers, views and the
  * view → download conversion, downloads by version (≤ 8 + «Other»: stacked daily bars and totals) and by channel (web, RedManager,
  * client), referrers grouped (Google, Discord, YouTube, GitHub, AI assistants, internal, direct),
@@ -89,7 +89,7 @@ function Totals({ analytics }: { analytics: Analytics }) {
         <StatTile
           label={bt('basecamp_analytics_conversion')}
           value={totals.conversion === null ? 0 : Math.round(totals.conversion * 1000) / 10}
-          display={totals.conversion === null ? '—' : percent(totals.conversion, 1)}
+          display={totals.conversion === null ? '-' : percent(totals.conversion, 1)}
           className="h-full"
         />
       </li>
@@ -215,7 +215,7 @@ export function AnalyticsScreen({
           <RangeSwitch value={range} onChange={(next) => onChange({ range: next })} />
           {selected ? (
             <Link
-              to="/basecamp/mods/$modId"
+              to="/dashboard/mods/$modId"
               params={{ modId: String(selected.mod.id) }}
               className={buttonClasses({ variant: 'ghost', size: 'sm' })}
             >

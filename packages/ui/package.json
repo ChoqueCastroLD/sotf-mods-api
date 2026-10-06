@@ -36,10 +36,7 @@
   },
   "dependencies": {
     "@base-ui/react": "catalog:",
-    "@fontsource-variable/big-shoulders": "catalog:",
-    "@fontsource-variable/martian-mono": "catalog:",
     "@fontsource-variable/onest": "catalog:",
-    "@fontsource-variable/sofia-sans-extra-condensed": "catalog:",
     "@sotf/brand": "workspace:*",
     "@sotf/contracts": "workspace:*",
     "@tailwindcss/typography": "catalog:",

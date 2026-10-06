@@ -3,7 +3,7 @@ export type Builds_FollowedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Added to your Backpack." |
+* | "You now follow this build." |
 *
 * @param {Builds_FollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

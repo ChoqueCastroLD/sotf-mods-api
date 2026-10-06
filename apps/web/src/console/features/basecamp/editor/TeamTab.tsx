@@ -110,7 +110,7 @@ export function TeamTab({ modId }: { modId: number }) {
       await knowledgeApi.removeMember(modId, member.user.id);
       notify.success(self ? kt('mod_knowledge_team_left') : kt('mod_knowledge_team_removed'));
       await refresh();
-      if (self && team.viewerRole === 'coauthor') void navigate({ to: '/basecamp/mods' });
+      if (self && team.viewerRole === 'coauthor') void navigate({ to: '/dashboard/mods' });
     } catch (error) {
       reportFailure(error, kt('mod_knowledge_team_remove_failed'));
     } finally {

@@ -3,7 +3,7 @@ export type Ranger_Reauth_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ranger actions need a sign-in from the last 12 hours. Sign in again to continue." |
+* | "Moderation actions need a login from the last 12 hours. Log in again to continue." |
 *
 * @param {Ranger_Reauth_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

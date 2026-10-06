@@ -105,12 +105,12 @@ const remainingNow = log ? Math.max(0, new Date(log.expiresAt).getTime() - Date.
               [m.logs_sum_size(), formatBytes(log.sizeBytes)],
             ].map(([label, value]) => (
               <div class="min-w-0">
-                <dt class="text-xs font-medium tracking-wide text-fg-subtle uppercase">{label}</dt>
-                <dd class="truncate text-sm font-semibold text-fg">{value ?? '—'}</dd>
+                <dt class="text-xs font-medium text-fg-subtle">{label}</dt>
+                <dd class="truncate text-sm font-semibold text-fg">{value ?? '-'}</dd>
               </div>
             ))}
             <div class="min-w-0">
-              <dt class="text-xs font-medium tracking-wide text-fg-subtle uppercase">{m.logs_sum_problems()}</dt>
+              <dt class="text-xs font-medium text-fg-subtle">{m.logs_sum_problems()}</dt>
               <dd class="flex flex-wrap gap-x-3 text-sm font-semibold">
                 <span class={summary.counts.error + summary.counts.fatal > 0 ? 'text-danger' : 'text-fg'}>
                   {m.logs_sum_errors({ count: number.format(summary.counts.error + summary.counts.fatal) })}

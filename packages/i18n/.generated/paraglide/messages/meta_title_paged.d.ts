@@ -6,7 +6,7 @@ export type Meta_Title_PagedInputs = {
 /**
 * | output |
 * | --- |
-* | "{title} — page {page__number}" |
+* | "{title} (page {page__number})" |
 *
 * @param {Meta_Title_PagedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

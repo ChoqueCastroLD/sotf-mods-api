@@ -3,7 +3,7 @@ export type Errors_Code_Internal_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "It’s not you, it’s us. We’re on it; try again in a few minutes." |
+* | "This is a problem on our side. We’re working on it. Try again in a few minutes." |
 *
 * @param {Errors_Code_Internal_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

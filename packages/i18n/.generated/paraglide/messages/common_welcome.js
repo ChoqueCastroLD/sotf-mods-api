@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_WelcomeInputs */
 
 const en_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Day 1 on the island. Welcome, survivor.`)
+	return /** @type {LocalizedString} */ (`Welcome to SOTF Mods.`)
 };
 
 const es_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Día 1 en la isla. Bienvenido, superviviente.`)
+	return /** @type {LocalizedString} */ (`Te damos la bienvenida a SOTF Mods.`)
 };
 
 const de_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tag 1 auf der Insel. Willkommen, Überlebender.`)
+	return /** @type {LocalizedString} */ (`Willkommen bei SOTF Mods.`)
 };
 
 const fr_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jour 1 sur l’île. Bienvenue, survivant.`)
+	return /** @type {LocalizedString} */ (`Bienvenue sur SOTF Mods.`)
 };
 
 const it_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Giorno 1 sull’isola. Benvenuto, sopravvissuto.`)
+	return /** @type {LocalizedString} */ (`Benvenuto su SOTF Mods.`)
 };
 
 const nl_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dag 1 op het eiland. Welkom, overlevende.`)
+	return /** @type {LocalizedString} */ (`Welkom bij SOTF Mods.`)
 };
 
 const pl_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dzień 1 na wyspie. Witaj, ocalały.`)
+	return /** @type {LocalizedString} */ (`Witaj w SOTF Mods.`)
 };
 
 const pt_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dia 1 na ilha. Boas-vindas, sobrevivente.`)
+	return /** @type {LocalizedString} */ (`Boas-vindas ao SOTF Mods.`)
 };
 
 const ru_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`День 1 на острове. Добро пожаловать, выживший.`)
+	return /** @type {LocalizedString} */ (`Добро пожаловать в SOTF Mods.`)
 };
 
 const sv_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dag 1 på ön. Välkommen, överlevare.`)
+	return /** @type {LocalizedString} */ (`Välkommen till SOTF Mods.`)
 };
 
 const tr_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Adada 1. gün. Hoş geldin, hayatta kalan.`)
+	return /** @type {LocalizedString} */ (`SOTF Mods’a hoş geldin.`)
 };
 
 const zh_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`登岛第 1 天。欢迎你，幸存者。`)
+	return /** @type {LocalizedString} */ (`欢迎来到 SOTF Mods。`)
 };
 
 const ja_common_welcome = /** @type {(inputs: Common_WelcomeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`島で 1 日目。ようこそ、サバイバー。`)
+	return /** @type {LocalizedString} */ (`SOTF Mods へようこそ。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Day 1 on the island. Welcome, survivor." |
+* | "Welcome to SOTF Mods." |
 *
 * @param {Common_WelcomeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

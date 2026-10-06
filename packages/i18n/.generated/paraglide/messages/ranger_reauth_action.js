@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Reauth_ActionInputs */
 
 const en_ranger_reauth_action = /** @type {(inputs: Ranger_Reauth_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in again`)
+	return /** @type {LocalizedString} */ (`Log in again`)
 };
 
 const es_ranger_reauth_action = /** @type {(inputs: Ranger_Reauth_ActionInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_reauth_action = /** @type {(inputs: Ranger_Reauth_ActionInputs) 
 };
 
 const nl_ranger_reauth_action = /** @type {(inputs: Ranger_Reauth_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Opnieuw aanmelden`)
+	return /** @type {LocalizedString} */ (`Opnieuw inloggen`)
 };
 
 const pl_ranger_reauth_action = /** @type {(inputs: Ranger_Reauth_ActionInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_ranger_reauth_action = /** @type {(inputs: Ranger_Reauth_ActionInputs) 
 /**
 * | output |
 * | --- |
-* | "Sign in again" |
+* | "Log in again" |
 *
 * @param {Ranger_Reauth_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

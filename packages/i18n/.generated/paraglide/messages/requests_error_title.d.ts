@@ -3,7 +3,7 @@ export type Requests_Error_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "The request board is not answering" |
+* | "Could not load the requests" |
 *
 * @param {Requests_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_First_TextInputs */
 
 const en_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A themed build-off for the whole community: a theme, a few days to make something new, then everyone votes. The date will be announced here first.`)
+	return /** @type {LocalizedString} */ (`A themed contest for the whole community: a theme, a few days to make something new, then everyone votes. The date will be announced here first.`)
 };
 
 const es_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => Localiz
 };
 
 const nl_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een thematische bouwwedstrijd voor de hele community: een thema, een paar dagen om iets nieuws te maken en daarna stemt iedereen. De datum maken we eerst hier bekend.`)
+	return /** @type {LocalizedString} */ (`Een thematische wedstrijd voor de hele community: een thema, een paar dagen om iets nieuws te maken en daarna stemt iedereen. De datum maken we eerst hier bekend.`)
 };
 
 const pl_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => Localiz
 };
 
 const pt_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Uma disputa temática para toda a comunidade: um tema, alguns dias para criar algo novo e depois todos votam. A data será anunciada primeiro aqui.`)
+	return /** @type {LocalizedString} */ (`Um concurso temático para toda a comunidade: um tema, alguns dias para criar algo novo e depois todos votam. A data será anunciada primeiro aqui.`)
 };
 
 const ru_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => Localiz
 };
 
 const ja_jams_first_text = /** @type {(inputs: Jams_First_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`コミュニティ全員で楽しむテーマ制作イベントです。テーマが発表され、数日で新しい作品を作り、みんなで投票します。日程はまずここで発表します。`)
+	return /** @type {LocalizedString} */ (`コミュニティ全員が参加できるテーマ別のコンテストです。テーマが発表され、数日で新しい作品を作り、みんなで投票します。日程はまずここで発表します。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "A themed build-off for the whole community: a theme, a few days to make something new, then everyone votes. The date will be announced here first." |
+* | "A themed contest for the whole community: a theme, a few days to make something new, then everyone votes. The date will be announced here first." |
 *
 * @param {Jams_First_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

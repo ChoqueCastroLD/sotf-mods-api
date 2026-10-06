@@ -8,21 +8,15 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { REACTION_EMOJI } from '@sotf/contracts/comments';
-import { COMPAT_STATUSES, CREATOR_TIER_KEYS, SURVIVOR_RANK_KEYS } from '@sotf/contracts/common';
-import { BADGES, CREATOR_TIERS } from '@sotf/contracts/gamification';
 import { REVIEW_RULES } from '@sotf/contracts/reviews';
 import tailwindcss from '@tailwindcss/vite';
 import { renderToString } from 'react-dom/server';
 import { build, type Rolldown } from 'vite';
 import { describe, expect, it } from 'vitest';
-import { FIELD_KIT_NAMES } from '../../../../brand/src/field-kit.ts';
 import {
   AD_FORMATS,
   AD_MIN_HEIGHT,
   AdSlot,
-  BadgeStamp,
-  COMPAT_STATUS_VALUES,
-  CompatBadge,
   createDomainTranslate,
   DOMAIN_MESSAGE_KEYS,
   DomainI18nProvider,
@@ -35,13 +29,9 @@ import {
   nextFilterState,
   niceTicks,
   RATING_MIN_REVIEWS,
-  RankStamp,
   REACTION_GLYPHS,
-  reportShares,
-  SPOTLIGHT_TIERS,
   seriesColor,
   sparklinePoints,
-  TierStamp,
   withSlot,
 } from '../index.ts';
 import en from '../messages/en.json' with { type: 'json' };
@@ -58,27 +48,7 @@ function textOf(html: string): string {
     .trim();
 }
 
-describe('CompatBadge: always icon + text', () => {
-  for (const status of COMPAT_STATUS_VALUES) {
-    for (const [build, short] of [
-      ['1.0.4', false],
-      ['1.0.4', true],
-      [null, false],
-    ] as const) {
-      it(`${status} (build ${build ?? 'none'}${short ? ', short' : ''})`, () => {
-        const html = renderToString(<CompatBadge status={status} build={build} short={short} />);
-        expect(html).toMatch(/<svg[^>]*aria-hidden="true"/);
-        const text = textOf(html);
-        expect(text.length).toBeGreaterThan(2);
-        if (build && !short) expect(text).toContain(build);
-      });
-    }
-  }
-
-  it('covers exactly the contract statuses', () => {
-    expect([...COMPAT_STATUS_VALUES].sort()).toEqual([...COMPAT_STATUSES].sort());
-  });
-
+describe('ModCard', () => {
   it('no longer shows compatibility, awards or featured badges inside a ModCard', () => {
     const broken = { ...modWithoutImage, compatStatus: 'broken' as const, isFeatured: true, awards: mod.awards };
     for (const variant of ['grid', 'row', 'compact', 'feature', 'list'] as const) {
@@ -151,33 +121,6 @@ describe('constants mirror @sotf/contracts', () => {
   it('reaction glyphs', () => {
     expect(REACTION_GLYPHS).toEqual(REACTION_EMOJI);
   });
-
-  it('spotlight tiers', () => {
-    expect([...SPOTLIGHT_TIERS].sort()).toEqual(
-      CREATOR_TIERS.filter((tier) => tier.spotlight)
-        .map((tier) => tier.key)
-        .sort(),
-    );
-  });
-
-  it('every rank and tier has a stamp label', () => {
-    for (const rank of SURVIVOR_RANK_KEYS)
-      expect(textOf(renderToString(<RankStamp rank={rank} />)).length).toBeGreaterThan(5);
-    for (const tier of CREATOR_TIER_KEYS) {
-      const html = renderToString(<TierStamp tier={tier} iconMode="inline" />);
-      expect(html).toContain('<svg');
-      expect(textOf(html)).toMatch(/Creator tier\s*:\s*\S/);
-    }
-  });
-
-  it('every catalogue badge icon renders (Lucide map or Field kit)', () => {
-    for (const badge of BADGES) {
-      const html = renderToString(<BadgeStamp name={badge.key} icon={badge.icon} iconMode="inline" />);
-      if (FIELD_KIT_NAMES.includes(badge.icon as never)) continue;
-      // Lucide icons carry their own class name; the fallback would be `lucide-award`.
-      expect(html, badge.icon).toContain(`lucide-${badge.icon}`);
-    }
-  });
 });
 
 describe('i18n catalogue (ui-domain namespace)', () => {
@@ -199,23 +142,16 @@ describe('i18n catalogue (ui-domain namespace)', () => {
 
   it('every key is used by a component', () => {
     const dynamic = new Set(Object.keys(REACTION_GLYPHS).map((kind) => `ui_domain_reaction_${kind}`));
-    // Award labels left the cards (awards are gone from the UI); the keys wait for the copy cleanup.
-    const retired = new Set([
-      'ui_domain_award_mod_of_week',
-      'ui_domain_award_build_of_month',
-      'ui_domain_award_mod_of_month',
-      // The version table no longer shows compatibility reports.
-      'ui_domain_versions_col_reports',
-    ]);
-    const unused = DOMAIN_MESSAGE_KEYS.filter(
-      (key) => !dynamic.has(key) && !retired.has(key) && !source.includes(`'${key}'`),
-    );
+    const unused = DOMAIN_MESSAGE_KEYS.filter((key) => !dynamic.has(key) && !source.includes(`'${key}'`));
     expect(unused).toEqual([]);
   });
 
   it('falls back to English for missing keys and formats numbers per locale', () => {
-    const t = createDomainTranslate({ ui_domain_kit_mods: '{count, plural, one {# mod} other {# mods}}' }, 'de');
-    expect(t('ui_domain_kit_mods', { count: 1234 })).toBe('1.234 mods');
+    const t = createDomainTranslate(
+      { ui_domain_reviews_count: '{count, plural, one {# review} other {# reviews}}' },
+      'de',
+    );
+    expect(t('ui_domain_reviews_count', { count: 1234 })).toBe('1.234 reviews');
     expect(t('ui_domain_badge_new')).toBe('New');
   });
 
@@ -269,19 +205,6 @@ describe('ICU subset', () => {
 });
 
 describe('helpers', () => {
-  it('reportShares always sums to 100 %', () => {
-    for (const counts of [
-      { works: 1, partial: 1, broken: 1 },
-      { works: 31, partial: 1, broken: 3 },
-      { works: 0, partial: 0, broken: 7 },
-      { works: 2, partial: 0, broken: 0 },
-    ]) {
-      const shares = reportShares(counts);
-      expect(Math.round((shares.works + shares.partial + shares.broken) * 10) / 10).toBe(100);
-    }
-    expect(reportShares({ works: 0, partial: 0, broken: 0 })).toEqual({ works: 0, partial: 0, broken: 0 });
-  });
-
   it('niceTicks are round and cover the maximum', () => {
     expect(niceTicks(1_900)).toEqual([0, 500, 1000, 1500, 2000]);
     expect(niceTicks(7)).toEqual([0, 2, 4, 6, 8]);

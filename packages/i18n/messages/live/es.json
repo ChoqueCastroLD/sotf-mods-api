@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "Comparar",
   "live_embed_title": "Insignias para tu página",
-  "live_embed_intro": "Pega una insignia en un README, foro o Discord. Se actualizan solas.",
+  "live_embed_intro": "Pega una insignia en un README, un mensaje de foro o Discord. Las insignias se actualizan automáticamente.",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "Descargas",

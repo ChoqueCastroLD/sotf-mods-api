@@ -34,7 +34,7 @@ const pl_cmdk_go_logs = /** @type {(inputs: Cmdk_Go_LogsInputs) => LocalizedStri
 };
 
 const pt_cmdk_go_logs = /** @type {(inputs: Cmdk_Go_LogsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Partilhar logs`)
+	return /** @type {LocalizedString} */ (`Compartilhar logs`)
 };
 
 const ru_cmdk_go_logs = /** @type {(inputs: Cmdk_Go_LogsInputs) => LocalizedString} */ () => {

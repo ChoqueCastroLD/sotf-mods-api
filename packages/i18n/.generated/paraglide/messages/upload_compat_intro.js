@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Compat_IntroInputs */
 
 const en_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tell players where your mod runs. Field reports from survivors add to it later.`)
+	return /** @type {LocalizedString} */ (`Tell players where your mod runs.`)
 };
 
 const es_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cuenta a los jugadores dónde funciona tu mod. Los reportes de campo de los supervivientes lo completan después.`)
+	return /** @type {LocalizedString} */ (`Cuenta a los jugadores dónde funciona tu mod.`)
 };
 
 const de_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sag Spielern, wo dein Mod läuft. Feldberichte der Überlebenden ergänzen das später.`)
+	return /** @type {LocalizedString} */ (`Sag Spielern, wo dein Mod läuft.`)
 };
 
 const fr_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dites aux joueurs où votre mod fonctionne. Les rapports de terrain des survivants compléteront ensuite.`)
+	return /** @type {LocalizedString} */ (`Dites aux joueurs où votre mod fonctionne.`)
 };
 
 const it_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Di’ ai giocatori dove funziona la tua mod. I rapporti sul campo dei sopravvissuti la completeranno poi.`)
+	return /** @type {LocalizedString} */ (`Di’ ai giocatori dove funziona la tua mod.`)
 };
 
 const nl_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vertel spelers waar je mod werkt. Veldrapporten van overlevenden vullen het later aan.`)
+	return /** @type {LocalizedString} */ (`Vertel spelers waar je mod werkt.`)
 };
 
 const pl_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Powiedz graczom, gdzie działa twój mod. Raporty terenowe ocalałych uzupełnią to później.`)
+	return /** @type {LocalizedString} */ (`Powiedz graczom, gdzie działa twój mod.`)
 };
 
 const pt_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conte aos jogadores onde seu mod funciona. Os relatórios de campo dos sobreviventes completam isso depois.`)
+	return /** @type {LocalizedString} */ (`Conte aos jogadores onde seu mod funciona.`)
 };
 
 const ru_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Расскажите игрокам, где работает ваш мод. Полевые отчёты выживших дополнят это позже.`)
+	return /** @type {LocalizedString} */ (`Расскажите игрокам, где работает ваш мод.`)
 };
 
 const sv_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Berätta för spelarna var din mod fungerar. Överlevarnas fältrapporter fyller på senare.`)
+	return /** @type {LocalizedString} */ (`Berätta för spelarna var din modd fungerar.`)
 };
 
 const tr_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oyunculara modunun nerede çalıştığını söyle. Hayatta kalanların saha raporları sonra bunu tamamlar.`)
+	return /** @type {LocalizedString} */ (`Oyunculara modunun nerede çalıştığını söyle.`)
 };
 
 const zh_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`告诉玩家你的模组能在哪里运行。幸存者的实地报告之后会补充这些信息。`)
+	return /** @type {LocalizedString} */ (`告诉玩家你的模组能在哪里运行。`)
 };
 
 const ja_upload_compat_intro = /** @type {(inputs: Upload_Compat_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MODが動く環境をプレイヤーに伝えましょう。あとからサバイバーのフィールドレポートで補われます。`)
+	return /** @type {LocalizedString} */ (`MODが動く環境をプレイヤーに伝えましょう。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Tell players where your mod runs. Field reports from survivors add to it later." |
+* | "Tell players where your mod runs." |
 *
 * @param {Upload_Compat_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

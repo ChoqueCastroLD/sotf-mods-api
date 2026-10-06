@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/ecosystem` (PLAN §7.10 «Registro»: `LoaderRelease` and `EcosystemStatus`): the
+ * `/moderation/admin/ecosystem` (PLAN §7.10 «Registro»: `LoaderRelease` and `EcosystemStatus`): the
  * RedLoader / RedManager releases and their status on every game build (works, partial, broken,
  * unknown), shown by the Patch Radar and the mod pages. Each cell saves on change (optimistic,
  * rolled back on failure); a note per cell explains partial or broken states.
@@ -163,7 +163,7 @@ export function EcosystemScreen() {
           description={builds.length === 0 ? m.admin_eco_empty_builds() : m.admin_eco_empty_releases()}
           action={
             builds.length === 0 ? (
-              <Link to="/ranger/admin/game-builds" className="text-sm font-medium text-link underline">
+              <Link to="/moderation/admin/game-builds" className="text-sm font-medium text-link underline">
                 {m.admin_builds_title()}
               </Link>
             ) : (

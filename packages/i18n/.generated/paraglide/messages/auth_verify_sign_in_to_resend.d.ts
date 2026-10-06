@@ -3,7 +3,7 @@ export type Auth_Verify_Sign_In_To_ResendInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to get a new link" |
+* | "Log in to get a new link" |
 *
 * @param {Auth_Verify_Sign_In_To_ResendInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

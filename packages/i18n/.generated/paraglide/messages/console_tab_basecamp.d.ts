@@ -3,7 +3,7 @@ export type Console_Tab_BasecampInputs = {};
 /**
 * | output |
 * | --- |
-* | "Basecamp" |
+* | "Dashboard" |
 *
 * @param {Console_Tab_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

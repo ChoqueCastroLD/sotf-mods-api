@@ -3,7 +3,7 @@ export type Errors_Code_Forbidden_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your account doesn’t have permission for this action. If you think it should, contact a ranger." |
+* | "Your account doesn’t have permission for this action. If you think it should, contact a moderator." |
 *
 * @param {Errors_Code_Forbidden_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

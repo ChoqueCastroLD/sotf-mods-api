@@ -5,7 +5,7 @@ export type Builds_Og_AltInputs = {
 /**
 * | output |
 * | --- |
-* | "Blueprint of {name}" |
+* | "Preview of {name}" |
 *
 * @param {Builds_Og_AltInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

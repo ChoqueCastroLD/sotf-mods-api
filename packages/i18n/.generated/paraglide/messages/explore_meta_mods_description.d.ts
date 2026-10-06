@@ -5,8 +5,8 @@ export type Explore_Meta_Mods_DescriptionInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "Browse {count__number} Sons of the Forest mod for RedLoader. Filter by category, compatibility and multiplayer; sorted by what survivors download this week." |
-* | * | "Browse {count__number} Sons of the Forest mods for RedLoader. Filter by category, compatibility and multiplayer; sorted by what survivors download this week." |
+* | "one" | "Browse {count__number} Sons of the Forest mod for RedLoader. Filter by category, tag and multiplayer support. Free direct downloads." |
+* | * | "Browse {count__number} Sons of the Forest mods for RedLoader. Filter by category, tag and multiplayer support. Free direct downloads." |
 *
 * @param {Explore_Meta_Mods_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

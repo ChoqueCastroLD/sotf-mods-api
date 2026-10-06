@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Sanction_Suspend_HintInputs */
 
 const en_ranger_sanction_suspend_hint = /** @type {(inputs: Ranger_Sanction_Suspend_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Can’t sign in until the end date.`)
+	return /** @type {LocalizedString} */ (`Can’t log in until the end date.`)
 };
 
 const es_ranger_sanction_suspend_hint = /** @type {(inputs: Ranger_Sanction_Suspend_HintInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_sanction_suspend_hint = /** @type {(inputs: Ranger_Sanction_Susp
 };
 
 const nl_ranger_sanction_suspend_hint = /** @type {(inputs: Ranger_Sanction_Suspend_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kan zich tot de einddatum niet aanmelden.`)
+	return /** @type {LocalizedString} */ (`Kan tot de einddatum niet inloggen.`)
 };
 
 const pl_ranger_sanction_suspend_hint = /** @type {(inputs: Ranger_Sanction_Suspend_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_ranger_sanction_suspend_hint = /** @type {(inputs: Ranger_Sanction_Susp
 /**
 * | output |
 * | --- |
-* | "Can’t sign in until the end date." |
+* | "Can’t log in until the end date." |
 *
 * @param {Ranger_Sanction_Suspend_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

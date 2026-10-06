@@ -90,7 +90,7 @@
   "logs_expires_in": "Wird gelöscht in {time}",
   "logs_viewer_title": "Geteiltes Log",
   "logs_meta_viewer_description": "Ein geteiltes Spiel-Log. Der private Link löscht sich nach 24 Stunden selbst.",
-  "logs_gone_title": "Dieses Log ist weg",
+  "logs_gone_title": "Dieses Log ist nicht mehr verfügbar",
   "logs_gone_expired": "Geteilte Logs werden nach 24 Stunden automatisch gelöscht. Bitte um einen neuen Link oder teile das Log erneut.",
   "logs_gone_deleted": "Der Ersteller hat dieses Log gelöscht.",
   "logs_gone_reported": "Dieses Log wurde nach Missbrauchsmeldungen entfernt.",

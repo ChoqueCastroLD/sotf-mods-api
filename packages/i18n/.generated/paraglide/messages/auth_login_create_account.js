@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_Create_AccountInputs */
 
 const en_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create an account`)
+	return /** @type {LocalizedString} */ (`Register`)
 };
 
 const es_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea una cuenta`)
+	return /** @type {LocalizedString} */ (`Registrarse`)
 };
 
 const de_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konto erstellen`)
+	return /** @type {LocalizedString} */ (`Registrieren`)
 };
 
 const fr_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créer un compte`)
+	return /** @type {LocalizedString} */ (`S’inscrire`)
 };
 
 const it_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea un account`)
+	return /** @type {LocalizedString} */ (`Registrati`)
 };
 
 const nl_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Maak een account aan`)
+	return /** @type {LocalizedString} */ (`Registreren`)
 };
 
 const pl_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Załóż konto`)
+	return /** @type {LocalizedString} */ (`Zarejestruj się`)
 };
 
 const pt_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crie uma conta`)
+	return /** @type {LocalizedString} */ (`Registrar`)
 };
 
 const ru_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Создайте аккаунт`)
+	return /** @type {LocalizedString} */ (`Зарегистрироваться`)
 };
 
 const sv_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapa ett konto`)
+	return /** @type {LocalizedString} */ (`Registrera`)
 };
 
 const tr_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hesap oluştur`)
+	return /** @type {LocalizedString} */ (`Kayıt ol`)
 };
 
 const zh_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建账号`)
+	return /** @type {LocalizedString} */ (`注册`)
 };
 
 const ja_auth_login_create_account = /** @type {(inputs: Auth_Login_Create_AccountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アカウントを作成`)
+	return /** @type {LocalizedString} */ (`新規登録`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Create an account" |
+* | "Register" |
 *
 * @param {Auth_Login_Create_AccountInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

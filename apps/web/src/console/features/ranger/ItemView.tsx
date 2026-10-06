@@ -411,7 +411,7 @@ function ItemDetail({
             </Badge>
           ) : null}
           {isReport ? (
-            <Link to="/ranger/reports" className="inline-flex items-center gap-1 text-link hover:underline">
+            <Link to="/moderation/reports" className="inline-flex items-center gap-1 text-link hover:underline">
               <Icon icon={Flag} size={12} />
               {m.ranger_open_reports()}
             </Link>
@@ -660,7 +660,7 @@ function ReportSummary({ report }: { report: Report }) {
         <span>{reportTargetLabel(report.targetType)}</span>
         {report.targetType === 'user' ? (
           <Link
-            to="/ranger/users/$userId"
+            to="/moderation/users/$userId"
             params={{ userId: String(report.targetId) }}
             className="text-link hover:underline"
           >

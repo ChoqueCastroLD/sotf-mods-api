@@ -3,7 +3,7 @@ export type Auth_Login_Already_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "You’re already signed in" |
+* | "You’re already logged in" |
 *
 * @param {Auth_Login_Already_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

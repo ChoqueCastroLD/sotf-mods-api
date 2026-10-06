@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Notif_Version_HintInputs */
 
 const en_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A mod in your backpack released an update.`)
+	return /** @type {LocalizedString} */ (`A mod you follow released an update.`)
 };
 
 const es_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un mod de tu mochila ha publicado una actualización.`)
+	return /** @type {LocalizedString} */ (`Un mod que sigues ha publicado una actualización.`)
 };
 
 const de_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ein Mod in deinem Rucksack hat ein Update veröffentlicht.`)
+	return /** @type {LocalizedString} */ (`Ein Mod, dem du folgst, hat ein Update veröffentlicht.`)
 };
 
 const fr_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un mod de votre sac à dos a publié une mise à jour.`)
+	return /** @type {LocalizedString} */ (`Un mod que vous suivez a publié une mise à jour.`)
 };
 
 const it_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Una mod del tuo zaino ha pubblicato un aggiornamento.`)
+	return /** @type {LocalizedString} */ (`Una mod che segui ha pubblicato un aggiornamento.`)
 };
 
 const nl_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een mod in je rugzak heeft een update uitgebracht.`)
+	return /** @type {LocalizedString} */ (`Een mod die je volgt heeft een update uitgebracht.`)
 };
 
 const pl_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod z twojego plecaka dostał aktualizację.`)
+	return /** @type {LocalizedString} */ (`Mod, który obserwujesz, dostał aktualizację.`)
 };
 
 const pt_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Um mod da sua mochila lançou uma atualização.`)
+	return /** @type {LocalizedString} */ (`Um mod que você segue lançou uma atualização.`)
 };
 
 const ru_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Мод из вашего рюкзака получил обновление.`)
+	return /** @type {LocalizedString} */ (`Мод, на который вы подписаны, получил обновление.`)
 };
 
 const sv_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En modd i din ryggsäck har släppt en uppdatering.`)
+	return /** @type {LocalizedString} */ (`En modd du följer har släppt en uppdatering.`)
 };
 
 const tr_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt çantandaki bir mod güncelleme yayımladı.`)
+	return /** @type {LocalizedString} */ (`Takip ettiğin bir mod güncelleme yayımladı.`)
 };
 
 const zh_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你背包中的某个模组发布了更新。`)
+	return /** @type {LocalizedString} */ (`你关注的某个模组发布了更新。`)
 };
 
 const ja_settings_notif_version_hint = /** @type {(inputs: Settings_Notif_Version_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパックのMODがアップデートを公開しました。`)
+	return /** @type {LocalizedString} */ (`フォロー中の MOD がアップデートを公開しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "A mod in your backpack released an update." |
+* | "A mod you follow released an update." |
 *
 * @param {Settings_Notif_Version_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

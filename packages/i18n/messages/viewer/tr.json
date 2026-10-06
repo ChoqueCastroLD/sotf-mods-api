@@ -2,7 +2,7 @@
   "viewer_heading": "Yukarıdan görünüm",
   "viewer_alt": "{name} için yukarıdan önizleme: {pieces} parça, {width} x {depth} x {height} metre.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} parça",
-  "viewer_explore": "3B olarak incele",
+  "viewer_explore": "3B olarak görüntüle",
   "viewer_back": "Önizlemeye dön",
   "viewer_loading": "3B görünüm yükleniyor…",
   "viewer_pending": "Önizleme hazırlanıyor. Bir dakika sonra tekrar gel.",

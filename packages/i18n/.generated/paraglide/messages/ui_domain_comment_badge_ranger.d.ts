@@ -3,7 +3,7 @@ export type Ui_Domain_Comment_Badge_RangerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ranger" |
+* | "Moderator" |
 *
 * @param {Ui_Domain_Comment_Badge_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Settings_Account_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign-in email and password." |
+* | "Login email and password." |
 *
 * @param {Settings_Account_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

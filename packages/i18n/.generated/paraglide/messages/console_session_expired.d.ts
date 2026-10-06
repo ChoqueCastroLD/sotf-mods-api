@@ -3,7 +3,7 @@ export type Console_Session_ExpiredInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your session ended. Sign in again to continue." |
+* | "Your session ended. Log in again to continue." |
 *
 * @param {Console_Session_ExpiredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Explore_Search_In_ExploreInputs = {};
 /**
 * | output |
 * | --- |
-* | "Filter these results in Explore" |
+* | "Filter these results in the mod list" |
 *
 * @param {Explore_Search_In_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Errors_Code_Invalid_Credentials_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Wrong sign-in details" |
+* | "Wrong login details" |
 *
 * @param {Errors_Code_Invalid_Credentials_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

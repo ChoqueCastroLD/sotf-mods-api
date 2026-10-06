@@ -5,7 +5,7 @@ export type Me_UnfollowedInputs = {
 /**
 * | output |
 * | --- |
-* | "{mod} left your backpack" |
+* | "You no longer follow {mod}" |
 *
 * @param {Me_UnfollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

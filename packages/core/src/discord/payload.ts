@@ -54,8 +54,8 @@ export interface DiscordMessage {
   allowed_mentions: { parse: [] };
 }
 
-/** Brand flare of the night theme (`palette.flare[400]`), the default embed colour. */
-export const DISCORD_BRAND_COLOR = Number.parseInt(palette.flare[400].slice(1), 16);
+/** The brand red (`palette.flare[500]`, the logo red), the default embed colour. */
+export const DISCORD_BRAND_COLOR = Number.parseInt(palette.flare[500].slice(1), 16);
 
 const KIND_LABEL: Record<ModKind, string> = { mod: 'mod', library: 'library', build: 'build' };
 const AWARD_LABEL: Record<string, string> = {

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_File_Title_BuildInputs */
 
 const en_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your BuildShare blueprint`)
+	return /** @type {LocalizedString} */ (`Your BuildShare build`)
 };
 
 const es_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu plano de BuildShare`)
+	return /** @type {LocalizedString} */ (`Tu build de BuildShare`)
 };
 
 const de_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein BuildShare-Bauplan`)
+	return /** @type {LocalizedString} */ (`Dein BuildShare-Build`)
 };
 
 const fr_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre plan BuildShare`)
+	return /** @type {LocalizedString} */ (`Votre build BuildShare`)
 };
 
 const it_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il tuo progetto BuildShare`)
+	return /** @type {LocalizedString} */ (`La tua build BuildShare`)
 };
 
 const nl_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je BuildShare-bouwtekening`)
+	return /** @type {LocalizedString} */ (`Je BuildShare-build`)
 };
 
 const pl_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twój plan BuildShare`)
+	return /** @type {LocalizedString} */ (`Twój build BuildShare`)
 };
 
 const pt_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua planta do BuildShare`)
+	return /** @type {LocalizedString} */ (`Sua build do BuildShare`)
 };
 
 const ru_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваш чертёж BuildShare`)
+	return /** @type {LocalizedString} */ (`Ваша постройка BuildShare`)
 };
 
 const sv_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Din BuildShare-ritning`)
+	return /** @type {LocalizedString} */ (`Ditt BuildShare-bygge`)
 };
 
 const tr_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`BuildShare planın`)
+	return /** @type {LocalizedString} */ (`BuildShare yapın`)
 };
 
 const zh_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的 BuildShare 蓝图`)
+	return /** @type {LocalizedString} */ (`你的 BuildShare 建筑`)
 };
 
 const ja_upload_file_title_build = /** @type {(inputs: Upload_File_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`BuildShareの設計図`)
+	return /** @type {LocalizedString} */ (`BuildShareの建築`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your BuildShare blueprint" |
+* | "Your BuildShare build" |
 *
 * @param {Upload_File_Title_BuildInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

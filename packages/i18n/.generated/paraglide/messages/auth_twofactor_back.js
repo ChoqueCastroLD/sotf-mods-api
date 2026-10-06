@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Twofactor_BackInputs */
 
 const en_auth_twofactor_back = /** @type {(inputs: Auth_Twofactor_BackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Back to sign in`)
+	return /** @type {LocalizedString} */ (`Back to log in`)
 };
 
 const es_auth_twofactor_back = /** @type {(inputs: Auth_Twofactor_BackInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_twofactor_back = /** @type {(inputs: Auth_Twofactor_BackInputs) =>
 /**
 * | output |
 * | --- |
-* | "Back to sign in" |
+* | "Back to log in" |
 *
 * @param {Auth_Twofactor_BackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

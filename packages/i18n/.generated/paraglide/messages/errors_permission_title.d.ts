@@ -3,7 +3,7 @@ export type Errors_Permission_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Rangers only" |
+* | "No access" |
 *
 * @param {Errors_Permission_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

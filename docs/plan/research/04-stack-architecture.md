@@ -1,5 +1,7 @@
 # 04 · Stack técnico, arquitectura, rendimiento (CWV 100), SEO/GEO e infraestructura
 
+> **Nota (2026-10-06):** [CLASSIC.md](../CLASSIC.md) prevalece sobre este documento en la identidad «Locator», la landing y la gamificación (logros, insignias, XP, hitos, premios, kits, Patch Radar, mapa de la isla). Donde discrepen, manda CLASSIC.md. Este texto se conserva como histórico y no se reescribe.
+
 > **Track de investigación:** stack + arquitectura + rendimiento + SEO/GEO + infraestructura.
 > **Fecha:** 2026-09-29. Todas las versiones se comprobaron hoy con `npm view <pkg> version` / `dist-tags` (ver §11).
 > **Alcance:** recomendaciones para sotf-mods v2. No se ha tocado producción: las pruebas se hicieron en local (`/tmp`) y las únicas peticiones a producción fueron GET/HEAD de solo lectura (sin endpoints de descarga, favoritos ni aprobación).

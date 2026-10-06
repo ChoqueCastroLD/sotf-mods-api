@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Notify_OnInputs */
 
 const en_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Update signals on`)
+	return /** @type {LocalizedString} */ (`Update notifications on`)
 };
 
 const es_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Avisos de actualización activados`)
+	return /** @type {LocalizedString} */ (`Notificaciones de actualización activadas`)
 };
 
 const de_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Update-Signale an`)
+	return /** @type {LocalizedString} */ (`Update-Benachrichtigungen an`)
 };
 
 const fr_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaux de mise à jour activés`)
+	return /** @type {LocalizedString} */ (`Notifications de mise à jour activées`)
 };
 
 const it_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnali di aggiornamento attivi`)
+	return /** @type {LocalizedString} */ (`Notifiche di aggiornamento attive`)
 };
 
 const nl_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Updatesignalen aan`)
+	return /** @type {LocalizedString} */ (`Updatemeldingen aan`)
 };
 
 const pl_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sygnały o aktualizacjach włączone`)
+	return /** @type {LocalizedString} */ (`Powiadomienia o aktualizacjach włączone`)
 };
 
 const pt_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinais de atualização ativados`)
+	return /** @type {LocalizedString} */ (`Notificações de atualização ativadas`)
 };
 
 const ru_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигналы об обновлениях включены`)
+	return /** @type {LocalizedString} */ (`Уведомления об обновлениях включены`)
 };
 
 const sv_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Uppdateringssignaler på`)
+	return /** @type {LocalizedString} */ (`Uppdateringsaviseringar på`)
 };
 
 const tr_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Güncelleme sinyalleri açık`)
+	return /** @type {LocalizedString} */ (`Güncelleme bildirimleri açık`)
 };
 
 const zh_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`更新信号已开启`)
+	return /** @type {LocalizedString} */ (`更新通知已开启`)
 };
 
 const ja_me_notify_on = /** @type {(inputs: Me_Notify_OnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`更新シグナル オン`)
+	return /** @type {LocalizedString} */ (`更新通知 オン`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Update signals on" |
+* | "Update notifications on" |
 *
 * @param {Me_Notify_OnInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

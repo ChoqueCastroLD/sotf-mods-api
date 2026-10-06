@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_2fa_TextInputs */
 
 const en_settings_2fa_text = /** @type {(inputs: Settings_2fa_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Use an authenticator app so a stolen password is not enough to sign in.`)
+	return /** @type {LocalizedString} */ (`Use an authenticator app so a stolen password is not enough to log in.`)
 };
 
 const es_settings_2fa_text = /** @type {(inputs: Settings_2fa_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_2fa_text = /** @type {(inputs: Settings_2fa_TextInputs) => Loc
 /**
 * | output |
 * | --- |
-* | "Use an authenticator app so a stolen password is not enough to sign in." |
+* | "Use an authenticator app so a stolen password is not enough to log in." |
 *
 * @param {Settings_2fa_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -2,7 +2,7 @@
   "ui_close": "Stäng",
   "ui_cancel": "Avbryt",
   "ui_dismiss": "Avfärda",
-  "ui_loading": "Kollar kartan…",
+  "ui_loading": "Laddar…",
   "ui_retry": "Försök igen",
   "ui_error_reference": "Ref: {id}",
   "ui_optional": "Valfritt",

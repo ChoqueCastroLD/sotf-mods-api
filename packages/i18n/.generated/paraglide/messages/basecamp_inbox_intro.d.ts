@@ -3,7 +3,7 @@ export type Basecamp_Inbox_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Comments, bug reports, reviews and field reports on your mods. Answer from here." |
+* | "Comments, bug reports and reviews on your mods. Reply from here." |
 *
 * @param {Basecamp_Inbox_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,8 +5,8 @@ export type Emails_Notify_Reason_DigestInputs = {
 /**
 * | cadence | output |
 * | --- | --- |
-* | "daily" | "You get this email because you chose a daily digest for these signals." |
-* | * | "You get this email because you chose a weekly digest for these signals." |
+* | "daily" | "You get this email because you chose a daily digest for these notifications." |
+* | * | "You get this email because you chose a weekly digest for these notifications." |
 *
 * @param {Emails_Notify_Reason_DigestInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

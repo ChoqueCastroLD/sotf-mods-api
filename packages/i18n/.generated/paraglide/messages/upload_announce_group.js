@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Announce_GroupInputs */
 
 const en_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tested builds and announcement`)
+	return /** @type {LocalizedString} */ (`Announcement`)
 };
 
 const es_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Builds probadas y aviso`)
+	return /** @type {LocalizedString} */ (`Aviso`)
 };
 
 const de_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Getestete Builds und Ankündigung`)
+	return /** @type {LocalizedString} */ (`Ankündigung`)
 };
 
 const fr_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Builds testés et annonce`)
+	return /** @type {LocalizedString} */ (`Annonce`)
 };
 
 const it_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Build testate e annuncio`)
+	return /** @type {LocalizedString} */ (`Annuncio`)
 };
 
 const nl_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geteste builds en aankondiging`)
+	return /** @type {LocalizedString} */ (`Aankondiging`)
 };
 
 const pl_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przetestowane buildy i ogłoszenie`)
+	return /** @type {LocalizedString} */ (`Ogłoszenie`)
 };
 
 const pt_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Builds testadas e aviso`)
+	return /** @type {LocalizedString} */ (`Aviso`)
 };
 
 const ru_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Проверенные сборки и оповещение`)
+	return /** @type {LocalizedString} */ (`Оповещение`)
 };
 
 const sv_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Testade versioner och meddelande`)
+	return /** @type {LocalizedString} */ (`Meddelande`)
 };
 
 const tr_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Test edilen sürümler ve duyuru`)
+	return /** @type {LocalizedString} */ (`Duyuru`)
 };
 
 const zh_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已测试版本和通知`)
+	return /** @type {LocalizedString} */ (`公告`)
 };
 
 const ja_upload_announce_group = /** @type {(inputs: Upload_Announce_GroupInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`テストしたビルドとお知らせ`)
+	return /** @type {LocalizedString} */ (`お知らせ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Tested builds and announcement" |
+* | "Announcement" |
 *
 * @param {Upload_Announce_GroupInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

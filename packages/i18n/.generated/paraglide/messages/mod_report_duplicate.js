@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Report_DuplicateInputs */
 
 const en_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You already reported this mod. The rangers have it.`)
+	return /** @type {LocalizedString} */ (`You already reported this mod. The moderators have it.`)
 };
 
 const es_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ya denunciaste este mod. Los guardabosques lo tienen.`)
+	return /** @type {LocalizedString} */ (`Ya denunciaste este mod. Los moderadores lo tienen.`)
 };
 
 const de_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du hast diesen Mod schon gemeldet. Die Ranger kümmern sich darum.`)
+	return /** @type {LocalizedString} */ (`Du hast diesen Mod schon gemeldet. Die Moderatoren kümmern sich darum.`)
 };
 
 const fr_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous avez déjà signalé ce mod. Les rangers s’en occupent.`)
+	return /** @type {LocalizedString} */ (`Vous avez déjà signalé ce mod. Les modérateurs s’en occupent.`)
 };
 
 const it_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hai già segnalato questa mod. I ranger ci stanno lavorando.`)
+	return /** @type {LocalizedString} */ (`Hai già segnalato questa mod. I moderatori ci stanno lavorando.`)
 };
 
 const nl_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je hebt deze mod al gerapporteerd. De rangers zijn ermee bezig.`)
+	return /** @type {LocalizedString} */ (`Je hebt deze mod al gerapporteerd. De moderators zijn ermee bezig.`)
 };
 
 const pl_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ten mod został już przez ciebie zgłoszony. Strażnicy się tym zajmują.`)
+	return /** @type {LocalizedString} */ (`Ten mod został już przez ciebie zgłoszony. Moderatorzy się tym zajmują.`)
 };
 
 const pt_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você já denunciou este mod. Os guardas estão cuidando disso.`)
+	return /** @type {LocalizedString} */ (`Você já denunciou este mod. Os moderadores estão cuidando disso.`)
 };
 
 const ru_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вы уже жаловались на этот мод. Рейнджеры в курсе.`)
+	return /** @type {LocalizedString} */ (`Вы уже жаловались на этот мод. Модераторы в курсе.`)
 };
 
 const sv_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du har redan anmält den här moden. Rangers har den.`)
+	return /** @type {LocalizedString} */ (`Du har redan anmält den här moden. Moderatorerna har den.`)
 };
 
 const tr_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu modu zaten şikâyet ettin. Korucular ilgileniyor.`)
+	return /** @type {LocalizedString} */ (`Bu modu zaten şikâyet ettin. Moderatörler ilgileniyor.`)
 };
 
 const zh_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你已经举报过此模组，护林员正在处理。`)
+	return /** @type {LocalizedString} */ (`你已经举报过此模组，版主正在处理。`)
 };
 
 const ja_mod_report_duplicate = /** @type {(inputs: Mod_Report_DuplicateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`この MOD はすでに通報済みです。レンジャーが対応中です。`)
+	return /** @type {LocalizedString} */ (`この MOD はすでに通報済みです。モデレーターが対応中です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You already reported this mod. The rangers have it." |
+* | "You already reported this mod. The moderators have it." |
 *
 * @param {Mod_Report_DuplicateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

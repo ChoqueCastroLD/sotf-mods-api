@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Term_Ranger_StationInputs */
 
 const en_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Moderation`)
 };
 
 const es_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Puesto de guardabosques`)
+	return /** @type {LocalizedString} */ (`Moderación`)
 };
 
 const de_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerstation`)
+	return /** @type {LocalizedString} */ (`Moderation`)
 };
 
 const fr_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Poste des rangers`)
+	return /** @type {LocalizedString} */ (`Modération`)
 };
 
 const it_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Stazione dei ranger`)
+	return /** @type {LocalizedString} */ (`Moderazione`)
 };
 
 const nl_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerpost`)
+	return /** @type {LocalizedString} */ (`Moderatie`)
 };
 
 const pl_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posterunek strażników`)
+	return /** @type {LocalizedString} */ (`Moderacja`)
 };
 
 const pt_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posto dos guardas`)
+	return /** @type {LocalizedString} */ (`Moderação`)
 };
 
 const ru_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пост рейнджеров`)
+	return /** @type {LocalizedString} */ (`Модерация`)
 };
 
 const sv_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerstation`)
+	return /** @type {LocalizedString} */ (`Moderering`)
 };
 
 const tr_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucu İstasyonu`)
+	return /** @type {LocalizedString} */ (`Moderasyon`)
 };
 
 const zh_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林站`)
+	return /** @type {LocalizedString} */ (`审核`)
 };
 
 const ja_common_term_ranger_station = /** @type {(inputs: Common_Term_Ranger_StationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーステーション`)
+	return /** @type {LocalizedString} */ (`モデレーション`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ranger Station" |
+* | "Moderation" |
 *
 * @param {Common_Term_Ranger_StationInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

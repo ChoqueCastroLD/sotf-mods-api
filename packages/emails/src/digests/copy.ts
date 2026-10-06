@@ -1,5 +1,5 @@
 /**
- * Subject, heading, intro and footer reason of a signals email by cadence: the instant batch, or
+ * Subject, heading, intro and footer reason of a notifications email by cadence: the instant batch, or
  * the daily and weekly digests (PLAN §7.3).
  */
 import type { Locale } from '@sotf/i18n';

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_Confirm_TitleInputs */
 
 const en_settings_sessions_confirm_title = /** @type {(inputs: Settings_Sessions_Confirm_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out this device?`)
+	return /** @type {LocalizedString} */ (`Log out this device?`)
 };
 
 const es_settings_sessions_confirm_title = /** @type {(inputs: Settings_Sessions_Confirm_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_confirm_title = /** @type {(inputs: Settings_Sessions
 /**
 * | output |
 * | --- |
-* | "Sign out this device?" |
+* | "Log out this device?" |
 *
 * @param {Settings_Sessions_Confirm_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Install_Step_Loader_TextInputs */
 
 const en_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader is the mod loader of Sons of the Forest. Install it once and every mod works.`)
+	return /** @type {LocalizedString} */ (`RedLoader is the mod loader for Sons of the Forest. You only need to install it once.`)
 };
 
 const es_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader es el cargador de mods de Sons of the Forest. Se instala una vez y funcionan todos los mods.`)
+	return /** @type {LocalizedString} */ (`RedLoader es el cargador de mods de Sons of the Forest. Solo hay que instalarlo una vez.`)
 };
 
 const de_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader ist der Mod-Loader von Sons of the Forest. Einmal installiert, funktionieren alle Mods.`)
+	return /** @type {LocalizedString} */ (`RedLoader ist der Mod-Loader für Sons of the Forest. Du musst ihn nur einmal installieren.`)
 };
 
 const fr_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader est le chargeur de mods de Sons of the Forest. Installez-le une fois et tous les mods fonctionnent.`)
+	return /** @type {LocalizedString} */ (`RedLoader est le chargeur de mods de Sons of the Forest. Il suffit de l’installer une seule fois.`)
 };
 
 const it_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader è il caricatore di mod di Sons of the Forest. Si installa una volta e funzionano tutte le mod.`)
+	return /** @type {LocalizedString} */ (`RedLoader è il caricatore di mod di Sons of the Forest. Basta installarlo una volta.`)
 };
 
 const nl_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader is de modloader van Sons of the Forest. Eén keer installeren en elke mod werkt.`)
+	return /** @type {LocalizedString} */ (`RedLoader is de modloader van Sons of the Forest. Je hoeft hem maar één keer te installeren.`)
 };
 
 const pl_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader to loader modów do Sons of the Forest. Instalujesz go raz i działa każdy mod.`)
+	return /** @type {LocalizedString} */ (`RedLoader to loader modów do Sons of the Forest. Wystarczy zainstalować go raz.`)
 };
 
 const pt_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O RedLoader é o carregador de mods de Sons of the Forest. Instale uma vez e todos os mods funcionam.`)
+	return /** @type {LocalizedString} */ (`O RedLoader é o carregador de mods de Sons of the Forest. Você só precisa instalá-lo uma vez.`)
 };
 
 const ru_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader — загрузчик модов Sons of the Forest. Установите его один раз, и заработают все моды.`)
+	return /** @type {LocalizedString} */ (`Загрузчик модов для Sons of the Forest называется RedLoader. Его нужно установить только один раз.`)
 };
 
 const sv_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader är modladdaren för Sons of the Forest. Installera den en gång så fungerar alla moddar.`)
+	return /** @type {LocalizedString} */ (`RedLoader är modladdaren för Sons of the Forest. Du behöver bara installera den en gång.`)
 };
 
 const tr_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader, Sons of the Forest’ın mod yükleyicisidir. Bir kez kur, tüm modlar çalışsın.`)
+	return /** @type {LocalizedString} */ (`RedLoader, Sons of the Forest’ın mod yükleyicisidir. Yalnızca bir kez kurman yeterli.`)
 };
 
 const zh_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader 是 Sons of the Forest 的模组加载器。安装一次，所有模组都能用。`)
+	return /** @type {LocalizedString} */ (`RedLoader 是 Sons of the Forest 的模组加载器，只需安装一次。`)
 };
 
 const ja_mod_install_step_loader_text = /** @type {(inputs: Mod_Install_Step_Loader_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader は Sons of the Forest の MOD ローダーです。一度入れればすべての MOD が動きます。`)
+	return /** @type {LocalizedString} */ (`RedLoader は Sons of the Forest の MOD ローダーです。インストールは一度だけで済みます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "RedLoader is the mod loader of Sons of the Forest. Install it once and every mod works." |
+* | "RedLoader is the mod loader for Sons of the Forest. You only need to install it once." |
 *
 * @param {Mod_Install_Step_Loader_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

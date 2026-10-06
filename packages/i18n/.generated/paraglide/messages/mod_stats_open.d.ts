@@ -3,7 +3,7 @@ export type Mod_Stats_OpenInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore the chart" |
+* | "View the chart" |
 *
 * @param {Mod_Stats_OpenInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,12 +1,12 @@
 ---
 title: SOTF Mods API for developers
-description: Build on the SOTF Mods catalogue — public v2 read API with OpenAPI, errors, pagination, caching and limits, a mod manager integration guide and the legacy API schedule.
+description: Build on the SOTF Mods catalogue: public v2 read API with OpenAPI, errors, pagination, caching and limits, a mod manager integration guide and the legacy API schedule.
 anchors: [overview, format, errors, pagination, caching, mod-manager, downloads, updates, support]
 ---
 
 # Overview
 
-The SOTF Mods API is public and read-only for anonymous clients: the whole catalogue of Sons of the Forest mods, libraries, builds and Kits, with versions, dependencies and compatibility per game build.
+The SOTF Mods API is public and read-only for anonymous clients: the whole catalogue of Sons of the Forest mods, libraries and builds, with versions, dependencies and compatibility per game build.
 
 - **Base URL:** `https://api.sotf-mods.com/api/v2` for third-party clients (also served on `https://sotf-mods.com/api/v2`).
 - **Reference:** every endpoint, parameter and schema is in the [interactive reference](/api/docs), generated from the same contracts the server runs on. The raw spec is at [`/api/v2/openapi.json`](/api/v2/openapi.json) (OpenAPI 3.1).
@@ -36,7 +36,7 @@ Branch on `code` (stable), not on `title` or `detail` (human text). Common codes
 
 # Caching
 
-Public responses carry `Cache-Control`, an `ETag` and are cached at our edge. Send `If-None-Match` with the last `ETag` and you get an empty `304 Not Modified` when nothing changed — it doesn't count against your limits in any meaningful way and makes your client fast. Don't poll more often than every few minutes; catalogue data rarely changes faster than that.
+Public responses carry `Cache-Control`, an `ETag` and are cached at our edge. Send `If-None-Match` with the last `ETag` and you get an empty `304 Not Modified` when nothing changed. It doesn't count against your limits in any meaningful way and makes your client fast. Don't poll more often than every few minutes; catalogue data rarely changes faster than that.
 
 CORS is open (`Access-Control-Allow-Origin: *`, without credentials) on public reads, so browser apps can call the API directly.
 

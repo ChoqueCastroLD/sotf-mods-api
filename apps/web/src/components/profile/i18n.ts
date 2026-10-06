@@ -44,9 +44,6 @@ type Override = (params: DomainMessageParams) => string;
 function overrides(): Partial<Record<DomainMessageKey, Override>> {
   return {
     ui_domain_trusted_creator: () => m.profile_trusted(),
-    ui_domain_stat_mods: () => m.profile_stat_mods_label(),
-    ui_domain_stat_downloads: () => m.profile_stat_downloads_label(),
-    ui_domain_stat_followers: () => m.profile_stat_followers_label(),
   };
 }
 

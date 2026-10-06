@@ -123,7 +123,6 @@ const jsonLd = list
   <ExploreView
     data={data}
     heading={name}
-    readout={category.kind === 'build' ? m.explore_readout_build_category() : m.explore_readout_category()}
     intro={intro}
     tabs={category.kind === 'build' ? [] : ['mod', 'library', 'all']}
     emptyTitle={m.explore_empty_category_title()}

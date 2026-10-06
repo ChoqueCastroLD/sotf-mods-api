@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_ReadoutInputs */
 
 const en_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basecamp`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const es_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Campamento`)
+	return /** @type {LocalizedString} */ (`Panel`)
 };
 
 const de_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basislager`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const fr_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Camp de base`)
+	return /** @type {LocalizedString} */ (`Tableau de bord`)
 };
 
 const it_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Campo base`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const nl_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basiskamp`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const pl_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Obóz`)
+	return /** @type {LocalizedString} */ (`Panel`)
 };
 
 const pt_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Acampamento`)
+	return /** @type {LocalizedString} */ (`Painel`)
 };
 
 const ru_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Лагерь`)
+	return /** @type {LocalizedString} */ (`Панель`)
 };
 
 const sv_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basläger`)
+	return /** @type {LocalizedString} */ (`Översikt`)
 };
 
 const tr_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ana Kamp`)
+	return /** @type {LocalizedString} */ (`Panel`)
 };
 
 const zh_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`营地`)
+	return /** @type {LocalizedString} */ (`控制台`)
 };
 
 const ja_basecamp_readout = /** @type {(inputs: Basecamp_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ベースキャンプ`)
+	return /** @type {LocalizedString} */ (`ダッシュボード`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Basecamp" |
+* | "Dashboard" |
 *
 * @param {Basecamp_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

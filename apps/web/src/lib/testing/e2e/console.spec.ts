@@ -114,9 +114,9 @@ test.describe('@console-shell', () => {
         return meAs('user');
       },
     });
-    await page.goto('/basecamp/analytics?range=all');
+    await page.goto('/dashboard/analytics?range=all');
     await page.waitForURL(/\/login\?next=/);
-    expect(new URL(page.url()).searchParams.get('next')).toBe('/basecamp/analytics?range=all');
+    expect(new URL(page.url()).searchParams.get('next')).toBe('/dashboard/analytics?range=all');
     expect(meCalls).toBe(0);
   });
 
@@ -135,14 +135,14 @@ test.describe('@console-shell', () => {
       '/api/v2/notifications': () => exampleOf(NotificationPageDTO),
     });
     const scripts = trackScripts(page);
-    const response = await page.goto('/signals');
+    const response = await page.goto('/notifications');
     expect(response?.status()).toBe(200);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
     // Phones get the areas in a drawer; the top bar is always there.
     if (isDesktop()) await expect(page.getByRole('navigation', { name: 'Console areas' })).toBeVisible();
     await expect(page.getByRole('banner')).toBeVisible();
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    await expect(page.getByRole('link', { name: /^Signals, 3 unread/ }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Notifications, 3 unread/ }).first()).toBeVisible();
 
     // The shell: the console entry, everything it imports statically and the React renderer.
     const entry = scripts.find((path) => /\/ConsoleApp\.[^/]+\.js$/.test(path));
@@ -157,10 +157,10 @@ test.describe('@console-shell', () => {
     for (const [path, size] of firstScreen) if (!shell.has(path)) expect(size, path).toBeLessThan(60 * KB);
   });
 
-  test('a moderator never sees the admin section; a user is kept out of Ranger Station', async ({ page, baseURL }) => {
+  test('a moderator never sees the admin section; a user is kept out of Moderation', async ({ page, baseURL }) => {
     await signIn(page, baseURL);
     await stubApi(page, { '/api/v2/me': () => meAs('user') });
-    await page.goto('/ranger/admin/operations');
+    await page.goto('/moderation/admin/operations');
     await expect(page.getByRole('link', { name: 'Operations' })).toHaveCount(0);
     await expect(page.getByRole('heading', { level: 1, name: 'Operations' })).toHaveCount(0);
   });
@@ -184,7 +184,7 @@ test.describe('@admin', () => {
       }),
     });
     const scripts = trackScripts(page);
-    await page.goto('/ranger/admin/operations');
+    await page.goto('/moderation/admin/operations');
     await expect(page.getByRole('heading', { level: 1, name: 'Operations' })).toBeVisible();
     await expect(page.getByText('Jobs ran out of retries')).toBeVisible();
     const table = page.getByRole('table', { name: 'Job queues' });

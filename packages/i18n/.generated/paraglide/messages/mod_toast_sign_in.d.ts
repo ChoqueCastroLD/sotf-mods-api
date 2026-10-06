@@ -3,7 +3,7 @@ export type Mod_Toast_Sign_InInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your session ended. Sign in again." |
+* | "Your session ended. Log in again." |
 *
 * @param {Mod_Toast_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

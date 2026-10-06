@@ -1,5 +1,7 @@
 # SOTF Mods v2 — Plan maestro
 
+> **Nota (2026-10-06):** [CLASSIC.md](CLASSIC.md) prevalece sobre este documento en la identidad «Locator», la landing y la gamificación (logros, insignias, XP, hitos, premios, kits, Patch Radar, mapa de la isla). Donde discrepen, manda CLASSIC.md. Este texto se conserva como histórico y no se reescribe.
+
 > **Fuente única de verdad** para construir, migrar y lanzar sotf-mods.com v2.
 > Fecha: 2026-09-29 · Estado: aprobado para ejecución (las preguntas del §13 tienen un valor por defecto y no bloquean el arranque).
 > Idioma: documento en español; identificadores, rutas, comandos y código en inglés.

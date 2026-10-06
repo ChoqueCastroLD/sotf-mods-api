@@ -3,7 +3,7 @@ export type Builds_Description_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "The builder hasn’t written a description yet. The spec sheet has the facts." |
+* | "The builder hasn’t written a description yet." |
 *
 * @param {Builds_Description_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

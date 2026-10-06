@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_VerifyInputs */
 
 const en_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verify creator`)
+	return /** @type {LocalizedString} */ (`Mark as trusted`)
 };
 
 const es_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verificar creador`)
+	return /** @type {LocalizedString} */ (`Marcar de confianza`)
 };
 
 const de_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creator verifizieren`)
+	return /** @type {LocalizedString} */ (`Als vertrauenswürdig markieren`)
 };
 
 const fr_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vérifier le créateur`)
+	return /** @type {LocalizedString} */ (`Marquer de confiance`)
 };
 
 const it_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifica creatore`)
+	return /** @type {LocalizedString} */ (`Segna come affidabile`)
 };
 
 const nl_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Maker verifiëren`)
+	return /** @type {LocalizedString} */ (`Als vertrouwd markeren`)
 };
 
 const pl_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zweryfikuj twórcę`)
+	return /** @type {LocalizedString} */ (`Oznacz jako zaufanego`)
 };
 
 const pt_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verificar criador`)
+	return /** @type {LocalizedString} */ (`Marcar como confiável`)
 };
 
 const ru_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Подтвердить автора`)
+	return /** @type {LocalizedString} */ (`Отметить как проверенного`)
 };
 
 const sv_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifiera skapare`)
+	return /** @type {LocalizedString} */ (`Markera som betrodd`)
 };
 
 const tr_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Üreticiyi doğrula`)
+	return /** @type {LocalizedString} */ (`Güvenilir olarak işaretle`)
 };
 
 const zh_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`认证作者`)
+	return /** @type {LocalizedString} */ (`标记为受信任`)
 };
 
 const ja_ranger_user_verify = /** @type {(inputs: Ranger_User_VerifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`クリエイターを認証`)
+	return /** @type {LocalizedString} */ (`信頼済みにする`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Verify creator" |
+* | "Mark as trusted" |
 *
 * @param {Ranger_User_VerifyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

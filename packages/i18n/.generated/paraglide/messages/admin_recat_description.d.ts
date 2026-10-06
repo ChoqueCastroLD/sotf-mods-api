@@ -3,7 +3,7 @@ export type Admin_Recat_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Move mods into the v2 categories. Suggestions come from keyword rules and the imported CSV; nothing changes until you apply." |
+* | "Move mods into the new categories. Suggestions come from keyword rules and the imported CSV; nothing changes until you apply." |
 *
 * @param {Admin_Recat_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

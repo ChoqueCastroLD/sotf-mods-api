@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Register_SubmitInputs */
 
 const en_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create account`)
+	return /** @type {LocalizedString} */ (`Register`)
 };
 
 const es_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crear cuenta`)
+	return /** @type {LocalizedString} */ (`Registrarse`)
 };
 
 const de_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konto erstellen`)
+	return /** @type {LocalizedString} */ (`Registrieren`)
 };
 
 const fr_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créer le compte`)
+	return /** @type {LocalizedString} */ (`S’inscrire`)
 };
 
 const it_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea account`)
+	return /** @type {LocalizedString} */ (`Registrati`)
 };
 
 const nl_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Account aanmaken`)
+	return /** @type {LocalizedString} */ (`Registreren`)
 };
 
 const pl_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Załóż konto`)
+	return /** @type {LocalizedString} */ (`Zarejestruj się`)
 };
 
 const pt_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criar conta`)
+	return /** @type {LocalizedString} */ (`Registrar`)
 };
 
 const ru_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Создать аккаунт`)
+	return /** @type {LocalizedString} */ (`Зарегистрироваться`)
 };
 
 const sv_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapa konto`)
+	return /** @type {LocalizedString} */ (`Registrera`)
 };
 
 const tr_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hesap oluştur`)
+	return /** @type {LocalizedString} */ (`Kayıt ol`)
 };
 
 const zh_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建账号`)
+	return /** @type {LocalizedString} */ (`注册`)
 };
 
 const ja_auth_register_submit = /** @type {(inputs: Auth_Register_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アカウントを作成`)
+	return /** @type {LocalizedString} */ (`新規登録`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Create account" |
+* | "Register" |
 *
 * @param {Auth_Register_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

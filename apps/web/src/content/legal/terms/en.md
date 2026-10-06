@@ -1,6 +1,6 @@
 ---
 title: Terms of use
-description: The rules for using SOTF Mods — accounts, what you may publish, the licence you give us to host your mods, downloads at your own risk and how disputes are handled.
+description: The rules for using SOTF Mods: accounts, what you may publish, the licence you give us to host your mods, downloads at your own risk and how disputes are handled.
 anchors: [agreement, service, accounts, content, license, conduct, downloads, moderation, liability, termination, changes, law, contact]
 ---
 
@@ -10,7 +10,7 @@ By using sotf-mods.com ("SOTF Mods", "we") you agree to these terms, to the [con
 
 # The service
 
-SOTF Mods is a free community site to share and download mods, libraries, builds and Kits for Sons of the Forest. It is a fan project, not affiliated with or endorsed by Endnight Games Ltd. We may change, pause or discontinue features at any time; we'll try to announce significant changes in advance.
+SOTF Mods is a free community site to share and download mods, libraries and builds for Sons of the Forest. It is a fan project, not affiliated with or endorsed by Endnight Games Ltd. We may change, pause or discontinue features at any time; we'll try to announce significant changes in advance.
 
 # Accounts
 
@@ -21,7 +21,7 @@ SOTF Mods is a free community site to share and download mods, libraries, builds
 
 # Your content
 
-You keep the rights to what you publish (mods, images, descriptions, comments, reviews, Kits). You confirm that you have the right to publish it — that it is your work, or that you have the author's permission and respect its licence — and that it follows the content policy.
+You keep the rights to what you publish (mods, images, descriptions, comments, reviews). You confirm that you have the right to publish it (it is your work, or you have the author's permission and respect its licence) and that it follows the content policy.
 
 Mods for Sons of the Forest build on a game owned by Endnight Games. Don't upload the game's files or other people's work without permission.
 
@@ -47,7 +47,7 @@ Mods change how the game works. Even with our checks and scans, we can't guarant
 
 # Moderation
 
-Rangers review new mods and act on reports under the content policy. We may remove content, limit features or suspend accounts that break these terms, with a reason where possible. You can appeal a decision by replying to the notification or contacting us.
+Moderators review new mods and act on reports under the content policy. We may remove content, limit features or suspend accounts that break these terms, with a reason where possible. You can appeal a decision by replying to the notification or contacting us.
 
 # Liability
 

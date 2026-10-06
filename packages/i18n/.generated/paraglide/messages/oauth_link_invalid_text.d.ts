@@ -3,7 +3,7 @@ export type Oauth_Link_Invalid_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "It has expired or was already used. Sign in with Discord again to get a new one." |
+* | "It has expired or was already used. Log in with Discord again to get a new one." |
 *
 * @param {Oauth_Link_Invalid_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

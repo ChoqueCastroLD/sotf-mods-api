@@ -3,7 +3,7 @@ export type Basecamp_Editor_Removed_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Removed by the rangers" |
+* | "Removed by moderators" |
 *
 * @param {Basecamp_Editor_Removed_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

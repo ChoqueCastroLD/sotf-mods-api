@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ mod: NonNullable<unknown> }} Me_UnfollowedInputs */
 
 const en_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} left your backpack`)
+	return /** @type {LocalizedString} */ (`You no longer follow ${i?.mod}`)
 };
 
 const es_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} ha salido de tu mochila`)
+	return /** @type {LocalizedString} */ (`Has dejado de seguir ${i?.mod}`)
 };
 
 const de_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} hat deinen Rucksack verlassen`)
+	return /** @type {LocalizedString} */ (`Du folgst ${i?.mod} nicht mehr`)
 };
 
 const fr_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} a quitté votre sac à dos`)
+	return /** @type {LocalizedString} */ (`Vous ne suivez plus ${i?.mod}`)
 };
 
 const it_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} è uscita dal tuo zaino`)
+	return /** @type {LocalizedString} */ (`Non segui più ${i?.mod}`)
 };
 
 const nl_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} is uit je rugzak`)
+	return /** @type {LocalizedString} */ (`Je volgt ${i?.mod} niet meer`)
 };
 
 const pl_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} wypadł z twojego plecaka`)
+	return /** @type {LocalizedString} */ (`Przestałeś obserwować ${i?.mod}`)
 };
 
 const pt_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} saiu da sua mochila`)
+	return /** @type {LocalizedString} */ (`Você deixou de seguir ${i?.mod}`)
 };
 
 const ru_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} убран из рюкзака`)
+	return /** @type {LocalizedString} */ (`Вы отписались от ${i?.mod}`)
 };
 
 const sv_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} togs ur ryggsäcken`)
+	return /** @type {LocalizedString} */ (`Du följer inte längre ${i?.mod}`)
 };
 
 const tr_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} sırt çantandan çıkarıldı`)
+	return /** @type {LocalizedString} */ (`${i?.mod} artık takip edilmiyor`)
 };
 
 const zh_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} 已从背包中移除`)
+	return /** @type {LocalizedString} */ (`已取消关注 ${i?.mod}`)
 };
 
 const ja_me_unfollowed = /** @type {(inputs: Me_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} をバックパックから外しました`)
+	return /** @type {LocalizedString} */ (`${i?.mod} のフォローを解除しました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{mod} left your backpack" |
+* | "You no longer follow {mod}" |
 *
 * @param {Me_UnfollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

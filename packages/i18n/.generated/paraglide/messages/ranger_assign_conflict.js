@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Assign_ConflictInputs */
 
 const en_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Another ranger already took this item.`)
+	return /** @type {LocalizedString} */ (`Another moderator already took this item.`)
 };
 
 const es_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otro ranger ya se ha asignado este elemento.`)
+	return /** @type {LocalizedString} */ (`Otro moderador ya se ha asignado este elemento.`)
 };
 
 const de_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ein anderer Ranger hat diesen Eintrag schon übernommen.`)
+	return /** @type {LocalizedString} */ (`Ein anderer Moderator hat diesen Eintrag schon übernommen.`)
 };
 
 const fr_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un autre ranger a déjà pris cet élément.`)
+	return /** @type {LocalizedString} */ (`Un autre modérateur a déjà pris cet élément.`)
 };
 
 const it_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un altro ranger ha già preso questo elemento.`)
+	return /** @type {LocalizedString} */ (`Un altro moderatore ha già preso questo elemento.`)
 };
 
 const nl_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een andere ranger heeft dit item al opgepakt.`)
+	return /** @type {LocalizedString} */ (`Een andere moderator heeft dit item al opgepakt.`)
 };
 
 const pl_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inny ranger już wziął ten element.`)
+	return /** @type {LocalizedString} */ (`Inny moderator już wziął ten element.`)
 };
 
 const pt_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Outro ranger já assumiu este item.`)
+	return /** @type {LocalizedString} */ (`Outro moderador já assumiu este item.`)
 };
 
 const ru_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Этот элемент уже взял другой рейнджер.`)
+	return /** @type {LocalizedString} */ (`Этот элемент уже взял другой модератор.`)
 };
 
 const sv_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En annan ranger har redan tagit ärendet.`)
+	return /** @type {LocalizedString} */ (`En annan moderator har redan tagit ärendet.`)
 };
 
 const tr_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu öğeyi başka bir korucu zaten üstlendi.`)
+	return /** @type {LocalizedString} */ (`Bu öğeyi başka bir moderatör zaten üstlendi.`)
 };
 
 const zh_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`另一位护林员已认领此项。`)
+	return /** @type {LocalizedString} */ (`另一位版主已认领此项。`)
 };
 
 const ja_ranger_assign_conflict = /** @type {(inputs: Ranger_Assign_ConflictInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`別のレンジャーがすでにこの項目を担当しています。`)
+	return /** @type {LocalizedString} */ (`別のモデレーターがすでにこの項目を担当しています。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Another ranger already took this item." |
+* | "Another moderator already took this item." |
 *
 * @param {Ranger_Assign_ConflictInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

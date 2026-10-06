@@ -3,7 +3,7 @@ export type Basecamp_Empty_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your basecamp is empty" |
+* | "Nothing here yet" |
 *
 * @param {Basecamp_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

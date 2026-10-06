@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Draft_Other_Flow_TitleInputs */
 
 const en_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This draft belongs to another flow.`)
+	return /** @type {LocalizedString} */ (`This draft is for another kind of upload.`)
 };
 
 const es_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Este borrador pertenece a otro flujo.`)
+	return /** @type {LocalizedString} */ (`Este borrador es de otro tipo de subida.`)
 };
 
 const de_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dieser Entwurf gehört zu einem anderen Ablauf.`)
+	return /** @type {LocalizedString} */ (`Dieser Entwurf gehört zu einer anderen Art von Upload.`)
 };
 
 const fr_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce brouillon appartient à un autre parcours.`)
+	return /** @type {LocalizedString} */ (`Ce brouillon correspond à un autre type d’envoi.`)
 };
 
 const it_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Questa bozza appartiene a un altro percorso.`)
+	return /** @type {LocalizedString} */ (`Questa bozza riguarda un altro tipo di caricamento.`)
 };
 
 const nl_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dit concept hoort bij een andere flow.`)
+	return /** @type {LocalizedString} */ (`Dit concept hoort bij een ander soort upload.`)
 };
 
 const pl_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ten szkic należy do innego kreatora.`)
+	return /** @type {LocalizedString} */ (`Ten szkic dotyczy innego rodzaju wysyłki.`)
 };
 
 const pt_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Este rascunho pertence a outro fluxo.`)
+	return /** @type {LocalizedString} */ (`Este rascunho é de outro tipo de envio.`)
 };
 
 const ru_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Этот черновик относится к другому мастеру.`)
+	return /** @type {LocalizedString} */ (`Этот черновик относится к другому типу загрузки.`)
 };
 
 const sv_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Det här utkastet hör till ett annat flöde.`)
+	return /** @type {LocalizedString} */ (`Det här utkastet hör till en annan typ av uppladdning.`)
 };
 
 const tr_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu taslak başka bir akışa ait.`)
+	return /** @type {LocalizedString} */ (`Bu taslak başka bir yükleme türüne ait.`)
 };
 
 const zh_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`这个草稿属于另一个流程。`)
+	return /** @type {LocalizedString} */ (`这个草稿属于另一种上传类型。`)
 };
 
 const ja_upload_draft_other_flow_title = /** @type {(inputs: Upload_Draft_Other_Flow_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`この下書きは別の手順のものです。`)
+	return /** @type {LocalizedString} */ (`この下書きは別の種類のアップロードのものです。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "This draft belongs to another flow." |
+* | "This draft is for another kind of upload." |
 *
 * @param {Upload_Draft_Other_Flow_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

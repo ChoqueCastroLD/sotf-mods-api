@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Preflight_TitleInputs */
 
 const en_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Preflight`)
+	return /** @type {LocalizedString} */ (`Checks`)
 };
 
 const es_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Comprobación previa`)
+	return /** @type {LocalizedString} */ (`Comprobaciones`)
 };
 
 const de_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vorabprüfung`)
+	return /** @type {LocalizedString} */ (`Prüfungen`)
 };
 
 const fr_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vérifications préalables`)
+	return /** @type {LocalizedString} */ (`Vérifications`)
 };
 
 const it_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Controlli preliminari`)
+	return /** @type {LocalizedString} */ (`Controlli`)
 };
 
 const nl_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voorcontrole`)
+	return /** @type {LocalizedString} */ (`Controles`)
 };
 
 const pl_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kontrola przed wysyłką`)
+	return /** @type {LocalizedString} */ (`Kontrole`)
 };
 
 const pt_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verificação prévia`)
+	return /** @type {LocalizedString} */ (`Verificações`)
 };
 
 const ru_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Предварительная проверка`)
+	return /** @type {LocalizedString} */ (`Проверки`)
 };
 
 const sv_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Förhandskontroll`)
+	return /** @type {LocalizedString} */ (`Kontroller`)
 };
 
 const tr_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ön kontrol`)
+	return /** @type {LocalizedString} */ (`Kontroller`)
 };
 
 const zh_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`预检`)
+	return /** @type {LocalizedString} */ (`检查`)
 };
 
 const ja_upload_preflight_title = /** @type {(inputs: Upload_Preflight_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`事前チェック`)
+	return /** @type {LocalizedString} */ (`チェック`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Preflight" |
+* | "Checks" |
 *
 * @param {Upload_Preflight_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

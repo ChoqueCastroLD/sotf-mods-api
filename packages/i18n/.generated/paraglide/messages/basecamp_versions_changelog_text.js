@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Versions_Changelog_TextInputs */
 
 const en_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markdown works. Players see it on the mod page and in the update signal.`)
+	return /** @type {LocalizedString} */ (`Markdown works. Players see it on the mod page and in the update notification.`)
 };
 
 const es_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Admite Markdown. Los jugadores lo ven en la página del mod y en la señal de actualización.`)
+	return /** @type {LocalizedString} */ (`Admite Markdown. Los jugadores lo ven en la página del mod y en la notificación de actualización.`)
 };
 
 const de_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markdown funktioniert. Spieler sehen es auf der Mod-Seite und im Update-Signal.`)
+	return /** @type {LocalizedString} */ (`Markdown funktioniert. Spieler sehen es auf der Mod-Seite und in der Update-Benachrichtigung.`)
 };
 
 const fr_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le Markdown fonctionne. Les joueurs le voient sur la page du mod et dans le signal de mise à jour.`)
+	return /** @type {LocalizedString} */ (`Le Markdown fonctionne. Les joueurs le voient sur la page du mod et dans la notification de mise à jour.`)
 };
 
 const it_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Supporta Markdown. I giocatori lo vedono nella pagina della mod e nel segnale di aggiornamento.`)
+	return /** @type {LocalizedString} */ (`Supporta Markdown. I giocatori lo vedono nella pagina della mod e nella notifica di aggiornamento.`)
 };
 
 const nl_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markdown werkt. Spelers zien het op de modpagina en in het updatesignaal.`)
+	return /** @type {LocalizedString} */ (`Markdown werkt. Spelers zien het op de modpagina en in de updatemelding.`)
 };
 
 const pl_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Działa Markdown. Gracze widzą to na stronie moda i w sygnale aktualizacji.`)
+	return /** @type {LocalizedString} */ (`Działa Markdown. Gracze widzą to na stronie moda i w powiadomieniu o aktualizacji.`)
 };
 
 const pt_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aceita Markdown. Os jogadores veem na página do mod e no sinal de atualização.`)
+	return /** @type {LocalizedString} */ (`Aceita Markdown. Os jogadores veem na página do mod e na notificação de atualização.`)
 };
 
 const ru_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Поддерживается Markdown. Игроки видят это на странице мода и в сигнале об обновлении.`)
+	return /** @type {LocalizedString} */ (`Поддерживается Markdown. Игроки видят это на странице мода и в уведомлении об обновлении.`)
 };
 
 const sv_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markdown fungerar. Spelarna ser det på moddsidan och i uppdateringssignalen.`)
+	return /** @type {LocalizedString} */ (`Markdown fungerar. Spelarna ser det på moddsidan och i uppdateringsaviseringen.`)
 };
 
 const tr_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markdown kullanılabilir. Oyuncular bunu mod sayfasında ve güncelleme sinyalinde görür.`)
+	return /** @type {LocalizedString} */ (`Markdown kullanılabilir. Oyuncular bunu mod sayfasında ve güncelleme bildiriminde görür.`)
 };
 
 const zh_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`支持 Markdown。玩家会在模组页面和更新信号中看到。`)
+	return /** @type {LocalizedString} */ (`支持 Markdown。玩家会在模组页面和更新通知中看到。`)
 };
 
 const ja_basecamp_versions_changelog_text = /** @type {(inputs: Basecamp_Versions_Changelog_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markdown が使えます。MOD ページと更新シグナルに表示されます。`)
+	return /** @type {LocalizedString} */ (`Markdown が使えます。MOD ページと更新通知に表示されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Markdown works. Players see it on the mod page and in the update signal." |
+* | "Markdown works. Players see it on the mod page and in the update notification." |
 *
 * @param {Basecamp_Versions_Changelog_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

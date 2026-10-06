@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_Removal_HintInputs */
 
 const en_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ask the rangers to take it down. The request is reviewed like a report.`)
+	return /** @type {LocalizedString} */ (`Ask moderators to take it down. The request is reviewed like a report.`)
 };
 
 const es_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pide a los guardabosques que lo retiren. La petición se revisa como un reporte.`)
+	return /** @type {LocalizedString} */ (`Pide a los moderadores que lo retiren. La petición se revisa como un reporte.`)
 };
 
 const de_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Ranger bitten, ihn zu entfernen. Der Antrag wird wie eine Meldung geprüft.`)
+	return /** @type {LocalizedString} */ (`Die Moderatoren bitten, ihn zu entfernen. Der Antrag wird wie eine Meldung geprüft.`)
 };
 
 const fr_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Demander aux rangers de le retirer. La demande est examinée comme un signalement.`)
+	return /** @type {LocalizedString} */ (`Demander aux modérateurs de le retirer. La demande est examinée comme un signalement.`)
 };
 
 const it_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chiedi ai ranger di rimuoverla. La richiesta viene esaminata come una segnalazione.`)
+	return /** @type {LocalizedString} */ (`Chiedi ai moderatori di rimuoverla. La richiesta viene esaminata come una segnalazione.`)
 };
 
 const nl_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vraag de rangers hem te verwijderen. Het verzoek wordt als een melding beoordeeld.`)
+	return /** @type {LocalizedString} */ (`Vraag de moderators hem te verwijderen. Het verzoek wordt als een melding beoordeeld.`)
 };
 
 const pl_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Poproś strażników o usunięcie. Prośba jest rozpatrywana jak zgłoszenie.`)
+	return /** @type {LocalizedString} */ (`Poproś moderatorów o usunięcie. Prośba jest rozpatrywana jak zgłoszenie.`)
 };
 
 const pt_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pedir aos guardas que o removam. O pedido é analisado como uma denúncia.`)
+	return /** @type {LocalizedString} */ (`Pedir aos moderadores que o removam. O pedido é analisado como uma denúncia.`)
 };
 
 const ru_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Попросить рейнджеров удалить мод. Запрос рассматривается как жалоба.`)
+	return /** @type {LocalizedString} */ (`Попросить модераторов удалить мод. Запрос рассматривается как жалоба.`)
 };
 
 const sv_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Be rangers ta bort den. Begäran granskas som en anmälan.`)
+	return /** @type {LocalizedString} */ (`Be moderatorerna ta bort den. Begäran granskas som en anmälan.`)
 };
 
 const tr_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucuların kaldırmasını iste. Talep bir şikâyet gibi incelenir.`)
+	return /** @type {LocalizedString} */ (`Moderatörlerin kaldırmasını iste. Talep bir şikâyet gibi incelenir.`)
 };
 
 const zh_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`请护林员下架此模组。申请会按举报流程处理。`)
+	return /** @type {LocalizedString} */ (`请版主下架此模组。申请会按举报流程处理。`)
 };
 
 const ja_basecamp_settings_removal_hint = /** @type {(inputs: Basecamp_Settings_Removal_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーに削除を依頼します。依頼は通報と同じように審査されます。`)
+	return /** @type {LocalizedString} */ (`モデレーターに削除を依頼します。依頼は通報と同じように審査されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ask the rangers to take it down. The request is reviewed like a report." |
+* | "Ask moderators to take it down. The request is reviewed like a report." |
 *
 * @param {Basecamp_Settings_Removal_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

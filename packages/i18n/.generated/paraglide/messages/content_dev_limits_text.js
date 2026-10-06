@@ -38,7 +38,7 @@ const pt_content_dev_limits_text = /** @type {(inputs: Content_Dev_Limits_TextIn
 };
 
 const ru_content_dev_limits_text = /** @type {(inputs: Content_Dev_Limits_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`При превышении лимита API отвечает 429 с заголовком Retry-After. Кешируйте ответы и учитывайте ETag — тогда вы вряд ли к нему приблизитесь.`)
+	return /** @type {LocalizedString} */ (`При превышении лимита API отвечает 429 с заголовком Retry-After. Кешируйте ответы и учитывайте ETag: так вы вряд ли приблизитесь к лимиту.`)
 };
 
 const sv_content_dev_limits_text = /** @type {(inputs: Content_Dev_Limits_TextInputs) => LocalizedString} */ () => {

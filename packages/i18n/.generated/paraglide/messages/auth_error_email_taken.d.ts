@@ -3,7 +3,7 @@ export type Auth_Error_Email_TakenInputs = {};
 /**
 * | output |
 * | --- |
-* | "An account with this email already exists. Sign in or reset your password." |
+* | "An account with this email already exists. Log in or reset your password." |
 *
 * @param {Auth_Error_Email_TakenInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

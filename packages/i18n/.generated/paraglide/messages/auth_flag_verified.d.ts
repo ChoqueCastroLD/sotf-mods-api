@@ -3,7 +3,7 @@ export type Auth_Flag_VerifiedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Email verified. Sign in to continue." |
+* | "Email verified. Log in to continue." |
 *
 * @param {Auth_Flag_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

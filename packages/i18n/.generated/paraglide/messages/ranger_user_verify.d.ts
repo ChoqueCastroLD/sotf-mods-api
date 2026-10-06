@@ -3,7 +3,7 @@ export type Ranger_User_VerifyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Verify creator" |
+* | "Mark as trusted" |
 *
 * @param {Ranger_User_VerifyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

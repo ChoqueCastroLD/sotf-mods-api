@@ -3,7 +3,7 @@ export type Builds_Import_LeadInputs = {};
 /**
 * | output |
 * | --- |
-* | "A build is a BuildShare blueprint: one .json file that you drop into your game and place like a prefab." |
+* | "A build is a single .json file for the BuildShare mod. Copy it into your game folder and place it in the game." |
 *
 * @param {Builds_Import_LeadInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

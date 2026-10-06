@@ -3,7 +3,7 @@ export type Me_Backpack_No_Updates_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "No mod in your backpack has a version newer than the one you downloaded." |
+* | "No mod you follow has a version newer than the one you downloaded." |
 *
 * @param {Me_Backpack_No_Updates_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

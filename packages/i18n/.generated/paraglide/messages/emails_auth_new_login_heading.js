@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_New_Login_HeadingInputs */
 
 const en_emails_auth_new_login_heading = /** @type {(inputs: Emails_Auth_New_Login_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`New sign-in`)
+	return /** @type {LocalizedString} */ (`New login`)
 };
 
 const es_emails_auth_new_login_heading = /** @type {(inputs: Emails_Auth_New_Login_HeadingInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_emails_auth_new_login_heading = /** @type {(inputs: Emails_Auth_New_Log
 };
 
 const pt_emails_auth_new_login_heading = /** @type {(inputs: Emails_Auth_New_Login_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Novo início de sessão`)
+	return /** @type {LocalizedString} */ (`Novo login`)
 };
 
 const ru_emails_auth_new_login_heading = /** @type {(inputs: Emails_Auth_New_Login_HeadingInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_emails_auth_new_login_heading = /** @type {(inputs: Emails_Auth_New_Log
 /**
 * | output |
 * | --- |
-* | "New sign-in" |
+* | "New login" |
 *
 * @param {Emails_Auth_New_Login_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Heading_AllInputs */
 
 const en_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore everything`)
+	return /** @type {LocalizedString} */ (`Mods and builds`)
 };
 
 const es_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar todo`)
+	return /** @type {LocalizedString} */ (`Mods y builds`)
 };
 
 const de_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alles entdecken`)
+	return /** @type {LocalizedString} */ (`Mods und Builds`)
 };
 
 const fr_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tout explorer`)
+	return /** @type {LocalizedString} */ (`Mods et builds`)
 };
 
 const it_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora tutto`)
+	return /** @type {LocalizedString} */ (`Mod e build`)
 };
 
 const nl_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alles verkennen`)
+	return /** @type {LocalizedString} */ (`Mods en builds`)
 };
 
 const pl_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeglądaj wszystko`)
+	return /** @type {LocalizedString} */ (`Mody i buildy`)
 };
 
 const pt_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar tudo`)
+	return /** @type {LocalizedString} */ (`Mods e builds`)
 };
 
 const ru_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Обзор всего`)
+	return /** @type {LocalizedString} */ (`Моды и постройки`)
 };
 
 const sv_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska allt`)
+	return /** @type {LocalizedString} */ (`Moddar och byggen`)
 };
 
 const tr_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Her şeyi keşfet`)
+	return /** @type {LocalizedString} */ (`Modlar ve yapılar`)
 };
 
 const zh_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`探索全部`)
+	return /** @type {LocalizedString} */ (`模组和建筑`)
 };
 
 const ja_explore_heading_all = /** @type {(inputs: Explore_Heading_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`すべてを探す`)
+	return /** @type {LocalizedString} */ (`MOD と建築`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Explore everything" |
+* | "Mods and builds" |
 *
 * @param {Explore_Heading_AllInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

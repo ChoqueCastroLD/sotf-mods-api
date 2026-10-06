@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Tpl_DescriptionInputs */
 
 const en_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The reasons rangers pick when they approve, reject or ask for changes. Authors read them in their language.`)
+	return /** @type {LocalizedString} */ (`The reasons moderators pick when they approve, reject or ask for changes. Authors read them in their language.`)
 };
 
 const es_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los motivos que eligen los guardabosques al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.`)
+	return /** @type {LocalizedString} */ (`Los motivos que eligen los moderadores al aprobar, rechazar o pedir cambios. Los autores los leen en su idioma.`)
 };
 
 const de_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Begründungen, die Ranger beim Freigeben, Ablehnen oder Anfordern von Änderungen wählen. Autoren lesen sie in ihrer Sprache.`)
+	return /** @type {LocalizedString} */ (`Die Begründungen, die Moderatoren beim Freigeben, Ablehnen oder Anfordern von Änderungen wählen. Autoren lesen sie in ihrer Sprache.`)
 };
 
 const fr_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les motifs que choisissent les rangers pour approuver, refuser ou demander des changements. Les auteurs les lisent dans leur langue.`)
+	return /** @type {LocalizedString} */ (`Les motifs que choisissent les modérateurs pour approuver, refuser ou demander des changements. Les auteurs les lisent dans leur langue.`)
 };
 
 const it_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I motivi che i ranger scelgono quando approvano, rifiutano o chiedono modifiche. Gli autori li leggono nella loro lingua.`)
+	return /** @type {LocalizedString} */ (`I motivi che i moderatori scelgono quando approvano, rifiutano o chiedono modifiche. Gli autori li leggono nella loro lingua.`)
 };
 
 const nl_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De redenen die rangers kiezen bij goedkeuren, afwijzen of wijzigingen vragen. Auteurs lezen ze in hun eigen taal.`)
+	return /** @type {LocalizedString} */ (`De redenen die moderators kiezen bij goedkeuren, afwijzen of wijzigingen vragen. Auteurs lezen ze in hun eigen taal.`)
 };
 
 const pl_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Powody, które strażnicy wybierają przy zatwierdzaniu, odrzucaniu lub prośbie o zmiany. Autorzy czytają je w swoim języku.`)
+	return /** @type {LocalizedString} */ (`Powody, które moderatorzy wybierają przy zatwierdzaniu, odrzucaniu lub prośbie o zmiany. Autorzy czytają je w swoim języku.`)
 };
 
 const pt_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os motivos que os guardas escolhem ao aprovar, rejeitar ou pedir alterações. Os autores os leem no próprio idioma.`)
+	return /** @type {LocalizedString} */ (`Os motivos que os moderadores escolhem ao aprovar, rejeitar ou pedir alterações. Os autores os leem no próprio idioma.`)
 };
 
 const ru_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Причины, которые рейнджеры выбирают при одобрении, отклонении или запросе правок. Авторы читают их на своём языке.`)
+	return /** @type {LocalizedString} */ (`Причины, которые модераторы выбирают при одобрении, отклонении или запросе правок. Авторы читают их на своём языке.`)
 };
 
 const sv_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skälen rangers väljer när de godkänner, avvisar eller begär ändringar. Skaparna läser dem på sitt eget språk.`)
+	return /** @type {LocalizedString} */ (`Skälen moderatorer väljer när de godkänner, avvisar eller begär ändringar. Skaparna läser dem på sitt eget språk.`)
 };
 
 const tr_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucuların onaylarken, reddederken veya değişiklik isterken seçtiği gerekçeler. Yazarlar bunları kendi dillerinde okur.`)
+	return /** @type {LocalizedString} */ (`Moderatörlerin onaylarken, reddederken veya değişiklik isterken seçtiği gerekçeler. Yazarlar bunları kendi dillerinde okur.`)
 };
 
 const zh_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员在批准、拒绝或要求修改时选用的理由。作者会以自己的语言看到它们。`)
+	return /** @type {LocalizedString} */ (`版主在批准、拒绝或要求修改时选用的理由。作者会以自己的语言看到它们。`)
 };
 
 const ja_admin_tpl_description = /** @type {(inputs: Admin_Tpl_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーが承認、却下、修正依頼のときに選ぶ理由です。作者は自分の言語で読みます。`)
+	return /** @type {LocalizedString} */ (`モデレーターが承認、却下、修正依頼のときに選ぶ理由です。作者は自分の言語で読みます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The reasons rangers pick when they approve, reject or ask for changes. Authors read them in their language." |
+* | "The reasons moderators pick when they approve, reject or ask for changes. Authors read them in their language." |
 *
 * @param {Admin_Tpl_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

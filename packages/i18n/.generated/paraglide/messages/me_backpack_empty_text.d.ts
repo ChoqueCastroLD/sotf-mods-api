@@ -3,7 +3,7 @@ export type Me_Backpack_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tap ♥ on a mod to stash it here and hear about its updates." |
+* | "Tap ♥ on a mod to follow it and get notified about its updates." |
 *
 * @param {Me_Backpack_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

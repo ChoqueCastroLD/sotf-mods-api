@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Password_Changed_RevokedInputs */
 
 const en_settings_password_changed_revoked = /** @type {(inputs: Settings_Password_Changed_RevokedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Password changed and other devices signed out`)
+	return /** @type {LocalizedString} */ (`Password changed and other devices logged out`)
 };
 
 const es_settings_password_changed_revoked = /** @type {(inputs: Settings_Password_Changed_RevokedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_password_changed_revoked = /** @type {(inputs: Settings_Passwo
 /**
 * | output |
 * | --- |
-* | "Password changed and other devices signed out" |
+* | "Password changed and other devices logged out" |
 *
 * @param {Settings_Password_Changed_RevokedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

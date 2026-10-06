@@ -1,5 +1,5 @@
 /**
- * Pure helpers of `/ranger/admin/operations` (PLAN §10.3 «Métricas operativas», WP-A4 backlog):
+ * Pure helpers of `/moderation/admin/operations` (PLAN §10.3 «Métricas operativas», WP-A4 backlog):
  * the health of one pg-boss queue and how long its oldest job has waited.
  */
 import type { Operations } from './api.ts';

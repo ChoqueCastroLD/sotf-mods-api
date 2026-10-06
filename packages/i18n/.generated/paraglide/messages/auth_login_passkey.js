@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_PasskeyInputs */
 
 const en_auth_login_passkey = /** @type {(inputs: Auth_Login_PasskeyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in with a passkey`)
+	return /** @type {LocalizedString} */ (`Log in with a passkey`)
 };
 
 const es_auth_login_passkey = /** @type {(inputs: Auth_Login_PasskeyInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_login_passkey = /** @type {(inputs: Auth_Login_PasskeyInputs) => L
 /**
 * | output |
 * | --- |
-* | "Sign in with a passkey" |
+* | "Log in with a passkey" |
 *
 * @param {Auth_Login_PasskeyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

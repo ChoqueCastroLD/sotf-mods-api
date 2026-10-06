@@ -61,7 +61,7 @@ export const LISTING_PARAMS = [
   'excludeCategory',
   'tag',
   'excludeTag',
-  'compat',
+  'compat', // Retired filter: still recognised so old links redirect to the clean URL.
   'multiplayer',
   'dedicated',
   'platform',

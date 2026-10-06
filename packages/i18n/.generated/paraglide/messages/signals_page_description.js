@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Page_DescriptionInputs */
 
 const en_signals_page_description = /** @type {(inputs: Signals_Page_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Updates of what you follow, replies, mentions and news about your mods.`)
+	return /** @type {LocalizedString} */ (`Updates on what you follow, replies, mentions and news about your mods.`)
 };
 
 const es_signals_page_description = /** @type {(inputs: Signals_Page_DescriptionInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_signals_page_description = /** @type {(inputs: Signals_Page_Description
 /**
 * | output |
 * | --- |
-* | "Updates of what you follow, replies, mentions and news about your mods." |
+* | "Updates on what you follow, replies, mentions and news about your mods." |
 *
 * @param {Signals_Page_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -210,7 +210,7 @@ export async function sendCreatorWeeklyReport(
       weekEnd,
       totals,
       mods: top,
-      basecampUrl: localizedUrl(deps.siteUrl, locale, '/basecamp/analytics'),
+      basecampUrl: localizedUrl(deps.siteUrl, locale, '/dashboard/analytics'),
       unsubscribe: unsubscribeUrls(deps.siteUrl, token, locale),
     };
     const [row] = await tx

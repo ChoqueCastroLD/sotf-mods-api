@@ -11,7 +11,7 @@ export const LOGIN_PATH = '/login';
 
 /** Console paths are the only valid `next` targets built here (never another origin). */
 export function safeNext(path: string): string {
-  if (!path.startsWith('/') || path.startsWith('//') || path.startsWith('/\\')) return '/basecamp';
+  if (!path.startsWith('/') || path.startsWith('//') || path.startsWith('/\\')) return '/dashboard';
   return path;
 }
 

@@ -1,5 +1,5 @@
 /**
- * «Shared with me» on `/basecamp/mods` (T1-12): mods I co-author (open the editor to maintain their
+ * «Shared with me» on `/dashboard/mods` (T1-12): mods I co-author (open the editor to maintain their
  * known issues and FAQ or release versions) and a link to the pending invitations.
  */
 import { buttonClasses } from '@sotf/ui/button';
@@ -20,7 +20,7 @@ export function CoAuthoredPanel() {
       title={kt('mod_knowledge_shared_title')}
       actions={
         invites.items.length > 0 ? (
-          <Link to="/basecamp/invites" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
+          <Link to="/dashboard/invites" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
             <Icon icon={Mail} size={16} />
             {kt('mod_knowledge_shared_invites', { count: invites.items.length })}
           </Link>
@@ -32,7 +32,7 @@ export function CoAuthoredPanel() {
           {shared.items.map((item) => (
             <li key={item.mod.id}>
               <Link
-                to="/basecamp/mods/$modId"
+                to="/dashboard/mods/$modId"
                 params={{ modId: String(item.mod.id) }}
                 className="flex items-center gap-3 rounded-md border border-border p-2 hover:border-border-strong"
               >

@@ -6,35 +6,35 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Requests_ReleaseInputs */
 
 const en_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Give it back`)
+	return /** @type {LocalizedString} */ (`Stop working on it`)
 };
 
 const es_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Devolver`)
+	return /** @type {LocalizedString} */ (`Dejar de trabajar en ello`)
 };
 
 const de_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zurückgeben`)
+	return /** @type {LocalizedString} */ (`Nicht mehr bearbeiten`)
 };
 
 const fr_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le rendre`)
+	return /** @type {LocalizedString} */ (`Ne plus y travailler`)
 };
 
 const it_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Restituisci`)
+	return /** @type {LocalizedString} */ (`Smetti di lavorarci`)
 };
 
 const nl_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Teruggeven`)
+	return /** @type {LocalizedString} */ (`Niet meer aan werken`)
 };
 
 const pl_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oddaj`)
+	return /** @type {LocalizedString} */ (`Przestań nad tym pracować`)
 };
 
 const pt_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Devolver`)
+	return /** @type {LocalizedString} */ (`Parar de trabalhar nisso`)
 };
 
 const ru_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
@@ -42,11 +42,11 @@ const ru_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => Local
 };
 
 const sv_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lämna tillbaka`)
+	return /** @type {LocalizedString} */ (`Sluta arbeta på den`)
 };
 
 const tr_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geri bırak`)
+	return /** @type {LocalizedString} */ (`Üzerinde çalışmayı bırak`)
 };
 
 const zh_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_requests_release = /** @type {(inputs: Requests_ReleaseInputs) => Local
 /**
 * | output |
 * | --- |
-* | "Give it back" |
+* | "Stop working on it" |
 *
 * @param {Requests_ReleaseInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

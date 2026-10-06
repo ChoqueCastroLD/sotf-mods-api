@@ -121,8 +121,6 @@ export const rangerKeys = {
   /** Outside the `moderation` prefix: stream events must not refetch them. */
   templates: ['ranger-templates'] as const,
   metrics: (days: number) => ['ranger-metrics', days] as const,
-  /** Whether a user holds the admin-only translator badge (from their public badges). */
-  translator: (handle: string) => ['ranger-translator', handle] as const,
 } as const;
 
 // -----------------------------------------------------------------------------------------------
@@ -198,11 +196,6 @@ export const rangerApi = {
   revokeSessions: (id: number) => api.moderation.revokeSessions({ params: { id } }),
   overrideScan: (scanId: number, verdict: 'false_positive' | 'malicious', note: string) =>
     api.moderation.overrideScan({ params: { id: scanId }, body: { verdict, note } }),
-  /** The admin-only translator badge (PLAN §7.2). Resolves with the state after the change. */
-  setTranslatorBadge: (userId: number, granted: boolean) =>
-    granted
-      ? api.admin.grantManualBadge({ params: { id: userId, badgeKey: 'translator' } })
-      : api.admin.revokeManualBadge({ params: { id: userId, badgeKey: 'translator' } }),
   /** «Assign to me» (`assign = false` releases the item). Resolves with the updated row. */
   assign: (itemId: string, assign: boolean) => api.moderation.assignItem({ params: { id: itemId }, body: { assign } }),
   /** Escalates to the admins with a note (`escalate = false` clears it). */
@@ -232,16 +225,6 @@ export function storeQueueItem(queryClient: QueryClient, item: QueueItem): void 
         : data,
   );
 }
-
-export const translatorBadgeQuery = (handle: string) =>
-  queryOptions({
-    queryKey: rangerKeys.translator(handle),
-    queryFn: async ({ signal }) =>
-      (await api.gamification.userBadges({ params: { handle } }, { signal })).earned.some(
-        (badge) => badge.key === 'translator',
-      ),
-    staleTime: 60_000,
-  });
 
 /** Review time of the last `days` days (`GET /ranger/metrics`, PLAN §7.4 «Métricas visibles»). */
 export const metricsQuery = (days = 30) =>

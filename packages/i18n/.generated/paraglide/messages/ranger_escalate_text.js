@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Escalate_TextInputs */
 
 const en_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tell the admins what they need to look at. The item stays in its lane, marked as escalated and sorted as high risk.`)
+	return /** @type {LocalizedString} */ (`Tell the admins what they need to look at. The item stays in its queue, marked as escalated and sorted as high risk.`)
 };
 
 const es_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
@@ -14,7 +14,7 @@ const es_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) 
 };
 
 const de_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sag den Admins, was sie sich ansehen sollen. Der Eintrag bleibt in seiner Spur, als eskaliert markiert und als hohes Risiko sortiert.`)
+	return /** @type {LocalizedString} */ (`Sag den Admins, was sie sich ansehen sollen. Der Eintrag bleibt in seiner Warteschlange, als eskaliert markiert und als hohes Risiko sortiert.`)
 };
 
 const fr_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) 
 };
 
 const nl_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vertel de beheerders waar ze naar moeten kijken. Het item blijft in zijn baan, gemarkeerd als geëscaleerd en gesorteerd als hoog risico.`)
+	return /** @type {LocalizedString} */ (`Vertel de beheerders waar ze naar moeten kijken. Het item blijft in zijn wachtrij, gemarkeerd als geëscaleerd en gesorteerd als hoog risico.`)
 };
 
 const pl_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) 
 };
 
 const ja_ranger_escalate_text = /** @type {(inputs: Ranger_Escalate_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`管理者に確認してほしい点を伝えてください。項目はレーンに残り、エスカレーション済みとして高リスク扱いで並びます。`)
+	return /** @type {LocalizedString} */ (`管理者に確認してほしい点を伝えてください。項目はキューに残り、エスカレーション済みとして高リスク扱いで並びます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Tell the admins what they need to look at. The item stays in its lane, marked as escalated and sorted as high risk." |
+* | "Tell the admins what they need to look at. The item stays in its queue, marked as escalated and sorted as high risk." |
 *
 * @param {Ranger_Escalate_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

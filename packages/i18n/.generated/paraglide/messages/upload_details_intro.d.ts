@@ -3,7 +3,7 @@ export type Upload_Details_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "How your listing reads on the site. We prefilled what the file told us." |
+* | "How your listing appears on the site. We filled in what the file contained." |
 *
 * @param {Upload_Details_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

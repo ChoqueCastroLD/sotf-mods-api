@@ -8,7 +8,7 @@ Comprobaciones diarias tras el corte. Los detalles y las consultas SQL de solo l
 
 1. Coolify: las apps `sotf-v2-web`, `-api`, `-worker` y `-migrate` en *Running (healthy)*.
 2. `ops/runbooks/deploy/smoke.sh production` (solo GET/HEAD; equivale al `smoke-prod` del plan).
-3. Consola de moderación (`/ranger`) → Admin: colas de pg-boss, *dead letters* (deben ser 0) y estado
+3. Consola de moderación (`/moderation`) → Admin: colas de pg-boss, *dead letters* (deben ser 0) y estado
    de la purga de Cloudflare. El worker avisa por email a los admins ante *dead letters* nuevas y al
    80 % del presupuesto de KelvinSeek.
 4. Logs de la api en Coolify: 5xx, `csp violation` y errores de `legacy` (clientes RedManager).

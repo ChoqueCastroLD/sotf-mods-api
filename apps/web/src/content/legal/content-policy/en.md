@@ -1,18 +1,17 @@
 ---
 title: Content policy
-description: What you can publish on SOTF Mods — allowed and forbidden content, adult content, AI-assisted mods, credits and reuploads, and how reports and moderation work.
+description: What you can publish on SOTF Mods: allowed and forbidden content, adult content, AI-assisted mods, credits and reuploads, and how reports and moderation work.
 anchors: [principles, allowed, forbidden, safety, adult, credits, ai, community, reports, enforcement, appeals]
 ---
 
 # Principles
 
-SOTF Mods exists so players can find mods that work and creators get credit for their work. This policy explains what belongs here. It applies to mods, builds, Kits, images, descriptions, comments, reviews, profiles and reports.
+SOTF Mods exists so players can find mods that work and creators get credit for their work. This policy explains what belongs here. It applies to mods, builds, images, descriptions, comments, reviews, profiles and reports.
 
 # What you can publish
 
 - Mods, libraries and tools for Sons of the Forest made for **RedLoader**.
-- BuildShare blueprints (builds) of your own creations.
-- Kits: collections of mods from the site with your notes.
+- Builds (BuildShare) of your own creations.
 - Screenshots and videos of your mod in action.
 
 Every mod needs a clear description of what it does, how to install it and what it requires.
@@ -28,11 +27,11 @@ Every mod needs a clear description of what it does, how to install it and what 
 
 # Safety of files
 
-Every new mod is reviewed at the Ranger Station before it is public, and every file is scanned. Executables need a clear reason and a source link. We may ask for the source code of a mod that raises doubts, and remove it if it can't be verified.
+Every new mod is reviewed by moderators before it is public, and every file is scanned. Executables need a clear reason and a source link. We may ask for the source code of a mod that raises doubts, and remove it if it can't be verified.
 
 # Adult content
 
-Mods with nudity or strong sexual content must be marked **NSFW**. NSFW content is hidden by default, shown only to signed-in adults who opt in, never shown with ads and never used in previews. Rangers may mark a mod NSFW themselves and will tell the author.
+Mods with nudity or strong sexual content must be marked **NSFW**. NSFW content is hidden by default, shown only to signed-in adults who opt in, never shown with ads and never used in previews. Moderators may mark a mod NSFW themselves and will tell the author.
 
 # Credits and reuploads
 
@@ -50,7 +49,7 @@ Comments and reviews are for talking about the mod: questions, feedback, bug rep
 
 # Reporting
 
-Use **Report** on any mod, version, comment, review or profile. Rangers review reports, usually within 48 hours. For copyright claims, follow the [DMCA page](/dmca).
+Use **Report** on any mod, version, comment, review or profile. Moderators review reports, usually within 48 hours. For copyright claims, follow the [DMCA page](/dmca).
 
 # Enforcement
 
@@ -58,4 +57,4 @@ Depending on how serious it is and whether it happened before, we may edit or hi
 
 # Appeals
 
-If you think a decision was wrong, reply to the notification you received or contact us. A different ranger or an admin will review it.
+If you think a decision was wrong, reply to the notification you received or contact us. A different moderator or an admin will review it.

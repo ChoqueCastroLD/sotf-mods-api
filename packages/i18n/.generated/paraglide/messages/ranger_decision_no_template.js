@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Decision_No_TemplateInputs */
 
 const en_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No template — only my note`)
+	return /** @type {LocalizedString} */ (`No template, only my note`)
 };
 
 const es_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_Te
 };
 
 const de_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Keine Vorlage – nur meine Notiz`)
+	return /** @type {LocalizedString} */ (`Keine Vorlage, nur meine Notiz`)
 };
 
 const fr_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas de modèle — seulement ma note`)
+	return /** @type {LocalizedString} */ (`Pas de modèle, seulement ma note`)
 };
 
 const it_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
@@ -26,41 +26,41 @@ const it_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_Te
 };
 
 const nl_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen sjabloon — alleen mijn notitie`)
+	return /** @type {LocalizedString} */ (`Geen sjabloon, alleen mijn notitie`)
 };
 
 const pl_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bez szablonu — tylko moja notatka`)
+	return /** @type {LocalizedString} */ (`Bez szablonu, tylko moja notatka`)
 };
 
 const pt_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem modelo — só a minha nota`)
+	return /** @type {LocalizedString} */ (`Sem modelo, só a minha nota`)
 };
 
 const ru_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Без шаблона — только моя заметка`)
+	return /** @type {LocalizedString} */ (`Без шаблона, только моя заметка`)
 };
 
 const sv_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ingen mall – bara min anteckning`)
+	return /** @type {LocalizedString} */ (`Ingen mall, bara min anteckning`)
 };
 
 const tr_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Şablon yok — yalnızca notum`)
+	return /** @type {LocalizedString} */ (`Şablon yok, yalnızca notum`)
 };
 
 const zh_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`不用模板——只用我的备注`)
+	return /** @type {LocalizedString} */ (`不用模板，只用我的备注`)
 };
 
 const ja_ranger_decision_no_template = /** @type {(inputs: Ranger_Decision_No_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`テンプレートなし — メモのみ`)
+	return /** @type {LocalizedString} */ (`テンプレートなし、メモのみ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No template — only my note" |
+* | "No template, only my note" |
 *
 * @param {Ranger_Decision_No_TemplateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

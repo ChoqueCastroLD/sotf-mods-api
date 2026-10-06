@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Search_Error_TextInputs */
 
 const en_explore_search_error_text = /** @type {(inputs: Explore_Search_Error_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Search is out of reach right now. Try again in a moment.`)
+	return /** @type {LocalizedString} */ (`Search is not available right now. Try again in a moment.`)
 };
 
 const es_explore_search_error_text = /** @type {(inputs: Explore_Search_Error_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_explore_search_error_text = /** @type {(inputs: Explore_Search_Error_Te
 /**
 * | output |
 * | --- |
-* | "Search is out of reach right now. Try again in a moment." |
+* | "Search is not available right now. Try again in a moment." |
 *
 * @param {Explore_Search_Error_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

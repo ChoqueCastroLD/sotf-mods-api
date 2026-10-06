@@ -140,7 +140,7 @@ export const LEGACY_SPEC: Readonly<Record<string, LegacyDtoSpec>> = {
     types: { status: 'true', data: 'array(ref(LegacyModListItem))', meta: 'ref(LegacyListMeta)' },
   },
   LegacyModDetailImage: {
-    description: 'Image of the detail endpoint (only `url`; research/01 §2.4 — the captured mods have no gallery).',
+    description: 'Image of the detail endpoint (only `url`; the captured mods have no gallery).',
     manual: {
       fields: [['url', 'string']],
       example: { url: "https://r2.sotf-mods.com/1767666009017_axel's-mod-menu_1.png" },

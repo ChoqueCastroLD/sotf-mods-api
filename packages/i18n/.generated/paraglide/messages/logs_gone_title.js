@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Logs_Gone_TitleInputs */
 
 const en_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This log is gone`)
+	return /** @type {LocalizedString} */ (`This log is no longer available`)
 };
 
 const es_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Este log ya no existe`)
+	return /** @type {LocalizedString} */ (`Este log ya no está disponible`)
 };
 
 const de_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dieses Log ist weg`)
+	return /** @type {LocalizedString} */ (`Dieses Log ist nicht mehr verfügbar`)
 };
 
 const fr_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce log n’existe plus`)
+	return /** @type {LocalizedString} */ (`Ce log n’est plus disponible`)
 };
 
 const it_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Questo log non c’è più`)
+	return /** @type {LocalizedString} */ (`Questo log non è più disponibile`)
 };
 
 const nl_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deze log is weg`)
+	return /** @type {LocalizedString} */ (`Deze log is niet meer beschikbaar`)
 };
 
 const pl_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tego logu już nie ma`)
+	return /** @type {LocalizedString} */ (`Ten log nie jest już dostępny`)
 };
 
 const pt_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Este log já não existe`)
+	return /** @type {LocalizedString} */ (`Este log não está mais disponível`)
 };
 
 const ru_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Этого лога больше нет`)
+	return /** @type {LocalizedString} */ (`Этот лог больше недоступен`)
 };
 
 const sv_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Den här loggen är borta`)
+	return /** @type {LocalizedString} */ (`Den här loggen är inte längre tillgänglig`)
 };
 
 const tr_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu log artık yok`)
+	return /** @type {LocalizedString} */ (`Bu log artık kullanılabilir değil`)
 };
 
 const zh_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`此日志已不存在`)
+	return /** @type {LocalizedString} */ (`此日志已不可用`)
 };
 
 const ja_logs_gone_title = /** @type {(inputs: Logs_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このログはもうありません`)
+	return /** @type {LocalizedString} */ (`このログは利用できなくなりました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "This log is gone" |
+* | "This log is no longer available" |
 *
 * @param {Logs_Gone_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

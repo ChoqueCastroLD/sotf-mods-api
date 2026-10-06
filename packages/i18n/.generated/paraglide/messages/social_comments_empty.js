@@ -38,7 +38,7 @@ const pt_social_comments_empty = /** @type {(inputs: Social_Comments_EmptyInputs
 };
 
 const ru_social_comments_empty = /** @type {(inputs: Social_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Комментариев пока нет. Вопросы, советы и баги — сюда.`)
+	return /** @type {LocalizedString} */ (`Комментариев пока нет. Здесь можно задать вопрос, поделиться советом или сообщить об ошибке.`)
 };
 
 const sv_social_comments_empty = /** @type {(inputs: Social_Comments_EmptyInputs) => LocalizedString} */ () => {

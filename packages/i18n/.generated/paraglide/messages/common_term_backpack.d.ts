@@ -3,7 +3,7 @@ export type Common_Term_BackpackInputs = {};
 /**
 * | output |
 * | --- |
-* | "Backpack" |
+* | "Following" |
 *
 * @param {Common_Term_BackpackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

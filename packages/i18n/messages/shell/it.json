@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Altro",
-  "shell_more_help": "Aiuto",
-  "shell_more_community": "Community",
   "shell_more_install_guide": "Guida all’installazione",
   "shell_install_app": "Installa l’app",
   "shell_install_app_hint": "Aggiungi SOTF Mods alla schermata Home",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Aggiornamento…",
   "shell_offline_meta_title": "Offline",
   "shell_offline_meta_description": "Nessuna connessione al momento. Riprova quando sei di nuovo online.",
-  "shell_offline_eyebrow": "Offline",
   "shell_offline_title": "Sei offline",
   "shell_offline_body": "Al momento SOTF Mods non è raggiungibile. Controlla la connessione e riprova.",
   "shell_offline_retry": "Riprova",

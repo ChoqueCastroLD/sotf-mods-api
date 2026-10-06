@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ version: NonNullable<unknown>, mod: NonNullable<unknown> }} Signals_Status_Version_HeldInputs */
 
 const en_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Version ${i?.version} of ${i?.mod} is on hold for a ranger check`)
+	return /** @type {LocalizedString} */ (`Version ${i?.version} of ${i?.mod} is on hold for a moderator check`)
 };
 
 const es_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`La versión ${i?.version} de ${i?.mod} está retenida hasta que la revise un guardabosques`)
+	return /** @type {LocalizedString} */ (`La versión ${i?.version} de ${i?.mod} está retenida hasta que la revise un moderador`)
 };
 
 const de_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Version ${i?.version} von ${i?.mod} wartet auf die Prüfung durch einen Ranger`)
+	return /** @type {LocalizedString} */ (`Version ${i?.version} von ${i?.mod} wartet auf die Prüfung durch einen Moderator`)
 };
 
 const fr_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`La version ${i?.version} de ${i?.mod} est en attente de la vérification d’un ranger`)
+	return /** @type {LocalizedString} */ (`La version ${i?.version} de ${i?.mod} est en attente de la vérification d’un modérateur`)
 };
 
 const it_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`La versione ${i?.version} di ${i?.mod} è in attesa del controllo di un ranger`)
+	return /** @type {LocalizedString} */ (`La versione ${i?.version} di ${i?.mod} è in attesa del controllo di un moderatore`)
 };
 
 const nl_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Versie ${i?.version} van ${i?.mod} wacht op controle door een ranger`)
+	return /** @type {LocalizedString} */ (`Versie ${i?.version} van ${i?.mod} wacht op controle door een moderator`)
 };
 
 const pl_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Wersja ${i?.version} (${i?.mod}) czeka na sprawdzenie przez strażnika`)
+	return /** @type {LocalizedString} */ (`Wersja ${i?.version} (${i?.mod}) czeka na sprawdzenie przez moderatora`)
 };
 
 const pt_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`A versão ${i?.version} de ${i?.mod} está retida até a checagem de um guarda`)
+	return /** @type {LocalizedString} */ (`A versão ${i?.version} de ${i?.mod} está retida até a checagem de um moderador`)
 };
 
 const ru_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Версия ${i?.version} мода ${i?.mod} ждёт проверки рейнджером`)
+	return /** @type {LocalizedString} */ (`Версия ${i?.version} мода ${i?.mod} ждёт проверки модератором`)
 };
 
 const sv_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Version ${i?.version} av ${i?.mod} väntar på att en ranger ska kolla den`)
+	return /** @type {LocalizedString} */ (`Version ${i?.version} av ${i?.mod} väntar på att en moderator ska kolla den`)
 };
 
 const tr_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} modunun ${i?.version} sürümü bir korucunun kontrolünü bekliyor`)
+	return /** @type {LocalizedString} */ (`${i?.mod} modunun ${i?.version} sürümü bir moderatörün kontrolünü bekliyor`)
 };
 
 const zh_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} 的 ${i?.version} 版本正在等待护林员审核`)
+	return /** @type {LocalizedString} */ (`${i?.mod} 的 ${i?.version} 版本正在等待版主审核`)
 };
 
 const ja_signals_status_version_held = /** @type {(inputs: Signals_Status_Version_HeldInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} のバージョン ${i?.version} はレンジャーの確認待ちです`)
+	return /** @type {LocalizedString} */ (`${i?.mod} のバージョン ${i?.version} はモデレーターの確認待ちです`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Version {version} of {mod} is on hold for a ranger check" |
+* | "Version {version} of {mod} is on hold for a moderator check" |
 *
 * @param {Signals_Status_Version_HeldInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

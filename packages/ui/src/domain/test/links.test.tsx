@@ -10,7 +10,6 @@ import { describe, expect, it } from 'vitest';
 import {
   BuildCard,
   CommentItem,
-  CreatorCard,
   DomainI18nProvider,
   englishDomainI18n,
   ModCard,
@@ -18,7 +17,7 @@ import {
   ReviewCard,
 } from '../index.ts';
 import en from '../messages/en.json' with { type: 'json' };
-import { build, comment, creator, mod, review } from './fixtures.ts';
+import { build, comment, mod, review } from './fixtures.ts';
 
 const spanish = { ...englishDomainI18n, locale: 'es', href: (path: string) => `/es${path}` };
 
@@ -35,7 +34,6 @@ describe('profile links', () => {
   const cases: Array<[string, ReactElement, string]> = [
     ['ModCard', <ModCard key="m" mod={mod} />, mod.userHandle],
     ['BuildCard', <BuildCard key="b" build={build} />, build.userHandle],
-    ['CreatorCard', <CreatorCard key="c" creator={creator} />, creator.user.handle],
     ['ReviewCard', <ReviewCard key="r" review={review} />, review.author?.handle ?? ''],
     ['CommentItem', <CommentItem key="i" comment={comment} />, comment.author?.handle ?? ''],
   ];

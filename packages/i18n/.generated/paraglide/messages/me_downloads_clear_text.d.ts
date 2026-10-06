@@ -3,7 +3,7 @@ export type Me_Downloads_Clear_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Every row disappears and «Did it work?» questions about past downloads go away. Download counts of the mods are not affected. This can’t be undone." |
+* | "Every row disappears. Download counts of the mods are not affected. This can’t be undone." |
 *
 * @param {Me_Downloads_Clear_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

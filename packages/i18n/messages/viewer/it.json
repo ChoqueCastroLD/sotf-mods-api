@@ -2,7 +2,7 @@
   "viewer_heading": "Vista dall'alto",
   "viewer_alt": "Vista dall'alto di {name}: {pieces} pezzi, {width} per {depth} per {height} metri.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} pezzi",
-  "viewer_explore": "Esplora in 3D",
+  "viewer_explore": "Vedi in 3D",
   "viewer_back": "Torna all'anteprima",
   "viewer_loading": "Caricamento della vista 3D…",
   "viewer_pending": "L'anteprima è in preparazione. Torna tra un minuto.",

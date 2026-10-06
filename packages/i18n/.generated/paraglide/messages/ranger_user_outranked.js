@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_OutrankedInputs */
 
 const en_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers can only act on accounts below their own role.`)
+	return /** @type {LocalizedString} */ (`Moderators can only act on accounts below their own role.`)
 };
 
 const es_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los guardabosques solo pueden actuar sobre cuentas con un rol inferior al suyo.`)
+	return /** @type {LocalizedString} */ (`Los moderadores solo pueden actuar sobre cuentas con un rol inferior al suyo.`)
 };
 
 const de_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger können nur Konten unterhalb ihrer eigenen Rolle bearbeiten.`)
+	return /** @type {LocalizedString} */ (`Moderatoren können nur Konten unterhalb ihrer eigenen Rolle bearbeiten.`)
 };
 
 const fr_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rangers n’agissent que sur des comptes de rôle inférieur au leur.`)
+	return /** @type {LocalizedString} */ (`Les modérateurs n’agissent que sur des comptes de rôle inférieur au leur.`)
 };
 
 const it_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I ranger possono agire solo su account con un ruolo inferiore al proprio.`)
+	return /** @type {LocalizedString} */ (`I moderatori possono agire solo su account con un ruolo inferiore al proprio.`)
 };
 
 const nl_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers kunnen alleen optreden tegen accounts met een lagere rol dan hun eigen rol.`)
+	return /** @type {LocalizedString} */ (`Moderators kunnen alleen optreden tegen accounts met een lagere rol dan hun eigen rol.`)
 };
 
 const pl_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnicy mogą działać tylko na kontach z niższą rolą niż ich własna.`)
+	return /** @type {LocalizedString} */ (`Moderatorzy mogą działać tylko na kontach z niższą rolą niż ich własna.`)
 };
 
 const pt_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Guardas só podem agir sobre contas com papel abaixo do seu.`)
+	return /** @type {LocalizedString} */ (`Moderadores só podem agir sobre contas com papel abaixo do seu.`)
 };
 
 const ru_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджеры могут действовать только в отношении аккаунтов с ролью ниже своей.`)
+	return /** @type {LocalizedString} */ (`Модераторы могут действовать только в отношении аккаунтов с ролью ниже своей.`)
 };
 
 const sv_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers kan bara agera på konton med lägre roll än den egna.`)
+	return /** @type {LocalizedString} */ (`Moderatorer kan bara agera på konton med lägre roll än den egna.`)
 };
 
 const tr_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.`)
+	return /** @type {LocalizedString} */ (`Moderatörler yalnızca kendi rollerinin altındaki hesaplara işlem yapabilir.`)
 };
 
 const zh_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员只能处理角色低于自己的账号。`)
+	return /** @type {LocalizedString} */ (`版主只能处理角色低于自己的账号。`)
 };
 
 const ja_ranger_user_outranked = /** @type {(inputs: Ranger_User_OutrankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーは自分より下のロールのアカウントにのみ操作できます。`)
+	return /** @type {LocalizedString} */ (`モデレーターは自分より下のロールのアカウントにのみ操作できます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Rangers can only act on accounts below their own role." |
+* | "Moderators can only act on accounts below their own role." |
 *
 * @param {Ranger_User_OutrankedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

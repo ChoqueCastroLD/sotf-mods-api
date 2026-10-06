@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Verified_CreatorInputs */
 
 const en_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verified creator`)
+	return /** @type {LocalizedString} */ (`Trusted`)
 };
 
 const es_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creador verificado`)
+	return /** @type {LocalizedString} */ (`De confianza`)
 };
 
 const de_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifizierter Creator`)
+	return /** @type {LocalizedString} */ (`Vertrauenswürdig`)
 };
 
 const fr_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créateur vérifié`)
+	return /** @type {LocalizedString} */ (`De confiance`)
 };
 
 const it_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creatore verificato`)
+	return /** @type {LocalizedString} */ (`Affidabile`)
 };
 
 const nl_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geverifieerde maker`)
+	return /** @type {LocalizedString} */ (`Vertrouwd`)
 };
 
 const pl_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zweryfikowany twórca`)
+	return /** @type {LocalizedString} */ (`Zaufany`)
 };
 
 const pt_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criador verificado`)
+	return /** @type {LocalizedString} */ (`Confiável`)
 };
 
 const ru_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Подтверждённый автор`)
+	return /** @type {LocalizedString} */ (`Проверенный`)
 };
 
 const sv_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifierad skapare`)
+	return /** @type {LocalizedString} */ (`Betrodd`)
 };
 
 const tr_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Doğrulanmış içerik üreticisi`)
+	return /** @type {LocalizedString} */ (`Güvenilir`)
 };
 
 const zh_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`认证作者`)
+	return /** @type {LocalizedString} */ (`受信任`)
 };
 
 const ja_ranger_verified_creator = /** @type {(inputs: Ranger_Verified_CreatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`認証済みクリエイター`)
+	return /** @type {LocalizedString} */ (`信頼済み`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Verified creator" |
+* | "Trusted" |
 *
 * @param {Ranger_Verified_CreatorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

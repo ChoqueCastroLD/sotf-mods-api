@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/taxonomy` (PLAN §7.4 «Admin»: categories and tags). Categories are never deleted:
+ * `/moderation/admin/taxonomy` (PLAN §7.4 «Admin»: categories and tags). Categories are never deleted:
  * «Retire» hides one once no live mod uses it (the API answers 409 otherwise, and the screen points
  * at the bulk recategorisation); its slug keeps resolving through `legacySlugs` of its successor.
  * Tags can be deleted (they are detached from their mods).
@@ -103,7 +103,7 @@ function CategoriesPanel() {
           description: m.admin_tax_retire_conflict(),
           action: {
             label: m.admin_recat_title(),
-            onClick: () => void navigate({ to: '/ranger/admin/recategorize' }),
+            onClick: () => void navigate({ to: '/moderation/admin/recategorize' }),
           },
         });
       } else reportFailure(error, m.admin_tax_retire_failed());
@@ -176,7 +176,7 @@ function CategoriesPanel() {
                     <td className={`${tdClasses} text-end tabular-nums text-fg-muted`}>{category.sortOrder}</td>
                     <td className={`${tdClasses} text-end tabular-nums`}>{formatCount(category.count)}</td>
                     <td className={`${tdClasses} font-mono text-xs text-fg-muted`}>
-                      {category.legacySlugs.length > 0 ? category.legacySlugs.join(', ') : '—'}
+                      {category.legacySlugs.length > 0 ? category.legacySlugs.join(', ') : '-'}
                     </td>
                     <td className={`${tdClasses} text-end`}>
                       <Menu
@@ -202,7 +202,7 @@ function CategoriesPanel() {
                                   icon: <Icon icon={Shuffle} size={16} />,
                                   onSelect: () =>
                                     void navigate({
-                                      to: '/ranger/admin/recategorize',
+                                      to: '/moderation/admin/recategorize',
                                       search: { from: category.slug },
                                     }),
                                 },
@@ -570,7 +570,7 @@ function TagsPanel() {
                     </span>
                   </th>
                   <td className={`${tdClasses} font-mono text-xs text-fg-muted`}>{tag.slug}</td>
-                  <td className={`${tdClasses} text-fg-muted`}>{tag.group ?? '—'}</td>
+                  <td className={`${tdClasses} text-fg-muted`}>{tag.group ?? '-'}</td>
                   <td className={`${tdClasses} text-end tabular-nums`}>{formatCount(tag.count)}</td>
                   <td className={`${tdClasses} text-end`}>
                     <Menu

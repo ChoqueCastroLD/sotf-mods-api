@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Backpack_DescriptionInputs */
 
 const en_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods you follow, with their updates and how they run on the current build.`)
+	return /** @type {LocalizedString} */ (`Mods you follow, with their latest updates.`)
 };
 
 const es_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los mods que sigues, con sus actualizaciones y cómo funcionan en la build actual.`)
+	return /** @type {LocalizedString} */ (`Los mods que sigues, con sus últimas actualizaciones.`)
 };
 
 const de_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Mods, denen du folgst, mit ihren Updates und wie sie auf dem aktuellen Build laufen.`)
+	return /** @type {LocalizedString} */ (`Die Mods, denen du folgst, mit ihren neuesten Updates.`)
 };
 
 const fr_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les mods que vous suivez, avec leurs mises à jour et leur fonctionnement sur la build actuelle.`)
+	return /** @type {LocalizedString} */ (`Les mods que vous suivez, avec leurs dernières mises à jour.`)
 };
 
 const it_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le mod che segui, con i loro aggiornamenti e come funzionano sulla build attuale.`)
+	return /** @type {LocalizedString} */ (`Le mod che segui, con i loro ultimi aggiornamenti.`)
 };
 
 const nl_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De mods die je volgt, met hun updates en hoe ze werken op de huidige build.`)
+	return /** @type {LocalizedString} */ (`De mods die je volgt, met hun laatste updates.`)
 };
 
 const pl_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mody, które obserwujesz, z ich aktualizacjami i działaniem na bieżącym buildzie.`)
+	return /** @type {LocalizedString} */ (`Mody, które obserwujesz, z ich najnowszymi aktualizacjami.`)
 };
 
 const pt_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os mods que você segue, com suas atualizações e como funcionam na build atual.`)
+	return /** @type {LocalizedString} */ (`Os mods que você segue, com as atualizações mais recentes.`)
 };
 
 const ru_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Моды, на которые вы подписаны, с их обновлениями и работой на текущей сборке.`)
+	return /** @type {LocalizedString} */ (`Моды, на которые вы подписаны, с их последними обновлениями.`)
 };
 
 const sv_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Moddarna du följer, med deras uppdateringar och hur de fungerar på det aktuella bygget.`)
+	return /** @type {LocalizedString} */ (`Moddarna du följer, med deras senaste uppdateringar.`)
 };
 
 const tr_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Takip ettiğin modlar, güncellemeleri ve güncel sürümde nasıl çalıştıkları.`)
+	return /** @type {LocalizedString} */ (`Takip ettiğin modlar ve en son güncellemeleri.`)
 };
 
 const zh_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你关注的模组，以及它们的更新和在当前版本上的运行情况。`)
+	return /** @type {LocalizedString} */ (`你关注的模组及其最新更新。`)
 };
 
 const ja_me_backpack_description = /** @type {(inputs: Me_Backpack_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`フォロー中のMODと、そのアップデート、現在のビルドでの動作状況。`)
+	return /** @type {LocalizedString} */ (`フォロー中のMODと、その最新のアップデート。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Mods you follow, with their updates and how they run on the current build." |
+* | "Mods you follow, with their latest updates." |
 *
 * @param {Me_Backpack_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

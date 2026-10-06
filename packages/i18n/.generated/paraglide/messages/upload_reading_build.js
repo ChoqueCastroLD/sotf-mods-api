@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Reading_BuildInputs */
 
 const en_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reading the blueprint…`)
+	return /** @type {LocalizedString} */ (`Reading the build…`)
 };
 
 const es_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Leyendo el plano…`)
+	return /** @type {LocalizedString} */ (`Leyendo la build…`)
 };
 
 const de_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bauplan wird gelesen…`)
+	return /** @type {LocalizedString} */ (`Build wird gelesen…`)
 };
 
 const fr_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lecture du plan…`)
+	return /** @type {LocalizedString} */ (`Lecture du build…`)
 };
 
 const it_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lettura del progetto…`)
+	return /** @type {LocalizedString} */ (`Lettura della build…`)
 };
 
 const nl_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bouwtekening lezen…`)
+	return /** @type {LocalizedString} */ (`Build lezen…`)
 };
 
 const pl_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Odczytywanie planu…`)
+	return /** @type {LocalizedString} */ (`Odczytywanie builda…`)
 };
 
 const pt_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lendo a planta…`)
+	return /** @type {LocalizedString} */ (`Lendo a build…`)
 };
 
 const ru_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Читаем чертёж…`)
+	return /** @type {LocalizedString} */ (`Читаем постройку…`)
 };
 
 const sv_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Läser ritningen…`)
+	return /** @type {LocalizedString} */ (`Läser bygget…`)
 };
 
 const tr_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan okunuyor…`)
+	return /** @type {LocalizedString} */ (`Yapı okunuyor…`)
 };
 
 const zh_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`正在读取蓝图…`)
+	return /** @type {LocalizedString} */ (`正在读取建筑…`)
 };
 
 const ja_upload_reading_build = /** @type {(inputs: Upload_Reading_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図を読み込み中…`)
+	return /** @type {LocalizedString} */ (`建築を読み込み中…`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Reading the blueprint…" |
+* | "Reading the build…" |
 *
 * @param {Upload_Reading_BuildInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

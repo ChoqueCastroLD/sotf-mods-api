@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Action_UpdateInputs */
 
 const en_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Get the update`)
+	return /** @type {LocalizedString} */ (`Download the update`)
 };
 
 const es_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => Local
 };
 
 const de_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Update holen`)
+	return /** @type {LocalizedString} */ (`Update herunterladen`)
 };
 
 const fr_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Récupérer la mise à jour`)
+	return /** @type {LocalizedString} */ (`Télécharger la mise à jour`)
 };
 
 const it_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => Local
 };
 
 const nl_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Update ophalen`)
+	return /** @type {LocalizedString} */ (`Update downloaden`)
 };
 
 const pl_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
@@ -46,21 +46,21 @@ const sv_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => Local
 };
 
 const tr_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Güncellemeyi al`)
+	return /** @type {LocalizedString} */ (`Güncellemeyi indir`)
 };
 
 const zh_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`获取更新`)
+	return /** @type {LocalizedString} */ (`下载更新`)
 };
 
 const ja_me_action_update = /** @type {(inputs: Me_Action_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アップデートを入手`)
+	return /** @type {LocalizedString} */ (`アップデートをダウンロード`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Get the update" |
+* | "Download the update" |
 *
 * @param {Me_Action_UpdateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

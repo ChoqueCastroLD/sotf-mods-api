@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Eco_Empty_TitleInputs */
 
 const en_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nothing to map yet`)
+	return /** @type {LocalizedString} */ (`Nothing to show yet`)
 };
 
 const es_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aún no hay nada que mapear`)
+	return /** @type {LocalizedString} */ (`Aún no hay nada que mostrar`)
 };
 
 const de_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch nichts zuzuordnen`)
+	return /** @type {LocalizedString} */ (`Noch nichts anzuzeigen`)
 };
 
 const fr_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rien à associer pour l’instant`)
+	return /** @type {LocalizedString} */ (`Rien à afficher pour l’instant`)
 };
 
 const it_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ancora niente da mappare`)
+	return /** @type {LocalizedString} */ (`Ancora niente da mostrare`)
 };
 
 const nl_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog niets om in kaart te brengen`)
+	return /** @type {LocalizedString} */ (`Nog niets om te tonen`)
 };
 
 const pl_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Na razie nie ma czego przypisać`)
+	return /** @type {LocalizedString} */ (`Na razie nie ma czego pokazać`)
 };
 
 const pt_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada para mapear ainda`)
+	return /** @type {LocalizedString} */ (`Nada para mostrar ainda`)
 };
 
 const ru_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пока нечего сопоставлять`)
+	return /** @type {LocalizedString} */ (`Пока нечего показывать`)
 };
 
 const sv_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inget att koppla ihop än`)
+	return /** @type {LocalizedString} */ (`Inget att visa än`)
 };
 
 const tr_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz eşlenecek bir şey yok`)
+	return /** @type {LocalizedString} */ (`Henüz gösterilecek bir şey yok`)
 };
 
 const zh_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`暂时没有可对应的内容`)
+	return /** @type {LocalizedString} */ (`暂时没有可显示的内容`)
 };
 
 const ja_admin_eco_empty_title = /** @type {(inputs: Admin_Eco_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`まだ対応付けるものがありません`)
+	return /** @type {LocalizedString} */ (`表示するものがまだありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Nothing to map yet" |
+* | "Nothing to show yet" |
 *
 * @param {Admin_Eco_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

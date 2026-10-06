@@ -6,7 +6,7 @@ export type Signals_Version_PublishedInputs = {
 /**
 * | output |
 * | --- |
-* | "{mod} {version} is out — you follow it" |
+* | "{mod} {version} was released" |
 *
 * @param {Signals_Version_PublishedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

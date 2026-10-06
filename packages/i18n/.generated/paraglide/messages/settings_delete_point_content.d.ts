@@ -3,7 +3,7 @@ export type Settings_Delete_Point_ContentInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your comments and reviews stay, signed as «Deleted survivor»." |
+* | "Your comments and reviews stay, shown as “Deleted user”." |
 *
 * @param {Settings_Delete_Point_ContentInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

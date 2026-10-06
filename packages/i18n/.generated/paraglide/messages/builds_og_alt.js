@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Builds_Og_AltInputs */
 
 const en_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Blueprint of ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Preview of ${i?.name}`)
 };
 
 const es_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Plano de ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Vista previa de ${i?.name}`)
 };
 
 const de_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Bauplan von ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Vorschau von ${i?.name}`)
 };
 
 const fr_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Plan de ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Aperçu de ${i?.name}`)
 };
 
 const it_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Progetto di ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Anteprima di ${i?.name}`)
 };
 
 const nl_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Bouwtekening van ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Voorbeeld van ${i?.name}`)
 };
 
 const pl_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Plan budowli ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Podgląd ${i?.name}`)
 };
 
 const pt_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Planta de ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Prévia de ${i?.name}`)
 };
 
 const ru_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Чертёж: ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Превью: ${i?.name}`)
 };
 
 const sv_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ritning av ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Förhandsvisning av ${i?.name}`)
 };
 
 const tr_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} planı`)
+	return /** @type {LocalizedString} */ (`${i?.name} önizlemesi`)
 };
 
 const zh_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 的蓝图`)
+	return /** @type {LocalizedString} */ (`${i?.name} 的预览`)
 };
 
 const ja_builds_og_alt = /** @type {(inputs: Builds_Og_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} の設計図`)
+	return /** @type {LocalizedString} */ (`${i?.name} のプレビュー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Blueprint of {name}" |
+* | "Preview of {name}" |
 *
 * @param {Builds_Og_AltInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

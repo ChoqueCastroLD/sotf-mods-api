@@ -36,23 +36,12 @@ const TYPES = [
   'comment.mention',
   'review.on_my_mod',
   'review.reply',
-  'compat.broken_on_my_mod',
-  'compat.acknowledged',
-  'compat.prompt',
   'review.update_prompt',
-  'kit.added_my_mod',
-  'kit.updated_followed',
-  'kit.comment',
-  'kit.comment_reply',
   'coauthor.invited',
   'request.comment',
   'request.adopted',
   'request.fulfilled',
-  'patch.breaking_build',
   'mod.status_changed',
-  'milestone.reached',
-  'badge.awarded',
-  'award.won',
   'jam.phase',
   'report.resolved',
   'system.announcement',
@@ -67,7 +56,7 @@ const signals: SignalsPayload = {
     item('mod.version_published', { count: 3 }),
   ],
   moreCount: 4,
-  signalsUrl: `${SITE}/signals`,
+  signalsUrl: `${SITE}/notifications`,
   unsubscribe: UNSUB,
 };
 
@@ -86,7 +75,7 @@ const weekly: CreatorWeeklyPayload = {
       reviews: 2,
     },
   ],
-  basecampUrl: `${SITE}/basecamp/analytics`,
+  basecampUrl: `${SITE}/dashboard/analytics`,
   unsubscribe: UNSUB,
 };
 
@@ -95,26 +84,25 @@ describe('notification email templates', () => {
     const a = await renderNotificationEmail('notify.signals', locale, signals, SITE);
     expect(a.subject.length).toBeGreaterThan(5);
     expect(a.html).toContain(UNSUB.page.replace(/&/g, '&amp;'));
-    expect(a.html).toContain(`${SITE}/signals`);
+    expect(a.html).toContain(`${SITE}/notifications`);
     expect(a.html).not.toContain('<script>');
     expect(a.text).not.toMatch(/undefined|\{[a-z]+\}/);
     const b = await renderNotificationEmail('notify.creator_weekly', locale, weekly, SITE);
     expect(b.subject.length).toBeGreaterThan(5);
-    expect(b.html).toContain(`${SITE}/basecamp/analytics`);
+    expect(b.html).toContain(`${SITE}/dashboard/analytics`);
     expect(b.text).not.toMatch(/undefined|\{[a-z]+\}/);
   });
 
   it('writes the English sentences', async () => {
     const out = await renderNotificationEmail('notify.signals', 'en', signals, SITE);
-    // One signal per type, plus the 5 and 3 folded into two grouped rows, plus the 4 not listed.
-    expect(out.subject).toBe(`Your daily SOTF Mods digest: ${TYPES.length + 5 + 3 + 4} signals`);
+    // One notification per type, plus the 5 and 3 folded into two grouped rows, plus the 4 not listed.
+    expect(out.subject).toBe(`Your daily SOTF Mods digest: ${TYPES.length + 5 + 3 + 4} notifications`);
     expect(out.text).toContain('Kelvin commented on AmmoUi');
     expect(out.text).toContain('5 new comments on AmmoUi');
     expect(out.text).toContain('AmmoUi has 3 new versions, the latest is 1.2.0');
     expect(out.text).toContain('AmmoUi was not approved');
     expect(out.text).toContain('Reason: Reupload without permission');
-    expect(out.text).toContain('AmmoUi passed 10,000 downloads');
-    expect(out.text).toContain('And 4 more signals');
+    expect(out.text).toContain('And 4 more notifications');
     const report = await renderNotificationEmail('notify.creator_weekly', 'en', weekly, SITE);
     expect(report.subject).toBe('Your mods last week: +1,234 downloads');
     expect(report.text).toContain('Up 23% from the week before');

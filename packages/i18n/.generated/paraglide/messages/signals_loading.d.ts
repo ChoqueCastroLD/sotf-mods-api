@@ -3,7 +3,7 @@ export type Signals_LoadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Loading signals…" |
+* | "Loading notifications…" |
 *
 * @param {Signals_LoadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

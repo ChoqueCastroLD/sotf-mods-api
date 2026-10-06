@@ -3,7 +3,7 @@ export type Oauth_Error_UnavailableInputs = {};
 /**
 * | output |
 * | --- |
-* | "Discord sign-in isn’t available right now." |
+* | "Logging in with Discord isn’t available right now." |
 *
 * @param {Oauth_Error_UnavailableInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

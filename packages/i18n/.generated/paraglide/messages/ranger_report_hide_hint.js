@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Report_Hide_HintInputs */
 
 const en_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods and kits are unlisted, versions held, comments and reviews hidden.`)
+	return /** @type {LocalizedString} */ (`Mods are unlisted, versions held, comments and reviews hidden.`)
 };
 
 const es_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los mods y kits dejan de listarse, las versiones se retienen y los comentarios y reseñas se ocultan.`)
+	return /** @type {LocalizedString} */ (`Los mods dejan de listarse, las versiones se retienen y los comentarios y reseñas se ocultan.`)
 };
 
 const de_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods und Kits werden nicht mehr gelistet, Versionen zurückgehalten, Kommentare und Rezensionen ausgeblendet.`)
+	return /** @type {LocalizedString} */ (`Mods werden nicht mehr gelistet, Versionen zurückgehalten, Kommentare und Rezensionen ausgeblendet.`)
 };
 
 const fr_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les mods et kits sont retirés des listes, les versions retenues, les commentaires et avis masqués.`)
+	return /** @type {LocalizedString} */ (`Les mods sont retirés des listes, les versions retenues, les commentaires et avis masqués.`)
 };
 
 const it_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod e kit escono dagli elenchi, le versioni vengono trattenute, commenti e recensioni nascosti.`)
+	return /** @type {LocalizedString} */ (`Le mod escono dagli elenchi, le versioni vengono trattenute, commenti e recensioni nascosti.`)
 };
 
 const nl_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods en kits worden uit de lijsten gehaald, versies tegengehouden, reacties en recensies verborgen.`)
+	return /** @type {LocalizedString} */ (`Mods worden uit de lijsten gehaald, versies tegengehouden, reacties en recensies verborgen.`)
 };
 
 const pl_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mody i zestawy znikają z list, wersje zostają wstrzymane, komentarze i recenzje ukryte.`)
+	return /** @type {LocalizedString} */ (`Mody znikają z list, wersje zostają wstrzymane, komentarze i recenzje ukryte.`)
 };
 
 const pt_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods e kits saem das listas, versões ficam retidas, comentários e avaliações são ocultados.`)
+	return /** @type {LocalizedString} */ (`Mods saem das listas, versões ficam retidas, comentários e avaliações são ocultados.`)
 };
 
 const ru_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Моды и наборы убираются из списков, версии задерживаются, комментарии и отзывы скрываются.`)
+	return /** @type {LocalizedString} */ (`Моды убираются из списков, версии задерживаются, комментарии и отзывы скрываются.`)
 };
 
 const sv_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Moddar och kit tas bort ur listorna, versioner hålls kvar, kommentarer och recensioner döljs.`)
+	return /** @type {LocalizedString} */ (`Moddar tas bort ur listorna, versioner hålls kvar, kommentarer och recensioner döljs.`)
 };
 
 const tr_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modlar ve kitler listelerden kalkar, sürümler bekletilir, yorumlar ve incelemeler gizlenir.`)
+	return /** @type {LocalizedString} */ (`Modlar listelerden kalkar, sürümler bekletilir, yorumlar ve incelemeler gizlenir.`)
 };
 
 const zh_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`模组和套装从列表隐藏，版本被暂扣，评论和评价被隐藏。`)
+	return /** @type {LocalizedString} */ (`模组从列表隐藏，版本被暂扣，评论和评价被隐藏。`)
 };
 
 const ja_ranger_report_hide_hint = /** @type {(inputs: Ranger_Report_Hide_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MODとキットは一覧から外れ、バージョンは保留、コメントとレビューは非表示になります。`)
+	return /** @type {LocalizedString} */ (`MODは一覧から外れ、バージョンは保留、コメントとレビューは非表示になります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Mods and kits are unlisted, versions held, comments and reviews hidden." |
+* | "Mods are unlisted, versions held, comments and reviews hidden." |
 *
 * @param {Ranger_Report_Hide_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

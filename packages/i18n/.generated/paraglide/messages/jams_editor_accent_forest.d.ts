@@ -3,7 +3,7 @@ export type Jams_Editor_Accent_ForestInputs = {};
 /**
 * | output |
 * | --- |
-* | "Forest green" |
+* | "Green" |
 *
 * @param {Jams_Editor_Accent_ForestInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

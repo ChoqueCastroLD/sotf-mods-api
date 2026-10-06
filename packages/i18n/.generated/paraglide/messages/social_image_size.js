@@ -38,7 +38,7 @@ const pt_social_image_size = /** @type {(inputs: Social_Image_SizeInputs) => Loc
 };
 
 const ru_social_image_size = /** @type {(inputs: Social_Image_SizeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Размер изображения — до 5 МБ.`)
+	return /** @type {LocalizedString} */ (`Размер изображения: до 5 МБ.`)
 };
 
 const sv_social_image_size = /** @type {(inputs: Social_Image_SizeInputs) => LocalizedString} */ () => {

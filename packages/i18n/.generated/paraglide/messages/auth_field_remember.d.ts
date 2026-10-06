@@ -3,7 +3,7 @@ export type Auth_Field_RememberInputs = {};
 /**
 * | output |
 * | --- |
-* | "Keep me signed in on this device" |
+* | "Keep me logged in on this device" |
 *
 * @param {Auth_Field_RememberInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

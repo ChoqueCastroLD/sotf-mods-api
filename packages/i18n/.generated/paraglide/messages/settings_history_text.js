@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_History_TextInputs */
 
 const en_settings_history_text = /** @type {(inputs: Settings_History_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`When it’s on, the downloads you make while signed in are listed in «My downloads» so we can tell you about updates.`)
+	return /** @type {LocalizedString} */ (`When it’s on, the downloads you make while logged in are listed in «My downloads» so we can tell you about updates.`)
 };
 
 const es_settings_history_text = /** @type {(inputs: Settings_History_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_history_text = /** @type {(inputs: Settings_History_TextInputs
 /**
 * | output |
 * | --- |
-* | "When it’s on, the downloads you make while signed in are listed in «My downloads» so we can tell you about updates." |
+* | "When it’s on, the downloads you make while logged in are listed in «My downloads» so we can tell you about updates." |
 *
 * @param {Settings_History_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

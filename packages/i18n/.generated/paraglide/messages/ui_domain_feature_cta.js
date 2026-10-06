@@ -6,11 +6,11 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Feature_CtaInputs */
 
 const en_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Take a look`)
+	return /** @type {LocalizedString} */ (`View`)
 };
 
 const es_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Echa un vistazo`)
+	return /** @type {LocalizedString} */ (`Ver`)
 };
 
 const de_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
@@ -18,15 +18,15 @@ const de_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs
 };
 
 const fr_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Découvrir`)
+	return /** @type {LocalizedString} */ (`Voir`)
 };
 
 const it_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dai un’occhiata`)
+	return /** @type {LocalizedString} */ (`Vedi`)
 };
 
 const nl_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bekijk het`)
+	return /** @type {LocalizedString} */ (`Bekijken`)
 };
 
 const pl_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs
 };
 
 const pt_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dê uma olhada`)
+	return /** @type {LocalizedString} */ (`Ver`)
 };
 
 const ru_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
@@ -42,25 +42,25 @@ const ru_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs
 };
 
 const sv_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ta en titt`)
+	return /** @type {LocalizedString} */ (`Visa`)
 };
 
 const tr_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Göz at`)
+	return /** @type {LocalizedString} */ (`Görüntüle`)
 };
 
 const zh_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`去看看`)
+	return /** @type {LocalizedString} */ (`查看`)
 };
 
 const ja_ui_domain_feature_cta = /** @type {(inputs: Ui_Domain_Feature_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`見てみる`)
+	return /** @type {LocalizedString} */ (`見る`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Take a look" |
+* | "View" |
 *
 * @param {Ui_Domain_Feature_CtaInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@ export type Emails_Notify_Item_Request_FulfilledInputs = {
 /**
 * | output |
 * | --- |
-* | "A mod you asked for or voted for is out: {mod}" |
+* | "A mod you requested or voted for was published: {mod}" |
 *
 * @param {Emails_Notify_Item_Request_FulfilledInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

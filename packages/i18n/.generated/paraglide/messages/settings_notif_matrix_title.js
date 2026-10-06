@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Notif_Matrix_TitleInputs */
 
 const en_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signals and emails`)
+	return /** @type {LocalizedString} */ (`Notifications and emails`)
 };
 
 const es_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Señales y correos`)
+	return /** @type {LocalizedString} */ (`Notificaciones y correos`)
 };
 
 const de_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signale und E-Mails`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen und E-Mails`)
 };
 
 const fr_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaux et e-mails`)
+	return /** @type {LocalizedString} */ (`Notifications et e-mails`)
 };
 
 const it_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnali ed email`)
+	return /** @type {LocalizedString} */ (`Notifiche ed email`)
 };
 
 const nl_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalen en e-mails`)
+	return /** @type {LocalizedString} */ (`Meldingen en e-mails`)
 };
 
 const pl_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sygnały i e-maile`)
+	return /** @type {LocalizedString} */ (`Powiadomienia i e-maile`)
 };
 
 const pt_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinais e e-mails`)
+	return /** @type {LocalizedString} */ (`Notificações e e-mails`)
 };
 
 const ru_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигналы и письма`)
+	return /** @type {LocalizedString} */ (`Уведомления и письма`)
 };
 
 const sv_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaler och mejl`)
+	return /** @type {LocalizedString} */ (`Aviseringar och mejl`)
 };
 
 const tr_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyaller ve e-postalar`)
+	return /** @type {LocalizedString} */ (`Bildirimler ve e-postalar`)
 };
 
 const zh_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号和邮件`)
+	return /** @type {LocalizedString} */ (`通知和邮件`)
 };
 
 const ja_settings_notif_matrix_title = /** @type {(inputs: Settings_Notif_Matrix_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルとメール`)
+	return /** @type {LocalizedString} */ (`通知とメール`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Signals and emails" |
+* | "Notifications and emails" |
 *
 * @param {Settings_Notif_Matrix_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

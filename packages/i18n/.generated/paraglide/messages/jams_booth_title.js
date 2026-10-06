@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Booth_TitleInputs */
 
 const en_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voting booth`)
+	return /** @type {LocalizedString} */ (`Voting`)
 };
 
 const es_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cabina de votación`)
+	return /** @type {LocalizedString} */ (`Votación`)
 };
 
 const de_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wahlkabine`)
+	return /** @type {LocalizedString} */ (`Abstimmung`)
 };
 
 const fr_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Isoloir`)
+	return /** @type {LocalizedString} */ (`Vote`)
 };
 
 const it_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cabina di voto`)
+	return /** @type {LocalizedString} */ (`Votazione`)
 };
 
 const nl_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Stemhokje`)
+	return /** @type {LocalizedString} */ (`Stemmen`)
 };
 
 const pl_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kabina do głosowania`)
+	return /** @type {LocalizedString} */ (`Głosowanie`)
 };
 
 const pt_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cabine de votação`)
+	return /** @type {LocalizedString} */ (`Votação`)
 };
 
 const ru_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Кабина для голосования`)
+	return /** @type {LocalizedString} */ (`Голосование`)
 };
 
 const sv_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Valbås`)
+	return /** @type {LocalizedString} */ (`Röstning`)
 };
 
 const tr_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oy kabini`)
+	return /** @type {LocalizedString} */ (`Oylama`)
 };
 
 const zh_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`投票亭`)
+	return /** @type {LocalizedString} */ (`投票`)
 };
 
 const ja_jams_booth_title = /** @type {(inputs: Jams_Booth_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`投票ブース`)
+	return /** @type {LocalizedString} */ (`投票`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Voting booth" |
+* | "Voting" |
 *
 * @param {Jams_Booth_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

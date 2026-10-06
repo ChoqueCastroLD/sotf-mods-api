@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Security_HintInputs */
 
 const en_settings_security_hint = /** @type {(inputs: Settings_Security_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Where you are signed in, and signing out other devices.`)
+	return /** @type {LocalizedString} */ (`Where you are logged in, and logging out other devices.`)
 };
 
 const es_settings_security_hint = /** @type {(inputs: Settings_Security_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_security_hint = /** @type {(inputs: Settings_Security_HintInpu
 /**
 * | output |
 * | --- |
-* | "Where you are signed in, and signing out other devices." |
+* | "Where you are logged in, and logging out other devices." |
 *
 * @param {Settings_Security_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

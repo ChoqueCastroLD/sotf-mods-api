@@ -3,7 +3,7 @@ export type Admin_Builds_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Register the patch players are on today so field reports have something to point at." |
+* | "Register the game version players are on today." |
 *
 * @param {Admin_Builds_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

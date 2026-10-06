@@ -535,7 +535,7 @@ export function Preview({
       {(mod?.tags ?? item.tags ?? []).length > 0 ? (
         <ul className="flex flex-wrap gap-1">
           {(mod?.tags.length ? mod.tags : (item.tags ?? [])).slice(0, 6).map((tag) => (
-            <li key={tag} className="rounded-xs border border-border px-1.5 py-0.5 font-mono text-2xs text-fg-muted">
+            <li key={tag} className="rounded-xs border border-border px-1.5 py-0.5 text-2xs text-fg-muted">
               #{tag}
             </li>
           ))}

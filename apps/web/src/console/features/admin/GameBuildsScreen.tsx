@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/game-builds` (PLAN §7.10 «Registro»): the game builds (patches) that field reports,
+ * `/moderation/admin/game-builds` (PLAN §7.10 «Registro»): the game builds (patches) that field reports,
  * CompatBadges and the Patch Radar refer to. Register, edit, mark as current (exactly one) or
  * breaking, delete a build nobody reported on. A new `isBreaking` build starts the global banner,
  * the `patch.breaking_build` signal to creators and the Patch Day Hero window, so the form says so
@@ -145,9 +145,9 @@ export function GameBuildsScreen() {
                     <td className={`${tdClasses} whitespace-nowrap text-fg-muted`}>
                       <time dateTime={build.releasedAt}>{formatDay(build.releasedAt)}</time>
                     </td>
-                    <td className={`${tdClasses} font-mono text-xs text-fg-muted`}>{build.steamBuildId ?? '—'}</td>
+                    <td className={`${tdClasses} font-mono text-xs text-fg-muted`}>{build.steamBuildId ?? '-'}</td>
                     <td className={`${tdClasses} max-w-80 text-fg-muted`}>
-                      <span className="line-clamp-2">{notes || '—'}</span>
+                      <span className="line-clamp-2">{notes || '-'}</span>
                     </td>
                     <td className={`${tdClasses} text-end`}>
                       <Menu

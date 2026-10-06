@@ -6,13 +6,15 @@
 import type { SearchHitDTO } from '@sotf/contracts/search';
 import { type Locale, localizePath } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { CompatBadge, type DomainI18n, DomainI18nProvider, formatCompact } from '@sotf/ui/domain';
+import { type DomainI18n, formatCompact } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowRight, BookOpen, Download, Layers, Package, Ruler, User } from 'lucide-react';
+import { ArrowRight, BookOpen, Download, Package, Ruler, User } from 'lucide-react';
 import type { ReactNode } from 'react';
 
+type SearchResultType = Exclude<SearchHitDTO['type'], 'kit'>;
+
 export interface SearchGroup {
-  key: SearchHitDTO['type'];
+  key: SearchResultType;
   title: string;
   hits: SearchHitDTO[];
 }
@@ -25,7 +27,7 @@ export interface SearchResultsProps {
   exploreLabel: string;
 }
 
-const TYPE_ICON = { mod: Package, build: Ruler, kit: Layers, user: User, page: BookOpen } as const;
+const TYPE_ICON = { mod: Package, build: Ruler, user: User, page: BookOpen } as const;
 
 /** «Stack»Mod → Stack (marked) + Mod. Unbalanced markers are shown as text. */
 export function highlight(text: string): ReactNode[] {
@@ -48,7 +50,7 @@ export function highlight(text: string): ReactNode[] {
 }
 
 function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: DomainI18n }) {
-  const TypeIcon = TYPE_ICON[hit.type];
+  const TypeIcon = TYPE_ICON[hit.type as SearchResultType];
   // The API may show a translated title and keep the original in `titleOriginal`; the highlight
   // always marks the match in the original text.
   const plain = hit.highlight?.replace(/[«»]/g, '');
@@ -90,11 +92,6 @@ function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: D
         {snippet ? <span className="line-clamp-1 text-sm text-fg-muted">{snippet}</span> : null}
       </span>
       <span className="flex shrink-0 flex-col items-end gap-1 text-xs text-fg-muted">
-        {hit.compatStatus && hit.compatStatus !== 'untested' ? (
-          <DomainI18nProvider value={i18n}>
-            <CompatBadge status={hit.compatStatus} size="sm" short />
-          </DomainI18nProvider>
-        ) : null}
         {typeof hit.downloads === 'number' ? (
           <span className="inline-flex items-center gap-1 tabular-nums">
             <Icon icon={Download} size={14} />
@@ -114,7 +111,7 @@ export default function SearchResults({ groups, locale, i18n, exploreHref, explo
       {groups.map((group) => (
         <section key={group.key} aria-labelledby={`search-group-${group.key}`} className="flex flex-col gap-3">
           <h2 id={`search-group-${group.key}`} className="readout">
-            {group.title} <span className="font-mono tabular-nums">({group.hits.length})</span>
+            {group.title} <span className="tabular-nums">({group.hits.length})</span>
           </h2>
           <ul className="grid grid-cols-1 gap-2.5 md:grid-cols-2">
             {group.hits.map((hit) => (

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Comment_PendingInputs */
 
 const en_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Waiting for a ranger to check it.`)
+	return /** @type {LocalizedString} */ (`Waiting for a moderator to check it.`)
 };
 
 const es_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esperando a que lo revise un guardabosques.`)
+	return /** @type {LocalizedString} */ (`Esperando a que lo revise un moderador.`)
 };
 
 const de_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wartet darauf, dass ein Ranger es prüft.`)
+	return /** @type {LocalizedString} */ (`Wartet darauf, dass ein Moderator es prüft.`)
 };
 
 const fr_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En attente de la vérification d’un ranger.`)
+	return /** @type {LocalizedString} */ (`En attente de la vérification d’un modérateur.`)
 };
 
 const it_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In attesa che un ranger lo controlli.`)
+	return /** @type {LocalizedString} */ (`In attesa che un moderatore lo controlli.`)
 };
 
 const nl_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wacht tot een ranger het controleert.`)
+	return /** @type {LocalizedString} */ (`Wacht tot een moderator het controleert.`)
 };
 
 const pl_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czeka na sprawdzenie przez strażnika.`)
+	return /** @type {LocalizedString} */ (`Czeka na sprawdzenie przez moderatora.`)
 };
 
 const pt_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aguardando a checagem de um guarda.`)
+	return /** @type {LocalizedString} */ (`Aguardando a checagem de um moderador.`)
 };
 
 const ru_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ждёт проверки рейнджером.`)
+	return /** @type {LocalizedString} */ (`Ждёт проверки модератором.`)
 };
 
 const sv_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Väntar på att en ranger ska kolla det.`)
+	return /** @type {LocalizedString} */ (`Väntar på att en moderator ska kolla det.`)
 };
 
 const tr_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bir korucunun kontrol etmesi bekleniyor.`)
+	return /** @type {LocalizedString} */ (`Bir moderatörün kontrol etmesi bekleniyor.`)
 };
 
 const zh_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`等待护林员审核。`)
+	return /** @type {LocalizedString} */ (`等待审核员审核。`)
 };
 
 const ja_ui_domain_comment_pending = /** @type {(inputs: Ui_Domain_Comment_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーの確認待ちです。`)
+	return /** @type {LocalizedString} */ (`モデレーターの確認待ちです。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Waiting for a ranger to check it." |
+* | "Waiting for a moderator to check it." |
 *
 * @param {Ui_Domain_Comment_PendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

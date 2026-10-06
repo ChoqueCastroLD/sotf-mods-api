@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_AnnouncementInputs */
 
 const en_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`New announcement from the Rangers`)
+	return /** @type {LocalizedString} */ (`New announcement`)
 };
 
 const es_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nuevo anuncio de los guardabosques`)
+	return /** @type {LocalizedString} */ (`Nuevo anuncio`)
 };
 
 const de_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Neue Ankündigung der Ranger`)
+	return /** @type {LocalizedString} */ (`Neue Ankündigung`)
 };
 
 const fr_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nouvelle annonce des rangers`)
+	return /** @type {LocalizedString} */ (`Nouvelle annonce`)
 };
 
 const it_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nuovo annuncio dei ranger`)
+	return /** @type {LocalizedString} */ (`Nuovo annuncio`)
 };
 
 const nl_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nieuwe mededeling van de rangers`)
+	return /** @type {LocalizedString} */ (`Nieuwe mededeling`)
 };
 
 const pl_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nowe ogłoszenie od strażników`)
+	return /** @type {LocalizedString} */ (`Nowe ogłoszenie`)
 };
 
 const pt_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Novo anúncio dos guardas`)
+	return /** @type {LocalizedString} */ (`Novo anúncio`)
 };
 
 const ru_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Новое объявление от рейнджеров`)
+	return /** @type {LocalizedString} */ (`Новое объявление`)
 };
 
 const sv_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nytt meddelande från rangers`)
+	return /** @type {LocalizedString} */ (`Nytt meddelande`)
 };
 
 const tr_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Koruculardan yeni duyuru`)
+	return /** @type {LocalizedString} */ (`Yeni duyuru`)
 };
 
 const zh_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员发布了新公告`)
+	return /** @type {LocalizedString} */ (`新公告`)
 };
 
 const ja_signals_announcement = /** @type {(inputs: Signals_AnnouncementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーからの新しいお知らせ`)
+	return /** @type {LocalizedString} */ (`新しいお知らせ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "New announcement from the Rangers" |
+* | "New announcement" |
 *
 * @param {Signals_AnnouncementInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Errors_Code_Rate_Limited_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "Too many requests. Try again in a moment." |
+* | "Wait a moment and try again." |
 *
 * @param {Errors_Code_Rate_Limited_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Empty_TitleInputs */
 
 const en_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`All quiet in the forest`)
+	return /** @type {LocalizedString} */ (`No notifications`)
 };
 
 const es_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Todo tranquilo en el bosque`)
+	return /** @type {LocalizedString} */ (`No hay notificaciones`)
 };
 
 const de_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alles ruhig im Wald`)
+	return /** @type {LocalizedString} */ (`Keine Benachrichtigungen`)
 };
 
 const fr_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tout est calme dans la forêt`)
+	return /** @type {LocalizedString} */ (`Aucune notification`)
 };
 
 const it_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tutto tranquillo nella foresta`)
+	return /** @type {LocalizedString} */ (`Nessuna notifica`)
 };
 
 const nl_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alles rustig in het bos`)
+	return /** @type {LocalizedString} */ (`Geen meldingen`)
 };
 
 const pl_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`W lesie panuje cisza`)
+	return /** @type {LocalizedString} */ (`Brak powiadomień`)
 };
 
 const pt_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tudo tranquilo na floresta`)
+	return /** @type {LocalizedString} */ (`Nenhuma notificação`)
 };
 
 const ru_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`В лесу всё спокойно`)
+	return /** @type {LocalizedString} */ (`Уведомлений нет`)
 };
 
 const sv_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lugnt i skogen`)
+	return /** @type {LocalizedString} */ (`Inga aviseringar`)
 };
 
 const tr_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ormanda her şey sakin`)
+	return /** @type {LocalizedString} */ (`Bildirim yok`)
 };
 
 const zh_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`森林里一片宁静`)
+	return /** @type {LocalizedString} */ (`没有通知`)
 };
 
 const ja_signals_empty_title = /** @type {(inputs: Signals_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`森は静かです`)
+	return /** @type {LocalizedString} */ (`通知はありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "All quiet in the forest" |
+* | "No notifications" |
 *
 * @param {Signals_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@
  * SSE `notification` event refetches it, and the unread count is the shell's (`/me`).
  *
  * Lazy chunk (the `signals` catalogue, `describe.ts`, the rows): `TopBar` shows the plain link to
- * `/signals` until it arrives and always on phones.
+ * `/notifications` until it arrives and always on phones.
  */
 import type { NotificationDTO } from '@sotf/contracts/notifications';
 import { cn } from '@sotf/ui/cn';
@@ -50,7 +50,7 @@ const BUTTON =
 export interface SignalsBellProps {
   unread: number;
   label: string;
-  /** Shown until the `signals` catalogue is ready (the plain link to `/signals`). */
+  /** Shown until the `signals` catalogue is ready (the plain link to `/notifications`). */
   fallback: ReactNode;
 }
 
@@ -173,7 +173,7 @@ export default function SignalsBell({ unread, label, fallback }: SignalsBellProp
       </div>
       <div className="border-t border-border p-2">
         <Link
-          to={'/signals' as '/'}
+          to={'/notifications' as '/'}
           onClick={() => setOpen(false)}
           className={cn(
             'flex h-10 items-center justify-center rounded-md text-sm font-semibold text-link hover:bg-fg/8',

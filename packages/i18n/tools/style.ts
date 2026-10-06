@@ -83,9 +83,6 @@ const PROPER_TERMS: ReadonlySet<string> = new Set([
   'common_term_ranger_station',
   'common_term_signals',
   'common_term_backpack',
-  'common_term_field_notes',
-  'common_term_field_reports',
-  'common_term_patch_radar',
 ]);
 
 export interface GlossaryTerm {

@@ -3,7 +3,7 @@ export type Ranger_User_Revoke_SessionsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out everywhere" |
+* | "Log out everywhere" |
 *
 * @param {Ranger_User_Revoke_SessionsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -110,7 +110,7 @@ export function WaitingBadge({ hours, className }: { hours: number; className?: 
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 font-mono text-2xs tabular-nums',
+        'inline-flex items-center gap-1 text-2xs tabular-nums',
         state === 'overdue' ? 'text-danger' : state === 'due' ? 'text-warning' : 'text-fg-muted',
         className,
       )}
@@ -157,7 +157,7 @@ export function UserChip({
   if (!link) return <span className={cn('inline-flex min-w-0 items-center gap-1.5', className)}>{content}</span>;
   return (
     <Link
-      to="/ranger/users/$userId"
+      to="/moderation/users/$userId"
       params={{ userId: String(user.id) }}
       className={cn('inline-flex min-w-0 items-center gap-1.5 text-fg hover:text-link', className)}
     >

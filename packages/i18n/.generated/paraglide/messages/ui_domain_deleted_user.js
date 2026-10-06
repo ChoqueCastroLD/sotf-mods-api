@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Deleted_UserInputs */
 
 const en_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deleted survivor`)
+	return /** @type {LocalizedString} */ (`Deleted user`)
 };
 
 const es_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Superviviente eliminado`)
+	return /** @type {LocalizedString} */ (`Usuario eliminado`)
 };
 
 const de_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gelöschter Überlebender`)
+	return /** @type {LocalizedString} */ (`Gelöschter Nutzer`)
 };
 
 const fr_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Survivant supprimé`)
+	return /** @type {LocalizedString} */ (`Utilisateur supprimé`)
 };
 
 const it_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sopravvissuto eliminato`)
+	return /** @type {LocalizedString} */ (`Utente eliminato`)
 };
 
 const nl_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verwijderde overlever`)
+	return /** @type {LocalizedString} */ (`Verwijderde gebruiker`)
 };
 
 const pl_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Usunięty ocalały`)
+	return /** @type {LocalizedString} */ (`Usunięty użytkownik`)
 };
 
 const pt_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sobrevivente excluído`)
+	return /** @type {LocalizedString} */ (`Usuário excluído`)
 };
 
 const ru_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Удалённый выживший`)
+	return /** @type {LocalizedString} */ (`Удалённый пользователь`)
 };
 
 const sv_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raderad överlevare`)
+	return /** @type {LocalizedString} */ (`Raderad användare`)
 };
 
 const tr_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Silinmiş hayatta kalan`)
+	return /** @type {LocalizedString} */ (`Silinmiş kullanıcı`)
 };
 
 const zh_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已注销的幸存者`)
+	return /** @type {LocalizedString} */ (`已注销的用户`)
 };
 
 const ja_ui_domain_deleted_user = /** @type {(inputs: Ui_Domain_Deleted_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`削除されたサバイバー`)
+	return /** @type {LocalizedString} */ (`削除されたユーザー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Deleted survivor" |
+* | "Deleted user" |
 *
 * @param {Ui_Domain_Deleted_UserInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

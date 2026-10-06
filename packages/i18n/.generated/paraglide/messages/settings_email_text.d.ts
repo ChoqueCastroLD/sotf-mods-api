@@ -3,7 +3,7 @@ export type Settings_Email_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Used to sign in and for the emails you choose to get. To change it, confirm the new address from your inbox; we’ll let the old one know." |
+* | "Used to log in and for the emails you choose to get. To change it, confirm the new address from your inbox; we’ll let the old one know." |
 *
 * @param {Settings_Email_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

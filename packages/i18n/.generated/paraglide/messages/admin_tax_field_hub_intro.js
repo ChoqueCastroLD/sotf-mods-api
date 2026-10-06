@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Tax_Field_Hub_IntroInputs */
 
 const en_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hub intro (Markdown, per language)`)
+	return /** @type {LocalizedString} */ (`Category page intro (Markdown, per language)`)
 };
 
 const es_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Introducción del hub (Markdown, por idioma)`)
+	return /** @type {LocalizedString} */ (`Introducción de la página de categoría (Markdown, por idioma)`)
 };
 
 const de_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hub-Einleitung (Markdown, pro Sprache)`)
+	return /** @type {LocalizedString} */ (`Einleitung der Kategorieseite (Markdown, pro Sprache)`)
 };
 
 const fr_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Introduction du hub (Markdown, par langue)`)
+	return /** @type {LocalizedString} */ (`Introduction de la page de catégorie (Markdown, par langue)`)
 };
 
 const it_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Introduzione dell’hub (Markdown, per lingua)`)
+	return /** @type {LocalizedString} */ (`Introduzione della pagina della categoria (Markdown, per lingua)`)
 };
 
 const nl_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hub-intro (Markdown, per taal)`)
+	return /** @type {LocalizedString} */ (`Intro van de categoriepagina (Markdown, per taal)`)
 };
 
 const pl_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wstęp huba (Markdown, dla każdego języka)`)
+	return /** @type {LocalizedString} */ (`Wstęp strony kategorii (Markdown, dla każdego języka)`)
 };
 
 const pt_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Introdução do hub (Markdown, por idioma)`)
+	return /** @type {LocalizedString} */ (`Introdução da página da categoria (Markdown, por idioma)`)
 };
 
 const ru_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вступление хаба (Markdown, по языкам)`)
+	return /** @type {LocalizedString} */ (`Вступление страницы категории (Markdown, по языкам)`)
 };
 
 const sv_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hubbens intro (Markdown, per språk)`)
+	return /** @type {LocalizedString} */ (`Intro för kategorisidan (Markdown, per språk)`)
 };
 
 const tr_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Merkez girişi (Markdown, dile göre)`)
+	return /** @type {LocalizedString} */ (`Kategori sayfası girişi (Markdown, dile göre)`)
 };
 
 const zh_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`专题页简介（Markdown，按语言）`)
+	return /** @type {LocalizedString} */ (`分类页简介（Markdown，按语言）`)
 };
 
 const ja_admin_tax_field_hub_intro = /** @type {(inputs: Admin_Tax_Field_Hub_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ハブの紹介文（Markdown、言語ごと）`)
+	return /** @type {LocalizedString} */ (`カテゴリーページの紹介文（Markdown、言語ごと）`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Hub intro (Markdown, per language)" |
+* | "Category page intro (Markdown, per language)" |
 *
 * @param {Admin_Tax_Field_Hub_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

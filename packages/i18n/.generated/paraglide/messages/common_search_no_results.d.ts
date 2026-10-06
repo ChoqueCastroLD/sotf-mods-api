@@ -5,7 +5,7 @@ export type Common_Search_No_ResultsInputs = {
 /**
 * | output |
 * | --- |
-* | "Nothing on the map for “{query}”. Try fewer words." |
+* | "No results for “{query}”. Try fewer words." |
 *
 * @param {Common_Search_No_ResultsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

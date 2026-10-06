@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Follow_ErrorInputs */
 
 const en_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Couldn’t update your Backpack. Check your connection and try again.`)
+	return /** @type {LocalizedString} */ (`Couldn’t update your follow status. Check your connection and try again.`)
 };
 
 const es_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No se pudo actualizar tu Mochila. Revisa tu conexión y vuelve a intentarlo.`)
+	return /** @type {LocalizedString} */ (`No se pudo actualizar el seguimiento. Revisa tu conexión y vuelve a intentarlo.`)
 };
 
 const de_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein Rucksack konnte nicht aktualisiert werden. Prüfe deine Verbindung und versuche es erneut.`)
+	return /** @type {LocalizedString} */ (`Dein Folgen konnte nicht aktualisiert werden. Prüfe deine Verbindung und versuche es erneut.`)
 };
 
 const fr_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Impossible de mettre à jour votre sac à dos. Vérifiez votre connexion et réessayez.`)
+	return /** @type {LocalizedString} */ (`Impossible de mettre à jour le suivi. Vérifiez votre connexion et réessayez.`)
 };
 
 const it_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Impossibile aggiornare il tuo zaino. Controlla la connessione e riprova.`)
+	return /** @type {LocalizedString} */ (`Impossibile aggiornare lo stato di “segui”. Controlla la connessione e riprova.`)
 };
 
 const nl_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je rugzak kon niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.`)
+	return /** @type {LocalizedString} */ (`Je volgstatus kon niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.`)
 };
 
 const pl_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nie udało się zaktualizować plecaka. Sprawdź połączenie i spróbuj ponownie.`)
+	return /** @type {LocalizedString} */ (`Nie udało się zaktualizować obserwowania. Sprawdź połączenie i spróbuj ponownie.`)
 };
 
 const pt_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Não foi possível atualizar sua mochila. Verifique sua conexão e tente de novo.`)
+	return /** @type {LocalizedString} */ (`Não foi possível atualizar o acompanhamento. Verifique sua conexão e tente de novo.`)
 };
 
 const ru_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Не удалось обновить рюкзак. Проверьте подключение и попробуйте ещё раз.`)
+	return /** @type {LocalizedString} */ (`Не удалось обновить подписку. Проверьте подключение и попробуйте ещё раз.`)
 };
 
 const sv_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Det gick inte att uppdatera din ryggsäck. Kontrollera anslutningen och försök igen.`)
+	return /** @type {LocalizedString} */ (`Det gick inte att uppdatera följandet. Kontrollera anslutningen och försök igen.`)
 };
 
 const tr_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt çantan güncellenemedi. Bağlantını kontrol edip tekrar dene.`)
+	return /** @type {LocalizedString} */ (`Takip durumun güncellenemedi. Bağlantını kontrol edip tekrar dene.`)
 };
 
 const zh_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`无法更新你的背包。请检查网络连接后重试。`)
+	return /** @type {LocalizedString} */ (`无法更新关注状态。请检查网络连接后重试。`)
 };
 
 const ja_builds_follow_error = /** @type {(inputs: Builds_Follow_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパックを更新できませんでした。接続を確認してもう一度お試しください。`)
+	return /** @type {LocalizedString} */ (`フォロー状態を更新できませんでした。接続を確認してもう一度お試しください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Couldn’t update your Backpack. Check your connection and try again." |
+* | "Couldn’t update your follow status. Check your connection and try again." |
 *
 * @param {Builds_Follow_ErrorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Social_Bug_Resolve_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "The reporter gets a signal and the comment shows «Fixed in vX»." |
+* | "The reporter is notified and the comment shows «Fixed in vX»." |
 *
 * @param {Social_Bug_Resolve_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

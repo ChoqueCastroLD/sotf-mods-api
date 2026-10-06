@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Vote_SigninInputs */
 
 const en_jams_vote_signin = /** @type {(inputs: Jams_Vote_SigninInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to vote`)
+	return /** @type {LocalizedString} */ (`Log in to vote`)
 };
 
 const es_jams_vote_signin = /** @type {(inputs: Jams_Vote_SigninInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_jams_vote_signin = /** @type {(inputs: Jams_Vote_SigninInputs) => Local
 /**
 * | output |
 * | --- |
-* | "Sign in to vote" |
+* | "Log in to vote" |
 *
 * @param {Jams_Vote_SigninInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

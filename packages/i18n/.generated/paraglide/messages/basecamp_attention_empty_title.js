@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Attention_Empty_TitleInputs */
 
 const en_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`All quiet at camp`)
+	return /** @type {LocalizedString} */ (`Nothing needs attention`)
 };
 
 const es_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Todo tranquilo en el campamento`)
+	return /** @type {LocalizedString} */ (`Nada requiere atención`)
 };
 
 const de_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alles ruhig im Lager`)
+	return /** @type {LocalizedString} */ (`Nichts erfordert Aufmerksamkeit`)
 };
 
 const fr_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Calme plat au camp`)
+	return /** @type {LocalizedString} */ (`Rien à signaler`)
 };
 
 const it_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tutto tranquillo al campo`)
+	return /** @type {LocalizedString} */ (`Niente richiede attenzione`)
 };
 
 const nl_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alles rustig in het kamp`)
+	return /** @type {LocalizedString} */ (`Niets vraagt aandacht`)
 };
 
 const pl_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`W obozie spokój`)
+	return /** @type {LocalizedString} */ (`Nic nie wymaga uwagi`)
 };
 
 const pt_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tudo tranquilo no acampamento`)
+	return /** @type {LocalizedString} */ (`Nada precisa de atenção`)
 };
 
 const ru_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`В лагере спокойно`)
+	return /** @type {LocalizedString} */ (`Ничего не требует внимания`)
 };
 
 const sv_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lugnt i lägret`)
+	return /** @type {LocalizedString} */ (`Inget kräver uppmärksamhet`)
 };
 
 const tr_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kampta her şey sakin`)
+	return /** @type {LocalizedString} */ (`İlgilenilecek bir şey yok`)
 };
 
 const zh_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`营地一切平静`)
+	return /** @type {LocalizedString} */ (`没有需要处理的事项`)
 };
 
 const ja_basecamp_attention_empty_title = /** @type {(inputs: Basecamp_Attention_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`キャンプは平穏です`)
+	return /** @type {LocalizedString} */ (`対応が必要なものはありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "All quiet at camp" |
+* | "Nothing needs attention" |
 *
 * @param {Basecamp_Attention_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

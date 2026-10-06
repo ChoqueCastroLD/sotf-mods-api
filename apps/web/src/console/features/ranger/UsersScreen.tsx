@@ -1,7 +1,7 @@
 /**
- * `/ranger/users` — find a user (PLAN §7.4 «Usuarios: buscar»): by handle, display name or email
+ * `/moderation/users` — find a user (PLAN §7.4 «Usuarios: buscar»): by handle, display name or email
  * (`?q=`), paged. Each row shows the role, flags, trust level and whether the account is
- * suspended or banned; the card (`/ranger/users/$userId`) holds history and sanctions.
+ * suspended or banned; the card (`/moderation/users/$userId`) holds history and sanctions.
  */
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
@@ -28,7 +28,7 @@ export function UsersScreen({ q, page }: { q: string; page: number }) {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     const next = draft.trim().slice(0, 100);
-    void navigate({ to: '/ranger/users', search: next ? { q: next } : {} });
+    void navigate({ to: '/moderation/users', search: next ? { q: next } : {} });
   };
 
   const data = query.data;
@@ -82,7 +82,7 @@ export function UsersScreen({ q, page }: { q: string; page: number }) {
             <nav aria-label={m.ranger_pagination()} className="flex items-center justify-center gap-3">
               {page > 1 ? (
                 <Link
-                  to="/ranger/users"
+                  to="/moderation/users"
                   search={{ ...(q ? { q } : {}), ...(page - 1 > 1 ? { page: page - 1 } : {}) }}
                   className="inline-flex h-10 items-center gap-1 rounded-md px-3 text-sm text-fg hover:bg-fg/8"
                 >
@@ -95,7 +95,7 @@ export function UsersScreen({ q, page }: { q: string; page: number }) {
               </span>
               {page < data.totalPages ? (
                 <Link
-                  to="/ranger/users"
+                  to="/moderation/users"
                   search={{ ...(q ? { q } : {}), page: page + 1 }}
                   className="inline-flex h-10 items-center gap-1 rounded-md px-3 text-sm text-fg hover:bg-fg/8"
                 >

@@ -38,7 +38,7 @@ const pt_emails_auth_deletion_body = /** @type {(inputs: Emails_Auth_Deletion_Bo
 };
 
 const ru_emails_auth_deletion_body = /** @type {(inputs: Emails_Auth_Deletion_BodyInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ваш аккаунт будет удалён ${i?.when} (UTC). До этого момента можно отменить удаление в настройках — всё останется как есть.`)
+	return /** @type {LocalizedString} */ (`Ваш аккаунт будет удалён ${i?.when} (UTC). До этого момента вы можете отменить удаление в настройках, и всё останется как есть.`)
 };
 
 const sv_emails_auth_deletion_body = /** @type {(inputs: Emails_Auth_Deletion_BodyInputs) => LocalizedString} */ (i) => {

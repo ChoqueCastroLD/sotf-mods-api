@@ -3,21 +3,14 @@
  * valid DTOs) plus the variations each component must handle (no image, broken, yanked,
  * deleted author…). Shared by the unit tests and the playground demos.
  */
-import {
-  CreatorCardDTO as CreatorCardSchema,
-  ModCardDTO as ModCardSchema,
-  ModDetailDTO as ModDetailSchema,
-} from '@sotf/contracts/catalog';
+import { ModCardDTO as ModCardSchema, ModDetailDTO as ModDetailSchema } from '@sotf/contracts/catalog';
 import { CommentDTO as CommentSchema } from '@sotf/contracts/comments';
 import { exampleOf, examplesOf } from '@sotf/contracts/dto';
-import { KitCardDTO as KitCardSchema } from '@sotf/contracts/kits';
 import { ReviewDTO as ReviewSchema, ReviewsSummaryDTO as ReviewsSummarySchema } from '@sotf/contracts/reviews';
 import { DependencyDTO as DependencySchema, VersionDTO as VersionSchema } from '@sotf/contracts/versions';
 import type {
   CommentDTO,
-  CreatorCardDTO,
   DependencyDTO,
-  KitCardDTO,
   ModCardDTO,
   ModDetailDTO,
   ReviewDTO,
@@ -28,8 +21,6 @@ import type {
 export const mod: ModCardDTO = ModCardSchema.parse(exampleOf(ModCardSchema));
 export const modDetail: ModDetailDTO = ModDetailSchema.parse(exampleOf(ModDetailSchema));
 export const version: VersionDTO = VersionSchema.parse(exampleOf(VersionSchema));
-export const kit: KitCardDTO = KitCardSchema.parse(exampleOf(KitCardSchema));
-export const creator: CreatorCardDTO = CreatorCardSchema.parse(exampleOf(CreatorCardSchema));
 export const review: ReviewDTO = ReviewSchema.parse(exampleOf(ReviewSchema));
 export const reviewsSummary: ReviewsSummaryDTO = ReviewsSummarySchema.parse(exampleOf(ReviewsSummarySchema));
 export const comment: CommentDTO = CommentSchema.parse(exampleOf(CommentSchema));
@@ -132,15 +123,6 @@ export const anonymousReview: ReviewDTO = ReviewSchema.parse({
   authorReply: null,
   status: 'hidden',
   isVerifiedDownload: false,
-});
-
-export const privateKit: KitCardDTO = KitCardSchema.parse({
-  ...exampleOf(KitCardSchema),
-  id: 6,
-  visibility: 'private',
-  isStaffPick: false,
-  previewThumbnails: [],
-  itemsCount: 0,
 });
 
 /** Markdown HTML exercising every prose hook of @sotf/markdown. */

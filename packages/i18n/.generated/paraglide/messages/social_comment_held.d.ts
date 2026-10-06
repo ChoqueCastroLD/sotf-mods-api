@@ -3,7 +3,7 @@ export type Social_Comment_HeldInputs = {};
 /**
 * | output |
 * | --- |
-* | "Posted. Comments with outside links from new accounts wait for a quick Ranger check." |
+* | "Posted. Comments with outside links from new accounts wait for a quick moderator check." |
 *
 * @param {Social_Comment_HeldInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

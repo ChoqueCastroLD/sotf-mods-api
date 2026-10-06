@@ -3,7 +3,7 @@ export type Settings_Creator_VerifiedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Verified creator" |
+* | "Trusted" |
 *
 * @param {Settings_Creator_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

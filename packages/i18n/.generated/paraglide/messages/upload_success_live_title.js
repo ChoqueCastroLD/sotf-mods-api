@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Success_Live_TitleInputs */
 
 const en_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`It’s live!`)
+	return /** @type {LocalizedString} */ (`Published`)
 };
 
 const es_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`¡Ya está publicado!`)
+	return /** @type {LocalizedString} */ (`Publicado`)
 };
 
 const de_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Es ist online!`)
+	return /** @type {LocalizedString} */ (`Veröffentlicht`)
 };
 
 const fr_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`C’est en ligne !`)
+	return /** @type {LocalizedString} */ (`Publié`)
 };
 
 const it_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`È online!`)
+	return /** @type {LocalizedString} */ (`Pubblicato`)
 };
 
 const nl_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hij staat live!`)
+	return /** @type {LocalizedString} */ (`Gepubliceerd`)
 };
 
 const pl_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Opublikowano!`)
+	return /** @type {LocalizedString} */ (`Opublikowano`)
 };
 
 const pt_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Está no ar!`)
+	return /** @type {LocalizedString} */ (`Publicado`)
 };
 
 const ru_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Опубликовано!`)
+	return /** @type {LocalizedString} */ (`Опубликовано`)
 };
 
 const sv_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Den är ute!`)
+	return /** @type {LocalizedString} */ (`Publicerad`)
 };
 
 const tr_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yayında!`)
+	return /** @type {LocalizedString} */ (`Yayınlandı`)
 };
 
 const zh_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已上线！`)
+	return /** @type {LocalizedString} */ (`已发布`)
 };
 
 const ja_upload_success_live_title = /** @type {(inputs: Upload_Success_Live_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`公開されました！`)
+	return /** @type {LocalizedString} */ (`公開しました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "It’s live!" |
+* | "Published" |
 *
 * @param {Upload_Success_Live_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

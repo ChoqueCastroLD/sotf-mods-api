@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_TaglineInputs */
 
 const en_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods for the island. Field-tested.`)
+	return /** @type {LocalizedString} */ (`Providing quality mods since March 2023`)
 };
 
 const es_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods para la isla. Probados en el terreno.`)
+	return /** @type {LocalizedString} */ (`Proveyendo mods de calidad desde marzo de 2023`)
 };
 
 const de_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods für die Insel. Im Feld getestet.`)
+	return /** @type {LocalizedString} */ (`Hochwertige Mods seit März 2023`)
 };
 
 const fr_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Des mods pour l’île. Testés sur le terrain.`)
+	return /** @type {LocalizedString} */ (`Des mods de qualité depuis mars 2023`)
 };
 
 const it_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod per l’isola. Collaudate sul campo.`)
+	return /** @type {LocalizedString} */ (`Mod di qualità da marzo 2023`)
 };
 
 const nl_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods voor het eiland. In het veld getest.`)
+	return /** @type {LocalizedString} */ (`Kwaliteitsmods sinds maart 2023`)
 };
 
 const pl_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mody na wyspę. Sprawdzone w terenie.`)
+	return /** @type {LocalizedString} */ (`Najlepsze mody od marca 2023`)
 };
 
 const pt_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods para a ilha. Testados em campo.`)
+	return /** @type {LocalizedString} */ (`Mods de qualidade desde março de 2023`)
 };
 
 const ru_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Моды для острова. Проверено в полевых условиях.`)
+	return /** @type {LocalizedString} */ (`Качественные моды с марта 2023 года`)
 };
 
 const sv_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Moddar för ön. Testade i fält.`)
+	return /** @type {LocalizedString} */ (`Mods av hög kvalitet sedan mars 2023`)
 };
 
 const tr_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ada için modlar. Sahada test edildi.`)
+	return /** @type {LocalizedString} */ (`Mart 2023'ten beri kaliteli modlar`)
 };
 
 const zh_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`为这座岛打造的模组，经过实地检验。`)
+	return /** @type {LocalizedString} */ (`自 2023 年 3 月起提供优质模组`)
 };
 
 const ja_common_tagline = /** @type {(inputs: Common_TaglineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`島のためのMOD。現地でテスト済み。`)
+	return /** @type {LocalizedString} */ (`2023年3月から高品質なMODを提供`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Mods for the island. Field-tested." |
+* | "Providing quality mods since March 2023" |
 *
 * @param {Common_TaglineInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

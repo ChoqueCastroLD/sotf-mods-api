@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Nav_ExploreInputs */
 
 const en_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const es_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const de_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Entdecken`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const fr_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const it_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora`)
+	return /** @type {LocalizedString} */ (`Mod`)
 };
 
 const nl_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verkennen`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const pl_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeglądaj`)
+	return /** @type {LocalizedString} */ (`Mody`)
 };
 
 const pt_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const ru_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Обзор`)
+	return /** @type {LocalizedString} */ (`Моды`)
 };
 
 const sv_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska`)
+	return /** @type {LocalizedString} */ (`Moddar`)
 };
 
 const tr_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Keşfet`)
+	return /** @type {LocalizedString} */ (`Modlar`)
 };
 
 const zh_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`探索`)
+	return /** @type {LocalizedString} */ (`模组`)
 };
 
 const ja_common_nav_explore = /** @type {(inputs: Common_Nav_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`探す`)
+	return /** @type {LocalizedString} */ (`MOD`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Explore" |
+* | "Mods" |
 *
 * @param {Common_Nav_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

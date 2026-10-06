@@ -5,7 +5,7 @@ export type Explore_Category_Intro_Builds_GenericInputs = {
 /**
 * | output |
 * | --- |
-* | "Sons of the Forest builds in the {category} category: BuildShare blueprints ready to place." |
+* | "BuildShare builds in the {category} category for Sons of the Forest, ready to place." |
 *
 * @param {Explore_Category_Intro_Builds_GenericInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

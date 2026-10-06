@@ -3,7 +3,7 @@
  * unverified, so the page says where the verification link went (and can send it again) and
  * offers «Continue», which goes to the allowed `?next=` destination in the page language.
  */
-import { type Locale } from '@sotf/i18n';
+import type { Locale } from '@sotf/i18n';
 import { Button, ButtonLink } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { MailCheck } from 'lucide-react';

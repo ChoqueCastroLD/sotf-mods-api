@@ -3,7 +3,7 @@ export type Settings_Notif_Comment_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Bundled: several comments arrive as one signal." |
+* | "Bundled: several comments arrive as one notification." |
 *
 * @param {Settings_Notif_Comment_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

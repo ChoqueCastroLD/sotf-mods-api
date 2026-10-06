@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin` on phones: the admin screens as a grouped list (list → detail, like Settings).
+ * `/moderation/admin` on phones: the admin screens as a grouped list (list → detail, like Settings).
  * Larger screens keep the sidebar and open the first screen instead (the route redirects them).
  */
 import { type IconTone, ListGroup, ListLink } from '../../components/native-list.tsx';
@@ -8,15 +8,15 @@ import { t } from '../../lib/messages.ts';
 import { findArea } from '../../lib/navigation.ts';
 
 const TONES: Readonly<Record<string, IconTone>> = {
-  '/ranger/admin/game-builds': 'signal',
-  '/ranger/admin/ecosystem': 'signal',
-  '/ranger/admin/taxonomy': 'primary',
-  '/ranger/admin/recategorize': 'primary',
-  '/ranger/admin/announcements': 'warning',
-  '/ranger/admin/settings': 'neutral',
-  '/ranger/admin/integrations': 'success',
-  '/ranger/admin/performance': 'success',
-  '/ranger/admin/operations': 'danger',
+  '/moderation/admin/game-builds': 'signal',
+  '/moderation/admin/ecosystem': 'signal',
+  '/moderation/admin/taxonomy': 'primary',
+  '/moderation/admin/recategorize': 'primary',
+  '/moderation/admin/announcements': 'warning',
+  '/moderation/admin/settings': 'neutral',
+  '/moderation/admin/integrations': 'success',
+  '/moderation/admin/performance': 'success',
+  '/moderation/admin/operations': 'danger',
 };
 
 export function AdminIndex() {

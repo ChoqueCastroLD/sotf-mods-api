@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Unauthenticated_TitleInputs */
 
 const en_errors_code_unauthenticated_title = /** @type {(inputs: Errors_Code_Unauthenticated_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to continue`)
+	return /** @type {LocalizedString} */ (`Log in to continue`)
 };
 
 const es_errors_code_unauthenticated_title = /** @type {(inputs: Errors_Code_Unauthenticated_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_errors_code_unauthenticated_title = /** @type {(inputs: Errors_Code_Una
 /**
 * | output |
 * | --- |
-* | "Sign in to continue" |
+* | "Log in to continue" |
 *
 * @param {Errors_Code_Unauthenticated_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

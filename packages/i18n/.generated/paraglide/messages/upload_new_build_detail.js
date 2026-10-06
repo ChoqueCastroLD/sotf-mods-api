@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_New_Build_DetailInputs */
 
 const en_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A BuildShare blueprint .json. Thumbnail and stats are read for you.`)
+	return /** @type {LocalizedString} */ (`A BuildShare .json file. Thumbnail and stats are read for you.`)
 };
 
 const es_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un plano .json de BuildShare. La miniatura y los datos se leen solos.`)
+	return /** @type {LocalizedString} */ (`Un archivo .json de BuildShare. La miniatura y los datos se leen solos.`)
 };
 
 const de_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Eine BuildShare-Bauplan-.json. Vorschaubild und Werte werden für dich gelesen.`)
+	return /** @type {LocalizedString} */ (`Eine BuildShare-.json-Datei. Vorschaubild und Werte werden für dich gelesen.`)
 };
 
 const fr_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un plan .json BuildShare. La miniature et les statistiques sont lues pour vous.`)
+	return /** @type {LocalizedString} */ (`Un fichier .json BuildShare. La miniature et les statistiques sont lues pour vous.`)
 };
 
 const it_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un progetto .json di BuildShare. Miniatura e statistiche vengono lette per te.`)
+	return /** @type {LocalizedString} */ (`Un file .json di BuildShare. Miniatura e statistiche vengono lette per te.`)
 };
 
 const nl_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een BuildShare-bouwtekening (.json). Miniatuur en statistieken worden voor je gelezen.`)
+	return /** @type {LocalizedString} */ (`Een BuildShare-.json-bestand. Miniatuur en statistieken worden voor je gelezen.`)
 };
 
 const pl_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan .json z BuildShare. Miniaturę i statystyki odczytamy za ciebie.`)
+	return /** @type {LocalizedString} */ (`Plik .json z BuildShare. Miniaturę i statystyki odczytamy za ciebie.`)
 };
 
 const pt_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Uma planta .json do BuildShare. A miniatura e as estatísticas são lidas para você.`)
+	return /** @type {LocalizedString} */ (`Um arquivo .json do BuildShare. A miniatura e as estatísticas são lidas para você.`)
 };
 
 const ru_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Чертёж BuildShare в .json. Миниатюру и характеристики мы считаем сами.`)
+	return /** @type {LocalizedString} */ (`Файл .json из BuildShare. Миниатюру и характеристики мы считаем сами.`)
 };
 
 const sv_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En BuildShare-ritning (.json). Miniatyr och statistik läses åt dig.`)
+	return /** @type {LocalizedString} */ (`En BuildShare-.json-fil. Miniatyr och statistik läses åt dig.`)
 };
 
 const tr_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`BuildShare planı (.json). Küçük resim ve istatistikler senin için okunur.`)
+	return /** @type {LocalizedString} */ (`BuildShare .json dosyası. Küçük resim ve istatistikler senin için okunur.`)
 };
 
 const zh_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`BuildShare 蓝图 .json。缩略图和数据会自动读取。`)
+	return /** @type {LocalizedString} */ (`BuildShare .json 文件。缩略图和数据会自动读取。`)
 };
 
 const ja_upload_new_build_detail = /** @type {(inputs: Upload_New_Build_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`BuildShareの設計図 .json。サムネイルと統計は自動で読み取ります。`)
+	return /** @type {LocalizedString} */ (`BuildShareの .json ファイル。サムネイルと統計は自動で読み取ります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "A BuildShare blueprint .json. Thumbnail and stats are read for you." |
+* | "A BuildShare .json file. Thumbnail and stats are read for you." |
 *
 * @param {Upload_New_Build_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

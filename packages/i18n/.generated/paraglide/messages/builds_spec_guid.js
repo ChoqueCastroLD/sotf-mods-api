@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Spec_GuidInputs */
 
 const en_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Blueprint GUID`)
+	return /** @type {LocalizedString} */ (`Build GUID`)
 };
 
 const es_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID del plano`)
+	return /** @type {LocalizedString} */ (`GUID de la build`)
 };
 
 const de_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bauplan-GUID`)
+	return /** @type {LocalizedString} */ (`Build-GUID`)
 };
 
 const fr_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID du plan`)
+	return /** @type {LocalizedString} */ (`GUID de la build`)
 };
 
 const it_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID del progetto`)
+	return /** @type {LocalizedString} */ (`GUID della build`)
 };
 
 const nl_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID van de bouwtekening`)
+	return /** @type {LocalizedString} */ (`Build-GUID`)
 };
 
 const pl_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID planu`)
+	return /** @type {LocalizedString} */ (`GUID builda`)
 };
 
 const pt_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID da planta`)
+	return /** @type {LocalizedString} */ (`GUID da build`)
 };
 
 const ru_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`GUID чертежа`)
+	return /** @type {LocalizedString} */ (`GUID постройки`)
 };
 
 const sv_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ritningens GUID`)
+	return /** @type {LocalizedString} */ (`Byggets GUID`)
 };
 
 const tr_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan GUID’i`)
+	return /** @type {LocalizedString} */ (`Yapı GUID’i`)
 };
 
 const zh_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`蓝图 GUID`)
+	return /** @type {LocalizedString} */ (`建筑 GUID`)
 };
 
 const ja_builds_spec_guid = /** @type {(inputs: Builds_Spec_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図の GUID`)
+	return /** @type {LocalizedString} */ (`建築の GUID`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Blueprint GUID" |
+* | "Build GUID" |
 *
 * @param {Builds_Spec_GuidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

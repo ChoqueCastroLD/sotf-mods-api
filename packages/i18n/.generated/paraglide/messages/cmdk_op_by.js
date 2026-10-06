@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Cmdk_Op_ByInputs */
 
 const en_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creator handle`)
+	return /** @type {LocalizedString} */ (`Author`)
 };
 
 const es_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creador por handle`)
+	return /** @type {LocalizedString} */ (`Autor`)
 };
 
 const de_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kreative nach Handle`)
+	return /** @type {LocalizedString} */ (`Autor`)
 };
 
 const fr_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créateur par identifiant`)
+	return /** @type {LocalizedString} */ (`Auteur`)
 };
 
 const it_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creator per handle`)
+	return /** @type {LocalizedString} */ (`Autore`)
 };
 
 const nl_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Maker op handle`)
+	return /** @type {LocalizedString} */ (`Auteur`)
 };
 
 const pl_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twórca po nazwie`)
+	return /** @type {LocalizedString} */ (`Autor`)
 };
 
 const pt_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criador por handle`)
+	return /** @type {LocalizedString} */ (`Autor`)
 };
 
 const ru_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Автор по нику`)
+	return /** @type {LocalizedString} */ (`Автор`)
 };
 
 const sv_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapare via handle`)
+	return /** @type {LocalizedString} */ (`Skapare`)
 };
 
 const tr_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yaratıcı adı`)
+	return /** @type {LocalizedString} */ (`Yazar`)
 };
 
 const zh_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`按创作者`)
+	return /** @type {LocalizedString} */ (`作者`)
 };
 
 const ja_cmdk_op_by = /** @type {(inputs: Cmdk_Op_ByInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`クリエイターのハンドル`)
+	return /** @type {LocalizedString} */ (`作者`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Creator handle" |
+* | "Author" |
 *
 * @param {Cmdk_Op_ByInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

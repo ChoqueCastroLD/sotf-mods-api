@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Notif_Comment_HintInputs */
 
 const en_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bundled: several comments arrive as one signal.`)
+	return /** @type {LocalizedString} */ (`Bundled: several comments arrive as one notification.`)
 };
 
 const es_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Agrupados: varios comentarios llegan como una sola señal.`)
+	return /** @type {LocalizedString} */ (`Agrupados: varios comentarios llegan como una sola notificación.`)
 };
 
 const de_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gebündelt: mehrere Kommentare kommen als ein Signal.`)
+	return /** @type {LocalizedString} */ (`Gebündelt: mehrere Kommentare kommen als eine Benachrichtigung.`)
 };
 
 const fr_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Regroupés : plusieurs commentaires arrivent en un seul signal.`)
+	return /** @type {LocalizedString} */ (`Regroupés : plusieurs commentaires arrivent en une seule notification.`)
 };
 
 const it_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raggruppati: più commenti arrivano come un unico segnale.`)
+	return /** @type {LocalizedString} */ (`Raggruppati: più commenti arrivano come un’unica notifica.`)
 };
 
 const nl_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gebundeld: meerdere reacties komen binnen als één signaal.`)
+	return /** @type {LocalizedString} */ (`Gebundeld: meerdere reacties komen binnen als één melding.`)
 };
 
 const pl_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zbiorczo: kilka komentarzy przychodzi jako jeden sygnał.`)
+	return /** @type {LocalizedString} */ (`Zbiorczo: kilka komentarzy przychodzi jako jedno powiadomienie.`)
 };
 
 const pt_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Agrupados: vários comentários chegam como um só sinal.`)
+	return /** @type {LocalizedString} */ (`Agrupados: vários comentários chegam como uma só notificação.`)
 };
 
 const ru_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Группируются: несколько комментариев приходят одним сигналом.`)
+	return /** @type {LocalizedString} */ (`Группируются: несколько комментариев приходят одним уведомлением.`)
 };
 
 const sv_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Samlade: flera kommentarer kommer som en signal.`)
+	return /** @type {LocalizedString} */ (`Samlade: flera kommentarer kommer som en avisering.`)
 };
 
 const tr_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toplu: birkaç yorum tek bir sinyal olarak gelir.`)
+	return /** @type {LocalizedString} */ (`Toplu: birkaç yorum tek bir bildirim olarak gelir.`)
 };
 
 const zh_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`合并发送：多条评论会合成一个信号。`)
+	return /** @type {LocalizedString} */ (`合并发送：多条评论会合成一条通知。`)
 };
 
 const ja_settings_notif_comment_hint = /** @type {(inputs: Settings_Notif_Comment_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`まとめて通知：複数のコメントを1つのシグナルで届けます。`)
+	return /** @type {LocalizedString} */ (`まとめて通知：複数のコメントを1つの通知で届けます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Bundled: several comments arrive as one signal." |
+* | "Bundled: several comments arrive as one notification." |
 *
 * @param {Settings_Notif_Comment_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

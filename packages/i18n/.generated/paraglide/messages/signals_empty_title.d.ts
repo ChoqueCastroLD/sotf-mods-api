@@ -3,7 +3,7 @@ export type Signals_Empty_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "All quiet in the forest" |
+* | "No notifications" |
 *
 * @param {Signals_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -90,7 +90,7 @@
   "logs_expires_in": "Wordt verwijderd over {time}",
   "logs_viewer_title": "Gedeelde log",
   "logs_meta_viewer_description": "Een gedeelde spellog. De privélink verwijdert zichzelf na 24 uur.",
-  "logs_gone_title": "Deze log is weg",
+  "logs_gone_title": "Deze log is niet meer beschikbaar",
   "logs_gone_expired": "Gedeelde logs worden na 24 uur automatisch verwijderd. Vraag om een nieuwe link of deel de log opnieuw.",
   "logs_gone_deleted": "De maker heeft deze log verwijderd.",
   "logs_gone_reported": "Deze log is verwijderd na meldingen van misbruik.",

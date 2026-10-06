@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Download_Done_HintInputs */
 
 const en_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Drop it in your game’s Mods folder and launch the game.`)
+	return /** @type {LocalizedString} */ (`Place it in your game’s Mods folder and start the game.`)
 };
 
 const es_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ponlo en la carpeta Mods del juego y ábrelo.`)
+	return /** @type {LocalizedString} */ (`Coloca el archivo en la carpeta Mods del juego e inicia el juego.`)
 };
 
 const de_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Leg ihn in den Mods-Ordner des Spiels und starte das Spiel.`)
+	return /** @type {LocalizedString} */ (`Lege die Datei in den Mods-Ordner des Spiels und starte das Spiel.`)
 };
 
 const fr_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Placez-le dans le dossier Mods du jeu et lancez le jeu.`)
+	return /** @type {LocalizedString} */ (`Placez le fichier dans le dossier Mods du jeu, puis lancez le jeu.`)
 };
 
 const it_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mettila nella cartella Mods del gioco e avvia il gioco.`)
+	return /** @type {LocalizedString} */ (`Metti il file nella cartella Mods del gioco e avvia il gioco.`)
 };
 
 const nl_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zet hem in de Mods-map van je game en start de game.`)
+	return /** @type {LocalizedString} */ (`Plaats het bestand in de map Mods van het spel en start het spel.`)
 };
 
 const pl_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wrzuć go do folderu Mods w grze i uruchom grę.`)
+	return /** @type {LocalizedString} */ (`Umieść plik w folderze Mods w katalogu gry i uruchom grę.`)
 };
 
 const pt_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Coloque na pasta Mods do jogo e abra o jogo.`)
+	return /** @type {LocalizedString} */ (`Coloque o arquivo na pasta Mods do jogo e inicie o jogo.`)
 };
 
 const ru_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Положите его в папку Mods игры и запустите игру.`)
+	return /** @type {LocalizedString} */ (`Поместите файл в папку Mods игры и запустите игру.`)
 };
 
 const sv_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lägg den i spelets Mods-mapp och starta spelet.`)
+	return /** @type {LocalizedString} */ (`Lägg filen i spelets Mods-mapp och starta spelet.`)
 };
 
 const tr_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oyunun Mods klasörüne at ve oyunu başlat.`)
+	return /** @type {LocalizedString} */ (`Dosyayı oyunun Mods klasörüne koy ve oyunu başlat.`)
 };
 
 const zh_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`把它放进游戏的 Mods 文件夹，然后启动游戏。`)
+	return /** @type {LocalizedString} */ (`把文件放进游戏的 Mods 文件夹，然后启动游戏。`)
 };
 
 const ja_ui_domain_download_done_hint = /** @type {(inputs: Ui_Domain_Download_Done_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ゲームの Mods フォルダーに入れてから、ゲームを起動してください。`)
+	return /** @type {LocalizedString} */ (`ファイルをゲームの Mods フォルダーに入れて、ゲームを起動してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Drop it in your game’s Mods folder and launch the game." |
+* | "Place it in your game’s Mods folder and start the game." |
 *
 * @param {Ui_Domain_Download_Done_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

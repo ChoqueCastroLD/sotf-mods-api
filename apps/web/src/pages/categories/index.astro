@@ -66,7 +66,6 @@ const jsonLd: WithContext<ItemList>[] = taxonomy.available
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.explore_categories_heading() }]}
 >
   <header class="mb-8 flex flex-col gap-2">
-    <p class="readout text-signal">{m.explore_readout_explore()}</p>
     <h1 class="font-display-caps text-display-sm text-fg">{m.explore_categories_heading()}</h1>
     <p class="max-w-(--container-prose) text-base text-fg-muted">{m.explore_categories_description()}</p>
   </header>
@@ -95,7 +94,7 @@ const jsonLd: WithContext<ItemList>[] = taxonomy.available
                 >
                   <span class="flex items-center justify-between gap-3">
                     <span class="font-semibold text-fg group-hover:text-primary">{item.name}</span>
-                    <span class="font-mono text-xs text-fg-subtle tabular-nums">
+                    <span class="text-xs text-fg-subtle tabular-nums">
                       {group.key === 'build'
                         ? m.common_builds_count({ count: item.count })
                         : m.common_mods_count({ count: item.count })}

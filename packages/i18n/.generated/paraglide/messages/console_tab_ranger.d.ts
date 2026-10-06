@@ -3,7 +3,7 @@ export type Console_Tab_RangerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ranger" |
+* | "Moderation" |
 *
 * @param {Console_Tab_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

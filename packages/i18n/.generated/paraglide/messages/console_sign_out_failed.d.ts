@@ -3,7 +3,7 @@ export type Console_Sign_Out_FailedInputs = {};
 /**
 * | output |
 * | --- |
-* | "We couldn’t sign you out. Try again." |
+* | "We couldn’t log you out. Try again." |
 *
 * @param {Console_Sign_Out_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

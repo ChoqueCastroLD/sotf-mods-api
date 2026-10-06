@@ -3,7 +3,7 @@ export type Errors_Network_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Lost signal" |
+* | "No connection" |
 *
 * @param {Errors_Network_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

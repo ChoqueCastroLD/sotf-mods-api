@@ -3,7 +3,7 @@ export type Settings_2fa_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Use an authenticator app so a stolen password is not enough to sign in." |
+* | "Use an authenticator app so a stolen password is not enough to log in." |
 *
 * @param {Settings_2fa_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Settings_Password_RevokeInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out my other devices" |
+* | "Log out my other devices" |
 *
 * @param {Settings_Password_RevokeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

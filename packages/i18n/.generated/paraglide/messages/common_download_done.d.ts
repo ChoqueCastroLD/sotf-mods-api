@@ -3,7 +3,7 @@ export type Common_Download_DoneInputs = {};
 /**
 * | output |
 * | --- |
-* | "Downloaded. Drop it in your game’s Mods folder and launch the game." |
+* | "Downloaded. Place it in your game’s Mods folder and start the game." |
 *
 * @param {Common_Download_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

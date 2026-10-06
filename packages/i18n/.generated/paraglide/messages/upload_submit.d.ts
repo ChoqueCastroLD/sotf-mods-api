@@ -3,7 +3,7 @@ export type Upload_SubmitInputs = {};
 /**
 * | output |
 * | --- |
-* | "Send to the Ranger Station" |
+* | "Send for review" |
 *
 * @param {Upload_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

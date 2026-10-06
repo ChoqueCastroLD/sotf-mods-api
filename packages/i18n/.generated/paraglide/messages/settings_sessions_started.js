@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ date: NonNullable<unknown> }} Settings_Sessions_StartedInputs */
 
 const en_settings_sessions_started = /** @type {(inputs: Settings_Sessions_StartedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`signed in ${i?.date}`)
+	return /** @type {LocalizedString} */ (`logged in ${i?.date}`)
 };
 
 const es_settings_sessions_started = /** @type {(inputs: Settings_Sessions_StartedInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_started = /** @type {(inputs: Settings_Sessions_Start
 /**
 * | output |
 * | --- |
-* | "signed in {date}" |
+* | "logged in {date}" |
 *
 * @param {Settings_Sessions_StartedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

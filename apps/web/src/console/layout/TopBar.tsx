@@ -3,7 +3,7 @@
  * the display face, the realtime dot and the account menu, with the area's places as a strip of
  * pills below (the Signals bell lives in the bottom tabs). Larger screens: the current area,
  * realtime status, the Signals bell with the unread count (it opens a panel with the latest
- * signals, `SignalsBell.tsx`, lazy; until that chunk arrives it is a link to `/signals`) and the
+ * signals, `SignalsBell.tsx`, lazy; until that chunk arrives it is a link to `/notifications`) and the
  * account menu.
  */
 
@@ -62,7 +62,7 @@ export function TopBar({ me, viewer, area, pathname, status, pushed, title, onSh
   const phone = useMediaQuery(BELOW_MD_QUERY);
   const bellLink = (
     <Link
-      to={'/signals' as '/'}
+      to={'/notifications' as '/'}
       aria-label={bellLabel}
       title={bellLabel}
       className="relative flex size-11 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg md:size-10"

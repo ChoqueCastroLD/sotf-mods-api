@@ -3,7 +3,7 @@ export type Basecamp_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Publish your first mod or build and this is where you will follow its downloads, reviews and field reports." |
+* | "Publish your first mod or build to follow its downloads, reviews and comments here." |
 *
 * @param {Basecamp_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

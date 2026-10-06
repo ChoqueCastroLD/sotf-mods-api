@@ -1,5 +1,5 @@
 /**
- * Data of the admin screens (`/ranger/admin/*`, WP-83 on the WP-50/WP-51/WP-52/WP-60 backend).
+ * Data of the admin screens (`/moderation/admin/*`, WP-83 on the WP-50/WP-51/WP-52/WP-60 backend).
  * Every admin read and write needs 👑 admin and a session younger than 12 h (the API answers
  * `REAUTH_REQUIRED` otherwise; see `shared.tsx`).
  *

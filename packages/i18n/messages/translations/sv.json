@@ -1,9 +1,6 @@
 {
-  "translations_badge_machine": "Automatiskt översatt",
-  "translations_badge_author": "Översatt av skaparen",
   "translations_show_original": "Visa originalet",
   "translations_show_translation": "Visa översättningen",
-  "translations_original_note": "Originaltext",
   "translations_title": "Översättningar",
   "translations_intro_auto": "Namnet, den korta beskrivningen och beskrivningen översätts automatiskt till andra språk när du publicerar eller redigerar. Skriv din egen text för att ersätta en översättning; din skrivs aldrig över.",
   "translations_intro_manual": "Skriv din egen översättning av namnet, den korta beskrivningen och beskrivningen för valfritt språk. Automatisk översättning är inte tillgänglig på den här servern.",
@@ -19,7 +16,6 @@
   "translations_cancel": "Avbryt",
   "translations_revert": "Använd automatisk översättning",
   "translations_remove": "Ta bort",
-  "translations_field_label": "Översättning till {language}",
   "translations_saved": "Översättningen sparades",
   "translations_reverted": "Automatisk översättning begärd",
   "translations_removed": "Översättningen togs bort",

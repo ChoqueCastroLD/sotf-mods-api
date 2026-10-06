@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Flag_ResetInputs */
 
 const en_auth_flag_reset = /** @type {(inputs: Auth_Flag_ResetInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Password changed. Sign in with your new password.`)
+	return /** @type {LocalizedString} */ (`Password changed. Log in with your new password.`)
 };
 
 const es_auth_flag_reset = /** @type {(inputs: Auth_Flag_ResetInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_flag_reset = /** @type {(inputs: Auth_Flag_ResetInputs) => Localiz
 /**
 * | output |
 * | --- |
-* | "Password changed. Sign in with your new password." |
+* | "Password changed. Log in with your new password." |
 *
 * @param {Auth_Flag_ResetInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

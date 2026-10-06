@@ -1,6 +1,6 @@
 ---
 title: Términos de uso
-description: Las reglas para usar SOTF Mods — cuentas, qué puedes publicar, la licencia que nos das para alojar tus mods, descargas bajo tu responsabilidad y resolución de conflictos.
+description: Las reglas para usar SOTF Mods: cuentas, qué puedes publicar, la licencia que nos das para alojar tus mods, descargas bajo tu responsabilidad y resolución de conflictos.
 anchors: [agreement, service, accounts, content, license, conduct, downloads, moderation, liability, termination, changes, law, contact]
 ---
 
@@ -10,7 +10,7 @@ Al usar sotf-mods.com («SOTF Mods», «nosotros») aceptas estos términos, la 
 
 # El servicio
 
-SOTF Mods es un sitio comunitario gratuito para compartir y descargar mods, librerías, builds y Kits de Sons of the Forest. Es un proyecto de fans, sin afiliación ni respaldo de Endnight Games Ltd. Podemos cambiar, pausar o retirar funciones en cualquier momento; intentaremos anunciar con antelación los cambios importantes.
+SOTF Mods es un sitio comunitario gratuito para compartir y descargar mods, librerías y builds de Sons of the Forest. Es un proyecto de fans, sin afiliación ni respaldo de Endnight Games Ltd. Podemos cambiar, pausar o retirar funciones en cualquier momento; intentaremos anunciar con antelación los cambios importantes.
 
 # Cuentas
 
@@ -21,7 +21,7 @@ SOTF Mods es un sitio comunitario gratuito para compartir y descargar mods, libr
 
 # Tu contenido
 
-Conservas los derechos de lo que publicas (mods, imágenes, descripciones, comentarios, reseñas, Kits). Confirmas que tienes derecho a publicarlo —que es obra tuya o que tienes permiso del autor y respetas su licencia— y que cumple la política de contenido.
+Conservas los derechos de lo que publicas (mods, imágenes, descripciones, comentarios, reseñas). Confirmas que tienes derecho a publicarlo (es obra tuya, o tienes permiso del autor y respetas su licencia) y que cumple la política de contenido.
 
 Los mods de Sons of the Forest se basan en un juego propiedad de Endnight Games. No subas archivos del juego ni trabajo ajeno sin permiso.
 

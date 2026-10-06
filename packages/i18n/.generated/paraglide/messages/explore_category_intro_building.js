@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Category_Intro_BuildingInputs */
 
 const en_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tools and pieces for builders: snapping, blueprints, new structures and ways to shape your base.`)
+	return /** @type {LocalizedString} */ (`Tools and pieces for builders: snapping, new structures and ways to shape your base.`)
 };
 
 const es_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Herramientas y piezas para constructores: encaje, planos, estructuras nuevas y formas de dar forma a tu base.`)
+	return /** @type {LocalizedString} */ (`Herramientas y piezas para constructores: encaje, estructuras nuevas y formas de dar forma a tu base.`)
 };
 
 const de_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Werkzeuge und Bauteile für Baumeister: Einrasten, Baupläne, neue Strukturen und mehr Möglichkeiten für deine Basis.`)
+	return /** @type {LocalizedString} */ (`Werkzeuge und Bauteile für Baumeister: Einrasten, neue Strukturen und mehr Möglichkeiten für deine Basis.`)
 };
 
 const fr_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Outils et pièces pour bâtisseurs : aimantation, plans, nouvelles structures et plus de façons de façonner votre base.`)
+	return /** @type {LocalizedString} */ (`Outils et pièces pour bâtisseurs : aimantation, nouvelles structures et plus de façons de façonner votre base.`)
 };
 
 const it_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strumenti e pezzi per costruttori: aggancio, progetti, nuove strutture e più modi per dare forma alla tua base.`)
+	return /** @type {LocalizedString} */ (`Strumenti e pezzi per costruttori: aggancio, nuove strutture e più modi per dare forma alla tua base.`)
 };
 
 const nl_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gereedschap en onderdelen voor bouwers: vastklikken, bouwtekeningen, nieuwe constructies en meer manieren om je basis vorm te geven.`)
+	return /** @type {LocalizedString} */ (`Gereedschap en onderdelen voor bouwers: vastklikken, nieuwe constructies en meer manieren om je basis vorm te geven.`)
 };
 
 const pl_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Narzędzia i elementy dla budowniczych: przyciąganie, plany, nowe konstrukcje i więcej sposobów na kształtowanie bazy.`)
+	return /** @type {LocalizedString} */ (`Narzędzia i elementy dla budowniczych: przyciąganie, nowe konstrukcje i więcej sposobów na kształtowanie bazy.`)
 };
 
 const pt_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ferramentas e peças para construtores: encaixe, plantas, novas estruturas e mais jeitos de moldar sua base.`)
+	return /** @type {LocalizedString} */ (`Ferramentas e peças para construtores: encaixe, novas estruturas e mais jeitos de moldar sua base.`)
 };
 
 const ru_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Инструменты и детали для строителей: привязка, чертежи, новые конструкции и больше способов обустроить базу.`)
+	return /** @type {LocalizedString} */ (`Инструменты и детали для строителей: привязка, новые конструкции и больше способов обустроить базу.`)
 };
 
 const sv_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verktyg och delar för byggare: fästning, ritningar, nya konstruktioner och fler sätt att forma basen.`)
+	return /** @type {LocalizedString} */ (`Verktyg och delar för byggare: fästning, nya konstruktioner och fler sätt att forma basen.`)
 };
 
 const tr_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İnşaatçılar için araçlar ve parçalar: yapıştırma, planlar, yeni yapılar ve üssünü şekillendirmenin yeni yolları.`)
+	return /** @type {LocalizedString} */ (`İnşaatçılar için araçlar ve parçalar: yapıştırma, yeni yapılar ve üssünü şekillendirmenin yeni yolları.`)
 };
 
 const zh_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`为建造者准备的工具和部件：吸附、蓝图、新结构以及更多打造基地的方式。`)
+	return /** @type {LocalizedString} */ (`为建造者准备的工具和部件：吸附、新结构以及更多打造基地的方式。`)
 };
 
 const ja_explore_category_intro_building = /** @type {(inputs: Explore_Category_Intro_BuildingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`スナップ、設計図、新しい構造物など、拠点づくりを広げる建築家向けのツールとパーツ。`)
+	return /** @type {LocalizedString} */ (`スナップ、新しい構造物など、拠点づくりを広げる建築家向けのツールとパーツ。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Tools and pieces for builders: snapping, blueprints, new structures and ways to shape your base." |
+* | "Tools and pieces for builders: snapping, new structures and ways to shape your base." |
 *
 * @param {Explore_Category_Intro_BuildingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

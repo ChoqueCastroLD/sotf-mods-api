@@ -3,7 +3,7 @@ export type Settings_Delete_Point_ModsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your mods are archived, or stay published without your name — you choose." |
+* | "Your mods are archived, or stay published without your name. You choose." |
 *
 * @param {Settings_Delete_Point_ModsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

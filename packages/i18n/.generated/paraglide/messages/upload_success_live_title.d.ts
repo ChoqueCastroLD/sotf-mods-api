@@ -3,7 +3,7 @@ export type Upload_Success_Live_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "It’s live!" |
+* | "Published" |
 *
 * @param {Upload_Success_Live_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

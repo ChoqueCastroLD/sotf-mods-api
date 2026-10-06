@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_Verify_BodyInputs */
 
 const en_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Welcome to the island. Confirm this address to publish mods, comment, write reviews and report compatibility.`)
+	return /** @type {LocalizedString} */ (`Welcome to SOTF Mods. Confirm this address to publish mods, comment and write reviews.`)
 };
 
 const es_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bienvenido a la isla. Confirma esta dirección para publicar mods, comentar, escribir reseñas e informar de compatibilidad.`)
+	return /** @type {LocalizedString} */ (`Te damos la bienvenida a SOTF Mods. Confirma esta dirección para publicar mods, comentar y escribir reseñas.`)
 };
 
 const de_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Willkommen auf der Insel. Bestätige diese Adresse, um Mods zu veröffentlichen, zu kommentieren, Bewertungen zu schreiben und Kompatibilität zu melden.`)
+	return /** @type {LocalizedString} */ (`Willkommen bei SOTF Mods. Bestätige diese Adresse, um Mods zu veröffentlichen, zu kommentieren und Bewertungen zu schreiben.`)
 };
 
 const fr_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bienvenue sur l’île. Confirmez cette adresse pour publier des mods, commenter, écrire des avis et signaler la compatibilité.`)
+	return /** @type {LocalizedString} */ (`Bienvenue sur SOTF Mods. Confirmez cette adresse pour publier des mods, commenter et écrire des avis.`)
 };
 
 const it_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Benvenuto sull’isola. Conferma questo indirizzo per pubblicare mod, commentare, scrivere recensioni e segnalare la compatibilità.`)
+	return /** @type {LocalizedString} */ (`Benvenuto su SOTF Mods. Conferma questo indirizzo per pubblicare mod, commentare e scrivere recensioni.`)
 };
 
 const nl_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Welkom op het eiland. Bevestig dit adres om mods te publiceren, te reageren, recensies te schrijven en compatibiliteit te melden.`)
+	return /** @type {LocalizedString} */ (`Welkom bij SOTF Mods. Bevestig dit adres om mods te publiceren, te reageren en recensies te schrijven.`)
 };
 
 const pl_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Witaj na wyspie. Potwierdź ten adres, aby publikować mody, komentować, pisać recenzje i zgłaszać kompatybilność.`)
+	return /** @type {LocalizedString} */ (`Witaj w SOTF Mods. Potwierdź ten adres, aby publikować mody, komentować i pisać recenzje.`)
 };
 
 const pt_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bem-vindo à ilha. Confirme este endereço para publicar mods, comentar, escrever avaliações e informar compatibilidade.`)
+	return /** @type {LocalizedString} */ (`Boas-vindas ao SOTF Mods. Confirme este endereço para publicar mods, comentar e escrever avaliações.`)
 };
 
 const ru_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Добро пожаловать на остров. Подтвердите этот адрес, чтобы публиковать моды, комментировать, писать отзывы и сообщать о совместимости.`)
+	return /** @type {LocalizedString} */ (`Добро пожаловать в SOTF Mods. Подтвердите этот адрес, чтобы публиковать моды, комментировать и писать отзывы.`)
 };
 
 const sv_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Välkommen till ön. Bekräfta adressen för att publicera moddar, kommentera, skriva recensioner och rapportera kompatibilitet.`)
+	return /** @type {LocalizedString} */ (`Välkommen till SOTF Mods. Bekräfta adressen för att publicera moddar, kommentera och skriva recensioner.`)
 };
 
 const tr_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Adaya hoş geldin. Mod yayınlamak, yorum yapmak, inceleme yazmak ve uyumluluk bildirmek için bu adresi doğrula.`)
+	return /** @type {LocalizedString} */ (`SOTF Mods’a hoş geldin. Mod yayınlamak, yorum yapmak ve inceleme yazmak için bu adresi doğrula.`)
 };
 
 const zh_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`欢迎来到岛上。确认此邮箱后，即可发布模组、发表评论、撰写评价和报告兼容性。`)
+	return /** @type {LocalizedString} */ (`欢迎来到 SOTF Mods。确认此邮箱后，即可发布模组、发表评论和撰写评价。`)
 };
 
 const ja_emails_auth_verify_body = /** @type {(inputs: Emails_Auth_Verify_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`島へようこそ。このアドレスを確認すると、MOD の公開、コメント、レビューの投稿、互換性の報告ができるようになります。`)
+	return /** @type {LocalizedString} */ (`SOTF Mods へようこそ。このアドレスを確認すると、MOD の公開、コメント、レビューの投稿ができるようになります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Welcome to the island. Confirm this address to publish mods, comment, write reviews and report compatibility." |
+* | "Welcome to SOTF Mods. Confirm this address to publish mods, comment and write reviews." |
 *
 * @param {Emails_Auth_Verify_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

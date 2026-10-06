@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_SubmitInputs */
 
 const en_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Send to the Ranger Station`)
+	return /** @type {LocalizedString} */ (`Send for review`)
 };
 
 const es_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviar al puesto de guardabosques`)
+	return /** @type {LocalizedString} */ (`Enviar a revisión`)
 };
 
 const de_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`An die Rangerstation senden`)
+	return /** @type {LocalizedString} */ (`Zur Prüfung senden`)
 };
 
 const fr_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Envoyer au poste des rangers`)
+	return /** @type {LocalizedString} */ (`Envoyer pour examen`)
 };
 
 const it_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Invia alla stazione dei ranger`)
+	return /** @type {LocalizedString} */ (`Invia per la revisione`)
 };
 
 const nl_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Naar de rangerpost sturen`)
+	return /** @type {LocalizedString} */ (`Ter beoordeling insturen`)
 };
 
 const pl_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wyślij na posterunek strażników`)
+	return /** @type {LocalizedString} */ (`Wyślij do przeglądu`)
 };
 
 const pt_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviar ao posto dos guardas`)
+	return /** @type {LocalizedString} */ (`Enviar para revisão`)
 };
 
 const ru_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отправить на пост рейнджеров`)
+	return /** @type {LocalizedString} */ (`Отправить на проверку`)
 };
 
 const sv_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skicka till rangerstationen`)
+	return /** @type {LocalizedString} */ (`Skicka för granskning`)
 };
 
 const tr_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucu İstasyonu’na gönder`)
+	return /** @type {LocalizedString} */ (`İncelemeye gönder`)
 };
 
 const zh_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`提交到护林站`)
+	return /** @type {LocalizedString} */ (`提交审核`)
 };
 
 const ja_upload_submit = /** @type {(inputs: Upload_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーステーションに送信`)
+	return /** @type {LocalizedString} */ (`審査に送信`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Send to the Ranger Station" |
+* | "Send for review" |
 *
 * @param {Upload_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

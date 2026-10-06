@@ -3,7 +3,7 @@ export type Signals_Error_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signals didn’t load." |
+* | "Notifications didn’t load." |
 *
 * @param {Signals_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -29,9 +29,9 @@ describe('withLocale', () => {
   it('keeps the locale in timers and callbacks scheduled inside the request', async () => {
     const text = await withLocale(
       'fr',
-      () => new Promise<string>((resolve) => setTimeout(() => resolve(m.errors_not_found_home()), 1)),
+      () => new Promise<string>((resolve) => setTimeout(() => resolve(m.common_action_close()), 1)),
     );
-    expect(text).toBe('Retour au sentier');
+    expect(text).toBe('Fermer');
   });
 
   it('supports nesting and synchronous callbacks', () => {
@@ -65,18 +65,15 @@ describe('withLocale', () => {
     expect(texts).toEqual(['1 mod', '2 mody', '5 modów', '22 mody']);
   });
 
-  it('agrees the nouns of the home description with preformatted counts', () => {
-    const home = (locale: 'ru' | 'pl' | 'en', modCount: number, downloadCount: number) =>
-      m.meta_home_description(
-        { modCount, mods: String(modCount), downloadCount, downloads: String(downloadCount), date: '29.09.2026' },
-        { locale },
-      );
-    expect(home('ru', 622, 1_980_000)).toMatch(/^Скачивайте 622 мода, .* 1980000 скачиваний на 29\.09\.2026\.$/);
-    expect(home('ru', 625, 21)).toMatch(/^Скачивайте 625 модов, .* 21 скачивание на /);
-    expect(home('ru', 21, 3)).toMatch(/^Скачивайте 21 мод, .* 3 скачивания на /);
-    expect(home('pl', 22, 1_980_000)).toMatch(/^Pobierz 22 mody, .* 1980000 pobrań na dzień /);
-    expect(home('pl', 1, 1)).toMatch(/^Pobierz 1 mod, .* 1 pobranie na dzień /);
-    expect(home('en', 1, 1)).toMatch(/^Download 1 Sons of the Forest mod, .* 1 download as of /);
-    expect(home('en', 622, 1_980_000)).toMatch(/^Download 622 Sons of the Forest mods, .* 1980000 downloads as of /);
+  it('agrees the noun with a preformatted count', () => {
+    const downloads = (locale: 'ru' | 'pl' | 'en', count: number, display: string) =>
+      m.common_downloads_compact({ count, display }, { locale });
+    expect(downloads('ru', 1_980_000, '1,98 млн')).toBe('1,98 млн скачиваний');
+    expect(downloads('ru', 21, '21')).toBe('21 скачивание');
+    expect(downloads('ru', 3, '3')).toBe('3 скачивания');
+    expect(downloads('pl', 1, '1')).toBe('1 pobranie');
+    expect(downloads('pl', 22, '22')).toBe('22 pobrania');
+    expect(downloads('en', 1, '1')).toBe('1 download');
+    expect(downloads('en', 622, '622')).toBe('622 downloads');
   });
 });

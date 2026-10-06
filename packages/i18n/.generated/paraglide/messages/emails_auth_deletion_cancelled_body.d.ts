@@ -5,7 +5,7 @@ export type Emails_Auth_Deletion_Cancelled_BodyInputs = {
 /**
 * | output |
 * | --- |
-* | "Welcome back. The deletion was cancelled on {when} (UTC) and your account stays as it is." |
+* | "The deletion was cancelled on {when} (UTC). Your account stays as it is." |
 *
 * @param {Emails_Auth_Deletion_Cancelled_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

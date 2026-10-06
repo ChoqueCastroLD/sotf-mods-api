@@ -3,7 +3,7 @@ export type Settings_Motion_Reduce_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "No sliding, zooming or celebrations." |
+* | "No sliding or zooming." |
 *
 * @param {Settings_Motion_Reduce_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

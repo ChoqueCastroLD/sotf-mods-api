@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Password_RevokeInputs */
 
 const en_settings_password_revoke = /** @type {(inputs: Settings_Password_RevokeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out my other devices`)
+	return /** @type {LocalizedString} */ (`Log out my other devices`)
 };
 
 const es_settings_password_revoke = /** @type {(inputs: Settings_Password_RevokeInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_password_revoke = /** @type {(inputs: Settings_Password_Revoke
 /**
 * | output |
 * | --- |
-* | "Sign out my other devices" |
+* | "Log out my other devices" |
 *
 * @param {Settings_Password_RevokeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

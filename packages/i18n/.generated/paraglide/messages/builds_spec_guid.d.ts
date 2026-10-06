@@ -3,7 +3,7 @@ export type Builds_Spec_GuidInputs = {};
 /**
 * | output |
 * | --- |
-* | "Blueprint GUID" |
+* | "Build GUID" |
 *
 * @param {Builds_Spec_GuidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

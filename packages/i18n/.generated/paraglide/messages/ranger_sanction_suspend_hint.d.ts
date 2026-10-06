@@ -3,7 +3,7 @@ export type Ranger_Sanction_Suspend_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Can’t sign in until the end date." |
+* | "Can’t log in until the end date." |
 *
 * @param {Ranger_Sanction_Suspend_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

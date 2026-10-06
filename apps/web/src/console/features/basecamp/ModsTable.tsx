@@ -55,7 +55,7 @@ function RowMenu({ row }: { row: ModRow }) {
         {
           label: bt('basecamp_mods_action_analytics'),
           icon: <Icon icon={ChartLine} size={16} />,
-          onSelect: () => void router.navigate({ to: '/basecamp/analytics', search: { mod: row.mod.id } }),
+          onSelect: () => void router.navigate({ to: '/dashboard/analytics', search: { mod: row.mod.id } }),
         },
         ...(hasPublicPage(row)
           ? [
@@ -70,7 +70,7 @@ function RowMenu({ row }: { row: ModRow }) {
         {
           label: bt('basecamp_mods_action_settings'),
           onSelect: () =>
-            void router.navigate({ to: '/basecamp/mods/$modId', params: { modId: id }, search: { tab: 'settings' } }),
+            void router.navigate({ to: '/dashboard/mods/$modId', params: { modId: id }, search: { tab: 'settings' } }),
         },
       ]}
     />
@@ -116,7 +116,7 @@ function PrimaryActions({ row, compactLayout = false }: { row: ModRow; compactLa
   return (
     <span className="flex flex-wrap items-center justify-end gap-1">
       <Link
-        to="/basecamp/mods/$modId"
+        to="/dashboard/mods/$modId"
         params={{ modId: id }}
         className={buttonClasses({ variant: 'secondary', size: 'sm' })}
         aria-label={bt('basecamp_mods_edit_named', { name: row.mod.name })}
@@ -126,7 +126,7 @@ function PrimaryActions({ row, compactLayout = false }: { row: ModRow; compactLa
       </Link>
       {takesVersions(row) && row.mod.status !== 'removed' ? (
         <Link
-          to="/basecamp/mods/$modId/new-version"
+          to="/dashboard/mods/$modId/new-version"
           params={{ modId: id }}
           className={buttonClasses({ variant: 'ghost', size: 'sm' })}
           aria-label={bt('basecamp_mods_new_version_named', { name: row.mod.name })}
@@ -158,7 +158,7 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                       tone: 'primary',
                       onTrigger: () =>
                         void navigate({
-                          to: '/basecamp/mods/$modId/new-version',
+                          to: '/dashboard/mods/$modId/new-version',
                           params: { modId: String(row.mod.id) },
                         }),
                     }
@@ -170,7 +170,7 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                   <ModThumb url={row.mod.thumbnail?.url} className="w-20" />
                   <div className="grid min-w-0 gap-1">
                     <Link
-                      to="/basecamp/mods/$modId"
+                      to="/dashboard/mods/$modId"
                       params={{ modId: String(row.mod.id) }}
                       className="truncate font-semibold text-fg after:absolute after:inset-0 after:content-[''] hover:text-link"
                     >
@@ -249,7 +249,7 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                     <ModThumb url={row.mod.thumbnail?.url} className="w-16" />
                     <span className="grid min-w-0">
                       <Link
-                        to="/basecamp/mods/$modId"
+                        to="/dashboard/mods/$modId"
                         params={{ modId: String(row.mod.id) }}
                         className="max-w-64 truncate font-semibold text-fg hover:text-link"
                       >
@@ -270,7 +270,7 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                   </span>
                 </td>
                 <td className="px-3 py-2 font-mono text-xs text-fg-muted">
-                  {row.mod.latestVersion ? `v${row.mod.latestVersion}` : '—'}
+                  {row.mod.latestVersion ? `v${row.mod.latestVersion}` : '-'}
                 </td>
                 <td className={cn('px-3 py-2 text-end tabular-nums', row.downloads7d === 0 && 'text-fg-subtle')}>
                   {number(row.downloads7d)}

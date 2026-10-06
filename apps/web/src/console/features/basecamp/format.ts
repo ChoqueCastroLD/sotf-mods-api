@@ -15,8 +15,6 @@ import { localizePath } from '@sotf/i18n/paths';
 import { browserTimeZone } from '../../lib/i18n.ts';
 import { activeLocale } from '../../lib/messages.ts';
 
-const DAY_MS = 86_400_000;
-
 export function number(value: number): string {
   return formatNumber(activeLocale(), value);
 }
@@ -67,13 +65,6 @@ export function dayLabel(day: string, withYear = false): string {
   } catch {
     return day;
   }
-}
-
-/** «Day N on the island»: whole days since the account was created, the first day being day 1. */
-export function dayNumber(createdAt: string, now: number = Date.now()): number {
-  const created = Date.parse(createdAt);
-  if (!Number.isFinite(created)) return 1;
-  return Math.max(1, Math.floor((now - created) / DAY_MS) + 1);
 }
 
 /** Part of the day of the creator's clock, for the greeting. */

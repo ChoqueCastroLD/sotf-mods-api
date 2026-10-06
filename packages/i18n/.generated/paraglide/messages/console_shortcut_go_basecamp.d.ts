@@ -3,7 +3,7 @@ export type Console_Shortcut_Go_BasecampInputs = {};
 /**
 * | output |
 * | --- |
-* | "Go to Basecamp" |
+* | "Go to the dashboard" |
 *
 * @param {Console_Shortcut_Go_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

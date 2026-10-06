@@ -3,7 +3,7 @@ export type Upload_Issue_Missing_NameInputs = {};
 /**
 * | output |
 * | --- |
-* | "The blueprint has no Name." |
+* | "The build has no Name." |
 *
 * @param {Upload_Issue_Missing_NameInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

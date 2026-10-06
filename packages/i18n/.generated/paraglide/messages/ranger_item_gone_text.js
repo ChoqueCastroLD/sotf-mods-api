@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Item_Gone_TextInputs */
 
 const en_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Another ranger decided on this item, or it left the queue.`)
+	return /** @type {LocalizedString} */ (`Another moderator decided on this item, or it left the queue.`)
 };
 
 const es_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otro guardabosques ya decidió sobre este elemento, o salió de la cola.`)
+	return /** @type {LocalizedString} */ (`Otro moderador ya decidió sobre este elemento, o salió de la cola.`)
 };
 
 const de_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ein anderer Ranger hat darüber entschieden, oder der Eintrag hat die Warteschlange verlassen.`)
+	return /** @type {LocalizedString} */ (`Ein anderer Moderator hat darüber entschieden, oder der Eintrag hat die Warteschlange verlassen.`)
 };
 
 const fr_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un autre ranger a statué sur cet élément, ou il a quitté la file.`)
+	return /** @type {LocalizedString} */ (`Un autre modérateur a statué sur cet élément, ou il a quitté la file.`)
 };
 
 const it_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un altro ranger ha già deciso su questo elemento, oppure è uscito dalla coda.`)
+	return /** @type {LocalizedString} */ (`Un altro moderatore ha già deciso su questo elemento, oppure è uscito dalla coda.`)
 };
 
 const nl_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een andere ranger heeft al over dit item beslist, of het heeft de wachtrij verlaten.`)
+	return /** @type {LocalizedString} */ (`Een andere moderator heeft al over dit item beslist, of het heeft de wachtrij verlaten.`)
 };
 
 const pl_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inny strażnik już zdecydował w tej sprawie albo element opuścił kolejkę.`)
+	return /** @type {LocalizedString} */ (`Inny moderator już zdecydował w tej sprawie albo element opuścił kolejkę.`)
 };
 
 const pt_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Outro guarda já decidiu sobre este item, ou ele saiu da fila.`)
+	return /** @type {LocalizedString} */ (`Outro moderador já decidiu sobre este item, ou ele saiu da fila.`)
 };
 
 const ru_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Другой рейнджер уже принял решение, или элемент покинул очередь.`)
+	return /** @type {LocalizedString} */ (`Другой модератор уже принял решение, или элемент покинул очередь.`)
 };
 
 const sv_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En annan ranger har redan beslutat om objektet, eller så har det lämnat kön.`)
+	return /** @type {LocalizedString} */ (`En annan moderator har redan beslutat om objektet, eller så har det lämnat kön.`)
 };
 
 const tr_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu öğe hakkında başka bir korucu karar verdi ya da öğe kuyruktan çıktı.`)
+	return /** @type {LocalizedString} */ (`Bu öğe hakkında başka bir moderatör karar verdi ya da öğe kuyruktan çıktı.`)
 };
 
 const zh_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`其他护林员已对此作出决定，或它已离开队列。`)
+	return /** @type {LocalizedString} */ (`其他版主已对此作出决定，或它已离开队列。`)
 };
 
 const ja_ranger_item_gone_text = /** @type {(inputs: Ranger_Item_Gone_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`別のレンジャーが判断したか、項目がキューから外れました。`)
+	return /** @type {LocalizedString} */ (`別のモデレーターが判断したか、項目がキューから外れました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Another ranger decided on this item, or it left the queue." |
+* | "Another moderator decided on this item, or it left the queue." |
 *
 * @param {Ranger_Item_Gone_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

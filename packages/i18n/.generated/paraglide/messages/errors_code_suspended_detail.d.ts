@@ -3,7 +3,7 @@ export type Errors_Code_Suspended_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your account is suspended, so this action is blocked. Check your email for details or contact a ranger." |
+* | "Your account is suspended, so this action is blocked. Check your email for details or contact a moderator." |
 *
 * @param {Errors_Code_Suspended_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

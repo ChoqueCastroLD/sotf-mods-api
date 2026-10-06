@@ -3,7 +3,7 @@ export type Requests_Delete_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "The request and its votes disappear from the board. This cannot be undone." |
+* | "The request and its votes will be deleted. This cannot be undone." |
 *
 * @param {Requests_Delete_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Auth_Menu_Signed_In_AsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signed in as" |
+* | "Logged in as" |
 *
 * @param {Auth_Menu_Signed_In_AsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

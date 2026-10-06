@@ -163,7 +163,7 @@ export function DecisionDialog({
             }}
           />
         </Field>
-        <p className="text-right font-mono text-2xs text-fg-subtle tabular-nums" aria-hidden="true">
+        <p className="text-right text-2xs text-fg-subtle tabular-nums" aria-hidden="true">
           {note.length}/{max}
         </p>
       </form>

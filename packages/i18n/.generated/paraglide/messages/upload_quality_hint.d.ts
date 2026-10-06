@@ -3,7 +3,7 @@ export type Upload_Quality_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Complete listings rank higher in Explore and get more downloads." |
+* | "Complete listings rank higher in the mod list and get more downloads." |
 *
 * @param {Upload_Quality_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

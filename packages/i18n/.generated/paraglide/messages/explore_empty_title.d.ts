@@ -3,7 +3,7 @@ export type Explore_Empty_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing on this trail" |
+* | "No results" |
 *
 * @param {Explore_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

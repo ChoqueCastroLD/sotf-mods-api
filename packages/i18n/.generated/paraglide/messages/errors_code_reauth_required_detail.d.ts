@@ -3,7 +3,7 @@ export type Errors_Code_Reauth_Required_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "This action needs a recent sign-in. Sign in again and then repeat it." |
+* | "This action needs a recent login. Log in again and then repeat it." |
 *
 * @param {Errors_Code_Reauth_Required_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

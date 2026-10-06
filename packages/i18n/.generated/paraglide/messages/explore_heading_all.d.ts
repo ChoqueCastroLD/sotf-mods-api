@@ -3,7 +3,7 @@ export type Explore_Heading_AllInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore everything" |
+* | "Mods and builds" |
 *
 * @param {Explore_Heading_AllInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

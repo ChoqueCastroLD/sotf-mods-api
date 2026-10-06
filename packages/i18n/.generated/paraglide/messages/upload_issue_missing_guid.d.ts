@@ -3,7 +3,7 @@ export type Upload_Issue_Missing_GuidInputs = {};
 /**
 * | output |
 * | --- |
-* | "The blueprint has no Guid." |
+* | "The build has no Guid." |
 *
 * @param {Upload_Issue_Missing_GuidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

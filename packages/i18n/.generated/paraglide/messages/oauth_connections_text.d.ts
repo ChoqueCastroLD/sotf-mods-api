@@ -3,7 +3,7 @@ export type Oauth_Connections_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Link Discord to sign in faster." |
+* | "Link Discord to log in faster." |
 *
 * @param {Oauth_Connections_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

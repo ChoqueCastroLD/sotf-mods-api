@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Rate_Limited_TitleInputs */
 
 const en_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Slow down a little`)
+	return /** @type {LocalizedString} */ (`Too many requests`)
 };
 
 const es_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ve un poco más despacio`)
+	return /** @type {LocalizedString} */ (`Demasiadas solicitudes`)
 };
 
 const de_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Etwas langsamer, bitte`)
+	return /** @type {LocalizedString} */ (`Zu viele Anfragen`)
 };
 
 const fr_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Doucement`)
+	return /** @type {LocalizedString} */ (`Trop de requêtes`)
 };
 
 const it_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rallenta un attimo`)
+	return /** @type {LocalizedString} */ (`Troppe richieste`)
 };
 
 const nl_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Even rustig aan`)
+	return /** @type {LocalizedString} */ (`Te veel verzoeken`)
 };
 
 const pl_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Trochę wolniej`)
+	return /** @type {LocalizedString} */ (`Zbyt wiele żądań`)
 };
 
 const pt_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vá com calma`)
+	return /** @type {LocalizedString} */ (`Muitos pedidos`)
 };
 
 const ru_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Не так быстро`)
+	return /** @type {LocalizedString} */ (`Слишком много запросов`)
 };
 
 const sv_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ta det lite lugnare`)
+	return /** @type {LocalizedString} */ (`För många förfrågningar`)
 };
 
 const tr_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Biraz yavaşla`)
+	return /** @type {LocalizedString} */ (`Çok fazla istek`)
 };
 
 const zh_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`慢一点`)
+	return /** @type {LocalizedString} */ (`请求过多`)
 };
 
 const ja_errors_code_rate_limited_title = /** @type {(inputs: Errors_Code_Rate_Limited_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`少しペースを落としてください`)
+	return /** @type {LocalizedString} */ (`リクエストが多すぎます`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Slow down a little" |
+* | "Too many requests" |
 *
 * @param {Errors_Code_Rate_Limited_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

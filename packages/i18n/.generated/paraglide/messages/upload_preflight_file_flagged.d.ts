@@ -3,7 +3,7 @@ export type Upload_Preflight_File_FlaggedInputs = {};
 /**
 * | output |
 * | --- |
-* | "The file needs a ranger’s review before it goes live." |
+* | "The file needs a moderator’s review before it goes live." |
 *
 * @param {Upload_Preflight_File_FlaggedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

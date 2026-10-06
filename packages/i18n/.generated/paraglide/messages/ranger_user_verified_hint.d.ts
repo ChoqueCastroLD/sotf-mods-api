@@ -3,7 +3,7 @@ export type Ranger_User_Verified_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Verified creators publish right away when the checks pass and get higher limits." |
+* | "Trusted creators publish right away when the checks pass and get higher limits." |
 *
 * @param {Ranger_User_Verified_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Emails_Notify_Open_SignalsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Open Signals" |
+* | "Open notifications" |
 *
 * @param {Emails_Notify_Open_SignalsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Hidden_By_RangerInputs */
 
 const en_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hidden by a ranger. Only you and the rangers can see it.`)
+	return /** @type {LocalizedString} */ (`Hidden by a moderator. Only you and moderators can see it.`)
 };
 
 const es_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oculto por un guardabosques. Solo tú y los guardabosques podéis verlo.`)
+	return /** @type {LocalizedString} */ (`Oculto por un moderador. Solo tú y los moderadores podéis verlo.`)
 };
 
 const de_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Von einem Ranger ausgeblendet. Nur du und die Ranger können es sehen.`)
+	return /** @type {LocalizedString} */ (`Von einem Moderator ausgeblendet. Nur du und die Moderatoren können es sehen.`)
 };
 
 const fr_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Masqué par un ranger. Seuls vous et les rangers pouvez le voir.`)
+	return /** @type {LocalizedString} */ (`Masqué par un modérateur. Seuls vous et les modérateurs pouvez le voir.`)
 };
 
 const it_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nascosto da un ranger. Solo tu e i ranger potete vederlo.`)
+	return /** @type {LocalizedString} */ (`Nascosto da un moderatore. Solo tu e i moderatori potete vederlo.`)
 };
 
 const nl_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verborgen door een ranger. Alleen jij en de rangers kunnen het zien.`)
+	return /** @type {LocalizedString} */ (`Verborgen door een moderator. Alleen jij en de moderators kunnen het zien.`)
 };
 
 const pl_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ukryte przez strażnika. Widzisz to tylko ty i strażnicy.`)
+	return /** @type {LocalizedString} */ (`Ukryte przez moderatora. Widzisz to tylko ty i moderatorzy.`)
 };
 
 const pt_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ocultado por um guarda. Só você e os guardas podem ver.`)
+	return /** @type {LocalizedString} */ (`Ocultado por um moderador. Só você e os moderadores podem ver.`)
 };
 
 const ru_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скрыто рейнджером. Видите только вы и рейнджеры.`)
+	return /** @type {LocalizedString} */ (`Скрыто модератором. Видите только вы и модераторы.`)
 };
 
 const sv_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dold av en ranger. Bara du och rangers kan se det.`)
+	return /** @type {LocalizedString} */ (`Dold av en moderator. Bara du och moderatorer kan se det.`)
 };
 
 const tr_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bir korucu tarafından gizlendi. Yalnızca sen ve korucular görebilirsiniz.`)
+	return /** @type {LocalizedString} */ (`Bir moderatör tarafından gizlendi. Yalnızca sen ve moderatörler görebilirsiniz.`)
 };
 
 const zh_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已被护林员隐藏。只有你和护林员能看到。`)
+	return /** @type {LocalizedString} */ (`已被审核员隐藏。只有你和审核员能看到。`)
 };
 
 const ja_ui_domain_hidden_by_ranger = /** @type {(inputs: Ui_Domain_Hidden_By_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーにより非表示になりました。あなたとレンジャーだけが見られます。`)
+	return /** @type {LocalizedString} */ (`モデレーターにより非表示になりました。あなたとモデレーターだけが見られます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Hidden by a ranger. Only you and the rangers can see it." |
+* | "Hidden by a moderator. Only you and moderators can see it." |
 *
 * @param {Ui_Domain_Hidden_By_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

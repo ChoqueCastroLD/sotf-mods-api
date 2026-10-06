@@ -3,7 +3,7 @@ export type Builds_UnfollowedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Removed from your Backpack." |
+* | "You no longer follow this build." |
 *
 * @param {Builds_UnfollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

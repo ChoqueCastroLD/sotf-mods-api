@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "更多",
-  "shell_more_help": "帮助",
-  "shell_more_community": "社区",
   "shell_more_install_guide": "安装指南",
   "shell_install_app": "安装应用",
   "shell_install_app_hint": "将 SOTF Mods 添加到主屏幕",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "正在刷新…",
   "shell_offline_meta_title": "离线",
   "shell_offline_meta_description": "目前没有网络连接。恢复在线后请重试。",
-  "shell_offline_eyebrow": "离线",
   "shell_offline_title": "你已离线",
   "shell_offline_body": "目前无法访问 SOTF Mods。请检查网络连接后重试。",
   "shell_offline_retry": "重试",

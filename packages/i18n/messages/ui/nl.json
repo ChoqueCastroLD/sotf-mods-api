@@ -2,7 +2,7 @@
   "ui_close": "Sluiten",
   "ui_cancel": "Annuleren",
   "ui_dismiss": "Verbergen",
-  "ui_loading": "De kaart wordt gecontroleerd…",
+  "ui_loading": "Laden…",
   "ui_retry": "Opnieuw proberen",
   "ui_error_reference": "Ref.: {id}",
   "ui_optional": "Optioneel",

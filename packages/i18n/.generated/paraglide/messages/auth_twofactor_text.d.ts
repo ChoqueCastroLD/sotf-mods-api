@@ -3,7 +3,7 @@ export type Auth_Twofactor_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Enter the code from your authenticator app to finish signing in." |
+* | "Enter the code from your authenticator app to finish logging in." |
 *
 * @param {Auth_Twofactor_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Upload_Flag_Blueprint_InvalidInputs = {};
 /**
 * | output |
 * | --- |
-* | "This isn’t a valid BuildShare blueprint." |
+* | "This isn’t a valid BuildShare build file." |
 *
 * @param {Upload_Flag_Blueprint_InvalidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

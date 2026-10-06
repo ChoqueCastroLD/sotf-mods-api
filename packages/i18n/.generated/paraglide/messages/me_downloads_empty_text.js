@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Downloads_Empty_TextInputs */
 
 const en_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Download a mod while signed in and it shows up here, with an alert when a new version is out.`)
+	return /** @type {LocalizedString} */ (`Download a mod while logged in and it shows up here, with an alert when a new version is out.`)
 };
 
 const es_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextInputs) => LocalizedString} */ () => {
@@ -14,7 +14,7 @@ const es_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextIn
 };
 
 const de_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lade angemeldet einen Mod herunter, dann erscheint er hier – mit einem Hinweis, sobald eine neue Version erscheint.`)
+	return /** @type {LocalizedString} */ (`Lade angemeldet einen Mod herunter, dann erscheint er hier, mit einem Hinweis, sobald eine neue Version erscheint.`)
 };
 
 const fr_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextInputs) => LocalizedString} */ () => {
@@ -38,7 +38,7 @@ const pt_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextIn
 };
 
 const ru_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скачайте мод после входа, и он появится здесь — с уведомлением, когда выйдет новая версия.`)
+	return /** @type {LocalizedString} */ (`Скачайте мод после входа, и он появится здесь, с уведомлением, когда выйдет новая версия.`)
 };
 
 const sv_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_me_downloads_empty_text = /** @type {(inputs: Me_Downloads_Empty_TextIn
 /**
 * | output |
 * | --- |
-* | "Download a mod while signed in and it shows up here, with an alert when a new version is out." |
+* | "Download a mod while logged in and it shows up here, with an alert when a new version is out." |
 *
 * @param {Me_Downloads_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

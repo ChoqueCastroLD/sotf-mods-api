@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Menu_Signed_In_AsInputs */
 
 const en_auth_menu_signed_in_as = /** @type {(inputs: Auth_Menu_Signed_In_AsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signed in as`)
+	return /** @type {LocalizedString} */ (`Logged in as`)
 };
 
 const es_auth_menu_signed_in_as = /** @type {(inputs: Auth_Menu_Signed_In_AsInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_menu_signed_in_as = /** @type {(inputs: Auth_Menu_Signed_In_AsInpu
 /**
 * | output |
 * | --- |
-* | "Signed in as" |
+* | "Logged in as" |
 *
 * @param {Auth_Menu_Signed_In_AsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Builds_Import_Step2_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Put the blueprint in LocalBuildings" |
+* | "Put the file in LocalBuildings" |
 *
 * @param {Builds_Import_Step2_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

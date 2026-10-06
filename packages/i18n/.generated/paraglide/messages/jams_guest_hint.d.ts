@@ -3,7 +3,7 @@ export type Jams_Guest_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to submit an entry, follow this jam and vote." |
+* | "Log in to submit an entry, follow this jam and vote." |
 *
 * @param {Jams_Guest_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

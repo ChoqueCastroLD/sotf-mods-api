@@ -3,7 +3,7 @@ export type Auth_Flag_ResetInputs = {};
 /**
 * | output |
 * | --- |
-* | "Password changed. Sign in with your new password." |
+* | "Password changed. Log in with your new password." |
 *
 * @param {Auth_Flag_ResetInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

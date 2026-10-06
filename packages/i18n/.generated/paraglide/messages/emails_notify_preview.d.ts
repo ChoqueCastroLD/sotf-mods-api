@@ -6,8 +6,8 @@ export type Emails_Notify_PreviewInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} new signal, starting with: {first}" |
-* | * | "{count__number} new signals, starting with: {first}" |
+* | "one" | "{count__number} new notification, starting with: {first}" |
+* | * | "{count__number} new notifications, starting with: {first}" |
 *
 * @param {Emails_Notify_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

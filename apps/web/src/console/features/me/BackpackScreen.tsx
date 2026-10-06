@@ -1,5 +1,5 @@
 /**
- * `/me/backpack` (PLAN §4.3 «Me», §6.8 «Favoritos → Backpack», T0-16): the mods I follow with
+ * `/me/following` (PLAN §4.3 «Me», §6.8 «Favoritos → Backpack», T0-16): the mods I follow with
  * their update state. Filters: all · updates available. Per mod: download the latest version, turn
  * update notifications on/off and unfollow (optimistic, with «Undo»).
  */

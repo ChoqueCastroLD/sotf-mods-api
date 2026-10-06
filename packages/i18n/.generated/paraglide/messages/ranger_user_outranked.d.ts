@@ -3,7 +3,7 @@ export type Ranger_User_OutrankedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Rangers can only act on accounts below their own role." |
+* | "Moderators can only act on accounts below their own role." |
 *
 * @param {Ranger_User_OutrankedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

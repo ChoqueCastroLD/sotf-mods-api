@@ -3,7 +3,7 @@ export type Builds_Spec_Blueprint_AuthorInputs = {};
 /**
 * | output |
 * | --- |
-* | "Blueprint author" |
+* | "Author in file" |
 *
 * @param {Builds_Spec_Blueprint_AuthorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

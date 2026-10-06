@@ -3,7 +3,7 @@ export type Console_Shortcut_Go_BackpackInputs = {};
 /**
 * | output |
 * | --- |
-* | "Go to your Backpack" |
+* | "Go to Following" |
 *
 * @param {Console_Shortcut_Go_BackpackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

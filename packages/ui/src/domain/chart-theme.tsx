@@ -184,7 +184,7 @@ export function ChartFigure({ title, series, rows, rowHeader, children, height =
                     const value = row[entry.key];
                     return (
                       <td key={entry.key} className="px-3 py-1 text-end">
-                        {typeof value === 'number' ? formatCount(locale, value) : (value ?? '—')}
+                        {typeof value === 'number' ? formatCount(locale, value) : (value ?? '-')}
                       </td>
                     );
                   })}

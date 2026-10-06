@@ -3,7 +3,7 @@ export type Emails_Auth_New_Login_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "New sign-in" |
+* | "New login" |
 *
 * @param {Emails_Auth_New_Login_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

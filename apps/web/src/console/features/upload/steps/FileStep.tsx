@@ -117,7 +117,7 @@ export function FileStep({ fileKind, upload, maxBytes, target, headingId }: File
             ? ut('upload_file_intro_version', {
                 name: target.name,
                 manifestId: target.manifestId,
-                version: target.latestVersion ?? '—',
+                version: target.latestVersion ?? '-',
               })
             : fileKind === 'build'
               ? ut('upload_file_intro_build')

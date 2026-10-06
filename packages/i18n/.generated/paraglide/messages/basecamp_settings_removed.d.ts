@@ -3,7 +3,7 @@ export type Basecamp_Settings_RemovedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Removed by the rangers. Contact them if you think it is a mistake." |
+* | "Removed by moderators. Contact them if you think it is a mistake." |
 *
 * @param {Basecamp_Settings_RemovedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

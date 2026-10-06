@@ -95,12 +95,7 @@ export function JamActions({ store, root, verifyHref, maxEntries, emailVerified 
           </Button>
         ) : null}
         {follows ? (
-          <Button
-            variant="secondary"
-            onClick={toggleFollow}
-            loading={busy}
-            aria-pressed={state.following}
-          >
+          <Button variant="secondary" onClick={toggleFollow} loading={busy} aria-pressed={state.following}>
             <Icon icon={state.following ? BellRing : Bell} size={18} />
             {state.following ? t('jams_following') : t('jams_follow')}
           </Button>
@@ -136,12 +131,7 @@ export function JamActions({ store, root, verifyHref, maxEntries, emailVerified 
               <li key={entryId} className="flex flex-wrap items-center gap-2 text-sm text-fg">
                 <span className="font-semibold">{entryName(root, entryId)}</span>
                 {canWithdraw ? (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => withdraw(entryId)}
-                    disabled={busy}
-                  >
+                  <Button variant="ghost" size="sm" onClick={() => withdraw(entryId)} disabled={busy}>
                     {t('jams_withdraw')}
                   </Button>
                 ) : null}

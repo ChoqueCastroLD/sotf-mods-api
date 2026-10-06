@@ -5,7 +5,7 @@ export type Ranger_Sla_DueInputs = {
 /**
 * | output |
 * | --- |
-* | "{time} · SLA due soon" |
+* | "{time} · due soon" |
 *
 * @param {Ranger_Sla_DueInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

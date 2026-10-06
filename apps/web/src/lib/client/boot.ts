@@ -3,12 +3,12 @@
  *
  * Immediate (tiny, needed for interaction): theme/primitives enhancement, header shortcuts,
  * mobile chrome (scroll-aware bars, bottom sheets, install prompt, pull-to-refresh in the app),
- * relogin banner, moon phase, view transitions, account hint, and for members the account's
+ * relogin banner, view transitions, account hint, and for members the account's
  * display preferences (`scripts/account-settings.ts`) and the remembered language
  * (`scripts/locale-pref.ts`: saves the choice, auto-applies or asks when the URL's language
  * differs).
  * Idle (never competes with the LCP): service worker (offline page, install guide), the sheet
- * module, season + December snow, language suggestion (lazy chunk with its three messages), the
+ * module, language suggestion (lazy chunk with its three messages), the
  * analytics beacon and RUM, and ads (lazy chunk, guests with ad slots only).
  */
 import { bindCmdkTrigger } from '../../islands/cmdk/Trigger.ts';
@@ -18,7 +18,6 @@ import { initDisplayPreferences } from '../../scripts/account-settings.ts';
 import { initBeacon } from '../../scripts/beacon.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
 import { initLocalePreference } from '../../scripts/locale-pref.ts';
-import { initMoon } from '../../scripts/moon.ts';
 import { initPullToRefresh } from '../../scripts/pull-to-refresh.ts';
 import { initServiceWorker } from '../../scripts/service-worker.ts';
 import { initTheme } from '../../scripts/theme.ts';
@@ -63,7 +62,6 @@ export function boot(): void {
   safely(() => initInstall());
   safely(() => initPullToRefresh());
   safely(() => initReloginBanner());
-  safely(() => initMoon());
   safely(() => initViewTransitions());
   safely(() => initAccountHint());
   safely(() => initSignalsBell());
@@ -73,7 +71,6 @@ export function boot(): void {
     safely(() => initBeacon());
     safely(() => preloadSheets());
     safely(() => initServiceWorker());
-    safely(() => import('../../scripts/seasonal.ts').then(({ initSeasonal }) => initSeasonal()));
     if (mayNeedLanguageSuggestion()) {
       safely(() => import('../../scripts/lang-suggest.ts').then(({ initLangSuggest }) => initLangSuggest()));
     }

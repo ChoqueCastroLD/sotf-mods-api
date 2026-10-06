@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Network_TitleInputs */
 
 const en_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lost signal`)
+	return /** @type {LocalizedString} */ (`No connection`)
 };
 
 const es_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin señal`)
+	return /** @type {LocalizedString} */ (`Sin conexión`)
 };
 
 const de_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kein Signal`)
+	return /** @type {LocalizedString} */ (`Keine Verbindung`)
 };
 
 const fr_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signal perdu`)
+	return /** @type {LocalizedString} */ (`Pas de connexion`)
 };
 
 const it_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnale perso`)
+	return /** @type {LocalizedString} */ (`Nessuna connessione`)
 };
 
 const nl_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen signaal`)
+	return /** @type {LocalizedString} */ (`Geen verbinding`)
 };
 
 const pl_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak sygnału`)
+	return /** @type {LocalizedString} */ (`Brak połączenia`)
 };
 
 const pt_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem sinal`)
+	return /** @type {LocalizedString} */ (`Sem conexão`)
 };
 
 const ru_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Нет сигнала`)
+	return /** @type {LocalizedString} */ (`Нет соединения`)
 };
 
 const sv_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ingen signal`)
+	return /** @type {LocalizedString} */ (`Ingen anslutning`)
 };
 
 const tr_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyal yok`)
+	return /** @type {LocalizedString} */ (`Bağlantı yok`)
 };
 
 const zh_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号中断`)
+	return /** @type {LocalizedString} */ (`无网络连接`)
 };
 
 const ja_errors_network_title = /** @type {(inputs: Errors_Network_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`電波が届きません`)
+	return /** @type {LocalizedString} */ (`接続できません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Lost signal" |
+* | "No connection" |
 *
 * @param {Errors_Network_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

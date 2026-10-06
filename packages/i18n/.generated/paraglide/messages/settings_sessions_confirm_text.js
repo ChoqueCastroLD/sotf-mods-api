@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ device: NonNullable<unknown> }} Settings_Sessions_Confirm_TextInputs */
 
 const en_settings_sessions_confirm_text = /** @type {(inputs: Settings_Sessions_Confirm_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.device} will need to sign in again.`)
+	return /** @type {LocalizedString} */ (`${i?.device} will need to log in again.`)
 };
 
 const es_settings_sessions_confirm_text = /** @type {(inputs: Settings_Sessions_Confirm_TextInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_confirm_text = /** @type {(inputs: Settings_Sessions_
 /**
 * | output |
 * | --- |
-* | "{device} will need to sign in again." |
+* | "{device} will need to log in again." |
 *
 * @param {Settings_Sessions_Confirm_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

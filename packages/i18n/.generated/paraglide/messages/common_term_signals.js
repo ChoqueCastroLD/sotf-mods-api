@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Term_SignalsInputs */
 
 const en_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signals`)
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 const es_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Señales`)
+	return /** @type {LocalizedString} */ (`Notificaciones`)
 };
 
 const de_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signale`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen`)
 };
 
 const fr_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaux`)
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 const it_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnali`)
+	return /** @type {LocalizedString} */ (`Notifiche`)
 };
 
 const nl_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalen`)
+	return /** @type {LocalizedString} */ (`Meldingen`)
 };
 
 const pl_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sygnały`)
+	return /** @type {LocalizedString} */ (`Powiadomienia`)
 };
 
 const pt_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinais`)
+	return /** @type {LocalizedString} */ (`Notificações`)
 };
 
 const ru_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигналы`)
+	return /** @type {LocalizedString} */ (`Уведомления`)
 };
 
 const sv_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaler`)
+	return /** @type {LocalizedString} */ (`Aviseringar`)
 };
 
 const tr_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyaller`)
+	return /** @type {LocalizedString} */ (`Bildirimler`)
 };
 
 const zh_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 const ja_common_term_signals = /** @type {(inputs: Common_Term_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナル`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Signals" |
+* | "Notifications" |
 *
 * @param {Common_Term_SignalsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Filter_RangerInputs */
 
 const en_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderation`)
 };
 
 const es_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Guardabosques`)
+	return /** @type {LocalizedString} */ (`Moderación`)
 };
 
 const de_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderation`)
 };
 
 const fr_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers`)
+	return /** @type {LocalizedString} */ (`Modération`)
 };
 
 const it_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderazione`)
 };
 
 const nl_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers`)
+	return /** @type {LocalizedString} */ (`Moderatie`)
 };
 
 const pl_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnicy`)
+	return /** @type {LocalizedString} */ (`Moderacja`)
 };
 
 const pt_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Guardas`)
+	return /** @type {LocalizedString} */ (`Moderação`)
 };
 
 const ru_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджеры`)
+	return /** @type {LocalizedString} */ (`Модерация`)
 };
 
 const sv_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers`)
+	return /** @type {LocalizedString} */ (`Moderering`)
 };
 
 const tr_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular`)
+	return /** @type {LocalizedString} */ (`Moderasyon`)
 };
 
 const zh_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员`)
+	return /** @type {LocalizedString} */ (`审核`)
 };
 
 const ja_signals_filter_ranger = /** @type {(inputs: Signals_Filter_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャー`)
+	return /** @type {LocalizedString} */ (`モデレーション`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ranger" |
+* | "Moderation" |
 *
 * @param {Signals_Filter_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

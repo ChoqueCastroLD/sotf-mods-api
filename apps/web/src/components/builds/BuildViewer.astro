@@ -68,7 +68,7 @@ const facts = ready
           >
             <div role="img" aria-label={m.viewer_alt(facts)} class="size-full [&>svg]:size-full" data-viewer-svg set:html={preview.svg} />
           </div>
-          <figcaption class="font-mono text-xs text-fg-muted">{m.viewer_stats(facts)}</figcaption>
+          <figcaption class="text-xs text-fg-muted">{m.viewer_stats(facts)}</figcaption>
         </figure>
       ) : (
         <p class="text-sm text-fg-muted">

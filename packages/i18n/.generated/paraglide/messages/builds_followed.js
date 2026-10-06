@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_FollowedInputs */
 
 const en_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Added to your Backpack.`)
+	return /** @type {LocalizedString} */ (`You now follow this build.`)
 };
 
 const es_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Añadida a tu Mochila.`)
+	return /** @type {LocalizedString} */ (`Ahora sigues esta build.`)
 };
 
 const de_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zu deinem Rucksack hinzugefügt.`)
+	return /** @type {LocalizedString} */ (`Du folgst diesem Build jetzt.`)
 };
 
 const fr_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ajoutée à votre sac à dos.`)
+	return /** @type {LocalizedString} */ (`Vous suivez maintenant cette build.`)
 };
 
 const it_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aggiunta al tuo zaino.`)
+	return /** @type {LocalizedString} */ (`Ora segui questa build.`)
 };
 
 const nl_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toegevoegd aan je rugzak.`)
+	return /** @type {LocalizedString} */ (`Je volgt deze build nu.`)
 };
 
 const pl_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dodano do plecaka.`)
+	return /** @type {LocalizedString} */ (`Obserwujesz teraz ten build.`)
 };
 
 const pt_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Adicionada à sua mochila.`)
+	return /** @type {LocalizedString} */ (`Você agora segue esta build.`)
 };
 
 const ru_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Добавлено в рюкзак.`)
+	return /** @type {LocalizedString} */ (`Вы подписались на эту постройку.`)
 };
 
 const sv_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tillagt i din ryggsäck.`)
+	return /** @type {LocalizedString} */ (`Du följer nu det här bygget.`)
 };
 
 const tr_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt çantana eklendi.`)
+	return /** @type {LocalizedString} */ (`Bu yapıyı takip ediyorsun.`)
 };
 
 const zh_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已加入你的背包。`)
+	return /** @type {LocalizedString} */ (`你已关注此建筑。`)
 };
 
 const ja_builds_followed = /** @type {(inputs: Builds_FollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパックに追加しました。`)
+	return /** @type {LocalizedString} */ (`この建築をフォローしました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Added to your Backpack." |
+* | "You now follow this build." |
 *
 * @param {Builds_FollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

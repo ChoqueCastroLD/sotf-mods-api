@@ -66,10 +66,10 @@ const pt_emails_notify_item_creator_mod_published_many = /** @type {(inputs: Ema
 
 const ru_emails_notify_item_creator_mod_published_many = /** @type {(inputs: Emails_Notify_Item_Creator_Mod_Published_ManyInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("ru", i?.count, {});
 	const count__number = registry.number("ru", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} новый мод, последний — ${i?.mod}`);
-	if (count__plural === "few") return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} новых мода, последний — ${i?.mod}`);
-	if (count__plural === "many") return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} новых модов, последний — ${i?.mod}`);
-	return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} нового мода, последний — ${i?.mod}`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} новый мод, последний: ${i?.mod}`);
+	if (count__plural === "few") return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} новых мода, последний: ${i?.mod}`);
+	if (count__plural === "many") return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} новых модов, последний: ${i?.mod}`);
+	return /** @type {LocalizedString} */ (`${i?.actor} опубликовал(а) ${count__number} нового мода, последний: ${i?.mod}`)
 	
 };
 

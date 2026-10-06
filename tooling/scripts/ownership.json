@@ -269,8 +269,8 @@
       "wave": "W3",
       "include": [
         "apps/web/src/console/**",
-        "apps/web/src/pages/{basecamp,me,ranger,settings}/[...path].astro",
-        "apps/web/src/pages/signals.astro",
+        "apps/web/src/pages/{dashboard,me,moderation,settings}/[...path].astro",
+        "apps/web/src/pages/notifications.astro",
         "packages/i18n/messages/console/**"
       ],
       "exclude": [
@@ -282,16 +282,16 @@
         "apps/web/src/console/features/settings/**",
         "apps/web/src/console/features/signals/**",
         "apps/web/src/console/features/upload/**",
-        "apps/web/src/console/routes/basecamp/**",
-        "apps/web/src/console/routes/basecamp/drafts/**",
-        "apps/web/src/console/routes/basecamp/mods/$modId/new-version.tsx",
-        "apps/web/src/console/routes/basecamp/new/**",
+        "apps/web/src/console/routes/dashboard/**",
+        "apps/web/src/console/routes/dashboard/drafts/**",
+        "apps/web/src/console/routes/dashboard/mods/$modId/new-version.tsx",
+        "apps/web/src/console/routes/dashboard/new/**",
         "apps/web/src/console/routes/me/**",
         "apps/web/src/console/routes/me/kits/**",
-        "apps/web/src/console/routes/ranger/**",
-        "apps/web/src/console/routes/ranger/admin/**",
+        "apps/web/src/console/routes/moderation/**",
+        "apps/web/src/console/routes/moderation/admin/**",
         "apps/web/src/console/routes/settings/**",
-        "apps/web/src/console/routes/signals/**"
+        "apps/web/src/console/routes/notifications/**"
       ]
     },
     "WP-40": {
@@ -505,8 +505,8 @@
       "title": "Asistente de publicación (consola)",
       "wave": "W7",
       "include": [
-        "apps/web/src/console/routes/basecamp/{new,drafts}/**",
-        "apps/web/src/console/routes/basecamp/mods/$modId/new-version.tsx",
+        "apps/web/src/console/routes/dashboard/{new,drafts}/**",
+        "apps/web/src/console/routes/dashboard/mods/$modId/new-version.tsx",
         "apps/web/src/console/features/upload/**",
         "packages/i18n/messages/upload/**"
       ],
@@ -516,14 +516,14 @@
       "title": "Basecamp: resumen, analíticas, mis mods y bandeja",
       "wave": "W8",
       "include": [
-        "apps/web/src/console/routes/basecamp/**",
+        "apps/web/src/console/routes/dashboard/**",
         "apps/web/src/console/features/basecamp/**",
         "packages/i18n/messages/basecamp/**"
       ],
       "exclude": [
-        "apps/web/src/console/routes/basecamp/drafts/**",
-        "apps/web/src/console/routes/basecamp/mods/$modId/new-version.tsx",
-        "apps/web/src/console/routes/basecamp/new/**"
+        "apps/web/src/console/routes/dashboard/drafts/**",
+        "apps/web/src/console/routes/dashboard/mods/$modId/new-version.tsx",
+        "apps/web/src/console/routes/dashboard/new/**"
       ]
     },
     "WP-81": {
@@ -543,19 +543,19 @@
       "title": "Ranger Station (UI de moderación)",
       "wave": "W8",
       "include": [
-        "apps/web/src/console/routes/ranger/**",
+        "apps/web/src/console/routes/moderation/**",
         "apps/web/src/console/features/ranger/**",
         "packages/i18n/messages/ranger/**"
       ],
       "exclude": [
-        "apps/web/src/console/routes/ranger/admin/**"
+        "apps/web/src/console/routes/moderation/admin/**"
       ]
     },
     "WP-83": {
       "title": "Admin (UI)",
       "wave": "W8",
       "include": [
-        "apps/web/src/console/routes/ranger/admin/**",
+        "apps/web/src/console/routes/moderation/admin/**",
         "apps/web/src/console/features/admin/**",
         "packages/i18n/messages/admin/**"
       ],

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Creator_VerifiedInputs */
 
 const en_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verified creator`)
+	return /** @type {LocalizedString} */ (`Trusted`)
 };
 
 const es_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creador verificado`)
+	return /** @type {LocalizedString} */ (`De confianza`)
 };
 
 const de_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifizierter Creator`)
+	return /** @type {LocalizedString} */ (`Vertrauenswürdig`)
 };
 
 const fr_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créateur vérifié`)
+	return /** @type {LocalizedString} */ (`De confiance`)
 };
 
 const it_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creatore verificato`)
+	return /** @type {LocalizedString} */ (`Affidabile`)
 };
 
 const nl_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geverifieerde maker`)
+	return /** @type {LocalizedString} */ (`Vertrouwd`)
 };
 
 const pl_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zweryfikowany twórca`)
+	return /** @type {LocalizedString} */ (`Zaufany`)
 };
 
 const pt_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criador verificado`)
+	return /** @type {LocalizedString} */ (`De confiança`)
 };
 
 const ru_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Проверенный автор`)
+	return /** @type {LocalizedString} */ (`Проверенный`)
 };
 
 const sv_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verifierad skapare`)
+	return /** @type {LocalizedString} */ (`Betrodd`)
 };
 
 const tr_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Doğrulanmış yapımcı`)
+	return /** @type {LocalizedString} */ (`Güvenilir`)
 };
 
 const zh_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`认证创作者`)
+	return /** @type {LocalizedString} */ (`可信`)
 };
 
 const ja_settings_creator_verified = /** @type {(inputs: Settings_Creator_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`認証済みクリエイター`)
+	return /** @type {LocalizedString} */ (`信頼済み`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Verified creator" |
+* | "Trusted" |
 *
 * @param {Settings_Creator_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

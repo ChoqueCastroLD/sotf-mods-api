@@ -5,8 +5,8 @@ export type Settings_Sessions_Confirm_Others_TextInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} other session will end. This browser stays signed in." |
-* | * | "{count__number} other sessions will end. This browser stays signed in." |
+* | "one" | "{count__number} other session will end. This browser stays logged in." |
+* | * | "{count__number} other sessions will end. This browser stays logged in." |
 *
 * @param {Settings_Sessions_Confirm_Others_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

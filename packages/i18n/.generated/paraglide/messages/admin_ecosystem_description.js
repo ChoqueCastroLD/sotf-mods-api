@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Ecosystem_DescriptionInputs */
 
 const en_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader and RedManager releases and whether they work on each game build, as shown on the Patch Radar.`)
+	return /** @type {LocalizedString} */ (`RedLoader and RedManager releases and whether they work on each game build.`)
 };
 
 const es_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Versiones de RedLoader y RedManager y si funcionan en cada build del juego, tal como se muestra en el Radar de parches.`)
+	return /** @type {LocalizedString} */ (`Versiones de RedLoader y RedManager y si funcionan en cada build del juego.`)
 };
 
 const de_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Versionen von RedLoader und RedManager und ob sie auf jedem Spiel-Build funktionieren, wie im Patch-Radar angezeigt.`)
+	return /** @type {LocalizedString} */ (`Versionen von RedLoader und RedManager und ob sie auf jedem Spiel-Build funktionieren.`)
 };
 
 const fr_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les versions de RedLoader et RedManager et leur fonctionnement sur chaque build du jeu, comme sur le Radar des patchs.`)
+	return /** @type {LocalizedString} */ (`Les versions de RedLoader et RedManager et leur fonctionnement sur chaque build du jeu.`)
 };
 
 const it_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le versioni di RedLoader e RedManager e se funzionano su ogni build del gioco, come mostrato nel Radar delle patch.`)
+	return /** @type {LocalizedString} */ (`Le versioni di RedLoader e RedManager e se funzionano su ogni build del gioco.`)
 };
 
 const nl_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Releases van RedLoader en RedManager en of ze werken op elke gamebuild, zoals getoond op de Patchradar.`)
+	return /** @type {LocalizedString} */ (`Releases van RedLoader en RedManager en of ze werken op elke gamebuild.`)
 };
 
 const pl_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wydania RedLoadera i RedManagera i to, czy działają na każdym buildzie gry, tak jak na Radarze patchy.`)
+	return /** @type {LocalizedString} */ (`Wydania RedLoadera i RedManagera i to, czy działają na każdym buildzie gry.`)
 };
 
 const pt_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Versões do RedLoader e do RedManager e se funcionam em cada build do jogo, como aparece no Radar de patches.`)
+	return /** @type {LocalizedString} */ (`Versões do RedLoader e do RedManager e se funcionam em cada build do jogo.`)
 };
 
 const ru_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Версии RedLoader и RedManager и их работа на каждой сборке игры, как на Радаре патчей.`)
+	return /** @type {LocalizedString} */ (`Версии RedLoader и RedManager и их работа на каждой сборке игры.`)
 };
 
 const sv_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Versioner av RedLoader och RedManager och om de fungerar på varje spelbygge, som på Patchradarn.`)
+	return /** @type {LocalizedString} */ (`Versioner av RedLoader och RedManager och om de fungerar på varje spelbygge.`)
 };
 
 const tr_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader ve RedManager sürümleri ve her oyun sürümünde çalışıp çalışmadıkları, Yama Radarı’nda göründüğü gibi.`)
+	return /** @type {LocalizedString} */ (`RedLoader ve RedManager sürümleri ve her oyun sürümünde çalışıp çalışmadıkları.`)
 };
 
 const zh_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader 和 RedManager 的各个版本及其在每个游戏版本上的运行情况，与补丁雷达中显示的一致。`)
+	return /** @type {LocalizedString} */ (`RedLoader 和 RedManager 的各个版本及其在每个游戏版本上的运行情况。`)
 };
 
 const ja_admin_ecosystem_description = /** @type {(inputs: Admin_Ecosystem_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedLoader と RedManager のリリースと、各ゲームビルドでの動作状況（パッチレーダーと同じ表示）。`)
+	return /** @type {LocalizedString} */ (`RedLoader と RedManager のリリースと、各ゲームビルドでの動作状況。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "RedLoader and RedManager releases and whether they work on each game build, as shown on the Patch Radar." |
+* | "RedLoader and RedManager releases and whether they work on each game build." |
 *
 * @param {Admin_Ecosystem_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

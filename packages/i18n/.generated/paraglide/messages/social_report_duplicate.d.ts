@@ -3,7 +3,7 @@ export type Social_Report_DuplicateInputs = {};
 /**
 * | output |
 * | --- |
-* | "You already reported this mod. The rangers have it." |
+* | "You already reported this mod. The moderators will review it." |
 *
 * @param {Social_Report_DuplicateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

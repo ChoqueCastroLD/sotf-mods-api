@@ -5,7 +5,7 @@ export type Explore_Meta_Libraries_TitleInputs = {
 /**
 * | output |
 * | --- |
-* | "Sons of the Forest mod libraries ({count__number})" |
+* | "Libraries for Sons of the Forest mods ({count__number})" |
 *
 * @param {Explore_Meta_Libraries_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

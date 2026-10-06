@@ -3,7 +3,7 @@ export type Errors_Code_Internal_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Something broke at base camp" |
+* | "Server error" |
 *
 * @param {Errors_Code_Internal_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

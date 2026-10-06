@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Filter_LabelInputs */
 
 const en_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filter signals`)
+	return /** @type {LocalizedString} */ (`Filter notifications`)
 };
 
 const es_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filtrar señales`)
+	return /** @type {LocalizedString} */ (`Filtrar notificaciones`)
 };
 
 const de_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signale filtern`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen filtern`)
 };
 
 const fr_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filtrer les signaux`)
+	return /** @type {LocalizedString} */ (`Filtrer les notifications`)
 };
 
 const it_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filtra i segnali`)
+	return /** @type {LocalizedString} */ (`Filtra le notifiche`)
 };
 
 const nl_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalen filteren`)
+	return /** @type {LocalizedString} */ (`Meldingen filteren`)
 };
 
 const pl_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filtruj sygnały`)
+	return /** @type {LocalizedString} */ (`Filtruj powiadomienia`)
 };
 
 const pt_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filtrar sinais`)
+	return /** @type {LocalizedString} */ (`Filtrar notificações`)
 };
 
 const ru_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Фильтр сигналов`)
+	return /** @type {LocalizedString} */ (`Фильтр уведомлений`)
 };
 
 const sv_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filtrera signaler`)
+	return /** @type {LocalizedString} */ (`Filtrera aviseringar`)
 };
 
 const tr_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyalleri filtrele`)
+	return /** @type {LocalizedString} */ (`Bildirimleri filtrele`)
 };
 
 const zh_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`筛选信号`)
+	return /** @type {LocalizedString} */ (`筛选通知`)
 };
 
 const ja_signals_filter_label = /** @type {(inputs: Signals_Filter_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルを絞り込む`)
+	return /** @type {LocalizedString} */ (`通知を絞り込む`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Filter signals" |
+* | "Filter notifications" |
 *
 * @param {Signals_Filter_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,47 +6,47 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ mod: NonNullable<unknown> }} Emails_Notify_Item_Request_FulfilledInputs */
 
 const en_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`A mod you asked for or voted for is out: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`A mod you requested or voted for was published: ${i?.mod}`)
 };
 
 const es_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ya está publicado un mod que pediste o votaste: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Se ha publicado un mod que pediste o votaste: ${i?.mod}`)
 };
 
 const de_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ein Mod, den du angefragt oder unterstützt hast, ist erschienen: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Ein Mod, den du angefragt oder unterstützt hast, wurde veröffentlicht: ${i?.mod}`)
 };
 
 const fr_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Un mod que vous avez demandé ou soutenu est publié : ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Un mod que vous avez demandé ou soutenu a été publié : ${i?.mod}`)
 };
 
 const it_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`È uscito un mod che hai richiesto o votato: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`È stata pubblicata una mod che hai richiesto o votato: ${i?.mod}`)
 };
 
 const nl_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Een mod waar je om vroeg of op stemde is uit: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Een mod waar je om vroeg of op stemde is gepubliceerd: ${i?.mod}`)
 };
 
 const pl_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś), jest już dostępny: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Mod, o który prosiłeś(-aś) lub na który głosowałeś(-aś), został opublikowany: ${i?.mod}`)
 };
 
 const pt_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Saiu um mod que pediste ou votaste: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Foi publicado um mod que você pediu ou votou: ${i?.mod}`)
 };
 
 const ru_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Вышел мод, который вы запрашивали или за который голосовали: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Опубликован мод, который вы запрашивали или за который голосовали: ${i?.mod}`)
 };
 
 const sv_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`En mod du bett om eller röstade på är ute: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`En modd som du bett om eller röstat på har publicerats: ${i?.mod}`)
 };
 
 const tr_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`İstediğin veya oy verdiğin bir mod yayında: ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`İstediğin veya oy verdiğin bir mod yayınlandı: ${i?.mod}`)
 };
 
 const zh_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notify_Item_Request_FulfilledInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_emails_notify_item_request_fulfilled = /** @type {(inputs: Emails_Notif
 /**
 * | output |
 * | --- |
-* | "A mod you asked for or voted for is out: {mod}" |
+* | "A mod you requested or voted for was published: {mod}" |
 *
 * @param {Emails_Notify_Item_Request_FulfilledInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

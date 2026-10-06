@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ time: NonNullable<unknown> }} Ranger_Sla_OverdueInputs */
 
 const en_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · over SLA`)
+	return /** @type {LocalizedString} */ (`${i?.time} · overdue`)
 };
 
 const es_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA vencido`)
+	return /** @type {LocalizedString} */ (`${i?.time} · vencido`)
 };
 
 const de_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA überschritten`)
+	return /** @type {LocalizedString} */ (`${i?.time} · überfällig`)
 };
 
 const fr_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA dépassé`)
+	return /** @type {LocalizedString} */ (`${i?.time} · en retard`)
 };
 
 const it_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA superato`)
+	return /** @type {LocalizedString} */ (`${i?.time} · scaduto`)
 };
 
 const nl_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA verlopen`)
+	return /** @type {LocalizedString} */ (`${i?.time} · verlopen`)
 };
 
 const pl_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA przekroczone`)
+	return /** @type {LocalizedString} */ (`${i?.time} · po terminie`)
 };
 
 const pt_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA vencido`)
+	return /** @type {LocalizedString} */ (`${i?.time} · atrasado`)
 };
 
 const ru_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA нарушен`)
+	return /** @type {LocalizedString} */ (`${i?.time} · просрочено`)
 };
 
 const sv_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA överskridet`)
+	return /** @type {LocalizedString} */ (`${i?.time} · försenat`)
 };
 
 const tr_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA aşıldı`)
+	return /** @type {LocalizedString} */ (`${i?.time} · gecikti`)
 };
 
 const zh_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · 已超出 SLA`)
+	return /** @type {LocalizedString} */ (`${i?.time} · 已逾期`)
 };
 
 const ja_ranger_sla_overdue = /** @type {(inputs: Ranger_Sla_OverdueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA 超過`)
+	return /** @type {LocalizedString} */ (`${i?.time} · 期限超過`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{time} · over SLA" |
+* | "{time} · overdue" |
 *
 * @param {Ranger_Sla_OverdueInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

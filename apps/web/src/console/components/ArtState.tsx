@@ -72,30 +72,3 @@ export function ArtState({ art, title, description, action, headingLevel = 2, cl
     </section>
   );
 }
-
-/**
- * The same art as a faded backdrop of a screen header on phones (`md:hidden`): the picture sits
- * behind the heading under a gradient that returns to the page background, so text contrast stays
- * above AA. Decorative, lazy, fixed box (no layout shift).
- */
-export function ArtBackdrop({ art, className }: { art: ConsoleArt; className?: string }) {
-  const base = SRC[art];
-  return (
-    <div aria-hidden="true" className={cn('pointer-events-none absolute inset-0 overflow-hidden md:hidden', className)}>
-      <picture>
-        <source type="image/avif" srcSet={`${base}-480.avif 480w, ${base}-960.avif 960w`} sizes="100vw" />
-        <source type="image/webp" srcSet={`${base}-480.webp 480w, ${base}-960.webp 960w`} sizes="100vw" />
-        <img
-          src={`${base}-960.webp`}
-          alt=""
-          width={960}
-          height={480}
-          loading="lazy"
-          decoding="async"
-          className="size-full object-cover object-[50%_62%] opacity-75 light:opacity-35"
-        />
-      </picture>
-      <div className="absolute inset-0 bg-gradient-to-b from-bg/20 via-bg/45 to-bg" />
-    </div>
-  );
-}

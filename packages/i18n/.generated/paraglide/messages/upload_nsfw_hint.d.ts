@@ -3,7 +3,7 @@ export type Upload_Nsfw_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Hidden from survivors who haven’t opted in." |
+* | "Hidden from players who haven’t opted in." |
 *
 * @param {Upload_Nsfw_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

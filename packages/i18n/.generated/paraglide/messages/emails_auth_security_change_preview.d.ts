@@ -3,7 +3,7 @@ export type Emails_Auth_Security_Change_PreviewInputs = {};
 /**
 * | output |
 * | --- |
-* | "If this wasn’t you, act now." |
+* | "If this wasn’t you, secure your account." |
 *
 * @param {Emails_Auth_Security_Change_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Search_Page_ExploreInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore mods" |
+* | "Mods" |
 *
 * @param {Search_Page_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

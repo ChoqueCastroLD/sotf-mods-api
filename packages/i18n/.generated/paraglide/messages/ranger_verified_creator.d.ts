@@ -3,7 +3,7 @@ export type Ranger_Verified_CreatorInputs = {};
 /**
 * | output |
 * | --- |
-* | "Verified creator" |
+* | "Trusted" |
 *
 * @param {Ranger_Verified_CreatorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

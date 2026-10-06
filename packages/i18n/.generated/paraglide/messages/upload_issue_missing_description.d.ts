@@ -3,7 +3,7 @@ export type Upload_Issue_Missing_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "The blueprint has no Description." |
+* | "The build has no Description." |
 *
 * @param {Upload_Issue_Missing_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

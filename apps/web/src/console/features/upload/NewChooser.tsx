@@ -1,5 +1,5 @@
 /**
- * `/basecamp/new`: what to publish — a mod or library (zip with `manifest.json`), a BuildShare
+ * `/dashboard/new`: what to publish — a mod or library (zip with `manifest.json`), a BuildShare
  * build (JSON), or a new version of one of my mods. Open drafts are offered first.
  */
 import { buttonClasses } from '@sotf/ui/button';
@@ -58,7 +58,7 @@ export function NewChooser() {
           tone="info"
           title={ut('upload_new_drafts_title', { count: draftCount })}
           action={
-            <Link to="/basecamp/drafts" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
+            <Link to="/dashboard/drafts" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
               <Icon icon={NotebookPen} size={14} />
               {ut('upload_my_drafts')}
             </Link>
@@ -70,12 +70,12 @@ export function NewChooser() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         <Choice icon={<Icon icon={FileArchive} size={22} />} description={ut('upload_new_mod_detail')}>
-          <Link to="/basecamp/new/mod" className={stretched}>
+          <Link to="/dashboard/new/mod" className={stretched}>
             {ut('upload_new_mod')}
           </Link>
         </Choice>
         <Choice icon={<Icon icon={Blocks} size={22} />} description={ut('upload_new_build_detail')}>
-          <Link to="/basecamp/new/build" className={stretched}>
+          <Link to="/dashboard/new/build" className={stretched}>
             {ut('upload_new_build')}
           </Link>
         </Choice>
@@ -106,7 +106,7 @@ export function NewChooser() {
             {updatable.map((row) => (
               <li key={row.mod.id}>
                 <Link
-                  to="/basecamp/mods/$modId/new-version"
+                  to="/dashboard/mods/$modId/new-version"
                   params={{ modId: String(row.mod.id) }}
                   className={cn(
                     'flex items-center justify-between gap-3 rounded-md border border-border bg-surface px-3 py-2',
@@ -115,7 +115,7 @@ export function NewChooser() {
                 >
                   <span className="min-w-0 truncate text-sm font-medium text-fg">{row.mod.name}</span>
                   <span className="readout shrink-0 text-fg-muted">
-                    {row.mod.latestVersion ? `v${row.mod.latestVersion.replace(/^v/, '')}` : '—'}
+                    {row.mod.latestVersion ? `v${row.mod.latestVersion.replace(/^v/, '')}` : '-'}
                   </span>
                 </Link>
               </li>

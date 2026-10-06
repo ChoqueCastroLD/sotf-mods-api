@@ -3,7 +3,7 @@ export type Mod_Scan_SuspiciousInputs = {};
 /**
 * | output |
 * | --- |
-* | "Suspicious: a ranger is reviewing it" |
+* | "Suspicious: a moderator is reviewing it" |
 *
 * @param {Mod_Scan_SuspiciousInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

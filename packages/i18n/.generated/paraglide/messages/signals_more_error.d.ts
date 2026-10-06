@@ -3,7 +3,7 @@ export type Signals_More_ErrorInputs = {};
 /**
 * | output |
 * | --- |
-* | "Older signals didn’t load." |
+* | "Older notifications didn’t load." |
 *
 * @param {Signals_More_ErrorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

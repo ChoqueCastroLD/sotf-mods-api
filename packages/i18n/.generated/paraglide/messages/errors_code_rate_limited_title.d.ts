@@ -3,7 +3,7 @@ export type Errors_Code_Rate_Limited_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Slow down a little" |
+* | "Too many requests" |
 *
 * @param {Errors_Code_Rate_Limited_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Mod_Scan_False_PositiveInputs = {};
 /**
 * | output |
 * | --- |
-* | "Flagged by some engines, cleared by a ranger" |
+* | "Flagged by some engines, cleared by a moderator" |
 *
 * @param {Mod_Scan_False_PositiveInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

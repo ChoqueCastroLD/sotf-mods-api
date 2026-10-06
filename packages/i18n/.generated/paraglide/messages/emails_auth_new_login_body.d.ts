@@ -5,7 +5,7 @@ export type Emails_Auth_New_Login_BodyInputs = {
 /**
 * | output |
 * | --- |
-* | "Your account was signed in to on {when} (UTC) from a device or country we had not seen before." |
+* | "A login to your account was recorded on {when} (UTC) from a device or country we had not seen before." |
 *
 * @param {Emails_Auth_New_Login_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

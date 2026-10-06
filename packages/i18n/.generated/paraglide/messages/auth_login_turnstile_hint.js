@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_Turnstile_HintInputs */
 
 const en_auth_login_turnstile_hint = /** @type {(inputs: Auth_Login_Turnstile_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Complete the quick security check below, then sign in again.`)
+	return /** @type {LocalizedString} */ (`Complete the quick security check below, then log in again.`)
 };
 
 const es_auth_login_turnstile_hint = /** @type {(inputs: Auth_Login_Turnstile_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_login_turnstile_hint = /** @type {(inputs: Auth_Login_Turnstile_Hi
 /**
 * | output |
 * | --- |
-* | "Complete the quick security check below, then sign in again." |
+* | "Complete the quick security check below, then log in again." |
 *
 * @param {Auth_Login_Turnstile_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

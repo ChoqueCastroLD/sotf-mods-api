@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Sign_Out_FailedInputs */
 
 const en_console_sign_out_failed = /** @type {(inputs: Console_Sign_Out_FailedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`We couldn’t sign you out. Try again.`)
+	return /** @type {LocalizedString} */ (`We couldn’t log you out. Try again.`)
 };
 
 const es_console_sign_out_failed = /** @type {(inputs: Console_Sign_Out_FailedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_console_sign_out_failed = /** @type {(inputs: Console_Sign_Out_FailedIn
 /**
 * | output |
 * | --- |
-* | "We couldn’t sign you out. Try again." |
+* | "We couldn’t log you out. Try again." |
 *
 * @param {Console_Sign_Out_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

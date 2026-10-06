@@ -2,7 +2,7 @@
 /**
  * `/offline` (any locale): the page the service worker (`public/sw.js`) answers with when a
  * navigation fails because the device has no connection. Precached together with its stylesheet,
- * fonts and art, so it must stay self-contained: `chrome={false}` (no header or footer whose links
+ * fonts and logo, so it must stay self-contained: `chrome={false}` (no header or footer whose links
  * would all dead-end), `boot={false}` (the shared client module imports chunks the worker does not
  * cache) and one tiny script of its own with no imports.
  *
@@ -10,10 +10,10 @@
  * lists what does keep working offline: the install guide, when this device has visited it.
  * It reloads by itself when the connection returns. `noindex`; edge TTL as the other static pages.
  */
-import { lockupSvg } from '@sotf/brand/logo';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { BookOpen, RotateCw, WifiOff } from 'lucide-react';
+import { BookOpen, RotateCw } from 'lucide-react';
+import SiteLogo from '../components/layout/SiteLogo.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { setPageCache } from '../lib/cache/page.ts';
 import { pageCache } from '../lib/cache/policy.ts';
@@ -21,7 +21,6 @@ import { href } from '../lib/i18n.ts';
 
 const locale = Astro.locals.locale;
 setPageCache(Astro, pageCache.static());
-const logo = lockupSvg({ layout: 'horizontal', theme: 'adaptive', height: 26, title: '' });
 const description = m.shell_offline_meta_description();
 ---
 
@@ -31,57 +30,23 @@ const description = m.shell_offline_meta_description();
   boot={false}
   seo={{ title: m.shell_offline_meta_title(), description, noindex: true, canonical: false }}
 >
-  <!-- The contour texture is a CSS mask: preloading it as a link lets the worker cache it too. -->
-  <link rel="preload" href="/brand/topo.svg" as="image" crossorigin="anonymous" slot="head" />
   <div
     data-offline
     data-checking={m.shell_offline_checking()}
     data-still={m.shell_offline_still()}
     data-back={m.shell_offline_back_online()}
-    class="relative isolate flex min-h-dvh flex-col overflow-hidden lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)]"
+    class="flex min-h-dvh flex-col items-center justify-center px-5 py-10"
   >
-    <div class="texture-topo pointer-events-none absolute inset-0 z-[1] opacity-70" aria-hidden="true"></div>
-    <div class="relative order-1 lg:order-2">
-      <img
-        src="/art/offline-896.webp"
-        alt=""
-        width="896"
-        height="1200"
-        decoding="async"
-        fetchpriority="high"
-        class="aspect-[3/4] max-h-[50dvh] w-full object-cover object-[50%_28%] sm:max-h-[62dvh] lg:absolute lg:inset-0 lg:aspect-auto lg:max-h-none lg:h-full lg:object-[50%_30%]"
-      />
-      <div
-        class="pointer-events-none absolute inset-0 bg-linear-to-b from-bg/55 via-transparent via-45% to-bg lg:bg-linear-to-r lg:from-bg lg:via-bg/10 lg:via-35% lg:to-transparent"
-        aria-hidden="true"
-      >
-      </div>
-      <div class="absolute inset-x-0 top-0 flex px-5 pt-[max(1.25rem,var(--safe-top))] lg:hidden" aria-hidden="true">
-        <span class="text-fg" set:html={logo} />
-      </div>
-    </div>
+    <main id="main" tabindex="-1" class="flex w-full max-w-md flex-col gap-5 outline-none">
+      <SiteLogo variant="header" height={32} eager class="self-start" />
+      <h1 class="text-2xl font-bold text-balance text-fg md:text-3xl">{m.shell_offline_title()}</h1>
+      <p class="text-base text-fg-muted">{m.shell_offline_body()}</p>
 
-    <main
-      id="main"
-      tabindex="-1"
-      class="relative z-10 order-2 -mt-24 flex flex-1 flex-col justify-end gap-5 sm:justify-center px-5 pb-[max(2rem,var(--safe-bottom))] outline-none sm:-mt-28 sm:px-8 lg:order-1 lg:mt-0 lg:max-w-3xl lg:justify-center lg:justify-self-end lg:px-12 lg:py-16"
-    >
-      <span class="mb-2 hidden text-fg lg:block" aria-hidden="true" set:html={logo} />
-      <p class="readout flex items-center gap-3 text-signal">
-        <span class="relative flex size-9 items-center justify-center rounded-full border border-signal/50 text-signal">
-          <span class="absolute inset-0 rounded-full border border-signal/40 motion-safe:animate-ping-locator" aria-hidden="true"></span>
-          <Icon icon={WifiOff} size={18} />
-        </span>
-        {m.shell_offline_eyebrow()}
-      </p>
-      <h1 class="font-display-caps text-display-md text-balance text-fg lg:text-display-lg">{m.shell_offline_title()}</h1>
-      <p class="max-w-prose text-lg text-fg-muted">{m.shell_offline_body()}</p>
-
-      <div class="mt-1 flex flex-wrap items-center gap-3">
+      <div class="flex flex-wrap items-center gap-3">
         <button
           type="button"
           data-offline-retry
-          class="press inline-flex h-12 items-center gap-2.5 rounded-md bg-primary px-5 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover disabled:opacity-80"
+          class="press inline-flex h-11 items-center gap-2.5 rounded-md bg-primary px-5 font-semibold text-primary-fg hover:bg-primary-hover disabled:opacity-80"
         >
           <span class="retry-icon flex" aria-hidden="true"><Icon icon={RotateCw} size={18} /></span>
           {m.shell_offline_retry()}
@@ -90,13 +55,13 @@ const description = m.shell_offline_meta_description();
       <p data-offline-status role="status" aria-live="polite" class="min-h-6 text-sm text-fg-muted"></p>
 
       <section data-offline-available hidden class="grid gap-2 border-t border-border pt-5">
-        <h2 class="readout">{m.shell_offline_available()}</h2>
+        <h2 class="text-sm font-semibold text-fg-muted">{m.shell_offline_available()}</h2>
         <a
           data-offline-guide
           href={href('/install', locale)}
-          class="press flex min-h-16 items-center gap-3.5 rounded-lg border border-border-strong bg-surface/80 px-4 backdrop-blur-sm hover:border-primary"
+          class="press flex min-h-14 items-center gap-3.5 rounded-lg border border-border-strong bg-surface px-4 hover:border-primary"
         >
-          <span class="flex size-10 shrink-0 items-center justify-center rounded-md bg-sunken text-primary">
+          <span class="flex size-10 shrink-0 items-center justify-center rounded-md bg-sunken text-fg-muted">
             <Icon icon={BookOpen} size={20} />
           </span>
           <span class="grid">

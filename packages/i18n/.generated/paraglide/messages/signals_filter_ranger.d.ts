@@ -3,7 +3,7 @@ export type Signals_Filter_RangerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ranger" |
+* | "Moderation" |
 *
 * @param {Signals_Filter_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

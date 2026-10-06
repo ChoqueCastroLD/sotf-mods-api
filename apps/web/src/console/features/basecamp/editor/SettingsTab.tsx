@@ -2,7 +2,7 @@
  * «Status» tab of the mod editor (PLAN §7.5 «Gestión de mods», §7.4 transitions): the current
  * status and its reason, and the transitions the API allows from it — unlist, publish again,
  * archive (optionally pointing to a successor), resubmit a rejected listing, ask moderation to
- * remove the mod. Drafts are managed in `/basecamp/drafts`.
+ * remove the mod. Drafts are managed in `/dashboard/drafts`.
  */
 import { Button, buttonClasses } from '@sotf/ui/button';
 import { Combobox } from '@sotf/ui/combobox';
@@ -283,7 +283,7 @@ export function SettingsTab({ studio }: { studio: StudioMod }) {
 
       <section className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4">
         <p className="text-sm text-fg-muted">{bt('basecamp_settings_drafts')}</p>
-        <Link to="/basecamp/drafts" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
+        <Link to="/dashboard/drafts" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
           <Icon icon={NotebookPen} size={16} />
           {bt('basecamp_action_drafts')}
         </Link>

@@ -3,7 +3,7 @@ export type Settings_Sessions_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Where you’re signed in" |
+* | "Where you’re logged in" |
 *
 * @param {Settings_Sessions_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

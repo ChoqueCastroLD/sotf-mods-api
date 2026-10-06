@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Meta_Register_TitleInputs */
 
 const en_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create your account`)
+	return /** @type {LocalizedString} */ (`Register`)
 };
 
 const es_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea tu cuenta`)
+	return /** @type {LocalizedString} */ (`Registrarse`)
 };
 
 const de_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konto erstellen`)
+	return /** @type {LocalizedString} */ (`Registrieren`)
 };
 
 const fr_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créer votre compte`)
+	return /** @type {LocalizedString} */ (`Inscription`)
 };
 
 const it_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea il tuo account`)
+	return /** @type {LocalizedString} */ (`Registrazione`)
 };
 
 const nl_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Maak je account aan`)
+	return /** @type {LocalizedString} */ (`Registreren`)
 };
 
 const pl_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Załóż konto`)
+	return /** @type {LocalizedString} */ (`Rejestracja`)
 };
 
 const pt_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crie sua conta`)
+	return /** @type {LocalizedString} */ (`Registrar`)
 };
 
 const ru_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Создайте аккаунт`)
+	return /** @type {LocalizedString} */ (`Регистрация`)
 };
 
 const sv_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapa ditt konto`)
+	return /** @type {LocalizedString} */ (`Registrera`)
 };
 
 const tr_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hesabını oluştur`)
+	return /** @type {LocalizedString} */ (`Kayıt ol`)
 };
 
 const zh_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建账号`)
+	return /** @type {LocalizedString} */ (`注册`)
 };
 
 const ja_auth_meta_register_title = /** @type {(inputs: Auth_Meta_Register_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アカウントを作成`)
+	return /** @type {LocalizedString} */ (`新規登録`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Create your account" |
+* | "Register" |
 *
 * @param {Auth_Meta_Register_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

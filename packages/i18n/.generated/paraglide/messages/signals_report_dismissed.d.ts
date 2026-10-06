@@ -3,7 +3,7 @@ export type Signals_Report_DismissedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your report was reviewed — no action was needed" |
+* | "Your report was reviewed. No action was needed." |
 *
 * @param {Signals_Report_DismissedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

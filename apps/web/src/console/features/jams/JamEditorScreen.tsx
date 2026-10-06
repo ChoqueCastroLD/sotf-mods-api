@@ -1,5 +1,5 @@
 /**
- * `/ranger/jams/$jamId` — the jam editor: phase control, details, schedule, rules, categories
+ * `/moderation/jams/$jamId` — the jam editor: phase control, details, schedule, rules, categories
  * and entry moderation. Jam texts (title, rules…) are single-language; only the chrome is
  * translated.
  */
@@ -26,7 +26,7 @@ import { StagePips } from './JamArtThumb.tsx';
 import { JamEntriesPanel } from './JamEntriesPanel.tsx';
 import { categoryName, JAM_PHASES, jamPhaseLabel, jamPhaseVariant } from './phase.ts';
 
-const route = getRouteApi('/ranger/jams/$jamId');
+const route = getRouteApi('/moderation/jams/$jamId');
 
 const DATE_FIELDS = [
   'announceAt',
@@ -88,7 +88,7 @@ export function JamEditorScreen() {
       <header className="border-b border-border pb-5">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="grid gap-2">
-            <a href="/ranger/jams" className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-link">
+            <a href="/moderation/jams" className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-link">
               <Icon icon={ArrowLeft} size={16} />
               {m.jams_editor_back()}
             </a>
@@ -256,7 +256,7 @@ function PhasePanel({ jam }: { jam: AdminJam }) {
           }
           await queryClient.invalidateQueries({ queryKey: jamKeys.all });
           notify.success(m.jams_editor_deleted());
-          void navigate({ to: '/ranger/jams' });
+          void navigate({ to: '/moderation/jams' });
         }}
       />
     </Panel>

@@ -3,7 +3,7 @@ export type Auth_Meta_Login_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to SOTF Mods to follow mods, get pinged when they update and publish your own." |
+* | "Log in to SOTF Mods to follow mods, get notified when they update and publish your own." |
 *
 * @param {Auth_Meta_Login_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

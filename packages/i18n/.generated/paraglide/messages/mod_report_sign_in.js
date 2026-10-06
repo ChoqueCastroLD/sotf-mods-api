@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Report_Sign_InInputs */
 
 const en_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to report a mod. It keeps reports honest.`)
+	return /** @type {LocalizedString} */ (`Log in to report a mod.`)
 };
 
 const es_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inicia sesión para denunciar un mod. Así las denuncias son honestas.`)
+	return /** @type {LocalizedString} */ (`Inicia sesión para denunciar un mod.`)
 };
 
 const de_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Melde dich an, um einen Mod zu melden. So bleiben Meldungen ehrlich.`)
+	return /** @type {LocalizedString} */ (`Melde dich an, um einen Mod zu melden.`)
 };
 
 const fr_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Connectez-vous pour signaler un mod. Cela garde les signalements honnêtes.`)
+	return /** @type {LocalizedString} */ (`Connectez-vous pour signaler un mod.`)
 };
 
 const it_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Accedi per segnalare una mod. Così le segnalazioni restano oneste.`)
+	return /** @type {LocalizedString} */ (`Accedi per segnalare una mod.`)
 };
 
 const nl_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Log in om een mod te rapporteren. Zo blijven meldingen eerlijk.`)
+	return /** @type {LocalizedString} */ (`Log in om een mod te rapporteren.`)
 };
 
 const pl_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zaloguj się, aby zgłosić mod. Dzięki temu zgłoszenia są uczciwe.`)
+	return /** @type {LocalizedString} */ (`Zaloguj się, aby zgłosić mod.`)
 };
 
 const pt_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Entre para denunciar um mod. Assim as denúncias continuam honestas.`)
+	return /** @type {LocalizedString} */ (`Faça login para denunciar um mod.`)
 };
 
 const ru_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Войдите, чтобы пожаловаться на мод. Так жалобы остаются честными.`)
+	return /** @type {LocalizedString} */ (`Войдите, чтобы пожаловаться на мод.`)
 };
 
 const sv_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Logga in för att anmäla en mod. Det håller anmälningarna ärliga.`)
+	return /** @type {LocalizedString} */ (`Logga in för att anmäla en mod.`)
 };
 
 const tr_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bir modu şikâyet etmek için giriş yap. Böylece şikâyetler dürüst kalır.`)
+	return /** @type {LocalizedString} */ (`Bir modu şikâyet etmek için giriş yap.`)
 };
 
 const zh_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`登录后才能举报模组，这样举报更可信。`)
+	return /** @type {LocalizedString} */ (`登录后才能举报模组。`)
 };
 
 const ja_mod_report_sign_in = /** @type {(inputs: Mod_Report_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MOD を通報するにはログインしてください。通報の信頼性を保つためです。`)
+	return /** @type {LocalizedString} */ (`MOD を通報するにはログインしてください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Sign in to report a mod. It keeps reports honest." |
+* | "Log in to report a mod." |
 *
 * @param {Mod_Report_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

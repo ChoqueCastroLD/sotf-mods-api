@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Connections_TextInputs */
 
 const en_oauth_connections_text = /** @type {(inputs: Oauth_Connections_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Link Discord to sign in faster.`)
+	return /** @type {LocalizedString} */ (`Link Discord to log in faster.`)
 };
 
 const es_oauth_connections_text = /** @type {(inputs: Oauth_Connections_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_connections_text = /** @type {(inputs: Oauth_Connections_TextInpu
 };
 
 const ja_oauth_connections_text = /** @type {(inputs: Oauth_Connections_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Discord を連携すると、より素早くサインインできます。`)
+	return /** @type {LocalizedString} */ (`Discord を連携すると、より素早くログインできます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Link Discord to sign in faster." |
+* | "Link Discord to log in faster." |
 *
 * @param {Oauth_Connections_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -38,7 +38,7 @@ const pt_emails_auth_export_body = /** @type {(inputs: Emails_Auth_Export_BodyIn
 };
 
 const ru_emails_auth_export_body = /** @type {(inputs: Emails_Auth_Export_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Экспорт — это ZIP-архив со всеми записями вашего аккаунта в формате JSON.`)
+	return /** @type {LocalizedString} */ (`Экспорт представляет собой ZIP-архив со всеми записями вашего аккаунта в формате JSON.`)
 };
 
 const sv_emails_auth_export_body = /** @type {(inputs: Emails_Auth_Export_BodyInputs) => LocalizedString} */ () => {

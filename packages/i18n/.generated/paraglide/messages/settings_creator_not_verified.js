@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Creator_Not_VerifiedInputs */
 
 const en_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Not verified yet`)
+	return /** @type {LocalizedString} */ (`Not trusted yet`)
 };
 
 const es_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aún sin verificar`)
+	return /** @type {LocalizedString} */ (`Aún no es de confianza`)
 };
 
 const de_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch nicht verifiziert`)
+	return /** @type {LocalizedString} */ (`Noch nicht vertrauenswürdig`)
 };
 
 const fr_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas encore vérifié`)
+	return /** @type {LocalizedString} */ (`Pas encore de confiance`)
 };
 
 const it_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non ancora verificato`)
+	return /** @type {LocalizedString} */ (`Non ancora affidabile`)
 };
 
 const nl_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog niet geverifieerd`)
+	return /** @type {LocalizedString} */ (`Nog niet vertrouwd`)
 };
 
 const pl_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jeszcze niezweryfikowany`)
+	return /** @type {LocalizedString} */ (`Jeszcze nie zaufany`)
 };
 
 const pt_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda não verificado`)
+	return /** @type {LocalizedString} */ (`Ainda não é de confiança`)
 };
 
 const ru_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пока не проверен`)
+	return /** @type {LocalizedString} */ (`Пока не проверенный`)
 };
 
 const sv_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inte verifierad än`)
+	return /** @type {LocalizedString} */ (`Ännu inte betrodd`)
 };
 
 const tr_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz doğrulanmadı`)
+	return /** @type {LocalizedString} */ (`Henüz güvenilir değil`)
 };
 
 const zh_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`尚未认证`)
+	return /** @type {LocalizedString} */ (`尚未获得可信标记`)
 };
 
 const ja_settings_creator_not_verified = /** @type {(inputs: Settings_Creator_Not_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`未認証`)
+	return /** @type {LocalizedString} */ (`信頼済みではありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Not verified yet" |
+* | "Not trusted yet" |
 *
 * @param {Settings_Creator_Not_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

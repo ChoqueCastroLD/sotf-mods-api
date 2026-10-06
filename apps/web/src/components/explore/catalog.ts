@@ -97,7 +97,6 @@ export function buildToolbarModel(input: {
   for (const slug of state.excludeCategory) hidden.push(['excludeCategory', slug]);
   for (const slug of state.tag) hidden.push(['tag', slug]);
   for (const slug of state.excludeTag) hidden.push(['excludeTag', slug]);
-  if (state.compat !== 'any') hidden.push(['compat', state.compat]);
   if (state.multiplayer) hidden.push(['multiplayer', state.multiplayer]);
   if (state.dedicated) hidden.push(['dedicated', 'yes']);
   if (state.platform) hidden.push(['platform', state.platform]);

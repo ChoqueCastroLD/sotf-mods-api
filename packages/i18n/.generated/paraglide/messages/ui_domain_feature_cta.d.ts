@@ -3,7 +3,7 @@ export type Ui_Domain_Feature_CtaInputs = {};
 /**
 * | output |
 * | --- |
-* | "Take a look" |
+* | "View" |
 *
 * @param {Ui_Domain_Feature_CtaInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

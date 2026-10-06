@@ -3,7 +3,7 @@ export type Logs_Gone_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "This log is gone" |
+* | "This log is no longer available" |
 *
 * @param {Logs_Gone_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

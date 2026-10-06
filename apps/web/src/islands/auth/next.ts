@@ -41,7 +41,17 @@ const PUBLIC_SECTIONS: ReadonlySet<string> = new Set([
 ]);
 
 /** Console sections (PLAN §4.3): allowed, but they need a session. */
-const CONSOLE_SECTIONS: ReadonlySet<string> = new Set(['basecamp', 'me', 'ranger', 'settings', 'signals']);
+const CONSOLE_SECTIONS: ReadonlySet<string> = new Set([
+  'dashboard',
+  'me',
+  'moderation',
+  'settings',
+  'notifications',
+  // Former names: still accepted, the redirect rules send them to the new sections.
+  'basecamp',
+  'ranger',
+  'signals',
+]);
 
 /** Backslashes (browsers read them as `/`) and encoded leading slashes (`/%2F%2Fevil.test`). */
 const SUSPICIOUS = /\\|^\/(?:%2f|%5c)/i;

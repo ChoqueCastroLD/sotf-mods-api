@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Builds_Meta_Title_ShortInputs */
 
 const en_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF build`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF build`)
 };
 
 const es_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build de SOTF`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build de SOTF`)
 };
 
 const de_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF-Build`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF-Build`)
 };
 
 const fr_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build SOTF`)
+	return /** @type {LocalizedString} */ (`${i?.name} : build SOTF`)
 };
 
 const it_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build di SOTF`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build di SOTF`)
 };
 
 const nl_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF-build`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF-build`)
 };
 
 const pl_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build do SOTF`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build do SOTF`)
 };
 
 const pt_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build de SOTF`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build de SOTF`)
 };
 
 const ru_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — постройка SOTF`)
+	return /** @type {LocalizedString} */ (`${i?.name}: постройка SOTF`)
 };
 
 const sv_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF-bygge`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF-bygge`)
 };
 
 const tr_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF yapısı`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF yapısı`)
 };
 
 const zh_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF 建筑`)
+	return /** @type {LocalizedString} */ (`${i?.name}：SOTF 建筑`)
 };
 
 const ja_builds_meta_title_short = /** @type {(inputs: Builds_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF 建築`)
+	return /** @type {LocalizedString} */ (`${i?.name}：SOTF 建築`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} — SOTF build" |
+* | "{name}: SOTF build" |
 *
 * @param {Builds_Meta_Title_ShortInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,8 +1,8 @@
 # @sotf/web
 
 Astro 7 SSR server of SOTF Mods v2 (PLAN §2.5, §4): the public site (server-rendered, edge-cached,
-≤ 15 KB br of initial JS), React 19 islands, the console SPA (Basecamp, Ranger Station, settings,
-Signals, Me) and the machine endpoints (sitemaps, feeds, `llms.txt`, oEmbed, robots, downloads).
+≤ 15 KB br of initial JS), React 19 islands, the console SPA (Dashboard, Moderation, settings,
+Notifications, Me) and the machine endpoints (sitemaps, feeds, `llms.txt`, oEmbed, robots, downloads).
 The web never talks to the database: SSR calls the API on `INTERNAL_API_URL`, the browser calls
 the same-origin `/api`.
 

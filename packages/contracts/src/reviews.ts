@@ -46,7 +46,7 @@ export const ReviewDTO = dto(
     rating: Rating,
     title: z.string().max(REVIEW_RULES.titleMax).nullable(),
     bodyHtml: z.string().nullable().describe('Sanitised markdown-lite'),
-    author: UserRefDTO.nullable().describe('null = deleted account ("Deleted survivor")'),
+    author: UserRefDTO.nullable().describe('null = deleted account ("Deleted user")'),
     modVersion: z.object({ id: EntityId, version: VersionString }).nullable(),
     isVerifiedDownload: z.boolean(),
     helpfulCount: Count,

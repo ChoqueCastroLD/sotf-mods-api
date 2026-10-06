@@ -5,7 +5,7 @@ export type Mod_Toast_UnfollowedInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} left your backpack." |
+* | "You no longer follow {name}." |
 *
 * @param {Mod_Toast_UnfollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

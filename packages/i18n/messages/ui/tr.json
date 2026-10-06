@@ -2,7 +2,7 @@
   "ui_close": "Kapat",
   "ui_cancel": "İptal",
   "ui_dismiss": "Gizle",
-  "ui_loading": "Harita kontrol ediliyor…",
+  "ui_loading": "Yükleniyor…",
   "ui_retry": "Tekrar dene",
   "ui_error_reference": "Ref: {id}",
   "ui_optional": "İsteğe bağlı",

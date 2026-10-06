@@ -3,7 +3,7 @@ export type Explore_Search_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Search Sons of the Forest mods, builds, kits, creators and guides on SOTF Mods." |
+* | "Search Sons of the Forest mods, builds and creators on SOTF Mods." |
 *
 * @param {Explore_Search_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -18,9 +18,6 @@
     "test:watch": "vitest"
   },
   "devDependencies": {
-    "@fontsource/big-shoulders": "catalog:",
-    "@fontsource/big-shoulders-stencil": "catalog:",
-    "@fontsource/martian-mono": "catalog:",
     "@sotf/config": "workspace:*",
     "@types/node": "catalog:",
     "opentype.js": "catalog:",

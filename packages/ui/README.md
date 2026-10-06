@@ -2,7 +2,7 @@
 
 The «Locator» design system of SOTF Mods v2 (PLAN §3): Tailwind 4 tokens, self-hosted fonts and
 the accessible React primitives shared by the public site (server-rendered by Astro, mostly
-without hydration) and the console SPA. Domain components (ModCard, CompatCapsule…) live in
+without hydration) and the console SPA. Domain components (ModCard, BuildCard…) live in
 `src/domain/` and are owned by WP-25 (`@sotf/ui/domain`).
 
 ## Use it

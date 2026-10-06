@@ -3,7 +3,7 @@ export type Auth_Logout_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out?" |
+* | "Log out?" |
 *
 * @param {Auth_Logout_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

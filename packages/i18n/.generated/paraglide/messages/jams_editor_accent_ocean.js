@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Editor_Accent_OceanInputs */
 
 const en_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ocean blue`)
+	return /** @type {LocalizedString} */ (`Blue`)
 };
 
 const es_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Azul océano`)
+	return /** @type {LocalizedString} */ (`Azul`)
 };
 
 const de_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ozeanblau`)
+	return /** @type {LocalizedString} */ (`Blau`)
 };
 
 const fr_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bleu océan`)
+	return /** @type {LocalizedString} */ (`Bleu`)
 };
 
 const it_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Blu oceano`)
+	return /** @type {LocalizedString} */ (`Blu`)
 };
 
 const nl_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oceaanblauw`)
+	return /** @type {LocalizedString} */ (`Blauw`)
 };
 
 const pl_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Błękit oceanu`)
+	return /** @type {LocalizedString} */ (`Niebieski`)
 };
 
 const pt_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Azul oceano`)
+	return /** @type {LocalizedString} */ (`Azul`)
 };
 
 const ru_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Океанский синий`)
+	return /** @type {LocalizedString} */ (`Синий`)
 };
 
 const sv_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Havsblå`)
+	return /** @type {LocalizedString} */ (`Blå`)
 };
 
 const tr_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Okyanus mavisi`)
+	return /** @type {LocalizedString} */ (`Mavi`)
 };
 
 const zh_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`海洋蓝`)
+	return /** @type {LocalizedString} */ (`蓝色`)
 };
 
 const ja_jams_editor_accent_ocean = /** @type {(inputs: Jams_Editor_Accent_OceanInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`オーシャンブルー`)
+	return /** @type {LocalizedString} */ (`ブルー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ocean blue" |
+* | "Blue" |
 *
 * @param {Jams_Editor_Accent_OceanInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

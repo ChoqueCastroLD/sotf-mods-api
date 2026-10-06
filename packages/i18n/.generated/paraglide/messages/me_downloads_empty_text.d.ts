@@ -3,7 +3,7 @@ export type Me_Downloads_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Download a mod while signed in and it shows up here, with an alert when a new version is out." |
+* | "Download a mod while logged in and it shows up here, with an alert when a new version is out." |
 *
 * @param {Me_Downloads_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,5 +1,5 @@
 /**
- * `/ranger/audit` — the immutable audit log (PLAN §7.4 «Auditoría»): every moderator and admin
+ * `/moderation/audit` — the immutable audit log (PLAN §7.4 «Auditoría»): every moderator and admin
  * action with actor, action, target, before/after, reason and time, filterable by actor handle,
  * action (`mod.approve`, `sanction.create`…) and target (`user:12`, `mod:312`). Newest first,
  * cursor pages. The filters live in the URL so a filtered view can be shared.
@@ -45,7 +45,7 @@ export function AuditScreen({ filters }: { filters: AuditFilters }) {
     const nextActor = actor.trim().replace(/^@/, '').slice(0, 64);
     const nextAction = action.trim().slice(0, 80);
     void navigate({
-      to: '/ranger/audit',
+      to: '/moderation/audit',
       search: {
         ...(nextActor ? { actor: nextActor } : {}),
         ...(nextAction ? { action: nextAction } : {}),
@@ -108,7 +108,7 @@ export function AuditScreen({ filters }: { filters: AuditFilters }) {
         <div className="flex gap-2">
           <Button type="submit">{m.ranger_audit_apply()}</Button>
           {filtered ? (
-            <Button variant="ghost" onClick={() => void navigate({ to: '/ranger/audit', search: {} })}>
+            <Button variant="ghost" onClick={() => void navigate({ to: '/moderation/audit', search: {} })}>
               {m.ranger_audit_clear()}
             </Button>
           ) : null}
@@ -149,7 +149,7 @@ export function AuditScreen({ filters }: { filters: AuditFilters }) {
 }
 
 function json(value: unknown): string {
-  if (value === undefined || value === null) return '—';
+  if (value === undefined || value === null) return '-';
   try {
     return JSON.stringify(value, null, 2);
   } catch {
@@ -167,7 +167,7 @@ function AuditRow({ entry }: { entry: AuditEntry }) {
         <time
           dateTime={entry.createdAt}
           title={dateTime(entry.createdAt)}
-          className="font-mono text-2xs text-fg-muted tabular-nums"
+          className="text-2xs text-fg-muted tabular-nums"
         >
           {relative(entry.createdAt)}
         </time>
@@ -177,7 +177,7 @@ function AuditRow({ entry }: { entry: AuditEntry }) {
           <span className="text-fg-muted">{m.ranger_audit_system()}</span>
         )}
         <Link
-          to="/ranger/audit"
+          to="/moderation/audit"
           search={{ action: entry.action }}
           className="font-mono text-xs text-fg hover:text-link"
         >
@@ -186,14 +186,18 @@ function AuditRow({ entry }: { entry: AuditEntry }) {
         {target ? (
           entry.targetType === 'user' && entry.targetId !== null ? (
             <Link
-              to="/ranger/users/$userId"
+              to="/moderation/users/$userId"
               params={{ userId: String(entry.targetId) }}
               className="font-mono text-xs text-link hover:underline"
             >
               {target}
             </Link>
           ) : (
-            <Link to="/ranger/audit" search={{ target }} className="font-mono text-xs text-fg-muted hover:text-link">
+            <Link
+              to="/moderation/audit"
+              search={{ target }}
+              className="font-mono text-xs text-fg-muted hover:text-link"
+            >
               {target}
             </Link>
           )

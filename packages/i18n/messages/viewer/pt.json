@@ -2,7 +2,7 @@
   "viewer_heading": "Vista de cima",
   "viewer_alt": "Vista de cima de {name}: {pieces} peças, {width} por {depth} por {height} metros.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} peças",
-  "viewer_explore": "Explorar em 3D",
+  "viewer_explore": "Ver em 3D",
   "viewer_back": "Voltar à pré-visualização",
   "viewer_loading": "A carregar a vista 3D…",
   "viewer_pending": "A pré-visualização está a ser gerada. Volta daqui a um minuto.",

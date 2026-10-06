@@ -158,7 +158,7 @@ export async function runOpsAlerts(ctx: Ctx, deps: OpsAlertDeps): Promise<{ aler
   );
   const now = ctx.clock.now();
   const window = alertWindow(now);
-  const opsUrl = `${deps.siteUrl.replace(/\/+$/, '')}/ranger/admin`;
+  const opsUrl = `${deps.siteUrl.replace(/\/+$/, '')}/moderation/admin`;
   let emails = 0;
   for (const alert of alerts) {
     for (const admin of admins) {

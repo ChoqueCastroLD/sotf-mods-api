@@ -3,7 +3,7 @@ export type Basecamp_ReadoutInputs = {};
 /**
 * | output |
 * | --- |
-* | "Basecamp" |
+* | "Dashboard" |
 *
 * @param {Basecamp_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

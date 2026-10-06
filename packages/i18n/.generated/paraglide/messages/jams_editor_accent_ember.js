@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Editor_Accent_EmberInputs */
 
 const en_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ember red`)
+	return /** @type {LocalizedString} */ (`Red`)
 };
 
 const es_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rojo brasa`)
+	return /** @type {LocalizedString} */ (`Rojo`)
 };
 
 const de_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Glutrot`)
+	return /** @type {LocalizedString} */ (`Rot`)
 };
 
 const fr_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rouge braise`)
+	return /** @type {LocalizedString} */ (`Rouge`)
 };
 
 const it_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rosso brace`)
+	return /** @type {LocalizedString} */ (`Rosso`)
 };
 
 const nl_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gloedrood`)
+	return /** @type {LocalizedString} */ (`Rood`)
 };
 
 const pl_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czerwień żaru`)
+	return /** @type {LocalizedString} */ (`Czerwony`)
 };
 
 const pt_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vermelho brasa`)
+	return /** @type {LocalizedString} */ (`Vermelho`)
 };
 
 const ru_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Цвет тлеющих углей`)
+	return /** @type {LocalizedString} */ (`Красный`)
 };
 
 const sv_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Glödröd`)
+	return /** @type {LocalizedString} */ (`Röd`)
 };
 
 const tr_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kor kırmızısı`)
+	return /** @type {LocalizedString} */ (`Kırmızı`)
 };
 
 const zh_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`余烬红`)
+	return /** @type {LocalizedString} */ (`红色`)
 };
 
 const ja_jams_editor_accent_ember = /** @type {(inputs: Jams_Editor_Accent_EmberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`エンバーレッド`)
+	return /** @type {LocalizedString} */ (`レッド`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ember red" |
+* | "Red" |
 *
 * @param {Jams_Editor_Accent_EmberInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

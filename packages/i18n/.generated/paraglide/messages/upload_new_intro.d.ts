@@ -3,7 +3,7 @@ export type Upload_New_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "What are you sharing with the survivors today?" |
+* | "What do you want to publish?" |
 *
 * @param {Upload_New_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

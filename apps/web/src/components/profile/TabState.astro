@@ -3,8 +3,9 @@
  * Empty and error states of a profile tab: one title, one line and one link. The error state says
  * what happened and offers «Try again» (the same URL) with the request reference.
  */
-import PageState from '../state/PageState.astro';
+
 import { href } from '../../lib/i18n.ts';
+import PageState from '../state/PageState.astro';
 
 interface Props {
   kind: 'empty' | 'error';

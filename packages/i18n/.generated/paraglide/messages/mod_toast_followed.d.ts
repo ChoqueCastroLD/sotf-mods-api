@@ -5,7 +5,7 @@ export type Mod_Toast_FollowedInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} is in your backpack. You’ll hear about updates." |
+* | "You now follow {name}. You’ll be notified of updates." |
 *
 * @param {Mod_Toast_FollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

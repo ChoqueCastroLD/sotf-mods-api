@@ -1,6 +1,6 @@
 /**
  * CommentItem (research/03 §5.8), presentational: one comment or reply of a thread. Shows the
- * author (or «Deleted survivor»), role badges (Creator, Ranger, trusted), date and «edited»,
+ * author (or «Deleted user»), role badges (Creator, Moderator, Trusted), date and «edited»,
  * pinned / solution / bug-report markers, the sanitised body, image thumbnails, reaction counts
  * and an `actions` slot (reply, react, report — owned by the page). Replies are passed as
  * `children` (2 levels at most, rendered indented).

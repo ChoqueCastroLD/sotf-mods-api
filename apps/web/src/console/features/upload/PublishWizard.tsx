@@ -191,7 +191,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
       if (check.ok) return null;
       if (check.reason === 'not_semver') return { code: 'version_not_semver', version: manifest.version };
       if (check.reason === 'exists') return { code: 'version_exists', version: manifest.version };
-      return { code: 'version_not_greater', version: manifest.version, previous: check.previous ?? '—' };
+      return { code: 'version_not_greater', version: manifest.version, previous: check.previous ?? '-' };
     },
     [mode, target, existingVersions],
   );
@@ -356,7 +356,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
       <div className="flex min-w-0 flex-col gap-0.5">
         <dt className="text-xs text-fg-muted">{ut('upload_summary_name')}</dt>
         <dd className="truncate text-sm font-medium text-fg">
-          {data.name ?? target?.mod.name ?? manifest?.name ?? '—'}
+          {data.name ?? target?.mod.name ?? manifest?.name ?? '-'}
         </dd>
       </div>
       <div className="flex min-w-0 flex-col gap-0.5">
@@ -368,7 +368,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
       <div className="flex min-w-0 flex-col gap-0.5">
         <dt className="text-xs text-fg-muted">{ut('upload_summary_version')}</dt>
         <dd className="readout truncate text-fg">
-          {isBuild ? ut('upload_summary_version_build') : fileVersion ? `v${fileVersion.replace(/^v/, '')}` : '—'}
+          {isBuild ? ut('upload_summary_version_build') : fileVersion ? `v${fileVersion.replace(/^v/, '')}` : '-'}
           {data.version?.channel === 'beta' ? ` · ${ut('upload_channel_beta')}` : ''}
         </dd>
       </div>
@@ -382,7 +382,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
       <header className="flex flex-col gap-4">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <h1 className="font-display-caps text-2xl text-fg max-md:sr-only sm:text-3xl">{title}</h1>
-          <Link to="/basecamp/drafts" className={`${buttonClasses({ variant: 'ghost', size: 'sm' })} max-md:hidden`}>
+          <Link to="/dashboard/drafts" className={`${buttonClasses({ variant: 'ghost', size: 'sm' })} max-md:hidden`}>
             {ut('upload_my_drafts')}
           </Link>
         </div>
@@ -403,7 +403,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
           tone="danger"
           title={ut('upload_draft_limit_title')}
           action={
-            <Link to="/basecamp/drafts" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
+            <Link to="/dashboard/drafts" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
               {ut('upload_my_drafts')}
             </Link>
           }

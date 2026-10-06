@@ -3,7 +3,7 @@ export type Ranger_Triage_NoteInputs = {};
 /**
 * | output |
 * | --- |
-* | "Phone view: quick triage only. The file and manifest diffs need a tablet or a desktop." |
+* | "Phone view: quick review only. The file and manifest diffs need a tablet or a desktop." |
 *
 * @param {Ranger_Triage_NoteInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

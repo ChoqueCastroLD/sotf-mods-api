@@ -1,5 +1,7 @@
 # 01 — Contrato de compatibilidad hacia atrás (legacy → v2)
 
+> **Nota (2026-10-06):** [CLASSIC.md](../CLASSIC.md) prevalece sobre este documento en la identidad «Locator», la landing y la gamificación (logros, insignias, XP, hitos, premios, kits, Patch Radar, mapa de la isla). Donde discrepen, manda CLASSIC.md. Este texto se conserva como histórico y no se reescribe.
+
 > Track de investigación: **BACKWARD-COMPATIBILITY CONTRACT**
 > Fecha: 2026-09-29 · Estado: investigación completada (solo lectura; nada se modificó en producción ni en los repos legacy)
 > Fixtures reales capturados: [`fixtures/01-compat/`](./fixtures/01-compat/) (38 respuestas JSON de producción + `INDEX.tsv` con status/content-type + cabeceras CORS)

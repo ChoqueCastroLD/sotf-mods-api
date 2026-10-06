@@ -6,7 +6,7 @@ anchors: [what, who, trust, money, contact]
 
 # SOTF Mods 是什么
 
-SOTF Mods 是 **Sons of the Forest** 模组社区的家园。自 2023 年起，这里托管为游戏模组加载器 **RedLoader** 制作的模组、库和 BuildShare 蓝图，是目前最大的 RedLoader 模组库。
+SOTF Mods 是 **Sons of the Forest** 模组社区的家园。自 2023 年起，这里托管为游戏模组加载器 **RedLoader** 制作的模组、库和 BuildShare 建筑，是目前最大的 RedLoader 模组库。
 
 所有内容都可以免费直接从我们的存储下载：无需账号、无需等待、无需下载器。社区的模组管理器 RedManager 读取的是同一个模组库，因此这里的任何模组都能一键安装。
 

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Editor_Rejected_TextInputs */
 
 const en_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The rangers asked for changes. Fix the listing and resubmit it from the Status tab.`)
+	return /** @type {LocalizedString} */ (`Moderators asked for changes. Fix the listing and resubmit it from the Status tab.`)
 };
 
 const es_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los guardabosques pidieron cambios. Corrige la ficha y reenvíala desde la pestaña Estado.`)
+	return /** @type {LocalizedString} */ (`Los moderadores pidieron cambios. Corrige la ficha y reenvíala desde la pestaña Estado.`)
 };
 
 const de_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Ranger haben Änderungen erbeten. Korrigiere die Seite und reiche sie im Tab Status erneut ein.`)
+	return /** @type {LocalizedString} */ (`Die Moderatoren haben Änderungen erbeten. Korrigiere die Seite und reiche sie im Tab Status erneut ein.`)
 };
 
 const fr_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rangers ont demandé des modifications. Corrigez la fiche et renvoyez-la depuis l’onglet État.`)
+	return /** @type {LocalizedString} */ (`Les modérateurs ont demandé des modifications. Corrigez la fiche et renvoyez-la depuis l’onglet État.`)
 };
 
 const it_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I ranger hanno chiesto modifiche. Correggi la scheda e rinviala dalla scheda Stato.`)
+	return /** @type {LocalizedString} */ (`I moderatori hanno chiesto modifiche. Correggi la scheda e rinviala dalla scheda Stato.`)
 };
 
 const nl_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De rangers vroegen om wijzigingen. Pas de pagina aan en stuur hem opnieuw in via het tabblad Status.`)
+	return /** @type {LocalizedString} */ (`De moderators vroegen om wijzigingen. Pas de pagina aan en stuur hem opnieuw in via het tabblad Status.`)
 };
 
 const pl_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnicy poprosili o zmiany. Popraw stronę i wyślij ją ponownie z karty Stan.`)
+	return /** @type {LocalizedString} */ (`Moderatorzy poprosili o zmiany. Popraw stronę i wyślij ją ponownie z karty Stan.`)
 };
 
 const pt_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os guardas pediram alterações. Corrija a página e reenvie pela aba Estado.`)
+	return /** @type {LocalizedString} */ (`Os moderadores pediram alterações. Corrija a página e reenvie pela aba Estado.`)
 };
 
 const ru_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджеры попросили внести изменения. Исправьте страницу и отправьте её снова на вкладке «Статус».`)
+	return /** @type {LocalizedString} */ (`Модераторы попросили внести изменения. Исправьте страницу и отправьте её снова на вкладке «Статус».`)
 };
 
 const sv_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers har begärt ändringar. Rätta sidan och skicka in den igen under fliken Status.`)
+	return /** @type {LocalizedString} */ (`Moderatorerna har begärt ändringar. Rätta sidan och skicka in den igen under fliken Status.`)
 };
 
 const tr_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular değişiklik istedi. Sayfayı düzelt ve Durum sekmesinden yeniden gönder.`)
+	return /** @type {LocalizedString} */ (`Moderatörler değişiklik istedi. Sayfayı düzelt ve Durum sekmesinden yeniden gönder.`)
 };
 
 const zh_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员要求修改。请修正页面，然后在“状态”标签中重新提交。`)
+	return /** @type {LocalizedString} */ (`版主要求修改。请修正页面，然后在“状态”标签中重新提交。`)
 };
 
 const ja_basecamp_editor_rejected_text = /** @type {(inputs: Basecamp_Editor_Rejected_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーから修正の依頼がありました。ページを直して「状態」タブから再提出してください。`)
+	return /** @type {LocalizedString} */ (`モデレーターから修正の依頼がありました。ページを直して「状態」タブから再提出してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The rangers asked for changes. Fix the listing and resubmit it from the Status tab." |
+* | "Moderators asked for changes. Fix the listing and resubmit it from the Status tab." |
 *
 * @param {Basecamp_Editor_Rejected_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

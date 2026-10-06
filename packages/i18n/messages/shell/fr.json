@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Plus",
-  "shell_more_help": "Aide",
-  "shell_more_community": "Communauté",
   "shell_more_install_guide": "Guide d’installation",
   "shell_install_app": "Installer l’application",
   "shell_install_app_hint": "Ajoutez SOTF Mods à votre écran d’accueil",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Actualisation…",
   "shell_offline_meta_title": "Hors ligne",
   "shell_offline_meta_description": "Aucune connexion pour le moment. Réessayez une fois de nouveau en ligne.",
-  "shell_offline_eyebrow": "Hors ligne",
   "shell_offline_title": "Vous êtes hors ligne",
   "shell_offline_body": "SOTF Mods est inaccessible pour le moment. Vérifiez votre connexion et réessayez.",
   "shell_offline_retry": "Réessayer",

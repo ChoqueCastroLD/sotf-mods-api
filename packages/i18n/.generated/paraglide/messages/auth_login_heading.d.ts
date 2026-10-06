@@ -3,7 +3,7 @@ export type Auth_Login_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in" |
+* | "Log in" |
 *
 * @param {Auth_Login_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

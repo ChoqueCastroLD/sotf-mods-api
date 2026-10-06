@@ -17,7 +17,7 @@ describe('describeProblem', () => {
   });
 
   it('translates by code', () => {
-    expect(describeProblem('NOT_FOUND', { locale: 'es' }).title).toBe('No está en el mapa');
+    expect(describeProblem('NOT_FOUND', { locale: 'es' }).title).toBe('No encontrado');
     expect(describeProblem('UNAUTHENTICATED', { locale: 'de' }).title).toBe('Melde dich an, um fortzufahren');
   });
 
@@ -26,7 +26,7 @@ describe('describeProblem', () => {
       'Demasiadas solicitudes. Vuelve a intentarlo en 30 s.',
     );
     expect(describeProblem('RATE_LIMITED', { locale: 'en', retryAfterSeconds: 0 }).detail).toBe(
-      'Too many requests. Try again in a moment.',
+      'Wait a moment and try again.',
     );
   });
 

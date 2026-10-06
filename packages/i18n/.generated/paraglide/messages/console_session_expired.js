@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Session_ExpiredInputs */
 
 const en_console_session_expired = /** @type {(inputs: Console_Session_ExpiredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your session ended. Sign in again to continue.`)
+	return /** @type {LocalizedString} */ (`Your session ended. Log in again to continue.`)
 };
 
 const es_console_session_expired = /** @type {(inputs: Console_Session_ExpiredInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_console_session_expired = /** @type {(inputs: Console_Session_ExpiredIn
 /**
 * | output |
 * | --- |
-* | "Your session ended. Sign in again to continue." |
+* | "Your session ended. Log in again to continue." |
 *
 * @param {Console_Session_ExpiredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

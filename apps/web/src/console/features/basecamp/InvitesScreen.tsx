@@ -1,5 +1,5 @@
 /**
- * `/basecamp/invites` — co-author invitations I received (T1-12): accept to edit the mod's known
+ * `/dashboard/invites` — co-author invitations I received (T1-12): accept to edit the mod's known
  * issues and FAQ and release versions, or decline. The notification «invited you to co-author»
  * leads here.
  */
@@ -105,7 +105,7 @@ export function InvitesScreen() {
         title={kt('mod_knowledge_invites_title')}
         description={kt('mod_knowledge_invites_intro')}
         actions={
-          <Link to="/basecamp/mods" className="text-sm text-fg-muted hover:text-fg">
+          <Link to="/dashboard/mods" className="text-sm text-fg-muted hover:text-fg">
             {kt('mod_knowledge_invites_back')}
           </Link>
         }

@@ -3,7 +3,7 @@ export type Upload_Issue_Invalid_ThumbnailInputs = {};
 /**
 * | output |
 * | --- |
-* | "The blueprint thumbnail is unreadable." |
+* | "The build thumbnail is unreadable." |
 *
 * @param {Upload_Issue_Invalid_ThumbnailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

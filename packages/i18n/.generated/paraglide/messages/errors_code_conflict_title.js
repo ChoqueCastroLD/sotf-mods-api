@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Conflict_TitleInputs */
 
 const en_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Someone got there first`)
+	return /** @type {LocalizedString} */ (`Changed in the meantime`)
 };
 
 const es_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alguien llegó antes`)
+	return /** @type {LocalizedString} */ (`Cambió mientras tanto`)
 };
 
 const de_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jemand war schneller`)
+	return /** @type {LocalizedString} */ (`Zwischenzeitlich geändert`)
 };
 
 const fr_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quelqu’un est passé avant vous`)
+	return /** @type {LocalizedString} */ (`Modifié entre-temps`)
 };
 
 const it_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Qualcuno è arrivato prima`)
+	return /** @type {LocalizedString} */ (`Modificato nel frattempo`)
 };
 
 const nl_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Iemand was je voor`)
+	return /** @type {LocalizedString} */ (`Intussen gewijzigd`)
 };
 
 const pl_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ktoś był szybszy`)
+	return /** @type {LocalizedString} */ (`Zmieniono w międzyczasie`)
 };
 
 const pt_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alguém chegou antes`)
+	return /** @type {LocalizedString} */ (`Alterado nesse meio-tempo`)
 };
 
 const ru_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Кто-то успел раньше`)
+	return /** @type {LocalizedString} */ (`Изменено за это время`)
 };
 
 const sv_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Någon hann före`)
+	return /** @type {LocalizedString} */ (`Ändrades under tiden`)
 };
 
 const tr_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Biri senden önce davrandı`)
+	return /** @type {LocalizedString} */ (`Bu sırada değiştirildi`)
 };
 
 const zh_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`有人抢先一步`)
+	return /** @type {LocalizedString} */ (`内容已被更改`)
 };
 
 const ja_errors_code_conflict_title = /** @type {(inputs: Errors_Code_Conflict_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`先に誰かが変更しました`)
+	return /** @type {LocalizedString} */ (`その間に変更されました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Someone got there first" |
+* | "Changed in the meantime" |
 *
 * @param {Errors_Code_Conflict_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

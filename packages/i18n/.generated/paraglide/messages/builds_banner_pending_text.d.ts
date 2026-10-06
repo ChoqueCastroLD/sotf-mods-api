@@ -3,7 +3,7 @@ export type Builds_Banner_Pending_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "A ranger will check this build soon. Until then it stays out of listings and search." |
+* | "A moderator will check this build soon. Until then it stays out of listings and search." |
 *
 * @param {Builds_Banner_Pending_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

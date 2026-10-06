@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Booth_CloseInputs */
 
 const en_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Close the voting booth`)
+	return /** @type {LocalizedString} */ (`Close voting view`)
 };
 
 const es_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cerrar la cabina de votación`)
+	return /** @type {LocalizedString} */ (`Cerrar la vista de votación`)
 };
 
 const de_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wahlkabine schließen`)
+	return /** @type {LocalizedString} */ (`Abstimmungsansicht schließen`)
 };
 
 const fr_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fermer l'isoloir`)
+	return /** @type {LocalizedString} */ (`Fermer la vue du vote`)
 };
 
 const it_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chiudi la cabina di voto`)
+	return /** @type {LocalizedString} */ (`Chiudi la schermata di voto`)
 };
 
 const nl_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Stemhokje sluiten`)
+	return /** @type {LocalizedString} */ (`Stemscherm sluiten`)
 };
 
 const pl_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zamknij kabinę`)
+	return /** @type {LocalizedString} */ (`Zamknij widok głosowania`)
 };
 
 const pt_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fechar a cabine de votação`)
+	return /** @type {LocalizedString} */ (`Fechar a tela de votação`)
 };
 
 const ru_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Закрыть кабину`)
+	return /** @type {LocalizedString} */ (`Закрыть окно голосования`)
 };
 
 const sv_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Stäng valbåset`)
+	return /** @type {LocalizedString} */ (`Stäng röstningsvyn`)
 };
 
 const tr_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oy kabinini kapat`)
+	return /** @type {LocalizedString} */ (`Oylama görünümünü kapat`)
 };
 
 const zh_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`关闭投票亭`)
+	return /** @type {LocalizedString} */ (`关闭投票界面`)
 };
 
 const ja_jams_booth_close = /** @type {(inputs: Jams_Booth_CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`投票ブースを閉じる`)
+	return /** @type {LocalizedString} */ (`投票画面を閉じる`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Close the voting booth" |
+* | "Close voting view" |
 *
 * @param {Jams_Booth_CloseInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

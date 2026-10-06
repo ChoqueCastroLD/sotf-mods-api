@@ -3,7 +3,7 @@ export type Upload_Review_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Last look before a ranger sees it. Fix the errors; warnings are advice." |
+* | "Last check before moderation reviews it. Fix the errors; warnings are only advice." |
 *
 * @param {Upload_Review_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

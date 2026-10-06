@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Not_Found_TitleInputs */
 
 const en_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Not on the map`)
+	return /** @type {LocalizedString} */ (`Not found`)
 };
 
 const es_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No está en el mapa`)
+	return /** @type {LocalizedString} */ (`No encontrado`)
 };
 
 const de_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nicht auf der Karte`)
+	return /** @type {LocalizedString} */ (`Nicht gefunden`)
 };
 
 const fr_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Introuvable sur la carte`)
+	return /** @type {LocalizedString} */ (`Introuvable`)
 };
 
 const it_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non è sulla mappa`)
+	return /** @type {LocalizedString} */ (`Non trovato`)
 };
 
 const nl_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niet op de kaart`)
+	return /** @type {LocalizedString} */ (`Niet gevonden`)
 };
 
 const pl_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nie ma tego na mapie`)
+	return /** @type {LocalizedString} */ (`Nie znaleziono`)
 };
 
 const pt_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Não está no mapa`)
+	return /** @type {LocalizedString} */ (`Não encontrado`)
 };
 
 const ru_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Этого нет на карте`)
+	return /** @type {LocalizedString} */ (`Не найдено`)
 };
 
 const sv_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inte på kartan`)
+	return /** @type {LocalizedString} */ (`Hittades inte`)
 };
 
 const tr_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Haritada yok`)
+	return /** @type {LocalizedString} */ (`Bulunamadı`)
 };
 
 const zh_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`地图上找不到`)
+	return /** @type {LocalizedString} */ (`未找到`)
 };
 
 const ja_errors_code_not_found_title = /** @type {(inputs: Errors_Code_Not_Found_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`地図に見当たりません`)
+	return /** @type {LocalizedString} */ (`見つかりません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Not on the map" |
+* | "Not found" |
 *
 * @param {Errors_Code_Not_Found_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

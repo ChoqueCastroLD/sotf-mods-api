@@ -117,7 +117,7 @@ export function opsAlert(p: OpsAlertPayload, c: TemplateContext): TemplateOutput
       name: 'admin',
       heading: p.summary,
       paragraphs: p.details.length > 0 ? p.details : ['No further details.'],
-      action: { label: 'Open the operations readout', url: p.opsUrl },
+      action: { label: 'Open the operations page', url: p.opsUrl },
       notes: [
         `Checked at ${emailDateTime(c.locale, p.checkedAt)} (alert: ${p.key}). The same alert is sent again at most every 6 hours while it lasts.`,
       ],

@@ -3,7 +3,7 @@ export type Ranger_Decision_No_TemplateInputs = {};
 /**
 * | output |
 * | --- |
-* | "No template — only my note" |
+* | "No template, only my note" |
 *
 * @param {Ranger_Decision_No_TemplateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

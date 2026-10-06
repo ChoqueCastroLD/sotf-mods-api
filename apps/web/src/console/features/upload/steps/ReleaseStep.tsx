@@ -55,7 +55,7 @@ export function ReleaseStep({ mode, isBuild, data, update, fileVersion, check, h
                   ? ut('upload_block_version_not_semver', { version: fileVersion })
                   : check.reason === 'exists'
                     ? ut('upload_block_version_exists', { version: fileVersion })
-                    : ut('upload_block_version_not_greater', { version: fileVersion, previous: check.previous ?? '—' })}
+                    : ut('upload_block_version_not_greater', { version: fileVersion, previous: check.previous ?? '-' })}
               </Callout>
             ) : (
               <p className="text-xs text-fg-muted">{ut('upload_version_from_manifest')}</p>

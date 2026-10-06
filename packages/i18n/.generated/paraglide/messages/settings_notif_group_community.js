@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Notif_Group_CommunityInputs */
 
 const en_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Community and Rangers`)
+	return /** @type {LocalizedString} */ (`Community and moderation`)
 };
 
 const es_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Comunidad y guardabosques`)
+	return /** @type {LocalizedString} */ (`Comunidad y moderación`)
 };
 
 const de_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Community und Ranger`)
+	return /** @type {LocalizedString} */ (`Community und Moderation`)
 };
 
 const fr_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Communauté et rangers`)
+	return /** @type {LocalizedString} */ (`Communauté et modération`)
 };
 
 const it_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Community e ranger`)
+	return /** @type {LocalizedString} */ (`Community e moderazione`)
 };
 
 const nl_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Community en rangers`)
+	return /** @type {LocalizedString} */ (`Community en moderatie`)
 };
 
 const pl_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Społeczność i strażnicy`)
+	return /** @type {LocalizedString} */ (`Społeczność i moderacja`)
 };
 
 const pt_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Comunidade e guardas`)
+	return /** @type {LocalizedString} */ (`Comunidade e moderação`)
 };
 
 const ru_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сообщество и рейнджеры`)
+	return /** @type {LocalizedString} */ (`Сообщество и модерация`)
 };
 
 const sv_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Community och rangers`)
+	return /** @type {LocalizedString} */ (`Community och moderering`)
 };
 
 const tr_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Topluluk ve korucular`)
+	return /** @type {LocalizedString} */ (`Topluluk ve moderasyon`)
 };
 
 const zh_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`社区和护林员`)
+	return /** @type {LocalizedString} */ (`社区和审核`)
 };
 
 const ja_settings_notif_group_community = /** @type {(inputs: Settings_Notif_Group_CommunityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`コミュニティとレンジャー`)
+	return /** @type {LocalizedString} */ (`コミュニティとモデレーション`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Community and Rangers" |
+* | "Community and moderation" |
 *
 * @param {Settings_Notif_Group_CommunityInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

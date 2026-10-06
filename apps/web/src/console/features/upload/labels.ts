@@ -79,8 +79,8 @@ const ISSUE_LABELS: Readonly<Record<string, Label>> = {
 };
 
 export function issueLabel(code: string, field: string): string {
-  if (code === 'invalid_field') return ut('upload_issue_invalid_field', { field: field || '—' });
-  return ISSUE_LABELS[code]?.() ?? ut('upload_issue_invalid_field', { field: field || '—' });
+  if (code === 'invalid_field') return ut('upload_issue_invalid_field', { field: field || '-' });
+  return ISSUE_LABELS[code]?.() ?? ut('upload_issue_invalid_field', { field: field || '-' });
 }
 
 /** Preflight rows (`PreflightItemDTO.code`: flag codes and listing checks). */

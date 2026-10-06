@@ -3,7 +3,7 @@ export type Ranger_Reauth_ActionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in again" |
+* | "Log in again" |
 *
 * @param {Ranger_Reauth_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@ export type Builds_Meta_Title_ShortInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} — SOTF build" |
+* | "{name}: SOTF build" |
 *
 * @param {Builds_Meta_Title_ShortInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

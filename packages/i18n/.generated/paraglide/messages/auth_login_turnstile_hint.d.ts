@@ -3,7 +3,7 @@ export type Auth_Login_Turnstile_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Complete the quick security check below, then sign in again." |
+* | "Complete the quick security check below, then log in again." |
 *
 * @param {Auth_Login_Turnstile_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,5 +1,5 @@
 /**
- * `/signals` (PLAN §4.3, §7.3; research/03 §6.12): every signal, newest first, grouped by day
+ * `/notifications` (PLAN §4.3, §7.3; research/03 §6.12): every signal, newest first, grouped by day
  * (Today · Yesterday · dates), with the filters All · Mentions · Updates · My mods · Ranger,
  * «Mark all as read», per-row «Mark as read», «Download» on new versions and a link to the
  * notification settings. The list refreshes itself on the SSE `notification` event (keys under
@@ -145,7 +145,7 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
           return (
             <li key={value}>
               <Link
-                to="/signals"
+                to="/notifications"
                 search={value === 'all' ? {} : { filter: value }}
                 aria-current={active ? 'page' : undefined}
                 className={cn(
@@ -237,7 +237,7 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
             description={st('signals_empty_filtered_text')}
             action={
               <Link
-                to="/signals"
+                to="/notifications"
                 search={{}}
                 className="inline-flex h-10 items-center rounded-md border border-border-strong px-4 text-sm font-semibold text-fg hover:bg-fg/8"
               >

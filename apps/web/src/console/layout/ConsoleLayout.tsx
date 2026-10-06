@@ -34,7 +34,7 @@ const ShortcutsDialog = lazy(() => import('./ShortcutsDialog.tsx'));
 export const MAIN_ID = 'console-main';
 
 /** Screens whose primary action is «publish something new» (a floating button on phones). */
-const FAB_PATHS: ReadonlySet<string> = new Set(['/basecamp', '/basecamp/mods', '/basecamp/drafts']);
+const FAB_PATHS: ReadonlySet<string> = new Set(['/dashboard', '/dashboard/mods', '/dashboard/drafts']);
 
 /** Deepest static route title (`staticData.title`), applied unless a screen set its own. */
 function useStaticTitle(pathname: string): (() => string) | undefined {
@@ -184,7 +184,7 @@ export function ConsoleLayout() {
             </main>
           </div>
           {tabs && FAB_PATHS.has(pathname.replace(/\/+$/, '') || '/') ? (
-            <Fab to="/basecamp/new/mod" label={t('console_nav_new_mod')} icon={Plus} />
+            <Fab to="/dashboard/new/mod" label={t('console_nav_new_mod')} icon={Plus} />
           ) : null}
         </div>
         {tabs ? <TabBar viewer={viewer} area={area} unread={me.unreadNotifications} /> : null}

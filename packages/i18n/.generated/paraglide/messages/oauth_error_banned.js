@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Error_BannedInputs */
 
 const en_oauth_error_banned = /** @type {(inputs: Oauth_Error_BannedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This account can’t sign in.`)
+	return /** @type {LocalizedString} */ (`This account can’t log in.`)
 };
 
 const es_oauth_error_banned = /** @type {(inputs: Oauth_Error_BannedInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_error_banned = /** @type {(inputs: Oauth_Error_BannedInputs) => L
 };
 
 const ja_oauth_error_banned = /** @type {(inputs: Oauth_Error_BannedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このアカウントではサインインできません。`)
+	return /** @type {LocalizedString} */ (`このアカウントではログインできません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "This account can’t sign in." |
+* | "This account can’t log in." |
 *
 * @param {Oauth_Error_BannedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

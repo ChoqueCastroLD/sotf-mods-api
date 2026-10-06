@@ -1,5 +1,7 @@
 # 02 — Modelo de datos, migración sin pérdida y datos de desarrollo
 
+> **Nota (2026-10-06):** [CLASSIC.md](../CLASSIC.md) prevalece sobre este documento en la identidad «Locator», la landing y la gamificación (logros, insignias, XP, hitos, premios, kits, Patch Radar, mapa de la isla). Donde discrepen, manda CLASSIC.md. Este texto se conserva como histórico y no se reescribe.
+
 > Track de investigación: MODELO DE DATOS, MIGRACIÓN SIN PÉRDIDA DE DATOS y DATOS PARA DESARROLLO.
 > Fecha: 2026-09-29. Todo lo medido en producción se obtuvo con peticiones GET de solo lectura (API pública, HEAD/Range a R2 y GET a la API de Coolify). No se llamó a ningún endpoint que modifique estado (ni descargas vía API, ni favoritos, ni approve).
 > Snapshot de datos públicos guardado (sin secretos) en `/root/sotf-mods/.research-cache/public-api-2026-09-29/`, así el seed no tiene que volver a pedirle nada a prod.

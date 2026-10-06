@@ -3,7 +3,7 @@ export type Ranger_Audit_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "No ranger action has been logged yet." |
+* | "No moderation action has been logged yet." |
 *
 * @param {Ranger_Audit_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

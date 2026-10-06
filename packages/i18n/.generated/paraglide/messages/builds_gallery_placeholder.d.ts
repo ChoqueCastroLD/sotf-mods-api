@@ -3,7 +3,7 @@ export type Builds_Gallery_PlaceholderInputs = {};
 /**
 * | output |
 * | --- |
-* | "No pictures yet. The blueprint had no embedded thumbnail." |
+* | "No pictures yet. The build file has no embedded thumbnail." |
 *
 * @param {Builds_Gallery_PlaceholderInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

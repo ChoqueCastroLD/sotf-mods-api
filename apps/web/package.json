@@ -2,7 +2,7 @@
   "name": "@sotf/web",
   "version": "0.0.0",
   "private": true,
-  "description": "Astro 7 SSR site with React 19 islands and the console SPA (Basecamp, Ranger Station, settings).",
+  "description": "Astro 7 SSR site with React 19 islands and the console SPA (Dashboard, Moderation, settings).",
   "type": "module",
   "scripts": {
     "dev": "astro dev --host 127.0.0.1 --port 47321",

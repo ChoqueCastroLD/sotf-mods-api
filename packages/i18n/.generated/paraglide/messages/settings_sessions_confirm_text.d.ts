@@ -5,7 +5,7 @@ export type Settings_Sessions_Confirm_TextInputs = {
 /**
 * | output |
 * | --- |
-* | "{device} will need to sign in again." |
+* | "{device} will need to log in again." |
 *
 * @param {Settings_Sessions_Confirm_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

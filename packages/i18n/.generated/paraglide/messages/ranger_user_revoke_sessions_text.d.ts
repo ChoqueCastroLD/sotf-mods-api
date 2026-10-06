@@ -3,7 +3,7 @@ export type Ranger_User_Revoke_Sessions_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Every session of this account ends now. They can sign in again unless they are suspended or banned." |
+* | "Every session of this account ends now. They can log in again unless they are suspended or banned." |
 *
 * @param {Ranger_User_Revoke_Sessions_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

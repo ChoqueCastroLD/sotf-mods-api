@@ -3,7 +3,7 @@ export type Jams_Booth_CloseInputs = {};
 /**
 * | output |
 * | --- |
-* | "Close the voting booth" |
+* | "Close voting view" |
 *
 * @param {Jams_Booth_CloseInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

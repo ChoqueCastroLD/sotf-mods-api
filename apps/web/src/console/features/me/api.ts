@@ -1,5 +1,5 @@
 /**
- * Data of the «You» area (`/me/backpack`, `/me/downloads`; WP-81 on WP-42, WP-31, WP-50, WP-60).
+ * Data of the «You» area (`/me/following`, `/me/downloads`; WP-81 on WP-42, WP-31, WP-50, WP-60).
  *
  *   ['me', 'backpack']          followed mods with update state
  *   ['me', 'downloads']         download history (one row per mod)

@@ -3,7 +3,7 @@ export type Settings_Security_Tip_SessionsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out of shared or public computers when you’re done." |
+* | "Log out of shared or public computers when you’re done." |
 *
 * @param {Settings_Security_Tip_SessionsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

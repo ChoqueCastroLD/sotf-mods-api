@@ -3,7 +3,7 @@ export type Mod_Reviews_RulesInputs = {};
 /**
 * | output |
 * | --- |
-* | "One review per survivor. Be specific: version, what worked, what didn’t." |
+* | "One review per user. Be specific: version, what worked, what didn’t." |
 *
 * @param {Mod_Reviews_RulesInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

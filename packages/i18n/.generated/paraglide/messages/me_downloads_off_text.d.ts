@@ -3,7 +3,7 @@ export type Me_Downloads_Off_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "New downloads are not recorded, so update alerts here and in your backpack can’t compare versions. Turn it back on at any time." |
+* | "New downloads are not recorded, so update alerts here and in Following can’t compare versions. Turn it back on at any time." |
 *
 * @param {Me_Downloads_Off_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

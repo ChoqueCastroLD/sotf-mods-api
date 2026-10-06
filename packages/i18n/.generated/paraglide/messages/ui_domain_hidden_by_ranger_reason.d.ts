@@ -5,7 +5,7 @@ export type Ui_Domain_Hidden_By_Ranger_ReasonInputs = {
 /**
 * | output |
 * | --- |
-* | "Hidden by a ranger: {reason}" |
+* | "Hidden by a moderator: {reason}" |
 *
 * @param {Ui_Domain_Hidden_By_Ranger_ReasonInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

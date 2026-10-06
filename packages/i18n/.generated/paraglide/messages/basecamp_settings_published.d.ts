@@ -3,7 +3,7 @@ export type Basecamp_Settings_PublishedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Public and listed in Explore and search." |
+* | "Public and listed in Mods and search." |
 *
 * @param {Basecamp_Settings_PublishedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

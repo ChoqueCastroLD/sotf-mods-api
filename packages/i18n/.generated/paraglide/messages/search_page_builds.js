@@ -50,7 +50,7 @@ const tr_search_page_builds = /** @type {(inputs: Search_Page_BuildsInputs) => L
 };
 
 const zh_search_page_builds = /** @type {(inputs: Search_Page_BuildsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`建筑蓝图`)
+	return /** @type {LocalizedString} */ (`建筑`)
 };
 
 const ja_search_page_builds = /** @type {(inputs: Search_Page_BuildsInputs) => LocalizedString} */ () => {

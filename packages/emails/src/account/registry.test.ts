@@ -60,7 +60,7 @@ const PAYLOADS: Record<AccountEmailTemplate, Record<string, unknown>> = {
     summary: "KelvinSeek used 85.0 % of today's budget",
     details: ['KelvinSeek spent $4.25 of $5.00'],
     checkedAt: '2026-10-01T10:05:00.000Z',
-    opsUrl: `${SITE}/ranger/admin`,
+    opsUrl: `${SITE}/moderation/admin`,
   },
 };
 
@@ -119,12 +119,12 @@ describe('operations alert', () => {
         summary: '3 jobs in the dead-letter queue',
         details: ['email.send: 2 failed in the last 24 h', 'og.render: 1 failed in the last 24 h'],
         checkedAt: '2026-10-01T10:05:00.000Z',
-        opsUrl: `${SITE}/ranger/admin`,
+        opsUrl: `${SITE}/moderation/admin`,
       },
       SITE,
     );
     expect(out.subject).toBe('[SOTF Mods ops] 3 jobs in the dead-letter queue');
-    expect(out.html).toContain(`href="${SITE}/ranger/admin"`);
+    expect(out.html).toContain(`href="${SITE}/moderation/admin"`);
     expect(out.text).toContain('email.send: 2 failed in the last 24 h');
     expect(out.text).toContain('administrator of SOTF Mods');
   });

@@ -3,7 +3,7 @@ export type Signals_Load_MoreInputs = {};
 /**
 * | output |
 * | --- |
-* | "Load older signals" |
+* | "Load older notifications" |
 *
 * @param {Signals_Load_MoreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

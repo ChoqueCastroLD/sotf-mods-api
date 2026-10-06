@@ -1,24 +1,15 @@
 /**
- * BuildCard, KitCard and CreatorCard (research/03 §5.2). Same card rules as `ModCard`: the
- * title link covers the card, other controls sit above it, hover lifts 2 px.
+ * BuildCard. Same card rules as `ModCard`: the title link covers the card, other controls sit
+ * above it, hover lifts 2 px.
  *
  * - `BuildCard`: the build's picture with the number of pieces and the BuildShare version as plain text.
- * - `KitCard`: «knolling» — up to 6 mod thumbnails laid out on a dashed mat with slight
- *   rotations — or the kit's own cover; name, curator, «12 mods · 48 MB» and compatibility.
- * - `CreatorCard`: the creator's generative banner, avatar, name (Trusted mark), stats and a
- *   follow slot.
  */
-import { EyeOff, Link2, Lock } from 'lucide-react';
-import type { CSSProperties, ReactNode } from 'react';
-import { Avatar } from '../avatar.tsx';
-import { Badge } from '../badge.tsx';
+import type { ReactNode } from 'react';
 import { cn } from '../cn.ts';
-import { Icon } from '../icons.tsx';
-import { CompatBadge } from './compat.tsx';
-import type { CompatStatus, CreatorCardDTO, KitCardDTO, ModCardDTO } from './contracts.ts';
-import { formatBytes, formatCompact, formatCount, SLOT, useDomainI18n, useProfileHref, withSlot } from './i18n.ts';
+import type { ModCardDTO } from './contracts.ts';
+import { formatCompact, formatCount, SLOT, useDomainI18n, useProfileHref, withSlot } from './i18n.ts';
 import { displayName, OriginalName } from './mod-card.tsx';
-import { CardLink, Cover, cardClasses, cardControlClasses, generativeBannerUri, Placeholder } from './shared.tsx';
+import { CardLink, Cover, cardClasses, cardControlClasses, Placeholder } from './shared.tsx';
 import { TrustedMark } from './stamps.tsx';
 
 type HeadingLevel = 2 | 3 | 4;
@@ -143,232 +134,10 @@ export function BuildCard({
 }
 
 // -------------------------------------------------------------------------------------------
-// KitCard
+// Skeleton
 // -------------------------------------------------------------------------------------------
 
-/** Deterministic knolling rotations (degrees) for the 6 slots. */
-const KNOLL_ROTATION = [-2, 1.5, -1, 2, -1.5, 1] as const;
-
-export interface KitCardProps {
-  kit: KitCardDTO;
-  /** Total download size of the kit's latest versions, in bytes. */
-  totalSize?: number | null;
-  /** Worst compatibility status among the kit's mods on the current build. */
-  compat?: CompatStatus | null;
-  currentBuild?: string | null;
-  headingLevel?: HeadingLevel;
-  action?: ReactNode;
-  className?: string;
-}
-
-function Knolling({ kit }: { kit: KitCardDTO }) {
-  const slots = kit.previewThumbnails.slice(0, 6);
-  return (
-    <div
-      aria-hidden="true"
-      className="grid aspect-cover grid-cols-3 grid-rows-2 place-items-center gap-3 rounded-md border border-dashed border-border-strong bg-sunken p-4"
-    >
-      {Array.from({ length: 6 }, (_, index) => {
-        const src = slots[index];
-        const style: CSSProperties = { rotate: `${KNOLL_ROTATION[index]}deg` };
-        return (
-          <span
-            // biome-ignore lint/suspicious/noArrayIndexKey: fixed knolling slots
-            key={index}
-            style={style}
-            className={cn(
-              'block aspect-square w-full max-w-16 overflow-hidden rounded-sm',
-              src ? 'bg-raised shadow-sm' : 'border border-dashed border-border',
-            )}
-          >
-            {src ? (
-              <img
-                src={src}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                width={96}
-                height={96}
-                className="size-full object-cover"
-              />
-            ) : null}
-          </span>
-        );
-      })}
-    </div>
-  );
-}
-
-export function KitCard({ kit, totalSize, compat, currentBuild, headingLevel = 3, action, className }: KitCardProps) {
-  const { t, locale } = useDomainI18n();
-  const Heading = `h${headingLevel}` as const;
-  const facts = [t('ui_domain_kit_mods', { count: kit.itemsCount })];
-  if (typeof totalSize === 'number') facts.push(formatBytes(locale, totalSize));
-  return (
-    <article data-variant="kit" data-kit-id={kit.id} className={className}>
-      <div className={cn(cardClasses, 'flex h-full flex-col gap-3 p-3')}>
-        {kit.cover ? (
-          <div className="aspect-cover overflow-hidden rounded-md bg-raised">
-            <Cover image={kit.cover} seed={kit.slug} name={kit.name} sizes="(min-width: 48rem) 33vw, 100vw" />
-          </div>
-        ) : (
-          <Knolling kit={kit} />
-        )}
-        {action ? <div className={cn('absolute z-10 end-5 top-5')}>{action}</div> : null}
-        <div className="flex min-w-0 flex-1 flex-col gap-1 px-1">
-          <div className="flex min-w-0 items-center gap-2">
-            <Heading className="truncate text-base font-semibold">
-              <CardLink href={kit.canonicalPath}>{kit.name}</CardLink>
-            </Heading>
-            {kit.visibility !== 'public' ? (
-              <Badge
-                variant="outline-mono"
-                size="sm"
-                icon={<Icon icon={kit.visibility === 'private' ? Lock : EyeOff} size={12} />}
-              >
-                {t(kit.visibility === 'private' ? 'ui_domain_visibility_private' : 'ui_domain_visibility_unlisted')}
-              </Badge>
-            ) : null}
-          </div>
-          <p className="truncate text-xs text-fg-muted">
-            {withSlot(
-              t('ui_domain_curated_by', { author: SLOT }),
-              <AuthorLink
-                handle={kit.owner.handle}
-                name={kit.owner.displayName}
-                className="underline decoration-fg-subtle underline-offset-2"
-              />,
-            )}
-          </p>
-          <p className="text-xs text-fg-muted tabular-nums">{facts.join(' · ')}</p>
-          <div className="mt-auto flex flex-wrap items-center gap-2 pt-1">
-            {kit.isStaffPick ? (
-              <Badge variant="featured" size="sm">
-                {t('ui_domain_award_staff_pick')}
-              </Badge>
-            ) : null}
-            {compat ? <CompatBadge status={compat} build={currentBuild} short size="sm" /> : null}
-            <span className="ms-auto inline-flex items-center gap-1 font-mono text-2xs text-fg-subtle">
-              <Icon icon={Link2} size={12} />
-              {kit.code}
-            </span>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-// -------------------------------------------------------------------------------------------
-// CreatorCard
-// -------------------------------------------------------------------------------------------
-
-export interface CreatorCardProps {
-  creator: CreatorCardDTO;
-  /** Follow button slot (above the card link). */
-  action?: ReactNode;
-  headingLevel?: HeadingLevel;
-  /** Kept for callers written when cards showed a tier stamp; ignored. */
-  iconMode?: 'sprite' | 'inline';
-  className?: string;
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex min-w-0 flex-col">
-      <dt className="readout truncate @max-[23rem]/creator:text-[0.625rem] @max-[23rem]/creator:tracking-normal">
-        {label}
-      </dt>
-      <dd className="font-display-caps text-xl leading-tight tabular-nums text-fg @max-[23rem]/creator:text-base">
-        {value}
-      </dd>
-    </div>
-  );
-}
-
-/**
- * Below 23 rem of its own width (a phone's single column) the card becomes a row: avatar, name,
- * handle and the three stats, with the follow slot at the end, and drops the banner and top mod.
- */
-export function CreatorCard({ creator, action, headingLevel = 3, className }: CreatorCardProps) {
-  const { t, locale } = useDomainI18n();
-  const profileHref = useProfileHref();
-  const Heading = `h${headingLevel}` as const;
-  const { user } = creator;
-  return (
-    <article data-variant="creator" data-user-id={user.id} className={cn('@container/creator', className)}>
-      <div className={cn(cardClasses, 'flex h-full flex-col overflow-hidden')}>
-        <div className="aspect-banner overflow-hidden bg-raised @max-[23rem]/creator:hidden">
-          <img
-            src={generativeBannerUri(user.id)}
-            alt=""
-            width={640}
-            height={160}
-            className="block size-full object-cover"
-          />
-        </div>
-        <div className="flex flex-1 flex-col gap-3 px-4 pb-4 @max-[23rem]/creator:grid @max-[23rem]/creator:flex-none @max-[23rem]/creator:grid-cols-[auto_minmax(0,1fr)_auto] @max-[23rem]/creator:gap-x-3 @max-[23rem]/creator:gap-y-1.5 @max-[23rem]/creator:p-3">
-          <div className="-mt-8 flex items-end justify-between gap-2 @max-[23rem]/creator:contents">
-            <Avatar
-              name={user.displayName}
-              id={user.id}
-              src={user.avatarUrl}
-              size={64}
-              className="rounded-full ring-4 ring-surface @max-[23rem]/creator:col-start-1 @max-[23rem]/creator:row-span-2 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:self-center @max-[23rem]/creator:ring-0"
-            />
-            {action ? (
-              <div
-                className={cn(
-                  cardControlClasses,
-                  '@max-[23rem]/creator:col-start-3 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:self-start',
-                )}
-              >
-                {action}
-              </div>
-            ) : null}
-          </div>
-          <div className="flex min-w-0 flex-col gap-1.5 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-1 @max-[23rem]/creator:gap-0.5">
-            <div className="flex min-w-0 items-center gap-1.5">
-              <Heading className="truncate text-base font-semibold">
-                <CardLink href={profileHref(user.handle)}>{user.displayName}</CardLink>
-              </Heading>
-              {user.verifiedCreator ? <TrustedMark size={16} className={cardControlClasses} /> : null}
-            </div>
-            <p className="truncate font-mono text-2xs text-fg-subtle">@{user.handle}</p>
-          </div>
-          <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3 @max-[23rem]/creator:col-span-2 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-2 @max-[23rem]/creator:mt-0 @max-[23rem]/creator:border-t-0 @max-[23rem]/creator:pt-0">
-            <Stat
-              label={t('ui_domain_stat_mods')}
-              value={formatCount(locale, creator.modsCount + creator.buildsCount)}
-            />
-            <Stat label={t('ui_domain_stat_downloads')} value={formatCompact(locale, creator.downloadsTotal)} />
-            <Stat label={t('ui_domain_stat_followers')} value={formatCompact(locale, creator.followersCount)} />
-          </dl>
-          {creator.topMod ? (
-            <p className="truncate text-xs text-fg-muted @max-[23rem]/creator:hidden">
-              {withSlot(
-                t('ui_domain_creator_top_mod', { mod: SLOT }),
-                <a
-                  key="top"
-                  href={creator.topMod.canonicalPath}
-                  className={cn(cardControlClasses, 'rounded-xs text-fg hover:text-primary hover:underline')}
-                >
-                  {creator.topMod.name}
-                </a>,
-              )}
-            </p>
-          ) : null}
-        </div>
-      </div>
-    </article>
-  );
-}
-
-// -------------------------------------------------------------------------------------------
-// Skeletons
-// -------------------------------------------------------------------------------------------
-
-export function KitCardSkeleton({ className }: { className?: string }) {
+export function BuildCardSkeleton({ className }: { className?: string }) {
   return (
     <div
       aria-hidden="true"
@@ -379,25 +148,6 @@ export function KitCardSkeleton({ className }: { className?: string }) {
         <Placeholder className="h-4 w-3/5" />
         <Placeholder className="h-3 w-2/5" />
         <Placeholder className="h-3 w-1/3" />
-      </span>
-    </div>
-  );
-}
-
-export const BuildCardSkeleton = KitCardSkeleton;
-
-export function CreatorCardSkeleton({ className }: { className?: string }) {
-  return (
-    <div
-      aria-hidden="true"
-      className={cn('flex flex-col overflow-hidden rounded-lg border border-border bg-surface', className)}
-    >
-      <Placeholder className="aspect-banner h-auto w-full rounded-none" />
-      <span className="flex flex-col gap-3 px-4 pb-4">
-        <Placeholder className="-mt-8 size-16 rounded-full" />
-        <Placeholder className="h-4 w-1/2" />
-        <Placeholder className="h-3 w-1/3" />
-        <Placeholder className="h-10 w-full" />
       </span>
     </div>
   );

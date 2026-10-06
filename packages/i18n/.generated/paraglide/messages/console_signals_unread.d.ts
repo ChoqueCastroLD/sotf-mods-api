@@ -5,9 +5,9 @@ export type Console_Signals_UnreadInputs = {
 /**
 * | count__exact | count__plural | output |
 * | --- | --- | --- |
-* | "0" | * | "Signals, none unread" |
-* | * | "one" | "Signals, {count__number} unread" |
-* | * | * | "Signals, {count__number} unread" |
+* | "0" | * | "Notifications, none unread" |
+* | * | "one" | "Notifications, {count__number} unread" |
+* | * | * | "Notifications, {count__number} unread" |
 *
 * @param {Console_Signals_UnreadInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

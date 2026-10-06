@@ -3,7 +3,7 @@ export type Jams_Editor_Accent_OceanInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ocean blue" |
+* | "Blue" |
 *
 * @param {Jams_Editor_Accent_OceanInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

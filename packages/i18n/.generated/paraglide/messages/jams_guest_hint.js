@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Guest_HintInputs */
 
 const en_jams_guest_hint = /** @type {(inputs: Jams_Guest_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to submit an entry, follow this jam and vote.`)
+	return /** @type {LocalizedString} */ (`Log in to submit an entry, follow this jam and vote.`)
 };
 
 const es_jams_guest_hint = /** @type {(inputs: Jams_Guest_HintInputs) => LocalizedString} */ () => {
@@ -14,7 +14,7 @@ const es_jams_guest_hint = /** @type {(inputs: Jams_Guest_HintInputs) => Localiz
 };
 
 const de_jams_guest_hint = /** @type {(inputs: Jams_Guest_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Melde dich an, um einen Beitrag einzureichen, dieser Jam zu folgen und abzustimmen.`)
+	return /** @type {LocalizedString} */ (`Melde dich an, um einen Beitrag einzureichen, diesem Jam zu folgen und abzustimmen.`)
 };
 
 const fr_jams_guest_hint = /** @type {(inputs: Jams_Guest_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_jams_guest_hint = /** @type {(inputs: Jams_Guest_HintInputs) => Localiz
 /**
 * | output |
 * | --- |
-* | "Sign in to submit an entry, follow this jam and vote." |
+* | "Log in to submit an entry, follow this jam and vote." |
 *
 * @param {Jams_Guest_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

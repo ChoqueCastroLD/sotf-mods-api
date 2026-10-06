@@ -3,7 +3,7 @@ export type Common_TaglineInputs = {};
 /**
 * | output |
 * | --- |
-* | "Mods for the island. Field-tested." |
+* | "Providing quality mods since March 2023" |
 *
 * @param {Common_TaglineInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

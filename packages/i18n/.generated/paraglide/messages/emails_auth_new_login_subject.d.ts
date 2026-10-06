@@ -3,7 +3,7 @@ export type Emails_Auth_New_Login_SubjectInputs = {};
 /**
 * | output |
 * | --- |
-* | "New sign-in to your SOTF Mods account" |
+* | "New login to your SOTF Mods account" |
 *
 * @param {Emails_Auth_New_Login_SubjectInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

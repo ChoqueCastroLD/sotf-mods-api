@@ -3,7 +3,7 @@ export type Ranger_Report_Hide_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Mods and kits are unlisted, versions held, comments and reviews hidden." |
+* | "Mods are unlisted, versions held, comments and reviews hidden." |
 *
 * @param {Ranger_Report_Hide_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

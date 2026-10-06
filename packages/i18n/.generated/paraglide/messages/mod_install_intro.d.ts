@@ -5,7 +5,7 @@ export type Mod_Install_IntroInputs = {
 /**
 * | output |
 * | --- |
-* | "Five minutes, no manager required. These steps are for {name}." |
+* | "These steps install {name} by hand, without a manager." |
 *
 * @param {Mod_Install_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

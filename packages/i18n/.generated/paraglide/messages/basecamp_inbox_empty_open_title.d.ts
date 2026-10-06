@@ -3,7 +3,7 @@ export type Basecamp_Inbox_Empty_Open_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Inbox zero" |
+* | "Nothing to answer" |
 *
 * @param {Basecamp_Inbox_Empty_Open_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -7,7 +7,7 @@ which signs out and returns to the same screen after the new sign-in.
 
 | Route (`routes/ranger/admin/`) | Screen | API |
 |---|---|---|
-| `/ranger/admin` | redirects to game builds | — |
+| `/moderation/admin` | redirects to game builds | — |
 | `game-builds` | `GameBuildsScreen`: register/edit/delete, make current, breaking warning | `admin.*GameBuild*` |
 | `ecosystem` | `EcosystemScreen`: loader releases × builds matrix (optimistic cells, notes), add release | `compat.ecosystem`, `admin.putEcosystem`, `admin.*LoaderRelease*` |
 | `taxonomy` | `TaxonomyScreen`: categories (create, edit, retire → 409 points at recategorize) and tags | `admin.*Categor*`, `admin.*Tag*` |

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Shortcut_Go_RangerInputs */
 
 const en_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Go to the Ranger Station`)
+	return /** @type {LocalizedString} */ (`Go to Moderation`)
 };
 
 const es_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ir al Puesto de guardabosques`)
+	return /** @type {LocalizedString} */ (`Ir a Moderación`)
 };
 
 const de_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zur Rangerstation`)
+	return /** @type {LocalizedString} */ (`Zur Moderation`)
 };
 
 const fr_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aller au poste des rangers`)
+	return /** @type {LocalizedString} */ (`Aller à la modération`)
 };
 
 const it_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vai alla stazione dei ranger`)
+	return /** @type {LocalizedString} */ (`Vai alla moderazione`)
 };
 
 const nl_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Naar de rangerpost`)
+	return /** @type {LocalizedString} */ (`Naar Moderatie`)
 };
 
 const pl_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przejdź do posterunku strażników`)
+	return /** @type {LocalizedString} */ (`Przejdź do moderacji`)
 };
 
 const pt_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ir para o Posto dos guardas`)
+	return /** @type {LocalizedString} */ (`Ir para Moderação`)
 };
 
 const ru_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Перейти на пост рейнджеров`)
+	return /** @type {LocalizedString} */ (`Перейти к модерации`)
 };
 
 const sv_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gå till rangerstationen`)
+	return /** @type {LocalizedString} */ (`Gå till Moderering`)
 };
 
 const tr_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucu İstasyonu’na git`)
+	return /** @type {LocalizedString} */ (`Moderasyona git`)
 };
 
 const zh_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`前往护林站`)
+	return /** @type {LocalizedString} */ (`前往审核`)
 };
 
 const ja_console_shortcut_go_ranger = /** @type {(inputs: Console_Shortcut_Go_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーステーションへ移動`)
+	return /** @type {LocalizedString} */ (`モデレーションへ移動`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Go to the Ranger Station" |
+* | "Go to Moderation" |
 *
 * @param {Console_Shortcut_Go_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -39,7 +39,7 @@ const pt_mod_gallery_image_alt = /** @type {(inputs: Mod_Gallery_Image_AltInputs
 };
 
 const ru_mod_gallery_image_alt = /** @type {(inputs: Mod_Gallery_Image_AltInputs) => LocalizedString} */ (i) => {
-	const index__number = registry.number("ru", i?.index, {});return /** @type {LocalizedString} */ (`Скриншот ${index__number} — ${i?.name}`)
+	const index__number = registry.number("ru", i?.index, {});return /** @type {LocalizedString} */ (`Скриншот ${index__number}, ${i?.name}`)
 };
 
 const sv_mod_gallery_image_alt = /** @type {(inputs: Mod_Gallery_Image_AltInputs) => LocalizedString} */ (i) => {

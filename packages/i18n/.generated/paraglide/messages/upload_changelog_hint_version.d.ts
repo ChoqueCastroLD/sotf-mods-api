@@ -3,7 +3,7 @@ export type Upload_Changelog_Hint_VersionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Followers read this in their Signals." |
+* | "Followers see this in their notifications." |
 *
 * @param {Upload_Changelog_Hint_VersionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

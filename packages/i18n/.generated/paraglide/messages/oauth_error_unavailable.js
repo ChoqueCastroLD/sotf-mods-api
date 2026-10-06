@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Error_UnavailableInputs */
 
 const en_oauth_error_unavailable = /** @type {(inputs: Oauth_Error_UnavailableInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Discord sign-in isn’t available right now.`)
+	return /** @type {LocalizedString} */ (`Logging in with Discord isn’t available right now.`)
 };
 
 const es_oauth_error_unavailable = /** @type {(inputs: Oauth_Error_UnavailableInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_error_unavailable = /** @type {(inputs: Oauth_Error_UnavailableIn
 };
 
 const ja_oauth_error_unavailable = /** @type {(inputs: Oauth_Error_UnavailableInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`現在 Discord でのサインインはご利用いただけません。`)
+	return /** @type {LocalizedString} */ (`現在 Discord でのログインはご利用いただけません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Discord sign-in isn’t available right now." |
+* | "Logging in with Discord isn’t available right now." |
 *
 * @param {Oauth_Error_UnavailableInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

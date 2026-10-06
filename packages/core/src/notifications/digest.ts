@@ -247,7 +247,7 @@ export async function sendSignalEmails(deps: DigestDeps, cadence: DigestCadence)
         cadence,
         items,
         moreCount: Math.max(0, send.length - items.length),
-        signalsUrl: localizedUrl(deps.siteUrl, locale, '/signals'),
+        signalsUrl: localizedUrl(deps.siteUrl, locale, '/notifications'),
         unsubscribe: unsubscribeUrls(deps.siteUrl, token, locale),
       };
       const fingerprint = createHash('sha256')

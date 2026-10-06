@@ -178,7 +178,7 @@ export function TimeSeriesChart({
         return extra ? `${formatDayLong(String(label))} · ${extra}` : formatDayLong(String(label));
       }}
       formatter={(value: unknown, name: unknown) => [
-        typeof value === 'number' ? formatValue(value) : String(value ?? '—'),
+        typeof value === 'number' ? formatValue(value) : String(value ?? '-'),
         series.find((entry) => entry.key === name)?.label ?? String(name),
       ]}
     />,
@@ -284,7 +284,7 @@ export function CategoryBarChart({ data, title, valueLabel, formatValue, colorIn
           {...chartTheme.tooltip}
           cursor={{ fill: 'var(--color-fg)', fillOpacity: 0.05 }}
           formatter={(value: unknown) => [
-            typeof value === 'number' ? formatValue(value) : String(value ?? '—'),
+            typeof value === 'number' ? formatValue(value) : String(value ?? '-'),
             valueLabel,
           ]}
         />

@@ -3,7 +3,7 @@ export type Explore_VerifiedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Verified creators only" |
+* | "Trusted creators only" |
 *
 * @param {Explore_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

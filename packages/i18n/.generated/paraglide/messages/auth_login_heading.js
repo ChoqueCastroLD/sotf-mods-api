@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_HeadingInputs */
 
 const en_auth_login_heading = /** @type {(inputs: Auth_Login_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in`)
+	return /** @type {LocalizedString} */ (`Log in`)
 };
 
 const es_auth_login_heading = /** @type {(inputs: Auth_Login_HeadingInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_login_heading = /** @type {(inputs: Auth_Login_HeadingInputs) => L
 /**
 * | output |
 * | --- |
-* | "Sign in" |
+* | "Log in" |
 *
 * @param {Auth_Login_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

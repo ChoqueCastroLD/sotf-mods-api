@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Backpack_TitleInputs */
 
 const en_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Backpack`)
+	return /** @type {LocalizedString} */ (`Following`)
 };
 
 const es_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mochila`)
+	return /** @type {LocalizedString} */ (`Siguiendo`)
 };
 
 const de_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rucksack`)
+	return /** @type {LocalizedString} */ (`Folge ich`)
 };
 
 const fr_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sac à dos`)
+	return /** @type {LocalizedString} */ (`Suivis`)
 };
 
 const it_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zaino`)
+	return /** @type {LocalizedString} */ (`Seguiti`)
 };
 
 const nl_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rugzak`)
+	return /** @type {LocalizedString} */ (`Volgend`)
 };
 
 const pl_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plecak`)
+	return /** @type {LocalizedString} */ (`Obserwowane`)
 };
 
 const pt_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mochila`)
+	return /** @type {LocalizedString} */ (`Seguindo`)
 };
 
 const ru_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рюкзак`)
+	return /** @type {LocalizedString} */ (`Подписки`)
 };
 
 const sv_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ryggsäck`)
+	return /** @type {LocalizedString} */ (`Följer`)
 };
 
 const tr_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt Çantası`)
+	return /** @type {LocalizedString} */ (`Takip edilenler`)
 };
 
 const zh_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`背包`)
+	return /** @type {LocalizedString} */ (`关注`)
 };
 
 const ja_me_backpack_title = /** @type {(inputs: Me_Backpack_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパック`)
+	return /** @type {LocalizedString} */ (`フォロー中`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Backpack" |
+* | "Following" |
 *
 * @param {Me_Backpack_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

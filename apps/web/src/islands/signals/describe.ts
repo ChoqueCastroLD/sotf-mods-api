@@ -1,7 +1,7 @@
 /**
  * How a signal reads (PLAN §7.3, research/03 §6.12): one sentence per type built from
  * `NotificationDTO.data` (keys documented in docs/backlog/WP-43.md and WP-60.md), the glyph of its
- * kind, where it leads and the quoted excerpt. Shared by the header bell and `/signals`.
+ * kind, where it leads and the quoted excerpt. Shared by the header bell and `/notifications`.
  *
  * Grouped signals (`groupCount > 1`, «5 new comments on AmmoUi») switch to the plural sentence.
  */
@@ -10,13 +10,10 @@ import { type Locale, localizePath } from '@sotf/i18n';
 import {
   ArrowUpCircle,
   AtSign,
-  Award,
   BadgeCheck,
   Bug,
   CircleAlert,
-  CircleHelp,
   Flag,
-  Layers,
   type LucideIcon,
   Megaphone,
   MessageSquare,
@@ -29,7 +26,7 @@ import {
   Users,
   Wrench,
 } from 'lucide-react';
-import { badgeName, st, stOptional } from './i18n.ts';
+import { st, stOptional } from './i18n.ts';
 
 export type SignalTone = 'signal' | 'success' | 'warning' | 'danger' | 'neutral';
 
@@ -55,12 +52,6 @@ function modName(signal: NotificationDTO): string {
 
 function actorName(signal: NotificationDTO): string {
   return signal.actor?.displayName ?? st('signals_someone');
-}
-
-/** «first-blueprint» → «First blueprint» (badge keys are stable slugs; the catalogue has the art). */
-function humanizeKey(key: string): string {
-  const words = key.replace(/[-_]+/g, ' ').trim();
-  return words ? words[0]?.toUpperCase() + words.slice(1) : key;
 }
 
 function statusSentence(signal: NotificationDTO, mod: string): { text: string; tone: SignalTone; icon: LucideIcon } {
@@ -116,22 +107,7 @@ export function moderationReason(reason: string | null, templateKey: string | nu
   return note ? `${wording}\n\n${note}` : wording;
 }
 
-function awardSentence(kind: string | null, mod: string): string {
-  switch (kind) {
-    case 'mod_of_week':
-      return st('signals_award_mod_of_week', { mod });
-    case 'mod_of_month':
-      return st('signals_award_mod_of_month', { mod });
-    case 'build_of_month':
-      return st('signals_award_build_of_month', { mod });
-    case 'staff_pick':
-      return st('signals_award_staff_pick', { mod });
-    default:
-      return st('signals_award_generic', { mod });
-  }
-}
-
-function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHref'> {
+function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHref'> | null {
   const count = Math.max(1, signal.groupCount);
   const mod = modName(signal);
   const actor = actorName(signal);
@@ -229,70 +205,25 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         tone: 'success',
       };
     }
-    case 'compat.broken_on_my_mod': {
-      const build = str(signal.data.build) ?? st('signals_current_build');
-      const status = str(signal.data.status) === 'broken' ? 'broken' : 'mixed';
-      return {
-        text: st('signals_compat_broken', { mod, build, status }),
-        excerpt: null,
-        icon: CircleAlert,
-        tone: status === 'broken' ? 'danger' : 'warning',
-      };
-    }
-    case 'compat.acknowledged': {
-      const version = str(signal.data.version);
-      return {
-        text: version ? st('signals_compat_fixed_in', { mod, version }) : st('signals_compat_acknowledged', { mod }),
-        excerpt: null,
-        icon: Wrench,
-        tone: 'success',
-      };
-    }
+    // Hidden types (gamification, kits, Patch Radar): the API never lists them.
+    case 'compat.broken_on_my_mod':
+    case 'compat.acknowledged':
     case 'compat.prompt':
-      return {
-        text: st('signals_compat_prompt', { build: str(signal.data.build) ?? st('signals_current_build') }),
-        excerpt: null,
-        icon: CircleHelp,
-        tone: 'signal',
-      };
+    case 'kit.added_my_mod':
+    case 'kit.updated_followed':
+    case 'kit.comment':
+    case 'kit.comment_reply':
+    case 'patch.breaking_build':
+    case 'milestone.reached':
+    case 'badge.awarded':
+    case 'award.won':
+      return null;
     case 'review.update_prompt':
       return {
         text: st('signals_review_update_prompt', { mod, version: str(signal.data.version) ?? '' }),
         excerpt: null,
         icon: Star,
         tone: 'signal',
-      };
-    case 'kit.added_my_mod':
-      return {
-        text: st('signals_kit_added_my_mod', {
-          actor,
-          mod,
-          kit: str(signal.data.kitName) ?? signal.target?.title ?? '',
-        }),
-        excerpt: null,
-        icon: Layers,
-        tone: 'neutral',
-      };
-    case 'kit.updated_followed':
-      return {
-        text: st('signals_kit_updated_followed', { kit: str(signal.data.kitName) ?? signal.target?.title ?? '' }),
-        excerpt: null,
-        icon: Layers,
-        tone: 'signal',
-      };
-    case 'kit.comment':
-      return {
-        text: st('signals_kit_comment', { actor, kit: str(signal.data.kitName) ?? signal.target?.title ?? '' }),
-        excerpt,
-        icon: MessageSquare,
-        tone: 'neutral',
-      };
-    case 'kit.comment_reply':
-      return {
-        text: st('signals_kit_comment_reply', { actor, kit: str(signal.data.kitName) ?? signal.target?.title ?? '' }),
-        excerpt,
-        icon: Reply,
-        tone: 'neutral',
       };
     case 'coauthor.invited':
       return {
@@ -301,42 +232,9 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         icon: Users,
         tone: 'signal',
       };
-    case 'patch.breaking_build':
-      return {
-        text: st('signals_patch_breaking', { build: str(signal.data.build) ?? signal.target?.title ?? '' }),
-        excerpt: null,
-        icon: CircleAlert,
-        tone: 'warning',
-      };
     case 'mod.status_changed': {
       const sentence = statusSentence(signal, mod);
       return { ...sentence, excerpt: moderationReason(str(signal.data.reason), str(signal.data.templateKey)) };
-    }
-    case 'milestone.reached': {
-      const threshold = num(signal.data.threshold) ?? 0;
-      return {
-        text: st('signals_milestone', { mod, threshold }),
-        excerpt: null,
-        icon: TrendingUp,
-        tone: 'success',
-      };
-    }
-    case 'badge.awarded': {
-      if (signal.data.welcome === true) {
-        return {
-          text: st('signals_badge_welcome', { count: num(signal.data.badgeCount) ?? 0 }),
-          excerpt: null,
-          icon: Award,
-          tone: 'success',
-        };
-      }
-      const key = str(signal.data.badgeKey) ?? signal.target?.title ?? '';
-      return {
-        text: st('signals_badge_awarded', { badge: badgeName(key) ?? humanizeKey(key) }),
-        excerpt: null,
-        icon: Award,
-        tone: 'success',
-      };
     }
     case 'jam.phase':
       return {
@@ -347,13 +245,6 @@ function compose(signal: NotificationDTO): Omit<SignalView, 'href' | 'downloadHr
         excerpt: null,
         icon: Trophy,
         tone: 'signal',
-      };
-    case 'award.won':
-      return {
-        text: awardSentence(str(signal.data.awardKind), mod),
-        excerpt: null,
-        icon: Trophy,
-        tone: 'success',
       };
     case 'report.resolved':
       return {
@@ -399,8 +290,10 @@ function downloadOf(signal: NotificationDTO): string | null {
   return `${match[1]}/download/${encodeURIComponent(version)}`;
 }
 
-export function describeSignal(signal: NotificationDTO, locale: Locale): SignalView {
-  return { ...compose(signal), href: linkOf(signal, locale), downloadHref: downloadOf(signal) };
+/** The view of a signal, or null for a hidden type (never listed by the API). */
+export function describeSignal(signal: NotificationDTO, locale: Locale): SignalView | null {
+  const view = compose(signal);
+  return view ? { ...view, href: linkOf(signal, locale), downloadHref: downloadOf(signal) } : null;
 }
 
 /** Classes of the glyph disc per tone (tokens of `@sotf/ui`). */

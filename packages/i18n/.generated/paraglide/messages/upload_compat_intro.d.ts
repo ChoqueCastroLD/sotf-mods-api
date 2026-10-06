@@ -3,7 +3,7 @@ export type Upload_Compat_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tell players where your mod runs. Field reports from survivors add to it later." |
+* | "Tell players where your mod runs." |
 *
 * @param {Upload_Compat_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

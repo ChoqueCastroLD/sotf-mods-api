@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Forbidden_ActionInputs */
 
 const en_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Go to Basecamp`)
+	return /** @type {LocalizedString} */ (`Go to the dashboard`)
 };
 
 const es_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ir al Campamento`)
+	return /** @type {LocalizedString} */ (`Ir al panel`)
 };
 
 const de_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zum Basislager`)
+	return /** @type {LocalizedString} */ (`Zum Dashboard`)
 };
 
 const fr_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aller au camp de base`)
+	return /** @type {LocalizedString} */ (`Aller au tableau de bord`)
 };
 
 const it_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vai al campo base`)
+	return /** @type {LocalizedString} */ (`Vai alla dashboard`)
 };
 
 const nl_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Naar het basiskamp`)
+	return /** @type {LocalizedString} */ (`Naar het dashboard`)
 };
 
 const pl_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przejdź do obozu`)
+	return /** @type {LocalizedString} */ (`Przejdź do panelu`)
 };
 
 const pt_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ir para o Acampamento`)
+	return /** @type {LocalizedString} */ (`Ir para o painel`)
 };
 
 const ru_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`В лагерь`)
+	return /** @type {LocalizedString} */ (`На панель`)
 };
 
 const sv_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gå till baslägret`)
+	return /** @type {LocalizedString} */ (`Gå till översikten`)
 };
 
 const tr_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ana Kamp’a git`)
+	return /** @type {LocalizedString} */ (`Panele git`)
 };
 
 const zh_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`前往营地`)
+	return /** @type {LocalizedString} */ (`前往控制台`)
 };
 
 const ja_console_forbidden_action = /** @type {(inputs: Console_Forbidden_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ベースキャンプへ`)
+	return /** @type {LocalizedString} */ (`ダッシュボードへ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Go to Basecamp" |
+* | "Go to the dashboard" |
 *
 * @param {Console_Forbidden_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

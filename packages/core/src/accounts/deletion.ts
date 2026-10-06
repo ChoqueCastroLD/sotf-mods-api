@@ -4,7 +4,7 @@
  * `account.delete` sweep then **anonymizes** the account instead of deleting the row (legacy
  * foreign keys, comments and reviews must stay readable):
  *
- * - "User": email → `deleted-<id>@deleted.invalid`, name/displayName → «Deleted survivor» (the UI
+ * - "User": email → `deleted-<id>@deleted.invalid`, name/displayName → «Deleted user» (the UI
  *   localizes it from `deletedAt`), handle → `deleted-<id>`, unusable password, bio, links, avatar,
  *   banner, settings, privacy and onboarding cleared, `deletedAt` set.
  * - Personal data deleted: sessions, one-time tokens, exports (and their objects), notifications and
@@ -34,7 +34,7 @@ import type { ExportStorage } from './export-storage.ts';
 export type AccountDeletionDTO = z.infer<typeof AccountDeletionSchema>;
 
 export const DELETION_GRACE_MS = 14 * 24 * 3600 * 1000;
-export const DELETED_DISPLAY_NAME = 'Deleted survivor';
+export const DELETED_DISPLAY_NAME = 'Deleted user';
 
 function toDTO(row: { requestedAt: Date; executeAfter: Date; mode: AccountDeletionMode }): AccountDeletionDTO {
   return { requestedAt: row.requestedAt.toISOString(), executeAfter: row.executeAfter.toISOString(), mode: row.mode };

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Heading_ModsInputs */
 
 const en_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const es_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const de_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods entdecken`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const fr_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer les mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const it_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora le mod`)
+	return /** @type {LocalizedString} */ (`Mod`)
 };
 
 const nl_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods verkennen`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const pl_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeglądaj mody`)
+	return /** @type {LocalizedString} */ (`Mody`)
 };
 
 const pt_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const ru_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Обзор модов`)
+	return /** @type {LocalizedString} */ (`Моды`)
 };
 
 const sv_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska moddar`)
+	return /** @type {LocalizedString} */ (`Moddar`)
 };
 
 const tr_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modları keşfet`)
+	return /** @type {LocalizedString} */ (`Modlar`)
 };
 
 const zh_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`探索模组`)
+	return /** @type {LocalizedString} */ (`模组`)
 };
 
 const ja_explore_heading_mods = /** @type {(inputs: Explore_Heading_ModsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MOD を探す`)
+	return /** @type {LocalizedString} */ (`MOD`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Explore mods" |
+* | "Mods" |
 *
 * @param {Explore_Heading_ModsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

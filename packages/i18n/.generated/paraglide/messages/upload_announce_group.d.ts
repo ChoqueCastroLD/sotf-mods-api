@@ -3,7 +3,7 @@ export type Upload_Announce_GroupInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tested builds and announcement" |
+* | "Announcement" |
 *
 * @param {Upload_Announce_GroupInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

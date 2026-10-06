@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_Passkey_FailedInputs */
 
 const en_auth_login_passkey_failed = /** @type {(inputs: Auth_Login_Passkey_FailedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The passkey sign-in was cancelled or no passkey is available on this device.`)
+	return /** @type {LocalizedString} */ (`The passkey login was cancelled or no passkey is available on this device.`)
 };
 
 const es_auth_login_passkey_failed = /** @type {(inputs: Auth_Login_Passkey_FailedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_login_passkey_failed = /** @type {(inputs: Auth_Login_Passkey_Fail
 /**
 * | output |
 * | --- |
-* | "The passkey sign-in was cancelled or no passkey is available on this device." |
+* | "The passkey login was cancelled or no passkey is available on this device." |
 *
 * @param {Auth_Login_Passkey_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

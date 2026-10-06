@@ -5,12 +5,12 @@ Publishing (new mod, new build, new version, drafts) is `features/upload` (WP-74
 
 | Route | Screen | What |
 |---|---|---|
-| `/basecamp?range=` | `OverviewScreen` | Greeting + «Day N», KPIs (sparkline + delta), downloads chart with release/patch markers, «Needs attention», «Live», «My mods», next milestone and tier |
-| `/basecamp/mods?status=&q=&sort=` | `ModsScreen` | Every mod and build in any status; filter, search, sort; table from `md`, cards on phones |
-| `/basecamp/mods/$modId?tab=` | `editor/ModEditorScreen` | Listing, media, versions, compatibility, status — with the quality score and preflight rows |
-| `/basecamp/analytics?mod=&range=` | `AnalyticsScreen` | Downloads (total/unique), views and conversion, followers, by version, by channel, referrers (grouped), visitor language, ratings, compatibility by build, CSV |
-| `/basecamp/inbox?type=&state=` | `InboxScreen` | Comments, bug reports, reviews and field reports with inline answers |
-| `/basecamp/badges` | `BadgesScreen` | Creator tier, next milestone, locked badges with progress, earned badges |
+| `/dashboard?range=` | `OverviewScreen` | Greeting + «Day N», KPIs (sparkline + delta), downloads chart with release/patch markers, «Needs attention», «Live», «My mods», next milestone and tier |
+| `/dashboard/mods?status=&q=&sort=` | `ModsScreen` | Every mod and build in any status; filter, search, sort; table from `md`, cards on phones |
+| `/dashboard/mods/$modId?tab=` | `editor/ModEditorScreen` | Listing, media, versions, compatibility, status — with the quality score and preflight rows |
+| `/dashboard/analytics?mod=&range=` | `AnalyticsScreen` | Downloads (total/unique), views and conversion, followers, by version, by channel, referrers (grouped), visitor language, ratings, compatibility by build, CSV |
+| `/dashboard/inbox?type=&state=` | `InboxScreen` | Comments, bug reports, reviews and field reports with inline answers |
+| `/dashboard/badges` | `BadgesScreen` | Creator tier, next milestone, locked badges with progress, earned badges |
 
 ## How it works
 

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Profile_Cards_Empty_ActionInputs */
 
 const en_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore mods`)
+	return /** @type {LocalizedString} */ (`Browse mods`)
 };
 
 const es_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_Ac
 };
 
 const de_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods entdecken`)
+	return /** @type {LocalizedString} */ (`Mods durchsuchen`)
 };
 
 const fr_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer les mods`)
+	return /** @type {LocalizedString} */ (`Parcourir les mods`)
 };
 
 const it_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_Ac
 };
 
 const nl_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods ontdekken`)
+	return /** @type {LocalizedString} */ (`Mods bekijken`)
 };
 
 const pl_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
@@ -42,11 +42,11 @@ const ru_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_Ac
 };
 
 const sv_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska moddar`)
+	return /** @type {LocalizedString} */ (`Bläddra bland moddar`)
 };
 
 const tr_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modları keşfet`)
+	return /** @type {LocalizedString} */ (`Modlara göz at`)
 };
 
 const zh_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_ActionInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_profile_cards_empty_action = /** @type {(inputs: Profile_Cards_Empty_Ac
 /**
 * | output |
 * | --- |
-* | "Explore mods" |
+* | "Browse mods" |
 *
 * @param {Profile_Cards_Empty_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

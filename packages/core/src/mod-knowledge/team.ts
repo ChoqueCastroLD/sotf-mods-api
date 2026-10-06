@@ -112,7 +112,7 @@ export async function inviteCoAuthor(
           type: 'mod',
           id: current.id,
           title: inviterMod?.name ?? current.name,
-          path: '/basecamp/invites',
+          path: '/dashboard/invites',
         },
         groupKey: null,
         data: { modId: current.id, modName: inviterMod?.name ?? current.name },

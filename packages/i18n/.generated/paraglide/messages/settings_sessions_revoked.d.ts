@@ -5,7 +5,7 @@ export type Settings_Sessions_RevokedInputs = {
 /**
 * | output |
 * | --- |
-* | "{device} signed out" |
+* | "{device} logged out" |
 *
 * @param {Settings_Sessions_RevokedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

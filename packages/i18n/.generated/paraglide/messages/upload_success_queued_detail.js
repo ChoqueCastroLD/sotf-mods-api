@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Upload_Success_Queued_DetailInputs */
 
 const en_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is in the review queue. You’ll get a signal as soon as a ranger decides.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is in the review queue. You’ll get a notification as soon as a moderator decides.`)
 };
 
 const es_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} está en la cola de revisión. Recibirás una señal en cuanto un guardabosques decida.`)
+	return /** @type {LocalizedString} */ (`${i?.name} está en la cola de revisión. Recibirás una notificación en cuanto un moderador decida.`)
 };
 
 const de_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ist in der Prüfwarteschlange. Du bekommst ein Signal, sobald ein Ranger entscheidet.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ist in der Prüfwarteschlange. Du wirst benachrichtigt, sobald ein Moderator entscheidet.`)
 };
 
 const fr_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} est dans la file d’examen. Vous recevrez un signal dès qu’un ranger aura décidé.`)
+	return /** @type {LocalizedString} */ (`${i?.name} est dans la file d’examen. Vous serez notifié dès qu’un modérateur aura décidé.`)
 };
 
 const it_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} è in coda di revisione. Riceverai un segnale appena un ranger decide.`)
+	return /** @type {LocalizedString} */ (`${i?.name} è in coda di revisione. Riceverai una notifica appena un moderatore decide.`)
 };
 
 const nl_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} staat in de wachtrij. Je krijgt een signaal zodra een ranger beslist.`)
+	return /** @type {LocalizedString} */ (`${i?.name} staat in de wachtrij. Je krijgt een melding zodra een moderator beslist.`)
 };
 
 const pl_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} czeka w kolejce do przeglądu. Dostaniesz sygnał, gdy strażnik podejmie decyzję.`)
+	return /** @type {LocalizedString} */ (`${i?.name} czeka w kolejce do przeglądu. Dostaniesz powiadomienie, gdy moderator podejmie decyzję.`)
 };
 
 const pt_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} está na fila de revisão. Você receberá um sinal assim que um guarda decidir.`)
+	return /** @type {LocalizedString} */ (`${i?.name} está na fila de revisão. Você receberá uma notificação assim que um moderador decidir.`)
 };
 
 const ru_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`«${i?.name}» в очереди на проверку. Вы получите сигнал, как только рейнджер примет решение.`)
+	return /** @type {LocalizedString} */ (`«${i?.name}» в очереди на проверку. Вы получите уведомление, как только модератор примет решение.`)
 };
 
 const sv_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} står i granskningskön. Du får en signal så snart en ranger har bestämt sig.`)
+	return /** @type {LocalizedString} */ (`${i?.name} står i granskningskön. Du får en avisering så snart en moderator har bestämt sig.`)
 };
 
 const tr_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} inceleme sırasında. Bir korucu karar verir vermez sinyal alacaksın.`)
+	return /** @type {LocalizedString} */ (`${i?.name} inceleme sırasında. Bir moderatör karar verir vermez bildirim alacaksın.`)
 };
 
 const zh_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 已进入审核队列。护林员做出决定后你会收到信号。`)
+	return /** @type {LocalizedString} */ (`${i?.name} 已进入审核队列。版主做出决定后你会收到通知。`)
 };
 
 const ja_upload_success_queued_detail = /** @type {(inputs: Upload_Success_Queued_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} は確認待ちの列に入りました。レンジャーが判断したらシグナルでお知らせします。`)
+	return /** @type {LocalizedString} */ (`${i?.name} は審査待ちの列に入りました。モデレーターが判断したら通知でお知らせします。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} is in the review queue. You’ll get a signal as soon as a ranger decides." |
+* | "{name} is in the review queue. You’ll get a notification as soon as a moderator decides." |
 *
 * @param {Upload_Success_Queued_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

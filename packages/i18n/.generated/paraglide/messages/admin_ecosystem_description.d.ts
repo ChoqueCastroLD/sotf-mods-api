@@ -3,7 +3,7 @@ export type Admin_Ecosystem_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "RedLoader and RedManager releases and whether they work on each game build, as shown on the Patch Radar." |
+* | "RedLoader and RedManager releases and whether they work on each game build." |
 *
 * @param {Admin_Ecosystem_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

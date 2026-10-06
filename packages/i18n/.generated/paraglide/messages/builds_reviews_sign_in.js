@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Reviews_Sign_InInputs */
 
 const en_builds_reviews_sign_in = /** @type {(inputs: Builds_Reviews_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to review`)
+	return /** @type {LocalizedString} */ (`Log in to review`)
 };
 
 const es_builds_reviews_sign_in = /** @type {(inputs: Builds_Reviews_Sign_InInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_builds_reviews_sign_in = /** @type {(inputs: Builds_Reviews_Sign_InInpu
 /**
 * | output |
 * | --- |
-* | "Sign in to review" |
+* | "Log in to review" |
 *
 * @param {Builds_Reviews_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

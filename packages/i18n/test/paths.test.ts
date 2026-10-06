@@ -46,12 +46,15 @@ describe('localizePath', () => {
 
   it('never prefixes the console, APIs, assets, downloads or machine endpoints', () => {
     const unlocalized = [
-      '/basecamp',
-      '/basecamp/mods/12/analytics',
-      '/ranger/queue/3',
+      '/dashboard',
+      '/dashboard/mods/12/analytics',
+      '/moderation/queue/3',
       '/settings/profile',
+      '/notifications',
+      '/me/following',
+      '/basecamp',
+      '/ranger/queue/3',
       '/signals',
-      '/me/backpack',
       '/api/v2/mods',
       '/_astro/app.1234.js',
       '/_internal/cache/invalidate',

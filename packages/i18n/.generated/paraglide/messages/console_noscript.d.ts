@@ -3,7 +3,7 @@ export type Console_NoscriptInputs = {};
 /**
 * | output |
 * | --- |
-* | "The console needs JavaScript. Turn it on to manage your mods, signals and settings." |
+* | "The console needs JavaScript. Turn it on to manage your mods, notifications and settings." |
 *
 * @param {Console_NoscriptInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

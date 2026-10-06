@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Creator_Verified_TextInputs */
 
 const en_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your mods carry the verified mark and you can upload larger files.`)
+	return /** @type {LocalizedString} */ (`You have the Trusted badge on your profile and mods, and you can upload larger files.`)
 };
 
 const es_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tus mods llevan la marca de verificado y puedes subir archivos más grandes.`)
+	return /** @type {LocalizedString} */ (`Tienes la insignia «De confianza» en tu perfil y tus mods, y puedes subir archivos más grandes.`)
 };
 
 const de_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deine Mods tragen das Verifiziert-Zeichen und du kannst größere Dateien hochladen.`)
+	return /** @type {LocalizedString} */ (`Du hast das Abzeichen „Vertrauenswürdig“ auf deinem Profil und deinen Mods und kannst größere Dateien hochladen.`)
 };
 
 const fr_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vos mods portent la marque « vérifié » et vous pouvez envoyer des fichiers plus lourds.`)
+	return /** @type {LocalizedString} */ (`Vous avez le badge « De confiance » sur votre profil et vos mods, et vous pouvez envoyer des fichiers plus volumineux.`)
 };
 
 const it_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le tue mod hanno il segno di verifica e puoi caricare file più grandi.`)
+	return /** @type {LocalizedString} */ (`Hai il badge «Affidabile» sul profilo e sulle tue mod e puoi caricare file più grandi.`)
 };
 
 const nl_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je mods dragen het verificatiekenmerk en je kunt grotere bestanden uploaden.`)
+	return /** @type {LocalizedString} */ (`Je hebt de badge ‘Vertrouwd’ op je profiel en je mods en je kunt grotere bestanden uploaden.`)
 };
 
 const pl_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twoje mody mają znak weryfikacji i możesz przesyłać większe pliki.`)
+	return /** @type {LocalizedString} */ (`Masz odznakę „Zaufany” na profilu i przy swoich modach oraz możesz przesyłać większe pliki.`)
 };
 
 const pt_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seus mods têm a marca de verificado e você pode enviar arquivos maiores.`)
+	return /** @type {LocalizedString} */ (`Você tem o selo “De confiança” no perfil e nos seus mods e pode enviar arquivos maiores.`)
 };
 
 const ru_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`На ваших модах стоит отметка проверки, и вы можете загружать файлы побольше.`)
+	return /** @type {LocalizedString} */ (`У вас есть значок «Проверенный» в профиле и на ваших модах, и вы можете загружать файлы большего размера.`)
 };
 
 const sv_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dina moddar bär verifieringsmärket och du kan ladda upp större filer.`)
+	return /** @type {LocalizedString} */ (`Du har märket ”Betrodd” på din profil och dina moddar och kan ladda upp större filer.`)
 };
 
 const tr_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modların doğrulama işaretini taşır ve daha büyük dosyalar yükleyebilirsin.`)
+	return /** @type {LocalizedString} */ (`Profilinde ve modlarında “Güvenilir” rozeti var ve daha büyük dosyalar yükleyebilirsin.`)
 };
 
 const zh_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的模组带有认证标记，并且你可以上传更大的文件。`)
+	return /** @type {LocalizedString} */ (`你的资料和模组上带有“可信”标记，并且可以上传更大的文件。`)
 };
 
 const ja_settings_creator_verified_text = /** @type {(inputs: Settings_Creator_Verified_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`あなたのMODには認証マークが付き、より大きなファイルをアップロードできます。`)
+	return /** @type {LocalizedString} */ (`プロフィールと MOD に「信頼済み」バッジが表示され、より大きなファイルをアップロードできます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your mods carry the verified mark and you can upload larger files." |
+* | "You have the Trusted badge on your profile and mods, and you can upload larger files." |
 *
 * @param {Settings_Creator_Verified_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

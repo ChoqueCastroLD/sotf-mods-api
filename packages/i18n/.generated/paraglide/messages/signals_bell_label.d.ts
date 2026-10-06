@@ -3,7 +3,7 @@ export type Signals_Bell_LabelInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signals" |
+* | "Notifications" |
 *
 * @param {Signals_Bell_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

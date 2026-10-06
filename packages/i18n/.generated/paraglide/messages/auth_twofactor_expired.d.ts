@@ -3,7 +3,7 @@ export type Auth_Twofactor_ExpiredInputs = {};
 /**
 * | output |
 * | --- |
-* | "This step expired. Sign in again to get a new one." |
+* | "This step expired. Log in again to get a new one." |
 *
 * @param {Auth_Twofactor_ExpiredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

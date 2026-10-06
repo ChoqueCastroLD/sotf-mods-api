@@ -3,10 +3,11 @@
  * unit-tested:
  *
  * - trailing slash → 301 without it (never on `/`);
- * - a locale prefix on an unlocalized path (`/es/api/…`, `/es/basecamp`) or the explicit `/en/…`
+ * - a locale prefix on an unlocalized path (`/es/api/…`, `/es/dashboard`) or the explicit `/en/…`
  *   prefix → 301 to the canonical path;
- * - legacy static assets, the 2023-era routes, `/loader`, `/upload*`, `/@handle` and the removed
- *   features (`/kits`, `/news`, `/best`…, see `REMOVED_FEATURES`) → 301;
+ * - legacy static assets, the 2023-era routes, `/loader`, `/upload*`, `/@handle`, the removed
+ *   features (`/kits`, `/news`, `/best`…, see `REMOVED_FEATURES`) and the renamed console sections
+ *   (`/basecamp` → `/dashboard`…, see `RENAMED_CONSOLE`) → 301 (308 for non-GET);
  * - `/images/:file` and `/images/:file/preview` (2023 uploads) → 410.
  *
  * Out of scope here: `/mods/:u/:s.json` → oEmbed (WP-61), the `/mods?…` legacy query mapping
@@ -41,14 +42,14 @@ export function trailingSlashTarget(pathname: string): string | null {
 /** Exact legacy paths (without locale) → v2 path. Targets are localized when they are pages. */
 export const LEGACY_EXACT: Readonly<Record<string, string>> = {
   '/loader': '/install',
-  '/upload': '/basecamp/new/mod',
-  '/upload-build': '/basecamp/new/build',
+  '/upload': '/dashboard/new/mod',
+  '/upload-build': '/dashboard/new/build',
   // 2023 era (research/01 §4.4)
   '/user/login': '/login',
   '/user/register': '/register',
   '/user/logout': '/logout',
-  '/user/upload': '/basecamp/new/mod',
-  '/mods/upload': '/basecamp/new/mod',
+  '/user/upload': '/dashboard/new/mod',
+  '/mods/upload': '/dashboard/new/mod',
   '/artifacts': '/',
   // Retired one-click installer: the guide explains the switch to RedManager.
   '/static/downloads/sotfmodsoneclick-setup1.0.0.exe': '/install#oneclick',
@@ -85,6 +86,37 @@ export function removedFeatureTarget(pathname: string): string | null {
   return target;
 }
 
+/**
+ * Console sections renamed by CLASSIC.md (jargon → plain words): old first segment → new one. The
+ * sub-path and the query are kept (`/ranger/admin/ecosystem?x=1` → `/moderation/admin/ecosystem?x=1`).
+ * The console never carries a locale prefix, so the targets are not localized.
+ */
+export const RENAMED_CONSOLE: Readonly<Record<string, string>> = {
+  basecamp: 'dashboard',
+  ranger: 'moderation',
+  signals: 'notifications',
+};
+
+/** `/me/backpack` became `/me/following` (the sub-path and the query are kept). */
+const RENAMED_ME_PAGES: Readonly<Record<string, string>> = { backpack: 'following' };
+
+/**
+ * New path (without query) for a console path that was renamed, or `null` when the path is not one.
+ * Matches whole segments only (`/signalsx` is not `/signals`), case-insensitively.
+ */
+export function renamedConsoleTarget(pathname: string): string | null {
+  const segments = pathname.split('/');
+  const first = segments[1]?.toLowerCase() ?? '';
+  const renamed = Object.hasOwn(RENAMED_CONSOLE, first) ? RENAMED_CONSOLE[first] : undefined;
+  if (renamed !== undefined) return ['', renamed, ...segments.slice(2)].join('/');
+  if (first === 'me') {
+    const page = segments[2]?.toLowerCase() ?? '';
+    const target = Object.hasOwn(RENAMED_ME_PAGES, page) ? RENAMED_ME_PAGES[page] : undefined;
+    if (target !== undefined) return ['', segments[1], target, ...segments.slice(3)].join('/');
+  }
+  return null;
+}
+
 const LEGACY_LOGO = /^\/static\/images\/logo[^/]*\.png$/i;
 const LEGACY_FAVICON = /^\/static\/images\/favicon[^/]*$/i;
 const LEGACY_IMAGE = /^\/images\/[^/]+(?:\/preview)?$/;
@@ -108,7 +140,9 @@ export function legacyRule(pathname: string, search: string, locale: Locale, met
   }
   const removed = removedFeatureTarget(pathname);
   if (removed !== null) return redirect(localizeTarget(removed, locale), method);
-  if (LEGACY_LOGO.test(pathname)) return redirect('/brand/logo-horizontal-night.png', method);
+  const renamed = renamedConsoleTarget(pathname);
+  if (renamed !== null) return redirect(renamed + search, method);
+  if (LEGACY_LOGO.test(pathname)) return redirect('/brand/logo-sm.png', method);
   if (LEGACY_FAVICON.test(pathname)) return redirect('/favicon.svg', method);
   if (LEGACY_IMAGE.test(pathname)) return { kind: 'gone' };
   const handle = AT_HANDLE.exec(pathname)?.[1];
@@ -176,11 +210,13 @@ export function entryDecision(url: URL, method = 'GET'): EntryDecision {
   }
   const split = stripLocale(url.pathname);
   if (split.prefixed && !isLocalizedPath(split.path)) {
-    // `/es/basecamp`, `/es/api/…`, `/es/sitemap.xml`: these never carry a locale.
+    // `/es/dashboard`, `/es/api/…`, `/es/sitemap.xml`: these never carry a locale. A renamed console
+    // section (`/es/basecamp/mods`) goes straight to its new URL in a single hop.
+    const target = renamedConsoleTarget(split.path) ?? split.path;
     return {
-      redirect: redirectOf(redirect(split.path + url.search, method)),
+      redirect: redirectOf(redirect(target + url.search, method)),
       locale: DEFAULT_LOCALE,
-      path: split.path,
+      path: target,
     };
   }
   return { locale: split.locale, path: split.path + url.search };

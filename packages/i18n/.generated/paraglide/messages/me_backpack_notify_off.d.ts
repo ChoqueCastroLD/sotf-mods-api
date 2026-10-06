@@ -5,7 +5,7 @@ export type Me_Backpack_Notify_OffInputs = {
 /**
 * | output |
 * | --- |
-* | "No more update signals for {mod}" |
+* | "No more update notifications for {mod}" |
 *
 * @param {Me_Backpack_Notify_OffInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

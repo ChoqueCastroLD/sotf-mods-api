@@ -3,7 +3,7 @@ export type Emails_Auth_Deleted_BodyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your personal data has been erased. Comments and reviews remain under “Deleted survivor”. Thanks for being part of the island." |
+* | "Your personal data has been erased. Comments and reviews remain under “Deleted user”. Thank you for being part of SOTF Mods." |
 *
 * @param {Emails_Auth_Deleted_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Requests_New_Guest_TitleInputs */
 
 const en_requests_new_guest_title = /** @type {(inputs: Requests_New_Guest_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to ask for a mod`)
+	return /** @type {LocalizedString} */ (`Log in to ask for a mod`)
 };
 
 const es_requests_new_guest_title = /** @type {(inputs: Requests_New_Guest_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_requests_new_guest_title = /** @type {(inputs: Requests_New_Guest_Title
 /**
 * | output |
 * | --- |
-* | "Sign in to ask for a mod" |
+* | "Log in to ask for a mod" |
 *
 * @param {Requests_New_Guest_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

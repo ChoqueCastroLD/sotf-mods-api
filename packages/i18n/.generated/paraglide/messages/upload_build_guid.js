@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Build_GuidInputs */
 
 const en_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Blueprint id`)
+	return /** @type {LocalizedString} */ (`Build id`)
 };
 
 const es_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Id del plano`)
+	return /** @type {LocalizedString} */ (`Id de la build`)
 };
 
 const de_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bauplan-ID`)
+	return /** @type {LocalizedString} */ (`Build-ID`)
 };
 
 const fr_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Id du plan`)
+	return /** @type {LocalizedString} */ (`Id du build`)
 };
 
 const it_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Id del progetto`)
+	return /** @type {LocalizedString} */ (`Id della build`)
 };
 
 const nl_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bouwtekening-id`)
+	return /** @type {LocalizedString} */ (`Build-id`)
 };
 
 const pl_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Identyfikator planu`)
+	return /** @type {LocalizedString} */ (`Identyfikator builda`)
 };
 
 const pt_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Id da planta`)
+	return /** @type {LocalizedString} */ (`Id da build`)
 };
 
 const ru_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Id чертежа`)
+	return /** @type {LocalizedString} */ (`Id постройки`)
 };
 
 const sv_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ritnings-id`)
+	return /** @type {LocalizedString} */ (`Bygg-id`)
 };
 
 const tr_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan kimliği`)
+	return /** @type {LocalizedString} */ (`Yapı kimliği`)
 };
 
 const zh_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`蓝图 ID`)
+	return /** @type {LocalizedString} */ (`建筑 ID`)
 };
 
 const ja_upload_build_guid = /** @type {(inputs: Upload_Build_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図ID`)
+	return /** @type {LocalizedString} */ (`建築ID`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Blueprint id" |
+* | "Build id" |
 *
 * @param {Upload_Build_GuidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

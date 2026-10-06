@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Empty_TitleInputs */
 
 const en_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your basecamp is empty`)
+	return /** @type {LocalizedString} */ (`Nothing here yet`)
 };
 
 const es_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu campamento está vacío`)
+	return /** @type {LocalizedString} */ (`Aún no hay nada`)
 };
 
 const de_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein Basislager ist leer`)
+	return /** @type {LocalizedString} */ (`Noch nichts da`)
 };
 
 const fr_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ton camp de base est vide`)
+	return /** @type {LocalizedString} */ (`Rien pour l’instant`)
 };
 
 const it_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il tuo campo base è vuoto`)
+	return /** @type {LocalizedString} */ (`Ancora niente`)
 };
 
 const nl_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je basiskamp is leeg`)
+	return /** @type {LocalizedString} */ (`Nog niets hier`)
 };
 
 const pl_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twój obóz jest pusty`)
+	return /** @type {LocalizedString} */ (`Na razie nic tu nie ma`)
 };
 
 const pt_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seu acampamento está vazio`)
+	return /** @type {LocalizedString} */ (`Nada por aqui ainda`)
 };
 
 const ru_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваш лагерь пуст`)
+	return /** @type {LocalizedString} */ (`Пока ничего нет`)
 };
 
 const sv_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ditt basläger är tomt`)
+	return /** @type {LocalizedString} */ (`Inget här ännu`)
 };
 
 const tr_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ana kampın boş`)
+	return /** @type {LocalizedString} */ (`Burada henüz bir şey yok`)
 };
 
 const zh_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的营地还是空的`)
+	return /** @type {LocalizedString} */ (`这里还没有内容`)
 };
 
 const ja_basecamp_empty_title = /** @type {(inputs: Basecamp_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ベースキャンプはまだ空です`)
+	return /** @type {LocalizedString} */ (`まだ何もありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your basecamp is empty" |
+* | "Nothing here yet" |
 *
 * @param {Basecamp_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

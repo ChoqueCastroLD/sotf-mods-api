@@ -3,7 +3,7 @@ export type Upload_LoadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Loading the wizard…" |
+* | "Loading…" |
 *
 * @param {Upload_LoadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

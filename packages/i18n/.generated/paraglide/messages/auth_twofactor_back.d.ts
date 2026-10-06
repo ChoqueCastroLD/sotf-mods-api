@@ -3,7 +3,7 @@ export type Auth_Twofactor_BackInputs = {};
 /**
 * | output |
 * | --- |
-* | "Back to sign in" |
+* | "Back to log in" |
 *
 * @param {Auth_Twofactor_BackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Editor_Removed_TitleInputs */
 
 const en_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Removed by the rangers`)
+	return /** @type {LocalizedString} */ (`Removed by moderators`)
 };
 
 const es_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retirado por los guardabosques`)
+	return /** @type {LocalizedString} */ (`Retirado por los moderadores`)
 };
 
 const de_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Von den Rangern entfernt`)
+	return /** @type {LocalizedString} */ (`Von den Moderatoren entfernt`)
 };
 
 const fr_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retiré par les rangers`)
+	return /** @type {LocalizedString} */ (`Retiré par les modérateurs`)
 };
 
 const it_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rimossa dai ranger`)
+	return /** @type {LocalizedString} */ (`Rimossa dai moderatori`)
 };
 
 const nl_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verwijderd door de rangers`)
+	return /** @type {LocalizedString} */ (`Verwijderd door de moderators`)
 };
 
 const pl_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Usunięty przez strażników`)
+	return /** @type {LocalizedString} */ (`Usunięty przez moderatorów`)
 };
 
 const pt_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Removido pelos guardas`)
+	return /** @type {LocalizedString} */ (`Removido pelos moderadores`)
 };
 
 const ru_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Удалён рейнджерами`)
+	return /** @type {LocalizedString} */ (`Удалён модераторами`)
 };
 
 const sv_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Borttagen av rangers`)
+	return /** @type {LocalizedString} */ (`Borttagen av moderatorerna`)
 };
 
 const tr_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular tarafından kaldırıldı`)
+	return /** @type {LocalizedString} */ (`Moderatörler tarafından kaldırıldı`)
 };
 
 const zh_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已被护林员下架`)
+	return /** @type {LocalizedString} */ (`已被版主下架`)
 };
 
 const ja_basecamp_editor_removed_title = /** @type {(inputs: Basecamp_Editor_Removed_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーにより削除`)
+	return /** @type {LocalizedString} */ (`モデレーターにより削除`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Removed by the rangers" |
+* | "Removed by moderators" |
 *
 * @param {Basecamp_Editor_Removed_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

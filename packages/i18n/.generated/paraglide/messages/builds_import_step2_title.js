@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Import_Step2_TitleInputs */
 
 const en_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Put the blueprint in LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Put the file in LocalBuildings`)
 };
 
 const es_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pon el plano en LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Pon el archivo en LocalBuildings`)
 };
 
 const de_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bauplan in LocalBuildings ablegen`)
+	return /** @type {LocalizedString} */ (`Datei in LocalBuildings ablegen`)
 };
 
 const fr_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mettre le plan dans LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Mettre le fichier dans LocalBuildings`)
 };
 
 const it_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Metti il progetto in LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Metti il file in LocalBuildings`)
 };
 
 const nl_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zet de bouwtekening in LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Zet het bestand in LocalBuildings`)
 };
 
 const pl_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wrzuć plan do LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Wrzuć plik do LocalBuildings`)
 };
 
 const pt_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Coloque a planta em LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Coloque o arquivo em LocalBuildings`)
 };
 
 const ru_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Положите чертёж в LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Положите файл в LocalBuildings`)
 };
 
 const sv_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lägg ritningen i LocalBuildings`)
+	return /** @type {LocalizedString} */ (`Lägg filen i LocalBuildings`)
 };
 
 const tr_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Planı LocalBuildings klasörüne koy`)
+	return /** @type {LocalizedString} */ (`Dosyayı LocalBuildings klasörüne koy`)
 };
 
 const zh_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`把蓝图放进 LocalBuildings`)
+	return /** @type {LocalizedString} */ (`把文件放进 LocalBuildings`)
 };
 
 const ja_builds_import_step2_title = /** @type {(inputs: Builds_Import_Step2_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図を LocalBuildings に入れる`)
+	return /** @type {LocalizedString} */ (`ファイルを LocalBuildings に入れる`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Put the blueprint in LocalBuildings" |
+* | "Put the file in LocalBuildings" |
 *
 * @param {Builds_Import_Step2_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

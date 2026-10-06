@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Requests_Guest_HintInputs */
 
 const en_requests_guest_hint = /** @type {(inputs: Requests_Guest_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to vote, comment or ask for a mod.`)
+	return /** @type {LocalizedString} */ (`Log in to vote, comment or ask for a mod.`)
 };
 
 const es_requests_guest_hint = /** @type {(inputs: Requests_Guest_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_requests_guest_hint = /** @type {(inputs: Requests_Guest_HintInputs) =>
 /**
 * | output |
 * | --- |
-* | "Sign in to vote, comment or ask for a mod." |
+* | "Log in to vote, comment or ask for a mod." |
 *
 * @param {Requests_Guest_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

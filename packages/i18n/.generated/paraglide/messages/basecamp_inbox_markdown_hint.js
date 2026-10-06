@@ -38,7 +38,7 @@ const pt_basecamp_inbox_markdown_hint = /** @type {(inputs: Basecamp_Inbox_Markd
 };
 
 const ru_basecamp_inbox_markdown_hint = /** @type {(inputs: Basecamp_Inbox_Markdown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Поддерживается Markdown. Ctrl+Enter — отправить.`)
+	return /** @type {LocalizedString} */ (`Поддерживается Markdown. Ctrl+Enter отправляет.`)
 };
 
 const sv_basecamp_inbox_markdown_hint = /** @type {(inputs: Basecamp_Inbox_Markdown_HintInputs) => LocalizedString} */ () => {

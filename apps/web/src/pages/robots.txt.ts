@@ -15,10 +15,10 @@ export const prerender = false;
 export const ROBOTS_TXT = [
   'User-agent: *',
   'Allow: /',
-  'Disallow: /basecamp',
-  'Disallow: /ranger',
+  'Disallow: /dashboard',
+  'Disallow: /moderation',
   'Disallow: /settings',
-  'Disallow: /signals',
+  'Disallow: /notifications',
   'Disallow: /me',
   'Disallow: /api/',
   'Disallow: /search',

@@ -3,7 +3,7 @@ export type Settings_Sessions_FailedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Couldn’t sign that session out" |
+* | "Couldn’t log that session out" |
 *
 * @param {Settings_Sessions_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

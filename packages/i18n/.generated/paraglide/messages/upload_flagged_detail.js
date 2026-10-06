@@ -38,7 +38,7 @@ const pt_upload_flagged_detail = /** @type {(inputs: Upload_Flagged_DetailInputs
 };
 
 const ru_upload_flagged_detail = /** @type {(inputs: Upload_Flagged_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Что-то в нём требует проверки человеком (см. предупреждения ниже). Отправить всё равно можно; публикация — после одобрения.`)
+	return /** @type {LocalizedString} */ (`Что-то в нём требует проверки человеком (см. предупреждения ниже). Отправить всё равно можно: он будет опубликован после одобрения.`)
 };
 
 const sv_upload_flagged_detail = /** @type {(inputs: Upload_Flagged_DetailInputs) => LocalizedString} */ () => {

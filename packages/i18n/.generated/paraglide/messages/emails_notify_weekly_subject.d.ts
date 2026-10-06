@@ -5,8 +5,8 @@ export type Emails_Notify_Weekly_SubjectInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "Your weekly SOTF Mods digest: {count__number} signal" |
-* | * | "Your weekly SOTF Mods digest: {count__number} signals" |
+* | "one" | "Your weekly SOTF Mods digest: {count__number} notification" |
+* | * | "Your weekly SOTF Mods digest: {count__number} notifications" |
 *
 * @param {Emails_Notify_Weekly_SubjectInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

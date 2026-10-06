@@ -30,7 +30,7 @@ const nl_translations_field_short = /** @type {(inputs: Translations_Field_Short
 };
 
 const pl_translations_field_short = /** @type {(inputs: Translations_Field_ShortInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Krótki opis — ${i?.language}`)
+	return /** @type {LocalizedString} */ (`Krótki opis (${i?.language})`)
 };
 
 const pt_translations_field_short = /** @type {(inputs: Translations_Field_ShortInputs) => LocalizedString} */ (i) => {

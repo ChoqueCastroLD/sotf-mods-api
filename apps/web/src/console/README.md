@@ -1,7 +1,7 @@
 # Console SPA (`apps/web/src/console`)
 
 `<ConsoleApp client:only="react">` is mounted by the user-free Astro shells in
-`src/pages/{basecamp,me,ranger,settings}/[...path].astro` and `src/pages/signals.astro` (PLAN §2.5, §4.3).
+`src/pages/{dashboard,me,moderation,settings}/[...path].astro` and `src/pages/notifications.astro` (PLAN §2.5, §4.3).
 
 - `ConsoleApp.tsx` — providers: error boundary → locale → `@sotf/ui` labels → TanStack Query → Router, lazy toasts.
 - `router.ts` — file routes in `routes/` (tree in `routeTree.gen.ts`, regenerate with `pnpm gen`), `defaultPreload: 'intent'`, `autoCodeSplitting`.
@@ -36,7 +36,7 @@ Phones — the native feel (< 768 px):
   (Signals: mark read · Ranger queue: take / escalate · Inbox: reply / resolve · My mods: new
   version · Drafts: delete — destructive ones still ask).
 - `components/native-list.tsx` — grouped lists with chevrons (Settings index, Admin index at
-  `/ranger/admin` on phones; larger screens redirect to the first admin screen).
+  `/moderation/admin` on phones; larger screens redirect to the first admin screen).
 - `components/PullToRefresh.tsx` — drag down at the top refetches the active queries.
 - `components/ArtState.tsx` — empty states and the Basecamp header backdrop with the concept art
   (`public/art/console-*`, AVIF + WebP at 480/960 px, lazy, fixed dimensions, decorative).

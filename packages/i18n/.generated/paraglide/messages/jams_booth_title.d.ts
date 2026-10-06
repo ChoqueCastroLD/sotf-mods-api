@@ -3,7 +3,7 @@ export type Jams_Booth_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Voting booth" |
+* | "Voting" |
 *
 * @param {Jams_Booth_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

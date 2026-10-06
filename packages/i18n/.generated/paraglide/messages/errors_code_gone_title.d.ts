@@ -3,7 +3,7 @@ export type Errors_Code_Gone_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Gone for good" |
+* | "Removed" |
 *
 * @param {Errors_Code_Gone_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

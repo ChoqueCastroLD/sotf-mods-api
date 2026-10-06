@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Notif_Col_SignalInputs */
 
 const en_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signal`)
+	return /** @type {LocalizedString} */ (`Notification`)
 };
 
 const es_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Señal`)
+	return /** @type {LocalizedString} */ (`Notificación`)
 };
 
 const de_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signal`)
+	return /** @type {LocalizedString} */ (`Benachrichtigung`)
 };
 
 const fr_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signal`)
+	return /** @type {LocalizedString} */ (`Notification`)
 };
 
 const it_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnale`)
+	return /** @type {LocalizedString} */ (`Notifica`)
 };
 
 const nl_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaal`)
+	return /** @type {LocalizedString} */ (`Melding`)
 };
 
 const pl_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sygnał`)
+	return /** @type {LocalizedString} */ (`Powiadomienie`)
 };
 
 const pt_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinal`)
+	return /** @type {LocalizedString} */ (`Notificação`)
 };
 
 const ru_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигнал`)
+	return /** @type {LocalizedString} */ (`Уведомление`)
 };
 
 const sv_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signal`)
+	return /** @type {LocalizedString} */ (`Avisering`)
 };
 
 const tr_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyal`)
+	return /** @type {LocalizedString} */ (`Bildirim`)
 };
 
 const zh_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 const ja_settings_notif_col_signal = /** @type {(inputs: Settings_Notif_Col_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナル`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Signal" |
+* | "Notification" |
 *
 * @param {Settings_Notif_Col_SignalInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

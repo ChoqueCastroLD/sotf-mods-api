@@ -3,7 +3,7 @@ export type Upload_Build_DetectedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Blueprint detected" |
+* | "Build detected" |
 *
 * @param {Upload_Build_DetectedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,11 +1,7 @@
 {
-  "mod_knowledge_issues_title": "既知の問題",
   "mod_knowledge_status_open": "未対応",
   "mod_knowledge_status_investigating": "調査中",
   "mod_knowledge_status_fixed": "修正済み",
-  "mod_knowledge_issue_affects": "影響範囲：{versions}",
-  "mod_knowledge_issue_fixed_in": "{version} で修正",
-  "mod_knowledge_issue_resolved": "{date} に解決",
   "mod_knowledge_coauthors_title": "共同制作者",
   "mod_knowledge_profile_title": "{name} が共同制作したMod",
   "mod_knowledge_profile_by": "作者：@{handle}",

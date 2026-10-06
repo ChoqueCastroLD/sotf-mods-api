@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Report_IntroInputs */
 
 const en_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tell the rangers what’s wrong. Reports are private.`)
+	return /** @type {LocalizedString} */ (`Tell the moderators what’s wrong. Reports are private.`)
 };
 
 const es_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cuéntales a los guardabosques qué pasa. Las denuncias son privadas.`)
+	return /** @type {LocalizedString} */ (`Cuéntales a los moderadores qué pasa. Las denuncias son privadas.`)
 };
 
 const de_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sag den Rangern, was nicht stimmt. Meldungen sind privat.`)
+	return /** @type {LocalizedString} */ (`Sag den Moderatoren, was nicht stimmt. Meldungen sind privat.`)
 };
 
 const fr_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dites aux rangers ce qui ne va pas. Les signalements sont privés.`)
+	return /** @type {LocalizedString} */ (`Dites aux modérateurs ce qui ne va pas. Les signalements sont privés.`)
 };
 
 const it_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Spiega ai ranger cosa non va. Le segnalazioni sono private.`)
+	return /** @type {LocalizedString} */ (`Spiega ai moderatori cosa non va. Le segnalazioni sono private.`)
 };
 
 const nl_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vertel de rangers wat er mis is. Meldingen zijn privé.`)
+	return /** @type {LocalizedString} */ (`Vertel de moderators wat er mis is. Meldingen zijn privé.`)
 };
 
 const pl_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Powiedz strażnikom, co jest nie tak. Zgłoszenia są prywatne.`)
+	return /** @type {LocalizedString} */ (`Powiedz moderatorom, co jest nie tak. Zgłoszenia są prywatne.`)
 };
 
 const pt_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conte aos guardas o que está errado. Denúncias são privadas.`)
+	return /** @type {LocalizedString} */ (`Conte aos moderadores o que está errado. Denúncias são privadas.`)
 };
 
 const ru_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Расскажите рейнджерам, что не так. Жалобы видят только рейнджеры.`)
+	return /** @type {LocalizedString} */ (`Расскажите модераторам, что не так. Жалобы видят только модераторы.`)
 };
 
 const sv_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Berätta för rangers vad som är fel. Anmälningar är privata.`)
+	return /** @type {LocalizedString} */ (`Berätta för moderatorerna vad som är fel. Anmälningar är privata.`)
 };
 
 const tr_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular’a sorunu anlat. Şikâyetler gizlidir.`)
+	return /** @type {LocalizedString} */ (`Moderatörlere neyin yanlış olduğunu anlat. Şikâyetler gizlidir.`)
 };
 
 const zh_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`告诉护林员哪里有问题。举报内容不公开。`)
+	return /** @type {LocalizedString} */ (`告诉版主哪里有问题。举报内容不公开。`)
 };
 
 const ja_mod_report_intro = /** @type {(inputs: Mod_Report_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`問題をレンジャーに伝えてください。通報は非公開です。`)
+	return /** @type {LocalizedString} */ (`問題をモデレーターに伝えてください。通報は非公開です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Tell the rangers what’s wrong. Reports are private." |
+* | "Tell the moderators what’s wrong. Reports are private." |
 *
 * @param {Mod_Report_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -54,10 +54,7 @@ export function PreferencesScreen() {
         key={`look-${me.settings.theme}-${me.settings.density}-${String(me.settings.reducedMotion)}`}
         settings={me.settings}
       />
-      <BehaviourCard
-        key={`behaviour-${me.settings.keyboardShortcuts}-${me.settings.compatPrompts}`}
-        settings={me.settings}
-      />
+      <BehaviourCard key={`behaviour-${me.settings.keyboardShortcuts}`} settings={me.settings} />
       <NsfwCard settings={me.settings} />
     </SettingsPage>
   );
@@ -201,13 +198,12 @@ function AppearanceCard({ settings }: { settings: Settings }) {
 function BehaviourCard({ settings }: { settings: Settings }) {
   const save = useSaveSettings();
   const [shortcuts, setShortcuts] = useState(settings.keyboardShortcuts);
-  const [prompts, setPrompts] = useState(settings.compatPrompts);
   const [saving, setSaving] = useState(false);
-  const dirty = shortcuts !== settings.keyboardShortcuts || prompts !== settings.compatPrompts;
+  const dirty = shortcuts !== settings.keyboardShortcuts;
 
   const submit = async () => {
     setSaving(true);
-    await save({ keyboardShortcuts: shortcuts, compatPrompts: prompts }, m.settings_behaviour_saved());
+    await save({ keyboardShortcuts: shortcuts }, m.settings_behaviour_saved());
     setSaving(false);
   };
 
@@ -220,7 +216,6 @@ function BehaviourCard({ settings }: { settings: Settings }) {
       saving={saving}
       onReset={() => {
         setShortcuts(settings.keyboardShortcuts);
-        setPrompts(settings.compatPrompts);
       }}
     >
       <Switch
@@ -228,12 +223,6 @@ function BehaviourCard({ settings }: { settings: Settings }) {
         description={m.settings_shortcuts_hint()}
         checked={shortcuts}
         onCheckedChange={setShortcuts}
-      />
-      <Switch
-        label={m.settings_compat_prompts()}
-        description={m.settings_compat_prompts_hint()}
-        checked={prompts}
-        onCheckedChange={setPrompts}
       />
     </SettingsCard>
   );

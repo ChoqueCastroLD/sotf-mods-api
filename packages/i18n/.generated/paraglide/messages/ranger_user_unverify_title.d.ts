@@ -5,7 +5,7 @@ export type Ranger_User_Unverify_TitleInputs = {
 /**
 * | output |
 * | --- |
-* | "Remove the verified creator flag from {name}?" |
+* | "Remove the trusted status from {name}?" |
 *
 * @param {Ranger_User_Unverify_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

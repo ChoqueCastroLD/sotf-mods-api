@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Upload_Build_Thumbnail_AltInputs */
 
 const en_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Thumbnail of the blueprint ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Thumbnail of the build ${i?.name}`)
 };
 
 const es_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniatura del plano ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniatura de la build ${i?.name}`)
 };
 
 const de_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Vorschaubild des Bauplans ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Vorschaubild des Builds ${i?.name}`)
 };
 
 const fr_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniature du plan ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniature du build ${i?.name}`)
 };
 
 const it_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniatura del progetto ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniatura della build ${i?.name}`)
 };
 
 const nl_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniatuur van de bouwtekening ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniatuur van de build ${i?.name}`)
 };
 
 const pl_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniatura planu ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniatura builda ${i?.name}`)
 };
 
 const pt_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniatura da planta ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniatura da build ${i?.name}`)
 };
 
 const ru_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Миниатюра чертежа ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Миниатюра постройки ${i?.name}`)
 };
 
 const sv_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Miniatyr av ritningen ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Miniatyr av bygget ${i?.name}`)
 };
 
 const tr_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} planının küçük resmi`)
+	return /** @type {LocalizedString} */ (`${i?.name} yapısının küçük resmi`)
 };
 
 const zh_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`蓝图 ${i?.name} 的缩略图`)
+	return /** @type {LocalizedString} */ (`建筑 ${i?.name} 的缩略图`)
 };
 
 const ja_upload_build_thumbnail_alt = /** @type {(inputs: Upload_Build_Thumbnail_AltInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`設計図 ${i?.name} のサムネイル`)
+	return /** @type {LocalizedString} */ (`建築 ${i?.name} のサムネイル`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Thumbnail of the blueprint {name}" |
+* | "Thumbnail of the build {name}" |
 *
 * @param {Upload_Build_Thumbnail_AltInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -37,7 +37,6 @@ import { ensureLocals } from '../lib/request-context.ts';
 import type { JsonLd } from '../lib/seo/jsonld.ts';
 import { SPECULATION_RULES_JSON } from '../lib/speculation.ts';
 import { LEGACY_CLEANUP_SCRIPT } from '../scripts/legacy-cleanup.ts';
-import { seasonOf } from '../scripts/seasonal.ts';
 import './global.css';
 
 interface Props {
@@ -70,7 +69,6 @@ const locale = ensureLocals(Astro).locale;
   dir="ltr"
   data-theme="dark"
   data-template={template}
-  data-season={seasonOf(new Date())}
   data-entity-type={entity?.type}
   data-entity-id={entity?.id}
 >

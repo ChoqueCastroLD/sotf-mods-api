@@ -210,7 +210,7 @@ async function holdVersion(ctx: Ctx, tx: Transaction, version: VersionFacts, ver
             type: 'mod',
             id: version.modId,
             title: mod?.name ?? '',
-            path: `/basecamp/mods/${version.modId}/details`,
+            path: `/dashboard/mods/${version.modId}/details`,
           },
           groupKey: null,
           data: {

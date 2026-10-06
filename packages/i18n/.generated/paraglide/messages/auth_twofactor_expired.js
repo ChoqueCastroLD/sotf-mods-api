@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Twofactor_ExpiredInputs */
 
 const en_auth_twofactor_expired = /** @type {(inputs: Auth_Twofactor_ExpiredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This step expired. Sign in again to get a new one.`)
+	return /** @type {LocalizedString} */ (`This step expired. Log in again to get a new one.`)
 };
 
 const es_auth_twofactor_expired = /** @type {(inputs: Auth_Twofactor_ExpiredInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_twofactor_expired = /** @type {(inputs: Auth_Twofactor_ExpiredInpu
 /**
 * | output |
 * | --- |
-* | "This step expired. Sign in again to get a new one." |
+* | "This step expired. Log in again to get a new one." |
 *
 * @param {Auth_Twofactor_ExpiredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

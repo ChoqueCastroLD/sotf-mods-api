@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Content_Draft_TitleInputs */
 
 const en_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Draft — pending legal review`)
+	return /** @type {LocalizedString} */ (`Draft: pending legal review`)
 };
 
 const es_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) =>
 };
 
 const de_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Entwurf – rechtliche Prüfung ausstehend`)
+	return /** @type {LocalizedString} */ (`Entwurf: rechtliche Prüfung ausstehend`)
 };
 
 const fr_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brouillon — en attente de relecture juridique`)
+	return /** @type {LocalizedString} */ (`Brouillon : en attente de relecture juridique`)
 };
 
 const it_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
@@ -26,11 +26,11 @@ const it_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) =>
 };
 
 const nl_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Concept – juridische controle volgt nog`)
+	return /** @type {LocalizedString} */ (`Concept: juridische controle volgt nog`)
 };
 
 const pl_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wersja robocza – czeka na weryfikację prawną`)
+	return /** @type {LocalizedString} */ (`Wersja robocza: czeka na weryfikację prawną`)
 };
 
 const pt_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
@@ -38,19 +38,19 @@ const pt_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) =>
 };
 
 const ru_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Черновик — ждёт юридической проверки`)
+	return /** @type {LocalizedString} */ (`Черновик: ждёт юридической проверки`)
 };
 
 const sv_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utkast – väntar på juridisk granskning`)
+	return /** @type {LocalizedString} */ (`Utkast: väntar på juridisk granskning`)
 };
 
 const tr_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Taslak — hukuki inceleme bekleniyor`)
+	return /** @type {LocalizedString} */ (`Taslak: hukuki inceleme bekleniyor`)
 };
 
 const zh_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`草稿——等待法律审核`)
+	return /** @type {LocalizedString} */ (`草稿：等待法律审核`)
 };
 
 const ja_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_content_draft_title = /** @type {(inputs: Content_Draft_TitleInputs) =>
 /**
 * | output |
 * | --- |
-* | "Draft — pending legal review" |
+* | "Draft: pending legal review" |
 *
 * @param {Content_Draft_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

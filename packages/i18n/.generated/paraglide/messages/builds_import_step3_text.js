@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ key: NonNullable<unknown> }} Builds_Import_Step3_TextInputs */
 
 const en_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`In game, press ${i?.key} to open BuildShare, pick the blueprint and place it. Right-click switches between corner and free placement, the mouse wheel moves it and Esc cancels.`)
+	return /** @type {LocalizedString} */ (`In game, press ${i?.key} to open BuildShare, pick the build and place it. Right-click switches between corner and free placement, the mouse wheel moves it and Esc cancels.`)
 };
 
 const es_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`En el juego, pulsa ${i?.key} para abrir BuildShare, elige el plano y colócalo. El clic derecho cambia entre colocación por esquinas y libre, la rueda del ratón lo mueve y Esc cancela.`)
+	return /** @type {LocalizedString} */ (`En el juego, pulsa ${i?.key} para abrir BuildShare, elige la build y colócala. El clic derecho cambia entre colocación por esquinas y libre, la rueda del ratón la mueve y Esc cancela.`)
 };
 
 const de_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Drücke im Spiel ${i?.key}, um BuildShare zu öffnen, wähle den Bauplan und platziere ihn. Rechtsklick wechselt zwischen Ecken- und freier Platzierung, das Mausrad verschiebt ihn und Esc bricht ab.`)
+	return /** @type {LocalizedString} */ (`Drücke im Spiel ${i?.key}, um BuildShare zu öffnen, wähle den Build und platziere ihn. Rechtsklick wechselt zwischen Ecken- und freier Platzierung, das Mausrad verschiebt ihn und Esc bricht ab.`)
 };
 
 const fr_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`En jeu, appuyez sur ${i?.key} pour ouvrir BuildShare, choisissez le plan et placez-le. Le clic droit alterne entre placement par les coins et placement libre, la molette le déplace et Échap annule.`)
+	return /** @type {LocalizedString} */ (`En jeu, appuyez sur ${i?.key} pour ouvrir BuildShare, choisissez la build et placez-la. Le clic droit alterne entre placement par les coins et placement libre, la molette la déplace et Échap annule.`)
 };
 
 const it_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nel gioco, premi ${i?.key} per aprire BuildShare, scegli il progetto e piazzalo. Il clic destro alterna il posizionamento sugli angoli e quello libero, la rotellina lo sposta ed Esc annulla.`)
+	return /** @type {LocalizedString} */ (`Nel gioco, premi ${i?.key} per aprire BuildShare, scegli la build e piazzala. Il clic destro alterna il posizionamento sugli angoli e quello libero, la rotellina la sposta ed Esc annulla.`)
 };
 
 const nl_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Druk in de game op ${i?.key} om BuildShare te openen, kies de bouwtekening en plaats hem. Rechtsklikken wisselt tussen hoek- en vrije plaatsing, het muiswiel verplaatst hem en Esc annuleert.`)
+	return /** @type {LocalizedString} */ (`Druk in de game op ${i?.key} om BuildShare te openen, kies de build en plaats hem. Rechtsklikken wisselt tussen hoek- en vrije plaatsing, het muiswiel verplaatst hem en Esc annuleert.`)
 };
 
 const pl_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`W grze naciśnij ${i?.key}, aby otworzyć BuildShare, wybierz plan i postaw go. Prawy przycisk myszy przełącza między stawianiem narożnikami a swobodnym, kółko myszy go przesuwa, a Esc anuluje.`)
+	return /** @type {LocalizedString} */ (`W grze naciśnij ${i?.key}, aby otworzyć BuildShare, wybierz build i postaw go. Prawy przycisk myszy przełącza między stawianiem narożnikami a swobodnym, kółko myszy go przesuwa, a Esc anuluje.`)
 };
 
 const pt_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`No jogo, aperte ${i?.key} para abrir o BuildShare, escolha a planta e posicione. O clique direito alterna entre posicionamento pelos cantos e livre, a roda do mouse move a construção e Esc cancela.`)
+	return /** @type {LocalizedString} */ (`No jogo, aperte ${i?.key} para abrir o BuildShare, escolha a build e posicione. O clique direito alterna entre posicionamento pelos cantos e livre, a roda do mouse move a construção e Esc cancela.`)
 };
 
 const ru_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`В игре нажмите ${i?.key}, чтобы открыть BuildShare, выберите чертёж и поставьте его. Правая кнопка мыши переключает установку по углам и свободную, колесо мыши двигает постройку, Esc отменяет.`)
+	return /** @type {LocalizedString} */ (`В игре нажмите ${i?.key}, чтобы открыть BuildShare, выберите постройку и поставьте её. Правая кнопка мыши переключает установку по углам и свободную, колесо мыши двигает постройку, Esc отменяет.`)
 };
 
 const sv_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tryck på ${i?.key} i spelet för att öppna BuildShare, välj ritningen och placera den. Högerklick växlar mellan hörn- och fri placering, mushjulet flyttar den och Esc avbryter.`)
+	return /** @type {LocalizedString} */ (`Tryck på ${i?.key} i spelet för att öppna BuildShare, välj bygget och placera det. Högerklick växlar mellan hörn- och fri placering, mushjulet flyttar det och Esc avbryter.`)
 };
 
 const tr_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Oyunda BuildShare’i açmak için ${i?.key} tuşuna bas, planı seç ve yerleştir. Sağ tık köşe ve serbest yerleştirme arasında geçiş yapar, fare tekerleği yapıyı taşır ve Esc iptal eder.`)
+	return /** @type {LocalizedString} */ (`Oyunda BuildShare’i açmak için ${i?.key} tuşuna bas, yapıyı seç ve yerleştir. Sağ tık köşe ve serbest yerleştirme arasında geçiş yapar, fare tekerleği yapıyı taşır ve Esc iptal eder.`)
 };
 
 const zh_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`在游戏中按 ${i?.key} 打开 BuildShare，选择蓝图并放置。右键可在贴角放置与自由放置之间切换，鼠标滚轮可移动建筑，按 Esc 取消。`)
+	return /** @type {LocalizedString} */ (`在游戏中按 ${i?.key} 打开 BuildShare，选择建筑并放置。右键可在贴角放置与自由放置之间切换，鼠标滚轮可移动建筑，按 Esc 取消。`)
 };
 
 const ja_builds_import_step3_text = /** @type {(inputs: Builds_Import_Step3_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`ゲーム内で ${i?.key} を押して BuildShare を開き、設計図を選んで配置します。右クリックで角合わせ配置と自由配置を切り替え、マウスホイールで移動、Esc でキャンセルします。`)
+	return /** @type {LocalizedString} */ (`ゲーム内で ${i?.key} を押して BuildShare を開き、建築を選んで配置します。右クリックで角合わせ配置と自由配置を切り替え、マウスホイールで移動、Esc でキャンセルします。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "In game, press {key} to open BuildShare, pick the blueprint and place it. Right-click switches between corner and free placement, the mouse wheel moves it an..." |
+* | "In game, press {key} to open BuildShare, pick the build and place it. Right-click switches between corner and free placement, the mouse wheel moves it and Es..." |
 *
 * @param {Builds_Import_Step3_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

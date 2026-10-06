@@ -3,7 +3,7 @@ export type Settings_Password_Changed_RevokedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Password changed and other devices signed out" |
+* | "Password changed and other devices logged out" |
 *
 * @param {Settings_Password_Changed_RevokedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

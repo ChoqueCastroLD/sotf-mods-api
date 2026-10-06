@@ -74,10 +74,10 @@ setPageCache(Astro, pageCache.mod(mod.id, mod.userId));      // E(900) mod:{id} 
 
 Immediate: `theme` (enhance ThemeToggle/LanguageSwitcher/banners), the Cmd+K trigger
 (`islands/cmdk/Trigger.ts`: ⌘K/Ctrl+K, `/`, header search and «Search» tab open the palette, see
-`islands/cmdk/README.md`), mobile chrome, relogin banner, `moon`, `view-transitions`,
+`islands/cmdk/README.md`), mobile chrome, relogin banner, `view-transitions`,
 `account-hint`, the Signals bell and, for members, the account's display preferences
 (`scripts/account-settings.ts`). Idle/lazy:
-`beacon` + web-vitals, `seasonal` (December snow), `lang-suggest`, `ads` + `consent`.
+`beacon` + web-vitals, `lang-suggest`, `ads` + `consent`.
 Inline head scripts (theme, dismissed banners, legacy-token cleanup, Speculation Rules) are hashed
 in the CSP placeholder (`lib/security/csp.ts`, finalized by WP-93).
 

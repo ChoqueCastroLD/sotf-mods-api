@@ -3,7 +3,7 @@ export type Builds_Import_Step3_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Place it on the island" |
+* | "Place it in the game" |
 *
 * @param {Builds_Import_Step3_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Upload_Build_No_ThumbnailInputs = {};
 /**
 * | output |
 * | --- |
-* | "This blueprint has no thumbnail. Add a cover in the media step." |
+* | "This build has no thumbnail. Add a cover in the media step." |
 *
 * @param {Upload_Build_No_ThumbnailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

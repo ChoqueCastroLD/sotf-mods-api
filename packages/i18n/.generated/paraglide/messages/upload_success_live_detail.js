@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Upload_Success_Live_DetailInputs */
 
 const en_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is published. Share it with the survivors.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is now public.`)
 };
 
 const es_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} está publicado. Compártelo con los supervivientes.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ya es público.`)
 };
 
 const de_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ist veröffentlicht. Teile es mit den Überlebenden.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ist jetzt öffentlich.`)
 };
 
 const fr_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} est publié. Partagez-le avec les survivants.`)
+	return /** @type {LocalizedString} */ (`${i?.name} est maintenant public.`)
 };
 
 const it_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} è pubblicata. Condividila con i sopravvissuti.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ora è pubblica.`)
 };
 
 const nl_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is gepubliceerd. Deel het met de overlevenden.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is nu openbaar.`)
 };
 
 const pl_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} jest już dostępny. Podziel się nim z ocalałymi.`)
+	return /** @type {LocalizedString} */ (`${i?.name} jest już publiczny.`)
 };
 
 const pt_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} foi publicado. Compartilhe com os sobreviventes.`)
+	return /** @type {LocalizedString} */ (`${i?.name} agora é público.`)
 };
 
 const ru_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`«${i?.name}» опубликован. Поделитесь им с выжившими.`)
+	return /** @type {LocalizedString} */ (`«${i?.name}» теперь доступен всем.`)
 };
 
 const sv_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} är publicerad. Dela den med överlevarna.`)
+	return /** @type {LocalizedString} */ (`${i?.name} är nu offentlig.`)
 };
 
 const tr_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} yayınlandı. Hayatta kalanlarla paylaş.`)
+	return /** @type {LocalizedString} */ (`${i?.name} artık herkese açık.`)
 };
 
 const zh_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 已发布。快分享给幸存者们吧。`)
+	return /** @type {LocalizedString} */ (`${i?.name} 现已公开。`)
 };
 
 const ja_upload_success_live_detail = /** @type {(inputs: Upload_Success_Live_DetailInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} を公開しました。サバイバーにシェアしましょう。`)
+	return /** @type {LocalizedString} */ (`${i?.name} を公開しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} is published. Share it with the survivors." |
+* | "{name} is now public." |
 *
 * @param {Upload_Success_Live_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

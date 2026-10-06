@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Ranger_User_Unverified_DoneInputs */
 
 const en_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is no longer a verified creator.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is no longer trusted.`)
 };
 
 const es_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ya no es creador verificado.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ya no es de confianza.`)
 };
 
 const de_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ist kein verifizierter Creator mehr.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ist nicht mehr vertrauenswürdig.`)
 };
 
 const fr_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} n’est plus créateur vérifié.`)
+	return /** @type {LocalizedString} */ (`${i?.name} n’est plus de confiance.`)
 };
 
 const it_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} non è più un creatore verificato.`)
+	return /** @type {LocalizedString} */ (`${i?.name} non è più affidabile.`)
 };
 
 const nl_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is geen geverifieerde maker meer.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is niet meer vertrouwd.`)
 };
 
 const pl_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} nie jest już zweryfikowanym twórcą.`)
+	return /** @type {LocalizedString} */ (`${i?.name} nie jest już zaufanym twórcą.`)
 };
 
 const pt_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} não é mais um criador verificado.`)
+	return /** @type {LocalizedString} */ (`${i?.name} não é mais confiável.`)
 };
 
 const ru_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} больше не подтверждённый автор.`)
+	return /** @type {LocalizedString} */ (`${i?.name} больше не проверенный автор.`)
 };
 
 const sv_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} är inte längre verifierad skapare.`)
+	return /** @type {LocalizedString} */ (`${i?.name} är inte längre betrodd.`)
 };
 
 const tr_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} artık doğrulanmış üretici değil.`)
+	return /** @type {LocalizedString} */ (`${i?.name} artık güvenilir değil.`)
 };
 
 const zh_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 不再是认证作者。`)
+	return /** @type {LocalizedString} */ (`${i?.name} 不再是受信任用户。`)
 };
 
 const ja_ranger_user_unverified_done = /** @type {(inputs: Ranger_User_Unverified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} は認証済みクリエイターではなくなりました。`)
+	return /** @type {LocalizedString} */ (`${i?.name} は信頼済みではなくなりました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} is no longer a verified creator." |
+* | "{name} is no longer trusted." |
 *
 * @param {Ranger_User_Unverified_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

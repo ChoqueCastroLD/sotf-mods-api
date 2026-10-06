@@ -3,7 +3,7 @@ export type Oauth_Link_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "An account with the email of your Discord profile already exists. Enter its password to link Discord and sign in." |
+* | "An account with the email of your Discord profile already exists. Enter its password to link Discord and log in." |
 *
 * @param {Oauth_Link_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

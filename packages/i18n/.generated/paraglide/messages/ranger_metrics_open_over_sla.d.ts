@@ -5,7 +5,7 @@ export type Ranger_Metrics_Open_Over_SlaInputs = {
 /**
 * | output |
 * | --- |
-* | "Review lanes over {hours} h" |
+* | "Queues over {hours} h" |
 *
 * @param {Ranger_Metrics_Open_Over_SlaInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Explore_Category_Intro_Weapons_GearInputs = {};
 /**
 * | output |
 * | --- |
-* | "New and tuned weapons, ammo, armour and gear for fighting and exploring the island." |
+* | "New and tuned weapons, ammo, armour and gear for fighting and exploring." |
 *
 * @param {Explore_Category_Intro_Weapons_GearInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

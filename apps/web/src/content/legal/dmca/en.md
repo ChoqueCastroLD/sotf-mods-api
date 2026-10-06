@@ -8,7 +8,7 @@ anchors: [overview, notice, send, process, counter, repeat, misuse]
 
 We respect the rights of creators, including the creators of mods. If you believe content on SOTF Mods infringes your copyright, you can ask us to remove it. We handle notices under the US Digital Millennium Copyright Act (DMCA) and equivalent laws such as the EU Digital Services Act.
 
-If a mod was reuploaded without your permission, you can also simply use **Report** on its page; rangers act on those quickly.
+If a mod was reuploaded without your permission, you can also simply use **Report** on its page; moderators act on those quickly.
 
 # What a notice must include
 

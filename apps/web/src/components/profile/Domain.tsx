@@ -4,14 +4,7 @@
  * language (`profileDomainI18n`).
  */
 import { type Locale, localizePath } from '@sotf/i18n';
-import {
-  BuildCard,
-  type DomainI18n,
-  DomainI18nProvider,
-  ModCard,
-  modDownloadHref,
-  ReviewCard,
-} from '@sotf/ui/domain';
+import { BuildCard, type DomainI18n, DomainI18nProvider, ModCard, modDownloadHref, ReviewCard } from '@sotf/ui/domain';
 import type { ReactNode } from 'react';
 import type { ModCardDTO, UserReviewDTO } from './data.ts';
 
@@ -33,7 +26,15 @@ export interface CardGridProps {
 
 const GRID = 'grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3';
 
-function Cards({ mods, locale, priorityFirst }: { mods: readonly ModCardDTO[]; locale: Locale; priorityFirst: boolean }) {
+function Cards({
+  mods,
+  locale,
+  priorityFirst,
+}: {
+  mods: readonly ModCardDTO[];
+  locale: Locale;
+  priorityFirst: boolean;
+}) {
   return mods.map((mod, index) => {
     const card = localizedCard(mod, locale);
     const priority = priorityFirst && index === 0;

@@ -6,51 +6,51 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Autosave_ErrorInputs */
 
 const en_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Couldn’t save. Retrying in a moment — your changes are kept here.`)
+	return /** @type {LocalizedString} */ (`Couldn’t save. Retrying in a moment. Your changes are kept here.`)
 };
 
 const es_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No se pudo guardar. Reintentamos en un momento; tus cambios siguen aquí.`)
+	return /** @type {LocalizedString} */ (`No se pudo guardar. Reintentamos en un momento. Tus cambios siguen aquí.`)
 };
 
 const de_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Speichern fehlgeschlagen. Neuer Versuch gleich – deine Änderungen bleiben hier erhalten.`)
+	return /** @type {LocalizedString} */ (`Speichern fehlgeschlagen. Neuer Versuch gleich. Deine Änderungen bleiben hier erhalten.`)
 };
 
 const fr_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Échec de l’enregistrement. Nouvel essai dans un instant ; vos modifications restent ici.`)
+	return /** @type {LocalizedString} */ (`Échec de l’enregistrement. Nouvel essai dans un instant. Vos modifications restent ici.`)
 };
 
 const it_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Salvataggio non riuscito. Riproviamo tra poco: le tue modifiche restano qui.`)
+	return /** @type {LocalizedString} */ (`Salvataggio non riuscito. Riproviamo tra poco. Le tue modifiche restano qui.`)
 };
 
 const nl_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Opslaan mislukt. We proberen het zo opnieuw; je wijzigingen blijven hier.`)
+	return /** @type {LocalizedString} */ (`Opslaan mislukt. We proberen het zo opnieuw. Je wijzigingen blijven hier.`)
 };
 
 const pl_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nie udało się zapisać. Za chwilę spróbujemy ponownie – twoje zmiany zostają tutaj.`)
+	return /** @type {LocalizedString} */ (`Nie udało się zapisać. Za chwilę spróbujemy ponownie. Twoje zmiany zostają tutaj.`)
 };
 
 const pt_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Não foi possível salvar. Tentaremos de novo em instantes; suas alterações continuam aqui.`)
+	return /** @type {LocalizedString} */ (`Não foi possível salvar. Tentaremos de novo em instantes. Suas alterações continuam aqui.`)
 };
 
 const ru_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Не удалось сохранить. Повторим через минуту — изменения остаются здесь.`)
+	return /** @type {LocalizedString} */ (`Не удалось сохранить. Повторим через минуту. Изменения остаются здесь.`)
 };
 
 const sv_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kunde inte spara. Vi försöker igen strax – dina ändringar finns kvar här.`)
+	return /** @type {LocalizedString} */ (`Kunde inte spara. Vi försöker igen strax. Dina ändringar finns kvar här.`)
 };
 
 const tr_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kaydedilemedi. Birazdan tekrar denenecek; değişikliklerin burada duruyor.`)
+	return /** @type {LocalizedString} */ (`Kaydedilemedi. Birazdan tekrar denenecek. Değişikliklerin burada duruyor.`)
 };
 
 const zh_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`保存失败，稍后会自动重试，你的更改仍保留在这里。`)
+	return /** @type {LocalizedString} */ (`保存失败，稍后会自动重试。你的更改仍保留在这里。`)
 };
 
 const ja_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_upload_autosave_error = /** @type {(inputs: Upload_Autosave_ErrorInputs
 /**
 * | output |
 * | --- |
-* | "Couldn’t save. Retrying in a moment — your changes are kept here." |
+* | "Couldn’t save. Retrying in a moment. Your changes are kept here." |
 *
 * @param {Upload_Autosave_ErrorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

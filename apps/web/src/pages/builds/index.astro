@@ -1,7 +1,7 @@
 ---
 /**
- * `/builds` — the Builds tab of Explore (PLAN §4.2, T0-06): BuildShare blueprints with the same
- * facets, sorts, views and pagination as `/mods` (`type=build`, build categories).
+ * `/builds`: BuildShare builds as an image grid with the same facets, sorts and pagination as
+ * `/mods` (`type=build`, build categories).
  *
  * - Legacy query parameters → 301 exactly like `/mods` (PLAN §4.6 «`/builds?…` igual»);
  *   `type=Mod|Both|Library` moves to `/mods`.
@@ -50,7 +50,7 @@ const copy = {
     description: m.explore_meta_all_description({ count }),
   },
   build: {
-    heading: m.explore_heading_builds(),
+    heading: m.common_term_builds(),
     title: m.explore_meta_builds_title({ count }),
     description: m.explore_meta_builds_description({ count }),
   },
@@ -82,5 +82,5 @@ const jsonLd = list
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_term_builds() }]}
 >
   <link slot="head" rel="alternate" type="application/rss+xml" href="/builds/feed.xml" title={m.builds_feed_title()} />
-  <ExploreView data={data} heading={copy.heading} readout={m.explore_readout_explore()} intro={copy.description} />
+  <ExploreView data={data} heading={copy.heading} tabs={[]} />
 </PageLayout>

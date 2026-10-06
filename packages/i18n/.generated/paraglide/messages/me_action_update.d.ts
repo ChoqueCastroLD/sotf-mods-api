@@ -3,7 +3,7 @@ export type Me_Action_UpdateInputs = {};
 /**
 * | output |
 * | --- |
-* | "Get the update" |
+* | "Download the update" |
 *
 * @param {Me_Action_UpdateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

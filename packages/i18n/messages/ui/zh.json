@@ -2,7 +2,7 @@
   "ui_close": "关闭",
   "ui_cancel": "取消",
   "ui_dismiss": "忽略",
-  "ui_loading": "正在查看地图…",
+  "ui_loading": "加载中…",
   "ui_retry": "重试",
   "ui_error_reference": "编号：{id}",
   "ui_optional": "可选",

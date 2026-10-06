@@ -3,7 +3,7 @@ export type Admin_ReadoutInputs = {};
 /**
 * | output |
 * | --- |
-* | "Admin · Ranger Station" |
+* | "Admin · Moderation" |
 *
 * @param {Admin_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

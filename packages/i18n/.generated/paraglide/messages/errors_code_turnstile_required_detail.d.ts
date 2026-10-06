@@ -3,7 +3,7 @@ export type Errors_Code_Turnstile_Required_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "Complete the security check to prove you’re a survivor, not a bot, then try again." |
+* | "Complete the security check to confirm you’re not a bot, then try again." |
 *
 * @param {Errors_Code_Turnstile_Required_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

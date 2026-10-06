@@ -3,7 +3,7 @@ export type Meta_Default_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "The home of Sons of the Forest modding: mods, builds and kits for RedLoader, tested on every patch. Free, direct downloads." |
+* | "Sons of the Forest mods and builds for RedLoader. Free, direct downloads." |
 *
 * @param {Meta_Default_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

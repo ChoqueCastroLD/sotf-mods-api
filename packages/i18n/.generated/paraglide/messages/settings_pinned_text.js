@@ -15,7 +15,7 @@ const es_settings_pinned_text = /** @type {(inputs: Settings_Pinned_TextInputs) 
 };
 
 const de_settings_pinned_text = /** @type {(inputs: Settings_Pinned_TextInputs) => LocalizedString} */ (i) => {
-	const max__number = registry.number("de", i?.max, {});return /** @type {LocalizedString} */ (`Wähle bis zu ${max__number} deiner Mods, die zuerst auf deinem Profil erscheinen – in dieser Reihenfolge.`)
+	const max__number = registry.number("de", i?.max, {});return /** @type {LocalizedString} */ (`Wähle bis zu ${max__number} deiner Mods, die zuerst auf deinem Profil erscheinen, in dieser Reihenfolge.`)
 };
 
 const fr_settings_pinned_text = /** @type {(inputs: Settings_Pinned_TextInputs) => LocalizedString} */ (i) => {

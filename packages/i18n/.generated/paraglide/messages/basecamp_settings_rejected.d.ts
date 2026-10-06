@@ -3,7 +3,7 @@ export type Basecamp_Settings_RejectedInputs = {};
 /**
 * | output |
 * | --- |
-* | "The rangers asked for changes before publishing it." |
+* | "Moderators asked for changes before publishing it." |
 *
 * @param {Basecamp_Settings_RejectedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Version_YankedInputs */
 
 const en_ui_domain_version_yanked = /** @type {(inputs: Ui_Domain_Version_YankedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yanked`)
+	return /** @type {LocalizedString} */ (`Withdrawn`)
 };
 
 const es_ui_domain_version_yanked = /** @type {(inputs: Ui_Domain_Version_YankedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_ui_domain_version_yanked = /** @type {(inputs: Ui_Domain_Version_Yanked
 /**
 * | output |
 * | --- |
-* | "Yanked" |
+* | "Withdrawn" |
 *
 * @param {Ui_Domain_Version_YankedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

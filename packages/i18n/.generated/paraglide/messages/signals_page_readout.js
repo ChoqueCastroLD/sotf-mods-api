@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Page_ReadoutInputs */
 
 const en_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Radio log`)
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 const es_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registro de radio`)
+	return /** @type {LocalizedString} */ (`Notificaciones`)
 };
 
 const de_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Funkprotokoll`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen`)
 };
 
 const fr_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Journal radio`)
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 const it_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registro radio`)
+	return /** @type {LocalizedString} */ (`Notifiche`)
 };
 
 const nl_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Radiologboek`)
+	return /** @type {LocalizedString} */ (`Meldingen`)
 };
 
 const pl_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dziennik radiowy`)
+	return /** @type {LocalizedString} */ (`Powiadomienia`)
 };
 
 const pt_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registro de rádio`)
+	return /** @type {LocalizedString} */ (`Notificações`)
 };
 
 const ru_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Радиожурнал`)
+	return /** @type {LocalizedString} */ (`Уведомления`)
 };
 
 const sv_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Radiologg`)
+	return /** @type {LocalizedString} */ (`Aviseringar`)
 };
 
 const tr_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Telsiz kaydı`)
+	return /** @type {LocalizedString} */ (`Bildirimler`)
 };
 
 const zh_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`无线电日志`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 const ja_signals_page_readout = /** @type {(inputs: Signals_Page_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`無線ログ`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Radio log" |
+* | "Notifications" |
 *
 * @param {Signals_Page_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

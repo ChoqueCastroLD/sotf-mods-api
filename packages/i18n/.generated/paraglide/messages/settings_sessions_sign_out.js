@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_Sign_OutInputs */
 
 const en_settings_sessions_sign_out = /** @type {(inputs: Settings_Sessions_Sign_OutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out`)
+	return /** @type {LocalizedString} */ (`Log out`)
 };
 
 const es_settings_sessions_sign_out = /** @type {(inputs: Settings_Sessions_Sign_OutInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_sign_out = /** @type {(inputs: Settings_Sessions_Sign
 /**
 * | output |
 * | --- |
-* | "Sign out" |
+* | "Log out" |
 *
 * @param {Settings_Sessions_Sign_OutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

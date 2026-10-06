@@ -3,7 +3,7 @@ export type Settings_Sessions_Sign_Out_HereInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out here" |
+* | "Log out here" |
 *
 * @param {Settings_Sessions_Sign_Out_HereInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

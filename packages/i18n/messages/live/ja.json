@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "比較",
   "live_embed_title": "ページ用バッジ",
-  "live_embed_intro": "READMEやフォーラム、Discordにバッジを貼れます。自動で更新されます。",
+  "live_embed_intro": "READMEやフォーラムの投稿、Discord にバッジを貼れます。バッジは自動で更新されます。",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "ダウンロード数",

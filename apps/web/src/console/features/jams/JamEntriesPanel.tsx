@@ -105,7 +105,7 @@ export function JamEntriesPanel({ jamId }: { jamId: number }) {
                       {statusLabel(entry.status)}
                     </Badge>
                   </td>
-                  <td className={`${tdClasses} whitespace-nowrap font-mono tabular-nums`}>
+                  <td className={`${tdClasses} whitespace-nowrap tabular-nums`}>
                     {entry.votes}
                     {entry.excludedVotes > 0 ? <span className="text-fg-muted"> (+{entry.excludedVotes})</span> : null}
                   </td>

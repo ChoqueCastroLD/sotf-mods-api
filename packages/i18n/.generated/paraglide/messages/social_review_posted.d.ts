@@ -3,7 +3,7 @@ export type Social_Review_PostedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Thanks! Your review is live." |
+* | "Your review was published." |
 *
 * @param {Social_Review_PostedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

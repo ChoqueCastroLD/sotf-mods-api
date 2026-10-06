@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/operations` (PLAN §10.3 «Métricas operativas»): pg-boss queue depth and failures,
+ * `/moderation/admin/operations` (PLAN §10.3 «Métricas operativas»): pg-boss queue depth and failures,
  * jobs in the dead letter queue, downloads in the last hour and day, and the state of CDN purges
  * (`GET /api/v2/admin/ops`). Refreshes every minute while open. Rates of 404/410/5xx answers are
  * not stored; the screen points at the logs (docs/operations/monitoring.md).
@@ -180,7 +180,7 @@ function QueueRow({ queue, now }: { queue: OpsQueue; now: number }) {
       <td
         className={cn(tdClasses, 'text-end whitespace-nowrap', state === 'slow' && waited !== null && 'text-warning')}
       >
-        {queue.oldestQueuedAt ? ago(queue.oldestQueuedAt, now) : '—'}
+        {queue.oldestQueuedAt ? ago(queue.oldestQueuedAt, now) : '-'}
       </td>
     </tr>
   );

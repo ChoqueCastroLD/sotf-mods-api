@@ -3,7 +3,7 @@ export type Settings_Delete_CancelledInputs = {};
 /**
 * | output |
 * | --- |
-* | "Deletion cancelled — welcome back" |
+* | "Deletion cancelled" |
 *
 * @param {Settings_Delete_CancelledInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

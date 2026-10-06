@@ -6,7 +6,7 @@ anchors: [what, who, trust, money, contact]
 
 # Czym jest SOTF Mods
 
-SOTF Mods to dom społeczności modderów **Sons of the Forest**. Od 2023 roku serwis udostępnia mody, biblioteki i plany BuildShare dla **RedLoadera**, loadera modów do gry, i jest największym istniejącym katalogiem modów do RedLoadera.
+SOTF Mods to dom społeczności modderów **Sons of the Forest**. Od 2023 roku serwis udostępnia mody, biblioteki i buildy BuildShare dla **RedLoadera**, loadera modów do gry, i jest największym istniejącym katalogiem modów do RedLoadera.
 
 Wszystko pobierzesz za darmo, prosto z naszego magazynu: bez konta, bez odliczania i bez menedżerów pobierania. RedManager, społecznościowy menedżer modów, korzysta z tego samego katalogu, więc każdy mod stąd zainstalujesz jednym kliknięciem.
 

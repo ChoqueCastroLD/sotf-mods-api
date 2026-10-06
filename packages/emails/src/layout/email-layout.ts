@@ -1,5 +1,5 @@
 /**
- * Base layout of every transactional email (PLAN §7.3; templates by WP-30 and WP-43): brand header,
+ * Base layout of every transactional email (PLAN §7.3; templates by WP-30 and WP-43): header with the logo,
  * content slot, and a footer with the tagline, why the recipient got the email and the links to
  * notification settings, privacy and (for notification emails) one-click unsubscribe.
  *
@@ -88,24 +88,24 @@ export function EmailLayout(props: EmailLayoutProps): ReactNode {
         { style: emailStyles.container },
         h(
           Section,
-          { style: { paddingBottom: '24px' } },
+          { style: emailStyles.header },
           h(
             Link,
             { href: siteLink(base, locale, '/') },
             h(Img, {
-              src: `${base}/brand/logo-horizontal-day.png`,
+              src: `${base}/brand/logo-sm.png`,
               alt: 'SOTF Mods',
-              width: 168,
+              width: 152,
               height: 40,
               style: { display: 'block', border: 0 },
             }),
           ),
         ),
-        h(Section, null, children),
-        h(Hr, { style: emailStyles.hr }),
+        h(Section, { style: emailStyles.content }, children),
+        h(Section, { style: { padding: '0 32px' } }, h(Hr, { style: emailStyles.hr })),
         h(
           Section,
-          null,
+          { style: emailStyles.footerBox },
           h(Text, { style: { ...emailStyles.footer, color: emailColors.fgMuted } }, m.common_tagline({}, opts)),
           footer.reason ? h(Text, { style: emailStyles.footer }, footer.reason) : null,
           h(Text, { style: emailStyles.footer }, ...footerLinks),

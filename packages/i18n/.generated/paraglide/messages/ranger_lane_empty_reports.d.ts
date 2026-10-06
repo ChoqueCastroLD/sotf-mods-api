@@ -3,7 +3,7 @@ export type Ranger_Lane_Empty_ReportsInputs = {};
 /**
 * | output |
 * | --- |
-* | "No open reports. The community is behaving." |
+* | "No open reports." |
 *
 * @param {Ranger_Lane_Empty_ReportsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

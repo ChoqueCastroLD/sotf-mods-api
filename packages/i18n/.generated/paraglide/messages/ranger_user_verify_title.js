@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Ranger_User_Verify_TitleInputs */
 
 const en_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Make ${i?.name} a verified creator?`)
+	return /** @type {LocalizedString} */ (`Mark ${i?.name} as trusted?`)
 };
 
 const es_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`¿Hacer a ${i?.name} creador verificado?`)
+	return /** @type {LocalizedString} */ (`¿Marcar a ${i?.name} como de confianza?`)
 };
 
 const de_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} zum verifizierten Creator machen?`)
+	return /** @type {LocalizedString} */ (`${i?.name} als vertrauenswürdig markieren?`)
 };
 
 const fr_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Faire de ${i?.name} un créateur vérifié ?`)
+	return /** @type {LocalizedString} */ (`Marquer ${i?.name} comme de confiance ?`)
 };
 
 const it_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Rendere ${i?.name} creatore verificato?`)
+	return /** @type {LocalizedString} */ (`Segnare ${i?.name} come affidabile?`)
 };
 
 const nl_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} een geverifieerde maker maken?`)
+	return /** @type {LocalizedString} */ (`${i?.name} als vertrouwd markeren?`)
 };
 
 const pl_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nadać ${i?.name} status zweryfikowanego twórcy?`)
+	return /** @type {LocalizedString} */ (`Oznaczyć ${i?.name} jako zaufanego?`)
 };
 
 const pt_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tornar ${i?.name} um criador verificado?`)
+	return /** @type {LocalizedString} */ (`Marcar ${i?.name} como confiável?`)
 };
 
 const ru_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Сделать ${i?.name} подтверждённым автором?`)
+	return /** @type {LocalizedString} */ (`Отметить ${i?.name} как проверенного?`)
 };
 
 const sv_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Göra ${i?.name} till verifierad skapare?`)
+	return /** @type {LocalizedString} */ (`Markera ${i?.name} som betrodd?`)
 };
 
 const tr_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} doğrulanmış üretici yapılsın mı?`)
+	return /** @type {LocalizedString} */ (`${i?.name} güvenilir olarak işaretlensin mi?`)
 };
 
 const zh_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`将 ${i?.name} 设为认证作者？`)
+	return /** @type {LocalizedString} */ (`将 ${i?.name} 标记为受信任？`)
 };
 
 const ja_ranger_user_verify_title = /** @type {(inputs: Ranger_User_Verify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} を認証済みクリエイターにしますか？`)
+	return /** @type {LocalizedString} */ (`${i?.name} を信頼済みにしますか？`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Make {name} a verified creator?" |
+* | "Mark {name} as trusted?" |
 *
 * @param {Ranger_User_Verify_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

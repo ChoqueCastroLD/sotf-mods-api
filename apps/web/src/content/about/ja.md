@@ -6,7 +6,7 @@ anchors: [what, who, trust, money, contact]
 
 # SOTF Mods とは
 
-SOTF Mods は **Sons of the Forest** の Mod コミュニティの拠点です。2023 年から、ゲームの Mod ローダー **RedLoader** 向けの Mod、ライブラリ、BuildShare の設計図を公開しており、RedLoader 用 Mod のカタログとしては最大規模です。
+SOTF Mods は **Sons of the Forest** の Mod コミュニティの拠点です。2023 年から、ゲームの Mod ローダー **RedLoader** 向けの Mod、ライブラリ、BuildShare の建築を公開しており、RedLoader 用 Mod のカタログとしては最大規模です。
 
 すべて無料で、私たちのストレージから直接ダウンロードできます。アカウントも待ち時間もダウンロードマネージャーも不要です。コミュニティの Mod マネージャー RedManager は同じカタログを読み込むので、ここにあるどの Mod もワンクリックで導入できます。
 

@@ -3,7 +3,7 @@ export type Upload_Cover_Build_FallbackInputs = {};
 /**
 * | output |
 * | --- |
-* | "Without a cover, the blueprint’s thumbnail is used." |
+* | "Without a cover, the build’s thumbnail is used." |
 *
 * @param {Upload_Cover_Build_FallbackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

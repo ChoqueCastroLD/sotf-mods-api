@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Knowledge_Team_HandleInputs */
 
 const en_mod_knowledge_team_handle = /** @type {(inputs: Mod_Knowledge_Team_HandleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Handle`)
+	return /** @type {LocalizedString} */ (`Username`)
 };
 
 const es_mod_knowledge_team_handle = /** @type {(inputs: Mod_Knowledge_Team_HandleInputs) => LocalizedString} */ () => {
@@ -18,7 +18,7 @@ const de_mod_knowledge_team_handle = /** @type {(inputs: Mod_Knowledge_Team_Hand
 };
 
 const fr_mod_knowledge_team_handle = /** @type {(inputs: Mod_Knowledge_Team_HandleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Identifiant`)
+	return /** @type {LocalizedString} */ (`Nom d’utilisateur`)
 };
 
 const it_mod_knowledge_team_handle = /** @type {(inputs: Mod_Knowledge_Team_HandleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_mod_knowledge_team_handle = /** @type {(inputs: Mod_Knowledge_Team_Hand
 /**
 * | output |
 * | --- |
-* | "Handle" |
+* | "Username" |
 *
 * @param {Mod_Knowledge_Team_HandleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

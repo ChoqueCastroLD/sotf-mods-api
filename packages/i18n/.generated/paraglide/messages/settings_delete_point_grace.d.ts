@@ -3,7 +3,7 @@ export type Settings_Delete_Point_GraceInputs = {};
 /**
 * | output |
 * | --- |
-* | "You have 14 days to change your mind; signing in and cancelling here stops it." |
+* | "You have 14 days to change your mind. Log in and cancel here to stop it." |
 *
 * @param {Settings_Delete_Point_GraceInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

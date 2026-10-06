@@ -38,7 +38,7 @@ const pt_mod_comments_empty = /** @type {(inputs: Mod_Comments_EmptyInputs) => L
 };
 
 const ru_mod_comments_empty = /** @type {(inputs: Mod_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Комментариев пока нет. Вопросы, советы и баги — сюда.`)
+	return /** @type {LocalizedString} */ (`Комментариев пока нет. Вопросы, советы и сообщения об ошибках пишите здесь.`)
 };
 
 const sv_mod_comments_empty = /** @type {(inputs: Mod_Comments_EmptyInputs) => LocalizedString} */ () => {

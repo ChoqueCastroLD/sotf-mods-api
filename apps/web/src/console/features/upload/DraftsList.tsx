@@ -1,5 +1,5 @@
 /**
- * `/basecamp/drafts`: the creator's open drafts (most recent first) with their step, readiness and
+ * `/dashboard/drafts`: the creator's open drafts (most recent first) with their step, readiness and
  * quality, «Resume» and «Delete» (confirmed). Drafts expire with their uploads; the limit is 20.
  */
 import { Badge } from '@sotf/ui/badge';
@@ -37,7 +37,7 @@ function ResumeLink({ draft }: { draft: DraftDTO }) {
   if (draft.kind === 'version' && draft.modId !== null) {
     return (
       <Link
-        to="/basecamp/mods/$modId/new-version"
+        to="/dashboard/mods/$modId/new-version"
         params={{ modId: String(draft.modId) }}
         search={{ draft: draft.id }}
         className={classes}
@@ -48,7 +48,7 @@ function ResumeLink({ draft }: { draft: DraftDTO }) {
   }
   return (
     <Link
-      to={draft.kind === 'build' ? '/basecamp/new/build' : '/basecamp/new/mod'}
+      to={draft.kind === 'build' ? '/dashboard/new/build' : '/dashboard/new/mod'}
       search={{ draft: draft.id }}
       className={classes}
     >
@@ -175,7 +175,7 @@ export function DraftsList() {
           title={ut('upload_drafts_empty_title')}
           description={ut('upload_drafts_empty_detail')}
           action={
-            <Link to="/basecamp/new" className={buttonClasses({ variant: 'primary' })}>
+            <Link to="/dashboard/new" className={buttonClasses({ variant: 'primary' })}>
               <Icon icon={FilePlus2} size={16} />
               {ut('upload_drafts_start')}
             </Link>

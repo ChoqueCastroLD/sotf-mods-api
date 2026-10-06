@@ -3,7 +3,7 @@ export type Errors_Code_Turnstile_Required_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Quick check" |
+* | "Security check" |
 *
 * @param {Errors_Code_Turnstile_Required_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Permission_TitleInputs */
 
 const en_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers only`)
+	return /** @type {LocalizedString} */ (`No access`)
 };
 
 const es_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solo para guardabosques`)
+	return /** @type {LocalizedString} */ (`Sin acceso`)
 };
 
 const de_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nur für Ranger`)
+	return /** @type {LocalizedString} */ (`Kein Zugriff`)
 };
 
 const fr_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Réservé aux rangers`)
+	return /** @type {LocalizedString} */ (`Accès refusé`)
 };
 
 const it_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solo per i ranger`)
+	return /** @type {LocalizedString} */ (`Accesso negato`)
 };
 
 const nl_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alleen voor rangers`)
+	return /** @type {LocalizedString} */ (`Geen toegang`)
 };
 
 const pl_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tylko dla strażników`)
+	return /** @type {LocalizedString} */ (`Brak dostępu`)
 };
 
 const pt_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Só para guardas`)
+	return /** @type {LocalizedString} */ (`Sem acesso`)
 };
 
 const ru_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Только для рейнджеров`)
+	return /** @type {LocalizedString} */ (`Нет доступа`)
 };
 
 const sv_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Endast för rangers`)
+	return /** @type {LocalizedString} */ (`Ingen åtkomst`)
 };
 
 const tr_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yalnızca korucular için`)
+	return /** @type {LocalizedString} */ (`Erişim yok`)
 };
 
 const zh_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`仅限护林员`)
+	return /** @type {LocalizedString} */ (`无权访问`)
 };
 
 const ja_errors_permission_title = /** @type {(inputs: Errors_Permission_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャー専用`)
+	return /** @type {LocalizedString} */ (`アクセスできません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Rangers only" |
+* | "No access" |
 *
 * @param {Errors_Permission_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

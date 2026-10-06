@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Security_Tip_SessionsInputs */
 
 const en_settings_security_tip_sessions = /** @type {(inputs: Settings_Security_Tip_SessionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out of shared or public computers when you’re done.`)
+	return /** @type {LocalizedString} */ (`Log out of shared or public computers when you’re done.`)
 };
 
 const es_settings_security_tip_sessions = /** @type {(inputs: Settings_Security_Tip_SessionsInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_security_tip_sessions = /** @type {(inputs: Settings_Security_
 /**
 * | output |
 * | --- |
-* | "Sign out of shared or public computers when you’re done." |
+* | "Log out of shared or public computers when you’re done." |
 *
 * @param {Settings_Security_Tip_SessionsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

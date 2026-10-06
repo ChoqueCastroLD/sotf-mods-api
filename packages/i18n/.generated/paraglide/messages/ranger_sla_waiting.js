@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Sla_WaitingInputs */
 
 const en_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Waiting in this lane`)
+	return /** @type {LocalizedString} */ (`Waiting in this queue`)
 };
 
 const es_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En espera en este carril`)
+	return /** @type {LocalizedString} */ (`En espera en esta cola`)
 };
 
 const de_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wartend in dieser Bahn`)
+	return /** @type {LocalizedString} */ (`Wartend in dieser Warteschlange`)
 };
 
 const fr_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En attente dans cette voie`)
+	return /** @type {LocalizedString} */ (`En attente dans cette file`)
 };
 
 const it_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In attesa in questa corsia`)
+	return /** @type {LocalizedString} */ (`In attesa in questa coda`)
 };
 
 const nl_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wachtend in deze baan`)
+	return /** @type {LocalizedString} */ (`Wachtend in deze wachtrij`)
 };
 
 const pl_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czeka na tym torze`)
+	return /** @type {LocalizedString} */ (`Czeka w tej kolejce`)
 };
 
 const pt_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aguardando nesta faixa`)
+	return /** @type {LocalizedString} */ (`Aguardando nesta fila`)
 };
 
 const ru_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ждут на этой дорожке`)
+	return /** @type {LocalizedString} */ (`Ждут в этой очереди`)
 };
 
 const sv_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Väntar i den här filen`)
+	return /** @type {LocalizedString} */ (`Väntar i den här kön`)
 };
 
 const tr_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu şeritte bekleyen`)
+	return /** @type {LocalizedString} */ (`Bu kuyrukta bekleyen`)
 };
 
 const zh_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`此通道等待中`)
+	return /** @type {LocalizedString} */ (`此队列等待中`)
 };
 
 const ja_ranger_sla_waiting = /** @type {(inputs: Ranger_Sla_WaitingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このレーンで待機中`)
+	return /** @type {LocalizedString} */ (`このキューで待機中`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Waiting in this lane" |
+* | "Waiting in this queue" |
 *
 * @param {Ranger_Sla_WaitingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

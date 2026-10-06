@@ -3,7 +3,7 @@ export type Basecamp_Settings_Removal_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tell the rangers why. They answer through Signals." |
+* | "Tell moderators why. They answer in your notifications." |
 *
 * @param {Basecamp_Settings_Removal_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

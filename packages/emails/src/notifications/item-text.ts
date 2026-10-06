@@ -1,6 +1,6 @@
 /**
- * The sentence of one signal in the recipient's locale ("Kelvin commented on AmmoUi", "5 new
- * comments on AmmoUi"). Grouped signals (`count > 1`) use the counted variant of the message.
+ * The sentence of one notification in the recipient's locale ("Kelvin commented on AmmoUi", "5 new
+ * comments on AmmoUi"). Grouped notifications (`count > 1`) use the counted variant of the message.
  */
 import type { Locale } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -45,34 +45,12 @@ export function signalText(item: SignalEmailItem, locale: Locale): string {
       return m.emails_notify_item_request_adopted({ actor, request: mod }, o);
     case 'request.fulfilled':
       return m.emails_notify_item_request_fulfilled({ mod }, o);
-    case 'compat.broken_on_my_mod':
-      return m.emails_notify_item_compat_broken({ status: item.status ?? 'mixed', mod, build: item.build ?? '' }, o);
-    case 'compat.acknowledged':
-      return m.emails_notify_item_compat_acknowledged({ mod }, o);
-    case 'compat.prompt':
-      return m.emails_notify_item_compat_prompt({ build: item.build ?? '' }, o);
     case 'review.update_prompt':
       return m.emails_notify_item_review_update_prompt({ mod, version: item.version ?? '' }, o);
-    case 'kit.added_my_mod':
-      return m.emails_notify_item_kit_added_my_mod({ mod }, o);
-    case 'kit.updated_followed':
-      return m.emails_notify_item_kit_updated_followed({ kit: mod }, o);
-    case 'kit.comment':
-      return m.emails_notify_item_kit_comment({ actor, kit: mod }, o);
-    case 'kit.comment_reply':
-      return m.emails_notify_item_kit_comment_reply({ actor, kit: mod }, o);
     case 'coauthor.invited':
       return m.emails_notify_item_coauthor_invited({ actor, mod }, o);
-    case 'patch.breaking_build':
-      return m.emails_notify_item_patch_breaking({ build: item.build ?? '' }, o);
     case 'mod.status_changed':
       return m.emails_notify_item_status({ status: item.status ?? 'other', mod }, o);
-    case 'milestone.reached':
-      return m.emails_notify_item_milestone({ mod, threshold: item.threshold ?? 0 }, o);
-    case 'badge.awarded':
-      return m.emails_notify_item_badge({}, o);
-    case 'award.won':
-      return m.emails_notify_item_award({ kind: item.awardKind ?? 'other', mod }, o);
     case 'jam.phase':
       return m.emails_notify_item_jam_phase({ phase: item.status ?? 'other', jam: mod }, o);
     case 'report.resolved':

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Empty_Filtered_TextInputs */
 
 const en_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No signal matches this filter yet. Try “All”.`)
+	return /** @type {LocalizedString} */ (`No notification matches this filter yet. Try “All”.`)
 };
 
 const es_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ninguna señal coincide con este filtro todavía. Prueba con «Todo».`)
+	return /** @type {LocalizedString} */ (`Ninguna notificación coincide con este filtro todavía. Prueba con «Todo».`)
 };
 
 const de_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch kein Signal passt zu diesem Filter. Versuch es mit „Alle“.`)
+	return /** @type {LocalizedString} */ (`Noch keine Benachrichtigung passt zu diesem Filter. Versuch es mit „Alle“.`)
 };
 
 const fr_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucun signal ne correspond encore à ce filtre. Essayez « Tout ».`)
+	return /** @type {LocalizedString} */ (`Aucune notification ne correspond encore à ce filtre. Essayez « Tout ».`)
 };
 
 const it_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessun segnale corrisponde ancora a questo filtro. Prova con «Tutti».`)
+	return /** @type {LocalizedString} */ (`Nessuna notifica corrisponde ancora a questo filtro. Prova con «Tutti».`)
 };
 
 const nl_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Er past nog geen signaal bij dit filter. Probeer ‘Alles’.`)
+	return /** @type {LocalizedString} */ (`Er past nog geen melding bij dit filter. Probeer ‘Alles’.`)
 };
 
 const pl_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Żaden sygnał nie pasuje jeszcze do tego filtra. Spróbuj „Wszystko”.`)
+	return /** @type {LocalizedString} */ (`Żadne powiadomienie nie pasuje jeszcze do tego filtra. Spróbuj „Wszystko”.`)
 };
 
 const pt_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nenhum sinal corresponde a este filtro ainda. Tente “Tudo”.`)
+	return /** @type {LocalizedString} */ (`Nenhuma notificação corresponde a este filtro ainda. Tente “Tudo”.`)
 };
 
 const ru_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пока ни один сигнал не подходит под этот фильтр. Попробуйте «Все».`)
+	return /** @type {LocalizedString} */ (`Пока ни одно уведомление не подходит под этот фильтр. Попробуйте «Все».`)
 };
 
 const sv_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ingen signal matchar det här filtret än. Prova ”Alla”.`)
+	return /** @type {LocalizedString} */ (`Ingen avisering matchar det här filtret än. Prova ”Alla”.`)
 };
 
 const tr_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz bu filtreye uyan sinyal yok. “Tümü”nü dene.`)
+	return /** @type {LocalizedString} */ (`Henüz bu filtreye uyan bildirim yok. “Tümü”nü dene.`)
 };
 
 const zh_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`暂时没有符合此筛选条件的信号。试试“全部”。`)
+	return /** @type {LocalizedString} */ (`暂时没有符合此筛选条件的通知。试试“全部”。`)
 };
 
 const ja_signals_empty_filtered_text = /** @type {(inputs: Signals_Empty_Filtered_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このフィルターに一致するシグナルはまだありません。「すべて」を試してください。`)
+	return /** @type {LocalizedString} */ (`このフィルターに一致する通知はまだありません。「すべて」を試してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No signal matches this filter yet. Try “All”." |
+* | "No notification matches this filter yet. Try “All”." |
 *
 * @param {Signals_Empty_Filtered_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

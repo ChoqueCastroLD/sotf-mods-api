@@ -1,5 +1,5 @@
 /**
- * `/basecamp` — the creator dashboard: greeting, KPIs with sparklines and deltas, the downloads
+ * `/dashboard` — the creator dashboard: greeting, KPIs with sparklines and deltas, the downloads
  * chart with release markers, «Needs attention», «Live» and «My mods». No milestones or tiers.
  *
  * Phones: KPIs in two columns, «Needs attention» before the chart, the table as cards.
@@ -54,7 +54,11 @@ function DownloadsPanel({
       actions={
         <>
           <RangeSwitch value={range} onChange={onRange} />
-          <Link to="/basecamp/analytics" search={{ range }} className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
+          <Link
+            to="/dashboard/analytics"
+            search={{ range }}
+            className={buttonClasses({ variant: 'ghost', size: 'sm' })}
+          >
             <Icon icon={ChartLine} size={16} />
             {bt('basecamp_downloads_more')}
           </Link>
@@ -115,17 +119,20 @@ export function OverviewScreen({
       title={greeting(name)}
       actions={
         <>
-          <Link to="/basecamp/new/mod" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
+          <Link
+            to="/dashboard/new/mod"
+            className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}
+          >
             <Icon icon={Plus} size={16} />
             {bt('basecamp_action_new_mod')}
           </Link>
           {data.mods.length > 0 ? (
-            <Link to="/basecamp/new" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
+            <Link to="/dashboard/new" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
               <Icon icon={PackagePlus} size={16} />
               {bt('basecamp_action_new_version')}
             </Link>
           ) : null}
-          <Link to="/basecamp/inbox" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
+          <Link to="/dashboard/inbox" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
             <Icon icon={Inbox} size={16} />
             {bt('basecamp_action_inbox')}
           </Link>
@@ -143,7 +150,7 @@ export function OverviewScreen({
           title={bt('basecamp_empty_title')}
           description={bt('basecamp_empty_text')}
           action={
-            <Link to="/basecamp/new" className={buttonClasses({ variant: 'primary' })}>
+            <Link to="/dashboard/new" className={buttonClasses({ variant: 'primary' })}>
               <Icon icon={Plus} size={18} />
               {bt('basecamp_empty_action')}
             </Link>
@@ -177,7 +184,7 @@ export function OverviewScreen({
           className="order-4"
           title={bt('basecamp_mods_title')}
           actions={
-            <Link to="/basecamp/mods" className="text-sm text-link hover:underline">
+            <Link to="/dashboard/mods" className="text-sm text-link hover:underline">
               {bt('basecamp_mods_all')}
             </Link>
           }

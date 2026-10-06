@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Page_TitleInputs */
 
 const en_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signals`)
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 const es_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Señales`)
+	return /** @type {LocalizedString} */ (`Notificaciones`)
 };
 
 const de_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signale`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen`)
 };
 
 const fr_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaux`)
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 const it_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnali`)
+	return /** @type {LocalizedString} */ (`Notifiche`)
 };
 
 const nl_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalen`)
+	return /** @type {LocalizedString} */ (`Meldingen`)
 };
 
 const pl_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sygnały`)
+	return /** @type {LocalizedString} */ (`Powiadomienia`)
 };
 
 const pt_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinais`)
+	return /** @type {LocalizedString} */ (`Notificações`)
 };
 
 const ru_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигналы`)
+	return /** @type {LocalizedString} */ (`Уведомления`)
 };
 
 const sv_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaler`)
+	return /** @type {LocalizedString} */ (`Aviseringar`)
 };
 
 const tr_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyaller`)
+	return /** @type {LocalizedString} */ (`Bildirimler`)
 };
 
 const zh_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 const ja_signals_page_title = /** @type {(inputs: Signals_Page_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナル`)
+	return /** @type {LocalizedString} */ (`通知`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Signals" |
+* | "Notifications" |
 *
 * @param {Signals_Page_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

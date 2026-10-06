@@ -3,7 +3,7 @@ export type Ranger_Live_OffInputs = {};
 /**
 * | output |
 * | --- |
-* | "Updates paused — the list refreshes when the connection is back" |
+* | "Updates paused. The list refreshes when the connection is back." |
 *
 * @param {Ranger_Live_OffInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

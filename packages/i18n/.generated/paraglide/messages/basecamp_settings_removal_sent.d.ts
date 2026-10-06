@@ -3,7 +3,7 @@ export type Basecamp_Settings_Removal_SentInputs = {};
 /**
 * | output |
 * | --- |
-* | "Removal requested: the rangers will review it" |
+* | "Removal requested: moderators will review it" |
 *
 * @param {Basecamp_Settings_Removal_SentInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

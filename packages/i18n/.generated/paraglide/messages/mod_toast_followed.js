@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Mod_Toast_FollowedInputs */
 
 const en_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is in your backpack. You’ll hear about updates.`)
+	return /** @type {LocalizedString} */ (`You now follow ${i?.name}. You’ll be notified of updates.`)
 };
 
 const es_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} está en tu mochila. Te avisaremos de las actualizaciones.`)
+	return /** @type {LocalizedString} */ (`Ahora sigues ${i?.name}. Te avisaremos de las actualizaciones.`)
 };
 
 const de_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ist in deinem Rucksack. Du erfährst von Updates.`)
+	return /** @type {LocalizedString} */ (`Du folgst jetzt ${i?.name}. Du wirst über Updates benachrichtigt.`)
 };
 
 const fr_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} est dans votre sac à dos. Vous serez prévenu des mises à jour.`)
+	return /** @type {LocalizedString} */ (`Vous suivez maintenant ${i?.name}. Vous serez prévenu des mises à jour.`)
 };
 
 const it_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} è nel tuo zaino. Ti avviseremo degli aggiornamenti.`)
+	return /** @type {LocalizedString} */ (`Ora segui ${i?.name}. Ti avviseremo degli aggiornamenti.`)
 };
 
 const nl_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} zit in je rugzak. Je hoort over updates.`)
+	return /** @type {LocalizedString} */ (`Je volgt nu ${i?.name}. Je krijgt bericht bij updates.`)
 };
 
 const pl_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} jest w twoim plecaku. Dowiesz się o aktualizacjach.`)
+	return /** @type {LocalizedString} */ (`Obserwujesz ${i?.name}. Powiadomimy cię o aktualizacjach.`)
 };
 
 const pt_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} está na sua mochila. Você vai saber das atualizações.`)
+	return /** @type {LocalizedString} */ (`Você agora segue ${i?.name}. Vai ser avisado das atualizações.`)
 };
 
 const ru_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} в вашем рюкзаке. Вы узнаете об обновлениях.`)
+	return /** @type {LocalizedString} */ (`Вы подписались на ${i?.name}. Вы узнаете об обновлениях.`)
 };
 
 const sv_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ligger i din ryggsäck. Du får höra om uppdateringar.`)
+	return /** @type {LocalizedString} */ (`Du följer nu ${i?.name}. Du får besked om uppdateringar.`)
 };
 
 const tr_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} sırt çantanda. Güncellemelerden haberin olacak.`)
+	return /** @type {LocalizedString} */ (`${i?.name} takip ediliyor. Güncellemelerden haberin olacak.`)
 };
 
 const zh_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 已放进你的背包，有更新会通知你。`)
+	return /** @type {LocalizedString} */ (`已关注 ${i?.name}，有更新会通知你。`)
 };
 
 const ja_mod_toast_followed = /** @type {(inputs: Mod_Toast_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} をバックパックに入れました。更新があればお知らせします。`)
+	return /** @type {LocalizedString} */ (`${i?.name} をフォローしました。更新があればお知らせします。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} is in your backpack. You’ll hear about updates." |
+* | "You now follow {name}. You’ll be notified of updates." |
 *
 * @param {Mod_Toast_FollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

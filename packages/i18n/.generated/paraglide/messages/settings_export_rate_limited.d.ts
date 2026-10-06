@@ -3,7 +3,7 @@ export type Settings_Export_Rate_LimitedInputs = {};
 /**
 * | output |
 * | --- |
-* | "You requested an export recently — try again later" |
+* | "You requested an export recently. Try again later" |
 *
 * @param {Settings_Export_Rate_LimitedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

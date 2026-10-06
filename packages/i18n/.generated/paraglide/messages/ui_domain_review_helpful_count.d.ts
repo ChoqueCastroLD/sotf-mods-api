@@ -5,8 +5,8 @@ export type Ui_Domain_Review_Helpful_CountInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} survivor found this helpful" |
-* | * | "{count__number} survivors found this helpful" |
+* | "one" | "{count__number} person found this helpful" |
+* | * | "{count__number} people found this helpful" |
 *
 * @param {Ui_Domain_Review_Helpful_CountInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

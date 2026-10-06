@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Account_Sign_InInputs */
 
 const en_common_account_sign_in = /** @type {(inputs: Common_Account_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in`)
+	return /** @type {LocalizedString} */ (`Log in`)
 };
 
 const es_common_account_sign_in = /** @type {(inputs: Common_Account_Sign_InInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_common_account_sign_in = /** @type {(inputs: Common_Account_Sign_InInpu
 /**
 * | output |
 * | --- |
-* | "Sign in" |
+* | "Log in" |
 *
 * @param {Common_Account_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Multiplayer_Unknown_HintInputs */
 
 const en_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Survivors’ field reports will tell.`)
+	return /** @type {LocalizedString} */ (`Shown as unknown on the listing.`)
 };
 
 const es_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los reportes de campo de los supervivientes lo dirán.`)
+	return /** @type {LocalizedString} */ (`Se mostrará como desconocido en la ficha.`)
 };
 
 const de_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Feldberichte der Überlebenden werden es zeigen.`)
+	return /** @type {LocalizedString} */ (`Wird im Eintrag als unbekannt angezeigt.`)
 };
 
 const fr_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rapports de terrain des survivants le diront.`)
+	return /** @type {LocalizedString} */ (`Affiché comme inconnu sur la fiche.`)
 };
 
 const it_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lo diranno i rapporti sul campo dei sopravvissuti.`)
+	return /** @type {LocalizedString} */ (`Verrà mostrato come sconosciuto nella scheda.`)
 };
 
 const nl_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De veldrapporten van overlevenden zullen het uitwijzen.`)
+	return /** @type {LocalizedString} */ (`Wordt in de vermelding als onbekend getoond.`)
 };
 
 const pl_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pokażą to raporty terenowe ocalałych.`)
+	return /** @type {LocalizedString} */ (`We wpisie będzie oznaczone jako nieznane.`)
 };
 
 const pt_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os relatórios de campo dos sobreviventes vão dizer.`)
+	return /** @type {LocalizedString} */ (`Aparece como desconhecido na ficha.`)
 };
 
 const ru_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Это покажут полевые отчёты выживших.`)
+	return /** @type {LocalizedString} */ (`В карточке будет указано, что это неизвестно.`)
 };
 
 const sv_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Överlevarnas fältrapporter kommer att visa det.`)
+	return /** @type {LocalizedString} */ (`Visas som okänt på sidan.`)
 };
 
 const tr_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hayatta kalanların saha raporları gösterecek.`)
+	return /** @type {LocalizedString} */ (`Sayfada bilinmiyor olarak gösterilir.`)
 };
 
 const zh_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`幸存者的实地报告会给出答案。`)
+	return /** @type {LocalizedString} */ (`在页面上显示为未知。`)
 };
 
 const ja_upload_multiplayer_unknown_hint = /** @type {(inputs: Upload_Multiplayer_Unknown_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`サバイバーのフィールドレポートで明らかになります。`)
+	return /** @type {LocalizedString} */ (`ページには「不明」と表示されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Survivors’ field reports will tell." |
+* | "Shown as unknown on the listing." |
 *
 * @param {Upload_Multiplayer_Unknown_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

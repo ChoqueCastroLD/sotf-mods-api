@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_Deletion_PreviewInputs */
 
 const en_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You can still change your mind.`)
+	return /** @type {LocalizedString} */ (`You can still cancel the deletion.`)
 };
 
 const es_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Todavía puedes cambiar de idea.`)
+	return /** @type {LocalizedString} */ (`Todavía puedes cancelar el borrado.`)
 };
 
 const de_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du kannst es dir noch anders überlegen.`)
+	return /** @type {LocalizedString} */ (`Du kannst die Löschung noch abbrechen.`)
 };
 
 const fr_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous pouvez encore changer d’avis.`)
+	return /** @type {LocalizedString} */ (`Vous pouvez encore annuler la suppression.`)
 };
 
 const it_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Puoi ancora cambiare idea.`)
+	return /** @type {LocalizedString} */ (`Puoi ancora annullare l’eliminazione.`)
 };
 
 const nl_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je kunt nog van gedachten veranderen.`)
+	return /** @type {LocalizedString} */ (`Je kunt de verwijdering nog annuleren.`)
 };
 
 const pl_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nadal możesz zmienić zdanie.`)
+	return /** @type {LocalizedString} */ (`Nadal możesz anulować usunięcie.`)
 };
 
 const pt_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você ainda pode mudar de ideia.`)
+	return /** @type {LocalizedString} */ (`Você ainda pode cancelar a exclusão.`)
 };
 
 const ru_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вы ещё можете передумать.`)
+	return /** @type {LocalizedString} */ (`Вы ещё можете отменить удаление.`)
 };
 
 const sv_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du kan fortfarande ångra dig.`)
+	return /** @type {LocalizedString} */ (`Du kan fortfarande avbryta raderingen.`)
 };
 
 const tr_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hâlâ fikrini değiştirebilirsin.`)
+	return /** @type {LocalizedString} */ (`Silmeyi hâlâ iptal edebilirsin.`)
 };
 
 const zh_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你仍然可以改变主意。`)
+	return /** @type {LocalizedString} */ (`你仍然可以取消删除。`)
 };
 
 const ja_emails_auth_deletion_preview = /** @type {(inputs: Emails_Auth_Deletion_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`まだ取り消すことができます。`)
+	return /** @type {LocalizedString} */ (`削除はまだ取り消せます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You can still change your mind." |
+* | "You can still cancel the deletion." |
 *
 * @param {Emails_Auth_Deletion_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

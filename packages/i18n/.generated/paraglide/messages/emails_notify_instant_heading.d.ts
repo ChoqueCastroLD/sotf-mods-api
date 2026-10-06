@@ -3,7 +3,7 @@ export type Emails_Notify_Instant_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "New signals" |
+* | "New notifications" |
 *
 * @param {Emails_Notify_Instant_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_Revoke_SessionsInputs */
 
 const en_ranger_user_revoke_sessions = /** @type {(inputs: Ranger_User_Revoke_SessionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out everywhere`)
+	return /** @type {LocalizedString} */ (`Log out everywhere`)
 };
 
 const es_ranger_user_revoke_sessions = /** @type {(inputs: Ranger_User_Revoke_SessionsInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_user_revoke_sessions = /** @type {(inputs: Ranger_User_Revoke_Se
 };
 
 const nl_ranger_user_revoke_sessions = /** @type {(inputs: Ranger_User_Revoke_SessionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Overal afmelden`)
+	return /** @type {LocalizedString} */ (`Overal uitloggen`)
 };
 
 const pl_ranger_user_revoke_sessions = /** @type {(inputs: Ranger_User_Revoke_SessionsInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_ranger_user_revoke_sessions = /** @type {(inputs: Ranger_User_Revoke_Se
 /**
 * | output |
 * | --- |
-* | "Sign out everywhere" |
+* | "Log out everywhere" |
 *
 * @param {Ranger_User_Revoke_SessionsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

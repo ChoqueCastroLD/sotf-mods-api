@@ -3,7 +3,7 @@ export type Ui_LoadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Checking the map…" |
+* | "Loading…" |
 *
 * @param {Ui_LoadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

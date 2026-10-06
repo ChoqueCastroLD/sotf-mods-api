@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Mer",
-  "shell_more_help": "Hjälp",
-  "shell_more_community": "Community",
   "shell_more_install_guide": "Installationsguide",
   "shell_install_app": "Installera appen",
   "shell_install_app_hint": "Lägg till SOTF Mods på hemskärmen",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Uppdaterar…",
   "shell_offline_meta_title": "Offline",
   "shell_offline_meta_description": "Ingen anslutning just nu. Försök igen när du är online igen.",
-  "shell_offline_eyebrow": "Offline",
   "shell_offline_title": "Du är offline",
   "shell_offline_body": "SOTF Mods kan inte nås just nu. Kontrollera din anslutning och försök igen.",
   "shell_offline_retry": "Försök igen",

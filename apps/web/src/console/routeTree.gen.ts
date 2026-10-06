@@ -10,24 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root.tsx'
 import { Route as IndexRouteImport } from './routes/index.tsx'
-import { Route as BasecampRouteImport } from './routes/basecamp.tsx'
+import { Route as DashboardRouteImport } from './routes/dashboard.tsx'
 import { Route as MeRouteImport } from './routes/me.tsx'
-import { Route as RangerRouteImport } from './routes/ranger.tsx'
+import { Route as ModerationRouteImport } from './routes/moderation.tsx'
+import { Route as NotificationsRouteImport } from './routes/notifications.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
-import { Route as SignalsRouteImport } from './routes/signals.tsx'
-import { Route as BasecampIndexRouteImport } from './routes/basecamp/index.tsx'
-import { Route as BasecampAnalyticsRouteImport } from './routes/basecamp/analytics.tsx'
-import { Route as BasecampInboxRouteImport } from './routes/basecamp/inbox.tsx'
-import { Route as BasecampInvitesRouteImport } from './routes/basecamp/invites.tsx'
-import { Route as BasecampJamsRouteImport } from './routes/basecamp/jams.tsx'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard/index.tsx'
+import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard/analytics.tsx'
+import { Route as DashboardInboxRouteImport } from './routes/dashboard/inbox.tsx'
+import { Route as DashboardInvitesRouteImport } from './routes/dashboard/invites.tsx'
+import { Route as DashboardJamsRouteImport } from './routes/dashboard/jams.tsx'
 import { Route as MeIndexRouteImport } from './routes/me/index.tsx'
-import { Route as MeBackpackRouteImport } from './routes/me/backpack.tsx'
 import { Route as MeDownloadsRouteImport } from './routes/me/downloads.tsx'
-import { Route as RangerIndexRouteImport } from './routes/ranger/index.tsx'
-import { Route as RangerAdminRouteRouteImport } from './routes/ranger/admin/route.tsx'
-import { Route as RangerAuditRouteImport } from './routes/ranger/audit.tsx'
-import { Route as RangerCommentsRouteImport } from './routes/ranger/comments.tsx'
-import { Route as RangerReportsRouteImport } from './routes/ranger/reports.tsx'
+import { Route as MeFollowingRouteImport } from './routes/me/following.tsx'
+import { Route as ModerationIndexRouteImport } from './routes/moderation/index.tsx'
+import { Route as ModerationAdminRouteRouteImport } from './routes/moderation/admin/route.tsx'
+import { Route as ModerationAuditRouteImport } from './routes/moderation/audit.tsx'
+import { Route as ModerationCommentsRouteImport } from './routes/moderation/comments.tsx'
+import { Route as ModerationReportsRouteImport } from './routes/moderation/reports.tsx'
+import { Route as NotificationsIndexRouteImport } from './routes/notifications/index.tsx'
 import { Route as SettingsIndexRouteImport } from './routes/settings/index.tsx'
 import { Route as SettingsAccountRouteImport } from './routes/settings/account.tsx'
 import { Route as SettingsCreatorRouteImport } from './routes/settings/creator.tsx'
@@ -38,38 +39,37 @@ import { Route as SettingsPrivacyRouteImport } from './routes/settings/privacy.t
 import { Route as SettingsProfileRouteImport } from './routes/settings/profile.tsx'
 import { Route as SettingsSecurityRouteImport } from './routes/settings/security.tsx'
 import { Route as SettingsTokensRouteImport } from './routes/settings/tokens.tsx'
-import { Route as SignalsIndexRouteImport } from './routes/signals/index.tsx'
-import { Route as BasecampDraftsIndexRouteImport } from './routes/basecamp/drafts/index.tsx'
-import { Route as BasecampDraftsDraftIdRouteImport } from './routes/basecamp/drafts/$draftId.tsx'
-import { Route as BasecampModsIndexRouteImport } from './routes/basecamp/mods/index.tsx'
-import { Route as BasecampNewIndexRouteImport } from './routes/basecamp/new/index.tsx'
-import { Route as BasecampNewBuildRouteImport } from './routes/basecamp/new/build.tsx'
-import { Route as BasecampNewModRouteImport } from './routes/basecamp/new/mod.tsx'
-import { Route as RangerAdminIndexRouteImport } from './routes/ranger/admin/index.tsx'
-import { Route as RangerAdminAnnouncementsRouteImport } from './routes/ranger/admin/announcements.tsx'
-import { Route as RangerAdminEcosystemRouteImport } from './routes/ranger/admin/ecosystem.tsx'
-import { Route as RangerAdminGameBuildsRouteImport } from './routes/ranger/admin/game-builds.tsx'
-import { Route as RangerAdminIntegrationsRouteImport } from './routes/ranger/admin/integrations.tsx'
-import { Route as RangerAdminOperationsRouteImport } from './routes/ranger/admin/operations.tsx'
-import { Route as RangerAdminPerformanceRouteImport } from './routes/ranger/admin/performance.tsx'
-import { Route as RangerAdminRecategorizeRouteImport } from './routes/ranger/admin/recategorize.tsx'
-import { Route as RangerAdminSettingsRouteImport } from './routes/ranger/admin/settings.tsx'
-import { Route as RangerAdminTaxonomyRouteImport } from './routes/ranger/admin/taxonomy.tsx'
-import { Route as RangerJamsIndexRouteImport } from './routes/ranger/jams/index.tsx'
-import { Route as RangerJamsJamIdRouteImport } from './routes/ranger/jams/$jamId.tsx'
-import { Route as RangerUsersIndexRouteImport } from './routes/ranger/users/index.tsx'
-import { Route as RangerUsersUserIdRouteImport } from './routes/ranger/users/$userId.tsx'
-import { Route as BasecampModsModIdIndexRouteImport } from './routes/basecamp/mods/$modId/index.tsx'
-import { Route as BasecampModsModIdNewVersionRouteImport } from './routes/basecamp/mods/$modId/new-version.tsx'
+import { Route as DashboardDraftsIndexRouteImport } from './routes/dashboard/drafts/index.tsx'
+import { Route as DashboardDraftsDraftIdRouteImport } from './routes/dashboard/drafts/$draftId.tsx'
+import { Route as DashboardModsIndexRouteImport } from './routes/dashboard/mods/index.tsx'
+import { Route as DashboardNewIndexRouteImport } from './routes/dashboard/new/index.tsx'
+import { Route as DashboardNewBuildRouteImport } from './routes/dashboard/new/build.tsx'
+import { Route as DashboardNewModRouteImport } from './routes/dashboard/new/mod.tsx'
+import { Route as ModerationAdminIndexRouteImport } from './routes/moderation/admin/index.tsx'
+import { Route as ModerationAdminAnnouncementsRouteImport } from './routes/moderation/admin/announcements.tsx'
+import { Route as ModerationAdminEcosystemRouteImport } from './routes/moderation/admin/ecosystem.tsx'
+import { Route as ModerationAdminGameBuildsRouteImport } from './routes/moderation/admin/game-builds.tsx'
+import { Route as ModerationAdminIntegrationsRouteImport } from './routes/moderation/admin/integrations.tsx'
+import { Route as ModerationAdminOperationsRouteImport } from './routes/moderation/admin/operations.tsx'
+import { Route as ModerationAdminPerformanceRouteImport } from './routes/moderation/admin/performance.tsx'
+import { Route as ModerationAdminRecategorizeRouteImport } from './routes/moderation/admin/recategorize.tsx'
+import { Route as ModerationAdminSettingsRouteImport } from './routes/moderation/admin/settings.tsx'
+import { Route as ModerationAdminTaxonomyRouteImport } from './routes/moderation/admin/taxonomy.tsx'
+import { Route as ModerationJamsIndexRouteImport } from './routes/moderation/jams/index.tsx'
+import { Route as ModerationJamsJamIdRouteImport } from './routes/moderation/jams/$jamId.tsx'
+import { Route as ModerationUsersIndexRouteImport } from './routes/moderation/users/index.tsx'
+import { Route as ModerationUsersUserIdRouteImport } from './routes/moderation/users/$userId.tsx'
+import { Route as DashboardModsModIdIndexRouteImport } from './routes/dashboard/mods/$modId/index.tsx'
+import { Route as DashboardModsModIdNewVersionRouteImport } from './routes/dashboard/mods/$modId/new-version.tsx'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BasecampRoute = BasecampRouteImport.update({
-  id: '/basecamp',
-  path: '/basecamp',
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeRoute = MeRouteImport.update({
@@ -77,9 +77,14 @@ const MeRoute = MeRouteImport.update({
   path: '/me',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RangerRoute = RangerRouteImport.update({
-  id: '/ranger',
-  path: '/ranger',
+const ModerationRoute = ModerationRouteImport.update({
+  id: '/moderation',
+  path: '/moderation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SettingsRoute = SettingsRouteImport.update({
@@ -87,44 +92,34 @@ const SettingsRoute = SettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SignalsRoute = SignalsRouteImport.update({
-  id: '/signals',
-  path: '/signals',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BasecampIndexRoute = BasecampIndexRouteImport.update({
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampAnalyticsRoute = BasecampAnalyticsRouteImport.update({
+const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampInboxRoute = BasecampInboxRouteImport.update({
+const DashboardInboxRoute = DashboardInboxRouteImport.update({
   id: '/inbox',
   path: '/inbox',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampInvitesRoute = BasecampInvitesRouteImport.update({
+const DashboardInvitesRoute = DashboardInvitesRouteImport.update({
   id: '/invites',
   path: '/invites',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampJamsRoute = BasecampJamsRouteImport.update({
+const DashboardJamsRoute = DashboardJamsRouteImport.update({
   id: '/jams',
   path: '/jams',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
 const MeIndexRoute = MeIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => MeRoute,
-} as any)
-const MeBackpackRoute = MeBackpackRouteImport.update({
-  id: '/backpack',
-  path: '/backpack',
   getParentRoute: () => MeRoute,
 } as any)
 const MeDownloadsRoute = MeDownloadsRouteImport.update({
@@ -132,30 +127,40 @@ const MeDownloadsRoute = MeDownloadsRouteImport.update({
   path: '/downloads',
   getParentRoute: () => MeRoute,
 } as any)
-const RangerIndexRoute = RangerIndexRouteImport.update({
+const MeFollowingRoute = MeFollowingRouteImport.update({
+  id: '/following',
+  path: '/following',
+  getParentRoute: () => MeRoute,
+} as any)
+const ModerationIndexRoute = ModerationIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerAdminRouteRoute = RangerAdminRouteRouteImport.update({
+const ModerationAdminRouteRoute = ModerationAdminRouteRouteImport.update({
   id: '/admin',
   path: '/admin',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerAuditRoute = RangerAuditRouteImport.update({
+const ModerationAuditRoute = ModerationAuditRouteImport.update({
   id: '/audit',
   path: '/audit',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerCommentsRoute = RangerCommentsRouteImport.update({
+const ModerationCommentsRoute = ModerationCommentsRouteImport.update({
   id: '/comments',
   path: '/comments',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerReportsRoute = RangerReportsRouteImport.update({
+const ModerationReportsRoute = ModerationReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
+} as any)
+const NotificationsIndexRoute = NotificationsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => NotificationsRoute,
 } as any)
 const SettingsIndexRoute = SettingsIndexRouteImport.update({
   id: '/',
@@ -207,141 +212,142 @@ const SettingsTokensRoute = SettingsTokensRouteImport.update({
   path: '/tokens',
   getParentRoute: () => SettingsRoute,
 } as any)
-const SignalsIndexRoute = SignalsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => SignalsRoute,
-} as any)
-const BasecampDraftsIndexRoute = BasecampDraftsIndexRouteImport.update({
+const DashboardDraftsIndexRoute = DashboardDraftsIndexRouteImport.update({
   id: '/drafts/',
   path: '/drafts/',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampDraftsDraftIdRoute = BasecampDraftsDraftIdRouteImport.update({
+const DashboardDraftsDraftIdRoute = DashboardDraftsDraftIdRouteImport.update({
   id: '/drafts/$draftId',
   path: '/drafts/$draftId',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampModsIndexRoute = BasecampModsIndexRouteImport.update({
+const DashboardModsIndexRoute = DashboardModsIndexRouteImport.update({
   id: '/mods/',
   path: '/mods/',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampNewIndexRoute = BasecampNewIndexRouteImport.update({
+const DashboardNewIndexRoute = DashboardNewIndexRouteImport.update({
   id: '/new/',
   path: '/new/',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampNewBuildRoute = BasecampNewBuildRouteImport.update({
+const DashboardNewBuildRoute = DashboardNewBuildRouteImport.update({
   id: '/new/build',
   path: '/new/build',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampNewModRoute = BasecampNewModRouteImport.update({
+const DashboardNewModRoute = DashboardNewModRouteImport.update({
   id: '/new/mod',
   path: '/new/mod',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const RangerAdminIndexRoute = RangerAdminIndexRouteImport.update({
+const ModerationAdminIndexRoute = ModerationAdminIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => RangerAdminRouteRoute,
+  getParentRoute: () => ModerationAdminRouteRoute,
 } as any)
-const RangerAdminAnnouncementsRoute =
-  RangerAdminAnnouncementsRouteImport.update({
+const ModerationAdminAnnouncementsRoute =
+  ModerationAdminAnnouncementsRouteImport.update({
     id: '/announcements',
     path: '/announcements',
-    getParentRoute: () => RangerAdminRouteRoute,
+    getParentRoute: () => ModerationAdminRouteRoute,
   } as any)
-const RangerAdminEcosystemRoute = RangerAdminEcosystemRouteImport.update({
-  id: '/ecosystem',
-  path: '/ecosystem',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
-const RangerAdminGameBuildsRoute = RangerAdminGameBuildsRouteImport.update({
-  id: '/game-builds',
-  path: '/game-builds',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
-const RangerAdminIntegrationsRoute = RangerAdminIntegrationsRouteImport.update({
-  id: '/integrations',
-  path: '/integrations',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
-const RangerAdminOperationsRoute = RangerAdminOperationsRouteImport.update({
-  id: '/operations',
-  path: '/operations',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
-const RangerAdminPerformanceRoute = RangerAdminPerformanceRouteImport.update({
-  id: '/performance',
-  path: '/performance',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
-const RangerAdminRecategorizeRoute = RangerAdminRecategorizeRouteImport.update({
-  id: '/recategorize',
-  path: '/recategorize',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
-const RangerAdminSettingsRoute = RangerAdminSettingsRouteImport.update({
+const ModerationAdminEcosystemRoute =
+  ModerationAdminEcosystemRouteImport.update({
+    id: '/ecosystem',
+    path: '/ecosystem',
+    getParentRoute: () => ModerationAdminRouteRoute,
+  } as any)
+const ModerationAdminGameBuildsRoute =
+  ModerationAdminGameBuildsRouteImport.update({
+    id: '/game-builds',
+    path: '/game-builds',
+    getParentRoute: () => ModerationAdminRouteRoute,
+  } as any)
+const ModerationAdminIntegrationsRoute =
+  ModerationAdminIntegrationsRouteImport.update({
+    id: '/integrations',
+    path: '/integrations',
+    getParentRoute: () => ModerationAdminRouteRoute,
+  } as any)
+const ModerationAdminOperationsRoute =
+  ModerationAdminOperationsRouteImport.update({
+    id: '/operations',
+    path: '/operations',
+    getParentRoute: () => ModerationAdminRouteRoute,
+  } as any)
+const ModerationAdminPerformanceRoute =
+  ModerationAdminPerformanceRouteImport.update({
+    id: '/performance',
+    path: '/performance',
+    getParentRoute: () => ModerationAdminRouteRoute,
+  } as any)
+const ModerationAdminRecategorizeRoute =
+  ModerationAdminRecategorizeRouteImport.update({
+    id: '/recategorize',
+    path: '/recategorize',
+    getParentRoute: () => ModerationAdminRouteRoute,
+  } as any)
+const ModerationAdminSettingsRoute = ModerationAdminSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
-  getParentRoute: () => RangerAdminRouteRoute,
+  getParentRoute: () => ModerationAdminRouteRoute,
 } as any)
-const RangerAdminTaxonomyRoute = RangerAdminTaxonomyRouteImport.update({
+const ModerationAdminTaxonomyRoute = ModerationAdminTaxonomyRouteImport.update({
   id: '/taxonomy',
   path: '/taxonomy',
-  getParentRoute: () => RangerAdminRouteRoute,
+  getParentRoute: () => ModerationAdminRouteRoute,
 } as any)
-const RangerJamsIndexRoute = RangerJamsIndexRouteImport.update({
+const ModerationJamsIndexRoute = ModerationJamsIndexRouteImport.update({
   id: '/jams/',
   path: '/jams/',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerJamsJamIdRoute = RangerJamsJamIdRouteImport.update({
+const ModerationJamsJamIdRoute = ModerationJamsJamIdRouteImport.update({
   id: '/jams/$jamId',
   path: '/jams/$jamId',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerUsersIndexRoute = RangerUsersIndexRouteImport.update({
+const ModerationUsersIndexRoute = ModerationUsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const RangerUsersUserIdRoute = RangerUsersUserIdRouteImport.update({
+const ModerationUsersUserIdRoute = ModerationUsersUserIdRouteImport.update({
   id: '/users/$userId',
   path: '/users/$userId',
-  getParentRoute: () => RangerRoute,
+  getParentRoute: () => ModerationRoute,
 } as any)
-const BasecampModsModIdIndexRoute = BasecampModsModIdIndexRouteImport.update({
+const DashboardModsModIdIndexRoute = DashboardModsModIdIndexRouteImport.update({
   id: '/mods/$modId/',
   path: '/mods/$modId/',
-  getParentRoute: () => BasecampRoute,
+  getParentRoute: () => DashboardRoute,
 } as any)
-const BasecampModsModIdNewVersionRoute =
-  BasecampModsModIdNewVersionRouteImport.update({
+const DashboardModsModIdNewVersionRoute =
+  DashboardModsModIdNewVersionRouteImport.update({
     id: '/mods/$modId/new-version',
     path: '/mods/$modId/new-version',
-    getParentRoute: () => BasecampRoute,
+    getParentRoute: () => DashboardRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
   '/me': typeof MeRouteWithChildren
-  '/ranger': typeof RangerRouteWithChildren
+  '/moderation': typeof ModerationRouteWithChildren
+  '/notifications': typeof NotificationsRouteWithChildren
   '/settings': typeof SettingsRouteWithChildren
-  '/signals': typeof SignalsRouteWithChildren
-  '/ranger/admin': typeof RangerAdminRouteRouteWithChildren
-  '/basecamp/analytics': typeof BasecampAnalyticsRoute
-  '/basecamp/inbox': typeof BasecampInboxRoute
-  '/basecamp/invites': typeof BasecampInvitesRoute
-  '/basecamp/jams': typeof BasecampJamsRoute
-  '/me/backpack': typeof MeBackpackRoute
+  '/moderation/admin': typeof ModerationAdminRouteRouteWithChildren
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/invites': typeof DashboardInvitesRoute
+  '/dashboard/jams': typeof DashboardJamsRoute
   '/me/downloads': typeof MeDownloadsRoute
-  '/ranger/audit': typeof RangerAuditRoute
-  '/ranger/comments': typeof RangerCommentsRoute
-  '/ranger/reports': typeof RangerReportsRoute
+  '/me/following': typeof MeFollowingRoute
+  '/moderation/audit': typeof ModerationAuditRoute
+  '/moderation/comments': typeof ModerationCommentsRoute
+  '/moderation/reports': typeof ModerationReportsRoute
   '/settings/account': typeof SettingsAccountRoute
   '/settings/creator': typeof SettingsCreatorRoute
   '/settings/data': typeof SettingsDataRoute
@@ -351,45 +357,45 @@ export interface FileRoutesByFullPath {
   '/settings/profile': typeof SettingsProfileRoute
   '/settings/security': typeof SettingsSecurityRoute
   '/settings/tokens': typeof SettingsTokensRoute
-  '/basecamp/': typeof BasecampIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/me/': typeof MeIndexRoute
-  '/ranger/': typeof RangerIndexRoute
+  '/moderation/': typeof ModerationIndexRoute
+  '/notifications/': typeof NotificationsIndexRoute
   '/settings/': typeof SettingsIndexRoute
-  '/signals/': typeof SignalsIndexRoute
-  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
-  '/basecamp/new/build': typeof BasecampNewBuildRoute
-  '/basecamp/new/mod': typeof BasecampNewModRoute
-  '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
-  '/ranger/admin/ecosystem': typeof RangerAdminEcosystemRoute
-  '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
-  '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
-  '/ranger/admin/operations': typeof RangerAdminOperationsRoute
-  '/ranger/admin/performance': typeof RangerAdminPerformanceRoute
-  '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
-  '/ranger/admin/settings': typeof RangerAdminSettingsRoute
-  '/ranger/admin/taxonomy': typeof RangerAdminTaxonomyRoute
-  '/ranger/jams/$jamId': typeof RangerJamsJamIdRoute
-  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
-  '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
-  '/basecamp/mods/': typeof BasecampModsIndexRoute
-  '/basecamp/new/': typeof BasecampNewIndexRoute
-  '/ranger/admin/': typeof RangerAdminIndexRoute
-  '/ranger/jams/': typeof RangerJamsIndexRoute
-  '/ranger/users/': typeof RangerUsersIndexRoute
-  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
-  '/basecamp/mods/$modId/': typeof BasecampModsModIdIndexRoute
+  '/dashboard/drafts/$draftId': typeof DashboardDraftsDraftIdRoute
+  '/dashboard/new/build': typeof DashboardNewBuildRoute
+  '/dashboard/new/mod': typeof DashboardNewModRoute
+  '/moderation/admin/announcements': typeof ModerationAdminAnnouncementsRoute
+  '/moderation/admin/ecosystem': typeof ModerationAdminEcosystemRoute
+  '/moderation/admin/game-builds': typeof ModerationAdminGameBuildsRoute
+  '/moderation/admin/integrations': typeof ModerationAdminIntegrationsRoute
+  '/moderation/admin/operations': typeof ModerationAdminOperationsRoute
+  '/moderation/admin/performance': typeof ModerationAdminPerformanceRoute
+  '/moderation/admin/recategorize': typeof ModerationAdminRecategorizeRoute
+  '/moderation/admin/settings': typeof ModerationAdminSettingsRoute
+  '/moderation/admin/taxonomy': typeof ModerationAdminTaxonomyRoute
+  '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
+  '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
+  '/dashboard/drafts/': typeof DashboardDraftsIndexRoute
+  '/dashboard/mods/': typeof DashboardModsIndexRoute
+  '/dashboard/new/': typeof DashboardNewIndexRoute
+  '/moderation/admin/': typeof ModerationAdminIndexRoute
+  '/moderation/jams/': typeof ModerationJamsIndexRoute
+  '/moderation/users/': typeof ModerationUsersIndexRoute
+  '/dashboard/mods/$modId/new-version': typeof DashboardModsModIdNewVersionRoute
+  '/dashboard/mods/$modId/': typeof DashboardModsModIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/basecamp/analytics': typeof BasecampAnalyticsRoute
-  '/basecamp/inbox': typeof BasecampInboxRoute
-  '/basecamp/invites': typeof BasecampInvitesRoute
-  '/basecamp/jams': typeof BasecampJamsRoute
-  '/me/backpack': typeof MeBackpackRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/invites': typeof DashboardInvitesRoute
+  '/dashboard/jams': typeof DashboardJamsRoute
   '/me/downloads': typeof MeDownloadsRoute
-  '/ranger/audit': typeof RangerAuditRoute
-  '/ranger/comments': typeof RangerCommentsRoute
-  '/ranger/reports': typeof RangerReportsRoute
+  '/me/following': typeof MeFollowingRoute
+  '/moderation/audit': typeof ModerationAuditRoute
+  '/moderation/comments': typeof ModerationCommentsRoute
+  '/moderation/reports': typeof ModerationReportsRoute
   '/settings/account': typeof SettingsAccountRoute
   '/settings/creator': typeof SettingsCreatorRoute
   '/settings/data': typeof SettingsDataRoute
@@ -399,52 +405,52 @@ export interface FileRoutesByTo {
   '/settings/profile': typeof SettingsProfileRoute
   '/settings/security': typeof SettingsSecurityRoute
   '/settings/tokens': typeof SettingsTokensRoute
-  '/basecamp': typeof BasecampIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/me': typeof MeIndexRoute
-  '/ranger': typeof RangerIndexRoute
+  '/moderation': typeof ModerationIndexRoute
+  '/notifications': typeof NotificationsIndexRoute
   '/settings': typeof SettingsIndexRoute
-  '/signals': typeof SignalsIndexRoute
-  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
-  '/basecamp/new/build': typeof BasecampNewBuildRoute
-  '/basecamp/new/mod': typeof BasecampNewModRoute
-  '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
-  '/ranger/admin/ecosystem': typeof RangerAdminEcosystemRoute
-  '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
-  '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
-  '/ranger/admin/operations': typeof RangerAdminOperationsRoute
-  '/ranger/admin/performance': typeof RangerAdminPerformanceRoute
-  '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
-  '/ranger/admin/settings': typeof RangerAdminSettingsRoute
-  '/ranger/admin/taxonomy': typeof RangerAdminTaxonomyRoute
-  '/ranger/jams/$jamId': typeof RangerJamsJamIdRoute
-  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
-  '/basecamp/drafts': typeof BasecampDraftsIndexRoute
-  '/basecamp/mods': typeof BasecampModsIndexRoute
-  '/basecamp/new': typeof BasecampNewIndexRoute
-  '/ranger/admin': typeof RangerAdminIndexRoute
-  '/ranger/jams': typeof RangerJamsIndexRoute
-  '/ranger/users': typeof RangerUsersIndexRoute
-  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
-  '/basecamp/mods/$modId': typeof BasecampModsModIdIndexRoute
+  '/dashboard/drafts/$draftId': typeof DashboardDraftsDraftIdRoute
+  '/dashboard/new/build': typeof DashboardNewBuildRoute
+  '/dashboard/new/mod': typeof DashboardNewModRoute
+  '/moderation/admin/announcements': typeof ModerationAdminAnnouncementsRoute
+  '/moderation/admin/ecosystem': typeof ModerationAdminEcosystemRoute
+  '/moderation/admin/game-builds': typeof ModerationAdminGameBuildsRoute
+  '/moderation/admin/integrations': typeof ModerationAdminIntegrationsRoute
+  '/moderation/admin/operations': typeof ModerationAdminOperationsRoute
+  '/moderation/admin/performance': typeof ModerationAdminPerformanceRoute
+  '/moderation/admin/recategorize': typeof ModerationAdminRecategorizeRoute
+  '/moderation/admin/settings': typeof ModerationAdminSettingsRoute
+  '/moderation/admin/taxonomy': typeof ModerationAdminTaxonomyRoute
+  '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
+  '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
+  '/dashboard/drafts': typeof DashboardDraftsIndexRoute
+  '/dashboard/mods': typeof DashboardModsIndexRoute
+  '/dashboard/new': typeof DashboardNewIndexRoute
+  '/moderation/admin': typeof ModerationAdminIndexRoute
+  '/moderation/jams': typeof ModerationJamsIndexRoute
+  '/moderation/users': typeof ModerationUsersIndexRoute
+  '/dashboard/mods/$modId/new-version': typeof DashboardModsModIdNewVersionRoute
+  '/dashboard/mods/$modId': typeof DashboardModsModIdIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/basecamp': typeof BasecampRouteWithChildren
+  '/dashboard': typeof DashboardRouteWithChildren
   '/me': typeof MeRouteWithChildren
-  '/ranger': typeof RangerRouteWithChildren
+  '/moderation': typeof ModerationRouteWithChildren
+  '/notifications': typeof NotificationsRouteWithChildren
   '/settings': typeof SettingsRouteWithChildren
-  '/signals': typeof SignalsRouteWithChildren
-  '/ranger/admin': typeof RangerAdminRouteRouteWithChildren
-  '/basecamp/analytics': typeof BasecampAnalyticsRoute
-  '/basecamp/inbox': typeof BasecampInboxRoute
-  '/basecamp/invites': typeof BasecampInvitesRoute
-  '/basecamp/jams': typeof BasecampJamsRoute
-  '/me/backpack': typeof MeBackpackRoute
+  '/moderation/admin': typeof ModerationAdminRouteRouteWithChildren
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/inbox': typeof DashboardInboxRoute
+  '/dashboard/invites': typeof DashboardInvitesRoute
+  '/dashboard/jams': typeof DashboardJamsRoute
   '/me/downloads': typeof MeDownloadsRoute
-  '/ranger/audit': typeof RangerAuditRoute
-  '/ranger/comments': typeof RangerCommentsRoute
-  '/ranger/reports': typeof RangerReportsRoute
+  '/me/following': typeof MeFollowingRoute
+  '/moderation/audit': typeof ModerationAuditRoute
+  '/moderation/comments': typeof ModerationCommentsRoute
+  '/moderation/reports': typeof ModerationReportsRoute
   '/settings/account': typeof SettingsAccountRoute
   '/settings/creator': typeof SettingsCreatorRoute
   '/settings/data': typeof SettingsDataRoute
@@ -454,53 +460,53 @@ export interface FileRoutesById {
   '/settings/profile': typeof SettingsProfileRoute
   '/settings/security': typeof SettingsSecurityRoute
   '/settings/tokens': typeof SettingsTokensRoute
-  '/basecamp/': typeof BasecampIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/me/': typeof MeIndexRoute
-  '/ranger/': typeof RangerIndexRoute
+  '/moderation/': typeof ModerationIndexRoute
+  '/notifications/': typeof NotificationsIndexRoute
   '/settings/': typeof SettingsIndexRoute
-  '/signals/': typeof SignalsIndexRoute
-  '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
-  '/basecamp/new/build': typeof BasecampNewBuildRoute
-  '/basecamp/new/mod': typeof BasecampNewModRoute
-  '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
-  '/ranger/admin/ecosystem': typeof RangerAdminEcosystemRoute
-  '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
-  '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
-  '/ranger/admin/operations': typeof RangerAdminOperationsRoute
-  '/ranger/admin/performance': typeof RangerAdminPerformanceRoute
-  '/ranger/admin/recategorize': typeof RangerAdminRecategorizeRoute
-  '/ranger/admin/settings': typeof RangerAdminSettingsRoute
-  '/ranger/admin/taxonomy': typeof RangerAdminTaxonomyRoute
-  '/ranger/jams/$jamId': typeof RangerJamsJamIdRoute
-  '/ranger/users/$userId': typeof RangerUsersUserIdRoute
-  '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
-  '/basecamp/mods/': typeof BasecampModsIndexRoute
-  '/basecamp/new/': typeof BasecampNewIndexRoute
-  '/ranger/admin/': typeof RangerAdminIndexRoute
-  '/ranger/jams/': typeof RangerJamsIndexRoute
-  '/ranger/users/': typeof RangerUsersIndexRoute
-  '/basecamp/mods/$modId/new-version': typeof BasecampModsModIdNewVersionRoute
-  '/basecamp/mods/$modId/': typeof BasecampModsModIdIndexRoute
+  '/dashboard/drafts/$draftId': typeof DashboardDraftsDraftIdRoute
+  '/dashboard/new/build': typeof DashboardNewBuildRoute
+  '/dashboard/new/mod': typeof DashboardNewModRoute
+  '/moderation/admin/announcements': typeof ModerationAdminAnnouncementsRoute
+  '/moderation/admin/ecosystem': typeof ModerationAdminEcosystemRoute
+  '/moderation/admin/game-builds': typeof ModerationAdminGameBuildsRoute
+  '/moderation/admin/integrations': typeof ModerationAdminIntegrationsRoute
+  '/moderation/admin/operations': typeof ModerationAdminOperationsRoute
+  '/moderation/admin/performance': typeof ModerationAdminPerformanceRoute
+  '/moderation/admin/recategorize': typeof ModerationAdminRecategorizeRoute
+  '/moderation/admin/settings': typeof ModerationAdminSettingsRoute
+  '/moderation/admin/taxonomy': typeof ModerationAdminTaxonomyRoute
+  '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
+  '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
+  '/dashboard/drafts/': typeof DashboardDraftsIndexRoute
+  '/dashboard/mods/': typeof DashboardModsIndexRoute
+  '/dashboard/new/': typeof DashboardNewIndexRoute
+  '/moderation/admin/': typeof ModerationAdminIndexRoute
+  '/moderation/jams/': typeof ModerationJamsIndexRoute
+  '/moderation/users/': typeof ModerationUsersIndexRoute
+  '/dashboard/mods/$modId/new-version': typeof DashboardModsModIdNewVersionRoute
+  '/dashboard/mods/$modId/': typeof DashboardModsModIdIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/basecamp'
+    | '/dashboard'
     | '/me'
-    | '/ranger'
+    | '/moderation'
+    | '/notifications'
     | '/settings'
-    | '/signals'
-    | '/ranger/admin'
-    | '/basecamp/analytics'
-    | '/basecamp/inbox'
-    | '/basecamp/invites'
-    | '/basecamp/jams'
-    | '/me/backpack'
+    | '/moderation/admin'
+    | '/dashboard/analytics'
+    | '/dashboard/inbox'
+    | '/dashboard/invites'
+    | '/dashboard/jams'
     | '/me/downloads'
-    | '/ranger/audit'
-    | '/ranger/comments'
-    | '/ranger/reports'
+    | '/me/following'
+    | '/moderation/audit'
+    | '/moderation/comments'
+    | '/moderation/reports'
     | '/settings/account'
     | '/settings/creator'
     | '/settings/data'
@@ -510,45 +516,45 @@ export interface FileRouteTypes {
     | '/settings/profile'
     | '/settings/security'
     | '/settings/tokens'
-    | '/basecamp/'
+    | '/dashboard/'
     | '/me/'
-    | '/ranger/'
+    | '/moderation/'
+    | '/notifications/'
     | '/settings/'
-    | '/signals/'
-    | '/basecamp/drafts/$draftId'
-    | '/basecamp/new/build'
-    | '/basecamp/new/mod'
-    | '/ranger/admin/announcements'
-    | '/ranger/admin/ecosystem'
-    | '/ranger/admin/game-builds'
-    | '/ranger/admin/integrations'
-    | '/ranger/admin/operations'
-    | '/ranger/admin/performance'
-    | '/ranger/admin/recategorize'
-    | '/ranger/admin/settings'
-    | '/ranger/admin/taxonomy'
-    | '/ranger/jams/$jamId'
-    | '/ranger/users/$userId'
-    | '/basecamp/drafts/'
-    | '/basecamp/mods/'
-    | '/basecamp/new/'
-    | '/ranger/admin/'
-    | '/ranger/jams/'
-    | '/ranger/users/'
-    | '/basecamp/mods/$modId/new-version'
-    | '/basecamp/mods/$modId/'
+    | '/dashboard/drafts/$draftId'
+    | '/dashboard/new/build'
+    | '/dashboard/new/mod'
+    | '/moderation/admin/announcements'
+    | '/moderation/admin/ecosystem'
+    | '/moderation/admin/game-builds'
+    | '/moderation/admin/integrations'
+    | '/moderation/admin/operations'
+    | '/moderation/admin/performance'
+    | '/moderation/admin/recategorize'
+    | '/moderation/admin/settings'
+    | '/moderation/admin/taxonomy'
+    | '/moderation/jams/$jamId'
+    | '/moderation/users/$userId'
+    | '/dashboard/drafts/'
+    | '/dashboard/mods/'
+    | '/dashboard/new/'
+    | '/moderation/admin/'
+    | '/moderation/jams/'
+    | '/moderation/users/'
+    | '/dashboard/mods/$modId/new-version'
+    | '/dashboard/mods/$modId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/basecamp/analytics'
-    | '/basecamp/inbox'
-    | '/basecamp/invites'
-    | '/basecamp/jams'
-    | '/me/backpack'
+    | '/dashboard/analytics'
+    | '/dashboard/inbox'
+    | '/dashboard/invites'
+    | '/dashboard/jams'
     | '/me/downloads'
-    | '/ranger/audit'
-    | '/ranger/comments'
-    | '/ranger/reports'
+    | '/me/following'
+    | '/moderation/audit'
+    | '/moderation/comments'
+    | '/moderation/reports'
     | '/settings/account'
     | '/settings/creator'
     | '/settings/data'
@@ -558,51 +564,51 @@ export interface FileRouteTypes {
     | '/settings/profile'
     | '/settings/security'
     | '/settings/tokens'
-    | '/basecamp'
+    | '/dashboard'
     | '/me'
-    | '/ranger'
+    | '/moderation'
+    | '/notifications'
     | '/settings'
-    | '/signals'
-    | '/basecamp/drafts/$draftId'
-    | '/basecamp/new/build'
-    | '/basecamp/new/mod'
-    | '/ranger/admin/announcements'
-    | '/ranger/admin/ecosystem'
-    | '/ranger/admin/game-builds'
-    | '/ranger/admin/integrations'
-    | '/ranger/admin/operations'
-    | '/ranger/admin/performance'
-    | '/ranger/admin/recategorize'
-    | '/ranger/admin/settings'
-    | '/ranger/admin/taxonomy'
-    | '/ranger/jams/$jamId'
-    | '/ranger/users/$userId'
-    | '/basecamp/drafts'
-    | '/basecamp/mods'
-    | '/basecamp/new'
-    | '/ranger/admin'
-    | '/ranger/jams'
-    | '/ranger/users'
-    | '/basecamp/mods/$modId/new-version'
-    | '/basecamp/mods/$modId'
+    | '/dashboard/drafts/$draftId'
+    | '/dashboard/new/build'
+    | '/dashboard/new/mod'
+    | '/moderation/admin/announcements'
+    | '/moderation/admin/ecosystem'
+    | '/moderation/admin/game-builds'
+    | '/moderation/admin/integrations'
+    | '/moderation/admin/operations'
+    | '/moderation/admin/performance'
+    | '/moderation/admin/recategorize'
+    | '/moderation/admin/settings'
+    | '/moderation/admin/taxonomy'
+    | '/moderation/jams/$jamId'
+    | '/moderation/users/$userId'
+    | '/dashboard/drafts'
+    | '/dashboard/mods'
+    | '/dashboard/new'
+    | '/moderation/admin'
+    | '/moderation/jams'
+    | '/moderation/users'
+    | '/dashboard/mods/$modId/new-version'
+    | '/dashboard/mods/$modId'
   id:
     | '__root__'
     | '/'
-    | '/basecamp'
+    | '/dashboard'
     | '/me'
-    | '/ranger'
+    | '/moderation'
+    | '/notifications'
     | '/settings'
-    | '/signals'
-    | '/ranger/admin'
-    | '/basecamp/analytics'
-    | '/basecamp/inbox'
-    | '/basecamp/invites'
-    | '/basecamp/jams'
-    | '/me/backpack'
+    | '/moderation/admin'
+    | '/dashboard/analytics'
+    | '/dashboard/inbox'
+    | '/dashboard/invites'
+    | '/dashboard/jams'
     | '/me/downloads'
-    | '/ranger/audit'
-    | '/ranger/comments'
-    | '/ranger/reports'
+    | '/me/following'
+    | '/moderation/audit'
+    | '/moderation/comments'
+    | '/moderation/reports'
     | '/settings/account'
     | '/settings/creator'
     | '/settings/data'
@@ -612,42 +618,42 @@ export interface FileRouteTypes {
     | '/settings/profile'
     | '/settings/security'
     | '/settings/tokens'
-    | '/basecamp/'
+    | '/dashboard/'
     | '/me/'
-    | '/ranger/'
+    | '/moderation/'
+    | '/notifications/'
     | '/settings/'
-    | '/signals/'
-    | '/basecamp/drafts/$draftId'
-    | '/basecamp/new/build'
-    | '/basecamp/new/mod'
-    | '/ranger/admin/announcements'
-    | '/ranger/admin/ecosystem'
-    | '/ranger/admin/game-builds'
-    | '/ranger/admin/integrations'
-    | '/ranger/admin/operations'
-    | '/ranger/admin/performance'
-    | '/ranger/admin/recategorize'
-    | '/ranger/admin/settings'
-    | '/ranger/admin/taxonomy'
-    | '/ranger/jams/$jamId'
-    | '/ranger/users/$userId'
-    | '/basecamp/drafts/'
-    | '/basecamp/mods/'
-    | '/basecamp/new/'
-    | '/ranger/admin/'
-    | '/ranger/jams/'
-    | '/ranger/users/'
-    | '/basecamp/mods/$modId/new-version'
-    | '/basecamp/mods/$modId/'
+    | '/dashboard/drafts/$draftId'
+    | '/dashboard/new/build'
+    | '/dashboard/new/mod'
+    | '/moderation/admin/announcements'
+    | '/moderation/admin/ecosystem'
+    | '/moderation/admin/game-builds'
+    | '/moderation/admin/integrations'
+    | '/moderation/admin/operations'
+    | '/moderation/admin/performance'
+    | '/moderation/admin/recategorize'
+    | '/moderation/admin/settings'
+    | '/moderation/admin/taxonomy'
+    | '/moderation/jams/$jamId'
+    | '/moderation/users/$userId'
+    | '/dashboard/drafts/'
+    | '/dashboard/mods/'
+    | '/dashboard/new/'
+    | '/moderation/admin/'
+    | '/moderation/jams/'
+    | '/moderation/users/'
+    | '/dashboard/mods/$modId/new-version'
+    | '/dashboard/mods/$modId/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  BasecampRoute: typeof BasecampRouteWithChildren
+  DashboardRoute: typeof DashboardRouteWithChildren
   MeRoute: typeof MeRouteWithChildren
-  RangerRoute: typeof RangerRouteWithChildren
+  ModerationRoute: typeof ModerationRouteWithChildren
+  NotificationsRoute: typeof NotificationsRouteWithChildren
   SettingsRoute: typeof SettingsRouteWithChildren
-  SignalsRoute: typeof SignalsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -659,11 +665,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/basecamp': {
-      id: '/basecamp'
-      path: '/basecamp'
-      fullPath: '/basecamp'
-      preLoaderRoute: typeof BasecampRouteImport
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/me': {
@@ -673,11 +679,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/ranger': {
-      id: '/ranger'
-      path: '/ranger'
-      fullPath: '/ranger'
-      preLoaderRoute: typeof RangerRouteImport
+    '/moderation': {
+      id: '/moderation'
+      path: '/moderation'
+      fullPath: '/moderation'
+      preLoaderRoute: typeof ModerationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/settings': {
@@ -687,60 +700,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/signals': {
-      id: '/signals'
-      path: '/signals'
-      fullPath: '/signals'
-      preLoaderRoute: typeof SignalsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/basecamp/': {
-      id: '/basecamp/'
+    '/dashboard/': {
+      id: '/dashboard/'
       path: '/'
-      fullPath: '/basecamp/'
-      preLoaderRoute: typeof BasecampIndexRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/analytics': {
-      id: '/basecamp/analytics'
+    '/dashboard/analytics': {
+      id: '/dashboard/analytics'
       path: '/analytics'
-      fullPath: '/basecamp/analytics'
-      preLoaderRoute: typeof BasecampAnalyticsRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof DashboardAnalyticsRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/inbox': {
-      id: '/basecamp/inbox'
+    '/dashboard/inbox': {
+      id: '/dashboard/inbox'
       path: '/inbox'
-      fullPath: '/basecamp/inbox'
-      preLoaderRoute: typeof BasecampInboxRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/inbox'
+      preLoaderRoute: typeof DashboardInboxRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/invites': {
-      id: '/basecamp/invites'
+    '/dashboard/invites': {
+      id: '/dashboard/invites'
       path: '/invites'
-      fullPath: '/basecamp/invites'
-      preLoaderRoute: typeof BasecampInvitesRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/invites'
+      preLoaderRoute: typeof DashboardInvitesRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/jams': {
-      id: '/basecamp/jams'
+    '/dashboard/jams': {
+      id: '/dashboard/jams'
       path: '/jams'
-      fullPath: '/basecamp/jams'
-      preLoaderRoute: typeof BasecampJamsRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/jams'
+      preLoaderRoute: typeof DashboardJamsRouteImport
+      parentRoute: typeof DashboardRoute
     }
     '/me/': {
       id: '/me/'
       path: '/'
       fullPath: '/me/'
       preLoaderRoute: typeof MeIndexRouteImport
-      parentRoute: typeof MeRoute
-    }
-    '/me/backpack': {
-      id: '/me/backpack'
-      path: '/backpack'
-      fullPath: '/me/backpack'
-      preLoaderRoute: typeof MeBackpackRouteImport
       parentRoute: typeof MeRoute
     }
     '/me/downloads': {
@@ -750,40 +749,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeDownloadsRouteImport
       parentRoute: typeof MeRoute
     }
-    '/ranger/': {
-      id: '/ranger/'
+    '/me/following': {
+      id: '/me/following'
+      path: '/following'
+      fullPath: '/me/following'
+      preLoaderRoute: typeof MeFollowingRouteImport
+      parentRoute: typeof MeRoute
+    }
+    '/moderation/': {
+      id: '/moderation/'
       path: '/'
-      fullPath: '/ranger/'
-      preLoaderRoute: typeof RangerIndexRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/'
+      preLoaderRoute: typeof ModerationIndexRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/admin': {
-      id: '/ranger/admin'
+    '/moderation/admin': {
+      id: '/moderation/admin'
       path: '/admin'
-      fullPath: '/ranger/admin'
-      preLoaderRoute: typeof RangerAdminRouteRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/admin'
+      preLoaderRoute: typeof ModerationAdminRouteRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/audit': {
-      id: '/ranger/audit'
+    '/moderation/audit': {
+      id: '/moderation/audit'
       path: '/audit'
-      fullPath: '/ranger/audit'
-      preLoaderRoute: typeof RangerAuditRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/audit'
+      preLoaderRoute: typeof ModerationAuditRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/comments': {
-      id: '/ranger/comments'
+    '/moderation/comments': {
+      id: '/moderation/comments'
       path: '/comments'
-      fullPath: '/ranger/comments'
-      preLoaderRoute: typeof RangerCommentsRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/comments'
+      preLoaderRoute: typeof ModerationCommentsRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/reports': {
-      id: '/ranger/reports'
+    '/moderation/reports': {
+      id: '/moderation/reports'
       path: '/reports'
-      fullPath: '/ranger/reports'
-      preLoaderRoute: typeof RangerReportsRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/reports'
+      preLoaderRoute: typeof ModerationReportsRouteImport
+      parentRoute: typeof ModerationRoute
+    }
+    '/notifications/': {
+      id: '/notifications/'
+      path: '/'
+      fullPath: '/notifications/'
+      preLoaderRoute: typeof NotificationsIndexRouteImport
+      parentRoute: typeof NotificationsRoute
     }
     '/settings/': {
       id: '/settings/'
@@ -855,275 +868,281 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SettingsTokensRouteImport
       parentRoute: typeof SettingsRoute
     }
-    '/signals/': {
-      id: '/signals/'
-      path: '/'
-      fullPath: '/signals/'
-      preLoaderRoute: typeof SignalsIndexRouteImport
-      parentRoute: typeof SignalsRoute
-    }
-    '/basecamp/drafts/': {
-      id: '/basecamp/drafts/'
+    '/dashboard/drafts/': {
+      id: '/dashboard/drafts/'
       path: '/drafts'
-      fullPath: '/basecamp/drafts/'
-      preLoaderRoute: typeof BasecampDraftsIndexRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/drafts/'
+      preLoaderRoute: typeof DashboardDraftsIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/drafts/$draftId': {
-      id: '/basecamp/drafts/$draftId'
+    '/dashboard/drafts/$draftId': {
+      id: '/dashboard/drafts/$draftId'
       path: '/drafts/$draftId'
-      fullPath: '/basecamp/drafts/$draftId'
-      preLoaderRoute: typeof BasecampDraftsDraftIdRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/drafts/$draftId'
+      preLoaderRoute: typeof DashboardDraftsDraftIdRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/mods/': {
-      id: '/basecamp/mods/'
+    '/dashboard/mods/': {
+      id: '/dashboard/mods/'
       path: '/mods'
-      fullPath: '/basecamp/mods/'
-      preLoaderRoute: typeof BasecampModsIndexRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/mods/'
+      preLoaderRoute: typeof DashboardModsIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/new/': {
-      id: '/basecamp/new/'
+    '/dashboard/new/': {
+      id: '/dashboard/new/'
       path: '/new'
-      fullPath: '/basecamp/new/'
-      preLoaderRoute: typeof BasecampNewIndexRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/new/'
+      preLoaderRoute: typeof DashboardNewIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/new/build': {
-      id: '/basecamp/new/build'
+    '/dashboard/new/build': {
+      id: '/dashboard/new/build'
       path: '/new/build'
-      fullPath: '/basecamp/new/build'
-      preLoaderRoute: typeof BasecampNewBuildRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/new/build'
+      preLoaderRoute: typeof DashboardNewBuildRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/new/mod': {
-      id: '/basecamp/new/mod'
+    '/dashboard/new/mod': {
+      id: '/dashboard/new/mod'
       path: '/new/mod'
-      fullPath: '/basecamp/new/mod'
-      preLoaderRoute: typeof BasecampNewModRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/new/mod'
+      preLoaderRoute: typeof DashboardNewModRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/ranger/admin/': {
-      id: '/ranger/admin/'
+    '/moderation/admin/': {
+      id: '/moderation/admin/'
       path: '/'
-      fullPath: '/ranger/admin/'
-      preLoaderRoute: typeof RangerAdminIndexRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/'
+      preLoaderRoute: typeof ModerationAdminIndexRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/announcements': {
-      id: '/ranger/admin/announcements'
+    '/moderation/admin/announcements': {
+      id: '/moderation/admin/announcements'
       path: '/announcements'
-      fullPath: '/ranger/admin/announcements'
-      preLoaderRoute: typeof RangerAdminAnnouncementsRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/announcements'
+      preLoaderRoute: typeof ModerationAdminAnnouncementsRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/ecosystem': {
-      id: '/ranger/admin/ecosystem'
+    '/moderation/admin/ecosystem': {
+      id: '/moderation/admin/ecosystem'
       path: '/ecosystem'
-      fullPath: '/ranger/admin/ecosystem'
-      preLoaderRoute: typeof RangerAdminEcosystemRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/ecosystem'
+      preLoaderRoute: typeof ModerationAdminEcosystemRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/game-builds': {
-      id: '/ranger/admin/game-builds'
+    '/moderation/admin/game-builds': {
+      id: '/moderation/admin/game-builds'
       path: '/game-builds'
-      fullPath: '/ranger/admin/game-builds'
-      preLoaderRoute: typeof RangerAdminGameBuildsRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/game-builds'
+      preLoaderRoute: typeof ModerationAdminGameBuildsRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/integrations': {
-      id: '/ranger/admin/integrations'
+    '/moderation/admin/integrations': {
+      id: '/moderation/admin/integrations'
       path: '/integrations'
-      fullPath: '/ranger/admin/integrations'
-      preLoaderRoute: typeof RangerAdminIntegrationsRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/integrations'
+      preLoaderRoute: typeof ModerationAdminIntegrationsRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/operations': {
-      id: '/ranger/admin/operations'
+    '/moderation/admin/operations': {
+      id: '/moderation/admin/operations'
       path: '/operations'
-      fullPath: '/ranger/admin/operations'
-      preLoaderRoute: typeof RangerAdminOperationsRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/operations'
+      preLoaderRoute: typeof ModerationAdminOperationsRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/performance': {
-      id: '/ranger/admin/performance'
+    '/moderation/admin/performance': {
+      id: '/moderation/admin/performance'
       path: '/performance'
-      fullPath: '/ranger/admin/performance'
-      preLoaderRoute: typeof RangerAdminPerformanceRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/performance'
+      preLoaderRoute: typeof ModerationAdminPerformanceRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/recategorize': {
-      id: '/ranger/admin/recategorize'
+    '/moderation/admin/recategorize': {
+      id: '/moderation/admin/recategorize'
       path: '/recategorize'
-      fullPath: '/ranger/admin/recategorize'
-      preLoaderRoute: typeof RangerAdminRecategorizeRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/recategorize'
+      preLoaderRoute: typeof ModerationAdminRecategorizeRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/settings': {
-      id: '/ranger/admin/settings'
+    '/moderation/admin/settings': {
+      id: '/moderation/admin/settings'
       path: '/settings'
-      fullPath: '/ranger/admin/settings'
-      preLoaderRoute: typeof RangerAdminSettingsRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/settings'
+      preLoaderRoute: typeof ModerationAdminSettingsRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/admin/taxonomy': {
-      id: '/ranger/admin/taxonomy'
+    '/moderation/admin/taxonomy': {
+      id: '/moderation/admin/taxonomy'
       path: '/taxonomy'
-      fullPath: '/ranger/admin/taxonomy'
-      preLoaderRoute: typeof RangerAdminTaxonomyRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
+      fullPath: '/moderation/admin/taxonomy'
+      preLoaderRoute: typeof ModerationAdminTaxonomyRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
     }
-    '/ranger/jams/': {
-      id: '/ranger/jams/'
+    '/moderation/jams/': {
+      id: '/moderation/jams/'
       path: '/jams'
-      fullPath: '/ranger/jams/'
-      preLoaderRoute: typeof RangerJamsIndexRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/jams/'
+      preLoaderRoute: typeof ModerationJamsIndexRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/jams/$jamId': {
-      id: '/ranger/jams/$jamId'
+    '/moderation/jams/$jamId': {
+      id: '/moderation/jams/$jamId'
       path: '/jams/$jamId'
-      fullPath: '/ranger/jams/$jamId'
-      preLoaderRoute: typeof RangerJamsJamIdRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/jams/$jamId'
+      preLoaderRoute: typeof ModerationJamsJamIdRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/users/': {
-      id: '/ranger/users/'
+    '/moderation/users/': {
+      id: '/moderation/users/'
       path: '/users'
-      fullPath: '/ranger/users/'
-      preLoaderRoute: typeof RangerUsersIndexRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/users/'
+      preLoaderRoute: typeof ModerationUsersIndexRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/ranger/users/$userId': {
-      id: '/ranger/users/$userId'
+    '/moderation/users/$userId': {
+      id: '/moderation/users/$userId'
       path: '/users/$userId'
-      fullPath: '/ranger/users/$userId'
-      preLoaderRoute: typeof RangerUsersUserIdRouteImport
-      parentRoute: typeof RangerRoute
+      fullPath: '/moderation/users/$userId'
+      preLoaderRoute: typeof ModerationUsersUserIdRouteImport
+      parentRoute: typeof ModerationRoute
     }
-    '/basecamp/mods/$modId/': {
-      id: '/basecamp/mods/$modId/'
+    '/dashboard/mods/$modId/': {
+      id: '/dashboard/mods/$modId/'
       path: '/mods/$modId'
-      fullPath: '/basecamp/mods/$modId/'
-      preLoaderRoute: typeof BasecampModsModIdIndexRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/mods/$modId/'
+      preLoaderRoute: typeof DashboardModsModIdIndexRouteImport
+      parentRoute: typeof DashboardRoute
     }
-    '/basecamp/mods/$modId/new-version': {
-      id: '/basecamp/mods/$modId/new-version'
+    '/dashboard/mods/$modId/new-version': {
+      id: '/dashboard/mods/$modId/new-version'
       path: '/mods/$modId/new-version'
-      fullPath: '/basecamp/mods/$modId/new-version'
-      preLoaderRoute: typeof BasecampModsModIdNewVersionRouteImport
-      parentRoute: typeof BasecampRoute
+      fullPath: '/dashboard/mods/$modId/new-version'
+      preLoaderRoute: typeof DashboardModsModIdNewVersionRouteImport
+      parentRoute: typeof DashboardRoute
     }
   }
 }
 
-interface BasecampRouteChildren {
-  BasecampAnalyticsRoute: typeof BasecampAnalyticsRoute
-  BasecampInboxRoute: typeof BasecampInboxRoute
-  BasecampInvitesRoute: typeof BasecampInvitesRoute
-  BasecampJamsRoute: typeof BasecampJamsRoute
-  BasecampIndexRoute: typeof BasecampIndexRoute
-  BasecampDraftsDraftIdRoute: typeof BasecampDraftsDraftIdRoute
-  BasecampNewBuildRoute: typeof BasecampNewBuildRoute
-  BasecampNewModRoute: typeof BasecampNewModRoute
-  BasecampDraftsIndexRoute: typeof BasecampDraftsIndexRoute
-  BasecampModsIndexRoute: typeof BasecampModsIndexRoute
-  BasecampNewIndexRoute: typeof BasecampNewIndexRoute
-  BasecampModsModIdNewVersionRoute: typeof BasecampModsModIdNewVersionRoute
-  BasecampModsModIdIndexRoute: typeof BasecampModsModIdIndexRoute
+interface DashboardRouteChildren {
+  DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
+  DashboardInboxRoute: typeof DashboardInboxRoute
+  DashboardInvitesRoute: typeof DashboardInvitesRoute
+  DashboardJamsRoute: typeof DashboardJamsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardDraftsDraftIdRoute: typeof DashboardDraftsDraftIdRoute
+  DashboardNewBuildRoute: typeof DashboardNewBuildRoute
+  DashboardNewModRoute: typeof DashboardNewModRoute
+  DashboardDraftsIndexRoute: typeof DashboardDraftsIndexRoute
+  DashboardModsIndexRoute: typeof DashboardModsIndexRoute
+  DashboardNewIndexRoute: typeof DashboardNewIndexRoute
+  DashboardModsModIdNewVersionRoute: typeof DashboardModsModIdNewVersionRoute
+  DashboardModsModIdIndexRoute: typeof DashboardModsModIdIndexRoute
 }
 
-const BasecampRouteChildren: BasecampRouteChildren = {
-  BasecampAnalyticsRoute: BasecampAnalyticsRoute,
-  BasecampInboxRoute: BasecampInboxRoute,
-  BasecampInvitesRoute: BasecampInvitesRoute,
-  BasecampJamsRoute: BasecampJamsRoute,
-  BasecampIndexRoute: BasecampIndexRoute,
-  BasecampDraftsDraftIdRoute: BasecampDraftsDraftIdRoute,
-  BasecampNewBuildRoute: BasecampNewBuildRoute,
-  BasecampNewModRoute: BasecampNewModRoute,
-  BasecampDraftsIndexRoute: BasecampDraftsIndexRoute,
-  BasecampModsIndexRoute: BasecampModsIndexRoute,
-  BasecampNewIndexRoute: BasecampNewIndexRoute,
-  BasecampModsModIdNewVersionRoute: BasecampModsModIdNewVersionRoute,
-  BasecampModsModIdIndexRoute: BasecampModsModIdIndexRoute,
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardAnalyticsRoute: DashboardAnalyticsRoute,
+  DashboardInboxRoute: DashboardInboxRoute,
+  DashboardInvitesRoute: DashboardInvitesRoute,
+  DashboardJamsRoute: DashboardJamsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardDraftsDraftIdRoute: DashboardDraftsDraftIdRoute,
+  DashboardNewBuildRoute: DashboardNewBuildRoute,
+  DashboardNewModRoute: DashboardNewModRoute,
+  DashboardDraftsIndexRoute: DashboardDraftsIndexRoute,
+  DashboardModsIndexRoute: DashboardModsIndexRoute,
+  DashboardNewIndexRoute: DashboardNewIndexRoute,
+  DashboardModsModIdNewVersionRoute: DashboardModsModIdNewVersionRoute,
+  DashboardModsModIdIndexRoute: DashboardModsModIdIndexRoute,
 }
 
-const BasecampRouteWithChildren = BasecampRoute._addFileChildren(
-  BasecampRouteChildren,
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
 )
 
 interface MeRouteChildren {
-  MeBackpackRoute: typeof MeBackpackRoute
   MeDownloadsRoute: typeof MeDownloadsRoute
+  MeFollowingRoute: typeof MeFollowingRoute
   MeIndexRoute: typeof MeIndexRoute
 }
 
 const MeRouteChildren: MeRouteChildren = {
-  MeBackpackRoute: MeBackpackRoute,
   MeDownloadsRoute: MeDownloadsRoute,
+  MeFollowingRoute: MeFollowingRoute,
   MeIndexRoute: MeIndexRoute,
 }
 
 const MeRouteWithChildren = MeRoute._addFileChildren(MeRouteChildren)
 
-interface RangerAdminRouteRouteChildren {
-  RangerAdminAnnouncementsRoute: typeof RangerAdminAnnouncementsRoute
-  RangerAdminEcosystemRoute: typeof RangerAdminEcosystemRoute
-  RangerAdminGameBuildsRoute: typeof RangerAdminGameBuildsRoute
-  RangerAdminIntegrationsRoute: typeof RangerAdminIntegrationsRoute
-  RangerAdminOperationsRoute: typeof RangerAdminOperationsRoute
-  RangerAdminPerformanceRoute: typeof RangerAdminPerformanceRoute
-  RangerAdminRecategorizeRoute: typeof RangerAdminRecategorizeRoute
-  RangerAdminSettingsRoute: typeof RangerAdminSettingsRoute
-  RangerAdminTaxonomyRoute: typeof RangerAdminTaxonomyRoute
-  RangerAdminIndexRoute: typeof RangerAdminIndexRoute
+interface ModerationAdminRouteRouteChildren {
+  ModerationAdminAnnouncementsRoute: typeof ModerationAdminAnnouncementsRoute
+  ModerationAdminEcosystemRoute: typeof ModerationAdminEcosystemRoute
+  ModerationAdminGameBuildsRoute: typeof ModerationAdminGameBuildsRoute
+  ModerationAdminIntegrationsRoute: typeof ModerationAdminIntegrationsRoute
+  ModerationAdminOperationsRoute: typeof ModerationAdminOperationsRoute
+  ModerationAdminPerformanceRoute: typeof ModerationAdminPerformanceRoute
+  ModerationAdminRecategorizeRoute: typeof ModerationAdminRecategorizeRoute
+  ModerationAdminSettingsRoute: typeof ModerationAdminSettingsRoute
+  ModerationAdminTaxonomyRoute: typeof ModerationAdminTaxonomyRoute
+  ModerationAdminIndexRoute: typeof ModerationAdminIndexRoute
 }
 
-const RangerAdminRouteRouteChildren: RangerAdminRouteRouteChildren = {
-  RangerAdminAnnouncementsRoute: RangerAdminAnnouncementsRoute,
-  RangerAdminEcosystemRoute: RangerAdminEcosystemRoute,
-  RangerAdminGameBuildsRoute: RangerAdminGameBuildsRoute,
-  RangerAdminIntegrationsRoute: RangerAdminIntegrationsRoute,
-  RangerAdminOperationsRoute: RangerAdminOperationsRoute,
-  RangerAdminPerformanceRoute: RangerAdminPerformanceRoute,
-  RangerAdminRecategorizeRoute: RangerAdminRecategorizeRoute,
-  RangerAdminSettingsRoute: RangerAdminSettingsRoute,
-  RangerAdminTaxonomyRoute: RangerAdminTaxonomyRoute,
-  RangerAdminIndexRoute: RangerAdminIndexRoute,
+const ModerationAdminRouteRouteChildren: ModerationAdminRouteRouteChildren = {
+  ModerationAdminAnnouncementsRoute: ModerationAdminAnnouncementsRoute,
+  ModerationAdminEcosystemRoute: ModerationAdminEcosystemRoute,
+  ModerationAdminGameBuildsRoute: ModerationAdminGameBuildsRoute,
+  ModerationAdminIntegrationsRoute: ModerationAdminIntegrationsRoute,
+  ModerationAdminOperationsRoute: ModerationAdminOperationsRoute,
+  ModerationAdminPerformanceRoute: ModerationAdminPerformanceRoute,
+  ModerationAdminRecategorizeRoute: ModerationAdminRecategorizeRoute,
+  ModerationAdminSettingsRoute: ModerationAdminSettingsRoute,
+  ModerationAdminTaxonomyRoute: ModerationAdminTaxonomyRoute,
+  ModerationAdminIndexRoute: ModerationAdminIndexRoute,
 }
 
-const RangerAdminRouteRouteWithChildren =
-  RangerAdminRouteRoute._addFileChildren(RangerAdminRouteRouteChildren)
+const ModerationAdminRouteRouteWithChildren =
+  ModerationAdminRouteRoute._addFileChildren(ModerationAdminRouteRouteChildren)
 
-interface RangerRouteChildren {
-  RangerAdminRouteRoute: typeof RangerAdminRouteRouteWithChildren
-  RangerAuditRoute: typeof RangerAuditRoute
-  RangerCommentsRoute: typeof RangerCommentsRoute
-  RangerReportsRoute: typeof RangerReportsRoute
-  RangerIndexRoute: typeof RangerIndexRoute
-  RangerJamsJamIdRoute: typeof RangerJamsJamIdRoute
-  RangerUsersUserIdRoute: typeof RangerUsersUserIdRoute
-  RangerJamsIndexRoute: typeof RangerJamsIndexRoute
-  RangerUsersIndexRoute: typeof RangerUsersIndexRoute
+interface ModerationRouteChildren {
+  ModerationAdminRouteRoute: typeof ModerationAdminRouteRouteWithChildren
+  ModerationAuditRoute: typeof ModerationAuditRoute
+  ModerationCommentsRoute: typeof ModerationCommentsRoute
+  ModerationReportsRoute: typeof ModerationReportsRoute
+  ModerationIndexRoute: typeof ModerationIndexRoute
+  ModerationJamsJamIdRoute: typeof ModerationJamsJamIdRoute
+  ModerationUsersUserIdRoute: typeof ModerationUsersUserIdRoute
+  ModerationJamsIndexRoute: typeof ModerationJamsIndexRoute
+  ModerationUsersIndexRoute: typeof ModerationUsersIndexRoute
 }
 
-const RangerRouteChildren: RangerRouteChildren = {
-  RangerAdminRouteRoute: RangerAdminRouteRouteWithChildren,
-  RangerAuditRoute: RangerAuditRoute,
-  RangerCommentsRoute: RangerCommentsRoute,
-  RangerReportsRoute: RangerReportsRoute,
-  RangerIndexRoute: RangerIndexRoute,
-  RangerJamsJamIdRoute: RangerJamsJamIdRoute,
-  RangerUsersUserIdRoute: RangerUsersUserIdRoute,
-  RangerJamsIndexRoute: RangerJamsIndexRoute,
-  RangerUsersIndexRoute: RangerUsersIndexRoute,
+const ModerationRouteChildren: ModerationRouteChildren = {
+  ModerationAdminRouteRoute: ModerationAdminRouteRouteWithChildren,
+  ModerationAuditRoute: ModerationAuditRoute,
+  ModerationCommentsRoute: ModerationCommentsRoute,
+  ModerationReportsRoute: ModerationReportsRoute,
+  ModerationIndexRoute: ModerationIndexRoute,
+  ModerationJamsJamIdRoute: ModerationJamsJamIdRoute,
+  ModerationUsersUserIdRoute: ModerationUsersUserIdRoute,
+  ModerationJamsIndexRoute: ModerationJamsIndexRoute,
+  ModerationUsersIndexRoute: ModerationUsersIndexRoute,
 }
 
-const RangerRouteWithChildren =
-  RangerRoute._addFileChildren(RangerRouteChildren)
+const ModerationRouteWithChildren = ModerationRoute._addFileChildren(
+  ModerationRouteChildren,
+)
+
+interface NotificationsRouteChildren {
+  NotificationsIndexRoute: typeof NotificationsIndexRoute
+}
+
+const NotificationsRouteChildren: NotificationsRouteChildren = {
+  NotificationsIndexRoute: NotificationsIndexRoute,
+}
+
+const NotificationsRouteWithChildren = NotificationsRoute._addFileChildren(
+  NotificationsRouteChildren,
+)
 
 interface SettingsRouteChildren {
   SettingsAccountRoute: typeof SettingsAccountRoute
@@ -1155,24 +1174,13 @@ const SettingsRouteWithChildren = SettingsRoute._addFileChildren(
   SettingsRouteChildren,
 )
 
-interface SignalsRouteChildren {
-  SignalsIndexRoute: typeof SignalsIndexRoute
-}
-
-const SignalsRouteChildren: SignalsRouteChildren = {
-  SignalsIndexRoute: SignalsIndexRoute,
-}
-
-const SignalsRouteWithChildren =
-  SignalsRoute._addFileChildren(SignalsRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  BasecampRoute: BasecampRouteWithChildren,
+  DashboardRoute: DashboardRouteWithChildren,
   MeRoute: MeRouteWithChildren,
-  RangerRoute: RangerRouteWithChildren,
+  ModerationRoute: ModerationRouteWithChildren,
+  NotificationsRoute: NotificationsRouteWithChildren,
   SettingsRoute: SettingsRouteWithChildren,
-  SignalsRoute: SignalsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

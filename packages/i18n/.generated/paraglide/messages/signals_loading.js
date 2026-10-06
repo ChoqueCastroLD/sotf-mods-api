@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_LoadingInputs */
 
 const en_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Loading signals…`)
+	return /** @type {LocalizedString} */ (`Loading notifications…`)
 };
 
 const es_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cargando señales…`)
+	return /** @type {LocalizedString} */ (`Cargando notificaciones…`)
 };
 
 const de_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signale werden geladen…`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen werden geladen…`)
 };
 
 const fr_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chargement des signaux…`)
+	return /** @type {LocalizedString} */ (`Chargement des notifications…`)
 };
 
 const it_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Caricamento dei segnali…`)
+	return /** @type {LocalizedString} */ (`Caricamento delle notifiche…`)
 };
 
 const nl_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalen laden…`)
+	return /** @type {LocalizedString} */ (`Meldingen laden…`)
 };
 
 const pl_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wczytywanie sygnałów…`)
+	return /** @type {LocalizedString} */ (`Wczytywanie powiadomień…`)
 };
 
 const pt_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Carregando sinais…`)
+	return /** @type {LocalizedString} */ (`Carregando notificações…`)
 };
 
 const ru_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Загрузка сигналов…`)
+	return /** @type {LocalizedString} */ (`Загрузка уведомлений…`)
 };
 
 const sv_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Laddar signaler…`)
+	return /** @type {LocalizedString} */ (`Laddar aviseringar…`)
 };
 
 const tr_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyaller yükleniyor…`)
+	return /** @type {LocalizedString} */ (`Bildirimler yükleniyor…`)
 };
 
 const zh_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`正在加载信号…`)
+	return /** @type {LocalizedString} */ (`正在加载通知…`)
 };
 
 const ja_signals_loading = /** @type {(inputs: Signals_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルを読み込み中…`)
+	return /** @type {LocalizedString} */ (`通知を読み込み中…`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Loading signals…" |
+* | "Loading notifications…" |
 *
 * @param {Signals_LoadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

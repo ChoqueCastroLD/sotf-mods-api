@@ -2,7 +2,7 @@
   "ui_close": "Fermer",
   "ui_cancel": "Annuler",
   "ui_dismiss": "Ignorer",
-  "ui_loading": "On consulte la carte…",
+  "ui_loading": "Chargement…",
   "ui_retry": "Réessayer",
   "ui_error_reference": "Réf. : {id}",
   "ui_optional": "Facultatif",

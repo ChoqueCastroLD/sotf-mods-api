@@ -161,11 +161,9 @@
 
   --color-blueprint:          light-dark(#4B5563, #9CA3AF);
   --color-blueprint-surface:  light-dark(#F6F7F8, #1D232A);
-  --color-blueprint-grid:     transparent;
 
   --color-focus:          light-dark(#C81414, #F87171);
   --color-selection:      light-dark(#FECACA, #5A1D1D);
-  --color-topo:           transparent;
 
   /* ---------- Chart slots (fixed order; slot 1 is the red accent) ---------- */
   --color-chart-1: light-dark(#C81414, #E11D1D);
@@ -287,13 +285,10 @@
 
 /* ---------- Brand utilities ----------
    The old decoration utilities stay defined (many pages still use them) but are harmless:
-   sentence-case bold sans, small muted labels, no textures, no notches. */
+   sentence-case bold sans and small muted labels. */
 @utility font-display-caps { font-family: var(--font-sans); font-weight: 700; text-transform: none; letter-spacing: normal; }
 @utility readout { font-family: var(--font-sans); font-size: var(--text-xs); line-height: 1rem; font-weight: 400;
                    letter-spacing: normal; text-transform: none; color: var(--color-fg-subtle); }
-@utility tag-notch { --notch: none; }
-@utility texture-topo { --texture: none; }
-@utility texture-blueprint { --texture: none; }
 @utility skeleton {
   background: linear-gradient(90deg, var(--color-raised) 0%,
               color-mix(in oklab, var(--color-raised), var(--color-fg) 6%) 50%, var(--color-raised) 100%);

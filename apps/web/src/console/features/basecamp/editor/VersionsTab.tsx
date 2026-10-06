@@ -257,7 +257,7 @@ function VersionCard({ modId, version, lang }: { modId: number; version: Version
             {bt('basecamp_versions_meta', {
               date: date(version.publishedAt),
               downloads: number(version.downloadsCount),
-              size: version.fileSize === null ? '—' : formatBytes(locale, version.fileSize),
+              size: version.fileSize === null ? '-' : formatBytes(locale, version.fileSize),
             })}
           </p>
         </div>
@@ -326,7 +326,7 @@ export function VersionsTab({ studio }: { studio: StudioMod }) {
         <p className="max-w-prose text-sm text-fg-muted">{bt('basecamp_versions_intro')}</p>
         {canRelease ? (
           <Link
-            to="/basecamp/mods/$modId/new-version"
+            to="/dashboard/mods/$modId/new-version"
             params={{ modId: String(studio.mod.id) }}
             className={buttonClasses({ variant: 'primary', size: 'sm' })}
           >

@@ -5,8 +5,8 @@ export type Explore_Meta_All_DescriptionInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "Everything on the island in one list: {count__number} mod, library or build for Sons of the Forest, filterable and sortable." |
-* | * | "Everything on the island in one list: {count__number} mods, libraries and builds for Sons of the Forest, filterable and sortable." |
+* | "one" | "{count__number} mod, library or build for Sons of the Forest in one list. Filter and sort by category, tag, rating and more." |
+* | * | "{count__number} mods, libraries and builds for Sons of the Forest in one list. Filter and sort by category, tag, rating and more." |
 *
 * @param {Explore_Meta_All_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

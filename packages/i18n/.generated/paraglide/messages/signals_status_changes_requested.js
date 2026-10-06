@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ mod: NonNullable<unknown> }} Signals_Status_Changes_RequestedInputs */
 
 const en_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`The Rangers asked for changes to ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`The moderators asked for changes to ${i?.mod}`)
 };
 
 const es_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Los guardabosques piden cambios en ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Los moderadores piden cambios en ${i?.mod}`)
 };
 
 const de_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Die Ranger bitten um Änderungen an ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Die Moderatoren bitten um Änderungen an ${i?.mod}`)
 };
 
 const fr_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Les rangers demandent des modifications sur ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Les modérateurs demandent des modifications sur ${i?.mod}`)
 };
 
 const it_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`I ranger chiedono modifiche a ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`I moderatori chiedono modifiche a ${i?.mod}`)
 };
 
 const nl_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`De rangers vragen om wijzigingen aan ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`De moderators vragen om wijzigingen aan ${i?.mod}`)
 };
 
 const pl_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Strażnicy proszą o zmiany w ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Moderatorzy proszą o zmiany w ${i?.mod}`)
 };
 
 const pt_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Os guardas pediram mudanças em ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Os moderadores pediram mudanças em ${i?.mod}`)
 };
 
 const ru_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Рейнджеры просят внести изменения в ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Модераторы просят внести изменения в ${i?.mod}`)
 };
 
 const sv_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Rangers vill att du ändrar ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`Moderatorerna vill att du ändrar ${i?.mod}`)
 };
 
 const tr_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Korucular ${i?.mod} için değişiklik istiyor`)
+	return /** @type {LocalizedString} */ (`Moderatörler ${i?.mod} için değişiklik istiyor`)
 };
 
 const zh_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`护林员要求你修改 ${i?.mod}`)
+	return /** @type {LocalizedString} */ (`版主要求你修改 ${i?.mod}`)
 };
 
 const ja_signals_status_changes_requested = /** @type {(inputs: Signals_Status_Changes_RequestedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`レンジャーが ${i?.mod} の修正を求めています`)
+	return /** @type {LocalizedString} */ (`モデレーターが ${i?.mod} の修正を求めています`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The Rangers asked for changes to {mod}" |
+* | "The moderators asked for changes to {mod}" |
 *
 * @param {Signals_Status_Changes_RequestedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

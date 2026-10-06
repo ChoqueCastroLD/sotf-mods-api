@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Error_TitleInputs */
 
 const en_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signals didn’t load.`)
+	return /** @type {LocalizedString} */ (`Notifications didn’t load.`)
 };
 
 const es_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Las señales no se han cargado.`)
+	return /** @type {LocalizedString} */ (`Las notificaciones no se han cargado.`)
 };
 
 const de_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Signale konnten nicht geladen werden.`)
+	return /** @type {LocalizedString} */ (`Die Benachrichtigungen konnten nicht geladen werden.`)
 };
 
 const fr_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les signaux n’ont pas pu être chargés.`)
+	return /** @type {LocalizedString} */ (`Les notifications n’ont pas pu être chargées.`)
 };
 
 const it_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non è stato possibile caricare i segnali.`)
+	return /** @type {LocalizedString} */ (`Non è stato possibile caricare le notifiche.`)
 };
 
 const nl_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De signalen konden niet worden geladen.`)
+	return /** @type {LocalizedString} */ (`De meldingen konden niet worden geladen.`)
 };
 
 const pl_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nie udało się wczytać sygnałów.`)
+	return /** @type {LocalizedString} */ (`Nie udało się wczytać powiadomień.`)
 };
 
 const pt_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Não foi possível carregar os sinais.`)
+	return /** @type {LocalizedString} */ (`Não foi possível carregar as notificações.`)
 };
 
 const ru_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Не удалось загрузить сигналы.`)
+	return /** @type {LocalizedString} */ (`Не удалось загрузить уведомления.`)
 };
 
 const sv_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalerna kunde inte laddas.`)
+	return /** @type {LocalizedString} */ (`Aviseringarna kunde inte laddas.`)
 };
 
 const tr_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyaller yüklenemedi.`)
+	return /** @type {LocalizedString} */ (`Bildirimler yüklenemedi.`)
 };
 
 const zh_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号加载失败。`)
+	return /** @type {LocalizedString} */ (`通知加载失败。`)
 };
 
 const ja_signals_error_title = /** @type {(inputs: Signals_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルを読み込めませんでした。`)
+	return /** @type {LocalizedString} */ (`通知を読み込めませんでした。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Signals didn’t load." |
+* | "Notifications didn’t load." |
 *
 * @param {Signals_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

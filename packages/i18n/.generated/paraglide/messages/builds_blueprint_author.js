@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ author: NonNullable<unknown> }} Builds_Blueprint_AuthorInputs */
 
 const en_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Author in the blueprint: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Author in the build file: ${i?.author}`)
 };
 
 const es_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Autor en el plano: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Autor en el archivo de la build: ${i?.author}`)
 };
 
 const de_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Autor im Bauplan: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Autor in der Build-Datei: ${i?.author}`)
 };
 
 const fr_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Auteur dans le plan : ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Auteur dans le fichier de la build : ${i?.author}`)
 };
 
 const it_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Autore nel progetto: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Autore nel file della build: ${i?.author}`)
 };
 
 const nl_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Auteur in de bouwtekening: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Auteur in het buildbestand: ${i?.author}`)
 };
 
 const pl_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Autor w planie: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Autor w pliku builda: ${i?.author}`)
 };
 
 const pt_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Autor na planta: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Autor no arquivo da build: ${i?.author}`)
 };
 
 const ru_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Автор в чертеже: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Автор в файле постройки: ${i?.author}`)
 };
 
 const sv_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Upphovsperson i ritningen: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Upphovsperson i byggfilen: ${i?.author}`)
 };
 
 const tr_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Plandaki yazar: ${i?.author}`)
+	return /** @type {LocalizedString} */ (`Yapı dosyasındaki yazar: ${i?.author}`)
 };
 
 const zh_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`蓝图中的作者：${i?.author}`)
+	return /** @type {LocalizedString} */ (`文件中的作者：${i?.author}`)
 };
 
 const ja_builds_blueprint_author = /** @type {(inputs: Builds_Blueprint_AuthorInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`設計図内の作者：${i?.author}`)
+	return /** @type {LocalizedString} */ (`ファイル内の作者：${i?.author}`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Author in the blueprint: {author}" |
+* | "Author in the build file: {author}" |
 *
 * @param {Builds_Blueprint_AuthorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

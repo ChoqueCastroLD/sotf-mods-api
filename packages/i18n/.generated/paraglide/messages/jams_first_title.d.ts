@@ -3,7 +3,7 @@ export type Jams_First_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "The first Mod Jam is on its way" |
+* | "The first Mod Jam will be announced soon" |
 *
 * @param {Jams_First_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

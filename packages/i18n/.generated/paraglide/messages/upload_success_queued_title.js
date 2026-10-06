@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Success_Queued_TitleInputs */
 
 const en_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sent to the Ranger Station`)
+	return /** @type {LocalizedString} */ (`Sent for review`)
 };
 
 const es_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviado al puesto de guardabosques`)
+	return /** @type {LocalizedString} */ (`Enviado a revisión`)
 };
 
 const de_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`An die Rangerstation gesendet`)
+	return /** @type {LocalizedString} */ (`Zur Prüfung gesendet`)
 };
 
 const fr_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Envoyé au poste des rangers`)
+	return /** @type {LocalizedString} */ (`Envoyé pour examen`)
 };
 
 const it_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inviato alla stazione dei ranger`)
+	return /** @type {LocalizedString} */ (`Inviato per la revisione`)
 };
 
 const nl_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Naar de rangerpost gestuurd`)
+	return /** @type {LocalizedString} */ (`Ter beoordeling ingestuurd`)
 };
 
 const pl_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wysłano na posterunek strażników`)
+	return /** @type {LocalizedString} */ (`Wysłano do przeglądu`)
 };
 
 const pt_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviado ao posto dos guardas`)
+	return /** @type {LocalizedString} */ (`Enviado para revisão`)
 };
 
 const ru_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отправлено на пост рейнджеров`)
+	return /** @type {LocalizedString} */ (`Отправлено на проверку`)
 };
 
 const sv_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skickat till rangerstationen`)
+	return /** @type {LocalizedString} */ (`Skickat för granskning`)
 };
 
 const tr_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucu İstasyonu’na gönderildi`)
+	return /** @type {LocalizedString} */ (`İncelemeye gönderildi`)
 };
 
 const zh_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已提交到护林站`)
+	return /** @type {LocalizedString} */ (`已提交审核`)
 };
 
 const ja_upload_success_queued_title = /** @type {(inputs: Upload_Success_Queued_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーステーションに送信しました`)
+	return /** @type {LocalizedString} */ (`審査に送信しました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Sent to the Ranger Station" |
+* | "Sent for review" |
 *
 * @param {Upload_Success_Queued_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

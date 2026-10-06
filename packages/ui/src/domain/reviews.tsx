@@ -4,7 +4,7 @@
  * - `StarRating`: 1–5 stars, fractional fill for averages, always with a text alternative.
  * - `RatingHistogram`: 5 → 1 thin bars with counts, mean and total; below the public threshold
  *   it says there are not enough reviews yet instead of showing stars.
- * - `ReviewCard`: author (or «Deleted survivor»), stars, title, body, version used, «Downloaded
+ * - `ReviewCard`: author (or «Deleted user»), stars, title, body, version used, «Downloaded
  *   this mod», date (+ «edited»), helpful count, the creator's nested reply and an `actions`
  *   slot for the vote / report controls (owned by the page).
  */

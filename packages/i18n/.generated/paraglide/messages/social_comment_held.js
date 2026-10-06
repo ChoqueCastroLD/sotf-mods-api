@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Social_Comment_HeldInputs */
 
 const en_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posted. Comments with outside links from new accounts wait for a quick Ranger check.`)
+	return /** @type {LocalizedString} */ (`Posted. Comments with outside links from new accounts wait for a quick moderator check.`)
 };
 
 const es_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publicado. Los comentarios con enlaces externos de cuentas nuevas esperan una revisión rápida de los guardabosques.`)
+	return /** @type {LocalizedString} */ (`Publicado. Los comentarios con enlaces externos de cuentas nuevas esperan una revisión rápida de un moderador.`)
 };
 
 const de_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gesendet. Kommentare neuer Konten mit externen Links warten auf eine kurze Prüfung durch die Ranger.`)
+	return /** @type {LocalizedString} */ (`Gesendet. Kommentare neuer Konten mit externen Links warten auf eine kurze Prüfung durch einen Moderator.`)
 };
 
 const fr_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Envoyé. Les commentaires de nouveaux comptes avec des liens externes attendent une vérification rapide des rangers.`)
+	return /** @type {LocalizedString} */ (`Envoyé. Les commentaires de nouveaux comptes avec des liens externes attendent une vérification rapide d’un modérateur.`)
 };
 
 const it_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inviato. I commenti con link esterni degli account nuovi attendono un rapido controllo dei ranger.`)
+	return /** @type {LocalizedString} */ (`Inviato. I commenti con link esterni degli account nuovi attendono un rapido controllo di un moderatore.`)
 };
 
 const nl_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geplaatst. Reacties met externe links van nieuwe accounts wachten op een snelle controle door de rangers.`)
+	return /** @type {LocalizedString} */ (`Geplaatst. Reacties met externe links van nieuwe accounts wachten op een snelle controle door een moderator.`)
 };
 
 const pl_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wysłano. Komentarze nowych kont z linkami zewnętrznymi czekają na szybką kontrolę strażników.`)
+	return /** @type {LocalizedString} */ (`Wysłano. Komentarze nowych kont z linkami zewnętrznymi czekają na szybką kontrolę moderatora.`)
 };
 
 const pt_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviado. Comentários com links externos de contas novas aguardam uma checagem rápida dos guardas.`)
+	return /** @type {LocalizedString} */ (`Enviado. Comentários com links externos de contas novas aguardam uma checagem rápida de um moderador.`)
 };
 
 const ru_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отправлено. Комментарии новых аккаунтов с внешними ссылками ждут быстрой проверки рейнджеров.`)
+	return /** @type {LocalizedString} */ (`Отправлено. Комментарии новых аккаунтов с внешними ссылками ждут быстрой проверки модератором.`)
 };
 
 const sv_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skickat. Kommentarer med externa länkar från nya konton väntar på en snabb kontroll av rangers.`)
+	return /** @type {LocalizedString} */ (`Skickat. Kommentarer med externa länkar från nya konton väntar på en snabb kontroll av en moderator.`)
 };
 
 const tr_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gönderildi. Yeni hesaplardan gelen dış bağlantılı yorumlar kısa bir korucu kontrolü bekler.`)
+	return /** @type {LocalizedString} */ (`Gönderildi. Yeni hesaplardan gelen dış bağlantılı yorumlar bir moderatörün kısa kontrolünü bekler.`)
 };
 
 const zh_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已提交。新账号含外部链接的评论需等待护林员快速审核。`)
+	return /** @type {LocalizedString} */ (`已提交。新账号含外部链接的评论需等待版主快速审核。`)
 };
 
 const ja_social_comment_held = /** @type {(inputs: Social_Comment_HeldInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`送信しました。新しいアカウントの外部リンク付きコメントはレンジャーの確認待ちになります。`)
+	return /** @type {LocalizedString} */ (`送信しました。新しいアカウントの外部リンク付きコメントはモデレーターの確認待ちになります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Posted. Comments with outside links from new accounts wait for a quick Ranger check." |
+* | "Posted. Comments with outside links from new accounts wait for a quick moderator check." |
 *
 * @param {Social_Comment_HeldInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

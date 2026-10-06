@@ -7,8 +7,6 @@ import { pageEntity, trackingAllowed } from '../../scripts/beacon.ts';
 import { consentSettled, publisherId } from '../../scripts/consent.ts';
 import { initLangSuggest, suggestedLocale } from '../../scripts/lang-suggest.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
-import { initMoon } from '../../scripts/moon.ts';
-import { isSnowSeason, seasonOf } from '../../scripts/seasonal.ts';
 
 /** jsdom has no Cookie Store API; the scripts read `document.cookie`, so tests write it. */
 function setCookie(value: string): void {
@@ -92,7 +90,7 @@ describe('account hint (PLAN §5.1)', () => {
   it('signed-in hint: fetches the summary and upgrades the slot', async () => {
     setCookie('sotf_li=1; Path=/');
     document.body.innerHTML = `<div data-account-slot><a data-account-guest href="/login">Sign in</a>
-      <a data-account-user hidden href="/basecamp"><span data-account-name></span><span data-account-initials></span></a></div>`;
+      <a data-account-user hidden href="/dashboard"><span data-account-name></span><span data-account-initials></span></a></div>`;
     const summary = {
       id: 1,
       handle: 'imaxel',
@@ -173,30 +171,7 @@ describe('beacon (PLAN §9.3)', () => {
   });
 });
 
-describe('seasons, moon, relogin, shortcuts', () => {
-  it('computes the season and December snow', () => {
-    expect(seasonOf(new Date('2026-12-15'))).toBe('winter');
-    expect(seasonOf(new Date('2026-02-01'))).toBe('winter');
-    expect(seasonOf(new Date('2026-04-01'))).toBe('spring');
-    expect(seasonOf(new Date('2026-07-01'))).toBe('summer');
-    expect(seasonOf(new Date('2026-09-30'))).toBe('autumn');
-    expect(isSnowSeason(new Date('2026-12-01'))).toBe(true);
-    expect(isSnowSeason(new Date('2026-11-30'))).toBe(false);
-  });
-
-  it('updates the footer moon phase from the client clock', () => {
-    const names = ['N0', 'N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7'];
-    document.body.innerHTML = `<p data-moon data-moon-names='${JSON.stringify(names)}' data-moon-template="Tonight: {phase}">
-      <svg><use data-moon-icon href="#x"></use></svg><span data-moon-label></span></p>`;
-    initMoon(document, new Date('2026-09-26T12:00:00Z'));
-    const label = document.querySelector('[data-moon-label]')?.textContent ?? '';
-    expect(label).toMatch(/^Tonight: N[0-7]$/);
-    const index = label.at(-1);
-    expect(document.querySelector('[data-moon-icon]')?.getAttribute('href')).toBe(
-      `/brand/field-kit.svg#fk-moon-phase-${index}`,
-    );
-  });
-
+describe('relogin, shortcuts', () => {
   it('dismisses the relogin banner', () => {
     document.documentElement.dataset.relogin = '1';
     document.body.innerHTML = '<div data-relogin-banner><button data-relogin-dismiss>x</button></div>';

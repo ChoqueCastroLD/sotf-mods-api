@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown>, handle: NonNullable<unknown> }} Auth_Login_Already_TextInputs */
 
 const en_auth_login_already_text = /** @type {(inputs: Auth_Login_Already_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Signed in as ${i?.name} (@${i?.handle}).`)
+	return /** @type {LocalizedString} */ (`Logged in as ${i?.name} (@${i?.handle}).`)
 };
 
 const es_auth_login_already_text = /** @type {(inputs: Auth_Login_Already_TextInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_auth_login_already_text = /** @type {(inputs: Auth_Login_Already_TextIn
 /**
 * | output |
 * | --- |
-* | "Signed in as {name} (@{handle})." |
+* | "Logged in as {name} (@{handle})." |
 *
 * @param {Auth_Login_Already_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

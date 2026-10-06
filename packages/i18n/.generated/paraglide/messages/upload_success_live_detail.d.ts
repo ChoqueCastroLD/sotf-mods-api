@@ -5,7 +5,7 @@ export type Upload_Success_Live_DetailInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} is published. Share it with the survivors." |
+* | "{name} is now public." |
 *
 * @param {Upload_Success_Live_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

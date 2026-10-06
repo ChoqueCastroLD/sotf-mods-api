@@ -5,7 +5,7 @@ export type Upload_Success_Queued_VersionInputs = {
 /**
 * | output |
 * | --- |
-* | "The new version of {name} is waiting for a ranger. You’ll get a signal when it’s live." |
+* | "The new version of {name} is waiting for a moderator. You’ll get a notification when it’s live." |
 *
 * @param {Upload_Success_Queued_VersionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

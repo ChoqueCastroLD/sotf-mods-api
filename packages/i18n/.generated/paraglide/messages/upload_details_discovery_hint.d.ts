@@ -3,7 +3,7 @@ export type Upload_Details_Discovery_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "They decide where survivors find it in Explore and search." |
+* | "They decide where players find it in Mods and search." |
 *
 * @param {Upload_Details_Discovery_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

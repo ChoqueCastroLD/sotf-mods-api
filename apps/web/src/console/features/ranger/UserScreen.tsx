@@ -1,5 +1,5 @@
 /**
- * `/ranger/users/$userId` — a user as seen by moderation (PLAN §7.4 «Usuarios»): account facts,
+ * `/moderation/users/$userId` — a user as seen by moderation (PLAN §7.4 «Usuarios»): account facts,
  * activity, trust, sanctions (active and past, revocable), the verified creator flag, the role
  * (admins only; admins are managed with `pnpm admin:grant`), «sign out everywhere» and the
  * audit trail of the account. Staff act only below their own role and never on themselves; the
@@ -15,23 +15,14 @@ import { Icon } from '@sotf/ui/icons';
 import { Select } from '@sotf/ui/select';
 import { Switch } from '@sotf/ui/switch';
 import { Textarea } from '@sotf/ui/textarea';
-import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ExternalLink, Gavel, LogOut, ScrollText, ShieldOff } from 'lucide-react';
 import { type FormEvent, useId, useState } from 'react';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useMe } from '../../hooks/use-me.ts';
 import { notify } from '../../lib/notify.ts';
-import {
-  ROLES,
-  type Role,
-  rangerApi,
-  rangerKeys,
-  type Sanction,
-  storeUser,
-  translatorBadgeQuery,
-  userQuery,
-} from './api.ts';
+import { ROLES, type Role, rangerApi, type Sanction, storeUser, userQuery } from './api.ts';
 import { roleLabel, sanctionLabel } from './labels.ts';
 import { SanctionDialog } from './SanctionDialog.tsx';
 import { dateTime, number, profileHref, reportFailure, ScreenHeader, UserChip } from './shared.tsx';
@@ -83,7 +74,7 @@ export function UserScreen({ userId }: { userId: number }) {
               <span className="sr-only">{m.ranger_new_tab()}</span>
             </a>
             <Link
-              to="/ranger/audit"
+              to="/moderation/audit"
               search={{ target: `user:${user.user.id}` }}
               className="inline-flex h-10 items-center gap-1 rounded-md px-3 text-sm text-link hover:bg-fg/8"
             >
@@ -136,7 +127,7 @@ export function UserScreen({ userId }: { userId: number }) {
           </div>
           <dl className="grid grid-cols-2 gap-x-6 gap-y-1 text-sm sm:grid-cols-4">
             <Fact label={m.ranger_user_joined()} value={dateTime(user.createdAt)} />
-            <Fact label={m.ranger_user_last_seen()} value={user.lastSeenAt ? dateTime(user.lastSeenAt) : '—'} />
+            <Fact label={m.ranger_user_last_seen()} value={user.lastSeenAt ? dateTime(user.lastSeenAt) : '-'} />
             <Fact label={m.ranger_history_trust()} value={m.ranger_trust_level({ level: user.trustLevel })} />
             <Fact label={m.ranger_user_mods()} value={number(user.stats.mods)} />
             <Fact label={m.ranger_user_comments()} value={number(user.stats.comments)} />
@@ -188,8 +179,6 @@ export function UserScreen({ userId }: { userId: number }) {
           </>
         )}
       </section>
-
-      {isAdmin ? <TranslatorBadge userId={user.user.id} handle={user.user.handle} /> : null}
 
       <section aria-labelledby="ranger-user-sanctions" className="grid gap-3">
         <h2 id="ranger-user-sanctions" className="font-display text-lg text-fg">
@@ -416,35 +405,5 @@ function ReasonConfirm({
         </Field>
       </form>
     </Dialog>
-  );
-}
-
-/** Admin-only switch of the manual `translator` badge (state read from the user's public badges). */
-function TranslatorBadge({ userId, handle }: { userId: number; handle: string }) {
-  const queryClient = useQueryClient();
-  const query = useQuery(translatorBadgeQuery(handle));
-  const [saving, setSaving] = useState(false);
-  const change = async (granted: boolean) => {
-    setSaving(true);
-    try {
-      const result = await rangerApi.setTranslatorBadge(userId, granted);
-      queryClient.setQueryData(rangerKeys.translator(handle), result.granted);
-      notify.success(result.granted ? m.ranger_user_translator_on() : m.ranger_user_translator_off());
-    } catch (error) {
-      reportFailure(error, m.ranger_user_translator_failed());
-    } finally {
-      setSaving(false);
-    }
-  };
-  return (
-    <div className="grid max-w-xl gap-4 rounded-lg border border-border bg-surface p-4">
-      <Switch
-        label={m.ranger_user_translator()}
-        description={m.ranger_user_translator_hint()}
-        checked={query.data ?? false}
-        disabled={query.isPending || saving}
-        onCheckedChange={(value) => void change(value)}
-      />
-    </div>
   );
 }

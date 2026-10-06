@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Related_TitleInputs */
 
 const en_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`More blueprints`)
+	return /** @type {LocalizedString} */ (`More builds`)
 };
 
 const es_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Más planos`)
+	return /** @type {LocalizedString} */ (`Más builds`)
 };
 
 const de_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Weitere Baupläne`)
+	return /** @type {LocalizedString} */ (`Weitere Builds`)
 };
 
 const fr_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plus de plans`)
+	return /** @type {LocalizedString} */ (`Plus de builds`)
 };
 
 const it_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Altri progetti`)
+	return /** @type {LocalizedString} */ (`Altre build`)
 };
 
 const nl_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Meer bouwtekeningen`)
+	return /** @type {LocalizedString} */ (`Meer builds`)
 };
 
 const pl_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Więcej planów`)
+	return /** @type {LocalizedString} */ (`Więcej buildów`)
 };
 
 const pt_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mais plantas`)
+	return /** @type {LocalizedString} */ (`Mais builds`)
 };
 
 const ru_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Другие чертежи`)
+	return /** @type {LocalizedString} */ (`Другие постройки`)
 };
 
 const sv_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fler ritningar`)
+	return /** @type {LocalizedString} */ (`Fler byggen`)
 };
 
 const tr_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Daha fazla plan`)
+	return /** @type {LocalizedString} */ (`Daha fazla yapı`)
 };
 
 const zh_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`更多蓝图`)
+	return /** @type {LocalizedString} */ (`更多建筑`)
 };
 
 const ja_builds_related_title = /** @type {(inputs: Builds_Related_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ほかの設計図`)
+	return /** @type {LocalizedString} */ (`ほかの建築`)
 };
 
 /**
 * | output |
 * | --- |
-* | "More blueprints" |
+* | "More builds" |
 *
 * @param {Builds_Related_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

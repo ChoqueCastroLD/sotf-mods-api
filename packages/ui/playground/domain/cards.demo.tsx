@@ -1,22 +1,13 @@
 import { Heart } from 'lucide-react';
-import {
-  BuildCard,
-  BuildCardSkeleton,
-  CreatorCard,
-  CreatorCardSkeleton,
-  KitCard,
-  KitCardSkeleton,
-  ModCard,
-  ModCardSkeleton,
-} from '../../src/domain/index.ts';
-import { build, creator, kit, mod, modWithoutImage, privateKit } from '../../src/domain/test/fixtures.ts';
+import { BuildCard, BuildCardSkeleton, ModCard, ModCardSkeleton } from '../../src/domain/index.ts';
+import { build, mod, modWithoutImage } from '../../src/domain/test/fixtures.ts';
 import { Button, Icon, SkeletonGroup } from '../../src/index.ts';
 import { DemoI18n, DemoRow } from './demo-kit.tsx';
 
-export const title = 'Cards · ModCard, BuildCard, KitCard, CreatorCard';
+export const title = 'Cards · ModCard, BuildCard';
 
 const favourite = (
-  <Button variant="icon" size="sm" aria-label="Save to backpack" className="bg-surface/80">
+  <Button variant="icon" size="sm" aria-label="Follow" className="bg-surface/80">
     <Icon icon={Heart} size={16} />
   </Button>
 );
@@ -63,19 +54,14 @@ export default function CardsDemo() {
             <ModCardSkeleton variant="feature" />
           </SkeletonGroup>
         </DemoRow>
-        <DemoRow label="BuildCard · KitCard · CreatorCard">
+        <DemoRow label="BuildCard">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <BuildCard build={build} pieces={1248} buildShareVersion="1.2" action={favourite} />
-            <KitCard kit={kit} totalSize={48 * 1024 * 1024} compat="works" currentBuild="1.0.4" />
-            <KitCard kit={privateKit} />
-            <CreatorCard creator={creator} action={<Button size="sm">Follow</Button>} />
           </div>
         </DemoRow>
-        <DemoRow label="Skeletons · build, kit, creator">
+        <DemoRow label="Skeleton · build">
           <SkeletonGroup className="grid gap-4 sm:grid-cols-3">
             <BuildCardSkeleton />
-            <KitCardSkeleton />
-            <CreatorCardSkeleton />
           </SkeletonGroup>
         </DemoRow>
       </div>

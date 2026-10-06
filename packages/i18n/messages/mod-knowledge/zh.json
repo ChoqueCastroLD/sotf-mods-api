@@ -1,11 +1,7 @@
 {
-  "mod_knowledge_issues_title": "已知问题",
   "mod_knowledge_status_open": "未解决",
   "mod_knowledge_status_investigating": "调查中",
   "mod_knowledge_status_fixed": "已修复",
-  "mod_knowledge_issue_affects": "影响版本：{versions}",
-  "mod_knowledge_issue_fixed_in": "已在 {version} 中修复",
-  "mod_knowledge_issue_resolved": "解决于 {date}",
   "mod_knowledge_coauthors_title": "共同作者",
   "mod_knowledge_profile_title": "{name} 共同创作的模组",
   "mod_knowledge_profile_by": "作者：@{handle}",

@@ -3,7 +3,7 @@ export type Admin_Builds_No_Current_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Mark the latest patch as current: compatibility badges and the Patch Radar need it." |
+* | "Mark the latest game version as current." |
 *
 * @param {Admin_Builds_No_Current_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

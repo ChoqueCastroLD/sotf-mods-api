@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_TitleInputs */
 
 const en_settings_sessions_title = /** @type {(inputs: Settings_Sessions_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Where you’re signed in`)
+	return /** @type {LocalizedString} */ (`Where you’re logged in`)
 };
 
 const es_settings_sessions_title = /** @type {(inputs: Settings_Sessions_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_title = /** @type {(inputs: Settings_Sessions_TitleIn
 /**
 * | output |
 * | --- |
-* | "Where you’re signed in" |
+* | "Where you’re logged in" |
 *
 * @param {Settings_Sessions_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

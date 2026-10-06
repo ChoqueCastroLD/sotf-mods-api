@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Cmdk_Error_TitleInputs */
 
 const en_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The search index didn’t load.`)
+	return /** @type {LocalizedString} */ (`Search could not be loaded.`)
 };
 
 const es_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No se pudo cargar el índice de búsqueda.`)
+	return /** @type {LocalizedString} */ (`No se pudo cargar la búsqueda.`)
 };
 
 const de_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Der Suchindex konnte nicht geladen werden.`)
+	return /** @type {LocalizedString} */ (`Die Suche konnte nicht geladen werden.`)
 };
 
 const fr_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`L’index de recherche n’a pas pu être chargé.`)
+	return /** @type {LocalizedString} */ (`La recherche n’a pas pu être chargée.`)
 };
 
 const it_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non è stato possibile caricare l’indice di ricerca.`)
+	return /** @type {LocalizedString} */ (`Non è stato possibile caricare la ricerca.`)
 };
 
 const nl_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De zoekindex kon niet worden geladen.`)
+	return /** @type {LocalizedString} */ (`De zoekfunctie kon niet worden geladen.`)
 };
 
 const pl_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nie udało się wczytać indeksu wyszukiwania.`)
+	return /** @type {LocalizedString} */ (`Nie udało się wczytać wyszukiwarki.`)
 };
 
 const pt_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Não foi possível carregar o índice de busca.`)
+	return /** @type {LocalizedString} */ (`Não foi possível carregar a busca.`)
 };
 
 const ru_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Не удалось загрузить поисковый индекс.`)
+	return /** @type {LocalizedString} */ (`Не удалось загрузить поиск.`)
 };
 
 const sv_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sökindexet kunde inte laddas.`)
+	return /** @type {LocalizedString} */ (`Sökningen kunde inte laddas.`)
 };
 
 const tr_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Arama dizini yüklenemedi.`)
+	return /** @type {LocalizedString} */ (`Arama yüklenemedi.`)
 };
 
 const zh_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`搜索索引加载失败。`)
+	return /** @type {LocalizedString} */ (`搜索加载失败。`)
 };
 
 const ja_cmdk_error_title = /** @type {(inputs: Cmdk_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`検索インデックスを読み込めませんでした。`)
+	return /** @type {LocalizedString} */ (`検索を読み込めませんでした。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The search index didn’t load." |
+* | "Search could not be loaded." |
 *
 * @param {Cmdk_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Sanction_Ban_HintInputs */
 
 const en_ranger_sanction_ban_hint = /** @type {(inputs: Ranger_Sanction_Ban_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Permanent. Signs them out everywhere.`)
+	return /** @type {LocalizedString} */ (`Permanent. Logs them out everywhere.`)
 };
 
 const es_ranger_sanction_ban_hint = /** @type {(inputs: Ranger_Sanction_Ban_HintInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_sanction_ban_hint = /** @type {(inputs: Ranger_Sanction_Ban_Hint
 };
 
 const nl_ranger_sanction_ban_hint = /** @type {(inputs: Ranger_Sanction_Ban_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Permanent. Meldt overal af.`)
+	return /** @type {LocalizedString} */ (`Permanent. Logt overal uit.`)
 };
 
 const pl_ranger_sanction_ban_hint = /** @type {(inputs: Ranger_Sanction_Ban_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_ranger_sanction_ban_hint = /** @type {(inputs: Ranger_Sanction_Ban_Hint
 /**
 * | output |
 * | --- |
-* | "Permanent. Signs them out everywhere." |
+* | "Permanent. Logs them out everywhere." |
 *
 * @param {Ranger_Sanction_Ban_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

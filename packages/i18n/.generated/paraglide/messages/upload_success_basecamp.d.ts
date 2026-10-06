@@ -3,7 +3,7 @@ export type Upload_Success_BasecampInputs = {};
 /**
 * | output |
 * | --- |
-* | "Back to Basecamp" |
+* | "Back to the dashboard" |
 *
 * @param {Upload_Success_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

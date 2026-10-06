@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_Already_Sign_OutInputs */
 
 const en_auth_login_already_sign_out = /** @type {(inputs: Auth_Login_Already_Sign_OutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out and use another account`)
+	return /** @type {LocalizedString} */ (`Log out and use another account`)
 };
 
 const es_auth_login_already_sign_out = /** @type {(inputs: Auth_Login_Already_Sign_OutInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_login_already_sign_out = /** @type {(inputs: Auth_Login_Already_Si
 /**
 * | output |
 * | --- |
-* | "Sign out and use another account" |
+* | "Log out and use another account" |
 *
 * @param {Auth_Login_Already_Sign_OutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

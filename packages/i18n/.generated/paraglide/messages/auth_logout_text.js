@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Logout_TextInputs */
 
 const en_auth_logout_text = /** @type {(inputs: Auth_Logout_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Another site sent you here. Confirm to sign out of SOTF Mods on this device.`)
+	return /** @type {LocalizedString} */ (`Another site sent you here. Confirm to log out of SOTF Mods on this device.`)
 };
 
 const es_auth_logout_text = /** @type {(inputs: Auth_Logout_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_logout_text = /** @type {(inputs: Auth_Logout_TextInputs) => Local
 /**
 * | output |
 * | --- |
-* | "Another site sent you here. Confirm to sign out of SOTF Mods on this device." |
+* | "Another site sent you here. Confirm to log out of SOTF Mods on this device." |
 *
 * @param {Auth_Logout_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

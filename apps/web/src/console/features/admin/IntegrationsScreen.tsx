@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/integrations` (PLAN §7.4 «ajustes: webhooks de Discord»): the Discord channels the
+ * `/moderation/admin/integrations` (PLAN §7.4 «ajustes: webhooks de Discord»): the Discord channels the
  * site announces to (new mods, new versions, Mod of the Week, 10 k milestones), up to 10. Webhook
  * URLs are credentials: they are masked until revealed and never logged. Beta (`beta.sotf-mods.com`)
  * events are left out unless a hook opts in.
@@ -62,12 +62,8 @@ export function discordEventLabel(event: DiscordEvent): string {
   switch (event) {
     case 'mod.published':
       return m.admin_hooks_event_mod_published();
-    case 'version.published':
-      return m.admin_hooks_event_version_published();
-    case 'award.mod_of_week':
-      return m.admin_hooks_event_mod_of_week();
     default:
-      return m.admin_hooks_event_milestone();
+      return m.admin_hooks_event_version_published();
   }
 }
 

@@ -59,7 +59,7 @@ export const ProblemDTO = dto(
         type: 'https://sotf-mods.com/developers/errors#rate-limited',
         title: 'Too many requests',
         status: 429,
-        detail: 'Too many requests — try again in 30 s',
+        detail: 'Too many requests. Try again in 30 s',
         instance: '/api/v2/mods/42/comments',
         code: 'RATE_LIMITED',
         requestId: '0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d',

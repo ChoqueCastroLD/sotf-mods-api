@@ -3,7 +3,7 @@ export type Auth_Login_Create_AccountInputs = {};
 /**
 * | output |
 * | --- |
-* | "Create an account" |
+* | "Register" |
 *
 * @param {Auth_Login_Create_AccountInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Meta_Logout_TitleInputs */
 
 const en_auth_meta_logout_title = /** @type {(inputs: Auth_Meta_Logout_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out`)
+	return /** @type {LocalizedString} */ (`Log out`)
 };
 
 const es_auth_meta_logout_title = /** @type {(inputs: Auth_Meta_Logout_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_meta_logout_title = /** @type {(inputs: Auth_Meta_Logout_TitleInpu
 /**
 * | output |
 * | --- |
-* | "Sign out" |
+* | "Log out" |
 *
 * @param {Auth_Meta_Logout_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

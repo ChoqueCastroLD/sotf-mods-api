@@ -3,7 +3,7 @@ export type Mod_Install_Step_Loader_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "RedLoader is the mod loader of Sons of the Forest. Install it once and every mod works." |
+* | "RedLoader is the mod loader for Sons of the Forest. You only need to install it once." |
 *
 * @param {Mod_Install_Step_Loader_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

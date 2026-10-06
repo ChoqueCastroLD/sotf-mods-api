@@ -12,7 +12,6 @@ import type {
   ReportReason,
   ReportStatus,
   ReportTargetType,
-  Risk,
   Role,
   SanctionKind,
   ScanSummary,
@@ -100,17 +99,6 @@ export function decidedMessage(action: ModerationAction, title: string): string 
       return m.ranger_decided_remove({ title });
     case 'restore':
       return m.ranger_decided_restore({ title });
-  }
-}
-
-export function riskLabel(risk: Risk): string {
-  switch (risk) {
-    case 'high':
-      return m.ranger_risk_high();
-    case 'medium':
-      return m.ranger_risk_medium();
-    default:
-      return m.ranger_risk_low();
   }
 }
 

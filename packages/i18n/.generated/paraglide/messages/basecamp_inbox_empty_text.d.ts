@@ -3,7 +3,7 @@ export type Basecamp_Inbox_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Comments, bug reports, reviews and field reports on your mods will show up here." |
+* | "Comments, bug reports and reviews on your mods will show up here." |
 *
 * @param {Basecamp_Inbox_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

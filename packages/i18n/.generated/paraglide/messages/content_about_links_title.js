@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Content_About_Links_TitleInputs */
 
 const en_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Around the camp`)
+	return /** @type {LocalizedString} */ (`Links`)
 };
 
 const es_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Por el campamento`)
+	return /** @type {LocalizedString} */ (`Enlaces`)
 };
 
 const de_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rund ums Lager`)
+	return /** @type {LocalizedString} */ (`Links`)
 };
 
 const fr_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autour du camp`)
+	return /** @type {LocalizedString} */ (`Liens`)
 };
 
 const it_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In giro per il campo`)
+	return /** @type {LocalizedString} */ (`Link`)
 };
 
 const nl_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rond het kamp`)
+	return /** @type {LocalizedString} */ (`Links`)
 };
 
 const pl_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wokół obozu`)
+	return /** @type {LocalizedString} */ (`Linki`)
 };
 
 const pt_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pelo acampamento`)
+	return /** @type {LocalizedString} */ (`Links`)
 };
 
 const ru_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`По лагерю`)
+	return /** @type {LocalizedString} */ (`Ссылки`)
 };
 
 const sv_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Runt lägret`)
+	return /** @type {LocalizedString} */ (`Länkar`)
 };
 
 const tr_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kampın etrafında`)
+	return /** @type {LocalizedString} */ (`Bağlantılar`)
 };
 
 const zh_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`营地周边`)
+	return /** @type {LocalizedString} */ (`链接`)
 };
 
 const ja_content_about_links_title = /** @type {(inputs: Content_About_Links_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`キャンプの周辺`)
+	return /** @type {LocalizedString} */ (`リンク`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Around the camp" |
+* | "Links" |
 *
 * @param {Content_About_Links_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

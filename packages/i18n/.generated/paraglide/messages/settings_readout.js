@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_ReadoutInputs */
 
 const en_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Camp settings`)
+	return /** @type {LocalizedString} */ (`Account settings`)
 };
 
 const es_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ajustes del campamento`)
+	return /** @type {LocalizedString} */ (`Ajustes de la cuenta`)
 };
 
 const de_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lagereinstellungen`)
+	return /** @type {LocalizedString} */ (`Kontoeinstellungen`)
 };
 
 const fr_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Réglages du camp`)
+	return /** @type {LocalizedString} */ (`Réglages du compte`)
 };
 
 const it_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Impostazioni del campo`)
+	return /** @type {LocalizedString} */ (`Impostazioni dell’account`)
 };
 
 const nl_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kampinstellingen`)
+	return /** @type {LocalizedString} */ (`Accountinstellingen`)
 };
 
 const pl_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ustawienia obozu`)
+	return /** @type {LocalizedString} */ (`Ustawienia konta`)
 };
 
 const pt_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Configurações do acampamento`)
+	return /** @type {LocalizedString} */ (`Configurações da conta`)
 };
 
 const ru_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Настройки лагеря`)
+	return /** @type {LocalizedString} */ (`Настройки аккаунта`)
 };
 
 const sv_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lägerinställningar`)
+	return /** @type {LocalizedString} */ (`Kontoinställningar`)
 };
 
 const tr_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kamp ayarları`)
+	return /** @type {LocalizedString} */ (`Hesap ayarları`)
 };
 
 const zh_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`营地设置`)
+	return /** @type {LocalizedString} */ (`账号设置`)
 };
 
 const ja_settings_readout = /** @type {(inputs: Settings_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`キャンプの設定`)
+	return /** @type {LocalizedString} */ (`アカウント設定`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Camp settings" |
+* | "Account settings" |
 *
 * @param {Settings_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

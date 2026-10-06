@@ -6,35 +6,35 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_VerifiedInputs */
 
 const en_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verified creators only`)
+	return /** @type {LocalizedString} */ (`Trusted creators only`)
 };
 
 const es_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solo creadores verificados`)
+	return /** @type {LocalizedString} */ (`Solo creadores de confianza`)
 };
 
 const de_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nur verifizierte Creator`)
+	return /** @type {LocalizedString} */ (`Nur vertrauenswürdige Creator`)
 };
 
 const fr_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créateurs vérifiés uniquement`)
+	return /** @type {LocalizedString} */ (`Créateurs de confiance uniquement`)
 };
 
 const it_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solo creator verificati`)
+	return /** @type {LocalizedString} */ (`Solo creator affidabili`)
 };
 
 const nl_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alleen geverifieerde makers`)
+	return /** @type {LocalizedString} */ (`Alleen vertrouwde makers`)
 };
 
 const pl_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tylko zweryfikowani twórcy`)
+	return /** @type {LocalizedString} */ (`Tylko zaufani twórcy`)
 };
 
 const pt_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Só criadores verificados`)
+	return /** @type {LocalizedString} */ (`Só criadores confiáveis`)
 };
 
 const ru_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
@@ -42,25 +42,25 @@ const ru_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => Local
 };
 
 const sv_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bara verifierade skapare`)
+	return /** @type {LocalizedString} */ (`Bara betrodda skapare`)
 };
 
 const tr_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yalnızca doğrulanmış üreticiler`)
+	return /** @type {LocalizedString} */ (`Yalnızca güvenilir üreticiler`)
 };
 
 const zh_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`仅认证创作者`)
+	return /** @type {LocalizedString} */ (`仅受信任的创作者`)
 };
 
 const ja_explore_verified = /** @type {(inputs: Explore_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`認証済みクリエイターのみ`)
+	return /** @type {LocalizedString} */ (`信頼済みクリエイターのみ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Verified creators only" |
+* | "Trusted creators only" |
 *
 * @param {Explore_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

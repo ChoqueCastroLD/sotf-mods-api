@@ -38,7 +38,7 @@ const pt_admin_ads_error_slot = /** @type {(inputs: Admin_Ads_Error_SlotInputs) 
 };
 
 const ru_admin_ads_error_slot = /** @type {(inputs: Admin_Ads_Error_SlotInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ID блока — от 6 до 20 цифр.`)
+	return /** @type {LocalizedString} */ (`ID блока: от 6 до 20 цифр.`)
 };
 
 const sv_admin_ads_error_slot = /** @type {(inputs: Admin_Ads_Error_SlotInputs) => LocalizedString} */ () => {

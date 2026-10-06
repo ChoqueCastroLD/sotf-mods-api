@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Reauth_Required_DetailInputs */
 
 const en_errors_code_reauth_required_detail = /** @type {(inputs: Errors_Code_Reauth_Required_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This action needs a recent sign-in. Sign in again and then repeat it.`)
+	return /** @type {LocalizedString} */ (`This action needs a recent login. Log in again and then repeat it.`)
 };
 
 const es_errors_code_reauth_required_detail = /** @type {(inputs: Errors_Code_Reauth_Required_DetailInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_errors_code_reauth_required_detail = /** @type {(inputs: Errors_Code_Re
 /**
 * | output |
 * | --- |
-* | "This action needs a recent sign-in. Sign in again and then repeat it." |
+* | "This action needs a recent login. Log in again and then repeat it." |
 *
 * @param {Errors_Code_Reauth_Required_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Me_Notify_OffInputs = {};
 /**
 * | output |
 * | --- |
-* | "Update signals off" |
+* | "Update notifications off" |
 *
 * @param {Me_Notify_OffInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

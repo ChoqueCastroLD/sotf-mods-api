@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Gallery_PlaceholderInputs */
 
 const en_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No pictures yet. The blueprint had no embedded thumbnail.`)
+	return /** @type {LocalizedString} */ (`No pictures yet. The build file has no embedded thumbnail.`)
 };
 
 const es_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Todavía no hay imágenes. El plano no traía miniatura.`)
+	return /** @type {LocalizedString} */ (`Todavía no hay imágenes. El archivo de la build no incluye miniatura.`)
 };
 
 const de_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch keine Bilder. Der Bauplan enthielt kein Vorschaubild.`)
+	return /** @type {LocalizedString} */ (`Noch keine Bilder. Die Build-Datei enthält kein Vorschaubild.`)
 };
 
 const fr_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas encore d’images. Le plan ne contenait pas de miniature.`)
+	return /** @type {LocalizedString} */ (`Pas encore d’images. Le fichier de la build ne contient pas de miniature.`)
 };
 
 const it_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ancora nessuna immagine. Il progetto non conteneva una miniatura.`)
+	return /** @type {LocalizedString} */ (`Ancora nessuna immagine. Il file della build non contiene una miniatura.`)
 };
 
 const nl_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog geen afbeeldingen. De bouwtekening bevatte geen miniatuur.`)
+	return /** @type {LocalizedString} */ (`Nog geen afbeeldingen. Het buildbestand bevat geen miniatuur.`)
 };
 
 const pl_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Na razie brak obrazów. Plan nie zawierał miniatury.`)
+	return /** @type {LocalizedString} */ (`Na razie brak obrazów. Plik builda nie zawiera miniatury.`)
 };
 
 const pt_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda não há imagens. A planta não trazia miniatura.`)
+	return /** @type {LocalizedString} */ (`Ainda não há imagens. O arquivo da build não inclui miniatura.`)
 };
 
 const ru_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Изображений пока нет. В чертеже не было миниатюры.`)
+	return /** @type {LocalizedString} */ (`Изображений пока нет. В файле постройки нет миниатюры.`)
 };
 
 const sv_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga bilder än. Ritningen hade ingen miniatyrbild.`)
+	return /** @type {LocalizedString} */ (`Inga bilder än. Byggfilen har ingen miniatyrbild.`)
 };
 
 const tr_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz görsel yok. Planda gömülü bir küçük resim yoktu.`)
+	return /** @type {LocalizedString} */ (`Henüz görsel yok. Yapı dosyasında gömülü küçük resim yok.`)
 };
 
 const zh_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`暂无图片。蓝图中没有内嵌缩略图。`)
+	return /** @type {LocalizedString} */ (`暂无图片。建筑文件中没有内嵌缩略图。`)
 };
 
 const ja_builds_gallery_placeholder = /** @type {(inputs: Builds_Gallery_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`画像はまだありません。設計図にサムネイルが含まれていませんでした。`)
+	return /** @type {LocalizedString} */ (`画像はまだありません。ファイルにサムネイルが含まれていません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No pictures yet. The blueprint had no embedded thumbnail." |
+* | "No pictures yet. The build file has no embedded thumbnail." |
 *
 * @param {Builds_Gallery_PlaceholderInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,8 +6,8 @@ export type Explore_Meta_Tag_DescriptionInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} Sons of the Forest mod or build tagged “{tag}”, with compatibility, ratings and direct downloads." |
-* | * | "{count__number} Sons of the Forest mods and builds tagged “{tag}”, with compatibility, ratings and direct downloads." |
+* | "one" | "{count__number} Sons of the Forest mod or build tagged “{tag}”, with ratings and direct downloads." |
+* | * | "{count__number} Sons of the Forest mods and builds tagged “{tag}”, with ratings and direct downloads." |
 *
 * @param {Explore_Meta_Tag_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

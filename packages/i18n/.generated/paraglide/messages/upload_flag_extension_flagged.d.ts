@@ -3,7 +3,7 @@ export type Upload_Flag_Extension_FlaggedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Executable or script: a ranger must review it." |
+* | "Executable or script: a moderator must review it." |
 *
 * @param {Upload_Flag_Extension_FlaggedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

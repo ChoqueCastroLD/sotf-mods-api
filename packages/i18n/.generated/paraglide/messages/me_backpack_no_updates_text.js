@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Backpack_No_Updates_TextInputs */
 
 const en_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No mod in your backpack has a version newer than the one you downloaded.`)
+	return /** @type {LocalizedString} */ (`No mod you follow has a version newer than the one you downloaded.`)
 };
 
 const es_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ningún mod de tu mochila tiene una versión más nueva que la que descargaste.`)
+	return /** @type {LocalizedString} */ (`Ningún mod que sigues tiene una versión más nueva que la que descargaste.`)
 };
 
 const de_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kein Mod in deinem Rucksack hat eine neuere Version als die, die du heruntergeladen hast.`)
+	return /** @type {LocalizedString} */ (`Kein Mod, dem du folgst, hat eine neuere Version als die, die du heruntergeladen hast.`)
 };
 
 const fr_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucun mod de votre sac à dos n’a de version plus récente que celle que vous avez téléchargée.`)
+	return /** @type {LocalizedString} */ (`Aucun mod que vous suivez n’a de version plus récente que celle que vous avez téléchargée.`)
 };
 
 const it_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessuna mod del tuo zaino ha una versione più recente di quella che hai scaricato.`)
+	return /** @type {LocalizedString} */ (`Nessuna mod che segui ha una versione più recente di quella che hai scaricato.`)
 };
 
 const nl_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen enkele mod in je rugzak heeft een nieuwere versie dan die je hebt gedownload.`)
+	return /** @type {LocalizedString} */ (`Geen enkele mod die je volgt heeft een nieuwere versie dan die je hebt gedownload.`)
 };
 
 const pl_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Żaden mod w plecaku nie ma nowszej wersji niż ta, którą pobrałeś.`)
+	return /** @type {LocalizedString} */ (`Żaden obserwowany mod nie ma nowszej wersji niż ta, którą pobrałeś.`)
 };
 
 const pt_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nenhum mod da sua mochila tem versão mais nova do que a que você baixou.`)
+	return /** @type {LocalizedString} */ (`Nenhum mod que você segue tem versão mais nova do que a que você baixou.`)
 };
 
 const ru_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ни у одного мода в рюкзаке нет версии новее той, что вы скачали.`)
+	return /** @type {LocalizedString} */ (`Ни у одного мода из подписок нет версии новее той, что вы скачали.`)
 };
 
 const sv_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ingen modd i ryggsäcken har en nyare version än den du laddade ned.`)
+	return /** @type {LocalizedString} */ (`Ingen modd du följer har en nyare version än den du laddade ned.`)
 };
 
 const tr_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt çantandaki hiçbir modun indirdiğinden daha yeni bir sürümü yok.`)
+	return /** @type {LocalizedString} */ (`Takip ettiğin hiçbir modun indirdiğinden daha yeni bir sürümü yok.`)
 };
 
 const zh_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`背包中没有比你下载的版本更新的模组。`)
+	return /** @type {LocalizedString} */ (`你关注的模组中，没有比你下载的版本更新的。`)
 };
 
 const ja_me_backpack_no_updates_text = /** @type {(inputs: Me_Backpack_No_Updates_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパックのMODに、ダウンロードしたものより新しいバージョンはありません。`)
+	return /** @type {LocalizedString} */ (`フォロー中のMODに、ダウンロードしたものより新しいバージョンはありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No mod in your backpack has a version newer than the one you downloaded." |
+* | "No mod you follow has a version newer than the one you downloaded." |
 *
 * @param {Me_Backpack_No_Updates_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

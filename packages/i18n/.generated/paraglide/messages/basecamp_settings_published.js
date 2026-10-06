@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_PublishedInputs */
 
 const en_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Public and listed in Explore and search.`)
+	return /** @type {LocalizedString} */ (`Public and listed in Mods and search.`)
 };
 
 const es_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Público y listado en Explorar y en la búsqueda.`)
+	return /** @type {LocalizedString} */ (`Público y listado en Mods y en la búsqueda.`)
 };
 
 const de_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Öffentlich und in Entdecken und der Suche gelistet.`)
+	return /** @type {LocalizedString} */ (`Öffentlich und unter Mods und in der Suche gelistet.`)
 };
 
 const fr_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Public et listé dans Explorer et la recherche.`)
+	return /** @type {LocalizedString} */ (`Public et listé dans Mods et la recherche.`)
 };
 
 const it_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pubblica e presente in Esplora e nella ricerca.`)
+	return /** @type {LocalizedString} */ (`Pubblica e presente in Mod e nella ricerca.`)
 };
 
 const nl_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Openbaar en vermeld in Ontdekken en zoeken.`)
+	return /** @type {LocalizedString} */ (`Openbaar en vermeld bij Mods en in zoeken.`)
 };
 
 const pl_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publiczny i widoczny w Odkrywaniu i wyszukiwaniu.`)
+	return /** @type {LocalizedString} */ (`Publiczny i widoczny w Modach i wyszukiwaniu.`)
 };
 
 const pt_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Público e listado em Explorar e na pesquisa.`)
+	return /** @type {LocalizedString} */ (`Público e listado em Mods e na pesquisa.`)
 };
 
 const ru_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Публичный, есть в «Обзоре» и поиске.`)
+	return /** @type {LocalizedString} */ (`Публичный, есть в разделе «Моды» и в поиске.`)
 };
 
 const sv_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Offentlig och listad i Utforska och sökningen.`)
+	return /** @type {LocalizedString} */ (`Offentlig och listad under Moddar och i sökningen.`)
 };
 
 const tr_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Herkese açık; Keşfet'te ve aramada listeleniyor.`)
+	return /** @type {LocalizedString} */ (`Herkese açık; Modlar’da ve aramada listeleniyor.`)
 };
 
 const zh_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`公开，并显示在“探索”和搜索中。`)
+	return /** @type {LocalizedString} */ (`公开，并显示在“模组”和搜索中。`)
 };
 
 const ja_basecamp_settings_published = /** @type {(inputs: Basecamp_Settings_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`公開中で、「探す」と検索に表示されます。`)
+	return /** @type {LocalizedString} */ (`公開中で、「MOD」と検索に表示されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Public and listed in Explore and search." |
+* | "Public and listed in Mods and search." |
 *
 * @param {Basecamp_Settings_PublishedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

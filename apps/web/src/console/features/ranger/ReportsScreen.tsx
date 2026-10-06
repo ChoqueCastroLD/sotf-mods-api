@@ -1,5 +1,5 @@
 /**
- * `/ranger/reports` — user reports (PLAN §7.4 «Reportes», research/03 §6.10): content, reason,
+ * `/moderation/reports` — user reports (PLAN §7.4 «Reportes», research/03 §6.10): content, reason,
  * evidence and actions. Open reports are resolved (optionally hiding the content: mod/kit
  * unlisted, version held, comment/review/field report hidden) or dismissed; the reporters are
  * notified. Content auto-hidden by ≥ 3 trusted reporters is restored when the report is
@@ -53,7 +53,7 @@ export function ReportsScreen({ status }: { status: ReportFilter }) {
           {REPORT_STATUSES.map((entry) => (
             <li key={entry}>
               <Link
-                to="/ranger/reports"
+                to="/moderation/reports"
                 search={entry === 'open' ? {} : { status: entry }}
                 aria-current={entry === status ? 'page' : undefined}
                 className={cn(
@@ -199,7 +199,7 @@ function ReportCard({
             </div>
             {report.targetType === 'user' ? (
               <Link
-                to="/ranger/users/$userId"
+                to="/moderation/users/$userId"
                 params={{ userId: String(report.targetId) }}
                 className="inline-flex items-center gap-1 text-sm text-link hover:underline"
               >
@@ -231,7 +231,7 @@ function ReportCard({
               </span>
             ) : null}
             <Link
-              to="/ranger/audit"
+              to="/moderation/audit"
               search={{ target: `${report.targetType}:${report.targetId}` }}
               className="text-link hover:underline"
             >

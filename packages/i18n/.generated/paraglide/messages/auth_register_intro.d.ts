@@ -3,7 +3,7 @@ export type Auth_Register_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Free, forever. Takes a minute." |
+* | "Registration is free and takes a minute." |
 *
 * @param {Auth_Register_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

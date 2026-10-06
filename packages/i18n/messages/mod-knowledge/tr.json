@@ -1,11 +1,7 @@
 {
-  "mod_knowledge_issues_title": "Bilinen sorunlar",
   "mod_knowledge_status_open": "Açık",
   "mod_knowledge_status_investigating": "İnceleniyor",
   "mod_knowledge_status_fixed": "Düzeltildi",
-  "mod_knowledge_issue_affects": "Etkilenen: {versions}",
-  "mod_knowledge_issue_fixed_in": "{version} sürümünde düzeltildi",
-  "mod_knowledge_issue_resolved": "{date} tarihinde çözüldü",
   "mod_knowledge_coauthors_title": "Ortak yazarlar",
   "mod_knowledge_profile_title": "{name} kullanıcısının ortak yazdığı modlar",
   "mod_knowledge_profile_by": "@{handle} tarafından",

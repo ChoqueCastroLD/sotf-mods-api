@@ -3,7 +3,7 @@ export type Settings_Notif_Col_SignalInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signal" |
+* | "Notification" |
 *
 * @param {Settings_Notif_Col_SignalInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

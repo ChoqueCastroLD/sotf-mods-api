@@ -90,7 +90,7 @@
   "logs_expires_in": "Apagado em {time}",
   "logs_viewer_title": "Log partilhado",
   "logs_meta_viewer_description": "Um log de jogo partilhado. A ligação privada apaga-se sozinha ao fim de 24 horas.",
-  "logs_gone_title": "Este log já não existe",
+  "logs_gone_title": "Este log não está mais disponível",
   "logs_gone_expired": "Os logs partilhados são apagados automaticamente ao fim de 24 horas. Peça uma nova ligação ou partilhe o log outra vez.",
   "logs_gone_deleted": "O autor apagou este log.",
   "logs_gone_reported": "Este log foi removido após denúncias de abuso.",

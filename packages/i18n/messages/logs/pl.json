@@ -90,7 +90,7 @@
   "logs_expires_in": "Zostanie usunięty za {time}",
   "logs_viewer_title": "Udostępniony log",
   "logs_meta_viewer_description": "Udostępniony log z gry. Prywatny link sam usuwa się po 24 godzinach.",
-  "logs_gone_title": "Tego logu już nie ma",
+  "logs_gone_title": "Ten log nie jest już dostępny",
   "logs_gone_expired": "Udostępnione logi są usuwane automatycznie po 24 godzinach. Poproś o nowy link lub udostępnij log ponownie.",
   "logs_gone_deleted": "Autor usunął ten log.",
   "logs_gone_reported": "Ten log został usunięty po zgłoszeniach nadużyć.",

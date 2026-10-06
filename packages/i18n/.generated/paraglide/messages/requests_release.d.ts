@@ -3,7 +3,7 @@ export type Requests_ReleaseInputs = {};
 /**
 * | output |
 * | --- |
-* | "Give it back" |
+* | "Stop working on it" |
 *
 * @param {Requests_ReleaseInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -17,7 +17,18 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { Bell, LayoutDashboard, LogOut, MailWarning, Settings, ShieldCheck, Upload, UserRound } from 'lucide-react';
+import {
+  Bell,
+  Download,
+  Heart,
+  LayoutDashboard,
+  LogOut,
+  MailWarning,
+  Settings,
+  ShieldCheck,
+  Upload,
+  UserRound,
+} from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import { PATHS } from '../layout/nav-items.ts';
 
@@ -121,6 +132,18 @@ const itemClass =
             <span class="sr-only">{m.auth_menu_unread()}</span>
             <span data-menu-unread-count></span>
           </span>
+        </a>
+      </li>
+      <li>
+        <a href={PATHS.following} class={itemClass}>
+          <Icon icon={Heart} size={18} className="text-fg-muted" />
+          {m.common_action_following()}
+        </a>
+      </li>
+      <li>
+        <a href={PATHS.downloads} class={itemClass}>
+          <Icon icon={Download} size={18} className="text-fg-muted" />
+          {m.me_downloads_title()}
         </a>
       </li>
       <li>

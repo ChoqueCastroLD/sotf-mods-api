@@ -83,36 +83,36 @@ export interface Viewer {
 export const CONSOLE_AREAS: readonly ConsoleArea[] = [
   {
     id: 'basecamp',
-    to: '/basecamp',
+    to: '/dashboard',
     label: () => t('common_term_basecamp'),
     icon: Tent,
     sections: [
       {
         id: 'basecamp',
         items: [
-          { to: '/basecamp', label: () => t('console_nav_overview'), icon: LayoutDashboard, exact: true },
-          { to: '/basecamp/mods', label: () => t('console_nav_my_mods'), icon: Package },
+          { to: '/dashboard', label: () => t('console_nav_overview'), icon: LayoutDashboard, exact: true },
+          { to: '/dashboard/mods', label: () => t('console_nav_my_mods'), icon: Package },
           // Paraglide (the two labels live in the `basecamp` namespace, not in the shell catalogue).
-          { to: '/basecamp/inbox', label: () => t('console_nav_inbox'), icon: Inbox },
-          { to: '/basecamp/new/mod', label: () => t('console_nav_new_mod'), icon: Plus, phone: false },
-          { to: '/basecamp/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass, phone: false },
-          { to: '/basecamp/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
-          { to: '/basecamp/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
-          { to: '/basecamp/jams', label: () => t('console_nav_jams'), icon: Trophy },
+          { to: '/dashboard/inbox', label: () => t('console_nav_inbox'), icon: Inbox },
+          { to: '/dashboard/new/mod', label: () => t('console_nav_new_mod'), icon: Plus, phone: false },
+          { to: '/dashboard/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass, phone: false },
+          { to: '/dashboard/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
+          { to: '/dashboard/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
+          { to: '/dashboard/jams', label: () => t('console_nav_jams'), icon: Trophy },
         ],
       },
     ],
   },
   {
     id: 'me',
-    to: '/me/backpack',
+    to: '/me/following',
     label: () => t('common_nav_you'),
     icon: Backpack,
     sections: [
       {
         id: 'me',
         items: [
-          { to: '/me/backpack', label: () => t('common_term_backpack'), icon: Backpack },
+          { to: '/me/following', label: () => t('common_term_backpack'), icon: Backpack },
           { to: '/me/downloads', label: () => t('console_nav_downloads'), icon: Download },
         ],
       },
@@ -120,7 +120,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
   },
   {
     id: 'signals',
-    to: '/signals',
+    to: '/notifications',
     label: () => t('common_term_signals'),
     icon: BellRing,
     sections: [],
@@ -148,7 +148,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
   },
   {
     id: 'ranger',
-    to: '/ranger',
+    to: '/moderation',
     label: () => t('common_term_ranger_station'),
     icon: Binoculars,
     rangerOnly: true,
@@ -156,12 +156,12 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
       {
         id: 'ranger',
         items: [
-          { to: '/ranger', label: () => t('console_nav_queue'), icon: Inbox, exact: true },
-          { to: '/ranger/reports', label: () => t('console_nav_reports'), icon: Flag },
-          { to: '/ranger/comments', label: () => t('console_nav_comments'), icon: MessageSquare },
-          { to: '/ranger/users', label: () => t('console_nav_users'), icon: Users },
-          { to: '/ranger/jams', label: () => t('console_nav_jams'), icon: Trophy },
-          { to: '/ranger/audit', label: () => t('console_nav_audit'), icon: ScrollText },
+          { to: '/moderation', label: () => t('console_nav_queue'), icon: Inbox, exact: true },
+          { to: '/moderation/reports', label: () => t('console_nav_reports'), icon: Flag },
+          { to: '/moderation/comments', label: () => t('console_nav_comments'), icon: MessageSquare },
+          { to: '/moderation/users', label: () => t('console_nav_users'), icon: Users },
+          { to: '/moderation/jams', label: () => t('console_nav_jams'), icon: Trophy },
+          { to: '/moderation/audit', label: () => t('console_nav_audit'), icon: ScrollText },
         ],
       },
       {
@@ -169,15 +169,15 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
         label: () => t('console_area_admin'),
         adminOnly: true,
         items: [
-          { to: '/ranger/admin/game-builds', label: () => t('console_nav_game_builds'), icon: Gamepad2 },
-          { to: '/ranger/admin/ecosystem', label: () => t('console_nav_ecosystem'), icon: Network },
-          { to: '/ranger/admin/taxonomy', label: () => t('console_nav_taxonomy'), icon: Tags },
-          { to: '/ranger/admin/recategorize', label: () => t('console_nav_recategorize'), icon: Shuffle },
-          { to: '/ranger/admin/announcements', label: () => t('console_nav_announcements'), icon: Megaphone },
-          { to: '/ranger/admin/settings', label: () => t('console_nav_site_settings'), icon: Settings2 },
-          { to: '/ranger/admin/integrations', label: () => t('console_nav_integrations'), icon: Plug },
-          { to: '/ranger/admin/performance', label: () => t('console_nav_performance'), icon: Gauge },
-          { to: '/ranger/admin/operations', label: () => t('console_nav_operations'), icon: Activity },
+          { to: '/moderation/admin/game-builds', label: () => t('console_nav_game_builds'), icon: Gamepad2 },
+          { to: '/moderation/admin/ecosystem', label: () => t('console_nav_ecosystem'), icon: Network },
+          { to: '/moderation/admin/taxonomy', label: () => t('console_nav_taxonomy'), icon: Tags },
+          { to: '/moderation/admin/recategorize', label: () => t('console_nav_recategorize'), icon: Shuffle },
+          { to: '/moderation/admin/announcements', label: () => t('console_nav_announcements'), icon: Megaphone },
+          { to: '/moderation/admin/settings', label: () => t('console_nav_site_settings'), icon: Settings2 },
+          { to: '/moderation/admin/integrations', label: () => t('console_nav_integrations'), icon: Plug },
+          { to: '/moderation/admin/performance', label: () => t('console_nav_performance'), icon: Gauge },
+          { to: '/moderation/admin/operations', label: () => t('console_nav_operations'), icon: Activity },
         ],
       },
     ],
@@ -198,10 +198,22 @@ export function visibleSections(area: ConsoleArea, viewer: Viewer): NavSection[]
   return area.sections.filter((section) => !section.adminOnly || viewer.role === 'admin');
 }
 
-/** Area of a console pathname (`/ranger/admin/x` → ranger), or null outside the console. */
+/**
+ * First path segment of each area. The area ids keep their internal names (`basecamp`, `ranger`,
+ * `signals`); the URLs use the plain words (`/dashboard`, `/moderation`, `/notifications`).
+ */
+const AREA_SEGMENTS: Readonly<Record<AreaId, string>> = {
+  basecamp: 'dashboard',
+  me: 'me',
+  signals: 'notifications',
+  settings: 'settings',
+  ranger: 'moderation',
+};
+
+/** Area of a console pathname (`/moderation/admin/x` → ranger), or null outside the console. */
 export function areaOf(pathname: string): AreaId | null {
   const first = pathname.split('/')[1]?.toLowerCase() ?? '';
-  return (AREA_IDS as readonly string[]).includes(first) ? (first as AreaId) : null;
+  return AREA_IDS.find((id) => AREA_SEGMENTS[id] === first) ?? null;
 }
 
 export function findArea(id: AreaId): ConsoleArea {
@@ -242,7 +254,7 @@ export function phoneItems(area: ConsoleArea, viewer: Viewer): NavItem[] {
     .flatMap((section) => section.items)
     .filter((item) => item.phone !== false);
   if (area.id === 'ranger' && viewer.role === 'admin') {
-    items.push({ to: '/ranger/admin', label: () => t('console_area_admin'), icon: ShieldCheck });
+    items.push({ to: '/moderation/admin', label: () => t('console_area_admin'), icon: ShieldCheck });
   }
   return items.length > 1 ? items : [];
 }
@@ -253,12 +265,12 @@ export function phoneItems(area: ConsoleArea, viewer: Viewer): NavItem[] {
  * the top bar shows a Back arrow.
  */
 const PUSHED = [
-  /^\/basecamp\/new(\/|$)/,
-  /^\/basecamp\/drafts\/[^/]+/,
-  /^\/basecamp\/mods\/[^/]+/,
-  /^\/ranger\/users\/[^/]+/,
-  /^\/ranger\/jams\/[^/]+/,
-  /^\/ranger\/admin\/[^/]+/,
+  /^\/dashboard\/new(\/|$)/,
+  /^\/dashboard\/drafts\/[^/]+/,
+  /^\/dashboard\/mods\/[^/]+/,
+  /^\/moderation\/users\/[^/]+/,
+  /^\/moderation\/jams\/[^/]+/,
+  /^\/moderation\/admin\/[^/]+/,
   /^\/settings\/[^/]+/,
 ] as const;
 
@@ -270,12 +282,12 @@ export function isPushedRoute(pathname: string): boolean {
 /** The screen Back leads to when there is no history to go back through. */
 export function parentPath(pathname: string): string {
   const path = pathname.replace(/\/+$/, '');
-  if (/^\/basecamp\/mods\/[^/]+/.test(path)) return '/basecamp/mods';
-  if (/^\/basecamp\/drafts\/[^/]+/.test(path)) return '/basecamp/drafts';
-  if (/^\/basecamp\/new/.test(path)) return '/basecamp';
-  if (/^\/ranger\/admin\/[^/]+/.test(path)) return '/ranger/admin';
-  if (/^\/ranger\/users\/[^/]+/.test(path)) return '/ranger/users';
-  if (/^\/ranger\/jams\/[^/]+/.test(path)) return '/ranger/jams';
+  if (/^\/dashboard\/mods\/[^/]+/.test(path)) return '/dashboard/mods';
+  if (/^\/dashboard\/drafts\/[^/]+/.test(path)) return '/dashboard/drafts';
+  if (/^\/dashboard\/new/.test(path)) return '/dashboard';
+  if (/^\/moderation\/admin\/[^/]+/.test(path)) return '/moderation/admin';
+  if (/^\/moderation\/users\/[^/]+/.test(path)) return '/moderation/users';
+  if (/^\/moderation\/jams\/[^/]+/.test(path)) return '/moderation/jams';
   if (/^\/settings\/[^/]+/.test(path)) return '/settings';
-  return '/basecamp';
+  return '/dashboard';
 }

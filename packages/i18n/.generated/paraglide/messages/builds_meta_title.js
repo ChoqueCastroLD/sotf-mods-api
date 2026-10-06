@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Builds_Meta_TitleInputs */
 
 const en_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF build (BuildShare blueprint)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF build (BuildShare)`)
 };
 
 const es_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build de SOTF (plano de BuildShare)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build de SOTF (BuildShare)`)
 };
 
 const de_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF-Build (BuildShare-Bauplan)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF-Build (BuildShare)`)
 };
 
 const fr_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build SOTF (plan BuildShare)`)
+	return /** @type {LocalizedString} */ (`${i?.name} : build SOTF (BuildShare)`)
 };
 
 const it_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build di SOTF (progetto BuildShare)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build di SOTF (BuildShare)`)
 };
 
 const nl_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF-build (BuildShare-bouwtekening)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF-build (BuildShare)`)
 };
 
 const pl_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build do SOTF (plan BuildShare)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build do SOTF (BuildShare)`)
 };
 
 const pt_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — build de SOTF (planta do BuildShare)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: build de SOTF (BuildShare)`)
 };
 
 const ru_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — постройка SOTF (чертёж BuildShare)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: постройка SOTF (BuildShare)`)
 };
 
 const sv_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF-bygge (BuildShare-ritning)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF-bygge (BuildShare)`)
 };
 
 const tr_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF yapısı (BuildShare planı)`)
+	return /** @type {LocalizedString} */ (`${i?.name}: SOTF yapısı (BuildShare)`)
 };
 
 const zh_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF 建筑（BuildShare 蓝图）`)
+	return /** @type {LocalizedString} */ (`${i?.name}：SOTF 建筑（BuildShare）`)
 };
 
 const ja_builds_meta_title = /** @type {(inputs: Builds_Meta_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} — SOTF 建築（BuildShare 設計図）`)
+	return /** @type {LocalizedString} */ (`${i?.name}：SOTF 建築（BuildShare）`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} — SOTF build (BuildShare blueprint)" |
+* | "{name}: SOTF build (BuildShare)" |
 *
 * @param {Builds_Meta_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

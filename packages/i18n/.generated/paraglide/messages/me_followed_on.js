@@ -38,7 +38,7 @@ const pt_me_followed_on = /** @type {(inputs: Me_Followed_OnInputs) => Localized
 };
 
 const ru_me_followed_on = /** @type {(inputs: Me_Followed_OnInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`в рюкзаке с ${i?.date}`)
+	return /** @type {LocalizedString} */ (`подписка с ${i?.date}`)
 };
 
 const sv_me_followed_on = /** @type {(inputs: Me_Followed_OnInputs) => LocalizedString} */ (i) => {

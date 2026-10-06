@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_Revoke_Sessions_TextInputs */
 
 const en_ranger_user_revoke_sessions_text = /** @type {(inputs: Ranger_User_Revoke_Sessions_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Every session of this account ends now. They can sign in again unless they are suspended or banned.`)
+	return /** @type {LocalizedString} */ (`Every session of this account ends now. They can log in again unless they are suspended or banned.`)
 };
 
 const es_ranger_user_revoke_sessions_text = /** @type {(inputs: Ranger_User_Revoke_Sessions_TextInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_user_revoke_sessions_text = /** @type {(inputs: Ranger_User_Revo
 };
 
 const nl_ranger_user_revoke_sessions_text = /** @type {(inputs: Ranger_User_Revoke_Sessions_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alle sessies van dit account eindigen nu. Opnieuw aanmelden kan, tenzij het account geschorst of verbannen is.`)
+	return /** @type {LocalizedString} */ (`Alle sessies van dit account eindigen nu. Opnieuw inloggen kan, tenzij het account geschorst of verbannen is.`)
 };
 
 const pl_ranger_user_revoke_sessions_text = /** @type {(inputs: Ranger_User_Revoke_Sessions_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_ranger_user_revoke_sessions_text = /** @type {(inputs: Ranger_User_Revo
 /**
 * | output |
 * | --- |
-* | "Every session of this account ends now. They can sign in again unless they are suspended or banned." |
+* | "Every session of this account ends now. They can log in again unless they are suspended or banned." |
 *
 * @param {Ranger_User_Revoke_Sessions_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

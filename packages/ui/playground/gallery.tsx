@@ -127,8 +127,6 @@ function Tokens() {
           Onest body text. Numbers stay tabular: <span className="tabular-nums">1,982,114 downloads</span>.
         </p>
         <p className="readout">Readout · build 1.0.4 · RedLoader 0.8.6+</p>
-        <div className="texture-topo h-24 rounded-lg border border-border" />
-        <div className="texture-blueprint h-16 rounded-lg border border-border" />
       </div>
     </Section>
   );

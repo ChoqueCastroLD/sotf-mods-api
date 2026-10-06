@@ -3,7 +3,7 @@ export type Upload_Multiplayer_Unknown_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Survivors’ field reports will tell." |
+* | "Shown as unknown on the listing." |
 *
 * @param {Upload_Multiplayer_Unknown_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

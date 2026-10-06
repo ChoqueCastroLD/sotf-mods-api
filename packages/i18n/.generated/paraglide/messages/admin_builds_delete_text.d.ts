@@ -3,7 +3,7 @@ export type Admin_Builds_Delete_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Only builds nobody has reported on can be deleted." |
+* | "Only a build that is not in use can be deleted." |
 *
 * @param {Admin_Builds_Delete_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

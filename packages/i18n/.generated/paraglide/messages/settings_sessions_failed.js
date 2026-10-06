@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_FailedInputs */
 
 const en_settings_sessions_failed = /** @type {(inputs: Settings_Sessions_FailedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Couldn’t sign that session out`)
+	return /** @type {LocalizedString} */ (`Couldn’t log that session out`)
 };
 
 const es_settings_sessions_failed = /** @type {(inputs: Settings_Sessions_FailedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_failed = /** @type {(inputs: Settings_Sessions_Failed
 /**
 * | output |
 * | --- |
-* | "Couldn’t sign that session out" |
+* | "Couldn’t log that session out" |
 *
 * @param {Settings_Sessions_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

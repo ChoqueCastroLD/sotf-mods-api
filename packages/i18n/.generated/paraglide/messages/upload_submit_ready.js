@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Submit_ReadyInputs */
 
 const en_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ready. A ranger reviews first publications; verified creators go live right away.`)
+	return /** @type {LocalizedString} */ (`Ready. Moderation reviews first publications; trusted creators go live right away.`)
 };
 
 const es_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Listo. Un guardabosques revisa las primeras publicaciones; los creadores verificados salen al momento.`)
+	return /** @type {LocalizedString} */ (`Listo. Moderación revisa las primeras publicaciones; los creadores de confianza salen al momento.`)
 };
 
 const de_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bereit. Erste Veröffentlichungen prüft ein Ranger; verifizierte Creator gehen sofort online.`)
+	return /** @type {LocalizedString} */ (`Bereit. Erste Veröffentlichungen prüft die Moderation; vertrauenswürdige Creator gehen sofort online.`)
 };
 
 const fr_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Prêt. Un ranger examine les premières publications ; les créateurs vérifiés sont publiés tout de suite.`)
+	return /** @type {LocalizedString} */ (`Prêt. La modération examine les premières publications ; les créateurs de confiance sont publiés tout de suite.`)
 };
 
 const it_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pronto. Un ranger esamina le prime pubblicazioni; i creatori verificati vanno online subito.`)
+	return /** @type {LocalizedString} */ (`Pronto. La moderazione esamina le prime pubblicazioni; i creatori affidabili vanno online subito.`)
 };
 
 const nl_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Klaar. Een ranger controleert eerste publicaties; geverifieerde makers gaan meteen live.`)
+	return /** @type {LocalizedString} */ (`Klaar. Moderatie controleert eerste publicaties; vertrouwde makers gaan meteen live.`)
 };
 
 const pl_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gotowe. Pierwsze publikacje sprawdza strażnik; zweryfikowani twórcy publikują od razu.`)
+	return /** @type {LocalizedString} */ (`Gotowe. Pierwsze publikacje sprawdza moderacja; zaufani twórcy publikują od razu.`)
 };
 
 const pt_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pronto. Um guarda revisa as primeiras publicações; criadores verificados publicam na hora.`)
+	return /** @type {LocalizedString} */ (`Pronto. A moderação revisa as primeiras publicações; criadores de confiança publicam na hora.`)
 };
 
 const ru_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Готово. Первые публикации проверяет рейнджер; у проверенных авторов они выходят сразу.`)
+	return /** @type {LocalizedString} */ (`Готово. Первые публикации проверяет модерация; у доверенных авторов они выходят сразу.`)
 };
 
 const sv_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Klart. En ranger granskar första publiceringar; verifierade skapare publiceras direkt.`)
+	return /** @type {LocalizedString} */ (`Klart. Modereringen granskar första publiceringar; betrodda skapare publiceras direkt.`)
 };
 
 const tr_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hazır. İlk yayınları bir korucu inceler; doğrulanmış yapımcılar hemen yayına girer.`)
+	return /** @type {LocalizedString} */ (`Hazır. İlk yayınları moderasyon inceler; güvenilir yapımcılar hemen yayına girer.`)
 };
 
 const zh_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`准备就绪。首次发布由护林员审核；认证创作者会立即发布。`)
+	return /** @type {LocalizedString} */ (`准备就绪。首次发布由版主审核；受信任的创作者会立即发布。`)
 };
 
 const ja_upload_submit_ready = /** @type {(inputs: Upload_Submit_ReadyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`準備完了。初回の公開はレンジャーが確認します。認証済みクリエイターはすぐに公開されます。`)
+	return /** @type {LocalizedString} */ (`準備完了。初回の公開はモデレーションが確認します。信頼済みクリエイターはすぐに公開されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ready. A ranger reviews first publications; verified creators go live right away." |
+* | "Ready. Moderation reviews first publications; trusted creators go live right away." |
 *
 * @param {Upload_Submit_ReadyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

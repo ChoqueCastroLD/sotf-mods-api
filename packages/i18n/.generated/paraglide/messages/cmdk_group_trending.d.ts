@@ -3,7 +3,7 @@ export type Cmdk_Group_TrendingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Trending this week" |
+* | "Mods of the week" |
 *
 * @param {Cmdk_Group_TrendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Cmdk_Act_SigninInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to do that" |
+* | "Log in to do that" |
 *
 * @param {Cmdk_Act_SigninInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

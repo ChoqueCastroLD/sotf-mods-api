@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Notify_HintInputs */
 
 const en_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Followers of the mod get a signal about this version.`)
+	return /** @type {LocalizedString} */ (`Followers of the mod are notified about this version.`)
 };
 
 const es_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los seguidores del mod reciben una señal con esta versión.`)
+	return /** @type {LocalizedString} */ (`Los seguidores del mod reciben una notificación sobre esta versión.`)
 };
 
 const de_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Follower des Mods erhalten ein Signal zu dieser Version.`)
+	return /** @type {LocalizedString} */ (`Follower des Mods werden über diese Version benachrichtigt.`)
 };
 
 const fr_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les abonnés du mod reçoivent un signal pour cette version.`)
+	return /** @type {LocalizedString} */ (`Les abonnés du mod sont notifiés de cette version.`)
 };
 
 const it_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I follower della mod ricevono un segnale per questa versione.`)
+	return /** @type {LocalizedString} */ (`I follower della mod ricevono una notifica per questa versione.`)
 };
 
 const nl_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Volgers van de mod krijgen een signaal over deze versie.`)
+	return /** @type {LocalizedString} */ (`Volgers van de mod krijgen een melding over deze versie.`)
 };
 
 const pl_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Obserwujący moda dostaną sygnał o tej wersji.`)
+	return /** @type {LocalizedString} */ (`Obserwujący moda dostaną powiadomienie o tej wersji.`)
 };
 
 const pt_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os seguidores do mod recebem um sinal sobre esta versão.`)
+	return /** @type {LocalizedString} */ (`Os seguidores do mod recebem uma notificação sobre esta versão.`)
 };
 
 const ru_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Подписчики мода получат сигнал об этой версии.`)
+	return /** @type {LocalizedString} */ (`Подписчики мода получат уведомление об этой версии.`)
 };
 
 const sv_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Moddens följare får en signal om den här versionen.`)
+	return /** @type {LocalizedString} */ (`Moddens följare får en avisering om den här versionen.`)
 };
 
 const tr_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modun takipçileri bu sürüm için bir sinyal alır.`)
+	return /** @type {LocalizedString} */ (`Modun takipçileri bu sürüm için bildirim alır.`)
 };
 
 const zh_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`模组的关注者会收到关于此版本的信号。`)
+	return /** @type {LocalizedString} */ (`模组的关注者会收到关于此版本的通知。`)
 };
 
 const ja_upload_notify_hint = /** @type {(inputs: Upload_Notify_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MODのフォロワーにこのバージョンのシグナルが届きます。`)
+	return /** @type {LocalizedString} */ (`MODのフォロワーにこのバージョンの通知が届きます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Followers of the mod get a signal about this version." |
+* | "Followers of the mod are notified about this version." |
 *
 * @param {Upload_Notify_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

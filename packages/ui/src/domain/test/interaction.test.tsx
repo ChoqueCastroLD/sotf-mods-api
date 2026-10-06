@@ -10,7 +10,6 @@ import { beforeAll, describe, expect, it, vi } from 'vitest';
 import {
   DisclosureMenu,
   DownloadSplitButton,
-  FieldReportMeter,
   FilterChips,
   type FilterState,
   GalleryStrip,
@@ -165,7 +164,7 @@ describe('ViewToggle', () => {
   });
 });
 
-describe('GalleryStrip, FieldReportMeter and DownloadSplitButton callbacks', () => {
+describe('GalleryStrip and DownloadSplitButton callbacks', () => {
   it('selects gallery items', async () => {
     const user = userEvent.setup();
     const onSelect = vi.fn();
@@ -176,15 +175,6 @@ describe('GalleryStrip, FieldReportMeter and DownloadSplitButton callbacks', () 
     expect(buttons[0]?.getAttribute('aria-pressed')).toBe('true');
     await user.click(buttons[1] as HTMLElement);
     expect(onSelect).toHaveBeenCalledWith(1);
-  });
-
-  it('opens the report form', async () => {
-    const user = userEvent.setup();
-    const onReport = vi.fn();
-    render(<FieldReportMeter works={3} partial={0} broken={1} onReport={onReport} />);
-    expect(screen.getByRole('img', { name: /3 work, 0 partly, 1 broken/ })).toBeTruthy();
-    await user.click(screen.getByRole('button', { name: 'Report' }));
-    expect(onReport).toHaveBeenCalledOnce();
   });
 
   it('reports the chosen download before navigating', () => {

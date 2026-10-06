@@ -1,6 +1,6 @@
 /**
- * Data of the Mod Jams console screens: `/ranger/jams` (staff: every jam, the editor, phase
- * controls, entry moderation) and `/basecamp/jams` (creators: open jams and their history).
+ * Data of the Mod Jams console screens: `/moderation/jams` (staff: every jam, the editor, phase
+ * controls, entry moderation) and `/dashboard/jams` (creators: open jams and their history).
  *
  * Query keys:
  *

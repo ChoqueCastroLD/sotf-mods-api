@@ -3,7 +3,7 @@ export type Errors_Code_Unavailable_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Base camp is down for a moment" |
+* | "Service unavailable" |
 *
 * @param {Errors_Code_Unavailable_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

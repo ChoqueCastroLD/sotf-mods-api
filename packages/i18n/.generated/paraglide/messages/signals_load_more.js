@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Load_MoreInputs */
 
 const en_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Load older signals`)
+	return /** @type {LocalizedString} */ (`Load older notifications`)
 };
 
 const es_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cargar señales anteriores`)
+	return /** @type {LocalizedString} */ (`Cargar notificaciones anteriores`)
 };
 
 const de_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ältere Signale laden`)
+	return /** @type {LocalizedString} */ (`Ältere Benachrichtigungen laden`)
 };
 
 const fr_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Charger les signaux plus anciens`)
+	return /** @type {LocalizedString} */ (`Charger les notifications plus anciennes`)
 };
 
 const it_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Carica i segnali precedenti`)
+	return /** @type {LocalizedString} */ (`Carica le notifiche precedenti`)
 };
 
 const nl_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oudere signalen laden`)
+	return /** @type {LocalizedString} */ (`Oudere meldingen laden`)
 };
 
 const pl_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wczytaj starsze sygnały`)
+	return /** @type {LocalizedString} */ (`Wczytaj starsze powiadomienia`)
 };
 
 const pt_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Carregar sinais anteriores`)
+	return /** @type {LocalizedString} */ (`Carregar notificações anteriores`)
 };
 
 const ru_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Загрузить более старые сигналы`)
+	return /** @type {LocalizedString} */ (`Загрузить более старые уведомления`)
 };
 
 const sv_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ladda äldre signaler`)
+	return /** @type {LocalizedString} */ (`Ladda äldre aviseringar`)
 };
 
 const tr_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Daha eski sinyalleri yükle`)
+	return /** @type {LocalizedString} */ (`Daha eski bildirimleri yükle`)
 };
 
 const zh_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`加载更早的信号`)
+	return /** @type {LocalizedString} */ (`加载更早的通知`)
 };
 
 const ja_signals_load_more = /** @type {(inputs: Signals_Load_MoreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`以前のシグナルを読み込む`)
+	return /** @type {LocalizedString} */ (`以前の通知を読み込む`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Load older signals" |
+* | "Load older notifications" |
 *
 * @param {Signals_Load_MoreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

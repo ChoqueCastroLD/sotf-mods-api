@@ -1,11 +1,7 @@
 {
-  "mod_knowledge_issues_title": "Bekannte Probleme",
   "mod_knowledge_status_open": "Offen",
   "mod_knowledge_status_investigating": "In Untersuchung",
   "mod_knowledge_status_fixed": "Behoben",
-  "mod_knowledge_issue_affects": "Betrifft: {versions}",
-  "mod_knowledge_issue_fixed_in": "Behoben in {version}",
-  "mod_knowledge_issue_resolved": "Gelöst am {date}",
   "mod_knowledge_coauthors_title": "Co-Autoren",
   "mod_knowledge_profile_title": "Mods, bei denen {name} mitwirkt",
   "mod_knowledge_profile_by": "von @{handle}",

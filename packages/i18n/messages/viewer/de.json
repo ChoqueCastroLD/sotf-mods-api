@@ -2,7 +2,7 @@
   "viewer_heading": "Ansicht von oben",
   "viewer_alt": "Ansicht von oben auf {name}: {pieces} Teile, {width} mal {depth} mal {height} Meter.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} Teile",
-  "viewer_explore": "In 3D erkunden",
+  "viewer_explore": "In 3D ansehen",
   "viewer_back": "Zurück zur Vorschau",
   "viewer_loading": "3D-Ansicht wird geladen …",
   "viewer_pending": "Die Vorschau wird erstellt. Komm in einer Minute wieder.",

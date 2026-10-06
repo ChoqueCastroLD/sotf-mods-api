@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Shortcut_Go_SignalsInputs */
 
 const en_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Go to Signals`)
+	return /** @type {LocalizedString} */ (`Go to Notifications`)
 };
 
 const es_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ir a Señales`)
+	return /** @type {LocalizedString} */ (`Ir a Notificaciones`)
 };
 
 const de_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zu den Signalen`)
+	return /** @type {LocalizedString} */ (`Zu den Benachrichtigungen`)
 };
 
 const fr_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aller aux signaux`)
+	return /** @type {LocalizedString} */ (`Aller aux notifications`)
 };
 
 const it_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vai ai segnali`)
+	return /** @type {LocalizedString} */ (`Vai alle notifiche`)
 };
 
 const nl_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Naar Signalen`)
+	return /** @type {LocalizedString} */ (`Naar Meldingen`)
 };
 
 const pl_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przejdź do sygnałów`)
+	return /** @type {LocalizedString} */ (`Przejdź do powiadomień`)
 };
 
 const pt_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ir para Sinais`)
+	return /** @type {LocalizedString} */ (`Ir para Notificações`)
 };
 
 const ru_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Перейти к сигналам`)
+	return /** @type {LocalizedString} */ (`Перейти к уведомлениям`)
 };
 
 const sv_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gå till Signaler`)
+	return /** @type {LocalizedString} */ (`Gå till Aviseringar`)
 };
 
 const tr_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyallere git`)
+	return /** @type {LocalizedString} */ (`Bildirimlere git`)
 };
 
 const zh_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`前往信号`)
+	return /** @type {LocalizedString} */ (`前往通知`)
 };
 
 const ja_console_shortcut_go_signals = /** @type {(inputs: Console_Shortcut_Go_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルへ移動`)
+	return /** @type {LocalizedString} */ (`通知へ移動`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Go to Signals" |
+* | "Go to Notifications" |
 *
 * @param {Console_Shortcut_Go_SignalsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@ export type Me_Backpack_Notify_OnInputs = {
 /**
 * | output |
 * | --- |
-* | "You’ll get a signal when {mod} updates" |
+* | "You’ll be notified when {mod} updates" |
 *
 * @param {Me_Backpack_Notify_OnInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

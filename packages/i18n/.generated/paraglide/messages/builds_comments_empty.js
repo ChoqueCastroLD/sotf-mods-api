@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Comments_EmptyInputs */
 
 const en_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No comments yet. Ask the builder something or share a screenshot of it on your island.`)
+	return /** @type {LocalizedString} */ (`No comments yet. Ask the builder a question or share a screenshot.`)
 };
 
 const es_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aún no hay comentarios. Pregúntale algo al constructor o comparte una captura de la build en tu isla.`)
+	return /** @type {LocalizedString} */ (`Aún no hay comentarios. Hazle una pregunta al constructor o comparte una captura.`)
 };
 
 const de_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch keine Kommentare. Frag den Erbauer etwas oder teile einen Screenshot davon auf deiner Insel.`)
+	return /** @type {LocalizedString} */ (`Noch keine Kommentare. Stelle dem Erbauer eine Frage oder teile einen Screenshot.`)
 };
 
 const fr_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas encore de commentaires. Posez une question au bâtisseur ou partagez une capture de la build sur votre île.`)
+	return /** @type {LocalizedString} */ (`Pas encore de commentaires. Posez une question au bâtisseur ou partagez une capture d’écran.`)
 };
 
 const it_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ancora nessun commento. Chiedi qualcosa al costruttore o condividi uno screenshot della build sulla tua isola.`)
+	return /** @type {LocalizedString} */ (`Ancora nessun commento. Fai una domanda al costruttore o condividi uno screenshot.`)
 };
 
 const nl_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog geen reacties. Stel de bouwer een vraag of deel een screenshot ervan op jouw eiland.`)
+	return /** @type {LocalizedString} */ (`Nog geen reacties. Stel de bouwer een vraag of deel een screenshot.`)
 };
 
 const pl_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak komentarzy. Zapytaj o coś budowniczego albo podziel się zrzutem ekranu z tym buildem na swojej wyspie.`)
+	return /** @type {LocalizedString} */ (`Brak komentarzy. Zadaj pytanie budowniczemu albo podziel się zrzutem ekranu.`)
 };
 
 const pt_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda não há comentários. Pergunte algo ao construtor ou compartilhe uma captura da build na sua ilha.`)
+	return /** @type {LocalizedString} */ (`Ainda não há comentários. Faça uma pergunta ao construtor ou compartilhe uma captura de tela.`)
 };
 
 const ru_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Комментариев пока нет. Задайте вопрос строителю или поделитесь скриншотом постройки на своём острове.`)
+	return /** @type {LocalizedString} */ (`Комментариев пока нет. Задайте вопрос строителю или поделитесь скриншотом.`)
 };
 
 const sv_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga kommentarer än. Fråga byggaren något eller dela en skärmbild av bygget på din ö.`)
+	return /** @type {LocalizedString} */ (`Inga kommentarer än. Ställ en fråga till byggaren eller dela en skärmbild.`)
 };
 
 const tr_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz yorum yok. Yapımcıya bir şey sor ya da yapının kendi adandaki ekran görüntüsünü paylaş.`)
+	return /** @type {LocalizedString} */ (`Henüz yorum yok. Yapımcıya bir soru sor ya da bir ekran görüntüsü paylaş.`)
 };
 
 const zh_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`还没有评论。向建造者提个问题，或分享它在你岛上的截图。`)
+	return /** @type {LocalizedString} */ (`还没有评论。向建造者提个问题，或分享一张截图。`)
 };
 
 const ja_builds_comments_empty = /** @type {(inputs: Builds_Comments_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`コメントはまだありません。建築者に質問したり、自分の島でのスクリーンショットを共有したりしましょう。`)
+	return /** @type {LocalizedString} */ (`コメントはまだありません。建築者に質問したり、スクリーンショットを共有したりしましょう。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No comments yet. Ask the builder something or share a screenshot of it on your island." |
+* | "No comments yet. Ask the builder a question or share a screenshot." |
 *
 * @param {Builds_Comments_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

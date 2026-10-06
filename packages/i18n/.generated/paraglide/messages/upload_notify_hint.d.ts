@@ -3,7 +3,7 @@ export type Upload_Notify_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Followers of the mod get a signal about this version." |
+* | "Followers of the mod are notified about this version." |
 *
 * @param {Upload_Notify_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

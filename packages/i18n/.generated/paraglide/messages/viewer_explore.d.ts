@@ -3,7 +3,7 @@ export type Viewer_ExploreInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore in 3D" |
+* | "View in 3D" |
 *
 * @param {Viewer_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

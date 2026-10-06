@@ -3,7 +3,7 @@ export type Settings_Sessions_Confirm_Current_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "You’ll go to the sign-in page." |
+* | "You’ll go to the login page." |
 *
 * @param {Settings_Sessions_Confirm_Current_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,8 +5,8 @@ export type Signals_Bell_UnreadInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "Signals: {count__number} unread" |
-* | * | "Signals: {count__number} unread" |
+* | "one" | "Notifications: {count__number} unread" |
+* | * | "Notifications: {count__number} unread" |
 *
 * @param {Signals_Bell_UnreadInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

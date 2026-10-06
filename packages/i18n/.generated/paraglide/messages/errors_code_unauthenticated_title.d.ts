@@ -3,7 +3,7 @@ export type Errors_Code_Unauthenticated_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to continue" |
+* | "Log in to continue" |
 *
 * @param {Errors_Code_Unauthenticated_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

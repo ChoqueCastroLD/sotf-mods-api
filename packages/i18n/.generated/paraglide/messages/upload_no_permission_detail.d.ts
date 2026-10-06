@@ -3,7 +3,7 @@ export type Upload_No_Permission_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "A ranger restricted uploads for now. Check Signals for the details or contact the team." |
+* | "A moderator restricted uploads for now. Check your notifications for the details or contact the team." |
 *
 * @param {Upload_No_Permission_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

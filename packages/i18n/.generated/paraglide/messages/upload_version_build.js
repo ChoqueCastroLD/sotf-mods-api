@@ -38,7 +38,7 @@ const pt_upload_version_build = /** @type {(inputs: Upload_Version_BuildInputs) 
 };
 
 const ru_upload_version_build = /** @type {(inputs: Upload_Version_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Версии построек задаются датой: каждая загрузка — новая версия.`)
+	return /** @type {LocalizedString} */ (`Версии построек задаются датой: каждая загрузка это новая версия.`)
 };
 
 const sv_upload_version_build = /** @type {(inputs: Upload_Version_BuildInputs) => LocalizedString} */ () => {

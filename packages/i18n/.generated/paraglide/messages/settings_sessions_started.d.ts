@@ -5,7 +5,7 @@ export type Settings_Sessions_StartedInputs = {
 /**
 * | output |
 * | --- |
-* | "signed in {date}" |
+* | "logged in {date}" |
 *
 * @param {Settings_Sessions_StartedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

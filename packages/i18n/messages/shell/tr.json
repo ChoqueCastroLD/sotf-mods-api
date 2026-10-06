@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Daha fazla",
-  "shell_more_help": "Yardım",
-  "shell_more_community": "Topluluk",
   "shell_more_install_guide": "Kurulum rehberi",
   "shell_install_app": "Uygulamayı yükle",
   "shell_install_app_hint": "SOTF Mods’u ana ekrana ekle",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Yenileniyor…",
   "shell_offline_meta_title": "Çevrimdışı",
   "shell_offline_meta_description": "Şu anda bağlantı yok. Çevrimiçi olduğunuzda tekrar deneyin.",
-  "shell_offline_eyebrow": "Çevrimdışı",
   "shell_offline_title": "Çevrimdışısınız",
   "shell_offline_body": "SOTF Mods şu anda erişilemiyor. Bağlantınızı kontrol edip tekrar deneyin.",
   "shell_offline_retry": "Tekrar dene",

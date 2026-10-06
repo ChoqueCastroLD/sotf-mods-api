@@ -2,8 +2,9 @@
  * Navigation data of the shell: one place for every path and label used by the header, the phone
  * menu sheet, the bottom tab bar and the account menu.
  *
- * Console routes (`/basecamp`, `/signals`, `/ranger`) are renamed later (dashboard, notifications,
- * moderation). Change them here only: every shell component reads {@link PATHS}.
+ * Console routes (`/dashboard`, `/notifications`, `/moderation`, `/me/following`): change them here
+ * only, every shell component reads {@link PATHS}. The old names (`/basecamp`, `/signals`,
+ * `/ranger`, `/me/backpack`) redirect in `middleware/redirects.ts`.
  *
  * Paths are unprefixed; components add the locale prefix with `href()` for site pages. Console
  * routes are not localized, so they are used as they are.
@@ -46,11 +47,13 @@ export const SITE_PATHS = {
 
 /** Console routes (no locale prefix). */
 export const CONSOLE_PATHS = {
-  dashboard: '/basecamp',
-  notifications: '/signals',
-  moderation: '/ranger',
+  dashboard: '/dashboard',
+  notifications: '/notifications',
+  moderation: '/moderation',
+  following: '/me/following',
+  downloads: '/me/downloads',
   settings: '/settings/profile',
-  uploadMod: '/basecamp/new/mod',
+  uploadMod: '/dashboard/new/mod',
 } as const;
 
 export const PATHS = { ...SITE_PATHS, ...CONSOLE_PATHS } as const;

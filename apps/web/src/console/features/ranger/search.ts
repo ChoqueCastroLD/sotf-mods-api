@@ -5,7 +5,7 @@
  */
 import type { ModerationLane } from '@sotf/contracts/moderation';
 
-/** Lanes of the main queue screen (`/ranger`); comments have their own screen (`/ranger/comments`). */
+/** Lanes of the main queue screen (`/moderation`); comments have their own screen (`/moderation/comments`). */
 export const QUEUE_LANES = [
   'new_mods',
   'versions',

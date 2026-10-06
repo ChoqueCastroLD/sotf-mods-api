@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_UnfollowedInputs */
 
 const en_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Removed from your Backpack.`)
+	return /** @type {LocalizedString} */ (`You no longer follow this build.`)
 };
 
 const es_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quitada de tu Mochila.`)
+	return /** @type {LocalizedString} */ (`Ya no sigues esta build.`)
 };
 
 const de_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aus deinem Rucksack entfernt.`)
+	return /** @type {LocalizedString} */ (`Du folgst diesem Build nicht mehr.`)
 };
 
 const fr_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retirée de votre sac à dos.`)
+	return /** @type {LocalizedString} */ (`Vous ne suivez plus cette build.`)
 };
 
 const it_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rimossa dal tuo zaino.`)
+	return /** @type {LocalizedString} */ (`Non segui più questa build.`)
 };
 
 const nl_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Uit je rugzak gehaald.`)
+	return /** @type {LocalizedString} */ (`Je volgt deze build niet meer.`)
 };
 
 const pl_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Usunięto z plecaka.`)
+	return /** @type {LocalizedString} */ (`Nie obserwujesz już tego builda.`)
 };
 
 const pt_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Removida da sua mochila.`)
+	return /** @type {LocalizedString} */ (`Você não segue mais esta build.`)
 };
 
 const ru_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Убрано из рюкзака.`)
+	return /** @type {LocalizedString} */ (`Вы отписались от этой постройки.`)
 };
 
 const sv_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Borttaget från din ryggsäck.`)
+	return /** @type {LocalizedString} */ (`Du följer inte längre det här bygget.`)
 };
 
 const tr_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt çantandan çıkarıldı.`)
+	return /** @type {LocalizedString} */ (`Bu yapıyı artık takip etmiyorsun.`)
 };
 
 const zh_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已从你的背包移除。`)
+	return /** @type {LocalizedString} */ (`你已取消关注此建筑。`)
 };
 
 const ja_builds_unfollowed = /** @type {(inputs: Builds_UnfollowedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパックから外しました。`)
+	return /** @type {LocalizedString} */ (`この建築のフォローを解除しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Removed from your Backpack." |
+* | "You no longer follow this build." |
 *
 * @param {Builds_UnfollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

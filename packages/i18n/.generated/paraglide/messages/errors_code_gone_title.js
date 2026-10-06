@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Gone_TitleInputs */
 
 const en_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gone for good`)
+	return /** @type {LocalizedString} */ (`Removed`)
 };
 
 const es_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ya no existe`)
+	return /** @type {LocalizedString} */ (`Eliminado`)
 };
 
 const de_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Endgültig weg`)
+	return /** @type {LocalizedString} */ (`Entfernt`)
 };
 
 const fr_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Disparu pour de bon`)
+	return /** @type {LocalizedString} */ (`Supprimé`)
 };
 
 const it_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sparito per sempre`)
+	return /** @type {LocalizedString} */ (`Rimosso`)
 };
 
 const nl_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voorgoed weg`)
+	return /** @type {LocalizedString} */ (`Verwijderd`)
 };
 
 const pl_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zniknęło na dobre`)
+	return /** @type {LocalizedString} */ (`Usunięto`)
 };
 
 const pt_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sumiu de vez`)
+	return /** @type {LocalizedString} */ (`Removido`)
 };
 
 const ru_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Удалено навсегда`)
+	return /** @type {LocalizedString} */ (`Удалено`)
 };
 
 const sv_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Borta för gott`)
+	return /** @type {LocalizedString} */ (`Borttaget`)
 };
 
 const tr_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tamamen kaldırıldı`)
+	return /** @type {LocalizedString} */ (`Kaldırıldı`)
 };
 
 const zh_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已永久移除`)
+	return /** @type {LocalizedString} */ (`已移除`)
 };
 
 const ja_errors_code_gone_title = /** @type {(inputs: Errors_Code_Gone_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`完全に削除されました`)
+	return /** @type {LocalizedString} */ (`削除されました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Gone for good" |
+* | "Removed" |
 *
 * @param {Errors_Code_Gone_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Builds_Empty_TextInputs */
 
 const en_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Register the patch players are on today so field reports have something to point at.`)
+	return /** @type {LocalizedString} */ (`Register the game version players are on today.`)
 };
 
 const es_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registra el parche que usan hoy los jugadores para que los reportes de campo tengan a qué referirse.`)
+	return /** @type {LocalizedString} */ (`Registra la versión del juego que usan hoy los jugadores.`)
 };
 
 const de_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registriere den Patch, den die Spieler heute nutzen, damit Feldberichte sich darauf beziehen können.`)
+	return /** @type {LocalizedString} */ (`Registriere die Spielversion, die die Spieler heute nutzen.`)
 };
 
 const fr_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enregistrez le patch utilisé aujourd’hui par les joueurs pour que les rapports de terrain puissent s’y référer.`)
+	return /** @type {LocalizedString} */ (`Enregistrez la version du jeu que les joueurs utilisent aujourd’hui.`)
 };
 
 const it_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registra la patch che i giocatori usano oggi, così i rapporti sul campo hanno un riferimento.`)
+	return /** @type {LocalizedString} */ (`Registra la versione del gioco che i giocatori usano oggi.`)
 };
 
 const nl_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registreer de patch die spelers vandaag gebruiken, zodat veldrapporten ergens naar kunnen verwijzen.`)
+	return /** @type {LocalizedString} */ (`Registreer de spelversie die spelers vandaag gebruiken.`)
 };
 
 const pl_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zarejestruj łatkę, na której gracze są dziś, żeby raporty terenowe miały do czego się odnosić.`)
+	return /** @type {LocalizedString} */ (`Zarejestruj wersję gry, na której gracze grają dziś.`)
 };
 
 const pt_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registre o patch que os jogadores usam hoje para que os relatórios de campo tenham uma referência.`)
+	return /** @type {LocalizedString} */ (`Registre a versão do jogo que os jogadores usam hoje.`)
 };
 
 const ru_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Добавьте патч, на котором сейчас играют, чтобы полевым отчётам было на что ссылаться.`)
+	return /** @type {LocalizedString} */ (`Добавьте версию игры, на которой сейчас играют.`)
 };
 
 const sv_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Registrera patchen som spelarna kör i dag så att fältrapporter har något att hänvisa till.`)
+	return /** @type {LocalizedString} */ (`Registrera den spelversion som spelarna kör i dag.`)
 };
 
 const tr_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oyuncuların bugün kullandığı yamayı kaydet ki saha raporları ona dayanabilsin.`)
+	return /** @type {LocalizedString} */ (`Oyuncuların bugün kullandığı oyun sürümünü kaydet.`)
 };
 
 const zh_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`登记玩家今天所用的补丁，让实地报告有据可依。`)
+	return /** @type {LocalizedString} */ (`请登记玩家今天所用的游戏版本。`)
 };
 
 const ja_admin_builds_empty_text = /** @type {(inputs: Admin_Builds_Empty_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`プレイヤーが今遊んでいるパッチを登録して、フィールドレポートの参照先を作りましょう。`)
+	return /** @type {LocalizedString} */ (`プレイヤーが今遊んでいるゲームバージョンを登録してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Register the patch players are on today so field reports have something to point at." |
+* | "Register the game version players are on today." |
 *
 * @param {Admin_Builds_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

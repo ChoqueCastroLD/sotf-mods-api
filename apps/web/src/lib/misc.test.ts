@@ -69,7 +69,7 @@ describe('speculation rules (PLAN §8.8)', () => {
     expect(json).toContain('"/es/mods/*"');
     expect(json).toContain('"/ja/profile/*"');
     expect(json).toContain('download');
-    expect(json).toContain('/basecamp/*');
+    expect(json).toContain('/dashboard/*');
     expect(json).toContain('/api/*');
   });
 });

@@ -3,7 +3,7 @@ export type Auth_Meta_Register_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Create your account" |
+* | "Register" |
 *
 * @param {Auth_Meta_Register_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

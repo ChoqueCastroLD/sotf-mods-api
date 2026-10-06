@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_LoadingInputs */
 
 const en_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Loading the wizard…`)
+	return /** @type {LocalizedString} */ (`Loading…`)
 };
 
 const es_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cargando el asistente…`)
+	return /** @type {LocalizedString} */ (`Cargando…`)
 };
 
 const de_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Assistent wird geladen…`)
+	return /** @type {LocalizedString} */ (`Wird geladen…`)
 };
 
 const fr_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chargement de l’assistant…`)
+	return /** @type {LocalizedString} */ (`Chargement…`)
 };
 
 const it_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Caricamento della procedura…`)
+	return /** @type {LocalizedString} */ (`Caricamento…`)
 };
 
 const nl_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wizard laden…`)
+	return /** @type {LocalizedString} */ (`Laden…`)
 };
 
 const pl_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wczytywanie kreatora…`)
+	return /** @type {LocalizedString} */ (`Wczytywanie…`)
 };
 
 const pt_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Carregando o assistente…`)
+	return /** @type {LocalizedString} */ (`Carregando…`)
 };
 
 const ru_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Загружаем мастер…`)
+	return /** @type {LocalizedString} */ (`Загрузка…`)
 };
 
 const sv_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Läser in guiden…`)
+	return /** @type {LocalizedString} */ (`Läser in…`)
 };
 
 const tr_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sihirbaz yükleniyor…`)
+	return /** @type {LocalizedString} */ (`Yükleniyor…`)
 };
 
 const zh_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`正在加载向导…`)
+	return /** @type {LocalizedString} */ (`正在加载…`)
 };
 
 const ja_upload_loading = /** @type {(inputs: Upload_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ウィザードを読み込み中…`)
+	return /** @type {LocalizedString} */ (`読み込み中…`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Loading the wizard…" |
+* | "Loading…" |
 *
 * @param {Upload_LoadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

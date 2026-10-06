@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ hours: NonNullable<unknown> }} Ranger_Metrics_Open_Over_SlaInputs */
 
 const en_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Review lanes over ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Queues over ${i?.hours} h`)
 };
 
 const es_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Colas de revisión con más de ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Colas con más de ${i?.hours} h`)
 };
 
 const de_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Prüfspuren über ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Warteschlangen über ${i?.hours} h`)
 };
 
 const fr_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Files de revue au-delà de ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Files au-delà de ${i?.hours} h`)
 };
 
 const it_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Code di revisione oltre ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Code oltre ${i?.hours} h`)
 };
 
 const nl_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Beoordelingsbanen boven ${i?.hours} u`)
+	return /** @type {LocalizedString} */ (`Wachtrijen boven ${i?.hours} u`)
 };
 
 const pl_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Kolejki weryfikacji ponad ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Kolejki powyżej ${i?.hours} h`)
 };
 
 const pt_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Filas de revisão acima de ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Filas acima de ${i?.hours} h`)
 };
 
 const ru_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`В очередях проверки дольше ${i?.hours} ч`)
+	return /** @type {LocalizedString} */ (`Очереди старше ${i?.hours} ч`)
 };
 
 const sv_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Granskningsköer över ${i?.hours} h`)
+	return /** @type {LocalizedString} */ (`Köer över ${i?.hours} h`)
 };
 
 const tr_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.hours} saati aşan inceleme kuyrukları`)
+	return /** @type {LocalizedString} */ (`${i?.hours} saati aşan kuyruklar`)
 };
 
 const zh_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`审核队列中超过 ${i?.hours} 小时`)
+	return /** @type {LocalizedString} */ (`超过 ${i?.hours} 小时的队列`)
 };
 
 const ja_ranger_metrics_open_over_sla = /** @type {(inputs: Ranger_Metrics_Open_Over_SlaInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.hours} 時間超の審査待ち`)
+	return /** @type {LocalizedString} */ (`${i?.hours} 時間超のキュー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Review lanes over {hours} h" |
+* | "Queues over {hours} h" |
 *
 * @param {Ranger_Metrics_Open_Over_SlaInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

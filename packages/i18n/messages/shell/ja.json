@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "その他",
-  "shell_more_help": "ヘルプ",
-  "shell_more_community": "コミュニティ",
   "shell_more_install_guide": "インストールガイド",
   "shell_install_app": "アプリをインストール",
   "shell_install_app_hint": "SOTF Mods をホーム画面に追加",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "更新中…",
   "shell_offline_meta_title": "オフライン",
   "shell_offline_meta_description": "現在接続できません。オンラインに戻ったらもう一度お試しください。",
-  "shell_offline_eyebrow": "オフライン",
   "shell_offline_title": "オフラインです",
   "shell_offline_body": "現在 SOTF Mods に接続できません。通信状況を確認して、もう一度お試しください。",
   "shell_offline_retry": "再試行",

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Logout_HeadingInputs */
 
 const en_auth_logout_heading = /** @type {(inputs: Auth_Logout_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out?`)
+	return /** @type {LocalizedString} */ (`Log out?`)
 };
 
 const es_auth_logout_heading = /** @type {(inputs: Auth_Logout_HeadingInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_logout_heading = /** @type {(inputs: Auth_Logout_HeadingInputs) =>
 /**
 * | output |
 * | --- |
-* | "Sign out?" |
+* | "Log out?" |
 *
 * @param {Auth_Logout_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

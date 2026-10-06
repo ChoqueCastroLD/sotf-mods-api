@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Flag_Extension_FlaggedInputs */
 
 const en_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Executable or script: a ranger must review it.`)
+	return /** @type {LocalizedString} */ (`Executable or script: a moderator must review it.`)
 };
 
 const es_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ejecutable o script: un guardabosques debe revisarlo.`)
+	return /** @type {LocalizedString} */ (`Ejecutable o script: un moderador debe revisarlo.`)
 };
 
 const de_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Programm oder Skript: Ein Ranger muss es prüfen.`)
+	return /** @type {LocalizedString} */ (`Programm oder Skript: Ein Moderator muss es prüfen.`)
 };
 
 const fr_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Exécutable ou script : un ranger doit l’examiner.`)
+	return /** @type {LocalizedString} */ (`Exécutable ou script : un modérateur doit l’examiner.`)
 };
 
 const it_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Eseguibile o script: un ranger deve esaminarlo.`)
+	return /** @type {LocalizedString} */ (`Eseguibile o script: un moderatore deve esaminarlo.`)
 };
 
 const nl_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Programma of script: een ranger moet het controleren.`)
+	return /** @type {LocalizedString} */ (`Programma of script: een moderator moet het controleren.`)
 };
 
 const pl_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plik wykonywalny lub skrypt: musi go przejrzeć strażnik.`)
+	return /** @type {LocalizedString} */ (`Plik wykonywalny lub skrypt: musi go przejrzeć moderator.`)
 };
 
 const pt_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Executável ou script: um guarda precisa revisá-lo.`)
+	return /** @type {LocalizedString} */ (`Executável ou script: um moderador precisa revisá-lo.`)
 };
 
 const ru_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Исполняемый файл или скрипт: его должен проверить рейнджер.`)
+	return /** @type {LocalizedString} */ (`Исполняемый файл или скрипт: его должен проверить модератор.`)
 };
 
 const sv_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Program eller skript: en ranger måste granska det.`)
+	return /** @type {LocalizedString} */ (`Program eller skript: en moderator måste granska det.`)
 };
 
 const tr_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Çalıştırılabilir dosya ya da betik: bir korucu incelemeli.`)
+	return /** @type {LocalizedString} */ (`Çalıştırılabilir dosya ya da betik: bir moderatör incelemeli.`)
 };
 
 const zh_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`可执行文件或脚本：需要护林员审核。`)
+	return /** @type {LocalizedString} */ (`可执行文件或脚本：需要版主审核。`)
 };
 
 const ja_upload_flag_extension_flagged = /** @type {(inputs: Upload_Flag_Extension_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`実行ファイルまたはスクリプト：レンジャーの確認が必要です。`)
+	return /** @type {LocalizedString} */ (`実行ファイルまたはスクリプト：モデレーターの確認が必要です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Executable or script: a ranger must review it." |
+* | "Executable or script: a moderator must review it." |
 *
 * @param {Upload_Flag_Extension_FlaggedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

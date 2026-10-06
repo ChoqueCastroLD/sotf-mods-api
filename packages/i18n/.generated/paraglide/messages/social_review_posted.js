@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Social_Review_PostedInputs */
 
 const en_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Thanks! Your review is live.`)
+	return /** @type {LocalizedString} */ (`Your review was published.`)
 };
 
 const es_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`¡Gracias! Tu reseña ya está publicada.`)
+	return /** @type {LocalizedString} */ (`Tu reseña se ha publicado.`)
 };
 
 const de_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Danke! Deine Bewertung ist online.`)
+	return /** @type {LocalizedString} */ (`Deine Bewertung wurde veröffentlicht.`)
 };
 
 const fr_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Merci ! Votre avis est en ligne.`)
+	return /** @type {LocalizedString} */ (`Votre avis a été publié.`)
 };
 
 const it_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Grazie! La tua recensione è online.`)
+	return /** @type {LocalizedString} */ (`La tua recensione è stata pubblicata.`)
 };
 
 const nl_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bedankt! Je review staat online.`)
+	return /** @type {LocalizedString} */ (`Je review is geplaatst.`)
 };
 
 const pl_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dzięki! Twoja recenzja jest już widoczna.`)
+	return /** @type {LocalizedString} */ (`Twoja recenzja została opublikowana.`)
 };
 
 const pt_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Valeu! Sua avaliação já está no ar.`)
+	return /** @type {LocalizedString} */ (`Sua avaliação foi publicada.`)
 };
 
 const ru_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Спасибо! Ваш отзыв опубликован.`)
+	return /** @type {LocalizedString} */ (`Ваш отзыв опубликован.`)
 };
 
 const sv_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tack! Din recension är publicerad.`)
+	return /** @type {LocalizedString} */ (`Din recension har publicerats.`)
 };
 
 const tr_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Teşekkürler! İncelemen yayında.`)
+	return /** @type {LocalizedString} */ (`İncelemen yayımlandı.`)
 };
 
 const zh_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`谢谢！你的评价已发布。`)
+	return /** @type {LocalizedString} */ (`你的评价已发布。`)
 };
 
 const ja_social_review_posted = /** @type {(inputs: Social_Review_PostedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ありがとうございます！レビューを公開しました。`)
+	return /** @type {LocalizedString} */ (`レビューを公開しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Thanks! Your review is live." |
+* | "Your review was published." |
 *
 * @param {Social_Review_PostedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

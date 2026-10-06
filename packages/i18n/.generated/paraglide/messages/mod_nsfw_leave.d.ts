@@ -3,7 +3,7 @@ export type Mod_Nsfw_LeaveInputs = {};
 /**
 * | output |
 * | --- |
-* | "Back to Explore" |
+* | "Back to Mods" |
 *
 * @param {Mod_Nsfw_LeaveInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

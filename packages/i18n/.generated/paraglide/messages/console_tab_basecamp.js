@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Tab_BasecampInputs */
 
 const en_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basecamp`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const es_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Campo`)
+	return /** @type {LocalizedString} */ (`Panel`)
 };
 
 const de_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Lager`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const fr_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Camp`)
+	return /** @type {LocalizedString} */ (`Tableau de bord`)
 };
 
 const it_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Campo`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const nl_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kamp`)
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 const pl_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Obóz`)
+	return /** @type {LocalizedString} */ (`Panel`)
 };
 
 const pt_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Campo`)
+	return /** @type {LocalizedString} */ (`Painel`)
 };
 
 const ru_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Лагерь`)
+	return /** @type {LocalizedString} */ (`Панель`)
 };
 
 const sv_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Läger`)
+	return /** @type {LocalizedString} */ (`Översikt`)
 };
 
 const tr_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kamp`)
+	return /** @type {LocalizedString} */ (`Panel`)
 };
 
 const zh_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`营地`)
+	return /** @type {LocalizedString} */ (`控制台`)
 };
 
 const ja_console_tab_basecamp = /** @type {(inputs: Console_Tab_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`キャンプ`)
+	return /** @type {LocalizedString} */ (`ダッシュボード`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Basecamp" |
+* | "Dashboard" |
 *
 * @param {Console_Tab_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

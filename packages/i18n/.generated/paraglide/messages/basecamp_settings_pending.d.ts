@@ -3,7 +3,7 @@ export type Basecamp_Settings_PendingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Waiting for the rangers. Only you can see it." |
+* | "Waiting for moderation. Only you can see it." |
 *
 * @param {Basecamp_Settings_PendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

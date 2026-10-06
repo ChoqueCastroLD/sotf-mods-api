@@ -63,19 +63,10 @@ const rating =
   mod.reviewsSummary.showStars && mod.reviewsSummary.average !== null
     ? `★ ${formatNumber(locale, mod.reviewsSummary.average, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} · ${m.common_reviews_count({ count: mod.reviewsSummary.count })}`
     : null;
-const build = mod.compatCurrent.gameBuild?.label ?? null;
-const compat =
-  mod.kind === 'build' || !build
-    ? null
-    : mod.compatCurrent.status === 'works'
-      ? { tone: 'good', text: m.common_compat_works({ count: mod.compatCurrent.works, build }) }
-      : mod.compatCurrent.status === 'broken'
-        ? { tone: 'bad', text: m.common_compat_broken({ build }) }
-        : { tone: 'muted', text: m.common_compat_unverified() };
 const thumbnail = mod.nsfw ? null : mod.thumbnail;
 const accent = /^#[0-9a-f]{6}$/i.test(mod.logColor ?? '') ? (mod.logColor as string) : palette.flare[400];
 const newTab = m.common_new_tab();
-const cssVars = `--accent:${accent};--bg:${palette.night[950]};--line:${palette.night[800]};--ink:${palette.night[25]};--muted:${palette.night[300]};--good:${palette.lichen[300]};--bad:${palette.blood[400]}`;
+const cssVars = `--accent:${accent};--bg:${palette.night[950]};--line:${palette.night[800]};--ink:${palette.night[25]};--muted:${palette.night[300]}`;
 ---
 
 <!doctype html>
@@ -108,7 +99,6 @@ const cssVars = `--accent:${accent};--bg:${palette.night[950]};--line:${palette.
           <span>↓ {downloads}</span>
           {rating && <span>{rating}</span>}
         </p>
-        {compat && <p class={`compat ${compat.tone}`}>{compat.text}</p>}
       </div>
       <a class="brand" href={absoluteUrl(localizePath('/', locale), siteUrl)} rel="noopener">{m.common_site_name()}</a>
     </article>
@@ -199,29 +189,11 @@ const cssVars = `--accent:${accent};--bg:${palette.night[950]};--line:${palette.
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  .compat {
-    margin: 0;
-    font-size: 13px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .compat.good {
-    color: var(--good);
-  }
-  .compat.bad {
-    color: var(--bad);
-  }
-  .compat.muted {
-    color: var(--muted);
-  }
   .brand {
     position: absolute;
     right: 12px;
     bottom: 10px;
     font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
     color: var(--muted);
   }
   .sr {

@@ -3,7 +3,7 @@ export type Settings_Notifications_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Which signals you get in the app and by email." |
+* | "Which notifications you get in the app and by email." |
 *
 * @param {Settings_Notifications_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

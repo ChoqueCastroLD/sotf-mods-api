@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Preflight_Tags_MissingInputs */
 
 const en_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No tags: they help survivors find it.`)
+	return /** @type {LocalizedString} */ (`No tags: they help players find it.`)
 };
 
 const es_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin etiquetas: ayudan a que los supervivientes lo encuentren.`)
+	return /** @type {LocalizedString} */ (`Sin etiquetas: ayudan a que los jugadores lo encuentren.`)
 };
 
 const de_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Keine Tags: Sie helfen Überlebenden, ihn zu finden.`)
+	return /** @type {LocalizedString} */ (`Keine Tags: Sie helfen Spielern, ihn zu finden.`)
 };
 
 const fr_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucun tag : ils aident les survivants à le trouver.`)
+	return /** @type {LocalizedString} */ (`Aucun tag : ils aident les joueurs à le trouver.`)
 };
 
 const it_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessun tag: aiutano i sopravvissuti a trovarla.`)
+	return /** @type {LocalizedString} */ (`Nessun tag: aiutano i giocatori a trovarla.`)
 };
 
 const nl_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen tags: ze helpen overlevenden hem te vinden.`)
+	return /** @type {LocalizedString} */ (`Geen tags: ze helpen spelers hem te vinden.`)
 };
 
 const pl_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak tagów: pomagają ocalałym go znaleźć.`)
+	return /** @type {LocalizedString} */ (`Brak tagów: pomagają graczom go znaleźć.`)
 };
 
 const pt_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem tags: elas ajudam os sobreviventes a encontrá-lo.`)
+	return /** @type {LocalizedString} */ (`Sem tags: elas ajudam os jogadores a encontrá-lo.`)
 };
 
 const ru_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Нет тегов: они помогают выжившим найти мод.`)
+	return /** @type {LocalizedString} */ (`Нет тегов: они помогают игрокам найти мод.`)
 };
 
 const sv_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga taggar: de hjälper överlevare att hitta den.`)
+	return /** @type {LocalizedString} */ (`Inga taggar: de hjälper spelare att hitta den.`)
 };
 
 const tr_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Etiket yok: hayatta kalanların onu bulmasına yardım ederler.`)
+	return /** @type {LocalizedString} */ (`Etiket yok: oyuncuların onu bulmasına yardım ederler.`)
 };
 
 const zh_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`没有标签：标签能帮助幸存者找到它。`)
+	return /** @type {LocalizedString} */ (`没有标签：标签能帮助玩家找到它。`)
 };
 
 const ja_upload_preflight_tags_missing = /** @type {(inputs: Upload_Preflight_Tags_MissingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`タグがありません。タグはサバイバーが見つける手がかりになります。`)
+	return /** @type {LocalizedString} */ (`タグがありません。タグはプレイヤーが見つける手がかりになります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No tags: they help survivors find it." |
+* | "No tags: they help players find it." |
 *
 * @param {Upload_Preflight_Tags_MissingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

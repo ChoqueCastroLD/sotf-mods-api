@@ -34,7 +34,7 @@ const pl_cmdk_fact_total = /** @type {(inputs: Cmdk_Fact_TotalInputs) => Localiz
 };
 
 const pt_cmdk_fact_total = /** @type {(inputs: Cmdk_Fact_TotalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Total de transferências`)
+	return /** @type {LocalizedString} */ (`Total de downloads`)
 };
 
 const ru_cmdk_fact_total = /** @type {(inputs: Cmdk_Fact_TotalInputs) => LocalizedString} */ () => {

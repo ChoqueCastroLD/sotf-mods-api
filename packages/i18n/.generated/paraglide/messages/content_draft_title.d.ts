@@ -3,7 +3,7 @@ export type Content_Draft_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Draft — pending legal review" |
+* | "Draft: pending legal review" |
 *
 * @param {Content_Draft_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

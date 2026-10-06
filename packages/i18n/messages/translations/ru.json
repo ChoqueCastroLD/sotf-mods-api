@@ -1,9 +1,6 @@
 {
-  "translations_badge_machine": "Переведено автоматически",
-  "translations_badge_author": "Переведено автором",
   "translations_show_original": "Показать оригинал",
   "translations_show_translation": "Показать перевод",
-  "translations_original_note": "Исходный текст",
   "translations_title": "Переводы",
   "translations_intro_auto": "Название, краткое описание и описание автоматически переводятся на другие языки при публикации или редактировании. Напишите свой текст, чтобы заменить перевод; ваш текст никогда не перезаписывается.",
   "translations_intro_manual": "Напишите собственный перевод названия, краткого описания и описания на любой язык. Автоматический перевод на этом сервере недоступен.",
@@ -19,7 +16,6 @@
   "translations_cancel": "Отмена",
   "translations_revert": "Использовать автоматический перевод",
   "translations_remove": "Удалить",
-  "translations_field_label": "Перевод: {language}",
   "translations_saved": "Перевод сохранён",
   "translations_reverted": "Автоматический перевод запрошен",
   "translations_removed": "Перевод удалён",

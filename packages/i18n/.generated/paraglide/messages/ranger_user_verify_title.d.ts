@@ -5,7 +5,7 @@ export type Ranger_User_Verify_TitleInputs = {
 /**
 * | output |
 * | --- |
-* | "Make {name} a verified creator?" |
+* | "Mark {name} as trusted?" |
 *
 * @param {Ranger_User_Verify_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,23 +6,23 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Stats_OpenInputs */
 
 const en_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore the chart`)
+	return /** @type {LocalizedString} */ (`View the chart`)
 };
 
 const es_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar el gráfico`)
+	return /** @type {LocalizedString} */ (`Ver el gráfico`)
 };
 
 const de_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Diagramm erkunden`)
+	return /** @type {LocalizedString} */ (`Diagramm ansehen`)
 };
 
 const fr_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer le graphique`)
+	return /** @type {LocalizedString} */ (`Voir le graphique`)
 };
 
 const it_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora il grafico`)
+	return /** @type {LocalizedString} */ (`Vedi il grafico`)
 };
 
 const nl_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
@@ -30,11 +30,11 @@ const nl_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => Localized
 };
 
 const pl_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeglądaj wykres`)
+	return /** @type {LocalizedString} */ (`Zobacz wykres`)
 };
 
 const pt_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar o gráfico`)
+	return /** @type {LocalizedString} */ (`Ver o gráfico`)
 };
 
 const ru_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
@@ -42,11 +42,11 @@ const ru_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => Localized
 };
 
 const sv_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska diagrammet`)
+	return /** @type {LocalizedString} */ (`Visa diagrammet`)
 };
 
 const tr_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Grafiği incele`)
+	return /** @type {LocalizedString} */ (`Grafiği görüntüle`)
 };
 
 const zh_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_mod_stats_open = /** @type {(inputs: Mod_Stats_OpenInputs) => Localized
 /**
 * | output |
 * | --- |
-* | "Explore the chart" |
+* | "View the chart" |
 *
 * @param {Mod_Stats_OpenInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

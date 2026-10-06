@@ -3,7 +3,7 @@ export type Settings_Sessions_Revoked_OthersInputs = {};
 /**
 * | output |
 * | --- |
-* | "Other devices signed out" |
+* | "Other devices logged out" |
 *
 * @param {Settings_Sessions_Revoked_OthersInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

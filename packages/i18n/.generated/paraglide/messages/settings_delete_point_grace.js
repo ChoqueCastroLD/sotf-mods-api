@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Delete_Point_GraceInputs */
 
 const en_settings_delete_point_grace = /** @type {(inputs: Settings_Delete_Point_GraceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You have 14 days to change your mind; signing in and cancelling here stops it.`)
+	return /** @type {LocalizedString} */ (`You have 14 days to change your mind. Log in and cancel here to stop it.`)
 };
 
 const es_settings_delete_point_grace = /** @type {(inputs: Settings_Delete_Point_GraceInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_delete_point_grace = /** @type {(inputs: Settings_Delete_Point
 /**
 * | output |
 * | --- |
-* | "You have 14 days to change your mind; signing in and cancelling here stops it." |
+* | "You have 14 days to change your mind. Log in and cancel here to stop it." |
 *
 * @param {Settings_Delete_Point_GraceInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -181,8 +181,3 @@ export function pickFeatured(items: readonly JamSummaryDTO[]): JamSummaryDTO | n
   }
   return null;
 }
-
-/** Whether the phase has a live (ticking) feel: submissions and voting. */
-export function isLivePhase(phase: JamPhase): boolean {
-  return phase === 'submissions' || phase === 'voting';
-}

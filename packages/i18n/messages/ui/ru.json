@@ -2,7 +2,7 @@
   "ui_close": "Закрыть",
   "ui_cancel": "Отмена",
   "ui_dismiss": "Скрыть",
-  "ui_loading": "Сверяемся с картой…",
+  "ui_loading": "Загрузка…",
   "ui_retry": "Повторить",
   "ui_error_reference": "Код: {id}",
   "ui_optional": "Необязательно",

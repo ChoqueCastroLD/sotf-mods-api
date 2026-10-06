@@ -3,7 +3,7 @@ export type Upload_Step_File_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Zip or blueprint" |
+* | "Zip or build file" |
 *
 * @param {Upload_Step_File_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

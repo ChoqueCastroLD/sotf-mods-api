@@ -38,7 +38,7 @@ const pt_admin_recat_csv_skip_category = /** @type {(inputs: Admin_Recat_Csv_Ski
 };
 
 const ru_admin_recat_csv_skip_category = /** @type {(inputs: Admin_Recat_Csv_Skip_CategoryInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Строка ${i?.line}: «${i?.value}» — не активная категория модов.`)
+	return /** @type {LocalizedString} */ (`Строка ${i?.line}: «${i?.value}» не является активной категорией модов.`)
 };
 
 const sv_admin_recat_csv_skip_category = /** @type {(inputs: Admin_Recat_Csv_Skip_CategoryInputs) => LocalizedString} */ (i) => {

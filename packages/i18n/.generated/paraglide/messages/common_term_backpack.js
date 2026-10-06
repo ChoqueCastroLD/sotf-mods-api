@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Term_BackpackInputs */
 
 const en_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Backpack`)
+	return /** @type {LocalizedString} */ (`Following`)
 };
 
 const es_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mochila`)
+	return /** @type {LocalizedString} */ (`Siguiendo`)
 };
 
 const de_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rucksack`)
+	return /** @type {LocalizedString} */ (`Gefolgt`)
 };
 
 const fr_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sac à dos`)
+	return /** @type {LocalizedString} */ (`Suivis`)
 };
 
 const it_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zaino`)
+	return /** @type {LocalizedString} */ (`Seguiti`)
 };
 
 const nl_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rugzak`)
+	return /** @type {LocalizedString} */ (`Gevolgd`)
 };
 
 const pl_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plecak`)
+	return /** @type {LocalizedString} */ (`Obserwowane`)
 };
 
 const pt_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mochila`)
+	return /** @type {LocalizedString} */ (`Seguindo`)
 };
 
 const ru_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рюкзак`)
+	return /** @type {LocalizedString} */ (`Подписки`)
 };
 
 const sv_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ryggsäck`)
+	return /** @type {LocalizedString} */ (`Följer`)
 };
 
 const tr_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt Çantası`)
+	return /** @type {LocalizedString} */ (`Takip edilenler`)
 };
 
 const zh_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`背包`)
+	return /** @type {LocalizedString} */ (`关注`)
 };
 
 const ja_common_term_backpack = /** @type {(inputs: Common_Term_BackpackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパック`)
+	return /** @type {LocalizedString} */ (`フォロー中`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Backpack" |
+* | "Following" |
 *
 * @param {Common_Term_BackpackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

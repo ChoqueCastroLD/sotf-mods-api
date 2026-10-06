@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Issue_Missing_GuidInputs */
 
 const en_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The blueprint has no Guid.`)
+	return /** @type {LocalizedString} */ (`The build has no Guid.`)
 };
 
 const es_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`El plano no tiene Guid.`)
+	return /** @type {LocalizedString} */ (`La build no tiene Guid.`)
 };
 
 const de_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Der Bauplan hat keine Guid.`)
+	return /** @type {LocalizedString} */ (`Der Build hat keine Guid.`)
 };
 
 const fr_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le plan n’a pas de Guid.`)
+	return /** @type {LocalizedString} */ (`Le build n’a pas de Guid.`)
 };
 
 const it_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il progetto non ha un Guid.`)
+	return /** @type {LocalizedString} */ (`La build non ha un Guid.`)
 };
 
 const nl_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De bouwtekening heeft geen Guid.`)
+	return /** @type {LocalizedString} */ (`De build heeft geen Guid.`)
 };
 
 const pl_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan nie ma pola Guid.`)
+	return /** @type {LocalizedString} */ (`Build nie ma pola Guid.`)
 };
 
 const pt_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A planta não tem Guid.`)
+	return /** @type {LocalizedString} */ (`A build não tem Guid.`)
 };
 
 const ru_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`В чертеже нет Guid.`)
+	return /** @type {LocalizedString} */ (`В постройке нет Guid.`)
 };
 
 const sv_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ritningen saknar Guid.`)
+	return /** @type {LocalizedString} */ (`Bygget saknar Guid.`)
 };
 
 const tr_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Planda Guid yok.`)
+	return /** @type {LocalizedString} */ (`Yapıda Guid yok.`)
 };
 
 const zh_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`蓝图缺少 Guid。`)
+	return /** @type {LocalizedString} */ (`建筑缺少 Guid。`)
 };
 
 const ja_upload_issue_missing_guid = /** @type {(inputs: Upload_Issue_Missing_GuidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図に Guid がありません。`)
+	return /** @type {LocalizedString} */ (`建築に Guid がありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The blueprint has no Guid." |
+* | "The build has no Guid." |
 *
 * @param {Upload_Issue_Missing_GuidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

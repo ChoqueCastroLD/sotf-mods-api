@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Error_Email_TakenInputs */
 
 const en_auth_error_email_taken = /** @type {(inputs: Auth_Error_Email_TakenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`An account with this email already exists. Sign in or reset your password.`)
+	return /** @type {LocalizedString} */ (`An account with this email already exists. Log in or reset your password.`)
 };
 
 const es_auth_error_email_taken = /** @type {(inputs: Auth_Error_Email_TakenInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_error_email_taken = /** @type {(inputs: Auth_Error_Email_TakenInpu
 /**
 * | output |
 * | --- |
-* | "An account with this email already exists. Sign in or reset your password." |
+* | "An account with this email already exists. Log in or reset your password." |
 *
 * @param {Auth_Error_Email_TakenInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

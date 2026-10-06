@@ -123,7 +123,7 @@ export default function ExploreFilters({ model, i18n, total }: ExploreFiltersPro
                     />
                     <span className="flex-1 max-md:flex-none">{option.label}</span>
                     {option.count !== null ? (
-                      <span className="font-mono text-2xs text-fg-subtle tabular-nums">{option.count}</span>
+                      <span className="text-2xs text-fg-subtle tabular-nums">{option.count}</span>
                     ) : null}
                   </label>
                 ))}

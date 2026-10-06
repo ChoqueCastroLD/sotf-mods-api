@@ -3,7 +3,7 @@ export type Basecamp_Settings_Removal_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ask the rangers to take it down. The request is reviewed like a report." |
+* | "Ask moderators to take it down. The request is reviewed like a report." |
 *
 * @param {Basecamp_Settings_Removal_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -38,7 +38,7 @@ const pt_admin_recat_csv_done = /** @type {(inputs: Admin_Recat_Csv_DoneInputs) 
 };
 
 const ru_admin_recat_csv_done = /** @type {(inputs: Admin_Recat_Csv_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`CSV импортирован: новых строк — ${i?.added}, обновлено — ${i?.updated}`)
+	return /** @type {LocalizedString} */ (`CSV импортирован: новых строк: ${i?.added}, обновлено: ${i?.updated}`)
 };
 
 const sv_admin_recat_csv_done = /** @type {(inputs: Admin_Recat_Csv_DoneInputs) => LocalizedString} */ (i) => {

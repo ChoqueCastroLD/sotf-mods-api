@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Empty_TitleInputs */
 
 const en_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nothing on this trail`)
+	return /** @type {LocalizedString} */ (`No results`)
 };
 
 const es_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada por este sendero`)
+	return /** @type {LocalizedString} */ (`Sin resultados`)
 };
 
 const de_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Auf diesem Pfad ist nichts`)
+	return /** @type {LocalizedString} */ (`Keine Ergebnisse`)
 };
 
 const fr_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rien sur ce sentier`)
+	return /** @type {LocalizedString} */ (`Aucun résultat`)
 };
 
 const it_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niente su questo sentiero`)
+	return /** @type {LocalizedString} */ (`Nessun risultato`)
 };
 
 const nl_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niets op dit pad`)
+	return /** @type {LocalizedString} */ (`Geen resultaten`)
 };
 
 const pl_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Na tym szlaku nic nie ma`)
+	return /** @type {LocalizedString} */ (`Brak wyników`)
 };
 
 const pt_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada nesta trilha`)
+	return /** @type {LocalizedString} */ (`Nenhum resultado`)
 };
 
 const ru_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`На этой тропе пусто`)
+	return /** @type {LocalizedString} */ (`Ничего не найдено`)
 };
 
 const sv_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inget på den här stigen`)
+	return /** @type {LocalizedString} */ (`Inga resultat`)
 };
 
 const tr_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu patikada bir şey yok`)
+	return /** @type {LocalizedString} */ (`Sonuç yok`)
 };
 
 const zh_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`这条小路上什么也没有`)
+	return /** @type {LocalizedString} */ (`没有结果`)
 };
 
 const ja_explore_empty_title = /** @type {(inputs: Explore_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`この道には何もありません`)
+	return /** @type {LocalizedString} */ (`結果がありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Nothing on this trail" |
+* | "No results" |
 *
 * @param {Explore_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

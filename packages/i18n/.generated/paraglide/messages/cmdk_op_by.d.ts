@@ -3,7 +3,7 @@ export type Cmdk_Op_ByInputs = {};
 /**
 * | output |
 * | --- |
-* | "Creator handle" |
+* | "Author" |
 *
 * @param {Cmdk_Op_ByInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

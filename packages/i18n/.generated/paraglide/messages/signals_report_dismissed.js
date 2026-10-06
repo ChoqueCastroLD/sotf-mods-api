@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Report_DismissedInputs */
 
 const en_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your report was reviewed — no action was needed`)
+	return /** @type {LocalizedString} */ (`Your report was reviewed. No action was needed.`)
 };
 
 const es_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_signals_report_dismissed = /** @type {(inputs: Signals_Report_Dismissed
 };
 
 const de_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deine Meldung wurde geprüft – es war nichts zu tun`)
+	return /** @type {LocalizedString} */ (`Deine Meldung wurde geprüft. Es war nichts zu tun.`)
 };
 
 const fr_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre signalement a été examiné — aucune action n’était nécessaire`)
+	return /** @type {LocalizedString} */ (`Votre signalement a été examiné. Aucune action n’était nécessaire.`)
 };
 
 const it_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
@@ -26,31 +26,31 @@ const it_signals_report_dismissed = /** @type {(inputs: Signals_Report_Dismissed
 };
 
 const nl_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je melding is bekeken — er was geen actie nodig`)
+	return /** @type {LocalizedString} */ (`Je melding is bekeken. Er was geen actie nodig.`)
 };
 
 const pl_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twoje zgłoszenie zostało rozpatrzone — działania nie były potrzebne`)
+	return /** @type {LocalizedString} */ (`Twoje zgłoszenie zostało rozpatrzone. Działania nie były potrzebne.`)
 };
 
 const pt_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua denúncia foi analisada — não foi preciso agir`)
+	return /** @type {LocalizedString} */ (`Sua denúncia foi analisada. Não foi preciso agir.`)
 };
 
 const ru_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваша жалоба рассмотрена — действий не потребовалось`)
+	return /** @type {LocalizedString} */ (`Ваша жалоба рассмотрена. Действий не потребовалось.`)
 };
 
 const sv_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Din anmälan har granskats — ingen åtgärd behövdes`)
+	return /** @type {LocalizedString} */ (`Din anmälan har granskats. Ingen åtgärd behövdes.`)
 };
 
 const tr_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bildirimin incelendi — işlem gerekmedi`)
+	return /** @type {LocalizedString} */ (`Bildirimin incelendi. İşlem gerekmedi.`)
 };
 
 const zh_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的举报已处理——无需采取措施`)
+	return /** @type {LocalizedString} */ (`你的举报已处理，无需采取措施。`)
 };
 
 const ja_signals_report_dismissed = /** @type {(inputs: Signals_Report_DismissedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_signals_report_dismissed = /** @type {(inputs: Signals_Report_Dismissed
 /**
 * | output |
 * | --- |
-* | "Your report was reviewed — no action was needed" |
+* | "Your report was reviewed. No action was needed." |
 *
 * @param {Signals_Report_DismissedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

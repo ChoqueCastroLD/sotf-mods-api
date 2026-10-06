@@ -3,7 +3,7 @@ export type Signals_Panel_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signals" |
+* | "Notifications" |
 *
 * @param {Signals_Panel_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

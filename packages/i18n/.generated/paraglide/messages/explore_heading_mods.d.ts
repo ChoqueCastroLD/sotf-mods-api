@@ -3,7 +3,7 @@ export type Explore_Heading_ModsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore mods" |
+* | "Mods" |
 *
 * @param {Explore_Heading_ModsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

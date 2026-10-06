@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_ReasonInputs */
 
 const en_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Note from the rangers`)
+	return /** @type {LocalizedString} */ (`Note from moderation`)
 };
 
 const es_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nota de los guardabosques`)
+	return /** @type {LocalizedString} */ (`Nota de moderación`)
 };
 
 const de_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hinweis der Ranger`)
+	return /** @type {LocalizedString} */ (`Hinweis der Moderation`)
 };
 
 const fr_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Note des rangers`)
+	return /** @type {LocalizedString} */ (`Note de la modération`)
 };
 
 const it_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nota dei ranger`)
+	return /** @type {LocalizedString} */ (`Nota della moderazione`)
 };
 
 const nl_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Opmerking van de rangers`)
+	return /** @type {LocalizedString} */ (`Opmerking van moderatie`)
 };
 
 const pl_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Uwaga od strażników`)
+	return /** @type {LocalizedString} */ (`Uwaga od moderacji`)
 };
 
 const pt_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nota dos guardas`)
+	return /** @type {LocalizedString} */ (`Nota da moderação`)
 };
 
 const ru_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Заметка рейнджеров`)
+	return /** @type {LocalizedString} */ (`Заметка модерации`)
 };
 
 const sv_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Anteckning från rangers`)
+	return /** @type {LocalizedString} */ (`Anteckning från modereringen`)
 };
 
 const tr_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucuların notu`)
+	return /** @type {LocalizedString} */ (`Moderasyon notu`)
 };
 
 const zh_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员备注`)
+	return /** @type {LocalizedString} */ (`审核备注`)
 };
 
 const ja_basecamp_settings_reason = /** @type {(inputs: Basecamp_Settings_ReasonInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーからのメモ`)
+	return /** @type {LocalizedString} */ (`モデレーションからのメモ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Note from the rangers" |
+* | "Note from moderation" |
 *
 * @param {Basecamp_Settings_ReasonInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

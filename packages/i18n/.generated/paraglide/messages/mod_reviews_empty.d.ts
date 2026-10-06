@@ -3,7 +3,7 @@ export type Mod_Reviews_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "No reviews yet. Downloaded it? Be the first to tell others how it went." |
+* | "No reviews yet. Be the first to review this mod." |
 *
 * @param {Mod_Reviews_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

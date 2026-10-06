@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_First_TitleInputs */
 
 const en_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The first Mod Jam is on its way`)
+	return /** @type {LocalizedString} */ (`The first Mod Jam will be announced soon`)
 };
 
 const es_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`El primer Mod Jam está en camino`)
+	return /** @type {LocalizedString} */ (`El primer Mod Jam se anunciará pronto`)
 };
 
 const de_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Der erste Mod Jam ist unterwegs`)
+	return /** @type {LocalizedString} */ (`Der erste Mod Jam wird bald angekündigt`)
 };
 
 const fr_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le premier Mod Jam est en route`)
+	return /** @type {LocalizedString} */ (`Le premier Mod Jam sera bientôt annoncé`)
 };
 
 const it_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il primo Mod Jam sta arrivando`)
+	return /** @type {LocalizedString} */ (`Il primo Mod Jam sarà annunciato presto`)
 };
 
 const nl_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De eerste Mod Jam is onderweg`)
+	return /** @type {LocalizedString} */ (`De eerste Mod Jam wordt binnenkort aangekondigd`)
 };
 
 const pl_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pierwszy Mod Jam już się zbliża`)
+	return /** @type {LocalizedString} */ (`Pierwszy Mod Jam zostanie wkrótce ogłoszony`)
 };
 
 const pt_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O primeiro Mod Jam está a caminho`)
+	return /** @type {LocalizedString} */ (`O primeiro Mod Jam será anunciado em breve`)
 };
 
 const ru_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Первый Mod Jam уже в пути`)
+	return /** @type {LocalizedString} */ (`Первый Mod Jam скоро будет объявлен`)
 };
 
 const sv_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Den första Mod Jammen är på väg`)
+	return /** @type {LocalizedString} */ (`Den första Mod Jammen tillkännages snart`)
 };
 
 const tr_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İlk Mod Jam yolda`)
+	return /** @type {LocalizedString} */ (`İlk Mod Jam yakında duyurulacak`)
 };
 
 const zh_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`首届 Mod Jam 正在路上`)
+	return /** @type {LocalizedString} */ (`首届 Mod Jam 即将公布`)
 };
 
 const ja_jams_first_title = /** @type {(inputs: Jams_First_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`最初の Mod Jam が近づいています`)
+	return /** @type {LocalizedString} */ (`最初の Mod Jam はまもなく発表されます`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The first Mod Jam is on its way" |
+* | "The first Mod Jam will be announced soon" |
 *
 * @param {Jams_First_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

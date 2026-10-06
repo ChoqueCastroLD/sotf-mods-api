@@ -3,7 +3,7 @@ export type Ranger_Lane_Empty_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "All clear on this trail" |
+* | "Nothing to review" |
 *
 * @param {Ranger_Lane_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

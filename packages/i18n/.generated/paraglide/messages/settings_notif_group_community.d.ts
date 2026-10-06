@@ -3,7 +3,7 @@ export type Settings_Notif_Group_CommunityInputs = {};
 /**
 * | output |
 * | --- |
-* | "Community and Rangers" |
+* | "Community and moderation" |
 *
 * @param {Settings_Notif_Group_CommunityInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Settings_Theme_NightInputs = {};
 /**
 * | output |
 * | --- |
-* | "Night" |
+* | "Dark" |
 *
 * @param {Settings_Theme_NightInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

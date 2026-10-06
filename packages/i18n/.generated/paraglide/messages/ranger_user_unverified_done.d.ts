@@ -5,7 +5,7 @@ export type Ranger_User_Unverified_DoneInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} is no longer a verified creator." |
+* | "{name} is no longer trusted." |
 *
 * @param {Ranger_User_Unverified_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

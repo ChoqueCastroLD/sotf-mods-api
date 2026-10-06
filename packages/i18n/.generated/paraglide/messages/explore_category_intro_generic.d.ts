@@ -5,7 +5,7 @@ export type Explore_Category_Intro_GenericInputs = {
 /**
 * | output |
 * | --- |
-* | "Sons of the Forest mods in the {category} category, with compatibility, ratings and direct downloads." |
+* | "Sons of the Forest mods in the {category} category, with ratings and direct downloads." |
 *
 * @param {Explore_Category_Intro_GenericInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

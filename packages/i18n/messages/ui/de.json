@@ -2,7 +2,7 @@
   "ui_close": "Schließen",
   "ui_cancel": "Abbrechen",
   "ui_dismiss": "Ausblenden",
-  "ui_loading": "Karte wird geprüft…",
+  "ui_loading": "Wird geladen …",
   "ui_retry": "Erneut versuchen",
   "ui_error_reference": "Ref.: {id}",
   "ui_optional": "Optional",

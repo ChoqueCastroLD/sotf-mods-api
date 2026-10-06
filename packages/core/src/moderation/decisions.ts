@@ -268,7 +268,7 @@ async function signalAuthor(
         userId: mod.userId,
         type: 'mod.status_changed',
         actorId: null,
-        target: { type: 'mod', id: mod.id, title: mod.name, path: `/basecamp/mods/${mod.id}/details` },
+        target: { type: 'mod', id: mod.id, title: mod.name, path: `/dashboard/mods/${mod.id}/details` },
         groupKey: null,
         data: { modId: mod.id, modName: mod.name, ...data },
         dedupeKey,

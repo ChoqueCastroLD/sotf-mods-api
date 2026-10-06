@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Link_SubmitInputs */
 
 const en_oauth_link_submit = /** @type {(inputs: Oauth_Link_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Link and sign in`)
+	return /** @type {LocalizedString} */ (`Link and log in`)
 };
 
 const es_oauth_link_submit = /** @type {(inputs: Oauth_Link_SubmitInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_link_submit = /** @type {(inputs: Oauth_Link_SubmitInputs) => Loc
 };
 
 const ja_oauth_link_submit = /** @type {(inputs: Oauth_Link_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`連携してサインイン`)
+	return /** @type {LocalizedString} */ (`連携してログイン`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Link and sign in" |
+* | "Link and log in" |
 *
 * @param {Oauth_Link_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

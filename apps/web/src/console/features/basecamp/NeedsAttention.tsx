@@ -52,41 +52,41 @@ function ActionLink({ item }: { item: Attention }) {
   switch (item.kind) {
     case 'broken_on_current':
       return item.mod.kind === 'build' ? (
-        <Link to="/basecamp/inbox" search={{ type: 'compat', mod: item.mod.id }} className={className}>
+        <Link to="/dashboard/inbox" search={{ type: 'compat', mod: item.mod.id }} className={className}>
           {content}
         </Link>
       ) : (
-        <Link to="/basecamp/mods/$modId/new-version" params={{ modId }} className={className}>
+        <Link to="/dashboard/mods/$modId/new-version" params={{ modId }} className={className}>
           {content}
         </Link>
       );
     case 'unanswered_questions':
       return (
-        <Link to="/basecamp/inbox" search={{ type: 'comment', mod: item.mod.id }} className={className}>
+        <Link to="/dashboard/inbox" search={{ type: 'comment', mod: item.mod.id }} className={className}>
           {content}
         </Link>
       );
     case 'unanswered_reviews':
       return (
-        <Link to="/basecamp/inbox" search={{ type: 'review', mod: item.mod.id }} className={className}>
+        <Link to="/dashboard/inbox" search={{ type: 'review', mod: item.mod.id }} className={className}>
           {content}
         </Link>
       );
     case 'missing_gallery':
       return (
-        <Link to="/basecamp/mods/$modId" params={{ modId }} search={{ tab: 'media' }} className={className}>
+        <Link to="/dashboard/mods/$modId" params={{ modId }} search={{ tab: 'media' }} className={className}>
           {content}
         </Link>
       );
     case 'missing_source':
       return (
-        <Link to="/basecamp/mods/$modId" params={{ modId }} search={{ tab: 'listing' }} className={className}>
+        <Link to="/dashboard/mods/$modId" params={{ modId }} search={{ tab: 'listing' }} className={className}>
           {content}
         </Link>
       );
     case 'rejected':
       return (
-        <Link to="/basecamp/mods/$modId" params={{ modId }} search={{ tab: 'settings' }} className={className}>
+        <Link to="/dashboard/mods/$modId" params={{ modId }} search={{ tab: 'settings' }} className={className}>
           {content}
         </Link>
       );

@@ -6,7 +6,7 @@ anchors: [what, who, trust, money, contact]
 
 # Che cos’è SOTF Mods
 
-SOTF Mods è la casa della community di modding di **Sons of the Forest**. Dal 2023 ospita mod, librerie e progetti BuildShare per **RedLoader**, il caricatore di mod del gioco, ed è il più grande catalogo di mod per RedLoader che esista.
+SOTF Mods è la casa della community di modding di **Sons of the Forest**. Dal 2023 ospita mod, librerie e build BuildShare per **RedLoader**, il caricatore di mod del gioco, ed è il più grande catalogo di mod per RedLoader che esista.
 
 Tutto si scarica gratis, direttamente dal nostro archivio: niente account, niente attese e niente download manager. RedManager, il gestore di mod della community, legge lo stesso catalogo, quindi puoi installare qualsiasi mod da qui con un clic.
 

@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "Vergelijken",
   "live_embed_title": "Badges voor je pagina",
-  "live_embed_intro": "Plak een badge in een README, forum of Discord. Ze werken zichzelf bij.",
+  "live_embed_intro": "Plak een badge in een README, forumbericht of Discord. Badges worden automatisch bijgewerkt.",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "Downloads",

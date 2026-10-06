@@ -3,7 +3,7 @@ export type Signals_Page_ReadoutInputs = {};
 /**
 * | output |
 * | --- |
-* | "Radio log" |
+* | "Notifications" |
 *
 * @param {Signals_Page_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

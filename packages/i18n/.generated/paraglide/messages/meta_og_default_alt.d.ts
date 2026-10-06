@@ -3,7 +3,7 @@ export type Meta_Og_Default_AltInputs = {};
 /**
 * | output |
 * | --- |
-* | "SOTF Mods: Sons of the Forest mods, builds and kits" |
+* | "SOTF Mods: Sons of the Forest mods and builds" |
 *
 * @param {Meta_Og_Default_AltInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

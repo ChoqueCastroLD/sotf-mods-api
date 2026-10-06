@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Inbox_Empty_Open_TitleInputs */
 
 const en_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inbox zero`)
+	return /** @type {LocalizedString} */ (`Nothing to answer`)
 };
 
 const es_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bandeja al día`)
+	return /** @type {LocalizedString} */ (`Nada que responder`)
 };
 
 const de_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posteingang leer`)
+	return /** @type {LocalizedString} */ (`Nichts zu beantworten`)
 };
 
 const fr_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Boîte à zéro`)
+	return /** @type {LocalizedString} */ (`Rien à traiter`)
 };
 
 const it_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posta in pari`)
+	return /** @type {LocalizedString} */ (`Niente a cui rispondere`)
 };
 
 const nl_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inbox leeg`)
+	return /** @type {LocalizedString} */ (`Niets te beantwoorden`)
 };
 
 const pl_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skrzynka pusta`)
+	return /** @type {LocalizedString} */ (`Nic do odpowiedzi`)
 };
 
 const pt_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Caixa em dia`)
+	return /** @type {LocalizedString} */ (`Nada para responder`)
 };
 
 const ru_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Входящие разобраны`)
+	return /** @type {LocalizedString} */ (`Отвечать не на что`)
 };
 
 const sv_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tom inkorg`)
+	return /** @type {LocalizedString} */ (`Inget att svara på`)
 };
 
 const tr_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gelen kutusu temiz`)
+	return /** @type {LocalizedString} */ (`Yanıtlanacak bir şey yok`)
 };
 
 const zh_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`收件箱已清空`)
+	return /** @type {LocalizedString} */ (`没有待回复的内容`)
 };
 
 const ja_basecamp_inbox_empty_open_title = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`受信箱は空です`)
+	return /** @type {LocalizedString} */ (`返信が必要なものはありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Inbox zero" |
+* | "Nothing to answer" |
 *
 * @param {Basecamp_Inbox_Empty_Open_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

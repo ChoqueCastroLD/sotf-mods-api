@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Search_PlaceholderInputs */
 
 const en_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Search mods, builds, creators…`)
+	return /** @type {LocalizedString} */ (`Search mods, builds, users…`)
 };
 
 const es_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Busca mods, builds, creadores…`)
+	return /** @type {LocalizedString} */ (`Busca mods, builds, usuarios…`)
 };
 
 const de_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods, Builds, Creator suchen …`)
+	return /** @type {LocalizedString} */ (`Mods, Builds, Nutzer suchen …`)
 };
 
 const fr_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rechercher des mods, builds, créateurs…`)
+	return /** @type {LocalizedString} */ (`Rechercher des mods, builds, utilisateurs…`)
 };
 
 const it_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cerca mod, build, creatori…`)
+	return /** @type {LocalizedString} */ (`Cerca mod, build, utenti…`)
 };
 
 const nl_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zoek mods, builds, makers…`)
+	return /** @type {LocalizedString} */ (`Zoek mods, builds, gebruikers…`)
 };
 
 const pl_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Szukaj modów, buildów, twórców…`)
+	return /** @type {LocalizedString} */ (`Szukaj modów, buildów, użytkowników…`)
 };
 
 const pt_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pesquise mods, builds, criadores…`)
+	return /** @type {LocalizedString} */ (`Pesquise mods, builds, usuários…`)
 };
 
 const ru_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ищите моды, постройки, авторов…`)
+	return /** @type {LocalizedString} */ (`Ищите моды, постройки, пользователей…`)
 };
 
 const sv_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sök moddar, byggen, skapare…`)
+	return /** @type {LocalizedString} */ (`Sök moddar, byggen, användare…`)
 };
 
 const tr_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod, yapı, üretici ara…`)
+	return /** @type {LocalizedString} */ (`Mod, yapı, kullanıcı ara…`)
 };
 
 const zh_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`搜索模组、建筑、创作者…`)
+	return /** @type {LocalizedString} */ (`搜索模组、建筑、用户…`)
 };
 
 const ja_common_search_placeholder = /** @type {(inputs: Common_Search_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MOD、建築、クリエイターを検索…`)
+	return /** @type {LocalizedString} */ (`MOD、建築、ユーザーを検索…`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Search mods, builds, creators…" |
+* | "Search mods, builds, users…" |
 *
 * @param {Common_Search_PlaceholderInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

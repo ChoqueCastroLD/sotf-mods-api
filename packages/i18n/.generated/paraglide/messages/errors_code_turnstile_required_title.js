@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Turnstile_Required_TitleInputs */
 
 const en_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quick check`)
+	return /** @type {LocalizedString} */ (`Security check`)
 };
 
 const es_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Comprobación rápida`)
+	return /** @type {LocalizedString} */ (`Verificación de seguridad`)
 };
 
 const de_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kurze Prüfung`)
+	return /** @type {LocalizedString} */ (`Sicherheitsprüfung`)
 };
 
 const fr_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vérification rapide`)
+	return /** @type {LocalizedString} */ (`Vérification de sécurité`)
 };
 
 const it_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Controllo rapido`)
+	return /** @type {LocalizedString} */ (`Verifica di sicurezza`)
 };
 
 const nl_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Snelle controle`)
+	return /** @type {LocalizedString} */ (`Beveiligingscontrole`)
 };
 
 const pl_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Szybka weryfikacja`)
+	return /** @type {LocalizedString} */ (`Weryfikacja bezpieczeństwa`)
 };
 
 const pt_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verificação rápida`)
+	return /** @type {LocalizedString} */ (`Verificação de segurança`)
 };
 
 const ru_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Быстрая проверка`)
+	return /** @type {LocalizedString} */ (`Проверка безопасности`)
 };
 
 const sv_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Snabb kontroll`)
+	return /** @type {LocalizedString} */ (`Säkerhetskontroll`)
 };
 
 const tr_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kısa bir kontrol`)
+	return /** @type {LocalizedString} */ (`Güvenlik kontrolü`)
 };
 
 const zh_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`快速验证`)
+	return /** @type {LocalizedString} */ (`安全验证`)
 };
 
 const ja_errors_code_turnstile_required_title = /** @type {(inputs: Errors_Code_Turnstile_Required_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`簡単な確認`)
+	return /** @type {LocalizedString} */ (`セキュリティチェック`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Quick check" |
+* | "Security check" |
 *
 * @param {Errors_Code_Turnstile_Required_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

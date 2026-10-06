@@ -1,5 +1,5 @@
 /**
- * `/ranger` and `/ranger/comments` — the moderation queue (research/03 §6.10, PLAN §7.4 «Colas»).
+ * `/moderation` and `/moderation/comments` — the moderation queue (research/03 §6.10, PLAN §7.4 «Colas»).
  *
  * - Lane bar with live counts (`moderation.queue` stream events refetch every `['moderation']`
  *   query) and the SLA at a glance: waiting in the lane, over 72 h, oldest and average wait, plus
@@ -65,8 +65,8 @@ const SPLIT_QUERY = '(min-width: 64rem)';
 const PHONE_QUERY = '(max-width: 47.99rem)';
 
 export interface QueueScreenProps {
-  /** Route of the screen (`/ranger` or `/ranger/comments`). */
-  basePath: '/ranger' | '/ranger/comments';
+  /** Route of the screen (`/moderation` or `/moderation/comments`). */
+  basePath: '/moderation' | '/moderation/comments';
   lanes: readonly Lane[];
   lane: Lane;
   itemId: string | null;
@@ -237,7 +237,7 @@ function LaneBar({
                 {count !== undefined ? (
                   <span
                     className={cn(
-                      'rounded-full px-1.5 font-mono text-2xs tabular-nums',
+                      'rounded-full px-1.5 text-2xs tabular-nums',
                       count > 0 ? 'bg-signal-soft text-fg' : 'bg-fg/8 text-fg-muted',
                     )}
                   >
@@ -276,8 +276,8 @@ function SlaSummary({
       value: String(overdue),
       tone: overdue > 0 ? 'text-danger' : '',
     },
-    { label: m.ranger_sla_oldest(), value: items.length > 0 ? waitingText(oldest) : '—', tone: '' },
-    { label: m.ranger_sla_average(), value: items.length > 0 ? waitingText(average) : '—', tone: '' },
+    { label: m.ranger_sla_oldest(), value: items.length > 0 ? waitingText(oldest) : '-', tone: '' },
+    { label: m.ranger_sla_average(), value: items.length > 0 ? waitingText(average) : '-', tone: '' },
   ];
   if (metrics.data) tiles.push(...metricTiles(metrics.data));
   return (
@@ -302,17 +302,17 @@ export function metricTiles(metrics: ReviewMetrics): Array<{ label: string; valu
   return [
     {
       label: m.ranger_metrics_mean({ days: metrics.windowDays }),
-      value: overall.meanHours === null ? '—' : waitingText(overall.meanHours),
+      value: overall.meanHours === null ? '-' : waitingText(overall.meanHours),
       tone: '',
     },
     {
       label: m.ranger_metrics_median({ days: metrics.windowDays }),
-      value: overall.medianHours === null ? '—' : waitingText(overall.medianHours),
+      value: overall.medianHours === null ? '-' : waitingText(overall.medianHours),
       tone: '',
     },
     {
       label: m.ranger_metrics_within_sla({ hours: metrics.slaHours }),
-      value: within === null ? '—' : formatPercent(activeLocale(), within),
+      value: within === null ? '-' : formatPercent(activeLocale(), within),
       tone: within !== null && within < 0.9 ? 'text-warning' : '',
     },
     {

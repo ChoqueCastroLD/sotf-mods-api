@@ -3,7 +3,7 @@ export type Admin_Ann_Field_Href_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "A site path such as /patch-radar, or an https:// address." |
+* | "A site path such as /mods, or an https:// address." |
 *
 * @param {Admin_Ann_Field_Href_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@ export type Upload_Build_Thumbnail_AltInputs = {
 /**
 * | output |
 * | --- |
-* | "Thumbnail of the blueprint {name}" |
+* | "Thumbnail of the build {name}" |
 *
 * @param {Upload_Build_Thumbnail_AltInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

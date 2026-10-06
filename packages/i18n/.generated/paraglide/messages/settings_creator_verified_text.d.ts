@@ -3,7 +3,7 @@ export type Settings_Creator_Verified_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your mods carry the verified mark and you can upload larger files." |
+* | "You have the Trusted badge on your profile and mods, and you can upload larger files." |
 *
 * @param {Settings_Creator_Verified_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

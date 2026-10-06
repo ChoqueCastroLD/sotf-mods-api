@@ -38,7 +38,7 @@ const pt_upload_file_intro_version = /** @type {(inputs: Upload_File_Intro_Versi
 };
 
 const ru_upload_file_intro_version = /** @type {(inputs: Upload_File_Intro_VersionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Загрузите новый файл для «${i?.name}». Его id в манифесте должен быть ${i?.manifestId}, а версия — выше ${i?.version}.`)
+	return /** @type {LocalizedString} */ (`Загрузите новый файл для «${i?.name}». Его id в манифесте должен быть ${i?.manifestId}, а версия выше ${i?.version}.`)
 };
 
 const sv_upload_file_intro_version = /** @type {(inputs: Upload_File_Intro_VersionInputs) => LocalizedString} */ (i) => {

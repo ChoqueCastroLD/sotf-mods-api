@@ -18,11 +18,11 @@ export function GlobalShortcuts({ ranger, onToggleSidebar, onShowHelp }: GlobalS
   const navigate = useNavigate();
   const go = (to: string) => () => void navigate({ to: to as LinkProps['to'] });
   useShortcut('?', onShowHelp, { description: () => t('console_shortcut_help') });
-  useShortcut('g b', go('/basecamp'), { description: () => t('console_shortcut_go_basecamp') });
-  useShortcut('g s', go('/signals'), { description: () => t('console_shortcut_go_signals') });
-  useShortcut('g m', go('/me/backpack'), { description: () => t('console_shortcut_go_backpack') });
+  useShortcut('g b', go('/dashboard'), { description: () => t('console_shortcut_go_basecamp') });
+  useShortcut('g s', go('/notifications'), { description: () => t('console_shortcut_go_signals') });
+  useShortcut('g m', go('/me/following'), { description: () => t('console_shortcut_go_backpack') });
   useShortcut('g ,', go('/settings/profile'), { description: () => t('console_shortcut_go_settings') });
-  useShortcut('g r', go('/ranger'), { description: () => t('console_shortcut_go_ranger'), enabled: ranger });
+  useShortcut('g r', go('/moderation'), { description: () => t('console_shortcut_go_ranger'), enabled: ranger });
   useShortcut('[', onToggleSidebar, { description: () => t('console_shortcut_toggle_sidebar') });
   return null;
 }

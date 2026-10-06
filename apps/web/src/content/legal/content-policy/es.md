@@ -1,18 +1,17 @@
 ---
 title: Política de contenido
-description: Qué puedes publicar en SOTF Mods — contenido permitido y prohibido, contenido adulto, mods con IA, créditos y resubidas, y cómo funcionan los reportes y la moderación.
+description: Qué puedes publicar en SOTF Mods: contenido permitido y prohibido, contenido adulto, mods con IA, créditos y resubidas, y cómo funcionan los reportes y la moderación.
 anchors: [principles, allowed, forbidden, safety, adult, credits, ai, community, reports, enforcement, appeals]
 ---
 
 # Principios
 
-SOTF Mods existe para que los jugadores encuentren mods que funcionan y los creadores reciban el mérito por su trabajo. Esta política explica qué tiene cabida aquí. Se aplica a mods, builds, Kits, imágenes, descripciones, comentarios, reseñas, perfiles y reportes.
+SOTF Mods existe para que los jugadores encuentren mods que funcionan y los creadores reciban el mérito por su trabajo. Esta política explica qué tiene cabida aquí. Se aplica a mods, builds, imágenes, descripciones, comentarios, reseñas, perfiles y reportes.
 
 # Qué puedes publicar
 
 - Mods, librerías y herramientas para Sons of the Forest hechos para **RedLoader**.
-- Planos de BuildShare (builds) de tus propias creaciones.
-- Kits: colecciones de mods del sitio con tus notas.
+- Builds (BuildShare) de tus propias creaciones.
 - Capturas y vídeos de tu mod en acción.
 
 Cada mod necesita una descripción clara de lo que hace, cómo instalarlo y qué requiere.

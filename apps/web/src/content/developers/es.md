@@ -1,12 +1,12 @@
 ---
 title: API de SOTF Mods para desarrolladores
-description: Construye sobre el catálogo de SOTF Mods — API pública v2 con OpenAPI, errores, paginación, caché y límites, guía para gestores de mods y calendario de la API legacy.
+description: Construye sobre el catálogo de SOTF Mods: API pública v2 con OpenAPI, errores, paginación, caché y límites, guía para gestores de mods y calendario de la API legacy.
 anchors: [overview, format, errors, pagination, caching, mod-manager, downloads, updates, support]
 ---
 
 # Visión general
 
-La API de SOTF Mods es pública y de solo lectura para clientes anónimos: todo el catálogo de mods, librerías, builds y Kits de Sons of the Forest, con versiones, dependencias y compatibilidad por build del juego.
+La API de SOTF Mods es pública y de solo lectura para clientes anónimos: todo el catálogo de mods, librerías y builds de Sons of the Forest, con versiones, dependencias y compatibilidad por build del juego.
 
 - **URL base:** `https://api.sotf-mods.com/api/v2` para clientes de terceros (también se sirve en `https://sotf-mods.com/api/v2`).
 - **Referencia:** cada endpoint, parámetro y esquema está en la [referencia interactiva](/api/docs), generada desde los mismos contratos con los que funciona el servidor. La especificación está en [`/api/v2/openapi.json`](/api/v2/openapi.json) (OpenAPI 3.1).

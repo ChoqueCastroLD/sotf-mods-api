@@ -5,7 +5,7 @@ export type Me_FollowedInputs = {
 /**
 * | output |
 * | --- |
-* | "{mod} is in your backpack" |
+* | "You now follow {mod}" |
 *
 * @param {Me_FollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

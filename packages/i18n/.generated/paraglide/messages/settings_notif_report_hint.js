@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Notif_Report_HintInputs */
 
 const en_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The Rangers reviewed something you reported.`)
+	return /** @type {LocalizedString} */ (`The moderators reviewed something you reported.`)
 };
 
 const es_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los guardabosques han revisado algo que reportaste.`)
+	return /** @type {LocalizedString} */ (`Los moderadores han revisado algo que reportaste.`)
 };
 
 const de_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Ranger haben etwas geprüft, das du gemeldet hast.`)
+	return /** @type {LocalizedString} */ (`Die Moderation hat etwas geprüft, das du gemeldet hast.`)
 };
 
 const fr_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rangers ont examiné quelque chose que vous avez signalé.`)
+	return /** @type {LocalizedString} */ (`Les modérateurs ont examiné quelque chose que vous avez signalé.`)
 };
 
 const it_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I ranger hanno esaminato qualcosa che hai segnalato.`)
+	return /** @type {LocalizedString} */ (`I moderatori hanno esaminato qualcosa che hai segnalato.`)
 };
 
 const nl_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De rangers hebben iets bekeken dat jij hebt gemeld.`)
+	return /** @type {LocalizedString} */ (`De moderators hebben iets bekeken dat jij hebt gemeld.`)
 };
 
 const pl_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnicy rozpatrzyli coś, co zgłosiłeś.`)
+	return /** @type {LocalizedString} */ (`Moderatorzy rozpatrzyli coś, co zgłosiłeś.`)
 };
 
 const pt_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os guardas analisaram algo que você denunciou.`)
+	return /** @type {LocalizedString} */ (`Os moderadores analisaram algo que você denunciou.`)
 };
 
 const ru_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджеры рассмотрели вашу жалобу.`)
+	return /** @type {LocalizedString} */ (`Модераторы рассмотрели вашу жалобу.`)
 };
 
 const sv_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers har granskat något du anmälde.`)
+	return /** @type {LocalizedString} */ (`Moderatorerna har granskat något du anmälde.`)
 };
 
 const tr_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular bildirdiğin bir şeyi inceledi.`)
+	return /** @type {LocalizedString} */ (`Moderatörler bildirdiğin bir şeyi inceledi.`)
 };
 
 const zh_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员处理了你举报的内容。`)
+	return /** @type {LocalizedString} */ (`版主处理了你举报的内容。`)
 };
 
 const ja_settings_notif_report_hint = /** @type {(inputs: Settings_Notif_Report_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーがあなたの通報を確認しました。`)
+	return /** @type {LocalizedString} */ (`モデレーターがあなたの通報を確認しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The Rangers reviewed something you reported." |
+* | "The moderators reviewed something you reported." |
 *
 * @param {Settings_Notif_Report_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Upload_New_Build_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "A BuildShare blueprint .json. Thumbnail and stats are read for you." |
+* | "A BuildShare .json file. Thumbnail and stats are read for you." |
 *
 * @param {Upload_New_Build_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

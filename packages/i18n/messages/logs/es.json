@@ -90,7 +90,7 @@
   "logs_expires_in": "Se borra en {time}",
   "logs_viewer_title": "Log compartido",
   "logs_meta_viewer_description": "Un log de juego compartido. El enlace privado se borra solo a las 24 horas.",
-  "logs_gone_title": "Este log ya no existe",
+  "logs_gone_title": "Este log ya no está disponible",
   "logs_gone_expired": "Los logs compartidos se borran automáticamente a las 24 horas. Pide un enlace nuevo o comparte el log otra vez.",
   "logs_gone_deleted": "El autor borró este log.",
   "logs_gone_reported": "Este log se retiró tras varias denuncias.",

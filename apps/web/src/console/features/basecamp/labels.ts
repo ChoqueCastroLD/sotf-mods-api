@@ -6,7 +6,6 @@ import type { BadgeVariant } from '@sotf/ui/badge';
 import type {
   AnalyticsRange,
   AttentionKind,
-  CompatStatus,
   DownloadChannel,
   InboxItem,
   InboxType,
@@ -76,32 +75,6 @@ export function versionStatusVariant(status: VersionStatus): BadgeVariant {
       return 'danger';
     case 'yanked':
       return 'warning';
-  }
-}
-
-export function compatStatusLabel(status: CompatStatus): string {
-  switch (status) {
-    case 'works':
-      return bt('basecamp_compat_works');
-    case 'mixed':
-      return bt('basecamp_compat_mixed');
-    case 'broken':
-      return bt('basecamp_compat_broken');
-    case 'untested':
-      return bt('basecamp_compat_untested');
-  }
-}
-
-export function compatStatusVariant(status: CompatStatus): BadgeVariant {
-  switch (status) {
-    case 'works':
-      return 'success';
-    case 'mixed':
-      return 'warning';
-    case 'broken':
-      return 'danger';
-    case 'untested':
-      return 'neutral';
   }
 }
 

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Import_Step3_TitleInputs */
 
 const en_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Place it on the island`)
+	return /** @type {LocalizedString} */ (`Place it in the game`)
 };
 
 const es_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Colócala en la isla`)
+	return /** @type {LocalizedString} */ (`Colócala en el juego`)
 };
 
 const de_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Auf der Insel platzieren`)
+	return /** @type {LocalizedString} */ (`Im Spiel platzieren`)
 };
 
 const fr_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La placer sur l’île`)
+	return /** @type {LocalizedString} */ (`La placer en jeu`)
 };
 
 const it_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Piazzala sull’isola`)
+	return /** @type {LocalizedString} */ (`Piazzala nel gioco`)
 };
 
 const nl_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plaats hem op het eiland`)
+	return /** @type {LocalizedString} */ (`Plaats hem in de game`)
 };
 
 const pl_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Postaw go na wyspie`)
+	return /** @type {LocalizedString} */ (`Postaw go w grze`)
 };
 
 const pt_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posicione na ilha`)
+	return /** @type {LocalizedString} */ (`Posicione no jogo`)
 };
 
 const ru_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Поставьте её на острове`)
+	return /** @type {LocalizedString} */ (`Поставьте её в игре`)
 };
 
 const sv_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Placera det på ön`)
+	return /** @type {LocalizedString} */ (`Placera det i spelet`)
 };
 
 const tr_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Adaya yerleştir`)
+	return /** @type {LocalizedString} */ (`Oyunda yerleştir`)
 };
 
 const zh_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`在岛上放置`)
+	return /** @type {LocalizedString} */ (`在游戏中放置`)
 };
 
 const ja_builds_import_step3_title = /** @type {(inputs: Builds_Import_Step3_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`島に配置する`)
+	return /** @type {LocalizedString} */ (`ゲーム内に配置する`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Place it on the island" |
+* | "Place it in the game" |
 *
 * @param {Builds_Import_Step3_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

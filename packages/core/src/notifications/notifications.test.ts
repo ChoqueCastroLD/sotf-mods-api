@@ -97,7 +97,7 @@ describe('helpers', () => {
     expect(modKindOf(null)).toBe('mod');
     expect(cadenceOfRun('10m')).toBe('instant');
     expect(localizedUrl('https://sotf-mods.com', 'de', '/')).toBe('https://sotf-mods.com/de');
-    expect(localizedUrl('https://sotf-mods.com', 'en', '/signals')).toBe('https://sotf-mods.com/signals');
+    expect(localizedUrl('https://sotf-mods.com', 'en', '/notifications')).toBe('https://sotf-mods.com/notifications');
   });
 
   it('validates the email payloads', () => {
@@ -125,7 +125,7 @@ describe('helpers', () => {
         },
       ],
       moreCount: 0,
-      signalsUrl: 'https://sotf-mods.com/signals',
+      signalsUrl: 'https://sotf-mods.com/notifications',
       unsubscribe: {
         oneClick: 'https://sotf-mods.com/api/v2/unsubscribe?token=a.b',
         page: 'https://sotf-mods.com/unsubscribe?token=a.b',

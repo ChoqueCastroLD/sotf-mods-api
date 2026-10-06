@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Details_Discovery_HintInputs */
 
 const en_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`They decide where survivors find it in Explore and search.`)
+	return /** @type {LocalizedString} */ (`They decide where players find it in Mods and search.`)
 };
 
 const es_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deciden dónde lo encuentran los supervivientes en Explorar y en la búsqueda.`)
+	return /** @type {LocalizedString} */ (`Deciden dónde lo encuentran los jugadores en Mods y en la búsqueda.`)
 };
 
 const de_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sie bestimmen, wo Überlebende ihn in Entdecken und der Suche finden.`)
+	return /** @type {LocalizedString} */ (`Sie bestimmen, wo Spieler ihn unter Mods und in der Suche finden.`)
 };
 
 const fr_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ils décident où les survivants le trouvent dans Explorer et la recherche.`)
+	return /** @type {LocalizedString} */ (`Ils décident où les joueurs le trouvent dans Mods et la recherche.`)
 };
 
 const it_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Decidono dove i sopravvissuti la trovano in Esplora e nella ricerca.`)
+	return /** @type {LocalizedString} */ (`Decidono dove i giocatori la trovano in Mod e nella ricerca.`)
 };
 
 const nl_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ze bepalen waar overlevenden hem vinden in Verkennen en zoeken.`)
+	return /** @type {LocalizedString} */ (`Ze bepalen waar spelers hem vinden bij Mods en in zoeken.`)
 };
 
 const pl_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Od nich zależy, gdzie ocaleni go znajdą w Odkrywaniu i wyszukiwarce.`)
+	return /** @type {LocalizedString} */ (`Od nich zależy, gdzie gracze go znajdą w Modach i wyszukiwarce.`)
 };
 
 const pt_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Elas decidem onde os sobreviventes o encontram em Explorar e na busca.`)
+	return /** @type {LocalizedString} */ (`Elas decidem onde os jogadores o encontram em Mods e na busca.`)
 };
 
 const ru_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`От них зависит, где выжившие найдут его в Обзоре и поиске.`)
+	return /** @type {LocalizedString} */ (`От них зависит, где игроки найдут его в разделе «Моды» и в поиске.`)
 };
 
 const sv_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De avgör var överlevare hittar den i Utforska och sökningen.`)
+	return /** @type {LocalizedString} */ (`De avgör var spelare hittar den under Moddar och i sökningen.`)
 };
 
 const tr_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hayatta kalanların onu Keşfet’te ve aramada nerede bulacağını belirler.`)
+	return /** @type {LocalizedString} */ (`Oyuncuların onu Modlar’da ve aramada nerede bulacağını belirler.`)
 };
 
 const zh_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`它们决定幸存者在探索和搜索中从哪里找到它。`)
+	return /** @type {LocalizedString} */ (`它们决定玩家在“模组”和搜索中从哪里找到它。`)
 };
 
 const ja_upload_details_discovery_hint = /** @type {(inputs: Upload_Details_Discovery_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`サバイバーが探索や検索で見つける場所が決まります。`)
+	return /** @type {LocalizedString} */ (`プレイヤーが「MOD」や検索で見つける場所が決まります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "They decide where survivors find it in Explore and search." |
+* | "They decide where players find it in Mods and search." |
 *
 * @param {Upload_Details_Discovery_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

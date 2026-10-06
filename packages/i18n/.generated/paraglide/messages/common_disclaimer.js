@@ -38,7 +38,7 @@ const pt_common_disclaimer = /** @type {(inputs: Common_DisclaimerInputs) => Loc
 };
 
 const ru_common_disclaimer = /** @type {(inputs: Common_DisclaimerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods — неофициальное фан-сообщество. Не связано с Endnight Games Ltd. и не одобрено ею. «Sons of the Forest» — товарный знак его владельца.`)
+	return /** @type {LocalizedString} */ (`SOTF Mods: неофициальное фан-сообщество. Не связано с Endnight Games Ltd. и не одобрено ею. «Sons of the Forest» является товарным знаком своего владельца.`)
 };
 
 const sv_common_disclaimer = /** @type {(inputs: Common_DisclaimerInputs) => LocalizedString} */ () => {

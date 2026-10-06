@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Account_HintInputs */
 
 const en_settings_account_hint = /** @type {(inputs: Settings_Account_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign-in email and password.`)
+	return /** @type {LocalizedString} */ (`Login email and password.`)
 };
 
 const es_settings_account_hint = /** @type {(inputs: Settings_Account_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_account_hint = /** @type {(inputs: Settings_Account_HintInputs
 /**
 * | output |
 * | --- |
-* | "Sign-in email and password." |
+* | "Login email and password." |
 *
 * @param {Settings_Account_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

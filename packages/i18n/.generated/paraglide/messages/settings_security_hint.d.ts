@@ -3,7 +3,7 @@ export type Settings_Security_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Where you are signed in, and signing out other devices." |
+* | "Where you are logged in, and logging out other devices." |
 *
 * @param {Settings_Security_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

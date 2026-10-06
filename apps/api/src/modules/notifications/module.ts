@@ -1,5 +1,5 @@
 /**
- * `notifications` module (WP-43, PLAN §5.2, §7.3): the signals feed of `/signals` with its filters,
+ * `notifications` module (WP-43, PLAN §5.2, §7.3): the signals feed of `/notifications` with its filters,
  * the unread counter (polling fallback of the SSE bell), "mark as read" and the preference matrix.
  * Every response is private to the signed-in user.
  */

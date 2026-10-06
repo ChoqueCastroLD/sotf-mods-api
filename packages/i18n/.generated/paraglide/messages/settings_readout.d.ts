@@ -3,7 +3,7 @@ export type Settings_ReadoutInputs = {};
 /**
 * | output |
 * | --- |
-* | "Camp settings" |
+* | "Account settings" |
 *
 * @param {Settings_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

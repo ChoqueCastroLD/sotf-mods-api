@@ -3,7 +3,7 @@ export type Ui_Domain_Status_PendingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Pending review" |
+* | "Pending approval" |
 *
 * @param {Ui_Domain_Status_PendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -66,10 +66,10 @@ const pt_emails_notify_item_version_published_many = /** @type {(inputs: Emails_
 
 const ru_emails_notify_item_version_published_many = /** @type {(inputs: Emails_Notify_Item_Version_Published_ManyInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("ru", i?.count, {});
 	const count__number = registry.number("ru", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новая версия, последняя — ${i?.version}`);
-	if (count__plural === "few") return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новые версии, последняя — ${i?.version}`);
-	if (count__plural === "many") return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новых версий, последняя — ${i?.version}`);
-	return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новой версии, последняя — ${i?.version}`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новая версия, последняя: ${i?.version}`);
+	if (count__plural === "few") return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новые версии, последняя: ${i?.version}`);
+	if (count__plural === "many") return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новых версий, последняя: ${i?.version}`);
+	return /** @type {LocalizedString} */ (`У ${i?.mod} ${count__number} новой версии, последняя: ${i?.version}`)
 	
 };
 

@@ -3,7 +3,7 @@ export type Signals_Empty_Filtered_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing on this channel" |
+* | "No notifications here" |
 *
 * @param {Signals_Empty_Filtered_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

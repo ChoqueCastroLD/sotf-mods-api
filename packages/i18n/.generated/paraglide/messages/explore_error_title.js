@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Error_TitleInputs */
 
 const en_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No signal`)
+	return /** @type {LocalizedString} */ (`The list could not be loaded`)
 };
 
 const es_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin señal`)
+	return /** @type {LocalizedString} */ (`No se pudo cargar la lista`)
 };
 
 const de_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kein Signal`)
+	return /** @type {LocalizedString} */ (`Die Liste konnte nicht geladen werden`)
 };
 
 const fr_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas de signal`)
+	return /** @type {LocalizedString} */ (`Impossible de charger la liste`)
 };
 
 const it_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessun segnale`)
+	return /** @type {LocalizedString} */ (`Impossibile caricare l’elenco`)
 };
 
 const nl_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen signaal`)
+	return /** @type {LocalizedString} */ (`De lijst kon niet worden geladen`)
 };
 
 const pl_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak sygnału`)
+	return /** @type {LocalizedString} */ (`Nie udało się wczytać listy`)
 };
 
 const pt_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem sinal`)
+	return /** @type {LocalizedString} */ (`Não foi possível carregar a lista`)
 };
 
 const ru_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Нет сигнала`)
+	return /** @type {LocalizedString} */ (`Не удалось загрузить список`)
 };
 
 const sv_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ingen signal`)
+	return /** @type {LocalizedString} */ (`Listan kunde inte läsas in`)
 };
 
 const tr_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyal yok`)
+	return /** @type {LocalizedString} */ (`Liste yüklenemedi`)
 };
 
 const zh_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`没有信号`)
+	return /** @type {LocalizedString} */ (`无法加载列表`)
 };
 
 const ja_explore_error_title = /** @type {(inputs: Explore_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`電波が届きません`)
+	return /** @type {LocalizedString} */ (`リストを読み込めませんでした`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No signal" |
+* | "The list could not be loaded" |
 *
 * @param {Explore_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

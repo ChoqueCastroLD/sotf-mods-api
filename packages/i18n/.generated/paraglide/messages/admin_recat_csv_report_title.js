@@ -38,7 +38,7 @@ const pt_admin_recat_csv_report_title = /** @type {(inputs: Admin_Recat_Csv_Repo
 };
 
 const ru_admin_recat_csv_report_title = /** @type {(inputs: Admin_Recat_Csv_Report_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`CSV: новых строк — ${i?.added}, заменено предложений — ${i?.updated}`)
+	return /** @type {LocalizedString} */ (`CSV: новых строк: ${i?.added}, заменено предложений: ${i?.updated}`)
 };
 
 const sv_admin_recat_csv_report_title = /** @type {(inputs: Admin_Recat_Csv_Report_TitleInputs) => LocalizedString} */ (i) => {

@@ -3,7 +3,7 @@ export type Settings_Notif_Version_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "A mod in your backpack released an update." |
+* | "A mod you follow released an update." |
 *
 * @param {Settings_Notif_Version_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Signals_See_AllInputs = {};
 /**
 * | output |
 * | --- |
-* | "See all signals" |
+* | "See all notifications" |
 *
 * @param {Signals_See_AllInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Reviews_EmptyInputs */
 
 const en_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No reviews yet. Built it? Tell other survivors how it went.`)
+	return /** @type {LocalizedString} */ (`No reviews yet. Tried it? Tell other players how it went.`)
 };
 
 const es_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aún no hay reseñas. ¿La has construido? Cuéntales a otros supervivientes qué tal.`)
+	return /** @type {LocalizedString} */ (`Aún no hay reseñas. ¿La has probado? Cuéntales a otros jugadores qué tal.`)
 };
 
 const de_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch keine Bewertungen. Schon gebaut? Erzähl den anderen Überlebenden, wie es lief.`)
+	return /** @type {LocalizedString} */ (`Noch keine Bewertungen. Schon ausprobiert? Erzähl anderen Spielern, wie es lief.`)
 };
 
 const fr_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas encore d’avis. Vous l’avez construite ? Dites aux autres survivants comment ça s’est passé.`)
+	return /** @type {LocalizedString} */ (`Pas encore d’avis. Vous l’avez essayée ? Dites aux autres joueurs comment ça s’est passé.`)
 };
 
 const it_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ancora nessuna recensione. L’hai costruita? Racconta agli altri sopravvissuti com’è andata.`)
+	return /** @type {LocalizedString} */ (`Ancora nessuna recensione. L’hai provata? Racconta agli altri giocatori com’è andata.`)
 };
 
 const nl_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog geen reviews. Heb je hem gebouwd? Vertel andere overlevenden hoe het ging.`)
+	return /** @type {LocalizedString} */ (`Nog geen reviews. Heb je hem geprobeerd? Vertel andere spelers hoe het ging.`)
 };
 
 const pl_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak recenzji. Zbudowałeś to? Opowiedz innym ocalałym, jak poszło.`)
+	return /** @type {LocalizedString} */ (`Brak recenzji. Wypróbowałeś go? Opowiedz innym graczom, jak poszło.`)
 };
 
 const pt_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda não há avaliações. Construiu? Conte aos outros sobreviventes como foi.`)
+	return /** @type {LocalizedString} */ (`Ainda não há avaliações. Experimentou? Conte aos outros jogadores como foi.`)
 };
 
 const ru_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отзывов пока нет. Уже построили? Расскажите другим выжившим, как всё прошло.`)
+	return /** @type {LocalizedString} */ (`Отзывов пока нет. Уже попробовали? Расскажите другим игрокам, как всё прошло.`)
 };
 
 const sv_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga recensioner än. Har du byggt det? Berätta för andra överlevare hur det gick.`)
+	return /** @type {LocalizedString} */ (`Inga recensioner än. Har du provat det? Berätta för andra spelare hur det gick.`)
 };
 
 const tr_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz inceleme yok. İnşa ettin mi? Diğer hayatta kalanlara nasıl gittiğini anlat.`)
+	return /** @type {LocalizedString} */ (`Henüz inceleme yok. Denedin mi? Diğer oyunculara nasıl gittiğini anlat.`)
 };
 
 const zh_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`还没有评价。建好了吗？告诉其他幸存者效果如何。`)
+	return /** @type {LocalizedString} */ (`还没有评价。试过了吗？告诉其他玩家效果如何。`)
 };
 
 const ja_builds_reviews_empty = /** @type {(inputs: Builds_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レビューはまだありません。建ててみましたか？ほかのサバイバーに感想を伝えましょう。`)
+	return /** @type {LocalizedString} */ (`レビューはまだありません。試してみましたか？ほかのプレイヤーに感想を伝えましょう。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No reviews yet. Built it? Tell other survivors how it went." |
+* | "No reviews yet. Tried it? Tell other players how it went." |
 *
 * @param {Builds_Reviews_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

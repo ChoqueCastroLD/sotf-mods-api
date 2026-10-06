@@ -30,7 +30,7 @@ const nl_translations_field_name = /** @type {(inputs: Translations_Field_NameIn
 };
 
 const pl_translations_field_name = /** @type {(inputs: Translations_Field_NameInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tytuł — ${i?.language}`)
+	return /** @type {LocalizedString} */ (`Tytuł (${i?.language})`)
 };
 
 const pt_translations_field_name = /** @type {(inputs: Translations_Field_NameInputs) => LocalizedString} */ (i) => {

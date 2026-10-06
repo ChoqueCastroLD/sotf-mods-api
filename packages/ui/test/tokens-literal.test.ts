@@ -41,15 +41,7 @@ describe('tokens.css', () => {
   });
 
   it('keeps the brand utilities as harmless, sentence-case sans decoration', () => {
-    for (const utility of [
-      'font-display-caps',
-      'readout',
-      'tag-notch',
-      'texture-topo',
-      'texture-blueprint',
-      'skeleton',
-      'prose-locator',
-    ]) {
+    for (const utility of ['font-display-caps', 'readout', 'skeleton', 'prose-locator']) {
       expect(tokensCss).toContain(`@utility ${utility} `);
     }
     expect(utilityBody('font-display-caps')).toContain('text-transform: none');
@@ -58,9 +50,7 @@ describe('tokens.css', () => {
     expect(readout).toContain('var(--font-sans)');
     expect(readout).toContain('text-transform: none');
     expect(readout).not.toMatch(/mono|uppercase/);
-    for (const utility of ['texture-topo', 'texture-blueprint', 'tag-notch']) {
-      expect(utilityBody(utility)).not.toMatch(/url\(|gradient|mask|clip-path|background/);
-    }
+    expect(tokensCss).not.toMatch(/@utility (texture-|tag-notch)/);
   });
 
   it('has no glow, no ping animation and no textures', () => {

@@ -68,5 +68,5 @@ export const errors = {
 
 /** Friendly 429 text of PLAN §5.1 (neutral wording; KelvinSeek is retired), in English (UI translates). */
 export function rateLimitDetail(retryAfterSeconds: number): string {
-  return `Too many requests — try again in ${Math.max(1, Math.ceil(retryAfterSeconds))} s`;
+  return `Too many requests. Try again in ${Math.max(1, Math.ceil(retryAfterSeconds))} s`;
 }

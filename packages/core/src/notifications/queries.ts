@@ -1,5 +1,5 @@
 /**
- * Reading and marking signals (PLAN §5.2 `/notifications*`, §7.3): the cursor feed of `/signals`
+ * Reading and marking signals (PLAN §5.2 `/notifications*`, §7.3): the cursor feed of `/notifications`
  * with its filters, the unread counter of the bell and "mark as read". Hidden rows (in-app channel
  * off, kept only for the email, or of a type in `HIDDEN_NOTIFICATION_TYPES`) are never listed or
  * counted.

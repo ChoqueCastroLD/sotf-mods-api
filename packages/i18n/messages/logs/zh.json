@@ -90,7 +90,7 @@
   "logs_expires_in": "将在 {time} 后删除",
   "logs_viewer_title": "共享日志",
   "logs_meta_viewer_description": "一份共享的游戏日志。私密链接会在 24 小时后自动删除。",
-  "logs_gone_title": "此日志已不存在",
+  "logs_gone_title": "此日志已不可用",
   "logs_gone_expired": "共享日志会在 24 小时后自动删除。请索取新链接，或重新分享日志。",
   "logs_gone_deleted": "创建者已删除此日志。",
   "logs_gone_reported": "此日志因滥用举报已被移除。",

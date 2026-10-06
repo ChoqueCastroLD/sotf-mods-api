@@ -6,27 +6,27 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Viewer_ExploreInputs */
 
 const en_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore in 3D`)
+	return /** @type {LocalizedString} */ (`View in 3D`)
 };
 
 const es_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar en 3D`)
+	return /** @type {LocalizedString} */ (`Ver en 3D`)
 };
 
 const de_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In 3D erkunden`)
+	return /** @type {LocalizedString} */ (`In 3D ansehen`)
 };
 
 const fr_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer en 3D`)
+	return /** @type {LocalizedString} */ (`Voir en 3D`)
 };
 
 const it_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora in 3D`)
+	return /** @type {LocalizedString} */ (`Vedi in 3D`)
 };
 
 const nl_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verken in 3D`)
+	return /** @type {LocalizedString} */ (`Bekijk in 3D`)
 };
 
 const pl_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => Localized
 };
 
 const pt_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar em 3D`)
+	return /** @type {LocalizedString} */ (`Ver em 3D`)
 };
 
 const ru_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
@@ -42,11 +42,11 @@ const ru_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => Localized
 };
 
 const sv_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska i 3D`)
+	return /** @type {LocalizedString} */ (`Visa i 3D`)
 };
 
 const tr_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`3B olarak incele`)
+	return /** @type {LocalizedString} */ (`3B olarak görüntüle`)
 };
 
 const zh_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_viewer_explore = /** @type {(inputs: Viewer_ExploreInputs) => Localized
 /**
 * | output |
 * | --- |
-* | "Explore in 3D" |
+* | "View in 3D" |
 *
 * @param {Viewer_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

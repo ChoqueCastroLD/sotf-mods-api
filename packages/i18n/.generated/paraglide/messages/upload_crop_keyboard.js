@@ -38,7 +38,7 @@ const pt_upload_crop_keyboard = /** @type {(inputs: Upload_Crop_KeyboardInputs) 
 };
 
 const ru_upload_crop_keyboard = /** @type {(inputs: Upload_Crop_KeyboardInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Стрелки двигают · Shift — быстрее · + и − меняют размер`)
+	return /** @type {LocalizedString} */ (`Стрелки двигают · Shift двигает быстрее · + и − меняют размер`)
 };
 
 const sv_upload_crop_keyboard = /** @type {(inputs: Upload_Crop_KeyboardInputs) => LocalizedString} */ () => {

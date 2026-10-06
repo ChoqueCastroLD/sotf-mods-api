@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Heading_LibrariesInputs */
 
 const en_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore libraries`)
+	return /** @type {LocalizedString} */ (`Libraries`)
 };
 
 const es_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar librerías`)
+	return /** @type {LocalizedString} */ (`Librerías`)
 };
 
 const de_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bibliotheken entdecken`)
+	return /** @type {LocalizedString} */ (`Bibliotheken`)
 };
 
 const fr_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer les bibliothèques`)
+	return /** @type {LocalizedString} */ (`Bibliothèques`)
 };
 
 const it_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora le librerie`)
+	return /** @type {LocalizedString} */ (`Librerie`)
 };
 
 const nl_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bibliotheken verkennen`)
+	return /** @type {LocalizedString} */ (`Bibliotheken`)
 };
 
 const pl_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeglądaj biblioteki`)
+	return /** @type {LocalizedString} */ (`Biblioteki`)
 };
 
 const pt_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar bibliotecas`)
+	return /** @type {LocalizedString} */ (`Bibliotecas`)
 };
 
 const ru_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Обзор библиотек`)
+	return /** @type {LocalizedString} */ (`Библиотеки`)
 };
 
 const sv_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska bibliotek`)
+	return /** @type {LocalizedString} */ (`Bibliotek`)
 };
 
 const tr_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kütüphaneleri keşfet`)
+	return /** @type {LocalizedString} */ (`Kütüphaneler`)
 };
 
 const zh_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`探索前置库`)
+	return /** @type {LocalizedString} */ (`前置库`)
 };
 
 const ja_explore_heading_libraries = /** @type {(inputs: Explore_Heading_LibrariesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ライブラリを探す`)
+	return /** @type {LocalizedString} */ (`ライブラリ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Explore libraries" |
+* | "Libraries" |
 *
 * @param {Explore_Heading_LibrariesInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Upload_Reading_BuildInputs = {};
 /**
 * | output |
 * | --- |
-* | "Reading the blueprint…" |
+* | "Reading the build…" |
 *
 * @param {Upload_Reading_BuildInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

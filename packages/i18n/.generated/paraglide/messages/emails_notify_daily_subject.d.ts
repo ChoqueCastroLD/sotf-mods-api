@@ -5,8 +5,8 @@ export type Emails_Notify_Daily_SubjectInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "Your daily SOTF Mods digest: {count__number} signal" |
-* | * | "Your daily SOTF Mods digest: {count__number} signals" |
+* | "one" | "Your daily SOTF Mods digest: {count__number} notification" |
+* | * | "Your daily SOTF Mods digest: {count__number} notifications" |
 *
 * @param {Emails_Notify_Daily_SubjectInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

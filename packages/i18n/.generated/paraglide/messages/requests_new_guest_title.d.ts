@@ -3,7 +3,7 @@ export type Requests_New_Guest_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to ask for a mod" |
+* | "Log in to ask for a mod" |
 *
 * @param {Requests_New_Guest_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

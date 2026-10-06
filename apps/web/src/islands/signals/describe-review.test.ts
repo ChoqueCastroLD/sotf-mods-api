@@ -21,11 +21,11 @@ describe('review signals', () => {
   beforeAll(() => loadSignalsMessages('en'));
 
   it('mentions the stars of a 1–5 rating', () => {
-    expect(describeSignal(review({ rating: 4 }), 'en').text).toContain('4-star');
+    expect(describeSignal(review({ rating: 4 }), 'en')?.text).toContain('4-star');
   });
 
   it.each([undefined, null, 0, -1, 6, Number.NaN, '3'])('never says «0-star» for the rating %s', (rating) => {
-    const text = describeSignal(review({ rating }), 'en').text;
+    const text = describeSignal(review({ rating }), 'en')?.text ?? '';
     expect(text).not.toMatch(/\d-star/);
     expect(text).toContain('left a review');
   });

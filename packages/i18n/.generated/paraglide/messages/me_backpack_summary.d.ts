@@ -6,12 +6,12 @@ export type Me_Backpack_SummaryInputs = {
 /**
 * | count__plural | updates__exact | updates__plural | output |
 * | --- | --- | --- | --- |
-* | "one" | "0" | * | "{count__number} mod in your backpack · everything up to date" |
-* | "one" | * | "one" | "{count__number} mod in your backpack · {updates__number} update available" |
-* | "one" | * | * | "{count__number} mod in your backpack · {updates__number} updates available" |
-* | * | "0" | * | "{count__number} mods in your backpack · everything up to date" |
-* | * | * | "one" | "{count__number} mods in your backpack · {updates__number} update available" |
-* | * | * | * | "{count__number} mods in your backpack · {updates__number} updates available" |
+* | "one" | "0" | * | "{count__number} followed mod · everything up to date" |
+* | "one" | * | "one" | "{count__number} followed mod · {updates__number} update available" |
+* | "one" | * | * | "{count__number} followed mod · {updates__number} updates available" |
+* | * | "0" | * | "{count__number} followed mods · everything up to date" |
+* | * | * | "one" | "{count__number} followed mods · {updates__number} update available" |
+* | * | * | * | "{count__number} followed mods · {updates__number} updates available" |
 *
 * @param {Me_Backpack_SummaryInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

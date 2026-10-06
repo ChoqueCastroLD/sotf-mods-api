@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Editor_Accent_SignalInputs */
 
 const en_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signal orange`)
+	return /** @type {LocalizedString} */ (`Orange`)
 };
 
 const es_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Naranja señal`)
+	return /** @type {LocalizedString} */ (`Naranja`)
 };
 
 const de_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalorange`)
+	return /** @type {LocalizedString} */ (`Orange`)
 };
 
 const fr_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Orange signal`)
+	return /** @type {LocalizedString} */ (`Orange`)
 };
 
 const it_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Arancione segnale`)
+	return /** @type {LocalizedString} */ (`Arancione`)
 };
 
 const nl_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaaloranje`)
+	return /** @type {LocalizedString} */ (`Oranje`)
 };
 
 const pl_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pomarańcz sygnałowy`)
+	return /** @type {LocalizedString} */ (`Pomarańczowy`)
 };
 
 const pt_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Laranja sinal`)
+	return /** @type {LocalizedString} */ (`Laranja`)
 };
 
 const ru_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигнальный оранжевый`)
+	return /** @type {LocalizedString} */ (`Оранжевый`)
 };
 
 const sv_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalorange`)
+	return /** @type {LocalizedString} */ (`Orange`)
 };
 
 const tr_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyal turuncusu`)
+	return /** @type {LocalizedString} */ (`Turuncu`)
 };
 
 const zh_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`信号橙`)
+	return /** @type {LocalizedString} */ (`橙色`)
 };
 
 const ja_jams_editor_accent_signal = /** @type {(inputs: Jams_Editor_Accent_SignalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルオレンジ`)
+	return /** @type {LocalizedString} */ (`オレンジ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Signal orange" |
+* | "Orange" |
 *
 * @param {Jams_Editor_Accent_SignalInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

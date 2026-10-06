@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Theme_DayInputs */
 
 const en_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Day`)
+	return /** @type {LocalizedString} */ (`Light`)
 };
 
 const es_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Día`)
+	return /** @type {LocalizedString} */ (`Claro`)
 };
 
 const de_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tag`)
+	return /** @type {LocalizedString} */ (`Hell`)
 };
 
 const fr_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jour`)
+	return /** @type {LocalizedString} */ (`Clair`)
 };
 
 const it_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Giorno`)
+	return /** @type {LocalizedString} */ (`Chiaro`)
 };
 
 const nl_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dag`)
+	return /** @type {LocalizedString} */ (`Licht`)
 };
 
 const pl_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dzień`)
+	return /** @type {LocalizedString} */ (`Jasny`)
 };
 
 const pt_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dia`)
+	return /** @type {LocalizedString} */ (`Claro`)
 };
 
 const ru_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`День`)
+	return /** @type {LocalizedString} */ (`Светлая`)
 };
 
 const sv_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dag`)
+	return /** @type {LocalizedString} */ (`Ljust`)
 };
 
 const tr_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gündüz`)
+	return /** @type {LocalizedString} */ (`Açık`)
 };
 
 const zh_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`日间`)
+	return /** @type {LocalizedString} */ (`浅色`)
 };
 
 const ja_settings_theme_day = /** @type {(inputs: Settings_Theme_DayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`昼`)
+	return /** @type {LocalizedString} */ (`ライト`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Day" |
+* | "Light" |
 *
 * @param {Settings_Theme_DayInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

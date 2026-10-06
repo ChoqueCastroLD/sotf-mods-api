@@ -95,7 +95,7 @@ export function WizardScreen({ mode, draftId, modId, onDraftCreated }: WizardScr
               tone="warning"
               title={ut('upload_draft_missing_title')}
               action={
-                <Link to="/basecamp/drafts" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
+                <Link to="/dashboard/drafts" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
                   {ut('upload_my_drafts')}
                 </Link>
               }
@@ -120,7 +120,7 @@ export function WizardScreen({ mode, draftId, modId, onDraftCreated }: WizardScr
             action={
               initial.kind === 'version' && initial.modId !== null ? (
                 <Link
-                  to="/basecamp/mods/$modId/new-version"
+                  to="/dashboard/mods/$modId/new-version"
                   params={{ modId: String(initial.modId) }}
                   search={{ draft: initial.id }}
                   className={buttonClasses({ variant: 'primary', size: 'sm' })}
@@ -129,7 +129,7 @@ export function WizardScreen({ mode, draftId, modId, onDraftCreated }: WizardScr
                 </Link>
               ) : (
                 <Link
-                  to={initial.kind === 'build' ? '/basecamp/new/build' : '/basecamp/new/mod'}
+                  to={initial.kind === 'build' ? '/dashboard/new/build' : '/dashboard/new/mod'}
                   search={{ draft: initial.id }}
                   className={buttonClasses({ variant: 'primary', size: 'sm' })}
                 >
@@ -159,7 +159,7 @@ export function WizardScreen({ mode, draftId, modId, onDraftCreated }: WizardScr
             title={ut('upload_version_draft_exists_title')}
             action={
               <Link
-                to="/basecamp/mods/$modId/new-version"
+                to="/dashboard/mods/$modId/new-version"
                 params={{ modId: String(modId) }}
                 search={{ draft: existing.id }}
                 className={buttonClasses({ variant: 'secondary', size: 'sm' })}

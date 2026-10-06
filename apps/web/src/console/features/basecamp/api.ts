@@ -15,8 +15,7 @@
  * The live counters (`['studio', 'live', modId]`, polled) sit outside that prefix. Only `import type` from `@sotf/contracts/*`: the schema modules pull Zod,
  * which these route chunks do not ship; constants mirrored here are checked against the types.
  */
-import type { CompatStatus, ModStatus, VersionStatus } from '@sotf/contracts/common';
-import type { ModCompatDTO } from '@sotf/contracts/compat';
+import type { ModStatus, VersionStatus } from '@sotf/contracts/common';
 import type {
   CoAuthoredModDTO,
   CoAuthorInviteDTO,
@@ -72,11 +71,10 @@ export type DownloadChannel = (typeof DOWNLOAD_CHANNELS)[number];
 export type InboxItem = z.output<typeof InboxItemDTO>;
 export type InboxPage = z.output<typeof InboxPageDTO>;
 export type InboxState = 'open' | 'all';
-export type ModCompat = z.output<typeof ModCompatDTO>;
 export type ModLive = z.output<typeof ModLiveDTO>;
 export type ListingPatch = z.input<typeof UpdateStudioModBody>;
 export type Transition = StudioTransition;
-export type { CompatStatus, ModStatus, VersionStatus };
+export type { ModStatus, VersionStatus };
 
 export type Knowledge = ModKnowledgeDTO;
 export type KnownIssue = KnownIssueDTO;
@@ -165,14 +163,6 @@ export function studioModQuery(modId: number) {
     queryKey: basecampKeys.mod(modId),
     queryFn: ({ signal }): Promise<StudioMod> => api.studio.getMod({ params: { id: modId } }, { signal }),
     staleTime: 30_000,
-  });
-}
-
-export function modCompatQuery(modId: number) {
-  return queryOptions({
-    queryKey: basecampKeys.compat(modId),
-    queryFn: ({ signal }): Promise<ModCompat> => api.compat.modCompat({ params: { id: modId } }, { signal }),
-    staleTime: 60_000,
   });
 }
 

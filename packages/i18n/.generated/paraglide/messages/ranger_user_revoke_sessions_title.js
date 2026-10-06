@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Ranger_User_Revoke_Sessions_TitleInputs */
 
 const en_ranger_user_revoke_sessions_title = /** @type {(inputs: Ranger_User_Revoke_Sessions_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Sign ${i?.name} out everywhere?`)
+	return /** @type {LocalizedString} */ (`Log ${i?.name} out everywhere?`)
 };
 
 const es_ranger_user_revoke_sessions_title = /** @type {(inputs: Ranger_User_Revoke_Sessions_TitleInputs) => LocalizedString} */ (i) => {
@@ -26,7 +26,7 @@ const it_ranger_user_revoke_sessions_title = /** @type {(inputs: Ranger_User_Rev
 };
 
 const nl_ranger_user_revoke_sessions_title = /** @type {(inputs: Ranger_User_Revoke_Sessions_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} overal afmelden?`)
+	return /** @type {LocalizedString} */ (`${i?.name} overal uitloggen?`)
 };
 
 const pl_ranger_user_revoke_sessions_title = /** @type {(inputs: Ranger_User_Revoke_Sessions_TitleInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_ranger_user_revoke_sessions_title = /** @type {(inputs: Ranger_User_Rev
 /**
 * | output |
 * | --- |
-* | "Sign {name} out everywhere?" |
+* | "Log {name} out everywhere?" |
 *
 * @param {Ranger_User_Revoke_Sessions_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

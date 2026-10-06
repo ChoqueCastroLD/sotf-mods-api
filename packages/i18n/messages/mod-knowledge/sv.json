@@ -1,11 +1,7 @@
 {
-  "mod_knowledge_issues_title": "Kända problem",
   "mod_knowledge_status_open": "Öppen",
   "mod_knowledge_status_investigating": "Under utredning",
   "mod_knowledge_status_fixed": "Åtgärdat",
-  "mod_knowledge_issue_affects": "Gäller: {versions}",
-  "mod_knowledge_issue_fixed_in": "Åtgärdat i {version}",
-  "mod_knowledge_issue_resolved": "Löst {date}",
   "mod_knowledge_coauthors_title": "Medförfattare",
   "mod_knowledge_profile_title": "Mods som {name} är medförfattare till",
   "mod_knowledge_profile_by": "av @{handle}",

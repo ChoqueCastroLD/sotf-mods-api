@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Mehr",
-  "shell_more_help": "Hilfe",
-  "shell_more_community": "Community",
   "shell_more_install_guide": "Installationsanleitung",
   "shell_install_app": "App installieren",
   "shell_install_app_hint": "SOTF Mods zum Startbildschirm hinzufügen",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Wird aktualisiert…",
   "shell_offline_meta_title": "Offline",
   "shell_offline_meta_description": "Gerade keine Verbindung. Versuche es erneut, sobald du wieder online bist.",
-  "shell_offline_eyebrow": "Offline",
   "shell_offline_title": "Du bist offline",
   "shell_offline_body": "SOTF Mods ist gerade nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
   "shell_offline_retry": "Erneut versuchen",

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Quality_HintInputs */
 
 const en_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Complete listings rank higher in Explore and get more downloads.`)
+	return /** @type {LocalizedString} */ (`Complete listings rank higher in the mod list and get more downloads.`)
 };
 
 const es_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Las fichas completas salen más arriba en Explorar y reciben más descargas.`)
+	return /** @type {LocalizedString} */ (`Las fichas completas salen más arriba en la lista de mods y reciben más descargas.`)
 };
 
 const de_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vollständige Einträge ranken in Entdecken höher und werden öfter heruntergeladen.`)
+	return /** @type {LocalizedString} */ (`Vollständige Einträge stehen in der Mod-Liste weiter oben und werden öfter heruntergeladen.`)
 };
 
 const fr_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les fiches complètes remontent dans Explorer et sont plus téléchargées.`)
+	return /** @type {LocalizedString} */ (`Les fiches complètes remontent dans la liste des mods et sont plus téléchargées.`)
 };
 
 const it_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le schede complete salgono in Esplora e ricevono più download.`)
+	return /** @type {LocalizedString} */ (`Le schede complete salgono nell’elenco delle mod e ricevono più download.`)
 };
 
 const nl_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Complete vermeldingen scoren hoger in Verkennen en worden vaker gedownload.`)
+	return /** @type {LocalizedString} */ (`Complete vermeldingen staan hoger in de modlijst en worden vaker gedownload.`)
 };
 
 const pl_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kompletne wpisy są wyżej w Odkrywaniu i częściej pobierane.`)
+	return /** @type {LocalizedString} */ (`Kompletne wpisy są wyżej na liście modów i częściej pobierane.`)
 };
 
 const pt_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fichas completas sobem em Explorar e recebem mais downloads.`)
+	return /** @type {LocalizedString} */ (`Fichas completas aparecem mais acima na lista de mods e recebem mais downloads.`)
 };
 
 const ru_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Полные карточки выше в Обзоре и чаще скачиваются.`)
+	return /** @type {LocalizedString} */ (`Полные карточки выше в списке модов и чаще скачиваются.`)
 };
 
 const sv_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kompletta sidor rankas högre i Utforska och laddas ner oftare.`)
+	return /** @type {LocalizedString} */ (`Kompletta sidor hamnar högre i modlistan och laddas ner oftare.`)
 };
 
 const tr_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Eksiksiz sayfalar Keşfet’te daha üstte çıkar ve daha çok indirilir.`)
+	return /** @type {LocalizedString} */ (`Eksiksiz sayfalar mod listesinde daha üstte çıkar ve daha çok indirilir.`)
 };
 
 const zh_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`完整的页面在探索中排名更高，下载也更多。`)
+	return /** @type {LocalizedString} */ (`完整的页面在模组列表中排名更高，下载也更多。`)
 };
 
 const ja_upload_quality_hint = /** @type {(inputs: Upload_Quality_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`充実したページは探索で上位に表示され、ダウンロードも増えます。`)
+	return /** @type {LocalizedString} */ (`充実したページはMOD一覧で上位に表示され、ダウンロードも増えます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Complete listings rank higher in Explore and get more downloads." |
+* | "Complete listings rank higher in the mod list and get more downloads." |
 *
 * @param {Upload_Quality_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

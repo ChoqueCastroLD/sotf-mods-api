@@ -3,7 +3,7 @@ export type Settings_Security_Tips_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Keeping your camp safe" |
+* | "Keep your account safe" |
 *
 * @param {Settings_Security_Tips_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Cmdk_Act_SigninInputs */
 
 const en_cmdk_act_signin = /** @type {(inputs: Cmdk_Act_SigninInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to do that`)
+	return /** @type {LocalizedString} */ (`Log in to do that`)
 };
 
 const es_cmdk_act_signin = /** @type {(inputs: Cmdk_Act_SigninInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_cmdk_act_signin = /** @type {(inputs: Cmdk_Act_SigninInputs) => Localiz
 };
 
 const pt_cmdk_act_signin = /** @type {(inputs: Cmdk_Act_SigninInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inicie sessão para continuar`)
+	return /** @type {LocalizedString} */ (`Entre para continuar`)
 };
 
 const ru_cmdk_act_signin = /** @type {(inputs: Cmdk_Act_SigninInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_cmdk_act_signin = /** @type {(inputs: Cmdk_Act_SigninInputs) => Localiz
 /**
 * | output |
 * | --- |
-* | "Sign in to do that" |
+* | "Log in to do that" |
 *
 * @param {Cmdk_Act_SigninInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

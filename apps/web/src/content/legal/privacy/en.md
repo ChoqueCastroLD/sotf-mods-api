@@ -26,8 +26,8 @@ SOTF Mods (sotf-mods.com, "we") is a community website operated by the SOTF Mods
 **When you have an account**
 
 - Email address, handle, display name, the password hash (we never see your password) and your settings.
-- What you publish: mods, versions, images, comments, reviews, compatibility reports, Kits and your profile (bio, links, avatar and banner).
-- Activity needed for the features you use: mods you follow, your download history (you can clear it and turn it off), notifications and achievements.
+- What you publish: mods, versions, images, comments, reviews, compatibility reports and your profile (bio, links, avatar and banner).
+- Activity needed for the features you use: mods you follow, your download history (you can clear it and turn it off) and notifications.
 - Security data: active sessions (device, browser, approximate country, last activity) and sign-in events.
 
 **When you contact us or report something**, the content of your message or report.
@@ -73,7 +73,7 @@ Moderators see what is needed to moderate (for example, the content and history 
 | Data exports | 24 hours |
 | Deleted accounts | Anonymized after a 14-day grace period |
 
-When you delete your account, your comments and reviews stay but are shown as "Deleted survivor", and your personal data is erased. You choose whether your mods are archived or stay published without attribution.
+When you delete your account, your comments and reviews stay but are shown as "Deleted user", and your personal data is erased. You choose whether your mods are archived or stay published without attribution.
 
 # Your rights
 

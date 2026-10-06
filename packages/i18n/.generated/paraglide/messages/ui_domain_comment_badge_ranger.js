@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Comment_Badge_RangerInputs */
 
 const en_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderator`)
 };
 
 const es_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Guardabosques`)
+	return /** @type {LocalizedString} */ (`Moderador`)
 };
 
 const de_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderator`)
 };
 
 const fr_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Modérateur`)
 };
 
 const it_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderatore`)
 };
 
 const nl_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderator`)
 };
 
 const pl_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnik`)
+	return /** @type {LocalizedString} */ (`Moderator`)
 };
 
 const pt_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Guarda`)
+	return /** @type {LocalizedString} */ (`Moderador`)
 };
 
 const ru_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджер`)
+	return /** @type {LocalizedString} */ (`Модератор`)
 };
 
 const sv_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger`)
+	return /** @type {LocalizedString} */ (`Moderator`)
 };
 
 const tr_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucu`)
+	return /** @type {LocalizedString} */ (`Moderatör`)
 };
 
 const zh_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员`)
+	return /** @type {LocalizedString} */ (`审核员`)
 };
 
 const ja_ui_domain_comment_badge_ranger = /** @type {(inputs: Ui_Domain_Comment_Badge_RangerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャー`)
+	return /** @type {LocalizedString} */ (`モデレーター`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ranger" |
+* | "Moderator" |
 *
 * @param {Ui_Domain_Comment_Badge_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

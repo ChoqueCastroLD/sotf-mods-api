@@ -52,7 +52,6 @@ const groups = [...byGroup.entries()]
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.explore_tags_heading() }]}
 >
   <header class="mb-8 flex flex-col gap-2">
-    <p class="readout text-signal">{m.explore_readout_explore()}</p>
     <h1 class="font-display-caps text-display-sm text-fg">{m.explore_tags_heading()}</h1>
     <p class="max-w-(--container-prose) text-base text-fg-muted">{m.explore_tags_description()}</p>
   </header>
@@ -81,12 +80,12 @@ const groups = [...byGroup.entries()]
                     class="inline-flex h-9 items-center gap-2 rounded-full border border-border-strong px-3 text-sm text-fg hover:border-primary hover:bg-fg/6"
                   >
                     {tag.name}
-                    <span class="font-mono text-2xs text-fg-subtle tabular-nums">{tag.count}</span>
+                    <span class="text-2xs text-fg-subtle tabular-nums">{tag.count}</span>
                   </a>
                 ) : (
                   <span class="inline-flex h-9 items-center gap-2 rounded-full border border-dashed border-border px-3 text-sm text-fg-muted">
                     {tag.name}
-                    <span class="font-mono text-2xs text-fg-subtle tabular-nums">{tag.count}</span>
+                    <span class="text-2xs text-fg-subtle tabular-nums">{tag.count}</span>
                   </span>
                 )}
               </li>

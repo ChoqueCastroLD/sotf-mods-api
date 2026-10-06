@@ -217,7 +217,7 @@ export interface AuthorColumns {
   amKey: string | null;
 }
 
-/** `UserRefDTO` of an author row; null for deleted accounts ("Deleted survivor"). */
+/** `UserRefDTO` of an author row; null for deleted accounts ("Deleted user"). */
 export function userRefOf(config: CommunityConfig, row: AuthorColumns): UserRefDTO | null {
   if (row.aId === null || row.aSlug === null || row.aDeletedAt !== null) return null;
   const media: MediaRow | null =

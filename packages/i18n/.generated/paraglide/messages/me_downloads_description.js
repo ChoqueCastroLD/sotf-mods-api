@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Downloads_DescriptionInputs */
 
 const en_me_downloads_description = /** @type {(inputs: Me_Downloads_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Every mod you downloaded while signed in, with the updates you are missing.`)
+	return /** @type {LocalizedString} */ (`Every mod you downloaded while logged in, with the updates you are missing.`)
 };
 
 const es_me_downloads_description = /** @type {(inputs: Me_Downloads_DescriptionInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_me_downloads_description = /** @type {(inputs: Me_Downloads_Description
 /**
 * | output |
 * | --- |
-* | "Every mod you downloaded while signed in, with the updates you are missing." |
+* | "Every mod you downloaded while logged in, with the updates you are missing." |
 *
 * @param {Me_Downloads_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

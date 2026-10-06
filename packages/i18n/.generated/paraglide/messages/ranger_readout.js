@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_ReadoutInputs */
 
 const en_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ranger Station`)
+	return /** @type {LocalizedString} */ (`Moderation`)
 };
 
 const es_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Puesto de guardabosques`)
+	return /** @type {LocalizedString} */ (`Moderación`)
 };
 
 const de_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerstation`)
+	return /** @type {LocalizedString} */ (`Moderation`)
 };
 
 const fr_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Poste des rangers`)
+	return /** @type {LocalizedString} */ (`Modération`)
 };
 
 const it_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Stazione dei ranger`)
+	return /** @type {LocalizedString} */ (`Moderazione`)
 };
 
 const nl_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerpost`)
+	return /** @type {LocalizedString} */ (`Moderatie`)
 };
 
 const pl_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posterunek strażników`)
+	return /** @type {LocalizedString} */ (`Moderacja`)
 };
 
 const pt_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Posto dos guardas`)
+	return /** @type {LocalizedString} */ (`Moderação`)
 };
 
 const ru_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пост рейнджеров`)
+	return /** @type {LocalizedString} */ (`Модерация`)
 };
 
 const sv_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangerstation`)
+	return /** @type {LocalizedString} */ (`Moderering`)
 };
 
 const tr_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucu İstasyonu`)
+	return /** @type {LocalizedString} */ (`Moderasyon`)
 };
 
 const zh_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林站`)
+	return /** @type {LocalizedString} */ (`审核`)
 };
 
 const ja_ranger_readout = /** @type {(inputs: Ranger_ReadoutInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーステーション`)
+	return /** @type {LocalizedString} */ (`モデレーション`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ranger Station" |
+* | "Moderation" |
 *
 * @param {Ranger_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

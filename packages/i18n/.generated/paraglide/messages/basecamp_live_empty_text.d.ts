@@ -3,7 +3,7 @@ export type Basecamp_Live_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Downloads, reviews, comments and field reports on your mods show up here as they happen." |
+* | "Downloads, reviews and comments on your mods show up here as they happen." |
 *
 * @param {Basecamp_Live_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

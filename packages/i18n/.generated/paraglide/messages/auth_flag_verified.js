@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Flag_VerifiedInputs */
 
 const en_auth_flag_verified = /** @type {(inputs: Auth_Flag_VerifiedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Email verified. Sign in to continue.`)
+	return /** @type {LocalizedString} */ (`Email verified. Log in to continue.`)
 };
 
 const es_auth_flag_verified = /** @type {(inputs: Auth_Flag_VerifiedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_flag_verified = /** @type {(inputs: Auth_Flag_VerifiedInputs) => L
 /**
 * | output |
 * | --- |
-* | "Email verified. Sign in to continue." |
+* | "Email verified. Log in to continue." |
 *
 * @param {Auth_Flag_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

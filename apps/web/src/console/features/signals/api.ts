@@ -1,5 +1,5 @@
 /**
- * Data of `/signals` (WP-81 on the WP-43 backend). Keys live under `['notifications', …]`, so the
+ * Data of `/notifications` (WP-81 on the WP-43 backend). Keys live under `['notifications', …]`, so the
  * SSE `notification` event of the shell (`lib/stream.ts`) refetches the list by itself:
  *
  *   ['notifications', 'list', filter]   cursor pages of one filter

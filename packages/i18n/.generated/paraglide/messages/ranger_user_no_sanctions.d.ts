@@ -3,7 +3,7 @@ export type Ranger_User_No_SanctionsInputs = {};
 /**
 * | output |
 * | --- |
-* | "No sanctions, ever." |
+* | "No sanctions." |
 *
 * @param {Ranger_User_No_SanctionsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -76,7 +76,7 @@ describe('metricTiles', () => {
 
   it('shows dashes when nothing was reviewed in the window', () => {
     const tiles = metricTiles(metrics(stats(0, 0, null)));
-    expect(tiles.slice(0, 3).map((tile) => tile.value)).toEqual(['—', '—', '—']);
+    expect(tiles.slice(0, 3).map((tile) => tile.value)).toEqual(['-', '-', '-']);
     expect(tiles[3]).toMatchObject({ value: '0', tone: '' });
   });
 });

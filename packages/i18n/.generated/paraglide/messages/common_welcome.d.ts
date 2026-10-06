@@ -3,7 +3,7 @@ export type Common_WelcomeInputs = {};
 /**
 * | output |
 * | --- |
-* | "Day 1 on the island. Welcome, survivor." |
+* | "Welcome to SOTF Mods." |
 *
 * @param {Common_WelcomeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

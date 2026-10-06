@@ -3,7 +3,7 @@ export type Upload_Flagged_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "A ranger will look at this file." |
+* | "A moderator will review this file." |
 *
 * @param {Upload_Flagged_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

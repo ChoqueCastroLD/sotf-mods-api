@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Builds_No_Current_TextInputs */
 
 const en_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mark the latest patch as current: compatibility badges and the Patch Radar need it.`)
+	return /** @type {LocalizedString} */ (`Mark the latest game version as current.`)
 };
 
 const es_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marca el último parche como actual: las insignias de compatibilidad y el Radar de parches lo necesitan.`)
+	return /** @type {LocalizedString} */ (`Marca la última versión del juego como actual.`)
 };
 
 const de_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markiere den neuesten Patch als aktuell: Kompatibilitätsabzeichen und das Patch-Radar brauchen ihn.`)
+	return /** @type {LocalizedString} */ (`Markiere die neueste Spielversion als aktuell.`)
 };
 
 const fr_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marquez le dernier patch comme actuel : les badges de compatibilité et le Radar des patchs en ont besoin.`)
+	return /** @type {LocalizedString} */ (`Marquez la dernière version du jeu comme actuelle.`)
 };
 
 const it_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segna l’ultima patch come attuale: i badge di compatibilità e il Radar delle patch ne hanno bisogno.`)
+	return /** @type {LocalizedString} */ (`Segna l’ultima versione del gioco come attuale.`)
 };
 
 const nl_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markeer de nieuwste patch als huidig: compatibiliteitsbadges en de Patchradar hebben die nodig.`)
+	return /** @type {LocalizedString} */ (`Markeer de nieuwste spelversie als huidig.`)
 };
 
 const pl_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oznacz najnowszą łatkę jako aktualną: potrzebują jej odznaki zgodności i Radar patchy.`)
+	return /** @type {LocalizedString} */ (`Oznacz najnowszą wersję gry jako aktualną.`)
 };
 
 const pt_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marque o patch mais recente como atual: os selos de compatibilidade e o Radar de patches precisam dele.`)
+	return /** @type {LocalizedString} */ (`Marque a versão mais recente do jogo como atual.`)
 };
 
 const ru_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отметьте последний патч как текущий: он нужен значкам совместимости и Радару патчей.`)
+	return /** @type {LocalizedString} */ (`Отметьте последнюю версию игры как текущую.`)
 };
 
 const sv_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markera den senaste patchen som aktuell: kompatibilitetsmärken och Patchradarn behöver den.`)
+	return /** @type {LocalizedString} */ (`Markera den senaste spelversionen som aktuell.`)
 };
 
 const tr_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En son yamayı güncel olarak işaretle: uyumluluk rozetleri ve Yama Radarı buna ihtiyaç duyar.`)
+	return /** @type {LocalizedString} */ (`En son oyun sürümünü güncel olarak işaretle.`)
 };
 
 const zh_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`请把最新补丁标记为当前版本：兼容性徽章和补丁雷达都需要它。`)
+	return /** @type {LocalizedString} */ (`请把最新的游戏版本标记为当前版本。`)
 };
 
 const ja_admin_builds_no_current_text = /** @type {(inputs: Admin_Builds_No_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`最新のパッチを現在のビルドにしてください。互換性バッジとパッチレーダーに必要です。`)
+	return /** @type {LocalizedString} */ (`最新のゲームバージョンを現在のバージョンにしてください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Mark the latest patch as current: compatibility badges and the Patch Radar need it." |
+* | "Mark the latest game version as current." |
 *
 * @param {Admin_Builds_No_Current_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

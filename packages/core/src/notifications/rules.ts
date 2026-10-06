@@ -587,7 +587,7 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
           userId: p.authorId,
           type: 'mod.status_changed',
           actorId: null,
-          target: { type: 'mod', id: ref.id, title: ref.name, path: `/basecamp/mods/${ref.id}/details` },
+          target: { type: 'mod', id: ref.id, title: ref.name, path: `/dashboard/mods/${ref.id}/details` },
           groupKey: null,
           data: {
             modId: ref.id,
@@ -722,7 +722,7 @@ export async function planForEvent(db: Executor, event: DomainEvent): Promise<No
           userId: p.userId,
           type: 'badge.awarded',
           actorId: null,
-          target: { type: 'badge', id: row.id, title: p.badgeKey, path: '/basecamp/badges' },
+          target: { type: 'badge', id: row.id, title: p.badgeKey, path: '/dashboard/badges' },
           groupKey: null,
           data: { badgeKey: p.badgeKey, contextKey: p.contextKey },
           dedupeKey: `badge:${p.badgeKey}:${p.contextKey}`,

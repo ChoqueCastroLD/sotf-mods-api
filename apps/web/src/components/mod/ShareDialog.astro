@@ -17,7 +17,7 @@ interface Props {
 }
 
 const { mod, url } = Astro.props;
-const summary = mod.shortDescription ? ` — ${mod.shortDescription}` : '';
+const summary = mod.shortDescription ? `: ${mod.shortDescription}` : '';
 const markdown = `**[${mod.name.replace(/[[\]]/g, '')}](${url})**${summary}`;
 const shareText = m.mod_share_text({ name: mod.name });
 const xHref = `https://x.com/intent/post?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`;

@@ -772,7 +772,7 @@ describe('account deletion', () => {
     expect(row).toMatchObject({
       email: `deleted-${account.id}@deleted.invalid`,
       slug: `deleted-${account.id}`,
-      name: 'Deleted survivor',
+      name: 'Deleted user',
       displayName: null,
       password: '!deleted',
       emailVerifiedAt: null,

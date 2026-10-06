@@ -3,7 +3,7 @@ export type Admin_Builds_Breaking_Warning_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Saving a breaking build shows the patch banner, signals every creator and marks older mods as possibly outdated." |
+* | "Saving a breaking build notifies every creator and marks older mods as possibly outdated." |
 *
 * @param {Admin_Builds_Breaking_Warning_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

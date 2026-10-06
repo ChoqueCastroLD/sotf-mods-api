@@ -3,7 +3,7 @@ export type Profile_Cards_Empty_ActionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore mods" |
+* | "Browse mods" |
 *
 * @param {Profile_Cards_Empty_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

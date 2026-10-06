@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Field_Email_HintInputs */
 
 const en_auth_field_email_hint = /** @type {(inputs: Auth_Field_Email_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`For signing in and important account emails. Never shown publicly.`)
+	return /** @type {LocalizedString} */ (`For logging in and important account emails. Never shown publicly.`)
 };
 
 const es_auth_field_email_hint = /** @type {(inputs: Auth_Field_Email_HintInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_field_email_hint = /** @type {(inputs: Auth_Field_Email_HintInputs
 /**
 * | output |
 * | --- |
-* | "For signing in and important account emails. Never shown publicly." |
+* | "For logging in and important account emails. Never shown publicly." |
 *
 * @param {Auth_Field_Email_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

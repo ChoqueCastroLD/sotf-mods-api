@@ -3,7 +3,7 @@ export type Cmdk_Error_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "The search index didn’t load." |
+* | "Search could not be loaded." |
 *
 * @param {Cmdk_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

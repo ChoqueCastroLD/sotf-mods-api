@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Builds_Delete_TextInputs */
 
 const en_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Only builds nobody has reported on can be deleted.`)
+	return /** @type {LocalizedString} */ (`Only a build that is not in use can be deleted.`)
 };
 
 const es_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solo se pueden eliminar las builds sobre las que nadie ha reportado.`)
+	return /** @type {LocalizedString} */ (`Solo se puede eliminar una build que no esté en uso.`)
 };
 
 const de_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nur Builds ohne Berichte können gelöscht werden.`)
+	return /** @type {LocalizedString} */ (`Nur Builds, die nicht verwendet werden, können gelöscht werden.`)
 };
 
 const fr_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seuls les builds sans aucun rapport peuvent être supprimés.`)
+	return /** @type {LocalizedString} */ (`Seul un build qui n’est pas utilisé peut être supprimé.`)
 };
 
 const it_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Si possono eliminare solo le build senza report.`)
+	return /** @type {LocalizedString} */ (`Si può eliminare solo una build che non è in uso.`)
 };
 
 const nl_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alleen builds zonder rapporten kunnen worden verwijderd.`)
+	return /** @type {LocalizedString} */ (`Alleen een build die niet in gebruik is, kan worden verwijderd.`)
 };
 
 const pl_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Można usunąć tylko buildy bez żadnych raportów.`)
+	return /** @type {LocalizedString} */ (`Można usunąć tylko build, który nie jest używany.`)
 };
 
 const pt_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Só é possível excluir builds sem nenhum relato.`)
+	return /** @type {LocalizedString} */ (`Só é possível excluir um build que não esteja em uso.`)
 };
 
 const ru_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Удалить можно только сборки без отчётов.`)
+	return /** @type {LocalizedString} */ (`Удалить можно только сборку, которая не используется.`)
 };
 
 const sv_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bara byggen utan rapporter kan tas bort.`)
+	return /** @type {LocalizedString} */ (`Bara ett bygge som inte används kan tas bort.`)
 };
 
 const tr_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yalnızca hiç raporu olmayan sürümler silinebilir.`)
+	return /** @type {LocalizedString} */ (`Yalnızca kullanılmayan bir sürüm silinebilir.`)
 };
 
 const zh_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`只有没有任何报告的版本才能删除。`)
+	return /** @type {LocalizedString} */ (`只有未被使用的版本才能删除。`)
 };
 
 const ja_admin_builds_delete_text = /** @type {(inputs: Admin_Builds_Delete_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レポートが 1 件もないビルドだけ削除できます。`)
+	return /** @type {LocalizedString} */ (`使用されていないビルドだけ削除できます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Only builds nobody has reported on can be deleted." |
+* | "Only a build that is not in use can be deleted." |
 *
 * @param {Admin_Builds_Delete_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

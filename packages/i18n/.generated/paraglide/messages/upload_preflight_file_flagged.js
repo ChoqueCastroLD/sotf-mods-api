@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Preflight_File_FlaggedInputs */
 
 const en_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The file needs a ranger’s review before it goes live.`)
+	return /** @type {LocalizedString} */ (`The file needs a moderator’s review before it goes live.`)
 };
 
 const es_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`El archivo necesita la revisión de un guardabosques antes de publicarse.`)
+	return /** @type {LocalizedString} */ (`El archivo necesita la revisión de un moderador antes de publicarse.`)
 };
 
 const de_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Datei muss von einem Ranger geprüft werden, bevor sie online geht.`)
+	return /** @type {LocalizedString} */ (`Die Datei muss von einem Moderator geprüft werden, bevor sie online geht.`)
 };
 
 const fr_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le fichier doit être examiné par un ranger avant publication.`)
+	return /** @type {LocalizedString} */ (`Le fichier doit être examiné par un modérateur avant publication.`)
 };
 
 const it_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il file deve essere esaminato da un ranger prima della pubblicazione.`)
+	return /** @type {LocalizedString} */ (`Il file deve essere esaminato da un moderatore prima della pubblicazione.`)
 };
 
 const nl_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een ranger moet het bestand controleren voordat het live gaat.`)
+	return /** @type {LocalizedString} */ (`Een moderator moet het bestand controleren voordat het live gaat.`)
 };
 
 const pl_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przed publikacją plik musi przejrzeć strażnik.`)
+	return /** @type {LocalizedString} */ (`Przed publikacją plik musi przejrzeć moderator.`)
 };
 
 const pt_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O arquivo precisa da revisão de um guarda antes de ser publicado.`)
+	return /** @type {LocalizedString} */ (`O arquivo precisa da revisão de um moderador antes de ser publicado.`)
 };
 
 const ru_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Перед публикацией файл должен проверить рейнджер.`)
+	return /** @type {LocalizedString} */ (`Перед публикацией файл должен проверить модератор.`)
 };
 
 const sv_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filen måste granskas av en ranger innan den publiceras.`)
+	return /** @type {LocalizedString} */ (`Filen måste granskas av en moderator innan den publiceras.`)
 };
 
 const tr_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dosyanın yayına girmeden önce bir korucu tarafından incelenmesi gerekiyor.`)
+	return /** @type {LocalizedString} */ (`Dosyanın yayına girmeden önce bir moderatör tarafından incelenmesi gerekiyor.`)
 };
 
 const zh_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`文件需要护林员审核后才能发布。`)
+	return /** @type {LocalizedString} */ (`文件需要版主审核后才能发布。`)
 };
 
 const ja_upload_preflight_file_flagged = /** @type {(inputs: Upload_Preflight_File_FlaggedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`公開前にレンジャーによるファイルの確認が必要です。`)
+	return /** @type {LocalizedString} */ (`公開前にモデレーターによるファイルの確認が必要です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The file needs a ranger’s review before it goes live." |
+* | "The file needs a moderator’s review before it goes live." |
 *
 * @param {Upload_Preflight_File_FlaggedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

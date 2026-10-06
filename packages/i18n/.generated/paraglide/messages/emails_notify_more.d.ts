@@ -5,8 +5,8 @@ export type Emails_Notify_MoreInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "And {count__number} more signal" |
-* | * | "And {count__number} more signals" |
+* | "one" | "And {count__number} more notification" |
+* | * | "And {count__number} more notifications" |
 *
 * @param {Emails_Notify_MoreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

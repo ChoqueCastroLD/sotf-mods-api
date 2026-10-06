@@ -3,7 +3,7 @@ export type Emails_Auth_Verify_BodyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Welcome to the island. Confirm this address to publish mods, comment, write reviews and report compatibility." |
+* | "Welcome to SOTF Mods. Confirm this address to publish mods, comment and write reviews." |
 *
 * @param {Emails_Auth_Verify_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -24,10 +24,25 @@ import {
 import { failureDescription } from './errors.ts';
 import { SettingsCard, SettingsPage } from './layout.tsx';
 
-type Row = Pick<NotificationPreferenceDTO, 'type' | 'inApp' | 'email' | 'inAppAvailable'>;
+/** Types the API never lists any more (gamification, kits, Patch Radar): they have no row or copy here. */
+type HiddenType =
+  | 'compat.broken_on_my_mod'
+  | 'compat.acknowledged'
+  | 'compat.prompt'
+  | 'kit.added_my_mod'
+  | 'kit.updated_followed'
+  | 'kit.comment'
+  | 'kit.comment_reply'
+  | 'patch.breaking_build'
+  | 'milestone.reached'
+  | 'badge.awarded'
+  | 'award.won';
+type ShownType = Exclude<NotificationType, HiddenType>;
+
+type Row = Pick<NotificationPreferenceDTO, 'inApp' | 'email' | 'inAppAvailable'> & { type: ShownType };
 
 /** `NOTIFICATION_DEFAULTS` of `@sotf/contracts/notifications` (mirrored: no Zod in the chunk). */
-const DEFAULTS: Readonly<Record<NotificationType, { inApp: boolean; email: EmailFrequency }>> = {
+const DEFAULTS: Readonly<Record<ShownType, { inApp: boolean; email: EmailFrequency }>> = {
   'mod.version_published': { inApp: true, email: 'daily' },
   'creator.mod_published': { inApp: true, email: 'weekly' },
   'comment.on_my_mod': { inApp: true, email: 'instant' },
@@ -35,34 +50,24 @@ const DEFAULTS: Readonly<Record<NotificationType, { inApp: boolean; email: Email
   'comment.mention': { inApp: true, email: 'instant' },
   'review.on_my_mod': { inApp: true, email: 'daily' },
   'review.reply': { inApp: true, email: 'instant' },
-  'compat.broken_on_my_mod': { inApp: true, email: 'instant' },
-  'compat.acknowledged': { inApp: true, email: 'off' },
-  'compat.prompt': { inApp: true, email: 'off' },
   'review.update_prompt': { inApp: true, email: 'off' },
-  'kit.added_my_mod': { inApp: true, email: 'off' },
-  'kit.updated_followed': { inApp: true, email: 'off' },
-  'kit.comment': { inApp: true, email: 'off' },
-  'kit.comment_reply': { inApp: true, email: 'off' },
   'coauthor.invited': { inApp: true, email: 'instant' },
   'request.comment': { inApp: true, email: 'off' },
   'request.adopted': { inApp: true, email: 'off' },
   'request.fulfilled': { inApp: true, email: 'instant' },
-  'patch.breaking_build': { inApp: true, email: 'instant' },
   'mod.status_changed': { inApp: true, email: 'instant' },
-  'milestone.reached': { inApp: true, email: 'off' },
-  'badge.awarded': { inApp: true, email: 'off' },
-  'award.won': { inApp: true, email: 'off' },
   'jam.phase': { inApp: true, email: 'daily' },
   'report.resolved': { inApp: true, email: 'off' },
   'system.announcement': { inApp: true, email: 'off' },
   'creator.weekly_report': { inApp: false, email: 'weekly' },
 };
 
-const GROUPS: readonly { id: string; title: () => string; types: readonly NotificationType[] }[] = [
+/** Rows are grouped here; only the types the API returns are rendered. */
+const GROUPS: readonly { id: string; title: () => string; types: readonly ShownType[] }[] = [
   {
     id: 'follows',
     title: () => m.settings_notif_group_follows(),
-    types: ['mod.version_published', 'creator.mod_published', 'kit.updated_followed', 'patch.breaking_build'],
+    types: ['mod.version_published', 'creator.mod_published'],
   },
   {
     id: 'conversations',
@@ -71,7 +76,6 @@ const GROUPS: readonly { id: string; title: () => string; types: readonly Notifi
       'comment.reply',
       'comment.mention',
       'review.reply',
-      'kit.comment_reply',
       'request.comment',
       'request.adopted',
       'request.fulfilled',
@@ -80,64 +84,28 @@ const GROUPS: readonly { id: string; title: () => string; types: readonly Notifi
   {
     id: 'my-mods',
     title: () => m.settings_notif_group_my_mods(),
-    types: [
-      'comment.on_my_mod',
-      'review.on_my_mod',
-      'compat.broken_on_my_mod',
-      'kit.added_my_mod',
-      'kit.comment',
-      'coauthor.invited',
-      'mod.status_changed',
-      'creator.weekly_report',
-    ],
+    types: ['comment.on_my_mod', 'review.on_my_mod', 'coauthor.invited', 'mod.status_changed', 'creator.weekly_report'],
   },
   {
     id: 'community',
     title: () => m.settings_notif_group_community(),
-    types: [
-      'compat.acknowledged',
-      'compat.prompt',
-      'review.update_prompt',
-      'report.resolved',
-      'milestone.reached',
-      'badge.awarded',
-      'award.won',
-      'jam.phase',
-      'system.announcement',
-    ],
+    types: ['review.update_prompt', 'report.resolved', 'jam.phase', 'system.announcement'],
   },
 ];
 
-const COPY: Readonly<Record<NotificationType, { title: () => string; hint: () => string }>> = {
+const COPY: Readonly<Record<ShownType, { title: () => string; hint: () => string }>> = {
   'mod.version_published': { title: () => m.settings_notif_version(), hint: () => m.settings_notif_version_hint() },
   'creator.mod_published': { title: () => m.settings_notif_creator(), hint: () => m.settings_notif_creator_hint() },
-  'patch.breaking_build': { title: () => m.settings_notif_patch(), hint: () => m.settings_notif_patch_hint() },
   'comment.reply': { title: () => m.settings_notif_reply(), hint: () => m.settings_notif_reply_hint() },
   'comment.mention': { title: () => m.settings_notif_mention(), hint: () => m.settings_notif_mention_hint() },
   'review.reply': { title: () => m.settings_notif_review_reply(), hint: () => m.settings_notif_review_reply_hint() },
   'comment.on_my_mod': { title: () => m.settings_notif_comment(), hint: () => m.settings_notif_comment_hint() },
   'review.on_my_mod': { title: () => m.settings_notif_review(), hint: () => m.settings_notif_review_hint() },
-  'compat.broken_on_my_mod': { title: () => m.settings_notif_broken(), hint: () => m.settings_notif_broken_hint() },
   'mod.status_changed': { title: () => m.settings_notif_status(), hint: () => m.settings_notif_status_hint() },
   'creator.weekly_report': { title: () => m.settings_notif_weekly(), hint: () => m.settings_notif_weekly_hint() },
-  'compat.acknowledged': { title: () => m.settings_notif_ack(), hint: () => m.settings_notif_ack_hint() },
-  'compat.prompt': {
-    title: () => m.settings_notif_compat_prompt(),
-    hint: () => m.settings_notif_compat_prompt_hint(),
-  },
   'review.update_prompt': {
     title: () => m.settings_notif_review_update(),
     hint: () => m.settings_notif_review_update_hint(),
-  },
-  'kit.added_my_mod': { title: () => m.settings_notif_kit_added(), hint: () => m.settings_notif_kit_added_hint() },
-  'kit.updated_followed': {
-    title: () => m.settings_notif_kit_updated(),
-    hint: () => m.settings_notif_kit_updated_hint(),
-  },
-  'kit.comment': { title: () => m.settings_notif_kit_comment(), hint: () => m.settings_notif_kit_comment_hint() },
-  'kit.comment_reply': {
-    title: () => m.settings_notif_kit_reply(),
-    hint: () => m.settings_notif_kit_reply_hint(),
   },
   'coauthor.invited': { title: () => m.settings_notif_coauthor(), hint: () => m.settings_notif_coauthor_hint() },
   'request.comment': {
@@ -153,9 +121,6 @@ const COPY: Readonly<Record<NotificationType, { title: () => string; hint: () =>
     hint: () => m.settings_notif_request_fulfilled_hint(),
   },
   'report.resolved': { title: () => m.settings_notif_report(), hint: () => m.settings_notif_report_hint() },
-  'milestone.reached': { title: () => m.settings_notif_milestone(), hint: () => m.settings_notif_milestone_hint() },
-  'badge.awarded': { title: () => m.settings_notif_badge(), hint: () => m.settings_notif_badge_hint() },
-  'award.won': { title: () => m.settings_notif_award(), hint: () => m.settings_notif_award_hint() },
   'jam.phase': { title: () => m.settings_notif_jam(), hint: () => m.settings_notif_jam_hint() },
   'system.announcement': {
     title: () => m.settings_notif_announcement(),
@@ -178,8 +143,12 @@ function frequencyLabel(value: EmailFrequency): string {
 
 const FREQUENCIES: readonly EmailFrequency[] = ['instant', 'daily', 'weekly', 'off'];
 
-function toRows(items: readonly NotificationPreferenceDTO[]): Map<NotificationType, Row> {
-  return new Map(items.map((item) => [item.type, { ...item }]));
+const isShown = (type: NotificationType): type is ShownType => type in DEFAULTS;
+
+function toRows(items: readonly NotificationPreferenceDTO[]): Map<ShownType, Row> {
+  const rows = new Map<ShownType, Row>();
+  for (const item of items) if (isShown(item.type)) rows.set(item.type, { ...item, type: item.type });
+  return rows;
 }
 
 export function NotificationsScreen() {
@@ -201,7 +170,7 @@ export function NotificationsScreen() {
     (row) => row.email === DEFAULTS[row.type].email && (!row.inAppAvailable || row.inApp === DEFAULTS[row.type].inApp),
   );
 
-  const set = (type: NotificationType, patch: Partial<Row>) =>
+  const set = (type: ShownType, patch: Partial<Row>) =>
     setRows((current) => {
       const next = new Map(current);
       const row = next.get(type);

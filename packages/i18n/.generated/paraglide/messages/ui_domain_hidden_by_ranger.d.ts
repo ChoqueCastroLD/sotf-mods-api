@@ -3,7 +3,7 @@ export type Ui_Domain_Hidden_By_RangerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Hidden by a ranger. Only you and the rangers can see it." |
+* | "Hidden by a moderator. Only you and moderators can see it." |
 *
 * @param {Ui_Domain_Hidden_By_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

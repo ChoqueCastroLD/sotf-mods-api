@@ -3,7 +3,7 @@
  * The grid listing UI (research/03 §6.2, PLAN T0-06) that is still used by the builds pages (the
  * mod listings use `CatalogView`; `ExploreView` picks one):
  *
- *   header (readout, h1, count, intro) · type tabs · filter rail (GET form; bottom sheet on
+ *   header (h1, count, intro) · type tabs · filter rail (GET form; bottom sheet on
  *   mobile) · toolbar (sort, order, view) · active filters · results · «Load more» + pagination.
  *
  * Without JavaScript every control is a link or the GET form. `scripts/explore` enhances it:
@@ -28,7 +28,6 @@ import type { ListType } from './state.ts';
 interface Props {
   data: ListingData;
   heading: string;
-  readout: string;
   /** Short intro under the heading (plain text). */
   intro?: string;
   /** Tabs to offer (default: all four; hubs of build categories pass none). */
@@ -38,7 +37,7 @@ interface Props {
   emptyText?: string;
 }
 
-const { data, heading, readout, intro, tabs = ['mod', 'library', 'build', 'all'], emptyTitle, emptyText } = Astro.props;
+const { data, heading, intro, tabs = ['mod', 'library', 'build', 'all'], emptyTitle, emptyText } = Astro.props;
 const { model, list, state, i18n } = data;
 const locale = Astro.locals.locale;
 const requestId = Astro.locals.requestId;
@@ -52,16 +51,16 @@ const shownTabs = model.tabs.filter((tab) => tabs.includes(tab.key));
 const countText = total === null ? '' : m.explore_results_count({ count: total });
 const hasBuilds = state.type === 'build';
 const filtered = model.activeCount > 0;
-const feedAd = adUnitFor(loadEnv(), 'feed');
+// AdSense policy: no ads next to adult content, so none while the NSFW toggle is on.
+const feedAd = state.nsfw ? null : adUnitFor(loadEnv(), 'feed');
 const sortLabel = model.sortOptions.find((option) => option.value === model.sortValue)?.label ?? '';
 
 ---
 
 <div data-explore-root="" data-explore-page={state.page} class="flex flex-col gap-4 md:gap-6">
-  <header class="grid gap-x-6 gap-y-1.5 [grid-template-areas:'readout_count'_'title_title'_'intro_intro'] md:[grid-template-areas:'readout_readout'_'title_count'_'intro_intro']">
-    <p class="readout self-center text-signal [grid-area:readout]">{readout}</p>
+  <header class="grid gap-x-6 gap-y-1.5 [grid-template-areas:'title_count'_'intro_intro'] items-end">
     <h1 id="explore-heading" class="font-display-caps text-display-sm text-fg [grid-area:title]">{heading}</h1>
-    <p class="justify-self-end font-mono text-sm text-fg-muted tabular-nums [grid-area:count] md:self-end" data-explore-count="">{countText}</p>
+    <p class="justify-self-end text-sm text-fg-muted tabular-nums [grid-area:count]" data-explore-count="">{countText}</p>
     {intro && <p class="line-clamp-2 max-w-(--container-prose) text-sm text-fg-muted [grid-area:intro] md:line-clamp-none md:text-base">{intro}</p>}
     <div class="[grid-area:intro] empty:hidden"><slot name="intro" /></div>
   </header>
@@ -82,7 +81,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
               >
                 {tab.label}
                 {tab.count !== null && (
-                  <span class="font-mono text-2xs font-normal text-fg-subtle tabular-nums">{tab.count}</span>
+                  <span class="text-2xs font-normal text-fg-subtle tabular-nums">{tab.count}</span>
                 )}
               </a>
             </li>
@@ -237,7 +236,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
                 </button>
               </>
             )}
-            <p class="font-mono text-xs text-fg-subtle tabular-nums" data-explore-page-indicator="">
+            <p class="text-xs text-fg-subtle tabular-nums" data-explore-page-indicator="">
               {m.common_pagination_page_of({ page: state.page, total: Math.max(1, totalPages) })}
             </p>
             <div class="explore-pagination w-full">

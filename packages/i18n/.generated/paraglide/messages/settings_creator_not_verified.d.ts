@@ -3,7 +3,7 @@ export type Settings_Creator_Not_VerifiedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Not verified yet" |
+* | "Not trusted yet" |
 *
 * @param {Settings_Creator_Not_VerifiedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

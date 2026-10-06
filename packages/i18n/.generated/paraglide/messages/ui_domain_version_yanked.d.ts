@@ -3,7 +3,7 @@ export type Ui_Domain_Version_YankedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Yanked" |
+* | "Withdrawn" |
 *
 * @param {Ui_Domain_Version_YankedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

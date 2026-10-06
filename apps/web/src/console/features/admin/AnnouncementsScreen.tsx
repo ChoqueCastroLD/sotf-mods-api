@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/announcements` (PLAN §7.4 «anuncios», T0-31): the global banner under the site
+ * `/moderation/admin/announcements` (PLAN §7.4 «anuncios», T0-31): the global banner under the site
  * header. Each announcement has a level (info, warning, patch), a message per locale (English
  * required; missing locales fall back to it), an optional link, a time window (browser time zone
  * in the form, stored as UTC instants) and whether visitors can dismiss it. The form previews the

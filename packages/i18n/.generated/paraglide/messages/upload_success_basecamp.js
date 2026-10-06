@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Success_BasecampInputs */
 
 const en_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Back to Basecamp`)
+	return /** @type {LocalizedString} */ (`Back to the dashboard`)
 };
 
 const es_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Volver al Campamento`)
+	return /** @type {LocalizedString} */ (`Volver al panel`)
 };
 
 const de_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zurück zum Basislager`)
+	return /** @type {LocalizedString} */ (`Zurück zum Dashboard`)
 };
 
 const fr_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retour au camp de base`)
+	return /** @type {LocalizedString} */ (`Retour au tableau de bord`)
 };
 
 const it_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Torna al campo base`)
+	return /** @type {LocalizedString} */ (`Torna alla dashboard`)
 };
 
 const nl_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Terug naar het basiskamp`)
+	return /** @type {LocalizedString} */ (`Terug naar het dashboard`)
 };
 
 const pl_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wróć do obozu`)
+	return /** @type {LocalizedString} */ (`Wróć do panelu`)
 };
 
 const pt_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voltar ao Acampamento`)
+	return /** @type {LocalizedString} */ (`Voltar ao painel`)
 };
 
 const ru_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вернуться в лагерь`)
+	return /** @type {LocalizedString} */ (`Вернуться на панель`)
 };
 
 const sv_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tillbaka till baslägret`)
+	return /** @type {LocalizedString} */ (`Tillbaka till översikten`)
 };
 
 const tr_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ana Kamp’a dön`)
+	return /** @type {LocalizedString} */ (`Panele dön`)
 };
 
 const zh_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`返回营地`)
+	return /** @type {LocalizedString} */ (`返回控制台`)
 };
 
 const ja_upload_success_basecamp = /** @type {(inputs: Upload_Success_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ベースキャンプに戻る`)
+	return /** @type {LocalizedString} */ (`ダッシュボードに戻る`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Back to Basecamp" |
+* | "Back to the dashboard" |
 *
 * @param {Upload_Success_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

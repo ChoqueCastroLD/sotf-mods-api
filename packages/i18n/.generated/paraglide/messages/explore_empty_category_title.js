@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Empty_Category_TitleInputs */
 
 const en_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This part of the map is still blank`)
+	return /** @type {LocalizedString} */ (`This category is empty`)
 };
 
 const es_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esta parte del mapa sigue en blanco`)
+	return /** @type {LocalizedString} */ (`Esta categoría está vacía`)
 };
 
 const de_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dieser Teil der Karte ist noch leer`)
+	return /** @type {LocalizedString} */ (`Diese Kategorie ist leer`)
 };
 
 const fr_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cette partie de la carte est encore vierge`)
+	return /** @type {LocalizedString} */ (`Cette catégorie est vide`)
 };
 
 const it_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Questa parte della mappa è ancora vuota`)
+	return /** @type {LocalizedString} */ (`Questa categoria è vuota`)
 };
 
 const nl_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dit deel van de kaart is nog leeg`)
+	return /** @type {LocalizedString} */ (`Deze categorie is leeg`)
 };
 
 const pl_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ta część mapy jest jeszcze pusta`)
+	return /** @type {LocalizedString} */ (`Ta kategoria jest pusta`)
 };
 
 const pt_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esta parte do mapa ainda está em branco`)
+	return /** @type {LocalizedString} */ (`Esta categoria está vazia`)
 };
 
 const ru_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Эта часть карты пока пуста`)
+	return /** @type {LocalizedString} */ (`Эта категория пуста`)
 };
 
 const sv_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Den här delen av kartan är fortfarande tom`)
+	return /** @type {LocalizedString} */ (`Den här kategorin är tom`)
 };
 
 const tr_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Haritanın bu kısmı hâlâ boş`)
+	return /** @type {LocalizedString} */ (`Bu kategori boş`)
 };
 
 const zh_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`地图的这一块还是空白`)
+	return /** @type {LocalizedString} */ (`此分类暂无内容`)
 };
 
 const ja_explore_empty_category_title = /** @type {(inputs: Explore_Empty_Category_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`地図のこの部分はまだ空白です`)
+	return /** @type {LocalizedString} */ (`このカテゴリは空です`)
 };
 
 /**
 * | output |
 * | --- |
-* | "This part of the map is still blank" |
+* | "This category is empty" |
 *
 * @param {Explore_Empty_Category_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

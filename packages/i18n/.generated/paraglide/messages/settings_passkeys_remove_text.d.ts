@@ -5,7 +5,7 @@ export type Settings_Passkeys_Remove_TextInputs = {
 /**
 * | output |
 * | --- |
-* | "Enter your password to remove {name}. You will no longer be able to sign in with it." |
+* | "Enter your password to remove {name}. You will no longer be able to log in with it." |
 *
 * @param {Settings_Passkeys_Remove_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

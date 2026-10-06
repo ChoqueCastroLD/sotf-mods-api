@@ -3,7 +3,7 @@ export type Emails_Notify_Daily_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your day on the island" |
+* | "Your daily digest" |
 *
 * @param {Emails_Notify_Daily_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

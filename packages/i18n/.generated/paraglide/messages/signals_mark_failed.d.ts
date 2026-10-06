@@ -3,7 +3,7 @@ export type Signals_Mark_FailedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Couldn’t mark the signals as read" |
+* | "Couldn’t mark the notifications as read" |
 *
 * @param {Signals_Mark_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

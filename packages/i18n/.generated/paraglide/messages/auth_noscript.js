@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_NoscriptInputs */
 
 const en_auth_noscript = /** @type {(inputs: Auth_NoscriptInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signing in needs JavaScript. Turn it on for this site and reload the page.`)
+	return /** @type {LocalizedString} */ (`Logging in needs JavaScript. Turn it on for this site and reload the page.`)
 };
 
 const es_auth_noscript = /** @type {(inputs: Auth_NoscriptInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_noscript = /** @type {(inputs: Auth_NoscriptInputs) => LocalizedSt
 /**
 * | output |
 * | --- |
-* | "Signing in needs JavaScript. Turn it on for this site and reload the page." |
+* | "Logging in needs JavaScript. Turn it on for this site and reload the page." |
 *
 * @param {Auth_NoscriptInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

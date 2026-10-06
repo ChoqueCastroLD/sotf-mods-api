@@ -2,7 +2,7 @@
  * Markdown alternates of public pages (PLAN §8.7 GEO): `/mods/:u/:s.md`, `/builds/:u/:s.md` and
  * `/profile/:h.md`, announced with `<link rel="alternate" type="text/markdown">` and never
  * negotiated through `Accept`. They carry the citable facts of the page: the «At a glance» facts
- * with dates, install steps, requirements, compatibility, the description, the latest changelog
+ * with dates, install steps, requirements, the description, the latest changelog
  * and the generated FAQ, with absolute links. English (machine endpoints are not localized).
  */
 import type { ModCardDTO, ModDetailDTO, UserPublicDTO } from '@sotf/contracts/catalog';
@@ -67,20 +67,6 @@ const LICENSE_LABEL: Readonly<Record<string, string>> = {
   'cc-by-4.0': 'CC BY 4.0',
   other: 'Other (see description)',
 };
-const COMPAT_LABEL: Readonly<Record<string, string>> = {
-  works: 'works',
-  broken: 'broken',
-  mixed: 'mixed reports',
-  untested: 'untested',
-};
-
-function compatLine(mod: ModDetailDTO): string {
-  const current = mod.compatCurrent;
-  const build = current.gameBuild ? `patch ${current.gameBuild.label}` : 'the current patch';
-  const reports = current.works + current.partial + current.broken;
-  return `${COMPAT_LABEL[current.status] ?? current.status} on ${build}${reports > 0 ? ` (${numberFormat.format(reports)} field reports: ${current.works} works, ${current.partial} partial, ${current.broken} broken)` : ''}`;
-}
-
 /** The Markdown document of a mod, library or build. `now` dates the figures («as of»). */
 export function modMarkdown(
   mod: ModDetailDTO,
@@ -114,7 +100,6 @@ export function modMarkdown(
   if (latest) facts.push(['Version', `${latest.version} (released ${isoDay(latest.publishedAt)})`]);
   if (mod.category) facts.push(['Category', mod.category.name]);
   if (mod.tags.length > 0) facts.push(['Tags', mod.tags.map((tag) => tag.name).join(', ')]);
-  if (!isBuild) facts.push(['Game compatibility', compatLine(mod)]);
   if (latest?.gameVersionDeclared) facts.push(['Declared game version', latest.gameVersionDeclared]);
   facts.push([
     'Loader',
@@ -178,13 +163,6 @@ export function modMarkdown(
       lines.push(`- ${name}${range}: ${dependency.kind}${state}`);
     }
     lines.push('');
-  }
-
-  // Compatibility.
-  if (!isBuild) {
-    lines.push('## Compatibility', '', `${compatLine(mod)}.`);
-    if (mod.possiblyOutdated) lines.push('', 'The latest release predates a breaking game patch: it may be outdated.');
-    lines.push(`Details and field reports: ${url}#compatibility`, '');
   }
 
   // Description.

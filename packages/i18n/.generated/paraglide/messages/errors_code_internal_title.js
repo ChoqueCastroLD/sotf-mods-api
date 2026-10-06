@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Internal_TitleInputs */
 
 const en_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Something broke at base camp`)
+	return /** @type {LocalizedString} */ (`Server error`)
 };
 
 const es_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Algo se rompió en el campamento`)
+	return /** @type {LocalizedString} */ (`Error del servidor`)
 };
 
 const de_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Im Basislager ist etwas kaputtgegangen`)
+	return /** @type {LocalizedString} */ (`Serverfehler`)
 };
 
 const fr_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quelque chose a cassé au camp de base`)
+	return /** @type {LocalizedString} */ (`Erreur du serveur`)
 };
 
 const it_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Qualcosa si è rotto al campo base`)
+	return /** @type {LocalizedString} */ (`Errore del server`)
 };
 
 const nl_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Er ging iets kapot in het basiskamp`)
+	return /** @type {LocalizedString} */ (`Serverfout`)
 };
 
 const pl_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Coś się zepsuło w obozie`)
+	return /** @type {LocalizedString} */ (`Błąd serwera`)
 };
 
 const pt_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Algo quebrou no acampamento`)
+	return /** @type {LocalizedString} */ (`Erro do servidor`)
 };
 
 const ru_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`В лагере что-то сломалось`)
+	return /** @type {LocalizedString} */ (`Ошибка сервера`)
 };
 
 const sv_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Något gick sönder i baslägret`)
+	return /** @type {LocalizedString} */ (`Serverfel`)
 };
 
 const tr_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ana kampta bir şey bozuldu`)
+	return /** @type {LocalizedString} */ (`Sunucu hatası`)
 };
 
 const zh_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`营地出了点故障`)
+	return /** @type {LocalizedString} */ (`服务器错误`)
 };
 
 const ja_errors_code_internal_title = /** @type {(inputs: Errors_Code_Internal_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ベースキャンプで不具合が発生しました`)
+	return /** @type {LocalizedString} */ (`サーバーエラー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Something broke at base camp" |
+* | "Server error" |
 *
 * @param {Errors_Code_Internal_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

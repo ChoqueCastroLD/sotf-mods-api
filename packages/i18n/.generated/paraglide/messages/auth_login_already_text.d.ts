@@ -6,7 +6,7 @@ export type Auth_Login_Already_TextInputs = {
 /**
 * | output |
 * | --- |
-* | "Signed in as {name} (@{handle})." |
+* | "Logged in as {name} (@{handle})." |
 *
 * @param {Auth_Login_Already_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

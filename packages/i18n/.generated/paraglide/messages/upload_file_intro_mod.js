@@ -38,7 +38,7 @@ const pt_upload_file_intro_mod = /** @type {(inputs: Upload_File_Intro_ModInputs
 };
 
 const ru_upload_file_intro_mod = /** @type {(inputs: Upload_File_Intro_ModInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Перетащите .zip, который вы отдали бы игрокам. Сначала мы откроем его в браузере и покажем содержимое — ещё до загрузки.`)
+	return /** @type {LocalizedString} */ (`Перетащите .zip, который вы отдали бы игрокам. Сначала мы откроем его в браузере и покажем содержимое, ещё до загрузки.`)
 };
 
 const sv_upload_file_intro_mod = /** @type {(inputs: Upload_File_Intro_ModInputs) => LocalizedString} */ () => {

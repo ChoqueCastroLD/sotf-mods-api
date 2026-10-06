@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Mod_Install_IntroInputs */
 
 const en_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Five minutes, no manager required. These steps are for ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`These steps install ${i?.name} by hand, without a manager.`)
 };
 
 const es_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Cinco minutos y sin gestor. Estos pasos son para ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Estos pasos instalan ${i?.name} a mano, sin gestor.`)
 };
 
 const de_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Fünf Minuten, kein Manager nötig. Diese Schritte gelten für ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Diese Schritte installieren ${i?.name} von Hand, ohne Manager.`)
 };
 
 const fr_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Cinq minutes, sans gestionnaire. Ces étapes concernent ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Ces étapes installent ${i?.name} à la main, sans gestionnaire.`)
 };
 
 const it_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Cinque minuti, senza gestore. Questi passaggi sono per ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Questi passaggi installano ${i?.name} a mano, senza gestore.`)
 };
 
 const nl_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Vijf minuten, geen manager nodig. Deze stappen gelden voor ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Met deze stappen installeer je ${i?.name} handmatig, zonder manager.`)
 };
 
 const pl_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Pięć minut, bez menedżera. Te kroki dotyczą ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Te kroki instalują ${i?.name} ręcznie, bez menedżera.`)
 };
 
 const pt_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Cinco minutos, sem gerenciador. Estes passos são para ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Estes passos instalam ${i?.name} manualmente, sem gerenciador.`)
 };
 
 const ru_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Пять минут, без менеджера. Эти шаги — для ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`Эти шаги устанавливают ${i?.name} вручную, без менеджера.`)
 };
 
 const sv_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Fem minuter, ingen hanterare behövs. De här stegen gäller ${i?.name}.`)
+	return /** @type {LocalizedString} */ (`De här stegen installerar ${i?.name} manuellt, utan hanterare.`)
 };
 
 const tr_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Beş dakika, yönetici gerekmez. Bu adımlar ${i?.name} içindir.`)
+	return /** @type {LocalizedString} */ (`Bu adımlarla ${i?.name} yönetici kullanmadan elle kurulur.`)
 };
 
 const zh_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`五分钟搞定，无需管理器。以下步骤适用于 ${i?.name}。`)
+	return /** @type {LocalizedString} */ (`按以下步骤手动安装 ${i?.name}，无需管理器。`)
 };
 
 const ja_mod_install_intro = /** @type {(inputs: Mod_Install_IntroInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`5 分で完了、マネージャー不要。${i?.name} 用の手順です。`)
+	return /** @type {LocalizedString} */ (`${i?.name} を手動で、マネージャーなしでインストールする手順です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Five minutes, no manager required. These steps are for {name}." |
+* | "These steps install {name} by hand, without a manager." |
 *
 * @param {Mod_Install_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

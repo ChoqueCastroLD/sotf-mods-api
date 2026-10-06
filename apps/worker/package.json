@@ -15,8 +15,6 @@
   "dependencies": {
     "@aws-sdk/client-s3": "catalog:",
     "@aws-sdk/s3-request-presigner": "catalog:",
-    "@fontsource/big-shoulders": "catalog:",
-    "@fontsource/martian-mono": "catalog:",
     "@node-rs/argon2": "catalog:",
     "@node-rs/bcrypt": "catalog:",
     "@react-email/components": "catalog:",

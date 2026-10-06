@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Creator_BasecampInputs */
 
 const en_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Open Basecamp`)
+	return /** @type {LocalizedString} */ (`Open dashboard`)
 };
 
 const es_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abrir el Campamento`)
+	return /** @type {LocalizedString} */ (`Abrir el panel`)
 };
 
 const de_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basislager öffnen`)
+	return /** @type {LocalizedString} */ (`Dashboard öffnen`)
 };
 
 const fr_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ouvrir le Camp de base`)
+	return /** @type {LocalizedString} */ (`Ouvrir le tableau de bord`)
 };
 
 const it_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Apri il Campo base`)
+	return /** @type {LocalizedString} */ (`Apri la dashboard`)
 };
 
 const nl_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Basiskamp openen`)
+	return /** @type {LocalizedString} */ (`Dashboard openen`)
 };
 
 const pl_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otwórz Obóz`)
+	return /** @type {LocalizedString} */ (`Otwórz panel`)
 };
 
 const pt_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abrir o Acampamento`)
+	return /** @type {LocalizedString} */ (`Abrir o painel`)
 };
 
 const ru_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Открыть Лагерь`)
+	return /** @type {LocalizedString} */ (`Открыть панель`)
 };
 
 const sv_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Öppna Basläger`)
+	return /** @type {LocalizedString} */ (`Öppna översikten`)
 };
 
 const tr_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ana Kamp’ı aç`)
+	return /** @type {LocalizedString} */ (`Paneli aç`)
 };
 
 const zh_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`打开营地`)
+	return /** @type {LocalizedString} */ (`打开控制台`)
 };
 
 const ja_settings_creator_basecamp = /** @type {(inputs: Settings_Creator_BasecampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ベースキャンプを開く`)
+	return /** @type {LocalizedString} */ (`ダッシュボードを開く`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Open Basecamp" |
+* | "Open dashboard" |
 *
 * @param {Settings_Creator_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

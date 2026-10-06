@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_Verify_PreviewInputs */
 
 const en_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`One click and you can publish, comment and review.`)
+	return /** @type {LocalizedString} */ (`Confirm your address to publish, comment and review.`)
 };
 
 const es_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un clic y podrás publicar, comentar y reseñar.`)
+	return /** @type {LocalizedString} */ (`Confirma tu dirección para publicar, comentar y reseñar.`)
 };
 
 const de_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ein Klick und du kannst veröffentlichen, kommentieren und bewerten.`)
+	return /** @type {LocalizedString} */ (`Bestätige deine Adresse, um zu veröffentlichen, zu kommentieren und zu bewerten.`)
 };
 
 const fr_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un clic et vous pourrez publier, commenter et donner votre avis.`)
+	return /** @type {LocalizedString} */ (`Confirmez votre adresse pour publier, commenter et donner votre avis.`)
 };
 
 const it_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un clic e potrai pubblicare, commentare e recensire.`)
+	return /** @type {LocalizedString} */ (`Conferma il tuo indirizzo per pubblicare, commentare e recensire.`)
 };
 
 const nl_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Eén klik en je kunt publiceren, reageren en recenseren.`)
+	return /** @type {LocalizedString} */ (`Bevestig je adres om te publiceren, te reageren en te recenseren.`)
 };
 
 const pl_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jedno kliknięcie i możesz publikować, komentować i recenzować.`)
+	return /** @type {LocalizedString} */ (`Potwierdź adres, aby publikować, komentować i recenzować.`)
 };
 
 const pt_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Um clique e você poderá publicar, comentar e avaliar.`)
+	return /** @type {LocalizedString} */ (`Confirme seu endereço para publicar, comentar e avaliar.`)
 };
 
 const ru_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Один клик — и можно публиковать, комментировать и писать отзывы.`)
+	return /** @type {LocalizedString} */ (`Подтвердите адрес, чтобы публиковать, комментировать и писать отзывы.`)
 };
 
 const sv_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ett klick så kan du publicera, kommentera och recensera.`)
+	return /** @type {LocalizedString} */ (`Bekräfta din adress för att publicera, kommentera och recensera.`)
 };
 
 const tr_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tek tıkla yayınlayabilir, yorum yapabilir ve inceleme yazabilirsin.`)
+	return /** @type {LocalizedString} */ (`Yayınlamak, yorum yapmak ve inceleme yazmak için adresini doğrula.`)
 };
 
 const zh_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`点一下，就能发布、评论和撰写评价。`)
+	return /** @type {LocalizedString} */ (`确认邮箱后，即可发布、评论和撰写评价。`)
 };
 
 const ja_emails_auth_verify_preview = /** @type {(inputs: Emails_Auth_Verify_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ワンクリックで、公開・コメント・レビューができるようになります。`)
+	return /** @type {LocalizedString} */ (`アドレスを確認すると、公開・コメント・レビューができるようになります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "One click and you can publish, comment and review." |
+* | "Confirm your address to publish, comment and review." |
 *
 * @param {Emails_Auth_Verify_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Ranger_Lanes_LabelInputs = {};
 /**
 * | output |
 * | --- |
-* | "Queue lanes" |
+* | "Queues" |
 *
 * @param {Ranger_Lanes_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

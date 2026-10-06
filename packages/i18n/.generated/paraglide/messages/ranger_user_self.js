@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_SelfInputs */
 
 const en_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This is your own account: another ranger has to act on it.`)
+	return /** @type {LocalizedString} */ (`This is your own account: another moderator has to act on it.`)
 };
 
 const es_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Es tu propia cuenta: tiene que actuar otro guardabosques.`)
+	return /** @type {LocalizedString} */ (`Es tu propia cuenta: tiene que actuar otro moderador.`)
 };
 
 const de_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Das ist dein eigenes Konto: Ein anderer Ranger muss handeln.`)
+	return /** @type {LocalizedString} */ (`Das ist dein eigenes Konto: Ein anderer Moderator muss handeln.`)
 };
 
 const fr_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`C’est votre propre compte : un autre ranger doit s’en charger.`)
+	return /** @type {LocalizedString} */ (`C’est votre propre compte : un autre modérateur doit s’en charger.`)
 };
 
 const it_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`È il tuo account: deve intervenire un altro ranger.`)
+	return /** @type {LocalizedString} */ (`È il tuo account: deve intervenire un altro moderatore.`)
 };
 
 const nl_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dit is je eigen account: een andere ranger moet ingrijpen.`)
+	return /** @type {LocalizedString} */ (`Dit is je eigen account: een andere moderator moet ingrijpen.`)
 };
 
 const pl_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`To twoje własne konto: musi zadziałać inny strażnik.`)
+	return /** @type {LocalizedString} */ (`To twoje własne konto: musi zadziałać inny moderator.`)
 };
 
 const pt_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esta é a sua própria conta: outro guarda precisa agir.`)
+	return /** @type {LocalizedString} */ (`Esta é a sua própria conta: outro moderador precisa agir.`)
 };
 
 const ru_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Это ваш собственный аккаунт: действовать должен другой рейнджер.`)
+	return /** @type {LocalizedString} */ (`Это ваш собственный аккаунт: действовать должен другой модератор.`)
 };
 
 const sv_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Det här är ditt eget konto: en annan ranger måste agera.`)
+	return /** @type {LocalizedString} */ (`Det här är ditt eget konto: en annan moderator måste agera.`)
 };
 
 const tr_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu senin hesabın: başka bir korucu işlem yapmalı.`)
+	return /** @type {LocalizedString} */ (`Bu senin hesabın: başka bir moderatör işlem yapmalı.`)
 };
 
 const zh_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`这是你自己的账号：需要由其他护林员处理。`)
+	return /** @type {LocalizedString} */ (`这是你自己的账号：需要由其他版主处理。`)
 };
 
 const ja_ranger_user_self = /** @type {(inputs: Ranger_User_SelfInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`あなた自身のアカウントです。別のレンジャーが対応する必要があります。`)
+	return /** @type {LocalizedString} */ (`あなた自身のアカウントです。別のモデレーターが対応する必要があります。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "This is your own account: another ranger has to act on it." |
+* | "This is your own account: another moderator has to act on it." |
 *
 * @param {Ranger_User_SelfInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

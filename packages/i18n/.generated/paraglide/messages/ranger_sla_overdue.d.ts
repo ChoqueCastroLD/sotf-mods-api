@@ -5,7 +5,7 @@ export type Ranger_Sla_OverdueInputs = {
 /**
 * | output |
 * | --- |
-* | "{time} · over SLA" |
+* | "{time} · overdue" |
 *
 * @param {Ranger_Sla_OverdueInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

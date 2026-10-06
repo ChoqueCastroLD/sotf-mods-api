@@ -3,7 +3,7 @@ export type Common_Term_SignalsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signals" |
+* | "Notifications" |
 *
 * @param {Common_Term_SignalsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

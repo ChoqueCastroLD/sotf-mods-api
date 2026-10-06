@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Status_PendingInputs */
 
 const en_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pending review`)
+	return /** @type {LocalizedString} */ (`Pending approval`)
 };
 
 const es_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pendiente de revisión`)
+	return /** @type {LocalizedString} */ (`Pendiente de aprobación`)
 };
 
 const de_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wartet auf Prüfung`)
+	return /** @type {LocalizedString} */ (`Wartet auf Freigabe`)
 };
 
 const fr_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En attente de revue`)
+	return /** @type {LocalizedString} */ (`En attente d’approbation`)
 };
 
 const it_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In attesa di revisione`)
+	return /** @type {LocalizedString} */ (`In attesa di approvazione`)
 };
 
 const nl_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wacht op controle`)
+	return /** @type {LocalizedString} */ (`Wacht op goedkeuring`)
 };
 
 const pl_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czeka na sprawdzenie`)
+	return /** @type {LocalizedString} */ (`Czeka na zatwierdzenie`)
 };
 
 const pt_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aguardando revisão`)
+	return /** @type {LocalizedString} */ (`Aguardando aprovação`)
 };
 
 const ru_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ожидает проверки`)
+	return /** @type {LocalizedString} */ (`Ожидает одобрения`)
 };
 
 const sv_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Väntar på granskning`)
+	return /** @type {LocalizedString} */ (`Väntar på godkännande`)
 };
 
 const tr_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İnceleme bekliyor`)
+	return /** @type {LocalizedString} */ (`Onay bekliyor`)
 };
 
 const zh_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`待审核`)
+	return /** @type {LocalizedString} */ (`待批准`)
 };
 
 const ja_ui_domain_status_pending = /** @type {(inputs: Ui_Domain_Status_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`審査待ち`)
+	return /** @type {LocalizedString} */ (`承認待ち`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Pending review" |
+* | "Pending approval" |
 *
 * @param {Ui_Domain_Status_PendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

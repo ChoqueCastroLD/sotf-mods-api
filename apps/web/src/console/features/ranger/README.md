@@ -4,12 +4,12 @@ Moderation UI of PLAN §7.4 and research/03 §6.10 on the WP-51 backend (`/api/v
 
 | Route | Screen | What |
 |---|---|---|
-| `/ranger?lane=&item=` | `QueueScreen` | Lanes new mods, versions, post-review, builds, reports with live counts and SLA; list + item view |
-| `/ranger/comments?item=` | `QueueScreen` (comments lane) | Held comments: publish or hide with a reason |
-| `/ranger/reports?status=` | `ReportsScreen` | Reports: resolve (optionally hiding the content) or dismiss |
-| `/ranger/users?q=&page=` | `UsersScreen` | User search |
-| `/ranger/users/$userId` | `UserScreen` | Account, activity, sanctions (create/revoke), verified creator flag, role (admins), sign out everywhere |
-| `/ranger/audit?actor=&action=&target=` | `AuditScreen` | Immutable audit log with filters and before/after |
+| `/moderation?lane=&item=` | `QueueScreen` | Lanes new mods, versions, post-review, builds, reports with live counts and SLA; list + item view |
+| `/moderation/comments?item=` | `QueueScreen` (comments lane) | Held comments: publish or hide with a reason |
+| `/moderation/reports?status=` | `ReportsScreen` | Reports: resolve (optionally hiding the content) or dismiss |
+| `/moderation/users?q=&page=` | `UsersScreen` | User search |
+| `/moderation/users/$userId` | `UserScreen` | Account, activity, sanctions (create/revoke), verified creator flag, role (admins), sign out everywhere |
+| `/moderation/audit?actor=&action=&target=` | `AuditScreen` | Immutable audit log with filters and before/after |
 
 - **Item view** (`ItemView`, `ItemPanels`): automated checks + security scan (VirusTotal link, verdict
   override when the API exposes the scan id), tabs files diff · manifest diff · description ·

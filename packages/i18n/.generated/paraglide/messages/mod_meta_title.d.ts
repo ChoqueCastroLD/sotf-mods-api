@@ -7,8 +7,8 @@ export type Mod_Meta_TitleInputs = {
 /**
 * | kind | output |
 * | --- | --- |
-* | "library" | "{name} — Sons of the Forest library by {author}" |
-* | * | "{name} — Sons of the Forest mod by {author}" |
+* | "library" | "{name}: Sons of the Forest library by {author}" |
+* | * | "{name}: Sons of the Forest mod by {author}" |
 *
 * @param {Mod_Meta_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

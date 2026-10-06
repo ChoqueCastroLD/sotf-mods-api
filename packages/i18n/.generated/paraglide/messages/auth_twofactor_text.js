@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Twofactor_TextInputs */
 
 const en_auth_twofactor_text = /** @type {(inputs: Auth_Twofactor_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enter the code from your authenticator app to finish signing in.`)
+	return /** @type {LocalizedString} */ (`Enter the code from your authenticator app to finish logging in.`)
 };
 
 const es_auth_twofactor_text = /** @type {(inputs: Auth_Twofactor_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_twofactor_text = /** @type {(inputs: Auth_Twofactor_TextInputs) =>
 /**
 * | output |
 * | --- |
-* | "Enter the code from your authenticator app to finish signing in." |
+* | "Enter the code from your authenticator app to finish logging in." |
 *
 * @param {Auth_Twofactor_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

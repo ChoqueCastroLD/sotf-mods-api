@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Meer",
-  "shell_more_help": "Hulp",
-  "shell_more_community": "Community",
   "shell_more_install_guide": "Installatiegids",
   "shell_install_app": "App installeren",
   "shell_install_app_hint": "Zet SOTF Mods op je beginscherm",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Vernieuwen…",
   "shell_offline_meta_title": "Offline",
   "shell_offline_meta_description": "Op dit moment geen verbinding. Probeer het opnieuw zodra je weer online bent.",
-  "shell_offline_eyebrow": "Offline",
   "shell_offline_title": "Je bent offline",
   "shell_offline_body": "SOTF Mods is nu niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
   "shell_offline_retry": "Opnieuw proberen",

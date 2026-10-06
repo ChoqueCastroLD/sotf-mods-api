@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Suspended_DetailInputs */
 
 const en_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your account is suspended, so this action is blocked. Check your email for details or contact a ranger.`)
+	return /** @type {LocalizedString} */ (`Your account is suspended, so this action is blocked. Check your email for details or contact a moderator.`)
 };
 
 const es_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu cuenta está suspendida, así que esta acción está bloqueada. Revisa tu email para ver los detalles o contacta con un guardabosques.`)
+	return /** @type {LocalizedString} */ (`Tu cuenta está suspendida, así que esta acción está bloqueada. Revisa tu email para ver los detalles o contacta con un moderador.`)
 };
 
 const de_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein Konto ist gesperrt, deshalb ist diese Aktion blockiert. Details findest du in deinen E-Mails, oder wende dich an einen Ranger.`)
+	return /** @type {LocalizedString} */ (`Dein Konto ist gesperrt, deshalb ist diese Aktion blockiert. Details findest du in deinen E-Mails, oder wende dich an die Moderation.`)
 };
 
 const fr_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre compte est suspendu, cette action est donc bloquée. Consultez vos e-mails pour en savoir plus ou contactez un ranger.`)
+	return /** @type {LocalizedString} */ (`Votre compte est suspendu, cette action est donc bloquée. Consultez vos e-mails pour en savoir plus ou contactez un modérateur.`)
 };
 
 const it_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il tuo account è sospeso, quindi questa azione è bloccata. Controlla la tua email per i dettagli o contatta un ranger.`)
+	return /** @type {LocalizedString} */ (`Il tuo account è sospeso, quindi questa azione è bloccata. Controlla la tua email per i dettagli o contatta un moderatore.`)
 };
 
 const nl_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je account is geschorst, daarom is deze actie geblokkeerd. Bekijk je e-mail voor details of neem contact op met een ranger.`)
+	return /** @type {LocalizedString} */ (`Je account is geschorst, daarom is deze actie geblokkeerd. Bekijk je e-mail voor details of neem contact op met een moderator.`)
 };
 
 const pl_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twoje konto jest zawieszone, więc ta akcja jest zablokowana. Szczegóły znajdziesz w e-mailu lub u strażnika.`)
+	return /** @type {LocalizedString} */ (`Twoje konto jest zawieszone, więc ta akcja jest zablokowana. Szczegóły znajdziesz w e-mailu albo skontaktuj się z moderatorem.`)
 };
 
 const pt_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua conta está suspensa, então esta ação está bloqueada. Veja os detalhes no seu e-mail ou fale com um guarda.`)
+	return /** @type {LocalizedString} */ (`Sua conta está suspensa, então esta ação está bloqueada. Veja os detalhes no seu e-mail ou fale com um moderador.`)
 };
 
 const ru_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваш аккаунт временно заблокирован, поэтому действие недоступно. Подробности — в письме, или свяжитесь с рейнджером.`)
+	return /** @type {LocalizedString} */ (`Ваш аккаунт приостановлен, поэтому действие недоступно. Подробности смотрите в письме или свяжитесь с модератором.`)
 };
 
 const sv_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ditt konto är avstängt, så den här åtgärden är blockerad. Se din e-post för detaljer eller kontakta en ranger.`)
+	return /** @type {LocalizedString} */ (`Ditt konto är avstängt, så den här åtgärden är blockerad. Se din e-post för detaljer eller kontakta en moderator.`)
 };
 
 const tr_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hesabın askıya alındığı için bu işlem engellendi. Ayrıntılar için e-postanı kontrol et ya da bir korucuyla iletişime geç.`)
+	return /** @type {LocalizedString} */ (`Hesabın askıya alındığı için bu işlem engellendi. Ayrıntılar için e-postanı kontrol et ya da bir moderatörle iletişime geç.`)
 };
 
 const zh_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的账号已被停用，因此该操作被阻止。请查看邮件了解详情，或联系护林员。`)
+	return /** @type {LocalizedString} */ (`你的账号已被停用，因此该操作被阻止。请查看邮件了解详情，或联系版主。`)
 };
 
 const ja_errors_code_suspended_detail = /** @type {(inputs: Errors_Code_Suspended_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アカウントが停止されているため、この操作はできません。詳細はメールを確認するか、レンジャーに連絡してください。`)
+	return /** @type {LocalizedString} */ (`アカウントが停止されているため、この操作はできません。詳細はメールを確認するか、モデレーターに連絡してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your account is suspended, so this action is blocked. Check your email for details or contact a ranger." |
+* | "Your account is suspended, so this action is blocked. Check your email for details or contact a moderator." |
 *
 * @param {Errors_Code_Suspended_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@ export type Ranger_User_Verified_DoneInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} is now a verified creator." |
+* | "{name} is now trusted." |
 *
 * @param {Ranger_User_Verified_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

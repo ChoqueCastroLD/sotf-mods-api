@@ -110,13 +110,13 @@ export function VersionTable({ versions, caption, lastDownloadedAt, className }:
                   </time>
                 </td>
                 <td className={cn(td, 'text-fg-muted')}>
-                  {version.fileSize === null ? '—' : formatBytes(locale, version.fileSize)}
+                  {version.fileSize === null ? '-' : formatBytes(locale, version.fileSize)}
                 </td>
-                <td className={cn(td, 'font-mono text-xs')}>{version.gameVersionDeclared ?? '—'}</td>
+                <td className={cn(td, 'font-mono text-xs')}>{version.gameVersionDeclared ?? '-'}</td>
                 <td className={cn(td, 'font-mono text-xs')}>
                   {version.loaderVersionDeclared
                     ? t('ui_domain_version_min', { version: version.loaderVersionDeclared })
-                    : '—'}
+                    : '-'}
                 </td>
                 <td className={cn(td, 'text-end')} title={formatCount(locale, version.downloadsCount)}>
                   {formatCompact(locale, version.downloadsCount)}

@@ -10,7 +10,6 @@ import type { FilterChipOption, SortOption } from '@sotf/ui/domain';
 import { href } from '../../lib/i18n.ts';
 import {
   activeFilterCount,
-  COMPAT_VALUES,
   EXPLORE_SORTS,
   type ExploreScope,
   type ExploreState,
@@ -113,12 +112,6 @@ function sortLabel(sort: string): string {
     default:
       return m.explore_sort_relevance();
   }
-}
-
-export function compatLabel(value: string): string {
-  if (value === 'works') return m.explore_compat_works();
-  if (value === 'untested') return m.explore_compat_untested();
-  return m.explore_any();
 }
 
 export function multiplayerLabel(value: string): string {
@@ -276,16 +269,6 @@ export function buildExploreModel(input: {
   // Radio groups (GET form controls).
   const choices: ChoiceGroup[] = [
     {
-      name: 'compat',
-      legend: m.explore_facet_compat(),
-      options: COMPAT_VALUES.map((value) => ({
-        value: value === 'any' ? '' : value,
-        label: compatLabel(value),
-        checked: state.compat === value,
-        count: value === 'any' ? null : bucketCount(facets?.compat, value),
-      })),
-    },
-    {
       name: 'multiplayer',
       legend: m.explore_facet_multiplayer(),
       options: [
@@ -412,13 +395,6 @@ export function buildExploreModel(input: {
       excluded: true,
     });
   }
-  if (state.compat !== 'any')
-    active.push({
-      key: 'compat',
-      label: compatLabel(state.compat),
-      removeHref: hrefOf({ compat: 'any' }),
-      excluded: false,
-    });
   if (state.multiplayer)
     active.push({
       key: 'multiplayer',
@@ -481,7 +457,6 @@ export function buildExploreModel(input: {
     excludeCategory: [],
     tag: scope.fixedTag ? [scope.fixedTag] : [],
     excludeTag: [],
-    compat: 'any',
     multiplayer: null,
     dedicated: false,
     platform: null,

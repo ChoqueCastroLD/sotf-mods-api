@@ -233,9 +233,7 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                     </span>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <h2 className="text-2xl font-bold text-fg sm:text-3xl md:text-4xl">
-                      {entry.name}
-                    </h2>
+                    <h2 className="text-2xl font-bold text-fg sm:text-3xl md:text-4xl">{entry.name}</h2>
                     {entry.authors.length > 0 ? (
                       <p className="text-sm text-fg-muted">
                         {t('jams_by')} <span className="font-semibold text-fg">{entry.authors.join(', ')}</span>
@@ -271,9 +269,7 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                         <legend className="sr-only">{category.label}</legend>
                         <div className="mb-2 flex items-baseline justify-between gap-3" aria-hidden="true">
                           <span className="text-lg font-bold text-fg">{category.label}</span>
-                          <span className="text-sm text-fg-muted tabular-nums">
-                            {value > 0 ? `${value}/5` : '–/5'}
-                          </span>
+                          <span className="text-sm text-fg-muted tabular-nums">{value > 0 ? `${value}/5` : '–/5'}</span>
                         </div>
                         <div className="flex items-center justify-between gap-1 sm:justify-start sm:gap-2">
                           {[1, 2, 3, 4, 5].map((star) => (

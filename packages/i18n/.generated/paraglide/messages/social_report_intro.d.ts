@@ -3,7 +3,7 @@ export type Social_Report_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Rangers review every report. Tell them what’s wrong." |
+* | "Moderators review every report. Tell us what’s wrong." |
 *
 * @param {Social_Report_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

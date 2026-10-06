@@ -1,6 +1,6 @@
 /**
  * Real-user Web Vitals aggregation (PLAN §8.8 "RUM": p75 per template and country, shown in
- * `/ranger/admin/performance` through `GET /admin/rum`).
+ * `/moderation/admin/performance` through `GET /admin/rum`).
  *
  * Computed on demand from the `web_vital` rows of `AnalyticsEvent` (90-day retention covers the
  * 28-day window) with `percentile_cont(0.75)`: one row per template for every country together

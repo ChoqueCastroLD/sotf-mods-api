@@ -1,20 +1,17 @@
 /**
- * What each OG card shows (PLAN §4.5 «OG» column, §8.6): built from the same reads as the public
- * pages (catalog snapshot, profiles, kits, Patch Radar), in English. Returns `null` when the
- * entity has no public OG image: missing, not public, or NSFW («sin OG explícita», PLAN §4.5).
+ * What each OG card shows: built from the same reads as the public pages (catalog snapshot,
+ * profiles, categories, jams, guides), in English. Returns `null` when the entity has no public OG
+ * image: missing, not public, NSFW, or a removed feature (kits, patch radar, milestones).
  */
 import type { OG_ENTITY_TYPES } from '@sotf/contracts/jobs';
-import { jam, jamEntry, mod, modMilestone, user } from '@sotf/db';
+import { jam, jamEntry, mod, user } from '@sotf/db';
 import { and, count, eq } from 'drizzle-orm';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { getSnapshot } from '../catalog/snapshot.ts';
 import { getUserProfile } from '../catalog/users.ts';
-import { getPatchRadar } from '../compat/read.ts';
-import { currentGameBuild } from '../compat/registry.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { isDomainError } from '../kernel/errors.ts';
-import { getKit } from '../kits/service.ts';
-import { OG_COLLAGE_MAX, type OgCard, type OgStat } from './template.ts';
+import type { OgCard, OgStat } from './template.ts';
 
 export type OgEntityType = (typeof OG_ENTITY_TYPES)[number];
 
@@ -28,12 +25,6 @@ export function compact(value: number): string {
   return compactFormat.format(Math.max(0, Math.round(value)));
 }
 
-/** `1.0.4` → `1.0.x` (the readout of PLAN §8.6); other labels unchanged. */
-export function buildFamily(label: string): string {
-  const match = /^(\d+)\.(\d+)\.\d+/.exec(label.trim());
-  return match ? `${match[1]}.${match[2]}.x` : label.trim();
-}
-
 function plural(count: number, one: string, other: string): string {
   return `${compact(count)} ${count === 1 ? one : other}`;
 }
@@ -43,7 +34,6 @@ const GUIDE_TITLES: Readonly<Record<string, string>> = {
   install: 'How to install Sons of the Forest mods',
   developers: 'Build on the SOTF Mods API',
   about: 'About SOTF Mods',
-  brand: 'SOTF Mods brand',
 };
 
 function humanize(slug: string): string {
@@ -64,10 +54,7 @@ async function modCard(ctx: Ctx, config: CatalogConfig, id: number): Promise<OgC
   const snapshot = await getSnapshot(ctx, config);
   const entry = snapshot.byId.get(id);
   if (!entry || entry.nsfw || !PUBLIC_MOD_STATUSES.has(entry.status)) return null;
-  const [accentRows, build] = await Promise.all([
-    ctx.db.select({ logColor: mod.logColor }).from(mod).where(eq(mod.id, id)).limit(1),
-    currentGameBuild(ctx.db),
-  ]);
+  const accentRows = await ctx.db.select({ logColor: mod.logColor }).from(mod).where(eq(mod.id, id)).limit(1);
   const accent = accentRows[0]?.logColor ?? null;
   const card = entry.card;
   const kindLabel = card.kind === 'build' ? 'Build' : card.kind === 'library' ? 'Library' : 'Mod';
@@ -78,13 +65,6 @@ async function modCard(ctx: Ctx, config: CatalogConfig, id: number): Promise<OgC
   const stats: OgStat[] = [{ icon: 'download', text: compact(card.downloads) }];
   if (card.ratingAvg !== null && card.ratingCount >= 3) {
     stats.push({ icon: 'star', text: ratingFormat.format(card.ratingAvg) });
-  }
-  if (build && card.kind !== 'build') {
-    if (card.compatStatus === 'works')
-      stats.push({ icon: 'check', text: `Works on ${buildFamily(build.label)}`, tone: 'good' });
-    else if (card.compatStatus === 'broken') {
-      stats.push({ icon: 'cross', text: `Broken on ${buildFamily(build.label)}`, tone: 'bad' });
-    }
   }
   if (card.latestVersion && stats.length < 3) stats.push({ text: `v${card.latestVersion}` });
 
@@ -115,38 +95,10 @@ async function userCard(ctx: Ctx, config: CatalogConfig, id: number): Promise<Og
   return {
     type: 'user',
     seed: `user:${profile.id}`,
-    kicker: profile.verifiedCreator
-      ? 'Verified creator'
-      : stats.modsCount + stats.buildsCount > 0
-        ? 'Creator'
-        : 'Survivor',
+    kicker: profile.verifiedCreator ? 'Profile · Trusted' : 'Profile',
     title: profile.displayName,
     fallbackTitle: profile.handle,
     byline: `@${profile.handle}`,
-    stats: readouts,
-    accent: null,
-  };
-}
-
-async function kitCard(ctx: Ctx, config: CatalogConfig, id: number): Promise<OgCard | null> {
-  const result = await orNull(() => getKit(ctx, { config }, id));
-  const kit = result?.kit;
-  if (kit?.visibility !== 'public') return null;
-  const readouts: OgStat[] = [{ icon: 'box', text: plural(kit.itemsCount, 'mod', 'mods') }];
-  if (kit.compat.works > 0)
-    readouts.push({ icon: 'check', text: `${compact(kit.compat.works)} working`, tone: 'good' });
-  if (kit.followersCount > 0)
-    readouts.push({ icon: 'users', text: plural(kit.followersCount, 'follower', 'followers') });
-  // Knolling collage (PLAN §7.8): the custom cover alone, or the items' thumbnails.
-  const images = kit.cover ? [kit.cover.url] : kit.previewThumbnails.slice(0, OG_COLLAGE_MAX);
-  return {
-    ...(images.length > 0 ? { images } : {}),
-    type: 'kit',
-    seed: `kit:${kit.id}`,
-    kicker: kit.isStaffPick ? 'Mod kit · Staff pick' : 'Mod kit',
-    title: kit.name,
-    fallbackTitle: kit.slug,
-    byline: `by ${kit.owner.displayName}`,
     stats: readouts,
     accent: null,
   };
@@ -172,27 +124,6 @@ async function categoryCard(ctx: Ctx, config: CatalogConfig, slug: string): Prom
   };
 }
 
-async function patchRadarCard(ctx: Ctx, config: CatalogConfig, key: string): Promise<OgCard | null> {
-  const buildId = /^\d+$/.test(key) ? Number(key) : undefined;
-  const radar = await orNull(() => getPatchRadar(ctx, { config }, buildId));
-  if (!radar) return null;
-  const label = radar.build.label;
-  return {
-    type: 'patch-radar',
-    seed: `patch-radar:${radar.build.id}`,
-    kicker: 'Patch Radar',
-    title: `Do SOTF mods work on patch ${label}?`,
-    fallbackTitle: `Patch ${label}`,
-    byline: `Top ${radar.works.length + radar.broken.length + radar.pending.length} mods, field-tested`,
-    stats: [
-      { icon: 'check', text: `${radar.works.length} work`, tone: 'good' },
-      { icon: 'cross', text: `${radar.broken.length} broken`, tone: 'bad' },
-      { text: `${radar.pending.length} pending` },
-    ],
-    accent: null,
-  };
-}
-
 function guideCard(slug: string): OgCard {
   const title = GUIDE_TITLES[slug] ?? humanize(slug);
   return {
@@ -201,7 +132,7 @@ function guideCard(slug: string): OgCard {
     kicker: 'Guide',
     title,
     fallbackTitle: 'SOTF Mods guide',
-    byline: 'RedLoader & RedManager',
+    byline: 'RedLoader and Red Manager',
     stats: [],
     accent: null,
   };
@@ -214,32 +145,6 @@ export function parseMilestoneId(value: string): { modId: number; threshold: num
   const modId = Number(match[1]);
   const threshold = Number(match[2]);
   return modId > 0 && threshold > 0 ? { modId, threshold } : null;
-}
-
-async function milestoneCard(ctx: Ctx, config: CatalogConfig, id: string): Promise<OgCard | null> {
-  const parsed = parseMilestoneId(id);
-  if (!parsed) return null;
-  const [reached] = await ctx.db
-    .select({ threshold: modMilestone.threshold })
-    .from(modMilestone)
-    .where(and(eq(modMilestone.modId, parsed.modId), eq(modMilestone.threshold, parsed.threshold)))
-    .limit(1);
-  if (!reached) return null;
-  const snapshot = await getSnapshot(ctx, config);
-  const entry = snapshot.byId.get(parsed.modId);
-  if (!entry || entry.nsfw || !PUBLIC_MOD_STATUSES.has(entry.status)) return null;
-  const card = entry.card;
-  const accentRows = await ctx.db.select({ logColor: mod.logColor }).from(mod).where(eq(mod.id, parsed.modId)).limit(1);
-  return {
-    type: 'milestone',
-    seed: `milestone:${parsed.modId}-${parsed.threshold}`,
-    kicker: `Milestone · ${compact(parsed.threshold)} downloads`,
-    title: card.name,
-    fallbackTitle: card.slug,
-    byline: `by ${card.userDisplayName}`,
-    stats: [{ icon: 'download', text: `${compact(parsed.threshold)} downloads` }],
-    accent: accentRows[0]?.logColor ?? null,
-  };
 }
 
 const JAM_ACCENT_HEX: Readonly<Record<string, string>> = {
@@ -261,7 +166,7 @@ async function jamCard(ctx: Ctx, id: number): Promise<OgCard | null> {
   return {
     type: 'jam',
     seed: `jam:${row.id}`,
-    kicker: row.phase === 'results' || row.phase === 'archived' ? 'Mod Jam · Results' : 'Mod Jam',
+    kicker: row.phase === 'results' || row.phase === 'archived' ? 'Jam · Results' : 'Jam',
     title: row.title,
     fallbackTitle: row.slug,
     byline:
@@ -290,15 +195,13 @@ export async function loadOgCard(
     case 'user':
       return numericId === null ? null : userCard(ctx, config, numericId);
     case 'kit':
-      return numericId === null ? null : kitCard(ctx, config, numericId);
+    case 'patch-radar':
+    case 'milestone':
+      return null;
     case 'category':
       return categoryCard(ctx, config, String(entityId).toLowerCase());
-    case 'patch-radar':
-      return patchRadarCard(ctx, config, String(entityId));
     case 'jam':
       return numericId === null ? null : jamCard(ctx, numericId);
-    case 'milestone':
-      return milestoneCard(ctx, config, String(entityId));
     case 'guide':
       return guideCard(String(entityId).toLowerCase());
   }

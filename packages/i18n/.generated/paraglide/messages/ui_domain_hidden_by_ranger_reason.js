@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ reason: NonNullable<unknown> }} Ui_Domain_Hidden_By_Ranger_ReasonInputs */
 
 const en_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Hidden by a ranger: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Hidden by a moderator: ${i?.reason}`)
 };
 
 const es_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Oculto por un guardabosques: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Oculto por un moderador: ${i?.reason}`)
 };
 
 const de_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Von einem Ranger ausgeblendet: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Von einem Moderator ausgeblendet: ${i?.reason}`)
 };
 
 const fr_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Masqué par un ranger : ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Masqué par un modérateur : ${i?.reason}`)
 };
 
 const it_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nascosto da un ranger: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Nascosto da un moderatore: ${i?.reason}`)
 };
 
 const nl_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Verborgen door een ranger: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Verborgen door een moderator: ${i?.reason}`)
 };
 
 const pl_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ukryte przez strażnika: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Ukryte przez moderatora: ${i?.reason}`)
 };
 
 const pt_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ocultado por um guarda: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Ocultado por um moderador: ${i?.reason}`)
 };
 
 const ru_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Скрыто рейнджером: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Скрыто модератором: ${i?.reason}`)
 };
 
 const sv_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Dold av en ranger: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Dold av en moderator: ${i?.reason}`)
 };
 
 const tr_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Bir korucu tarafından gizlendi: ${i?.reason}`)
+	return /** @type {LocalizedString} */ (`Bir moderatör tarafından gizlendi: ${i?.reason}`)
 };
 
 const zh_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`已被护林员隐藏：${i?.reason}`)
+	return /** @type {LocalizedString} */ (`已被审核员隐藏：${i?.reason}`)
 };
 
 const ja_ui_domain_hidden_by_ranger_reason = /** @type {(inputs: Ui_Domain_Hidden_By_Ranger_ReasonInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`レンジャーにより非表示：${i?.reason}`)
+	return /** @type {LocalizedString} */ (`モデレーターにより非表示：${i?.reason}`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Hidden by a ranger: {reason}" |
+* | "Hidden by a moderator: {reason}" |
 *
 * @param {Ui_Domain_Hidden_By_Ranger_ReasonInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

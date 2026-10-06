@@ -6,15 +6,15 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_UnverifyInputs */
 
 const en_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Remove flag`)
+	return /** @type {LocalizedString} */ (`Remove trusted`)
 };
 
 const es_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quitar marca`)
+	return /** @type {LocalizedString} */ (`Quitar estado de confianza`)
 };
 
 const de_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markierung entfernen`)
+	return /** @type {LocalizedString} */ (`Vertrauensstatus entfernen`)
 };
 
 const fr_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) 
 };
 
 const nl_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Markering intrekken`)
+	return /** @type {LocalizedString} */ (`Vertrouwen intrekken`)
 };
 
 const pl_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) 
 };
 
 const pt_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Remover marca`)
+	return /** @type {LocalizedString} */ (`Remover status`)
 };
 
 const ru_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
@@ -42,25 +42,25 @@ const ru_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) 
 };
 
 const sv_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ta bort markering`)
+	return /** @type {LocalizedString} */ (`Ta bort betrodd`)
 };
 
 const tr_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İşareti kaldır`)
+	return /** @type {LocalizedString} */ (`Güveni kaldır`)
 };
 
 const zh_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`取消标记`)
+	return /** @type {LocalizedString} */ (`取消受信任`)
 };
 
 const ja_ranger_user_unverify = /** @type {(inputs: Ranger_User_UnverifyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`認証を外す`)
+	return /** @type {LocalizedString} */ (`信頼済みを外す`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Remove flag" |
+* | "Remove trusted" |
 *
 * @param {Ranger_User_UnverifyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

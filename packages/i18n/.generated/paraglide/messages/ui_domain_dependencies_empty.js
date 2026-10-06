@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Dependencies_EmptyInputs */
 
 const en_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No dependencies. Drop it in and play.`)
+	return /** @type {LocalizedString} */ (`No dependencies.`)
 };
 
 const es_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin dependencias. Ponlo y a jugar.`)
+	return /** @type {LocalizedString} */ (`Sin dependencias.`)
 };
 
 const de_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Keine Abhängigkeiten. Reinlegen und losspielen.`)
+	return /** @type {LocalizedString} */ (`Keine Abhängigkeiten.`)
 };
 
 const fr_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucune dépendance. Installez-le et jouez.`)
+	return /** @type {LocalizedString} */ (`Aucune dépendance.`)
 };
 
 const it_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessuna dipendenza. Mettila e gioca.`)
+	return /** @type {LocalizedString} */ (`Nessuna dipendenza.`)
 };
 
 const nl_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen afhankelijkheden. Erin zetten en spelen.`)
+	return /** @type {LocalizedString} */ (`Geen afhankelijkheden.`)
 };
 
 const pl_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak zależności. Wrzuć i graj.`)
+	return /** @type {LocalizedString} */ (`Brak zależności.`)
 };
 
 const pt_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem dependências. É só colocar e jogar.`)
+	return /** @type {LocalizedString} */ (`Sem dependências.`)
 };
 
 const ru_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Зависимостей нет. Установите и играйте.`)
+	return /** @type {LocalizedString} */ (`Зависимостей нет.`)
 };
 
 const sv_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga beroenden. Släpp in den och spela.`)
+	return /** @type {LocalizedString} */ (`Inga beroenden.`)
 };
 
 const tr_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bağımlılık yok. At ve oyna.`)
+	return /** @type {LocalizedString} */ (`Bağımlılık yok.`)
 };
 
 const zh_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`没有依赖项。放进去就能玩。`)
+	return /** @type {LocalizedString} */ (`没有依赖项。`)
 };
 
 const ja_ui_domain_dependencies_empty = /** @type {(inputs: Ui_Domain_Dependencies_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`前提 MOD はありません。入れるだけで遊べます。`)
+	return /** @type {LocalizedString} */ (`前提 MOD はありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No dependencies. Drop it in and play." |
+* | "No dependencies." |
 *
 * @param {Ui_Domain_Dependencies_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

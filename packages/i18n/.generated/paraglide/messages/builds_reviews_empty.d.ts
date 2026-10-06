@@ -3,7 +3,7 @@ export type Builds_Reviews_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "No reviews yet. Built it? Tell other survivors how it went." |
+* | "No reviews yet. Tried it? Tell other players how it went." |
 *
 * @param {Builds_Reviews_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

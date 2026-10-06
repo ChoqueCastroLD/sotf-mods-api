@@ -3,7 +3,7 @@ export type Jams_Editor_Accent_EmberInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ember red" |
+* | "Red" |
 *
 * @param {Jams_Editor_Accent_EmberInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

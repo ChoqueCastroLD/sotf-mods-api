@@ -3,7 +3,7 @@ export type Basecamp_Compat_Tested_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "The builds you tested each version on. Players see them next to the field reports." |
+* | "The builds you tested each version on. Players see them on the mod page." |
 *
 * @param {Basecamp_Compat_Tested_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,51 +6,51 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_RedirectingInputs */
 
 const en_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Taking you to sign in…`)
+	return /** @type {LocalizedString} */ (`Redirecting to the login page…`)
 };
 
 const es_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Te llevamos a iniciar sesión…`)
+	return /** @type {LocalizedString} */ (`Redirigiendo al inicio de sesión…`)
 };
 
 const de_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wir bringen dich zur Anmeldung…`)
+	return /** @type {LocalizedString} */ (`Weiterleitung zur Anmeldung…`)
 };
 
 const fr_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Redirection vers la connexion…`)
+	return /** @type {LocalizedString} */ (`Redirection vers la page de connexion…`)
 };
 
 const it_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ti portiamo all’accesso…`)
+	return /** @type {LocalizedString} */ (`Reindirizzamento alla pagina di accesso…`)
 };
 
 const nl_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`We brengen je naar het inloggen…`)
+	return /** @type {LocalizedString} */ (`Doorsturen naar de inlogpagina…`)
 };
 
 const pl_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przenosimy cię do logowania…`)
+	return /** @type {LocalizedString} */ (`Przekierowanie do logowania…`)
 };
 
 const pt_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Levando você para o login…`)
+	return /** @type {LocalizedString} */ (`Redirecionando para o login…`)
 };
 
 const ru_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Переходим ко входу…`)
+	return /** @type {LocalizedString} */ (`Переходим на страницу входа…`)
 };
 
 const sv_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tar dig till inloggningen…`)
+	return /** @type {LocalizedString} */ (`Skickar dig till inloggningen…`)
 };
 
 const tr_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Giriş sayfasına götürüyoruz…`)
+	return /** @type {LocalizedString} */ (`Giriş sayfasına yönlendiriliyorsun…`)
 };
 
 const zh_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`正在前往登录…`)
+	return /** @type {LocalizedString} */ (`正在前往登录页面…`)
 };
 
 const ja_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_console_redirecting = /** @type {(inputs: Console_RedirectingInputs) =>
 /**
 * | output |
 * | --- |
-* | "Taking you to sign in…" |
+* | "Redirecting to the login page…" |
 *
 * @param {Console_RedirectingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

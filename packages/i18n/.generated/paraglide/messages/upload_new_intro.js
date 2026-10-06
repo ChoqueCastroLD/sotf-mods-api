@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_New_IntroInputs */
 
 const en_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`What are you sharing with the survivors today?`)
+	return /** @type {LocalizedString} */ (`What do you want to publish?`)
 };
 
 const es_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`¿Qué compartes hoy con los supervivientes?`)
+	return /** @type {LocalizedString} */ (`¿Qué quieres publicar?`)
 };
 
 const de_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Was teilst du heute mit den Überlebenden?`)
+	return /** @type {LocalizedString} */ (`Was möchtest du veröffentlichen?`)
 };
 
 const fr_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Que partagez-vous avec les survivants aujourd’hui ?`)
+	return /** @type {LocalizedString} */ (`Que voulez-vous publier ?`)
 };
 
 const it_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cosa condividi oggi con i sopravvissuti?`)
+	return /** @type {LocalizedString} */ (`Cosa vuoi pubblicare?`)
 };
 
 const nl_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wat deel je vandaag met de overlevenden?`)
+	return /** @type {LocalizedString} */ (`Wat wil je publiceren?`)
 };
 
 const pl_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czym dzisiaj podzielisz się z ocalałymi?`)
+	return /** @type {LocalizedString} */ (`Co chcesz opublikować?`)
 };
 
 const pt_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O que você vai compartilhar com os sobreviventes hoje?`)
+	return /** @type {LocalizedString} */ (`O que você quer publicar?`)
 };
 
 const ru_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Чем вы поделитесь с выжившими сегодня?`)
+	return /** @type {LocalizedString} */ (`Что вы хотите опубликовать?`)
 };
 
 const sv_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vad delar du med överlevarna i dag?`)
+	return /** @type {LocalizedString} */ (`Vad vill du publicera?`)
 };
 
 const tr_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bugün hayatta kalanlarla ne paylaşıyorsun?`)
+	return /** @type {LocalizedString} */ (`Ne yayınlamak istiyorsun?`)
 };
 
 const zh_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`今天你想和幸存者们分享什么？`)
+	return /** @type {LocalizedString} */ (`你想发布什么？`)
 };
 
 const ja_upload_new_intro = /** @type {(inputs: Upload_New_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`今日はサバイバーに何を届けますか？`)
+	return /** @type {LocalizedString} */ (`何を公開しますか？`)
 };
 
 /**
 * | output |
 * | --- |
-* | "What are you sharing with the survivors today?" |
+* | "What do you want to publish?" |
 *
 * @param {Upload_New_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

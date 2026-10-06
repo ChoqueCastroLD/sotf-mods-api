@@ -1,5 +1,5 @@
 /**
- * `/basecamp/jams` — creator panel: jams open for submissions and the member's own entries.
+ * `/dashboard/jams` — creator panel: jams open for submissions and the member's own entries.
  * Submitting itself happens on the public jam page (island), so every row links there.
  */
 import { m } from '@sotf/i18n/messages';

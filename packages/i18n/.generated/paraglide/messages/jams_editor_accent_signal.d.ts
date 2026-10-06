@@ -3,7 +3,7 @@ export type Jams_Editor_Accent_SignalInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signal orange" |
+* | "Orange" |
 *
 * @param {Jams_Editor_Accent_SignalInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

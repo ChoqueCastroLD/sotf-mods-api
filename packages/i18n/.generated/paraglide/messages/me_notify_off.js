@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Notify_OffInputs */
 
 const en_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Update signals off`)
+	return /** @type {LocalizedString} */ (`Update notifications off`)
 };
 
 const es_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Avisos de actualización desactivados`)
+	return /** @type {LocalizedString} */ (`Notificaciones de actualización desactivadas`)
 };
 
 const de_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Update-Signale aus`)
+	return /** @type {LocalizedString} */ (`Update-Benachrichtigungen aus`)
 };
 
 const fr_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signaux de mise à jour désactivés`)
+	return /** @type {LocalizedString} */ (`Notifications de mise à jour désactivées`)
 };
 
 const it_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnali di aggiornamento disattivati`)
+	return /** @type {LocalizedString} */ (`Notifiche di aggiornamento disattivate`)
 };
 
 const nl_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Updatesignalen uit`)
+	return /** @type {LocalizedString} */ (`Updatemeldingen uit`)
 };
 
 const pl_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sygnały o aktualizacjach wyłączone`)
+	return /** @type {LocalizedString} */ (`Powiadomienia o aktualizacjach wyłączone`)
 };
 
 const pt_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinais de atualização desativados`)
+	return /** @type {LocalizedString} */ (`Notificações de atualização desativadas`)
 };
 
 const ru_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигналы об обновлениях выключены`)
+	return /** @type {LocalizedString} */ (`Уведомления об обновлениях выключены`)
 };
 
 const sv_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Uppdateringssignaler av`)
+	return /** @type {LocalizedString} */ (`Uppdateringsaviseringar av`)
 };
 
 const tr_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Güncelleme sinyalleri kapalı`)
+	return /** @type {LocalizedString} */ (`Güncelleme bildirimleri kapalı`)
 };
 
 const zh_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`更新信号已关闭`)
+	return /** @type {LocalizedString} */ (`更新通知已关闭`)
 };
 
 const ja_me_notify_off = /** @type {(inputs: Me_Notify_OffInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`更新シグナル オフ`)
+	return /** @type {LocalizedString} */ (`更新通知 オフ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Update signals off" |
+* | "Update notifications off" |
 *
 * @param {Me_Notify_OffInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -39,10 +39,10 @@ export function SubmitSuccess({ result, mode, name }: { result: SubmitResultDTO;
         <a href={result.canonicalPath} className={buttonClasses({ variant: 'primary' })}>
           {live ? ut('upload_success_view') : ut('upload_success_preview')}
         </a>
-        <Link to="/basecamp" className={buttonClasses({ variant: 'secondary' })}>
+        <Link to="/dashboard" className={buttonClasses({ variant: 'secondary' })}>
           {ut('upload_success_basecamp')}
         </Link>
-        <Link to="/basecamp/new" className={buttonClasses({ variant: 'ghost' })}>
+        <Link to="/dashboard/new" className={buttonClasses({ variant: 'ghost' })}>
           {ut('upload_success_another')}
         </Link>
       </div>

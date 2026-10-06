@@ -30,7 +30,7 @@ const nl_translations_notice_original = /** @type {(inputs: Translations_Notice_
 };
 
 const pl_translations_notice_original = /** @type {(inputs: Translations_Notice_OriginalInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Oryginalny tekst — ${i?.language}`)
+	return /** @type {LocalizedString} */ (`Oryginalny tekst (${i?.language})`)
 };
 
 const pt_translations_notice_original = /** @type {(inputs: Translations_Notice_OriginalInputs) => LocalizedString} */ (i) => {

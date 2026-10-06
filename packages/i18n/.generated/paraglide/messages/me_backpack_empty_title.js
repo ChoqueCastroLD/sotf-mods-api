@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Me_Backpack_Empty_TitleInputs */
 
 const en_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your backpack is empty`)
+	return /** @type {LocalizedString} */ (`You are not following any mods`)
 };
 
 const es_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu mochila está vacía`)
+	return /** @type {LocalizedString} */ (`No sigues ningún mod`)
 };
 
 const de_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein Rucksack ist leer`)
+	return /** @type {LocalizedString} */ (`Du folgst noch keinem Mod`)
 };
 
 const fr_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre sac à dos est vide`)
+	return /** @type {LocalizedString} */ (`Vous ne suivez aucun mod`)
 };
 
 const it_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il tuo zaino è vuoto`)
+	return /** @type {LocalizedString} */ (`Non segui nessuna mod`)
 };
 
 const nl_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je rugzak is leeg`)
+	return /** @type {LocalizedString} */ (`Je volgt geen mods`)
 };
 
 const pl_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twój plecak jest pusty`)
+	return /** @type {LocalizedString} */ (`Nie obserwujesz żadnych modów`)
 };
 
 const pt_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua mochila está vazia`)
+	return /** @type {LocalizedString} */ (`Você não segue nenhum mod`)
 };
 
 const ru_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваш рюкзак пуст`)
+	return /** @type {LocalizedString} */ (`Вы ни на что не подписаны`)
 };
 
 const sv_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Din ryggsäck är tom`)
+	return /** @type {LocalizedString} */ (`Du följer inga moddar`)
 };
 
 const tr_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sırt çantan boş`)
+	return /** @type {LocalizedString} */ (`Hiçbir modu takip etmiyorsun`)
 };
 
 const zh_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的背包是空的`)
+	return /** @type {LocalizedString} */ (`你还没有关注任何模组`)
 };
 
 const ja_me_backpack_empty_title = /** @type {(inputs: Me_Backpack_Empty_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`バックパックは空です`)
+	return /** @type {LocalizedString} */ (`フォロー中のMODはありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your backpack is empty" |
+* | "You are not following any mods" |
 *
 * @param {Me_Backpack_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,51 +6,51 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_Reset_BodyInputs */
 
 const en_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Someone, hopefully you, asked to reset the password of your account.`)
+	return /** @type {LocalizedString} */ (`A password reset was requested for your account.`)
 };
 
 const es_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alguien, esperamos que tú, ha pedido restablecer la contraseña de tu cuenta.`)
+	return /** @type {LocalizedString} */ (`Se ha solicitado restablecer la contraseña de tu cuenta.`)
 };
 
 const de_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jemand, hoffentlich du, hat angefordert, das Passwort deines Kontos zurückzusetzen.`)
+	return /** @type {LocalizedString} */ (`Für dein Konto wurde ein Zurücksetzen des Passworts angefordert.`)
 };
 
 const fr_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quelqu’un, vous espérons-le, a demandé à réinitialiser le mot de passe de votre compte.`)
+	return /** @type {LocalizedString} */ (`La réinitialisation du mot de passe de votre compte a été demandée.`)
 };
 
 const it_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Qualcuno, speriamo tu, ha chiesto di reimpostare la password del tuo account.`)
+	return /** @type {LocalizedString} */ (`È stato richiesto di reimpostare la password del tuo account.`)
 };
 
 const nl_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Iemand, hopelijk jij, heeft gevraagd het wachtwoord van je account opnieuw in te stellen.`)
+	return /** @type {LocalizedString} */ (`Er is gevraagd om het wachtwoord van je account opnieuw in te stellen.`)
 };
 
 const pl_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ktoś, mamy nadzieję, że Ty, poprosił o zresetowanie hasła do Twojego konta.`)
+	return /** @type {LocalizedString} */ (`Poproszono o zresetowanie hasła do Twojego konta.`)
 };
 
 const pt_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alguém, esperamos que você, pediu para redefinir a senha da sua conta.`)
+	return /** @type {LocalizedString} */ (`Foi solicitada a redefinição da senha da sua conta.`)
 };
 
 const ru_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Кто-то (надеемся, вы) запросил сброс пароля вашего аккаунта.`)
+	return /** @type {LocalizedString} */ (`Для вашего аккаунта запрошен сброс пароля.`)
 };
 
 const sv_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Någon, förhoppningsvis du, har bett om att återställa lösenordet för ditt konto.`)
+	return /** @type {LocalizedString} */ (`Det har begärts att lösenordet för ditt konto ska återställas.`)
 };
 
 const tr_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Birisi, umarız sen, hesabının şifresini sıfırlamak istedi.`)
+	return /** @type {LocalizedString} */ (`Hesabının şifresinin sıfırlanması istendi.`)
 };
 
 const zh_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`有人（希望是你）申请重置你账号的密码。`)
+	return /** @type {LocalizedString} */ (`有人申请重置你账号的密码。`)
 };
 
 const ja_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_emails_auth_reset_body = /** @type {(inputs: Emails_Auth_Reset_BodyInpu
 /**
 * | output |
 * | --- |
-* | "Someone, hopefully you, asked to reset the password of your account." |
+* | "A password reset was requested for your account." |
 *
 * @param {Emails_Auth_Reset_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

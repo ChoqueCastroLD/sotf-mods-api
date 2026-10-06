@@ -3,7 +3,7 @@ export type Console_RedirectingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Taking you to sign in…" |
+* | "Redirecting to the login page…" |
 *
 * @param {Console_RedirectingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

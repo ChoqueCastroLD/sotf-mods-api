@@ -3,7 +3,7 @@ export type Content_About_Links_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Around the camp" |
+* | "Links" |
 *
 * @param {Content_About_Links_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_User_No_SanctionsInputs */
 
 const en_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No sanctions, ever.`)
+	return /** @type {LocalizedString} */ (`No sanctions.`)
 };
 
 const es_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nunca ha tenido sanciones.`)
+	return /** @type {LocalizedString} */ (`Sin sanciones.`)
 };
 
 const de_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch nie sanktioniert.`)
+	return /** @type {LocalizedString} */ (`Keine Sanktionen.`)
 };
 
 const fr_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucune sanction, jamais.`)
+	return /** @type {LocalizedString} */ (`Aucune sanction.`)
 };
 
 const it_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessuna sanzione, mai.`)
+	return /** @type {LocalizedString} */ (`Nessuna sanzione.`)
 };
 
 const nl_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nooit een sanctie gehad.`)
+	return /** @type {LocalizedString} */ (`Geen sancties.`)
 };
 
 const pl_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nigdy nie miał sankcji.`)
+	return /** @type {LocalizedString} */ (`Brak sankcji.`)
 };
 
 const pt_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nenhuma sanção, nunca.`)
+	return /** @type {LocalizedString} */ (`Nenhuma sanção.`)
 };
 
 const ru_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Санкций никогда не было.`)
+	return /** @type {LocalizedString} */ (`Санкций нет.`)
 };
 
 const sv_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aldrig några sanktioner.`)
+	return /** @type {LocalizedString} */ (`Inga sanktioner.`)
 };
 
 const tr_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hiç yaptırım almamış.`)
+	return /** @type {LocalizedString} */ (`Yaptırım yok.`)
 };
 
 const zh_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`从未受过处罚。`)
+	return /** @type {LocalizedString} */ (`没有处罚。`)
 };
 
 const ja_ranger_user_no_sanctions = /** @type {(inputs: Ranger_User_No_SanctionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`制裁を受けたことはありません。`)
+	return /** @type {LocalizedString} */ (`制裁はありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No sanctions, ever." |
+* | "No sanctions." |
 *
 * @param {Ranger_User_No_SanctionsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

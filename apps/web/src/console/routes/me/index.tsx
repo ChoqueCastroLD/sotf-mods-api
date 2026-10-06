@@ -5,6 +5,6 @@ import { createFileRoute, redirect } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/me/')({
   beforeLoad: () => {
-    throw redirect({ to: '/me/backpack', replace: true });
+    throw redirect({ to: '/me/following', replace: true });
   },
 });

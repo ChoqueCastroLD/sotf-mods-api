@@ -3,7 +3,7 @@ export type Signals_AnnouncementInputs = {};
 /**
 * | output |
 * | --- |
-* | "New announcement from the Rangers" |
+* | "New announcement" |
 *
 * @param {Signals_AnnouncementInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "Karşılaştır",
   "live_embed_title": "Sayfan için rozetler",
-  "live_embed_intro": "Rozeti README, forum veya Discord'a yapıştır. Kendiliğinden güncellenir.",
+  "live_embed_intro": "Rozeti README, forum gönderisi veya Discord’a yapıştır. Rozetler otomatik olarak güncellenir.",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "İndirmeler",

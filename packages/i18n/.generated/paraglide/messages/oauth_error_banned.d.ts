@@ -3,7 +3,7 @@ export type Oauth_Error_BannedInputs = {};
 /**
 * | output |
 * | --- |
-* | "This account can’t sign in." |
+* | "This account can’t log in." |
 *
 * @param {Oauth_Error_BannedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

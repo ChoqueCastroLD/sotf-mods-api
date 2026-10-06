@@ -3,7 +3,7 @@ export type Console_Forbidden_ActionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Go to Basecamp" |
+* | "Go to the dashboard" |
 *
 * @param {Console_Forbidden_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

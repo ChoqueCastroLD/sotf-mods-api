@@ -2,7 +2,7 @@
   "ui_close": "Zamknij",
   "ui_cancel": "Anuluj",
   "ui_dismiss": "Odrzuć",
-  "ui_loading": "Sprawdzam mapę…",
+  "ui_loading": "Wczytywanie…",
   "ui_retry": "Spróbuj ponownie",
   "ui_error_reference": "Nr ref.: {id}",
   "ui_optional": "Opcjonalnie",

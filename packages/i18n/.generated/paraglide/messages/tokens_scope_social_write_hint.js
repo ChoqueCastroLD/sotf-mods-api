@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Scope_Social_Write_HintInputs */
 
 const en_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Post comments and reviews, follow mods and creators, and report compatibility.`)
+	return /** @type {LocalizedString} */ (`Post comments and reviews, and follow mods and creators.`)
 };
 
 const es_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publicar comentarios y reseñas, seguir mods y creadores, y reportar compatibilidad.`)
+	return /** @type {LocalizedString} */ (`Publicar comentarios y reseñas, y seguir mods y creadores.`)
 };
 
 const de_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kommentare und Bewertungen schreiben, Mods und Creator folgen und Kompatibilität melden.`)
+	return /** @type {LocalizedString} */ (`Kommentare und Bewertungen schreiben sowie Mods und Creator folgen.`)
 };
 
 const fr_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publier des commentaires et des avis, suivre des mods et des créateurs, et signaler la compatibilité.`)
+	return /** @type {LocalizedString} */ (`Publier des commentaires et des avis, et suivre des mods et des créateurs.`)
 };
 
 const it_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pubblicare commenti e recensioni, seguire mod e creator e segnalare la compatibilità.`)
+	return /** @type {LocalizedString} */ (`Pubblicare commenti e recensioni e seguire mod e creator.`)
 };
 
 const nl_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reacties en recensies plaatsen, mods en makers volgen en compatibiliteit melden.`)
+	return /** @type {LocalizedString} */ (`Reacties en recensies plaatsen en mods en makers volgen.`)
 };
 
 const pl_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dodawanie komentarzy i recenzji, obserwowanie modów i twórców oraz zgłaszanie zgodności.`)
+	return /** @type {LocalizedString} */ (`Dodawanie komentarzy i recenzji oraz obserwowanie modów i twórców.`)
 };
 
 const pt_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Publicar comentários e avaliações, seguir mods e criadores e relatar compatibilidade.`)
+	return /** @type {LocalizedString} */ (`Publicar comentários e avaliações, e seguir mods e criadores.`)
 };
 
 const ru_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Комментарии и отзывы, подписки на моды и авторов, отчёты о совместимости.`)
+	return /** @type {LocalizedString} */ (`Комментарии и отзывы, подписки на моды и авторов.`)
 };
 
 const sv_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skriva kommentarer och recensioner, följa mods och skapare och rapportera kompatibilitet.`)
+	return /** @type {LocalizedString} */ (`Skriva kommentarer och recensioner samt följa moddar och skapare.`)
 };
 
 const tr_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yorum ve inceleme yazma, mod ve yaratıcıları takip etme, uyumluluk bildirme.`)
+	return /** @type {LocalizedString} */ (`Yorum ve inceleme yazma, mod ve içerik üreticilerini takip etme.`)
 };
 
 const zh_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`发表评论和评价、关注模组和创作者，并报告兼容性。`)
+	return /** @type {LocalizedString} */ (`发表评论和评价，关注模组和创作者。`)
 };
 
 const ja_tokens_scope_social_write_hint = /** @type {(inputs: Tokens_Scope_Social_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`コメントとレビューの投稿、Mod やクリエイターのフォロー、互換性の報告。`)
+	return /** @type {LocalizedString} */ (`コメントとレビューの投稿、MOD やクリエイターのフォロー。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Post comments and reviews, follow mods and creators, and report compatibility." |
+* | "Post comments and reviews, and follow mods and creators." |
 *
 * @param {Tokens_Scope_Social_Write_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

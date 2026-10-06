@@ -3,7 +3,7 @@ export type Builds_Follow_ErrorInputs = {};
 /**
 * | output |
 * | --- |
-* | "Couldn’t update your Backpack. Check your connection and try again." |
+* | "Couldn’t update your follow status. Check your connection and try again." |
 *
 * @param {Builds_Follow_ErrorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

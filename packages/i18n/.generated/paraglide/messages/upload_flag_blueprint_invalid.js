@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Flag_Blueprint_InvalidInputs */
 
 const en_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This isn’t a valid BuildShare blueprint.`)
+	return /** @type {LocalizedString} */ (`This isn’t a valid BuildShare build file.`)
 };
 
 const es_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No es un plano válido de BuildShare.`)
+	return /** @type {LocalizedString} */ (`No es un archivo de build válido de BuildShare.`)
 };
 
 const de_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Das ist kein gültiger BuildShare-Bauplan.`)
+	return /** @type {LocalizedString} */ (`Das ist keine gültige BuildShare-Build-Datei.`)
 };
 
 const fr_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce n’est pas un plan BuildShare valide.`)
+	return /** @type {LocalizedString} */ (`Ce n’est pas un fichier de build BuildShare valide.`)
 };
 
 const it_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non è un progetto BuildShare valido.`)
+	return /** @type {LocalizedString} */ (`Non è un file di build BuildShare valido.`)
 };
 
 const nl_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dit is geen geldige BuildShare-bouwtekening.`)
+	return /** @type {LocalizedString} */ (`Dit is geen geldig BuildShare-buildbestand.`)
 };
 
 const pl_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`To nie jest poprawny plan BuildShare.`)
+	return /** @type {LocalizedString} */ (`To nie jest poprawny plik builda BuildShare.`)
 };
 
 const pt_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Isto não é uma planta válida do BuildShare.`)
+	return /** @type {LocalizedString} */ (`Este não é um arquivo de build válido do BuildShare.`)
 };
 
 const ru_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Это не корректный чертёж BuildShare.`)
+	return /** @type {LocalizedString} */ (`Это не корректный файл постройки BuildShare.`)
 };
 
 const sv_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Det här är ingen giltig BuildShare-ritning.`)
+	return /** @type {LocalizedString} */ (`Det här är ingen giltig BuildShare-byggfil.`)
 };
 
 const tr_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu geçerli bir BuildShare planı değil.`)
+	return /** @type {LocalizedString} */ (`Bu geçerli bir BuildShare yapı dosyası değil.`)
 };
 
 const zh_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`这不是有效的 BuildShare 蓝图。`)
+	return /** @type {LocalizedString} */ (`这不是有效的 BuildShare 建筑文件。`)
 };
 
 const ja_upload_flag_blueprint_invalid = /** @type {(inputs: Upload_Flag_Blueprint_InvalidInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`有効なBuildShareの設計図ではありません。`)
+	return /** @type {LocalizedString} */ (`有効なBuildShareの建築ファイルではありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "This isn’t a valid BuildShare blueprint." |
+* | "This isn’t a valid BuildShare build file." |
 *
 * @param {Upload_Flag_Blueprint_InvalidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

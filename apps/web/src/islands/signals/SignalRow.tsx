@@ -1,7 +1,7 @@
 /**
  * One signal as a row (research/03 §6.12): kind glyph, sentence, quoted excerpt, relative time
  * and the unread dot; the whole row is the link (stretched), extra actions («Download», «Mark as
- * read») sit above it. Used by the header bell (compact) and by `/signals`.
+ * read») sit above it. Used by the header bell (compact) and by `/notifications`.
  */
 import type { NotificationDTO } from '@sotf/contracts/notifications';
 import { formatDateTime, formatRelativeTime, type Locale } from '@sotf/i18n';
@@ -36,6 +36,7 @@ export function localTimeZone(): string {
 
 export function SignalRow({ signal, locale, compact = false, now, onOpen, actions, className }: SignalRowProps) {
   const view = describeSignal(signal, locale);
+  if (!view) return null;
   const unread = signal.readAt === null;
   const when = formatRelativeTime(locale, signal.createdAt, now === undefined ? {} : { now });
   const exact = formatDateTime(locale, signal.createdAt, 'medium', 'short', { timeZone: localTimeZone() });

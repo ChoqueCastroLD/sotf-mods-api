@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Register_IntroInputs */
 
 const en_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Free, forever. Takes a minute.`)
+	return /** @type {LocalizedString} */ (`Registration is free and takes a minute.`)
 };
 
 const es_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gratis para siempre. Solo lleva un minuto.`)
+	return /** @type {LocalizedString} */ (`El registro es gratuito y lleva un minuto.`)
 };
 
 const de_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Für immer kostenlos. Dauert eine Minute.`)
+	return /** @type {LocalizedString} */ (`Die Registrierung ist kostenlos und dauert eine Minute.`)
 };
 
 const fr_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gratuit, pour toujours. Ça prend une minute.`)
+	return /** @type {LocalizedString} */ (`L’inscription est gratuite et prend une minute.`)
 };
 
 const it_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gratis, per sempre. Ci vuole un minuto.`)
+	return /** @type {LocalizedString} */ (`La registrazione è gratuita e richiede un minuto.`)
 };
 
 const nl_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voor altijd gratis. Duurt een minuutje.`)
+	return /** @type {LocalizedString} */ (`Registreren is gratis en duurt een minuut.`)
 };
 
 const pl_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Za darmo, na zawsze. Zajmie minutę.`)
+	return /** @type {LocalizedString} */ (`Rejestracja jest bezpłatna i zajmuje minutę.`)
 };
 
 const pt_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Grátis para sempre. Leva um minuto.`)
+	return /** @type {LocalizedString} */ (`O registro é gratuito e leva um minuto.`)
 };
 
 const ru_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Бесплатно и навсегда. Займёт минуту.`)
+	return /** @type {LocalizedString} */ (`Регистрация бесплатна и занимает минуту.`)
 };
 
 const sv_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gratis för alltid. Tar en minut.`)
+	return /** @type {LocalizedString} */ (`Det är gratis att registrera sig och tar en minut.`)
 };
 
 const tr_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sonsuza dek ücretsiz. Bir dakika sürer.`)
+	return /** @type {LocalizedString} */ (`Kayıt ücretsizdir ve bir dakika sürer.`)
 };
 
 const zh_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`永久免费，只需一分钟。`)
+	return /** @type {LocalizedString} */ (`注册免费，只需一分钟。`)
 };
 
 const ja_auth_register_intro = /** @type {(inputs: Auth_Register_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ずっと無料。1 分で完了します。`)
+	return /** @type {LocalizedString} */ (`登録は無料で、1 分で完了します。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Free, forever. Takes a minute." |
+* | "Registration is free and takes a minute." |
 *
 * @param {Auth_Register_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

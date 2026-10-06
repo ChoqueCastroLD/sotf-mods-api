@@ -3,7 +3,7 @@ export type Common_Nav_YouInputs = {};
 /**
 * | output |
 * | --- |
-* | "You" |
+* | "Account" |
 *
 * @param {Common_Nav_YouInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -32,7 +32,9 @@ export function createOAuthModule(options: AccountServicesOptions = {}): ApiModu
       /** Console pages (`/settings`…) are not locale-prefixed; public pages follow the locale. */
       const page = (locale: string, path: string) =>
         services().oauth.landing(
-          /^\/(?:settings|me|basecamp|ranger|signals)(?:[/?#]|$)/.test(path) ? 'en' : locale,
+          /^\/(?:settings|me|dashboard|moderation|notifications|basecamp|ranger|signals)(?:[/?#]|$)/.test(path)
+            ? 'en'
+            : locale,
           path,
         );
 

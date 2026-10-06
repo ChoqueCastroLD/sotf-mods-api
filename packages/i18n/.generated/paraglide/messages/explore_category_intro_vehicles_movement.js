@@ -14,7 +14,7 @@ const es_explore_category_intro_vehicles_movement = /** @type {(inputs: Explore_
 };
 
 const de_explore_category_intro_vehicles_movement = /** @type {(inputs: Explore_Category_Intro_Vehicles_MovementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Golfwagen, Gleiter, Ritterrüstungen und neue Fortbewegung: Tempo, Steuerung und Bewegung über die Insel.`)
+	return /** @type {LocalizedString} */ (`Golfwagen, Gleiter, Ritterrüstungen und neue Fortbewegung: Tempo, Steuerung und Bewegung.`)
 };
 
 const fr_explore_category_intro_vehicles_movement = /** @type {(inputs: Explore_Category_Intro_Vehicles_MovementInputs) => LocalizedString} */ () => {

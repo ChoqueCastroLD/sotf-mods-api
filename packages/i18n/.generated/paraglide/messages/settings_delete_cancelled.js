@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Delete_CancelledInputs */
 
 const en_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deletion cancelled — welcome back`)
+	return /** @type {LocalizedString} */ (`Deletion cancelled`)
 };
 
 const es_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Borrado cancelado: bienvenido de nuevo`)
+	return /** @type {LocalizedString} */ (`Borrado cancelado`)
 };
 
 const de_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Löschung abgebrochen – willkommen zurück`)
+	return /** @type {LocalizedString} */ (`Löschung abgebrochen`)
 };
 
 const fr_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suppression annulée — bon retour parmi nous`)
+	return /** @type {LocalizedString} */ (`Suppression annulée`)
 };
 
 const it_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Eliminazione annullata: bentornato`)
+	return /** @type {LocalizedString} */ (`Eliminazione annullata`)
 };
 
 const nl_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verwijdering geannuleerd — welkom terug`)
+	return /** @type {LocalizedString} */ (`Verwijdering geannuleerd`)
 };
 
 const pl_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Anulowano usunięcie — witaj ponownie`)
+	return /** @type {LocalizedString} */ (`Anulowano usunięcie`)
 };
 
 const pt_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Exclusão cancelada — que bom ter você de volta`)
+	return /** @type {LocalizedString} */ (`Exclusão cancelada`)
 };
 
 const ru_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Удаление отменено — с возвращением`)
+	return /** @type {LocalizedString} */ (`Удаление отменено`)
 };
 
 const sv_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raderingen avbruten — välkommen tillbaka`)
+	return /** @type {LocalizedString} */ (`Raderingen avbruten`)
 };
 
 const tr_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Silme iptal edildi — tekrar hoş geldin`)
+	return /** @type {LocalizedString} */ (`Silme iptal edildi`)
 };
 
 const zh_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已取消删除——欢迎回来`)
+	return /** @type {LocalizedString} */ (`已取消删除`)
 };
 
 const ja_settings_delete_cancelled = /** @type {(inputs: Settings_Delete_CancelledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`削除を取り消しました。おかえりなさい`)
+	return /** @type {LocalizedString} */ (`削除を取り消しました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Deletion cancelled — welcome back" |
+* | "Deletion cancelled" |
 *
 * @param {Settings_Delete_CancelledInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

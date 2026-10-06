@@ -3,7 +3,7 @@ export type Emails_Auth_Deletion_PreviewInputs = {};
 /**
 * | output |
 * | --- |
-* | "You can still change your mind." |
+* | "You can still cancel the deletion." |
 *
 * @param {Emails_Auth_Deletion_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

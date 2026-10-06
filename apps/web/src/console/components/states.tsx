@@ -23,10 +23,10 @@ function BasecampLink({ label }: { label: string }) {
     if (!router || event.defaultPrevented || event.button !== 0) return;
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
-    void router.navigate({ to: '/basecamp' });
+    void router.navigate({ to: '/dashboard' });
   };
   return (
-    <a href="/basecamp" onClick={onClick} className={buttonClasses({ variant: 'secondary' })}>
+    <a href="/dashboard" onClick={onClick} className={buttonClasses({ variant: 'secondary' })}>
       {label}
     </a>
   );

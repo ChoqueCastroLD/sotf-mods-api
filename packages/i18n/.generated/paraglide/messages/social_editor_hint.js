@@ -38,7 +38,7 @@ const pt_social_editor_hint = /** @type {(inputs: Social_Editor_HintInputs) => L
 };
 
 const ru_social_editor_hint = /** @type {(inputs: Social_Editor_HintInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Markdown: **жирный**, *курсив*, \`код\`, [ссылка](url), ||спойлер||, @упоминания · ${i?.modifier}+Enter — отправить`)
+	return /** @type {LocalizedString} */ (`Markdown: **жирный**, *курсив*, \`код\`, [ссылка](url), ||спойлер||, @упоминания · ${i?.modifier}+Enter, чтобы отправить`)
 };
 
 const sv_social_editor_hint = /** @type {(inputs: Social_Editor_HintInputs) => LocalizedString} */ (i) => {

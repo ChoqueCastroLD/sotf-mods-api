@@ -3,7 +3,7 @@ export type Auth_Meta_Logout_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out of SOTF Mods on this device." |
+* | "Log out of SOTF Mods on this device." |
 *
 * @param {Auth_Meta_Logout_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

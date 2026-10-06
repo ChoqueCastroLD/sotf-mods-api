@@ -3,7 +3,7 @@ export type Console_Shortcut_Go_RangerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Go to the Ranger Station" |
+* | "Go to Moderation" |
 *
 * @param {Console_Shortcut_Go_RangerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

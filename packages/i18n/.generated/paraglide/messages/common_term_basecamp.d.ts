@@ -3,7 +3,7 @@ export type Common_Term_BasecampInputs = {};
 /**
 * | output |
 * | --- |
-* | "Basecamp" |
+* | "Dashboard" |
 *
 * @param {Common_Term_BasecampInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

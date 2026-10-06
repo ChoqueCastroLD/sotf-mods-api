@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Build_DetectedInputs */
 
 const en_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Blueprint detected`)
+	return /** @type {LocalizedString} */ (`Build detected`)
 };
 
 const es_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plano detectado`)
+	return /** @type {LocalizedString} */ (`Build detectada`)
 };
 
 const de_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bauplan erkannt`)
+	return /** @type {LocalizedString} */ (`Build erkannt`)
 };
 
 const fr_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan détecté`)
+	return /** @type {LocalizedString} */ (`Build détecté`)
 };
 
 const it_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Progetto rilevato`)
+	return /** @type {LocalizedString} */ (`Build rilevata`)
 };
 
 const nl_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bouwtekening herkend`)
+	return /** @type {LocalizedString} */ (`Build herkend`)
 };
 
 const pl_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wykryto plan`)
+	return /** @type {LocalizedString} */ (`Wykryto build`)
 };
 
 const pt_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Planta detectada`)
+	return /** @type {LocalizedString} */ (`Build detectada`)
 };
 
 const ru_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Чертёж распознан`)
+	return /** @type {LocalizedString} */ (`Постройка распознана`)
 };
 
 const sv_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ritning hittad`)
+	return /** @type {LocalizedString} */ (`Bygge hittat`)
 };
 
 const tr_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan algılandı`)
+	return /** @type {LocalizedString} */ (`Yapı algılandı`)
 };
 
 const zh_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已识别蓝图`)
+	return /** @type {LocalizedString} */ (`已识别建筑`)
 };
 
 const ja_upload_build_detected = /** @type {(inputs: Upload_Build_DetectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図を検出`)
+	return /** @type {LocalizedString} */ (`建築を検出`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Blueprint detected" |
+* | "Build detected" |
 *
 * @param {Upload_Build_DetectedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

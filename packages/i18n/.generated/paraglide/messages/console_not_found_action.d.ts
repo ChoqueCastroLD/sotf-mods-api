@@ -3,7 +3,7 @@ export type Console_Not_Found_ActionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Back to Basecamp" |
+* | "Back to the dashboard" |
 *
 * @param {Console_Not_Found_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

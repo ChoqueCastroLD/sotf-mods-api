@@ -6,7 +6,7 @@ anchors: [what, who, trust, money, contact]
 
 # Vad SOTF Mods är
 
-SOTF Mods är hemmet för moddinggemenskapen kring **Sons of the Forest**. Sedan 2023 har sajten tillhandahållit moddar, bibliotek och BuildShare-ritningar för **RedLoader**, spelets modd-laddare, och den är den största katalogen av RedLoader-moddar som finns.
+SOTF Mods är hemmet för moddinggemenskapen kring **Sons of the Forest**. Sedan 2023 har sajten tillhandahållit moddar, bibliotek och BuildShare-byggen för **RedLoader**, spelets modd-laddare, och den är den största katalogen av RedLoader-moddar som finns.
 
 Allt laddas ner gratis, direkt från vår lagring: utan konto, utan väntetid och utan nedladdningshanterare. RedManager, gemenskapens moddhanterare, läser samma katalog, så du kan installera vilken modd som helst härifrån med ett klick.
 

@@ -3,7 +3,7 @@ export type Social_Report_SentInputs = {};
 /**
 * | output |
 * | --- |
-* | "Thanks. The rangers will take a look." |
+* | "Thanks. The moderators will review it." |
 *
 * @param {Social_Report_SentInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

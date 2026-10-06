@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_Security_Change_PreviewInputs */
 
 const en_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`If this wasn’t you, act now.`)
+	return /** @type {LocalizedString} */ (`If this wasn’t you, secure your account.`)
 };
 
 const es_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Si no has sido tú, actúa ya.`)
+	return /** @type {LocalizedString} */ (`Si no has sido tú, protege tu cuenta.`)
 };
 
 const de_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wenn du das nicht warst, handle jetzt.`)
+	return /** @type {LocalizedString} */ (`Falls du das nicht warst, sichere dein Konto.`)
 };
 
 const fr_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Si ce n’était pas vous, agissez maintenant.`)
+	return /** @type {LocalizedString} */ (`Si ce n’était pas vous, sécurisez votre compte.`)
 };
 
 const it_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Se non sei stato tu, agisci subito.`)
+	return /** @type {LocalizedString} */ (`Se non sei stato tu, proteggi il tuo account.`)
 };
 
 const nl_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Als jij dit niet was, onderneem dan nu actie.`)
+	return /** @type {LocalizedString} */ (`Was jij dit niet? Beveilig je account.`)
 };
 
 const pl_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jeśli to nie Ty, działaj od razu.`)
+	return /** @type {LocalizedString} */ (`Jeśli to nie Ty, zabezpiecz konto.`)
 };
 
 const pt_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Se não foi você, aja agora.`)
+	return /** @type {LocalizedString} */ (`Se não foi você, proteja sua conta.`)
 };
 
 const ru_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Если это были не вы, действуйте сейчас.`)
+	return /** @type {LocalizedString} */ (`Если это были не вы, защитите аккаунт.`)
 };
 
 const sv_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Om det inte var du, agera nu.`)
+	return /** @type {LocalizedString} */ (`Om det inte var du, säkra ditt konto.`)
 };
 
 const tr_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu sen değilsen hemen harekete geç.`)
+	return /** @type {LocalizedString} */ (`Sen değilsen hesabını güvene al.`)
 };
 
 const zh_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`如果不是你本人，请立即处理。`)
+	return /** @type {LocalizedString} */ (`如果不是你本人操作，请保护好你的账号。`)
 };
 
 const ja_emails_auth_security_change_preview = /** @type {(inputs: Emails_Auth_Security_Change_PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ご本人でない場合は、すぐに対処してください。`)
+	return /** @type {LocalizedString} */ (`心当たりがない場合は、アカウントを保護してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "If this wasn’t you, act now." |
+* | "If this wasn’t you, secure your account." |
 *
 * @param {Emails_Auth_Security_Change_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

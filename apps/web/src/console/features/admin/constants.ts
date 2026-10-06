@@ -8,14 +8,16 @@ import type {
   DISCORD_EVENTS as CONTRACT_DISCORD_EVENTS,
   SITE_SETTING_KEYS as CONTRACT_SETTING_KEYS,
 } from '@sotf/contracts/admin';
-import type { AWARD_KINDS as CONTRACT_AWARD_KINDS } from '@sotf/contracts/common';
 import type { ECOSYSTEM_STATUSES as CONTRACT_ECOSYSTEM_STATUSES } from '@sotf/contracts/compat';
 import type { MODERATION_ACTIONS as CONTRACT_MODERATION_ACTIONS } from '@sotf/contracts/moderation';
 
 export const ANNOUNCEMENT_LEVELS = ['info', 'warning', 'patch'] as const;
 export type AnnouncementLevel = (typeof ANNOUNCEMENT_LEVELS)[number];
 
-export const DISCORD_EVENTS = ['mod.published', 'version.published', 'award.mod_of_week', 'milestone.10k'] as const;
+/** Every event the API accepts (kept for the contract check; award and milestone hooks are retired). */
+const CONTRACT_EVENTS = ['mod.published', 'version.published', 'award.mod_of_week', 'milestone.10k'] as const;
+/** The events the console offers. */
+export const DISCORD_EVENTS = ['mod.published', 'version.published'] as const;
 export type DiscordEvent = (typeof DISCORD_EVENTS)[number];
 
 export const SITE_SETTING_KEYS = [
@@ -28,9 +30,6 @@ export const SITE_SETTING_KEYS = [
   'featureFlags',
 ] as const;
 export type SiteSettingKey = (typeof SITE_SETTING_KEYS)[number];
-
-export const AWARD_KINDS = ['mod_of_week', 'staff_pick', 'build_of_month', 'mod_of_month'] as const;
-export type AwardKind = (typeof AWARD_KINDS)[number];
 
 export const ECOSYSTEM_STATUSES = ['works', 'partial', 'broken', 'unknown'] as const;
 export type EcosystemStatus = (typeof ECOSYSTEM_STATUSES)[number];
@@ -60,7 +59,6 @@ export const ADMIN_LIMITS = {
   tagDescriptionMax: 300,
   recategorizeBatch: 500,
   recategorizeTagsMax: 5,
-  awardReasonMax: 500,
   announcementHrefMax: 2048,
   webhooksMax: 10,
   webhookNameMax: 60,
@@ -74,14 +72,12 @@ export const ADMIN_LIMITS = {
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;
 const levelsInSync: Equal<typeof ANNOUNCEMENT_LEVELS, typeof CONTRACT_ANNOUNCEMENT_LEVELS> = true;
-const eventsInSync: Equal<typeof DISCORD_EVENTS, typeof CONTRACT_DISCORD_EVENTS> = true;
+const eventsInSync: Equal<typeof CONTRACT_EVENTS, typeof CONTRACT_DISCORD_EVENTS> = true;
 const keysInSync: Equal<typeof SITE_SETTING_KEYS, typeof CONTRACT_SETTING_KEYS> = true;
-const awardsInSync: Equal<typeof AWARD_KINDS, typeof CONTRACT_AWARD_KINDS> = true;
 const ecosystemInSync: Equal<typeof ECOSYSTEM_STATUSES, typeof CONTRACT_ECOSYSTEM_STATUSES> = true;
 const actionsInSync: Equal<typeof MODERATION_ACTIONS, typeof CONTRACT_MODERATION_ACTIONS> = true;
 void levelsInSync;
 void eventsInSync;
 void keysInSync;
-void awardsInSync;
 void ecosystemInSync;
 void actionsInSync;

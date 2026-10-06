@@ -3,7 +3,7 @@ export type Ranger_Sla_WaitingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Waiting in this lane" |
+* | "Waiting in this queue" |
 *
 * @param {Ranger_Sla_WaitingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

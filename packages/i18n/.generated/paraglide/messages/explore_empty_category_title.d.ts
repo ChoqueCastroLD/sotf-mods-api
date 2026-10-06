@@ -3,7 +3,7 @@ export type Explore_Empty_Category_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "This part of the map is still blank" |
+* | "This category is empty" |
 *
 * @param {Explore_Empty_Category_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

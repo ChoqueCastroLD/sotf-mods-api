@@ -90,7 +90,7 @@
   "logs_expires_in": "Eliminato tra {time}",
   "logs_viewer_title": "Log condiviso",
   "logs_meta_viewer_description": "Un log di gioco condiviso. Il link privato si cancella da solo dopo 24 ore.",
-  "logs_gone_title": "Questo log non c’è più",
+  "logs_gone_title": "Questo log non è più disponibile",
   "logs_gone_expired": "I log condivisi vengono eliminati automaticamente dopo 24 ore. Chiedi un nuovo link o condividi di nuovo il log.",
   "logs_gone_deleted": "L’autore ha eliminato questo log.",
   "logs_gone_reported": "Questo log è stato rimosso dopo alcune segnalazioni di abuso.",

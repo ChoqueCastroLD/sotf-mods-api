@@ -13,15 +13,7 @@ import { ABOUT_UPDATED, aboutDoc } from '../../content/about/index.ts';
 import { DEVELOPERS_UPDATED, developersDoc } from '../../content/developers/index.ts';
 import { INSTALL_VERIFIED, installGuide } from '../../content/install/index.ts';
 import { LEGAL_DOCS, LEGAL_META, legalDocs } from '../../content/legal/index.ts';
-import {
-  allCards,
-  allCategories,
-  allCreators,
-  allJams,
-  allRequests,
-  allTags,
-  newestRelease,
-} from './data.ts';
+import { allCards, allCategories, allCreators, allJams, allRequests, allTags, newestRelease } from './data.ts';
 import type { SitemapPage } from './xml.ts';
 
 export const SITEMAP_TYPES = [
@@ -44,15 +36,7 @@ export function isSitemapType(value: string | undefined): value is SitemapType {
 const TAG_INDEX_MIN_ITEMS = 3;
 
 /** Localized public pages without an entity nor a Markdown document (PLAN §4.2), all 13 locales. */
-export const STATIC_PATHS: readonly string[] = [
-  '/',
-  '/mods',
-  '/builds',
-  '/requests',
-  '/jams',
-  '/categories',
-  '/tags',
-];
+export const STATIC_PATHS: readonly string[] = ['/', '/mods', '/builds', '/requests', '/jams', '/categories', '/tags'];
 
 /**
  * Document pages (`content/{install,about,developers,legal}`): listed only in the locales that have

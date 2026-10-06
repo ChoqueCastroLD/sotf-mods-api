@@ -6,7 +6,7 @@ anchors: [what, who, trust, money, contact]
 
 # SOTF Mods nedir
 
-SOTF Mods, **Sons of the Forest** mod topluluğunun evidir. 2023’ten beri oyunun mod yükleyicisi **RedLoader** için modlar, kütüphaneler ve BuildShare planları barındırır; var olan en büyük RedLoader mod kataloğudur.
+SOTF Mods, **Sons of the Forest** mod topluluğunun evidir. 2023’ten beri oyunun mod yükleyicisi **RedLoader** için modlar, kütüphaneler ve BuildShare yapıları barındırır; var olan en büyük RedLoader mod kataloğudur.
 
 Her şey doğrudan depolamamızdan ücretsiz indirilir: hesap yok, bekleme süresi yok, indirme yöneticisi yok. Topluluğun mod yöneticisi RedManager aynı kataloğu okur, yani buradaki her modu tek tıkla kurabilirsin.
 

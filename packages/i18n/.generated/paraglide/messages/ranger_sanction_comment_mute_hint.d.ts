@@ -3,7 +3,7 @@ export type Ranger_Sanction_Comment_Mute_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Can’t comment or review — everywhere or on one mod." |
+* | "Can’t comment or review, everywhere or on one mod." |
 *
 * @param {Ranger_Sanction_Comment_Mute_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

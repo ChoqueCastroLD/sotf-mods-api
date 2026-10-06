@@ -3,7 +3,7 @@ export type Emails_Notify_Weekly_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your week on the island" |
+* | "Your weekly digest" |
 *
 * @param {Emails_Notify_Weekly_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

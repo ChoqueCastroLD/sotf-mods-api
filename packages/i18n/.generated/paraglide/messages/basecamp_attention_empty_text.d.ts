@@ -3,7 +3,7 @@ export type Basecamp_Attention_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "No broken reports, unanswered questions or missing pieces right now." |
+* | "No unanswered questions, reviews or missing details right now." |
 *
 * @param {Basecamp_Attention_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

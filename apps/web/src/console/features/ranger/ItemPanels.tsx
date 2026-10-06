@@ -300,7 +300,7 @@ export function FileDiffPanel({ diff, inspection }: { diff: FileDiff | null; ins
 // -----------------------------------------------------------------------------------------------
 
 function show(value: unknown): string {
-  if (value === undefined || value === null) return '—';
+  if (value === undefined || value === null) return '-';
   if (typeof value === 'string') return value;
   try {
     return JSON.stringify(value, null, 1);
@@ -414,10 +414,14 @@ export function AuthorHistoryPanel({
       ) : null}
       {authorId !== null ? (
         <div className="flex flex-wrap gap-3 text-sm">
-          <Link to="/ranger/users/$userId" params={{ userId: String(authorId) }} className="text-link hover:underline">
+          <Link
+            to="/moderation/users/$userId"
+            params={{ userId: String(authorId) }}
+            className="text-link hover:underline"
+          >
             {m.ranger_history_open_user()}
           </Link>
-          <Link to="/ranger/audit" search={{ target: `user:${authorId}` }} className="text-link hover:underline">
+          <Link to="/moderation/audit" search={{ target: `user:${authorId}` }} className="text-link hover:underline">
             {m.ranger_history_open_audit()}
           </Link>
         </div>

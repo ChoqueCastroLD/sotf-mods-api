@@ -3,7 +3,7 @@ export type Tokens_Scope_Mods_Write_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Create and edit your mods, versions, kits and uploads." |
+* | "Create and edit your mods, versions and uploads." |
 *
 * @param {Tokens_Scope_Mods_Write_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

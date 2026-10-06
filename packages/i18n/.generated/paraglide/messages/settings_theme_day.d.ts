@@ -3,7 +3,7 @@ export type Settings_Theme_DayInputs = {};
 /**
 * | output |
 * | --- |
-* | "Day" |
+* | "Light" |
 *
 * @param {Settings_Theme_DayInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

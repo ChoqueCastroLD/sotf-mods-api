@@ -2,7 +2,7 @@
   "viewer_heading": "Vue de dessus",
   "viewer_alt": "Vue de dessus de {name} : {pieces} pièces, {width} sur {depth} sur {height} mètres.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} pièces",
-  "viewer_explore": "Explorer en 3D",
+  "viewer_explore": "Voir en 3D",
   "viewer_back": "Retour à l'aperçu",
   "viewer_loading": "Chargement de la vue 3D…",
   "viewer_pending": "L'aperçu est en cours de génération. Reviens dans une minute.",

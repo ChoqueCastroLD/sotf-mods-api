@@ -13,14 +13,11 @@ import {
   build,
   comment,
   conflict,
-  creator,
   deletedComment,
   dependencies,
-  kit,
   mod,
   modDetail,
   modWithoutImage,
-  privateKit,
   proseHtml,
   review,
   reviewsSummary,
@@ -30,38 +27,28 @@ import {
 
 const {
   AdSlot,
-  BadgeStamp,
   BuildCard,
   BuildCardSkeleton,
   ChartFigure,
   CommentItem,
-  CompatBadge,
-  CompatCapsule,
   ConsentBar,
-  CreatorCard,
-  CreatorCardSkeleton,
   DependencyList,
   DisclosureMenu,
   DomainI18nProvider,
   DownloadSplitButton,
-  FieldReportMeter,
   FilterChips,
   GalleryStrip,
-  KitCard,
-  KitCardSkeleton,
   ModCard,
   ModCardSkeleton,
   ModChip,
   OriginalName,
   ProseLocator,
-  RankStamp,
   RatingHistogram,
   ReviewCard,
   SortMenu,
   Sparkline,
   StarRating,
   StatTile,
-  TierStamp,
   TrustedMark,
   VersionTable,
   ViewToggle,
@@ -93,13 +80,6 @@ const cases: Record<string, Case[]> = {
     ['unknown pieces', () => <BuildCard build={build} />],
   ],
   BuildCardSkeleton: [['default', () => <BuildCardSkeleton />]],
-  KitCard: [
-    ['knolling', () => <KitCard kit={kit} totalSize={48 * 1024 * 1024} compat="works" currentBuild="1.0.4" />],
-    ['private and empty', () => <KitCard kit={privateKit} />],
-  ],
-  KitCardSkeleton: [['default', () => <KitCardSkeleton />]],
-  CreatorCard: [['default', () => <CreatorCard creator={creator} iconMode="inline" />]],
-  CreatorCardSkeleton: [['default', () => <CreatorCardSkeleton />]],
   StatTile: [
     [
       'up',
@@ -116,35 +96,6 @@ const cases: Record<string, Case[]> = {
   Sparkline: [
     ['decorative', () => <Sparkline values={[1, 3, 2, 5]} />],
     ['labelled, single value', () => <Sparkline values={[4]} label="Flat week" />],
-  ],
-  CompatBadge: [
-    ['works on build', () => <CompatBadge status="works" build="1.0.4" />],
-    ['broken short', () => <CompatBadge status="broken" build="1.0.4" short size="sm" />],
-    ['untested', () => <CompatBadge status="untested" />],
-    ['mixed', () => <CompatBadge status="mixed" build="1.0.4" />],
-  ],
-  CompatCapsule: [
-    ['from a mod detail', () => <CompatCapsule {...domain.compatCapsulePropsOf(modDetail)} />],
-    [
-      'row, unknowns, conflict',
-      () => <CompatCapsule compat={modDetail.compatCurrent} layout="row" dependencies={[conflict]} />,
-    ],
-  ],
-  FieldReportMeter: [
-    [
-      'with reports',
-      () => (
-        <FieldReportMeter
-          works={31}
-          partial={1}
-          broken={3}
-          build="1.0.4"
-          reportHref="/report"
-          byBuild={version.compat}
-        />
-      ),
-    ],
-    ['empty', () => <FieldReportMeter works={0} partial={0} broken={0} onReport={() => {}} />],
   ],
   VersionTable: [
     [
@@ -170,19 +121,6 @@ const cases: Record<string, Case[]> = {
   DependencyList: [
     ['grouped', () => <DependencyList dependencies={[...dependencies, conflict]} />],
     ['empty', () => <DependencyList dependencies={[]} />],
-  ],
-  RankStamp: [['veteran', () => <RankStamp rank="veteran" animate />]],
-  TierStamp: [
-    ['spotlight', () => <TierStamp tier="fortress" size="lg" />],
-    ['regular inline icon', () => <TierStamp tier="campfire" size="sm" iconMode="inline" />],
-  ],
-  BadgeStamp: [
-    ['earned (lucide icon)', () => <BadgeStamp name="Crash landing" icon="plane-landing" count={3} />],
-    ['earned (field-kit icon)', () => <BadgeStamp name="Original survivor" icon="contour-pin" iconMode="inline" />],
-    [
-      'locked with progress',
-      () => <BadgeStamp name="Field medic" icon="cross" locked progress={{ current: 4, target: 10 }} />,
-    ],
   ],
   TrustedMark: [
     ['icon', () => <TrustedMark />],

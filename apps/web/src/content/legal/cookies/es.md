@@ -1,6 +1,6 @@
 ---
 title: Cookies y almacenamiento local
-description: Las cookies y el almacenamiento del navegador de SOTF Mods — cookies de sesión necesarias, algunas preferencias y, solo para invitados, anuncios tras el consentimiento.
+description: Las cookies y el almacenamiento del navegador de SOTF Mods: cookies de sesión necesarias, algunas preferencias y, solo para invitados, anuncios tras el consentimiento.
 anchors: [summary, necessary, preferences, ads, statistics, control]
 ---
 

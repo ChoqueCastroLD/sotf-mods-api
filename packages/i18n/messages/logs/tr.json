@@ -90,7 +90,7 @@
   "logs_expires_in": "{time} sonra silinecek",
   "logs_viewer_title": "Paylaşılan log",
   "logs_meta_viewer_description": "Paylaşılan bir oyun logu. Özel bağlantı 24 saat sonra kendiliğinden silinir.",
-  "logs_gone_title": "Bu log artık yok",
+  "logs_gone_title": "Bu log artık kullanılabilir değil",
   "logs_gone_expired": "Paylaşılan loglar 24 saat sonra otomatik olarak silinir. Yeni bir bağlantı isteyin veya logu yeniden paylaşın.",
   "logs_gone_deleted": "Logu oluşturan kişi bunu sildi.",
   "logs_gone_reported": "Bu log, kötüye kullanım bildirimleri üzerine kaldırıldı.",

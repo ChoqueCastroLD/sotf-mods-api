@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Basecamp_Greeting_NightInputs */
 
 const en_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Late shift, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Hello, ${i?.name}`)
 };
 
 const es_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Turno de noche, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Hola, ${i?.name}`)
 };
 
 const de_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nachtschicht, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Hallo, ${i?.name}`)
 };
 
 const fr_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Garde de nuit, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Bonjour, ${i?.name}`)
 };
 
 const it_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Turno di notte, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Ciao, ${i?.name}`)
 };
 
 const nl_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nachtdienst, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Hallo, ${i?.name}`)
 };
 
 const pl_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nocna zmiana, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Cześć, ${i?.name}`)
 };
 
 const pt_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Turno da noite, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Olá, ${i?.name}`)
 };
 
 const ru_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ночная смена, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Здравствуйте, ${i?.name}`)
 };
 
 const sv_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Nattpass, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Hej, ${i?.name}`)
 };
 
 const tr_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Gece nöbeti, ${i?.name}`)
+	return /** @type {LocalizedString} */ (`Merhaba, ${i?.name}`)
 };
 
 const zh_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`夜班辛苦了，${i?.name}`)
+	return /** @type {LocalizedString} */ (`你好，${i?.name}`)
 };
 
 const ja_basecamp_greeting_night = /** @type {(inputs: Basecamp_Greeting_NightInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`夜勤おつかれさまです、${i?.name} さん`)
+	return /** @type {LocalizedString} */ (`こんにちは、${i?.name} さん`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Late shift, {name}" |
+* | "Hello, {name}" |
 *
 * @param {Basecamp_Greeting_NightInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

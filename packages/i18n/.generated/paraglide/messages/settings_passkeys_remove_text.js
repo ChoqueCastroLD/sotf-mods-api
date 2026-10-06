@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Settings_Passkeys_Remove_TextInputs */
 
 const en_settings_passkeys_remove_text = /** @type {(inputs: Settings_Passkeys_Remove_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Enter your password to remove ${i?.name}. You will no longer be able to sign in with it.`)
+	return /** @type {LocalizedString} */ (`Enter your password to remove ${i?.name}. You will no longer be able to log in with it.`)
 };
 
 const es_settings_passkeys_remove_text = /** @type {(inputs: Settings_Passkeys_Remove_TextInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_settings_passkeys_remove_text = /** @type {(inputs: Settings_Passkeys_R
 /**
 * | output |
 * | --- |
-* | "Enter your password to remove {name}. You will no longer be able to sign in with it." |
+* | "Enter your password to remove {name}. You will no longer be able to log in with it." |
 *
 * @param {Settings_Passkeys_Remove_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

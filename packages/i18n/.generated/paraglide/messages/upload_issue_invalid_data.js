@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Issue_Invalid_DataInputs */
 
 const en_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The blueprint Data is invalid.`)
+	return /** @type {LocalizedString} */ (`The build Data is invalid.`)
 };
 
 const es_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`El Data del plano no es válido.`)
+	return /** @type {LocalizedString} */ (`El Data de la build no es válido.`)
 };
 
 const de_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Data des Bauplans ist ungültig.`)
+	return /** @type {LocalizedString} */ (`Data des Builds ist ungültig.`)
 };
 
 const fr_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le Data du plan n’est pas valide.`)
+	return /** @type {LocalizedString} */ (`Le Data du build n’est pas valide.`)
 };
 
 const it_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Il Data del progetto non è valido.`)
+	return /** @type {LocalizedString} */ (`Il Data della build non è valido.`)
 };
 
 const nl_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De Data van de bouwtekening is ongeldig.`)
+	return /** @type {LocalizedString} */ (`De Data van de build is ongeldig.`)
 };
 
 const pl_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pole Data planu jest niepoprawne.`)
+	return /** @type {LocalizedString} */ (`Pole Data builda jest niepoprawne.`)
 };
 
 const pt_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O Data da planta é inválido.`)
+	return /** @type {LocalizedString} */ (`O Data da build é inválido.`)
 };
 
 const ru_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Поле Data в чертеже некорректно.`)
+	return /** @type {LocalizedString} */ (`Поле Data в постройке некорректно.`)
 };
 
 const sv_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ritningens Data är ogiltig.`)
+	return /** @type {LocalizedString} */ (`Byggets Data är ogiltig.`)
 };
 
 const tr_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Planın Data alanı geçersiz.`)
+	return /** @type {LocalizedString} */ (`Yapının Data alanı geçersiz.`)
 };
 
 const zh_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`蓝图的 Data 无效。`)
+	return /** @type {LocalizedString} */ (`建筑的 Data 无效。`)
 };
 
 const ja_upload_issue_invalid_data = /** @type {(inputs: Upload_Issue_Invalid_DataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図の Data が無効です。`)
+	return /** @type {LocalizedString} */ (`建築の Data が無効です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The blueprint Data is invalid." |
+* | "The build Data is invalid." |
 *
 * @param {Upload_Issue_Invalid_DataInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

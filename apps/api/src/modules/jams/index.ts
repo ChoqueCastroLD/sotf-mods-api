@@ -1,6 +1,6 @@
 /**
  * `jams` module: Mod Jams. Public reads (edge-cached, tag `list:jams`), own state and member
- * writes (follow, submit, withdraw, vote) and the staff console (`/ranger/jams`). Rules live in
+ * writes (follow, submit, withdraw, vote) and the staff console (`/moderation/jams`). Rules live in
  * `@sotf/core/jams`.
  */
 import { jamsEndpoints } from '@sotf/contracts/jams';

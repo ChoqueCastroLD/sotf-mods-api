@@ -3,7 +3,7 @@ export type Emails_Notify_Reason_InstantInputs = {};
 /**
 * | output |
 * | --- |
-* | "You get this email because instant emails are on for these signals." |
+* | "You get this email because instant emails are on for these notifications." |
 *
 * @param {Emails_Notify_Reason_InstantInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

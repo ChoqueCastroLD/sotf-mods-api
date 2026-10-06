@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Editor_Accent_ForestInputs */
 
 const en_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Forest green`)
+	return /** @type {LocalizedString} */ (`Green`)
 };
 
 const es_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verde bosque`)
+	return /** @type {LocalizedString} */ (`Verde`)
 };
 
 const de_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Waldgrün`)
+	return /** @type {LocalizedString} */ (`Grün`)
 };
 
 const fr_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vert forêt`)
+	return /** @type {LocalizedString} */ (`Vert`)
 };
 
 const it_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verde foresta`)
+	return /** @type {LocalizedString} */ (`Verde`)
 };
 
 const nl_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bosgroen`)
+	return /** @type {LocalizedString} */ (`Groen`)
 };
 
 const pl_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Leśna zieleń`)
+	return /** @type {LocalizedString} */ (`Zielony`)
 };
 
 const pt_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verde floresta`)
+	return /** @type {LocalizedString} */ (`Verde`)
 };
 
 const ru_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Лесной зелёный`)
+	return /** @type {LocalizedString} */ (`Зелёный`)
 };
 
 const sv_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skogsgrön`)
+	return /** @type {LocalizedString} */ (`Grön`)
 };
 
 const tr_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Orman yeşili`)
+	return /** @type {LocalizedString} */ (`Yeşil`)
 };
 
 const zh_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`森林绿`)
+	return /** @type {LocalizedString} */ (`绿色`)
 };
 
 const ja_jams_editor_accent_forest = /** @type {(inputs: Jams_Editor_Accent_ForestInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`フォレストグリーン`)
+	return /** @type {LocalizedString} */ (`グリーン`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Forest green" |
+* | "Green" |
 *
 * @param {Jams_Editor_Accent_ForestInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

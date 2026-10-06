@@ -22,8 +22,6 @@ export type ListType = (typeof LIST_TYPES)[number];
 export const EXPLORE_SORTS = ['new', 'downloads', 'trending', 'updated', 'rating', 'follows', 'comments'] as const;
 export const ALL_SORTS = [...EXPLORE_SORTS, 'relevance'] as const satisfies readonly ModSort[];
 
-export const COMPAT_VALUES = ['any', 'works', 'untested'] as const;
-export type CompatFilter = (typeof COMPAT_VALUES)[number];
 export const MULTIPLAYER_VALUES = ['client_side', 'host_only', 'all_players', 'singleplayer_only'] as const;
 export type MultiplayerFilter = (typeof MULTIPLAYER_VALUES)[number];
 export const PLATFORM_VALUES = ['Client', 'Server', 'Universal'] as const;
@@ -49,7 +47,6 @@ export interface ExploreState {
   excludeCategory: string[];
   tag: string[];
   excludeTag: string[];
-  compat: CompatFilter;
   multiplayer: MultiplayerFilter | null;
   dedicated: boolean;
   platform: PlatformFilter | null;
@@ -105,7 +102,6 @@ export function defaultState(scope: ExploreScope): ExploreState {
     excludeCategory: [],
     tag: scope.fixedTag ? [scope.fixedTag] : [],
     excludeTag: [],
-    compat: 'any',
     multiplayer: null,
     dedicated: false,
     platform: null,
@@ -181,7 +177,6 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
     ...listOf(params, 'tag', TAG, MAX_TAGS).filter((slug) => slug !== fixedTag),
   ].slice(0, MAX_TAGS);
   state.excludeTag = listOf(params, 'excludeTag', TAG, MAX_TAGS).filter((slug) => !state.tag.includes(slug));
-  state.compat = oneOf(COMPAT_VALUES, params.get('compat')) ?? 'any';
   state.multiplayer = oneOf(MULTIPLAYER_VALUES, params.get('multiplayer'));
   state.dedicated = params.get('dedicated') === 'yes' || flag(params.get('dedicated'));
   state.platform = oneOf(PLATFORM_VALUES, params.get('platform'));
@@ -239,7 +234,6 @@ export function activeFilterCount(state: ExploreState, scope: ExploreScope): num
     state.excludeCategory.length +
     extraTags(state, scope).length +
     state.excludeTag.length +
-    (state.compat !== 'any' ? 1 : 0) +
     (state.multiplayer ? 1 : 0) +
     (state.dedicated ? 1 : 0) +
     (state.platform ? 1 : 0) +
@@ -261,7 +255,6 @@ export function queryPairsOf(state: ExploreState, scope: ExploreScope): [string,
   for (const slug of state.excludeCategory) pairs.push(['excludeCategory', slug]);
   for (const slug of extraTags(state, scope)) pairs.push(['tag', slug]);
   for (const slug of state.excludeTag) pairs.push(['excludeTag', slug]);
-  if (state.compat !== 'any') pairs.push(['compat', state.compat]);
   if (state.multiplayer) pairs.push(['multiplayer', state.multiplayer]);
   if (state.dedicated) pairs.push(['dedicated', 'yes']);
   if (state.platform) pairs.push(['platform', state.platform]);
@@ -330,7 +323,8 @@ export function patchState(state: ExploreState, patch: Partial<ExploreState>): E
 export function apiQueryOf(state: ExploreState, options: { facets?: boolean } = {}): ModListQuery {
   const query: ModListQuery = {
     type: state.type,
-    compat: state.compat,
+    // The compatibility filter is retired; the contract still carries it (default `any`).
+    compat: 'any',
     sort: state.sort,
     order: state.order,
     page: state.page,

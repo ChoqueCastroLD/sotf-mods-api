@@ -85,7 +85,7 @@ export const NOTIFICATION_DEFAULTS: Readonly<
   'creator.weekly_report': { inApp: false, email: 'weekly', inAppAvailable: false },
 };
 
-/** Filters of `/signals` (PLAN §4.3). */
+/** Filters of `/notifications` (PLAN §4.3). */
 export const NOTIFICATION_FILTERS = ['all', 'mentions', 'updates', 'my_mods', 'ranger'] as const;
 
 /** Types included by each filter. */

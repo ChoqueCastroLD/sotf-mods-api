@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Back_To_Sign_InInputs */
 
 const en_auth_back_to_sign_in = /** @type {(inputs: Auth_Back_To_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Back to sign in`)
+	return /** @type {LocalizedString} */ (`Back to log in`)
 };
 
 const es_auth_back_to_sign_in = /** @type {(inputs: Auth_Back_To_Sign_InInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_back_to_sign_in = /** @type {(inputs: Auth_Back_To_Sign_InInputs) 
 /**
 * | output |
 * | --- |
-* | "Back to sign in" |
+* | "Back to log in" |
 *
 * @param {Auth_Back_To_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

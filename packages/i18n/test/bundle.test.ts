@@ -33,13 +33,7 @@ describe('tree-shaking', () => {
       expect(code).toContain(text);
     }
     // Other messages of the same and other namespaces are not included.
-    for (const text of [
-      'Checking the map',
-      'Revisando el mapa',
-      'Try again',
-      'wandered off the trail',
-      'SOTF Mods —',
-    ]) {
+    for (const text of ['Try again', 'Page not found', 'SOTF Mods: new and updated mods']) {
       expect(code).not.toContain(text);
     }
     // One message + configured runtime: a small, fixed cost (budget: public JS ≤ 15 KB br).
@@ -48,10 +42,10 @@ describe('tree-shaking', () => {
 
   it('works the same with named imports', async () => {
     const { code, brotli } = await bundle('test/fixtures/named-message.ts');
-    expect(code).toContain('You wandered off the trail.');
-    expect(code).toContain('Te saliste del sendero.');
+    expect(code).toContain('Page not found.');
+    expect(code).toContain('Página no encontrada.');
     expect(code).not.toContain('Guardar');
-    expect(code).not.toContain('Not on the map');
+    expect(code).not.toContain('Try again');
     expect(brotli).toBeLessThan(3 * 1024);
   });
 

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Scan_SuspiciousInputs */
 
 const en_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suspicious: a ranger is reviewing it`)
+	return /** @type {LocalizedString} */ (`Suspicious: a moderator is reviewing it`)
 };
 
 const es_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sospechoso: un guardabosques lo está revisando`)
+	return /** @type {LocalizedString} */ (`Sospechoso: un moderador lo está revisando`)
 };
 
 const de_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verdächtig: Ein Ranger prüft die Datei`)
+	return /** @type {LocalizedString} */ (`Verdächtig: Ein Moderator prüft die Datei`)
 };
 
 const fr_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suspect : un ranger l’examine`)
+	return /** @type {LocalizedString} */ (`Suspect : un modérateur l’examine`)
 };
 
 const it_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sospetto: un ranger lo sta esaminando`)
+	return /** @type {LocalizedString} */ (`Sospetto: un moderatore lo sta esaminando`)
 };
 
 const nl_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verdacht: een ranger bekijkt het`)
+	return /** @type {LocalizedString} */ (`Verdacht: een moderator bekijkt het`)
 };
 
 const pl_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podejrzany: strażnik go sprawdza`)
+	return /** @type {LocalizedString} */ (`Podejrzany: moderator go sprawdza`)
 };
 
 const pt_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suspeito: um guarda está analisando`)
+	return /** @type {LocalizedString} */ (`Suspeito: um moderador está analisando`)
 };
 
 const ru_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Подозрительный: рейнджер проверяет`)
+	return /** @type {LocalizedString} */ (`Подозрительный: модератор проверяет`)
 };
 
 const sv_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Misstänkt: en ranger granskar den`)
+	return /** @type {LocalizedString} */ (`Misstänkt: en moderator granskar den`)
 };
 
 const tr_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Şüpheli: bir korucu inceliyor`)
+	return /** @type {LocalizedString} */ (`Şüpheli: bir moderatör inceliyor`)
 };
 
 const zh_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`可疑：护林员正在审核`)
+	return /** @type {LocalizedString} */ (`可疑：版主正在审核`)
 };
 
 const ja_mod_scan_suspicious = /** @type {(inputs: Mod_Scan_SuspiciousInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`不審：レンジャーが確認中`)
+	return /** @type {LocalizedString} */ (`不審：モデレーターが確認中`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Suspicious: a ranger is reviewing it" |
+* | "Suspicious: a moderator is reviewing it" |
 *
 * @param {Mod_Scan_SuspiciousInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

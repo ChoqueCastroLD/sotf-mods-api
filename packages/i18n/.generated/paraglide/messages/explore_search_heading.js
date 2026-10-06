@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Explore_Search_HeadingInputs */
 
 const en_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Search the island`)
+	return /** @type {LocalizedString} */ (`Search`)
 };
 
 const es_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Busca en la isla`)
+	return /** @type {LocalizedString} */ (`Buscar`)
 };
 
 const de_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Insel durchsuchen`)
+	return /** @type {LocalizedString} */ (`Suche`)
 };
 
 const fr_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fouiller l’île`)
+	return /** @type {LocalizedString} */ (`Recherche`)
 };
 
 const it_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cerca sull’isola`)
+	return /** @type {LocalizedString} */ (`Cerca`)
 };
 
 const nl_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Doorzoek het eiland`)
+	return /** @type {LocalizedString} */ (`Zoeken`)
 };
 
 const pl_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeszukaj wyspę`)
+	return /** @type {LocalizedString} */ (`Wyszukiwanie`)
 };
 
 const pt_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pesquise na ilha`)
+	return /** @type {LocalizedString} */ (`Pesquisa`)
 };
 
 const ru_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Поиск по острову`)
+	return /** @type {LocalizedString} */ (`Поиск`)
 };
 
 const sv_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sök på ön`)
+	return /** @type {LocalizedString} */ (`Sök`)
 };
 
 const tr_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Adada ara`)
+	return /** @type {LocalizedString} */ (`Ara`)
 };
 
 const zh_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`搜索全岛`)
+	return /** @type {LocalizedString} */ (`搜索`)
 };
 
 const ja_explore_search_heading = /** @type {(inputs: Explore_Search_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`島を検索`)
+	return /** @type {LocalizedString} */ (`検索`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Search the island" |
+* | "Search" |
 *
 * @param {Explore_Search_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

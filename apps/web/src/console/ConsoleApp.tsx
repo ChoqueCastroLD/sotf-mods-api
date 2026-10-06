@@ -1,6 +1,6 @@
 /**
  * `<ConsoleApp client:only="react" />` — the console SPA (PLAN §2.5, §4.3), mounted by the
- * shells in `src/pages/{basecamp,me,ranger,settings}/[...path].astro` and `src/pages/signals.astro`.
+ * shells in `src/pages/{dashboard,me,moderation,settings}/[...path].astro` and `src/pages/signals.astro`.
  *
  * Boot: pick the first locale (saved → browser → English) and load its shell messages while the
  * router's session guard fetches `/me`; the user's saved language then wins (`ConsoleLayout`).

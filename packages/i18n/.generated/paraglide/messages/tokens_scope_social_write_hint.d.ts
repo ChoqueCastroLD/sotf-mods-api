@@ -3,7 +3,7 @@ export type Tokens_Scope_Social_Write_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Post comments and reviews, follow mods and creators, and report compatibility." |
+* | "Post comments and reviews, and follow mods and creators." |
 *
 * @param {Tokens_Scope_Social_Write_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

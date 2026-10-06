@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_Resubmit_HintInputs */
 
 const en_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Send it back to the Ranger Station once you made the requested changes.`)
+	return /** @type {LocalizedString} */ (`Send it back to moderation once you made the requested changes.`)
 };
 
 const es_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Envíalo de nuevo al puesto de guardabosques cuando hayas hecho los cambios pedidos.`)
+	return /** @type {LocalizedString} */ (`Envíalo de nuevo a moderación cuando hayas hecho los cambios pedidos.`)
 };
 
 const de_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Erneut an die Rangerstation senden, sobald die erbetenen Änderungen gemacht sind.`)
+	return /** @type {LocalizedString} */ (`Erneut an die Moderation senden, sobald die erbetenen Änderungen gemacht sind.`)
 };
 
 const fr_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le renvoyer au poste des rangers une fois les modifications demandées faites.`)
+	return /** @type {LocalizedString} */ (`Le renvoyer à la modération une fois les modifications demandées faites.`)
 };
 
 const it_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rinviala alla stazione dei ranger dopo aver fatto le modifiche richieste.`)
+	return /** @type {LocalizedString} */ (`Rinviala alla moderazione dopo aver fatto le modifiche richieste.`)
 };
 
 const nl_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Stuur hem terug naar de rangerpost zodra de gevraagde wijzigingen klaar zijn.`)
+	return /** @type {LocalizedString} */ (`Stuur hem terug naar moderatie zodra de gevraagde wijzigingen klaar zijn.`)
 };
 
 const pl_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wyślij go ponownie na posterunek strażników po wprowadzeniu zmian.`)
+	return /** @type {LocalizedString} */ (`Wyślij go ponownie do moderacji po wprowadzeniu zmian.`)
 };
 
 const pt_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enviar de novo ao posto dos guardas depois de fazer as alterações pedidas.`)
+	return /** @type {LocalizedString} */ (`Enviar de novo à moderação depois de fazer as alterações pedidas.`)
 };
 
 const ru_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Снова отправить на пост рейнджеров после внесения изменений.`)
+	return /** @type {LocalizedString} */ (`Снова отправить на модерацию после внесения изменений.`)
 };
 
 const sv_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skicka tillbaka den till rangerstationen när de begärda ändringarna är gjorda.`)
+	return /** @type {LocalizedString} */ (`Skicka tillbaka den till modereringen när de begärda ändringarna är gjorda.`)
 };
 
 const tr_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İstenen değişiklikleri yaptıktan sonra Korucu İstasyonu'na yeniden gönder.`)
+	return /** @type {LocalizedString} */ (`İstenen değişiklikleri yaptıktan sonra moderasyona yeniden gönder.`)
 };
 
 const zh_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`完成要求的修改后重新提交到护林站。`)
+	return /** @type {LocalizedString} */ (`完成要求的修改后重新提交审核。`)
 };
 
 const ja_basecamp_settings_resubmit_hint = /** @type {(inputs: Basecamp_Settings_Resubmit_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`依頼された修正を終えたら、レンジャーステーションへ再提出します。`)
+	return /** @type {LocalizedString} */ (`依頼された修正を終えたら、モデレーションへ再提出します。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Send it back to the Ranger Station once you made the requested changes." |
+* | "Send it back to moderation once you made the requested changes." |
 *
 * @param {Basecamp_Settings_Resubmit_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Motion_Reduce_HintInputs */
 
 const en_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No sliding, zooming or celebrations.`)
+	return /** @type {LocalizedString} */ (`No sliding or zooming.`)
 };
 
 const es_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin deslizamientos, zooms ni celebraciones.`)
+	return /** @type {LocalizedString} */ (`Sin deslizamientos ni zooms.`)
 };
 
 const de_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kein Gleiten, Zoomen oder Feiern.`)
+	return /** @type {LocalizedString} */ (`Kein Gleiten oder Zoomen.`)
 };
 
 const fr_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas de glissements, de zooms ni de célébrations.`)
+	return /** @type {LocalizedString} */ (`Pas de glissements ni de zooms.`)
 };
 
 const it_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niente scorrimenti, zoom o festeggiamenti.`)
+	return /** @type {LocalizedString} */ (`Niente scorrimenti o zoom.`)
 };
 
 const nl_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen schuiven, zoomen of feestjes.`)
+	return /** @type {LocalizedString} */ (`Geen schuiven of zoomen.`)
 };
 
 const pl_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bez przesuwania, powiększania i fajerwerków.`)
+	return /** @type {LocalizedString} */ (`Bez przesuwania i powiększania.`)
 };
 
 const pt_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem deslizes, zooms ou comemorações.`)
+	return /** @type {LocalizedString} */ (`Sem deslizes ou zooms.`)
 };
 
 const ru_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Без скольжения, масштабирования и празднований.`)
+	return /** @type {LocalizedString} */ (`Без скольжения и масштабирования.`)
 };
 
 const sv_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga glidningar, zoomningar eller firanden.`)
+	return /** @type {LocalizedString} */ (`Inga glidningar eller zoomningar.`)
 };
 
 const tr_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kayma, yakınlaştırma ya da kutlama yok.`)
+	return /** @type {LocalizedString} */ (`Kayma ve yakınlaştırma yok.`)
 };
 
 const zh_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`不滑动、不缩放、不庆祝。`)
+	return /** @type {LocalizedString} */ (`不滑动、不缩放。`)
 };
 
 const ja_settings_motion_reduce_hint = /** @type {(inputs: Settings_Motion_Reduce_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`スライド、ズーム、お祝い演出なし。`)
+	return /** @type {LocalizedString} */ (`スライドやズームなし。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No sliding, zooming or celebrations." |
+* | "No sliding or zooming." |
 *
 * @param {Settings_Motion_Reduce_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

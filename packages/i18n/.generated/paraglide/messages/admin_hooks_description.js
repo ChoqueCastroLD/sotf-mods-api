@@ -38,7 +38,7 @@ const pt_admin_hooks_description = /** @type {(inputs: Admin_Hooks_DescriptionIn
 };
 
 const ru_admin_hooks_description = /** @type {(inputs: Admin_Hooks_DescriptionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`До ${i?.max} каналов. Адреса вебхуков — секрет: любой, у кого он есть, может писать в канал.`)
+	return /** @type {LocalizedString} */ (`До ${i?.max} каналов. Адреса вебхуков секретны: любой, у кого он есть, может писать в канал.`)
 };
 
 const sv_admin_hooks_description = /** @type {(inputs: Admin_Hooks_DescriptionInputs) => LocalizedString} */ (i) => {

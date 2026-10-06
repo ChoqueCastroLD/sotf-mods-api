@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Nsfw_LeaveInputs */
 
 const en_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Back to Explore`)
+	return /** @type {LocalizedString} */ (`Back to Mods`)
 };
 
 const es_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Volver a Explorar`)
+	return /** @type {LocalizedString} */ (`Volver a Mods`)
 };
 
 const de_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zurück zu Entdecken`)
+	return /** @type {LocalizedString} */ (`Zurück zu Mods`)
 };
 
 const fr_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retour à Explorer`)
+	return /** @type {LocalizedString} */ (`Retour aux mods`)
 };
 
 const it_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Torna a Esplora`)
+	return /** @type {LocalizedString} */ (`Torna alle mod`)
 };
 
 const nl_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Terug naar Verkennen`)
+	return /** @type {LocalizedString} */ (`Terug naar Mods`)
 };
 
 const pl_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wróć do przeglądania`)
+	return /** @type {LocalizedString} */ (`Wróć do modów`)
 };
 
 const pt_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voltar para Explorar`)
+	return /** @type {LocalizedString} */ (`Voltar para Mods`)
 };
 
 const ru_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Назад к обзору`)
+	return /** @type {LocalizedString} */ (`Назад к модам`)
 };
 
 const sv_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tillbaka till Utforska`)
+	return /** @type {LocalizedString} */ (`Tillbaka till moddar`)
 };
 
 const tr_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Keşfet’e dön`)
+	return /** @type {LocalizedString} */ (`Modlara dön`)
 };
 
 const zh_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`返回探索`)
+	return /** @type {LocalizedString} */ (`返回模组`)
 };
 
 const ja_mod_nsfw_leave = /** @type {(inputs: Mod_Nsfw_LeaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`探索に戻る`)
+	return /** @type {LocalizedString} */ (`MOD 一覧に戻る`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Back to Explore" |
+* | "Back to Mods" |
 *
 * @param {Mod_Nsfw_LeaveInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

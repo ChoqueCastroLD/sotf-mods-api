@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Scope_Mods_Write_HintInputs */
 
 const en_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create and edit your mods, versions, kits and uploads.`)
+	return /** @type {LocalizedString} */ (`Create and edit your mods, versions and uploads.`)
 };
 
 const es_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crear y editar tus mods, versiones, kits y subidas.`)
+	return /** @type {LocalizedString} */ (`Crear y editar tus mods, versiones y subidas.`)
 };
 
 const de_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deine Mods, Versionen, Kits und Uploads erstellen und bearbeiten.`)
+	return /** @type {LocalizedString} */ (`Deine Mods, Versionen und Uploads erstellen und bearbeiten.`)
 };
 
 const fr_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créer et modifier vos mods, versions, kits et envois.`)
+	return /** @type {LocalizedString} */ (`Créer et modifier vos mods, versions et envois.`)
 };
 
 const it_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creare e modificare le tue mod, versioni, kit e caricamenti.`)
+	return /** @type {LocalizedString} */ (`Creare e modificare le tue mod, versioni e caricamenti.`)
 };
 
 const nl_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je mods, versies, kits en uploads maken en bewerken.`)
+	return /** @type {LocalizedString} */ (`Je mods, versies en uploads maken en bewerken.`)
 };
 
 const pl_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tworzenie i edycja modów, wersji, zestawów i przesyłanych plików.`)
+	return /** @type {LocalizedString} */ (`Tworzenie i edycja modów, wersji i przesyłanych plików.`)
 };
 
 const pt_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criar e editar seus mods, versões, kits e envios.`)
+	return /** @type {LocalizedString} */ (`Criar e editar seus mods, versões e envios.`)
 };
 
 const ru_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Создание и изменение ваших модов, версий, наборов и загрузок.`)
+	return /** @type {LocalizedString} */ (`Создание и изменение ваших модов, версий и загрузок.`)
 };
 
 const sv_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapa och redigera dina mods, versioner, kit och uppladdningar.`)
+	return /** @type {LocalizedString} */ (`Skapa och redigera dina moddar, versioner och uppladdningar.`)
 };
 
 const tr_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modlarını, sürümlerini, kitlerini ve yüklemelerini oluştur ve düzenle.`)
+	return /** @type {LocalizedString} */ (`Modlarını, sürümlerini ve yüklemelerini oluştur ve düzenle.`)
 };
 
 const zh_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建和编辑你的模组、版本、套件和上传。`)
+	return /** @type {LocalizedString} */ (`创建和编辑你的模组、版本和上传。`)
 };
 
 const ja_tokens_scope_mods_write_hint = /** @type {(inputs: Tokens_Scope_Mods_Write_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`自分の Mod、バージョン、キット、アップロードの作成と編集。`)
+	return /** @type {LocalizedString} */ (`自分の MOD、バージョン、アップロードの作成と編集。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Create and edit your mods, versions, kits and uploads." |
+* | "Create and edit your mods, versions and uploads." |
 *
 * @param {Tokens_Scope_Mods_Write_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

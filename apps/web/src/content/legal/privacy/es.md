@@ -26,8 +26,8 @@ SOTF Mods (sotf-mods.com, «nosotros») es un sitio web de la comunidad gestiona
 **Cuando tienes cuenta**
 
 - Email, nombre de usuario, nombre visible, el hash de la contraseña (nunca vemos tu contraseña) y tus ajustes.
-- Lo que publicas: mods, versiones, imágenes, comentarios, reseñas, reportes de compatibilidad, Kits y tu perfil (bio, enlaces, avatar y banner).
-- La actividad necesaria para las funciones que usas: mods que sigues, tu historial de descargas (puedes borrarlo y desactivarlo), notificaciones y logros.
+- Lo que publicas: mods, versiones, imágenes, comentarios, reseñas, reportes de compatibilidad y tu perfil (bio, enlaces, avatar y banner).
+- La actividad necesaria para las funciones que usas: mods que sigues, tu historial de descargas (puedes borrarlo y desactivarlo) y notificaciones.
 - Datos de seguridad: sesiones activas (dispositivo, navegador, país aproximado, última actividad) y eventos de inicio de sesión.
 
 **Cuando nos escribes o reportas algo**, el contenido de tu mensaje o reporte.

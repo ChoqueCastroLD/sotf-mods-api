@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Social_Bug_Resolve_IntroInputs */
 
 const en_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The reporter gets a signal and the comment shows «Fixed in vX».`)
+	return /** @type {LocalizedString} */ (`The reporter is notified and the comment shows «Fixed in vX».`)
 };
 
 const es_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_Intro
 };
 
 const de_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die meldende Person erhält ein Signal und der Kommentar zeigt «Behoben in vX».`)
+	return /** @type {LocalizedString} */ (`Die meldende Person wird benachrichtigt und der Kommentar zeigt «Behoben in vX».`)
 };
 
 const fr_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La personne qui l’a signalé reçoit un signal et le commentaire affiche « Corrigé dans la vX ».`)
+	return /** @type {LocalizedString} */ (`La personne qui l’a signalé est prévenue et le commentaire affiche « Corrigé dans la vX ».`)
 };
 
 const it_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_Intro
 };
 
 const nl_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De melder krijgt een signaal en de reactie toont «Opgelost in vX».`)
+	return /** @type {LocalizedString} */ (`De melder krijgt een melding en de reactie toont «Opgelost in vX».`)
 };
 
 const pl_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
@@ -38,15 +38,15 @@ const pt_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_Intro
 };
 
 const ru_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Автор сообщения получит сигнал, а у комментария появится «Исправлено в vX».`)
+	return /** @type {LocalizedString} */ (`Автор сообщения получит уведомление, а у комментария появится «Исправлено в vX».`)
 };
 
 const sv_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Den som rapporterade får en signal och kommentaren visar ”Åtgärdad i vX”.`)
+	return /** @type {LocalizedString} */ (`Den som rapporterade får en avisering och kommentaren visar ”Åtgärdad i vX”.`)
 };
 
 const tr_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bildiren kişiye sinyal gider ve yorumda “vX sürümünde düzeltildi” görünür.`)
+	return /** @type {LocalizedString} */ (`Bildiren kişiye bildirim gider ve yorumda “vX sürümünde düzeltildi” görünür.`)
 };
 
 const zh_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_IntroInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_social_bug_resolve_intro = /** @type {(inputs: Social_Bug_Resolve_Intro
 /**
 * | output |
 * | --- |
-* | "The reporter gets a signal and the comment shows «Fixed in vX»." |
+* | "The reporter is notified and the comment shows «Fixed in vX»." |
 *
 * @param {Social_Bug_Resolve_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

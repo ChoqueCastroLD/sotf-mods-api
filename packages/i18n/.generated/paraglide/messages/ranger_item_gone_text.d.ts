@@ -3,7 +3,7 @@ export type Ranger_Item_Gone_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Another ranger decided on this item, or it left the queue." |
+* | "Another moderator decided on this item, or it left the queue." |
 *
 * @param {Ranger_Item_Gone_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

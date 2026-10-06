@@ -3,7 +3,7 @@ export type Ranger_Escalate_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tell the admins what they need to look at. The item stays in its lane, marked as escalated and sorted as high risk." |
+* | "Tell the admins what they need to look at. The item stays in its queue, marked as escalated and sorted as high risk." |
 *
 * @param {Ranger_Escalate_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

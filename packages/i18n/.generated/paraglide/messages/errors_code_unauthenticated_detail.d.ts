@@ -3,7 +3,7 @@ export type Errors_Code_Unauthenticated_DetailInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your session ended or you haven’t signed in yet. Sign in and we’ll bring you back here." |
+* | "Your session ended or you haven’t logged in yet. Log in and we’ll bring you back here." |
 *
 * @param {Errors_Code_Unauthenticated_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

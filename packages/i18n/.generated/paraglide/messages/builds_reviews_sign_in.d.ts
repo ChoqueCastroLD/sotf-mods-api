@@ -3,7 +3,7 @@ export type Builds_Reviews_Sign_InInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to review" |
+* | "Log in to review" |
 *
 * @param {Builds_Reviews_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

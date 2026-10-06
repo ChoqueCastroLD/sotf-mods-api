@@ -3,7 +3,7 @@ export type Settings_Notif_Matrix_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signals and emails" |
+* | "Notifications and emails" |
 *
 * @param {Settings_Notif_Matrix_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

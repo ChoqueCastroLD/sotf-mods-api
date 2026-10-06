@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_LoadingInputs */
 
 const en_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Checking the map…`)
+	return /** @type {LocalizedString} */ (`Loading…`)
 };
 
 const es_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Revisando el mapa…`)
+	return /** @type {LocalizedString} */ (`Cargando…`)
 };
 
 const de_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Karte wird geprüft…`)
+	return /** @type {LocalizedString} */ (`Wird geladen …`)
 };
 
 const fr_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`On consulte la carte…`)
+	return /** @type {LocalizedString} */ (`Chargement…`)
 };
 
 const it_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Controllo la mappa…`)
+	return /** @type {LocalizedString} */ (`Caricamento…`)
 };
 
 const nl_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De kaart wordt gecontroleerd…`)
+	return /** @type {LocalizedString} */ (`Laden…`)
 };
 
 const pl_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sprawdzam mapę…`)
+	return /** @type {LocalizedString} */ (`Wczytywanie…`)
 };
 
 const pt_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verificando o mapa…`)
+	return /** @type {LocalizedString} */ (`Carregando…`)
 };
 
 const ru_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сверяемся с картой…`)
+	return /** @type {LocalizedString} */ (`Загрузка…`)
 };
 
 const sv_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kollar kartan…`)
+	return /** @type {LocalizedString} */ (`Laddar…`)
 };
 
 const tr_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Harita kontrol ediliyor…`)
+	return /** @type {LocalizedString} */ (`Yükleniyor…`)
 };
 
 const zh_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`正在查看地图…`)
+	return /** @type {LocalizedString} */ (`加载中…`)
 };
 
 const ja_ui_loading = /** @type {(inputs: Ui_LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`地図を確認中…`)
+	return /** @type {LocalizedString} */ (`読み込み中…`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Checking the map…" |
+* | "Loading…" |
 *
 * @param {Ui_LoadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

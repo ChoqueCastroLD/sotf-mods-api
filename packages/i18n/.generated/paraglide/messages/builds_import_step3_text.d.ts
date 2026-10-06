@@ -5,7 +5,7 @@ export type Builds_Import_Step3_TextInputs = {
 /**
 * | output |
 * | --- |
-* | "In game, press {key} to open BuildShare, pick the blueprint and place it. Right-click switches between corner and free placement, the mouse wheel moves it an..." |
+* | "In game, press {key} to open BuildShare, pick the build and place it. Right-click switches between corner and free placement, the mouse wheel moves it and Es..." |
 *
 * @param {Builds_Import_Step3_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

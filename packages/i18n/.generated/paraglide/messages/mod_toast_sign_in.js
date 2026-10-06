@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Toast_Sign_InInputs */
 
 const en_mod_toast_sign_in = /** @type {(inputs: Mod_Toast_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your session ended. Sign in again.`)
+	return /** @type {LocalizedString} */ (`Your session ended. Log in again.`)
 };
 
 const es_mod_toast_sign_in = /** @type {(inputs: Mod_Toast_Sign_InInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_mod_toast_sign_in = /** @type {(inputs: Mod_Toast_Sign_InInputs) => Loc
 };
 
 const pt_mod_toast_sign_in = /** @type {(inputs: Mod_Toast_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua sessão expirou. Entre de novo.`)
+	return /** @type {LocalizedString} */ (`Sua sessão expirou. Faça login de novo.`)
 };
 
 const ru_mod_toast_sign_in = /** @type {(inputs: Mod_Toast_Sign_InInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_mod_toast_sign_in = /** @type {(inputs: Mod_Toast_Sign_InInputs) => Loc
 /**
 * | output |
 * | --- |
-* | "Your session ended. Sign in again." |
+* | "Your session ended. Log in again." |
 *
 * @param {Mod_Toast_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

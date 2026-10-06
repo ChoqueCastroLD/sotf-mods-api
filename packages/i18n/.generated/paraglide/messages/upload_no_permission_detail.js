@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_No_Permission_DetailInputs */
 
 const en_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`A ranger restricted uploads for now. Check Signals for the details or contact the team.`)
+	return /** @type {LocalizedString} */ (`A moderator restricted uploads for now. Check your notifications for the details or contact the team.`)
 };
 
 const es_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un guardabosques ha restringido las subidas por ahora. Revisa Señales para ver los detalles o contacta con el equipo.`)
+	return /** @type {LocalizedString} */ (`Un moderador ha restringido las subidas por ahora. Revisa tus notificaciones para ver los detalles o contacta con el equipo.`)
 };
 
 const de_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ein Ranger hat Uploads vorerst eingeschränkt. Details findest du in den Signalen, oder kontaktiere das Team.`)
+	return /** @type {LocalizedString} */ (`Ein Moderator hat Uploads vorerst eingeschränkt. Details findest du in deinen Benachrichtigungen, oder kontaktiere das Team.`)
 };
 
 const fr_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un ranger a restreint les envois pour le moment. Consultez vos Signaux pour les détails ou contactez l’équipe.`)
+	return /** @type {LocalizedString} */ (`Un modérateur a restreint les envois pour le moment. Consultez vos notifications pour les détails ou contactez l’équipe.`)
 };
 
 const it_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Un ranger ha limitato i caricamenti per ora. Controlla i Segnali per i dettagli o contatta il team.`)
+	return /** @type {LocalizedString} */ (`Un moderatore ha limitato i caricamenti per ora. Controlla le notifiche per i dettagli o contatta il team.`)
 };
 
 const nl_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Een ranger heeft uploads voorlopig beperkt. Bekijk je Signalen voor details of neem contact op met het team.`)
+	return /** @type {LocalizedString} */ (`Een moderator heeft uploads voorlopig beperkt. Bekijk je meldingen voor details of neem contact op met het team.`)
 };
 
 const pl_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnik tymczasowo ograniczył wysyłanie. Szczegóły znajdziesz w Sygnałach albo skontaktuj się z zespołem.`)
+	return /** @type {LocalizedString} */ (`Moderator tymczasowo ograniczył wysyłanie. Szczegóły znajdziesz w powiadomieniach albo skontaktuj się z zespołem.`)
 };
 
 const pt_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Um guarda restringiu os envios por enquanto. Veja os detalhes nos Sinais ou fale com a equipe.`)
+	return /** @type {LocalizedString} */ (`Um moderador restringiu os envios por enquanto. Veja os detalhes nas notificações ou fale com a equipe.`)
 };
 
 const ru_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджер временно ограничил загрузки. Подробности — в Сигналах, или напишите команде.`)
+	return /** @type {LocalizedString} */ (`Модератор временно ограничил загрузки. Подробности в уведомлениях, или напишите команде.`)
 };
 
 const sv_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En ranger har begränsat uppladdningar tills vidare. Se Signaler för detaljer eller kontakta teamet.`)
+	return /** @type {LocalizedString} */ (`En moderator har begränsat uppladdningar tills vidare. Se dina aviseringar för detaljer eller kontakta teamet.`)
 };
 
 const tr_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bir korucu yüklemeleri şimdilik kısıtladı. Ayrıntılar için Sinyaller’e bak ya da ekiple iletişime geç.`)
+	return /** @type {LocalizedString} */ (`Bir moderatör yüklemeleri şimdilik kısıtladı. Ayrıntılar için bildirimlerine bak ya da ekiple iletişime geç.`)
 };
 
 const zh_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员暂时限制了上传。详情请查看信号，或联系团队。`)
+	return /** @type {LocalizedString} */ (`版主暂时限制了上传。详情请查看通知，或联系团队。`)
 };
 
 const ja_upload_no_permission_detail = /** @type {(inputs: Upload_No_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーが一時的にアップロードを制限しています。詳しくはシグナルを確認するか、チームに連絡してください。`)
+	return /** @type {LocalizedString} */ (`モデレーターが一時的にアップロードを制限しています。詳しくは通知を確認するか、チームに連絡してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "A ranger restricted uploads for now. Check Signals for the details or contact the team." |
+* | "A moderator restricted uploads for now. Check your notifications for the details or contact the team." |
 *
 * @param {Upload_No_Permission_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

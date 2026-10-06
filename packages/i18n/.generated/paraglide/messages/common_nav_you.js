@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Nav_YouInputs */
 
 const en_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You`)
+	return /** @type {LocalizedString} */ (`Account`)
 };
 
 const es_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tú`)
+	return /** @type {LocalizedString} */ (`Cuenta`)
 };
 
 const de_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du`)
+	return /** @type {LocalizedString} */ (`Konto`)
 };
 
 const fr_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous`)
+	return /** @type {LocalizedString} */ (`Compte`)
 };
 
 const it_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu`)
+	return /** @type {LocalizedString} */ (`Account`)
 };
 
 const nl_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jij`)
+	return /** @type {LocalizedString} */ (`Account`)
 };
 
 const pl_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ty`)
+	return /** @type {LocalizedString} */ (`Konto`)
 };
 
 const pt_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você`)
+	return /** @type {LocalizedString} */ (`Conta`)
 };
 
 const ru_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вы`)
+	return /** @type {LocalizedString} */ (`Аккаунт`)
 };
 
 const sv_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du`)
+	return /** @type {LocalizedString} */ (`Konto`)
 };
 
 const tr_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sen`)
+	return /** @type {LocalizedString} */ (`Hesap`)
 };
 
 const zh_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`我的`)
+	return /** @type {LocalizedString} */ (`账户`)
 };
 
 const ja_common_nav_you = /** @type {(inputs: Common_Nav_YouInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`マイページ`)
+	return /** @type {LocalizedString} */ (`アカウント`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You" |
+* | "Account" |
 *
 * @param {Common_Nav_YouInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

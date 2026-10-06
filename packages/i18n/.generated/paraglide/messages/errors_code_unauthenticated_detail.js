@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Unauthenticated_DetailInputs */
 
 const en_errors_code_unauthenticated_detail = /** @type {(inputs: Errors_Code_Unauthenticated_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your session ended or you haven’t signed in yet. Sign in and we’ll bring you back here.`)
+	return /** @type {LocalizedString} */ (`Your session ended or you haven’t logged in yet. Log in and we’ll bring you back here.`)
 };
 
 const es_errors_code_unauthenticated_detail = /** @type {(inputs: Errors_Code_Unauthenticated_DetailInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_errors_code_unauthenticated_detail = /** @type {(inputs: Errors_Code_Un
 /**
 * | output |
 * | --- |
-* | "Your session ended or you haven’t signed in yet. Sign in and we’ll bring you back here." |
+* | "Your session ended or you haven’t logged in yet. Log in and we’ll bring you back here." |
 *
 * @param {Errors_Code_Unauthenticated_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

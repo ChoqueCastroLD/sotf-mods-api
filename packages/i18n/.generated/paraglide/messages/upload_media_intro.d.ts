@@ -3,7 +3,7 @@ export type Upload_Media_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Good images sell a mod. Listings with 3 or more images get far more downloads." |
+* | "Images help players decide. Listings with 3 or more images get more downloads." |
 *
 * @param {Upload_Media_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

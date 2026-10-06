@@ -1,6 +1,6 @@
 ---
 title: Cookies and local storage
-description: The cookies and browser storage SOTF Mods uses — strictly necessary session cookies, a few preferences and, for guests only, advertising after consent.
+description: The cookies and browser storage SOTF Mods uses: strictly necessary session cookies, a few preferences and, for guests only, advertising after consent.
 anchors: [summary, necessary, preferences, ads, statistics, control]
 ---
 

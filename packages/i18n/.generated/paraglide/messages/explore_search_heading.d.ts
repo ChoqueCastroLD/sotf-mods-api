@@ -3,7 +3,7 @@ export type Explore_Search_HeadingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Search the island" |
+* | "Search" |
 *
 * @param {Explore_Search_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

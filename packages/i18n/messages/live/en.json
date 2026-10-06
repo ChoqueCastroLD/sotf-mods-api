@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "Compare",
   "live_embed_title": "Badges for your page",
-  "live_embed_intro": "Paste a badge in a README, forum post or Discord. They update by themselves.",
+  "live_embed_intro": "Paste a badge into a README, forum post or Discord. Badges update automatically.",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "Downloads",

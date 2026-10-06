@@ -3,7 +3,7 @@ export type Auth_Register_SubmitInputs = {};
 /**
 * | output |
 * | --- |
-* | "Create account" |
+* | "Register" |
 *
 * @param {Auth_Register_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

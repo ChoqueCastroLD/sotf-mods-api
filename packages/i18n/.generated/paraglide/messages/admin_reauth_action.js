@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Reauth_ActionInputs */
 
 const en_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in again`)
+	return /** @type {LocalizedString} */ (`Log in again`)
 };
 
 const es_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) =>
 };
 
 const nl_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Opnieuw aanmelden`)
+	return /** @type {LocalizedString} */ (`Opnieuw inloggen`)
 };
 
 const pl_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) =>
 };
 
 const ja_admin_reauth_action = /** @type {(inputs: Admin_Reauth_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`もう一度サインイン`)
+	return /** @type {LocalizedString} */ (`もう一度ログイン`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Sign in again" |
+* | "Log in again" |
 *
 * @param {Admin_Reauth_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

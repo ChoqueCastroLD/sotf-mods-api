@@ -3,7 +3,7 @@ export type Emails_Auth_Verify_PreviewInputs = {};
 /**
 * | output |
 * | --- |
-* | "One click and you can publish, comment and review." |
+* | "Confirm your address to publish, comment and review." |
 *
 * @param {Emails_Auth_Verify_PreviewInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

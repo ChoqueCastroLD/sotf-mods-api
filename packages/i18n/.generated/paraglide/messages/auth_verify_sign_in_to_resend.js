@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Verify_Sign_In_To_ResendInputs */
 
 const en_auth_verify_sign_in_to_resend = /** @type {(inputs: Auth_Verify_Sign_In_To_ResendInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to get a new link`)
+	return /** @type {LocalizedString} */ (`Log in to get a new link`)
 };
 
 const es_auth_verify_sign_in_to_resend = /** @type {(inputs: Auth_Verify_Sign_In_To_ResendInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_verify_sign_in_to_resend = /** @type {(inputs: Auth_Verify_Sign_In
 /**
 * | output |
 * | --- |
-* | "Sign in to get a new link" |
+* | "Log in to get a new link" |
 *
 * @param {Auth_Verify_Sign_In_To_ResendInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

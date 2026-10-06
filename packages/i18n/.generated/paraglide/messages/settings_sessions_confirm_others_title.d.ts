@@ -3,7 +3,7 @@ export type Settings_Sessions_Confirm_Others_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out everywhere else?" |
+* | "Log out everywhere else?" |
 *
 * @param {Settings_Sessions_Confirm_Others_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

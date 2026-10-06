@@ -3,7 +3,7 @@ export type Basecamp_Editor_Pending_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "In review at the Ranger Station" |
+* | "In review by moderation" |
 *
 * @param {Basecamp_Editor_Pending_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ category: NonNullable<unknown> }} Explore_Category_Intro_Builds_GenericInputs */
 
 const en_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Sons of the Forest builds in the ${i?.category} category: BuildShare blueprints ready to place.`)
+	return /** @type {LocalizedString} */ (`BuildShare builds in the ${i?.category} category for Sons of the Forest, ready to place.`)
 };
 
 const es_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Builds de Sons of the Forest de la categoría ${i?.category}: planos de BuildShare listos para colocar.`)
+	return /** @type {LocalizedString} */ (`Builds de BuildShare para Sons of the Forest de la categoría ${i?.category}, listas para colocar.`)
 };
 
 const de_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Sons-of-the-Forest-Builds der Kategorie ${i?.category}: BuildShare-Baupläne, bereit zum Platzieren.`)
+	return /** @type {LocalizedString} */ (`BuildShare-Builds für Sons of the Forest in der Kategorie ${i?.category}, bereit zum Platzieren.`)
 };
 
 const fr_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Builds Sons of the Forest de la catégorie ${i?.category} : plans BuildShare prêts à poser.`)
+	return /** @type {LocalizedString} */ (`Builds BuildShare pour Sons of the Forest dans la catégorie ${i?.category}, prêtes à poser.`)
 };
 
 const it_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Build di Sons of the Forest della categoria ${i?.category}: progetti BuildShare pronti da piazzare.`)
+	return /** @type {LocalizedString} */ (`Build BuildShare per Sons of the Forest della categoria ${i?.category}, pronte da piazzare.`)
 };
 
 const nl_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Sons of the Forest-builds in de categorie ${i?.category}: BuildShare-bouwtekeningen, klaar om te plaatsen.`)
+	return /** @type {LocalizedString} */ (`BuildShare-builds voor Sons of the Forest in de categorie ${i?.category}, klaar om te plaatsen.`)
 };
 
 const pl_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Buildy do Sons of the Forest z kategorii ${i?.category}: plany BuildShare gotowe do postawienia.`)
+	return /** @type {LocalizedString} */ (`Buildy BuildShare do Sons of the Forest z kategorii ${i?.category}, gotowe do postawienia.`)
 };
 
 const pt_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Builds de Sons of the Forest da categoria ${i?.category}: plantas do BuildShare prontas para posicionar.`)
+	return /** @type {LocalizedString} */ (`Builds do BuildShare para Sons of the Forest da categoria ${i?.category}, prontas para posicionar.`)
 };
 
 const ru_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Постройки для Sons of the Forest в категории ${i?.category}: чертежи BuildShare, готовые к установке.`)
+	return /** @type {LocalizedString} */ (`Постройки BuildShare для Sons of the Forest в категории ${i?.category}, готовые к установке.`)
 };
 
 const sv_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Byggen till Sons of the Forest i kategorin ${i?.category}: BuildShare-ritningar redo att placeras.`)
+	return /** @type {LocalizedString} */ (`BuildShare-byggen till Sons of the Forest i kategorin ${i?.category}, redo att placeras.`)
 };
 
 const tr_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.category} kategorisindeki Sons of the Forest yapıları: yerleştirmeye hazır BuildShare planları.`)
+	return /** @type {LocalizedString} */ (`${i?.category} kategorisindeki Sons of the Forest için BuildShare yapıları, yerleştirmeye hazır.`)
 };
 
 const zh_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.category}分类下的 Sons of the Forest 建筑：可直接放置的 BuildShare 蓝图。`)
+	return /** @type {LocalizedString} */ (`${i?.category}分类下适用于 Sons of the Forest 的 BuildShare 建筑，可直接放置。`)
 };
 
 const ja_explore_category_intro_builds_generic = /** @type {(inputs: Explore_Category_Intro_Builds_GenericInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.category}カテゴリの Sons of the Forest 建築。すぐに配置できる BuildShare 設計図。`)
+	return /** @type {LocalizedString} */ (`${i?.category}カテゴリの Sons of the Forest 向け BuildShare 建築。すぐに配置できます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Sons of the Forest builds in the {category} category: BuildShare blueprints ready to place." |
+* | "BuildShare builds in the {category} category for Sons of the Forest, ready to place." |
 *
 * @param {Explore_Category_Intro_Builds_GenericInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,5 +1,7 @@
 # 05 · Producto — Inventario de features, features incompletas, features nuevas y gamificación
 
+> **Nota (2026-10-06):** [CLASSIC.md](../CLASSIC.md) prevalece sobre este documento en la identidad «Locator», la landing y la gamificación (logros, insignias, XP, hitos, premios, kits, Patch Radar, mapa de la isla). Donde discrepen, manda CLASSIC.md. Este texto se conserva como histórico y no se reescribe.
+
 > Track de investigación: **PRODUCTO**. Fecha: 2026-09-29.
 > Fuentes: lectura completa de `sotf-mods-api/src` y `sotf-mods-frontend/src` (plantillas, scripts, traducciones), navegación read-only del sitio y de la API públicos, análisis de datos públicos (257 mods, 612 versiones, 277 comentarios obtenidos vía GET de la API pública), código de los clientes externos de la API (RedManager, instalador "OneClick", bot de Kelvin) y búsquedas web (Steam, GitHub, guías de terceros). No se tocó producción: solo GET a endpoints que no mutan estado (no se llamó a descargas, favoritos, approve ni KelvinSeek).
 

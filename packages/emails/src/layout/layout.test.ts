@@ -14,17 +14,19 @@ function email(locale: 'en' | 'es' | 'zh', footer = {}) {
 }
 
 describe('EmailLayout', () => {
-  it('renders HTML and plain text with the brand header and the localized footer', async () => {
+  it('renders HTML and plain text with the logo header and the localized footer', async () => {
     const { html, text } = await renderEmail(email('en'));
     expect(html).toMatch(/^<!DOCTYPE html/);
     expect(html).toContain('lang="en"');
     expect(html).toContain('Your code is 123456');
-    expect(html).toContain(`${SITE}/brand/logo-horizontal-day.png`);
+    expect(html).toContain(`${SITE}/brand/logo-sm.png`);
     expect(html).toContain('Body text');
     expect(html).toContain(m.common_tagline({}, { locale: 'en' }));
     expect(html).toContain(`href="${SITE}/settings/notifications"`);
     expect(html).toContain(`href="${SITE}/privacy"`);
     expect(html).not.toContain('<script');
+    expect(html).not.toContain('Big Shoulders');
+    expect(html).not.toContain('text-transform');
     expect(text).toContain('Body text');
     expect(text).toContain(m.common_tagline({}, { locale: 'en' }));
   });

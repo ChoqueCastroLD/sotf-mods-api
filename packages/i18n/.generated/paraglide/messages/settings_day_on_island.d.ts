@@ -3,9 +3,10 @@ export type Settings_Day_On_IslandInputs = {
     day: NonNullable<unknown>;
 };
 /**
-* | output |
-* | --- |
-* | "Day {day__number} on the island" |
+* | day__plural | output |
+* | --- | --- |
+* | "one" | "{day__number} day ago" |
+* | * | "{day__number} days ago" |
 *
 * @param {Settings_Day_On_IslandInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

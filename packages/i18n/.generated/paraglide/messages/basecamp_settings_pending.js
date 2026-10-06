@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_PendingInputs */
 
 const en_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Waiting for the rangers. Only you can see it.`)
+	return /** @type {LocalizedString} */ (`Waiting for moderation. Only you can see it.`)
 };
 
 const es_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esperando a los guardabosques. Solo tú puedes verlo.`)
+	return /** @type {LocalizedString} */ (`Esperando a moderación. Solo tú puedes verlo.`)
 };
 
 const de_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wartet auf die Ranger. Nur du kannst ihn sehen.`)
+	return /** @type {LocalizedString} */ (`Wartet auf die Moderation. Nur du kannst ihn sehen.`)
 };
 
 const fr_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En attente des rangers. Vous seul pouvez le voir.`)
+	return /** @type {LocalizedString} */ (`En attente de la modération. Vous seul pouvez le voir.`)
 };
 
 const it_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In attesa dei ranger. Solo tu puoi vederla.`)
+	return /** @type {LocalizedString} */ (`In attesa della moderazione. Solo tu puoi vederla.`)
 };
 
 const nl_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wacht op de rangers. Alleen jij kunt hem zien.`)
+	return /** @type {LocalizedString} */ (`Wacht op moderatie. Alleen jij kunt hem zien.`)
 };
 
 const pl_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Czeka na strażników. Tylko ty go widzisz.`)
+	return /** @type {LocalizedString} */ (`Czeka na moderację. Tylko ty go widzisz.`)
 };
 
 const pt_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aguardando os guardas. Só você pode ver.`)
+	return /** @type {LocalizedString} */ (`Aguardando a moderação. Só você pode ver.`)
 };
 
 const ru_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ждёт рейнджеров. Видите его только вы.`)
+	return /** @type {LocalizedString} */ (`Ждёт модерации. Видите его только вы.`)
 };
 
 const sv_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Väntar på rangers. Bara du kan se den.`)
+	return /** @type {LocalizedString} */ (`Väntar på modereringen. Bara du kan se den.`)
 };
 
 const tr_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucuları bekliyor. Yalnızca sen görebilirsin.`)
+	return /** @type {LocalizedString} */ (`Moderasyonu bekliyor. Yalnızca sen görebilirsin.`)
 };
 
 const zh_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`等待护林员审核。仅你可见。`)
+	return /** @type {LocalizedString} */ (`等待审核。仅你可见。`)
 };
 
 const ja_basecamp_settings_pending = /** @type {(inputs: Basecamp_Settings_PendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーの審査待ち。あなただけが見られます。`)
+	return /** @type {LocalizedString} */ (`モデレーションの審査待ち。あなただけが見られます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Waiting for the rangers. Only you can see it." |
+* | "Waiting for moderation. Only you can see it." |
 *
 * @param {Basecamp_Settings_PendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

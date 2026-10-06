@@ -136,7 +136,7 @@ export function CreatorScreen() {
           {me.user.verifiedCreator ? m.settings_creator_verified_text() : m.settings_creator_not_verified_text()}
         </p>
         <div className="flex flex-wrap gap-3 text-sm">
-          <Link to="/basecamp" className="font-semibold text-link">
+          <Link to="/dashboard" className="font-semibold text-link">
             {m.settings_creator_basecamp()}
           </Link>
         </div>

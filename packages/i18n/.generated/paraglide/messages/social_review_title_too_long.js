@@ -38,7 +38,7 @@ const pt_social_review_title_too_long = /** @type {(inputs: Social_Review_Title_
 };
 
 const ru_social_review_title_too_long = /** @type {(inputs: Social_Review_Title_Too_LongInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Заголовок — не больше ${i?.max} символов.`)
+	return /** @type {LocalizedString} */ (`В заголовке не больше ${i?.max} символов.`)
 };
 
 const sv_social_review_title_too_long = /** @type {(inputs: Social_Review_Title_Too_LongInputs) => LocalizedString} */ (i) => {

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_TextInputs */
 
 const en_settings_sessions_text = /** @type {(inputs: Settings_Sessions_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Every browser and device with an active session. Sign out any you don’t recognise.`)
+	return /** @type {LocalizedString} */ (`Every browser and device with an active session. Log out of any you don’t recognise.`)
 };
 
 const es_settings_sessions_text = /** @type {(inputs: Settings_Sessions_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_text = /** @type {(inputs: Settings_Sessions_TextInpu
 /**
 * | output |
 * | --- |
-* | "Every browser and device with an active session. Sign out any you don’t recognise." |
+* | "Every browser and device with an active session. Log out of any you don’t recognise." |
 *
 * @param {Settings_Sessions_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

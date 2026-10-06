@@ -3,7 +3,7 @@ export type Auth_NoscriptInputs = {};
 /**
 * | output |
 * | --- |
-* | "Signing in needs JavaScript. Turn it on for this site and reload the page." |
+* | "Logging in needs JavaScript. Turn it on for this site and reload the page." |
 *
 * @param {Auth_NoscriptInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

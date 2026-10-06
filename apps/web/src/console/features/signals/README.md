@@ -1,4 +1,4 @@
-# Signals (`/signals`, WP-81)
+# Signals (`/notifications`, WP-81)
 
 `SignalsScreen` lists every signal (`GET /notifications`, cursor pages) grouped by day, with the
 filters of PLAN §4.3 (`?filter=mentions|updates|my_mods|ranger`), «Mark all as read», per-row

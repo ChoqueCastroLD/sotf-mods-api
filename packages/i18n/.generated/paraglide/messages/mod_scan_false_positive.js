@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Scan_False_PositiveInputs */
 
 const en_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Flagged by some engines, cleared by a ranger`)
+	return /** @type {LocalizedString} */ (`Flagged by some engines, cleared by a moderator`)
 };
 
 const es_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marcado por algunos motores, aprobado por un guardabosques`)
+	return /** @type {LocalizedString} */ (`Marcado por algunos motores, aprobado por un moderador`)
 };
 
 const de_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Von einigen Engines markiert, von einem Ranger freigegeben`)
+	return /** @type {LocalizedString} */ (`Von einigen Engines markiert, von einem Moderator freigegeben`)
 };
 
 const fr_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalé par certains moteurs, validé par un ranger`)
+	return /** @type {LocalizedString} */ (`Signalé par certains moteurs, validé par un modérateur`)
 };
 
 const it_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Segnalato da alcuni motori, approvato da un ranger`)
+	return /** @type {LocalizedString} */ (`Segnalato da alcuni motori, approvato da un moderatore`)
 };
 
 const nl_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gemarkeerd door sommige engines, vrijgegeven door een ranger`)
+	return /** @type {LocalizedString} */ (`Gemarkeerd door sommige engines, vrijgegeven door een moderator`)
 };
 
 const pl_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oznaczony przez niektóre silniki, zatwierdzony przez strażnika`)
+	return /** @type {LocalizedString} */ (`Oznaczony przez niektóre silniki, zatwierdzony przez moderatora`)
 };
 
 const pt_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marcado por alguns antivírus, liberado por um guarda`)
+	return /** @type {LocalizedString} */ (`Marcado por alguns antivírus, liberado por um moderador`)
 };
 
 const ru_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отмечен некоторыми антивирусами, одобрен рейнджером`)
+	return /** @type {LocalizedString} */ (`Отмечен некоторыми антивирусами, одобрен модератором`)
 };
 
 const sv_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Flaggad av vissa motorer, godkänd av en ranger`)
+	return /** @type {LocalizedString} */ (`Flaggad av vissa motorer, godkänd av en moderator`)
 };
 
 const tr_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bazı motorlar işaretledi, bir korucu onayladı`)
+	return /** @type {LocalizedString} */ (`Bazı motorlar işaretledi, bir moderatör onayladı`)
 };
 
 const zh_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`部分引擎报毒，已由护林员确认安全`)
+	return /** @type {LocalizedString} */ (`部分引擎报毒，已由版主确认安全`)
 };
 
 const ja_mod_scan_false_positive = /** @type {(inputs: Mod_Scan_False_PositiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`一部のエンジンが検出、レンジャーが安全と判断`)
+	return /** @type {LocalizedString} */ (`一部のエンジンが検出、モデレーターが安全と判断`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Flagged by some engines, cleared by a ranger" |
+* | "Flagged by some engines, cleared by a moderator" |
 *
 * @param {Mod_Scan_False_PositiveInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

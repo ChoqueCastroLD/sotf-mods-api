@@ -7,7 +7,7 @@
  *   localizePath('/', 'ja')                            → '/ja'
  *   stripLocale('/pt/mods?page=2')                     → { locale: 'pt', path: '/mods?page=2', prefixed: true }
  *
- * The console (`/basecamp`, `/ranger`, `/settings`, `/signals`, `/me`) and machine endpoints are
+ * The console (`/dashboard`, `/moderation`, `/settings`, `/notifications`, `/me`) and machine endpoints are
  * never prefixed (PLAN §4.3, §4.4); {@link isLocalizedPath} encodes that rule and callers can pass
  * their own predicate.
  *
@@ -18,11 +18,15 @@ import { DEFAULT_LOCALE, isLocale, LOCALES, type Locale, toHreflang } from './lo
 /** First path segments that are never localized: the console SPA, APIs, internals and static assets. */
 export const UNLOCALIZED_SEGMENTS: ReadonlySet<string> = new Set([
   // Console SPA: its language comes from the user's settings (PLAN §4.1, §4.3).
+  'dashboard',
+  'moderation',
+  'settings',
+  'notifications',
+  'me',
+  // Former names of the console sections (they redirect to the new ones, never prefixed).
   'basecamp',
   'ranger',
-  'settings',
   'signals',
-  'me',
   // APIs, internals and assets.
   'api',
   '_internal',

@@ -3,7 +3,7 @@ export type Basecamp_Settings_ReasonInputs = {};
 /**
 * | output |
 * | --- |
-* | "Note from the rangers" |
+* | "Note from moderation" |
 *
 * @param {Basecamp_Settings_ReasonInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

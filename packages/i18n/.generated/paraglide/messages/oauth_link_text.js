@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Link_TextInputs */
 
 const en_oauth_link_text = /** @type {(inputs: Oauth_Link_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`An account with the email of your Discord profile already exists. Enter its password to link Discord and sign in.`)
+	return /** @type {LocalizedString} */ (`An account with the email of your Discord profile already exists. Enter its password to link Discord and log in.`)
 };
 
 const es_oauth_link_text = /** @type {(inputs: Oauth_Link_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_link_text = /** @type {(inputs: Oauth_Link_TextInputs) => Localiz
 };
 
 const ja_oauth_link_text = /** @type {(inputs: Oauth_Link_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Discord プロフィールのメールアドレスで登録済みのアカウントがあります。そのパスワードを入力して Discord を連携し、サインインしてください。`)
+	return /** @type {LocalizedString} */ (`Discord プロフィールのメールアドレスで登録済みのアカウントがあります。そのパスワードを入力して Discord を連携し、ログインしてください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "An account with the email of your Discord profile already exists. Enter its password to link Discord and sign in." |
+* | "An account with the email of your Discord profile already exists. Enter its password to link Discord and log in." |
 *
 * @param {Oauth_Link_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

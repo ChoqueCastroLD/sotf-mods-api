@@ -122,7 +122,7 @@ export function ManifestSummary({ manifest, path }: { manifest: ManifestView; pa
         {path ? <span className="readout text-fg-subtle">{path}</span> : null}
       </div>
       <dl className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
-        <Fact label={ut('upload_manifest_name')}>{manifest.name ?? '—'}</Fact>
+        <Fact label={ut('upload_manifest_name')}>{manifest.name ?? '-'}</Fact>
         <Fact label={ut('upload_manifest_id')}>
           <span className="readout text-fg">{manifest.id}</span>
         </Fact>
@@ -132,10 +132,10 @@ export function ManifestSummary({ manifest, path }: { manifest: ManifestView; pa
         <Fact label={ut('upload_manifest_type')}>
           {manifest.type === 'Library' ? ut('upload_manifest_type_library') : ut('upload_manifest_type_mod')}
         </Fact>
-        <Fact label={ut('upload_manifest_platform')}>{manifest.platform ?? '—'}</Fact>
-        <Fact label={ut('upload_manifest_author')}>{manifest.author ?? '—'}</Fact>
-        <Fact label={ut('upload_manifest_game_version')}>{manifest.gameVersion ?? '—'}</Fact>
-        <Fact label={ut('upload_manifest_loader_version')}>{manifest.loaderVersion ?? '—'}</Fact>
+        <Fact label={ut('upload_manifest_platform')}>{manifest.platform ?? '-'}</Fact>
+        <Fact label={ut('upload_manifest_author')}>{manifest.author ?? '-'}</Fact>
+        <Fact label={ut('upload_manifest_game_version')}>{manifest.gameVersion ?? '-'}</Fact>
+        <Fact label={ut('upload_manifest_loader_version')}>{manifest.loaderVersion ?? '-'}</Fact>
         <Fact label={ut('upload_manifest_log_color')}>
           {manifest.logColor ? (
             <span className="inline-flex items-center gap-1.5">
@@ -147,7 +147,7 @@ export function ManifestSummary({ manifest, path }: { manifest: ManifestView; pa
               <span className="readout text-fg">{manifest.logColor}</span>
             </span>
           ) : (
-            '—'
+            '-'
           )}
         </Fact>
       </dl>
@@ -186,12 +186,12 @@ export function BuildSummary({ build }: { build: BuildView }) {
           <Fact label={ut('upload_build_elements')}>{number(build.elements)}</Fact>
           <Fact label={ut('upload_build_size_class')}>{build.sizeClass}</Fact>
           <Fact label={ut('upload_build_structures')}>
-            {build.structures === null ? '—' : number(build.structures)}
+            {build.structures === null ? '-' : number(build.structures)}
           </Fact>
           <Fact label={ut('upload_build_buildshare_version')}>
             <span className="readout text-fg">{build.buildShareVersion}</span>
           </Fact>
-          <Fact label={ut('upload_manifest_author')}>{build.author ?? '—'}</Fact>
+          <Fact label={ut('upload_manifest_author')}>{build.author ?? '-'}</Fact>
           <Fact label={ut('upload_build_guid')}>
             <span className="readout text-fg">{build.guid}</span>
           </Fact>

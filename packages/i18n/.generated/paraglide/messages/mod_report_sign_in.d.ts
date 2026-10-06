@@ -3,7 +3,7 @@ export type Mod_Report_Sign_InInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to report a mod. It keeps reports honest." |
+* | "Log in to report a mod." |
 *
 * @param {Mod_Report_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

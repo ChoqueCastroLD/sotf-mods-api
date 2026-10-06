@@ -3,7 +3,7 @@ export type Basecamp_Attention_Empty_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "All quiet at camp" |
+* | "Nothing needs attention" |
 *
 * @param {Basecamp_Attention_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

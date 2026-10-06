@@ -3,7 +3,7 @@ export type Upload_Drop_Title_BuildInputs = {};
 /**
 * | output |
 * | --- |
-* | "Drop your blueprint .json here" |
+* | "Drop your build .json here" |
 *
 * @param {Upload_Drop_Title_BuildInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

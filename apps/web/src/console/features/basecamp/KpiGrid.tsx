@@ -28,7 +28,7 @@ function isEmpty(key: KpiKey, kpi: Kpi): boolean {
 }
 
 function display(key: KpiKey, kpi: Kpi): string | undefined {
-  if (isEmpty(key, kpi)) return '—';
+  if (isEmpty(key, kpi)) return '-';
   if (key === 'rating') return rating(kpi.value);
   if (key === 'compatWorksShare') return percent(kpi.value);
   return undefined;

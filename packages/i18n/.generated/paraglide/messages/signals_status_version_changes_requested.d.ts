@@ -6,7 +6,7 @@ export type Signals_Status_Version_Changes_RequestedInputs = {
 /**
 * | output |
 * | --- |
-* | "The Rangers asked for changes to version {version} of {mod}" |
+* | "The moderators asked for changes to version {version} of {mod}" |
 *
 * @param {Signals_Status_Version_Changes_RequestedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

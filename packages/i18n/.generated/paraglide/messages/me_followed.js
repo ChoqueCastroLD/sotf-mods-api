@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ mod: NonNullable<unknown> }} Me_FollowedInputs */
 
 const en_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} is in your backpack`)
+	return /** @type {LocalizedString} */ (`You now follow ${i?.mod}`)
 };
 
 const es_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} está en tu mochila`)
+	return /** @type {LocalizedString} */ (`Ahora sigues ${i?.mod}`)
 };
 
 const de_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} ist in deinem Rucksack`)
+	return /** @type {LocalizedString} */ (`Du folgst jetzt ${i?.mod}`)
 };
 
 const fr_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} est dans votre sac à dos`)
+	return /** @type {LocalizedString} */ (`Vous suivez maintenant ${i?.mod}`)
 };
 
 const it_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} è nel tuo zaino`)
+	return /** @type {LocalizedString} */ (`Ora segui ${i?.mod}`)
 };
 
 const nl_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} zit in je rugzak`)
+	return /** @type {LocalizedString} */ (`Je volgt nu ${i?.mod}`)
 };
 
 const pl_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} jest w twoim plecaku`)
+	return /** @type {LocalizedString} */ (`Obserwujesz teraz ${i?.mod}`)
 };
 
 const pt_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} está na sua mochila`)
+	return /** @type {LocalizedString} */ (`Agora você segue ${i?.mod}`)
 };
 
 const ru_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} в вашем рюкзаке`)
+	return /** @type {LocalizedString} */ (`Вы подписались на ${i?.mod}`)
 };
 
 const sv_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} ligger i din ryggsäck`)
+	return /** @type {LocalizedString} */ (`Du följer nu ${i?.mod}`)
 };
 
 const tr_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} sırt çantanda`)
+	return /** @type {LocalizedString} */ (`Artık ${i?.mod} modunu takip ediyorsun`)
 };
 
 const zh_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} 已放入背包`)
+	return /** @type {LocalizedString} */ (`已关注 ${i?.mod}`)
 };
 
 const ja_me_followed = /** @type {(inputs: Me_FollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.mod} をバックパックに入れました`)
+	return /** @type {LocalizedString} */ (`${i?.mod} をフォローしました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{mod} is in your backpack" |
+* | "You now follow {mod}" |
 *
 * @param {Me_FollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

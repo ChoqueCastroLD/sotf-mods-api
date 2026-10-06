@@ -3,7 +3,7 @@ export type Mod_Report_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tell the rangers what’s wrong. Reports are private." |
+* | "Tell the moderators what’s wrong. Reports are private." |
 *
 * @param {Mod_Report_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

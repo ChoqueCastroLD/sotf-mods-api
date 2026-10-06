@@ -3,7 +3,7 @@ export type Ui_Domain_Dependencies_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "No dependencies. Drop it in and play." |
+* | "No dependencies." |
 *
 * @param {Ui_Domain_Dependencies_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

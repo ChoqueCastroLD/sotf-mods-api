@@ -1,5 +1,5 @@
 /**
- * `/basecamp/inbox` — the creator inbox (PLAN §7.5 «Bandeja»): comments, bug reports (open or
+ * `/dashboard/inbox` — the creator inbox (PLAN §7.5 «Bandeja»): comments, bug reports (open or
  * resolved), reviews and field reports on my mods, newest first, with inline answers:
  *
  * - comment → reply in the thread;

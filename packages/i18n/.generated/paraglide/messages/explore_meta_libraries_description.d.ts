@@ -5,8 +5,8 @@ export type Explore_Meta_Libraries_DescriptionInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} library that other Sons of the Forest mods depend on. Install them once and every mod that needs them just works." |
-* | * | "{count__number} libraries that other Sons of the Forest mods depend on. Install them once and every mod that needs them just works." |
+* | "one" | "{count__number} library that other Sons of the Forest mods depend on. Install them before the mods that need them." |
+* | * | "{count__number} libraries that other Sons of the Forest mods depend on. Install them before the mods that need them." |
 *
 * @param {Explore_Meta_Libraries_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

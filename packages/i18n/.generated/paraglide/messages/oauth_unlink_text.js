@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Unlink_TextInputs */
 
 const en_oauth_unlink_text = /** @type {(inputs: Oauth_Unlink_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You will sign in with your email and password instead. Enter your password to confirm. If you created your account with Discord, set a password first with “Forgot password”.`)
+	return /** @type {LocalizedString} */ (`You will log in with your email and password instead. Enter your password to confirm. If you created your account with Discord, set a password first with “Forgot password”.`)
 };
 
 const es_oauth_unlink_text = /** @type {(inputs: Oauth_Unlink_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_unlink_text = /** @type {(inputs: Oauth_Unlink_TextInputs) => Loc
 };
 
 const ja_oauth_unlink_text = /** @type {(inputs: Oauth_Unlink_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`今後はメールアドレスとパスワードでサインインします。確認のためパスワードを入力してください。Discord でアカウントを作成した場合は、先に「パスワードを忘れた場合」でパスワードを設定してください。`)
+	return /** @type {LocalizedString} */ (`今後はメールアドレスとパスワードでログインします。確認のためパスワードを入力してください。Discord でアカウントを作成した場合は、先に「パスワードを忘れた場合」でパスワードを設定してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You will sign in with your email and password instead. Enter your password to confirm. If you created your account with Discord, set a password first with “F..." |
+* | "You will log in with your email and password instead. Enter your password to confirm. If you created your account with Discord, set a password first with “Fo..." |
 *
 * @param {Oauth_Unlink_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

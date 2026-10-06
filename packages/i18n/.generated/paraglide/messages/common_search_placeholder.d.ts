@@ -3,7 +3,7 @@ export type Common_Search_PlaceholderInputs = {};
 /**
 * | output |
 * | --- |
-* | "Search mods, builds, creators…" |
+* | "Search mods, builds, users…" |
 *
 * @param {Common_Search_PlaceholderInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

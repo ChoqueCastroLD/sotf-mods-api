@@ -2,7 +2,7 @@
   "viewer_heading": "Vista cenital",
   "viewer_alt": "Vista cenital de {name}: {pieces} piezas, {width} por {depth} por {height} metros.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} piezas",
-  "viewer_explore": "Explorar en 3D",
+  "viewer_explore": "Ver en 3D",
   "viewer_back": "Volver a la vista previa",
   "viewer_loading": "Cargando la vista 3D…",
   "viewer_pending": "La vista previa se está generando. Vuelve en un minuto.",

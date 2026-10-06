@@ -3,7 +3,7 @@ export type Ui_Domain_Comment_PendingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Waiting for a ranger to check it." |
+* | "Waiting for a moderator to check it." |
 *
 * @param {Ui_Domain_Comment_PendingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

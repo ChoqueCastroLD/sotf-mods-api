@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Auth_New_Login_SubjectInputs */
 
 const en_emails_auth_new_login_subject = /** @type {(inputs: Emails_Auth_New_Login_SubjectInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`New sign-in to your SOTF Mods account`)
+	return /** @type {LocalizedString} */ (`New login to your SOTF Mods account`)
 };
 
 const es_emails_auth_new_login_subject = /** @type {(inputs: Emails_Auth_New_Login_SubjectInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_emails_auth_new_login_subject = /** @type {(inputs: Emails_Auth_New_Log
 };
 
 const pt_emails_auth_new_login_subject = /** @type {(inputs: Emails_Auth_New_Login_SubjectInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Novo início de sessão na sua conta SOTF Mods`)
+	return /** @type {LocalizedString} */ (`Novo login na sua conta SOTF Mods`)
 };
 
 const ru_emails_auth_new_login_subject = /** @type {(inputs: Emails_Auth_New_Login_SubjectInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_emails_auth_new_login_subject = /** @type {(inputs: Emails_Auth_New_Log
 /**
 * | output |
 * | --- |
-* | "New sign-in to your SOTF Mods account" |
+* | "New login to your SOTF Mods account" |
 *
 * @param {Emails_Auth_New_Login_SubjectInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

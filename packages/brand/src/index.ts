@@ -67,14 +67,3 @@ export {
 } from './moon.ts';
 export { OG_HEIGHT, OG_WIDTH } from './og.ts';
 export { createRng, hashSeed, type Rng, type Seed } from './random.ts';
-export {
-  TOPO_TEXTURE_OPTIONS,
-  TOPO_TEXTURE_SEED,
-  type TopoLines,
-  type TopoOptions,
-  type TopoSvgOptions,
-  topoField,
-  topoGroup,
-  topoLines,
-  topoSvg,
-} from './topo.ts';

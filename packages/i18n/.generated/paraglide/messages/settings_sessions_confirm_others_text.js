@@ -8,8 +8,8 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 const en_settings_sessions_confirm_others_text = /** @type {(inputs: Settings_Sessions_Confirm_Others_TextInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("en", i?.count, {});
 	const count__number = registry.number("en", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} other session will end. This browser stays signed in.`);
-	return /** @type {LocalizedString} */ (`${count__number} other sessions will end. This browser stays signed in.`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} other session will end. This browser stays logged in.`);
+	return /** @type {LocalizedString} */ (`${count__number} other sessions will end. This browser stays logged in.`)
 	
 };
 
@@ -100,8 +100,8 @@ const ja_settings_sessions_confirm_others_text = /** @type {(inputs: Settings_Se
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} other session will end. This browser stays signed in." |
-* | * | "{count__number} other sessions will end. This browser stays signed in." |
+* | "one" | "{count__number} other session will end. This browser stays logged in." |
+* | * | "{count__number} other sessions will end. This browser stays logged in." |
 *
 * @param {Settings_Sessions_Confirm_Others_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

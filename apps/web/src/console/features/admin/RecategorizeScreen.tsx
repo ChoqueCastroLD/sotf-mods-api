@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/recategorize` (PLAN T0-06, §7.4 «recategorización masiva»): moves the legacy mods
+ * `/moderation/admin/recategorize` (PLAN T0-06, §7.4 «recategorización masiva»): moves the legacy mods
  * (`qol`, `misc`…) into the v2 categories. The table lists the API's keyword-rule suggestions
  * (best first) and, after importing the CSV of WP-84 (`suggest-categories.ts`, rules + optional
  * LLM), its lines too. Nothing changes until a human confirms: pick rows (or filter and select
@@ -684,7 +684,7 @@ function RecatRowView({
       </td>
       <td className={`${tdClasses} min-w-28`}>
         {row.confidence === null ? (
-          <span className="text-fg-subtle">—</span>
+          <span className="text-fg-subtle">-</span>
         ) : (
           <span className="flex items-center gap-2">
             <span aria-hidden="true" className="h-1.5 w-12 overflow-hidden rounded-full bg-fg/10">
@@ -702,7 +702,7 @@ function RecatRowView({
       </td>
       <td className={`${tdClasses} min-w-56 max-w-96 text-xs text-fg-muted`}>
         <span className="line-clamp-2" title={row.reason}>
-          {row.reason || '—'}
+          {row.reason || '-'}
         </span>
       </td>
     </tr>

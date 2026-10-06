@@ -3,7 +3,7 @@ export type Explore_Search_Prompt_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Search mods, builds, kits, creators and guides by name, author or manifest ID." |
+* | "Search mods, builds and creators by name, author or manifest ID." |
 *
 * @param {Explore_Search_Prompt_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

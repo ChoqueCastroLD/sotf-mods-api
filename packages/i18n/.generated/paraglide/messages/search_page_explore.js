@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Search_Page_ExploreInputs */
 
 const en_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explore mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const es_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const de_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods entdecken`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const fr_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorer les mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const it_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esplora le mod`)
+	return /** @type {LocalizedString} */ (`Mod`)
 };
 
 const nl_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods verkennen`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const pl_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Przeglądaj mody`)
+	return /** @type {LocalizedString} */ (`Mody`)
 };
 
 const pt_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Explorar mods`)
+	return /** @type {LocalizedString} */ (`Mods`)
 };
 
 const ru_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Каталог модов`)
+	return /** @type {LocalizedString} */ (`Моды`)
 };
 
 const sv_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utforska moddar`)
+	return /** @type {LocalizedString} */ (`Moddar`)
 };
 
 const tr_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modları keşfet`)
+	return /** @type {LocalizedString} */ (`Modlar`)
 };
 
 const zh_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`浏览模组`)
+	return /** @type {LocalizedString} */ (`模组`)
 };
 
 const ja_search_page_explore = /** @type {(inputs: Search_Page_ExploreInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MODを探す`)
+	return /** @type {LocalizedString} */ (`MOD`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Explore mods" |
+* | "Mods" |
 *
 * @param {Search_Page_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

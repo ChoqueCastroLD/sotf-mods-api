@@ -3,7 +3,7 @@ export type Mod_Knowledge_Team_HandleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Handle" |
+* | "Username" |
 *
 * @param {Mod_Knowledge_Team_HandleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

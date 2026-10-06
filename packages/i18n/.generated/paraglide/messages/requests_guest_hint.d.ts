@@ -3,7 +3,7 @@ export type Requests_Guest_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to vote, comment or ask for a mod." |
+* | "Log in to vote, comment or ask for a mod." |
 *
 * @param {Requests_Guest_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Cover_Build_FallbackInputs */
 
 const en_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Without a cover, the blueprint’s thumbnail is used.`)
+	return /** @type {LocalizedString} */ (`Without a cover, the build’s thumbnail is used.`)
 };
 
 const es_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin portada, se usa la miniatura del plano.`)
+	return /** @type {LocalizedString} */ (`Sin portada, se usa la miniatura de la build.`)
 };
 
 const de_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ohne Titelbild wird das Vorschaubild des Bauplans verwendet.`)
+	return /** @type {LocalizedString} */ (`Ohne Titelbild wird das Vorschaubild des Builds verwendet.`)
 };
 
 const fr_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sans couverture, la miniature du plan est utilisée.`)
+	return /** @type {LocalizedString} */ (`Sans couverture, la miniature du build est utilisée.`)
 };
 
 const it_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Senza copertina si usa la miniatura del progetto.`)
+	return /** @type {LocalizedString} */ (`Senza copertina si usa la miniatura della build.`)
 };
 
 const nl_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zonder omslag wordt de miniatuur van de bouwtekening gebruikt.`)
+	return /** @type {LocalizedString} */ (`Zonder omslag wordt de miniatuur van de build gebruikt.`)
 };
 
 const pl_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bez okładki zostanie użyta miniatura planu.`)
+	return /** @type {LocalizedString} */ (`Bez okładki zostanie użyta miniatura builda.`)
 };
 
 const pt_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem capa, é usada a miniatura da planta.`)
+	return /** @type {LocalizedString} */ (`Sem capa, é usada a miniatura da build.`)
 };
 
 const ru_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Без обложки используется миниатюра чертежа.`)
+	return /** @type {LocalizedString} */ (`Без обложки используется миниатюра постройки.`)
 };
 
 const sv_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utan omslag används ritningens miniatyr.`)
+	return /** @type {LocalizedString} */ (`Utan omslag används byggets miniatyr.`)
 };
 
 const tr_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kapak yoksa planın küçük resmi kullanılır.`)
+	return /** @type {LocalizedString} */ (`Kapak yoksa yapının küçük resmi kullanılır.`)
 };
 
 const zh_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`没有封面时使用蓝图缩略图。`)
+	return /** @type {LocalizedString} */ (`没有封面时使用建筑缩略图。`)
 };
 
 const ja_upload_cover_build_fallback = /** @type {(inputs: Upload_Cover_Build_FallbackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`カバーがない場合は設計図のサムネイルを使います。`)
+	return /** @type {LocalizedString} */ (`カバーがない場合は建築のサムネイルを使います。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Without a cover, the blueprint’s thumbnail is used." |
+* | "Without a cover, the build’s thumbnail is used." |
 *
 * @param {Upload_Cover_Build_FallbackInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

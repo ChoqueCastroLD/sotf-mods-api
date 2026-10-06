@@ -3,7 +3,7 @@ export type Auth_Flag_RegisteredInputs = {};
 /**
 * | output |
 * | --- |
-* | "Account created. Sign in to continue." |
+* | "Account created. Log in to continue." |
 *
 * @param {Auth_Flag_RegisteredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

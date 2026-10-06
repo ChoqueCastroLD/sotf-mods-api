@@ -1,5 +1,5 @@
 /**
- * `/basecamp/mods` — every mod and build of the creator in any status (PLAN §7.5 «Mis mods»), with
+ * `/dashboard/mods` — every mod and build of the creator in any status (PLAN §7.5 «Mis mods»), with
  * a status filter, a name search and the sort order, all kept in the URL.
  */
 import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
@@ -118,11 +118,11 @@ export function ModsScreen({
         description={bt('basecamp_mods_intro')}
         actions={
           <>
-            <Link to="/basecamp/new" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
+            <Link to="/dashboard/new" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
               <Icon icon={Plus} size={16} />
               {bt('basecamp_action_publish_new')}
             </Link>
-            <Link to="/basecamp/drafts" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
+            <Link to="/dashboard/drafts" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
               <Icon icon={NotebookPen} size={16} />
               {bt('basecamp_action_drafts')}
             </Link>
@@ -138,7 +138,7 @@ export function ModsScreen({
           title={bt('basecamp_empty_title')}
           description={bt('basecamp_empty_text')}
           action={
-            <Link to="/basecamp/new" className={buttonClasses({ variant: 'primary' })}>
+            <Link to="/dashboard/new" className={buttonClasses({ variant: 'primary' })}>
               <Icon icon={Plus} size={18} />
               {bt('basecamp_empty_action')}
             </Link>

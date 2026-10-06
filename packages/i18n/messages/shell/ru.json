@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Ещё",
-  "shell_more_help": "Помощь",
-  "shell_more_community": "Сообщество",
   "shell_more_install_guide": "Руководство по установке",
   "shell_install_app": "Установить приложение",
   "shell_install_app_hint": "Добавьте SOTF Mods на главный экран",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Обновление…",
   "shell_offline_meta_title": "Офлайн",
   "shell_offline_meta_description": "Сейчас нет подключения. Повторите попытку, когда появится интернет.",
-  "shell_offline_eyebrow": "Офлайн",
   "shell_offline_title": "Нет подключения",
   "shell_offline_body": "SOTF Mods сейчас недоступен. Проверьте подключение и повторите попытку.",
   "shell_offline_retry": "Повторить",

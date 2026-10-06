@@ -5,7 +5,7 @@ export type Basecamp_Greeting_NightInputs = {
 /**
 * | output |
 * | --- |
-* | "Late shift, {name}" |
+* | "Hello, {name}" |
 *
 * @param {Basecamp_Greeting_NightInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

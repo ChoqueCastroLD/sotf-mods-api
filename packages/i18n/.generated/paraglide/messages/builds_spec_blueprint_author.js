@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Builds_Spec_Blueprint_AuthorInputs */
 
 const en_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Blueprint author`)
+	return /** @type {LocalizedString} */ (`Author in file`)
 };
 
 const es_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autor del plano`)
+	return /** @type {LocalizedString} */ (`Autor en el archivo`)
 };
 
 const de_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autor des Bauplans`)
+	return /** @type {LocalizedString} */ (`Autor in der Datei`)
 };
 
 const fr_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Auteur du plan`)
+	return /** @type {LocalizedString} */ (`Auteur dans le fichier`)
 };
 
 const it_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autore del progetto`)
+	return /** @type {LocalizedString} */ (`Autore nel file`)
 };
 
 const nl_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Auteur van de bouwtekening`)
+	return /** @type {LocalizedString} */ (`Auteur in het bestand`)
 };
 
 const pl_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autor planu`)
+	return /** @type {LocalizedString} */ (`Autor w pliku`)
 };
 
 const pt_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autor da planta`)
+	return /** @type {LocalizedString} */ (`Autor no arquivo`)
 };
 
 const ru_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Автор чертежа`)
+	return /** @type {LocalizedString} */ (`Автор в файле`)
 };
 
 const sv_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ritningens upphovsperson`)
+	return /** @type {LocalizedString} */ (`Upphovsperson i filen`)
 };
 
 const tr_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Planın yazarı`)
+	return /** @type {LocalizedString} */ (`Dosyadaki yazar`)
 };
 
 const zh_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`蓝图作者`)
+	return /** @type {LocalizedString} */ (`文件中的作者`)
 };
 
 const ja_builds_spec_blueprint_author = /** @type {(inputs: Builds_Spec_Blueprint_AuthorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設計図の作者`)
+	return /** @type {LocalizedString} */ (`ファイル内の作者`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Blueprint author" |
+* | "Author in file" |
 *
 * @param {Builds_Spec_Blueprint_AuthorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

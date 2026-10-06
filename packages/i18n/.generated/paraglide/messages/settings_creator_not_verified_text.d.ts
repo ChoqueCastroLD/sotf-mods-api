@@ -3,7 +3,7 @@ export type Settings_Creator_Not_Verified_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "The Rangers verify creators with a track record of safe, maintained mods. Keep publishing — there’s nothing to apply for." |
+* | "Moderators mark creators with a record of safe, maintained mods as Trusted. There is nothing to apply for." |
 *
 * @param {Settings_Creator_Not_Verified_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

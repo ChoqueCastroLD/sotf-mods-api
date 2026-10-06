@@ -3,7 +3,7 @@ export type Mod_Report_Details_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Links, versions or anything that helps the rangers. Up to 2,000 characters." |
+* | "Links, versions or anything that helps the moderators. Up to 2,000 characters." |
 *
 * @param {Mod_Report_Details_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

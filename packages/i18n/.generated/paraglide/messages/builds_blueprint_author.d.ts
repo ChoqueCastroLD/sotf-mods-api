@@ -5,7 +5,7 @@ export type Builds_Blueprint_AuthorInputs = {
 /**
 * | output |
 * | --- |
-* | "Author in the blueprint: {author}" |
+* | "Author in the build file: {author}" |
 *
 * @param {Builds_Blueprint_AuthorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

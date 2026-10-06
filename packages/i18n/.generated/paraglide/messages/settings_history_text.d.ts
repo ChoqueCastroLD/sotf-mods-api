@@ -3,7 +3,7 @@ export type Settings_History_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "When it’s on, the downloads you make while signed in are listed in «My downloads» so we can tell you about updates." |
+* | "When it’s on, the downloads you make while logged in are listed in «My downloads» so we can tell you about updates." |
 *
 * @param {Settings_History_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

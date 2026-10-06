@@ -3,7 +3,7 @@ export type Auth_Login_PasskeyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in with a passkey" |
+* | "Log in with a passkey" |
 *
 * @param {Auth_Login_PasskeyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

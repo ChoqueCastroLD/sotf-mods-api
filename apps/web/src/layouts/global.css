@@ -115,14 +115,6 @@ html [data-account-menu].account-menu:popover-open {
   }
 }
 
-/* ---- Snow (December): canvas painted by scripts/seasonal.ts. ------------------------------ */
-[data-snow-canvas] {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: var(--z-overlay, 40);
-}
-
 /* ---- Page transitions (cross-document View Transitions). The opt-in lives in tokens.css and only
    exists when the visitor has no reduced-motion preference: with reduced motion (or in browsers
    without the API) navigation is instant, which is the fallback. The header and the tab bar are
@@ -237,78 +229,6 @@ html[data-ptr-releasing] [data-ptr] {
   50% {
     opacity: 0.35;
   }
-}
-
-/* ---- Active indicator (header, mobile tab bar, in-page tabs): a 2 px red underline. -----------
-   `.loc-host` carries the state (`aria-current=page` / `aria-selected=true`). `.loc-frame`
-   draws the underline with its `::before`; `.loc-pip` (a real span, so it can be a
-   view-transition element: the underline slides between items across pages) or the host's
-   `::after` (`data-loc-pip`) is the same underline. Insets: `--loc-inset-x`, `--loc-pip-y`. */
-.loc-host {
-  --loc-o: 0;
-  --loc-pip-o: 0;
-  position: relative;
-}
-.loc-host[aria-current="page"],
-.loc-host[aria-selected="true"] {
-  --loc-o: 1;
-  --loc-pip-o: 1;
-}
-.loc-frame {
-  position: relative;
-}
-.loc-frame::before,
-.loc-pip,
-.loc-host[data-loc-pip]::after {
-  content: "";
-  position: absolute;
-  inset-inline: var(--loc-inset-x, 0.5rem);
-  inset-block-end: var(--loc-pip-y, 0);
-  block-size: 2px;
-  border-radius: 1px;
-  background: var(--color-primary);
-  pointer-events: none;
-}
-.loc-frame::before {
-  opacity: var(--loc-o);
-  transition: opacity var(--dur-base) var(--ease-out);
-}
-.loc-host[data-loc-pip]::after {
-  opacity: var(--loc-pip-o);
-  transition: opacity var(--dur-base) var(--ease-out);
-}
-/* The real underline takes over while the item is the current page. */
-.loc-host:has(> .loc-pip)[data-loc-pip]::after {
-  opacity: 0;
-}
-.loc-pip {
-  view-transition-name: var(--loc-vt, nav-pip);
-}
-@media (prefers-reduced-motion: no-preference) {
-  ::view-transition-group(nav-pip),
-  ::view-transition-group(tab-pip) {
-    animation-duration: 260ms;
-    animation-timing-function: var(--ease-out);
-  }
-  ::view-transition-old(nav-pip),
-  ::view-transition-new(nav-pip),
-  ::view-transition-old(tab-pip),
-  ::view-transition-new(tab-pip) {
-    animation: none;
-    mix-blend-mode: normal;
-    block-size: 100%;
-    inline-size: 100%;
-  }
-  ::view-transition-old(nav-pip),
-  ::view-transition-old(tab-pip) {
-    display: none;
-  }
-}
-
-/* ---- 404: the two eyes in the trees blink (`motion-safe:animate-blink` on each circle). ---- */
-[data-eyes] circle {
-  transform-box: fill-box;
-  transform-origin: center;
 }
 
 /* ---- Ads are for guests only (PLAN §8.5): the HTML is shared, so members hide the boxes once

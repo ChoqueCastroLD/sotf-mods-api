@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ time: NonNullable<unknown> }} Ranger_Sla_DueInputs */
 
 const en_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA due soon`)
+	return /** @type {LocalizedString} */ (`${i?.time} · due soon`)
 };
 
 const es_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA a punto de vencer`)
+	return /** @type {LocalizedString} */ (`${i?.time} · a punto de vencer`)
 };
 
 const de_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA läuft bald ab`)
+	return /** @type {LocalizedString} */ (`${i?.time} · Frist läuft bald ab`)
 };
 
 const fr_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA bientôt dépassé`)
+	return /** @type {LocalizedString} */ (`${i?.time} · échéance proche`)
 };
 
 const it_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA in scadenza`)
+	return /** @type {LocalizedString} */ (`${i?.time} · in scadenza`)
 };
 
 const nl_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA verloopt bijna`)
+	return /** @type {LocalizedString} */ (`${i?.time} · verloopt bijna`)
 };
 
 const pl_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA wkrótce minie`)
+	return /** @type {LocalizedString} */ (`${i?.time} · wkrótce upłynie termin`)
 };
 
 const pt_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA vencendo`)
+	return /** @type {LocalizedString} */ (`${i?.time} · vencendo em breve`)
 };
 
 const ru_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA скоро истечёт`)
+	return /** @type {LocalizedString} */ (`${i?.time} · скоро истечёт срок`)
 };
 
 const sv_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA löper snart ut`)
+	return /** @type {LocalizedString} */ (`${i?.time} · förfaller snart`)
 };
 
 const tr_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA dolmak üzere`)
+	return /** @type {LocalizedString} */ (`${i?.time} · süresi dolmak üzere`)
 };
 
 const zh_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA 即将到期`)
+	return /** @type {LocalizedString} */ (`${i?.time} · 即将到期`)
 };
 
 const ja_ranger_sla_due = /** @type {(inputs: Ranger_Sla_DueInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} · SLA 期限間近`)
+	return /** @type {LocalizedString} */ (`${i?.time} · 期限間近`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{time} · SLA due soon" |
+* | "{time} · due soon" |
 *
 * @param {Ranger_Sla_DueInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

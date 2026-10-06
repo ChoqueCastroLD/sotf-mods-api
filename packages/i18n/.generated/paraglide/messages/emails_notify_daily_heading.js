@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Notify_Daily_HeadingInputs */
 
 const en_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your day on the island`)
+	return /** @type {LocalizedString} */ (`Your daily digest`)
 };
 
 const es_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu día en la isla`)
+	return /** @type {LocalizedString} */ (`Tu resumen diario`)
 };
 
 const de_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein Tag auf der Insel`)
+	return /** @type {LocalizedString} */ (`Deine tägliche Zusammenfassung`)
 };
 
 const fr_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre journée sur l’île`)
+	return /** @type {LocalizedString} */ (`Votre résumé quotidien`)
 };
 
 const it_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La tua giornata sull’isola`)
+	return /** @type {LocalizedString} */ (`Il tuo riepilogo giornaliero`)
 };
 
 const nl_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je dag op het eiland`)
+	return /** @type {LocalizedString} */ (`Je dagelijkse overzicht`)
 };
 
 const pl_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twój dzień na wyspie`)
+	return /** @type {LocalizedString} */ (`Twoje dzienne podsumowanie`)
 };
 
 const pt_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seu dia na ilha`)
+	return /** @type {LocalizedString} */ (`Seu resumo diário`)
 };
 
 const ru_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваш день на острове`)
+	return /** @type {LocalizedString} */ (`Ваша ежедневная сводка`)
 };
 
 const sv_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Din dag på ön`)
+	return /** @type {LocalizedString} */ (`Din dagliga sammanfattning`)
 };
 
 const tr_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Adadaki günün`)
+	return /** @type {LocalizedString} */ (`Günlük özetin`)
 };
 
 const zh_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你在岛上的一天`)
+	return /** @type {LocalizedString} */ (`你的每日摘要`)
 };
 
 const ja_emails_notify_daily_heading = /** @type {(inputs: Emails_Notify_Daily_HeadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`島での一日`)
+	return /** @type {LocalizedString} */ (`デイリーダイジェスト`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your day on the island" |
+* | "Your daily digest" |
 *
 * @param {Emails_Notify_Daily_HeadingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

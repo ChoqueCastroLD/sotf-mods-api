@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Social_Comment_Sign_InInputs */
 
 const en_social_comment_sign_in = /** @type {(inputs: Social_Comment_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to comment`)
+	return /** @type {LocalizedString} */ (`Log in to comment`)
 };
 
 const es_social_comment_sign_in = /** @type {(inputs: Social_Comment_Sign_InInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_social_comment_sign_in = /** @type {(inputs: Social_Comment_Sign_InInpu
 /**
 * | output |
 * | --- |
-* | "Sign in to comment" |
+* | "Log in to comment" |
 *
 * @param {Social_Comment_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

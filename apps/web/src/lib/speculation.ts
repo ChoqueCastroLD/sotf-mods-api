@@ -22,7 +22,11 @@ export const SPECULATION_RULES = {
         and: [
           { href_matches: patterns() },
           { not: { href_matches: ['/*/download/*', '/*/*/download/*', '/*/*/*/download/*', '/*/*/*/*/download/*'] } },
-          { not: { href_matches: ['/api/*', '/basecamp/*', '/ranger/*', '/settings/*', '/signals', '/me/*'] } },
+          {
+            not: {
+              href_matches: ['/api/*', '/dashboard/*', '/moderation/*', '/settings/*', '/notifications', '/me/*'],
+            },
+          },
           { not: { selector_matches: '[rel~=nofollow], [data-no-prerender]' } },
         ],
       },

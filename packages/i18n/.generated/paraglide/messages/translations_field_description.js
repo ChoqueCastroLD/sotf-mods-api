@@ -30,7 +30,7 @@ const nl_translations_field_description = /** @type {(inputs: Translations_Field
 };
 
 const pl_translations_field_description = /** @type {(inputs: Translations_Field_DescriptionInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Opis — ${i?.language} (Markdown)`)
+	return /** @type {LocalizedString} */ (`Opis (${i?.language}, Markdown)`)
 };
 
 const pt_translations_field_description = /** @type {(inputs: Translations_Field_DescriptionInputs) => LocalizedString} */ (i) => {

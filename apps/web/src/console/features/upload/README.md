@@ -4,12 +4,12 @@ The console screens that publish content (PLAN §7.5, research/03 §6.8):
 
 | Route | Screen |
 |---|---|
-| `/basecamp/new` | `NewChooser` — mod, build, or a new version of one of my mods; open drafts first |
-| `/basecamp/new/mod?draft=` | «New mod»: file → details → compatibility → media → release → review |
-| `/basecamp/new/build?draft=` | «New build»: BuildShare JSON → details → media → review |
-| `/basecamp/mods/:modId/new-version?draft=` | «New version»: file → release (+ notify followers) → review |
-| `/basecamp/drafts` | `DraftsList` — resume or delete drafts |
-| `/basecamp/drafts/:draftId` | redirects to the wizard of the draft's kind |
+| `/dashboard/new` | `NewChooser` — mod, build, or a new version of one of my mods; open drafts first |
+| `/dashboard/new/mod?draft=` | «New mod»: file → details → compatibility → media → release → review |
+| `/dashboard/new/build?draft=` | «New build»: BuildShare JSON → details → media → review |
+| `/dashboard/mods/:modId/new-version?draft=` | «New version»: file → release (+ notify followers) → review |
+| `/dashboard/drafts` | `DraftsList` — resume or delete drafts |
+| `/dashboard/drafts/:draftId` | redirects to the wizard of the draft's kind |
 
 ## How it works
 

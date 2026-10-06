@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Code_Invalid_Credentials_TitleInputs */
 
 const en_errors_code_invalid_credentials_title = /** @type {(inputs: Errors_Code_Invalid_Credentials_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wrong sign-in details`)
+	return /** @type {LocalizedString} */ (`Wrong login details`)
 };
 
 const es_errors_code_invalid_credentials_title = /** @type {(inputs: Errors_Code_Invalid_Credentials_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_errors_code_invalid_credentials_title = /** @type {(inputs: Errors_Code
 /**
 * | output |
 * | --- |
-* | "Wrong sign-in details" |
+* | "Wrong login details" |
 *
 * @param {Errors_Code_Invalid_Credentials_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

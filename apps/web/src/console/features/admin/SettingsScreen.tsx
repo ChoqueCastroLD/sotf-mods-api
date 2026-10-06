@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/settings` (PLAN §7.4 «ajustes: límites, feature flags»): the site settings that
+ * `/moderation/admin/settings` (PLAN §7.4 «ajustes: límites, feature flags»): the site settings that
  * are not integrations — feature flags, rate-limit overrides, ads (AdSense client and slots) and
  * the moderation reason templates used by Ranger Station (`SiteSetting.moderationTemplates`,
  * i18n). Each panel saves on its own; leaving with unsaved panels asks first.

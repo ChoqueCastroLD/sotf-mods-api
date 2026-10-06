@@ -3,7 +3,7 @@ export type Explore_Category_Intro_Quality_Of_LifeInputs = {};
 /**
 * | output |
 * | --- |
-* | "Small fixes and conveniences that smooth out everyday survival: bigger stacks, faster crafting, cleaner menus and fewer chores." |
+* | "Small improvements that make everyday play easier: bigger stacks, faster crafting, cleaner menus and fewer chores." |
 *
 * @param {Explore_Category_Intro_Quality_Of_LifeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

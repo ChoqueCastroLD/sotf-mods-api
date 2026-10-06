@@ -3,7 +3,7 @@ export type Mod_Banner_Pending_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "A ranger is checking this mod. It isn’t listed yet and may still change." |
+* | "A moderator is checking this mod. It isn’t listed yet and may still change." |
 *
 * @param {Mod_Banner_Pending_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

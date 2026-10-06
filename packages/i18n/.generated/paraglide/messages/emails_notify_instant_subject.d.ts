@@ -5,8 +5,8 @@ export type Emails_Notify_Instant_SubjectInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "New signal on SOTF Mods" |
-* | * | "{count__number} new signals on SOTF Mods" |
+* | "one" | "New notification on SOTF Mods" |
+* | * | "{count__number} new notifications on SOTF Mods" |
 *
 * @param {Emails_Notify_Instant_SubjectInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@ export type Builds_Meta_TitleInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} — SOTF build (BuildShare blueprint)" |
+* | "{name}: SOTF build (BuildShare)" |
 *
 * @param {Builds_Meta_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

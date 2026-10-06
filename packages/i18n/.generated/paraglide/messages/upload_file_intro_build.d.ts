@@ -3,7 +3,7 @@ export type Upload_File_Intro_BuildInputs = {};
 /**
 * | output |
 * | --- |
-* | "Drop the blueprint .json exported by BuildShare. Its thumbnail, element count and version are read automatically." |
+* | "Drop the build .json exported by BuildShare. Its thumbnail, element count and version are read automatically." |
 *
 * @param {Upload_File_Intro_BuildInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

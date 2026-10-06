@@ -3,7 +3,7 @@ export type Upload_Preflight_Tags_MissingInputs = {};
 /**
 * | output |
 * | --- |
-* | "No tags: they help survivors find it." |
+* | "No tags: they help players find it." |
 *
 * @param {Upload_Preflight_Tags_MissingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

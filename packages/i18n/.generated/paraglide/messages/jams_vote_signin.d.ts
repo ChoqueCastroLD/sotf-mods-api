@@ -3,7 +3,7 @@ export type Jams_Vote_SigninInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to vote" |
+* | "Log in to vote" |
 *
 * @param {Jams_Vote_SigninInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

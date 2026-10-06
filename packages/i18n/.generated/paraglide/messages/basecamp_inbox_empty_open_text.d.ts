@@ -3,7 +3,7 @@ export type Basecamp_Inbox_Empty_Open_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing is waiting for an answer. New comments and reports on your mods land here." |
+* | "Nothing is waiting for an answer. New comments and reports on your mods appear here." |
 *
 * @param {Basecamp_Inbox_Empty_Open_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

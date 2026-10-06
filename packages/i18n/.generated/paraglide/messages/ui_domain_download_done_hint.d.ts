@@ -3,7 +3,7 @@ export type Ui_Domain_Download_Done_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Drop it in your game’s Mods folder and launch the game." |
+* | "Place it in your game’s Mods folder and start the game." |
 *
 * @param {Ui_Domain_Download_Done_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

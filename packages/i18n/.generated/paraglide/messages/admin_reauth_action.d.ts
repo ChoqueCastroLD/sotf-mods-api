@@ -3,7 +3,7 @@ export type Admin_Reauth_ActionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in again" |
+* | "Log in again" |
 *
 * @param {Admin_Reauth_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

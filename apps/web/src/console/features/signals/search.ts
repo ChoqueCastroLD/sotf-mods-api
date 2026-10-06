@@ -1,5 +1,5 @@
 /**
- * `?filter=` of `/signals`. Kept apart from `api.ts` because the route's `validateSearch` runs in
+ * `?filter=` of `/notifications`. Kept apart from `api.ts` because the route's `validateSearch` runs in
  * the eager route tree (the console shell budget, PLAN §12.3 WP-34).
  */
 export const SIGNAL_FILTERS = ['all', 'mentions', 'updates', 'my_mods', 'ranger'] as const;

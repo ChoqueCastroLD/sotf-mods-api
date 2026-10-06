@@ -3,7 +3,7 @@ export type Upload_Submit_ReadyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ready. A ranger reviews first publications; verified creators go live right away." |
+* | "Ready. Moderation reviews first publications; trusted creators go live right away." |
 *
 * @param {Upload_Submit_ReadyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

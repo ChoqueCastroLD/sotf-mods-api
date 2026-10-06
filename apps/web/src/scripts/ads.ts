@@ -2,6 +2,8 @@
  * AdSense without breaking Core Web Vitals (PLAN §8.5):
  *
  * - guests only (no `sotf_li` hint; the HTML never varies), never while prerendering;
+ * - never on adult content (`?nsfw=1` listings, NSFW mod pages): the server renders no slot there and
+ *   this is the second guard;
  * - only on pages that render ad slots (`<ins class="adsbygoogle" data-ad-slot>` inside an
  *   `AdSlot` with reserved `min-height`, WP-25) — pages where ads are forbidden simply have none;
  * - after `load` + idle, after the CMP settles (`consent.ts`), and per slot only when it comes
@@ -59,11 +61,21 @@ function injectLoader(doc: Document, client: string): void {
   doc.head.append(script);
 }
 
+/** AdSense policy: never on adult content (NSFW listings, NSFW mod pages, NSFW thumbnails shown). */
+export function isAdultPage(doc: Document = document): boolean {
+  if (doc.querySelector('[data-nsfw]')) return true;
+  try {
+    return new URL(doc.location.href).searchParams.get('nsfw') === '1';
+  } catch {
+    return false;
+  }
+}
+
 /** Wires the ad slots of the page. Resolves with the number of slots observed. */
 export async function initAds(doc: Document = document): Promise<number> {
   const win = doc.defaultView;
   const client = adClient(doc);
-  if (!win || !client || hasSignedInHint(doc.cookie)) return 0;
+  if (!win || !client || hasSignedInHint(doc.cookie) || isAdultPage(doc)) return 0;
   const slots = [...doc.querySelectorAll<HTMLElement>(SLOT_SELECTOR)].slice(0, MAX_SLOTS_PER_PAGE);
   if (slots.length === 0) return 0;
 

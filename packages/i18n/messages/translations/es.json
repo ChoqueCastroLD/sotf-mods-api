@@ -1,9 +1,6 @@
 {
-  "translations_badge_machine": "Traducido automáticamente",
-  "translations_badge_author": "Traducido por el creador",
   "translations_show_original": "Ver original",
   "translations_show_translation": "Ver traducción",
-  "translations_original_note": "Texto original",
   "translations_title": "Traducciones",
   "translations_intro_auto": "El nombre, la descripción corta y la descripción se traducen automáticamente a otros idiomas al publicarlos o editarlos. Escribe tu propio texto para reemplazar cualquier traducción; el tuyo nunca se sobrescribe.",
   "translations_intro_manual": "Escribe tu propia traducción del nombre, la descripción corta y la descripción para cualquier idioma. La traducción automática no está disponible en este servidor.",
@@ -19,7 +16,6 @@
   "translations_cancel": "Cancelar",
   "translations_revert": "Usar la traducción automática",
   "translations_remove": "Quitar",
-  "translations_field_label": "Traducción al {language}",
   "translations_saved": "Traducción guardada",
   "translations_reverted": "Traducción automática solicitada",
   "translations_removed": "Traducción eliminada",

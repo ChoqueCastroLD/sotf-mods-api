@@ -1,7 +1,4 @@
 {
-  "shell_more_label": "Więcej",
-  "shell_more_help": "Pomoc",
-  "shell_more_community": "Społeczność",
   "shell_more_install_guide": "Instrukcja instalacji",
   "shell_install_app": "Zainstaluj aplikację",
   "shell_install_app_hint": "Dodaj SOTF Mods do ekranu głównego",
@@ -11,7 +8,6 @@
   "shell_ptr_loading": "Odświeżanie…",
   "shell_offline_meta_title": "Offline",
   "shell_offline_meta_description": "Brak połączenia. Spróbuj ponownie, gdy wrócisz online.",
-  "shell_offline_eyebrow": "Offline",
   "shell_offline_title": "Jesteś offline",
   "shell_offline_body": "SOTF Mods jest teraz niedostępne. Sprawdź połączenie i spróbuj ponownie.",
   "shell_offline_retry": "Spróbuj ponownie",

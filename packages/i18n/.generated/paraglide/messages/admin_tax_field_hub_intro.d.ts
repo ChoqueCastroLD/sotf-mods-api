@@ -3,7 +3,7 @@ export type Admin_Tax_Field_Hub_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Hub intro (Markdown, per language)" |
+* | "Category page intro (Markdown, per language)" |
 *
 * @param {Admin_Tax_Field_Hub_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ export type Signals_Status_Version_HeldInputs = {
 /**
 * | output |
 * | --- |
-* | "Version {version} of {mod} is on hold for a ranger check" |
+* | "Version {version} of {mod} is on hold for a moderator check" |
 *
 * @param {Signals_Status_Version_HeldInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

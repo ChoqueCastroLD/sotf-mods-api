@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Oauth_Link_Invalid_TextInputs */
 
 const en_oauth_link_invalid_text = /** @type {(inputs: Oauth_Link_Invalid_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`It has expired or was already used. Sign in with Discord again to get a new one.`)
+	return /** @type {LocalizedString} */ (`It has expired or was already used. Log in with Discord again to get a new one.`)
 };
 
 const es_oauth_link_invalid_text = /** @type {(inputs: Oauth_Link_Invalid_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_oauth_link_invalid_text = /** @type {(inputs: Oauth_Link_Invalid_TextIn
 };
 
 const ja_oauth_link_invalid_text = /** @type {(inputs: Oauth_Link_Invalid_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`有効期限が切れているか、既に使用されています。もう一度 Discord でサインインして新しいリンクを取得してください。`)
+	return /** @type {LocalizedString} */ (`有効期限が切れているか、既に使用されています。もう一度 Discord でログインして新しいリンクを取得してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "It has expired or was already used. Sign in with Discord again to get a new one." |
+* | "It has expired or was already used. Log in with Discord again to get a new one." |
 *
 * @param {Oauth_Link_Invalid_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

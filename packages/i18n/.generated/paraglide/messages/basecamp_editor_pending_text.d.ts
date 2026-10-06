@@ -3,7 +3,7 @@ export type Basecamp_Editor_Pending_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Rangers usually decide within 72 hours. You can keep improving the listing meanwhile." |
+* | "Moderators usually decide within 72 hours. You can keep improving the listing meanwhile." |
 *
 * @param {Basecamp_Editor_Pending_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

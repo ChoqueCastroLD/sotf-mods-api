@@ -1,5 +1,5 @@
 /**
- * `/ranger/admin/performance` (PLAN §7.4 «panel RUM (p75 por plantilla y país)», §8): real-user
+ * `/moderation/admin/performance` (PLAN §7.4 «panel RUM (p75 por plantilla y país)», §8): real-user
  * Core Web Vitals collected by the site beacon, p75 per page template, for all countries together
  * or one country, over 7 or 28 days. Each value is rated with the Core Web Vitals thresholds
  * (good, needs improvement, poor) in text and colour; columns sort; low-sample rows are marked.
@@ -138,7 +138,7 @@ export function PerformanceScreen({ range }: { range: RumRange }) {
             {(['7d', '28d'] as const).map((value) => (
               <Link
                 key={value}
-                to="/ranger/admin/performance"
+                to="/moderation/admin/performance"
                 search={value === '28d' ? {} : { range: value }}
                 aria-current={value === range ? 'page' : undefined}
                 className="inline-flex min-h-9 items-center rounded-sm px-3 text-sm font-medium text-fg-muted hover:text-fg aria-[current=page]:bg-primary/12 aria-[current=page]:text-fg"
@@ -233,7 +233,7 @@ function RumRowView({ row }: { row: RumRow }) {
         if (value === null)
           return (
             <td key={metric} className={`${tdClasses} text-end text-fg-subtle`}>
-              —
+              -
             </td>
           );
         const rating = ratingOf(metric, value);

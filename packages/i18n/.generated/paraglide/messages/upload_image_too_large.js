@@ -38,7 +38,7 @@ const pt_upload_image_too_large = /** @type {(inputs: Upload_Image_Too_LargeInpu
 };
 
 const ru_upload_image_too_large = /** @type {(inputs: Upload_Image_Too_LargeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Изображения — до 10 МБ.`)
+	return /** @type {LocalizedString} */ (`Размер изображений не больше 10 МБ.`)
 };
 
 const sv_upload_image_too_large = /** @type {(inputs: Upload_Image_Too_LargeInputs) => LocalizedString} */ () => {

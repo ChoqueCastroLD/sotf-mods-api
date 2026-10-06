@@ -2,7 +2,7 @@
   "viewer_heading": "Top-down view",
   "viewer_alt": "Top-down preview of {name}: {pieces} pieces, {width} by {depth} by {height} metres.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} pieces",
-  "viewer_explore": "Explore in 3D",
+  "viewer_explore": "View in 3D",
   "viewer_back": "Back to the preview",
   "viewer_loading": "Loading the 3D view…",
   "viewer_pending": "The preview is being generated. Come back in a minute.",

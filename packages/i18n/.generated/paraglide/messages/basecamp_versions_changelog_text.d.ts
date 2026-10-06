@@ -3,7 +3,7 @@ export type Basecamp_Versions_Changelog_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Markdown works. Players see it on the mod page and in the update signal." |
+* | "Markdown works. Players see it on the mod page and in the update notification." |
 *
 * @param {Basecamp_Versions_Changelog_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

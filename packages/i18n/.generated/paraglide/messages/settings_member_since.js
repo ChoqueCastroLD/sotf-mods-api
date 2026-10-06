@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Member_SinceInputs */
 
 const en_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Survivor since`)
+	return /** @type {LocalizedString} */ (`Member since`)
 };
 
 const es_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Superviviente desde`)
+	return /** @type {LocalizedString} */ (`Miembro desde`)
 };
 
 const de_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Überlebender seit`)
+	return /** @type {LocalizedString} */ (`Mitglied seit`)
 };
 
 const fr_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Survivant depuis`)
+	return /** @type {LocalizedString} */ (`Membre depuis`)
 };
 
 const it_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sopravvissuto dal`)
+	return /** @type {LocalizedString} */ (`Iscritto dal`)
 };
 
 const nl_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Overlevende sinds`)
+	return /** @type {LocalizedString} */ (`Lid sinds`)
 };
 
 const pl_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ocalały od`)
+	return /** @type {LocalizedString} */ (`Członek od`)
 };
 
 const pt_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sobrevivente desde`)
+	return /** @type {LocalizedString} */ (`Membro desde`)
 };
 
 const ru_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Выживает с`)
+	return /** @type {LocalizedString} */ (`На сайте с`)
 };
 
 const sv_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Överlevare sedan`)
+	return /** @type {LocalizedString} */ (`Medlem sedan`)
 };
 
 const tr_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hayatta kalma başlangıcı`)
+	return /** @type {LocalizedString} */ (`Üyelik tarihi`)
 };
 
 const zh_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`幸存起始`)
+	return /** @type {LocalizedString} */ (`注册时间`)
 };
 
 const ja_settings_member_since = /** @type {(inputs: Settings_Member_SinceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`サバイバー歴`)
+	return /** @type {LocalizedString} */ (`登録日`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Survivor since" |
+* | "Member since" |
 *
 * @param {Settings_Member_SinceInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

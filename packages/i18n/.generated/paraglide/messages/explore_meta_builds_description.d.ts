@@ -5,8 +5,8 @@ export type Explore_Meta_Builds_DescriptionInputs = {
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} BuildShare blueprint for Sons of the Forest: bases, forts and treehouses shared by the community, ready to place." |
-* | * | "{count__number} BuildShare blueprints for Sons of the Forest: bases, forts and treehouses shared by the community, ready to place." |
+* | "one" | "{count__number} BuildShare build for Sons of the Forest: bases, forts and treehouses made by the community. Free downloads." |
+* | * | "{count__number} BuildShare builds for Sons of the Forest: bases, forts and treehouses made by the community. Free downloads." |
 *
 * @param {Explore_Meta_Builds_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

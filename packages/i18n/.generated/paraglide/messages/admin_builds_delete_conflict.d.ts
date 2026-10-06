@@ -3,7 +3,7 @@ export type Admin_Builds_Delete_ConflictInputs = {};
 /**
 * | output |
 * | --- |
-* | "Players already reported on this build. Keep it, or mark another one as current." |
+* | "This build is already in use. Keep it, or mark another one as current." |
 *
 * @param {Admin_Builds_Delete_ConflictInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

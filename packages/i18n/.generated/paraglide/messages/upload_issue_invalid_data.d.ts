@@ -3,7 +3,7 @@ export type Upload_Issue_Invalid_DataInputs = {};
 /**
 * | output |
 * | --- |
-* | "The blueprint Data is invalid." |
+* | "The build Data is invalid." |
 *
 * @param {Upload_Issue_Invalid_DataInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

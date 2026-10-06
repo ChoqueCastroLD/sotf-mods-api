@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Drop_Title_BuildInputs */
 
 const en_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Drop your blueprint .json here`)
+	return /** @type {LocalizedString} */ (`Drop your build .json here`)
 };
 
 const es_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suelta tu plano .json aquí`)
+	return /** @type {LocalizedString} */ (`Suelta el .json de tu build aquí`)
 };
 
 const de_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zieh deine Bauplan-.json hierher`)
+	return /** @type {LocalizedString} */ (`Zieh deine Build-.json hierher`)
 };
 
 const fr_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Déposez votre plan .json ici`)
+	return /** @type {LocalizedString} */ (`Déposez le .json de votre build ici`)
 };
 
 const it_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Trascina qui il tuo progetto .json`)
+	return /** @type {LocalizedString} */ (`Trascina qui il .json della tua build`)
 };
 
 const nl_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sleep je bouwtekening-.json hierheen`)
+	return /** @type {LocalizedString} */ (`Sleep je build-.json hierheen`)
 };
 
 const pl_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Upuść tutaj plan .json`)
+	return /** @type {LocalizedString} */ (`Upuść tutaj plik .json builda`)
 };
 
 const pt_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solte sua planta .json aqui`)
+	return /** @type {LocalizedString} */ (`Solte o .json da sua build aqui`)
 };
 
 const ru_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Перетащите сюда чертёж .json`)
+	return /** @type {LocalizedString} */ (`Перетащите сюда файл постройки .json`)
 };
 
 const sv_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Släpp din ritnings-.json här`)
+	return /** @type {LocalizedString} */ (`Släpp din bygg-.json här`)
 };
 
 const tr_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Plan .json dosyanı buraya bırak`)
+	return /** @type {LocalizedString} */ (`Yapı .json dosyanı buraya bırak`)
 };
 
 const zh_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`把蓝图 .json 拖到这里`)
+	return /** @type {LocalizedString} */ (`把建筑 .json 拖到这里`)
 };
 
 const ja_upload_drop_title_build = /** @type {(inputs: Upload_Drop_Title_BuildInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ここに設計図 .json をドロップ`)
+	return /** @type {LocalizedString} */ (`ここに建築の .json をドロップ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Drop your blueprint .json here" |
+* | "Drop your build .json here" |
 *
 * @param {Upload_Drop_Title_BuildInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

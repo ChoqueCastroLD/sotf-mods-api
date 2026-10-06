@@ -3,7 +3,7 @@ export type Upload_Draft_Other_Flow_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "This draft belongs to another flow." |
+* | "This draft is for another kind of upload." |
 *
 * @param {Upload_Draft_Other_Flow_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

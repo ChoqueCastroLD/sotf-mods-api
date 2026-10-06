@@ -3,7 +3,7 @@ export type Ui_Domain_Deleted_UserInputs = {};
 /**
 * | output |
 * | --- |
-* | "Deleted survivor" |
+* | "Deleted user" |
 *
 * @param {Ui_Domain_Deleted_UserInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

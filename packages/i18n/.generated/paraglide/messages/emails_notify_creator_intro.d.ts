@@ -6,7 +6,7 @@ export type Emails_Notify_Creator_IntroInputs = {
 /**
 * | output |
 * | --- |
-* | "Here’s how your mods did from {start} to {end}." |
+* | "Stats for your mods from {start} to {end}." |
 *
 * @param {Emails_Notify_Creator_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

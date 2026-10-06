@@ -3,7 +3,7 @@ export type Signals_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Follow mods and creators to hear when something changes." |
+* | "Follow mods and creators to be notified when something changes." |
 *
 * @param {Signals_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

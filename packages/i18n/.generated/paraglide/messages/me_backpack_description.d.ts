@@ -3,7 +3,7 @@ export type Me_Backpack_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Mods you follow, with their updates and how they run on the current build." |
+* | "Mods you follow, with their latest updates." |
 *
 * @param {Me_Backpack_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

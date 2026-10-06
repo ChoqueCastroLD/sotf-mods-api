@@ -3,7 +3,7 @@ export type Ui_Domain_Ad_NoticeInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ads keep downloads free. Sign in to hide them." |
+* | "Ads keep downloads free. Log in to hide them." |
 *
 * @param {Ui_Domain_Ad_NoticeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

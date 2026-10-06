@@ -2,7 +2,7 @@
   "viewer_heading": "Bovenaanzicht",
   "viewer_alt": "Bovenaanzicht van {name}: {pieces} stukken, {width} bij {depth} bij {height} meter.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} stukken",
-  "viewer_explore": "Verken in 3D",
+  "viewer_explore": "Bekijk in 3D",
   "viewer_back": "Terug naar het voorbeeld",
   "viewer_loading": "3D-weergave laden…",
   "viewer_pending": "Het voorbeeld wordt gemaakt. Kom over een minuut terug.",

@@ -46,7 +46,8 @@ const pastEnd = list !== null && list.total > 0 && state.page > list.totalPages;
 const offset = (state.page - 1) * (list?.pageSize ?? 24);
 const toolbar = buildToolbarModel({ locale, state, taxonomy, model });
 const labels = modCardLabels();
-const feedAd = adUnitFor(loadEnv(), 'feed');
+// AdSense policy: no ads next to adult content, so none while the NSFW toggle is on.
+const feedAd = state.nsfw ? null : adUnitFor(loadEnv(), 'feed');
 const now = Date.now();
 const featured = showFeatured && aside?.weekly ? aside.weekly.filter((mod) => mod.downloads7d > 0).slice(0, FEATURED_SIZE) : [];
 // Chips only for what the toolbar has no control for (tags, exclusions, legacy filters, author).

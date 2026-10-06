@@ -6,39 +6,39 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Inbox_Empty_Open_TextInputs */
 
 const en_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nothing is waiting for an answer. New comments and reports on your mods land here.`)
+	return /** @type {LocalizedString} */ (`Nothing is waiting for an answer. New comments and reports on your mods appear here.`)
 };
 
 const es_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada espera respuesta. Los nuevos comentarios y reportes de tus mods llegan aquí.`)
+	return /** @type {LocalizedString} */ (`Nada espera respuesta. Los nuevos comentarios y reportes de tus mods aparecen aquí.`)
 };
 
 const de_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nichts wartet auf eine Antwort. Neue Kommentare und Berichte zu deinen Mods landen hier.`)
+	return /** @type {LocalizedString} */ (`Nichts wartet auf eine Antwort. Neue Kommentare und Berichte zu deinen Mods erscheinen hier.`)
 };
 
 const fr_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rien n’attend de réponse. Les nouveaux commentaires et rapports sur vos mods arrivent ici.`)
+	return /** @type {LocalizedString} */ (`Rien n’attend de réponse. Les nouveaux commentaires et rapports sur vos mods apparaissent ici.`)
 };
 
 const it_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niente attende risposta. I nuovi commenti e rapporti sulle tue mod arrivano qui.`)
+	return /** @type {LocalizedString} */ (`Niente attende risposta. I nuovi commenti e rapporti sulle tue mod compaiono qui.`)
 };
 
 const nl_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niets wacht op antwoord. Nieuwe reacties en rapporten over je mods komen hier binnen.`)
+	return /** @type {LocalizedString} */ (`Niets wacht op antwoord. Nieuwe reacties en rapporten over je mods verschijnen hier.`)
 };
 
 const pl_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nic nie czeka na odpowiedź. Nowe komentarze i raporty o twoich modach trafiają tutaj.`)
+	return /** @type {LocalizedString} */ (`Nic nie czeka na odpowiedź. Nowe komentarze i raporty o twoich modach pojawiają się tutaj.`)
 };
 
 const pt_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada aguarda resposta. Novos comentários e relatórios dos seus mods chegam aqui.`)
+	return /** @type {LocalizedString} */ (`Nada aguarda resposta. Novos comentários e relatórios dos seus mods aparecem aqui.`)
 };
 
 const ru_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ничто не ждёт ответа. Новые комментарии и отчёты о ваших модах приходят сюда.`)
+	return /** @type {LocalizedString} */ (`Ничто не ждёт ответа. Новые комментарии и отчёты о ваших модах появляются здесь.`)
 };
 
 const sv_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
@@ -46,7 +46,7 @@ const sv_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Emp
 };
 
 const tr_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yanıt bekleyen bir şey yok. Modlarına gelen yeni yorumlar ve raporlar buraya düşer.`)
+	return /** @type {LocalizedString} */ (`Yanıt bekleyen bir şey yok. Modlarına gelen yeni yorumlar ve raporlar burada görünür.`)
 };
 
 const zh_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
@@ -54,13 +54,13 @@ const zh_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Emp
 };
 
 const ja_basecamp_inbox_empty_open_text = /** @type {(inputs: Basecamp_Inbox_Empty_Open_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`返信を待っているものはありません。MOD への新しいコメントやレポートはここに届きます。`)
+	return /** @type {LocalizedString} */ (`返信を待っているものはありません。MOD への新しいコメントやレポートはここに表示されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Nothing is waiting for an answer. New comments and reports on your mods land here." |
+* | "Nothing is waiting for an answer. New comments and reports on your mods appear here." |
 *
 * @param {Basecamp_Inbox_Empty_Open_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

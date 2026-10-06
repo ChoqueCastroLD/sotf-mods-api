@@ -3,7 +3,7 @@ export type Content_Install_Help_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Check whether the current game patch broke your mods, or ask the community. Include your game version, RedLoader version and the mods you use." |
+* | "Ask the community for help. Include your game version, RedLoader version and the mods you use." |
 *
 * @param {Content_Install_Help_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Admin_Builds_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "The Sons of the Forest patches that field reports, compatibility badges and the Patch Radar refer to. Exactly one is current." |
+* | "The Sons of the Forest game versions. Exactly one is current." |
 *
 * @param {Admin_Builds_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

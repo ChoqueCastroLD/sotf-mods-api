@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Integrations_DescriptionInputs */
 
 const en_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Where the site announces new mods, versions, awards and milestones.`)
+	return /** @type {LocalizedString} */ (`Where the site announces new mods and versions.`)
 };
 
 const es_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dónde anuncia el sitio los mods nuevos, las versiones, los premios y los hitos.`)
+	return /** @type {LocalizedString} */ (`Dónde anuncia el sitio los mods nuevos y las versiones.`)
 };
 
 const de_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wo die Website neue Mods, Versionen, Auszeichnungen und Meilensteine ankündigt.`)
+	return /** @type {LocalizedString} */ (`Wo die Website neue Mods und Versionen ankündigt.`)
 };
 
 const fr_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Où le site annonce les nouveaux mods, les versions, les récompenses et les paliers.`)
+	return /** @type {LocalizedString} */ (`Où le site annonce les nouveaux mods et les versions.`)
 };
 
 const it_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dove il sito annuncia nuove mod, versioni, premi e traguardi.`)
+	return /** @type {LocalizedString} */ (`Dove il sito annuncia nuove mod e versioni.`)
 };
 
 const nl_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Waar de site nieuwe mods, versies, prijzen en mijlpalen aankondigt.`)
+	return /** @type {LocalizedString} */ (`Waar de site nieuwe mods en versies aankondigt.`)
 };
 
 const pl_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gdzie strona ogłasza nowe mody, wersje, wyróżnienia i kamienie milowe.`)
+	return /** @type {LocalizedString} */ (`Gdzie strona ogłasza nowe mody i wersje.`)
 };
 
 const pt_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Onde o site anuncia mods novos, versões, prêmios e marcos.`)
+	return /** @type {LocalizedString} */ (`Onde o site anuncia mods novos e versões.`)
 };
 
 const ru_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Куда сайт отправляет новости о новых модах, версиях, наградах и рубежах.`)
+	return /** @type {LocalizedString} */ (`Куда сайт отправляет новости о новых модах и версиях.`)
 };
 
 const sv_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Var sajten meddelar nya moddar, versioner, utmärkelser och milstolpar.`)
+	return /** @type {LocalizedString} */ (`Var sajten meddelar nya moddar och versioner.`)
 };
 
 const tr_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sitenin yeni modları, sürümleri, ödülleri ve kilometre taşlarını duyurduğu yerler.`)
+	return /** @type {LocalizedString} */ (`Sitenin yeni modları ve sürümleri duyurduğu yerler.`)
 };
 
 const zh_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`网站在哪里发布新模组、新版本、奖项和里程碑。`)
+	return /** @type {LocalizedString} */ (`网站在哪里发布新模组和新版本。`)
 };
 
 const ja_admin_integrations_description = /** @type {(inputs: Admin_Integrations_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`新しい MOD、バージョン、アワード、マイルストーンをサイトが告知する場所。`)
+	return /** @type {LocalizedString} */ (`新しい MOD とバージョンをサイトが告知する場所。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Where the site announces new mods, versions, awards and milestones." |
+* | "Where the site announces new mods and versions." |
 *
 * @param {Admin_Integrations_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

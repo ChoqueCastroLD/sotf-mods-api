@@ -3,7 +3,7 @@ export type Ranger_User_UnverifyInputs = {};
 /**
 * | output |
 * | --- |
-* | "Remove flag" |
+* | "Remove trusted" |
 *
 * @param {Ranger_User_UnverifyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

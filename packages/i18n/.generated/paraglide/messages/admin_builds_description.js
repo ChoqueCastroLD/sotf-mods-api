@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Builds_DescriptionInputs */
 
 const en_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The Sons of the Forest patches that field reports, compatibility badges and the Patch Radar refer to. Exactly one is current.`)
+	return /** @type {LocalizedString} */ (`The Sons of the Forest game versions. Exactly one is current.`)
 };
 
 const es_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los parches de Sons of the Forest a los que se refieren los reportes de campo, las insignias de compatibilidad y el Radar de parches. Exactamente una es la actual.`)
+	return /** @type {LocalizedString} */ (`Las versiones del juego Sons of the Forest. Exactamente una es la actual.`)
 };
 
 const de_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Patches von Sons of the Forest, auf die sich Feldberichte, Kompatibilitätsabzeichen und das Patch-Radar beziehen. Genau einer ist aktuell.`)
+	return /** @type {LocalizedString} */ (`Die Spielversionen von Sons of the Forest. Genau eine ist aktuell.`)
 };
 
 const fr_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les patchs de Sons of the Forest auxquels se rapportent les rapports de terrain, les badges de compatibilité et le Radar des patchs. Un seul est actuel.`)
+	return /** @type {LocalizedString} */ (`Les versions du jeu Sons of the Forest. Une seule est la version actuelle.`)
 };
 
 const it_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le patch di Sons of the Forest a cui si riferiscono i rapporti sul campo, i badge di compatibilità e il Radar delle patch. Esattamente una è quella attuale.`)
+	return /** @type {LocalizedString} */ (`Le versioni del gioco Sons of the Forest. Esattamente una è quella attuale.`)
 };
 
 const nl_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De patches van Sons of the Forest waar veldrapporten, compatibiliteitsbadges en de Patchradar naar verwijzen. Precies één is de huidige.`)
+	return /** @type {LocalizedString} */ (`De spelversies van Sons of the Forest. Precies één is de huidige.`)
 };
 
 const pl_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Łatki Sons of the Forest, do których odnoszą się raporty terenowe, odznaki zgodności i Radar patchy. Dokładnie jedna jest aktualna.`)
+	return /** @type {LocalizedString} */ (`Wersje gry Sons of the Forest. Dokładnie jedna jest aktualna.`)
 };
 
 const pt_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os patches de Sons of the Forest a que se referem os relatórios de campo, os selos de compatibilidade e o Radar de patches. Exatamente um é o atual.`)
+	return /** @type {LocalizedString} */ (`As versões do jogo Sons of the Forest. Exatamente uma é a atual.`)
 };
 
 const ru_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Патчи Sons of the Forest, к которым относятся полевые отчёты, значки совместимости и Радар патчей. Текущая — ровно одна.`)
+	return /** @type {LocalizedString} */ (`Версии игры Sons of the Forest. Текущая только одна.`)
 };
 
 const sv_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Patcharna till Sons of the Forest som fältrapporter, kompatibilitetsmärken och Patchradarn hänvisar till. Exakt en är aktuell.`)
+	return /** @type {LocalizedString} */ (`Spelversionerna av Sons of the Forest. Exakt en är aktuell.`)
 };
 
 const tr_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Saha raporlarının, uyumluluk rozetlerinin ve Yama Radarı’nın dayandığı Sons of the Forest yamaları. Tam olarak biri günceldir.`)
+	return /** @type {LocalizedString} */ (`Sons of the Forest oyun sürümleri. Tam olarak biri günceldir.`)
 };
 
 const zh_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`实地报告、兼容性徽章和补丁雷达所依据的《森林之子》补丁。有且只有一个是当前版本。`)
+	return /** @type {LocalizedString} */ (`《森林之子》的游戏版本。有且只有一个是当前版本。`)
 };
 
 const ja_admin_builds_description = /** @type {(inputs: Admin_Builds_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`フィールドレポート、互換性バッジ、パッチレーダーが参照する Sons of the Forest のパッチです。現在のビルドは必ず 1 つです。`)
+	return /** @type {LocalizedString} */ (`Sons of the Forest のゲームバージョンです。現在のバージョンは必ず 1 つです。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The Sons of the Forest patches that field reports, compatibility badges and the Patch Radar refer to. Exactly one is current." |
+* | "The Sons of the Forest game versions. Exactly one is current." |
 *
 * @param {Admin_Builds_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

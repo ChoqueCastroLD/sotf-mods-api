@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Empty_Filtered_TitleInputs */
 
 const en_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nothing on this channel`)
+	return /** @type {LocalizedString} */ (`No notifications here`)
 };
 
 const es_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada en este canal`)
+	return /** @type {LocalizedString} */ (`No hay notificaciones aquí`)
 };
 
 const de_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nichts auf diesem Kanal`)
+	return /** @type {LocalizedString} */ (`Hier gibt es keine Benachrichtigungen`)
 };
 
 const fr_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rien sur ce canal`)
+	return /** @type {LocalizedString} */ (`Aucune notification ici`)
 };
 
 const it_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niente su questo canale`)
+	return /** @type {LocalizedString} */ (`Nessuna notifica qui`)
 };
 
 const nl_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niets op dit kanaal`)
+	return /** @type {LocalizedString} */ (`Hier zijn geen meldingen`)
 };
 
 const pl_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nic na tym kanale`)
+	return /** @type {LocalizedString} */ (`Brak powiadomień`)
 };
 
 const pt_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nada neste canal`)
+	return /** @type {LocalizedString} */ (`Nenhuma notificação aqui`)
 };
 
 const ru_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`На этом канале пусто`)
+	return /** @type {LocalizedString} */ (`Здесь уведомлений нет`)
 };
 
 const sv_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inget på den här kanalen`)
+	return /** @type {LocalizedString} */ (`Inga aviseringar här`)
 };
 
 const tr_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu kanalda bir şey yok`)
+	return /** @type {LocalizedString} */ (`Burada bildirim yok`)
 };
 
 const zh_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`这个频道没有内容`)
+	return /** @type {LocalizedString} */ (`这里没有通知`)
 };
 
 const ja_signals_empty_filtered_title = /** @type {(inputs: Signals_Empty_Filtered_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このチャンネルには何もありません`)
+	return /** @type {LocalizedString} */ (`ここに通知はありません`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Nothing on this channel" |
+* | "No notifications here" |
 *
 * @param {Signals_Empty_Filtered_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

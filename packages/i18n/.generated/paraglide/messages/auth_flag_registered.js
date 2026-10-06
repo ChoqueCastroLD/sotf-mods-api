@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Flag_RegisteredInputs */
 
 const en_auth_flag_registered = /** @type {(inputs: Auth_Flag_RegisteredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Account created. Sign in to continue.`)
+	return /** @type {LocalizedString} */ (`Account created. Log in to continue.`)
 };
 
 const es_auth_flag_registered = /** @type {(inputs: Auth_Flag_RegisteredInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_flag_registered = /** @type {(inputs: Auth_Flag_RegisteredInputs) 
 /**
 * | output |
 * | --- |
-* | "Account created. Sign in to continue." |
+* | "Account created. Log in to continue." |
 *
 * @param {Auth_Flag_RegisteredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Requests_Error_TitleInputs */
 
 const en_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The request board is not answering`)
+	return /** @type {LocalizedString} */ (`Could not load the requests`)
 };
 
 const es_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`El tablón de peticiones no responde`)
+	return /** @type {LocalizedString} */ (`No se pudieron cargar las peticiones`)
 };
 
 const de_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Wunschliste antwortet nicht`)
+	return /** @type {LocalizedString} */ (`Wünsche konnten nicht geladen werden`)
 };
 
 const fr_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le tableau des demandes ne répond pas`)
+	return /** @type {LocalizedString} */ (`Impossible de charger les demandes`)
 };
 
 const it_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La bacheca delle richieste non risponde`)
+	return /** @type {LocalizedString} */ (`Impossibile caricare le richieste`)
 };
 
 const nl_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Het verzoekenbord reageert niet`)
+	return /** @type {LocalizedString} */ (`De verzoeken konden niet worden geladen`)
 };
 
 const pl_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tablica próśb nie odpowiada`)
+	return /** @type {LocalizedString} */ (`Nie udało się wczytać próśb`)
 };
 
 const pt_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O quadro de pedidos não responde`)
+	return /** @type {LocalizedString} */ (`Não foi possível carregar os pedidos`)
 };
 
 const ru_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Доска запросов не отвечает`)
+	return /** @type {LocalizedString} */ (`Не удалось загрузить запросы`)
 };
 
 const sv_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Önskelistan svarar inte`)
+	return /** @type {LocalizedString} */ (`Det gick inte att läsa in önskemålen`)
 };
 
 const tr_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İstek panosu yanıt vermiyor`)
+	return /** @type {LocalizedString} */ (`İstekler yüklenemedi`)
 };
 
 const zh_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`请求板没有响应`)
+	return /** @type {LocalizedString} */ (`无法加载请求`)
 };
 
 const ja_requests_error_title = /** @type {(inputs: Requests_Error_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`リクエストボードが応答しません`)
+	return /** @type {LocalizedString} */ (`リクエストを読み込めませんでした`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The request board is not answering" |
+* | "Could not load the requests" |
 *
 * @param {Requests_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

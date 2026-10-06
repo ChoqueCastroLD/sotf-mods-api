@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Notify_Reason_InstantInputs */
 
 const en_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You get this email because instant emails are on for these signals.`)
+	return /** @type {LocalizedString} */ (`You get this email because instant emails are on for these notifications.`)
 };
 
 const es_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Recibes este email porque tienes activados los emails instantáneos para estas señales.`)
+	return /** @type {LocalizedString} */ (`Recibes este email porque tienes activados los emails instantáneos para estas notificaciones.`)
 };
 
 const de_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du erhältst diese E-Mail, weil sofortige E-Mails für diese Signale aktiviert sind.`)
+	return /** @type {LocalizedString} */ (`Du erhältst diese E-Mail, weil sofortige E-Mails für diese Benachrichtigungen aktiviert sind.`)
 };
 
 const fr_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous recevez cet e-mail car les e-mails instantanés sont activés pour ces signaux.`)
+	return /** @type {LocalizedString} */ (`Vous recevez cet e-mail car les e-mails instantanés sont activés pour ces notifications.`)
 };
 
 const it_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ricevi questa email perché le email immediate sono attive per questi segnali.`)
+	return /** @type {LocalizedString} */ (`Ricevi questa email perché le email immediate sono attive per queste notifiche.`)
 };
 
 const nl_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je krijgt deze e-mail omdat directe e-mails voor deze signalen aan staan.`)
+	return /** @type {LocalizedString} */ (`Je krijgt deze e-mail omdat directe e-mails voor deze meldingen aan staan.`)
 };
 
 const pl_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otrzymujesz ten e-mail, ponieważ masz włączone natychmiastowe e-maile dla tych sygnałów.`)
+	return /** @type {LocalizedString} */ (`Otrzymujesz ten e-mail, ponieważ masz włączone natychmiastowe e-maile dla tych powiadomień.`)
 };
 
 const pt_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você recebe este e-mail porque os e-mails instantâneos estão ativados para estes sinais.`)
+	return /** @type {LocalizedString} */ (`Você recebe este e-mail porque os e-mails instantâneos estão ativados para estas notificações.`)
 };
 
 const ru_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вы получаете это письмо, потому что для этих сигналов включены мгновенные письма.`)
+	return /** @type {LocalizedString} */ (`Вы получаете это письмо, потому что для этих уведомлений включены мгновенные письма.`)
 };
 
 const sv_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du får det här mejlet eftersom direktmejl är på för de här signalerna.`)
+	return /** @type {LocalizedString} */ (`Du får det här mejlet eftersom direktmejl är på för de här aviseringarna.`)
 };
 
 const tr_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu sinyaller için anında e-postalar açık olduğu için bu e-postayı alıyorsun.`)
+	return /** @type {LocalizedString} */ (`Bu bildirimler için anında e-postalar açık olduğu için bu e-postayı alıyorsun.`)
 };
 
 const zh_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你收到此邮件，是因为你为这些信号开启了即时邮件。`)
+	return /** @type {LocalizedString} */ (`你收到此邮件，是因为你为这些通知开启了即时邮件。`)
 };
 
 const ja_emails_notify_reason_instant = /** @type {(inputs: Emails_Notify_Reason_InstantInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`これらのシグナルで即時メールがオンになっているため、このメールをお送りしています。`)
+	return /** @type {LocalizedString} */ (`これらの通知で即時メールがオンになっているため、このメールをお送りしています。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You get this email because instant emails are on for these signals." |
+* | "You get this email because instant emails are on for these notifications." |
 *
 * @param {Emails_Notify_Reason_InstantInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

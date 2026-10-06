@@ -11,12 +11,6 @@ export {
   BuildCard,
   type BuildCardProps,
   BuildCardSkeleton,
-  CreatorCard,
-  type CreatorCardProps,
-  CreatorCardSkeleton,
-  KitCard,
-  type KitCardProps,
-  KitCardSkeleton,
 } from './cards.tsx';
 export {
   CHART_SERIES,
@@ -28,20 +22,6 @@ export {
   seriesColor,
 } from './chart-theme.tsx';
 export { CommentItem, type CommentItemData, type CommentItemProps, REACTION_GLYPHS } from './comment-item.tsx';
-export {
-  COMPAT_STATUS_STYLE,
-  COMPAT_STATUS_VALUES,
-  CompatBadge,
-  type CompatBadgeProps,
-  CompatCapsule,
-  type CompatCapsuleProps,
-  compatCapsulePropsOf,
-  type FieldReportCounts,
-  FieldReportMeter,
-  type FieldReportMeterProps,
-  reportShares,
-  useCompatLabel,
-} from './compat.tsx';
 export {
   AD_FORMATS,
   AD_MIN_HEIGHT,
@@ -141,18 +121,7 @@ export {
   initialsOf,
   Placeholder,
 } from './shared.tsx';
-export {
-  BadgeStamp,
-  type BadgeStampProps,
-  RankStamp,
-  type RankStampProps,
-  SPOTLIGHT_TIERS,
-  type StampSize,
-  TierStamp,
-  type TierStampProps,
-  TrustedMark,
-  type TrustedMarkProps,
-} from './stamps.tsx';
+export { TrustedMark, type TrustedMarkProps } from './stamps.tsx';
 export {
   Sparkline,
   type SparklineProps,

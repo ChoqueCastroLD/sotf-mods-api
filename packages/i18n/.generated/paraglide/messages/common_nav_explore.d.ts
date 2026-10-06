@@ -3,7 +3,7 @@ export type Common_Nav_ExploreInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore" |
+* | "Mods" |
 *
 * @param {Common_Nav_ExploreInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ when: NonNullable<unknown> }} Emails_Auth_New_Login_BodyInputs */
 
 const en_emails_auth_new_login_body = /** @type {(inputs: Emails_Auth_New_Login_BodyInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Your account was signed in to on ${i?.when} (UTC) from a device or country we had not seen before.`)
+	return /** @type {LocalizedString} */ (`A login to your account was recorded on ${i?.when} (UTC) from a device or country we had not seen before.`)
 };
 
 const es_emails_auth_new_login_body = /** @type {(inputs: Emails_Auth_New_Login_BodyInputs) => LocalizedString} */ (i) => {
@@ -60,7 +60,7 @@ const ja_emails_auth_new_login_body = /** @type {(inputs: Emails_Auth_New_Login_
 /**
 * | output |
 * | --- |
-* | "Your account was signed in to on {when} (UTC) from a device or country we had not seen before." |
+* | "A login to your account was recorded on {when} (UTC) from a device or country we had not seen before." |
 *
 * @param {Emails_Auth_New_Login_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

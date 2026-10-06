@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_EndInputs */
 
 const en_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`That’s every signal for now.`)
+	return /** @type {LocalizedString} */ (`No more notifications.`)
 };
 
 const es_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Estas son todas las señales por ahora.`)
+	return /** @type {LocalizedString} */ (`No hay más notificaciones.`)
 };
 
 const de_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Das sind vorerst alle Signale.`)
+	return /** @type {LocalizedString} */ (`Keine weiteren Benachrichtigungen.`)
 };
 
 const fr_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`C’est tout pour le moment.`)
+	return /** @type {LocalizedString} */ (`Aucune autre notification.`)
 };
 
 const it_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Per ora questi sono tutti i segnali.`)
+	return /** @type {LocalizedString} */ (`Non ci sono altre notifiche.`)
 };
 
 const nl_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dat zijn alle signalen voor nu.`)
+	return /** @type {LocalizedString} */ (`Geen verdere meldingen.`)
 };
 
 const pl_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`To na razie wszystkie sygnały.`)
+	return /** @type {LocalizedString} */ (`Brak kolejnych powiadomień.`)
 };
 
 const pt_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Esses são todos os sinais por enquanto.`)
+	return /** @type {LocalizedString} */ (`Não há mais notificações.`)
 };
 
 const ru_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пока это все сигналы.`)
+	return /** @type {LocalizedString} */ (`Больше уведомлений нет.`)
 };
 
 const sv_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Det var alla signaler för nu.`)
+	return /** @type {LocalizedString} */ (`Inga fler aviseringar.`)
 };
 
 const tr_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Şimdilik tüm sinyaller bu kadar.`)
+	return /** @type {LocalizedString} */ (`Başka bildirim yok.`)
 };
 
 const zh_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`目前就这些信号。`)
+	return /** @type {LocalizedString} */ (`没有更多通知了。`)
 };
 
 const ja_signals_end = /** @type {(inputs: Signals_EndInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`今のところシグナルはこれですべてです。`)
+	return /** @type {LocalizedString} */ (`これ以上の通知はありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "That’s every signal for now." |
+* | "No more notifications." |
 *
 * @param {Signals_EndInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

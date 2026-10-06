@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Lanes_LabelInputs */
 
 const en_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Queue lanes`)
+	return /** @type {LocalizedString} */ (`Queues`)
 };
 
 const es_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Carriles de la cola`)
+	return /** @type {LocalizedString} */ (`Colas`)
 };
 
 const de_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bahnen der Warteschlange`)
+	return /** @type {LocalizedString} */ (`Warteschlangen`)
 };
 
 const fr_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voies de la file`)
+	return /** @type {LocalizedString} */ (`Files`)
 };
 
 const it_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Corsie della coda`)
+	return /** @type {LocalizedString} */ (`Code`)
 };
 
 const nl_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Banen van de wachtrij`)
+	return /** @type {LocalizedString} */ (`Wachtrijen`)
 };
 
 const pl_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tory kolejki`)
+	return /** @type {LocalizedString} */ (`Kolejki`)
 };
 
 const pt_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Faixas da fila`)
+	return /** @type {LocalizedString} */ (`Filas`)
 };
 
 const ru_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Дорожки очереди`)
+	return /** @type {LocalizedString} */ (`Очереди`)
 };
 
 const sv_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Köns filer`)
+	return /** @type {LocalizedString} */ (`Köer`)
 };
 
 const tr_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kuyruk şeritleri`)
+	return /** @type {LocalizedString} */ (`Kuyruklar`)
 };
 
 const zh_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`队列通道`)
+	return /** @type {LocalizedString} */ (`队列`)
 };
 
 const ja_ranger_lanes_label = /** @type {(inputs: Ranger_Lanes_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`キューのレーン`)
+	return /** @type {LocalizedString} */ (`キュー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Queue lanes" |
+* | "Queues" |
 *
 * @param {Ranger_Lanes_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

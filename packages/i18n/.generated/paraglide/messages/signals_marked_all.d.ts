@@ -3,7 +3,7 @@ export type Signals_Marked_AllInputs = {};
 /**
 * | output |
 * | --- |
-* | "All signals marked as read" |
+* | "All notifications marked as read" |
 *
 * @param {Signals_Marked_AllInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

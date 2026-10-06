@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Common_Download_DoneInputs */
 
 const en_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Downloaded. Drop it in your game’s Mods folder and launch the game.`)
+	return /** @type {LocalizedString} */ (`Downloaded. Place it in your game’s Mods folder and start the game.`)
 };
 
 const es_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Descargado. Suéltalo en la carpeta Mods del juego y ábrelo.`)
+	return /** @type {LocalizedString} */ (`Descargado. Coloca el archivo en la carpeta Mods del juego e inicia el juego.`)
 };
 
 const de_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Heruntergeladen. Leg die Datei in den Mods-Ordner des Spiels und starte das Spiel.`)
+	return /** @type {LocalizedString} */ (`Heruntergeladen. Lege die Datei in den Mods-Ordner des Spiels und starte das Spiel.`)
 };
 
 const fr_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Téléchargé. Déposez-le dans le dossier Mods du jeu et lancez la partie.`)
+	return /** @type {LocalizedString} */ (`Téléchargé. Placez le fichier dans le dossier Mods du jeu, puis lancez le jeu.`)
 };
 
 const it_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Scaricata. Mettila nella cartella Mods del gioco e avvia la partita.`)
+	return /** @type {LocalizedString} */ (`Scaricata. Metti il file nella cartella Mods del gioco e avvia il gioco.`)
 };
 
 const nl_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gedownload. Zet het in de map Mods van het spel en start het spel.`)
+	return /** @type {LocalizedString} */ (`Gedownload. Plaats het bestand in de map Mods van het spel en start het spel.`)
 };
 
 const pl_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pobrano. Wrzuć plik do folderu Mods w katalogu gry i uruchom grę.`)
+	return /** @type {LocalizedString} */ (`Pobrano. Umieść plik w folderze Mods w katalogu gry i uruchom grę.`)
 };
 
 const pt_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Baixado. Coloque o arquivo na pasta Mods do jogo e abra o jogo.`)
+	return /** @type {LocalizedString} */ (`Baixado. Coloque o arquivo na pasta Mods do jogo e inicie o jogo.`)
 };
 
 const ru_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скачано. Положите файл в папку Mods игры и запустите её.`)
+	return /** @type {LocalizedString} */ (`Скачано. Поместите файл в папку Mods игры и запустите игру.`)
 };
 
 const sv_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nedladdad. Lägg den i spelets Mods-mapp och starta spelet.`)
+	return /** @type {LocalizedString} */ (`Nedladdad. Lägg filen i spelets Mods-mapp och starta spelet.`)
 };
 
 const tr_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`İndirildi. Oyunun Mods klasörüne bırak ve oyunu başlat.`)
+	return /** @type {LocalizedString} */ (`İndirildi. Dosyayı oyunun Mods klasörüne koy ve oyunu başlat.`)
 };
 
 const zh_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`下载完成。把它放进游戏的 Mods 文件夹，然后启动游戏。`)
+	return /** @type {LocalizedString} */ (`下载完成。把文件放进游戏的 Mods 文件夹，然后启动游戏。`)
 };
 
 const ja_common_download_done = /** @type {(inputs: Common_Download_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ダウンロードしました。ゲームの Mods フォルダーに入れてから起動してください。`)
+	return /** @type {LocalizedString} */ (`ダウンロードしました。ファイルをゲームの Mods フォルダーに入れて、ゲームを起動してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Downloaded. Drop it in your game’s Mods folder and launch the game." |
+* | "Downloaded. Place it in your game’s Mods folder and start the game." |
 *
 * @param {Common_Download_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

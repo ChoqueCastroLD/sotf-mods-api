@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Ranger_User_Verified_DoneInputs */
 
 const en_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is now a verified creator.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is now trusted.`)
 };
 
 const es_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ya es creador verificado.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ya es de confianza.`)
 };
 
 const de_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ist jetzt verifizierter Creator.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ist jetzt vertrauenswürdig.`)
 };
 
 const fr_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} est maintenant créateur vérifié.`)
+	return /** @type {LocalizedString} */ (`${i?.name} est maintenant de confiance.`)
 };
 
 const it_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ora è un creatore verificato.`)
+	return /** @type {LocalizedString} */ (`${i?.name} ora è affidabile.`)
 };
 
 const nl_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is nu een geverifieerde maker.`)
+	return /** @type {LocalizedString} */ (`${i?.name} is nu vertrouwd.`)
 };
 
 const pl_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} jest teraz zweryfikowanym twórcą.`)
+	return /** @type {LocalizedString} */ (`${i?.name} jest teraz zaufanym twórcą.`)
 };
 
 const pt_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} agora é um criador verificado.`)
+	return /** @type {LocalizedString} */ (`${i?.name} agora é confiável.`)
 };
 
 const ru_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} теперь подтверждённый автор.`)
+	return /** @type {LocalizedString} */ (`${i?.name} теперь проверенный автор.`)
 };
 
 const sv_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} är nu verifierad skapare.`)
+	return /** @type {LocalizedString} */ (`${i?.name} är nu betrodd.`)
 };
 
 const tr_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} artık doğrulanmış üretici.`)
+	return /** @type {LocalizedString} */ (`${i?.name} artık güvenilir.`)
 };
 
 const zh_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 现在是认证作者。`)
+	return /** @type {LocalizedString} */ (`${i?.name} 现在是受信任用户。`)
 };
 
 const ja_ranger_user_verified_done = /** @type {(inputs: Ranger_User_Verified_DoneInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} は認証済みクリエイターになりました。`)
+	return /** @type {LocalizedString} */ (`${i?.name} は信頼済みになりました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} is now a verified creator." |
+* | "{name} is now trusted." |
 *
 * @param {Ranger_User_Verified_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

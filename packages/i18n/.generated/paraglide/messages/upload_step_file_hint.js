@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Step_File_HintInputs */
 
 const en_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip or blueprint`)
+	return /** @type {LocalizedString} */ (`Zip or build file`)
 };
 
 const es_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip o plano`)
+	return /** @type {LocalizedString} */ (`Zip o archivo de build`)
 };
 
 const de_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip oder Bauplan`)
+	return /** @type {LocalizedString} */ (`Zip oder Build-Datei`)
 };
 
 const fr_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip ou plan`)
+	return /** @type {LocalizedString} */ (`Zip ou fichier de build`)
 };
 
 const it_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip o progetto`)
+	return /** @type {LocalizedString} */ (`Zip o file della build`)
 };
 
 const nl_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip of bouwtekening`)
+	return /** @type {LocalizedString} */ (`Zip of buildbestand`)
 };
 
 const pl_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip lub plan`)
+	return /** @type {LocalizedString} */ (`Zip lub plik builda`)
 };
 
 const pt_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip ou planta`)
+	return /** @type {LocalizedString} */ (`Zip ou arquivo de build`)
 };
 
 const ru_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip или чертёж`)
+	return /** @type {LocalizedString} */ (`Zip или файл постройки`)
 };
 
 const sv_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip eller ritning`)
+	return /** @type {LocalizedString} */ (`Zip eller byggfil`)
 };
 
 const tr_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip ya da plan`)
+	return /** @type {LocalizedString} */ (`Zip ya da yapı dosyası`)
 };
 
 const zh_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip 或蓝图`)
+	return /** @type {LocalizedString} */ (`Zip 或建筑文件`)
 };
 
 const ja_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip または設計図`)
+	return /** @type {LocalizedString} */ (`Zip またはビルドファイル`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Zip or blueprint" |
+* | "Zip or build file" |
 *
 * @param {Upload_Step_File_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

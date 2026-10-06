@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Emails_Notify_Open_SignalsInputs */
 
 const en_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Open Signals`)
+	return /** @type {LocalizedString} */ (`Open notifications`)
 };
 
 const es_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abrir Señales`)
+	return /** @type {LocalizedString} */ (`Abrir notificaciones`)
 };
 
 const de_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signale öffnen`)
+	return /** @type {LocalizedString} */ (`Benachrichtigungen öffnen`)
 };
 
 const fr_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ouvrir les signaux`)
+	return /** @type {LocalizedString} */ (`Ouvrir les notifications`)
 };
 
 const it_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Apri Segnali`)
+	return /** @type {LocalizedString} */ (`Apri le notifiche`)
 };
 
 const nl_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signalen openen`)
+	return /** @type {LocalizedString} */ (`Meldingen openen`)
 };
 
 const pl_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otwórz Sygnały`)
+	return /** @type {LocalizedString} */ (`Otwórz powiadomienia`)
 };
 
 const pt_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abrir Sinais`)
+	return /** @type {LocalizedString} */ (`Abrir notificações`)
 };
 
 const ru_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Открыть сигналы`)
+	return /** @type {LocalizedString} */ (`Открыть уведомления`)
 };
 
 const sv_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Öppna Signaler`)
+	return /** @type {LocalizedString} */ (`Öppna aviseringar`)
 };
 
 const tr_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyalleri aç`)
+	return /** @type {LocalizedString} */ (`Bildirimleri aç`)
 };
 
 const zh_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`打开信号`)
+	return /** @type {LocalizedString} */ (`打开通知`)
 };
 
 const ja_emails_notify_open_signals = /** @type {(inputs: Emails_Notify_Open_SignalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`シグナルを開く`)
+	return /** @type {LocalizedString} */ (`通知を開く`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Open Signals" |
+* | "Open notifications" |
 *
 * @param {Emails_Notify_Open_SignalsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Upload_Build_GuidInputs = {};
 /**
 * | output |
 * | --- |
-* | "Blueprint id" |
+* | "Build id" |
 *
 * @param {Upload_Build_GuidInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

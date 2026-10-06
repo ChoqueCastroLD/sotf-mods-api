@@ -1,5 +1,5 @@
 /**
- * `/ranger/jams` — every Mod Jam (drafts included) with its phase and schedule, and «New jam».
+ * `/moderation/jams` — every Mod Jam (drafts included) with its phase and schedule, and «New jam».
  * The editor, the phase controls and the entry moderation live in `JamEditorScreen`.
  */
 import { m } from '@sotf/i18n/messages';
@@ -75,11 +75,11 @@ export function JamsAdminScreen() {
                     <span className="flex items-center gap-3">
                       <span className="grid min-w-0 gap-0.5">
                         <a
-                          href={`/ranger/jams/${jam.id}`}
+                          href={`/moderation/jams/${jam.id}`}
                           onClick={(event) => {
                             if (event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
                             event.preventDefault();
-                            void navigate({ to: '/ranger/jams/$jamId', params: { jamId: String(jam.id) } });
+                            void navigate({ to: '/moderation/jams/$jamId', params: { jamId: String(jam.id) } });
                           }}
                           className="font-semibold text-fg hover:text-link"
                         >
@@ -109,7 +109,7 @@ export function JamsAdminScreen() {
                       ? `${formatInstant(jam.submissionsOpenAt)} → ${jam.votingCloseAt ? formatInstant(jam.votingCloseAt) : '…'}`
                       : m.jams_admin_no_schedule()}
                   </td>
-                  <td className={`${tdClasses} font-mono tabular-nums`}>{jam.entryCount}</td>
+                  <td className={`${tdClasses} tabular-nums`}>{jam.entryCount}</td>
                 </tr>
               ))}
             </tbody>
@@ -154,7 +154,7 @@ function NewJamForm({ onDone }: { onDone: () => void }) {
       await queryClient.invalidateQueries({ queryKey: jamKeys.admin });
       notify.success(m.jams_admin_created({ title: jam.title }));
       onDone();
-      void navigate({ to: '/ranger/jams/$jamId', params: { jamId: String(jam.id) } });
+      void navigate({ to: '/moderation/jams/$jamId', params: { jamId: String(jam.id) } });
     } catch (error) {
       reportFailure(error, m.jams_admin_create_failed());
     } finally {

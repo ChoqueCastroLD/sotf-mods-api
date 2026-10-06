@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Ranger_User_Unverify_TitleInputs */
 
 const en_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Remove the verified creator flag from ${i?.name}?`)
+	return /** @type {LocalizedString} */ (`Remove the trusted status from ${i?.name}?`)
 };
 
 const es_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`¿Quitar a ${i?.name} la marca de creador verificado?`)
+	return /** @type {LocalizedString} */ (`¿Quitar a ${i?.name} el estado de confianza?`)
 };
 
 const de_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} die Verifizierung entziehen?`)
+	return /** @type {LocalizedString} */ (`Den Vertrauensstatus von ${i?.name} entfernen?`)
 };
 
 const fr_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Retirer le statut de créateur vérifié à ${i?.name} ?`)
+	return /** @type {LocalizedString} */ (`Retirer le statut de confiance à ${i?.name} ?`)
 };
 
 const it_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Togliere a ${i?.name} lo stato di creatore verificato?`)
+	return /** @type {LocalizedString} */ (`Togliere a ${i?.name} lo stato di affidabile?`)
 };
 
 const nl_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`De verificatie van ${i?.name} intrekken?`)
+	return /** @type {LocalizedString} */ (`De vertrouwde status van ${i?.name} intrekken?`)
 };
 
 const pl_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Odebrać ${i?.name} status zweryfikowanego twórcy?`)
+	return /** @type {LocalizedString} */ (`Odebrać ${i?.name} status zaufanego?`)
 };
 
 const pt_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Remover de ${i?.name} a marca de criador verificado?`)
+	return /** @type {LocalizedString} */ (`Remover de ${i?.name} o status de confiável?`)
 };
 
 const ru_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Снять с ${i?.name} статус подтверждённого автора?`)
+	return /** @type {LocalizedString} */ (`Снять с ${i?.name} статус проверенного?`)
 };
 
 const sv_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Ta bort markeringen verifierad skapare från ${i?.name}?`)
+	return /** @type {LocalizedString} */ (`Ta bort betrodd-status från ${i?.name}?`)
 };
 
 const tr_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} için doğrulanmış üretici işareti kaldırılsın mı?`)
+	return /** @type {LocalizedString} */ (`${i?.name} için güvenilir durumu kaldırılsın mı?`)
 };
 
 const zh_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`取消 ${i?.name} 的认证作者标记？`)
+	return /** @type {LocalizedString} */ (`取消 ${i?.name} 的受信任状态？`)
 };
 
 const ja_ranger_user_unverify_title = /** @type {(inputs: Ranger_User_Unverify_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} の認証済みクリエイターを外しますか？`)
+	return /** @type {LocalizedString} */ (`${i?.name} の信頼済みを外しますか？`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Remove the verified creator flag from {name}?" |
+* | "Remove the trusted status from {name}?" |
 *
 * @param {Ranger_User_Unverify_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

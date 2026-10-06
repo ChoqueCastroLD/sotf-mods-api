@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "Comparar",
   "live_embed_title": "Emblemas para sua página",
-  "live_embed_intro": "Cole um emblema em um README, fórum ou Discord. Eles se atualizam sozinhos.",
+  "live_embed_intro": "Cole um emblema em um README, post de fórum ou Discord. Os emblemas são atualizados automaticamente.",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "Downloads",

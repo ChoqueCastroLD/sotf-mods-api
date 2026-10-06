@@ -3,7 +3,7 @@ export type Upload_Autosave_ErrorInputs = {};
 /**
 * | output |
 * | --- |
-* | "Couldn’t save. Retrying in a moment — your changes are kept here." |
+* | "Couldn’t save. Retrying in a moment. Your changes are kept here." |
 *
 * @param {Upload_Autosave_ErrorInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

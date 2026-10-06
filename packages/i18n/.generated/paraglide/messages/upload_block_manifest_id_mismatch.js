@@ -38,7 +38,7 @@ const pt_upload_block_manifest_id_mismatch = /** @type {(inputs: Upload_Block_Ma
 };
 
 const ru_upload_block_manifest_id_mismatch = /** @type {(inputs: Upload_Block_Manifest_Id_MismatchInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Это другой мод: его id в манифесте — ${i?.found}, а ожидался ${i?.expected}.`)
+	return /** @type {LocalizedString} */ (`Это другой мод: его id в манифесте ${i?.found}, а ожидался ${i?.expected}.`)
 };
 
 const sv_upload_block_manifest_id_mismatch = /** @type {(inputs: Upload_Block_Manifest_Id_MismatchInputs) => LocalizedString} */ (i) => {

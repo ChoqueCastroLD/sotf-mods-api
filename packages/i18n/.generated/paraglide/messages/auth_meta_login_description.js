@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Meta_Login_DescriptionInputs */
 
 const en_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to SOTF Mods to follow mods, get pinged when they update and publish your own.`)
+	return /** @type {LocalizedString} */ (`Log in to SOTF Mods to follow mods, get notified when they update and publish your own.`)
 };
 
 const es_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_DescriptionInputs) => LocalizedString} */ () => {
@@ -26,7 +26,7 @@ const it_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_Descr
 };
 
 const nl_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Log in bij SOTF Mods om mods te volgen, een seintje te krijgen bij updates en je eigen mods te publiceren.`)
+	return /** @type {LocalizedString} */ (`Log in bij SOTF Mods om mods te volgen, een melding te krijgen bij updates en je eigen mods te publiceren.`)
 };
 
 const pl_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_DescriptionInputs) => LocalizedString} */ () => {
@@ -42,7 +42,7 @@ const ru_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_Descr
 };
 
 const sv_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Logga in på SOTF Mods för att följa moddar, få en signal när de uppdateras och publicera egna.`)
+	return /** @type {LocalizedString} */ (`Logga in på SOTF Mods för att följa moddar, få en avisering när de uppdateras och publicera egna.`)
 };
 
 const tr_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_DescriptionInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_meta_login_description = /** @type {(inputs: Auth_Meta_Login_Descr
 /**
 * | output |
 * | --- |
-* | "Sign in to SOTF Mods to follow mods, get pinged when they update and publish your own." |
+* | "Log in to SOTF Mods to follow mods, get notified when they update and publish your own." |
 *
 * @param {Auth_Meta_Login_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

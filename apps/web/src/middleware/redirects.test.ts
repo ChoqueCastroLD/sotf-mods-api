@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { entryDecision, LEGACY_EXACT, legacyRule, REMOVED_FEATURES, removedFeatureTarget, trailingSlashTarget } from './redirects.ts';
+import {
+  entryDecision,
+  LEGACY_EXACT,
+  legacyRule,
+  REMOVED_FEATURES,
+  RENAMED_CONSOLE,
+  removedFeatureTarget,
+  renamedConsoleTarget,
+  trailingSlashTarget,
+} from './redirects.ts';
 
 const url = (path: string) => new URL(path, 'https://sotf-mods.com');
 
@@ -65,7 +74,7 @@ describe('entryDecision (server entry, before routing)', () => {
   });
 
   it('redirects prefixed unlocalized paths (console, APIs, files) to their only URL', () => {
-    expect(entryDecision(url('/es/basecamp/mods')).redirect?.location).toBe('/basecamp/mods');
+    expect(entryDecision(url('/es/dashboard/mods')).redirect?.location).toBe('/dashboard/mods');
     expect(entryDecision(url('/de/api/v2/mods')).redirect?.location).toBe('/api/v2/mods');
     expect(entryDecision(url('/fr/sitemap.xml')).redirect?.location).toBe('/sitemap.xml');
     expect(entryDecision(url('/ja/mods/a/b/download/1.0.0')).redirect?.location).toBe('/mods/a/b/download/1.0.0');
@@ -75,18 +84,18 @@ describe('entryDecision (server entry, before routing)', () => {
 describe('legacy redirect table (PLAN §4.6)', () => {
   const cases: Array<[string, string]> = [
     ['/loader', '/install'],
-    ['/upload', '/basecamp/new/mod'],
-    ['/upload-build', '/basecamp/new/build'],
+    ['/upload', '/dashboard/new/mod'],
+    ['/upload-build', '/dashboard/new/build'],
     ['/user/login', '/login'],
     ['/user/register', '/register'],
     ['/user/logout', '/logout'],
-    ['/user/upload', '/basecamp/new/mod'],
-    ['/mods/upload', '/basecamp/new/mod'],
+    ['/user/upload', '/dashboard/new/mod'],
+    ['/mods/upload', '/dashboard/new/mod'],
     ['/artifacts', '/'],
     ['/static/downloads/sotfmodsoneclick-setup1.0.0.exe', '/install#oneclick'],
     ['/static/images/hd_thumbnail.png', '/brand/og-default.png'],
-    ['/static/images/logo.png', '/brand/logo-horizontal-night.png'],
-    ['/static/images/logo-dark.png', '/brand/logo-horizontal-night.png'],
+    ['/static/images/logo.png', '/brand/logo-sm.png'],
+    ['/static/images/logo-dark.png', '/brand/logo-sm.png'],
     ['/static/images/favicon.ico', '/favicon.svg'],
     ['/static/images/favicon-32x32.png', '/favicon.svg'],
     ['/@imaxel', '/profile/imaxel'],
@@ -106,10 +115,10 @@ describe('legacy redirect table (PLAN §4.6)', () => {
     expect(legacyRule('/user/login', '', 'de')).toMatchObject({ location: '/de/login' });
     expect(legacyRule('/artifacts', '', 'ja')).toMatchObject({ location: '/ja' });
     expect(legacyRule('/@imaxel', '', 'pt')).toMatchObject({ location: '/pt/profile/imaxel' });
-    expect(legacyRule('/upload', '', 'es')).toMatchObject({ location: '/basecamp/new/mod' });
+    expect(legacyRule('/upload', '', 'es')).toMatchObject({ location: '/dashboard/new/mod' });
     expect(legacyRule('/user/logout', '', 'es')).toMatchObject({ location: '/logout' });
     expect(legacyRule('/static/images/logo.png', '', 'es')).toMatchObject({
-      location: '/brand/logo-horizontal-night.png',
+      location: '/brand/logo-sm.png',
     });
     expect(legacyRule('/static/downloads/sotfmodsoneclick-setup1.0.0.exe', '', 'es')).toMatchObject({
       location: '/es/install#oneclick',
@@ -176,7 +185,7 @@ describe('legacy redirect table (PLAN §4.6)', () => {
 
     it('keeps the README badges for mods and the static brand files', () => {
       expect(removedFeatureTarget('/badges/mods/imaxel/axel/downloads.svg')).toBeNull();
-      expect(removedFeatureTarget('/brand/logo-horizontal-night.png')).toBeNull();
+      expect(removedFeatureTarget('/brand/logo-sm.png')).toBeNull();
       expect(removedFeatureTarget('/kitsune')).toBeNull();
       expect(removedFeatureTarget('/mods/imaxel/axel/versions/compare')).toBeNull();
       expect(removedFeatureTarget('/mods')).toBeNull();
@@ -195,5 +204,69 @@ describe('legacy redirect table (PLAN §4.6)', () => {
 
   it('uses 308 when the method is not GET/HEAD', () => {
     expect(legacyRule('/loader', '', 'en', 'POST')).toMatchObject({ status: 308 });
+  });
+});
+
+describe('renamed console sections (CLASSIC.md: jargon → plain words)', () => {
+  const cases: Array<[string, string]> = [
+    ['/basecamp', '/dashboard'],
+    ['/basecamp/mods/12/analytics', '/dashboard/mods/12/analytics'],
+    ['/basecamp/new/mod', '/dashboard/new/mod'],
+    ['/ranger', '/moderation'],
+    ['/ranger/admin/operations', '/moderation/admin/operations'],
+    ['/ranger/users/42', '/moderation/users/42'],
+    ['/signals', '/notifications'],
+    ['/Signals', '/notifications'],
+    ['/me/backpack', '/me/following'],
+    ['/me/backpack/extra', '/me/following/extra'],
+  ];
+
+  it.each(cases)('%s → 301 %s', (from, to) => {
+    expect(legacyRule(from, '', 'en')).toEqual({ kind: 'redirect', status: 301, location: to });
+    expect(renamedConsoleTarget(from)).toBe(to);
+  });
+
+  it('keeps the query string and never localizes the target', () => {
+    expect(legacyRule('/basecamp/analytics', '?range=all', 'es')).toMatchObject({
+      location: '/dashboard/analytics?range=all',
+    });
+    expect(legacyRule('/signals', '?filter=mentions', 'de')).toMatchObject({
+      location: '/notifications?filter=mentions',
+    });
+    expect(legacyRule('/me/backpack', '?x=1', 'ja')).toMatchObject({ location: '/me/following?x=1' });
+  });
+
+  it('answers 308 to non-GET methods', () => {
+    expect(legacyRule('/ranger/reports', '', 'en', 'POST')).toMatchObject({
+      status: 308,
+      location: '/moderation/reports',
+    });
+    expect(legacyRule('/signals', '', 'en', 'HEAD')).toMatchObject({ status: 301 });
+  });
+
+  it('goes from a locale-prefixed old path to the new URL in one hop', () => {
+    expect(entryDecision(url('/es/basecamp/mods?page=2')).redirect).toEqual({
+      status: 301,
+      location: '/dashboard/mods?page=2',
+    });
+    expect(entryDecision(url('/de/ranger')).redirect?.location).toBe('/moderation');
+    expect(entryDecision(url('/pt/signals?filter=updates')).redirect?.location).toBe('/notifications?filter=updates');
+    expect(entryDecision(url('/ja/me/backpack')).redirect?.location).toBe('/me/following');
+    expect(entryDecision(url('/es/basecamp'), 'POST').redirect?.status).toBe(308);
+  });
+
+  it('only matches whole segments and leaves other paths alone', () => {
+    for (const path of ['/dashboard', '/moderation/queue', '/notifications', '/me/following', '/me/downloads']) {
+      expect(legacyRule(path, '', 'en')).toEqual({ kind: 'pass' });
+    }
+    for (const path of ['/signalsx', '/basecamps', '/rangers/x', '/settings/notifications', '/mods/signals', '/me']) {
+      expect(renamedConsoleTarget(path)).toBeNull();
+    }
+    expect(renamedConsoleTarget('/constructor')).toBeNull();
+    expect(renamedConsoleTarget('/__proto__')).toBeNull();
+  });
+
+  it('covers every renamed section', () => {
+    expect(Object.keys(RENAMED_CONSOLE).sort()).toEqual(['basecamp', 'ranger', 'signals']);
   });
 });

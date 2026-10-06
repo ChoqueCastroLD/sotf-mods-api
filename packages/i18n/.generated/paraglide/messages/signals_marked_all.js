@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Signals_Marked_AllInputs */
 
 const en_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`All signals marked as read`)
+	return /** @type {LocalizedString} */ (`All notifications marked as read`)
 };
 
 const es_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Todas las señales marcadas como leídas`)
+	return /** @type {LocalizedString} */ (`Todas las notificaciones marcadas como leídas`)
 };
 
 const de_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alle Signale als gelesen markiert`)
+	return /** @type {LocalizedString} */ (`Alle Benachrichtigungen als gelesen markiert`)
 };
 
 const fr_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tous les signaux sont marqués comme lus`)
+	return /** @type {LocalizedString} */ (`Toutes les notifications sont marquées comme lues`)
 };
 
 const it_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tutti i segnali segnati come letti`)
+	return /** @type {LocalizedString} */ (`Tutte le notifiche segnate come lette`)
 };
 
 const nl_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alle signalen als gelezen gemarkeerd`)
+	return /** @type {LocalizedString} */ (`Alle meldingen als gelezen gemarkeerd`)
 };
 
 const pl_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wszystkie sygnały oznaczono jako przeczytane`)
+	return /** @type {LocalizedString} */ (`Wszystkie powiadomienia oznaczono jako przeczytane`)
 };
 
 const pt_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Todos os sinais marcados como lidos`)
+	return /** @type {LocalizedString} */ (`Todas as notificações marcadas como lidas`)
 };
 
 const ru_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Все сигналы отмечены прочитанными`)
+	return /** @type {LocalizedString} */ (`Все уведомления отмечены прочитанными`)
 };
 
 const sv_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Alla signaler markerade som lästa`)
+	return /** @type {LocalizedString} */ (`Alla aviseringar markerade som lästa`)
 };
 
 const tr_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tüm sinyaller okundu sayıldı`)
+	return /** @type {LocalizedString} */ (`Tüm bildirimler okundu sayıldı`)
 };
 
 const zh_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`所有信号均已标为已读`)
+	return /** @type {LocalizedString} */ (`所有通知均已标为已读`)
 };
 
 const ja_signals_marked_all = /** @type {(inputs: Signals_Marked_AllInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`すべてのシグナルを既読にしました`)
+	return /** @type {LocalizedString} */ (`すべての通知を既読にしました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "All signals marked as read" |
+* | "All notifications marked as read" |
 *
 * @param {Signals_Marked_AllInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

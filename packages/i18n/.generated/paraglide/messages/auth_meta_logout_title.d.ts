@@ -3,7 +3,7 @@ export type Auth_Meta_Logout_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out" |
+* | "Log out" |
 *
 * @param {Auth_Meta_Logout_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

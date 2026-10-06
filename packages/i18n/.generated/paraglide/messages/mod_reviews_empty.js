@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Reviews_EmptyInputs */
 
 const en_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No reviews yet. Downloaded it? Be the first to tell others how it went.`)
+	return /** @type {LocalizedString} */ (`No reviews yet. Be the first to review this mod.`)
 };
 
 const es_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aún no hay reseñas. ¿Lo descargaste? Sé el primero en contar qué tal.`)
+	return /** @type {LocalizedString} */ (`Aún no hay reseñas. Sé el primero en escribir una.`)
 };
 
 const de_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noch keine Bewertungen. Heruntergeladen? Erzähl als Erste:r, wie es lief.`)
+	return /** @type {LocalizedString} */ (`Noch keine Bewertungen. Schreib die erste Bewertung zu diesem Mod.`)
 };
 
 const fr_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pas encore d’avis. Vous l’avez téléchargé ? Soyez le premier à raconter.`)
+	return /** @type {LocalizedString} */ (`Pas encore d’avis. Soyez le premier à en écrire un.`)
 };
 
 const it_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ancora nessuna recensione. L’hai scaricata? Racconta per primo com’è andata.`)
+	return /** @type {LocalizedString} */ (`Ancora nessuna recensione. Scrivi tu la prima.`)
 };
 
 const nl_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog geen reviews. Gedownload? Vertel als eerste hoe het ging.`)
+	return /** @type {LocalizedString} */ (`Nog geen reviews. Schrijf als eerste een review.`)
 };
 
 const pl_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak recenzji. Pobrałeś? Opowiedz jako pierwszy, jak poszło.`)
+	return /** @type {LocalizedString} */ (`Brak recenzji. Napisz pierwszą.`)
 };
 
 const pt_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda não há avaliações. Baixou? Seja o primeiro a contar como foi.`)
+	return /** @type {LocalizedString} */ (`Ainda não há avaliações. Seja o primeiro a escrever uma.`)
 };
 
 const ru_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отзывов пока нет. Скачали? Расскажите первым, как всё прошло.`)
+	return /** @type {LocalizedString} */ (`Отзывов пока нет. Напишите первый.`)
 };
 
 const sv_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inga recensioner än. Laddat ner den? Berätta först hur det gick.`)
+	return /** @type {LocalizedString} */ (`Inga recensioner än. Skriv den första.`)
 };
 
 const tr_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Henüz inceleme yok. İndirdin mi? Nasıl gittiğini ilk sen anlat.`)
+	return /** @type {LocalizedString} */ (`Henüz inceleme yok. İlk incelemeyi sen yaz.`)
 };
 
 const zh_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`还没有评价。下载过了吗？来当第一个分享体验的人。`)
+	return /** @type {LocalizedString} */ (`还没有评价。来写第一条吧。`)
 };
 
 const ja_mod_reviews_empty = /** @type {(inputs: Mod_Reviews_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`まだレビューはありません。ダウンロードした？最初に感想を書いてみよう。`)
+	return /** @type {LocalizedString} */ (`まだレビューはありません。最初のレビューを書いてみてください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No reviews yet. Downloaded it? Be the first to tell others how it went." |
+* | "No reviews yet. Be the first to review this mod." |
 *
 * @param {Mod_Reviews_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

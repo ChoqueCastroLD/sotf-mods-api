@@ -38,7 +38,7 @@ const pt_basecamp_listing_error_links = /** @type {(inputs: Basecamp_Listing_Err
 };
 
 const ru_basecamp_listing_error_links = /** @type {(inputs: Basecamp_Listing_Error_LinksInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Одна из ссылок поддержки — неверный адрес.`)
+	return /** @type {LocalizedString} */ (`Одна из ссылок поддержки указана неверно.`)
 };
 
 const sv_basecamp_listing_error_links = /** @type {(inputs: Basecamp_Listing_Error_LinksInputs) => LocalizedString} */ () => {

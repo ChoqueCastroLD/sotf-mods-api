@@ -3,7 +3,7 @@ export type Admin_Reauth_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Admin tools need a sign-in from the last 12 hours. Sign in again and you’ll come straight back here." |
+* | "Admin tools need a login from the last 12 hours. Log in again to continue." |
 *
 * @param {Admin_Reauth_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

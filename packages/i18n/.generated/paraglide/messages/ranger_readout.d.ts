@@ -3,7 +3,7 @@ export type Ranger_ReadoutInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ranger Station" |
+* | "Moderation" |
 *
 * @param {Ranger_ReadoutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

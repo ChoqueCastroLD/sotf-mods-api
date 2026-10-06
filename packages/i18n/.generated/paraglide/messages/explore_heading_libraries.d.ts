@@ -3,7 +3,7 @@ export type Explore_Heading_LibrariesInputs = {};
 /**
 * | output |
 * | --- |
-* | "Explore libraries" |
+* | "Libraries" |
 *
 * @param {Explore_Heading_LibrariesInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_Revoked_OthersInputs */
 
 const en_settings_sessions_revoked_others = /** @type {(inputs: Settings_Sessions_Revoked_OthersInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Other devices signed out`)
+	return /** @type {LocalizedString} */ (`Other devices logged out`)
 };
 
 const es_settings_sessions_revoked_others = /** @type {(inputs: Settings_Sessions_Revoked_OthersInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_revoked_others = /** @type {(inputs: Settings_Session
 /**
 * | output |
 * | --- |
-* | "Other devices signed out" |
+* | "Other devices logged out" |
 *
 * @param {Settings_Sessions_Revoked_OthersInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Export_Rate_LimitedInputs */
 
 const en_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You requested an export recently — try again later`)
+	return /** @type {LocalizedString} */ (`You requested an export recently. Try again later`)
 };
 
 const es_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
@@ -14,11 +14,11 @@ const es_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate
 };
 
 const de_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du hast vor Kurzem einen Export angefordert – versuch es später noch einmal`)
+	return /** @type {LocalizedString} */ (`Du hast vor Kurzem einen Export angefordert. Versuch es später noch einmal`)
 };
 
 const fr_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous avez demandé un export récemment — réessayez plus tard`)
+	return /** @type {LocalizedString} */ (`Vous avez demandé un export récemment. Réessayez plus tard`)
 };
 
 const it_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
@@ -26,31 +26,31 @@ const it_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate
 };
 
 const nl_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je hebt onlangs een export aangevraagd — probeer het later opnieuw`)
+	return /** @type {LocalizedString} */ (`Je hebt onlangs een export aangevraagd. Probeer het later opnieuw`)
 };
 
 const pl_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Niedawno zamówiłeś eksport — spróbuj ponownie później`)
+	return /** @type {LocalizedString} */ (`Niedawno zamówiłeś eksport. Spróbuj ponownie później`)
 };
 
 const pt_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você pediu uma exportação recentemente — tente mais tarde`)
+	return /** @type {LocalizedString} */ (`Você pediu uma exportação recentemente. Tente mais tarde`)
 };
 
 const ru_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вы недавно запрашивали экспорт — попробуйте позже`)
+	return /** @type {LocalizedString} */ (`Вы недавно запрашивали экспорт. Попробуйте позже`)
 };
 
 const sv_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du begärde en export nyligen — försök igen senare`)
+	return /** @type {LocalizedString} */ (`Du begärde en export nyligen. Försök igen senare`)
 };
 
 const tr_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kısa süre önce dışa aktarım istedin — daha sonra tekrar dene`)
+	return /** @type {LocalizedString} */ (`Kısa süre önce dışa aktarım istedin. Daha sonra tekrar dene`)
 };
 
 const zh_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你最近已请求过导出——请稍后再试`)
+	return /** @type {LocalizedString} */ (`你最近已请求过导出，请稍后再试`)
 };
 
 const ja_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate_LimitedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_export_rate_limited = /** @type {(inputs: Settings_Export_Rate
 /**
 * | output |
 * | --- |
-* | "You requested an export recently — try again later" |
+* | "You requested an export recently. Try again later" |
 *
 * @param {Settings_Export_Rate_LimitedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

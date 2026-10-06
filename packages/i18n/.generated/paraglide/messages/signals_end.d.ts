@@ -3,7 +3,7 @@ export type Signals_EndInputs = {};
 /**
 * | output |
 * | --- |
-* | "That’s every signal for now." |
+* | "No more notifications." |
 *
 * @param {Signals_EndInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

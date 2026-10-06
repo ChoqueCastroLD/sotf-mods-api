@@ -3,7 +3,7 @@ export type Settings_Member_SinceInputs = {};
 /**
 * | output |
 * | --- |
-* | "Survivor since" |
+* | "Member since" |
 *
 * @param {Settings_Member_SinceInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

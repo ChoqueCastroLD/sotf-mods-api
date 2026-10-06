@@ -5,7 +5,7 @@ export type Me_Backpack_RemovedInputs = {
 /**
 * | output |
 * | --- |
-* | "{mod} left your backpack" |
+* | "You no longer follow {mod}" |
 *
 * @param {Me_Backpack_RemovedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

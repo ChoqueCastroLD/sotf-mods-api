@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_RejectedInputs */
 
 const en_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The rangers asked for changes before publishing it.`)
+	return /** @type {LocalizedString} */ (`Moderators asked for changes before publishing it.`)
 };
 
 const es_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los guardabosques pidieron cambios antes de publicarlo.`)
+	return /** @type {LocalizedString} */ (`Los moderadores pidieron cambios antes de publicarlo.`)
 };
 
 const de_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Ranger haben vor der Veröffentlichung Änderungen erbeten.`)
+	return /** @type {LocalizedString} */ (`Die Moderatoren haben vor der Veröffentlichung Änderungen erbeten.`)
 };
 
 const fr_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les rangers ont demandé des modifications avant de le publier.`)
+	return /** @type {LocalizedString} */ (`Les modérateurs ont demandé des modifications avant de le publier.`)
 };
 
 const it_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I ranger hanno chiesto modifiche prima di pubblicarla.`)
+	return /** @type {LocalizedString} */ (`I moderatori hanno chiesto modifiche prima di pubblicarla.`)
 };
 
 const nl_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`De rangers vroegen om wijzigingen voordat hij gepubliceerd wordt.`)
+	return /** @type {LocalizedString} */ (`De moderators vroegen om wijzigingen voordat hij gepubliceerd wordt.`)
 };
 
 const pl_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Strażnicy poprosili o zmiany przed publikacją.`)
+	return /** @type {LocalizedString} */ (`Moderatorzy poprosili o zmiany przed publikacją.`)
 };
 
 const pt_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os guardas pediram alterações antes de publicá-lo.`)
+	return /** @type {LocalizedString} */ (`Os moderadores pediram alterações antes de publicá-lo.`)
 };
 
 const ru_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Рейнджеры попросили изменения перед публикацией.`)
+	return /** @type {LocalizedString} */ (`Модераторы попросили изменения перед публикацией.`)
 };
 
 const sv_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rangers begärde ändringar innan publicering.`)
+	return /** @type {LocalizedString} */ (`Moderatorerna begärde ändringar innan publicering.`)
 };
 
 const tr_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular yayınlamadan önce değişiklik istedi.`)
+	return /** @type {LocalizedString} */ (`Moderatörler yayınlamadan önce değişiklik istedi.`)
 };
 
 const zh_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员要求在发布前进行修改。`)
+	return /** @type {LocalizedString} */ (`版主要求在发布前进行修改。`)
 };
 
 const ja_basecamp_settings_rejected = /** @type {(inputs: Basecamp_Settings_RejectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`公開前にレンジャーから修正の依頼がありました。`)
+	return /** @type {LocalizedString} */ (`公開前にモデレーターから修正の依頼がありました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "The rangers asked for changes before publishing it." |
+* | "Moderators asked for changes before publishing it." |
 *
 * @param {Basecamp_Settings_RejectedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

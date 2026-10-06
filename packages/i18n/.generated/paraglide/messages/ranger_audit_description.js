@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ranger_Audit_DescriptionInputs */
 
 const en_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Every ranger and admin action: who, what, before and after, and why. Entries can’t be edited.`)
+	return /** @type {LocalizedString} */ (`Every moderator and admin action: who, what, before and after, and why. Entries can’t be edited.`)
 };
 
 const es_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cada acción de guardabosques y admins: quién, qué, antes y después, y por qué. Las entradas no se pueden editar.`)
+	return /** @type {LocalizedString} */ (`Cada acción de moderadores y admins: quién, qué, antes y después, y por qué. Las entradas no se pueden editar.`)
 };
 
 const de_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jede Aktion von Rangern und Admins: wer, was, vorher und nachher und warum. Einträge lassen sich nicht bearbeiten.`)
+	return /** @type {LocalizedString} */ (`Jede Aktion von Moderatoren und Admins: wer, was, vorher und nachher und warum. Einträge lassen sich nicht bearbeiten.`)
 };
 
 const fr_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chaque action des rangers et des admins : qui, quoi, avant et après, et pourquoi. Les entrées ne peuvent pas être modifiées.`)
+	return /** @type {LocalizedString} */ (`Chaque action des modérateurs et des admins : qui, quoi, avant et après, et pourquoi. Les entrées ne peuvent pas être modifiées.`)
 };
 
 const it_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ogni azione di ranger e admin: chi, cosa, prima e dopo, e perché. Le voci non si possono modificare.`)
+	return /** @type {LocalizedString} */ (`Ogni azione di moderatori e admin: chi, cosa, prima e dopo, e perché. Le voci non si possono modificare.`)
 };
 
 const nl_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Elke actie van rangers en admins: wie, wat, voor en na, en waarom. Regels kunnen niet worden bewerkt.`)
+	return /** @type {LocalizedString} */ (`Elke actie van moderators en admins: wie, wat, voor en na, en waarom. Regels kunnen niet worden bewerkt.`)
 };
 
 const pl_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Każde działanie strażników i administratorów: kto, co, przed i po oraz dlaczego. Wpisów nie można edytować.`)
+	return /** @type {LocalizedString} */ (`Każde działanie moderatorów i administratorów: kto, co, przed i po oraz dlaczego. Wpisów nie można edytować.`)
 };
 
 const pt_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cada ação de guardas e admins: quem, o quê, antes e depois, e por quê. As entradas não podem ser editadas.`)
+	return /** @type {LocalizedString} */ (`Cada ação de moderadores e admins: quem, o quê, antes e depois, e por quê. As entradas não podem ser editadas.`)
 };
 
 const ru_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Каждое действие рейнджеров и администраторов: кто, что, до и после и почему. Записи нельзя изменить.`)
+	return /** @type {LocalizedString} */ (`Каждое действие модераторов и администраторов: кто, что, до и после и почему. Записи нельзя изменить.`)
 };
 
 const sv_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Varje åtgärd av rangers och admins: vem, vad, före och efter och varför. Poster kan inte redigeras.`)
+	return /** @type {LocalizedString} */ (`Varje åtgärd av moderatorer och admins: vem, vad, före och efter och varför. Poster kan inte redigeras.`)
 };
 
 const tr_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucuların ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.`)
+	return /** @type {LocalizedString} */ (`Moderatörlerin ve yöneticilerin her işlemi: kim, ne, önce ve sonra, neden. Kayıtlar düzenlenemez.`)
 };
 
 const zh_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`护林员和管理员的每项操作：谁、做了什么、前后变化以及原因。记录不可编辑。`)
+	return /** @type {LocalizedString} */ (`版主和管理员的每项操作：谁、做了什么、前后变化以及原因。记录不可编辑。`)
 };
 
 const ja_ranger_audit_description = /** @type {(inputs: Ranger_Audit_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーと管理者のすべての操作：誰が、何を、変更前後、そして理由。記録は編集できません。`)
+	return /** @type {LocalizedString} */ (`モデレーターと管理者のすべての操作：誰が、何を、変更前後、そして理由。記録は編集できません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Every ranger and admin action: who, what, before and after, and why. Entries can’t be edited." |
+* | "Every moderator and admin action: who, what, before and after, and why. Entries can’t be edited." |
 *
 * @param {Ranger_Audit_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@
   "ui_close": "Close",
   "ui_cancel": "Cancel",
   "ui_dismiss": "Dismiss",
-  "ui_loading": "Checking the map…",
+  "ui_loading": "Loading…",
   "ui_retry": "Try again",
   "ui_error_reference": "Ref: {id}",
   "ui_optional": "Optional",

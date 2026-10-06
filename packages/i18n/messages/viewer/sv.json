@@ -2,7 +2,7 @@
   "viewer_heading": "Vy uppifrån",
   "viewer_alt": "Vy uppifrån av {name}: {pieces} delar, {width} gånger {depth} gånger {height} meter.",
   "viewer_stats": "{width} × {depth} × {height} m · {pieces} delar",
-  "viewer_explore": "Utforska i 3D",
+  "viewer_explore": "Visa i 3D",
   "viewer_back": "Tillbaka till förhandsvisningen",
   "viewer_loading": "Laddar 3D-vyn …",
   "viewer_pending": "Förhandsvisningen skapas. Kom tillbaka om en minut.",

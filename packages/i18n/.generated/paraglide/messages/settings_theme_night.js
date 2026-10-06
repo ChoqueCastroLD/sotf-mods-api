@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Theme_NightInputs */
 
 const en_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Night`)
+	return /** @type {LocalizedString} */ (`Dark`)
 };
 
 const es_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noche`)
+	return /** @type {LocalizedString} */ (`Oscuro`)
 };
 
 const de_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nacht`)
+	return /** @type {LocalizedString} */ (`Dunkel`)
 };
 
 const fr_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nuit`)
+	return /** @type {LocalizedString} */ (`Sombre`)
 };
 
 const it_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Notte`)
+	return /** @type {LocalizedString} */ (`Scuro`)
 };
 
 const nl_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nacht`)
+	return /** @type {LocalizedString} */ (`Donker`)
 };
 
 const pl_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noc`)
+	return /** @type {LocalizedString} */ (`Ciemny`)
 };
 
 const pt_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Noite`)
+	return /** @type {LocalizedString} */ (`Escuro`)
 };
 
 const ru_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ночь`)
+	return /** @type {LocalizedString} */ (`Тёмная`)
 };
 
 const sv_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Natt`)
+	return /** @type {LocalizedString} */ (`Mörkt`)
 };
 
 const tr_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gece`)
+	return /** @type {LocalizedString} */ (`Koyu`)
 };
 
 const zh_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`夜间`)
+	return /** @type {LocalizedString} */ (`深色`)
 };
 
 const ja_settings_theme_night = /** @type {(inputs: Settings_Theme_NightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`夜`)
+	return /** @type {LocalizedString} */ (`ダーク`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Night" |
+* | "Dark" |
 *
 * @param {Settings_Theme_NightInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

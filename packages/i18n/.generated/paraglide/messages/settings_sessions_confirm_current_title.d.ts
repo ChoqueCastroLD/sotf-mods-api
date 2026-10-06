@@ -3,7 +3,7 @@ export type Settings_Sessions_Confirm_Current_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out of this browser?" |
+* | "Log out of this browser?" |
 *
 * @param {Settings_Sessions_Confirm_Current_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

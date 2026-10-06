@@ -1,7 +1,7 @@
 /**
- * Signals email (WP-43, PLAN §7.3): the instant batch and the daily/weekly digests share this body.
- * One row per signal (sentence, optional quoted excerpt or moderator reason, "View" link), "and N
- * more", a button to `/signals` and the footer with the reason and the one-click unsubscribe link.
+ * Notifications email (WP-43, PLAN §7.3): the instant batch and the daily/weekly digests share this body.
+ * One row per notification (sentence, optional quoted excerpt or moderator reason, "View" link), "and N
+ * more", a button to `/notifications` and the footer with the reason and the one-click unsubscribe link.
  * Written with `createElement` (no JSX) like the layout.
  */
 import { Button, Heading, Link, Section, Text } from '@react-email/components';
@@ -57,7 +57,7 @@ function itemRow(item: SignalEmailItem, index: number, locale: Locale): ReactEle
   return h(Section, { key: `i${index}`, style: styles.item }, ...children);
 }
 
-/** Total signals the email represents (grouped rows count once per signal folded in). */
+/** Total notifications the email represents (grouped rows count once per item folded in). */
 function signalCount(p: SignalsPayload): number {
   return p.items.reduce((n, item) => n + item.count, 0) + p.moreCount;
 }

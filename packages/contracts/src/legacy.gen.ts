@@ -321,14 +321,14 @@ export const LegacyModListResponse = dto(
 );
 export type LegacyModListResponse = z.infer<typeof LegacyModListResponse>;
 
-/** Image of the detail endpoint (only `url`; research/01 §2.4 — the captured mods have no gallery). (no samples in the fixtures (declared in legacy-spec.ts)) */
+/** Image of the detail endpoint (only `url`; the captured mods have no gallery). (no samples in the fixtures (declared in legacy-spec.ts)) */
 export const LegacyModDetailImage = dto(
   "LegacyModDetailImage",
   z.strictObject({
     url: z.string(),
   }),
   {
-    description: "Image of the detail endpoint (only `url`; research/01 §2.4 — the captured mods have no gallery).",
+    description: "Image of the detail endpoint (only `url`; the captured mods have no gallery).",
     examples: [{
       "url": "https://r2.sotf-mods.com/1767666009017_axel's-mod-menu_1.png"
     }],

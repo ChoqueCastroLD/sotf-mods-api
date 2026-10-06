@@ -3,7 +3,7 @@ export type Oauth_Link_SubmitInputs = {};
 /**
 * | output |
 * | --- |
-* | "Link and sign in" |
+* | "Link and log in" |
 *
 * @param {Oauth_Link_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

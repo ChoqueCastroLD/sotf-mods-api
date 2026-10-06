@@ -8,100 +8,100 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 const en_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("en", i?.count, {});
 	const count__number = registry.number("en", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} survivor found this helpful`);
-	return /** @type {LocalizedString} */ (`${count__number} survivors found this helpful`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} person found this helpful`);
+	return /** @type {LocalizedString} */ (`${count__number} people found this helpful`)
 	
 };
 
 const es_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("es", i?.count, {});
 	const count__number = registry.number("es", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`A ${count__number} superviviente le resultó útil`);
-	return /** @type {LocalizedString} */ (`A ${count__number} supervivientes les resultó útil`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`A ${count__number} persona le resultó útil`);
+	return /** @type {LocalizedString} */ (`A ${count__number} personas les resultó útil`)
 	
 };
 
 const de_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("de", i?.count, {});
 	const count__number = registry.number("de", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} Überlebender fand das hilfreich`);
-	return /** @type {LocalizedString} */ (`${count__number} Überlebende fanden das hilfreich`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} Person fand das hilfreich`);
+	return /** @type {LocalizedString} */ (`${count__number} Personen fanden das hilfreich`)
 	
 };
 
 const fr_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("fr", i?.count, {});
 	const count__number = registry.number("fr", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} survivant a trouvé cet avis utile`);
-	return /** @type {LocalizedString} */ (`${count__number} survivants ont trouvé cet avis utile`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} personne a trouvé cet avis utile`);
+	return /** @type {LocalizedString} */ (`${count__number} personnes ont trouvé cet avis utile`)
 	
 };
 
 const it_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("it", i?.count, {});
 	const count__number = registry.number("it", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} sopravvissuto l’ha trovata utile`);
-	return /** @type {LocalizedString} */ (`${count__number} sopravvissuti l’hanno trovata utile`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} persona l’ha trovata utile`);
+	return /** @type {LocalizedString} */ (`${count__number} persone l’hanno trovata utile`)
 	
 };
 
 const nl_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("nl", i?.count, {});
 	const count__number = registry.number("nl", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} overlevende vond dit nuttig`);
-	return /** @type {LocalizedString} */ (`${count__number} overlevenden vonden dit nuttig`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} persoon vond dit nuttig`);
+	return /** @type {LocalizedString} */ (`${count__number} personen vonden dit nuttig`)
 	
 };
 
 const pl_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("pl", i?.count, {});
 	const count__number = registry.number("pl", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} ocalały uznał to za przydatne`);
-	if (count__plural === "few") return /** @type {LocalizedString} */ (`${count__number} ocalałych uznało to za przydatne`);
-	if (count__plural === "many") return /** @type {LocalizedString} */ (`${count__number} ocalałych uznało to za przydatne`);
-	return /** @type {LocalizedString} */ (`${count__number} ocalałego uznało to za przydatne`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} osoba uznała to za przydatne`);
+	if (count__plural === "few") return /** @type {LocalizedString} */ (`${count__number} osoby uznały to za przydatne`);
+	if (count__plural === "many") return /** @type {LocalizedString} */ (`${count__number} osób uznało to za przydatne`);
+	return /** @type {LocalizedString} */ (`${count__number} osoby uznały to za przydatne`)
 	
 };
 
 const pt_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("pt", i?.count, {});
 	const count__number = registry.number("pt", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} sobrevivente achou isto útil`);
-	return /** @type {LocalizedString} */ (`${count__number} sobreviventes acharam isto útil`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} pessoa achou isto útil`);
+	return /** @type {LocalizedString} */ (`${count__number} pessoas acharam isto útil`)
 	
 };
 
 const ru_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("ru", i?.count, {});
 	const count__number = registry.number("ru", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} выживший считает это полезным`);
-	if (count__plural === "few") return /** @type {LocalizedString} */ (`${count__number} выживших считают это полезным`);
-	if (count__plural === "many") return /** @type {LocalizedString} */ (`${count__number} выживших считают это полезным`);
-	return /** @type {LocalizedString} */ (`${count__number} выжившего считают это полезным`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} человек считает это полезным`);
+	if (count__plural === "few") return /** @type {LocalizedString} */ (`${count__number} человека считают это полезным`);
+	if (count__plural === "many") return /** @type {LocalizedString} */ (`${count__number} человек считают это полезным`);
+	return /** @type {LocalizedString} */ (`${count__number} человека считают это полезным`)
 	
 };
 
 const sv_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("sv", i?.count, {});
 	const count__number = registry.number("sv", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} överlevare tyckte att detta var till hjälp`);
-	return /** @type {LocalizedString} */ (`${count__number} överlevare tyckte att detta var till hjälp`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} person tyckte att detta var till hjälp`);
+	return /** @type {LocalizedString} */ (`${count__number} personer tyckte att detta var till hjälp`)
 	
 };
 
 const tr_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {const count__plural = registry.plural("tr", i?.count, {});
 	const count__number = registry.number("tr", i?.count, {});
-	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} hayatta kalan bunu faydalı buldu`);
-	return /** @type {LocalizedString} */ (`${count__number} hayatta kalan bunu faydalı buldu`)
+	if (count__plural === "one") return /** @type {LocalizedString} */ (`${count__number} kişi bunu faydalı buldu`);
+	return /** @type {LocalizedString} */ (`${count__number} kişi bunu faydalı buldu`)
 	
 };
 
 const zh_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {
 	const count__plural = registry.plural("zh", i?.count, {});
-	const count__number = registry.number("zh", i?.count, {});return /** @type {LocalizedString} */ (`${count__number} 位幸存者觉得有帮助`)
+	const count__number = registry.number("zh", i?.count, {});return /** @type {LocalizedString} */ (`${count__number} 人觉得有帮助`)
 };
 
 const ja_ui_domain_review_helpful_count = /** @type {(inputs: Ui_Domain_Review_Helpful_CountInputs) => LocalizedString} */ (i) => {
 	const count__plural = registry.plural("ja", i?.count, {});
-	const count__number = registry.number("ja", i?.count, {});return /** @type {LocalizedString} */ (`${count__number} 人のサバイバーが参考になったと評価`)
+	const count__number = registry.number("ja", i?.count, {});return /** @type {LocalizedString} */ (`${count__number} 人が参考になったと評価`)
 };
 
 /**
 * | count__plural | output |
 * | --- | --- |
-* | "one" | "{count__number} survivor found this helpful" |
-* | * | "{count__number} survivors found this helpful" |
+* | "one" | "{count__number} person found this helpful" |
+* | * | "{count__number} people found this helpful" |
 *
 * @param {Ui_Domain_Review_Helpful_CountInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

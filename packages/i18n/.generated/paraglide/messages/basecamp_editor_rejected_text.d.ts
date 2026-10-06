@@ -3,7 +3,7 @@ export type Basecamp_Editor_Rejected_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "The rangers asked for changes. Fix the listing and resubmit it from the Status tab." |
+* | "Moderators asked for changes. Fix the listing and resubmit it from the Status tab." |
 *
 * @param {Basecamp_Editor_Rejected_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

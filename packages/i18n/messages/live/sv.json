@@ -1,7 +1,6 @@
 {
-  "live_compare_action": "Jämför",
   "live_embed_title": "Märken för din sida",
-  "live_embed_intro": "Klistra in ett märke i en README, ett forum eller Discord. De uppdateras av sig själva.",
+  "live_embed_intro": "Klistra in ett märke i en README, ett foruminlägg eller Discord. Märkena uppdateras automatiskt.",
   "live_embed_markdown_label": "Markdown",
   "live_embed_html_label": "HTML",
   "live_embed_kind_downloads": "Nedladdningar",

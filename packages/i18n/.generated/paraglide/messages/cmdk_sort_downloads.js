@@ -34,7 +34,7 @@ const pl_cmdk_sort_downloads = /** @type {(inputs: Cmdk_Sort_DownloadsInputs) =>
 };
 
 const pt_cmdk_sort_downloads = /** @type {(inputs: Cmdk_Sort_DownloadsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mais transferidos`)
+	return /** @type {LocalizedString} */ (`Mais baixados`)
 };
 
 const ru_cmdk_sort_downloads = /** @type {(inputs: Cmdk_Sort_DownloadsInputs) => LocalizedString} */ () => {

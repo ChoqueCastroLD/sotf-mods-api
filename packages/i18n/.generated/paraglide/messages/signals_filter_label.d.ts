@@ -3,7 +3,7 @@ export type Signals_Filter_LabelInputs = {};
 /**
 * | output |
 * | --- |
-* | "Filter signals" |
+* | "Filter notifications" |
 *
 * @param {Signals_Filter_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

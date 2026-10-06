@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Meta_Logout_DescriptionInputs */
 
 const en_auth_meta_logout_description = /** @type {(inputs: Auth_Meta_Logout_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign out of SOTF Mods on this device.`)
+	return /** @type {LocalizedString} */ (`Log out of SOTF Mods on this device.`)
 };
 
 const es_auth_meta_logout_description = /** @type {(inputs: Auth_Meta_Logout_DescriptionInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_meta_logout_description = /** @type {(inputs: Auth_Meta_Logout_Des
 /**
 * | output |
 * | --- |
-* | "Sign out of SOTF Mods on this device." |
+* | "Log out of SOTF Mods on this device." |
 *
 * @param {Auth_Meta_Logout_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

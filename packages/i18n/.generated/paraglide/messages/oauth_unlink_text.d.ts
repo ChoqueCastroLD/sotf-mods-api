@@ -3,7 +3,7 @@ export type Oauth_Unlink_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "You will sign in with your email and password instead. Enter your password to confirm. If you created your account with Discord, set a password first with “F..." |
+* | "You will log in with your email and password instead. Enter your password to confirm. If you created your account with Discord, set a password first with “Fo..." |
 *
 * @param {Oauth_Unlink_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

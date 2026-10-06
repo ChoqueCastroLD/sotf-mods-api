@@ -5,7 +5,7 @@ export type Upload_Success_Queued_DetailInputs = {
 /**
 * | output |
 * | --- |
-* | "{name} is in the review queue. You’ll get a signal as soon as a ranger decides." |
+* | "{name} is in the review queue. You’ll get a notification as soon as a moderator decides." |
 *
 * @param {Upload_Success_Queued_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

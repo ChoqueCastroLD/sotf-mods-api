@@ -90,7 +90,7 @@
   "logs_expires_in": "Raderas om {time}",
   "logs_viewer_title": "Delad logg",
   "logs_meta_viewer_description": "En delad spellogg. Den privata länken raderas av sig själv efter 24 timmar.",
-  "logs_gone_title": "Den här loggen är borta",
+  "logs_gone_title": "Den här loggen är inte längre tillgänglig",
   "logs_gone_expired": "Delade loggar raderas automatiskt efter 24 timmar. Be om en ny länk eller dela loggen igen.",
   "logs_gone_deleted": "Skaparen raderade den här loggen.",
   "logs_gone_reported": "Den här loggen togs bort efter anmälningar om missbruk.",

@@ -1,11 +1,7 @@
 {
-  "mod_knowledge_issues_title": "Известные проблемы",
   "mod_knowledge_status_open": "Открыто",
   "mod_knowledge_status_investigating": "Изучается",
   "mod_knowledge_status_fixed": "Исправлено",
-  "mod_knowledge_issue_affects": "Затрагивает: {versions}",
-  "mod_knowledge_issue_fixed_in": "Исправлено в {version}",
-  "mod_knowledge_issue_resolved": "Решено {date}",
   "mod_knowledge_coauthors_title": "Соавторы",
   "mod_knowledge_profile_title": "Моды в соавторстве {name}",
   "mod_knowledge_profile_by": "автор: @{handle}",

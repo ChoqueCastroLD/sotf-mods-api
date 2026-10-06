@@ -3,7 +3,7 @@ export type Signals_Empty_Filtered_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "No signal matches this filter yet. Try “All”." |
+* | "No notification matches this filter yet. Try “All”." |
 *
 * @param {Signals_Empty_Filtered_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

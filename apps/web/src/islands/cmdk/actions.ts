@@ -66,21 +66,21 @@ export function buildActions(context: ActionContext): ActionItem[] {
 
   if (session.signedIn) {
     actions.push(
-      nav('dashboard', t('shell_cmdk_go_dashboard'), 'dashboard creator stats studio', 'dashboard', '/basecamp'),
-      nav('upload', t('shell_cmdk_go_upload'), 'upload publish new mod create', 'upload', '/basecamp/new/mod'),
+      nav('dashboard', t('shell_cmdk_go_dashboard'), 'dashboard creator stats studio', 'dashboard', '/dashboard'),
+      nav('upload', t('shell_cmdk_go_upload'), 'upload publish new mod create', 'upload', '/dashboard/new/mod'),
       nav(
         'upload-build',
         t('shell_cmdk_go_upload_build'),
         `upload share new build ${t('cmdk_term_builds')}`,
         'upload',
-        '/basecamp/new/build',
+        '/dashboard/new/build',
       ),
       nav(
         'notifications',
         t('shell_cmdk_go_notifications'),
         'notifications inbox alerts signals',
         'notifications',
-        '/signals',
+        '/notifications',
       ),
       nav(
         'settings',
@@ -97,7 +97,7 @@ export function buildActions(context: ActionContext): ActionItem[] {
           t('shell_cmdk_go_moderation'),
           'moderation reports queue staff ranger',
           'moderation',
-          '/ranger',
+          '/moderation',
         ),
       );
     }

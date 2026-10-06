@@ -3,7 +3,7 @@ export type Auth_Field_Email_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "For signing in and important account emails. Never shown publicly." |
+* | "For logging in and important account emails. Never shown publicly." |
 *
 * @param {Auth_Field_Email_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

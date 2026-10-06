@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Comments_Sign_InInputs */
 
 const en_mod_comments_sign_in = /** @type {(inputs: Mod_Comments_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sign in to comment`)
+	return /** @type {LocalizedString} */ (`Log in to comment`)
 };
 
 const es_mod_comments_sign_in = /** @type {(inputs: Mod_Comments_Sign_InInputs) => LocalizedString} */ () => {
@@ -34,7 +34,7 @@ const pl_mod_comments_sign_in = /** @type {(inputs: Mod_Comments_Sign_InInputs) 
 };
 
 const pt_mod_comments_sign_in = /** @type {(inputs: Mod_Comments_Sign_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Entre para comentar`)
+	return /** @type {LocalizedString} */ (`Faça login para comentar`)
 };
 
 const ru_mod_comments_sign_in = /** @type {(inputs: Mod_Comments_Sign_InInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_mod_comments_sign_in = /** @type {(inputs: Mod_Comments_Sign_InInputs) 
 /**
 * | output |
 * | --- |
-* | "Sign in to comment" |
+* | "Log in to comment" |
 *
 * @param {Mod_Comments_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -39,7 +39,7 @@ const pt_settings_image_size = /** @type {(inputs: Settings_Image_SizeInputs) =>
 };
 
 const ru_settings_image_size = /** @type {(inputs: Settings_Image_SizeInputs) => LocalizedString} */ (i) => {
-	const max__number = registry.number("ru", i?.max, {});return /** @type {LocalizedString} */ (`Изображение слишком большое. Лимит — ${max__number} МБ.`)
+	const max__number = registry.number("ru", i?.max, {});return /** @type {LocalizedString} */ (`Изображение слишком большое. Лимит: ${max__number} МБ.`)
 };
 
 const sv_settings_image_size = /** @type {(inputs: Settings_Image_SizeInputs) => LocalizedString} */ (i) => {

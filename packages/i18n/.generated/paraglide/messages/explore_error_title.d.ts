@@ -3,7 +3,7 @@ export type Explore_Error_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "No signal" |
+* | "The list could not be loaded" |
 *
 * @param {Explore_Error_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

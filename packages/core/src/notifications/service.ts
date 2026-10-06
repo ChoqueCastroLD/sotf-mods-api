@@ -50,7 +50,7 @@ export const INSTANT_FLUSH_SECONDS = 30;
 export const INTERNAL_DATA_KEYS = ['keys', 'inApp', 'targetTitle', 'targetPath', 'legacy'] as const;
 
 /**
- * SQL predicate: the row is visible in the bell and `/signals` (in-app channel on, type not in
+ * SQL predicate: the row is visible in the bell and `/notifications` (in-app channel on, type not in
  * `HIDDEN_NOTIFICATION_TYPES`).
  */
 export const visibleNotification = sql`(NOT (${notification.data} @> '{"inApp":false}'::jsonb) AND ${

@@ -3,7 +3,7 @@ export type Live_Embed_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Paste a badge in a README, forum post or Discord. They update by themselves." |
+* | "Paste a badge into a README, forum post or Discord. Badges update automatically." |
 *
 * @param {Live_Embed_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

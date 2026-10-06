@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Mod_Toast_UnfollowedInputs */
 
 const en_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} left your backpack.`)
+	return /** @type {LocalizedString} */ (`You no longer follow ${i?.name}.`)
 };
 
 const es_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ya no está en tu mochila.`)
+	return /** @type {LocalizedString} */ (`Ya no sigues ${i?.name}.`)
 };
 
 const de_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} ist nicht mehr in deinem Rucksack.`)
+	return /** @type {LocalizedString} */ (`Du folgst ${i?.name} nicht mehr.`)
 };
 
 const fr_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} a quitté votre sac à dos.`)
+	return /** @type {LocalizedString} */ (`Vous ne suivez plus ${i?.name}.`)
 };
 
 const it_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} non è più nel tuo zaino.`)
+	return /** @type {LocalizedString} */ (`Non segui più ${i?.name}.`)
 };
 
 const nl_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} is uit je rugzak.`)
+	return /** @type {LocalizedString} */ (`Je volgt ${i?.name} niet meer.`)
 };
 
 const pl_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} nie jest już w twoim plecaku.`)
+	return /** @type {LocalizedString} */ (`Już nie obserwujesz ${i?.name}.`)
 };
 
 const pt_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} saiu da sua mochila.`)
+	return /** @type {LocalizedString} */ (`Você não segue mais ${i?.name}.`)
 };
 
 const ru_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} больше нет в вашем рюкзаке.`)
+	return /** @type {LocalizedString} */ (`Вы отписались от ${i?.name}.`)
 };
 
 const sv_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} har lämnat din ryggsäck.`)
+	return /** @type {LocalizedString} */ (`Du följer inte längre ${i?.name}.`)
 };
 
 const tr_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} sırt çantandan çıktı.`)
+	return /** @type {LocalizedString} */ (`${i?.name} artık takip edilmiyor.`)
 };
 
 const zh_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} 已从你的背包移除。`)
+	return /** @type {LocalizedString} */ (`已取消关注 ${i?.name}。`)
 };
 
 const ja_mod_toast_unfollowed = /** @type {(inputs: Mod_Toast_UnfollowedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.name} をバックパックから外しました。`)
+	return /** @type {LocalizedString} */ (`${i?.name} のフォローを解除しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{name} left your backpack." |
+* | "You no longer follow {name}." |
 *
 * @param {Mod_Toast_UnfollowedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

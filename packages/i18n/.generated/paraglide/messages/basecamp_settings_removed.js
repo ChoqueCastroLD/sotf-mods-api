@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_RemovedInputs */
 
 const en_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Removed by the rangers. Contact them if you think it is a mistake.`)
+	return /** @type {LocalizedString} */ (`Removed by moderators. Contact them if you think it is a mistake.`)
 };
 
 const es_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retirado por los guardabosques. Contacta con ellos si crees que es un error.`)
+	return /** @type {LocalizedString} */ (`Retirado por los moderadores. Contacta con ellos si crees que es un error.`)
 };
 
 const de_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Von den Rangern entfernt. Melde dich bei ihnen, wenn du es für einen Fehler hältst.`)
+	return /** @type {LocalizedString} */ (`Von den Moderatoren entfernt. Melde dich bei ihnen, wenn du es für einen Fehler hältst.`)
 };
 
 const fr_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Retiré par les rangers. Contactez-les si vous pensez qu’il s’agit d’une erreur.`)
+	return /** @type {LocalizedString} */ (`Retiré par les modérateurs. Contactez-les si vous pensez qu’il s’agit d’une erreur.`)
 };
 
 const it_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rimossa dai ranger. Contattali se pensi che sia un errore.`)
+	return /** @type {LocalizedString} */ (`Rimossa dai moderatori. Contattali se pensi che sia un errore.`)
 };
 
 const nl_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Verwijderd door de rangers. Neem contact op als je denkt dat het een vergissing is.`)
+	return /** @type {LocalizedString} */ (`Verwijderd door de moderators. Neem contact op als je denkt dat het een vergissing is.`)
 };
 
 const pl_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Usunięty przez strażników. Skontaktuj się z nimi, jeśli to pomyłka.`)
+	return /** @type {LocalizedString} */ (`Usunięty przez moderatorów. Skontaktuj się z nimi, jeśli to pomyłka.`)
 };
 
 const pt_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Removido pelos guardas. Fale com eles se achar que é um engano.`)
+	return /** @type {LocalizedString} */ (`Removido pelos moderadores. Fale com eles se achar que é um engano.`)
 };
 
 const ru_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Удалён рейнджерами. Свяжитесь с ними, если считаете это ошибкой.`)
+	return /** @type {LocalizedString} */ (`Удалён модераторами. Свяжитесь с ними, если считаете это ошибкой.`)
 };
 
 const sv_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Borttagen av rangers. Kontakta dem om du tror att det är ett misstag.`)
+	return /** @type {LocalizedString} */ (`Borttagen av moderatorerna. Kontakta dem om du tror att det är ett misstag.`)
 };
 
 const tr_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Korucular tarafından kaldırıldı. Bir hata olduğunu düşünüyorsan onlarla iletişime geç.`)
+	return /** @type {LocalizedString} */ (`Moderatörler tarafından kaldırıldı. Bir hata olduğunu düşünüyorsan onlarla iletişime geç.`)
 };
 
 const zh_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已被护林员下架。如果你认为有误，请联系他们。`)
+	return /** @type {LocalizedString} */ (`已被版主下架。如果你认为有误，请联系他们。`)
 };
 
 const ja_basecamp_settings_removed = /** @type {(inputs: Basecamp_Settings_RemovedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レンジャーにより削除されました。誤りだと思う場合は連絡してください。`)
+	return /** @type {LocalizedString} */ (`モデレーターにより削除されました。誤りだと思う場合は連絡してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Removed by the rangers. Contact them if you think it is a mistake." |
+* | "Removed by moderators. Contact them if you think it is a mistake." |
 *
 * @param {Basecamp_Settings_RemovedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

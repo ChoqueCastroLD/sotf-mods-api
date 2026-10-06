@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Settings_Sessions_Confirm_Current_TextInputs */
 
 const en_settings_sessions_confirm_current_text = /** @type {(inputs: Settings_Sessions_Confirm_Current_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You’ll go to the sign-in page.`)
+	return /** @type {LocalizedString} */ (`You’ll go to the login page.`)
 };
 
 const es_settings_sessions_confirm_current_text = /** @type {(inputs: Settings_Sessions_Confirm_Current_TextInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_settings_sessions_confirm_current_text = /** @type {(inputs: Settings_S
 /**
 * | output |
 * | --- |
-* | "You’ll go to the sign-in page." |
+* | "You’ll go to the login page." |
 *
 * @param {Settings_Sessions_Confirm_Current_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

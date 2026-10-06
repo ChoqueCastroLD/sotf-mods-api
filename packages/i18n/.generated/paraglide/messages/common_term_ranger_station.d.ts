@@ -3,7 +3,7 @@ export type Common_Term_Ranger_StationInputs = {};
 /**
 * | output |
 * | --- |
-* | "Ranger Station" |
+* | "Moderation" |
 *
 * @param {Common_Term_Ranger_StationInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

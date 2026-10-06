@@ -1,5 +1,7 @@
 # 03 · Identidad de marca, sistema de diseño y estado del arte
 
+> **Nota (2026-10-06):** [CLASSIC.md](../CLASSIC.md) prevalece sobre este documento en la identidad «Locator», la landing y la gamificación (logros, insignias, XP, hitos, premios, kits, Patch Radar, mapa de la isla). Donde discrepen, manda CLASSIC.md. Este texto se conserva como histórico y no se reescribe.
+
 > Research track: **marca + design system + estado del arte de sitios de mods**.
 > Fecha: 2026-09-29. Autor: agente de investigación (v2 planning).
 > Alcance: moodboard de Sons of the Forest, benchmark de plataformas de mods, 3 direcciones de marca (con recomendación), tokens listos para Tailwind v4, inventario de componentes y wireframes de todas las páginas.

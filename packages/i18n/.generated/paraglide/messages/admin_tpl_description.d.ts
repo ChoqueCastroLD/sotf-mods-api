@@ -3,7 +3,7 @@ export type Admin_Tpl_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "The reasons rangers pick when they approve, reject or ask for changes. Authors read them in their language." |
+* | "The reasons moderators pick when they approve, reject or ask for changes. Authors read them in their language." |
 *
 * @param {Admin_Tpl_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

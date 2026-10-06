@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Field_RememberInputs */
 
 const en_auth_field_remember = /** @type {(inputs: Auth_Field_RememberInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Keep me signed in on this device`)
+	return /** @type {LocalizedString} */ (`Keep me logged in on this device`)
 };
 
 const es_auth_field_remember = /** @type {(inputs: Auth_Field_RememberInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_field_remember = /** @type {(inputs: Auth_Field_RememberInputs) =>
 /**
 * | output |
 * | --- |
-* | "Keep me signed in on this device" |
+* | "Keep me logged in on this device" |
 *
 * @param {Auth_Field_RememberInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

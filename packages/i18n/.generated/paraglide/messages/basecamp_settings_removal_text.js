@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Settings_Removal_TextInputs */
 
 const en_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tell the rangers why. They answer through Signals.`)
+	return /** @type {LocalizedString} */ (`Tell moderators why. They answer in your notifications.`)
 };
 
 const es_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cuéntales a los guardabosques por qué. Te responderán por Señales.`)
+	return /** @type {LocalizedString} */ (`Cuéntales a los moderadores por qué. Te responderán en tus notificaciones.`)
 };
 
 const de_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Erkläre den Rangern den Grund. Sie antworten über Signale.`)
+	return /** @type {LocalizedString} */ (`Erkläre den Moderatoren den Grund. Sie antworten in deinen Benachrichtigungen.`)
 };
 
 const fr_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Expliquez la raison aux rangers. Ils répondent via Signaux.`)
+	return /** @type {LocalizedString} */ (`Expliquez la raison aux modérateurs. Ils répondent dans vos notifications.`)
 };
 
 const it_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Spiega il motivo ai ranger. Ti risponderanno tramite Segnali.`)
+	return /** @type {LocalizedString} */ (`Spiega il motivo ai moderatori. Ti risponderanno nelle tue notifiche.`)
 };
 
 const nl_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vertel de rangers waarom. Ze antwoorden via Signalen.`)
+	return /** @type {LocalizedString} */ (`Vertel de moderators waarom. Ze antwoorden in je meldingen.`)
 };
 
 const pl_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Napisz strażnikom dlaczego. Odpowiedzą przez Sygnały.`)
+	return /** @type {LocalizedString} */ (`Napisz moderatorom dlaczego. Odpowiedzą w twoich powiadomieniach.`)
 };
 
 const pt_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conte aos guardas o motivo. Eles respondem pelos Sinais.`)
+	return /** @type {LocalizedString} */ (`Conte aos moderadores o motivo. Eles respondem nas suas notificações.`)
 };
 
 const ru_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Объясните рейнджерам причину. Они ответят через «Сигналы».`)
+	return /** @type {LocalizedString} */ (`Объясните модераторам причину. Они ответят в ваших уведомлениях.`)
 };
 
 const sv_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Berätta för rangers varför. De svarar via Signaler.`)
+	return /** @type {LocalizedString} */ (`Berätta för moderatorerna varför. De svarar i dina aviseringar.`)
 };
 
 const tr_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Koruculara nedenini anlat. Sinyaller üzerinden yanıt verirler.`)
+	return /** @type {LocalizedString} */ (`Moderatörlere nedenini anlat. Bildirimlerin üzerinden yanıt verirler.`)
 };
 
 const zh_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`告诉护林员原因。他们会通过信号回复你。`)
+	return /** @type {LocalizedString} */ (`告诉版主原因。他们会在你的通知中回复。`)
 };
 
 const ja_basecamp_settings_removal_text = /** @type {(inputs: Basecamp_Settings_Removal_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`理由をレンジャーに伝えてください。返答はシグナルで届きます。`)
+	return /** @type {LocalizedString} */ (`理由をモデレーターに伝えてください。返答は通知で届きます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Tell the rangers why. They answer through Signals." |
+* | "Tell moderators why. They answer in your notifications." |
 *
 * @param {Basecamp_Settings_Removal_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

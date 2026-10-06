@@ -3,7 +3,7 @@ export type Auth_Back_To_Sign_InInputs = {};
 /**
 * | output |
 * | --- |
-* | "Back to sign in" |
+* | "Back to log in" |
 *
 * @param {Auth_Back_To_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

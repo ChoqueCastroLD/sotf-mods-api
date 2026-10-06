@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Flag_ExpiredInputs */
 
 const en_auth_flag_expired = /** @type {(inputs: Auth_Flag_ExpiredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your session ended. Sign in again to continue.`)
+	return /** @type {LocalizedString} */ (`Your session ended. Log in again to continue.`)
 };
 
 const es_auth_flag_expired = /** @type {(inputs: Auth_Flag_ExpiredInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_flag_expired = /** @type {(inputs: Auth_Flag_ExpiredInputs) => Loc
 /**
 * | output |
 * | --- |
-* | "Your session ended. Sign in again to continue." |
+* | "Your session ended. Log in again to continue." |
 *
 * @param {Auth_Flag_ExpiredInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

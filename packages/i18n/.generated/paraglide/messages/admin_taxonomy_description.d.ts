@@ -3,7 +3,7 @@ export type Admin_Taxonomy_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "The taxonomy of mods and builds: names in every language, order, legacy slugs and the curated tags." |
+* | "Categories and tags for mods and builds: names in every language, order, legacy slugs and curated tags." |
 *
 * @param {Admin_Taxonomy_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -5,7 +5,7 @@
  * - The unread badge stays live over SSE (`GET /api/v2/stream`, the console's `StreamClient`),
  *   with the 60 s unread-count polling fallback when the stream is refused for good.
  * - ≥ md: the bell opens a panel with the 8 most recent signals, «Mark all as read» and «See all».
- *   On phones it is a plain link to the full `/signals` page.
+ *   On phones it is a plain link to the full `/notifications` page.
  * - Following a signal marks it read (keep-alive request) and records `notification_open`.
  * - The stream closes on `pagehide` (bfcache) and reopens on `pageshow`.
  */
@@ -21,7 +21,7 @@ import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from '
 import { StreamClient, type StreamStatus } from '../../console/lib/stream.ts';
 import { track } from '../../scripts/beacon.ts';
 import { fetchRecentSignals, fetchUnreadCount, markSignalsRead } from './client.ts';
-import { ensureBadgeNames, needsBadgeNames, st } from './i18n.ts';
+import { st } from './i18n.ts';
 import { SignalRow } from './SignalRow.tsx';
 
 export const PANEL_LIMIT = 8;
@@ -65,7 +65,7 @@ function paintMenuCount(count: number): void {
   badge.hidden = count === 0;
 }
 
-export default function Bell({ unread: initialUnread, locale, href = '/signals' }: BellProps) {
+export default function Bell({ unread: initialUnread, locale, href = '/notifications' }: BellProps) {
   const [unread, setUnread] = useState(initialUnread);
   const [open, setOpen] = useState(false);
   const [panel, setPanel] = useState<PanelState>({ kind: 'idle' });
@@ -80,8 +80,6 @@ export default function Bell({ unread: initialUnread, locale, href = '/signals' 
     setPanel((current) => (current.kind === 'ready' ? current : { kind: 'loading' }));
     try {
       const items = await fetchRecentSignals(PANEL_LIMIT);
-      // «You earned {badge}»: fetch the localised badge names first (never blocks on failure).
-      if (needsBadgeNames(items)) await ensureBadgeNames();
       stale.current = false;
       setNow(Date.now());
       setPanel({ kind: 'ready', items });

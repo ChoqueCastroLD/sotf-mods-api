@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Reset_IntroInputs */
 
 const en_auth_reset_intro = /** @type {(inputs: Auth_Reset_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Saving it signs you out everywhere; then sign in with the new password.`)
+	return /** @type {LocalizedString} */ (`Saving it logs you out everywhere. Then log in with the new password.`)
 };
 
 const es_auth_reset_intro = /** @type {(inputs: Auth_Reset_IntroInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_auth_reset_intro = /** @type {(inputs: Auth_Reset_IntroInputs) => Local
 /**
 * | output |
 * | --- |
-* | "Saving it signs you out everywhere; then sign in with the new password." |
+* | "Saving it logs you out everywhere. Then log in with the new password." |
 *
 * @param {Auth_Reset_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Changelog_Hint_VersionInputs */
 
 const en_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Followers read this in their Signals.`)
+	return /** @type {LocalizedString} */ (`Followers see this in their notifications.`)
 };
 
 const es_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tus seguidores lo leen en sus Señales.`)
+	return /** @type {LocalizedString} */ (`Tus seguidores lo ven en sus notificaciones.`)
 };
 
 const de_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deine Follower lesen das in ihren Signalen.`)
+	return /** @type {LocalizedString} */ (`Deine Follower sehen das in ihren Benachrichtigungen.`)
 };
 
 const fr_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vos abonnés le lisent dans leurs Signaux.`)
+	return /** @type {LocalizedString} */ (`Vos abonnés le voient dans leurs notifications.`)
 };
 
 const it_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I tuoi follower lo leggono nei loro Segnali.`)
+	return /** @type {LocalizedString} */ (`I tuoi follower lo vedono nelle loro notifiche.`)
 };
 
 const nl_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je volgers lezen dit in hun Signalen.`)
+	return /** @type {LocalizedString} */ (`Je volgers zien dit in hun meldingen.`)
 };
 
 const pl_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Obserwujący przeczytają to w swoich Sygnałach.`)
+	return /** @type {LocalizedString} */ (`Obserwujący zobaczą to w swoich powiadomieniach.`)
 };
 
 const pt_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seus seguidores leem isso nos Sinais.`)
+	return /** @type {LocalizedString} */ (`Seus seguidores veem isso nas notificações.`)
 };
 
 const ru_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Подписчики увидят это в своих Сигналах.`)
+	return /** @type {LocalizedString} */ (`Подписчики увидят это в своих уведомлениях.`)
 };
 
 const sv_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dina följare läser det här i sina Signaler.`)
+	return /** @type {LocalizedString} */ (`Dina följare ser det här i sina aviseringar.`)
 };
 
 const tr_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Takipçilerin bunu Sinyaller’de okur.`)
+	return /** @type {LocalizedString} */ (`Takipçilerin bunu bildirimlerinde görür.`)
 };
 
 const zh_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`关注者会在信号中看到这些内容。`)
+	return /** @type {LocalizedString} */ (`关注者会在通知中看到这些内容。`)
 };
 
 const ja_upload_changelog_hint_version = /** @type {(inputs: Upload_Changelog_Hint_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`フォロワーはシグナルでこれを読みます。`)
+	return /** @type {LocalizedString} */ (`フォロワーには通知で表示されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Followers read this in their Signals." |
+* | "Followers see this in their notifications." |
 *
 * @param {Upload_Changelog_Hint_VersionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

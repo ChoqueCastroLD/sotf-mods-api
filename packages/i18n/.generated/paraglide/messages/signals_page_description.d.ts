@@ -3,7 +3,7 @@ export type Signals_Page_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Updates of what you follow, replies, mentions and news about your mods." |
+* | "Updates on what you follow, replies, mentions and news about your mods." |
 *
 * @param {Signals_Page_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

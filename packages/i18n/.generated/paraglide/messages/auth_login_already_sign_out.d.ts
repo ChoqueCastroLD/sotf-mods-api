@@ -3,7 +3,7 @@ export type Auth_Login_Already_Sign_OutInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign out and use another account" |
+* | "Log out and use another account" |
 *
 * @param {Auth_Login_Already_Sign_OutInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

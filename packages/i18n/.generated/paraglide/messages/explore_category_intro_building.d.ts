@@ -3,7 +3,7 @@ export type Explore_Category_Intro_BuildingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Tools and pieces for builders: snapping, blueprints, new structures and ways to shape your base." |
+* | "Tools and pieces for builders: snapping, new structures and ways to shape your base." |
 *
 * @param {Explore_Category_Intro_BuildingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

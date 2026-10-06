@@ -90,7 +90,7 @@
   "logs_expires_in": "Deleted in {time}",
   "logs_viewer_title": "Shared log",
   "logs_meta_viewer_description": "A shared game log. The private link deletes itself after 24 hours.",
-  "logs_gone_title": "This log is gone",
+  "logs_gone_title": "This log is no longer available",
   "logs_gone_expired": "Shared logs are deleted automatically after 24 hours. Ask for a new link or share the log again.",
   "logs_gone_deleted": "The creator deleted this log.",
   "logs_gone_reported": "This log was removed after abuse reports.",

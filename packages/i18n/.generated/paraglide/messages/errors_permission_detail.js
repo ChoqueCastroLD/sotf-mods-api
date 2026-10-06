@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Errors_Permission_DetailInputs */
 
 const en_errors_permission_detail = /** @type {(inputs: Errors_Permission_DetailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You need a different role to open this page. Go back or sign in with another account.`)
+	return /** @type {LocalizedString} */ (`You need a different role to open this page. Go back or log in with another account.`)
 };
 
 const es_errors_permission_detail = /** @type {(inputs: Errors_Permission_DetailInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_errors_permission_detail = /** @type {(inputs: Errors_Permission_Detail
 /**
 * | output |
 * | --- |
-* | "You need a different role to open this page. Go back or sign in with another account." |
+* | "You need a different role to open this page. Go back or log in with another account." |
 *
 * @param {Errors_Permission_DetailInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

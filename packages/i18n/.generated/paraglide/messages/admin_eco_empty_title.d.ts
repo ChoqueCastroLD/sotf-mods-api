@@ -3,7 +3,7 @@ export type Admin_Eco_Empty_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Nothing to map yet" |
+* | "Nothing to show yet" |
 *
 * @param {Admin_Eco_Empty_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

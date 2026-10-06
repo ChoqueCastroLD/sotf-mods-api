@@ -3,7 +3,7 @@ export type Builds_Comments_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "No comments yet. Ask the builder something or share a screenshot of it on your island." |
+* | "No comments yet. Ask the builder a question or share a screenshot." |
 *
 * @param {Builds_Comments_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

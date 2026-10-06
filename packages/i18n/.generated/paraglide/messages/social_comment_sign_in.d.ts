@@ -3,7 +3,7 @@ export type Social_Comment_Sign_InInputs = {};
 /**
 * | output |
 * | --- |
-* | "Sign in to comment" |
+* | "Log in to comment" |
 *
 * @param {Social_Comment_Sign_InInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

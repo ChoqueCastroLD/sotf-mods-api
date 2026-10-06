@@ -3,7 +3,7 @@ export type Builds_Import_Step1_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "BuildShare is the mod that places blueprints. It runs on RedLoader: if you have never installed a mod, follow the install guide first." |
+* | "BuildShare is the mod that places builds. It runs on RedLoader: if you have never installed a mod, follow the install guide first." |
 *
 * @param {Builds_Import_Step1_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

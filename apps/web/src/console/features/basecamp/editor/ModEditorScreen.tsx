@@ -1,5 +1,5 @@
 /**
- * `/basecamp/mods/$modId` — the mod editor (PLAN §7.5 «Gestión de mods»): listing, media, versions,
+ * `/dashboard/mods/$modId` — the mod editor (PLAN §7.5 «Gestión de mods»): listing, media, versions,
  * compatibility and status, with the listing quality score and the preflight rows of the API on
  * top. `?tab=` keeps the open tab in the URL; all panels stay mounted so switching tabs keeps
  * unsaved edits, and leaving the editor with unsaved edits asks first.
@@ -152,7 +152,7 @@ export function ModEditorScreen({
       <div className="grid gap-6">
         <UnsavedGuard dirty={dirtyTabs.size > 0} />
         <Link
-          to="/basecamp/mods"
+          to="/dashboard/mods"
           className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg max-md:hidden"
         >
           <Icon icon={ArrowLeft} size={16} />
@@ -186,7 +186,7 @@ export function ModEditorScreen({
             ) : null}
             {coauthor ? null : (
               <Link
-                to="/basecamp/analytics"
+                to="/dashboard/analytics"
                 search={{ mod: mod.id }}
                 className={buttonClasses({ variant: 'ghost', size: 'sm' })}
               >
@@ -196,7 +196,7 @@ export function ModEditorScreen({
             )}
             {mod.kind !== 'build' && !removed ? (
               <Link
-                to="/basecamp/mods/$modId/new-version"
+                to="/dashboard/mods/$modId/new-version"
                 params={{ modId: String(mod.id) }}
                 className={buttonClasses({ variant: 'primary', size: 'sm' })}
               >

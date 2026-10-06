@@ -3,7 +3,7 @@ export type Admin_Integrations_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Where the site announces new mods, versions, awards and milestones." |
+* | "Where the site announces new mods and versions." |
 *
 * @param {Admin_Integrations_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

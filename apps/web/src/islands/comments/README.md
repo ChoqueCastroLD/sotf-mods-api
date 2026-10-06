@@ -7,7 +7,6 @@ research/03 §5.8). Three directories, one entry:
 |---|---|---|
 | `comments/` | `[data-island="comments"]` (overview) | everyone, when the section nears the viewport or for `#comment-{id}` / `#comments` |
 | `reviews/` | `[data-island="reviews"]` (overview), `#write-review[data-island="reviews-write"]` (`/reviews`) | signed-in visitors |
-| `compat/` | `#field-report[data-island="field-report"]` («At a glance») | signed-in visitors |
 
 ```ts
 import { initSocialIslands } from '../../islands/comments/social.ts';
@@ -32,14 +31,11 @@ without React) cannot afford. Keys shared with other namespaces are copied into 
 - **Reviews** (`reviews/ReviewsIsland.tsx`): write/edit (stars as a native radio group, title,
   body, version), your review found through `GET /users/:handle/reviews`, delete with undo,
   «Helpful?» votes (optimistic), the author's single public reply (write/edit/delete), report.
-- **Field report** (`compat/FieldReportIsland.tsx`): 2-step modal (setup: version, build, mode →
-  result, note, other mods), «Did it work?» callout from `GET /me/compat-prompts`, your last report
-  with edit/delete, `#field-report` opens the modal.
 
 Shared pieces live in `comments/lib/` (API client with problem+json, native `<dialog>` modal, menu
 button, report dialog, undo toast through the page's `[data-mod-toast]`, local viewer state).
 
-Viewer state that edge-cached lists cannot carry (my reactions, my votes, my field report) is
+Viewer state that edge-cached lists cannot carry (my reactions, my votes) is
 remembered per account in `localStorage` from the write responses; editing rebuilds the Markdown
 source from the stored lite HTML (`lib/markdown.ts`). Both have backlog items for session lookups
 (`docs/backlog/WP-70.md`).

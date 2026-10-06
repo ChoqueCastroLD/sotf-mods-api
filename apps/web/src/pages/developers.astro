@@ -156,7 +156,7 @@ const keyLabel = (key: string) => m.content_dev_limit_key({ key });
                   {formatNumber(locale, limit.max)} / {limit.window} · {keyLabel(limit.key)}
                 </td>
                 <td class="px-3 py-2 align-top text-fg-muted" lang={englishLang}>
-                  {limit.extra ?? '—'}
+                  {limit.extra ?? '-'}
                 </td>
               </tr>
             ))
