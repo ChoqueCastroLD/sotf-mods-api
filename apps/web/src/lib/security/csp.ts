@@ -95,6 +95,15 @@ export const YOUTUBE_THUMBNAIL_ORIGIN = 'https://i.ytimg.com';
 
 const uniq = (values: readonly string[]): string[] => [...new Set(values)];
 
+/**
+ * Google's consent dialog (Funding Choices, shown to EEA/UK visitors before ads) injects its own
+ * `<style>` elements with per-visitor content and loads Google Fonts: hashes cannot cover them,
+ * so `<style>` elements are allowed inline (`'unsafe-inline'`; style injection only, scripts stay
+ * hash-checked) and the two font origins are listed.
+ */
+export const GOOGLE_FONTS_CSS_ORIGIN = 'https://fonts.googleapis.com';
+export const GOOGLE_FONTS_FILES_ORIGIN = 'https://fonts.gstatic.com';
+
 /** Directives Astro renders next to `script-src`/`style-src` (build-time part of the policy). */
 export const CSP_DIRECTIVES = [
   "default-src 'self'",
@@ -102,7 +111,7 @@ export const CSP_DIRECTIVES = [
   "object-src 'none'",
   "form-action 'self'",
   "manifest-src 'self'",
-  "font-src 'self'",
+  `font-src 'self' ${GOOGLE_FONTS_FILES_ORIGIN}`,
   "worker-src 'self' blob:",
   `img-src ${uniq(["'self'", 'data:', 'blob:', R2_PUBLIC_ORIGIN, YOUTUBE_THUMBNAIL_ORIGIN, ...GOOGLE_ADS_ORIGINS]).join(' ')}`,
   `media-src 'self' blob: ${R2_PUBLIC_ORIGIN}`,
@@ -165,10 +174,16 @@ export function cspConfig() {
       hashes: INLINE_SCRIPTS.map(sha256Source),
     },
     styleDirective: {
-      // Attributes only (Base UI/floating-ui, ad slots); `<style>` elements stay hash-checked.
-      // (Astro warns that `'self'` does not apply to `style-src-attr`: intended.)
-      resources: ["'self'", "'report-sample'", { resource: "'unsafe-inline'", kind: 'attribute' as const }],
-      hashes: thirdPartyStyleHashes(),
+      // Inline `<style>` elements and attributes are allowed (Google's consent dialog, Base UI,
+      // floating-ui, ad slots). No style hashes: a hash would make browsers ignore 'unsafe-inline'.
+      resources: [
+        "'self'",
+        "'report-sample'",
+        "'unsafe-inline'",
+        GOOGLE_FONTS_CSS_ORIGIN,
+        { resource: "'unsafe-inline'", kind: 'attribute' as const },
+      ],
+      hashes: [],
     },
   };
 }
@@ -258,7 +273,7 @@ export function fallbackPolicy(): string {
   fallback = serializePolicy([
     ...parsePolicy(CSP_DIRECTIVES.join('; ')),
     ['script-src', script],
-    ['style-src', ["'self'", "'report-sample'"]],
+    ['style-src', ["'self'", "'report-sample'", "'unsafe-inline'", GOOGLE_FONTS_CSS_ORIGIN]],
     ['style-src-attr', ["'unsafe-inline'"]],
   ]);
   return fallback;
