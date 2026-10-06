@@ -94,7 +94,8 @@ LABEL org.opencontainers.image.title="sotf-web" \
       org.opencontainers.image.revision="${GIT_SHA}" \
       org.opencontainers.image.created="${BUILD_DATE}" \
       org.opencontainers.image.licenses="UNLICENSED"
-RUN apk add --no-cache libstdc++ libgcc tini \
+RUN for i in 1 2 3 4 5; do apk add --no-cache libstdc++ libgcc tini && break; echo "apk retry $i"; sleep $((i * 5)); done \
+ && apk info -e libstdc++ libgcc tini > /dev/null \
  && addgroup -g 1000 node \
  && adduser -u 1000 -G node -s /sbin/nologin -D -H node
 COPY --from=base /usr/local/bin/node /usr/local/bin/node

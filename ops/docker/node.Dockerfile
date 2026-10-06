@@ -123,7 +123,8 @@ LABEL org.opencontainers.image.title="sotf-tools" \
       org.opencontainers.image.description="SOTF Mods v2 operator CLIs (backfills, invariants, admin:grant, R2 passes)" \
       org.opencontainers.image.source="https://github.com/ChoqueCastroLD/sotf-mods-api" \
       org.opencontainers.image.revision="${GIT_SHA}"
-RUN apk add --no-cache tini postgresql16-client
+RUN for i in 1 2 3 4 5; do apk add --no-cache tini postgresql16-client && break; echo "apk retry $i"; sleep $((i * 5)); done \
+ && apk info -e tini postgresql16-client > /dev/null
 ENV NODE_ENV=production \
     TZ=UTC \
     GIT_SHA=${GIT_SHA} \
@@ -159,7 +160,8 @@ LABEL org.opencontainers.image.title="sotf-node" \
       org.opencontainers.image.licenses="UNLICENSED"
 # tini reaps zombies and forwards SIGTERM, so close-with-grace can drain within Coolify's 30 s.
 # tzdata is not needed (TZ=UTC); wget for Coolify's health check comes with busybox.
-RUN apk add --no-cache libstdc++ libgcc tini \
+RUN for i in 1 2 3 4 5; do apk add --no-cache libstdc++ libgcc tini && break; echo "apk retry $i"; sleep $((i * 5)); done \
+ && apk info -e libstdc++ libgcc tini > /dev/null \
  && addgroup -g 1000 node \
  && adduser -u 1000 -G node -s /sbin/nologin -D -H node
 COPY --from=base /usr/local/bin/node /usr/local/bin/node
