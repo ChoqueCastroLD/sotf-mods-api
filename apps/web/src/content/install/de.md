@@ -1,6 +1,6 @@
 ---
 title: Mods für Sons of the Forest installieren
-seoTitle: Sons-of-the-Forest-Mods installieren (2026): RedLoader-Anleitung
+seoTitle: "Sons-of-the-Forest-Mods installieren (2026): RedLoader-Anleitung"
 description: RedLoader mit RedManager installieren, Mods in den Ordner Mods legen und im Spiel prüfen. Schritt-für-Schritt-Anleitung mit Lösungen für Virenwarnungen und Patches.
 tldr: Installiere RedLoader, den Mod-Loader, mit RedManager (oder von Hand), leg jeden Mod in den Ordner Mods in deinem Spielverzeichnis und starte das Spiel. RedManager installiert jeden Mod von SOTF Mods mit einem Klick. Das dauert etwa drei Minuten; die Anleitung unten deckt jeden Schritt und die üblichen Probleme ab.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]

@@ -1,6 +1,6 @@
 ---
 title: Sons of the Forest modları nasıl kurulur
-seoTitle: Sons of the Forest modları nasıl kurulur (2026): RedLoader rehberi
+seoTitle: "Sons of the Forest modları nasıl kurulur (2026): RedLoader rehberi"
 description: RedLoader’ı RedManager ile kur, modları Mods klasörüne koy ve oyunda kontrol et. Antivirüs uyarıları ve yamalar için çözümler içeren adım adım rehber.
 tldr: Mod yükleyicisi RedLoader’ı RedManager ile (ya da elle) kur, her modu oyun klasöründeki Mods klasörüne koy ve oyunu başlat. RedManager, SOTF Mods’taki herhangi bir modu tek tıkla kurabilir. Yaklaşık üç dakika sürer; aşağıdaki rehber her adımı ve sık karşılaşılan sorunları anlatıyor.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]

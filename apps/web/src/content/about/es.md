@@ -1,6 +1,6 @@
 ---
 title: Acerca de SOTF Mods
-description: SOTF Mods es el hogar del modding de Sons of the Forest desde 2023: descargas gratis, reseñas y un espacio para creadores. Quién lo lleva y cómo.
+description: "SOTF Mods es el hogar del modding de Sons of the Forest desde 2023: descargas gratis, reseñas y un espacio para creadores. Quién lo lleva y cómo."
 anchors: [what, who, trust, money, contact]
 ---
 

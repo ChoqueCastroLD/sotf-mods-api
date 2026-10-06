@@ -1,6 +1,6 @@
 ---
 title: Terms of use
-description: The rules for using SOTF Mods: accounts, what you may publish, the licence you give us to host your mods, downloads at your own risk and how disputes are handled.
+description: "The rules for using SOTF Mods: accounts, what you may publish, the licence you give us to host your mods, downloads at your own risk and how disputes are handled."
 anchors: [agreement, service, accounts, content, license, conduct, downloads, moderation, liability, termination, changes, law, contact]
 ---
 

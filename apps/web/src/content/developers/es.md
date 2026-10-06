@@ -1,6 +1,6 @@
 ---
 title: API de SOTF Mods para desarrolladores
-description: Construye sobre el catálogo de SOTF Mods: API pública v2 con OpenAPI, errores, paginación, caché y límites, guía para gestores de mods y calendario de la API legacy.
+description: "Construye sobre el catálogo de SOTF Mods: API pública v2 con OpenAPI, errores, paginación, caché y límites, guía para gestores de mods y calendario de la API legacy."
 anchors: [overview, format, errors, pagination, caching, mod-manager, downloads, updates, support]
 ---
 

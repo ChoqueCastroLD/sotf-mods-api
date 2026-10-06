@@ -1,6 +1,6 @@
 ---
 title: O SOTF Mods
-description: SOTF Mods to od 2023 roku dom modowania Sons of the Forest: darmowe pobrania, recenzje i miejsce dla twórców. Kto go prowadzi i jak.
+description: "SOTF Mods to od 2023 roku dom modowania Sons of the Forest: darmowe pobrania, recenzje i miejsce dla twórców. Kto go prowadzi i jak."
 anchors: [what, who, trust, money, contact]
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Content policy
-description: What you can publish on SOTF Mods: allowed and forbidden content, adult content, AI-assisted mods, credits and reuploads, and how reports and moderation work.
+description: "What you can publish on SOTF Mods: allowed and forbidden content, adult content, AI-assisted mods, credits and reuploads, and how reports and moderation work."
 anchors: [principles, allowed, forbidden, safety, adult, credits, ai, community, reports, enforcement, appeals]
 ---
 

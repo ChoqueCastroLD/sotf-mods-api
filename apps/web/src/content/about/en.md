@@ -1,6 +1,6 @@
 ---
 title: About SOTF Mods
-description: SOTF Mods is the community home of Sons of the Forest modding since 2023: free downloads, reviews and a place for creators. Who runs it and how.
+description: "SOTF Mods is the community home of Sons of the Forest modding since 2023: free downloads, reviews and a place for creators. Who runs it and how."
 anchors: [what, who, trust, money, contact]
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Over SOTF Mods
-description: SOTF Mods is sinds 2023 het thuis van Sons of the Forest-modding: gratis downloads, reviews en een plek voor makers. Wie het runt en hoe.
+description: "SOTF Mods is sinds 2023 het thuis van Sons of the Forest-modding: gratis downloads, reviews en een plek voor makers. Wie het runt en hoe."
 anchors: [what, who, trust, money, contact]
 ---
 

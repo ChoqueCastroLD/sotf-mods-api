@@ -1,6 +1,6 @@
 ---
 title: Términos de uso
-description: Las reglas para usar SOTF Mods: cuentas, qué puedes publicar, la licencia que nos das para alojar tus mods, descargas bajo tu responsabilidad y resolución de conflictos.
+description: "Las reglas para usar SOTF Mods: cuentas, qué puedes publicar, la licencia que nos das para alojar tus mods, descargas bajo tu responsabilidad y resolución de conflictos."
 anchors: [agreement, service, accounts, content, license, conduct, downloads, moderation, liability, termination, changes, law, contact]
 ---
 

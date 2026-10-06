@@ -1,6 +1,6 @@
 ---
 title: О SOTF Mods
-description: SOTF Mods: дом моддинга Sons of the Forest с 2023 года. Бесплатные загрузки, страницы модов с отзывами и комментариями и место для авторов. Кто ведёт сайт и как.
+description: "SOTF Mods: дом моддинга Sons of the Forest с 2023 года. Бесплатные загрузки, страницы модов с отзывами и комментариями и место для авторов. Кто ведёт сайт и как."
 anchors: [what, who, trust, money, contact]
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Om SOTF Mods
-description: SOTF Mods är hemmet för modding till Sons of the Forest sedan 2023: gratis nedladdningar, recensioner och en plats för skapare. Vem som driver det och hur.
+description: "SOTF Mods är hemmet för modding till Sons of the Forest sedan 2023: gratis nedladdningar, recensioner och en plats för skapare. Vem som driver det och hur."
 anchors: [what, who, trust, money, contact]
 ---
 

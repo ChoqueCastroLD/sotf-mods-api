@@ -1,6 +1,6 @@
 ---
 title: SOTF Mods hakkında
-description: SOTF Mods, 2023’ten beri Sons of the Forest modlamanın evi: ücretsiz indirmeler, incelemeler ve yorumlarla mod sayfaları ve içerik üreticileri için bir alan.
+description: "SOTF Mods, 2023’ten beri Sons of the Forest modlamanın evi: ücretsiz indirmeler, incelemeler ve yorumlarla mod sayfaları ve içerik üreticileri için bir alan."
 anchors: [what, who, trust, money, contact]
 ---
 
